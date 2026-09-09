@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Activity, AlertTriangle, CloudSun, Droplets, FlaskConical, Leaf,
-  Pill, RefreshCw, ShieldCheck, Thermometer, Wind,
+  Pill, RefreshCw, ShieldCheck, Thermometer, Wind, Sun, Sunrise, Sunset,
 } from "lucide-react";
 import type { IndiaPulse, DrugLive, FoodLive } from "@/lib/realtime";
-import { weatherLabel } from "@/lib/realtime";
+import { weatherLabel, uvLabel, uvAdvice } from "@/lib/realtime";
 
 /* ---------------- Live ticker ---------------- */
 export function LiveTicker() {
@@ -19,7 +19,7 @@ export function LiveTicker() {
     ? [
         `🕒 ${pulse.istTime} IST`,
         `🌿 ${pulse.season}`,
-        ...pulse.cities.slice(0, 5).map((c) => `${c.city}: ${c.tempC ?? "–"}°C · AQI ${c.aqiUS ?? "–"} (${c.aqiLabel})`),
+        ...pulse.cities.slice(0, 5).map((c) => `${c.city}: ${c.tempC ?? "–"}°C · AQI ${c.aqiUS ?? "–"} (${c.aqiLabel}) · UV ${c.uvIndex ?? "–"} ${c.uvIndex != null ? `(${uvLabel(c.uvIndex)})` : ""}`),
         pulse.covid.live ? `🦠 India COVID active: ${pulse.covid.active.toLocaleString("en-IN")}` : "🦠 COVID tracker: updating",
       ]
     : ["Loading live India health pulse…"];
@@ -46,6 +46,15 @@ function aqiColor(aqi: number | null): string {
   if (aqi <= 200) return "bg-orange-500";
   if (aqi <= 300) return "bg-red-500";
   return "bg-rose-800";
+}
+
+function uvColor(uv: number | null): string {
+  if (uv == null) return "bg-stone-300";
+  if (uv <= 2) return "bg-emerald-500";
+  if (uv <= 5) return "bg-amber-400";
+  if (uv <= 7) return "bg-orange-500";
+  if (uv <= 10) return "bg-red-500";
+  return "bg-purple-700";
 }
 
 /* ---------------- India Health Pulse dashboard ---------------- */
@@ -86,10 +95,10 @@ export function IndiaPulseDashboard() {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 lg:grid-cols-3">
-        {/* Cities AQI + weather */}
+        {/* Cities AQI + weather + UV + sunrise/sunset */}
         <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm lg:col-span-2 dark:border-stone-700 dark:bg-stone-900">
           <div className="mb-3 flex items-center justify-between">
-            <p className="flex items-center gap-2 text-sm font-bold"><Wind className="h-4 w-4 text-sky-600" /> Live air quality + weather · 8 cities</p>
+            <p className="flex items-center gap-2 text-sm font-bold"><Wind className="h-4 w-4 text-sky-600" /> Live air quality + weather + UV · 8 cities</p>
             <span className="flex items-center gap-1.5 rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-bold text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-600" /> LIVE · {now} IST
             </span>
@@ -99,20 +108,31 @@ export function IndiaPulseDashboard() {
               <li key={c.city} className="rounded-2xl border border-stone-100 bg-stone-50/60 p-3 dark:border-stone-800 dark:bg-stone-800/50">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold">{c.city}</span>
-                  <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${aqiColor(c.aqiUS)}`}>AQI {c.aqiUS ?? "–"}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${aqiColor(c.aqiUS)}`}>AQI {c.aqiUS ?? "–"}</span>
+                    <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${uvColor(c.uvIndex)}`}>UV {c.uvIndex ?? "–"} {c.uvIndex != null ? uvLabel(c.uvIndex).slice(0, 3) : ""}</span>
+                  </div>
                 </div>
-                <div className="mt-1.5 flex items-center gap-3 text-[12px] text-stone-600 dark:text-stone-300">
+                <div className="mt-1.5 flex flex-wrap items-center gap-3 text-[12px] text-stone-600 dark:text-stone-300">
                   <span className="flex items-center gap-1"><Thermometer className="h-3.5 w-3.5 text-orange-500" />{c.tempC ?? "–"}°C</span>
                   <span className="flex items-center gap-1"><Droplets className="h-3.5 w-3.5 text-sky-500" />{c.humidity ?? "–"}%</span>
                   <span className="flex items-center gap-1"><CloudSun className="h-3.5 w-3.5 text-amber-500" />{weatherLabel(c.weatherCode)}</span>
+                  <span className="flex items-center gap-1"><Sun className="h-3.5 w-3.5 text-amber-600" />{c.uvIndex ?? "–"} ({uvLabel(c.uvIndex)})</span>
+                </div>
+                <div className="mt-1.5 flex flex-wrap gap-2 text-[11px] text-stone-500">
+                  <span className="flex items-center gap-1"><Sunrise className="h-3 w-3 text-amber-500" />{c.sunrise ?? "–"}</span>
+                  <span className="flex items-center gap-1"><Sunset className="h-3 w-3 text-orange-600" />{c.sunset ?? "–"}</span>
+                  {c.uvMax != null && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-800 dark:bg-amber-950/40">Max UV {c.uvMax}</span>}
+                  {c.isDay != null && <span className="text-[10px]">{c.isDay ? "☀️ Day" : "🌙 Night"}</span>}
                 </div>
                 <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-700">
                   <div className={`h-full rounded-full ${aqiColor(c.aqiUS)}`} style={{ width: `${Math.min(100, ((c.aqiUS ?? 0) / 300) * 100)}%` }} />
                 </div>
+                {c.uvIndex != null && <p className="mt-1 text-[11px] text-stone-500">{uvAdvice(c.uvIndex)}</p>}
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[11px] text-stone-500">Source: Open-Meteo (live, keyless). {worst ? `Highest right now: ${worst.city} (AQI ${worst.aqiUS ?? "–"}). ` : ""}{worst?.advice}</p>
+          <p className="mt-3 text-[11px] text-stone-500">Source: Open-Meteo (live, keyless) — weather + AQI + UV + sunrise/sunset. {worst ? `Highest AQI now: ${worst.city} (AQI ${worst.aqiUS ?? "–"}). ` : ""}{worst?.advice} UV data helps plan outdoor exercise.</p>
         </div>
 
         {/* Season + COVID */}
