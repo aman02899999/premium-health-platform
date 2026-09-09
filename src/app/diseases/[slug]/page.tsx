@@ -17,6 +17,7 @@ import {
 import { EvidenceStack, RiskBarChart } from "@/components/charts";
 import { articleJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
+import { LiveResearchSection } from "@/components/research";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -66,7 +67,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
     ["ayurveda", "Ayurveda view"], ["herbs", "Herbs"], ["nutrition", "Nutrition"],
     ["lifestyle", "Lifestyle & yoga"], ["homeopathy", "Homeopathy note"], ["evidence", "What evidence says"],
     ["safety", "Safety & warnings"], ["complications", "Complications"], ["emergency", "Emergency signs"],
-    ["doctor", "When to see a doctor"], ["faq", "FAQs"], ["references", "References"],
+    ["doctor", "When to see a doctor"], ["research", "Live research & trials"], ["faq", "FAQs"], ["references", "References"],
   ];
 
   const relatedHerbs = detail.relatedHerbs.map(getHerb).filter(Boolean);
@@ -223,6 +224,11 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
 
           <div id="emergency" className="scroll-mt-28"><EmergencyBox signs={detail.emergencySigns} /></div>
           <div id="doctor" className="scroll-mt-28"><DoctorBox points={detail.whenToSeeDoctor} /></div>
+
+          <Section id="research" icon={<BookOpen className="h-4 w-4" />} title="Live research & clinical trials">
+            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
+            <LiveResearchSection diseaseName={detail.name} diseaseSlug={slug} />
+          </Section>
 
           <Section id="faq" icon={<BookOpen className="h-4 w-4" />} title="Frequently asked questions">
             <FaqAccordion faqs={detail.faqs} />

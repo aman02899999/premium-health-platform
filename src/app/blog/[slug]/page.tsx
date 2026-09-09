@@ -10,6 +10,11 @@ import { BookmarkButton, HelpfulVote, PrintButton, ReadingProgress, TableOfConte
 import { blogPostingJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { LatestArticles, TrendingArticles } from "@/components/blog/LatestArticles";
+import { BlogCategories } from "@/components/blog/BlogCategories";
+import { PremiumCTA } from "@/components/earning/PremiumCTA";
+import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -25,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: a.seoDescription,
     keywords: a.keywords,
     authors: [{ name: a.author }],
-    alternates: { canonical: `/blog/${slug}` },
+    alternates: { canonical: `/blog/${slug}`, languages: { "en-IN": url, "en": url, "x-default": url } },
     openGraph: {
       title: a.seoTitle,
       description: a.seoDescription,
@@ -89,12 +94,12 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
   return (
     <div className="mx-auto max-w-7xl px-4 py-6">
       <ReadingProgress />
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: a.category }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: a.category, href: `/blog/category/${a.category.toLowerCase().replace(/\s+/g, "-")}` }, { label: a.title }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbLd) }} />
 
-      <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_300px]">
+      <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_340px]">
         {/* Main column */}
         <article className="min-w-0 max-w-4xl">
           <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-600">
@@ -139,12 +144,15 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                   {sec.bullets && <ul className="mt-3 space-y-1.5">{sec.bullets.map((b, k) => <li key={k} className="flex gap-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />{b}</li>)}</ul>}
                 </section>
                 {i === midPoint - 1 && (
-                  <figure className="mt-5 overflow-hidden rounded-3xl border border-stone-200 dark:border-stone-700">
-                    <div className="relative aspect-[16/9] w-full bg-stone-100 dark:bg-stone-800">
-                      <Image src={a.inlineImage} alt={a.inlineImageAlt} fill loading="lazy" sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover" />
-                    </div>
-                    <figcaption className="bg-white px-4 py-2 text-[11px] text-stone-500 dark:bg-stone-900 dark:text-stone-400">{a.inlineImageAlt} · Photo: Pexels</figcaption>
-                  </figure>
+                  <>
+                    <figure className="mt-5 overflow-hidden rounded-3xl border border-stone-200 dark:border-stone-700">
+                      <div className="relative aspect-[16/9] w-full bg-stone-100 dark:bg-stone-800">
+                        <Image src={a.inlineImage} alt={a.inlineImageAlt} fill loading="lazy" sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover" />
+                      </div>
+                      <figcaption className="bg-white px-4 py-2 text-[11px] text-stone-500 dark:bg-stone-900 dark:text-stone-400">{a.inlineImageAlt} · Photo: Pexels</figcaption>
+                    </figure>
+                    <div className="mt-5"><AffiliateProducts limit={2} title="Related Products — Supports Our Work" /></div>
+                  </>
                 )}
               </div>
             ))}
@@ -157,6 +165,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           )}
 
           <div className="mt-5"><AdSlot slot="In-content" /></div>
+
+          {/* Related — SEO internal linking */}
+          <div className="mt-6"><RelatedArticles currentSlug={slug} category={a.category} tags={a.tags} limit={4} /></div>
 
           <section id="faqs" className="mt-5 scroll-mt-28 rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
             <h2 className="font-display mb-1 text-xl font-bold md:text-2xl">Frequently asked questions</h2>
@@ -197,11 +208,16 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <div className="mt-6 space-y-4"><Newsletter compact /><DisclaimerBar /></div>
         </article>
 
-        {/* Sidebar */}
+        {/* Sidebar — SEO + Earning optimized */}
         <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           <div className="lg:block"><TableOfContents headings={toc} /></div>
+          <BlogCategories activeCategory={a.category} />
+          <LatestArticles limit={4} />
+          <TrendingArticles limit={4} />
+          <PremiumCTA compact />
+          <AffiliateProducts limit={2} />
           <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
-            <p className="border-b border-stone-100 px-4 py-3 text-xs font-bold uppercase tracking-wider text-stone-500 dark:border-stone-800">Related guides</p>
+            <p className="border-b border-stone-100 px-4 py-3 text-xs font-bold uppercase tracking-wider text-stone-500 dark:border-stone-800">Related guides — SEO</p>
             {relatedFallback.map((r) => (
               <Link key={r.slug} href={`/blog/${r.slug}`} className="flex gap-3 border-b border-stone-100 p-3 last:border-0 hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-800/60">
                 <span className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-stone-100">

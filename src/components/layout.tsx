@@ -6,15 +6,16 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import {
   Activity, ChevronDown, FlaskConical, Heart, Home, Leaf, Menu, Moon, Pill,
   Search, Sparkles, Sun, X, Calculator, BookOpen, ShoppingBag, Stethoscope,
+  User, Crown, LogOut,
 } from "lucide-react";
 import { PRIMARY_NAV, SITE, FOOTER_COLUMNS, SEARCH_PLACEHOLDER } from "@/lib/site";
 import { searchAll } from "@/lib/search-index";
 import { cn } from "@/lib/format";
+import { useAuth } from "@/components/auth/AuthContext";
 
 // ---------- Theme ----------
 const ThemeCtx = createContext<{ dark: boolean; toggle: () => void; reduceMotion: boolean; toggleMotion: () => void }>({ dark: false, toggle: () => {}, reduceMotion: false, toggleMotion: () => {} });
 export function useTheme() { return useContext(ThemeCtx); }
-
 export function Providers({ children }: { children: React.ReactNode }) {
   const [dark, setDark] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -112,6 +113,43 @@ export function SearchBar({ large, autoFocus }: { large?: boolean; autoFocus?: b
   );
 }
 
+// ---------- Auth menu ----------
+function AuthMenu() {
+  const { user, isPremium, signOut } = useAuth();
+  const [open, setOpen] = useState(false);
+
+  if (!user) {
+    return (
+      <div className="flex items-center gap-1">
+        <Link href="/login" className="hidden rounded-xl border border-stone-200 px-3 py-2 text-[13px] font-bold hover:bg-stone-50 sm:flex dark:border-stone-700">Login</Link>
+        <Link href="/register" className="rounded-xl bg-stone-900 px-3 py-2 text-[13px] font-bold text-white hover:bg-stone-800 dark:bg-white dark:text-stone-900">Sign up</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <button onClick={() => setOpen(!open)} className="flex items-center gap-2 rounded-xl border border-stone-200 bg-white px-2.5 py-1.5 text-sm font-bold shadow-sm hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-800">
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 text-white text-xs font-black">{user.name.charAt(0).toUpperCase()}</span>
+        <span className="hidden sm:block">{user.name.split(" ")[0]}</span>
+        {isPremium && <Crown className="h-3.5 w-3.5 text-amber-500" />}
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-2xl border border-stone-200 bg-white p-2 shadow-2xl dark:border-stone-700 dark:bg-stone-900">
+          <div className="rounded-xl bg-stone-50 p-3 dark:bg-stone-800">
+            <p className="text-sm font-bold">{user.name} {isPremium && <span className="ml-1 rounded-full bg-amber-500 px-2 py-0.5 text-[10px] text-white">PREMIUM</span>}</p>
+            <p className="text-xs text-stone-500">{user.email}</p>
+            <p className="mt-1 text-[11px] text-stone-400">{user.provider} SSO · {user.role}</p>
+          </div>
+          <Link href="/profile" className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><User className="h-4 w-4" /> Profile & Earnings</Link>
+          <Link href="/premium" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><Crown className="h-4 w-4 text-amber-500" /> Premium Plans</Link>
+          <button onClick={async () => { setOpen(false); await signOut(); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><LogOut className="h-4 w-4" /> Sign out</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ---------- Header ----------
 export function Header() {
   const pathname = usePathname();
@@ -132,9 +170,10 @@ export function Header() {
           <div className="ml-4 hidden max-w-md flex-1 xl:block"><SearchBar /></div>
           <div className="ml-auto flex items-center gap-1.5">
             <Link href="/health-calculators" className="hidden items-center gap-1.5 rounded-xl px-3 py-2 text-[13px] font-semibold text-stone-600 hover:bg-stone-100 md:flex dark:text-stone-300 dark:hover:bg-stone-800"><Calculator className="h-4 w-4" /> Calculators</Link>
+            <Link href="/premium" className="hidden items-center gap-1.5 rounded-xl bg-amber-500 px-3 py-2 text-[13px] font-bold text-stone-900 hover:bg-amber-400 md:flex"><Crown className="h-4 w-4" /> Premium</Link>
             <Link href="/search" className="rounded-xl p-2.5 hover:bg-stone-100 xl:hidden dark:hover:bg-stone-800" aria-label="Search"><Search className="h-5 w-5" /></Link>
             <button onClick={toggle} className="rounded-xl p-2.5 hover:bg-stone-100 dark:hover:bg-stone-800" aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}>{dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}</button>
-            <Link href="/diseases" className="hidden rounded-xl bg-gradient-to-r from-emerald-700 to-teal-700 px-4 py-2.5 text-[13px] font-bold text-white shadow-md hover:shadow-lg sm:block">Explore Topics</Link>
+            <AuthMenu />
           </div>
         </div>
         <nav className="hidden border-t border-stone-100 lg:block dark:border-stone-800/60" aria-label="Primary">
@@ -200,7 +239,7 @@ export function MobileBottomNav() {
     { label: "Search", href: "/search", icon: <Search className="h-5 w-5" /> },
     { label: "Diseases", href: "/diseases", icon: <Stethoscope className="h-5 w-5" /> },
     { label: "Ayurveda", href: "/ayurveda", icon: <Leaf className="h-5 w-5" /> },
-    { label: "More", href: "/blog", icon: <Menu className="h-5 w-5" /> },
+    { label: "Profile", href: "/profile", icon: <User className="h-5 w-5" /> },
   ];
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-stone-200 bg-white/95 backdrop-blur-lg lg:hidden dark:border-stone-800 dark:bg-stone-950/95" aria-label="Mobile bottom">
@@ -231,6 +270,10 @@ export function Footer() {
               <strong>Medical disclaimer:</strong> {SITE.disclaimer}
             </div>
             <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400"><strong>Affiliate disclosure:</strong> {SITE.affiliateDisclosure}</p>
+            <div className="mt-3 flex gap-2">
+              <Link href="/premium" className="rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-bold text-stone-900">Premium — ₹199/mo</Link>
+              <Link href="/login" className="rounded-xl border px-3 py-1.5 text-xs font-bold">Login — SSO</Link>
+            </div>
           </div>
           {FOOTER_COLUMNS.map((col) => (
             <nav key={col.title} aria-label={col.title}>
@@ -244,12 +287,13 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row dark:border-stone-800 dark:text-stone-400">
-          <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families.</p>
+          <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families. · SEO optimized · SSO optimized · Earning optimized</p>
           <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="hover:underline">Privacy</Link>
             <Link href="/terms" className="hover:underline">Terms</Link>
             <Link href="/disclaimer" className="hover:underline">Disclaimer</Link>
             <Link href="/affiliate-disclosure" className="hover:underline">Affiliate Disclosure</Link>
+            <Link href="/sitemap.xml" className="hover:underline">Sitemap</Link>
           </p>
         </div>
       </div>
