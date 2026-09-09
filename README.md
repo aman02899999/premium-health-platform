@@ -32,7 +32,7 @@ PostgreSQL with the schema in [`src/db/schema.ts`](src/db/schema.ts)
 | Table | Purpose |
 |---|---|
 | `news_items` | Newsroom CMS — published/draft articles, read by `/api/news` and rendered at `/news/[slug]` |
-| `newsletter_subscribers` | Reserved for the upcoming newsletter signup flow |
+| `newsletter_subscribers` | Indian Health Weekly sign-ups — written by `POST /api/newsletter` |
 
 The remaining tables (`diseases`, `medicines`, `herbs`, `products`, …) are
 schema-reserved; their public APIs currently serve from static data in
@@ -90,11 +90,16 @@ Editorial safety policy is enforced server-side: headlines/summaries containing
 
 ## Public API
 
-`/api/news`, `/api/news/[slug]`, `/api/diseases`, `/api/medicines`,
-`/api/herbs`, `/api/products`, `/api/articles`, `/api/lab-tests`,
-`/api/search?q=…`, `/api/realtime/drug?name=…`, `/api/realtime/food`,
-`/api/realtime/pulse`, `/api/health` — plus `/news/rss.xml`, `/sitemap.xml`,
-`/robots.txt`.
+`GET /api/news`, `GET /api/news/[slug]`, `POST /api/newsletter`,
+`GET /api/diseases`, `GET /api/medicines`, `GET /api/herbs`,
+`GET /api/products`, `GET /api/articles`, `GET /api/lab-tests`,
+`GET /api/search?q=…`, `GET /api/realtime/drug?name=…`,
+`GET /api/realtime/food?q=…`, `GET /api/realtime/pulse`, `GET /api/health`
+— plus `/news/rss.xml`, `/sitemap.xml`, `/robots.txt`.
+
+`POST /api/newsletter` accepts `{"email", "consent"}`, is idempotent
+(duplicates → `already-subscribed`), validates email client- and
+server-side, and stores rows in `newsletter_subscribers`.
 
 ## Content sections
 

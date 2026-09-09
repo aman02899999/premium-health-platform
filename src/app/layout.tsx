@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   alternates: { canonical: SITE.url },
-  icons: { icon: "/logo.svg", apple: "/logo.svg" },
+  icons: { icon: ["/logo.svg", { url: "/icon-192.png", type: "image/png" }, { url: "/icon-512.png", type: "image/png" }], apple: "/apple-icon.png" },
   manifest: "/manifest.webmanifest",
 };
 
@@ -56,6 +56,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:opsz,wght@14..32,400..800&display=swap"
+          rel="stylesheet"
+        />
         <link rel="preconnect" href="https://images.pexels.com" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />

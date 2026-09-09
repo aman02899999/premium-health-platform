@@ -159,6 +159,32 @@ export function ShareButtons({ title, path }: { title: string; path: string }) {
 export function Newsletter({ compact }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [already, setAlready] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, consent: true }),
+      });
+      const data = (await res.json().catch(() => null)) as { ok?: boolean; status?: string; error?: string } | null;
+      if (res.ok && data?.ok) {
+        setAlready(data.status === "already-subscribed");
+        setDone(true);
+      } else {
+        setError(data?.error || "Something went wrong — please try again.");
+      }
+    } catch {
+      setError("Network error — please check your connection and try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
   return (
     <div className={cn("relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white", compact ? "p-6" : "p-8 md:p-10")}>
       <div className="mandala-ring animate-spin-slow pointer-events-none absolute -right-24 -top-24 h-72 w-72 opacity-40" aria-hidden />
@@ -166,13 +192,16 @@ export function Newsletter({ compact }: { compact?: boolean }) {
       <h3 className="font-display mt-2 text-2xl font-bold md:text-3xl">One useful health email. Every Sunday.</h3>
       <p className="mt-2 max-w-xl text-sm text-emerald-100">Diabetes, thyroid, heart, Ayurveda and nutrition — explained simply. No spam, no miracle cures. Unsubscribe anytime.</p>
       {done ? (
-        <p className="mt-4 flex items-center gap-2 rounded-xl bg-white/10 p-3 text-sm font-medium"><CheckCircle2 className="h-4 w-4 text-amber-300" /> Thank you! Please check your inbox to confirm.</p>
+        <p className="mt-4 flex items-center gap-2 rounded-xl bg-white/10 p-3 text-sm font-medium"><CheckCircle2 className="h-4 w-4 text-amber-300" /> {already ? "You're already on the list — see you Sunday!" : "You're in! The Indian Health Weekly arrives every Sunday."}</p>
       ) : (
-        <form className="mt-4 flex flex-col gap-2 sm:flex-row" onSubmit={(e) => { e.preventDefault(); if (email.includes("@")) setDone(true); }}>
-          <label htmlFor="nl-email" className="sr-only">Email address</label>
-          <input id="nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.in" className="h-11 flex-1 rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
-          <button className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 transition hover:bg-amber-400">Subscribe free</button>
-        </form>
+        <>
+          <form className="mt-4 flex flex-col gap-2 sm:flex-row" onSubmit={submit}>
+            <label htmlFor="nl-email" className="sr-only">Email address</label>
+            <input id="nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.in" aria-invalid={!!error} className="h-11 flex-1 rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
+            <button disabled={busy} className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-60">{busy ? "Subscribing…" : "Subscribe free"}</button>
+          </form>
+          {error && <p className="mt-2 rounded-lg bg-rose-500/20 px-3 py-2 text-xs font-semibold text-rose-100" role="alert">{error}</p>}
+        </>
       )}
       <p className="mt-2 text-[11px] text-emerald-200/70">By subscribing you agree to our privacy policy. We never sell your data.</p>
     </div>
