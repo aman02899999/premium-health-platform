@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --brand-green: #0b5c3f;
+  --brand-green-deep: #073f2c;
+  --brand-saffron: #e8930c;
+  --brand-cream: #fdf8ef;
+  --brand-beige: #f4ead8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: Georgia, "Times New Roman", "Noto Serif", serif;
+  letter-spacing: -0.02em;
+}
+
+.glass {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(232, 147, 12, 0.14), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(11, 92, 63, 0.16), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(11, 92, 63, 0.1), transparent 50%),
+    linear-gradient(180deg, #fdf8ef 0%, #ffffff 100%);
+}
+
+.dark .hero-pattern {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(232, 147, 12, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.12), transparent 45%),
+    linear-gradient(180deg, #0b1512 0%, #0f1d18 100%);
+}
+
+.mandala-ring {
+  background: conic-gradient(
+    from 0deg,
+    rgba(11, 92, 63, 0.14),
+    rgba(232, 147, 12, 0.14),
+    rgba(11, 92, 63, 0.05),
+    rgba(232, 147, 12, 0.14),
+    rgba(11, 92, 63, 0.14)
+  );
+  mask-image: radial-gradient(circle, transparent 52%, black 54%, black 66%, transparent 68%);
+  -webkit-mask-image: radial-gradient(circle, transparent 52%, black 54%, black 66%, transparent 68%);
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes floaty2 {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(8px, -10px, 0) rotate(2deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+@keyframes newsTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.news-ticker {
+  animation: newsTicker 48s linear infinite;
+  will-change: transform;
+}
+.news-ticker:hover,
+.news-ticker:focus-within {
+  animation-play-state: paused;
+}
+
+.animate-floaty { animation: floaty 6s ease-in-out infinite; }
+.animate-floaty2 { animation: floaty2 7s ease-in-out infinite; }
+.animate-drift { animation: drift 9s ease-in-out infinite; }
+.animate-fadeUp { animation: fadeUp 0.6s ease both; }
+.animate-spin-slow { animation: spinSlow 40s linear infinite; }
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+}
+.card-3d:hover {
+  transform: translateY(-6px) rotateX(2deg) rotateY(-2deg);
+}
+
+.prose-health h2 {
+  scroll-margin-top: 110px;
+}
+.prose-health p {
+  line-height: 1.8;
+}
+
+.toc-link.active {
+  color: var(--brand-green);
+  font-weight: 700;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.article-grid-bg {
+  background-image: linear-gradient(to right, rgba(11,92,63,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11,92,63,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *, .reduced-motion *::before, .reduced-motion *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ---------- Ultra-premium layer ---------- */
+::selection { background: #0b5c3f; color: #fff; }
+
+.font-display {
+  font-family: "Fraunces", Georgia, "Times New Roman", "Noto Serif", serif;
+}
+
+.gold-text {
+  background: linear-gradient(100deg, #b45309 0%, #e8930c 35%, #fcd34d 50%, #e8930c 65%, #b45309 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.premium-shadow { box-shadow: 0 24px 60px -24px rgba(7, 63, 44, 0.35), 0 8px 24px -12px rgba(0, 0, 0, 0.18); }
+.premium-shadow-sm { box-shadow: 0 12px 32px -16px rgba(7, 63, 44, 0.3); }
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+}
+.dark .glass-strong {
+  background: rgba(12, 20, 17, 0.72);
+}
+
+.hero-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(7, 63, 44, 0.12) 100%);
+}
+
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -80%;
+  width: 55%; height: 100%;
+  transform: skewX(-22deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.6s ease;
+}
+.btn-shine:hover::before { left: 130%; }
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.reveal { animation: revealUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.reveal-1 { animation-delay: 0.08s; }
+.reveal-2 { animation-delay: 0.16s; }
+.reveal-3 { animation-delay: 0.24s; }
+.reveal-4 { animation-delay: 0.32s; }
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(232, 147, 12, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(232, 147, 12, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 147, 12, 0); }
+}
+.pulse-ring { animation: pulseRing 2.4s ease-out infinite; }
+
+.premium-card {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+}
+.premium-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px -18px rgba(7, 63, 44, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid #0b5c3f;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  body { background: #fff !important; }
+}
