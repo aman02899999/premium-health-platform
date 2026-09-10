@@ -18,6 +18,10 @@ import { EvidenceStack, RiskBarChart } from "@/components/charts";
 import { articleJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
 import { LiveResearchSection } from "@/components/research";
+import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
+import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
+import { AdInArticle, AdRectangle, AdBanner } from "@/components/monetization/AdComponents";
+import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/lib/monetization/config";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -276,11 +280,6 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
 
           <Section id="research" icon={<BookOpen className="h-4 w-4" />} title="Live research & clinical trials">
             <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300\">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
-            <LiveResearchSection diseaseName={detail.name} diseaseSlug={slug} />
-          </Section>
-
-          <Section id="research" icon={<BookOpen className="h-4 w-4" />} title="Live research & clinical trials">
-            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
             <LiveResearchSection diseaseName={detail.name} diseaseSlug={slug} />
           </Section>
 

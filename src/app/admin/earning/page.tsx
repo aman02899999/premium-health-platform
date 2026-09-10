@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui";
 import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 import { EarningCharts } from "@/components/earning/EarningCharts";
+import { AdminMonetizationManager } from "@/components/monetization/AdminManager";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
@@ -38,6 +39,8 @@ export default function AdminEarningPage() {
       </div>
 
       <div className="mt-6"><EarningCharts /></div>
+
+      <div className="mt-6"><AdminMonetizationManager /></div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">

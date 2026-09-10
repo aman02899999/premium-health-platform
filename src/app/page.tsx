@@ -298,10 +298,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Products — Earning */}
+        {/* Products — Earning + Store + Deals + Calculators + Premium Resources — Homepage Monetization */}
         <section aria-labelledby="products">
           <div className="mb-5 flex items-end justify-between gap-4">
-            <SectionHeading eyebrow="Affiliate disclosure applies — Earning" title="Popular products — Affiliate Optimized" desc="Monitors, foods and yoga gear — never with false medical claims. Tracked via gtag + UTM for earning optimization." id="products" />
+            <SectionHeading eyebrow="Affiliate disclosure applies — Earning — Modular" title="Popular Health Products — Affiliate Optimized + Store + Deals" desc="Monitors, foods and yoga gear — never with false medical claims. Tracked via gtag + UTM for earning optimization. Plus digital store, calculators, premium resources." id="products" />
             <Link href="/deals" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All deals <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -366,19 +366,6 @@ export default function HomePage() {
                 <Link href="/newsletter" className="text-xs font-bold text-emerald-700 underline">Newsletter + Sponsored Slots →</Link>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* FAQ */}
-        <section aria-labelledby="faq">
-          <SectionHeading eyebrow="Good to know" title="Questions, answered honestly" desc="How this site works and what it will never do — FAQ rich results for SEO." id="faq" />
-          <div className="grid gap-3 md:grid-cols-2">
-            {FAQS.map((f) => (
-              <div key={f.q} className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-                <h3 className="font-bold">{f.q}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-stone-600 dark:text-stone-300">{f.a}</p>
-              </div>
-            ))}
           </div>
         </section>
 
