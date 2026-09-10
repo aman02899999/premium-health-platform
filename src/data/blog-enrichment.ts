@@ -680,6 +680,111 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     ],
     readMinutes: 10,
   },
+
+  "millets-for-diabetes-india-guide": {
+    heroImage: PX(1640777),
+    heroImageAlt: "Assorted millets in wooden bowls — foxtail, little, barnyard, kodo — Indian ancient grains",
+    heroImageCredit: "Mareefe / Pexels",
+    inlineImage: PX(1099680),
+    inlineImageAlt: "Indian millet thali with dal, sabzi and curd — balanced low-GI meal",
+    seoTitle: "Millets for Diabetes India: Low-GI Swap Guide Foxtail Little Barnyard Kodo (2026)",
+    seoDescription: "Replace white rice with low-GI millets: foxtail GI 50.8, little 52, barnyard 50 — diabetic-friendly, fibre-rich, 50:50 start, thali-builder + millet-swap + tracking.",
+    keywords: ["millets diabetes India", "low GI millets", "foxtail millet GI", "little millet", "barnyard millet", "millet swap"],
+    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    extraBody: [
+      {
+        heading: "GI, fibre, protein — why millets win",
+        paragraphs: [
+          "Foxtail millet GI 50.8, little millet GI 52, barnyard millet GI 50, kodo millet GI 65 vs white rice GI 73, brown rice GI 68, roti GI 62 — lower GI + more fibre 2-3x + more protein + minerals iron, calcium, magnesium. ICMR-NIN + ICAR data.",
+          "One katori cooked millet ~120 kcal, fibre 2-3g, protein 3g — vs white rice 130 kcal, fibre 0.5g, protein 2g. Small swap, big metabolic impact when paired with dal + veg + curd.",
+        ],
+      },
+      {
+        heading: "Cooking millets without bloating",
+        paragraphs: [
+          "Soak 6h, rinse well, cook soft with extra water (1:2.5 ratio), add pinch salt + ghee, pair with dal + curd + buttermilk for probiotic + easy digestion. Start 50:50 white rice + millet for 1 week.",
+          "Storage: dry millets 6 months in airtight, cooked 2 days fridge. Batch cook Sunday + portion for week — adherence hack.",
+        ],
+      },
+    ],
+    extraFaqs: [
+      { q: "Which millet best for diabetes?", a: "Little millet GI 52, foxtail GI 50.8, barnyard GI 50, kodo GI 65 — all lower than white rice GI 73. Start 50:50 mix, watch portion 1 katori, pair with dal + veg + curd for balanced GI." },
+      { q: "Can millets cause thyroid issues?", a: "Millets contain goitrogens but normal cooked portions safe for most — avoid massive raw millet + iodine deficiency combo. Iodised salt + varied diet + TSH monitoring if hypothyroid." },
+    ],
+    extraReferences: [
+      { title: "ICMR-NIN Millet Guidelines", source: "ICMR-NIN", year: "2020" },
+      { title: "ICAR Indian Institute of Millets Research", source: "ICAR", url: "https://millets.res.in/" },
+    ],
+    readMinutes: 12,
+  },
+
+  "intermittent-fasting-india-safe-guide": {
+    heroImage: PX(1640777),
+    heroImageAlt: "Navratri fasting thali with kuttu, fruits, curd — Indian fasting foods",
+    heroImageCredit: "Pexels / Food",
+    inlineImage: PX(1099680),
+    inlineImageAlt: "Intermittent fasting clock 16:8 with Indian thali — safe guide",
+    seoTitle: "Intermittent Fasting India: 16:8, Navratri, Ekadashi Safe Guide (2026)",
+    seoDescription: "Intermittent fasting 16:8 + Navratri + Ekadashi — who should avoid, hydration, breaking fast, diabetes safety, fasting planner + premium + WhatsApp.",
+    keywords: ["intermittent fasting India", "Navratri fasting", "Ekadashi", "16:8 fasting", "fasting diabetes", "fasting planner"],
+    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    extraBody: [
+      {
+        heading: "16:8 vs 12:12 — what suits Indians",
+        paragraphs: [
+          "12:12 overnight fast (7:30pm dinner to 7:30am breakfast) suits most Indians — circadian + digestion + sleep friendly. 14:10 and 16:8 (12pm-8pm eating) need supervision if diabetic on insulin/sulfonylurea, elderly, pregnant, history eating disorder.",
+          "Breaking fast: water + fruit + curd first, then dal + veg + millet roti — avoid oily + sugary immediately. Hydration: 2-3L water + buttermilk + coconut water + ORS if hot.",
+        ],
+      },
+      {
+        heading: "Fasting + diabetes safety checklist",
+        paragraphs: [
+          "Avoid fasting if HbA1c >10, recurrent hypos, elderly, pregnant, kidney disease, on insulin/sulfonylurea without plan. If fasting, check sugar more often, carry glucose, break if <70 or >250, inform family.",
+          "Medicine timing: discuss with doctor pre-fast — SGLT2 inhibitors often paused during vomiting/fasting/surgery, insulin/sulfonylurea dose reduced. Never self-adjust without guidance.",
+        ],
+      },
+    ],
+    extraFaqs: [
+      { q: "Can I do 16:8 daily?", a: "12:12 daily safe for most; 16:8 needs supervision if diabetic, elderly, pregnant, eating disorder history. Start 12:12, extend gradually, monitor energy + sugar + mood." },
+      { q: "What to eat during Navratri?", a: "Kuttu, singhara, sama, sabudana — but sabudana high GI 70+. Prefer kuttu + curd + fruits + nuts + hydration, avoid fried. Use /fasting-planner for balanced Navratri thali + premium calendar." },
+    ],
+    extraReferences: [{ title: "ICMR Fasting & Diabetes Guidance", source: "ICMR" }],
+    readMinutes: 11,
+  },
+
+  "high-protein-vegetarian-india-guide": {
+    heroImage: PX(1640777),
+    heroImageAlt: "High protein vegetarian Indian thali with dal, paneer, soya chunks, sprouts, curd",
+    heroImageCredit: "Pexels / Food",
+    inlineImage: PX(1099680),
+    inlineImageAlt: "Vegetarian protein sources India — dal, soya, paneer, sprouts, curd, whey",
+    seoTitle: "High Protein Vegetarian India: Dal Soya Paneer Sprouts 1.2-1.6g/kg Guide (2026)",
+    seoDescription: "Hit protein 1.2-1.6g/kg vegetarian: dal 9g, soya 52g, paneer 18g, sprouts 7g, curd, whey 25g — Indian thali + tracking + premium + affiliate.",
+    keywords: ["high protein vegetarian India", "soya chunks protein", "dal protein", "paneer protein", "vegetarian protein 1.2g/kg", "protein thali"],
+    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    extraBody: [
+      {
+        heading: "How to hit 100g protein vegetarian — sample day",
+        paragraphs: [
+          "Breakfast: 2 moong cheela + paneer 100g = 15g protein. Lunch: dal 2 katori 18g + curd 1 katori 6g + 2 roti 6g + sabzi. Snack: sprouts 1 katori 14g + peanuts 30g 7g + fruit. Dinner: soya chunks 40g dry = 20g + curd 6g + millet roti 3g + sabzi. Total ~95g + whey 1 scoop 25g = 120g if needed.",
+          "Distribution matters: 20-30g per meal + 10g snacks = muscle + satiety + sugar control. Track via /nutrition-tracker + /health-calculators protein calc.",
+        ],
+      },
+      {
+        heading: "Soya, paneer, whey — safety + quality",
+        paragraphs: [
+          "Soya chunks 52g/100g dry, complete amino, iron, calcium — soak 10 min hot water, rinse, cook with masala. Paneer 18g/100g, calcium, but saturated fat — 100g/day max if high LDL. Whey 25g/scoop, Informed-Choice tested, food first.",
+          "Kidney disease: protein 0.6-0.8g/kg + nephrology guidance, avoid whey + soya excess. Gout: dal + soya moderate, hydrate, avoid purine excess + alcohol.",
+        ],
+      },
+    ],
+    extraFaqs: [
+      { q: "Is soya safe daily?", a: "Yes — 40-50g dry soya chunks 2-3x/week safe for most, complete protein + iron + calcium. Soak + rinse + cook well, pair with vitamin C for iron absorption. Avoid if soy allergy." },
+      { q: "Which whey to buy?", a: "Concentrate 80% whey, 25g/scoop, Informed-Choice or Labdoor tested, no added sugar, Rs2500-4500/kg. Check /api/affiliate/click + gtag + Product JSON-LD + affiliate-disclosure." },
+    ],
+    extraReferences: [{ title: "ICMR-NIN Protein Requirements 2020", source: "ICMR-NIN", year: "2020" }],
+    readMinutes: 13,
+  },
 };
 
 export type EnrichedArticle = Article & {

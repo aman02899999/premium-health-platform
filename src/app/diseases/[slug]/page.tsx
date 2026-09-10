@@ -12,12 +12,16 @@ import { getMedicine } from "@/data/medicines";
 import { getLab } from "@/data/clinical";
 import {
   Breadcrumbs, KeyTakeaway, DoctorBox, EmergencyBox, FaqAccordion,
-  ShareButtons, AdSlot, DisclaimerBar, LikeButton,
+  ShareButtons, AdSlot, DisclaimerBar, LikeButton, Newsletter,
 } from "@/components/ui";
 import { EvidenceStack, RiskBarChart } from "@/components/charts";
 import { articleJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
 import { LiveResearchSection } from "@/components/research";
+import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
+import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
+import { AdInArticle, AdRectangle, AdBanner } from "@/components/monetization/AdComponents";
+import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/lib/monetization/config";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -191,19 +195,68 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
 
           <Section id="nutrition" icon={<Apple className="h-4 w-4" />} title="Nutrition considerations">
             <Bullets items={detail.nutrition} />
-            <p className="mt-2 text-sm">Explore: <Link href="/nutrition" className="font-bold text-emerald-700 underline">food guides</Link> · <Link href="/diet" className="font-bold text-emerald-700 underline">meal plans</Link> · <Link href="/recipes" className="font-bold text-emerald-700 underline">recipes</Link></p>
+            <p className="mt-2 text-sm\">Explore: <Link href="/nutrition" className="font-bold text-emerald-700 underline\">food guides</Link> · <Link href="/diet" className="font-bold text-emerald-700 underline\">meal plans</Link> · <Link href="/recipes" className="font-bold text-emerald-700 underline\">recipes</Link></p>
           </Section>
+
+          {/* Monetization: Middle - Calculator + Premium Guide — preserves educational content, enhances journey */}
+          <div className="space-y-4">
+            <AdInArticle placement="disease_middle" page={`/diseases/${slug}`} />
+            <div className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-5 dark:border-emerald-800 dark:from-emerald-950/30">
+              <h3 className="font-bold">Calculate Your Risk — Free + Premium Report ₹49-₹99</h3>
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300\">Free: BMI, diabetes-risk, heart-risk estimators. Premium: Detailed BMI & Wellness Report ₹49, Personalized Nutrition Report ₹99 — educational, includes interpretation, lifestyle worksheet, questions for doctor, not diagnosis, no prescriptions.</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href="/health-calculators" className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Open Calculators →</Link>
+                {PREMIUM_REPORTS.slice(0, 2).map((r) => (
+                  <Link key={r.id} href={`/store/${r.slug}`} className="rounded-xl border border-emerald-300 bg-white px-4 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-50">{r.title.split("—")[0]} — ₹{r.price} →</Link>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border border-amber-200 bg-white p-5 dark:border-amber-800 dark:bg-stone-900">
+              <h3 className="font-bold">Premium Guide — After Educational Section — Educational Resource</h3>
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300\">Free: basic explanation, symptoms, risk factors, general prevention, basic nutrition. Premium: downloadable PDF, detailed educational information, checklist, questions to ask doctor, lifestyle worksheet, food checklist, monitoring checklist, references. Never hide emergency info behind paywall.</p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {DIGITAL_PRODUCTS.filter((p) => p.active).slice(0, 2).map((p) => (
+                  <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
+                    <p className="text-[11px] font-bold uppercase text-amber-600">{p.category} · {p.pages} pages · {p.fileSize}</p>
+                    <p className="mt-1 text-sm font-bold">{p.title}</p>
+                    <p className="mt-1 text-xs text-stone-500">{p.description.slice(0, 80)}… Educational, not medical promise.</p>
+                    <Link href={`/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">{p.ctaText}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <Section id="lifestyle" icon={<Heart className="h-4 w-4" />} title="Lifestyle & yoga / activity">
             <Bullets items={detail.lifestyle} />
-            <p className="mb-2 mt-4 text-sm font-bold">Yoga & physical activity</p>
+            <p className="mb-2 mt-4 text-sm font-bold\">Yoga & physical activity</p>
             <Bullets items={detail.yogaActivity} />
           </Section>
+
+          {/* Monetization: Product Section — Contextual, neutral language */}
+          <HealthProductRecommendations condition={slug} limit={4} page={`/diseases/${slug}`} />
+          <MonetizationCTA pageType="disease" page={`/diseases/${slug}`} />
+          <AdRectangle placement="disease_bottom" page={`/diseases/${slug}`} />
+
+          {/* Monetization: Bottom — Diet Plan + Newsletter */}
+          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
+            <h3 className="font-bold">Relevant Diet Plan — Educational Nutrition Resource</h3>
+            <p className="mt-1 text-sm text-stone-600 dark:text-stone-300\">Educational nutrition resource — discuss dietary changes with qualified healthcare professional. Do not market generic diet plans as treatment for disease. Language: “Educational nutrition resource”.</p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {DIGITAL_PRODUCTS.filter((p) => p.category === "Diet Plans").slice(0, 2).map((p) => (
+                <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
+                  <p className="text-[11px] font-bold uppercase text-emerald-600">{p.category} · {p.pages} pages</p>
+                  <p className="mt-1 text-sm font-bold">{p.title}</p>
+                  <Link href={`/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">{p.ctaText}</Link>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <Section id="homeopathy" icon={<Brain className="h-4 w-4" />} title="Homeopathy section (evidence status)">
             <p className="mb-2 rounded-xl bg-indigo-50 p-2.5 text-[13px] text-indigo-900 dark:bg-indigo-950/50 dark:text-indigo-100"><strong>Evidence: insufficient</strong> for most claimed uses. Never replace effective treatment for serious disease.</p>
             <Bullets items={detail.homeopathyNote} />
-            <p className="mt-2 text-sm"><Link href="/homeopathy" className="font-bold text-emerald-700 underline">Read our honest homeopathy explainer →</Link></p>
+            <p className="mt-2 text-sm\"><Link href="/homeopathy" className="font-bold text-emerald-700 underline\">Read our honest homeopathy explainer →</Link></p>
           </Section>
 
           <Section id="evidence" icon={<CheckCircle2 className="h-4 w-4" />} title="What evidence says">
@@ -212,21 +265,21 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
           </Section>
 
           <Section id="safety" icon={<ShieldAlert className="h-4 w-4" />} title="What NOT to do · Medication safety">
-            <p className="mb-2 text-sm font-bold">Avoid these</p>
+            <p className="mb-2 text-sm font-bold\">Avoid these</p>
             <Bullets items={detail.shouldNotDo} icon={<XCircle className="mt-1 h-4 w-4 shrink-0 text-rose-500" />} />
-            <p className="mb-2 mt-4 text-sm font-bold">Medication safety</p>
+            <p className="mb-2 mt-4 text-sm font-bold\">Medication safety</p>
             <Bullets items={detail.medicationSafety} icon={<Pill className="mt-1 h-4 w-4 shrink-0 text-sky-600" />} />
           </Section>
 
           <Section id="complications" icon={<AlertTriangle className="h-4 w-4" />} title="Potential complications">
-            <div className="flex flex-wrap gap-1.5">{detail.complications.map((c) => <span key={c} className="rounded-full bg-rose-50 px-3 py-1.5 text-[13px] font-medium text-rose-900 dark:bg-rose-950/50 dark:text-rose-100">{c}</span>)}</div>
+            <div className="flex flex-wrap gap-1.5\">{detail.complications.map((c) => <span key={c} className="rounded-full bg-rose-50 px-3 py-1.5 text-[13px] font-medium text-rose-900 dark:bg-rose-950/50 dark:text-rose-100\">{c}</span>)}</div>
           </Section>
 
-          <div id="emergency" className="scroll-mt-28"><EmergencyBox signs={detail.emergencySigns} /></div>
-          <div id="doctor" className="scroll-mt-28"><DoctorBox points={detail.whenToSeeDoctor} /></div>
+          <div id="emergency" className="scroll-mt-28\"><EmergencyBox signs={detail.emergencySigns} /></div>
+          <div id="doctor" className="scroll-mt-28\"><DoctorBox points={detail.whenToSeeDoctor} /></div>
 
           <Section id="research" icon={<BookOpen className="h-4 w-4" />} title="Live research & clinical trials">
-            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
+            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300\">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
             <LiveResearchSection diseaseName={detail.name} diseaseSlug={slug} />
           </Section>
 
@@ -238,42 +291,44 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             <ol className="list-decimal space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-300">
               {detail.references.map((r, i) => <li key={i}>{r.title} — <em>{r.source}</em>{r.year ? ` (${r.year})` : ""}</li>)}
             </ol>
-            <p className="mt-2 text-xs text-stone-500">We cite guidelines and reviews, never fabricated studies. Specific trial citations are added during medical review.</p>
+            <p className="mt-2 text-xs text-stone-500\">We cite guidelines and reviews, never fabricated studies. Specific trial citations are added during medical review.</p>
           </Section>
 
           {/* Related */}
           <section className="rounded-3xl border border-stone-200 bg-gradient-to-br from-emerald-50/60 to-amber-50/60 p-5 dark:border-stone-700 dark:from-stone-900 dark:to-stone-900" aria-label="Related content">
-            <h2 className="font-display text-xl font-bold">Related content</h2>
+            <h2 className="font-display text-xl font-bold\">Related content</h2>
             <div className="mt-3 grid gap-4 sm:grid-cols-2">
-              {relatedDis.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500">Related diseases</p><ul className="mt-1 space-y-1">{relatedDis.map((r) => r && <li key={r.slug}><Link href={`/diseases/${r.slug}`} className="text-sm font-medium text-emerald-700 underline">{r.name}</Link></li>)}</ul></div>}
-              {relatedMeds.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500">Related medicines</p><ul className="mt-1 space-y-1">{relatedMeds.map((r) => r && <li key={r.slug}><Link href={`/medicines/${r.slug}`} className="text-sm font-medium text-emerald-700 underline">{r.genericName}</Link></li>)}</ul></div>}
-              {relatedHerbs.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500">Related herbs</p><ul className="mt-1 space-y-1">{relatedHerbs.map((r) => r && <li key={r.slug}><Link href={`/herbs/${r.slug}`} className="text-sm font-medium text-emerald-700 underline">{r.name}</Link></li>)}</ul></div>}
-              {relatedLabs.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500">Related lab tests</p><ul className="mt-1 space-y-1">{relatedLabs.map((r) => r && <li key={r.slug}><Link href={`/lab-tests/${r.slug}`} className="text-sm font-medium text-emerald-700 underline">{r.name}</Link></li>)}</ul></div>}
+              {relatedDis.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Related diseases</p><ul className="mt-1 space-y-1\">{relatedDis.map((r) => r && <li key={r.slug}><Link href={`/diseases/${r.slug}`} className="text-sm font-medium text-emerald-700 underline\">{r.name}</Link></li>)}</ul></div>}
+              {relatedMeds.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Related medicines</p><ul className="mt-1 space-y-1\">{relatedMeds.map((r) => r && <li key={r.slug}><Link href={`/medicines/${r.slug}`} className="text-sm font-medium text-emerald-700 underline\">{r.genericName}</Link></li>)}</ul></div>}
+              {relatedHerbs.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Related herbs</p><ul className="mt-1 space-y-1\">{relatedHerbs.map((r) => r && <li key={r.slug}><Link href={`/herbs/${r.slug}`} className="text-sm font-medium text-emerald-700 underline\">{r.name}</Link></li>)}</ul></div>}
+              {relatedLabs.length > 0 && <div><p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Related lab tests</p><ul className="mt-1 space-y-1\">{relatedLabs.map((r) => r && <li key={r.slug}><Link href={`/lab-tests/${r.slug}`} className="text-sm font-medium text-emerald-700 underline\">{r.name}</Link></li>)}</ul></div>}
             </div>
           </section>
 
+          <Newsletter />
           <DisclaimerBar />
         </div>
 
         {/* Sidebar */}
         <aside className="space-y-4">
           <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-            <p className="text-xs font-bold uppercase tracking-wider text-stone-500">Quick facts</p>
-            <dl className="mt-2 space-y-2 text-[13px]">
-              <div className="flex justify-between gap-2"><dt className="text-stone-500">System</dt><dd className="font-semibold">{detail.system}</dd></div>
-              <div className="flex justify-between gap-2"><dt className="text-stone-500">Course</dt><dd className="font-semibold">{detail.chronic ? "Chronic" : "Episodic"}</dd></div>
-              <div className="flex justify-between gap-2"><dt className="text-stone-500">Nutrition role</dt><dd className="font-semibold">{detail.nutritionRelevance}</dd></div>
-              {detail.ayurvedaCategory && <div className="flex justify-between gap-2"><dt className="text-stone-500">Ayurveda</dt><dd className="text-right font-semibold">{detail.ayurvedaCategory}</dd></div>}
+            <p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Quick facts</p>
+            <dl className="mt-2 space-y-2 text-[13px]\">
+              <div className="flex justify-between gap-2\"><dt className="text-stone-500\">System</dt><dd className="font-semibold\">{detail.system}</dd></div>
+              <div className="flex justify-between gap-2\"><dt className="text-stone-500\">Course</dt><dd className="font-semibold\">{detail.chronic ? "Chronic" : "Episodic"}</dd></div>
+              <div className="flex justify-between gap-2\"><dt className="text-stone-500\">Nutrition role</dt><dd className="font-semibold\">{detail.nutritionRelevance}</dd></div>
+              {detail.ayurvedaCategory && <div className="flex justify-between gap-2\"><dt className="text-stone-500\">Ayurveda</dt><dd className="text-right font-semibold\">{detail.ayurvedaCategory}</dd></div>}
             </dl>
           </div>
           <AdSlot slot="Sidebar" />
+          <AdBanner placement="products_sidebar" page={`/diseases/${slug}`} />
           <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-            <p className="text-xs font-bold uppercase tracking-wider text-stone-500">Common symptoms</p>
-            <div className="mt-2 flex flex-wrap gap-1.5">{detail.symptoms.map((s) => <Link key={s} href="/symptoms" className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium hover:bg-emerald-100 dark:bg-stone-800">{s}</Link>)}</div>
+            <p className="text-xs font-bold uppercase tracking-wider text-stone-500\">Common symptoms</p>
+            <div className="mt-2 flex flex-wrap gap-1.5\">{detail.symptoms.map((s) => <Link key={s} href="/symptoms" className="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-medium hover:bg-emerald-100 dark:bg-stone-800\">{s}</Link>)}</div>
           </div>
           <div className="rounded-2xl bg-gradient-to-br from-emerald-800 to-teal-800 p-4 text-white">
-            <p className="text-sm font-bold">Calculate your risk</p>
-            <p className="mt-1 text-xs text-emerald-100/80">BMI, diabetes-risk and heart-risk estimators.</p>
+            <p className="text-sm font-bold\">Calculate your risk</p>
+            <p className="mt-1 text-xs text-emerald-100/80\">BMI, diabetes-risk and heart-risk estimators.</p>
             <Link href="/health-calculators" className="mt-2 inline-block rounded-xl bg-white/15 px-3 py-1.5 text-xs font-bold hover:bg-white/25">Open calculators →</Link>
           </div>
           <AdSlot slot="Sidebar 2" />
