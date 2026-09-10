@@ -3,8 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Sparkles, CheckCircle2 } from "lucide-react";
 import { AYURVEDA_TOPICS, AYURVEDA_MAP } from "@/data/editorial";
-import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, InfoNote } from "@/components/ui";
+import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, InfoNote, Newsletter } from "@/components/ui";
 import { articleJsonLd } from "@/lib/seo";
+import { AdBanner, AdInArticle, AdRectangle } from "@/components/monetization/AdComponents";
+import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
+import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
+import { DIGITAL_PRODUCTS } from "@/lib/monetization/config";
 
 export function generateStaticParams() { return AYURVEDA_TOPICS.map((t) => ({ slug: t.slug })); }
 
@@ -40,6 +44,26 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
           <h2 className="font-display mt-5 text-lg font-bold">Key points</h2>
           <ul className="mt-2 space-y-1.5">{t.keyPoints.map((k, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{k}</li>)}</ul>
         </section>
+
+        {/* Monetization Middle */}
+        <AdInArticle placement="article_middle" page={`/ayurveda/${slug}`} />
+        <div className="rounded-3xl border border-amber-200 bg-white p-5 dark:border-amber-800 dark:bg-stone-900">
+          <h3 className="font-bold">Premium Ayurveda Guide — Educational Resource</h3>
+          <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Free: dosha basics, daily routine, seasonal wisdom, safety notes. Premium: detailed dinacharya checklist, ritucharya meal plans, herb safety sheet, questions for Vaidya — traditional knowledge, not modern diagnosis.</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {DIGITAL_PRODUCTS.filter((p) => p.tags?.some((t) => t.toLowerCase().includes("ayurveda")) || p.category === "Health Guides").slice(0, 2).map((p) => (
+              <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
+                <p className="text-[11px] font-bold uppercase text-amber-600">{p.category} · {p.pages} pages</p>
+                <p className="mt-1 text-sm font-bold">{p.title}</p>
+                <Link href={`/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">{p.ctaText}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <HealthProductRecommendations category="Ayurveda" tags={[t.category.toLowerCase(), slug]} limit={4} page={`/ayurveda/${slug}`} title={`Ayurveda Products — Educational`} />
+        <MonetizationCTA pageType="ayurveda" page={`/ayurveda/${slug}`} />
+
         <section className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
           <h2 className="font-display mb-3 text-lg font-bold">FAQs</h2>
           <FaqAccordion faqs={t.faqs} />
@@ -48,12 +72,15 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
           <h2 className="font-display text-lg font-bold">Continue exploring</h2>
           <div className="mt-2 flex flex-wrap gap-2">
             {AYURVEDA_TOPICS.filter((x) => x.slug !== slug).slice(0, 5).map((x) => (
-              <Link key={x.slug} href={`/ayurveda/${x.slug}`} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold shadow-sm hover:bg-emerald-100 dark:bg-stone-800">{x.title}</Link>
+              <Link key={x.slug} href={`/ayurveda/${x.slug}`} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold shadow-sm hover:bg-emerald-100 dark:bg-stone-800\">{x.title}</Link>
             ))}
             <Link href="/herbs" className="rounded-full bg-emerald-700 px-3.5 py-1.5 text-[13px] font-semibold text-white">All herbs →</Link>
           </div>
         </section>
         <AdSlot slot="In-content" />
+        <AdRectangle placement="article_bottom" page={`/ayurveda/${slug}`} />
+        <AdBanner placement="products_sidebar" page={`/ayurveda/${slug}`} />
+        <Newsletter compact />
         <DisclaimerBar />
       </div>
     </div>

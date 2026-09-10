@@ -4,10 +4,14 @@ import { notFound } from "next/navigation";
 import { Salad, CheckCircle2, ChefHat } from "lucide-react";
 import { FOODS, getFood } from "@/data/nutrition";
 import { getDisease } from "@/data/diseases-index";
-import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, LikeButton } from "@/components/ui";
+import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, LikeButton, Newsletter } from "@/components/ui";
 import { NutrientDonut } from "@/components/charts";
 import { articleJsonLd, faqJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
+import { AdBanner, AdInArticle, AdRectangle } from "@/components/monetization/AdComponents";
+import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
+import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
+import { DIGITAL_PRODUCTS } from "@/lib/monetization/config";
 
 export function generateStaticParams() { return FOODS.map((f) => ({ slug: f.slug })); }
 
@@ -69,6 +73,25 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
           <p className="mb-1 mt-3 text-sm font-bold">Who may need caution</p>
           <ul className="space-y-1">{f.caution.map((c, i) => <li key={i} className="text-sm">• {c}</li>)}</ul>
         </Sec>
+
+        {/* Monetization: Middle — Ad + Premium Guide */}
+        <AdInArticle placement="article_middle" page={`/nutrition/${slug}`} />
+        <div className="rounded-3xl border border-amber-200 bg-white p-5 dark:border-amber-800 dark:bg-stone-900">
+          <h3 className="font-bold">Premium Nutrition Guide — Educational Resource</h3>
+          <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Free: nutrients, benefits, limitations, serving, cooking, caution. Premium: detailed meal plans, thali templates, 7-day checklist, food swaps, questions for dietitian — educational, not prescription.</p>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {DIGITAL_PRODUCTS.filter((p) => p.category === "Diet Plans" || p.category === "Health Guides" || p.tags?.some((t) => t.toLowerCase().includes("nutrition"))).slice(0, 2).map((p) => (
+              <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
+                <p className="text-[11px] font-bold uppercase text-emerald-600">{p.category} · {p.pages} pages</p>
+                <p className="mt-1 text-sm font-bold">{p.title}</p>
+                <Link href={`/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">{p.ctaText}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <HealthProductRecommendations category="Nutrition" tags={[f.category.toLowerCase(), f.slug]} limit={4} page={`/nutrition/${slug}`} title={`Products for ${f.name} — Educational`} />
+        <MonetizationCTA pageType="nutrition" page={`/nutrition/${slug}`} />
         <AdSlot slot="In-content" />
         <Sec title="Recipes">
           <div className="grid gap-2 sm:grid-cols-2">
@@ -88,9 +111,12 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
         {related.length > 0 && (
           <section className="rounded-3xl border border-stone-200 bg-emerald-50/50 p-5 dark:border-stone-700 dark:bg-stone-900">
             <h2 className="font-display text-xl font-bold">Related diseases</h2>
-            <div className="mt-2 flex flex-wrap gap-2">{related.map((d) => d && <Link key={d.slug} href={`/diseases/${d.slug}`} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold shadow-sm hover:bg-emerald-100 dark:bg-stone-800">{d.name}</Link>)}</div>
+            <div className="mt-2 flex flex-wrap gap-2">{related.map((d) => d && <Link key={d.slug} href={`/diseases/${d.slug}`} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold shadow-sm hover:bg-emerald-100 dark:bg-stone-800\">{d.name}</Link>)}</div>
           </section>
         )}
+        <AdRectangle placement="article_bottom" page={`/nutrition/${slug}`} />
+        <AdBanner placement="products_sidebar" page={`/nutrition/${slug}`} />
+        <Newsletter compact />
         <DisclaimerBar />
       </div>
     </div>

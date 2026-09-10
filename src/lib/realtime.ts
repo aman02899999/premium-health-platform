@@ -16,6 +16,11 @@ export type CityPulse = {
   aqiLabel: string;
   advice: string;
   live: boolean;
+  uvIndex: number | null;
+  uvMax: number | null;
+  sunrise: string | null;
+  sunset: string | null;
+  isDay: number | null;
 };
 
 export const CITIES: { name: string; lat: number; lon: number }[] = [
@@ -84,16 +89,67 @@ function cached<T>(key: string, ttlMs: number, loader: () => Promise<T>): Promis
   });
 }
 
-type OpenMeteoCurrent = { current?: { temperature_2m?: number; relative_humidity_2m?: number; apparent_temperature?: number; weather_code?: number } };
+type OpenMeteoCurrent = {
+  current?: {
+    temperature_2m?: number;
+    relative_humidity_2m?: number;
+    apparent_temperature?: number;
+    weather_code?: number;
+    uv_index?: number;
+    is_day?: number;
+  };
+  daily?: {
+    sunrise?: string[];
+    sunset?: string[];
+    uv_index_max?: number[];
+  };
+};
 type OpenMeteoAir = { current?: { us_aqi?: number; pm2_5?: number; pm10?: number } };
+
+export function uvLabel(uv: number | null): string {
+  if (uv == null) return "Unknown";
+  if (uv <= 2) return "Low";
+  if (uv <= 5) return "Moderate";
+  if (uv <= 7) return "High";
+  if (uv <= 10) return "Very high";
+  return "Extreme";
+}
+
+export function uvAdvice(uv: number | null): string {
+  if (uv == null) return "UV data unavailable.";
+  if (uv <= 2) return "Low risk — safe outdoors.";
+  if (uv <= 5) return "Moderate — wear sunglasses, SPF 30+ if out >30 min.";
+  if (uv <= 7) return "High — hat, sunglasses, SPF 50, seek shade midday.";
+  if (uv <= 10) return "Very high — minimize 11am–4pm sun, full protection.";
+  return "Extreme — avoid midday sun, full cover required.";
+}
+
+function formatTimeIST(iso: string | null): string | null {
+  if (!iso) return null;
+  try {
+    const d = new Date(iso);
+    return new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    }).format(d);
+  } catch {
+    return iso;
+  }
+}
 
 async function fetchCity(city: { name: string; lat: number; lon: number }): Promise<CityPulse> {
   const [w, a] = await Promise.all([
-    fetchJson(`https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&timezone=Asia%2FKolkata`) as Promise<OpenMeteoCurrent | null>,
+    fetchJson(
+      `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,uv_index,is_day&daily=sunrise,sunset,uv_index_max&timezone=Asia%2FKolkata`
+    ) as Promise<OpenMeteoCurrent | null>,
     fetchJson(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${city.lat}&longitude=${city.lon}&current=us_aqi,pm2_5,pm10&timezone=Asia%2FKolkata`) as Promise<OpenMeteoAir | null>,
   ]);
   const aqi = a?.current?.us_aqi ?? null;
   const live = w?.current != null || a?.current != null;
+  const sunriseRaw = w?.daily?.sunrise?.[0] ?? null;
+  const sunsetRaw = w?.daily?.sunset?.[0] ?? null;
   return {
     city: city.name,
     tempC: w?.current?.temperature_2m ?? null,
@@ -105,6 +161,11 @@ async function fetchCity(city: { name: string; lat: number; lon: number }): Prom
     aqiLabel: aqiLabel(aqi),
     advice: aqiAdvice(aqi),
     live,
+    uvIndex: w?.current?.uv_index ?? null,
+    uvMax: w?.daily?.uv_index_max?.[0] ?? null,
+    sunrise: formatTimeIST(sunriseRaw),
+    sunset: formatTimeIST(sunsetRaw),
+    isDay: w?.current?.is_day ?? null,
   };
 }
 
@@ -152,7 +213,7 @@ function istClock(date = new Date()): string {
 }
 
 export function getIndiaPulse(): Promise<IndiaPulse> {
-  return cached<IndiaPulse>("pulse-v1", 10 * 60 * 1000, async () => {
+  return cached<IndiaPulse>("pulse-v2", 10 * 60 * 1000, async () => {
     const [cities, covid] = await Promise.all([
       Promise.all(CITIES.map(fetchCity)),
       fetchCovid(),
@@ -160,7 +221,7 @@ export function getIndiaPulse(): Promise<IndiaPulse> {
     const now = new Date();
     const s = seasonNow(now);
     const liveSources: string[] = [];
-    if (cities.some((c) => c.live)) liveSources.push("Open-Meteo weather + air quality");
+    if (cities.some((c) => c.live)) liveSources.push("Open-Meteo weather + air quality + UV + sunrise/sunset");
     if (covid.live) liveSources.push("disease.sh COVID-19");
     return {
       fetchedAt: now.toISOString(),
