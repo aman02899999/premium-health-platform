@@ -118,6 +118,66 @@
 - **Related**: scored by category (10 pts) + tags (3 pts each) + featured/trending (2 pts) — internal linking, reduces bounce
 - **Homepage**: includes BlogCategoryGrid + LatestArticles + TrendingArticles + Featured
 
+## A/B Testing — CTA Experiments
+
+`src/lib/ab-testing.ts` implements a privacy-conscious, client-side experiment engine.
+
+- **Experiments**: `CTA_EXPERIMENTS` — 3 live tests: `cta-disease`, `cta-nutrition`, `cta-blog`
+- **Variants**: A / B / C with weighted `trafficSplit` (34/33/33)
+- **Sticky assignment**: `bhg-ab-{experimentId}` in `localStorage` — a visitor never flips variant
+- **Events**: `bhg-ab-events-{experimentId}`, capped at **500** entries
+- **Metrics**: `getABStats()` returns impressions, clicks, conversions, **CTR** and **conversion rate**
+  per variant; `getAllABStats()` feeds the dashboard
+- **Winner**: declared only after 10+ impressions with a non-zero CTR or conversion rate —
+  the dashboard never promotes a variant on noise
+- **Hydration safety**: SSR always renders variant A; the sticky variant is applied after mount
+- **Wiring**: `MonetizationCTA` reorders CTAs by variant (`default` / `product-first` /
+  `guide-first` / `premium-first`) and tracks impressions + clicks;
+  `EarningCharts` renders the live experiment dashboard on `/admin/earning`
+
+## Real Product Images
+
+Eight generic, non-branded product photographs ship in `public/products/`:
+
+| File | Used by |
+| --- | --- |
+| `glucometer.jpg` | Digital Glucometer combo, glucometer coupon |
+| `bp-monitor.jpg` | Upper-Arm BP Monitor |
+| `millet-combo.jpg` | Millet Combo Pack, heart-healthy guide, nutrition report, millet coupon |
+| `yoga-mat.jpg` | Anti-Skid Yoga Mat 6mm |
+| `whey-protein.jpg` | Whey Protein 1kg, high-protein vegetarian diet |
+| `mustard-oil.jpg` | Cold-Pressed Mustard Oil, Ayurvedic herbs reference |
+| `diabetes-guide.jpg` | Indian Diabetes Diet Guide |
+| `weight-management.jpg` | 30-Day Weight Management Plan, BMI wellness report |
+
+- Referenced from `src/lib/monetization/config.ts` as `/products/*.jpg`
+- `getProductImageUrl()` in `src/lib/images.ts` strips query strings and falls back to
+  the static `/og-default.jpg`, so immutable cache headers stay effective
+- Affiliate URLs are real Amazon search links carrying the `bharathealthguide-21` tag
+
+## Storage & Monetization Schema
+
+- `src/db/monetization-schema.ts` — **13 tables**: premium subscriptions, affiliate products,
+  affiliate clicks, affiliate conversions, orders, order items, digital products,
+  download tokens, download audit, leads, monetization events, coupons, ad events.
+  Money is stored in **paise** (integers) — never floats.
+- `src/lib/monetization/storage.ts` — AWS Signature V4 presigned GET URLs for S3 and
+  Cloudflare R2; degrades to a dev URL when credentials are absent, so the build and
+  demo checkout never break. Download tokens expire in **72h** and allow **3 downloads**,
+  with every attempt (granted/denied) written to an audit trail.
+
+## Performance
+
+`next.config.ts`
+
+- `remotePatterns` for Pexels, Amazon CDNs, S3 and R2
+- `optimizePackageImports: ["lucide-react", "recharts"]` — tree-shakes barrel imports
+- `Cache-Control`: `/products/*` + brand assets immutable 1 year, OG images 86 400 s,
+  `sitemap.xml` / `robots.txt` / RSS 3 600 s
+- `X-DNS-Prefetch-Control: on` so affiliate hostnames resolve before a click
+- AVIF/WebP, tuned `deviceSizes`/`imageSizes`, lazy-loading, reserved aspect boxes —
+  protecting LCP, CLS and INP
+
 ## Env vars for Pro
 
 ```
@@ -135,9 +195,15 @@ No secrets committed — .env.example lists all.
 
 ## Build & Test
 
-- 23 tests passing
-- tsc clean
-- build 300+ pages including new SEO pages: /blog/category, /blog/category/[slug], /blog/latest, /blog/trending, /premium, /deals, /earn, /login, /register, /profile, /api/auth/*
+- `npm run test` — 23 unit tests passing
+- `npm run typecheck` — tsc clean
+- `npm run build` — **359 / 359 pages generated** (313 prerendered HTML files + 73 API routes)
+- `/sitemap.xml` — 323 unique URLs, de-duplicated, including blog categories,
+  `/blog/latest`, `/blog/trending` and news briefings
+- `/robots.txt` — public content allowed, private routes disallowed
+- SEO pages verified 200: /blog/category, /blog/category/[slug], /blog/latest,
+  /blog/trending, /premium, /deals, /earn, /admin/earning, /login, /register,
+  /profile, /api/auth/*
 
 ## Future Pro
 

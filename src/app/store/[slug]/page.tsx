@@ -10,6 +10,7 @@ import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { BuyButton } from "@/components/monetization/BuyButton";
+import { ProductImage } from "@/components/monetization/ProductImage";
 import Link from "next/link";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -50,15 +51,24 @@ export default async function StoreSlugPage({ params }: Props) {
         ]}
         howTo={{ name: `How to buy ${product.title}`, steps: ["View details + preview + pages + file size + author", "Click Buy — POST /api/monetization/orders with productId", "Checkout via Razorpay/mock — server verification /api/monetization/checkout/verify", "Download via secure token /download/[token] — expires 72h"] }}
       />
-      <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">{product.category} · {product.format} · {product.pages} pages · {product.fileSize} · Educational</p>
-        <h1 className="font-display mt-1 text-3xl font-black">{product.title}</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">{product.description} No medical promises or guaranteed outcomes. Educational nutrition resource.</p>
-        <div className="mt-4 flex items-center gap-3">
-          <span className="text-2xl font-black">₹{product.price}</span>
-          {product.originalPrice && <span className="text-sm line-through text-white/60">₹{product.originalPrice}</span>}
-          <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold">{product.author}</span>
+      <div className="mt-3 grid gap-6 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:grid-cols-[1fr_220px] md:p-8">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">{product.category} · {product.format} · {product.pages} pages · {product.fileSize} · Educational</p>
+          <h1 className="font-display mt-1 text-3xl font-black">{product.title}</h1>
+          <p className="mt-2 max-w-2xl text-sm text-amber-100/90">{product.description} No medical promises or guaranteed outcomes. Educational nutrition resource.</p>
+          <div className="mt-4 flex items-center gap-3">
+            <span className="text-2xl font-black">₹{product.price}</span>
+            {product.originalPrice && <span className="text-sm line-through text-white/60">₹{product.originalPrice}</span>}
+            <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold">{product.author}</span>
+          </div>
         </div>
+        <ProductImage
+          image={product.image}
+          alt={product.title}
+          className="aspect-[3/4] w-full max-w-[220px] justify-self-center md:justify-self-end"
+          sizes="220px"
+          priority
+        />
       </div>
 
       <div className="mt-4"><AdBanner placement="store_top" page={`/store/${slug}`} /></div>
@@ -66,7 +76,7 @@ export default async function StoreSlugPage({ params }: Props) {
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">What's Inside — {product.pages} Pages</h2>
+            <h2 className="font-bold">What&apos;s Inside — {product.pages} Pages</h2>
             <ul className="mt-3 list-disc pl-5 text-sm text-stone-600 dark:text-stone-300">
               <li>Detailed educational information — not hidden emergency info (emergency always free)</li>
               <li>Checklist, questions to ask doctor, lifestyle worksheet, food checklist, monitoring checklist</li>

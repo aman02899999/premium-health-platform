@@ -6,6 +6,8 @@ import { PRODUCTS, getProduct } from "@/data/editorial";
 import { Breadcrumbs, ShareButtons, AdSlot, DisclaimerBar } from "@/components/ui";
 import { SITE } from "@/lib/site";
 import { articleJsonLd } from "@/lib/seo";
+import { getProductImageForSlug } from "@/lib/monetization/config";
+import { ProductImage } from "@/components/monetization/ProductImage";
 
 export function generateStaticParams() { return PRODUCTS.map((p) => ({ slug: p.slug })); }
 
@@ -20,6 +22,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const p = getProduct(slug);
   if (!p) notFound();
+  const productImage = getProductImageForSlug(slug);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
@@ -27,9 +30,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: p.name, description: p.short, slug: `/products/${slug}`, category: p.category })) }} />
 
       <div className="mt-3 grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 md:grid-cols-2 dark:border-stone-700 dark:bg-stone-900">
-        <div className="article-grid-bg flex min-h-56 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-50 to-emerald-50 p-6 dark:from-stone-800">
-          <ShoppingBag className="h-16 w-16 text-emerald-700/30" />
-        </div>
+        {productImage ? (
+          <ProductImage
+            image={productImage}
+            alt={p.name}
+            className="min-h-56 aspect-[4/3] w-full"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+        ) : (
+          <div className="article-grid-bg flex min-h-56 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-50 to-emerald-50 p-6 dark:from-stone-800">
+            <ShoppingBag className="h-16 w-16 text-emerald-700/30" />
+          </div>
+        )}
         <div>
           <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">{p.category} · Demo product</p>
           <h1 className="font-display mt-1 text-2xl font-black md:text-3xl">{p.name}</h1>

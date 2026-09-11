@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGE } from "@/lib/images";
 import type {
   AffiliateProduct,
   DigitalProduct,
@@ -25,11 +26,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Digital Glucometer + 50 Strips (Demo)",
     description: "Fasting/PP tracking essential for every diabetic home. Demo product — compare accuracy (ISO 15197), strip cost and app sync before buying any brand.",
     category: "Diabetes",
-    image: "/og-default.jpg",
+    image: "/products/glucometer.jpg",
     price: 1999,
     originalPrice: 2499,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=digital+glucometer+with+50+strips&tag=bharathealthguide-21",
     purchaseUrl: "#",
     active: true,
     featured: true,
@@ -52,11 +53,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Upper-Arm BP Monitor (Demo)",
     description: "Validated oscillometric monitoring for home averages. Demo product — check ESH/STRIDE validation lists.",
     category: "Blood Pressure",
-    image: "/og-default.jpg",
+    image: "/products/bp-monitor.jpg",
     price: 2999,
     originalPrice: 3999,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=upper+arm+blood+pressure+monitor&tag=bharathealthguide-21",
     active: true,
     featured: true,
     priority: 90,
@@ -76,11 +77,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Millet Combo: Foxtail + Barnyard + Ragi (Demo)",
     description: "3-kg starter for rice swaps 4x/week. Unpolished millets with cooking guide.",
     category: "Healthy Foods",
-    image: "/og-default.jpg",
+    image: "/products/millet-combo.jpg",
     price: 599,
     originalPrice: 799,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=millet+combo+foxtail+barnyard+ragi&tag=bharathealthguide-21",
     active: true,
     featured: true,
     priority: 85,
@@ -100,11 +101,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Anti-Skid Yoga Mat 6mm (Demo)",
     description: "Joint-friendly thickness for beginners and seniors. 6-mm TPE mat with alignment lines.",
     category: "Yoga",
-    image: "/og-default.jpg",
+    image: "/products/yoga-mat.jpg",
     price: 1299,
     originalPrice: 1799,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=anti+skid+yoga+mat+6mm&tag=bharathealthguide-21",
     active: true,
     featured: true,
     priority: 80,
@@ -124,11 +125,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Whey Protein 1kg (Demo)",
     description: "25 g protein/scoop for vegetarian muscle and satiety. Demo product — food first; supplements fill gaps only.",
     category: "Supplements",
-    image: "/og-default.jpg",
+    image: "/products/whey-protein.jpg",
     price: 3499,
     originalPrice: 4499,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=whey+protein+1kg&tag=bharathealthguide-21",
     active: true,
     featured: false,
     priority: 75,
@@ -148,11 +149,11 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     title: "Cold-Pressed Mustard Oil 5L (Demo)",
     description: "Traditional Indian cooking oil for rotation with groundnut. Demo product — rotate oils and cap visible fat at 3–4 tsp/day.",
     category: "Healthy Foods",
-    image: "/og-default.jpg",
+    image: "/products/mustard-oil.jpg",
     price: 1199,
     originalPrice: 1399,
     currency: "INR",
-    affiliateUrl: "#",
+    affiliateUrl: "https://www.amazon.in/s?k=cold+pressed+mustard+oil+5+litre&tag=bharathealthguide-21",
     active: true,
     featured: false,
     priority: 60,
@@ -176,7 +177,7 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "Indian Diabetes Diet Guide — 60 Pages (Demo)",
     description: "Educational nutrition resource with thali plates, millet swaps, monitoring checklists. Discuss dietary changes with your qualified healthcare professional.",
     category: "Health Guides",
-    image: "/og-default.jpg",
+    image: "/products/diabetes-guide.jpg",
     price: 199,
     originalPrice: 399,
     currency: "INR",
@@ -204,7 +205,7 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "30-Day Indian Weight Management Plan (Demo)",
     description: "Educational 30-day plan with vegetarian thali, protein targets 1.2-1.6g/kg, strength 3x/week. No guaranteed weight loss. Consult professional.",
     category: "Diet Plans",
-    image: "/og-default.jpg",
+    image: "/products/weight-management.jpg",
     price: 299,
     originalPrice: 599,
     currency: "INR",
@@ -232,7 +233,7 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "Indian High-Protein Vegetarian Diet — 40 Pages (Demo)",
     description: "Hit protein 1.2-1.6g/kg vegetarian: dal, soya 52g, paneer 18g, sprouts, curd, whey — thali + tracking.",
     category: "Diet Plans",
-    image: "/og-default.jpg",
+    image: "/products/whey-protein.jpg",
     price: 149,
     originalPrice: 299,
     currency: "INR",
@@ -260,7 +261,7 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "Ayurvedic Herbs Reference Guide — 50 Herbs (Demo)",
     description: "Evidence-graded herb profiles with safety, interactions, Hindi names. Book ≠ medical advice.",
     category: "Health Guides",
-    image: "/og-default.jpg",
+    image: "/products/mustard-oil.jpg",
     price: 249,
     originalPrice: 499,
     currency: "INR",
@@ -288,7 +289,7 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "Indian Heart-Healthy Diet Guide (Demo)",
     description: "DASH-thali fusion: salt, oil, nuts and fibre tuned for Indian kitchens. Educational resource.",
     category: "Health Guides",
-    image: "/og-default.jpg",
+    image: "/products/millet-combo.jpg",
     price: 199,
     originalPrice: 349,
     currency: "INR",
@@ -571,7 +572,7 @@ export const COUPONS: Coupon[] = [
     title: "Millet Combo — 20% OFF (Demo Coupon)",
     description: "Demo coupon for millet combo pack. Affiliate link — we may earn commission.",
     category: "Healthy Foods",
-    image: "/og-default.jpg",
+    image: "/products/millet-combo.jpg",
     price: 479,
     originalPrice: 599,
     currency: "INR",
@@ -598,7 +599,7 @@ export const COUPONS: Coupon[] = [
     title: "Glucometer — ₹100 OFF (Demo)",
     description: "Demo coupon for glucometer combo.",
     category: "Medical Devices",
-    image: "/og-default.jpg",
+    image: "/products/glucometer.jpg",
     price: 1899,
     originalPrice: 1999,
     currency: "INR",
@@ -655,7 +656,7 @@ export const PREMIUM_REPORTS: PremiumReport[] = [
     title: "Detailed BMI & Wellness Report — ₹49 (Demo)",
     description: "Educational report: BMI interpretation, waist, lifestyle checklist, questions to ask doctor. Not a medical diagnosis.",
     category: "Calculators",
-    image: "/og-default.jpg",
+    image: "/products/weight-management.jpg",
     price: 49,
     originalPrice: 99,
     currency: "INR",
@@ -677,7 +678,7 @@ export const PREMIUM_REPORTS: PremiumReport[] = [
     title: "Personalized Nutrition Report — ₹99 (Demo)",
     description: "Educational report based on calorie calculator: maintenance, deficit, protein 1.2-1.6g/kg, sample thali. Not a prescription.",
     category: "Calculators",
-    image: "/og-default.jpg",
+    image: "/products/millet-combo.jpg",
     price: 99,
     originalPrice: 199,
     currency: "INR",
@@ -757,4 +758,21 @@ export function getDigitalByCategory(category: string, limit = 4): DigitalProduc
   return DIGITAL_PRODUCTS.filter((p) => p.active && (p.category === category || p.tags?.includes(category.toLowerCase())))
     .sort((a, b) => b.priority - a.priority)
     .slice(0, limit);
+}
+
+/**
+ * Resolves a real product photograph for a slug used by editorial or store pages.
+ *
+ * Returns null when the slug has no dedicated photograph (as opposed to the
+ * generic OG placeholder), so callers can keep their own fallback UI rather than
+ * showing the branded OG graphic in a product slot.
+ */
+export function getProductImageForSlug(slug: string): string | null {
+  const affiliate = AFFILIATE_PRODUCTS.find((p) => p.slug === slug);
+  if (affiliate?.image && affiliate.image !== DEFAULT_OG_IMAGE) return affiliate.image;
+
+  const digital = DIGITAL_PRODUCTS.find((p) => p.slug === slug);
+  if (digital?.image && digital.image !== DEFAULT_OG_IMAGE) return digital.image;
+
+  return null;
 }
