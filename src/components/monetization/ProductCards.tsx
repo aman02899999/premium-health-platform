@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ShoppingBag, Star, ExternalLink } from "lucide-react";
 import type { AffiliateProduct, DigitalProduct, Coupon, Sponsor } from "@/lib/monetization/types";
 import { trackMonetizationEvent, getAttributionFromUrl } from "@/lib/monetization/analytics";
+import { ProductImage } from "./ProductImage";
 
 export function AffiliateProductCard({ product, page = "/" }: { product: AffiliateProduct; page?: string }) {
   useEffect(() => {
@@ -21,6 +22,12 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
 
   return (
     <div className="group rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-xl dark:border-stone-700 dark:bg-stone-900">
+      <ProductImage
+        image={product.image}
+        alt={product.title}
+        className="mb-3 aspect-[4/3] w-full"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
       <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant} · Demo</p>
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>
@@ -50,6 +57,12 @@ export function DigitalProductCard({ product, page = "/" }: { product: DigitalPr
 
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm hover:shadow-xl dark:border-stone-700 dark:bg-stone-900">
+      <ProductImage
+        image={product.image}
+        alt={product.title}
+        className="mb-3 aspect-[4/3] w-full"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      />
       <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{product.category} · {product.format} · {product.pages ? `${product.pages} pages` : ""} {product.fileSize ? `· ${product.fileSize}` : ""}</p>
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>
@@ -83,6 +96,16 @@ export function SponsoredCard({ sponsor, page = "/" }: { sponsor: Sponsor; page?
   );
 }
 
+/**
+ * Reference time for coupon expiry, captured once at module load.
+ *
+ * Reading Date.now() during render is impure and makes the result drift between
+ * re-renders (a coupon could flip to "expired" mid-session). Coupon expiry is
+ * day-granular, so a single snapshot is both stable and sufficient — and it keeps
+ * the server and client render passes deterministic.
+ */
+const COUPON_REFERENCE_TIME = Date.now();
+
 export function CouponCard({ coupon, page = "/" }: { coupon: Coupon; page?: string }) {
   const handleClick = () => {
     trackMonetizationEvent({ type: "coupon_clicked", productId: coupon.id, page, cta: coupon.code, utm: getAttributionFromUrl() });
@@ -90,16 +113,19 @@ export function CouponCard({ coupon, page = "/" }: { coupon: Coupon; page?: stri
       fetch("/api/monetization/analytics", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "coupon_clicked", productId: coupon.id, page }) });
     } catch {}
   };
-  const isExpired = new Date(coupon.expirationDate).getTime() <= Date.now();
+  const isExpired = new Date(coupon.expirationDate).getTime() <= COUPON_REFERENCE_TIME;
   return (
     <div className={`rounded-2xl border p-5 ${isExpired ? "border-stone-200 bg-stone-50 opacity-60" : "border-emerald-200 bg-white dark:border-stone-700 dark:bg-stone-900"}`}>
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{coupon.merchant} · {coupon.category} {isExpired ? "· Expired" : ""}</p>
-          <h3 className="mt-1 font-bold">{coupon.title}</h3>
-          <p className="mt-1 text-[13px] text-stone-600 dark:text-stone-300">{coupon.description}</p>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex min-w-0 items-start gap-3">
+          <ProductImage image={coupon.image} alt={coupon.title} className="h-16 w-16 shrink-0 rounded-xl" sizes="64px" />
+          <div className="min-w-0">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{coupon.merchant} · {coupon.category} {isExpired ? "· Expired" : ""}</p>
+            <h3 className="mt-1 font-bold">{coupon.title}</h3>
+            <p className="mt-1 text-[13px] text-stone-600 dark:text-stone-300">{coupon.description}</p>
+          </div>
         </div>
-        <span className={`rounded-full px-3 py-1 text-xs font-black ${isExpired ? "bg-stone-200 text-stone-500" : "bg-emerald-600 text-white"}`}>{coupon.discount}</span>
+        <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-black ${isExpired ? "bg-stone-200 text-stone-500" : "bg-emerald-600 text-white"}`}>{coupon.discount}</span>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <span className="rounded-xl border border-dashed border-stone-300 bg-stone-50 px-3 py-1 font-mono text-sm font-bold dark:border-stone-700 dark:bg-stone-800">{coupon.code}</span>

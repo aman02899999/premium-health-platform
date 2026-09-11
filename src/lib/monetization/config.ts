@@ -1,3 +1,4 @@
+import { DEFAULT_OG_IMAGE } from "@/lib/images";
 import type {
   AffiliateProduct,
   DigitalProduct,
@@ -757,4 +758,21 @@ export function getDigitalByCategory(category: string, limit = 4): DigitalProduc
   return DIGITAL_PRODUCTS.filter((p) => p.active && (p.category === category || p.tags?.includes(category.toLowerCase())))
     .sort((a, b) => b.priority - a.priority)
     .slice(0, limit);
+}
+
+/**
+ * Resolves a real product photograph for a slug used by editorial or store pages.
+ *
+ * Returns null when the slug has no dedicated photograph (as opposed to the
+ * generic OG placeholder), so callers can keep their own fallback UI rather than
+ * showing the branded OG graphic in a product slot.
+ */
+export function getProductImageForSlug(slug: string): string | null {
+  const affiliate = AFFILIATE_PRODUCTS.find((p) => p.slug === slug);
+  if (affiliate?.image && affiliate.image !== DEFAULT_OG_IMAGE) return affiliate.image;
+
+  const digital = DIGITAL_PRODUCTS.find((p) => p.slug === slug);
+  if (digital?.image && digital.image !== DEFAULT_OG_IMAGE) return digital.image;
+
+  return null;
 }
