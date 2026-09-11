@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getAllABStats, type ABExperimentStats } from "@/lib/ab-testing";
 
 type DayStat = { day: string; premium: number; affiliate: number; ads: number; leads: number; total: number };
 
@@ -32,6 +33,7 @@ const UTM_DATA = [
 
 export function EarningCharts() {
   const [affClicks, setAffClicks] = useState<number>(0);
+  const [abStats, setAbStats] = useState<ABExperimentStats[] | null>(null);
   const maxTotal = Math.max(...DEMO_WEEK.map((d) => d.total));
 
   useEffect(() => {
@@ -42,6 +44,8 @@ export function EarningCharts() {
         setAffClicks(Array.isArray(arr) ? arr.length : 0);
       }
     } catch {}
+    // A/B experiment stats are browser-only — read after mount to keep SSR markup stable.
+    setAbStats(getAllABStats());
   }, []);
 
   return (
@@ -149,6 +153,79 @@ export function EarningCharts() {
           ))}
         </div>
         <p className="mt-3 text-[11px] text-stone-500">Optimized via ExitIntent + StickyCTA + NewsletterPopup + WhatsAppOptIn + PushPrompt + Referral viral loop + LeadGen component + PremiumCTA + AffiliateProducts.</p>
+      </div>
+
+      {/* A/B testing — CTA experiments */}
+      <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+        <h3 className="text-sm font-bold">A/B Tests — CTA Experiments (Live Local Data)</h3>
+        <p className="mt-1 text-xs text-stone-500">
+          Sticky variants via localStorage <code className="font-mono">bhg-ab-{"{id}"}</code> · events capped at 500 in{" "}
+          <code className="font-mono">bhg-ab-events-{"{id}"}</code> · forwarded to GA4 when gtag is present.
+        </p>
+
+        {!abStats || abStats.every((s) => s.totalImpressions === 0) ? (
+          <p className="mt-4 rounded-2xl bg-stone-50 p-4 text-[11px] text-stone-500 dark:bg-stone-800">
+            No experiment data recorded in this browser yet. Visit a disease, nutrition or blog page to generate impressions for
+            <span className="font-mono"> cta-disease</span>, <span className="font-mono">cta-nutrition</span> and <span className="font-mono">cta-blog</span>.
+          </p>
+        ) : (
+          <div className="mt-4 space-y-5">
+            {abStats.map((exp) => {
+              const maxImpr = Math.max(1, ...exp.variants.map((v) => v.impressions));
+              return (
+                <div key={exp.experimentId} className="rounded-2xl border border-stone-100 p-4 dark:border-stone-700">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                      <p className="font-mono text-xs font-bold">{exp.experimentId}</p>
+                      <p className="text-[11px] text-stone-500">{exp.name}</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-[11px]">
+                      <span className="rounded-full bg-stone-100 px-2 py-1 dark:bg-stone-800">{exp.totalImpressions} impressions</span>
+                      <span className="rounded-full bg-stone-100 px-2 py-1 dark:bg-stone-800">{exp.totalClicks} clicks</span>
+                      {exp.winner ? (
+                        <span className="rounded-full bg-emerald-100 px-2 py-1 font-bold text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200">
+                          Winner: {exp.winner}
+                        </span>
+                      ) : (
+                        <span className="rounded-full bg-amber-100 px-2 py-1 font-bold text-amber-700 dark:bg-amber-900 dark:text-amber-200">
+                          {exp.significant ? "No winner yet" : "Needs more traffic"}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mt-3 space-y-2">
+                    {exp.variants.map((v) => {
+                      const bar =
+                        v.variant === "A" ? "bg-stone-500" : v.variant === "B" ? "bg-emerald-600" : "bg-violet-600";
+                      return (
+                        <div key={v.variant} className="flex items-center gap-3">
+                          <span className="w-6 shrink-0 text-xs font-black">{v.variant}</span>
+                          <div className="min-w-0 flex-1">
+                            <div className="flex justify-between text-[11px]">
+                              <span className="truncate pr-2">{v.label}</span>
+                              <span className="shrink-0 font-mono">
+                                {v.impressions} impr · {v.clicks} clicks · CTR {v.ctr}% · CVR {v.convRate}%
+                              </span>
+                            </div>
+                            <div className="mt-1 h-2 rounded-full bg-stone-100 dark:bg-stone-800">
+                              <div className={`h-2 rounded-full ${bar}`} style={{ width: `${(v.impressions / maxImpr) * 100}%` }} />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        <p className="mt-3 text-[11px] text-stone-500">
+          Conversion events fire on checkout start and purchase completion. Winner is declared only after 10+ impressions and a
+          non-zero CTR or conversion rate — so the dashboard never promotes a variant on noise.
+        </p>
       </div>
     </div>
   );
