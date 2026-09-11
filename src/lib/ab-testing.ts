@@ -149,15 +149,33 @@ function isVariant(value: unknown): value is ABVariant {
 }
 
 /**
+ * Reads the visitor's sticky variant without assigning one.
+ * Returns null when the visitor has not been bucketed yet, and always returns
+ * null during SSR (localStorage is unavailable).
+ */
+export function readVariant(experimentId: string): ABVariant | null {
+  const stored = readStore(VARIANT_KEY(experimentId));
+  return isVariant(stored) ? stored : null;
+}
+
+/**
  * Returns the sticky variant for a visitor, assigning one on first visit using a
  * weighted random draw against the experiment's traffic split.
  *
- * Safe to call during render on the client, but callers should render variant "A"
- * on the server and apply the real variant after mount to avoid hydration mismatches.
+ * SSR-safe: on the server this always returns "A" and never writes, so the
+ * server-rendered markup is deterministic.
+ *
+ * Callers should not call this during render — a fresh visitor would be bucketed
+ * mid-render and could disagree with the server markup. Use `subscribeABVariant`
+ * with `useSyncExternalStore` instead, which assigns only after hydration.
  */
 export function assignVariant(experimentId: string): ABVariant {
   const experiment = getExperiment(experimentId);
   if (!experiment) return "A";
+
+  // Never randomise without a browser: the server has no way to persist the
+  // assignment and must produce deterministic markup.
+  if (typeof window === "undefined") return "A";
 
   const stored = readStore(VARIANT_KEY(experimentId));
   if (isVariant(stored)) return stored;
@@ -180,6 +198,35 @@ export function assignVariant(experimentId: string): ABVariant {
 
 export function getVariantConfig(experimentId: string, variant: ABVariant): ABVariantConfig | undefined {
   return getExperiment(experimentId)?.variants.find((v) => v.id === variant);
+}
+
+/** Per-experiment subscriber sets, so components re-read after bucketing. */
+const listeners = new Map<string, Set<() => void>>();
+
+/**
+ * Subscribes to variant changes for `useSyncExternalStore`.
+ *
+ * React calls this *after* hydration, which is the first point at which it is
+ * safe to bucket a visitor: assigning here keeps the hydration render matching
+ * the server (variant "A") while still switching to the real variant before paint.
+ */
+export function subscribeABVariant(experimentId: string, onChange: () => void): () => void {
+  let set = listeners.get(experimentId);
+  if (!set) {
+    set = new Set();
+    listeners.set(experimentId, set);
+  }
+  set.add(onChange);
+
+  // Bucket a first-time visitor now that we are safely past hydration.
+  if (!readVariant(experimentId)) {
+    assignVariant(experimentId);
+    onChange();
+  }
+
+  return () => {
+    set.delete(onChange);
+  };
 }
 
 function readEvents(experimentId: string): ABEvent[] {

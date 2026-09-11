@@ -37,15 +37,19 @@ export function EarningCharts() {
   const maxTotal = Math.max(...DEMO_WEEK.map((d) => d.total));
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("bhg-aff-clicks");
-      if (raw) {
-        const arr = JSON.parse(raw);
-        setAffClicks(Array.isArray(arr) ? arr.length : 0);
-      }
-    } catch {}
-    // A/B experiment stats are browser-only — read after mount to keep SSR markup stable.
-    setAbStats(getAllABStats());
+    // localStorage is browser-only: defer a tick so the hydration render matches
+    // the server output, then fill the dashboard in from stored events.
+    const timer = setTimeout(() => {
+      try {
+        const raw = localStorage.getItem("bhg-aff-clicks");
+        if (raw) {
+          const arr = JSON.parse(raw);
+          setAffClicks(Array.isArray(arr) ? arr.length : 0);
+        }
+      } catch {}
+      setAbStats(getAllABStats());
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
