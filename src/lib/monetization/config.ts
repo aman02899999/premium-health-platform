@@ -261,7 +261,9 @@ export const DIGITAL_PRODUCTS: DigitalProduct[] = [
     title: "Ayurvedic Herbs Reference Guide — 50 Herbs (Demo)",
     description: "Evidence-graded herb profiles with safety, interactions, Hindi names. Book ≠ medical advice.",
     category: "Health Guides",
-    image: "/products/mustard-oil.jpg",
+    // A herb-themed shot — previously pointed at mustard-oil.jpg (a cooking-oil
+    // bottle illustrating a herbal-medicine guide).
+    image: "/products/ayurvedic-herbs.jpg",
     price: 249,
     originalPrice: 499,
     currency: "INR",

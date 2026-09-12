@@ -32,9 +32,9 @@ describe("getProductImageUrl", () => {
 });
 
 describe("PRODUCT_IMAGES", () => {
-  it("points at 8 real, local, non-branded product photographs", () => {
+  it("points at 9 real, local, non-branded product photographs", () => {
     const values = Object.values(PRODUCT_IMAGES);
-    expect(values).toHaveLength(8);
+    expect(values).toHaveLength(9);
     for (const v of values) {
       expect(v.startsWith("/products/")).toBe(true);
       expect(v.endsWith(".jpg")).toBe(true);

@@ -21,6 +21,7 @@ export const PRODUCT_IMAGES = {
   yogaMat: "/products/yoga-mat.jpg",
   wheyProtein: "/products/whey-protein.jpg",
   mustardOil: "/products/mustard-oil.jpg",
+  ayurvedicHerbs: "/products/ayurvedic-herbs.jpg",
   diabetesGuide: "/products/diabetes-guide.jpg",
   weightManagement: "/products/weight-management.jpg",
 } as const;
