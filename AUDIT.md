@@ -188,6 +188,31 @@ These were reviewed and left alone on purpose — please do not "fix" them:
   fail to reach `fonts.googleapis.com`), so the migration is confirmed still blocked
   here. Only attempt it from a build environment with network access to
   `fonts.googleapis.com`, and confirm with `npm run build`.
-- **Visual review of the 8 AI-generated product images in `public/products/`.** They
-  have never been inspected by eye (the agent has no vision capability). Please check
-  `/products`, `/store` and `/deals` in a browser.
+- **Visual review of the 8 AI-generated product images in `public/products/`.** All 8 were
+  inspected this session and are clean studio photography: unbranded, no garbled text, no
+  invented logos, medically plausible. Two cosmetic notes: `mustard-oil.jpg` is a small
+  screw-cap glass bottle while the affiliate listing says "5L" (a tin would be right), and
+  `millet-combo.jpg` shows five grain varieties where the copy says three
+  (foxtail + barnyard + ragi). Neither blocks anything.
+
+- **Image-to-product *pairing* on `/store` — one clear mismatch.** Reviewing the images
+  themselves is not the same as reviewing what they are attached to. Checking the rendered
+  pages against the mapping in `getProductImageForSlug()` (`src/lib/monetization/config.ts`)
+  turned up this:
+
+  | Digital product card | Image currently mapped | Assessment |
+  |---|---|---|
+  | Indian Diabetes Diet Guide | `diabetes-guide.jpg` | correct |
+  | **Ayurvedic Herbs Reference Guide — 50 Herbs** | **`mustard-oil.jpg`** | **wrong** — a bottle of cooking oil illustrates a herbal-medicine guide |
+  | Indian Heart-Healthy Diet Guide | `millet-combo.jpg` | generic but defensible (food theme) |
+  | 30-Day Indian Weight Management Plan | `weight-management.jpg` | correct |
+  | Indian High-Protein Vegetarian Diet | `whey-protein.jpg` | loose — a supplement photo for a diet guide, but the protein theme is relevant |
+
+  Render order itself is correct (each card shows its own image); it is the mapping data that
+  is off. The affiliate products on `/store` and both deals on `/deals` pair correctly.
+
+  This is a creative decision rather than a code defect, so it is reported and not changed:
+  the only fully correct fix is one new herb-themed image (there is no herbs image in
+  `public/products/`), which is exactly the regeneration the hand-off asked to avoid. The
+  alternatives — leaving the card without an image so it falls back to the branded gradient
+  placeholder, or swapping in a generic food shot — are one-line changes either way.
