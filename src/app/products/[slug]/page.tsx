@@ -11,6 +11,12 @@ import { ProductImage } from "@/components/monetization/ProductImage";
 
 export function generateStaticParams() { return PRODUCTS.map((p) => ({ slug: p.slug })); }
 
+// The valid slug set is fixed and known at build time — anything else must 404.
+// Without this, unknown slugs are rendered on demand, and because the root
+// loading.tsx streams the response shell with a 200 before notFound() throws,
+// they were served as soft 404s (HTTP 200 with "not found" content).
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = getProduct(slug);

@@ -24,6 +24,11 @@ does not get "re-fixed" later.
 | 4 | High | `/api/lead` had no rate limiting despite the 5/min requirement — scriptable lead spam | `rateLimitFromRequest()` at 5/min per IP, `429` + `Retry-After` | `src/app/api/lead/route.ts` |
 | 5 | Low (perf) | Four internal links on `/blog` used `<a href>` instead of `next/link`, forcing full page reloads | Converted to `<Link>` | `src/app/blog/page.tsx` |
 | 6 | Medium | `AuthContext` recomputed `session.expires` with `Date.now()` on every render, so the expiry drifted and never expired; state was loaded with a `setState` inside `useEffect` | Client-only external store read via `useSyncExternalStore`, expiry anchored to the persisted sign-in time (30-day TTL) | `src/components/auth/AuthContext.tsx` |
+| 7 | Medium (SEO + caching) | HTML product pages were served `Cache-Control: public, max-age=31536000, immutable` — the header rule intended for the images also matched the `/products` page route, so browsers would cache the HTML for a year and never revalidate | Header `source` narrowed to asset extensions | `next.config.ts` |
+| 8 | High (SEO) | **Soft 404s**: every dynamic route returned HTTP 200 with "not found" content for unknown slugs | `dynamicParams = false` on the 12 routes with a fixed slug set (rolling `/news/[slug]` excepted) | 12 × `src/app/**/[slug]/page.tsx` |
+
+Defects 1–6 are the audited set; **7 and 8 were found by the verification sweep below**
+and fixed in the same branch.
 
 Supporting changes: `src/lib/monetization/payment.test.ts` (8 regression tests),
 `src/app/download/[token]/page.tsx` (security copy now describes the signed format),
@@ -106,6 +111,75 @@ Provider methods are `useCallback`-stable and the context value is memoised.
 
 ---
 
+## 7. HTML pages cached for a year as immutable
+
+`next.config.ts` set `Cache-Control: public, max-age=31536000, immutable` for
+`source: "/products/:path*"` with the comment "Real product photography in
+`/public/products`" — but a `:path*` segment also matches **zero** or more parts, so
+the rule applied to the `/products` index and every `/products/{slug}` HTML page as
+well:
+
+```
+/products                              Cache-Control: public, max-age=31536000, immutable   <- HTML
+/products/digital-glucometer-combo     Cache-Control: public, max-age=31536000, immutable   <- HTML
+/products/millet-combo.jpg             Cache-Control: public, max-age=31536000, immutable   <- correct
+```
+
+`immutable` tells the browser never to revalidate, so a returning visitor could keep a
+stale product page for a year — prices, copy and links would never update for them, and
+a hard refresh would not help.
+
+**Fix** — the `source` now matches asset extensions only:
+
+```ts
+source: "/products/:file([^/]+\\.(?:jpg|jpeg|png|webp|avif|svg|gif))"
+```
+
+(The group must be **non-capturing**; Next's `path-to-regexp` throws
+`Capturing groups are not allowed`.) Verified: the HTML routes fall back to Next's
+default `s-maxage=31536000` (CDN-cacheable, revalidated by the browser) while all
+9 images keep `public, max-age=31536000, immutable`.
+
+## 8. Soft 404s on every dynamic route
+
+Every dynamic route answered **HTTP 200** with "not found" content for unknown slugs:
+
+```
+/products/nope-xyz   200      /diseases/nope-xyz   200      /symptoms/nope-xyz   200
+/store/nope-xyz      200      /herbs/nope-xyz      200      /ayurveda/nope-xyz   200
+/blog/nope-xyz       200      /medicines/nope-xyz  200      /providers/nope-xyz  200
+/blog/category/nope-xyz 200   /nutrition/nope-xyz  200      /lab-tests/nope-xyz  200
+```
+
+A 200-status "not found" page is a soft 404: crawlers index it as a real page, so any
+nonsense URL (`/products/anything`) entered the index with the site's title and
+navigation.
+
+**Cause** — the root `src/app/loading.tsx` makes Next stream the response. The shell is
+flushed with a 200 status before the page body calls `notFound()`, so the status can no
+longer be corrected. Confirmed by removing `loading.tsx` and rebuilding: unknown slugs
+then returned 404. Calling `notFound()` from `generateMetadata()` (the usual workaround)
+was also tested and did **not** help in this Next version.
+
+**Fix** — these routes have a slug set that is fixed and known at build time
+(`generateStaticParams` from `src/data/*`), so `export const dynamicParams = false;`
+makes anything else a real 404 *without* giving up the loading skeleton:
+
+```ts
+export const dynamicParams = false;
+```
+
+Applied to 12 route families: `/blog/[slug]`, `/blog/category/[slug]`, `/diseases/[slug]`,
+`/herbs/[slug]`, `/lab-tests/[slug]`, `/medicines/[slug]`, `/nutrition/[slug]`,
+`/products/[slug]`, `/providers/[slug]`, `/store/[slug]`, `/symptoms/[slug]`,
+`/ayurveda/[slug]`.
+
+**Deliberately not applied to `/news/[slug]`**: it is a rolling daily edition
+(`revalidate = 600`, slugs derived from a date-keyed pool), so a slug that does not
+exist at build time can legitimately become valid later. Freezing its params would
+break that until the next deploy. It still returns 200 for unknown slugs; worth
+revisiting if the news window ever stops rotating.
+
 ## Regression tests
 
 `src/lib/monetization/payment.test.ts` adds 8 tests (57 → 65 total, 13 files):
@@ -138,6 +212,12 @@ Provider methods are `useCallback`-stable and the context value is memoised.
   and a 5 KB input — all rejected with 400 (13/13 checks passed)
 - Google Fonts reachability re-tested (curl and `fetch()`): still blocked, so the
   `next/font` migration remains correctly deferred
+- After the caching/404 fixes: full sitemap crawl again **317 URLs / 0 non-200**, a
+  real slug from every one of the 12 patched families returns 200, an unknown slug on
+  each returns **404**, and the download-token, forged-token and lead-limit checks were
+  re-run and still pass
+- Cache headers after the fix: `/products`, `/products/{slug}` → `s-maxage=31536000`;
+  all 9 product images → `public, max-age=31536000, immutable`
 
 ## Residual risks and recommended follow-ups (found while sweeping for the same defect classes)
 
@@ -178,6 +258,28 @@ These were reviewed and left alone on purpose — please do not "fix" them:
 - **Affiliate/lead/product demo data.** Prices, ratings and merchants stay clearly
   marked as demo placeholders — nothing is fabricated.
 
+## Product imagery
+
+All product photography in `public/products/` was visually inspected in this session
+(and each file confirmed to serve 200 from a production build):
+
+- **9 images**, all 1408×768 (1.833), all clean studio photography: unbranded, no
+  garbled text, no invented logos, medically plausible.
+- `/store` pairs 5 digital products + 6 affiliate products, `/deals` pairs 2 coupons,
+  and every `/products/{slug}` detail page renders its own image — all pairings
+  verified correct against `getProductImageForSlug()`.
+- Two issues found by the review and fixed with the owner's approval:
+  - the **Ayurvedic Herbs Reference Guide** card was illustrated with
+    `mustard-oil.jpg` (a cooking-oil bottle). Replaced by a new herb-themed shot,
+    `ayurvedic-herbs.jpg` (dried ashwagandha, tulsi, turmeric and amla in bowls with a
+    mortar and pestle), which also brought `PRODUCT_IMAGES` to 9 entries.
+  - `mustard-oil.jpg` showed a small glass bottle while the listing says
+    **"Cold-Pressed Mustard Oil 5L"**. Regenerated as a plain 5-litre metal tin so the
+    image now matches the pack size and the affiliate link.
+- One cosmetic note left alone: `millet-combo.jpg` shows five grain varieties where the
+  copy names three (foxtail + barnyard + ragi). It is a demo listing and the mismatch is
+  not misleading, so no churn.
+
 ## Outstanding (not fixed here)
 
 - **Google Fonts → `next/font` migration.** `layout.tsx` loads Inter and Fraunces via
@@ -185,34 +287,8 @@ These were reviewed and left alone on purpose — please do not "fix" them:
   them, but **`next/font` fetches at build time** and Google Fonts is unreachable from
   the CI sandbox, so the change broke the build and was reverted. The `<link>` carries
   a comment explaining this. Re-tested in this environment (curl and `fetch()` both
-  fail to reach `fonts.googleapis.com`), so the migration is confirmed still blocked
-  here. Only attempt it from a build environment with network access to
-  `fonts.googleapis.com`, and confirm with `npm run build`.
-- **Visual review of the 8 AI-generated product images in `public/products/`.** All 8 were
-  inspected this session and are clean studio photography: unbranded, no garbled text, no
-  invented logos, medically plausible. Two cosmetic notes: `mustard-oil.jpg` is a small
-  screw-cap glass bottle while the affiliate listing says "5L" (a tin would be right), and
-  `millet-combo.jpg` shows five grain varieties where the copy says three
-  (foxtail + barnyard + ragi). Neither blocks anything.
-
-- **Image-to-product *pairing* on `/store` — one clear mismatch.** Reviewing the images
-  themselves is not the same as reviewing what they are attached to. Checking the rendered
-  pages against the mapping in `getProductImageForSlug()` (`src/lib/monetization/config.ts`)
-  turned up this:
-
-  | Digital product card | Image currently mapped | Assessment |
-  |---|---|---|
-  | Indian Diabetes Diet Guide | `diabetes-guide.jpg` | correct |
-  | **Ayurvedic Herbs Reference Guide — 50 Herbs** | **`mustard-oil.jpg`** | **wrong** — a bottle of cooking oil illustrates a herbal-medicine guide |
-  | Indian Heart-Healthy Diet Guide | `millet-combo.jpg` | generic but defensible (food theme) |
-  | 30-Day Indian Weight Management Plan | `weight-management.jpg` | correct |
-  | Indian High-Protein Vegetarian Diet | `whey-protein.jpg` | loose — a supplement photo for a diet guide, but the protein theme is relevant |
-
-  Render order itself is correct (each card shows its own image); it is the mapping data that
-  is off. The affiliate products on `/store` and both deals on `/deals` pair correctly.
-
-  This is a creative decision rather than a code defect, so it is reported and not changed:
-  the only fully correct fix is one new herb-themed image (there is no herbs image in
-  `public/products/`), which is exactly the regeneration the hand-off asked to avoid. The
-  alternatives — leaving the card without an image so it falls back to the branded gradient
-  placeholder, or swapping in a generic food shot — are one-line changes either way.
+  fail to reach `fonts.googleapis.com`; sandbox egress is allowlisted to GitHub only),
+  so the migration is confirmed still blocked here. **Vercel's builder does have
+  outbound network**, so the practical route is to verify the migration with a Vercel
+  preview build rather than `npm run build` in a sandboxed environment — best done as
+  its own PR so a font change does not gate the security fix.

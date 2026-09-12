@@ -71,8 +71,16 @@ const nextConfig: NextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // Real product photography in /public/products — content-hashed by filename.
+      //
+      // AUDIT FIX: this rule used to be `source: "/products/:path*"`, which also
+      // matched the /products page route and every /products/{slug} HTML page
+      // (a `:path*` segment matches zero or more parts). Those pages were served
+      // `public, max-age=31536000, immutable`, so browsers cached the HTML for a
+      // year and returning visitors could never see updated content. Restrict the
+      // rule to asset extensions — it is the images that are content-hashed.
       {
-        source: "/products/:path*",
+        // (Non-capturing group — Next's path-to-regexp rejects capturing groups.)
+        source: "/products/:file([^/]+\\.(?:jpg|jpeg|png|webp|avif|svg|gif))",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // Dynamically generated OG images — short shared-cache TTL.
