@@ -26,6 +26,28 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "recharts"],
   },
 
+  // AUDIT FIX (defect #3): the sitemap advertised /affiliate-products/{slug} for the
+  // six active affiliate products, but that route never existed — all six 404'd.
+  // Their canonical pages live at /products/{slug} (same slugs in src/data/editorial.ts),
+  // so legacy and previously-crawled URLs permanently redirect there (308) instead of
+  // continuing to 404. Keep this list in sync with AFFILIATE_PRODUCTS in
+  // src/lib/monetization/config.ts.
+  async redirects() {
+    const legacyAffiliateProductSlugs = [
+      "digital-glucometer-combo",
+      "upper-arm-bp-monitor",
+      "millet-combo-pack",
+      "yoga-mat-6mm",
+      "whey-protein-1kg",
+      "cold-pressed-mustard-oil",
+    ];
+    return legacyAffiliateProductSlugs.map((slug) => ({
+      source: `/affiliate-products/${slug}`,
+      destination: `/products/${slug}`,
+      permanent: true,
+    }));
+  },
+
   async headers() {
     return [
       {

@@ -8,7 +8,7 @@ import { LAB_TESTS, SYMPTOMS } from "@/data/clinical";
 import { ARTICLES, PRODUCTS, AYURVEDA_TOPICS } from "@/data/editorial";
 import { BLOG_CATEGORIES } from "@/data/blog-enrichment";
 import { getSeedNews } from "@/data/news";
-import { DIGITAL_PRODUCTS, AFFILIATE_PRODUCTS, BUSINESS_LISTINGS } from "@/lib/monetization/config";
+import { DIGITAL_PRODUCTS, BUSINESS_LISTINGS } from "@/lib/monetization/config";
 
 const STATIC_ROUTES = [
   "", "/diseases", "/solutions", "/herbs", "/medicines", "/nutrition", "/diet", "/recipes",
@@ -69,7 +69,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   push("/ayurveda", AYURVEDA_TOPICS.map((a) => a.slug), 0.7, "monthly");
   // Monetization — store, affiliate, providers
   push("/store", DIGITAL_PRODUCTS.filter((p) => p.active).map((p) => p.slug), 0.75, "weekly");
-  push("/affiliate-products", AFFILIATE_PRODUCTS.filter((p) => p.active).map((p) => p.slug), 0.6, "weekly");
+  // AUDIT FIX (defect #3): /affiliate-products/{slug} has no route — every one of
+  // those URLs 404'd for crawlers. Affiliate products are listed on /affiliate-products
+  // (kept below) and their canonical detail pages live at /products/{slug}, which are
+  // already emitted from /products above. Legacy URLs 308-redirect via next.config.ts.
   push("/providers", BUSINESS_LISTINGS.filter((p) => p.active).map((p) => p.slug), 0.6, "monthly");
 
   // News briefings — date-keyed slugs that rotate daily, so they are emitted per request.

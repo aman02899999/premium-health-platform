@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BlogClient from "./BlogClient";
 import { getAllEnrichedArticles } from "@/data/blog-enrichment";
 import { Breadcrumbs } from "@/components/ui";
@@ -40,10 +41,10 @@ export default function BlogPage() {
           Categories with own SEO pages, latest for freshness, trending for social proof, related for internal linking — pro SEO + earning optimized.
         </p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs">
-          <a href="/blog/category" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Categories →</a>
-          <a href="/blog/latest" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Latest →</a>
-          <a href="/blog/trending" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Trending →</a>
-          <a href="/premium" className="rounded-full bg-amber-500 px-3 py-1.5 font-bold text-stone-900">Premium — Earning →</a>
+          <Link href="/blog/category" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Categories →</Link>
+          <Link href="/blog/latest" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Latest →</Link>
+          <Link href="/blog/trending" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Trending →</Link>
+          <Link href="/premium" className="rounded-full bg-amber-500 px-3 py-1.5 font-bold text-stone-900">Premium — Earning →</Link>
         </div>
       </div>
 

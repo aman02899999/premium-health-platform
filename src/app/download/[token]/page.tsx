@@ -21,7 +21,7 @@ export default async function DownloadTokenPage({ params }: Props) {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Store", item: "/store" }, { name: "Download", item: `/download/${token}` }]}
         faqs={[
-          { q: "How secure download works?", a: "Token is base64url payload orderId:productId:expiresAt:secret — verified server-side via /api/monetization/download/[token]. Expires 72h, limit 3. Private PDF URLs never public — use presigned S3/R2 URLs in production." },
+          { q: "How secure download works?", a: "Token is an HMAC-SHA256 signed payload (orderId|productId|expiry-epoch-ms) — the signature is verified with a timing-safe comparison server-side via /api/monetization/download/[token] before any field is trusted. Expires 72h, limit 3. Private PDF URLs never public — use presigned S3/R2 URLs in production." },
           { q: "What if token expired?", a: "Expired token returns 400 error — request new token via support with order ID. Admin can re-issue via /admin/earning." },
         ]}
         howTo={{ name: "How to download", steps: ["Get token from /api/monetization/checkout/verify after payment verified", "Visit /download/[token] — server verifies expiry", "Call /api/monetization/download/[token] — returns presigned URL or streams PDF", "Download — Content-Disposition attachment — audit logging"] }}
@@ -37,7 +37,7 @@ export default async function DownloadTokenPage({ params }: Props) {
         <p className="mt-1 text-xs text-stone-500">In production, this page would call /api/monetization/download/[token] and stream file or redirect to presigned URL.</p>
         <div className="mt-4 rounded-xl bg-stone-50 p-4 text-xs font-mono dark:bg-stone-800">
           <p>Token: {token}</p>
-          <p className="mt-2">Verification: verifyDownloadToken() — base64url decode → check orderId, productId, expiresAt → expiry check</p>
+          <p className="mt-2">Verification: verifyDownloadToken() — HMAC-SHA256 signature check (timingSafeEqual) → decode orderId, productId, expiry → expiry check in epoch ms</p>
           <p className="mt-2">Security: server-side verification, expiring 72h, download limit 3, audit logging, secure file access, no public PDF URLs</p>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
