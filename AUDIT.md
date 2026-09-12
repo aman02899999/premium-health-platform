@@ -130,6 +130,40 @@ Provider methods are `useCallback`-stable and the context value is memoised.
 - Download flow: forged token → rejected; valid token → 200, expires exactly 72h later
 - Lead endpoint: 5 × 201, then 429
 - Affiliate redirects: `/affiliate-products/{slug}` → 308 → `/products/{slug}`
+- End-to-end + adversarial sweep (re-run against a production build): the real
+  `/api/monetization/checkout/mock` → `/api/monetization/download/[token]` path was
+  exercised end to end (checkout 200 → download 200 → `/download/[token]` page 200),
+  plus 10 tamper variants — payload swapped, expiry extended, signature truncated /
+  wrong length / empty, missing separator, legacy colon format, junk, path traversal
+  and a 5 KB input — all rejected with 400 (13/13 checks passed)
+- Google Fonts reachability re-tested (curl and `fetch()`): still blocked, so the
+  `next/font` migration remains correctly deferred
+
+## Residual risks and recommended follow-ups (found while sweeping for the same defect classes)
+
+These were found by a follow-up sweep (hardcoded secret fallbacks, non-constant-time
+comparisons, unsigned tokens, unauthenticated write endpoints). None of them are
+exploitable as shipped — there is no real paid file storage behind the download route
+and no entitlement is granted by the webhook — so they are **reported rather than
+changed**, to keep this PR to the audited defects.
+
+1. **`downloadTokenSecret()` falls back to the in-repo constant `"demo-secret"`.**
+   Setting neither `DOWNLOAD_TOKEN_SECRET` nor `NEXTAUTH_SECRET` means the HMAC key is
+   a value anyone can read in this repository — tokens would be forgeable again, which
+   is exactly defect #1. The verified demo flow runs on that fallback (no env vars are
+   set in CI), which is why it is left in place. **Deployment requirement: set
+   `DOWNLOAD_TOKEN_SECRET` (or `NEXTAUTH_SECRET`) in production.** Recommended
+   follow-up: fail closed in production when neither is configured.
+2. **`/api/webhooks/razorpay` does not verify `RAZORPAY_WEBHOOK_SECRET`.** It is a
+   stub that only logs — it does not mark orders paid or grant premium, so nothing is
+   currently exploitable. Signature verification **must** be implemented before that
+   route is wired to entitlements.
+3. **Other write endpoints have no rate limiting** (`/api/newsletter`, `/api/referral`,
+   `/api/whatsapp/optin`, `/api/push/subscribe`, `/api/monetization/analytics`,
+   `/api/affiliate/click`, `/api/auth/signin`). Only `/api/lead` had an explicit 5/min
+   requirement (defect #4) and was fixed; the rest are unauthenticated but low-impact.
+4. **No non-constant-time signature comparisons remain** — the only `===` signature
+   comparison in the tree is a commented-out example in `RazorpayProvider`. Checks out.
 
 ## Deliberately not changed
 
@@ -150,8 +184,10 @@ These were reviewed and left alone on purpose — please do not "fix" them:
   a render-blocking `<link>` to `fonts.googleapis.com`. `next/font` would self-host
   them, but **`next/font` fetches at build time** and Google Fonts is unreachable from
   the CI sandbox, so the change broke the build and was reverted. The `<link>` carries
-  a comment explaining this. Only attempt it from a build environment with network
-  access to `fonts.googleapis.com`, and confirm with `npm run build`.
+  a comment explaining this. Re-tested in this environment (curl and `fetch()` both
+  fail to reach `fonts.googleapis.com`), so the migration is confirmed still blocked
+  here. Only attempt it from a build environment with network access to
+  `fonts.googleapis.com`, and confirm with `npm run build`.
 - **Visual review of the 8 AI-generated product images in `public/products/`.** They
   have never been inspected by eye (the agent has no vision capability). Please check
   `/products`, `/store` and `/deals` in a browser.
