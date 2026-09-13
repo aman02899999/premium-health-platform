@@ -183,6 +183,12 @@ export type MedicalArticle = {
   abstract?: string;
   url?: string;
   doi?: string;
+  /** Times cited, when the source exposes it (Europe PMC, OpenAlex). */
+  citedByCount?: number;
+  /** Open-access availability, when known (OpenAlex). */
+  openAccess?: boolean;
+  /** Work type, e.g. "article", "review" (OpenAlex). */
+  type?: string;
   provenance: DataProvenance;
 };
 

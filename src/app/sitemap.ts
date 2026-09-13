@@ -36,6 +36,12 @@ const STATIC_ROUTES = [
   "/advertise",
   "/orders",
   "/my-purchases",
+  // Developer platform — public, indexable surfaces only.
+  // /developers/dashboard is intentionally absent: it is a signed-in view with
+  // robots noindex set on the page itself, so listing it here would be a lie.
+  "/developers",
+  "/developers/docs",
+  "/api-directory",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
