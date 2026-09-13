@@ -26,6 +26,28 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "recharts"],
   },
 
+  // AUDIT FIX (defect #3): the sitemap advertised /affiliate-products/{slug} for the
+  // six active affiliate products, but that route never existed — all six 404'd.
+  // Their canonical pages live at /products/{slug} (same slugs in src/data/editorial.ts),
+  // so legacy and previously-crawled URLs permanently redirect there (308) instead of
+  // continuing to 404. Keep this list in sync with AFFILIATE_PRODUCTS in
+  // src/lib/monetization/config.ts.
+  async redirects() {
+    const legacyAffiliateProductSlugs = [
+      "digital-glucometer-combo",
+      "upper-arm-bp-monitor",
+      "millet-combo-pack",
+      "yoga-mat-6mm",
+      "whey-protein-1kg",
+      "cold-pressed-mustard-oil",
+    ];
+    return legacyAffiliateProductSlugs.map((slug) => ({
+      source: `/affiliate-products/${slug}`,
+      destination: `/products/${slug}`,
+      permanent: true,
+    }));
+  },
+
   async headers() {
     return [
       {
@@ -49,8 +71,16 @@ const nextConfig: NextConfig = {
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // Real product photography in /public/products — content-hashed by filename.
+      //
+      // AUDIT FIX: this rule used to be `source: "/products/:path*"`, which also
+      // matched the /products page route and every /products/{slug} HTML page
+      // (a `:path*` segment matches zero or more parts). Those pages were served
+      // `public, max-age=31536000, immutable`, so browsers cached the HTML for a
+      // year and returning visitors could never see updated content. Restrict the
+      // rule to asset extensions — it is the images that are content-hashed.
       {
-        source: "/products/:path*",
+        // (Non-capturing group — Next's path-to-regexp rejects capturing groups.)
+        source: "/products/:file([^/]+\\.(?:jpg|jpeg|png|webp|avif|svg|gif))",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // Dynamically generated OG images — short shared-cache TTL.

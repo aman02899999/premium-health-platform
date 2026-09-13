@@ -1,6 +1,8 @@
 // Payment abstraction — provider-agnostic, server-side verification required
 // Do NOT claim payment success based only on frontend state
 
+import { createHmac, timingSafeEqual } from "crypto";
+
 export type PaymentProviderName = "razorpay" | "stripe" | "paypal" | "mock";
 
 export interface PaymentOrderInput {
@@ -151,24 +153,75 @@ export function getPaymentProvider(name?: PaymentProviderName): PaymentProvider 
 }
 
 // Secure download token generation — expiring/signed URLs
-// In production, use JWT or storage signed URLs (S3 presigned, etc.)
-export function generateDownloadToken(orderId: string, productId: string, expiresInHours = 72): { token: string; expiresAt: string } {
-  const expiresAt = new Date(Date.now() + expiresInHours * 60 * 60 * 1000).toISOString();
-  // Simple base64 token for demo — in prod use JWT with secret
-  const payload = `${orderId}:${productId}:${expiresAt}:${process.env.NEXTAUTH_SECRET || "demo-secret"}`;
-  const token = Buffer.from(payload).toString("base64url");
-  return { token, expiresAt };
+//
+// AUDIT FIX (defects #1 + #2): the previous implementation base64-encoded
+// `orderId:productId:expiresAt:secret` and verified it by decoding the string
+// and checking that the fields were PRESENT. Two consequences:
+//   1. Anyone could mint a token for any product with any expiry — the embedded
+//      secret was never validated, so paid digital products were downloadable
+//      for free (forgeable token).
+//   2. `expiresAt` was an ISO string containing colons, so `split(":")` truncated
+//      the expiry to its hour segment → `new Date("2026-09-12T10")` → Invalid
+//      Date → `Date.now() > NaN` is always false → tokens never expired.
+//
+// The token is now an HMAC-SHA256 signed payload with epoch-millisecond expiry:
+//   payload   = `${orderId}|${productId}|${expiresAtMs}`      ("|" delimiter)
+//   signature = HMAC-SHA256(payload, DOWNLOAD_TOKEN_SECRET)
+//   token     = base64url(payload) + "." + base64url(signature)
+// The signature is verified with timingSafeEqual BEFORE the payload is trusted.
+
+const DOWNLOAD_TOKEN_TTL_HOURS = 72;
+
+/** Signing key: dedicated secret, falling back to the NextAuth secret. */
+function downloadTokenSecret(): string {
+  return process.env.DOWNLOAD_TOKEN_SECRET || process.env.NEXTAUTH_SECRET || "demo-secret";
+}
+
+function signDownloadPayload(payload: string): string {
+  return createHmac("sha256", downloadTokenSecret()).update(payload).digest("base64url");
+}
+
+export function generateDownloadToken(orderId: string, productId: string, expiresInHours = DOWNLOAD_TOKEN_TTL_HOURS): { token: string; expiresAt: string } {
+  const expiresAtMs = Date.now() + expiresInHours * 60 * 60 * 1000;
+  const payload = `${orderId}|${productId}|${expiresAtMs}`;
+  const token = `${Buffer.from(payload).toString("base64url")}.${signDownloadPayload(payload)}`;
+  return { token, expiresAt: new Date(expiresAtMs).toISOString() };
 }
 
 export function verifyDownloadToken(token: string): { valid: boolean; orderId?: string; productId?: string; expiresAt?: string; error?: string } {
   try {
-    const decoded = Buffer.from(token, "base64url").toString("utf-8");
-    const [orderId, productId, expiresAt] = decoded.split(":");
-    if (!orderId || !productId || !expiresAt) {
+    if (typeof token !== "string" || !token) {
+      return { valid: false, error: "Invalid token" };
+    }
+    // Token = base64url(payload) "." base64url(hmac)
+    const parts = token.split(".");
+    if (parts.length !== 2) {
       return { valid: false, error: "Invalid token format" };
     }
-    const exp = new Date(expiresAt).getTime();
-    if (Date.now() > exp) {
+    const [encodedPayload, providedSignature] = parts;
+    const payload = Buffer.from(encodedPayload, "base64url").toString("utf-8");
+    if (!payload) {
+      return { valid: false, error: "Invalid token format" };
+    }
+
+    // Verify the signature BEFORE trusting any part of the payload.
+    const expected = Buffer.from(signDownloadPayload(payload), "base64url");
+    const provided = Buffer.from(providedSignature, "base64url");
+    if (expected.length === 0 || expected.length !== provided.length || !timingSafeEqual(expected, provided)) {
+      return { valid: false, error: "Invalid token signature" };
+    }
+
+    // Signature is valid — the payload is now trustworthy.
+    const [orderId, productId, expiresAtMsRaw] = payload.split("|");
+    if (!orderId || !productId || !expiresAtMsRaw) {
+      return { valid: false, error: "Invalid token format" };
+    }
+    const expiresAtMs = Number(expiresAtMsRaw);
+    if (!Number.isFinite(expiresAtMs)) {
+      return { valid: false, error: "Invalid token format" };
+    }
+    const expiresAt = new Date(expiresAtMs).toISOString();
+    if (Date.now() > expiresAtMs) {
       return { valid: false, error: "Token expired" };
     }
     return { valid: true, orderId, productId, expiresAt };

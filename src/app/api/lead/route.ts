@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimitFromRequest } from "@/services/health/cache/rate-limit";
 
 export const dynamic = "force-dynamic";
+
+/** Lead capture is spam-prone: max 5 submissions per minute per IP. */
+const LEAD_RATE_LIMIT_PER_MINUTE = 5;
+const RATE_LIMIT_WINDOW_SECONDS = 60;
 
 /**
  * Lead gen — high ticket: lab tests, dietitian, insurance
@@ -12,6 +17,16 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[6-9]\d{9}$/;
 
 export async function POST(req: NextRequest) {
+  // AUDIT FIX (defect #4): the 5/min-per-IP requirement was never enforced, so the
+  // lead endpoint could be scripted at will. Reject with 429 + Retry-After.
+  const rl = rateLimitFromRequest(req, LEAD_RATE_LIMIT_PER_MINUTE);
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { ok: false, error: "Too many requests — maximum 5 lead submissions per minute." },
+      { status: 429, headers: { "Retry-After": String(RATE_LIMIT_WINDOW_SECONDS) } }
+    );
+  }
+
   try {
     const body = await req.json();
     const { name, email, phone, type, message, utm } = body as {

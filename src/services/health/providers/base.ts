@@ -64,7 +64,16 @@ export abstract class BaseHealthProvider<T, D = unknown> implements HealthProvid
     return {
       ...result.data,
       cached: result.cached,
-      live: result.live,
+      // Never upgrade a degraded payload to "live".
+      //
+      // cachedFetch only knows whether the loader threw, but every provider here
+      // swallows upstream failures inside fetchJson() and returns an empty result
+      // with `live: false`. Trusting the wrapper's flag alone therefore published
+      // `live: true` for responses that never reached the upstream — across all
+      // providers. The provider's own assessment wins when it reports "not live";
+      // otherwise the cache layer's flag is used (so a cache hit still reports
+      // live: false, cached: true).
+      live: result.data.live === false ? false : result.live,
     };
   }
 

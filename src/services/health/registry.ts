@@ -19,6 +19,10 @@ import { homeopathyProvider } from "./providers/homeopathy/provider";
 import { indianMedicineProvider } from "./providers/indian-medicines/provider";
 import { worldBankProvider } from "./providers/worldbank/provider";
 import { openMeteoProvider } from "./providers/openmeteo/provider";
+import { europePmcProvider } from "./providers/europepmc/provider";
+import { openAlexProvider } from "./providers/openalex/provider";
+import { fruityviceProvider } from "./providers/fruityvice/provider";
+import { openMeteoAirProvider } from "./providers/openmeteo-air/provider";
 
 export const providers: Record<string, HealthProvider> = {
   wger: wgerProvider,
@@ -36,6 +40,11 @@ export const providers: Record<string, HealthProvider> = {
   "indian-medicines": indianMedicineProvider,
   worldbank: worldBankProvider,
   openmeteo: openMeteoProvider,
+  // Added for the developer API surface (all keyless, open-licensed)
+  europepmc: europePmcProvider,
+  openalex: openAlexProvider,
+  fruityvice: fruityviceProvider,
+  "openmeteo-air": openMeteoAirProvider,
 };
 
 export function getProvider(name: string): HealthProvider | null {

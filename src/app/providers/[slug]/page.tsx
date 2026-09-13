@@ -14,6 +14,12 @@ export async function generateStaticParams() {
   return BUSINESS_LISTINGS.map((l) => ({ slug: l.slug }));
 }
 
+// The valid slug set is fixed and known at build time — anything else must 404.
+// Without this, unknown slugs are rendered on demand, and because the root
+// loading.tsx streams the response shell with a 200 before notFound() throws,
+// they were served as soft 404s (HTTP 200 with "not found" content).
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const listing = BUSINESS_LISTINGS.find((l) => l.slug === slug);

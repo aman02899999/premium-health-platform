@@ -13,7 +13,7 @@ This document fulfills the final requirement: Files changed, new routes, DB mode
 ### Core Monetization Config (NEW — Central, Modular, No Hardcoding)
 - `src/lib/monetization/types.ts` — All monetization types: BaseMonetizationItem, AffiliateProduct, DigitalProduct, PaidGuide, PaidPlan, Advertisement, Sponsor, LeadFormConfig, BusinessListing, Coupon, PremiumReport, Order, MonetizationEvent
 - `src/lib/monetization/config.ts` — Single source of truth: AFFILIATE_PRODUCTS (6), DIGITAL_PRODUCTS (5), PAID_GUIDES, PAID_PLANS, ADVERTISEMENTS (4), SPONSORS (2), LEAD_FORMS (3), BUSINESS_LISTINGS (3), COUPONS (3 with auto-expire demo), PREMIUM_REPORTS (3). Helpers: getActiveSponsors(), getActiveCoupons(), getExpiredCoupons(), getAffiliateByCategory(), getDigitalByCategory()
-- `src/lib/monetization/payment.ts` — PaymentProvider abstraction: PaymentProvider interface with createOrder, verifyPayment, getCheckoutUrl. Implementations: MockPaymentProvider (dev, no real money), RazorpayProvider (server-side, env secrets, HMAC SHA256 verification). Secure download token: generateDownloadToken() expiring 72h + verifyDownloadToken()
+- `src/lib/monetization/payment.ts` — PaymentProvider abstraction: PaymentProvider interface with createOrder, verifyPayment, getCheckoutUrl. Implementations: MockPaymentProvider (dev, no real money), RazorpayProvider (server-side, env secrets, HMAC SHA256 verification). Secure download token: generateDownloadToken() expiring 72h + verifyDownloadToken() — HMAC-SHA256 signed and verified with timingSafeEqual (key: DOWNLOAD_TOKEN_SECRET, NEXTAUTH_SECRET fallback)
 - `src/lib/monetization/analytics.ts` — Privacy-conscious tracking: trackMonetizationEvent(), getAttributionFromUrl(), getMonetizationStats(). Events: affiliate_product_view, affiliate_product_click, digital_product_view, checkout_started, purchase_completed, download_started, lead_submitted, coupon_clicked, sponsor_clicked, newsletter_signup, calculator_completed, premium_report_purchase, ad_impression, ad_click, cta_click. Stores in localStorage bhg-monetization-events (max 500), gtag, POST /api/monetization/analytics. No unnecessary health info.
 - `src/lib/monetization/index.ts` — Barrel export
 
@@ -135,7 +135,8 @@ NEXT_PUBLIC_FB_PIXEL_ID= # Facebook Pixel
 NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=
 GOOGLE_CLIENT_ID= # Google OAuth for SSO
 GOOGLE_CLIENT_SECRET=
-NEXTAUTH_SECRET= # for JWT + download token signing
+NEXTAUTH_SECRET= # for JWT signing + download-token signing fallback
+DOWNLOAD_TOKEN_SECRET= # dedicated HMAC key for paid-download tokens (falls back to NEXTAUTH_SECRET); rotating it invalidates outstanding download links
 NEXTAUTH_URL=
 # Payment abstraction — supports mock + razorpay + stripe
 PAYMENT_PROVIDER=mock
@@ -194,7 +195,7 @@ LEAD_CRM_API_KEY=
    - Enable Razorpay Checkout.js on frontend — already abstracted in /api/monetization/checkout/razorpay returns checkoutOptions: key, order_id, amount paise, currency, name, description, prefill, theme color #047857
    - Frontend handler: Razorpay Checkout returns razorpay_order_id, razorpay_payment_id, razorpay_signature → POST to /api/monetization/checkout/verify with orderId, paymentId, signature, provider=razorpay
    - Server verifies HMAC SHA256: expectedSignature = HMAC SHA256(orderId + '|' + paymentId, keySecret) === signature — never trust frontend alone
-   - On verified, generate download token expiring 72h via generateDownloadToken() — token base64url orderId:productId:expiresAt:secret — return downloadUrl /download/[token]
+   - On verified, generate download token expiring 72h via generateDownloadToken() — token = base64url(`orderId|productId|expiresAtMs`) + "." + base64url(HMAC-SHA256(payload, DOWNLOAD_TOKEN_SECRET)) — return downloadUrl /download/[token]. verifyDownloadToken() checks the signature with timingSafeEqual **before** reading any payload field, then rejects the token if `Date.now() > expiresAtMs`.
    - Update order status paid in DB, send email receipt via EMAIL_PROVIDER_KEY, record purchase via analytics purchase_completed
 3. **Mock Testing:** GET /api/monetization/checkout/mock?orderId=xxx returns mockPaymentId + downloadToken + nextSteps — use for dev without Razorpay account.
 4. **Security:** Never expose secret keys in client JS. Use env vars server-side only. Webhook signature verification via RAZORPAY_WEBHOOK_SECRET. Input validation, rate limiting, CSRF, XSS protection, secure file access, admin authorization, audit logging for sensitive admin actions.

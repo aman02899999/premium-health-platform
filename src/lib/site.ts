@@ -128,6 +128,18 @@ export const PRIMARY_NAV: NavItem[] = [
     ],
   },
   {
+    label: "Developers",
+    href: "/developers",
+    description: "Health data API — keys, quotas, docs",
+    children: [
+      { label: "API Platform", href: "/developers", description: "Plans, quickstart, 20 data sources" },
+      { label: "API Reference", href: "/developers/docs", description: "Auth, quotas, error codes, samples" },
+      { label: "API Keys", href: "/developers/dashboard", description: "Create, monitor and revoke keys" },
+      { label: "API Directory", href: "/api-directory", description: "290 public APIs we track" },
+      { label: "OpenAPI spec", href: "/api/v1/openapi.json", description: "Machine-readable definition" },
+    ],
+  },
+  {
     label: "Unique India",
     href: "/thali-builder",
     description: "India-first unique features",
@@ -231,6 +243,17 @@ export const FOOTER_COLUMNS: { title: string; links: { label: string; href: stri
       { label: "Diabetes Diet", href: "/diet" },
       { label: "Heart Diet", href: "/diet" },
       { label: "Products", href: "/products" },
+    ],
+  },
+  {
+    title: "Developers & API",
+    links: [
+      { label: "API Platform", href: "/developers" },
+      { label: "API Reference", href: "/developers/docs" },
+      { label: "API Keys", href: "/developers/dashboard" },
+      { label: "API Directory", href: "/api-directory" },
+      { label: "OpenAPI Spec", href: "/api/v1/openapi.json" },
+      { label: "Provider Status", href: "/api/health/providers" },
     ],
   },
   {

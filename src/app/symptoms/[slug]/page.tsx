@@ -16,6 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: `${s.name} — Possible Causes, Questions & When to Seek Care`, description: s.short, alternates: { canonical: `/symptoms/${slug}` } };
 }
 
+// The valid slug set is fixed and known at build time — anything else must 404.
+// Without this, unknown slugs are rendered on demand, and because the root
+// loading.tsx streams the response shell with a 200 before notFound() throws,
+// they were served as soft 404s (HTTP 200 with "not found" content).
+export const dynamicParams = false;
+
 export default async function SymptomPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = getSymptom(slug);
