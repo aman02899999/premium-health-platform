@@ -8,8 +8,8 @@
  * (Health, Food & Drink, Science & Math, Open Data, Government, Environment).
  *
  * The upstream list covers 52 categories in total — see the link above for all of them.
- * Generated: 2026-09-13
- * Entries: 290 (185 keyless + HTTPS)
+ * Generated: 2026-09-14
+ * Entries: 294 (188 keyless + HTTPS)
  */
 
 export type PublicApiEntry = {
@@ -59,13 +59,14 @@ export const PUBLIC_APIS: readonly PublicApiEntry[] = [
   { name: "Makeup", description: "Makeup Information", auth: "No", https: false, cors: "Unknown", category: "Health", url: "http://makeup-api.herokuapp.com/", integrated: false },
   { name: "MedlinePlus Genetics", description: "Genetic conditions, genes, chromosomes and mtDNA data", auth: "No", https: true, cors: "Unknown", category: "Health", url: "https://medlineplus.gov/about/developers/geneticsdatafilesapi/", integrated: false },
   { name: "MyVaccination", description: "Vaccination data for Malaysia", auth: "No", https: true, cors: "Unknown", category: "Health", url: "https://documenter.getpostman.com/view/16605343/Tzm8GG7u", integrated: false },
-  { name: "NPPES", description: "National Plan & Provider Enumeration System, info on healthcare providers registered in US", auth: "No", https: true, cors: "Unknown", category: "Health", url: "https://npiregistry.cms.hhs.gov/registry/help-api", integrated: false },
+  { name: "NPPES", description: "National Plan & Provider Enumeration System, info on healthcare providers registered in US", auth: "No", https: true, cors: "Unknown", category: "Health", url: "https://npiregistry.cms.hhs.gov/registry/help-api", integrated: true, apiPath: "healthcare-providers" },
   { name: "Nutritionix", description: "Worlds largest verified nutrition database", auth: "apiKey", https: true, cors: "Unknown", category: "Health", url: "https://developer.nutritionix.com/", integrated: false },
   { name: "Open Data NHS Scotland", description: "Medical reference data and statistics by Public Health Scotland", auth: "No", https: true, cors: "Unknown", category: "Health", url: "https://www.opendata.nhs.scot", integrated: false },
-  { name: "Open Disease", description: "API for Current cases and more stuff about COVID-19 and Influenza", auth: "No", https: true, cors: "Yes", category: "Health", url: "https://disease.sh/", integrated: false },
+  { name: "Open Disease", description: "API for Current cases and more stuff about COVID-19 and Influenza", auth: "No", https: true, cors: "Yes", category: "Health", url: "https://disease.sh/", integrated: true, apiPath: "outbreaks" },
   { name: "openFDA", description: "Public FDA data about drugs, devices and foods", auth: "apiKey", https: true, cors: "Unknown", category: "Health", url: "https://open.fda.gov", integrated: false },
   { name: "Orion Health", description: "Medical platform which allows the development of applications for different healthcare scenarios", auth: "OAuth", https: true, cors: "Unknown", category: "Health", url: "https://developer.orionhealth.io/", integrated: false },
   { name: "Quarantine", description: "Coronavirus API with free COVID-19 live updates", auth: "No", https: true, cors: "Yes", category: "Health", url: "https://quarantine.country/coronavirus/api/", integrated: false },
+  { name: "Stanza DSCSA Verifier", description: "Verify FDA DSCSA and EU FMD pharmaceutical serialization barcodes", auth: "apiKey", https: true, cors: "No", category: "Health", url: "https://stanzaapi.com/tools/pharma-dscsa", integrated: false },
   { name: "Urgences Québec", description: "Hourly emergency room occupancy, stretcher counts and wait times for every hospital in Quebec, Canada", auth: "No", https: true, cors: "Yes", category: "Health", url: "https://sante.handled.tools/api", integrated: false },
   { name: "BaconMockup", description: "Resizable bacon placeholder images", auth: "No", https: true, cors: "Yes", category: "Food & Drink", url: "https://baconmockup.com/", integrated: false },
   { name: "Chomp", description: "Data about various grocery products and foods", auth: "apiKey", https: true, cors: "Unknown", category: "Food & Drink", url: "https://chompthis.com/api/", integrated: false },
@@ -108,6 +109,7 @@ export const PUBLIC_APIS: readonly PublicApiEntry[] = [
   { name: "Launch Library 2", description: "Spaceflight launches and events database", auth: "No", https: true, cors: "Yes", category: "Science & Math", url: "https://thespacedevs.com/llapi", integrated: false },
   { name: "Materials Platform for Data Science", description: "Curated experimental data for materials science", auth: "apiKey", https: true, cors: "No", category: "Science & Math", url: "https://mpds.io", integrated: false },
   { name: "Minor Planet Center", description: "Asterank.com Information", auth: "No", https: false, cors: "Unknown", category: "Science & Math", url: "http://www.asterank.com/mpc", integrated: false },
+  { name: "MyGene.info", description: "Gene annotation queries and ID lookup", auth: "No", https: true, cors: "Yes", category: "Science & Math", url: "https://docs.mygene.info/", integrated: false },
   { name: "NASA", description: "NASA data, including imagery", auth: "No", https: true, cors: "No", category: "Science & Math", url: "https://api.nasa.gov", integrated: false },
   { name: "NASA InSight", description: "Mars weather data from InSight lander", auth: "apiKey", https: true, cors: "Yes", category: "Science & Math", url: "https://api.nasa.gov/", integrated: false },
   { name: "NASA ADS", description: "NASA Astrophysics Data System", auth: "OAuth", https: true, cors: "Yes", category: "Science & Math", url: "https://ui.adsabs.harvard.edu/help/api/api-docs.html", integrated: false },
@@ -120,6 +122,7 @@ export const PUBLIC_APIS: readonly PublicApiEntry[] = [
   { name: "OpenAlex", description: "Open catalog of scholarly works, authors, institutions, sources, and concepts", auth: "No", https: true, cors: "Yes", category: "Science & Math", url: "https://docs.openalex.org/", integrated: false, apiPath: "scholarly/search" },
   { name: "OrbitalWiki", description: "Catalog of 16,000+ satellites merging CelesTrak, GCAT, Wikidata; free tier included", auth: "apiKey", https: true, cors: "Yes", category: "Science & Math", url: "https://orbitalwiki.com/developers", integrated: false },
   { name: "Purple Air", description: "Real Time Air Quality Monitoring", auth: "No", https: true, cors: "Unknown", category: "Science & Math", url: "https://www2.purpleair.com/", integrated: true },
+  { name: "RCSB PDB", description: "3D structures of proteins and nucleic acids", auth: "No", https: true, cors: "Yes", category: "Science & Math", url: "https://data.rcsb.org/", integrated: false },
   { name: "Remote Calc", description: "Decodes base64 encoding and parses it to return a solution to the calculation in JSON", auth: "No", https: true, cors: "Yes", category: "Science & Math", url: "https://github.com/elizabethadegbaju/remotecalc", integrated: false },
   { name: "Semantic Scholar", description: "Academic search engine for papers, authors, and citations", auth: "No", https: true, cors: "Unknown", category: "Science & Math", url: "https://api.semanticscholar.org/", integrated: false },
   { name: "SHARE", description: "A free, open, dataset about research and scholarly activities", auth: "No", https: true, cors: "No", category: "Science & Math", url: "https://share.osf.io/api/v2/", integrated: false },
@@ -288,6 +291,7 @@ export const PUBLIC_APIS: readonly PublicApiEntry[] = [
   { name: "PRC Exam Schedule", description: "Unofficial Philippine Professional Regulation Commission's examination schedule", auth: "No", https: true, cors: "Yes", category: "Government", url: "https://api.whenisthenextboardexam.com/docs/", integrated: false },
   { name: "Radar CNPJ", description: "Brazilian companies (CNPJ) lookup and search, with a market check by area and monitoring", auth: "No", https: true, cors: "No", category: "Government", url: "https://radar-cnpj.com/api/", integrated: false },
   { name: "Represent by Open North", description: "Find Canadian Government Representatives", auth: "No", https: true, cors: "Unknown", category: "Government", url: "https://represent.opennorth.ca/", integrated: false },
+  { name: "Right to Disconnect", description: "Right-to-disconnect employment law by EU country: binding status, statute, and sanctions", auth: "No", https: true, cors: "Yes", category: "Government", url: "https://righttodisconnect.jdries.nl/api/", integrated: false },
   { name: "Tollmint", description: "Advertising, subscription, AI-disclosure and accessibility rules across the US, EU and UK", auth: "No", https: true, cors: "Yes", category: "Government", url: "https://api.tollmint.com", integrated: false },
   { name: "UK Companies House", description: "UK Companies House Data from the UK government", auth: "OAuth", https: true, cors: "Unknown", category: "Government", url: "https://developer.company-information.service.gov.uk/", integrated: false },
   { name: "UK Legislation Changes", description: "Point-in-time amendment history for UK law", auth: "No", https: true, cors: "Yes", category: "Government", url: "https://uk-legal-changes.pages.dev/docs", integrated: false },
@@ -328,7 +332,7 @@ export const PUBLIC_API_SOURCE = {
   licence: "MIT (list); each API keeps its own terms",
   totalCategoriesUpstream: 52,
   syncedCategories: ["Health","Food & Drink","Science & Math","Open Data","Government","Environment"],
-  generatedAt: "2026-09-13T04:07:32.018Z",
+  generatedAt: "2026-09-14T02:13:43.187Z",
 } as const;
 
 /** Keyless + HTTPS entries — the ones that can be consumed without onboarding. */

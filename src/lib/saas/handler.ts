@@ -13,10 +13,13 @@ export type KeyedContext = { auth: AuthSuccess; url: URL };
  * Wraps a handler that requires a valid API key.
  * Usage is recorded after the handler settles, including failures.
  */
+/** Route context Next.js passes as the second argument of a route handler. */
+export type RouteContext = { params?: Promise<Record<string, string>> };
+
 export function keyedRoute(
-  handler: (req: Request, ctx: KeyedContext) => Promise<NextResponse> | NextResponse
+  handler: (req: Request, ctx: KeyedContext, route: RouteContext) => Promise<NextResponse> | NextResponse
 ) {
-  return async function route(req: Request): Promise<NextResponse> {
+  return async function route(req: Request, route: RouteContext = {}): Promise<NextResponse> {
     const auth = await authenticateApiRequest(req);
     if (!auth.ok) return auth.response;
 
@@ -24,7 +27,7 @@ export function keyedRoute(
     const url = new URL(req.url);
 
     try {
-      const response = await handler(req, { auth, url });
+      const response = await handler(req, { auth, url }, route);
       await auth.record(endpoint, response.status < 400);
       return response;
     } catch (error) {

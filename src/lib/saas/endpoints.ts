@@ -205,6 +205,54 @@ export const API_ENDPOINTS: readonly ApiEndpoint[] = [
   },
   {
     method: "GET",
+    path: "/api/v1/healthcare-providers",
+    title: "Healthcare provider directory",
+    summary:
+      "Search registered healthcare providers and organisations by name and state, with speciality, practice address and registration status. United States coverage (CMS NPPES) — stated explicitly so it is not mistaken for Indian provider data.",
+    auth: "api_key",
+    params: [
+      { name: "q", type: "string", required: false, description: "Provider or organisation name fragment.", example: "sharma" },
+      { name: "state", type: "string", required: false, description: "Two-letter state code.", example: "NY" },
+      { name: "limit", type: "integer", required: false, description: "Number of results (1–25, default 10).", example: "10" },
+    ],
+    source: {
+      name: "NPPES NPI Registry (CMS)",
+      url: "https://npiregistry.cms.hhs.gov/api-page",
+      license: "Public domain (US federal government work)",
+    },
+    sample: { results: [{ id: "1234567893", name: "ASHA SHARMA", speciality: "Internal Medicine", city: "ALBANY" }] },
+  },
+  {
+    method: "GET",
+    path: "/api/v1/outbreaks",
+    title: "Outbreak totals",
+    summary:
+      "Cases, deaths, recoveries and testing for a country — or worldwide when no country is given. Each record carries the upstream `sourceUpdatedAt`, because an outbreak figure without its as-of date misleads.",
+    auth: "api_key",
+    params: [{ name: "country", type: "string", required: false, description: "Country name, ISO2 or ISO3 code. Omit for worldwide.", example: "india" }],
+    source: {
+      name: "Open Disease (disease.sh)",
+      url: "https://disease.sh/docs",
+      license: "Aggregator MIT — case data from Johns Hopkins CSSE / WHO",
+    },
+    sample: { results: [{ location: "India", cases: 45000000, deaths: 533000, sourceUpdatedAt: "2026-09-13T04:00:00.000Z" }] },
+  },
+  {
+    method: "GET",
+    path: "/api/v1/export/{dataset}",
+    title: "Bulk dataset export (Pro)",
+    summary:
+      "Download a dataset as RFC-4180 CSV or JSON Lines — food, literature or exercises. Requires the Pro or Enterprise plan; the response is a file, with provenance in X-Export-* headers. Returns 403 plan_upgrade_required on lower plans.",
+    auth: "api_key",
+    params: [
+      { name: "dataset", type: "string", required: true, description: "food | literature | exercises.", example: "food" },
+      { name: "q", type: "string", required: true, description: "Search terms for the dataset.", example: "millet" },
+      { name: "format", type: "string", required: false, description: "csv (default) or jsonl.", example: "csv" },
+      { name: "limit", type: "integer", required: false, description: "Rows to export (1–500, default 100).", example: "100" },
+    ],
+  },
+  {
+    method: "GET",
     path: "/api/v1/billing/subscription",
     title: "Subscription & billing state",
     summary:
@@ -279,7 +327,9 @@ export function openApiDocument(siteUrl: string) {
   for (const endpoint of API_ENDPOINTS) {
     const params = endpoint.params.map((p) => ({
       name: p.name,
-      in: p.name === "keyId" ? "path" : "query",
+      // A parameter that appears in the path template ({keyId}, {dataset}) is a
+      // path parameter; previously only "keyId" was special-cased.
+      in: endpoint.path.includes(`{${p.name}}`) ? "path" : "query",
       required: p.required,
       description: p.description,
       schema: { type: p.type, ...(p.example ? { example: p.type === "number" ? Number(p.example) : p.example } : {}) },

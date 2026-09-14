@@ -20,6 +20,10 @@ const errorCodes = [
   { code: "invalid_request", status: 400, when: "A required parameter is missing or out of range.", fix: "Check the parameter table for the endpoint." },
   { code: "not_found", status: 404, when: "No such API key on your account (delete), or no matching record.", fix: "Verify the identifier." },
   { code: "upstream_unavailable", status: 503, when: "A live upstream source is unreachable and an empty answer would mislead (air quality).", fix: "Retry shortly; the endpoint is cached once the source recovers." },
+  { code: "plan_upgrade_required", status: 403, when: "The endpoint needs a capability your plan does not include (bulk export).", fix: "Upgrade to Pro, or fetch the same data in pages within your plan's quota." },
+  { code: "unauthorised", status: 401, when: "A console endpoint was called without a signed-in session.", fix: "Keys and billing use your account cookie, not an API key — sign in on the dashboard." },
+  { code: "payment_not_attested", status: 402, when: "A subscription payment could not be verified, so no plan change was applied.", fix: "Check the payment provider's response — a plan is granted only on an attested charge." },
+  { code: "payment_provider_unconfigured", status: 503, when: "Real billing is enabled (PAYMENT_PROVIDER=razorpay) but its secrets are missing.", fix: "Set the Razorpay keys, or unset PAYMENT_PROVIDER for the sandbox. The API refuses the sale rather than silently simulating it." },
   { code: "internal_error", status: 500, when: "Unexpected server-side failure.", fix: "Retry; if it persists, contact support with the timestamp and endpoint." },
 ];
 
@@ -115,6 +119,19 @@ retry-after: 3600
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="mt-4 rounded-2xl border border-emerald-300 bg-emerald-50 p-4 text-xs leading-relaxed text-emerald-900 dark:border-emerald-700/60 dark:bg-emerald-950/20 dark:text-emerald-100">
+        <p className="font-bold">Bulk export — Pro &amp; Enterprise</p>
+        <p className="mt-1">
+          <code className="rounded bg-white/70 px-1 dark:bg-black/30">{"GET /api/v1/export/{dataset}?q=millet&format=csv|jsonl&limit=500"}</code>{" "}
+          pages the upstream and returns a real file download — RFC-4180 CSV or JSON Lines — for the <code>food</code>,{" "}
+          <code>literature</code> and <code>exercises</code> datasets. Provenance travels with the file in{" "}
+          <code>X-Export-Source</code>, <code>X-Export-License</code> and <code>X-Export-Attribution</code> headers, while{" "}
+          <code>X-Export-Live</code> and <code>X-Export-Notice</code> tell you whether upstream actually answered — an
+          unreachable source yields a file with no rows, never fabricated zeros. Lower plans receive{" "}
+          <code>403 plan_upgrade_required</code>.
+        </p>
       </div>
 
       <SectionHeading

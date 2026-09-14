@@ -132,10 +132,10 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/developers",
     description: "Health data API — keys, quotas, docs",
     children: [
-      { label: "API Platform", href: "/developers", description: "Plans, quickstart, 20 data sources" },
+      { label: "API Platform", href: "/developers", description: "Plans, quickstart, live data sources" },
       { label: "API Reference", href: "/developers/docs", description: "Auth, quotas, error codes, samples" },
       { label: "API Keys", href: "/developers/dashboard", description: "Create, monitor and revoke keys" },
-      { label: "API Directory", href: "/api-directory", description: "290 public APIs we track" },
+      { label: "API Directory", href: "/api-directory", description: "Curated public API catalogue" },
       { label: "OpenAPI spec", href: "/api/v1/openapi.json", description: "Machine-readable definition" },
     ],
   },

@@ -40,6 +40,8 @@ const INTEGRATED = new Set([
   "Clinical Trials Directory",
   "Purple Air",
   "USDA FoodData Central",
+  "NPPES",
+  "Open Disease",
 ]);
 
 /** The curated set wired up by the developer API (see src/lib/saas/endpoints.ts). */
@@ -50,6 +52,8 @@ const VETTED = new Map([
   ["Open-Meteo", "air-quality (CAMS)"],
   ["Open Food Facts", "food/search"],
   ["Clinical Trials Directory", "clinical-trials"],
+  ["NPPES", "healthcare-providers"],
+  ["Open Disease", "outbreaks"],
 ]);
 
 /**

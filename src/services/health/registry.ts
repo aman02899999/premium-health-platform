@@ -23,6 +23,8 @@ import { europePmcProvider } from "./providers/europepmc/provider";
 import { openAlexProvider } from "./providers/openalex/provider";
 import { fruityviceProvider } from "./providers/fruityvice/provider";
 import { openMeteoAirProvider } from "./providers/openmeteo-air/provider";
+import { nppesProvider } from "./providers/nppes/provider";
+import { openDiseaseProvider } from "./providers/opendisease/provider";
 
 export const providers: Record<string, HealthProvider> = {
   wger: wgerProvider,
@@ -45,6 +47,8 @@ export const providers: Record<string, HealthProvider> = {
   openalex: openAlexProvider,
   fruityvice: fruityviceProvider,
   "openmeteo-air": openMeteoAirProvider,
+  nppes: nppesProvider,
+  opendisease: openDiseaseProvider,
 };
 
 export function getProvider(name: string): HealthProvider | null {
@@ -79,13 +83,13 @@ export function getProviderByCategory(category: string): HealthProvider[] {
   const map: Record<string, string[]> = {
     fitness: ["wger"],
     nutrition: ["openfoodfacts", "usda"],
-    medical: ["openfda", "rxnorm", "pubchem"],
+    medical: ["openfda", "rxnorm", "pubchem", "nppes"],
     terminology: ["icd10", "snomed"],
     research: ["pubmed", "clinicaltrials"],
     ayurveda: ["ayurveda"],
     homeopathy: ["homeopathy"],
     indian: ["indian-medicines"],
-    health: ["worldbank", "openmeteo"],
+    health: ["worldbank", "openmeteo", "opendisease"],
   };
   const names = map[category] ?? [];
   return names.map((n) => providers[n]).filter(Boolean);

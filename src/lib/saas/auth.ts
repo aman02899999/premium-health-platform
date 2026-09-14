@@ -30,6 +30,8 @@ export type ApiErrorCode =
   | "invalid_request"
   | "not_found"
   | "upstream_unavailable"
+  /** The key's plan does not include this capability (bulk export). */
+  | "plan_upgrade_required"
   | "internal_error";
 
 export type ApiErrorBody = {

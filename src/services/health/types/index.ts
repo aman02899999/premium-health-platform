@@ -174,6 +174,47 @@ export type HomeopathicRemedy = {
   provenance: DataProvenance;
 };
 
+export type HealthcareProvider = {
+  /** NPI (10-digit national provider identifier) or source-local id. */
+  id: string;
+  name: string;
+  /** "individual" | "organisation" as reported by the source. */
+  kind: string;
+  credential?: string;
+  /** Primary taxonomy/speciality, e.g. "Internal Medicine". */
+  speciality?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+  phone?: string;
+  /** Registration status when the source exposes it (A = active). */
+  status?: string;
+  /** Whether the source lists this record as accepting new patients. */
+  acceptingNewPatients?: boolean;
+  provenance: DataProvenance;
+};
+
+export type OutbreakStat = {
+  id: string;
+  /** Country or region name as reported by the source. */
+  location: string;
+  isoCode?: string;
+  cases?: number;
+  casesToday?: number;
+  deaths?: number;
+  deathsToday?: number;
+  recovered?: number;
+  active?: number;
+  critical?: number;
+  tests?: number;
+  population?: number;
+  casesPerMillion?: number;
+  /** ISO timestamp of the last upstream update, not of this request. */
+  sourceUpdatedAt?: string;
+  provenance: DataProvenance;
+};
+
 export type MedicalArticle = {
   id: string;
   title: string;
