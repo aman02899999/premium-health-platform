@@ -69,8 +69,8 @@ same Google sign-in, same admin list):
 
 | App | Folder | Vercel project |
 | --- | --- | --- |
-| Royal Fitness Club (gym site) | repo root | existing project |
-| Premium Health Platform | `health/` | new project, **Root Directory = `health`** |
+| Royal Fitness Club (gym site) | repo root | `premium-health-platform` |
+| Premium Health Platform | `health/` | `premium-health` (**Root Directory = `health`**) → premium-health.vercel.app |
 
 - **Chooser:** on a visitor's first visit to `/`, a full-screen 3D chooser offers both
   sites. It is skipped for returning visitors, for people arriving from Google/Bing
