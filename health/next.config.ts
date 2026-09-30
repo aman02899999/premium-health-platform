@@ -2,9 +2,11 @@ import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // This app lives in health/ inside the Royal Fitness repo; keep builds scoped here.
-  turbopack: { root: path.resolve(__dirname) },
-  outputFileTracingRoot: path.resolve(__dirname),
+  // This app lives in health/ inside the Royal Fitness repo. Both roots point at
+  // the repo root: Vercel locates the build output relative to it (a health/
+  // root makes it look for /.next at the repo root and the deploy fails).
+  turbopack: { root: path.resolve(__dirname, "..") },
+  outputFileTracingRoot: path.resolve(__dirname, ".."),
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
