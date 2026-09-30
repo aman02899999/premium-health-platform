@@ -173,9 +173,14 @@ export const DEFAULT_CONTENT: SiteContent = {
   gallery: [
     { id: "g-rule", title: "Rule Your Strength", caption: "Aman Sharma, founder of Royal Fitness Club", image: "/gallery/aman-sharma-rule-your-strength.webp" },
     { id: "g-back", title: "Built Like Royalty", caption: "Back and arm conditioning — Aman Sharma", image: "/gallery/aman-sharma-back-pose.webp" },
-    { id: "g-gym", title: "Train Above Average", caption: "Aman Sharma on the Royal Fitness strength floor", image: "/gallery/aman-sharma-royal-fitness-gym.webp" },
+    { id: "g-gym", title: "Train Above Average", caption: "Aman Sharma on the strength floor", image: "/gallery/aman-sharma-royal-fitness-gym.webp" },
     { id: "g-crown", title: "Earn The Crown", caption: "Stage-ready physique — Aman Sharma", image: "/gallery/aman-sharma-physique.webp" },
-    { id: "g-grind", title: "Grind. Conquer. Repeat.", caption: "Between sets at Royal Fitness Club", image: "/gallery/aman-sharma-grind-conquer-repeat.webp" },
+    { id: "g-grind", title: "Grind. Conquer. Repeat.", caption: "Aman Sharma between sets", image: "/gallery/aman-sharma-grind-conquer-repeat.webp" },
+    { id: "g-eagle", title: "Eagles Fly Alone", caption: "Chest fly day — Aman Sharma", image: "/gallery/aman-sharma-eagles-fly-alone.webp" },
+    { id: "g-story", title: "Rewrite Your Story", caption: "Aman Sharma, founder of Royal Fitness Club", image: "/gallery/aman-sharma-rewrite-your-story.webp" },
+    { id: "g-chest", title: "Royal Mind. Savage Body.", caption: "Chest and shoulder detail — Aman Sharma", image: "/gallery/aman-sharma-chest-shoulders.webp" },
+    { id: "g-backflex", title: "Built From the Back", caption: "Back and triceps — Aman Sharma", image: "/gallery/aman-sharma-back-flex.webp" },
+    { id: "g-rest", title: "Earn Every Rep", caption: "Catching breath between sets — Aman Sharma", image: "/gallery/aman-sharma-between-sets.webp" },
   ],
   testimonials: [],
   faqs: [
