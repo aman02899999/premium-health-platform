@@ -126,3 +126,12 @@ describe("fitness hub", async () => {
     }
   });
 });
+
+describe("opening hours", async () => {
+  const { expandDays } = await import("./seo");
+  const { hoursDays } = await import("./site");
+  it("Mon–Sat excludes Sunday in schema and says so on the page", () => {
+    expect(expandDays("Monday – Saturday")).toEqual(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
+    expect(hoursDays(DEFAULT_CONTENT.business.hours)).toBe("Monday – Saturday · Sunday closed");
+  });
+});

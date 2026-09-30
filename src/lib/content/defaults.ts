@@ -33,8 +33,8 @@ export const DEFAULT_CONTENT: SiteContent = {
     },
     geo: { lat: 28.5234, lng: 77.3833 },
     hours: [
-      { label: "Morning", days: "Monday – Sunday", open: "05:30", close: "11:00" },
-      { label: "Evening", days: "Monday – Sunday", open: "16:00", close: "22:00" },
+      { label: "Morning", days: "Monday – Saturday", open: "05:30", close: "11:00" },
+      { label: "Evening", days: "Monday – Saturday", open: "16:00", close: "22:00" },
     ],
     rating: { value: 4.7, count: 303, source: "Justdial" },
     priceRange: "₹₹",
@@ -53,7 +53,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     { value: 2019, suffix: "", label: "Serving Noida since" },
     { value: 4.7, suffix: "★", label: "Average rating" },
     { value: 303, suffix: "+", label: "Member reviews" },
-    { value: 2, suffix: " batches", label: "Morning & evening, daily" },
+    { value: 2, suffix: " batches", label: "Morning & evening, Mon–Sat" },
   ],
   programs: [
     {
@@ -198,7 +198,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     {
       id: "timings",
       q: "What are the gym timings?",
-      a: "We run two batches every day: morning 5:30 AM – 11:00 AM and evening 4:00 PM – 10:00 PM. Timings can change on festivals, so check our Instagram or call before visiting.",
+      a: "Monday to Saturday we run two batches: morning 5:30 AM – 11:00 AM and evening 4:00 PM – 10:00 PM. Sunday is off. Timings can change on festivals, so check our Instagram or call before visiting.",
     },
     {
       id: "beginner",

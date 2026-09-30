@@ -216,12 +216,12 @@ export function AdminApp({ storage }: { storage: string }) {
                   />
                 </div>
               </Card>
-              <Card title="Opening hours" help="One row per batch. Use 24-hour times like 05:30 and 22:00. Day ranges like “Monday – Sunday” are understood by Google.">
+              <Card title="Opening hours" help="One row per batch. Use 24-hour times like 05:30 and 22:00. Day ranges like “Monday – Saturday” are understood by Google; days not listed show as closed.">
                 <ListEditor
                   items={content.business.hours}
                   titleKey="label"
                   onChange={(v) => set("business", { ...content.business, hours: v })}
-                  create={() => ({ label: "Batch", days: "Monday – Sunday", open: "08:00", close: "12:00" })}
+                  create={() => ({ label: "Batch", days: "Monday – Saturday", open: "08:00", close: "12:00" })}
                   addLabel="Add hours row"
                   fields={[
                     { key: "label", label: "Label (e.g. Morning)" },

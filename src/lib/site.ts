@@ -32,10 +32,11 @@ export function formatTime(hhmm: string) {
   return `${h12}:${String(m).padStart(2, "0")} ${suffix}`;
 }
 
-/** "Open all 7 days" when every row covers the whole week, else the distinct day ranges. */
+/** Short open-days summary, naming the closed day when the week runs Monday–Saturday. */
 export function hoursDays(hours: Business["hours"]) {
   const ranges = [...new Set(hours.map((h) => h.days))];
   if (ranges.length === 1 && /mon\w*\s*[–-]\s*sun/i.test(ranges[0])) return "Open all 7 days";
+  if (ranges.length === 1 && /mon\w*\s*[–-]\s*sat/i.test(ranges[0])) return "Monday – Saturday · Sunday closed";
   return ranges.join(" · ");
 }
 
