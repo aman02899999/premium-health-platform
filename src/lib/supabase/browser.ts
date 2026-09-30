@@ -2,14 +2,14 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { SUPABASE_KEY, SUPABASE_URL, supabaseConfigured } from "./config";
+import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "./config";
 
 let client: SupabaseClient | null = null;
 
 /** Shared browser client, or null when Supabase isn't configured (local dev). */
 export function getBrowserClient(): SupabaseClient | null {
   if (!supabaseConfigured) return null;
-  client ??= createBrowserClient(SUPABASE_URL, SUPABASE_KEY);
+  client ??= createBrowserClient(SUPABASE_URL, SUPABASE_KEY, { cookieOptions });
   return client;
 }
 

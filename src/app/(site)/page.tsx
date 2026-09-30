@@ -16,6 +16,8 @@ import { SectionHeading } from "@/components/ui/Section";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { PortalOverlay } from "@/components/portal/PortalOverlay";
+import { PORTAL_BOOT } from "@/lib/portal";
 
 export const revalidate = 300;
 
@@ -36,6 +38,9 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* First-visit chooser: decided before paint so returning visitors never see a flash. */}
+      <script dangerouslySetInnerHTML={{ __html: PORTAL_BOOT }} />
+      <PortalOverlay gymName={b.name} />
       <JsonLd data={faqJsonLd(c.faqs)} />
 
       {/* ---------- HERO ---------- */}

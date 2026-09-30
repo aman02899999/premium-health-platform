@@ -62,6 +62,36 @@ Supabase provides the database, Google sign-in and image storage. The schema and
 - Submit `https://yourdomain/sitemap.xml` in Google Search Console.
 - Add the website link to your Google Business Profile and Instagram bio.
 
+## Two sites, one login: the portal
+
+This repo holds two Next.js apps that share one Supabase project (same users,
+same Google sign-in, same admin list):
+
+| App | Folder | Vercel project |
+| --- | --- | --- |
+| Royal Fitness Club (gym site) | repo root | existing project |
+| Premium Health Platform | `health/` | new project, **Root Directory = `health`** |
+
+- **Chooser:** on a visitor's first visit to `/`, a full-screen 3D chooser offers both
+  sites. It is skipped for returning visitors, for people arriving from Google/Bing
+  (they searched for the gym), and for crawlers. `/portal` always shows it and is
+  the link to share. `?portal=1` forces it, `?portal=0` hides it.
+- **Linking:** set `NEXT_PUBLIC_HEALTH_PLATFORM_URL` in the gym project to the health
+  site's URL (until then the "Health" links go to `/health-hub`). Set
+  `NEXT_PUBLIC_GYM_SITE_URL` in the health project for its "← Royal Fitness Club" link.
+- **Database:** the health app's 75 tables live in their own `health` schema
+  (`health/drizzle/0000_health_init.sql`, already applied), reachable only by the
+  server connection in `DATABASE_URL`. The gym's tables stay in `public`.
+- **Sign-in:** both apps use Supabase Auth. Add the health site's URL to Supabase →
+  Authentication → URL Configuration → Redirect URLs (`https://<health-domain>/**`).
+  With two different domains the account is shared but each site asks you to sign in
+  once. For true single sign-on, put both on subdomains of one domain
+  (`royalfitnessclub.in` + `health.royalfitnessclub.in`) and set
+  `NEXT_PUBLIC_AUTH_COOKIE_DOMAIN=.royalfitnessclub.in` in both projects.
+- **Premium** on the health site is read from `health.premium_subscriptions`
+  (status `active`); nothing on the client can grant it. There's no payment gateway
+  yet, so checkout creates an order but never activates premium.
+
 ## Editing content
 
 Everything visible on the site lives in one content document. The seed data is in `src/lib/content/defaults.ts` and `default-posts.ts`. Once you save in `/admin`, the stored version is used; any section you never saved falls back to the defaults.

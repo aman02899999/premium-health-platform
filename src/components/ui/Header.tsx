@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, Phone, X } from "lucide-react";
+import { HeartPulse, Menu, Phone, X } from "lucide-react";
+import { healthHref } from "@/lib/portal";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
 import { AccountMenu } from "@/components/auth/AccountMenu";
@@ -63,6 +64,9 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <a href={phoneHref} className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand sm:flex" aria-label="Call the gym">
               <Phone className="h-4 w-4" />
             </a>
+            <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Premium Health Platform">
+              <HeartPulse className="h-4 w-4" /> Health
+            </a>
             <AccountMenu />
             <Link href="/contact#trial" className="btn-brand hidden rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
               Free Trial
@@ -110,6 +114,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
               </Link>
             </li>
           )}
+          <li>
+            <a href={healthHref} onClick={() => setOpen(false)} className="font-display flex items-center gap-2 px-6 py-2 text-xl text-emerald-300">
+              <HeartPulse className="h-5 w-5" /> Premium Health Platform
+            </a>
+          </li>
           <li className="mt-6">
             <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand rounded-full px-8 py-3 font-bold">
               Book Free Trial

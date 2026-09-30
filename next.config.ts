@@ -1,6 +1,9 @@
+import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // health/ is a separate app (its own Vercel project); keep this build scoped to the repo root app.
+  turbopack: { root: path.resolve(__dirname) },
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,

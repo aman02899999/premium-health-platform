@@ -2,12 +2,13 @@ import "server-only";
 import { createClient as createPlainClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
-import { SUPABASE_KEY, SUPABASE_URL } from "./config";
+import { SUPABASE_KEY, SUPABASE_URL, cookieOptions } from "./config";
 
 /** Client bound to the visitor's session cookies (admin actions, member data). */
 export async function createClient() {
   const cookieStore = await cookies();
   return createServerClient(SUPABASE_URL, SUPABASE_KEY, {
+    cookieOptions,
     cookies: {
       getAll() {
         return cookieStore.getAll();
