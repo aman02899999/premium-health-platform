@@ -28,3 +28,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 .eslintcache
+
+# local CMS storage (file mode)
+/.data/

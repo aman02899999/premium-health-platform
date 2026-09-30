@@ -1,19 +1,20 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/site";
+import { getContent } from "@/lib/content/store";
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const c = await getContent();
   return {
-    name: SITE.name,
-    short_name: SITE.shortName,
-    description: SITE.heroSubtitle,
+    name: c.business.name,
+    short_name: c.business.shortName,
+    description: c.seo.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#fdf8ef",
-    theme_color: "#0b5c3f",
+    background_color: "#07070a",
+    theme_color: "#07070a",
+    categories: ["health", "fitness", "sports"],
     icons: [
-      { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
       { src: "/logo.svg", sizes: "any", type: "image/svg+xml" },
     ],
   };

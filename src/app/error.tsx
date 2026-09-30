@@ -1,11 +1,13 @@
 "use client";
 
-export default function ErrorPage({ reset }: { error: Error; reset: () => void }) {
+export default function Error({ reset }: { error: Error; reset: () => void }) {
   return (
-    <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-      <h1 className="font-display text-3xl font-bold">Something didn&apos;t load</h1>
-      <p className="mt-2 text-stone-600 dark:text-stone-300">A network hiccup — your health content is safe. Please try again.</p>
-      <button onClick={reset} className="mt-6 rounded-xl bg-emerald-700 px-6 py-2.5 text-sm font-bold text-white hover:bg-emerald-600">Try again</button>
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
+      <h1 className="font-display text-5xl text-white">Something went wrong</h1>
+      <p className="mt-3 text-white/60">Please try again, or call us directly.</p>
+      <button type="button" onClick={reset} className="btn-gold mt-8 rounded-full px-6 py-3 font-bold">
+        Try again
+      </button>
+    </main>
   );
 }

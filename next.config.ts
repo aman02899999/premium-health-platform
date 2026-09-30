@@ -5,25 +5,8 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
 
-  images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    remotePatterns: [
-      { protocol: "https", hostname: "images.pexels.com", pathname: "/photos/**" },
-      // Amazon affiliate creatives (product thumbnails served by Amazon's CDN)
-      { protocol: "https", hostname: "m.media-amazon.com" },
-      { protocol: "https", hostname: "images-eu.ssl-images-amazon.com" },
-      // Private download storage — S3 and Cloudflare R2 (presigned GET URLs)
-      { protocol: "https", hostname: "**.amazonaws.com" },
-      { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
-      { protocol: "https", hostname: "**.r2.dev" },
-    ],
-  },
-
-  // Tree-shake barrel imports from the two heaviest icon/chart libraries.
   experimental: {
-    optimizePackageImports: ["lucide-react", "recharts"],
+    optimizePackageImports: ["lucide-react"],
   },
 
   async headers() {
@@ -35,42 +18,26 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-          // Let the browser resolve Amazon/CDN hostnames before an affiliate click.
-          { key: "X-DNS-Prefetch-Control", value: "on" },
         ],
       },
-      // Immutable fingerprinted brand assets — cache for a year.
       {
-        source: "/logo.svg",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        source: "/(logo.svg|icon-192.png|icon-512.png|apple-icon.png)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" }],
       },
       {
-        source: "/og-default.jpg",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        source: "/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
-      // Real product photography in /public/products — content-hashed by filename.
-      {
-        source: "/products/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
-      },
-      // Dynamically generated OG images — short shared-cache TTL.
-      {
-        source: "/api/og",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800" }],
-      },
-      // Crawler endpoints — keep them fresh but cacheable.
-      {
-        source: "/sitemap.xml",
-        headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" }],
-      },
-      {
-        source: "/robots.txt",
-        headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" }],
-      },
-      {
-        source: "/news/rss.xml",
-        headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600" }],
-      },
+    ];
+  },
+
+  async redirects() {
+    // Old health-platform URLs that may still be indexed → closest new page.
+    return [
+      { source: "/health-calculators", destination: "/tools", permanent: true },
+      { source: "/exercises", destination: "/programs", permanent: true },
+      { source: "/workout-builder", destination: "/programs", permanent: true },
+      { source: "/diet", destination: "/blog/indian-diet-plan-for-muscle-gain-vegetarian", permanent: true },
     ];
   },
 };
