@@ -3,47 +3,21 @@ import { promises as fs } from "fs";
 import path from "path";
 import { randomUUID } from "crypto";
 import { cache } from "react";
-import { Pool } from "pg";
 import { DEFAULT_CONTENT } from "./defaults";
 import type { Lead, SiteContent } from "./types";
+import { supabaseConfigured } from "@/lib/supabase/config";
+import { createClient, createPublicClient } from "@/lib/supabase/server";
 
 // Storage backend:
-//  - DATABASE_URL set → PostgreSQL (tables are created on first use)
-//  - otherwise        → JSON files under .data/ (fine for local dev / a VPS;
-//                       read-only serverless hosts need DATABASE_URL)
+//  - Supabase configured → Postgres tables + the "media" storage bucket.
+//    Row-level security decides who may write, so admin writes must use the
+//    cookie-bound client of a signed-in admin.
+//  - otherwise           → JSON files under .data/ (local development only).
 // Reads never throw: on any failure the site falls back to DEFAULT_CONTENT.
 
 const DATA_DIR = path.join(process.cwd(), ".data");
-const databaseUrl = process.env.DATABASE_URL;
 
-const globalForPg = globalThis as typeof globalThis & { __royalPool?: Pool; __royalSchema?: Promise<void> };
-
-function pool(): Pool | null {
-  if (!databaseUrl) return null;
-  if (!globalForPg.__royalPool) {
-    const p = new Pool({ connectionString: databaseUrl, connectionTimeoutMillis: 4000, max: 5 });
-    p.on("error", () => {});
-    globalForPg.__royalPool = p;
-  }
-  return globalForPg.__royalPool;
-}
-
-async function ensureSchema(p: Pool) {
-  globalForPg.__royalSchema ??= p
-    .query(
-      `CREATE TABLE IF NOT EXISTS site_kv (key text PRIMARY KEY, value jsonb NOT NULL, updated_at timestamptz NOT NULL DEFAULT now());
-       CREATE TABLE IF NOT EXISTS site_media (id text PRIMARY KEY, mime text NOT NULL, data bytea NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
-       CREATE TABLE IF NOT EXISTS site_leads (id text PRIMARY KEY, created_at timestamptz NOT NULL DEFAULT now(), data jsonb NOT NULL);`,
-    )
-    .then(() => undefined)
-    .catch((err) => {
-      globalForPg.__royalSchema = undefined;
-      throw err;
-    });
-  return globalForPg.__royalSchema;
-}
-
-export const storageMode = databaseUrl ? "postgres" : "file";
+export const storageMode = supabaseConfigured ? "supabase" : "file";
 
 /** Saved values win; any section missing from storage falls back to the default. */
 export function mergeContent(saved: Partial<SiteContent> | null | undefined): SiteContent {
@@ -62,11 +36,10 @@ export function mergeContent(saved: Partial<SiteContent> | null | undefined): Si
 }
 
 async function readRaw(): Promise<Partial<SiteContent> | null> {
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    const res = await p.query("SELECT value FROM site_kv WHERE key = 'content'");
-    return res.rows[0]?.value ?? null;
+  if (supabaseConfigured) {
+    const { data, error } = await createPublicClient().from("site_content").select("content").eq("id", 1).maybeSingle();
+    if (error) throw new Error(error.message);
+    return (data?.content as Partial<SiteContent>) ?? null;
   }
   try {
     return JSON.parse(await fs.readFile(path.join(DATA_DIR, "content.json"), "utf8"));
@@ -84,15 +57,13 @@ export const getContent = cache(async (): Promise<SiteContent> => {
   }
 });
 
-export async function saveContent(content: SiteContent): Promise<void> {
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    await p.query(
-      `INSERT INTO site_kv (key, value, updated_at) VALUES ('content', $1, now())
-       ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`,
-      [JSON.stringify(content)],
-    );
+export async function saveContent(content: SiteContent, editor: string): Promise<void> {
+  if (supabaseConfigured) {
+    const supabase = await createClient();
+    const { error } = await supabase
+      .from("site_content")
+      .upsert({ id: 1, content, updated_at: new Date().toISOString(), updated_by: editor });
+    if (error) throw new Error(error.message);
     return;
   }
   await fs.mkdir(DATA_DIR, { recursive: true });
@@ -110,28 +81,24 @@ const EXT: Record<string, string> = {
 };
 export const ALLOWED_MEDIA = Object.keys(EXT);
 
+/** Stores an image and returns the URL pages should use. */
 export async function saveMedia(mime: string, data: Buffer): Promise<string> {
   if (!EXT[mime]) throw new Error("Unsupported image type");
   const id = `${randomUUID()}.${EXT[mime]}`;
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    await p.query("INSERT INTO site_media (id, mime, data) VALUES ($1, $2, $3)", [id, mime, data]);
-  } else {
-    await fs.mkdir(path.join(DATA_DIR, "media"), { recursive: true });
-    await fs.writeFile(path.join(DATA_DIR, "media", id), data);
+  if (supabaseConfigured) {
+    const supabase = await createClient();
+    const { error } = await supabase.storage.from("media").upload(id, data, { contentType: mime, cacheControl: "31536000" });
+    if (error) throw new Error(error.message);
+    return supabase.storage.from("media").getPublicUrl(id).data.publicUrl;
   }
+  await fs.mkdir(path.join(DATA_DIR, "media"), { recursive: true });
+  await fs.writeFile(path.join(DATA_DIR, "media", id), data);
   return `/api/media/${id}`;
 }
 
+/** Local-file mode only; Supabase media is served straight from its CDN. */
 export async function readMedia(id: string): Promise<{ mime: string; data: Buffer } | null> {
-  if (!/^[0-9a-f-]{36}\.(jpg|png|webp|avif|gif)$/.test(id)) return null;
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    const res = await p.query("SELECT mime, data FROM site_media WHERE id = $1", [id]);
-    return res.rows[0] ?? null;
-  }
+  if (supabaseConfigured || !/^[0-9a-f-]{36}\.(jpg|png|webp|avif|gif)$/.test(id)) return null;
   try {
     const data = await fs.readFile(path.join(DATA_DIR, "media", id));
     const ext = id.split(".").pop()!;
@@ -144,26 +111,28 @@ export async function readMedia(id: string): Promise<{ mime: string; data: Buffe
 
 // ---------- leads ----------
 
-export async function saveLead(input: Omit<Lead, "id" | "createdAt">): Promise<Lead> {
-  const lead: Lead = { id: randomUUID(), createdAt: new Date().toISOString(), ...input };
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    await p.query("INSERT INTO site_leads (id, created_at, data) VALUES ($1, $2, $3)", [lead.id, lead.createdAt, JSON.stringify(lead)]);
-    return lead;
+type LeadRow = { id: string; created_at: string; name: string; phone: string; goal: string; message: string; source: string };
+const fromRow = (r: LeadRow): Lead => ({ id: r.id, createdAt: r.created_at, name: r.name, phone: r.phone, goal: r.goal, message: r.message, source: r.source });
+
+export async function saveLead(input: Omit<Lead, "id" | "createdAt">): Promise<void> {
+  if (supabaseConfigured) {
+    // Visitors can insert but not read leads, so don't ask for the row back.
+    const { error } = await createPublicClient().from("leads").insert(input);
+    if (error) throw new Error(error.message);
+    return;
   }
   const leads = await listLeads();
+  const lead: Lead = { id: randomUUID(), createdAt: new Date().toISOString(), ...input };
   await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(path.join(DATA_DIR, "leads.json"), JSON.stringify([lead, ...leads], null, 2));
-  return lead;
 }
 
 export async function listLeads(): Promise<Lead[]> {
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    const res = await p.query("SELECT data FROM site_leads ORDER BY created_at DESC LIMIT 500");
-    return res.rows.map((r) => r.data as Lead);
+  if (supabaseConfigured) {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("leads").select("*").order("created_at", { ascending: false }).limit(500);
+    if (error) throw new Error(error.message);
+    return (data as LeadRow[]).map(fromRow);
   }
   try {
     return JSON.parse(await fs.readFile(path.join(DATA_DIR, "leads.json"), "utf8"));
@@ -173,10 +142,10 @@ export async function listLeads(): Promise<Lead[]> {
 }
 
 export async function deleteLead(id: string): Promise<void> {
-  const p = pool();
-  if (p) {
-    await ensureSchema(p);
-    await p.query("DELETE FROM site_leads WHERE id = $1", [id]);
+  if (supabaseConfigured) {
+    const supabase = await createClient();
+    const { error } = await supabase.from("leads").delete().eq("id", id);
+    if (error) throw new Error(error.message);
     return;
   }
   const leads = (await listLeads()).filter((l) => l.id !== id);

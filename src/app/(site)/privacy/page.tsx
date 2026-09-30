@@ -18,14 +18,24 @@ export default async function PrivacyPage() {
         <h2>What we collect</h2>
         <ul>
           <li>Your name, phone number, fitness goal and message when you submit the free-trial form.</li>
+          <li>If you sign in with Google: your name, email address and profile photo from your Google account.</li>
+          <li>If you sign in and use the Health Hub: the workout plan, food log and progress check-ins you choose to save.</li>
           <li>Standard server logs (IP address, browser type) needed to run the site securely.</li>
         </ul>
-        <p>Our fitness calculators run entirely in your browser — the numbers you enter are never sent to us.</p>
+        <p>
+          Our calculators run entirely in your browser — the numbers you enter are never sent to us. If you use the Health Hub without signing in, your
+          data stays only in your browser.
+        </p>
+        <h2>Where it is stored</h2>
+        <p>
+          Accounts and saved data are stored with our database provider, Supabase. Each member can only access their own data. You can delete your
+          synced data at any time from <a href="/account">My account</a>.
+        </p>
         <h2>How we use it</h2>
         <p>We use your details only to contact you about your trial or membership enquiry. We never sell or share your data with third parties for marketing.</p>
         <h2>Your choices</h2>
         <p>
-          To have your enquiry deleted, call us at {c.business.phone} or message us on WhatsApp and we will remove it.
+          To have your enquiry or your account deleted, call us at {c.business.phone} or message us on WhatsApp and we will remove it.
         </p>
         <h2>Third-party services</h2>
         <p>Our contact page embeds Google Maps, and links go to Instagram and WhatsApp. Those services have their own privacy policies.</p>
