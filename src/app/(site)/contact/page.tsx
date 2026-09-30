@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clock, MapPin, Phone } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
-import { formatTime, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
+import { formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { LeadForm } from "@/components/home/LeadForm";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -51,10 +51,11 @@ export default async function ContactPage() {
             <ul>
               <li className="text-sm uppercase tracking-widest text-white/50">Hours</li>
               {b.hours.map((h) => (
-                <li key={h.days} className="text-white">
-                  <span className="text-white/70">{h.days}:</span> {formatTime(h.open)} – {formatTime(h.close)}
+                <li key={h.label + h.open} className="text-white">
+                  <span className="text-white/70">{h.label || h.days}:</span> {formatTime(h.open)} – {formatTime(h.close)}
                 </li>
               ))}
+              <li className="text-sm text-white/50">{hoursDays(b.hours)}</li>
             </ul>
           </div>
           <div className="flex flex-wrap gap-3 pt-2">

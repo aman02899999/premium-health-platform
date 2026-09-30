@@ -6,12 +6,14 @@ export const NAV = [
   { href: "/", label: "Home" },
   { href: "/programs", label: "Programs" },
   { href: "/membership", label: "Membership" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/tools", label: "Fitness Tools" },
+  { href: "/health-hub", label: "Health Hub" },
+  { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ] as const;
+
+export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }] as const;
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 
@@ -28,6 +30,13 @@ export function formatTime(hhmm: string) {
   const suffix = h >= 12 ? "PM" : "AM";
   const h12 = h % 12 || 12;
   return `${h12}:${String(m).padStart(2, "0")} ${suffix}`;
+}
+
+/** "Open all 7 days" when every row covers the whole week, else the distinct day ranges. */
+export function hoursDays(hours: Business["hours"]) {
+  const ranges = [...new Set(hours.map((h) => h.days))];
+  if (ranges.length === 1 && /mon\w*\s*[–-]\s*sun/i.test(ranges[0])) return "Open all 7 days";
+  return ranges.join(" · ");
 }
 
 export function fullAddress(b: Business) {

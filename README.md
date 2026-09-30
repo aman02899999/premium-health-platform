@@ -6,7 +6,15 @@ Website for **Royal Fitness Club**, Gejha, Sector 93, Noida. Built with Next.js 
 
 - **3D hero**: a three.js scene with a gold hex dumbbell, orbit rings and particles. It follows the pointer and scroll, is lazy-loaded, pauses when off-screen, and shows a still frame for reduced-motion users.
 - **Interactive UI**: 3D tilt cards with glare, a 3D coverflow gallery with swipe and lightbox, scroll reveals and animated counters.
-- **8 fitness calculators** (`/tools`): BMI with Asian-Indian cut-offs, calories (BMR/TDEE), body fat (U.S. Navy method), one-rep max, macros, ideal weight, water intake and heart-rate zones.
+- **11 calculators** (`/tools`): BMI with Asian-Indian cut-offs, calories (BMR/TDEE), body fat (U.S. Navy method), one-rep max, macros, ideal weight, water intake, heart-rate zones, Indian Diabetes Risk Score, waist-to-height ratio and an intermittent-fasting planner.
+- **Health & Fitness Hub** (`/health-hub`). Everything runs on local data (`src/lib/fitness/`), with no external API calls:
+  - Workout planner: 2–6 day plans for gym or home, which you can edit, save, print or share on WhatsApp.
+  - Exercise library of 39 exercises with an interactive body map and HowTo schema.
+  - Indian food tracker covering 60+ foods, with protein sorting and daily targets.
+  - Four veg/non-veg diet plans whose totals are calculated from the food database.
+  - Gym timers: Tabata, HIIT, rest and breathing.
+  - Weight and waist progress tracker.
+- **Membership**: single and couple pricing with a toggle, savings computed against the monthly rate, and a full price list.
 - **Interactive blog**: markdown posts with embedded live calculators, quizzes, a trial-booking CTA card, a table of contents, a reading-progress bar, share buttons, search and category filters, and an RSS feed.
 - **Admin panel** (`/admin`): edit business info, hours, hero, stats, programs, plans, trainers, gallery, testimonials, FAQs, blog posts (with live preview), SEO and brand colours. It also handles image uploads, lets you view and export trial enquiries as CSV, and downloads or restores a JSON backup.
 - **SEO**:

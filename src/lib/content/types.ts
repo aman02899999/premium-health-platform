@@ -9,7 +9,7 @@ export type Business = {
   foundedYear: number;
   phone: string;
   altPhone: string;
-  whatsapp: string; // digits only, with country code, e.g. 919711567475
+  whatsapp: string; // digits only, with country code, e.g. 918851830081
   email: string;
   instagram: string; // handle without @
   googleMapsUrl: string;
@@ -24,7 +24,8 @@ export type Business = {
     country: string;
   };
   geo: { lat: number; lng: number };
-  hours: { days: string; open: string; close: string }[];
+  // label is a display name like "Morning"; days feeds Google opening-hours markup.
+  hours: { label: string; days: string; open: string; close: string }[];
   rating: { value: number; count: number; source: string };
   priceRange: string;
 };
@@ -54,7 +55,8 @@ export type Plan = {
   id: string;
   name: string;
   duration: string;
-  price: number;
+  price: number; // single person
+  couplePrice: number; // two people joining together; 0 hides the couple option
   originalPrice: number;
   perks: string[];
   featured: boolean;

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Clock, MapPin, Phone, Star } from "lucide-react";
 import type { SiteContent } from "@/lib/content/types";
-import { CALCULATORS } from "@/lib/calculators";
-import { NAV, formatTime, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
+import { HUB } from "@/lib/hub";
+import { FOOTER_LINKS, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { InstagramIcon, WhatsAppIcon } from "./BrandIcons";
 import { Logo } from "./Logo";
 
@@ -35,7 +35,7 @@ export function Footer({ content }: { content: SiteContent }) {
         <div>
           <h2 className="font-display mb-4 text-lg text-white">Explore</h2>
           <ul className="grid grid-cols-2 gap-2 text-sm text-white/65 lg:grid-cols-1">
-            {NAV.map((n) => (
+            {FOOTER_LINKS.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="hover:text-gold">
                   {n.label}
@@ -46,12 +46,12 @@ export function Footer({ content }: { content: SiteContent }) {
         </div>
 
         <div>
-          <h2 className="font-display mb-4 text-lg text-white">Free Fitness Tools</h2>
+          <h2 className="font-display mb-4 text-lg text-white">Health &amp; Fitness Hub</h2>
           <ul className="space-y-2 text-sm text-white/65">
-            {CALCULATORS.map((c) => (
-              <li key={c.slug}>
-                <Link href={`/tools/${c.slug}`} className="hover:text-gold">
-                  {c.title.replace(/ \(.*\)$/, "")}
+            {HUB.map((h) => (
+              <li key={h.href}>
+                <Link href={h.href} className="hover:text-gold">
+                  {h.title}
                 </Link>
               </li>
             ))}
@@ -73,10 +73,11 @@ export function Footer({ content }: { content: SiteContent }) {
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <ul>
                 {b.hours.map((h) => (
-                  <li key={h.days}>
-                    <span className="text-white/85">{h.days}:</span> {formatTime(h.open)} – {formatTime(h.close)}
+                  <li key={h.label + h.open}>
+                    <span className="text-white/85">{h.label || h.days}:</span> {formatTime(h.open)} – {formatTime(h.close)}
                   </li>
                 ))}
+                <li className="text-xs text-white/45">{hoursDays(b.hours)}</li>
               </ul>
             </div>
           </address>

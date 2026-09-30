@@ -37,7 +37,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
           {announcement}
         </div>
       )}
-      <div className={`transition-all duration-300 ${scrolled ? "glass border-x-0 border-t-0 py-2.5" : "py-4"}`}>
+      <div className={`transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-ink/90 py-2.5 backdrop-blur-xl" : "py-4"}`}>
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6" aria-label="Main">
           <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
             <Logo name={name} />

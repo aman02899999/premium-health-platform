@@ -13,6 +13,12 @@ import {
   tdee,
   waterIntake,
   calculatorByKey,
+  fastingWindow,
+  FAST_PROTOCOLS,
+  idrs,
+  waistToHeight,
+  type ActivityIdrs,
+  type FamilyHistory,
   type ActivityId,
   type CalculatorKey,
   type Goal,
@@ -494,6 +500,136 @@ function HeartCalc() {
   );
 }
 
+function IdrsCalc() {
+  const [sex, setSex] = useState<Sex>("male");
+  const [age, setAge] = useState(38);
+  const [waist, setWaist] = useState(92);
+  const [act, setAct] = useState<ActivityIdrs>("mild");
+  const [fam, setFam] = useState<FamilyHistory>("none");
+  const r = idrs(sex, age, waist, act, fam);
+  const color = r.risk === "High" ? "#e23b3b" : r.risk === "Moderate" ? "#fbbf24" : "#34d399";
+  return (
+    <Layout
+      inputs={
+        <>
+          <Toggle label="Sex" value={sex} onChange={setSex} options={SEX_OPTS} />
+          <Slider label="Age" value={age} onChange={setAge} min={18} max={85} unit="yrs" />
+          <Slider label="Waist" value={waist} onChange={setWaist} min={55} max={150} unit="cm" />
+          <label className="block">
+            <span className="mb-2 block text-sm text-white/75">Physical activity</span>
+            <select value={act} onChange={(e) => setAct(e.target.value as ActivityIdrs)} className="field">
+              <option value="vigorous">Vigorous exercise or strenuous work</option>
+              <option value="moderate">Moderate exercise or work</option>
+              <option value="mild">Mild exercise or work</option>
+              <option value="sedentary">No exercise, sedentary work</option>
+            </select>
+          </label>
+          <Toggle label="Parents with diabetes" value={fam} onChange={setFam} options={[{ v: "none", l: "Neither" }, { v: "one", l: "One" }, { v: "both", l: "Both" }]} />
+        </>
+      }
+      result={
+        <>
+          <Gauge value={r.score} min={0} max={100} bands={[{ to: 30, color: "#34d399", label: "Low" }, { to: 60, color: "#fbbf24", label: "Moderate" }, { to: 100, color: "#e23b3b", label: "High" }]} />
+          <div className="grid grid-cols-2 gap-3">
+            <Big value={r.score} label="IDRS score / 100" />
+            <div className="rounded-2xl bg-black/35 p-4 text-center ring-1 ring-white/10">
+              <div className="font-display text-3xl" style={{ color }}>{r.risk}</div>
+              <div className="mt-1 text-xs uppercase tracking-wider text-white/55">Risk</div>
+            </div>
+          </div>
+          <p className="text-center text-xs text-white/55">
+            Age {r.parts.age} · Waist {r.parts.waist} · Activity {r.parts.activity} · Family {r.parts.family}. Only activity and waist are in your control — both improve with training.
+          </p>
+        </>
+      }
+    />
+  );
+}
+
+function WhtrCalc() {
+  const [waist, setWaist] = useState(86);
+  const [h, setH] = useState(172);
+  const r = waistToHeight(waist, h);
+  return (
+    <Layout
+      inputs={
+        <>
+          <Slider label="Waist (at navel)" value={waist} onChange={setWaist} min={50} max={160} step={0.5} unit="cm" />
+          <Slider label="Height" value={h} onChange={setH} min={120} max={220} unit="cm" />
+        </>
+      }
+      result={
+        <>
+          <Gauge value={r.ratio} min={0.3} max={0.8} bands={[{ to: 0.4, color: "#6ea8fe", label: "Lean" }, { to: 0.5, color: "#34d399", label: "Healthy" }, { to: 0.6, color: "#fbbf24", label: "Increased" }, { to: 0.8, color: "#e23b3b", label: "High" }]} />
+          <div className="grid grid-cols-2 gap-3">
+            <Big value={r.ratio.toFixed(2)} label="Waist ÷ height" />
+            <Big value={r.category} label="Category" tone="white" />
+          </div>
+          <p className="text-center text-sm text-white/65">
+            Keep your waist under <strong className="text-white">{r.targetWaist} cm</strong> (half your height).
+          </p>
+        </>
+      }
+    />
+  );
+}
+
+function FastingCalc() {
+  const [proto, setProto] = useState<(typeof FAST_PROTOCOLS)[number]["id"]>("16:8");
+  const [first, setFirst] = useState("12:00");
+  const fast = FAST_PROTOCOLS.find((p) => p.id === proto)!.fast;
+  const r = fastingWindow(first, fast);
+  const startPct = (() => {
+    const [h, m] = first.split(":").map(Number);
+    return ((h * 60 + m) / 1440) * 100;
+  })();
+  const eatPct = (r.eatingHours / 24) * 100;
+  return (
+    <Layout
+      inputs={
+        <>
+          <label className="block">
+            <span className="mb-2 block text-sm text-white/75">Protocol</span>
+            <select value={proto} onChange={(e) => setProto(e.target.value as typeof proto)} className="field">
+              {FAST_PROTOCOLS.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="block">
+            <span className="mb-2 block text-sm text-white/75">First meal at</span>
+            <input type="time" value={first} onChange={(e) => e.target.value && setFirst(e.target.value)} className="field" />
+          </label>
+        </>
+      }
+      result={
+        <>
+          <div className="relative h-8 overflow-hidden rounded-full bg-white/10" aria-hidden>
+            <div className="absolute inset-y-0 bg-gold" style={{ left: `${startPct}%`, width: `${Math.min(eatPct, 100 - startPct)}%` }} />
+            {startPct + eatPct > 100 && <div className="absolute inset-y-0 left-0 bg-gold" style={{ width: `${startPct + eatPct - 100}%` }} />}
+          </div>
+          <div className="flex justify-between text-[10px] text-white/40">
+            <span>12 AM</span>
+            <span>6 AM</span>
+            <span>12 PM</span>
+            <span>6 PM</span>
+            <span>12 AM</span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <Big value={r.eatFrom} label="Start eating" tone="white" />
+            <Big value={r.eatUntil} label="Stop eating" tone="white" />
+          </div>
+          <p className="text-center text-sm text-white/70">
+            Best workout time: <strong className="text-gold">{r.bestTraining}</strong>
+          </p>
+        </>
+      }
+    />
+  );
+}
+
 function Layout({ inputs, result }: { inputs: ReactNode; result: ReactNode }) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
@@ -514,6 +650,9 @@ const MAP: Record<CalculatorKey, () => ReactNode> = {
   "ideal-weight": IdealCalc,
   water: WaterCalc,
   "heart-rate": HeartCalc,
+  idrs: IdrsCalc,
+  whtr: WhtrCalc,
+  fasting: FastingCalc,
 };
 
 export function Calculator({ calcKey, embedded = false }: { calcKey: string; embedded?: boolean }) {

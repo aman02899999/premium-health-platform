@@ -83,3 +83,46 @@ describe("content validation", () => {
     expect(validateContent({ ...DEFAULT_CONTENT, plans: "x" }).ok).toBe(false);
   });
 });
+
+describe("fitness hub", async () => {
+  const { generatePlan } = await import("./fitness/planner");
+  const { EXERCISES, exerciseBySlug } = await import("./fitness/exercises");
+  const { FOODS } = await import("./fitness/foods");
+  const { DIET_PLANS, planTotals } = await import("./fitness/diet-plans");
+
+  it("generates one session per training day without duplicates", () => {
+    for (const days of [2, 3, 4, 5, 6]) {
+      const plan = generatePlan({ goal: "muscle", days, level: "advanced", setting: "gym" });
+      expect(plan).toHaveLength(days);
+      for (const d of plan) {
+        expect(d.items.length).toBeGreaterThanOrEqual(4);
+        expect(new Set(d.items.map((i) => i.slug)).size).toBe(d.items.length);
+      }
+    }
+  });
+
+  it("home plans only use home equipment and respect level", () => {
+    const plan = generatePlan({ goal: "fat-loss", days: 3, level: "beginner", setting: "home" });
+    for (const item of plan.flatMap((d) => d.items)) {
+      const ex = exerciseBySlug(item.slug)!;
+      expect(["bodyweight", "dumbbell", "kettlebell"]).toContain(ex.equipment);
+      expect(ex.level).toBe("beginner");
+    }
+  });
+
+  it("pull day uses a rear-delt move, not a press", () => {
+    const pull = generatePlan({ goal: "muscle", days: 5, level: "advanced", setting: "gym" })[1];
+    expect(pull.items.some((i) => /press/.test(i.slug))).toBe(false);
+  });
+
+  it("data is consistent", () => {
+    expect(new Set(EXERCISES.map((e) => e.slug)).size).toBe(EXERCISES.length);
+    expect(new Set(FOODS.map((f) => f.id)).size).toBe(FOODS.length);
+    const ids = new Set(FOODS.map((f) => f.id));
+    for (const plan of DIET_PLANS) {
+      for (const it of plan.meals.flatMap((m) => m.items)) expect(ids.has(it.id)).toBe(true);
+      const t = planTotals(plan);
+      expect(plan.goal === "fat-loss" ? t.kcal < 2000 : t.kcal > 2300).toBe(true);
+    }
+  });
+});

@@ -83,12 +83,10 @@ export function localBusinessJsonLd(c: SiteContent) {
       name,
       value: true,
     })),
-    makesOffer: c.plans.map((p) => ({
-      "@type": "Offer",
-      name: `${p.name} membership (${p.duration})`,
-      price: p.price,
-      priceCurrency: "INR",
-    })),
+    makesOffer: c.plans.flatMap((p) => [
+      { "@type": "Offer", name: `${p.name} membership (${p.duration})`, price: p.price, priceCurrency: "INR" },
+      ...(p.couplePrice ? [{ "@type": "Offer", name: `${p.name} couple membership (${p.duration})`, price: p.couplePrice, priceCurrency: "INR" }] : []),
+    ]),
   };
 }
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check, Star } from "lucide-react";
-import type { BlogPost, Faq, Plan, Program, Trainer } from "@/lib/content/types";
-import { formatINR, instagramHref } from "@/lib/site";
+import type { BlogPost, Faq, Program, Trainer } from "@/lib/content/types";
+import { instagramHref } from "@/lib/site";
 import { readingMinutes } from "@/lib/markdown";
 import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -41,60 +41,6 @@ export function ProgramGrid({ programs }: { programs: Program[] }) {
         </Reveal>
       ))}
     </div>
-  );
-}
-
-export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
-  const months = (d: string) => Number(d.match(/\d+/)?.[0] ?? 1) * (/year/i.test(d) ? 12 : 1);
-  return (
-    <>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {plans.map((p, i) => {
-          const perMonth = Math.round(p.price / months(p.duration));
-          const save = p.originalPrice > p.price ? Math.round(((p.originalPrice - p.price) / p.originalPrice) * 100) : 0;
-          return (
-            <Reveal key={p.id} delay={i * 90}>
-              <TiltCard className="h-full rounded-3xl" max={7}>
-                <article
-                  className={`relative flex h-full flex-col rounded-3xl p-7 ${
-                    p.featured ? "bg-gradient-to-b from-gold/25 via-[#1a150a] to-coal ring-2 ring-gold" : "glass gold-border"
-                  }`}
-                >
-                  {p.featured && (
-                    <span className="pop-3d absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-bold uppercase tracking-wider text-black">
-                      Most Popular
-                    </span>
-                  )}
-                  <h3 className="font-display text-2xl text-white">{p.name}</h3>
-                  <p className="text-sm text-white/55">{p.duration}</p>
-                  <div className="pop-3d mt-6">
-                    {p.originalPrice > p.price && <span className="mr-2 text-white/40 line-through">{formatINR(p.originalPrice)}</span>}
-                    {save > 0 && <span className="rounded-full bg-ember/20 px-2 py-0.5 text-xs font-bold text-red-300">Save {save}%</span>}
-                    <div className="font-display mt-1 text-5xl text-gold-gradient">{formatINR(p.price)}</div>
-                    <p className="mt-1 text-sm text-white/55">≈ {formatINR(perMonth)} / month</p>
-                  </div>
-                  <ul className="mt-6 flex-1 space-y-2.5 text-sm text-white/80">
-                    {p.perks.map((perk) => (
-                      <li key={perk} className="flex gap-2">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                        {perk}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={`/contact?plan=${encodeURIComponent(p.name)}#trial`}
-                    className={`mt-7 block rounded-full py-3 text-center font-bold ${p.featured ? "btn-gold" : "border border-gold/50 text-gold hover:bg-gold hover:text-black"}`}
-                  >
-                    Join {p.name}
-                  </Link>
-                </article>
-              </TiltCard>
-            </Reveal>
-          );
-        })}
-      </div>
-      {note && <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-white/50">{note}</p>}
-    </>
   );
 }
 

@@ -182,7 +182,7 @@ export function AdminApp({ storage }: { storage: string }) {
                     { key: "description", label: "Description", type: "textarea" },
                     { key: "phone", label: "Phone" },
                     { key: "altPhone", label: "Alternate phone" },
-                    { key: "whatsapp", label: "WhatsApp number", help: "Digits with country code, e.g. 919711567475" },
+                    { key: "whatsapp", label: "WhatsApp number", help: "Digits with country code, e.g. 918851830081" },
                     { key: "email", label: "Email" },
                     { key: "instagram", label: "Instagram handle", help: "Without @" },
                     { key: "foundedYear", label: "Founded year", type: "number" },
@@ -216,14 +216,15 @@ export function AdminApp({ storage }: { storage: string }) {
                   />
                 </div>
               </Card>
-              <Card title="Opening hours" help="Use 24-hour times like 06:00 and 22:00. Day ranges like “Monday – Friday” are understood by Google.">
+              <Card title="Opening hours" help="One row per batch. Use 24-hour times like 05:30 and 22:00. Day ranges like “Monday – Sunday” are understood by Google.">
                 <ListEditor
                   items={content.business.hours}
-                  titleKey="days"
+                  titleKey="label"
                   onChange={(v) => set("business", { ...content.business, hours: v })}
-                  create={() => ({ days: "Sunday", open: "08:00", close: "12:00" })}
+                  create={() => ({ label: "Batch", days: "Monday – Sunday", open: "08:00", close: "12:00" })}
                   addLabel="Add hours row"
                   fields={[
+                    { key: "label", label: "Label (e.g. Morning)" },
                     { key: "days", label: "Days" },
                     { key: "open", label: "Opens (HH:MM)" },
                     { key: "close", label: "Closes (HH:MM)" },
@@ -305,12 +306,13 @@ export function AdminApp({ storage }: { storage: string }) {
                   items={content.plans}
                   titleKey="name"
                   onChange={(v) => set("plans", v)}
-                  create={() => ({ id: uid(), name: "New plan", duration: "1 month", price: 1000, originalPrice: 0, perks: [], featured: false })}
+                  create={() => ({ id: uid(), name: "New plan", duration: "1 month", price: 1000, couplePrice: 0, originalPrice: 0, perks: [], featured: false })}
                   addLabel="Add plan"
                   fields={[
                     { key: "name", label: "Plan name" },
                     { key: "duration", label: "Duration", help: "e.g. 3 months, 12 months — used to compute price per month" },
-                    { key: "price", label: "Price (₹)", type: "number" },
+                    { key: "price", label: "Single price (₹)", type: "number" },
+                    { key: "couplePrice", label: "Couple price (₹, 0 to hide)", type: "number" },
                     { key: "originalPrice", label: "Crossed-out price (₹, 0 to hide)", type: "number" },
                     { key: "featured", label: "Highlight as most popular", type: "bool" },
                     { key: "perks", label: "Included perks (one per line)", type: "lines" },

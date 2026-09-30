@@ -126,6 +126,56 @@ export function heartRateZones(age: number, restingHr?: number) {
   return { max, method: reserve ? "Karvonen" : "Percent of max", zones };
 }
 
+// ---------- Indian Diabetes Risk Score (Mohan et al., JAPI 2005) ----------
+export type ActivityIdrs = "vigorous" | "moderate" | "mild" | "sedentary";
+export type FamilyHistory = "none" | "one" | "both";
+export function idrs(sex: Sex, age: number, waistCm: number, activity: ActivityIdrs, family: FamilyHistory) {
+  const ageScore = age < 35 ? 0 : age < 50 ? 20 : 30;
+  const [mid, high] = sex === "male" ? [90, 100] : [80, 90];
+  const waistScore = waistCm < mid ? 0 : waistCm < high ? 10 : 20;
+  const activityScore = { vigorous: 0, moderate: 10, mild: 20, sedentary: 30 }[activity];
+  const familyScore = { none: 0, one: 10, both: 20 }[family];
+  const score = ageScore + waistScore + activityScore + familyScore;
+  const risk = score >= 60 ? "High" : score >= 30 ? "Moderate" : "Low";
+  return { score, risk, parts: { age: ageScore, waist: waistScore, activity: activityScore, family: familyScore } };
+}
+
+// ---------- Waist-to-height ratio ----------
+export function waistToHeight(waistCm: number, heightCm: number) {
+  const ratio = Math.round((waistCm / heightCm) * 100) / 100;
+  const category = ratio < 0.4 ? "Very lean" : ratio < 0.5 ? "Healthy" : ratio < 0.6 ? "Increased risk" : "High risk";
+  return { ratio, category, targetWaist: Math.round(heightCm * 0.5) };
+}
+
+// ---------- Intermittent fasting window ----------
+export const FAST_PROTOCOLS = [
+  { id: "12:12", fast: 12, label: "12:12 — beginner" },
+  { id: "14:10", fast: 14, label: "14:10 — easy" },
+  { id: "16:8", fast: 16, label: "16:8 — most popular" },
+  { id: "18:6", fast: 18, label: "18:6 — advanced" },
+] as const;
+
+const hhmm = (mins: number) => {
+  const m = ((mins % 1440) + 1440) % 1440;
+  const h = Math.floor(m / 60);
+  return `${h % 12 || 12}:${String(m % 60).padStart(2, "0")} ${h >= 12 ? "PM" : "AM"}`;
+};
+
+export function fastingWindow(firstMeal: string, fastHours: number) {
+  const [h, m] = firstMeal.split(":").map(Number);
+  const start = h * 60 + m;
+  const eatMins = (24 - fastHours) * 60;
+  const end = start + eatMins;
+  return {
+    eatFrom: hhmm(start),
+    eatUntil: hhmm(end),
+    eatingHours: 24 - fastHours,
+    fastingHours: fastHours,
+    // Train late in the eating window so a proper meal follows the session.
+    bestTraining: `${hhmm(end - 180)} – ${hhmm(end - 60)}`,
+  };
+}
+
 // ---------- Registry used by pages, sitemap and blog shortcodes ----------
 export type CalculatorMeta = {
   slug: string;
@@ -137,7 +187,7 @@ export type CalculatorMeta = {
   faqs: { q: string; a: string }[];
 };
 
-export type CalculatorKey = "bmi" | "tdee" | "body-fat" | "one-rep-max" | "macro" | "ideal-weight" | "water" | "heart-rate";
+export type CalculatorKey = "bmi" | "tdee" | "body-fat" | "one-rep-max" | "macro" | "ideal-weight" | "water" | "heart-rate" | "idrs" | "whtr" | "fasting";
 
 export const CALCULATORS: CalculatorMeta[] = [
   {
@@ -229,6 +279,41 @@ export const CALCULATORS: CalculatorMeta[] = [
     icon: "HeartPulse",
     faqs: [
       { q: "What is zone 2 training?", a: "Easy, conversational cardio at about 60–70% of max heart rate. It builds your aerobic base and burns a high share of fat." },
+    ],
+  },
+  {
+    slug: "diabetes-risk-calculator",
+    key: "idrs",
+    title: "Diabetes Risk Score (IDRS)",
+    short: "Indian Diabetes Risk Score in 4 questions",
+    description: "Check your type-2 diabetes risk with the Indian Diabetes Risk Score (IDRS) — age, waist, activity and family history. Free and instant.",
+    icon: "ShieldCheck",
+    faqs: [
+      { q: "What is the IDRS?", a: "The Indian Diabetes Risk Score was developed by the Madras Diabetes Research Foundation to screen Indians for undiagnosed type-2 diabetes using four simple questions." },
+      { q: "What should I do with a high score?", a: "A score of 60 or more means high risk — get a fasting glucose or HbA1c test from a doctor. Regular exercise and a smaller waist lower your score." },
+    ],
+  },
+  {
+    slug: "waist-to-height-ratio-calculator",
+    key: "whtr",
+    title: "Waist-to-Height Ratio Calculator",
+    short: "Belly-fat risk check",
+    description: "Waist-to-height ratio is a simple belly-fat health check: keep your waist under half your height. Calculate yours instantly.",
+    icon: "Ruler",
+    faqs: [
+      { q: "Why is waist-to-height better than BMI?", a: "It measures fat around the belly — the type most linked to diabetes and heart disease — and works for both muscular and slim people." },
+    ],
+  },
+  {
+    slug: "intermittent-fasting-calculator",
+    key: "fasting",
+    title: "Intermittent Fasting Planner",
+    short: "Your 16:8 eating window + workout time",
+    description: "Plan your intermittent fasting eating window (12:12, 14:10, 16:8, 18:6) and find the best time to work out.",
+    icon: "Timer",
+    faqs: [
+      { q: "Can I work out while fasting?", a: "Yes, but most people lift better in the eating window. Training 1–3 hours before your last meal lets you refuel after the session." },
+      { q: "Does intermittent fasting burn more fat?", a: "Only if it helps you eat fewer calories overall. It's a scheduling tool, not magic." },
     ],
   },
 ];

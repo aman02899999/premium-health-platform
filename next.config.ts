@@ -32,13 +32,28 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    // Old health-platform URLs that may still be indexed → closest new page.
-    return [
-      { source: "/health-calculators", destination: "/tools", permanent: true },
-      { source: "/exercises", destination: "/programs", permanent: true },
-      { source: "/workout-builder", destination: "/programs", permanent: true },
-      { source: "/diet", destination: "/blog/indian-diet-plan-for-muscle-gain-vegetarian", permanent: true },
+    // Old Bharat Health Guide URLs that may still be indexed → closest new page.
+    const map: [string, string][] = [
+      ["/health-calculators", "/tools"],
+      ["/workout-builder", "/workout-planner"],
+      ["/yoga-timer", "/timers"],
+      ["/yoga", "/timers"],
+      ["/nutrition-tracker", "/nutrition"],
+      ["/thali-builder", "/nutrition"],
+      ["/millet-swap", "/nutrition"],
+      ["/food-database", "/nutrition"],
+      ["/nutrition/:slug", "/nutrition"],
+      ["/diet", "/diet-plans"],
+      ["/dosha-meals", "/diet-plans"],
+      ["/recipes", "/diet-plans"],
+      ["/fasting-planner", "/tools/intermittent-fasting-calculator"],
+      ["/india-risk", "/tools/diabetes-risk-calculator"],
+      ["/mens-health", "/health-hub"],
+      ["/womens-health", "/health-hub"],
+      ["/mental-wellness", "/timers"],
+      ["/solutions", "/health-hub"],
     ];
+    return map.map(([source, destination]) => ({ source, destination, permanent: true }));
   },
 };
 

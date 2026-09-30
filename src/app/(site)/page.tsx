@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Cctv, Clock, DoorOpen, Dumbbell, MapPin, Phone, Salad, Snowflake, Star, Users } from "lucide-react";
 import { getContent } from "@/lib/content/store";
-import { CALCULATORS } from "@/lib/calculators";
+import { HUB } from "@/lib/hub";
 import { faqJsonLd } from "@/lib/seo";
-import { formatTime, fullAddress, publishedPosts, telHref, whatsappHref } from "@/lib/site";
+import { formatTime, hoursDays, fullAddress, publishedPosts, telHref, whatsappHref } from "@/lib/site";
 import { Hero3DLoader } from "@/components/home/Hero3DLoader";
+import { PlanGrid } from "@/components/home/PlanGrid";
 import { Gallery3D } from "@/components/home/Gallery3D";
 import { LeadForm } from "@/components/home/LeadForm";
-import { FaqList, PlanGrid, PostCard, ProgramGrid, RatingBadge, TrainerGrid } from "@/components/home/Blocks";
+import { FaqList, PostCard, ProgramGrid, RatingBadge, TrainerGrid } from "@/components/home/Blocks";
 import { Icon } from "@/components/Icon";
 import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
@@ -140,15 +141,16 @@ export default async function HomePage() {
                   <p className="text-xs font-bold uppercase tracking-widest text-gold">Opening hours</p>
                   <ul className="mt-4 space-y-3">
                     {b.hours.map((h) => (
-                      <li key={h.days} className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
+                      <li key={h.label + h.open} className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
                         <span className="flex items-center gap-2 text-white/80">
-                          <Clock className="h-4 w-4 text-gold" /> {h.days}
+                          <Clock className="h-4 w-4 text-gold" /> {h.label || h.days}
                         </span>
                         <span className="font-semibold text-white">
                           {formatTime(h.open)} – {formatTime(h.close)}
                         </span>
                       </li>
                     ))}
+                    <li className="text-sm text-white/50">{hoursDays(b.hours)}</li>
                   </ul>
                   <p className="mt-6 flex gap-2 text-white/75">
                     <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold" /> {fullAddress(b)}
@@ -182,21 +184,26 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ---------- TOOLS ---------- */}
+      {/* ---------- HEALTH HUB ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-        <SectionHeading eyebrow="Free fitness tools" title="Know your" highlight="numbers" intro="Science-backed calculators tuned for Indian bodies and Indian food." />
+        <SectionHeading
+          eyebrow="Free health & fitness hub"
+          title="Train smarter,"
+          highlight="even at home"
+          intro="Workout planner, exercise library, Indian food tracker, diet plans and 11 calculators — free for everyone."
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {CALCULATORS.map((t, i) => (
-            <Reveal key={t.slug} delay={i * 50}>
+          {HUB.map((t, i) => (
+            <Reveal key={t.href} delay={i * 50}>
               <TiltCard className="group h-full rounded-2xl" max={12}>
-                <Link href={`/tools/${t.slug}`} className="glass flex h-full flex-col rounded-2xl p-6 hover:ring-1 hover:ring-gold/50">
+                <Link href={t.href} className="glass flex h-full flex-col rounded-2xl p-6 hover:ring-1 hover:ring-gold/50">
                   <span className="pop-3d flex h-12 w-12 items-center justify-center rounded-xl bg-gold/15">
                     <Icon name={t.icon} className="h-6 w-6 text-gold" />
                   </span>
-                  <span className="mt-4 font-semibold text-white">{t.title.replace(/ \(.*\)$/, "")}</span>
-                  <span className="mt-1 flex-1 text-sm text-white/55">{t.short}</span>
+                  <span className="mt-4 font-semibold text-white">{t.title}</span>
+                  <span className="mt-1 flex-1 text-sm text-white/55">{t.text}</span>
                   <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold">
-                    Calculate <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    Open <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
               </TiltCard>
