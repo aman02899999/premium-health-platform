@@ -58,6 +58,10 @@ Supabase provides the database, Google sign-in and image storage. The schema and
    - Site URL: your domain.
    - Redirect URLs: `https://yourdomain/**` and `https://*-aman-sh-projects.vercel.app/**` for previews.
 
+### After launch
+- Submit `https://yourdomain/sitemap.xml` in Google Search Console.
+- Add the website link to your Google Business Profile and Instagram bio.
+
 ## Editing content
 
 Everything visible on the site lives in one content document. The seed data is in `src/lib/content/defaults.ts` and `default-posts.ts`. Once you save in `/admin`, the stored version is used; any section you never saved falls back to the defaults.
