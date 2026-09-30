@@ -21,7 +21,11 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(logo.svg|icon-192.png|icon-512.png|apple-icon.png)",
+        source: "/(icon-192.png|icon-512.png|apple-icon.png)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/brand/:file*",
         headers: [{ key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" }],
       },
       {
