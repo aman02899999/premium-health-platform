@@ -56,14 +56,14 @@ function IntervalTimer({ work, rest, rounds }: { work: number; rest: number; rou
   }, [elapsed, running, done, inCycle, work, phase, left]);
 
   const pct = done ? 1 : 1 - left / phaseLen;
-  const color = phase === "work" ? "#e23b3b" : phase === "rest" ? "#34d399" : "#d4a94a";
+  const color = phase === "work" ? "#e8394b" : phase === "rest" ? "#34d399" : "#7cc0ee";
   const c = 2 * Math.PI * 90;
 
   return (
     <div className="flex flex-col items-center">
       <div className="relative">
         <svg viewBox="0 0 200 200" className="h-64 w-64 -rotate-90" aria-hidden>
-          <circle cx="100" cy="100" r="90" stroke="#2a2a35" strokeWidth="12" fill="none" />
+          <circle cx="100" cy="100" r="90" stroke="#1d3a57" strokeWidth="12" fill="none" />
           <circle cx="100" cy="100" r="90" stroke={color} strokeWidth="12" fill="none" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - pct)} style={{ transition: "stroke-dashoffset 1s linear, stroke .3s" }} />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center" aria-live="polite">
@@ -108,7 +108,7 @@ function RestTimer() {
       </div>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {[30, 60, 90, 120, 180].map((s) => (
-          <button key={s} type="button" onClick={() => start(s)} className={`rounded-xl px-4 py-2 text-sm font-bold ${secs === s ? "bg-gold text-black" : "border border-white/15 text-white/75"}`}>
+          <button key={s} type="button" onClick={() => start(s)} className={`rounded-xl px-4 py-2 text-sm font-bold ${secs === s ? "bg-brand text-white" : "border border-white/15 text-white/75"}`}>
             {s < 60 ? `${s}s` : `${s / 60}${s % 60 ? ".5" : ""} min`}
           </button>
         ))}
@@ -146,7 +146,7 @@ function Breathing() {
     <div className="flex flex-col items-center">
       <div className="relative flex h-64 w-64 items-center justify-center">
         <div
-          className="absolute h-full w-full rounded-full bg-gradient-to-br from-gold/60 to-ember/30 blur-sm"
+          className="absolute h-full w-full rounded-full bg-gradient-to-br from-brand/60 to-ember/30 blur-sm"
           style={{ transform: `scale(${running ? scale : 0.7})`, transition: `transform ${phase.secs}s ease-in-out` }}
         />
         <div className="relative text-center" aria-live="polite">
@@ -164,7 +164,7 @@ function Breathing() {
 function Controls({ running, onToggle, onReset }: { running: boolean; onToggle: () => void; onReset: () => void }) {
   return (
     <div className="mt-6 flex gap-3">
-      <button type="button" onClick={onToggle} className="btn-gold inline-flex items-center gap-2 rounded-full px-8 py-3 font-bold">
+      <button type="button" onClick={onToggle} className="btn-brand inline-flex items-center gap-2 rounded-full px-8 py-3 font-bold">
         {running ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />} {running ? "Pause" : "Start"}
       </button>
       <button type="button" onClick={onReset} className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white">
@@ -195,10 +195,10 @@ export function GymTimers() {
   }, [lock]);
 
   return (
-    <div className="glass gold-border mx-auto max-w-2xl rounded-3xl p-6 sm:p-10">
+    <div className="glass brand-border mx-auto max-w-2xl rounded-3xl p-6 sm:p-10">
       <div role="tablist" className="mb-8 flex flex-wrap justify-center gap-2">
         {MODES.map((m) => (
-          <button key={m.id} type="button" role="tab" aria-selected={mode === m.id} onClick={() => setMode(m.id)} className={`rounded-full px-4 py-2 text-sm font-bold ${mode === m.id ? "bg-gold text-black" : "border border-white/15 text-white/70"}`}>
+          <button key={m.id} type="button" role="tab" aria-selected={mode === m.id} onClick={() => setMode(m.id)} className={`rounded-full px-4 py-2 text-sm font-bold ${mode === m.id ? "bg-brand text-white" : "border border-white/15 text-white/70"}`}>
             {m.label}
           </button>
         ))}

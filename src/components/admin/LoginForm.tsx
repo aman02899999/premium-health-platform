@@ -31,7 +31,7 @@ export function LoginForm() {
           {error}
         </p>
       )}
-      <button type="submit" disabled={busy} className="btn-gold flex w-full items-center justify-center gap-2 rounded-full py-3 font-bold">
+      <button type="submit" disabled={busy} className="btn-brand flex w-full items-center justify-center gap-2 rounded-full py-3 font-bold">
         {busy && <Loader2 className="h-4 w-4 animate-spin" />} Sign in
       </button>
     </form>

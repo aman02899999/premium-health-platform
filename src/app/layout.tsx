@@ -5,7 +5,7 @@ import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
 
 export const viewport: Viewport = {
-  themeColor: "#07070a",
+  themeColor: "#06111c",
   width: "device-width",
   initialScale: 1,
   colorScheme: "dark",
@@ -51,7 +51,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const c = await getContent();
   return (
-    <html lang="en-IN" style={{ "--gold": c.theme.gold, "--accent": c.theme.accent } as React.CSSProperties}>
+    <html lang="en-IN" style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

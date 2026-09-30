@@ -38,7 +38,7 @@ export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
                 role="radio"
                 aria-checked={mode === o.v}
                 onClick={() => setMode(o.v)}
-                className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold transition-all ${mode === o.v ? "bg-gold text-black shadow-lg" : "text-white/70 hover:text-white"}`}
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold transition-all ${mode === o.v ? "bg-brand text-white shadow-lg" : "text-white/70 hover:text-white"}`}
               >
                 <o.icon className="h-4 w-4" /> {o.l}
               </button>
@@ -57,9 +57,9 @@ export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
           return (
             <Reveal key={p.id} delay={i * 80}>
               <TiltCard className="h-full rounded-3xl" max={7}>
-                <article className={`relative flex h-full flex-col rounded-3xl p-6 ${p.featured ? "bg-gradient-to-b from-gold/25 via-[#1a150a] to-coal ring-2 ring-gold" : "glass gold-border"}`}>
+                <article className={`relative flex h-full flex-col rounded-3xl p-6 ${p.featured ? "bg-gradient-to-b from-navy via-[#0b2a44] to-coal ring-2 ring-brand" : "glass brand-border"}`}>
                   {p.featured && (
-                    <span className="pop-3d absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold px-4 py-1 text-xs font-bold uppercase tracking-wider text-black">
+                    <span className="pop-3d absolute -top-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand px-4 py-1 text-xs font-bold uppercase tracking-wider text-white">
                       Most Popular
                     </span>
                   )}
@@ -71,7 +71,7 @@ export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
                   <div className="pop-3d mt-5">
                     {p.originalPrice > price && !couple && <span className="mr-2 text-white/40 line-through">{formatINR(p.originalPrice)}</span>}
                     {save > 0 && <span className="rounded-full bg-ember/20 px-2 py-0.5 text-xs font-bold text-red-300">Save {save}%</span>}
-                    <div className="font-display mt-1 text-4xl text-gold-gradient xl:text-[2.6rem]">{formatINR(price)}</div>
+                    <div className="font-display mt-1 text-4xl text-brand-gradient xl:text-[2.6rem]">{formatINR(price)}</div>
                     <p className="mt-1 text-sm text-white/55">
                       ≈ {formatINR(perMonth)} / month{couple && ` · ${formatINR(perPerson)} each`}
                     </p>
@@ -79,14 +79,14 @@ export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
                   <ul className="mt-5 flex-1 space-y-2 text-sm text-white/80">
                     {p.perks.map((perk) => (
                       <li key={perk} className="flex gap-2">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                         {perk}
                       </li>
                     ))}
                   </ul>
                   <Link
                     href="/contact#trial"
-                    className={`mt-6 block rounded-full py-3 text-center font-bold ${p.featured ? "btn-gold" : "border border-gold/50 text-gold hover:bg-gold hover:text-black"}`}
+                    className={`mt-6 block rounded-full py-3 text-center font-bold ${p.featured ? "btn-brand" : "border border-brand/50 text-brand hover:bg-brand hover:text-white"}`}
                   >
                     Join {p.name}
                   </Link>
@@ -107,7 +107,7 @@ function PriceTable({ plans }: { plans: Plan[] }) {
     <div className="glass mx-auto mt-12 max-w-3xl overflow-hidden rounded-3xl">
       <table className="w-full text-left text-sm sm:text-base">
         <caption className="font-display px-6 pt-5 text-left text-xl text-white">Full price list</caption>
-        <thead className="text-xs uppercase tracking-wider text-gold">
+        <thead className="text-xs uppercase tracking-wider text-brand">
           <tr>
             <th className="px-6 py-3">Duration</th>
             <th className="px-6 py-3">Single</th>
@@ -119,7 +119,7 @@ function PriceTable({ plans }: { plans: Plan[] }) {
             <tr key={p.id} className="border-t border-white/10">
               <td className="px-6 py-3 text-white/80">{p.duration}</td>
               <td className="px-6 py-3 font-semibold text-white">{formatINR(p.price)}</td>
-              <td className="px-6 py-3 font-semibold text-gold">{p.couplePrice ? formatINR(p.couplePrice) : "—"}</td>
+              <td className="px-6 py-3 font-semibold text-brand">{p.couplePrice ? formatINR(p.couplePrice) : "—"}</td>
             </tr>
           ))}
         </tbody>

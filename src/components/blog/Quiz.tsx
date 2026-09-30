@@ -7,8 +7,8 @@ export function Quiz({ question, options, answer, explanation }: { question: str
   const [picked, setPicked] = useState<number | null>(null);
   const done = picked !== null;
   return (
-    <div className="not-prose my-8 rounded-3xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-6">
-      <p className="mb-1 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gold">
+    <div className="not-prose my-8 rounded-3xl border border-brand/30 bg-gradient-to-br from-brand/10 to-transparent p-6">
+      <p className="mb-1 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand">
         <HelpCircle className="h-4 w-4" /> Quick quiz
       </p>
       <p className="mb-4 text-lg font-semibold text-white">{question}</p>
@@ -24,7 +24,7 @@ export function Quiz({ question, options, answer, explanation }: { question: str
               onClick={() => setPicked(i)}
               className={`flex items-center justify-between rounded-xl border px-4 py-3 text-left transition-all ${
                 state === "idle"
-                  ? "border-white/15 hover:-translate-y-0.5 hover:border-gold"
+                  ? "border-white/15 hover:-translate-y-0.5 hover:border-brand"
                   : state === "right"
                     ? "border-emerald-400 bg-emerald-400/15 text-white"
                     : state === "wrong"

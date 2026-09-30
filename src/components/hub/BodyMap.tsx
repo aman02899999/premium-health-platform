@@ -31,7 +31,7 @@ export function BodyMap({ selected, onSelect }: { selected: Muscle | "all"; onSe
     <div className="flex flex-col items-center">
       <div className="mb-3 flex rounded-full border border-line p-1 text-xs">
         {(["front", "back"] as const).map((s) => (
-          <button key={s} type="button" onClick={() => setSide(s)} className={`rounded-full px-4 py-1.5 font-semibold capitalize ${side === s ? "bg-gold text-black" : "text-white/70"}`}>
+          <button key={s} type="button" onClick={() => setSide(s)} className={`rounded-full px-4 py-1.5 font-semibold capitalize ${side === s ? "bg-brand text-white" : "text-white/70"}`}>
             {s}
           </button>
         ))}
@@ -39,8 +39,8 @@ export function BodyMap({ selected, onSelect }: { selected: Muscle | "all"; onSe
       <svg viewBox="0 0 200 390" className="h-[340px] w-auto [transform:perspective(600px)_rotateY(-8deg)]" role="group" aria-label={`Body map, ${side} view`}>
         <defs>
           <linearGradient id="bm-body" x1="0" x2="1">
-            <stop offset="0" stopColor="#1d1d26" />
-            <stop offset="1" stopColor="#2a2a35" />
+            <stop offset="0" stopColor="#0f2438" />
+            <stop offset="1" stopColor="#1d3a57" />
           </linearGradient>
         </defs>
         {/* silhouette */}
@@ -59,12 +59,12 @@ export function BodyMap({ selected, onSelect }: { selected: Muscle | "all"; onSe
               onClick={() => onSelect(on ? "all" : s.m)}
               onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onSelect(on ? "all" : s.m)}
               className="cursor-pointer outline-none transition-all duration-300 hover:opacity-100 focus-visible:stroke-white"
-              fill={on ? "#d4a94a" : "#d4a94a"}
+              fill="#e8394b"
               fillOpacity={on ? 0.95 : 0.22}
-              stroke="#d4a94a"
+              stroke={on ? "#ff9aa4" : "#7cc0ee"}
               strokeOpacity={on ? 1 : 0.5}
               strokeWidth={1.2}
-              style={on ? { filter: "drop-shadow(0 0 8px rgba(212,169,74,.8))" } : undefined}
+              style={on ? { filter: "drop-shadow(0 0 8px rgba(232,57,75,.85))" } : undefined}
             />
           );
         })}

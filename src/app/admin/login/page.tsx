@@ -9,7 +9,7 @@ export default async function LoginPage() {
   if (await isAdmin()) redirect("/admin");
   return (
     <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="glass gold-border w-full max-w-sm rounded-3xl p-8">
+      <div className="glass brand-border w-full max-w-sm rounded-3xl p-8">
         <div className="flex justify-center">
           <BrandMark className="h-14" />
         </div>

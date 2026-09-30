@@ -54,9 +54,9 @@ export default async function ExercisePage({ params }: Props) {
       />
       <article className="mx-auto max-w-4xl px-4 pb-10 pt-36 sm:px-6 sm:pt-44">
         <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1 text-sm text-white/50">
-          <Link href="/exercises" className="hover:text-gold">Exercises</Link>
+          <Link href="/exercises" className="hover:text-brand">Exercises</Link>
           <ChevronRight className="h-3.5 w-3.5" />
-          <span className="text-gold">{muscleLabel(ex.primary)}</span>
+          <span className="text-brand">{muscleLabel(ex.primary)}</span>
         </nav>
         <h1 className="font-display text-4xl text-white sm:text-6xl">{ex.name}</h1>
         <p className="mt-4 text-lg text-white/70">{ex.summary}</p>
@@ -78,7 +78,7 @@ export default async function ExercisePage({ params }: Props) {
         <ol className="mt-5 space-y-4">
           {ex.steps.map((s, i) => (
             <li key={s} className="flex gap-4">
-              <span className="font-display flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold text-lg text-black">{i + 1}</span>
+              <span className="font-display flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand text-lg text-white">{i + 1}</span>
               <span className="pt-2 text-white/80">{s}</span>
             </li>
           ))}
@@ -116,7 +116,7 @@ export default async function ExercisePage({ params }: Props) {
             <h2 className="font-display mb-4 text-2xl text-white">More {muscleLabel(ex.primary).toLowerCase()} exercises</h2>
             <div className="grid gap-3 sm:grid-cols-2">
               {related.map((r) => (
-                <Link key={r.slug} href={`/exercises/${r.slug}`} className="glass rounded-2xl p-4 hover:ring-1 hover:ring-gold/50">
+                <Link key={r.slug} href={`/exercises/${r.slug}`} className="glass rounded-2xl p-4 hover:ring-1 hover:ring-brand/50">
                   <span className="font-semibold text-white">{r.name}</span>
                   <span className="block text-sm text-white/55">{equipmentLabel(r.equipment)} · {r.level}</span>
                 </Link>

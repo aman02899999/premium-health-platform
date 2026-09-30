@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #07070a;
-  --color-coal: #0e0e13;
-  --color-steel: #1a1a22;
-  --color-line: #2a2a35;
-  --color-gold: var(--gold, #d4a94a);
-  --color-gold-soft: #f2d88f;
-  --color-ember: var(--accent, #e23b3b);
+  /* Palette from the club logo: red (#be1b2c) and navy (#04466d).
+     brand is the logo red lifted slightly so small text stays readable on dark navy. */
+  --color-ink: #06111c;
+  --color-coal: #0a1a2a;
+  --color-steel: #10263b;
+  --color-line: #1d3a57;
+  --color-brand: var(--brand, #e8394b);
+  --color-brand-soft: #ff9aa4;
+  --color-navy: var(--navy, #04466d);
+  --color-sky: #7cc0ee;
+  --color-ember: #e8394b;
   --font-display: "Oswald", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
@@ -23,15 +27,15 @@ html {
 
 body {
   background: var(--color-ink);
-  color: #ececf1;
+  color: #e9f0f6;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-gold);
-  color: #000;
+  background: var(--color-brand);
+  color: #fff;
 }
 
 .font-display {
@@ -40,8 +44,9 @@ body {
   text-transform: uppercase;
 }
 
-.text-gold-gradient {
-  background: linear-gradient(100deg, #b8872c 0%, #f7e3a1 35%, #d4a94a 55%, #fff1c4 75%, #b8872c 100%);
+/* Navy-blue to red, echoing the two figures in the logo. */
+.text-brand-gradient {
+  background: linear-gradient(100deg, #7cc0ee 0%, #ffffff 30%, #ff6b79 55%, #e8394b 75%, #7cc0ee 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -55,15 +60,15 @@ body {
   }
 }
 
-.btn-gold {
-  background: linear-gradient(135deg, #f2d88f, #d4a94a 45%, #a97b25);
-  color: #120d02;
-  box-shadow: 0 10px 30px -10px rgba(212, 169, 74, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+.btn-brand {
+  background: linear-gradient(135deg, #f0525f, #be1b2c 50%, #8e1220);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px rgba(232, 57, 75, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-gold:hover {
+.btn-brand:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 40px -12px rgba(212, 169, 74, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  box-shadow: 0 16px 40px -12px rgba(232, 57, 75, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .glass {
@@ -73,16 +78,16 @@ body {
   -webkit-backdrop-filter: blur(14px);
 }
 
-.gold-border {
+.brand-border {
   position: relative;
 }
-.gold-border::before {
+.brand-border::before {
   content: "";
   position: absolute;
   inset: 0;
   padding: 1px;
   border-radius: inherit;
-  background: linear-gradient(140deg, rgba(242, 216, 143, 0.9), rgba(212, 169, 74, 0.1) 40%, rgba(212, 169, 74, 0.05) 60%, rgba(242, 216, 143, 0.7));
+  background: linear-gradient(140deg, rgba(124, 192, 238, 0.85), rgba(4, 70, 109, 0.25) 40%, rgba(190, 27, 44, 0.15) 60%, rgba(232, 57, 75, 0.8));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -91,8 +96,8 @@ body {
 
 .grid-floor {
   background-image:
-    linear-gradient(rgba(212, 169, 74, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 169, 74, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(124, 192, 238, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 192, 238, 0.09) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
 }
@@ -109,7 +114,7 @@ body {
   will-change: transform;
 }
 .tilt-glare {
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 236, 180, 0.22), transparent 55%);
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(190, 225, 255, 0.2), transparent 55%);
   opacity: var(--glare, 0);
   transition: opacity 0.3s;
 }
@@ -183,7 +188,7 @@ body {
   margin: 1rem 0;
 }
 .prose-royal a {
-  color: var(--color-gold-soft);
+  color: var(--color-sky);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -210,22 +215,22 @@ body {
   width: 7px;
   height: 7px;
   transform: rotate(45deg);
-  background: var(--color-gold);
+  background: var(--color-brand);
 }
 .prose-royal ol {
   list-style: decimal;
 }
 .prose-royal ol li::marker {
-  color: var(--color-gold);
+  color: var(--color-brand);
   font-weight: 700;
 }
 .prose-royal blockquote {
-  border-left: 3px solid var(--color-gold);
-  background: rgba(212, 169, 74, 0.07);
+  border-left: 3px solid var(--color-brand);
+  background: rgba(4, 70, 109, 0.25);
   padding: 1rem 1.25rem;
   border-radius: 0 12px 12px 0;
   font-style: italic;
-  color: #f1e6c8;
+  color: #dbeaf6;
   margin: 1.5rem 0;
 }
 .prose-royal table {
@@ -235,7 +240,7 @@ body {
 }
 .prose-royal th {
   text-align: left;
-  color: var(--color-gold-soft);
+  color: var(--color-sky);
   font-weight: 600;
   border-bottom: 1px solid var(--color-line);
   padding: 0.6rem 0.75rem;
@@ -246,7 +251,7 @@ body {
   padding: 0.6rem 0.75rem;
 }
 .prose-royal code {
-  background: #1f1f28;
+  background: #10263b;
   padding: 0.1rem 0.35rem;
   border-radius: 6px;
   font-size: 0.9em;
@@ -257,22 +262,22 @@ body {
   width: 100%;
   border-radius: 0.75rem;
   border: 1px solid var(--color-line);
-  background: #111118;
+  background: #081624;
   padding: 0.7rem 0.9rem;
   color: #fff;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .field:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px rgba(212, 169, 74, 0.2);
+  border-color: var(--color-sky);
+  box-shadow: 0 0 0 3px rgba(124, 192, 238, 0.2);
 }
 .field::placeholder {
-  color: #6b6b78;
+  color: #5f7890;
 }
 
 input[type="range"] {
-  accent-color: var(--color-gold);
+  accent-color: var(--color-brand);
 }
 
 @media (prefers-reduced-motion: reduce) {

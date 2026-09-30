@@ -78,11 +78,11 @@ export default async function PostPage({ params }: Props) {
           <div className="grid-floor pointer-events-none absolute inset-0 opacity-50" />
           <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
             <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1 text-sm text-white/50">
-              <Link href="/" className="hover:text-gold">Home</Link>
+              <Link href="/" className="hover:text-brand">Home</Link>
               <ChevronRight className="h-3.5 w-3.5" />
-              <Link href="/blog" className="hover:text-gold">Blog</Link>
+              <Link href="/blog" className="hover:text-brand">Blog</Link>
               <ChevronRight className="h-3.5 w-3.5" />
-              <Link href={`/blog/category/${categorySlug(post.category)}`} className="text-gold hover:underline">{post.category}</Link>
+              <Link href={`/blog/category/${categorySlug(post.category)}`} className="text-brand hover:underline">{post.category}</Link>
             </nav>
             <h1 className="font-display max-w-4xl text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">{post.title}</h1>
             <p className="mt-5 max-w-3xl text-lg text-white/70">{post.excerpt}</p>
@@ -90,11 +90,11 @@ export default async function PostPage({ params }: Props) {
               <div className="flex flex-wrap items-center gap-5 text-sm text-white/60">
                 <span className="font-semibold text-white">{post.author}</span>
                 <span className="flex items-center gap-1.5">
-                  <CalendarDays className="h-4 w-4 text-gold" />
+                  <CalendarDays className="h-4 w-4 text-brand" />
                   <time dateTime={post.updated || post.published}>Updated {fmt(post.updated || post.published)}</time>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Clock className="h-4 w-4 text-gold" /> {readingMinutes(post.body)} min read
+                  <Clock className="h-4 w-4 text-brand" /> {readingMinutes(post.body)} min read
                 </span>
               </div>
               <ShareButtons url={url} title={post.title} />
@@ -116,7 +116,7 @@ export default async function PostPage({ params }: Props) {
             {post.tags.length > 0 && (
               <div className="mt-10 flex flex-wrap gap-2">
                 {post.tags.map((t) => (
-                  <Link key={t} href={`/blog?q=${encodeURIComponent(t)}`} className="rounded-full border border-white/15 px-3 py-1 text-sm text-white/65 hover:border-gold hover:text-gold">
+                  <Link key={t} href={`/blog?q=${encodeURIComponent(t)}`} className="rounded-full border border-white/15 px-3 py-1 text-sm text-white/65 hover:border-brand hover:text-brand">
                     #{t}
                   </Link>
                 ))}

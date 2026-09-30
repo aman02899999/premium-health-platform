@@ -40,7 +40,7 @@ export default async function HomePage() {
 
       {/* ---------- HERO ---------- */}
       <section className="relative isolate min-h-[100svh] overflow-hidden">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_70%_40%,rgba(212,169,74,.22),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(226,59,59,.14),transparent_50%)]" />
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_70%_40%,rgba(4,70,109,.55),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(232,57,75,.18),transparent_50%)]" />
         <div className="grid-floor absolute inset-x-0 bottom-0 -z-10 h-1/2 origin-bottom [transform:perspective(600px)_rotateX(62deg)]" />
         <div className="absolute inset-0 -z-10">
           <Hero3DLoader />
@@ -50,7 +50,7 @@ export default async function HomePage() {
         <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-16 pt-40 sm:px-6 lg:justify-center lg:pb-24">
           <div className="max-w-2xl">
             <Reveal>
-              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-black/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur">
+              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand/40 bg-black/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-brand backdrop-blur">
                 <MapPin className="h-3.5 w-3.5" /> {c.hero.eyebrow}
               </p>
             </Reveal>
@@ -58,17 +58,17 @@ export default async function HomePage() {
               <h1 className="font-display text-5xl leading-[0.95] text-white sm:text-7xl lg:text-[5.5rem]">
                 {c.hero.title}
                 <br />
-                <span className="text-gold-gradient">{c.hero.highlight}</span>
+                <span className="text-brand-gradient">{c.hero.highlight}</span>
               </h1>
             </Reveal>
             <Reveal delay={200}>
               <p className="mt-6 max-w-xl text-lg text-white/75 sm:text-xl">{c.hero.subtitle}</p>
             </Reveal>
             <Reveal delay={300} className="mt-9 flex flex-wrap gap-3">
-              <Link href="/contact#trial" className="btn-gold inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-bold">
+              <Link href="/contact#trial" className="btn-brand inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-bold">
                 {c.hero.primaryCta} <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link href="/membership" className="glass inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-semibold text-white hover:ring-1 hover:ring-gold/60">
+              <Link href="/membership" className="glass inline-flex items-center gap-2 rounded-full px-7 py-4 text-base font-semibold text-white hover:ring-1 hover:ring-brand/60">
                 {c.hero.secondaryCta}
               </Link>
             </Reveal>
@@ -81,10 +81,10 @@ export default async function HomePage() {
 
       {/* ---------- STATS ---------- */}
       <section className="relative z-10 -mt-10 px-4 sm:px-6">
-        <div className="glass gold-border mx-auto grid max-w-6xl grid-cols-2 divide-white/10 rounded-3xl md:grid-cols-4 md:divide-x">
+        <div className="glass brand-border mx-auto grid max-w-6xl grid-cols-2 divide-white/10 rounded-3xl md:grid-cols-4 md:divide-x">
           {c.stats.map((s) => (
             <div key={s.label} className="p-6 text-center sm:p-8">
-              <div className="font-display text-4xl text-gold-gradient sm:text-5xl">
+              <div className="font-display text-4xl text-brand-gradient sm:text-5xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-1 text-xs uppercase tracking-widest text-white/60">{s.label}</div>
@@ -99,7 +99,7 @@ export default async function HomePage() {
           {Array.from({ length: 2 }).flatMap((_, k) =>
             ["Strength", "Fat Loss", "Personal Training", "Cardio", "Bodybuilding", "Women's Fitness", "Diet Plans", "Transformation"].map((w) => (
               <span key={`${k}-${w}`} className="font-display flex items-center gap-10 text-3xl text-white/15">
-                {w} <span className="text-gold">✦</span>
+                {w} <span className="text-brand">✦</span>
               </span>
             )),
           )}
@@ -114,7 +114,7 @@ export default async function HomePage() {
 
       {/* ---------- WHY US ---------- */}
       <section className="relative overflow-hidden py-24">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-[140px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[140px]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
           <div>
             <SectionHeading center={false} eyebrow="Why Royal Fitness" title="A neighbourhood gym with" highlight="premium standards" intro={b.description} />
@@ -122,8 +122,8 @@ export default async function HomePage() {
               {FACILITIES.map((f, i) => (
                 <Reveal key={f.title} delay={i * 60}>
                   <div className="flex gap-4 rounded-2xl p-3 transition-colors hover:bg-white/5">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold/15 ring-1 ring-gold/30">
-                      <f.icon className="h-6 w-6 text-gold" />
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/15 ring-1 ring-brand/30">
+                      <f.icon className="h-6 w-6 text-brand" />
                     </span>
                     <span>
                       <span className="block font-semibold text-white">{f.title}</span>
@@ -136,14 +136,14 @@ export default async function HomePage() {
           </div>
           <Reveal delay={150}>
             <TiltCard className="rounded-[2rem]" max={8}>
-              <div className="glass gold-border relative overflow-hidden rounded-[2rem] p-8">
+              <div className="glass brand-border relative overflow-hidden rounded-[2rem] p-8">
                 <div className="pop-3d">
-                  <p className="text-xs font-bold uppercase tracking-widest text-gold">Opening hours</p>
+                  <p className="text-xs font-bold uppercase tracking-widest text-brand">Opening hours</p>
                   <ul className="mt-4 space-y-3">
                     {b.hours.map((h) => (
                       <li key={h.label + h.open} className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
                         <span className="flex items-center gap-2 text-white/80">
-                          <Clock className="h-4 w-4 text-gold" /> {h.label || h.days}
+                          <Clock className="h-4 w-4 text-brand" /> {h.label || h.days}
                         </span>
                         <span className="font-semibold text-white">
                           {formatTime(h.open)} – {formatTime(h.close)}
@@ -153,13 +153,13 @@ export default async function HomePage() {
                     <li className="text-sm text-white/50">{hoursDays(b.hours)}</li>
                   </ul>
                   <p className="mt-6 flex gap-2 text-white/75">
-                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-gold" /> {fullAddress(b)}
+                    <MapPin className="mt-1 h-4 w-4 shrink-0 text-brand" /> {fullAddress(b)}
                   </p>
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <a href={telHref(b.phone)} className="btn-gold inline-flex items-center gap-2 rounded-full px-5 py-3 font-bold">
+                    <a href={telHref(b.phone)} className="btn-brand inline-flex items-center gap-2 rounded-full px-5 py-3 font-bold">
                       <Phone className="h-4 w-4" /> {b.phone}
                     </a>
-                    <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-gold">
+                    <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-brand">
                       <MapPin className="h-4 w-4" /> Directions
                     </a>
                   </div>
@@ -196,13 +196,13 @@ export default async function HomePage() {
           {HUB.map((t, i) => (
             <Reveal key={t.href} delay={i * 50}>
               <TiltCard className="group h-full rounded-2xl" max={12}>
-                <Link href={t.href} className="glass flex h-full flex-col rounded-2xl p-6 hover:ring-1 hover:ring-gold/50">
-                  <span className="pop-3d flex h-12 w-12 items-center justify-center rounded-xl bg-gold/15">
-                    <Icon name={t.icon} className="h-6 w-6 text-gold" />
+                <Link href={t.href} className="glass flex h-full flex-col rounded-2xl p-6 hover:ring-1 hover:ring-brand/50">
+                  <span className="pop-3d flex h-12 w-12 items-center justify-center rounded-xl bg-brand/15">
+                    <Icon name={t.icon} className="h-6 w-6 text-brand" />
                   </span>
                   <span className="mt-4 font-semibold text-white">{t.title}</span>
                   <span className="mt-1 flex-1 text-sm text-white/55">{t.text}</span>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-gold">
+                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
                     Open <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
@@ -231,13 +231,13 @@ export default async function HomePage() {
                   <figure className="glass flex h-full flex-col rounded-3xl p-7">
                     <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, k) => (
-                        <Star key={k} className={`h-4 w-4 ${k < t.rating ? "fill-gold text-gold" : "text-white/25"}`} />
+                        <Star key={k} className={`h-4 w-4 ${k < t.rating ? "fill-brand text-brand" : "text-white/25"}`} />
                       ))}
                     </div>
                     <blockquote className="mt-4 flex-1 text-white/80">“{t.text}”</blockquote>
                     <figcaption className="mt-5">
                       <span className="block font-semibold text-white">{t.name}</span>
-                      {t.result && <span className="text-sm text-gold">{t.result}</span>}
+                      {t.result && <span className="text-sm text-brand">{t.result}</span>}
                     </figcaption>
                   </figure>
                 </TiltCard>
@@ -250,10 +250,10 @@ export default async function HomePage() {
           </Reveal>
         )}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <a href={b.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-gold/50 px-6 py-3 font-semibold text-gold hover:bg-gold hover:text-black">
+          <a href={b.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-brand/50 px-6 py-3 font-semibold text-brand hover:bg-brand hover:text-white">
             <Star className="h-4 w-4" /> Read & write Google reviews
           </a>
-          <a href={`https://www.instagram.com/${b.instagram}/`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white hover:border-gold">
+          <a href={`https://www.instagram.com/${b.instagram}/`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-semibold text-white hover:border-brand">
             <Users className="h-4 w-4" /> See transformations on Instagram
           </a>
         </div>
@@ -269,7 +269,7 @@ export default async function HomePage() {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Link href="/blog" className="inline-flex items-center gap-2 font-semibold text-gold hover:underline">
+            <Link href="/blog" className="inline-flex items-center gap-2 font-semibold text-brand hover:underline">
               View all articles <ArrowRight className="h-4 w-4" />
             </Link>
           </div>

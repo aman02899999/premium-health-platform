@@ -37,8 +37,8 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
   if (state === "done") {
     return (
       <div className="glass rounded-3xl p-8 text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold/15">
-          <Check className="h-8 w-8 text-gold" />
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand/15">
+          <Check className="h-8 w-8 text-brand" />
         </div>
         <h3 className="font-display mt-5 text-3xl text-white">You&apos;re booked in!</h3>
         <p className="mt-3 text-white/70">We&apos;ll call you shortly to fix your trial time. Want it faster? Send the same details on WhatsApp.</p>
@@ -50,7 +50,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass gold-border space-y-4 rounded-3xl p-6 sm:p-8">
+    <form onSubmit={onSubmit} className="glass brand-border space-y-4 rounded-3xl p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-1.5 block text-sm text-white/75">Your name *</span>
@@ -83,7 +83,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
           </a>
         </p>
       )}
-      <button type="submit" disabled={state === "sending"} className="btn-gold flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-base font-bold disabled:opacity-70">
+      <button type="submit" disabled={state === "sending"} className="btn-brand flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-base font-bold disabled:opacity-70">
         {state === "sending" && <Loader2 className="h-5 w-5 animate-spin" />}
         Book My Free Trial
       </button>

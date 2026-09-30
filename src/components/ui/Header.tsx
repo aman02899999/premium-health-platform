@@ -30,7 +30,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
     <header className="fixed inset-x-0 top-0 z-50">
       {announcement && (
         <div
-          className={`overflow-hidden bg-gradient-to-r from-[#a97b25] via-gold to-[#a97b25] text-center text-xs font-semibold text-black transition-all duration-300 ${
+          className={`overflow-hidden bg-gradient-to-r from-navy via-[#be1b2c] to-navy text-center text-xs font-semibold text-white transition-all duration-300 ${
             scrolled ? "max-h-0 py-0" : "max-h-10 py-2"
           }`}
         >
@@ -48,7 +48,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                 <Link
                   href={item.href}
                   className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
-                    isActive(item.href) ? "bg-white/10 text-gold" : "text-white/75 hover:text-white"
+                    isActive(item.href) ? "bg-white/10 text-brand" : "text-white/75 hover:text-white"
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
                 >
@@ -58,10 +58,10 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             ))}
           </ul>
           <div className="flex items-center gap-2">
-            <a href={phoneHref} className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-gold hover:text-gold sm:flex" aria-label="Call the gym">
+            <a href={phoneHref} className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand sm:flex" aria-label="Call the gym">
               <Phone className="h-4 w-4" />
             </a>
-            <Link href="/contact#trial" className="btn-gold hidden rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
+            <Link href="/contact#trial" className="btn-brand hidden rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
               Free Trial
             </Link>
             <button
@@ -94,14 +94,14 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
               <Link
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`font-display block px-6 py-2 text-3xl ${isActive(item.href) ? "text-gold" : "text-white"}`}
+                className={`font-display block px-6 py-2 text-3xl ${isActive(item.href) ? "text-brand" : "text-white"}`}
               >
                 {item.label}
               </Link>
             </li>
           ))}
           <li className="mt-6">
-            <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-gold rounded-full px-8 py-3 font-bold">
+            <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand rounded-full px-8 py-3 font-bold">
               Book Free Trial
             </Link>
           </li>

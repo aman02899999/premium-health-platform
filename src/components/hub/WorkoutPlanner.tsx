@@ -14,7 +14,7 @@ function Choice<T extends string | number>({ label, value, options, onChange }: 
       <legend className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/55">{label}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
-          <button key={String(o.v)} type="button" onClick={() => onChange(o.v)} aria-pressed={value === o.v} className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-gold text-black" : "border border-white/15 text-white/70 hover:text-white"}`}>
+          <button key={String(o.v)} type="button" onClick={() => onChange(o.v)} aria-pressed={value === o.v} className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
             {o.l}
           </button>
         ))}
@@ -46,13 +46,13 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
-      <div className="glass gold-border h-fit space-y-6 rounded-3xl p-6 lg:sticky lg:top-28 print:hidden">
+      <div className="glass brand-border h-fit space-y-6 rounded-3xl p-6 lg:sticky lg:top-28 print:hidden">
         <Choice label="Goal" value={goal} onChange={(v) => change(() => setGoal(v))} options={GOALS.map((g) => ({ v: g.id, l: g.label }))} />
         <Choice label="Days per week" value={days} onChange={(v) => change(() => setDays(v))} options={[2, 3, 4, 5, 6].map((n) => ({ v: n, l: String(n) }))} />
         <Choice label="Experience" value={level} onChange={(v) => change(() => setLevel(v))} options={[{ v: "beginner", l: "Beginner" }, { v: "intermediate", l: "Intermediate" }, { v: "advanced", l: "Advanced" }]} />
         <Choice label="Where" value={setting} onChange={(v) => change(() => setSetting(v))} options={[{ v: "gym", l: "Gym" }, { v: "home", l: "Home (dumbbells)" }]} />
         <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
-          <button type="button" onClick={() => setSaved(plan)} className="btn-gold inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold">
+          <button type="button" onClick={() => setSaved(plan)} className="btn-brand inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold">
             <Save className="h-4 w-4" /> Save
           </button>
           <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2 text-sm">
@@ -73,7 +73,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
         {plan.map((day, d) => (
           <section key={day.title} className="glass rounded-3xl p-5 print:break-inside-avoid print:border print:border-black print:text-black">
             <h3 className="font-display text-xl text-white print:text-black">{day.title}</h3>
-            <p className="text-xs uppercase tracking-wider text-gold">{day.focus}</p>
+            <p className="text-xs uppercase tracking-wider text-brand">{day.focus}</p>
             <table className="mt-4 w-full text-sm">
               <thead className="text-left text-[11px] uppercase tracking-wider text-white/45">
                 <tr>
@@ -87,7 +87,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
                 {day.items.map((it, i) => (
                   <tr key={it.slug} className="border-t border-white/5">
                     <td className="py-2 pr-2">
-                      <Link href={`/exercises/${it.slug}`} className="text-white hover:text-gold print:text-black">
+                      <Link href={`/exercises/${it.slug}`} className="text-white hover:text-brand print:text-black">
                         {it.name}
                       </Link>
                     </td>

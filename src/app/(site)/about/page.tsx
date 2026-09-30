@@ -46,8 +46,8 @@ export default async function AboutPage() {
             { v: b.rating.count, s: "+", l: "Reviews" },
             { v: c.programs.length, s: "", l: "Programs" },
           ].map((x) => (
-            <div key={x.l} className="glass gold-border rounded-3xl p-6 text-center">
-              <div className="font-display text-4xl text-gold-gradient">
+            <div key={x.l} className="glass brand-border rounded-3xl p-6 text-center">
+              <div className="font-display text-4xl text-brand-gradient">
                 <CountUp value={x.v} suffix={x.s} />
               </div>
               <div className="mt-1 text-xs uppercase tracking-widest text-white/55">{x.l}</div>

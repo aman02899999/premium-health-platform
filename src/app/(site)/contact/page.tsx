@@ -33,9 +33,9 @@ export default async function ContactPage() {
       <section id="trial" className="mx-auto grid max-w-7xl scroll-mt-28 gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_1.1fr]">
         <div className="space-y-4">
           {cards.map((card) => (
-            <a key={card.title} href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="glass flex gap-4 rounded-2xl p-5 hover:ring-1 hover:ring-gold/50">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold/15">
-                <card.icon className="h-6 w-6 text-gold" />
+            <a key={card.title} href={card.href} target={card.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="glass flex gap-4 rounded-2xl p-5 hover:ring-1 hover:ring-brand/50">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/15">
+                <card.icon className="h-6 w-6 text-brand" />
               </span>
               <span>
                 <span className="block text-sm uppercase tracking-widest text-white/50">{card.title}</span>
@@ -45,8 +45,8 @@ export default async function ContactPage() {
             </a>
           ))}
           <div className="glass flex gap-4 rounded-2xl p-5">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gold/15">
-              <Clock className="h-6 w-6 text-gold" />
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand/15">
+              <Clock className="h-6 w-6 text-brand" />
             </span>
             <ul>
               <li className="text-sm uppercase tracking-widest text-white/50">Hours</li>
@@ -62,7 +62,7 @@ export default async function ContactPage() {
             <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-3 font-bold text-white">
               <WhatsAppIcon className="h-5 w-5" /> WhatsApp
             </a>
-            <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-gold">
+            <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-brand">
               <InstagramIcon className="h-5 w-5" /> @{b.instagram}
             </a>
           </div>
@@ -70,7 +70,7 @@ export default async function ContactPage() {
         <LeadForm whatsapp={b.whatsapp} gymName={b.name} source="contact" />
       </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <div className="overflow-hidden rounded-3xl ring-1 ring-gold/30">
+        <div className="overflow-hidden rounded-3xl ring-1 ring-brand/30">
           <iframe
             title={`Map to ${b.name}`}
             src={b.mapEmbedUrl}

@@ -30,11 +30,11 @@ export default function NutritionPage() {
         <NutritionTracker />
         <p className="mt-8 text-center text-sm text-white/60">
           Not sure what your targets are? Use the{" "}
-          <Link href="/tools/macro-calculator" className="text-gold underline">
+          <Link href="/tools/macro-calculator" className="text-brand underline">
             macro calculator
           </Link>{" "}
           or pick a ready-made{" "}
-          <Link href="/diet-plans" className="text-gold underline">
+          <Link href="/diet-plans" className="text-brand underline">
             diet plan
           </Link>
           .

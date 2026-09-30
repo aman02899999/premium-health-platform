@@ -43,7 +43,7 @@ export function FloatingActions({ whatsapp, phone }: { whatsapp: string; phone: 
       {/* Mobile call bar */}
       <a
         href={phone}
-        className="fixed bottom-5 left-4 z-40 flex h-14 items-center gap-2 rounded-full bg-gold px-5 font-bold text-black shadow-xl sm:hidden"
+        className="fixed bottom-5 left-4 z-40 flex h-14 items-center gap-2 rounded-full bg-brand px-5 font-bold text-white shadow-xl sm:hidden"
       >
         <Phone className="h-5 w-5" /> Call now
       </a>

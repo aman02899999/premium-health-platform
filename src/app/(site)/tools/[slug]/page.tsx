@@ -90,8 +90,8 @@ export default async function ToolPage({ params }: Props) {
         <h2 className="font-display mb-6 text-3xl text-white">More calculators</h2>
         <div className="flex flex-wrap gap-3">
           {others.map((o) => (
-            <Link key={o.slug} href={`/tools/${o.slug}`} className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white/80 hover:text-gold">
-              <Icon name={o.icon} className="h-4 w-4 text-gold" /> {o.title.replace(/ \(.*\)$/, "")}
+            <Link key={o.slug} href={`/tools/${o.slug}`} className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-white/80 hover:text-brand">
+              <Icon name={o.icon} className="h-4 w-4 text-brand" /> {o.title.replace(/ \(.*\)$/, "")}
             </Link>
           ))}
         </div>

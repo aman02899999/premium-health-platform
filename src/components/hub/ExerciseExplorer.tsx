@@ -26,13 +26,13 @@ export function ExerciseExplorer() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-      <aside className="glass gold-border h-fit rounded-3xl p-5 lg:sticky lg:top-28">
+      <aside className="glass brand-border h-fit rounded-3xl p-5 lg:sticky lg:top-28">
         <BodyMap selected={muscle} onSelect={setMuscle} />
       </aside>
       <div>
         <div className="mb-4 flex flex-wrap gap-2">
           {[{ id: "all" as const, label: "All muscles" }, ...MUSCLES].map((m) => (
-            <button key={m.id} type="button" onClick={() => setMuscle(m.id)} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold ${muscle === m.id ? "bg-gold text-black" : "border border-white/15 text-white/70 hover:text-white"}`}>
+            <button key={m.id} type="button" onClick={() => setMuscle(m.id)} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold ${muscle === m.id ? "bg-brand text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
               {m.label}
             </button>
           ))}
@@ -59,15 +59,15 @@ export function ExerciseExplorer() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {list.map((e) => (
             <TiltCard key={e.slug} className="group h-full rounded-2xl" max={8}>
-              <Link href={`/exercises/${e.slug}`} className="glass flex h-full flex-col rounded-2xl p-5 hover:ring-1 hover:ring-gold/50">
-                <span className="text-xs font-semibold uppercase tracking-widest text-gold">{muscleLabel(e.primary)}</span>
+              <Link href={`/exercises/${e.slug}`} className="glass flex h-full flex-col rounded-2xl p-5 hover:ring-1 hover:ring-brand/50">
+                <span className="text-xs font-semibold uppercase tracking-widest text-brand">{muscleLabel(e.primary)}</span>
                 <span className="mt-1 text-lg font-bold text-white">{e.name}</span>
                 <span className="mt-2 flex-1 text-sm text-white/60">{e.summary}</span>
                 <span className="mt-4 flex items-center justify-between text-xs">
                   <span className="text-white/50">
                     {equipmentLabel(e.equipment)} · <span className={`capitalize ${LEVEL_COLOR[e.level]}`}>{e.level}</span>
                   </span>
-                  <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 text-brand transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             </TiltCard>

@@ -38,13 +38,13 @@ export default function ToolsPage() {
         {CALCULATORS.map((t, i) => (
           <Reveal key={t.slug} delay={(i % 4) * 70}>
             <TiltCard className="group h-full rounded-3xl" max={12}>
-              <Link href={`/tools/${t.slug}`} className="glass gold-border flex h-full flex-col rounded-3xl p-7">
-                <span className="pop-3d flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-gold/30 to-gold/5 ring-1 ring-gold/40">
-                  <Icon name={t.icon} className="h-7 w-7 text-gold" />
+              <Link href={`/tools/${t.slug}`} className="glass brand-border flex h-full flex-col rounded-3xl p-7">
+                <span className="pop-3d flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/30 to-brand/5 ring-1 ring-brand/40">
+                  <Icon name={t.icon} className="h-7 w-7 text-brand" />
                 </span>
                 <h2 className="mt-5 text-lg font-bold text-white">{t.title}</h2>
                 <p className="mt-2 flex-1 text-sm text-white/60">{t.description}</p>
-                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-gold">
+                <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand">
                   Open calculator <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>

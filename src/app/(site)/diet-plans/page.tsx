@@ -29,17 +29,17 @@ export default function DietPlansPage() {
           return (
             <Reveal key={p.slug} delay={(i % 2) * 90}>
               <TiltCard className="group h-full rounded-3xl" max={7}>
-                <Link href={`/diet-plans/${p.slug}`} className="glass gold-border flex h-full flex-col rounded-3xl p-7">
+                <Link href={`/diet-plans/${p.slug}`} className="glass brand-border flex h-full flex-col rounded-3xl p-7">
                   <span className="flex gap-2 text-xs font-bold uppercase tracking-widest">
                     <span className={p.goal === "fat-loss" ? "text-red-300" : "text-emerald-300"}>{p.goal === "fat-loss" ? "Fat loss" : "Muscle gain"}</span>
                     <span className="text-white/40">·</span>
-                    <span className="text-gold">{p.diet === "veg" ? "Vegetarian" : "Non-veg"}</span>
+                    <span className="text-brand">{p.diet === "veg" ? "Vegetarian" : "Non-veg"}</span>
                   </span>
                   <h2 className="font-display mt-3 text-3xl text-white">{p.title}</h2>
                   <p className="mt-2 flex-1 text-white/65">{p.summary}</p>
                   <div className="pop-3d mt-6 grid grid-cols-3 gap-3 text-center">
                     <div className="rounded-xl bg-black/30 py-3">
-                      <div className="font-display text-2xl text-gold-gradient">{t.kcal}</div>
+                      <div className="font-display text-2xl text-brand-gradient">{t.kcal}</div>
                       <div className="text-[11px] text-white/50">kcal</div>
                     </div>
                     <div className="rounded-xl bg-black/30 py-3">
@@ -51,7 +51,7 @@ export default function DietPlansPage() {
                       <div className="text-[11px] text-white/50">meals</div>
                     </div>
                   </div>
-                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-gold">
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand">
                     View full plan <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
