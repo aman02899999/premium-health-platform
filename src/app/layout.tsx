@@ -36,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: { card: "summary_large_image", title: c.seo.title, description: c.seo.description },
     robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
     alternates: { canonical: SITE_URL },
-    icons: { icon: [{ url: "/logo.svg", type: "image/svg+xml" }, { url: "/icon-192.png", type: "image/png" }], apple: "/apple-icon.png" },
+    icons: { icon: [{ url: "/brand/favicon-48.png", type: "image/png", sizes: "48x48" }, { url: "/icon-192.png", type: "image/png", sizes: "192x192" }], apple: "/apple-icon.png" },
     manifest: "/manifest.webmanifest",
     verification: { google: c.seo.googleVerification || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined },
     other: {

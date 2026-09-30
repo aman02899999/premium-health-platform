@@ -1,17 +1,12 @@
-export function CrownMark({ className = "h-9 w-9" }: { className?: string }) {
+import Image from "next/image";
+
+// The owner's logo is navy/red on white, so on the dark site it sits on a
+// white badge to keep its colours readable.
+export function BrandMark({ className = "h-10" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="rfc-g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f7e3a1" />
-          <stop offset=".5" stopColor="#d4a94a" />
-          <stop offset="1" stopColor="#9c6f1e" />
-        </linearGradient>
-      </defs>
-      <rect x="1" y="1" width="46" height="46" rx="12" fill="#0b0b0f" stroke="url(#rfc-g)" strokeWidth="2" />
-      <path d="M10 32 8 15l9 8 7-11 7 11 9-8-2 17Z" fill="url(#rfc-g)" />
-      <rect x="10" y="34" width="28" height="4" rx="2" fill="url(#rfc-g)" />
-    </svg>
+    <span className={`inline-flex shrink-0 items-center justify-center rounded-xl bg-white px-1.5 py-1 shadow-[0_0_24px_-6px_rgba(212,169,74,.55)] ring-1 ring-gold/50 ${className}`}>
+      <Image src="/brand/logo-mark.png" alt="" width={352} height={160} className="h-full w-auto" priority />
+    </span>
   );
 }
 
@@ -19,11 +14,19 @@ export function Logo({ name, compact = false }: { name: string; compact?: boolea
   const [first, ...rest] = name.split(" ");
   return (
     <span className="flex items-center gap-2.5">
-      <CrownMark />
+      <BrandMark className="h-11" />
       <span className="leading-none">
         <span className="font-display block text-xl tracking-wider text-white">{first}</span>
         {!compact && <span className="block text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">{rest.join(" ")}</span>}
       </span>
+    </span>
+  );
+}
+
+export function FullLogo({ name, className = "w-48" }: { name: string; className?: string }) {
+  return (
+    <span className={`block overflow-hidden rounded-2xl bg-white p-3 ring-1 ring-gold/40 ${className}`}>
+      <Image src="/brand/logo-full.png" alt={`${name}, Sector 93 Noida logo`} width={640} height={572} className="h-auto w-full" />
     </span>
   );
 }

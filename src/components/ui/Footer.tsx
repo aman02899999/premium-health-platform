@@ -4,7 +4,7 @@ import type { SiteContent } from "@/lib/content/types";
 import { HUB } from "@/lib/hub";
 import { FOOTER_LINKS, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { InstagramIcon, WhatsAppIcon } from "./BrandIcons";
-import { Logo } from "./Logo";
+import { FullLogo } from "./Logo";
 
 export function Footer({ content }: { content: SiteContent }) {
   const b = content.business;
@@ -13,7 +13,7 @@ export function Footer({ content }: { content: SiteContent }) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo name={b.name} />
+          <FullLogo name={b.name} className="w-40" />
           <p className="mt-5 text-sm leading-relaxed text-white/60">{b.description}</p>
           <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
             <Star className="h-4 w-4 fill-gold text-gold" />

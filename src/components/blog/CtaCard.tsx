@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Phone } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
-import { CrownMark } from "@/components/ui/Logo";
+import { BrandMark } from "@/components/ui/Logo";
 
 export function CtaCard({ whatsapp, phone }: { whatsapp: string; phone: string }) {
   return (
     <aside className="not-prose relative my-10 overflow-hidden rounded-3xl bg-gradient-to-br from-[#2a2010] via-coal to-ink p-7 ring-1 ring-gold/40">
       <div className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-gold/20 blur-3xl" />
       <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
-        <CrownMark className="float-slow h-14 w-14 shrink-0" />
+        <BrandMark className="float-slow h-14" />
         <div className="flex-1">
           <p className="font-display text-2xl text-white">Train with us in Sector 93, Noida</p>
           <p className="mt-1 text-white/65">Your first session is free. Certified trainers, full AC floor, real results.</p>
