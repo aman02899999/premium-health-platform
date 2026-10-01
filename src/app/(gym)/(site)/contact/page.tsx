@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Navigation, Phone } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
-import { formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
+import { AREAS_SERVED, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { LeadForm } from "@/components/home/LeadForm";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -78,6 +78,27 @@ export default async function ContactPage() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
+        </div>
+        <div className="glass mt-6 flex flex-col gap-5 rounded-3xl p-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="font-display text-2xl text-white">Your neighbourhood gym</h2>
+            <p className="mt-1 text-sm text-white/60">A short ride or walk for members living in and around:</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {AREAS_SERVED.map((area) => (
+                <li key={area} className="rounded-full bg-white/5 px-3 py-1 text-sm text-white/80 ring-1 ring-white/10">
+                  {area}, Noida
+                </li>
+              ))}
+            </ul>
+          </div>
+          <a
+            href={b.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-bold text-white"
+          >
+            <Navigation className="h-4 w-4" /> Get directions
+          </a>
         </div>
       </section>
     </>
