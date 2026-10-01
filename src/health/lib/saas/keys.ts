@@ -9,7 +9,7 @@
  *    verification does not leak information through timing.
  *  - Revocation is a status flag, never a delete, so usage history stays coherent.
  *
- * Backend: Postgres via Drizzle when DATABASE_URL is configured, otherwise an
+ * Backend: Postgres via Drizzle when POSTGRES_URL or DATABASE_URL is configured, otherwise an
  * in-memory store so the whole flow stays demoable in dev (the same
  * gracefull-fallback pattern used by src/lib/monetization/storage.ts).
  */

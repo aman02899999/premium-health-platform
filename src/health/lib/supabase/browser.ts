@@ -3,6 +3,7 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "./config";
+import { startGoogleOAuth } from "@/lib/supabase/oauth";
 
 let client: SupabaseClient | null = null;
 
@@ -13,11 +14,9 @@ export function getBrowserClient(): SupabaseClient | null {
   return client;
 }
 
-export async function signInWithGoogle(next = "/health/profile") {
+/** Resolves with an error message to show, or null once the browser is on its way to Google. */
+export async function signInWithGoogle(next = "/health/profile"): Promise<string | null> {
   const supabase = getBrowserClient();
-  if (!supabase) return;
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` },
-  });
+  if (!supabase) return "Sign-in is not configured on this site yet.";
+  return startGoogleOAuth(supabase, `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`);
 }

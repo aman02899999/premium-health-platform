@@ -19,7 +19,8 @@ type AuthContextType = {
   isPremium: boolean;
   /** False when Supabase env vars are missing (local dev): sign-in is unavailable. */
   available: boolean;
-  signInWithGoogle: (next?: string) => Promise<void>;
+  /** Resolves with an error message, or null once the browser is heading to Google. */
+  signInWithGoogle: (next?: string) => Promise<string | null>;
   /** Sends a magic link; resolves with an error message or null on success. */
   signInWithEmail: (email: string, next?: string) => Promise<string | null>;
   signOut: () => Promise<void>;
@@ -34,7 +35,7 @@ const AuthContext = createContext<AuthContextType>({
   loading: true,
   isPremium: false,
   available: false,
-  signInWithGoogle: async () => {},
+  signInWithGoogle: async () => null,
   signInWithEmail: async () => null,
   signOut: async () => {},
   refresh: async () => {},
@@ -82,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signInWithGoogle = useCallback(async (next = "/health/profile") => {
     track("Google");
-    await startGoogle(next);
+    return startGoogle(next);
   }, []);
 
   const signInWithEmail = useCallback(async (email: string, next = "/health/profile") => {

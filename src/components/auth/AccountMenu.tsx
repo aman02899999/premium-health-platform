@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { LayoutDashboard, LogOut, UserRound } from "lucide-react";
-import { getBrowserClient, signInWithGoogle } from "@/lib/supabase/browser";
+import { getBrowserClient } from "@/lib/supabase/browser";
 
 /** Header sign-in button / avatar menu. Renders nothing when Supabase isn't configured. */
 export function AccountMenu() {
@@ -39,13 +39,12 @@ export function AccountMenu() {
 
   if (!user) {
     return (
-      <button
-        type="button"
-        onClick={() => signInWithGoogle(pathname === "/" ? "/account" : pathname)}
+      <Link
+        href={pathname === "/" || pathname === "/account" ? "/account" : `/account?next=${encodeURIComponent(pathname)}`}
         className="hidden h-10 items-center gap-2 rounded-full border border-white/15 px-4 text-sm font-semibold text-white/85 hover:border-sky hover:text-white md:flex"
       >
         <UserRound className="h-4 w-4" /> Sign in
-      </button>
+      </Link>
     );
   }
 

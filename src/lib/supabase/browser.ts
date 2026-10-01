@@ -3,6 +3,7 @@
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "./config";
+import { startGoogleOAuth } from "./oauth";
 
 let client: SupabaseClient | null = null;
 
@@ -13,11 +14,20 @@ export function getBrowserClient(): SupabaseClient | null {
   return client;
 }
 
-export async function signInWithGoogle(next = "/account") {
+/** Resolves with an error message to show, or null once the browser is on its way to Google. */
+export async function signInWithGoogle(next = "/account"): Promise<string | null> {
   const supabase = getBrowserClient();
-  if (!supabase) return;
-  await supabase.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` },
+  if (!supabase) return "Sign-in isn't switched on for this site yet.";
+  return startGoogleOAuth(supabase, `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`);
+}
+
+/** Emails a one-time sign-in link; resolves with an error message or null on success. */
+export async function signInWithEmail(email: string, next = "/account"): Promise<string | null> {
+  const supabase = getBrowserClient();
+  if (!supabase) return "Sign-in isn't switched on for this site yet.";
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` },
   });
+  return error ? error.message : null;
 }

@@ -12,6 +12,7 @@ function request(headers: Record<string, string> = {}, url = "https://bharatheal
 
 beforeEach(() => {
   delete process.env.DATABASE_URL;
+  delete process.env.POSTGRES_URL;
   __resetMemoryKeyStore();
   __resetMemoryUsage();
 });

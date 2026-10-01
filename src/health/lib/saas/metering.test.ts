@@ -16,6 +16,7 @@ const enterprise = getPlan("enterprise");
 
 beforeEach(() => {
   delete process.env.DATABASE_URL;
+  delete process.env.POSTGRES_URL;
   __resetMemoryUsage();
 });
 

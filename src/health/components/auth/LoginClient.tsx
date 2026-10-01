@@ -64,7 +64,12 @@ export function LoginClient() {
       )}
 
       <button
-        onClick={() => { setBusy(true); void signInWithGoogle(next); }}
+        onClick={async () => {
+          setBusy(true);
+          setError("");
+          const err = await signInWithGoogle(next);
+          if (err) { setError(err); setBusy(false); }
+        }}
         disabled={busy || !available}
         className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-stone-200 bg-white px-5 py-3 text-sm font-bold shadow-sm hover:bg-stone-50 disabled:opacity-50 dark:border-stone-700 dark:bg-stone-800"
       >

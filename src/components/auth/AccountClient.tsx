@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import { Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
 import { getBrowserClient } from "@/lib/supabase/browser";
-import { GoogleSignIn, SignOutButton } from "./AuthButtons";
+import { SignInOptions, SignOutButton } from "./AuthButtons";
 
 const ITEMS = [
   { key: "rfc-plan", label: "Saved workout plan", href: "/workout-planner", icon: Dumbbell },
@@ -55,7 +55,7 @@ export function AccountClient() {
       <div className="glass brand-border mx-auto max-w-md space-y-5 rounded-3xl p-8 text-center">
         {params.get("error") && <p className="rounded-xl bg-ember/15 p-3 text-sm text-red-200">Sign-in didn&apos;t complete. Please try again.</p>}
         <p className="text-white/75">Free for everyone — no password to remember. We only use your name and email to identify your account.</p>
-        <GoogleSignIn next="/account" />
+        <SignInOptions next={params.get("next") ?? "/account"} />
         <p className="text-xs text-white/45">
           By continuing you agree to our <Link href="/terms" className="underline">terms</Link> and <Link href="/privacy" className="underline">privacy policy</Link>.
         </p>

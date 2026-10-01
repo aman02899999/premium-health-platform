@@ -508,3 +508,11 @@ html[data-portal="show"] body {
     animation: none;
   }
 }
+
+/* Grid items default to min-width:auto, so a wide child (a scrollable table)
+   stretches its column past the phone screen. Let columns shrink instead. */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}

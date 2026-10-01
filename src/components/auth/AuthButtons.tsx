@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, LogOut } from "lucide-react";
-import { getBrowserClient, signInWithGoogle } from "@/lib/supabase/browser";
+import { CheckCircle2, Loader2, LogOut, Mail } from "lucide-react";
+import { getBrowserClient, signInWithEmail, signInWithGoogle } from "@/lib/supabase/browser";
 
 export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -17,18 +17,103 @@ export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
 
 export function GoogleSignIn({ next, label = "Continue with Google", className = "" }: { next: string; label?: string; className?: string }) {
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
   return (
-    <button
-      type="button"
-      disabled={busy}
-      onClick={async () => {
-        setBusy(true);
-        await signInWithGoogle(next);
+    <div className="space-y-2">
+      <button
+        type="button"
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          setError("");
+          const err = await signInWithGoogle(next);
+          if (err) {
+            setError(err);
+            setBusy(false);
+          }
+        }}
+        className={`flex w-full items-center justify-center gap-3 rounded-full bg-white px-5 py-3 font-semibold text-[#1f1f1f] shadow-lg transition-transform hover:-translate-y-0.5 disabled:opacity-70 ${className}`}
+      >
+        {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <GoogleIcon />} {label}
+      </button>
+      {error && (
+        <p role="alert" className="text-sm text-red-200">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** One-time sign-in link by email: works even when Google sign-in is switched off. */
+export function EmailSignIn({ next }: { next: string }) {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<"idle" | "busy" | "sent">("idle");
+  const [error, setError] = useState("");
+
+  if (state === "sent") {
+    return (
+      <p className="flex items-start gap-2 rounded-2xl bg-sky/10 p-4 text-left text-sm text-white/85">
+        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sky" /> Check {email} — we sent you a sign-in link.
+      </p>
+    );
+  }
+  return (
+    <form
+      className="space-y-3 text-left"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setState("busy");
+        setError("");
+        const err = await signInWithEmail(email, next);
+        if (err) {
+          setError(err);
+          setState("idle");
+        } else setState("sent");
       }}
-      className={`flex w-full items-center justify-center gap-3 rounded-full bg-white px-5 py-3 font-semibold text-[#1f1f1f] shadow-lg transition-transform hover:-translate-y-0.5 disabled:opacity-70 ${className}`}
     >
-      {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <GoogleIcon />} {label}
-    </button>
+      <label htmlFor="signin-email" className="sr-only">
+        Email
+      </label>
+      <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 focus-within:border-sky">
+        <Mail className="h-4 w-4 shrink-0 text-white/50" />
+        <input
+          id="signin-email"
+          type="email"
+          required
+          autoComplete="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@example.com"
+          className="w-full bg-transparent text-white outline-none placeholder:text-white/35"
+        />
+      </div>
+      <button
+        type="submit"
+        disabled={state === "busy" || !email}
+        className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white transition-colors hover:border-sky disabled:opacity-60"
+      >
+        {state === "busy" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />} Email me a sign-in link
+      </button>
+      {error && (
+        <p role="alert" className="text-sm text-red-200">
+          {error}
+        </p>
+      )}
+    </form>
+  );
+}
+
+/** Google button, an "or" divider, then the email link form. */
+export function SignInOptions({ next, googleLabel }: { next: string; googleLabel?: string }) {
+  return (
+    <div className="space-y-4">
+      <GoogleSignIn next={next} label={googleLabel} />
+      <div className="flex items-center gap-3 text-xs uppercase tracking-widest text-white/35">
+        <span className="h-px flex-1 bg-white/10" /> or <span className="h-px flex-1 bg-white/10" />
+      </div>
+      <EmailSignIn next={next} />
+    </div>
   );
 }
 

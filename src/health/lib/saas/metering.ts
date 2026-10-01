@@ -6,7 +6,7 @@
  * best-effort by design — a multi-instance deployment can momentarily exceed
  * them by a factor of the instance count, which is the documented behaviour).
  *
- * Backend: Postgres when DATABASE_URL is set, otherwise memory — so keys,
+ * Backend: Postgres when POSTGRES_URL or DATABASE_URL is set, otherwise memory — so keys,
  * quotas and the dashboard all work in development without a database.
  */
 

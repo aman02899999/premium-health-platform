@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AccountPage() {
   return (
     <>
-      <PageHero eyebrow="Members" title="My" highlight="account" intro="Sign in with Google to keep your workout plan, food log and progress in sync on every device." />
+      <PageHero eyebrow="Members" title="My" highlight="account" intro="Sign in with Google or an email link to keep your workout plan, food log and progress in sync on every device." />
       <section className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
         <Suspense>
           <AccountClient />

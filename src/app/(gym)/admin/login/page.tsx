@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import { adminPassword, currentUser, isAdmin, usingDevPassword } from "@/lib/auth";
 import { supabaseConfigured } from "@/lib/supabase/config";
 import { LoginForm } from "@/components/admin/LoginForm";
-import { GoogleSignIn, SignOutButton } from "@/components/auth/AuthButtons";
+import { SignInOptions, SignOutButton } from "@/components/auth/AuthButtons";
 import { BrandMark } from "@/components/ui/Logo";
 
 export const dynamic = "force-dynamic";
@@ -25,12 +25,12 @@ export default async function LoginPage() {
                 <strong className="block text-white">{user.email}</strong>
                 is signed in but isn&apos;t an admin of this site.
               </p>
-              <SignOutButton next="/admin/login" label="Use a different Google account" />
+              <SignOutButton next="/admin/login" label="Use a different account" />
             </div>
           ) : (
             <div className="mt-6 space-y-3">
-              <GoogleSignIn next="/admin" label="Sign in with Google" />
-              <p className="text-center text-xs text-white/45">Only Google accounts on the admin list can edit the site.</p>
+              <SignInOptions next="/admin" googleLabel="Sign in with Google" />
+              <p className="text-center text-xs text-white/45">Only accounts on the admin list can edit the site.</p>
             </div>
           )
         ) : !adminPassword() ? (

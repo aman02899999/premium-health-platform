@@ -12,7 +12,7 @@
  *    — see paymentAttestation() and AUDIT.md.
  *  - Cancellation returns keys to Free rather than leaving paid quota behind.
  *
- * Backend: Postgres via Drizzle when DATABASE_URL is set, otherwise an in-memory
+ * Backend: Postgres via Drizzle when POSTGRES_URL or DATABASE_URL is set, otherwise an in-memory
  * store, matching src/lib/saas/keys.ts and src/lib/monetization/storage.ts.
  */
 

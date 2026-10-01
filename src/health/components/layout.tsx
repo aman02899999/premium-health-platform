@@ -126,7 +126,7 @@ function AuthMenu() {
     return (
       <div className="flex items-center gap-1">
         <Link href="/health/login" className="hidden rounded-xl border border-stone-200 px-3 py-2 text-[13px] font-bold hover:bg-stone-50 sm:flex dark:border-stone-700">Login</Link>
-        <Link href="/health/register" className="rounded-xl bg-stone-900 px-3 py-2 text-[13px] font-bold text-white hover:bg-stone-800 dark:bg-white dark:text-stone-900">Sign up</Link>
+        <Link href="/health/register" className="whitespace-nowrap rounded-xl bg-stone-900 px-3 py-2 text-[13px] font-bold text-white hover:bg-stone-800 dark:bg-white dark:text-stone-900">Sign up</Link>
       </div>
     );
   }
