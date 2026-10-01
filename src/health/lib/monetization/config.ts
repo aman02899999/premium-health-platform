@@ -1,4 +1,5 @@
 import { DEFAULT_OG_IMAGE } from "@/health/lib/images";
+
 import type {
   AffiliateProduct,
   DigitalProduct,
@@ -11,6 +12,13 @@ import type {
   Coupon,
   PremiumReport,
 } from "./types";
+
+// Amazon Associates tag: set NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG (e.g. "yourtag-21")
+// to earn commission. Without it the links are plain Amazon searches.
+const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG || "";
+function withAmazonTag(url: string): string {
+  return AMAZON_TAG ? `${url}&tag=${encodeURIComponent(AMAZON_TAG)}` : url;
+}
 
 const now = new Date().toISOString();
 const weekFromNow = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
@@ -30,7 +38,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 1999,
     originalPrice: 2499,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=digital+glucometer+with+50+strips&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=digital+glucometer+with+50+strips"),
     purchaseUrl: "#",
     active: true,
     featured: true,
@@ -57,7 +65,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 2999,
     originalPrice: 3999,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=upper+arm+blood+pressure+monitor&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=upper+arm+blood+pressure+monitor"),
     active: true,
     featured: true,
     priority: 90,
@@ -81,7 +89,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 599,
     originalPrice: 799,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=millet+combo+foxtail+barnyard+ragi&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=millet+combo+foxtail+barnyard+ragi"),
     active: true,
     featured: true,
     priority: 85,
@@ -105,7 +113,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 1299,
     originalPrice: 1799,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=anti+skid+yoga+mat+6mm&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=anti+skid+yoga+mat+6mm"),
     active: true,
     featured: true,
     priority: 80,
@@ -129,7 +137,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 3499,
     originalPrice: 4499,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=whey+protein+1kg&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=whey+protein+1kg"),
     active: true,
     featured: false,
     priority: 75,
@@ -153,7 +161,7 @@ export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
     price: 1199,
     originalPrice: 1399,
     currency: "INR",
-    affiliateUrl: "https://www.amazon.in/s?k=cold+pressed+mustard+oil+5+litre&tag=bharathealthguide-21",
+    affiliateUrl: withAmazonTag("https://www.amazon.in/s?k=cold+pressed+mustard+oil+5+litre"),
     active: true,
     featured: false,
     priority: 60,

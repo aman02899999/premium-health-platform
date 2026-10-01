@@ -83,12 +83,7 @@ export function organizationJsonLd() {
     url: `${SITE.url}/health`,
     slogan: SITE.tagline,
     logo: absoluteUrl("/health/logo.svg"),
-    sameAs: [
-      // Add real social profiles when available — placeholders for SEO
-      "https://twitter.com/bharathealthguide",
-      "https://www.instagram.com/bharathealthguide",
-      "https://www.youtube.com/@bharathealthguide",
-    ],
+    sameAs: ["https://www.instagram.com/royalfitness93_/"],
   };
 }
 

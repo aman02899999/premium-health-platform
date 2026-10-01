@@ -26,7 +26,7 @@ export default function MyPurchasesPage() {
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Store", item: "/health/store" }, { name: "My Purchases", item: "/health/my-purchases" }]}
         faqs={[
           { q: "How to download my purchase?", a: "After payment verified server-side, you get download token via /api/monetization/checkout/verify — token expiring 72h, limit 3. Use /download/[token] to get secure link. Private PDF URLs never public. Check /orders for order status." },
-          { q: "What if download expired?", a: "Token expires after 72h or 3 downloads — request new token via support care@bharathealthguide.in with order ID. In producti." },
+          { q: "What if download expired?", a: "Token expires after 72h or 3 downloads — request a new link through the contact page (/health/contact) with your order ID. In producti." },
         ]}
         howTo={{ name: "How to access purchases", steps: ["Complete purchase via /store/[slug]", "Verify payment via /api/monetization/checkout/verify — server-side", "Get download token + URL /download/[token] — expiring 72h", "Download PDF — private URL, secure, not public"] }}
       />

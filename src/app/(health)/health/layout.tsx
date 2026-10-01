@@ -10,6 +10,7 @@ import { LiveTicker } from "@/health/components/live";
 import { Analytics } from "@/health/components/marketing/Analytics";
 import { ExitIntent, StickyCTA } from "@/health/components/marketing/ExitIntent";
 import { NewsletterPopup } from "@/health/components/marketing/NewsletterPopup";
+import { ADSENSE_SRC } from "@/lib/adsense";
 import { organizationJsonLd, websiteJsonLd } from "@/health/lib/seo";
 
 export const viewport: Viewport = {
@@ -64,6 +65,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
+        <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font -- root layout of the /health site, fonts are global to it */}

@@ -39,6 +39,13 @@ export default async function PrivacyPage() {
         </p>
         <h2>Third-party services</h2>
         <p>Our contact page embeds Google Maps, and links go to Instagram and WhatsApp. Those services have their own privacy policies.</p>
+        <h2>Advertising</h2>
+        <p>
+          This site shows ads served by Google AdSense. Google and its partners use cookies to show ads based on your visits to this and other
+          websites. You can turn off personalised ads in{" "}
+          <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>, and learn more in{" "}
+          <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">how Google uses data from sites that use its services</a>.
+        </p>
       </section>
     </>
   );

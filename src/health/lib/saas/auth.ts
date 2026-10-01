@@ -203,7 +203,7 @@ export function apiSuccess(
           remainingToday: auth.usage.unlimited ? "unlimited" : auth.usage.remaining,
           resetsAt: auth.usage.resetAt,
         },
-        attribution: auth.plan.attributionRequired ? "Data by Bharat Health Guide (https://bharathealthguide.in)" : undefined,
+        attribution: auth.plan.attributionRequired ? `Data by ${SITE.name} (${SITE.url}/health)` : undefined,
         generatedAt: new Date().toISOString(),
       },
       data,

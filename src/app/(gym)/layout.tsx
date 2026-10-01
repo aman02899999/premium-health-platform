@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
+import { ADSENSE_SRC } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 
 export const viewport: Viewport = {
@@ -53,6 +54,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en-IN" style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
       <head>
+        {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
+        <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font -- single root layout, fonts are global */}

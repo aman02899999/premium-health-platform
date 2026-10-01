@@ -113,7 +113,7 @@ export default async function StoreSlugPage({ params }: Props) {
           <LatestArticles limit={4} />
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-800 dark:bg-amber-950/30">
             <h3 className="text-sm font-bold">Refund Policy — Digital Products</h3>
-            <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Due to instant delivery, refunds only if file defective or duplicate purchase within 24h. Contact care@bharathealthguide.in with order ID. Privacy: minimal data, no raw card storage, secure file access.</p>
+            <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Due to instant delivery, refunds only if file defective or duplicate purchase within 24h. Contact us via /health/contact with your order ID. Privacy: minimal data, no raw card storage, secure file access.</p>
           </div>
         </div>
       </div>

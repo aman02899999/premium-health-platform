@@ -40,8 +40,8 @@ export class OpenAlexProvider extends BaseHealthProvider<MedicalArticle> {
 
   /** A polite contact address is requested by OpenAlex; never required. */
   private get contactParam(): string {
-    const email = process.env.CONTACT_EMAIL || "hello@bharathealthguide.in";
-    return `mailto=${encodeURIComponent(email)}`;
+    const email = process.env.CONTACT_EMAIL;
+    return email ? `mailto=${encodeURIComponent(email)}` : "";
   }
 
   async search(params: SearchParams): Promise<PaginatedResult<MedicalArticle>> {

@@ -209,13 +209,9 @@ export function Newsletter({ compact }: { compact?: boolean }) {
 }
 
 // ---------- Ad slot ----------
-export function AdSlot({ slot, className }: { slot: string; className?: string }) {
-  return (
-    <div className={cn("rounded-2xl border border-dashed border-stone-300 bg-stone-50 p-4 text-center dark:border-stone-700 dark:bg-stone-900/60", className)} role="complementary" aria-label={`Advertisement placeholder: ${slot}`}>
-      <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">Advertisement · {slot}</p>
-      <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">Ad-ready location. Editorial content is never influenced by advertisers.</p>
-    </div>
-  );
+// Placeholder slot — renders nothing now that AdSense Auto ads place real ads.
+export function AdSlot(_: { slot: string; className?: string }) {
+  return null;
 }
 
 // ---------- Generic cards ----------
