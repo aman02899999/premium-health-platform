@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { verifyWebhookSignature } from "@/lib/payments/razorpay";
 import { markFailed, markPaid } from "@/lib/payments/orders";
+import { markBookFailed, markBookPaid } from "@/lib/library/orders";
 
 export const dynamic = "force-dynamic";
 
 // Razorpay → Webhooks: https://<your-site>/api/webhooks/razorpay, events
 // payment.captured and payment.failed. Records payments even when the buyer
-// closes the tab before the browser reaches /api/membership/verify.
+// closes the tab before the browser reaches /api/membership/verify or /api/library/verify.
 export async function POST(req: Request) {
   const raw = await req.text();
   if (!verifyWebhookSignature(raw, req.headers.get("x-razorpay-signature"))) {
@@ -16,8 +17,14 @@ export async function POST(req: Request) {
   const payment = event.payload?.payment?.entity;
   if (!payment?.order_id || !payment.id) return NextResponse.json({ ok: true });
   try {
-    if (event.event === "payment.captured") await markPaid(payment.order_id, payment.id);
-    else if (event.event === "payment.failed") await markFailed(payment.order_id);
+    // The order id belongs to either a membership or a book order; each update is a no-op for the other table.
+    if (event.event === "payment.captured") {
+      await markPaid(payment.order_id, payment.id);
+      await markBookPaid(payment.order_id, payment.id);
+    } else if (event.event === "payment.failed") {
+      await markFailed(payment.order_id);
+      await markBookFailed(payment.order_id);
+    }
   } catch (err) {
     console.error("[razorpay webhook] update failed:", (err as Error).message);
     return NextResponse.json({ error: "Temporary failure" }, { status: 500 }); // Razorpay retries

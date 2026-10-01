@@ -9,6 +9,7 @@ export const NAV = [
   { href: "/health-hub", label: "Health Hub" },
   { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
+  { href: "/library", label: "Library" },
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ] as const;
