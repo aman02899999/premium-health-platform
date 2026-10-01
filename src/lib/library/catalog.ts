@@ -5,6 +5,16 @@
 /** Public cover image for a volume (covers are marketing images; the PDFs are private). */
 export const coverSrc = (volume: number) => `/library/covers/vol-${String(volume).padStart(2, "0")}.webp`;
 
+/** Price tiers by a book's depth and audience: professional manuals at the top, short focused guides at the bottom. */
+export const TIERS = {
+  professional: { label: "Professional", price: 899 },
+  flagship: { label: "Flagship", price: 699 },
+  signature: { label: "Signature", price: 549 },
+  core: { label: "Core", price: 449 },
+  essential: { label: "Essential", price: 349 },
+} as const;
+export type Tier = keyof typeof TIERS;
+
 export type Book = {
   volume: number;
   slug: string;
@@ -13,6 +23,8 @@ export type Book = {
   category: string;
   label: string;
   benefits: string[];
+  /** Value tier — sets the price (see TIERS). */
+  tier: Tier;
   /** Price in rupees. */
   price: number;
   pages: number;
@@ -46,7 +58,8 @@ export const BOOKS: Book[] = [
       "A complete 12-week programme in 3 phases",
       "Build habits that outlast motivation",
     ],
-    price: 499,
+    tier: "flagship",
+    price: 699,
     pages: 74,
     chapters: [
       "Why Strength Comes First",
@@ -78,7 +91,8 @@ export const BOOKS: Book[] = [
       "Volume, effort and frequency that work",
       "Ready-to-run programmes for every level",
     ],
-    price: 599,
+    tier: "flagship",
+    price: 699,
     pages: 62,
     chapters: [
       "How Muscle Grows",
@@ -117,7 +131,8 @@ export const BOOKS: Book[] = [
       "Protect muscle while the scale drops",
       "Keep the weight off for good",
     ],
-    price: 599,
+    tier: "flagship",
+    price: 699,
     pages: 60,
     chapters: [
       "What Fat Loss Really Is",
@@ -156,7 +171,8 @@ export const BOOKS: Book[] = [
       "Periodised plans to add real kilos",
       "Your first meet, step by step",
     ],
-    price: 599,
+    tier: "signature",
+    price: 549,
     pages: 58,
     chapters: [
       "What Powerlifting Is",
@@ -195,7 +211,8 @@ export const BOOKS: Book[] = [
       "Progressions using minimal equipment",
       "Workouts that fit a busy day",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 54,
     chapters: [
       "Why Home Training Works",
@@ -234,7 +251,8 @@ export const BOOKS: Book[] = [
       "Plans built around real women's lives",
       "Confidence on the gym floor from day one",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 57,
     chapters: [
       "Why Strength Matters for Women",
@@ -275,7 +293,8 @@ export const BOOKS: Book[] = [
       "Train hard while protecting joints",
       "Stay strong, mobile and independent",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 55,
     chapters: [
       "The Case for Lifting After Forty",
@@ -316,7 +335,8 @@ export const BOOKS: Book[] = [
       "Daily routines that prevent injury",
       "Train longer with fewer setbacks",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 57,
     chapters: [
       "Mobility, Flexibility and Stability",
@@ -357,7 +377,8 @@ export const BOOKS: Book[] = [
       "Zone 2, intervals and smart cardio",
       "A fitter heart for life",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 65,
     chapters: [
       "Why Lifters Need Conditioning",
@@ -400,7 +421,8 @@ export const BOOKS: Book[] = [
       "Clear skill progressions for every level",
       "Strength you can take anywhere",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 55,
     chapters: [
       "The Calisthenics Philosophy",
@@ -440,7 +462,8 @@ export const BOOKS: Book[] = [
       "Deloads and recovery done right",
       "Train harder by recovering smarter",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 54,
     chapters: [
       "Why Recovery Is Training",
@@ -479,7 +502,8 @@ export const BOOKS: Book[] = [
       "Periodisation made simple",
       "Templates for every type of client",
     ],
-    price: 799,
+    tier: "professional",
+    price: 899,
     pages: 56,
     chapters: [
       "The Coach's Job",
@@ -520,7 +544,8 @@ export const BOOKS: Book[] = [
       "Balanced thalis for every goal",
       "No fads — just Indian food done right",
     ],
-    price: 499,
+    tier: "flagship",
+    price: 699,
     pages: 55,
     chapters: [
       "Why Indian Food Works for Fitness",
@@ -561,7 +586,8 @@ export const BOOKS: Book[] = [
       "Vegetarian and non-veg made easy",
       "Clear answers to every protein myth",
     ],
-    price: 399,
+    tier: "signature",
+    price: 549,
     pages: 55,
     chapters: [
       "What Protein Does",
@@ -602,7 +628,8 @@ export const BOOKS: Book[] = [
       "Save money on useless products",
       "Spot fakes and risky formulas",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 53,
     chapters: [
       "The Supplement Market",
@@ -643,7 +670,8 @@ export const BOOKS: Book[] = [
       "Practical Indian meal ideas",
       "Work with your doctor, not against them",
     ],
-    price: 499,
+    tier: "signature",
+    price: 549,
     pages: 55,
     chapters: [
       "Hormones in Plain Language",
@@ -682,7 +710,8 @@ export const BOOKS: Book[] = [
       "Eat more without feeling stuffed",
       "Know exactly when to stop bulking",
     ],
-    price: 399,
+    tier: "signature",
+    price: 549,
     pages: 59,
     chapters: [
       "What a Lean Bulk Is",
@@ -724,6 +753,7 @@ export const BOOKS: Book[] = [
       "Twelve rotating menus, zero boredom",
       "Office-friendly lunches that travel",
     ],
+    tier: "essential",
     price: 349,
     pages: 58,
     chapters: [
@@ -768,7 +798,8 @@ export const BOOKS: Book[] = [
       "Every pose explained step by step",
       "Build a practice that lasts",
     ],
-    price: 399,
+    tier: "signature",
+    price: 549,
     pages: 65,
     chapters: [
       "What Yoga Is — and Isn't",
@@ -803,6 +834,7 @@ export const BOOKS: Book[] = [
       "Modifications for every body",
       "From 3 rounds to 12 — safely",
     ],
+    tier: "essential",
     price: 349,
     pages: 56,
     chapters: [
@@ -844,7 +876,8 @@ export const BOOKS: Book[] = [
       "Two-minute desk micro-breaks",
       "Know when to see a doctor",
     ],
-    price: 399,
+    tier: "signature",
+    price: 549,
     pages: 60,
     chapters: [
       "The Desk Body",
@@ -888,7 +921,8 @@ export const BOOKS: Book[] = [
       "Pre-lift flows and recovery sessions",
       "Yoga that adds to your strength",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 56,
     chapters: [
       "Why Lifters Need Yoga",
@@ -931,6 +965,7 @@ export const BOOKS: Book[] = [
       "Clear safety rules for every technique",
       "Calm, focus and energy on demand",
     ],
+    tier: "core",
     price: 449,
     pages: 58,
     chapters: [
@@ -974,7 +1009,8 @@ export const BOOKS: Book[] = [
       "Eight complete calming sequences",
       "Deep recovery for body and mind",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 61,
     chapters: [
       "Slow Yoga",
@@ -1019,6 +1055,7 @@ export const BOOKS: Book[] = [
       "Pregnancy guidance with medical clearance",
       "Pelvic floor and bone health basics",
     ],
+    tier: "core",
     price: 449,
     pages: 55,
     chapters: [
@@ -1059,7 +1096,8 @@ export const BOOKS: Book[] = [
       "Ancient wisdom for modern stress",
       "A 30-day reflection journal",
     ],
-    price: 449,
+    tier: "essential",
+    price: 349,
     pages: 59,
     chapters: [
       "Who Was Patanjali?",
@@ -1102,6 +1140,7 @@ export const BOOKS: Book[] = [
       "Simple daily practices that stick",
       "Less stress, more focus",
     ],
+    tier: "essential",
     price: 349,
     pages: 64,
     chapters: [
@@ -1139,7 +1178,8 @@ export const BOOKS: Book[] = [
       "Bracing and recovery for athletes",
       "Quick tools for high-pressure moments",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 56,
     chapters: [
       "The Breath as a Lever",
@@ -1183,6 +1223,7 @@ export const BOOKS: Book[] = [
       "Rest that restores body and mind",
       "Better sleep and faster recovery",
     ],
+    tier: "essential",
     price: 349,
     pages: 58,
     chapters: [
@@ -1226,6 +1267,7 @@ export const BOOKS: Book[] = [
       "Grounding, worry time and self-compassion",
       "Clear guidance on getting help",
     ],
+    tier: "core",
     price: 449,
     pages: 54,
     chapters: [
@@ -1267,7 +1309,8 @@ export const BOOKS: Book[] = [
       "Techniques used in CBT for insomnia",
       "Wake up genuinely refreshed",
     ],
-    price: 399,
+    tier: "signature",
+    price: 549,
     pages: 57,
     chapters: [
       "Why Sleep Matters",
@@ -1307,7 +1350,8 @@ export const BOOKS: Book[] = [
       "Prepare body and mind for 10 days",
       "Bring the practice home",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 58,
     chapters: [
       "What Is Vipassana?",
@@ -1348,7 +1392,8 @@ export const BOOKS: Book[] = [
       "Deep-work blocks and digital boundaries",
       "A 30-day focus programme",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 55,
     chapters: [
       "The Attention Crisis",
@@ -1389,7 +1434,8 @@ export const BOOKS: Book[] = [
       "Build good habits, break bad ones",
       "Systems that run on autopilot",
     ],
-    price: 449,
+    tier: "signature",
+    price: 549,
     pages: 59,
     chapters: [
       "Why Change Is Hard",
@@ -1427,7 +1473,8 @@ export const BOOKS: Book[] = [
       "Systems that beat willpower",
       "Bounce back fast after setbacks",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 56,
     chapters: [
       "The Discipline Myth",
@@ -1468,6 +1515,7 @@ export const BOOKS: Book[] = [
       "Quiet the inner critic",
       "Build self-worth beyond appearance",
     ],
+    tier: "core",
     price: 449,
     pages: 57,
     chapters: [
@@ -1511,7 +1559,8 @@ export const BOOKS: Book[] = [
       "Break the restrict–binge cycle",
       "Make peace with food",
     ],
-    price: 449,
+    tier: "signature",
+    price: 549,
     pages: 57,
     chapters: [
       "What Is Emotional Eating?",
@@ -1555,6 +1604,7 @@ export const BOOKS: Book[] = [
       "Six pillars of real resilience",
       "Strength that doesn't mean silence",
     ],
+    tier: "core",
     price: 449,
     pages: 53,
     chapters: [
@@ -1595,7 +1645,8 @@ export const BOOKS: Book[] = [
       "Self-talk, imagery and routines that work",
       "Confidence built on evidence",
     ],
-    price: 499,
+    tier: "core",
+    price: 449,
     pages: 57,
     chapters: [
       "What Is Sport Psychology?",
@@ -1637,7 +1688,8 @@ export const BOOKS: Book[] = [
       "Motivational interviewing scripts",
       "Keep clients for years",
     ],
-    price: 599,
+    tier: "professional",
+    price: 899,
     pages: 60,
     chapters: [
       "Why Psychology Matters",
@@ -1680,7 +1732,8 @@ export const BOOKS: Book[] = [
       "Practical tools for stress and anger",
       "How and where to get help",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 53,
     chapters: [
       "The Silent Struggle",
@@ -1720,6 +1773,7 @@ export const BOOKS: Book[] = [
       "If–then plans that beat excuses",
       "A ready-to-use 90-day planner",
     ],
+    tier: "essential",
     price: 349,
     pages: 56,
     chapters: [
@@ -1762,7 +1816,8 @@ export const BOOKS: Book[] = [
       "The hidden costs nobody mentions",
       "Honest, judgement-free education",
     ],
-    price: 599,
+    tier: "signature",
+    price: 549,
     pages: 70,
     chapters: [
       "Why This Book Exists",
@@ -1798,7 +1853,8 @@ export const BOOKS: Book[] = [
       "Health checks to discuss with a doctor",
       "Protect the heart, liver and mind",
     ],
-    price: 599,
+    tier: "signature",
+    price: 549,
     pages: 57,
     chapters: [
       "Why Monitoring Matters",
@@ -1839,7 +1895,8 @@ export const BOOKS: Book[] = [
       "Protect your mood and hormones",
       "Why medical support matters",
     ],
-    price: 499,
+    tier: "core",
+    price: 449,
     pages: 58,
     chapters: [
       "Deciding to Stop",
@@ -1881,7 +1938,8 @@ export const BOOKS: Book[] = [
       "Spot fake physiques and edited images",
       "Set goals you can actually reach",
     ],
-    price: 449,
+    tier: "essential",
+    price: 349,
     pages: 56,
     chapters: [
       "The Comparison Trap",
@@ -1924,7 +1982,8 @@ export const BOOKS: Book[] = [
       "What the evidence really shows",
       "Protect yourself from risky products",
     ],
-    price: 599,
+    tier: "signature",
+    price: 549,
     pages: 59,
     chapters: [
       "What Are Peptides?",
@@ -1968,7 +2027,8 @@ export const BOOKS: Book[] = [
       "Protect muscle while losing fat",
       "Avoid counterfeits and side-effect traps",
     ],
-    price: 599,
+    tier: "flagship",
+    price: 699,
     pages: 56,
     chapters: [
       "What Are GLP-1 Medicines?",
@@ -2010,7 +2070,8 @@ export const BOOKS: Book[] = [
       "The documented risks of SARMs and DNP",
       "How to see through the marketing",
     ],
-    price: 499,
+    tier: "core",
+    price: 449,
     pages: 59,
     chapters: [
       "The Grey Market",
@@ -2053,7 +2114,8 @@ export const BOOKS: Book[] = [
       "Separate evidence from anti-ageing hype",
       "Habits proven to add healthy years",
     ],
-    price: 549,
+    tier: "core",
+    price: 449,
     pages: 58,
     chapters: [
       "How Hormones Change with Age",
@@ -2096,6 +2158,7 @@ export const BOOKS: Book[] = [
       "Strength and cardio in 30 minutes",
       "Train anywhere with a single bell",
     ],
+    tier: "core",
     price: 449,
     pages: 66,
     chapters: [
@@ -2139,7 +2202,8 @@ export const BOOKS: Book[] = [
       "Avoid the injuries that stop beginners",
       "Breathing, pacing and shoes explained",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 66,
     chapters: [
       "Why Run?",
@@ -2184,7 +2248,8 @@ export const BOOKS: Book[] = [
       "Indian meals for steadier glucose",
       "Train safely alongside your medicines",
     ],
-    price: 499,
+    tier: "flagship",
+    price: 699,
     pages: 59,
     chapters: [
       "Diabetes in India",
@@ -2225,7 +2290,8 @@ export const BOOKS: Book[] = [
       "Simple Indian meals for PCOS",
       "Work with your doctor, not around them",
     ],
-    price: 499,
+    tier: "flagship",
+    price: 699,
     pages: 65,
     chapters: [
       "Understanding PCOS",
@@ -2269,7 +2335,8 @@ export const BOOKS: Book[] = [
       "Food choices for healthier cholesterol",
       "Safe exercise for every fitness level",
     ],
-    price: 499,
+    tier: "flagship",
+    price: 699,
     pages: 65,
     chapters: [
       "The Heart Problem in India",
@@ -2313,7 +2380,8 @@ export const BOOKS: Book[] = [
       "Safe strength training for teens",
       "Build lifelong healthy habits at home",
     ],
-    price: 399,
+    tier: "essential",
+    price: 349,
     pages: 60,
     chapters: [
       "Why Activity Matters",
@@ -2355,7 +2423,8 @@ export const BOOKS: Book[] = [
       "Protect your back in daily tasks",
       "Short sessions that transfer to life",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 66,
     chapters: [
       "What Is Functional Fitness?",
@@ -2401,7 +2470,8 @@ export const BOOKS: Book[] = [
       "Ease bloating with practical steps",
       "Know which symptoms need a doctor",
     ],
-    price: 399,
+    tier: "core",
+    price: 449,
     pages: 62,
     chapters: [
       "The Gut, Explained",
@@ -2445,6 +2515,7 @@ export const BOOKS: Book[] = [
       "Turmeric, ghee, fasting — the real story",
       "Use tradition safely and wisely",
     ],
+    tier: "core",
     price: 449,
     pages: 61,
     chapters: [
@@ -2488,7 +2559,8 @@ export const BOOKS: Book[] = [
       "Prevent falls and stay mobile",
       "Workouts for home, chair or gym",
     ],
-    price: 449,
+    tier: "signature",
+    price: 549,
     pages: 60,
     chapters: [
       "It's Never Too Late",

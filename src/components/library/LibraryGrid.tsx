@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { coverSrc, type Book } from "@/lib/library/catalog";
+import type { RatingSummary } from "@/lib/library/reviews-types";
+import { Stars } from "./Stars";
 
 /** Book grid with section filter chips. */
-export function LibraryGrid({ books, categories }: { books: Book[]; categories: readonly string[] }) {
+export function LibraryGrid({ books, categories, ratings }: { books: Book[]; categories: readonly string[]; ratings: Record<string, RatingSummary> }) {
   const [cat, setCat] = useState<string>("All");
   const shown = useMemo(() => (cat === "All" ? books : books.filter((b) => b.category === cat)), [books, cat]);
   const chip = (c: string) =>
@@ -29,6 +31,11 @@ export function LibraryGrid({ books, categories }: { books: Book[]; categories: 
               </div>
               <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-brand">{b.label}</p>
               <h3 className="font-display text-base leading-snug text-white">{b.title}</h3>
+              {ratings[b.slug] && (
+                <p className="mt-1 flex items-center gap-1.5 text-xs text-white/55">
+                  <Stars value={ratings[b.slug].average} className="h-3.5 w-3.5" /> {ratings[b.slug].average.toFixed(1)} ({ratings[b.slug].count})
+                </p>
+              )}
               <p className="mt-1 text-sm text-white/55">
                 Vol. {b.volume} · {b.pages} pages · <span className="font-semibold text-white">₹{b.price}</span>
               </p>

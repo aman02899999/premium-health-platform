@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { CheckCircle2, Circle, Loader2, Upload } from "lucide-react";
+import { LibraryReviewsAdmin } from "./LibraryReviewsAdmin";
 
 type BookStatus = { volume: number; slug: string; title: string; uploaded: boolean };
 type BookOrder = {
@@ -119,7 +120,7 @@ export function LibraryAdmin() {
                         className="text-brand underline"
                         target="_blank"
                         rel="noreferrer"
-                        href={`https://wa.me/91${o.phone}?text=${encodeURIComponent(`Hi ${o.name}, here is your Premium Library download page: ${origin}/library/access/${o.accessToken}`)}`}
+                        href={`https://wa.me/${o.phone.startsWith("+") ? o.phone.slice(1) : `91${o.phone}`}?text=${encodeURIComponent(`Hi ${o.name}, here is your Premium Library download page: ${origin}/library/access/${o.accessToken}`)}`}
                       >
                         WhatsApp link
                       </a>
@@ -131,6 +132,8 @@ export function LibraryAdmin() {
           </div>
         )}
       </section>
+
+      <LibraryReviewsAdmin titles={Object.fromEntries(data.books.map((b) => [b.slug, `${b.volume}. ${b.title}`]))} />
     </div>
   );
 }

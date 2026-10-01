@@ -40,13 +40,15 @@ export function FloatingActions({ whatsapp, phone }: { whatsapp: string; phone: 
           <WhatsAppIcon className="h-7 w-7" />
         </a>
       </div>
-      {/* Mobile call bar */}
-      <a
-        href={phone}
-        className="fixed bottom-5 left-4 z-40 flex h-14 items-center gap-2 rounded-full bg-brand px-5 font-bold text-white shadow-xl sm:hidden"
-      >
-        <Phone className="h-5 w-5" /> Call now
-      </a>
+      {/* Mobile call bar (the library uses that spot for its cart button) */}
+      {!pathname.startsWith("/library") && (
+        <a
+          href={phone}
+          className="fixed bottom-5 left-4 z-40 flex h-14 items-center gap-2 rounded-full bg-brand px-5 font-bold text-white shadow-xl sm:hidden"
+        >
+          <Phone className="h-5 w-5" /> Call now
+        </a>
+      )}
     </>
   );
 }
