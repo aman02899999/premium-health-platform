@@ -20,6 +20,7 @@ import {
   Users,
   Home,
   IndianRupee,
+  BookOpen,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -27,6 +28,7 @@ import { parseMarkdown } from "@/lib/markdown";
 import { CALCULATORS } from "@/lib/calculators";
 import { Markdown } from "@/components/blog/Markdown";
 import { ListEditor, ObjectEditor, type Field } from "./fields";
+import { LibraryAdmin } from "./LibraryAdmin";
 import { DEFAULT_POSTS } from "@/lib/content/default-posts";
 import { LOCAL_POSTS } from "@/lib/content/local-posts";
 
@@ -47,6 +49,7 @@ const TABS = [
   { id: "seo", label: "SEO & Theme", icon: Search },
   { id: "leads", label: "Enquiries", icon: Inbox },
   { id: "payments", label: "Payments", icon: IndianRupee },
+  { id: "library", label: "Library", icon: BookOpen },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
@@ -435,6 +438,7 @@ export function AdminApp({ storage }: { storage: string }) {
 
           {tab === "leads" && <Leads />}
           {tab === "payments" && <Payments />}
+          {tab === "library" && <LibraryAdmin />}
         </div>
       </div>
     </div>

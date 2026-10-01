@@ -23,9 +23,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  /* 3D-transformed cards (gallery carousel, library covers) escape overflow-hidden parents;
+     clip (unlike hidden) stops sideways page scroll without breaking sticky positioning. */
+  overflow-x: clip;
 }
 
 body {
+  overflow-x: clip;
   background: var(--color-ink);
   color: #e9f0f6;
   font-family: var(--font-sans);

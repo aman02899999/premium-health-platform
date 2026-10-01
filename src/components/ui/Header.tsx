@@ -45,12 +45,12 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
           <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
             <Logo name={name} />
           </Link>
-          <ul className="hidden items-center gap-1 lg:flex">
+          <ul className="hidden items-center gap-1 xl:flex">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
+                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-3.5 ${
                     isActive(item.href) ? "bg-white/10 text-brand" : "text-white/75 hover:text-white"
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -68,12 +68,12 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
               <HeartPulse className="h-4 w-4" /> Health
             </a>
             <AccountMenu />
-            <Link href="/contact#trial" className="btn-brand hidden rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
+            <Link href="/contact#trial" className="btn-brand hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
               Free Trial
             </Link>
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 xl:hidden"
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -87,7 +87,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
       <div
         id="mobile-menu"
-        className={`fixed inset-0 top-0 -z-10 bg-ink/97 backdrop-blur-xl transition-all duration-500 lg:hidden ${
+        className={`fixed inset-0 top-0 -z-10 bg-ink/97 backdrop-blur-xl transition-all duration-500 xl:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >

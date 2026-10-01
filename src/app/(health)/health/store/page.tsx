@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
@@ -8,6 +9,8 @@ import { AdBanner, AdSidebar } from "@/health/components/monetization/AdComponen
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
+import { BOOKS } from "@/lib/library/catalog";
+import { COMPLETE_LIBRARY_PRICE } from "@/lib/library/pricing";
 
 const seoTitle = "Store — Health Guides, Diet Plans, Premium PDFs | Premium Health";
 const seoDescription = "Digital health store: diabetes diet guide, 30-day weight plan, high-protein vegetarian, Ayurveda herbs — educational PDFs, secure delivery, Razorpay-ready.";
@@ -42,6 +45,16 @@ export default function StorePage() {
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Educational PDFs: diabetes diet, weight management, high-protein vegetarian, heart-healthy, Ayurveda herbs — 40-80 pages, secure delivery, Razorpay-ready, refund policy. No medical promises or guaranteed outcomes.</p>
         <div className="mt-3 flex flex-wrap gap-2">{categories.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}</div>
       </div>
+
+      {/* The library lives on the gym site (a different root layout, so Next does a full navigation). */}
+      <Link href="/library" className="mt-4 flex flex-col gap-3 rounded-3xl border border-amber-300/40 bg-gradient-to-r from-stone-950 to-stone-800 p-5 text-white sm:flex-row sm:items-center sm:justify-between">
+        <span>
+          <span className="block text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">New · Premium Library</span>
+          <span className="font-display block text-xl font-black">{BOOKS.length} premium eBooks — fitness, yoga, nutrition, mind & health</span>
+          <span className="block text-sm text-stone-300">Buy any single book, or the complete library for ₹{COMPLETE_LIBRARY_PRICE.toLocaleString("en-IN")}.</span>
+        </span>
+        <span className="shrink-0 rounded-full bg-amber-300 px-5 py-2.5 text-sm font-bold text-stone-950">Browse the library →</span>
+      </Link>
 
       <div className="mt-4"><AdBanner placement="store_top" page="/health/store" /></div>
 
