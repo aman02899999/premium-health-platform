@@ -19,6 +19,7 @@ import {
   Upload,
   Users,
   Home,
+  IndianRupee,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -45,6 +46,7 @@ const TABS = [
   { id: "blog", label: "Blog", icon: FileText },
   { id: "seo", label: "SEO & Theme", icon: Search },
   { id: "leads", label: "Enquiries", icon: Inbox },
+  { id: "payments", label: "Payments", icon: IndianRupee },
 ] as const;
 type TabId = (typeof TABS)[number]["id"];
 
@@ -432,6 +434,7 @@ export function AdminApp({ storage }: { storage: string }) {
           )}
 
           {tab === "leads" && <Leads />}
+          {tab === "payments" && <Payments />}
         </div>
       </div>
     </div>
@@ -565,6 +568,114 @@ function BlogEditor({ posts, onChange, business }: { posts: BlogPost[]; onChange
       >
         + New post
       </button>
+    </Card>
+  );
+}
+
+type Order = {
+  id: string;
+  createdAt: string;
+  razorpayPaymentId: string | null;
+  status: "created" | "paid" | "failed";
+  planName: string;
+  duration: string;
+  couple: boolean;
+  amountPaise: number;
+  name: string;
+  phone: string;
+  email: string | null;
+  partnerName: string | null;
+  startDate: string | null;
+  referredBy: string | null;
+};
+
+function Payments() {
+  const [data, setData] = useState<{ configured: boolean; orders: Order[]; error?: string } | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  useEffect(() => {
+    fetch("/api/admin/payments")
+      .then((r) => r.json())
+      .then(setData)
+      .catch(() => setData({ configured: false, orders: [], error: "Couldn't load payments." }));
+  }, []);
+
+  if (!data) return <Loader2 className="h-6 w-6 animate-spin text-brand" />;
+  const paid = data.orders.filter((o) => o.status === "paid");
+  const shown = showAll ? data.orders : paid;
+  const total = paid.reduce((sum, o) => sum + o.amountPaise, 0) / 100;
+  const month = new Date().toISOString().slice(0, 7);
+  const thisMonth = paid.filter((o) => o.createdAt.startsWith(month)).reduce((sum, o) => sum + o.amountPaise, 0) / 100;
+  const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
+  return (
+    <Card title="Online memberships" help="Paid through the Join online page (Razorpay). Referrals are listed so you can give both members their free month.">
+      {!data.configured && (
+        <p className="mb-4 rounded-xl bg-yellow-500/15 p-3 text-sm text-yellow-100">
+          Online payment is off. Add RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET and RAZORPAY_WEBHOOK_SECRET in Vercel → Settings → Environment Variables, then redeploy.
+        </p>
+      )}
+      {data.error && <p className="mb-4 rounded-xl bg-red-500/15 p-3 text-sm text-red-200">{data.error}</p>}
+      <div className="mb-5 grid grid-cols-3 gap-3">
+        {[
+          ["Paid members", String(paid.length)],
+          ["This month", inr(thisMonth)],
+          ["All time", inr(total)],
+        ].map(([label, value]) => (
+          <div key={label} className="rounded-xl bg-white/[.04] p-3 ring-1 ring-white/10">
+            <div className="text-xs text-white/50">{label}</div>
+            <div className="text-lg font-bold text-white">{value}</div>
+          </div>
+        ))}
+      </div>
+      <label className="mb-3 flex items-center gap-2 text-sm text-white/60">
+        <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> Show unfinished and failed attempts too
+      </label>
+      {shown.length === 0 ? (
+        <p className="text-white/55">No {showAll ? "orders" : "payments"} yet.</p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="text-xs uppercase tracking-wider text-white/45">
+              <tr>
+                <th className="p-2">Date</th>
+                <th className="p-2">Member</th>
+                <th className="p-2">Plan</th>
+                <th className="p-2">Amount</th>
+                <th className="p-2">Starts</th>
+                <th className="p-2">Referred by</th>
+                <th className="p-2">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {shown.map((o) => (
+                <tr key={o.id} className="border-t border-white/10 align-top">
+                  <td className="whitespace-nowrap p-2 text-white/60">{new Date(o.createdAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</td>
+                  <td className="p-2">
+                    <span className="font-semibold text-white">{o.name}</span>
+                    {o.partnerName && <span className="block text-xs text-white/55">+ {o.partnerName}</span>}
+                    <a className="block text-xs text-brand" href={`https://wa.me/91${o.phone}`} target="_blank" rel="noreferrer">
+                      {o.phone}
+                    </a>
+                  </td>
+                  <td className="p-2 text-white/75">
+                    {o.planName} · {o.duration}
+                    {o.couple && " · couple"}
+                  </td>
+                  <td className="whitespace-nowrap p-2 font-semibold text-white">{inr(o.amountPaise / 100)}</td>
+                  <td className="whitespace-nowrap p-2 text-white/65">{o.startDate ?? "—"}</td>
+                  <td className="p-2 text-white/65">{o.referredBy ?? "—"}</td>
+                  <td className="p-2">
+                    <span className={`rounded px-1.5 py-0.5 text-xs ${o.status === "paid" ? "bg-emerald-500/20 text-emerald-200" : o.status === "failed" ? "bg-red-500/20 text-red-200" : "bg-white/10 text-white/60"}`}>
+                      {o.status === "created" ? "not paid" : o.status}
+                    </span>
+                    {o.razorpayPaymentId && <span className="mt-1 block font-mono text-[10px] text-white/40">{o.razorpayPaymentId}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </Card>
   );
 }

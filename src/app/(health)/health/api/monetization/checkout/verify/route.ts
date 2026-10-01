@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getPaymentProvider, generateDownloadToken } from "@/health/lib/monetization/payment";
+import { verifyPaymentSignature } from "@/lib/payments/signature";
 
 export const dynamic = "force-dynamic";
 
@@ -12,9 +13,14 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: "Missing orderId/paymentId" }, { status: 400 });
     }
 
-    // Server-side verification — never trust frontend alone
-    const paymentProvider = getPaymentProvider(provider);
-    const result = await paymentProvider.verifyPayment({ orderId, paymentId, signature, provider: provider || paymentProvider.name });
+    // Server-side verification — never trust frontend alone. On the live site the
+    // provider isn't the caller's choice: only a real Razorpay signature passes.
+    const result =
+      process.env.VERCEL_ENV === "production"
+        ? verifyPaymentSignature(String(orderId), String(paymentId), String(signature ?? ""))
+          ? { verified: true as const, error: undefined }
+          : { verified: false as const, error: "Invalid payment signature" }
+        : await getPaymentProvider(provider).verifyPayment({ orderId, paymentId, signature, provider: provider || getPaymentProvider(provider).name });
 
     if (!result.verified) {
       return NextResponse.json({ ok: false, error: result.error || "Verification failed" }, { status: 400 });

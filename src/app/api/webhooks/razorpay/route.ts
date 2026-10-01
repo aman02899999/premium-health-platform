@@ -1,0 +1,26 @@
+import { NextResponse } from "next/server";
+import { verifyWebhookSignature } from "@/lib/payments/razorpay";
+import { markFailed, markPaid } from "@/lib/payments/orders";
+
+export const dynamic = "force-dynamic";
+
+// Razorpay → Webhooks: https://<your-site>/api/webhooks/razorpay, events
+// payment.captured and payment.failed. Records payments even when the buyer
+// closes the tab before the browser reaches /api/membership/verify.
+export async function POST(req: Request) {
+  const raw = await req.text();
+  if (!verifyWebhookSignature(raw, req.headers.get("x-razorpay-signature"))) {
+    return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+  }
+  const event = JSON.parse(raw) as { event?: string; payload?: { payment?: { entity?: { id?: string; order_id?: string } } } };
+  const payment = event.payload?.payment?.entity;
+  if (!payment?.order_id || !payment.id) return NextResponse.json({ ok: true });
+  try {
+    if (event.event === "payment.captured") await markPaid(payment.order_id, payment.id);
+    else if (event.event === "payment.failed") await markFailed(payment.order_id);
+  } catch (err) {
+    console.error("[razorpay webhook] update failed:", (err as Error).message);
+    return NextResponse.json({ error: "Temporary failure" }, { status: 500 }); // Razorpay retries
+  }
+  return NextResponse.json({ ok: true });
+}

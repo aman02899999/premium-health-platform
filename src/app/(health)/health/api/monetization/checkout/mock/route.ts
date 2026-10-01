@@ -4,6 +4,8 @@ import { generateDownloadToken } from "@/health/lib/monetization/payment";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
+  // Demo flow: it issues a download token without taking a payment, so it must never run on the live site.
+  if (process.env.VERCEL_ENV === "production") return NextResponse.json({ ok: false, error: "Not available" }, { status: 404 });
   const { searchParams } = new URL(req.url);
   const orderId = searchParams.get("orderId") || `order_${Date.now()}`;
 
