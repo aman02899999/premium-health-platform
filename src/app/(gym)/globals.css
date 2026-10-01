@@ -12,8 +12,8 @@
   --color-navy: var(--navy, #04466d);
   --color-sky: #7cc0ee;
   --color-ember: #e8394b;
-  --font-display: "Oswald", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-oswald), "Oswald", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 :root {
@@ -127,15 +127,25 @@ body {
 }
 
 /* Scroll reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px) scale(0.98);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: var(--delay, 0ms);
+/* Scroll-driven reveal: no JS, never hides content before first paint. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+  }
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .marquee {
@@ -518,5 +528,91 @@ html[data-portal="show"] body {
 @layer base {
   .grid > * {
     min-width: 0;
+  }
+}
+
+/* ---------- Library: CSS 3D books (no WebGL) ----------
+   Sized from the container (cqw) so the same book works in the grid and on the book page.
+   --ry/--rx turn the book; .book3d-tilt drives them from the pointer on the book page. */
+.book3d {
+  container-type: inline-size;
+  perspective: 1400px;
+  --ry: -26deg;
+  --rx: 4deg;
+}
+.book3d-inner {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.book3d-front {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(4cqw);
+  border-radius: 0 1.2cqw 1.2cqw 0;
+  overflow: hidden;
+  box-shadow: inset 3px 0 6px -2px rgba(255, 255, 255, 0.25), inset 1.6cqw 0 1.2cqw -1cqw rgba(0, 0, 0, 0.45);
+}
+.book3d-pages {
+  position: absolute;
+  top: 1.2%;
+  right: 0;
+  width: 8cqw;
+  height: 97.6%;
+  transform-origin: right center;
+  transform: translateZ(-4cqw) rotateY(90deg);
+  background: repeating-linear-gradient(90deg, #f3ece0 0 1px, #d9cfbf 1px 2px);
+}
+.book3d-back {
+  position: absolute;
+  inset: 0;
+  transform: translateZ(-4cqw);
+  border-radius: 0 1.2cqw 1.2cqw 0;
+  background: #0b0907;
+  box-shadow: 0 2.5cqw 6cqw -1cqw rgba(0, 0, 0, 0.85);
+}
+.book3d-spine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8cqw;
+  height: 100%;
+  transform-origin: left center;
+  transform: translateZ(-4cqw) rotateY(-90deg);
+  background: linear-gradient(90deg, #050403, #1d1812 45%, #050403);
+}
+.group:hover .book3d,
+.group:focus-visible .book3d {
+  --ry: -8deg;
+  --rx: 0deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  .book3d-inner {
+    transition: none;
+  }
+}
+
+/* Phone hero: pre-rendered still of the WebGL dumbbell, floating gently (see Hero3DLoader). */
+.hero-poster {
+  position: absolute;
+  left: 50%;
+  top: 7svh;
+  width: min(80vw, 380px);
+  height: auto;
+  transform: translateX(-50%);
+  -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  animation: hero-float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-12px) rotate(2deg);
   }
 }

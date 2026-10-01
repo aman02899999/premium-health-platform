@@ -2,14 +2,23 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, FileText, ShieldCheck } from "lucide-react";
+import { ArrowLeft, BadgeCheck, BookOpenText, Check, FileText, ShieldCheck } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
-import { absoluteUrl, whatsappHref } from "@/lib/site";
-import { razorpayConfigured } from "@/lib/payments/razorpay";
-import { BOOKS, coverSrc } from "@/lib/library/catalog";
+import { absoluteUrl } from "@/lib/site";
+import { BOOKS, TIERS, coverSrc } from "@/lib/library/catalog";
+import { bundlesWithBook } from "@/lib/library/bundles";
+import { EXCERPTS } from "@/lib/library/excerpts";
 import { COMPLETE_LIBRARY_PRICE, bookBySlug } from "@/lib/library/pricing";
-import { BuyBox } from "@/components/library/BuyBox";
+import { approvedReviews, type BookReview } from "@/lib/library/reviews";
+import { AddToCart } from "@/components/library/AddToCart";
+import { Book3D } from "@/components/library/Book3D";
+import { BookTilt } from "@/components/library/BookTilt";
+import { BundleCard } from "@/components/library/BundleCard";
+import { Stars } from "@/components/library/Stars";
+
+// Re-render every 10 minutes so newly approved reviews show up.
+export const revalidate = 600;
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,7 +45,15 @@ export default async function BookPage({ params }: Props) {
   if (!book) notFound();
   const c = await getContent();
   const related = BOOKS.filter((b) => b.category === book.category && b.slug !== book.slug).slice(0, 4);
-  const online = razorpayConfigured();
+  const bundles = bundlesWithBook(book.slug).sort((a, b) => (a.kind === b.kind ? a.price - b.price : a.kind === "combo" ? -1 : 1)).slice(0, 2);
+  const excerpt = EXCERPTS[book.slug];
+  let reviews: BookReview[] = [];
+  try {
+    reviews = await approvedReviews(book.slug);
+  } catch (err) {
+    console.error("[library] reviews unavailable:", (err as Error).message);
+  }
+  const average = reviews.length ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length : 0;
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -51,6 +68,19 @@ export default async function BookPage({ params }: Props) {
       url: absoluteUrl(`/library/${book.slug}`),
       publisher: { "@type": "Organization", name: c.business.name },
       offers: { "@type": "Offer", price: book.price, priceCurrency: "INR", availability: "https://schema.org/InStock", url: absoluteUrl(`/library/${book.slug}`) },
+      // Only real, approved buyer reviews are ever published as ratings.
+      ...(reviews.length
+        ? {
+            aggregateRating: { "@type": "AggregateRating", ratingValue: average.toFixed(1), reviewCount: reviews.length, bestRating: 5, worstRating: 1 },
+            review: reviews.slice(0, 10).map((r) => ({
+              "@type": "Review",
+              author: { "@type": "Person", name: r.displayName },
+              datePublished: r.createdAt.slice(0, 10),
+              reviewRating: { "@type": "Rating", ratingValue: r.rating, bestRating: 5 },
+              reviewBody: r.body,
+            })),
+          }
+        : {}),
     },
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -68,16 +98,24 @@ export default async function BookPage({ params }: Props) {
 
       <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr]">
         <div>
-          <div className="relative aspect-[2/3] overflow-hidden rounded-2xl shadow-[0_30px_60px_-25px_rgba(0,0,0,.9)] ring-1 ring-white/10">
-            <Image src={coverSrc(book.volume)} alt={`${book.title} — cover`} fill priority sizes="(min-width:1024px) 380px, 90vw" className="object-cover" />
-          </div>
+          <BookTilt>
+            <Book3D src={coverSrc(book.volume)} alt={`${book.title} — cover`} sizes="(min-width:1024px) 380px, 90vw" priority />
+          </BookTilt>
         </div>
 
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-brand">{book.category} · Volume {book.volume}</p>
           <h1 className="font-display mt-3 text-4xl leading-tight text-white sm:text-5xl">{book.title}</h1>
           <p className="mt-3 text-lg italic text-white/70">{book.subtitle}</p>
-          <p className="mt-4 inline-block rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand">{book.label}</p>
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            <p className="inline-block rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand">{book.label}</p>
+            <p className="text-xs uppercase tracking-widest text-white/45">{TIERS[book.tier].label} edition</p>
+          </div>
+          {reviews.length > 0 && (
+            <a href="#reviews" className="mt-4 flex w-fit items-center gap-2 text-sm text-white/70 hover:text-white">
+              <Stars value={average} /> {average.toFixed(1)} · {reviews.length} verified {reviews.length === 1 ? "review" : "reviews"}
+            </a>
+          )}
 
           <ul className="mt-6 space-y-2">
             {book.benefits.map((b) => (
@@ -94,15 +132,13 @@ export default async function BookPage({ params }: Props) {
                 <FileText className="h-4 w-4" /> {book.pages}-page PDF
               </span>
             </div>
-            <BuyBox
-              itemId={book.slug}
-              label="Buy this book"
-              price={book.price}
-              online={online}
-              whatsappUrl={whatsappHref(c.business, `Hi ${c.business.name}, I'd like to buy "${book.title}" (Vol. ${book.volume}).`)}
-            />
+            <AddToCart id={book.slug} />
+            <p className="mt-3 text-center text-xs text-white/45">Instant download · UPI, cards, net banking · Secured by Razorpay</p>
             <p className="mt-4 text-center text-sm text-white/60">
-              Want everything? <Link href="/library#complete" className="font-semibold text-brand underline">All {BOOKS.length} books for ₹{COMPLETE_LIBRARY_PRICE.toLocaleString("en-IN")}</Link>
+              Add 2+ books to your cart to save up to 30%, or{" "}
+              <Link href="/library#complete" className="font-semibold text-brand underline">
+                get all {BOOKS.length} books for ₹{COMPLETE_LIBRARY_PRICE.toLocaleString("en-IN")}
+              </Link>
             </p>
           </div>
         </div>
@@ -134,6 +170,78 @@ export default async function BookPage({ params }: Props) {
           </ol>
         </section>
       </div>
+
+      {excerpt && excerpt.blocks.length > 0 && (
+        <section className="mt-14">
+          <h2 className="font-display flex items-center gap-3 text-2xl text-white">
+            <BookOpenText className="h-6 w-6 text-brand" /> Read the introduction
+          </h2>
+          <div className="mt-5 rounded-3xl bg-[#f6f0e4] p-6 text-[#2a241c] shadow-inner sm:p-10">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#8a6a35]">Chapter 1</p>
+            <h3 className="font-display mt-1 text-2xl text-[#1d1a16]">{excerpt.chapter}</h3>
+            <div className="mt-4 space-y-3 font-serif text-[15px] leading-relaxed">
+              {excerpt.blocks.map(([kind, text], i) =>
+                kind === "h" ? (
+                  <h4 key={i} className="pt-2 font-sans text-base font-bold text-[#1d1a16]">{text}</h4>
+                ) : kind === "li" ? (
+                  <p key={i} className="flex gap-2 pl-2"><span className="text-[#9c7a46]">•</span> {text}</p>
+                ) : kind === "q" ? (
+                  <p key={i} className="border-l-2 border-[#9c7a46] pl-4 italic text-[#4a3f31]">{text}</p>
+                ) : (
+                  <p key={i}>{text}</p>
+                ),
+              )}
+            </div>
+            <p className="mt-6 border-t border-[#d9cdb8] pt-4 text-sm italic text-[#6b5d48]">
+              The book continues for {book.pages} pages across {book.chapters.length} chapters.
+            </p>
+          </div>
+        </section>
+      )}
+
+      <section id="reviews" className="mt-14">
+        <h2 className="font-display text-2xl text-white">Reader reviews</h2>
+        {reviews.length === 0 ? (
+          <p className="mt-3 max-w-2xl text-white/60">
+            No reviews yet. Only verified buyers can review a book — every buyer gets a review form on their download page, and each review is checked before it appears here.
+          </p>
+        ) : (
+          <>
+            <p className="mt-2 flex items-center gap-2 text-white/70">
+              <Stars value={average} /> {average.toFixed(1)} out of 5 · {reviews.length} verified {reviews.length === 1 ? "buyer" : "buyers"}
+            </p>
+            <ul className="mt-6 grid gap-4 md:grid-cols-2">
+              {reviews.map((r) => (
+                <li key={r.id} className="glass rounded-2xl p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <Stars value={r.rating} />
+                    <span className="text-xs text-white/40">{new Date(r.createdAt).toLocaleDateString("en-IN", { month: "short", year: "numeric" })}</span>
+                  </div>
+                  <p className="mt-3 whitespace-pre-line text-sm text-white/80">{r.body}</p>
+                  <p className="mt-3 flex items-center gap-1.5 text-xs text-white/55">
+                    <span className="font-semibold text-white/80">{r.displayName}</span> · {[r.city, r.country].filter(Boolean).join(", ")}
+                    <BadgeCheck className="ml-1 h-3.5 w-3.5 text-emerald-400" /> Verified buyer
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </section>
+
+      {bundles.length > 0 && (
+        <section className="mt-16">
+          <h2 className="font-display mb-2 text-2xl text-white">Save with a bundle</h2>
+          <p className="mb-6 text-white/60">This book is part of these offers.</p>
+          <ul className="grid gap-5 sm:grid-cols-2">
+            {bundles.map((b) => (
+              <li key={b.id}>
+                <BundleCard bundle={b} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {related.length > 0 && (
         <section className="mt-16">

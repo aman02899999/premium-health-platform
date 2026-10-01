@@ -1,15 +1,21 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import type { BlogPost } from "@/lib/content/types";
 import { PostCard } from "@/components/home/Blocks";
 
+// Renders the full post list on the server (crawlable, no layout shift); a ?q= search from the
+// site search box is applied after hydration instead of via useSearchParams, which would make
+// the whole list client-only.
 export function BlogExplorer({ posts, categories }: { posts: BlogPost[]; categories: string[] }) {
-  const params = useSearchParams();
-  const [q, setQ] = useState(params.get("q") ?? "");
+  const [q, setQ] = useState("");
   const [cat, setCat] = useState("All");
+  useEffect(() => {
+    const initial = new URLSearchParams(window.location.search).get("q");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time sync from the URL after hydration
+    if (initial) setQ(initial);
+  }, []);
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();

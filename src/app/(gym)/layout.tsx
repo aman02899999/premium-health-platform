@@ -1,9 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
 import { ADSENSE_SRC } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
+
+// Self-hosted at build time: no render-blocking request to Google, preloaded, with a size-matched fallback.
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter", display: "swap" });
+const oswald = Oswald({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-oswald", display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#06111c",
@@ -52,14 +57,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const c = await getContent();
   return (
-    <html lang="en-IN" style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
+    <html lang="en-IN" className={`${inter.variable} ${oswald.variable}`} style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
       <head>
         {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
         <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font -- single root layout, fonts are global */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="noise min-h-screen">{children}</body>
     </html>

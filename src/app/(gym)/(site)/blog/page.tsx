@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getContent } from "@/lib/content/store";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { SITE_URL, absoluteUrl, publishedPosts } from "@/lib/site";
@@ -42,9 +41,7 @@ export default async function BlogPage() {
       />
       <PageHero eyebrow="The Royal Blog" title="Train smarter," highlight="eat better" intro="Interactive guides with built-in calculators and quizzes — written for Indian gym-goers." />
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-        <Suspense>
-          <BlogExplorer posts={posts} categories={categories} />
-        </Suspense>
+        <BlogExplorer posts={posts} categories={categories} />
       </section>
     </>
   );

@@ -122,6 +122,9 @@ export function faqJsonLd(faqs: { q: string; a: string }[]) {
   };
 }
 
+/** Hinglish posts are Hindi written in Latin script. */
+export const postLanguage = (post: BlogPost) => (post.category === "Hinglish" ? "hi-Latn" : "en-IN");
+
 export function articleJsonLd(c: SiteContent, post: BlogPost) {
   return {
     "@context": "https://schema.org",
@@ -136,5 +139,6 @@ export function articleJsonLd(c: SiteContent, post: BlogPost) {
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
     keywords: post.tags.join(", "),
     articleSection: post.category,
+    inLanguage: postLanguage(post),
   };
 }

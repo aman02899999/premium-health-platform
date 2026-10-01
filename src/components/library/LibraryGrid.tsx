@@ -1,12 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { coverSrc, type Book } from "@/lib/library/catalog";
+import type { RatingSummary } from "@/lib/library/reviews-types";
+import { Book3D } from "./Book3D";
+import { Stars } from "./Stars";
 
 /** Book grid with section filter chips. */
-export function LibraryGrid({ books, categories }: { books: Book[]; categories: readonly string[] }) {
+export function LibraryGrid({ books, categories, ratings }: { books: Book[]; categories: readonly string[]; ratings: Record<string, RatingSummary> }) {
   const [cat, setCat] = useState<string>("All");
   const shown = useMemo(() => (cat === "All" ? books : books.filter((b) => b.category === cat)), [books, cat]);
   const chip = (c: string) =>
@@ -24,11 +26,16 @@ export function LibraryGrid({ books, categories }: { books: Book[]; categories: 
         {shown.map((b) => (
           <li key={b.slug}>
             <Link href={`/library/${b.slug}`} className="group block">
-              <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-[0_18px_40px_-20px_rgba(0,0,0,.8)] ring-1 ring-white/10 transition group-hover:-translate-y-1 group-hover:ring-brand/60">
-                <Image src={coverSrc(b.volume)} alt={`${b.title} — cover`} fill sizes="(min-width:1024px) 22vw, (min-width:640px) 30vw, 45vw" className="object-cover" />
+              <div className="px-[5%] pt-2">
+                <Book3D src={coverSrc(b.volume)} alt={`${b.title} — cover`} sizes="(min-width:1024px) 22vw, (min-width:640px) 30vw, 45vw" />
               </div>
               <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-brand">{b.label}</p>
               <h3 className="font-display text-base leading-snug text-white">{b.title}</h3>
+              {ratings[b.slug] && (
+                <p className="mt-1 flex items-center gap-1.5 text-xs text-white/55">
+                  <Stars value={ratings[b.slug].average} className="h-3.5 w-3.5" /> {ratings[b.slug].average.toFixed(1)} ({ratings[b.slug].count})
+                </p>
+              )}
               <p className="mt-1 text-sm text-white/55">
                 Vol. {b.volume} · {b.pages} pages · <span className="font-semibold text-white">₹{b.price}</span>
               </p>

@@ -5,6 +5,8 @@ import { CheckCircle2, Download, Bookmark } from "lucide-react";
 import { coverSrc } from "@/lib/library/catalog";
 import { orderByToken } from "@/lib/library/orders";
 import { DOWNLOADS_PER_BOOK, bookBySlug } from "@/lib/library/pricing";
+import { reviewsForOrder } from "@/lib/library/reviews";
+import { ReviewForm } from "@/components/library/ReviewForm";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Your Library Downloads", robots: { index: false, follow: false } };
@@ -31,12 +33,19 @@ export default async function AccessPage({ params, searchParams }: Props) {
     );
   }
 
+  let reviewed: Awaited<ReturnType<typeof reviewsForOrder>> = {};
+  try {
+    reviewed = await reviewsForOrder(order.id);
+  } catch (err) {
+    console.error("[library] order reviews unavailable:", (err as Error).message);
+  }
+  const firstName = order.name.split(" ")[0];
   const books = order.slugs.map((s) => bookBySlug(s)).filter((b): b is NonNullable<typeof b> => Boolean(b));
   return (
     <section className="mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6">
       {paid && (
         <p className="mb-6 flex items-center gap-2 rounded-2xl bg-emerald-500/15 p-4 text-emerald-200">
-          <CheckCircle2 className="h-5 w-5" /> Payment successful — thank you, {order.name.split(" ")[0]}!
+          <CheckCircle2 className="h-5 w-5" /> Payment successful — thank you, {firstName}!
         </p>
       )}
       <h1 className="font-display text-4xl text-white">Your downloads</h1>
@@ -69,6 +78,9 @@ export default async function AccessPage({ params, searchParams }: Props) {
                 ) : (
                   <p className="mt-2 text-sm text-white/50">Download limit reached</p>
                 )}
+                <div className="mt-3">
+                  <ReviewForm token={token} slug={b.slug} title={b.title} defaultName={firstName} existing={reviewed[b.slug]} />
+                </div>
               </div>
             </li>
           );
