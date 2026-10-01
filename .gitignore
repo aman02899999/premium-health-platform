@@ -32,6 +32,3 @@ yarn-error.log*
 # local CMS storage (file mode)
 /.data/
 
-# health app build output
-/health/.next/
-/health/node_modules/

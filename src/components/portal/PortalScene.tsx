@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Dumbbell, HeartPulse, Leaf, Salad, ShieldCheck, Stethoscope, Timer, Users } from "lucide-react";
-import { healthHref, healthIsExternal, PORTAL_KEY } from "@/lib/portal";
+import { healthHref, PORTAL_KEY } from "@/lib/portal";
 
 type Choice = "gym" | "health";
 
@@ -121,7 +121,6 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
           className="portal-card portal-card-health group"
           style={{ ["--delay" as string]: "140ms" }}
           aria-label="Premium Health Platform"
-          {...(healthIsExternal ? { rel: "noopener" } : {})}
         >
           <span className="portal-card-inner">
             <span className="portal-layer portal-z-40 flex items-center gap-3">

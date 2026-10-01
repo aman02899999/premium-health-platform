@@ -2,14 +2,32 @@ import path from "path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // health/ is a separate app (its own Vercel project); keep this build scoped to the repo root app.
+  // One app, two sites: Royal Fitness Club at / and Premium Health Platform at /health.
   turbopack: { root: path.resolve(__dirname) },
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
 
+  images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.pexels.com", pathname: "/photos/**" },
+      // Amazon affiliate creatives (product thumbnails served by Amazon's CDN)
+      { protocol: "https", hostname: "m.media-amazon.com" },
+      { protocol: "https", hostname: "images-eu.ssl-images-amazon.com" },
+      // Private download storage — S3 and Cloudflare R2 (presigned GET URLs)
+      { protocol: "https", hostname: "**.amazonaws.com" },
+      { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
+      { protocol: "https", hostname: "**.r2.dev" },
+    ],
+  },
+
   experimental: {
-    optimizePackageImports: ["lucide-react"],
+    optimizePackageImports: ["lucide-react", "recharts"],
+    // Two root layouts ((gym) and (health)), so unmatched URLs need a global 404 page.
+    globalNotFound: true,
   },
 
   async headers() {
@@ -39,6 +57,28 @@ const nextConfig: NextConfig = {
         source: "/admin/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // ---- Premium Health Platform (/health) ----
+      {
+        source: "/health/(logo.svg|og-default.jpg)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        // Product photos only — not the /health/products pages themselves.
+        source: "/health/products/:file([^/]+\\.(?:jpg|jpeg|png|webp|avif|svg|gif))",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
+      {
+        source: "/health/api/og",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800" }],
+      },
+      {
+        source: "/health/(sitemap.xml|news/rss.xml)",
+        headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" }],
+      },
+      {
+        source: "/health/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 
@@ -64,7 +104,23 @@ const nextConfig: NextConfig = {
       ["/mental-wellness", "/timers"],
       ["/solutions", "/health-hub"],
     ];
-    return map.map(([source, destination]) => ({ source, destination, permanent: true }));
+    // Retired affiliate URLs on the health site → their product pages.
+    const legacyAffiliateProductSlugs = [
+      "digital-glucometer-combo",
+      "upper-arm-bp-monitor",
+      "millet-combo-pack",
+      "yoga-mat-6mm",
+      "whey-protein-1kg",
+      "cold-pressed-mustard-oil",
+    ];
+    return [
+      ...map.map(([source, destination]) => ({ source, destination, permanent: true })),
+      ...legacyAffiliateProductSlugs.map((slug) => ({
+        source: `/health/affiliate-products/${slug}`,
+        destination: `/health/products/${slug}`,
+        permanent: true,
+      })),
+    ];
   },
 };
 

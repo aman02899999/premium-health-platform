@@ -1,10 +1,7 @@
 // The two-site chooser ("portal") shown on a visitor's first homepage visit and at /portal.
 
-/** Where the Premium Health Platform app lives (separate deployment of /health). */
-export const HEALTH_URL = (process.env.NEXT_PUBLIC_HEALTH_PLATFORM_URL || "").replace(/\/$/, "");
-/** Without a deployed health app, fall back to the Health Hub inside this site. */
-export const healthHref = HEALTH_URL || "/health-hub";
-export const healthIsExternal = Boolean(HEALTH_URL);
+/** Premium Health Platform is part of this app, served under /health (same domain, same login). */
+export const healthHref = "/health";
 
 export const PORTAL_KEY = "rfc-portal";
 

@@ -27,5 +27,11 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*", "/account"],
+  matcher: [
+    // Royal Fitness Club
+    "/admin/:path*", "/api/admin/:path*", "/account",
+    // Premium Health Platform (/health)
+    "/health/admin/:path*", "/health/profile", "/health/earn",
+    "/health/api/auth/:path*", "/health/api/premium/:path*", "/health/api/v1/keys/:path*", "/health/api/v1/billing/:path*",
+  ],
 };
