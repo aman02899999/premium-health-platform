@@ -4,6 +4,7 @@ import { breadcrumbJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 import { formatINR } from "@/lib/site";
 import { FaqList } from "@/components/home/Blocks";
 import { PlanGrid } from "@/components/home/PlanGrid";
+import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { PageHero, SectionHeading } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 
@@ -27,7 +28,7 @@ export default async function MembershipPage() {
       <JsonLd data={[breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Membership", path: "/membership" }]), faqJsonLd(faqs)]} />
       <PageHero eyebrow="Membership" title="Invest in" highlight="yourself" intro="Transparent single and couple pricing, and a free trial before you commit." />
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <PlanGrid plans={c.plans} note={c.planNote} />
+        <PlanGrid plans={c.plans} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
       {faqs.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">

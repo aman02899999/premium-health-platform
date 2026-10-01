@@ -6,6 +6,7 @@ import { faqJsonLd } from "@/lib/seo";
 import { formatTime, hoursDays, fullAddress, publishedPosts, telHref, whatsappHref } from "@/lib/site";
 import { Hero3DLoader } from "@/components/home/Hero3DLoader";
 import { PlanGrid } from "@/components/home/PlanGrid";
+import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { Gallery3D } from "@/components/home/Gallery3D";
 import { LeadForm } from "@/components/home/LeadForm";
 import { FaqList, PostCard, ProgramGrid, RatingBadge, TrainerGrid } from "@/components/home/Blocks";
@@ -178,7 +179,7 @@ export default async function HomePage() {
       {/* ---------- MEMBERSHIP ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Pick your" highlight="royal plan" intro="Simple pricing, no hidden charges. Longer plans save you more." />
-        <PlanGrid plans={c.plans} note={c.planNote} />
+        <PlanGrid plans={c.plans} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
 
       {/* ---------- GALLERY ---------- */}

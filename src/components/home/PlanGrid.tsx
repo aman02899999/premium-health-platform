@@ -10,7 +10,8 @@ import { TiltCard } from "@/components/ui/TiltCard";
 
 export const planMonths = (d: string) => Number(d.match(/\d+/)?.[0] ?? 1) * (/year/i.test(d) ? 12 : 1);
 
-export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
+/** payOnline: plan buttons open /join (Razorpay checkout) instead of the free-trial form. */
+export function PlanGrid({ plans, note, payOnline = false }: { plans: Plan[]; note: string; payOnline?: boolean }) {
   const hasCouple = plans.some((p) => p.couplePrice > 0);
   const [mode, setMode] = useState<"single" | "couple">("single");
   const couple = mode === "couple" && hasCouple;
@@ -85,10 +86,10 @@ export function PlanGrid({ plans, note }: { plans: Plan[]; note: string }) {
                     ))}
                   </ul>
                   <Link
-                    href="/contact#trial"
+                    href={payOnline ? `/join?plan=${encodeURIComponent(p.id)}${couple ? "&couple=1" : ""}` : "/contact#trial"}
                     className={`mt-6 block rounded-full py-3 text-center font-bold ${p.featured ? "btn-brand" : "border border-brand/50 text-brand hover:bg-brand hover:text-white"}`}
                   >
-                    Join {p.name}
+                    {payOnline ? `Join ${p.name} online` : `Join ${p.name}`}
                   </Link>
                 </article>
               </TiltCard>
