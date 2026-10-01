@@ -178,6 +178,10 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
               {busy ? "Opening secure payment…" : `Pay ${inr(quote.total)}`}
             </button>
             <p className="text-center text-xs text-white/45">UPI, cards, net banking & wallets · Secured by Razorpay</p>
+            <p className="text-center text-xs text-white/40">
+              By paying you agree to our <Link href="/terms" className="underline">Terms</Link> and{" "}
+              <Link href="/refund-policy" className="underline">Refund Policy</Link>.
+            </p>
           </form>
         ) : (
           <div className="mt-6 space-y-3 text-center">

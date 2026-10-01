@@ -88,9 +88,11 @@ export function Footer({ content }: { content: SiteContent }) {
           <p>
             © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
           </p>
-          <p className="flex gap-4">
+          <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="hover:text-brand">Privacy</Link>
             <Link href="/terms" className="hover:text-brand">Terms</Link>
+            <Link href="/refund-policy" className="hover:text-brand">Refunds</Link>
+            <Link href="/delivery-policy" className="hover:text-brand">Delivery</Link>
             <Link href="/sitemap.xml" className="hover:text-brand">Sitemap</Link>
           </p>
         </div>

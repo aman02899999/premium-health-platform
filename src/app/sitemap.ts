@@ -32,6 +32,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/library", 0.8, "monthly"],
     ["/privacy", 0.2, "yearly"],
     ["/terms", 0.2, "yearly"],
+    ["/refund-policy", 0.2, "yearly"],
+    ["/delivery-policy", 0.2, "yearly"],
   ];
   return [
     ...pages.map(([path, priority, changeFrequency]) => ({ url: absoluteUrl(path), lastModified: latest, priority, changeFrequency })),

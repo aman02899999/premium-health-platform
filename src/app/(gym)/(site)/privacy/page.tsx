@@ -20,6 +20,8 @@ export default async function PrivacyPage() {
           <li>Your name, phone number, fitness goal and message when you submit the free-trial form.</li>
           <li>If you sign in with Google: your name, email address and profile photo from your Google account.</li>
           <li>If you sign in and use the Health Hub: the workout plan, food log and progress check-ins you choose to save.</li>
+          <li>If you buy from the Premium Library or pay for a membership online: your name, email and mobile number, and the order and payment IDs. Card, UPI and bank details go directly to Razorpay, our payment processor — we never see or store them.</li>
+          <li>If you review a book: your rating, review text, the name you choose to show, and your city and country.</li>
           <li>Standard server logs (IP address, browser type) needed to run the site securely.</li>
         </ul>
         <p>
@@ -32,7 +34,7 @@ export default async function PrivacyPage() {
           synced data at any time from <a href="/account">My account</a>.
         </p>
         <h2>How we use it</h2>
-        <p>We use your details only to contact you about your trial or membership enquiry. We never sell or share your data with third parties for marketing.</p>
+        <p>We use your details only to contact you about your trial, membership or order, to deliver the books you buy and to help you recover your downloads. We never sell or share your data with third parties for marketing.</p>
         <h2>Your choices</h2>
         <p>
           To have your enquiry or your account deleted, call us at {c.business.phone} or message us on WhatsApp and we will remove it.
