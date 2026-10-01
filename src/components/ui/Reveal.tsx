@@ -1,38 +1,19 @@
-"use client";
+import type { ElementType, ReactNode } from "react";
 
-import { useEffect, useRef, type ElementType, type ReactNode } from "react";
-
-// Fades/slides children in once they scroll into view.
+// Fades/slides children in as they scroll into view — pure CSS (scroll-driven
+// animations, see .reveal in globals.css). Content is visible from the first
+// paint and never waits for JavaScript, so it can't delay LCP; browsers without
+// scroll-timeline support simply show it without the animation.
 export function Reveal({
   children,
-  delay = 0,
   className = "",
   as: Tag = "div",
 }: {
   children: ReactNode;
+  /** Kept for compatibility; scroll-driven reveals are timed by scroll position. */
   delay?: number;
   className?: string;
   as?: ElementType;
 }) {
-  const ref = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("is-visible");
-          io.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <Tag ref={ref} className={`reveal ${className}`} style={{ "--delay": `${delay}ms` } as React.CSSProperties}>
-      {children}
-    </Tag>
-  );
+  return <Tag className={`reveal ${className}`}>{children}</Tag>;
 }

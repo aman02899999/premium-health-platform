@@ -1,5 +1,6 @@
 import type { SiteContent } from "./types";
 import { DEFAULT_POSTS } from "./default-posts";
+import { HINGLISH_POSTS } from "./hinglish-posts";
 import { LOCAL_POSTS } from "./local-posts";
 
 // Seed content used until the admin saves their own. Facts about the gym come
@@ -226,7 +227,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       a: "Quarterly and longer memberships include diet guidance built around normal Indian home food, for both vegetarians and non-vegetarians.",
     },
   ],
-  posts: [...DEFAULT_POSTS, ...LOCAL_POSTS],
+  posts: [...DEFAULT_POSTS, ...LOCAL_POSTS, ...HINGLISH_POSTS],
   seo: {
     title: "Royal Fitness Club — Best Gym in Sector 93, Noida",
     description:

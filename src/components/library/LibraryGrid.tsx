@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { coverSrc, type Book } from "@/lib/library/catalog";
 import type { RatingSummary } from "@/lib/library/reviews-types";
+import { Book3D } from "./Book3D";
 import { Stars } from "./Stars";
 
 /** Book grid with section filter chips. */
@@ -26,8 +26,8 @@ export function LibraryGrid({ books, categories, ratings }: { books: Book[]; cat
         {shown.map((b) => (
           <li key={b.slug}>
             <Link href={`/library/${b.slug}`} className="group block">
-              <div className="relative aspect-[2/3] overflow-hidden rounded-xl shadow-[0_18px_40px_-20px_rgba(0,0,0,.8)] ring-1 ring-white/10 transition group-hover:-translate-y-1 group-hover:ring-brand/60">
-                <Image src={coverSrc(b.volume)} alt={`${b.title} — cover`} fill sizes="(min-width:1024px) 22vw, (min-width:640px) 30vw, 45vw" className="object-cover" />
+              <div className="px-[5%] pt-2">
+                <Book3D src={coverSrc(b.volume)} alt={`${b.title} — cover`} sizes="(min-width:1024px) 22vw, (min-width:640px) 30vw, 45vw" />
               </div>
               <p className="mt-3 text-[11px] uppercase tracking-[0.18em] text-brand">{b.label}</p>
               <h3 className="font-display text-base leading-snug text-white">{b.title}</h3>

@@ -12,6 +12,8 @@ import { EXCERPTS } from "@/lib/library/excerpts";
 import { COMPLETE_LIBRARY_PRICE, bookBySlug } from "@/lib/library/pricing";
 import { approvedReviews, type BookReview } from "@/lib/library/reviews";
 import { AddToCart } from "@/components/library/AddToCart";
+import { Book3D } from "@/components/library/Book3D";
+import { BookTilt } from "@/components/library/BookTilt";
 import { BundleCard } from "@/components/library/BundleCard";
 import { Stars } from "@/components/library/Stars";
 
@@ -96,9 +98,9 @@ export default async function BookPage({ params }: Props) {
 
       <div className="mt-6 grid gap-10 lg:grid-cols-[minmax(0,380px)_1fr]">
         <div>
-          <div className="relative aspect-[2/3] overflow-hidden rounded-2xl shadow-[0_30px_60px_-25px_rgba(0,0,0,.9)] ring-1 ring-white/10">
-            <Image src={coverSrc(book.volume)} alt={`${book.title} — cover`} fill priority sizes="(min-width:1024px) 380px, 90vw" className="object-cover" />
-          </div>
+          <BookTilt>
+            <Book3D src={coverSrc(book.volume)} alt={`${book.title} — cover`} sizes="(min-width:1024px) 380px, 90vw" priority />
+          </BookTilt>
         </div>
 
         <div>

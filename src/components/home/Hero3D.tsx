@@ -56,17 +56,20 @@ export default function Hero3D() {
     const mount = mountRef.current;
     if (!mount) return;
 
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const small = window.innerWidth < 768;
+    // Phones and low-end devices get a lighter scene: no MSAA, 1x pixels, cheaper materials, fewer particles, 30 fps.
+    const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+    const lite = small || (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4 || Boolean(nav.connection?.saveData);
+
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      renderer = new THREE.WebGLRenderer({ antialias: !lite, alpha: true, powerPreference: lite ? "low-power" : "high-performance" });
     } catch {
       return; // No WebGL — the CSS backdrop behind the canvas stays visible.
     }
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const small = window.innerWidth < 768;
-
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, small ? 1.5 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, lite ? 1 : 1.75));
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.1;
@@ -81,8 +84,12 @@ export default function Hero3D() {
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
     camera.position.set(0, 0.4, small ? 8.2 : 7.2);
 
-    const red = new THREE.MeshPhysicalMaterial({ color: 0xc8202f, metalness: 0.85, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.15 });
-    const navy = new THREE.MeshPhysicalMaterial({ color: 0x04466d, metalness: 0.45, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.12 });
+    const red = lite
+      ? new THREE.MeshStandardMaterial({ color: 0xc8202f, metalness: 0.85, roughness: 0.28 })
+      : new THREE.MeshPhysicalMaterial({ color: 0xc8202f, metalness: 0.85, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.15 });
+    const navy = lite
+      ? new THREE.MeshStandardMaterial({ color: 0x04466d, metalness: 0.45, roughness: 0.3 })
+      : new THREE.MeshPhysicalMaterial({ color: 0x04466d, metalness: 0.45, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.12 });
     const chrome = new THREE.MeshStandardMaterial({ color: 0xe6e6ee, metalness: 1, roughness: 0.12 });
 
     const rig = new THREE.Group();
@@ -108,7 +115,7 @@ export default function Hero3D() {
       return { mesh: m, radius: (ring.geometry as THREE.TorusGeometry).parameters.radius, speed: 0.5 - i * 0.12, phase: i * 2 };
     });
 
-    const count = small ? 500 : 1100;
+    const count = lite ? 300 : 1100;
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const r = 3 + Math.random() * 6;
@@ -195,10 +202,25 @@ export default function Hero3D() {
       dust.rotation.y = t * 0.02;
       renderer.render(scene, camera);
     };
-    const loop = () => {
+    // If the device can't keep up (average frame over ~45 ms after warm-up), stop animating and
+    // keep the last frame: a still hero beats a janky page that blocks taps and scrolling.
+    const minGap = lite ? 1000 / 30 : 0;
+    let last = 0;
+    let frames = 0;
+    let slowSum = 0;
+    let frozen = false;
+    const loop = (now = performance.now()) => {
       cancelAnimationFrame(raf);
-      if (!visible || document.hidden) return;
-      render();
+      if (frozen || !visible || document.hidden) return;
+      if (now - last >= minGap) {
+        const start = performance.now();
+        render();
+        const cost = performance.now() - start + (last ? Math.max(0, now - last - minGap) : 0);
+        last = now;
+        frames++;
+        if (frames > 10 && frames <= 55) slowSum += cost;
+        if (frames === 55 && slowSum / 45 > 45) frozen = true;
+      }
       raf = requestAnimationFrame(loop);
     };
     const onVisibility = () => !document.hidden && loop();
