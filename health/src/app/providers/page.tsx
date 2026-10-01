@@ -9,7 +9,7 @@ import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LeadForm } from "@/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/lib/monetization/config";
 
-const seoTitle = "Providers — Dietitians, Yoga, Clinics | BHG";
+const seoTitle = "Providers — Dietitians, Yoga, Clinics | Premium Health";
 const seoDescription = "Business directory: Dietitians, Nutritionists, Fitness coaches, Yoga instructors, Clinics, Diagnostic centers, Wellness — Free/Featured/Premium listings, verified.";
 const url = "/providers";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -37,7 +37,7 @@ export default function ProvidersPage() {
         howTo={{ name: "How to find provider", steps: ["Browse by type: Dietitian, Nutritionist, Fitness Coach, Yoga Instructor, Clinic", "Check tier: free, featured, premium — featured clearly labeled, not superior quality", "View profile + credentials (never fabricated) + location", "Inquire via lead form — minimal data, consent, rate limiting"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Business Directory — Free/Featured/Premium — SEO Pro — Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Business Directory — Free/Featured/Premium — Lead Gen</p>
         <h1 className="font-display mt-1 text-3xl font-black">Providers — Dietitians, Nutritionists, Fitness, Yoga, Clinics — India</h1>
         <p className="mt-2 max-w-2xl text-sm text-violet-100/90">Find qualified professionals — dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centers, wellness. Free/Featured/Premium tiers. Clearly separate Featured from Recommended based on clinical evidence. Do not fabricate credentials.</p>
         <div className="mt-3 flex flex-wrap gap-1.5">{types.map((t) => <span key={t} className="rounded-full bg-white/15 px-3 py-1 text-xs">{t}</span>)}</div>

@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cat = slugToCategory(slug);
   if (!cat) return { title: "Category not found" };
-  const title = seoTitle(`${cat} — Health Guides | SEO Optimized | BHG`).slice(0, 60);
-  const desc = seoDescription(`Evidence-informed ${cat} guides for Indian families: ${cat} diet, lifestyle, medicines, Ayurveda — with FAQs, references, real photos. Latest & trending, SEO pro + earning.`).slice(0, 155);
+  const title = seoTitle(`${cat} — Health Guides | Premium Health`).slice(0, 60);
+  const desc = seoDescription(`Evidence-informed ${cat} guides for Indian families: ${cat} diet, lifestyle, medicines, Ayurveda — with FAQs, references, real photos. Latest & trending.`).slice(0, 155);
   const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent(`${cat} — Guides`)}&category=${encodeURIComponent(cat)}&type=Blog`;
   return {
     title,
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: { card: "summary_large_image", title, description: desc, images: [ogImage] },
-    keywords: [cat, `${cat} India`, `${cat} guide`, "health blog", "Bharat Health Guide", "latest", "trending"],
+    keywords: [cat, `${cat} India`, `${cat} guide`, "health blog", "Premium Health Platform", "latest", "trending"],
   };
 }
 
@@ -69,7 +69,7 @@ export default async function CategorySlugPage({ params }: Props) {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Blog", item: "/blog" }, { name: "Categories", item: "/blog/category" }, { name: cat, item: `/blog/category/${slug}` }]}
         faqs={[
-          { q: `What is ${cat}?`, a: `${cat} guides for Indian families — evidence-informed, India-specific, with FAQs, references, real photos, diet, lifestyle, medicines, Ayurveda — SEO pro + E-E-A-T + earning via affiliate + premium.` },
+          { q: `What is ${cat}?`, a: `${cat} guides for Indian families — evidence-informed, India-specific, with FAQs, references, real photos, diet, lifestyle, medicines, Ayurveda.` },
           { q: `How many ${cat} guides?`, a: `${filtered.length} guides in ${cat} — sorted by updated date, latest + trending + related internal linking, CollectionPage + ItemList + Breadcrumb JSON-LD, OG /api/og, canonical+hreflang.` },
         ]}
         howTo={{ name: `How to browse ${cat} guides`, steps: [`Visit /blog/category/${slug} for all ${cat} guides`, `Read guide + FAQs + references + related + trending + latest`, `Subscribe newsletter + push + WhatsApp for weekly ${cat} digest`, `Share via referral — viral loop 7d free + Rs50 credit`] }}
@@ -79,8 +79,8 @@ export default async function CategorySlugPage({ params }: Props) {
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">{filtered.length} guides · SEO optimized · CollectionPage + ItemList + Breadcrumb JSON-LD · OG /api/og · Earning Platform</p>
-        <h1 className="font-display mt-2 text-3xl font-black">{cat} — Complete Guides — {filtered.length} Articles — SEO Pro</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides with FAQs, references, real photos — latest & trending, internal linking, JSON-LD, breadcrumbs, OG /api/og, canonical+hreflang, affiliate + premium CTA — pro SEO + earning.</p>
+        <h1 className="font-display mt-2 text-3xl font-black">{cat} — {filtered.length} guides</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides with FAQs, references, real photos — latest & trending, internal linking, JSON-LD, breadcrumbs, OG /api/og, canonical+hreflang, affiliate + premium CTA.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -119,8 +119,8 @@ export default async function CategorySlugPage({ params }: Props) {
           <LatestArticles limit={5} />
           <TrendingArticles limit={4} />
           <div className="rounded-2xl bg-stone-900 p-4 text-white">
-            <p className="text-xs font-bold uppercase tracking-wider text-amber-300">SEO Internal Linking — Pro</p>
-            <p className="mt-1 text-sm">This category page links to all {cat} guides ({filtered.length}), plus latest & trending — boosts crawlability, dwell time, topical authority, E-E-A-T, earning via affiliate + premium + referral.</p>
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-300">Keep exploring</p>
+            <p className="mt-1 text-sm">All {filtered.length} {cat} guides are above — or browse everything else.</p>
             <div className="mt-2 flex flex-wrap gap-2 text-xs">
               <Link href="/blog" className="rounded-full bg-white/10 px-3 py-1 font-bold hover:bg-white/20">All blogs →</Link>
               <Link href="/blog/latest" className="rounded-full bg-white/10 px-3 py-1 font-bold hover:bg-white/20">Latest →</Link>

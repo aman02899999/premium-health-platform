@@ -31,8 +31,8 @@ export function RelatedArticles({ currentSlug, category, tags, limit = 4 }: { cu
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="text-sm font-bold">Related Articles — Keep Reading (SEO internal linking)</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Continue your learning journey — reduces bounce, increases dwell time.</p>
+      <h3 className="text-sm font-bold">Related articles — keep reading</h3>
+      <p className="mt-1 text-[11px] text-stone-500">Continue your learning journey.</p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         {scored.map((a) => (
           <Link key={a.slug} href={`/blog/${a.slug}`} className="group flex gap-3 rounded-2xl bg-stone-50 p-3 hover:bg-emerald-50 dark:bg-stone-800 dark:hover:bg-stone-700">

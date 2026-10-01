@@ -37,6 +37,7 @@ export function AdminMonetizationManager() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- load the selected tab from the API
     fetchData(tab);
   }, [tab]);
 
@@ -55,7 +56,7 @@ export function AdminMonetizationManager() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-      <h2 className="font-bold">Monetization Admin — Manage All Systems — Modular</h2>
+      <h2 className="font-bold">Monetization Admin — Manage All Systems</h2>
       <p className="mt-1 text-xs text-stone-500">Affiliate Products create/edit/delete/activate, Digital Products upload/manage PDFs, Orders view id/product/amount/status/date, Ads manage slots, Sponsors manage campaigns, Coupons create/edit/expire, Providers approve/reject, Leads view/export, Analytics impressions/clicks/CTR/sales/revenue/conversion.</p>
       <div className="mt-4 flex flex-wrap gap-1.5">
         {tabs.map((t) => (

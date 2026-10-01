@@ -64,7 +64,7 @@ export function PlateVisual() {
           <span className="mt-6 flex gap-6"><span>¼ Grains</span><span>¼ Protein</span></span>
         </div>
       </div>
-      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Eat in order: salad → protein → grains. Source: BHG editorial adaptation of plate-method guidance.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Eat in order: salad → protein → grains. Source: editorial adaptation of plate-method guidance.</p>
     </figure>
   );
 }

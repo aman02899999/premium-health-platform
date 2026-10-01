@@ -256,7 +256,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <AffiliateProducts limit={2} />
           <AdBanner placement="products_sidebar" page={`/blog/${slug}`} />
           <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
-            <p className="border-b border-stone-100 px-4 py-3 text-xs font-bold uppercase tracking-wider text-stone-500 dark:border-stone-800">Related guides — SEO</p>
+            <p className="border-b border-stone-100 px-4 py-3 text-xs font-bold uppercase tracking-wider text-stone-500 dark:border-stone-800">Related guides</p>
             {relatedFallback.map((r) => (
               <Link key={r.slug} href={`/blog/${r.slug}`} className="flex gap-3 border-b border-stone-100 p-3 last:border-0 hover:bg-stone-50 dark:border-stone-800 dark:hover:bg-stone-800/60">
                 <span className="relative h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-stone-100">

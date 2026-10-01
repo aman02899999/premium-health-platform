@@ -9,7 +9,7 @@ import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 
-const seoTitle = "Store — Health Guides, Diet Plans, Premium PDFs | BHG";
+const seoTitle = "Store — Health Guides, Diet Plans, Premium PDFs | Premium Health";
 const seoDescription = "Digital health store: diabetes diet guide, 30-day weight plan, high-protein vegetarian, Ayurveda herbs — educational PDFs, secure delivery, Razorpay-ready.";
 const url = "/store";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -37,7 +37,7 @@ export default function StorePage() {
         howTo={{ name: "How to buy a health guide", steps: ["Browse by category: Health Guides, Diet Plans, Ayurveda, Fitness", "View details + preview 2 pages + pages + file size", "Click Buy — checkout via Razorpay/mock, server-side verification", "Download via secure token /download/[token] — expires 72h, 3 downloads"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Digital Product Store — Modular Monetization — SEO Pro — Payment Abstraction</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Digital Product Store — Modular Monetization — Payment Abstraction</p>
         <h1 className="font-display mt-1 text-3xl font-black">Store — Health Guides, Diet Plans, Premium PDFs — India</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Educational PDFs: diabetes diet, weight management, high-protein vegetarian, heart-healthy, Ayurveda herbs — 40-80 pages, secure delivery, Razorpay-ready, refund policy. No medical promises or guaranteed outcomes.</p>
         <div className="mt-3 flex flex-wrap gap-2">{categories.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}</div>

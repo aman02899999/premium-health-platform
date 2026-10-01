@@ -6,8 +6,8 @@ import { SITE } from "@/lib/site";
 
 export const revalidate = 600;
 
-const seoTitle = "Health News — India Medical Briefings | BHG";
-const seoDescription = "Daily updated Indian health news: outbreak advisories, seasonal care, drug-safety watch, AYUSH updates and evidence digests with sources and medical review. SEO pro + CollectionPage.";
+const seoTitle = "Health News — India Medical Briefings | Premium Health";
+const seoDescription = "Daily updated Indian health news: outbreak advisories, seasonal care, drug-safety watch, AYUSH updates and evidence digests with sources and medical review..";
 const url = "/news";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("News — Health India")}&category=${encodeURIComponent("News")}&type=Blog`;

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = DIGITAL_PRODUCTS.find((p) => p.slug === slug);
   if (!product) return { title: "Product not found" };
-  const title = `${product.title} — ${product.category} | BHG`.slice(0, 60);
+  const title = `${product.title} — ${product.category} | Premium Health`.slice(0, 60);
   const desc = `${product.description} ${product.pages ? `${product.pages} pages, ${product.fileSize}` : ""} — educational PDF, secure delivery.`.slice(0, 155);
   const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent(product.title)}&category=${encodeURIComponent(product.category)}&type=Product`;
   return {

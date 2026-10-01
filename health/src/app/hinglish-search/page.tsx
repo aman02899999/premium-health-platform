@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Hinglish Health Search — Hindi + English Mix | BHG";
-const seoDescription = "Search health in Hinglish: 'madhumeh ke lakshan' — understands Hindi + English mix. Unique India, SEO + premium earning.";
+const seoTitle = "Hinglish Health Search — Hindi + English Mix | Premium Health";
+const seoDescription = "Search health in Hinglish: 'madhumeh ke lakshan' — understands Hindi + English mix..";
 const url = "/hinglish-search";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Hinglish Search — Health India")}&category=${encodeURIComponent("Hinglish Search")}&type=tool`;
@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to search in Hinglish", steps: ["Type in Hinglish: e.g., 'sugar kam karne ke liye kya khaye'","View results: diseases, herbs, thali, millet swap — India context","Click to read full page + related articles","Save search in premium, get Hinglish weekly tips"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-fuchsia-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fuchsia-200">Unique India — Earning Platform — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fuchsia-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Hinglish Health Search — Hindi + English Mix — Unique India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-fuchsia-100/90">Search health in Hinglish: 'madhumeh ke lakshan' — understands Hindi + English mix. Unique India. SEO HowTo+FAQ+OG+PremiumCTA+LatestArticles.</p>
+        <p className="mt-2 max-w-2xl text-sm text-fuchsia-100/90">Search health in Hinglish: &apos;madhumeh ke lakshan&apos; — understands Hindi + English mix. Unique India.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -44,15 +44,6 @@ export default function Page() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Hinglish Search is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>India-first: Hinglish Search with Indian context, INR, FSSAI, ICMR</li>
-              <li>Earning: affiliate + premium + lead gen + ad — pro platform</li>
-              <li>SEO: FAQ (2) + HowTo 4 steps + Breadcrumb JSON-LD + OG /api/og + internal linking</li>
-              <li>Digital marketing: UTM capture, gtag events, newsletter, exit-intent, sticky CTA</li>
-            </ul>
-          </div>
         </div>
       </div>
 

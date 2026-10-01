@@ -13,8 +13,8 @@ import { AdBanner, AdInArticle, AdRectangle } from "@/components/monetization/Ad
 import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
 
-const seoTitle = "Ayurveda — Dosha, Dinacharya, Ritucharya | BHG";
-const seoDescription = "Dosha, dinacharya, ritucharya, nutrition, panchakarma education and herb safety — traditional wisdom distinguished from clinical evidence. SEO pro + ItemList + monetization pro.";
+const seoTitle = "Ayurveda — Dosha, Dinacharya, Ritucharya | Premium Health";
+const seoDescription = "Dosha, dinacharya, ritucharya, nutrition, panchakarma education and herb safety — traditional wisdom distinguished from clinical evidence..";
 const url = "/ayurveda";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Ayurveda — Dosha India")}&category=${encodeURIComponent("Ayurveda")}&type=tool`;
@@ -40,9 +40,9 @@ export default function AyurvedaPage() {
         howTo={{ name: "How to explore Ayurveda", steps: ["Read dosha basics, dinacharya daily routine, ritucharya seasonal", "Check pathya-apathya nutrition + panchakarma education + safety", "Use dosha-meals + ritucharya planner + herb-drug checker tools", "Consult qualified Vaidya + doctor for integration"] }}
       />
       <div className="hero-pattern mt-3 rounded-3xl border border-emerald-100 p-6 md:p-8 dark:border-stone-700">
-        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-600"><Sparkles className="h-4 w-4" /> Traditional wellness, responsibly presented — SEO Pro + Earning Platform + Monetization Pro</p>
+        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-600"><Sparkles className="h-4 w-4" /> Traditional wellness, responsibly presented</p>
         <h1 className="font-display mt-2 text-3xl font-black md:text-4xl">Ayurveda Portal — Dosha, Dinacharya, Ritucharya</h1>
-        <p className="mt-2 max-w-2xl text-sm text-stone-600 dark:text-stone-300">Ayurveda offers time-tested lifestyle wisdom — routine, seasonal eating, herbs and mind practices. We present traditional concepts clearly <em>as traditional concepts</em>, separate from modern clinical evidence, so you can integrate safely. SEO: FAQ+HowTo+OG+PremiumCTA+Affiliate + Monetization: AdBanner, HealthProductRecommendations, MonetizationCTA, Store.</p>
+        <p className="mt-2 max-w-2xl text-sm text-stone-600 dark:text-stone-300">Ayurveda offers time-tested lifestyle wisdom — routine, seasonal eating, herbs and mind practices. We present traditional concepts clearly <em>as traditional concepts</em>, separate from modern clinical evidence, so you can integrate safely.</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {[["Dosha Basics", "/ayurveda/dosha-basics"], ["Dinacharya", "/ayurveda/dinacharya-daily-routine"], ["Nutrition", "/ayurveda/ayurvedic-nutrition"], ["Panchakarma", "/ayurveda/panchakarma-education"], ["All Herbs", "/herbs"], ["Dosha Meals", "/dosha-meals"], ["Ritucharya Planner", "/ritucharya"], ["Premium Store", "/store"]].map(([l, h]) => (
             <Link key={h} href={h} className="rounded-full bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600">{l}</Link>
@@ -81,14 +81,6 @@ export default function AyurvedaPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <AdBanner placement="products_sidebar" page="/ayurveda" />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Ayurveda is SEO Pro + Earning Pro</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>{AYURVEDA_TOPICS.length} topics + {HERBS.length} herbs with evidence level + safety + interactions</li>
-              <li>Earning: Ayurveda kit + books affiliate + premium dosha meals + ritucharya planner + store guides + product recommendations</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + ItemList JSON-LD + internal linking to dosha-meals/ritucharya/herb-interaction + AdBanner + MonetizationCTA</li>
-            </ul>
-          </div>
           <Newsletter compact />
         </div>
       </div>

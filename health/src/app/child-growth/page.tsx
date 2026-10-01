@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Child Growth Tracker — WHO India Percentiles | BHG";
-const seoDescription = "Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts. Unique India, premium + lead gen.";
+const seoTitle = "Child Growth Tracker — WHO India Percentiles | Premium Health";
+const seoDescription = "Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts.";
 const url = "/child-growth";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Child Growth — WHO India")}&category=${encodeURIComponent("Child Health")}&type=tool`;
@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to track child growth", steps: ["Enter child age, sex, height, weight, head circumference","View WHO percentile + growth chart + IAP India reference","Track monthly, see trend, get alerts if crossing percentiles","Save history in premium, share PDF with pediatrician"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-sky-800 to-emerald-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Unique India — Earning Platform — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Child Growth Tracker — WHO Percentiles India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-sky-100/90">Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts. Educational. SEO HowTo+FAQ+OG+PremiumCTA+LeadGen.</p>
+        <p className="mt-2 max-w-2xl text-sm text-sky-100/90">Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts. Educational.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -44,15 +44,6 @@ export default function Page() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Child Health is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>India-first: Child Health with Indian context, INR, FSSAI, ICMR</li>
-              <li>Earning: affiliate + premium + lead gen + ad — pro platform</li>
-              <li>SEO: FAQ (2) + HowTo 4 steps + Breadcrumb JSON-LD + OG /api/og + internal linking</li>
-              <li>Digital marketing: UTM capture, gtag events, newsletter, exit-intent, sticky CTA</li>
-            </ul>
-          </div>
         </div>
       </div>
 

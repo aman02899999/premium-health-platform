@@ -13,11 +13,11 @@ const KEYLESS_APIS = PUBLIC_APIS.filter((api) => api.auth === "No" && api.https)
 const INTEGRATED_APIS = PUBLIC_APIS.filter((api) => api.integrated).length;
 
 export const metadata: Metadata = {
-  title: `Public Health API Directory — ${TOTAL_APIS} Free APIs (Keyless & HTTPS flags) | BHG`,
+  title: `Public Health API Directory — ${TOTAL_APIS} Free APIs (Keyless & HTTPS flags) | Premium Health`,
   description: `A browsable directory of ${TOTAL_APIS} free public APIs relevant to health, nutrition, research and open data — with auth, HTTPS, CORS and licence flags, and which ones this platform already integrates behind /api/v1.`,
   alternates: { canonical: "/api-directory" },
   openGraph: {
-    title: "Public Health API Directory | Bharat Health Guide",
+    title: "Public Health API Directory | Premium Health Platform",
     description: `${TOTAL_APIS} free public APIs (${KEYLESS_APIS} keyless over HTTPS, ${INTEGRATED_APIS} integrated here) across health, food, science, government and environment categories.`,
     type: "website",
     url: `${SITE.url}/api-directory`,

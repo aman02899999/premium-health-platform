@@ -3,8 +3,8 @@ import HerbsClient from "./HerbsClient";
 import { HERBS } from "@/data/herbs";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Herbs Directory — Ashwagandha, Giloy, Turmeric | BHG";
-const seoDescription = "Ayurvedic herbs: ashwagandha, giloy, turmeric, shatavari — evidence, uses, safety, interactions. SEO pro + Product JSON-LD + affiliate earning.";
+const seoTitle = "Herbs Directory — Ashwagandha, Giloy, Turmeric | Premium Health";
+const seoDescription = "Ayurvedic herbs: ashwagandha, giloy, turmeric, shatavari — evidence, uses, safety, interactions..";
 const url = "/herbs";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Herbs — Ayurveda India")}&category=${encodeURIComponent("Herbs")}&type=tool`;

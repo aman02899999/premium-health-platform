@@ -7,12 +7,12 @@ import { API_PLANS, formatQuota, monthlyPriceLabel } from "@/lib/saas/plans";
 import { PUBLIC_APIS } from "@/data/public-apis";
 
 export const metadata: Metadata = {
-  title: "Developer API — India Health Data for Your App | BHG",
+  title: "Developer API — India Health Data for Your App | Premium Health",
   description:
     "One authenticated API over open, licence-clean health data: foods and nutrition, exercises, clinical trials, medical literature, air quality and country indicators. Free tier, transparent quotas, OpenAPI spec.",
   alternates: { canonical: "/developers" },
   openGraph: {
-    title: "Bharat Health Guide Data API",
+    title: "Premium Health Platform Data API",
     description: "Health, nutrition and research data from open sources, behind one API with a free tier.",
     type: "website",
     url: `${SITE.url}/developers`,
@@ -55,10 +55,10 @@ export default function DevelopersPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebAPI",
-            name: "Bharat Health Guide Data API",
+            name: "Premium Health Platform Data API",
             description: "India-focused health, nutrition and research data from open sources.",
             documentation: `${SITE.url}/developers/docs`,
-            provider: { "@type": "Organization", name: "Bharat Health Guide", url: SITE.url },
+            provider: { "@type": "Organization", name: "Premium Health Platform", url: SITE.url },
             termsOfService: `${SITE.url}/terms`,
           }),
         }}
@@ -95,8 +95,8 @@ export default function DevelopersPage() {
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-stone-200 bg-stone-900 p-5 text-stone-100 dark:border-stone-700">
           <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">curl</p>
-          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`curl -s "https://bharathealthguide.in/api/v1/literature/search?q=millet%20glycemic" \\
-  -H "x-api-key: $BHG_API_KEY"`}</code></pre>
+          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`curl -s "https://premium-health.vercel.app/api/v1/literature/search?q=millet%20glycemic" \\
+  -H "x-api-key: $API_KEY"`}</code></pre>
         </div>
         <div className="rounded-2xl border border-stone-200 bg-stone-900 p-5 text-stone-100 dark:border-stone-700">
           <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">response</p>
@@ -142,7 +142,7 @@ export default function DevelopersPage() {
                       {endpoint.source.name}
                     </a>
                   ) : (
-                    <span className="text-stone-400">Bharat Health Guide</span>
+                    <span className="text-stone-400">Premium Health Platform</span>
                   )}
                 </td>
                 <td className="px-4 py-3 text-xs text-stone-500 dark:text-stone-400">{endpoint.source?.license ?? "Own data"}</td>

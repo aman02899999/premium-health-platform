@@ -6,8 +6,8 @@ import { LeadForm } from "@/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/lib/monetization/config";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 
-const seoTitle = "Partner With Us — Clinics, Dietitians | BHG";
-const seoDescription = "Partner with BHG: clinics, dietitians, nutritionists, fitness coaches, diagnostic centers, wellness businesses — lead gen, business directory, sponsorship.";
+const seoTitle = "Partner With Us — Clinics, Dietitians | Premium Health";
+const seoDescription = "Partner with us: clinics, dietitians, nutritionists, fitness coaches, diagnostic centers, wellness businesses — lead gen, business directory, sponsorship.";
 const url = "/partner-with-us";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Partner With Us")}&category=${encodeURIComponent("Partnership")}&type=tool`;
@@ -35,7 +35,7 @@ export default function PartnerPage() {
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Partnership — Business Directory + Sponsorship + Lead Gen</p>
         <h1 className="font-display mt-1 text-3xl font-black">Partner With Us — Clinics, Dietitians, Wellness — India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Join BHG's business directory — dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centers, wellness. Free/Featured/Premium. Do not imply paid = medically superior. Do not fabricate credentials.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Join our business directory — dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centers, wellness. Free/Featured/Premium. Do not imply paid = medically superior. Do not fabricate credentials.</p>
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">

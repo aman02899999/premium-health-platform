@@ -8,8 +8,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Yoga — Asanas, Pranayama, Meditation India | BHG";
-const seoDescription = "Beginner yoga sequences, walking plans and strength basics with safety modifications for knees, heart, pregnancy and seniors. SEO pro + HowTo + earning.";
+const seoTitle = "Yoga — Asanas, Pranayama, Meditation India | Premium Health";
+const seoDescription = "Beginner yoga sequences, walking plans and strength basics with safety modifications for knees, heart, pregnancy and seniors..";
 const url = "/yoga";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Yoga — Asanas India")}&category=${encodeURIComponent("Yoga India")}&type=tool`;
@@ -44,9 +44,9 @@ export default function YogaPage() {
         howTo={{ name: "How to start yoga", steps: ["Pick plan: blood sugar, back rescue, BP-friendly, senior, PCOS, sleep", "Follow 20 min sequence: warm-up + flow + breathing + cool-down", "Track streak, modify for knees/heart/pregnancy", "Save plan in premium, get weekly progression + timer"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">SEO Pro — Earning Platform — Yoga India — HowTo+FAQ</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Yoga India</p>
         <h1 className="font-display mt-1 flex items-center gap-2 text-3xl font-black md:text-4xl"><Activity className="h-7 w-7" /> Yoga & Fitness — Indian Plans for Sugar, BP, Back & Sleep</h1>
-        <p className="mt-2 max-w-2xl text-sm text-violet-100/90">Practical Indian movement plans — yoga, walking and strength — with safety modifications. Movement supports sugar, BP, sleep and mood; it complements medicines, never replaces them without supervision. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="mt-2 max-w-2xl text-sm text-violet-100/90">Practical Indian movement plans — yoga, walking and strength — with safety modifications. Movement supports sugar, BP, sleep and mood; it complements medicines, never replaces them without supervision.</p>
       </div>
       <div className="mt-4"><InfoNote text="Uncontrolled BP (>160/100), chest pain, severe breathlessness, acute disc prolapse, recent surgery or high-risk pregnancy: get medical clearance before starting. Stop and seek care for chest pain, fainting or severe joint pain." /></div>
 
@@ -69,14 +69,6 @@ export default function YogaPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Yoga is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>6 plans: blood sugar, back rescue, BP-friendly, senior, PCOS, sleep — India heat friendly</li>
-              <li>Earning: yoga mat + blocks affiliate + premium timer + workout-builder</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + internal linking to yoga-timer/workout-builder/exercises</li>
-            </ul>
-          </div>
         </div>
       </div>
 

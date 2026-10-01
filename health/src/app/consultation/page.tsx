@@ -8,7 +8,7 @@ import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { AdBanner } from "@/components/monetization/AdComponents";
 
-const seoTitle = "Consultation — Diet, Fitness, Wellness | BHG";
+const seoTitle = "Consultation — Diet, Fitness, Wellness | Premium Health";
 const seoDescription = "Lead generation: diet consultation, fitness, wellness, health package, clinic inquiry, corporate wellness — minimal data, consent, rate limiting, spam protection.";
 const url = "/consultation";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -34,7 +34,7 @@ export default function ConsultationPage() {
         howTo={{ name: "How to request consultation", steps: ["Pick service: diet, fitness, wellness, health package, clinic, corporate", "Fill minimal info — name, email, phone, message, consent", "Submit — rate limiting + validation + privacy policy", "Track via /api/monetization/leads?limit=20 + analytics lead_submitted"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Lead Generation — Modular — Privacy-Conscious — Rate Limited</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Lead Generation — Privacy-Conscious — Rate Limited</p>
         <h1 className="font-display mt-1 text-3xl font-black">Consultation — Diet, Fitness, Wellness, Corporate — Lead Gen</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Connect with qualified professionals — diet, fitness, wellness, health package, clinic, corporate wellness. Minimal data collection, consent, timestamp, spam protection, rate limiting. Never request unnecessary sensitive medical info.</p>
       </div>

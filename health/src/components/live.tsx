@@ -177,6 +177,7 @@ export function DrugLookup() {
     } catch { setData(null); }
     setLoading(false);
   };
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- initial example lookup (network fetch)
   useEffect(() => { run("metformin"); }, []);
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-700 dark:bg-stone-900">
@@ -224,6 +225,7 @@ export function FoodLookup() {
     } catch { setData(null); setMiss(true); }
     setLoading(false);
   };
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- initial example lookup (network fetch)
   useEffect(() => { run("parle hide and seek"); }, []);
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-700 dark:bg-stone-900">

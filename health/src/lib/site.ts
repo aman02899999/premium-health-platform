@@ -1,14 +1,16 @@
 export const SITE = {
-  name: "Bharat Health Guide",
-  shortName: "BHG",
+  name: "Premium Health Platform",
+  shortName: "PHP",
   tagline: "Indian Health Knowledge — Modern Medicine, Ayurveda, Nutrition & Traditional Wellness",
   heroTitle: "Understand Your Health. Make Better Decisions.",
   heroSubtitle:
     "Evidence-informed health information combined with Indian Ayurveda, nutrition, lifestyle and modern medical knowledge.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://bharathealthguide.in",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://premium-health.vercel.app",
   locale: "en-IN",
   language: "en",
-  contactEmail: "care@bharathealthguide.in",
+  // Public contact address; set NEXT_PUBLIC_CONTACT_EMAIL. Without it the contact page shows the gym phone only.
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+  contactPhone: "+91 88518 30081",
   disclaimer:
     "This website provides general educational information and is not a substitute for professional medical diagnosis, treatment or emergency care. Always consult a qualified healthcare professional.",
   affiliateDisclosure:
@@ -175,11 +177,11 @@ export const PRIMARY_NAV: NavItem[] = [
   {
     label: "Blog",
     href: "/blog",
-    description: "SEO optimized guides",
+    description: "Long-form health guides",
     children: [
       { label: "All Articles", href: "/blog", description: "12 cornerstone guides" },
-      { label: "Categories", href: "/blog/category", description: "Browse by category — SEO" },
-      { label: "Latest", href: "/blog/latest", description: "Fresh content — SEO freshness" },
+      { label: "Categories", href: "/blog/category", description: "Browse by topic" },
+      { label: "Latest", href: "/blog/latest", description: "Newest guides first" },
       { label: "Trending", href: "/blog/trending", description: "Most read this week" },
       { label: "Disease Education", href: "/blog/category/disease-education" },
       { label: "Nutrition", href: "/blog/category/nutrition" },
@@ -190,13 +192,12 @@ export const PRIMARY_NAV: NavItem[] = [
   {
     label: "Premium",
     href: "/premium",
-    description: "Earning platform",
+    description: "Ad-free + meal plans",
     children: [
       { label: "Premium Plans", href: "/premium", description: "Ad-free + thali plans — ₹199/mo" },
-      { label: "Deals", href: "/deals", description: "Affiliate deals — earning" },
-      { label: "How We Earn", href: "/earn", description: "5 pillars — transparent" },
-      { label: "Login — SSO", href: "/login", description: "Google SSO optimized" },
-      { label: "Profile", href: "/profile", description: "SSO account + earnings" },
+      { label: "Deals", href: "/deals", description: "Health product deals & coupons" },
+      { label: "Sign in", href: "/login", description: "Google or email link" },
+      { label: "Profile", href: "/profile", description: "Your account & premium status" },
     ],
   },
   { label: "Products", href: "/products" },

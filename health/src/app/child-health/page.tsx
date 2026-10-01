@@ -8,8 +8,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Child Health — Growth, Nutrition, Vaccines India | BHG";
-const seoDescription = "Parent-friendly primers on growth, anemia, vitamin D, fever care and when children need urgent evaluation. Extra safety, weight-based dosing warning. SEO pro + lead gen.";
+const seoTitle = "Child Health — Growth, Nutrition, Vaccines India | Premium Health";
+const seoDescription = "Parent-friendly primers on growth, anemia, vitamin D, fever care and when children need urgent evaluation. Extra safety, weight-based dosing warning..";
 const url = "/child-health";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Child Health — Growth India")}&category=${encodeURIComponent("Child Health")}&type=tool`;
@@ -44,9 +44,9 @@ export default function ChildPage() {
         howTo={{ name: "How to use child health hub", steps: ["Pick topic: growth, anemia, vitamin D, fever, screen & sleep, vaccines, red flags", "Read parent-friendly primers + safety + weight-based dosing warning", "Use child-growth tracker + nutrition-tracker + calculators", "Book pediatric consult via lead form if red flags"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-sky-800 to-emerald-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">SEO Pro — Earning Platform — Child Health — Safety + FAQ+HowTo+OG</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Child Health — Safety</p>
         <h1 className="font-display mt-1 flex items-center gap-2 text-3xl font-black md:text-4xl"><Baby className="h-7 w-7" /> Child Health — Growth, Nutrition, Vaccines — India — Safety First</h1>
-        <p className="mt-2 max-w-2xl text-sm text-sky-100/90">Parent-friendly primers with extra safety. Doses weight-based and individual — this site never provides personalised pediatric dosing. Always follow pediatrician. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="mt-2 max-w-2xl text-sm text-sky-100/90">Parent-friendly primers with extra safety. Doses weight-based and individual — this site never provides personalised pediatric dosing. Always follow pediatrician.</p>
         <p className="mt-3 flex max-w-2xl items-start gap-2 rounded-2xl bg-white/10 p-3 text-xs"><ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" /> Never give aspirin to children, never guess antibiotic doses, and keep iron/paracetamol syrups locked away — accidental overdose is dangerous.</p>
       </div>
 
@@ -68,14 +68,6 @@ export default function ChildPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Child Health is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>6 topics: growth & protein, anemia & vitamin D, fever care, screen & sleep, vaccines, red flags — IAP + safety</li>
-              <li>Earning: child nutrition + growth tracker affiliate + premium history + lead gen pediatric</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + internal linking child-growth/nutrition-tracker/diseases/blog</li>
-            </ul>
-          </div>
         </div>
       </div>
 

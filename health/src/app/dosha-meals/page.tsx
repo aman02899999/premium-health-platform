@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Dosha Meals — Ayurveda Vata Pitta Kapha | BHG";
-const seoDescription = "Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India. Unique India, premium + affiliate earning.";
+const seoTitle = "Dosha Meals — Ayurveda Vata Pitta Kapha | Premium Health";
+const seoDescription = "Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India.";
 const url = "/dosha-meals";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Dosha Meals — Vata Pitta Kapha")}&category=${encodeURIComponent("Ayurveda Meals")}&type=tool`;
@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to get dosha meals", steps: ["Take quick dosha quiz: body, digestion, mind tendencies","Get Vata/Pitta/Kapha meal suggestions: millet, dal, veg, spices","Build thali with dosha meals + millet swap","Save plan in premium, get weekly dosha PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-orange-800 to-amber-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India — Earning Platform — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Dosha Meals — Ayurveda Vata Pitta Kapha — Personalized</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India. Unique India, premium + affiliate. SEO HowTo+FAQ+OG+PremiumCTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -44,15 +44,6 @@ export default function Page() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Ayurveda Meals is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>India-first: Ayurveda Meals with Indian context, INR, FSSAI, ICMR</li>
-              <li>Earning: affiliate + premium + lead gen + ad — pro platform</li>
-              <li>SEO: FAQ (2) + HowTo 4 steps + Breadcrumb JSON-LD + OG /api/og + internal linking</li>
-              <li>Digital marketing: UTM capture, gtag events, newsletter, exit-intent, sticky CTA</li>
-            </ul>
-          </div>
         </div>
       </div>
 

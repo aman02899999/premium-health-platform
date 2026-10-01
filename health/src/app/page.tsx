@@ -28,8 +28,8 @@ import { LatestArticles, TrendingArticles } from "@/components/blog/LatestArticl
 import { BlogCategoryGrid } from "@/components/blog/BlogCategories";
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — Understand Your Health. Make Better Decisions. | SEO + SSO + Earning Optimized`,
-  description: `${SITE.heroSubtitle} Live AQI, outbreak tracking, 120+ disease guides, thali builder, millet swap, IDRS, herb-drug checker, blog categories, latest & trending — SEO optimized, SSO optimized, earning platform.`,
+  title: `${SITE.name} — Understand Your Health. Make Better Decisions. | India-first health guides`,
+  description: `${SITE.heroSubtitle} Live AQI, outbreak tracking, 120+ disease guides, thali builder, millet swap, IDRS, herb-drug checker, plus guides on diet, Ayurveda, yoga and fitness.`,
   alternates: { canonical: "/", languages: { "en-IN": SITE.url, "en": SITE.url, "x-default": SITE.url } },
   openGraph: {
     title: `${SITE.name} — Understand Your Health. Make Better Decisions.`,
@@ -62,7 +62,7 @@ const FAQS = [
   { q: "Is this medical advice?", a: "No — education that prepares you for better doctor visits. We never prescribe, dose, or tell you to stop medicines. Emergencies always need a hospital, not a website." },
   { q: "How is Ayurveda handled here?", a: "As a respected traditional system with its own portal — clearly separated from modern evidence grades, with safety, interaction and quality notes on every herb." },
   { q: "Where does live data come from?", a: "Keyless public APIs: Open-Meteo (weather + AQI), disease.sh (COVID), openFDA (drug labels) and Open Food Facts — fetched server-side, cached, with graceful fallbacks." },
-  { q: "Is it free? How do you earn?", a: "Core guides free. Earning via premium ₹199/mo (ad-free + thali plans), affiliate 8% (glucometer, millets, etc), AdSense, lab leads, digital products — transparent, never influences evidence." },
+  { q: "Is it free? How is the site funded?", a: "Core guides are free. The site is funded by Premium (₹199/mo: ad-free, thali plans), clearly marked affiliate links, ads and digital guides — none of which ever changes what a guide says." },
 ];
 
 export default function HomePage() {
@@ -78,7 +78,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* ============ CINEMATIC HERO — SEO + SSO + Earning ============ */}
+      {/* ============ CINEMATIC HERO ============ */}
       <section className="hero-pattern hero-vignette relative overflow-hidden">
         <div className="mandala-ring animate-spin-slow pointer-events-none absolute -left-32 top-10 h-96 w-96 opacity-60" aria-hidden />
         <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-amber-400/20 blur-3xl" aria-hidden />
@@ -86,7 +86,7 @@ export default function HomePage() {
           <div className="reveal">
             <div className="flex flex-wrap items-center gap-2">
               <p className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/70 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-800 dark:border-emerald-800 dark:bg-stone-900/70 dark:text-emerald-200">
-                <Sun className="h-3.5 w-3.5 text-amber-500" /> {SITE.tagline} · SEO · SSO · Earning Optimized
+                <Sun className="h-3.5 w-3.5 text-amber-500" /> {SITE.tagline}
               </p>
               <LiveBadge />
               <Link href="/premium" className="inline-flex items-center gap-1 rounded-full bg-amber-500 px-2.5 py-1 text-[11px] font-bold text-stone-900"><Crown className="h-3 w-3" /> Premium ₹199</Link>
@@ -95,7 +95,7 @@ export default function HomePage() {
               Understand Your Health. <span className="bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 bg-clip-text text-transparent">Make Better Decisions.</span>
             </h1>
             <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-stone-600 dark:text-stone-300">
-              {SITE.heroSubtitle} Now with <strong>15 unique India features</strong> — thali builder, millet swap, IDRS, herb-drug checker, plus <strong>SEO blog categories, latest & trending</strong>, <strong>SSO login</strong>, <strong>earning via premium + affiliate</strong>.
+              {SITE.heroSubtitle} Now with <strong>15 India-first tools</strong> — thali builder, millet swap, IDRS diabetes risk score and herb-drug checker — plus fresh guides every week and <strong>one login with Royal Fitness Club</strong>.
             </p>
             <div className="mt-6"><SearchBar large /></div>
             <div className="mt-3 flex flex-wrap items-center gap-1.5 text-xs">
@@ -106,7 +106,7 @@ export default function HomePage() {
             </div>
             <div className="mt-6 flex flex-wrap gap-2.5">
               <Link href="/solutions" className="btn-shine group flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-700 to-teal-700 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-900/20 transition hover:shadow-2xl">Find Every Solution <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" /></Link>
-              <Link href="/blog/category" className="flex items-center gap-2 rounded-2xl border-2 border-emerald-700/20 bg-white/70 px-6 py-3.5 text-sm font-bold text-emerald-800 backdrop-blur hover:border-emerald-400 dark:border-stone-700 dark:bg-stone-900/70 dark:text-emerald-200">Blog Categories — SEO</Link>
+              <Link href="/blog/category" className="flex items-center gap-2 rounded-2xl border-2 border-emerald-700/20 bg-white/70 px-6 py-3.5 text-sm font-bold text-emerald-800 backdrop-blur hover:border-emerald-400 dark:border-stone-700 dark:bg-stone-900/70 dark:text-emerald-200">Blog Categories</Link>
             </div>
             <dl className="mt-8 grid max-w-lg grid-cols-4 gap-3">
               {STATS.map((s) => (
@@ -125,8 +125,8 @@ export default function HomePage() {
               <Image src={IMG.heroDoctor} alt={IMG.heroDoctorAlt} width={1200} height={627} priority sizes="(max-width: 1024px) 100vw, 45vw" className="h-[420px] w-full object-cover md:h-[500px]" />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-950/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-300"><BadgeCheck className="h-4 w-4" /> Evidence-first · India-specific · SEO Pro</p>
-                <p className="font-display mt-1 text-xl font-bold text-white md:text-2xl">Modern + Ayurveda + Nutrition — honestly compared + monetized ethically.</p>
+                <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-300"><BadgeCheck className="h-4 w-4" /> Evidence-first · India-specific</p>
+                <p className="font-display mt-1 text-xl font-bold text-white md:text-2xl">Modern + Ayurveda + Nutrition — honestly compared, clearly referenced.</p>
               </div>
             </div>
             <Link href="/diseases/type-2-diabetes" className="glass-strong animate-floaty absolute -left-3 top-6 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl md:-left-8">
@@ -137,7 +137,7 @@ export default function HomePage() {
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-700"><Calculator className="h-4 w-4" /></span>
               <span><span className="block text-xs font-bold">8 calculators</span><span className="block text-[11px] text-stone-500">BMI, IDRS, calories…</span></span>
             </Link>
-            <Link href="/premium" className="glass-strong animate-floaty absolute bottom-20 left-4 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl" style={{ animationDelay: "0.8s" }}>
+            <Link href="/premium" className="glass-strong animate-floaty absolute bottom-40 left-4 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl" style={{ animationDelay: "0.8s" }}>
               <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-700"><Crown className="h-4 w-4" /><span className="absolute -right-1 -top-1 h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" /></span>
               <span><span className="block text-xs font-bold">Premium — ₹199</span><span className="block text-[11px] text-stone-500">Ad-free + thali plans</span></span>
             </Link>
@@ -150,8 +150,8 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-3 text-[12px] font-semibold text-stone-600 dark:text-stone-300">
           <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-600" /> No cure claims, ever</span>
           <span className="flex items-center gap-1.5"><BookOpen className="h-4 w-4 text-emerald-600" /> Guideline-referenced</span>
-          <span className="flex items-center gap-1.5"><FlaskConical className="h-4 w-4 text-emerald-600" /> SEO: JSON-LD, sitemap, breadcrumbs</span>
-          <span className="flex items-center gap-1.5"><Crown className="h-4 w-4 text-amber-500" /> Earning: Premium + Affiliate + Ads</span>
+          <span className="flex items-center gap-1.5"><FlaskConical className="h-4 w-4 text-emerald-600" /> Every guide cites its sources</span>
+          <span className="flex items-center gap-1.5"><Crown className="h-4 w-4 text-amber-500" /> Premium: ad-free + meal plans</span>
         </div>
       </div>
 
@@ -162,19 +162,19 @@ export default function HomePage() {
           <IndiaPulseDashboard />
         </section>
 
-        {/* BLOG CATEGORIES — SEO Pro */}
+        {/* BLOG CATEGORIES */}
         <section aria-labelledby="blog-categories">
           <div className="mb-5 flex items-end justify-between gap-4">
-            <SectionHeading eyebrow="SEO Optimized · Categories" title="Browse by Category — Each has own SEO page" desc="Every category /blog/category/[slug] has JSON-LD, breadcrumbs, latest, internal linking — pro SEO for topical authority." id="blog-categories" />
+            <SectionHeading eyebrow="Categories" title="Browse by category" desc="Diabetes, thyroid, PCOS, heart, nutrition, Ayurveda and more — each category collects its latest and most-read guides." id="blog-categories" />
             <Link href="/blog/category" className="hidden shrink-0 items-center gap-1 rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700 sm:flex">All categories <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <BlogCategoryGrid />
         </section>
 
-        {/* LATEST + TRENDING — SEO Freshness */}
+        {/* LATEST + TRENDING */}
         <section className="grid gap-4 lg:grid-cols-3" aria-labelledby="latest-trending">
           <div className="lg:col-span-2 space-y-4">
-            <SectionHeading eyebrow="SEO Freshness · Latest" title="Latest Articles — Fresh Content" desc="Updated weekly — Google freshness signal, reduces bounce, increases dwell." id="latest-trending" />
+            <SectionHeading eyebrow="Latest" title="Latest Articles — Fresh Content" desc="Updated weekly — Google freshness signal, reduces bounce, increases dwell." id="latest-trending" />
             <div className="grid gap-4 sm:grid-cols-2">
               {latest.map((a) => (
                 <Link key={a.slug} href={`/blog/${a.slug}`} className="group overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
@@ -218,11 +218,11 @@ export default function HomePage() {
           <HealthTipOfDay />
         </div>
 
-        {/* UNIQUE INDIA — Earning */}
+        {/* UNIQUE INDIA */}
         <section aria-labelledby="unique-india" className="rounded-3xl bg-gradient-to-br from-amber-900 via-emerald-900 to-stone-900 p-6 text-white md:p-8">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Unique India — 15 Features — Premium Earning</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Made for India — 15 tools</p>
           <h2 className="font-display mt-2 text-2xl font-black md:text-3xl" id="unique-india">Thali Builder, Millet Swap, IDRS, Herb-Drug Checker — Only Here</h2>
-          <p className="mt-2 max-w-3xl text-sm text-emerald-100/80">India-first: thali builder, millet swap engine, IDRS diabetes score, anemia screening, yoga timer, Ritucharya seasonal + live weather, herb-drug checker, barcode 890, child growth, health Q&A RAG, live advisory, dosha meals, fasting planner, Hinglish search — all SEO optimized, premium monetized.</p>
+          <p className="mt-2 max-w-3xl text-sm text-emerald-100/80">India-first: thali builder, millet swap engine, IDRS diabetes score, anemia screening, yoga timer, Ritucharya seasonal + live weather, herb-drug checker, barcode 890, child growth, health Q&A RAG, live advisory, dosha meals, fasting planner, Hinglish search — all, premium monetized.</p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-sm">
             {[
               { label: "Thali Builder", href: "/thali-builder" },
@@ -253,11 +253,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured guides + earning */}
+        {/* Featured guides */}
         <section aria-labelledby="featured" className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="mb-5 flex items-end justify-between gap-4">
-              <SectionHeading eyebrow="Cornerstone guides" title="Featured long-form guides" desc="Deep, structured reads that anchor our topic clusters — SEO pillar pages." id="featured" />
+              <SectionHeading eyebrow="Cornerstone guides" title="Featured long-form guides" desc="Deep, structured reads on the conditions Indian families ask about most." id="featured" />
               <Link href="/blog" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All articles <ArrowRight className="h-4 w-4" /></Link>
             </div>
             <div className="grid gap-4 lg:grid-cols-3">
@@ -276,7 +276,7 @@ export default function HomePage() {
             </div>
             {trending.length > 0 && (
               <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/60 p-4 dark:border-amber-800 dark:bg-amber-950/30">
-                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300"><TrendingUp className="h-4 w-4" /> Trending this week — SEO + Social Proof</p>
+                <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300"><TrendingUp className="h-4 w-4" /> Trending this week</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {trending.map((t) => <Link key={t.slug} href={`/blog/${t.slug}`} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold shadow-sm hover:bg-amber-100 dark:bg-stone-900 dark:hover:bg-stone-800">{t.title}</Link>)}
                 </div>
@@ -287,7 +287,7 @@ export default function HomePage() {
             <PremiumCTA />
             <AffiliateProducts limit={3} />
             <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-              <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-600" /> Latest — Freshness SEO</h3>
+              <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-600" /> Latest</h3>
               <div className="mt-2 space-y-1 text-xs">
                 {latest.map((a) => (
                   <Link key={a.slug} href={`/blog/${a.slug}`} className="block truncate hover:text-emerald-700">· {a.title}</Link>
@@ -298,10 +298,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Products — Earning + Store + Deals + Calculators + Premium Resources — Homepage Monetization */}
+        {/* Products, store, deals, calculators, premium resources */}
         <section aria-labelledby="products">
           <div className="mb-5 flex items-end justify-between gap-4">
-            <SectionHeading eyebrow="Affiliate disclosure applies — Earning — Modular" title="Popular Health Products — Affiliate Optimized + Store + Deals" desc="Monitors, foods and yoga gear — never with false medical claims. Tracked via gtag + UTM for earning optimization. Plus digital store, calculators, premium resources." id="products" />
+            <SectionHeading eyebrow="Affiliate disclosure applies" title="Popular health products, store & deals" desc="Monitors, foods and yoga gear — never with false medical claims. Plus our digital guides, calculators and premium resources." id="products" />
             <Link href="/deals" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All deals <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -351,12 +351,12 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-sm font-bold">Today's Health Deals — Coupons + Affiliate</h3>
+              <h3 className="text-sm font-bold">Today&apos;s Health Deals — Coupons + Affiliate</h3>
               <div className="grid gap-3">
                 <Link href="/deals" className="rounded-2xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950/30">
                   <p className="text-[11px] font-bold uppercase text-amber-700">Deals · 8% avg · Rs160/sale</p>
                   <p className="mt-1 text-sm font-bold">Millet Combo 20% OFF — Code MILLET20 — Expires 30d</p>
-                  <p className="mt-1 text-xs text-stone-600">Glucometer, BP monitor, millet, yoga mat, protein — affiliate tracked via gtag + UTM.</p>
+                  <p className="mt-1 text-xs text-stone-600">Glucometer, BP monitor, millets, yoga mat, protein — picked for Indian homes.</p>
                 </Link>
                 <Link href="/providers" className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
                   <p className="text-[11px] font-bold uppercase text-violet-600">Featured Partners — Business Directory</p>
@@ -371,7 +371,7 @@ export default function HomePage() {
 
         {/* FAQ */}
         <section aria-labelledby="faq">
-          <SectionHeading eyebrow="Good to know" title="Questions, answered honestly" desc="How this site works and what it will never do — FAQ rich results for SEO." id="faq" />
+          <SectionHeading eyebrow="Good to know" title="Questions, answered honestly" desc="How this site works and what it will never do." id="faq" />
           <div className="grid gap-3 md:grid-cols-2">
             {FAQS.map((f) => (
               <div key={f.q} className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">

@@ -9,8 +9,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Recipes — Millet, Diabetes, Heart Healthy India | BHG";
-const seoDescription = "Healthy Indian recipes: moong khichdi, millet pulao, raita, sprouts chaat — simple, budget-friendly, diabetes, heart & weight friendly. SEO pro + earning.";
+const seoTitle = "Recipes — Millet, Diabetes, Heart Healthy India | Premium Health";
+const seoDescription = "Healthy Indian recipes: moong khichdi, millet pulao, raita, sprouts chaat — simple, budget-friendly, diabetes, heart & weight friendly..";
 const url = "/recipes";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Recipes — Healthy India")}&category=${encodeURIComponent("Recipes")}&type=tool`;
@@ -37,9 +37,9 @@ export default function RecipesPage() {
         howTo={{ name: "How to use recipes", steps: ["Pick category: millet, diabetes, heart, PCOS, weight loss", "View recipe: ingredients, GI, protein, fibre, steps, FSSAI tips + food guide link", "Build thali via /thali-builder + track nutrition", "Save favorites in premium, get weekly PDF + WhatsApp tips"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-orange-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">SEO Pro — Earning Platform — Recipes — ItemList + FAQ+HowTo+OG</p>
-        <h1 className="font-display mt-1 flex items-center gap-2 text-3xl font-black md:text-4xl"><ChefHat className="h-7 w-7" /> Healthy Indian Recipes — Diabetes, Heart & Weight Friendly — Pro SEO</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">15-minute, budget-friendly dishes from our food guides — each linked to its nutrition profile with portions and cautions. {recipes.length} recipes from {FOODS.length} foods. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Recipes</p>
+        <h1 className="font-display mt-1 flex items-center gap-2 text-3xl font-black md:text-4xl"><ChefHat className="h-7 w-7" /> Healthy Indian Recipes — Diabetes, Heart & Weight Friendly</h1>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">15-minute, budget-friendly dishes from our food guides — each linked to its nutrition profile with portions and cautions. {recipes.length} recipes from {FOODS.length} foods.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -61,14 +61,6 @@ export default function RecipesPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Recipes is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>{recipes.length} recipes from {FOODS.length} Indian foods — 15-25 min, budget-friendly, diabetes, heart, weight friendly</li>
-              <li>Earning: millet cooker + protein shaker + whey + millet combo affiliate + premium thali PDFs</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + ItemList JSON-LD + internal linking nutrition + thali-builder + diet</li>
-            </ul>
-          </div>
         </div>
       </div>
 

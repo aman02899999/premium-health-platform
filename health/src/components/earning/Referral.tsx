@@ -14,7 +14,7 @@ export function ReferralSystem() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user?.email) {
-      setError("Login required to refer — SSO optimized");
+      setError("Login required to refer");
       return;
     }
     setLoading(true);
@@ -42,7 +42,7 @@ export function ReferralSystem() {
   return (
     <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 dark:border-amber-800 dark:from-amber-950/30">
       <h3 className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-600" /> Refer & Earn — Viral Loop</h3>
-      <p className="mt-1 text-[11px] text-stone-600 dark:text-stone-300">Refer friend → both get 7 days premium free. Referrer gets Rs 50 credit after conversion (demo). SSO + UTM + gtag tracked.</p>
+      <p className="mt-1 text-[11px] text-stone-600 dark:text-stone-300">Refer friend → both get 7 days premium free. Referrer gets Rs 50 credit after conversion (demo).</p>
 
       {done ? (
         <div className="mt-3 rounded-2xl bg-white p-4 text-center dark:bg-stone-900">
@@ -62,7 +62,7 @@ export function ReferralSystem() {
 
       <div className="mt-3 rounded-xl bg-white/70 p-3 text-[11px] text-stone-600 dark:bg-stone-900/50">
         <p className="font-bold">Your referral link (SSO optimized):</p>
-        <p className="mt-1 break-all font-mono text-xs">https://bharathealthguide.in/register?ref={encodeURIComponent(user?.email || "login-required")}&utm_source=referral&utm_medium=user</p>
+        <p className="mt-1 break-all font-mono text-xs">https://premium-health.vercel.app/register?ref={encodeURIComponent(user?.email || "login-required")}&utm_source=referral&utm_medium=user</p>
       </div>
     </div>
   );

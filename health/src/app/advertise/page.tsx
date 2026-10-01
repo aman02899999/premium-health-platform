@@ -9,8 +9,8 @@ import { LeadForm } from "@/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/lib/monetization/config";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 
-const seoTitle = "Advertise — Ad Slots, Sponsored Content | BHG";
-const seoDescription = "Advertise with BHG: ad slots homepage_top, disease_middle, article_bottom, products_sidebar, sponsored content, newsletter — clearly labeled Advertisement/Sponsored.";
+const seoTitle = "Advertise — Ad Slots, Sponsored Content | Premium Health";
+const seoDescription = "Advertise with us: ad slots homepage_top, disease_middle, article_bottom, products_sidebar, sponsored content, newsletter — clearly labeled Advertisement/Sponsored.";
 const url = "/advertise";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Advertise With Us")}&category=${encodeURIComponent("Advertising")}&type=tool`;
@@ -37,8 +37,8 @@ export default function AdvertisePage() {
         howTo={{ name: "How to advertise", steps: ["Review ad slots + sponsored placements — clearly labeled Advertisement/Sponsored", "Submit inquiry via lead form — minimal data, consent", "Admin creates sponsor in SPONSORS config + ad slot in ADVERTISEMENTS", "Track via /api/monetization/analytics — ad_impression, ad_click, sponsor_clicked + gtag"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-900 to-stone-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Advertising — Modular — Clearly Labeled — Editorial Independence</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Advertise — Ad Slots, Sponsored Content, Newsletter — BHG</h1>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Advertising — Clearly Labeled — Editorial Independence</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Advertise — Ad Slots, Sponsored Content, Newsletter</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Ad slots: homepage_top, disease_middle, article_bottom, products_sidebar, footer, store_top, newsletter_inline, calculator_results. Sponsored content: articles, product cards, banners, category placements, newsletter placements — clearly labeled Sponsored / Paid partnership. Editorial independence maintained.</p>
         <div className="mt-3 flex flex-wrap gap-1.5">{ADVERTISEMENTS.map((a) => <span key={a.id} className="rounded-full bg-white/15 px-3 py-1 text-xs">{a.placement}</span>)}</div>
       </div>

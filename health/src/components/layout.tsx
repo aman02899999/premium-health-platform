@@ -23,6 +23,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     const saved = localStorage.getItem("bhg-theme");
     const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
     if (saved === "dark" || (!saved && prefers)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- sync with saved theme after mount (SSR-safe)
       setDark(true);
       document.documentElement.classList.add("dark");
     }
@@ -61,8 +62,8 @@ export function Logo({ compact }: { compact?: boolean }) {
       </span>
       {!compact && (
         <span className="leading-tight">
-          <span className="font-display block text-[17px] font-bold text-stone-900 dark:text-white">{SITE.name}</span>
-          <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-emerald-700 dark:text-emerald-300">Modern · Ayurveda · Nutrition</span>
+          <span className="font-display block text-[15px] font-bold text-stone-900 sm:text-[17px] dark:text-white">{SITE.name}</span>
+          <span className="hidden text-[10px] font-medium uppercase tracking-[0.14em] text-emerald-700 sm:block dark:text-emerald-300">Modern · Ayurveda · Nutrition</span>
         </span>
       )}
     </Link>
@@ -144,7 +145,7 @@ function AuthMenu() {
             <p className="text-xs text-stone-500">{user.email}</p>
             <p className="mt-1 text-[11px] text-stone-400">{user.provider === "google" ? "Google" : "Email"} · {user.role}</p>
           </div>
-          <Link href="/profile" className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><User className="h-4 w-4" /> Profile & Earnings</Link>
+          <Link href="/profile" className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><User className="h-4 w-4" /> Profile</Link>
           <Link href="/premium" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><Crown className="h-4 w-4 text-amber-500" /> Premium Plans</Link>
           <button onClick={async () => { setOpen(false); await signOut(); }} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><LogOut className="h-4 w-4" /> Sign out</button>
         </div>
@@ -159,6 +160,7 @@ export function Header() {
   const { dark, toggle, reduceMotion, toggleMotion } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- close menus when the route changes
   useEffect(() => { setMobileOpen(false); setOpenMenu(null); }, [pathname]);
 
   return (
@@ -275,7 +277,7 @@ export function Footer() {
             <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400"><strong>Affiliate disclosure:</strong> {SITE.affiliateDisclosure}</p>
             <div className="mt-3 flex gap-2">
               <Link href="/premium" className="rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-bold text-stone-900">Premium — ₹199/mo</Link>
-              <Link href="/login" className="rounded-xl border px-3 py-1.5 text-xs font-bold">Login — SSO</Link>
+              <Link href="/login" className="rounded-xl border px-3 py-1.5 text-xs font-bold">Login</Link>
             </div>
           </div>
           {FOOTER_COLUMNS.map((col) => (
@@ -290,7 +292,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row dark:border-stone-800 dark:text-stone-400">
-          <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families. · SEO optimized · SSO optimized · Earning optimized</p>
+          <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families.</p>
           <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link href="/privacy" className="hover:underline">Privacy</Link>
             <Link href="/terms" className="hover:underline">Terms</Link>

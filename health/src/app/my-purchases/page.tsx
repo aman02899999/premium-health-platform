@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import Link from "next/link";
 
-const seoTitle = "My Purchases — Downloads, Reports | BHG";
+const seoTitle = "My Purchases — Downloads, Reports | Premium Health";
 const seoDescription = "My purchases: digital products, diet plans, premium reports — download via secure expiring token /download/[token], 72h expiry, 3 download limit.";
 const url = "/my-purchases";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -26,7 +26,7 @@ export default function MyPurchasesPage() {
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Store", item: "/store" }, { name: "My Purchases", item: "/my-purchases" }]}
         faqs={[
           { q: "How to download my purchase?", a: "After payment verified server-side, you get download token via /api/monetization/checkout/verify — token expiring 72h, limit 3. Use /download/[token] to get secure link. Private PDF URLs never public. Check /orders for order status." },
-          { q: "What if download expired?", a: "Token expires after 72h or 3 downloads — request new token via support care@bharathealthguide.in with order ID. In production, admin can re-issue token via /admin/earning." },
+          { q: "What if download expired?", a: "Token expires after 72h or 3 downloads — request new token via support care@bharathealthguide.in with order ID. In producti." },
         ]}
         howTo={{ name: "How to access purchases", steps: ["Complete purchase via /store/[slug]", "Verify payment via /api/monetization/checkout/verify — server-side", "Get download token + URL /download/[token] — expiring 72h", "Download PDF — private URL, secure, not public"] }}
       />
@@ -40,7 +40,7 @@ export default function MyPurchasesPage() {
         <div className="lg:col-span-2 space-y-4">
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
             <h2 className="font-bold">Your Purchases — Demo Flow</h2>
-            <p className="mt-1 text-xs text-stone-500">Demo flow — in production, list user's paid orders from DB with auth.</p>
+            <p className="mt-1 text-xs text-stone-500">Demo flow — in production, list user&apos;s paid orders from DB with auth.</p>
             <div className="mt-4 space-y-3 text-sm">
               <div className="rounded-xl bg-stone-50 p-4 dark:bg-stone-800">
                 <p className="font-bold">1. Create Order</p>

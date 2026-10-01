@@ -12,7 +12,7 @@ import { cn, formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
 
 const KIND_META: Record<NewsItem["kind"], { label: string; cls: string }> = {
-  briefing: { label: "BHG Daily Briefing", cls: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100" },
+  briefing: { label: "Daily Briefing", cls: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100" },
   advisory: { label: "Public-Health Advisory", cls: "bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100" },
   digest: { label: "Evidence Digest", cls: "bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-100" },
 };

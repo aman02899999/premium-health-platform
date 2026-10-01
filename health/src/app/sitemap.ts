@@ -23,7 +23,7 @@ const STATIC_ROUTES = [
   "/nutrition-tracker", "/workout-builder", "/food-database", "/health-search",
   "/drug-lookup", "/exercises", "/login", "/register", "/profile",
   // Marketing / earning — pro
-  "/premium", "/deals", "/earn", "/lead", "/referral",
+  "/premium", "/deals", "/lead", "/referral",
   "/blog/search", "/blog/author",
   "/admin/earning",
   // Monetization platform — new earning routes (must be in sitemap per spec)

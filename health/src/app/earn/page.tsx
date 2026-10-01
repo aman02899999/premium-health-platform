@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
+import { requireAdmin } from "@/lib/auth/server";
 import { Breadcrumbs } from "@/components/ui";
 import { EarningStats, PremiumCTA } from "@/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: "Earn — How BHG Monetizes | Affiliate, Premium, Ads, Leads",
-  description: "How Bharat Health Guide earns: premium ₹199/mo, affiliate 8%, AdSense, lab leads, digital products — digital marketing optimized, SEO optimized, SSO optimized.",
+  description: "How Premium Health Platform earns: premium ₹199/mo, affiliate 8%, AdSense, lab leads, digital products.",
   alternates: { canonical: "/earn" },
 };
 
-export default function EarnPage() {
+export default async function EarnPage() {
+  await requireAdmin("/earn");
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Earn" }]} />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-teal-900 p-6 text-white md:p-8">
-        <h1 className="font-display text-3xl font-black">Earning Platform — How We Monetize</h1>
+        <h1 className="font-display text-3xl font-black">How We Monetize</h1>
         <p className="mt-2 max-w-3xl text-sm text-emerald-100/90">Transparent earning: premium subscription + affiliate + ads + leads + digital products. No cure claims, no false urgency — sustainable health media.</p>
       </div>
 
@@ -34,7 +39,7 @@ export default function EarnPage() {
           </div>
 
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-800 dark:bg-amber-950/30">
-            <h3 className="text-sm font-bold">SEO Optimized — How we rank</h3>
+            <h3 className="text-sm font-bold">How we rank</h3>
             <ul className="mt-2 list-disc pl-5 text-sm">
               <li>Sitemap includes 50+ static + 120 diseases + 20 herbs + 12 blog + 13 unique India + 8 categories</li>
               <li>JSON-LD: Website, Organization, Breadcrumb, FAQ, BlogPosting, Product, ItemList, CollectionPage, HowTo</li>
@@ -42,7 +47,6 @@ export default function EarnPage() {
               <li>Internal linking: related articles, latest, trending, categories — reduces bounce, increases dwell</li>
               <li>Freshness: /blog/latest updated weekly, /news daily, /api/realtime/pulse every 10 min</li>
               <li>Performance: Next Image, lazy loading, preconnect fonts, no CLS ads, &lt;500ms cache</li>
-              <li>SSO: login increases return visits + saves preferences + premium conversion</li>
             </ul>
           </div>
 
@@ -52,7 +56,7 @@ export default function EarnPage() {
         <div className="space-y-4">
           <PremiumCTA />
           <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Digital Marketing Checklist — Pro</h3>
+            <h3 className="text-sm font-bold">Digital Marketing Checklist</h3>
             <ul className="mt-2 space-y-1 text-xs">
               <li>✅ UTM capture (source/medium/campaign/ref/fbclid/gclid)</li>
               <li>✅ GA4 page_view, scroll_depth, affiliate_click, generate_lead</li>

@@ -10,7 +10,7 @@ export function AuthorBox({ author, role, reviewer }: { author: string; role?: s
         </div>
         <div>
           <p className="flex items-center gap-2 text-sm font-bold"><User className="h-4 w-4 text-emerald-600" /> {author}</p>
-          <p className="text-xs text-stone-500">{role || "BHG Editorial Team · Evidence-reviewed health writers"}</p>
+          <p className="text-xs text-stone-500">{role || "Editorial Team · Evidence-reviewed health writers"}</p>
           {reviewer && <p className="flex items-center gap-1 text-xs text-stone-500"><ShieldCheck className="h-3 w-3 text-emerald-600" /> Reviewed by {reviewer}</p>}
         </div>
       </div>
@@ -24,8 +24,8 @@ export function AuthorBox({ author, role, reviewer }: { author: string; role?: s
 
 export function AuthorList() {
   const authors = [
-    { name: "BHG Editorial Team", role: "Evidence-reviewed health writers", articles: 12 },
-    { name: "BHG Newsroom", role: "Daily medical briefings", articles: 13 },
+    { name: "Editorial Team", role: "Evidence-reviewed health writers", articles: 12 },
+    { name: "Newsroom", role: "Daily medical briefings", articles: 13 },
     { name: "Dr. Placeholder", role: "Medical review pending — placeholder", articles: 0 },
   ];
   return (

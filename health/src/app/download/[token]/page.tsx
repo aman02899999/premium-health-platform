@@ -7,7 +7,7 @@ import Link from "next/link";
 type Props = { params: Promise<{ token: string }> };
 
 export const metadata: Metadata = {
-  title: "Download — Secure Token | BHG",
+  title: "Download — Secure Token | Premium Health",
   description: "Secure download via expiring token — 72h expiry, 3 download limit, private PDF URLs never public, server-side verification.",
   robots: { index: false, follow: false },
 };
@@ -22,7 +22,7 @@ export default async function DownloadTokenPage({ params }: Props) {
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Store", item: "/store" }, { name: "Download", item: `/download/${token}` }]}
         faqs={[
           { q: "How secure download works?", a: "Token is an HMAC-SHA256 signed payload (orderId|productId|expiry-epoch-ms) — the signature is verified with a timing-safe comparison server-side via /api/monetization/download/[token] before any field is trusted. Expires 72h, limit 3. Private PDF URLs never public — use presigned S3/R2 URLs in production." },
-          { q: "What if token expired?", a: "Expired token returns 400 error — request new token via support with order ID. Admin can re-issue via /admin/earning." },
+          { q: "What if token expired?", a: "Expired token returns 400 error — request new token via support with order ID.." },
         ]}
         howTo={{ name: "How to download", steps: ["Get token from /api/monetization/checkout/verify after payment verified", "Visit /download/[token] — server verifies expiry", "Call /api/monetization/download/[token] — returns presigned URL or streams PDF", "Download — Content-Disposition attachment — audit logging"] }}
       />

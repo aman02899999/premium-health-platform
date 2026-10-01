@@ -13,8 +13,8 @@ import { AdBanner, AdRectangle } from "@/components/monetization/AdComponents";
 import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
 
-const seoTitle = "Trending Health Articles — Most Read This Week | BHG";
-const seoDescription = "Trending health guides — most read this week: diabetes, thyroid, PCOS, nutrition, Ayurveda — social proof + FOMO + internal linking SEO + earning.";
+const seoTitle = "Trending Health Articles — Most Read This Week | Premium Health";
+const seoDescription = "Trending health guides — most read this week: diabetes, thyroid, PCOS, nutrition, Ayurveda — socia.";
 const url = "/blog/trending";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Trending — Health Articles")}&category=${encodeURIComponent("Blog Trending")}&type=Blog`;
@@ -38,18 +38,18 @@ export default function TrendingPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Blog", item: "/blog" }, { name: "Trending", item: "/blog/trending" }]}
         faqs={[
-          { q: "What is trending?", a: "Most read this week — diabetes, thyroid, PCOS, nutrition, Ayurveda — social proof + FOMO, boosts CTR, dwell time, internal linking, pro SEO + digital marketing." },
+          { q: "What is trending?", a: "Most read this week — diabetes, thyroid, PCOS, nutrition, Ayurveda — social proof + FOMO, boosts CTR, dwell time, internal linking." },
           { q: "How is trending calculated?", a: "Demo: featured + trending flag + pageviews + gtag events + UTM + referral viral loop. Production uses GA4 + /api/earn/stats + /admin/earning dashboard." },
         ]}
-        howTo={{ name: "How to use trending", steps: ["Visit /blog/trending for most read this week — social proof", "Read trending article + related + latest + affiliate + premium CTA", "Share via referral — viral loop 7d free + Rs50 credit + UTM", "Subscribe newsletter + push + WhatsApp for trending digest"] }}
+        howTo={{ name: "How to use trending", steps: ["Open Trending to see this week's most-read guides", "Read a guide, then follow its related and latest links", "Share a guide with family — referrals get 7 days of Premium free", "Subscribe to the newsletter or WhatsApp tips for a weekly digest"] }}
       />
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: "Trending", path: "/blog/trending" }]} />
       <ItemListJsonLd items={list.map((a) => ({ name: a.title, path: `/blog/${a.slug}`, image: a.heroImage }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-rose-900 to-amber-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">SEO Pro — Social Proof + FOMO — Earning Platform — ItemList + Breadcrumb</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Social Proof + FOMO</p>
         <h1 className="font-display mt-1 text-3xl font-black">Trending — Most Read This Week — {list.length} Guides</h1>
-        <p className="mt-2 max-w-2xl text-sm text-rose-100/90">Social proof + FOMO — trending articles boost CTR, dwell time, internal linking — pro SEO & digital marketing + earning via affiliate + premium + referral viral loop.</p>
+        <p className="mt-2 max-w-2xl text-sm text-rose-100/90">Social proof + FOMO — trending articles boost CTR, dwell time, internal linking.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

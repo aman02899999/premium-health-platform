@@ -51,7 +51,7 @@ export default function robots(): MetadataRoute.Robots {
           "/lab-tests",
           "/symptoms",
           "/search",
-          // Monetization public routes — SEO optimized, must be crawlable
+          // Monetization public routes —, must be crawlable
           "/affiliate-products/",
           "/store/",
           "/providers/",

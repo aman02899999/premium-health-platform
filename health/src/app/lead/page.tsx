@@ -4,8 +4,8 @@ import { LeadGenForm } from "@/components/earning/LeadGen";
 import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 
 export const metadata: Metadata = {
-  title: "Book Lab Test / Dietitian / Insurance — Lead Gen Earning",
-  description: "Book lab tests, dietitian consult, insurance — high ticket lead gen Rs 150-500, UTM + gtag tracked, SEO optimized.",
+  title: "Book Lab Test / Dietitian / Insurance",
+  description: "Book lab tests, a dietitian consult or health insurance through trusted local partners.",
   alternates: { canonical: "/lead" },
 };
 
@@ -14,8 +14,8 @@ export default function LeadPage() {
     <div className="mx-auto max-w-7xl px-4 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Book Service" }]} />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <h1 className="font-display text-3xl font-black">Book Lab / Dietitian / Insurance — Lead Gen Earning</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">High ticket, high intent: HbA1c, thyroid, lipids, dietitian, insurance — India-specific. Tracked via UTM + gtag generate_lead. SEO optimized.</p>
+        <h1 className="font-display text-3xl font-black">Book Lab / Dietitian / Insurance</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">HbA1c, thyroid and lipid tests, dietitian consults and health insurance — we connect you with trusted local partners.</p>
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">

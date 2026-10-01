@@ -15,8 +15,8 @@ export function BlogCategories({ activeCategory }: { activeCategory?: string }) 
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="text-sm font-bold">Categories — SEO optimized</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Browse by topic — each category has its own SEO page /blog/category/[slug] with JSON-LD.</p>
+      <h3 className="text-sm font-bold">Categories —</h3>
+      <p className="mt-1 text-[11px] text-stone-500">Browse by topic.</p>
       <div className="mt-3 grid gap-2">
         {cats.map((c) => (
           <Link

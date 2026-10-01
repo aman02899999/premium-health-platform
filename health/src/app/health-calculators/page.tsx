@@ -7,8 +7,8 @@ import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 import { BmiCalc, CalorieCalc, ProteinCalc, WaterCalc, WaistHeightCalc, DiabetesRiskQuiz, HeartRiskEdu, IdealWeight } from "@/components/tools";
 
-const seoTitle = "Health Calculators — BMI, Calories, Protein, Diabetes Risk | BHG";
-const seoDescription = "8 interactive Indian health calculators with Asian cut-offs: BMI, calories, protein, water, waist-height, diabetes & heart risk. Estimates only — SEO pro.";
+const seoTitle = "Health Calculators — BMI, Calories, Protein, Diabetes Risk | Premium Health";
+const seoDescription = "8 interactive Indian health calculators with Asian cut-offs: BMI, calories, protein, water, waist-height, diabetes & heart risk. Estimates only.";
 const url = "/health-calculators";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Health Calculators — BMI India")}&category=${encodeURIComponent("Calculators")}&type=tool`;
@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to use health calculators", steps: ["Pick calculator: BMI, calories, protein, water, waist-height, diabetes risk, heart risk, ideal weight","Enter Indian inputs: age, height, weight, waist, activity, roti portions","View result with Asian cut-offs + honest limits + next steps","Save history in premium, track trends, get weekly PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-teal-800 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-200">SEO Pro — Earning Platform — Calculators</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-200">Calculators</p>
         <h1 className="font-display mt-1 text-3xl font-black">Health Calculators — BMI, Calories, Protein, Diabetes Risk — Asian Cut-offs</h1>
-        <p className="mt-2 max-w-2xl text-sm text-teal-100/90">Asian cut-offs, Indian portions, honest limits. Every result is an estimate for education — confirm with lab tests and doctor. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="mt-2 max-w-2xl text-sm text-teal-100/90">Asian cut-offs, Indian portions, honest limits. Every result is an estimate for education — confirm with lab tests and doctor.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -44,15 +44,6 @@ export default function Page() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Calculators is SEO Pro</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>SEO: seoTitle≤60, desc≤155, canonical+hreflang, OG /api/og 1200x630, FAQ(2)+HowTo(4)+Breadcrumb JSON-LD</li>
-              <li>Earning: affiliate + premium + lead gen + ad — pro platform</li>
-              <li>Digital marketing: UTM capture, gtag events, newsletter, exit-intent, sticky CTA, push, WhatsApp</li>
-              <li>Internal linking: related + latest + trending reduces bounce, increases dwell</li>
-            </ul>
-          </div>
         </div>
       </div>
 

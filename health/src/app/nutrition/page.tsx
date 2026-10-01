@@ -12,8 +12,8 @@ import { AdBanner, AdInArticle, AdRectangle } from "@/components/monetization/Ad
 import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
 
-const seoTitle = "Nutrition — Indian Foods GI Protein Fibre | BHG";
-const seoDescription = "Indian nutrition education: food profiles, nutrients, servings, cooking methods, cautions and diet plans for diabetes, heart, PCOS. SEO pro + ItemList + earning.";
+const seoTitle = "Nutrition — Indian Foods GI Protein Fibre | Premium Health";
+const seoDescription = "Indian nutrition education: food profiles, nutrients, servings, cooking methods, cautions and diet plans for diabetes, heart, PCOS..";
 const url = "/nutrition";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Nutrition — Indian Foods")}&category=${encodeURIComponent("Nutrition")}&type=tool`;
@@ -40,9 +40,9 @@ export default function NutritionPage() {
         howTo={{ name: "How to use nutrition guide", steps: ["Search food: e.g., roti, dal, millet, curd", "View GI, protein, fibre, FSSAI tips + healthier swap", "Build thali via /thali-builder + track via /nutrition-tracker", "Save plan in premium, get weekly PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-orange-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">SEO Pro — Earning Platform — Nutrition — ItemList JSON-LD — Monetization Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Nutrition</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Nutrition Portal — Indian Foods GI Protein Fibre</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Protein, fibre, millets, pulses, fermented foods and smart Indian cooking — every food shows nutrients, portions and who needs caution. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate+Latest + Monetization: AdBanner, HealthProductRecommendations, MonetizationCTA, Store guides.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Protein, fibre, millets, pulses, fermented foods and smart Indian cooking — every food shows nutrients, portions and who needs caution.</p>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {cats.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}
         </div>
@@ -84,15 +84,6 @@ export default function NutritionPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <AdBanner placement="products_sidebar" page="/nutrition" />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Nutrition is SEO Pro + Earning Pro</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>{FOODS.length} Indian foods with GI, protein, fibre, FSSAI + thali-builder + millet-swap internal linking</li>
-              <li>Earning: millet combo + protein affiliate + premium thali plans + ad + store guides + product recommendations</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + ItemList JSON-LD + AdBanner + MonetizationCTA</li>
-              <li>Monetization: AdInArticle article_middle, AdRectangle article_bottom, HealthProductRecommendations Nutrition, MonetizationCTA nutrition, Newsletter</li>
-            </ul>
-          </div>
           <Newsletter compact />
         </div>
       </div>

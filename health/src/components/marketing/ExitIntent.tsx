@@ -33,7 +33,7 @@ export function ExitIntent() {
           <Link href="/register" onClick={() => setShow(false)} className="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-stone-900">Claim Free Trial</Link>
           <button onClick={() => setShow(false)} className="rounded-xl border px-5 py-2.5 text-sm font-bold">No thanks</button>
         </div>
-        <p className="mt-2 text-[11px] text-stone-400">Exit-intent — digital marketing optimized, gtag tracked, SEO no CLS.</p>
+        <p className="mt-2 text-[11px] text-stone-400"></p>
       </div>
     </div>
   );

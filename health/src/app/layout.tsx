@@ -58,8 +58,7 @@ export const metadata: Metadata = {
   icons: { icon: ["/logo.svg", { url: "/icon-192.png", type: "image/png" }, { url: "/icon-512.png", type: "image/png" }], apple: "/apple-icon.png" },
   manifest: "/manifest.webmanifest",
   verification: {
-    // Add real verification tokens via env when available — SEO pro
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    // Add real verification tokens via env when available.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 

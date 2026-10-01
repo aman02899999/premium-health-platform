@@ -51,8 +51,8 @@ export function LeadGenForm({ type = "lab", title, description }: { type?: "lab"
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="text-sm font-bold">{title || `Book ${type} — Lead Gen Earning`}</h3>
-      <p className="mt-1 text-[11px] text-stone-500">{description || `High ticket ${type} lead — Rs 150-500 value — digital marketing optimized with UTM + gtag.`}</p>
+      <h3 className="text-sm font-bold">{title || `Book ${type}`}</h3>
+      <p className="mt-1 text-[11px] text-stone-500">{description || `Tell us what you need and a partner will call you back.`}</p>
       <form onSubmit={submit} className="mt-3 space-y-3">
         <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 dark:border-stone-700 dark:bg-stone-800">
           <User className="h-4 w-4 text-stone-400" />
@@ -73,7 +73,7 @@ export function LeadGenForm({ type = "lab", title, description }: { type?: "lab"
         <button disabled={loading} type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white hover:bg-emerald-600 disabled:opacity-50">
           <Send className="h-4 w-4" /> {loading ? "Submitting…" : `Book ${type} — Free Callback`}
         </button>
-        <p className="text-[11px] text-stone-400">By submitting you agree to be contacted. UTM + gtag tracked for earning optimization. Demo mode.</p>
+        <p className="text-[11px] text-stone-400">By submitting you agree to be contacted about this request.</p>
       </form>
     </div>
   );

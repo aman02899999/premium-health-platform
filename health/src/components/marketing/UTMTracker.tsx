@@ -7,6 +7,7 @@ export function useUTM() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem("bhg-utm");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- read sessionStorage after mount (SSR-safe)
       if (raw) setUtm(JSON.parse(raw));
     } catch {}
   }, []);

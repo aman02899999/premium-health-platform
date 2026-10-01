@@ -6,7 +6,7 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem | BHG";
+const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem | Premium Health";
 const seoDescription = "Lookup allopathy medicines: dose, side effects, interactions — India brands, educational. openFDA + RxNorm + PubChem free keyless. Unique, premium + affiliate.";
 const url = "/drug-lookup";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -49,9 +49,9 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
         howTo={{ name: "How to lookup drug", steps: ["Search drug: e.g., 'metformin', 'thyroxine', 'amlodipine'", "Pick provider: openFDA labels, RxNorm generic/brand, PubChem chemical", "View uses, side effects, interactions, India brands, safety", "Save list in premium, share with doctor, check herb-drug interaction"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-blue-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-200">Unique India — Earning Platform — SEO Pro — openFDA + RxNorm + PubChem</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-200">Unique India — openFDA + RxNorm + PubChem</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Drug Lookup — Allopathy Medicines India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-blue-100/90"><strong>openFDA</strong> (labels, warnings), <strong>RxNorm</strong> (generic/brand), <strong>PubChem</strong> (chemical). All free keyless, server-side. SEO HowTo+FAQ+OG+PremiumCTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-blue-100/90"><strong>openFDA</strong> (labels, warnings), <strong>RxNorm</strong> (generic/brand), <strong>PubChem</strong> (chemical). All free keyless, server-side.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/drug-lookup">
           <input name="q" defaultValue={query} placeholder="Try metformin, atorvastatin, amlodipine…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-sky-200/60 focus:border-amber-300 focus:outline-none" />
           <select name="provider" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
@@ -61,7 +61,7 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
           </select>
           <button className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 hover:bg-amber-400">Search</button>
         </form>
-        <p className="mt-2 text-[11px] text-sky-200/70">Source: {data?.source ?? provider} · Live: {data?.live ? "yes" : "fallback"} · SEO: canonical+hreflang+OG /api/og</p>
+        <p className="mt-2 text-[11px] text-sky-200/70">Source: {data?.source ?? provider} · Live: {data?.live ? "yes" : "fallback"} ·</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -84,15 +84,6 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Drug Lookup is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>openFDA + RxNorm + PubChem — free keyless, server-side cached</li>
-              <li>India-first: Indian brands + INR cost + safety</li>
-              <li>Earning: medicine organizer affiliate + premium history + lead gen</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb JSON-LD + OG /api/og + internal linking</li>
-            </ul>
-          </div>
         </div>
       </div>
 

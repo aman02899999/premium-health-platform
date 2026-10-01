@@ -6,9 +6,9 @@ import { API_ENDPOINTS } from "@/lib/saas/endpoints";
 import { API_PLANS, formatQuota } from "@/lib/saas/plans";
 
 export const metadata: Metadata = {
-  title: "API Reference — Auth, Quotas, Endpoints & Errors | BHG Developers",
+  title: "API Reference — Auth, Quotas, Endpoints & Errors | Premium Health Developers",
   description:
-    "Complete reference for the Bharat Health Guide Data API: authentication, response envelope, rate-limit headers, error codes, every endpoint with parameters and source licences, plus curl, JavaScript and Python examples.",
+    "Complete reference for the Premium Health Platform Data API: authentication, response envelope, rate-limit headers, error codes, every endpoint with parameters and source licences, plus curl, JavaScript and Python examples.",
   alternates: { canonical: "/developers/docs" },
 };
 
@@ -65,10 +65,10 @@ export default function DeveloperDocsPage() {
       <SectionHeading id="authentication" eyebrow="Step 1" title="Authentication" desc="One key, sent in a header. Create keys in the dashboard — they are stored hashed, so the plaintext is shown exactly once at creation." />
       <div className="mt-4 space-y-3">
         <pre className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`# preferred
-curl -H "x-api-key: $BHG_API_KEY" https://bharathealthguide.in/api/v1/plans
+curl -H "x-api-key: $API_KEY" https://premium-health.vercel.app/api/v1/plans
 
 # also accepted
-curl -H "Authorization: Bearer $BHG_API_KEY" https://bharathealthguide.in/api/v1/literature/search?q=diabetes`}</code></pre>
+curl -H "Authorization: Bearer $API_KEY" https://premium-health.vercel.app/api/v1/literature/search?q=diabetes`}</code></pre>
         <p className="text-xs text-stone-500 dark:text-stone-400">
           A query-string fallback (<code>?api_key=</code>) exists for quick browser tests only — do not use it in production, where URLs are logged.
         </p>
@@ -244,7 +244,7 @@ retry-after: 3600
       <div className="mt-4 space-y-4">
         <pre className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`// JavaScript — handles 429 with Retry-After
 async function bhg(path, params = {}) {
-  const url = new URL("https://bharathealthguide.in" + path);
+  const url = new URL("https://premium-health.vercel.app" + path);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
 
   for (let attempt = 0; attempt < 4; attempt++) {
@@ -265,7 +265,7 @@ import os, requests
 
 def bhg(path, **params):
     r = requests.get(
-        "https://bharathealthguide.in" + path,
+        "https://premium-health.vercel.app" + path,
         params=params,
         headers={"x-api-key": os.environ["BHG_API_KEY"]},
         timeout=15,
@@ -285,7 +285,7 @@ print(bhg("/api/v1/nutrition/fruit", name="mango"))`}</code></pre>
         <p className="mt-1">
           Each endpoint lists its upstream source and licence. You must attribute the upstream provider in your own UI where their licence requires it — for example &quot;Air quality data by{" "}
           <a href="https://open-meteo.com" className="font-bold text-emerald-700 hover:underline dark:text-emerald-400" target="_blank" rel="noopener noreferrer nofollow">Open-Meteo</a> (CC BY 4.0)&quot;.
-          Plans that require attribution to Bharat Health Guide echo the required string in <code>meta.attribution</code> on every response.
+          Plans that require attribution to Premium Health Platform echo the required string in <code>meta.attribution</code> on every response.
         </p>
         <p className="mt-2">
           This API serves public reference data only. It is informational, not medical advice, and must not be used as the sole basis for diagnosis or treatment. See our{" "}

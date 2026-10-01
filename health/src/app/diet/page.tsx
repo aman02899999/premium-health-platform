@@ -8,8 +8,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Diet Centre — Diabetes, PCOS, Heart, Weight Loss | BHG";
-const seoDescription = "Diet plans: diabetes, PCOS, heart, weight loss, thyroid — Indian thali, millet, protein. Templates, not prescriptions. SEO pro + earning + FAQ+HowTo.";
+const seoTitle = "Diet Centre — Diabetes, PCOS, Heart, Weight Loss | Premium Health";
+const seoDescription = "Diet plans: diabetes, PCOS, heart, weight loss, thyroid — Indian thali, millet, protein. Templates, not prescriptions..";
 const url = "/diet";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Diet — Plans India")}&category=${encodeURIComponent("Diet")}&type=tool`;
@@ -35,9 +35,9 @@ export default function DietPage() {
         howTo={{ name: "How to use diet centre", steps: ["Pick diet: diabetes, PCOS, heart, weight loss, thyroid", "View thali template + millet swap + GI + protein + fibre + principles", "Build personalized thali via /thali-builder + track nutrition", "Save plan in premium, get weekly PDF + WhatsApp tips + affiliate"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">SEO Pro — Earning Platform — Diet Centre — ItemList + FAQ+HowTo+OG</p>
-        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Diet & Meal Plans — Indian Templates — Diabetes, Heart, PCOS & More — Pro SEO</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Practical Indian templates with breakfast, lunch, dinner, snacks, beverages, shopping lists and portions. General education — personalise with dietitian if you have diabetes, kidney, heart disease or are pregnant. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Diet Centre</p>
+        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Diet & Meal Plans — Indian Templates — Diabetes, Heart, PCOS & More</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Practical Indian templates with breakfast, lunch, dinner, snacks, beverages, shopping lists and portions. General education — personalise with dietitian if you have diabetes, kidney, heart disease or are pregnant.</p>
       </div>
       <div className="mt-4"><SafetyNote text="Generalised meal plans are not personalised medical prescriptions. If you take insulin, sulfonylureas, blood thinners or have kidney disease, get the plan personalised before following it strictly." /></div>
 
@@ -80,14 +80,6 @@ export default function DietPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Diet Centre is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>{DIET_PLANS.length} diet plans: diabetes, PCOS, heart, weight loss, thyroid — principles + breakfast + lunch + dinner + snacks + shopping + portions</li>
-              <li>Earning: dietitian consults Rs250/lead via /api/lead + affiliate millet + protein + premium thali PDFs</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + ItemList JSON-LD + internal linking thali-builder/millet-swap/nutrition-tracker</li>
-            </ul>
-          </div>
         </div>
       </div>
 

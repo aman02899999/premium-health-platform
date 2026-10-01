@@ -8,7 +8,7 @@ import { AdBanner } from "@/components/monetization/AdComponents";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 
-const seoTitle = "Newsletter — Free + Sponsored Slots | BHG";
+const seoTitle = "Newsletter — Free + Sponsored Slots | Premium Health";
 const seoDescription = "Indian Health Weekly — free newsletter + sponsored slots, sponsor banner, recommendation — track subscribers, campaign, clicks, unsubscribe, sponsor CTR.";
 const url = "/newsletter";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -36,7 +36,7 @@ export default function NewsletterPage() {
         howTo={{ name: "How to subscribe & sponsor", steps: ["Subscribe free via form — consent + privacy policy", "Receive weekly health guides — diabetes, thyroid, nutrition, Ayurveda", "Sponsored slots clearly labeled Sponsored + disclosure", "Track via /api/newsletter?limit=20 + /api/monetization/analytics?type=newsletter_signup"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Newsletter Monetization — Free + Sponsored — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Newsletter Monetization — Free + Sponsored</p>
         <h1 className="font-display mt-1 text-3xl font-black">Newsletter — Indian Health Weekly — Free + Sponsored Slots</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">One useful health email every Sunday — diabetes, thyroid, heart, Ayurveda, nutrition. Free + sponsored slots (banner + recommendation) clearly labeled Sponsored. Track subscribers, campaign, clicks, unsubscribe, sponsor CTR. Never sell email addresses.</p>
       </div>

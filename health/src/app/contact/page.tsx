@@ -18,15 +18,15 @@ export default function ContactPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Contact", item: "/contact" }]}
         faqs={[
-          { q: "How to contact BHG?", a: "Email via /contact form — editorial, support, partnerships, advertising. Response 24-48h. For medical emergency, call 102/108, not contact form." },
+          { q: "How do I contact you?", a: "Email via /contact form — editorial, support, partnerships, advertising. Response 24-48h. For medical emergency, call 102/108, not contact form." },
           { q: "Can I contribute article?", a: "Yes — pitch via /contact with credentials + outline + references. Editorial policy: responsible language, evidence graded, no cure-all claims." },
         ]}
         howTo={{ name: "How to contact BHG", steps: ["Pick reason: editorial, support, partnership, advertising", "Fill form with email + message + UTM", "Submit — POST /api/lead type=consult, tracked via gtag", "Get response 24-48h + newsletter opt-in"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">SEO Pro — Earning Platform — Contact — Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Contact — Lead Gen</p>
         <h1 className="font-display mt-1 text-3xl font-black">Contact us — Editorial & Support</h1>
-        <p className="mt-2 flex items-center gap-2 text-sm text-emerald-100/90"><Mail className="h-4 w-4" /> {SITE.contactEmail} · We reply within 2–3 working days. SEO HowTo+FAQ+OG+LeadGen+PremiumCTA.</p>
+        <p className="mt-2 flex items-center gap-2 text-sm text-emerald-100/90"><Mail className="h-4 w-4" /> {SITE.contactEmail || SITE.contactPhone} · We reply within 2–3 working days.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -56,14 +56,6 @@ export default function ContactPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Contact is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Lead gen: contact form POST /api/lead type=consult, Rs150-500/lead, UTM + gtag</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + E-E-A-T (About + Contact + Editorial Policy)</li>
-              <li>Trust: contact email + response time + no medical advice disclaimer</li>
-            </ul>
-          </div>
         </div>
       </div>
 

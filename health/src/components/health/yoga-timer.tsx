@@ -7,7 +7,6 @@ export function YogaTimer() {
   const [mode, setMode] = useState<"pranayama" | "surya" | "meditation">("pranayama");
   const [seconds, setSeconds] = useState(0);
   const [running, setRunning] = useState(false);
-  const [breathPhase, setBreathPhase] = useState<"inhale" | "hold" | "exhale">("inhale");
   const ref = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -20,14 +19,9 @@ export function YogaTimer() {
     };
   }, [running]);
 
-  useEffect(() => {
-    if (mode !== "pranayama" || !running) return;
-    // 4-2-4 breathing: inhale 4s, hold 2s, exhale 4s
-    const phase = seconds % 10;
-    if (phase < 4) setBreathPhase("inhale");
-    else if (phase < 6) setBreathPhase("hold");
-    else setBreathPhase("exhale");
-  }, [seconds, mode, running]);
+  // 4-2-4 breathing: inhale 4s, hold 2s, exhale 4s (derived from the elapsed time).
+  const cycle = seconds % 10;
+  const breathPhase: "inhale" | "hold" | "exhale" = cycle < 4 ? "inhale" : cycle < 6 ? "hold" : "exhale";
 
   const reset = () => {
     setSeconds(0);

@@ -348,7 +348,7 @@ export default function DeveloperDashboard() {
             </p>
           ) : (
             <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">
-              Free tier — 1,000 requests/day. Attribution back to Bharat Health Guide is required.
+              Free tier — 1,000 requests/day. Attribution back to Premium Health Platform is required.
             </p>
           )}
 

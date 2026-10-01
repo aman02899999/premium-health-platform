@@ -5,7 +5,7 @@ import { SITE } from "@/lib/site";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import Link from "next/link";
 
-const seoTitle = "Orders — Digital Product Orders | BHG";
+const seoTitle = "Orders — Digital Product Orders | Premium Health";
 const seoDescription = "View orders: order ID, product, amount, payment status, date — secure delivery, server-side verification, no sensitive payment credentials displayed.";
 const url = "/orders";
 const absoluteUrl = `${SITE.url}${url}`;

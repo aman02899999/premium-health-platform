@@ -34,7 +34,7 @@ export function WhatsAppOptIn({ compact = false }: { compact?: boolean }) {
     return (
       <div className={`rounded-3xl border border-emerald-200 bg-emerald-50 p-5 dark:border-emerald-800 dark:bg-emerald-950/30 ${compact ? "text-xs" : ""}`}>
         <p className="flex items-center gap-2 font-bold text-emerald-800 dark:text-emerald-200"><Check className="h-4 w-4" /> WhatsApp opt-in saved!</p>
-        <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-300">Weekly thali PDF + fasting reminders — 40% open rate — earning platform.</p>
+        <p className="mt-1 text-xs text-emerald-700 dark:text-emerald-300">Weekly thali PDF + fasting reminders.</p>
       </div>
     );
   }
@@ -42,7 +42,7 @@ export function WhatsAppOptIn({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900 ${compact ? "text-xs" : ""}`}>
       <p className="flex items-center gap-2 text-sm font-bold"><MessageCircle className="h-4 w-4 text-emerald-600" /> Get WhatsApp Health Tips — Free</p>
-      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Weekly thali + millet swap + fasting reminders — no spam, opt-out anytime. 40% open, 15% click — best earning.</p>
+      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Weekly thali + millet swap + fasting reminders — no spam, opt-out anytime.</p>
       <form onSubmit={submit} className="mt-3 flex gap-2">
         <div className="relative flex-1">
           <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
@@ -89,7 +89,7 @@ export function PushPrompt({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900 ${compact ? "text-xs" : ""}`}>
       <p className="text-sm font-bold">🔔 Get Daily Health Tips — Push</p>
-      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">1 tip/day — thali, millet, yoga — re-engagement + earning. 30% open, 8% click.</p>
+      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">1 tip/day — thali, millet, yoga — opt out any time.</p>
       <button onClick={subscribe} className="mt-3 h-10 rounded-xl bg-sky-600 px-4 text-xs font-bold text-white hover:bg-sky-500">Enable Push — Free</button>
       <p className="mt-2 text-[10px] text-stone-400">POST /api/push/subscribe — digital marketing optimized, gtag push_subscribe.</p>
     </div>

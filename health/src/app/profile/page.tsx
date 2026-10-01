@@ -3,8 +3,8 @@ import { ProfileClient } from "@/components/auth/ProfileClient";
 import { Breadcrumbs } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Profile — SSO Account",
-  description: "Manage your SSO account, premium, saved plans.",
+  title: "Your profile",
+  description: "Your account, premium status and saved plans.",
   robots: { index: false, follow: false },
 };
 

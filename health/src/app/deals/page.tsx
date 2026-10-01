@@ -9,7 +9,7 @@ import { COUPONS, getActiveCoupons, getExpiredCoupons } from "@/lib/monetization
 import { CouponCard } from "@/components/monetization/ProductCards";
 import { AdBanner } from "@/components/monetization/AdComponents";
 
-const seoTitle = "Deals & Coupons — Health Products Affiliate | BHG";
+const seoTitle = "Deals & Coupons — Health Products Affiliate | Premium Health";
 const seoDescription = "Best deals + coupons: glucometer, BP monitor, millets, yoga mat, protein — coupon code, discount, affiliate URL, expiration, merchant, tracking, auto-expire.";
 const url = "/deals";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -38,8 +38,8 @@ export default function DealsPage() {
         howTo={{ name: "How to get best health deals & coupons", steps: ["Browse deals by category: diabetes, BP, millet, yoga, protein + coupons with code + discount + expiry", "Click affiliate link — tracked via UTM + gtag + /api/affiliate/click + coupon_clicked", "Buy on merchant site — 8% avg commission supports independent health journalism", "Save favorites in premium, get price drop alerts via newsletter + push + WhatsApp"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Earning Platform — Affiliate + Coupons — SEO Pro — Product JSON-LD + Auto-Expire</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Deals & Coupons — Health Products — Affiliate Earning + Coupons</h1>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate + Coupons</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Deals & Coupons — Health Products</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Handpicked health products + coupons: glucometer, BP monitor, millet combo, yoga mat, protein — coupon code, discount, affiliate URL, expiration, merchant, category, tracking ID. Auto-mark expired inactive. Affiliate disclosure.</p>
       </div>
 
@@ -65,22 +65,11 @@ export default function DealsPage() {
             </div>
           )}
 
-          <AffiliateProducts limit={8} title="Top Deals — Affiliate Earning Optimized — Product JSON-LD" />
+          <AffiliateProducts limit={8} title="Top Deals" />
           <LatestArticles limit={4} />
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Deals is Earning Platform — Modular</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>8% avg commission — glucometer Rs1999 → Rs160/sale — tracked via gtag + UTM + /api/affiliate/click + coupon_clicked</li>
-              <li>Coupon system: code, discount, affiliateUrl, expiration, merchant, category, trackingId — auto-expire via getActiveCoupons()</li>
-              <li>Product JSON-LD for rich results — price, rating, availability + Coupon schema</li>
-              <li>SEO: FAQ (affiliate how it works, coupon system) + HowTo 4 steps + Breadcrumb + OG</li>
-              <li>Digital marketing: UTM capture, exit-intent, sticky CTA, newsletter lead magnet + /api/monetization/coupons</li>
-              <li>Admin: manage coupons via config + /admin/earning + /api/monetization/coupons?includeExpired=true</li>
-            </ul>
-          </div>
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-800 dark:bg-amber-950/30">
             <h3 className="text-sm font-bold">How to Create Coupon</h3>
             <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">

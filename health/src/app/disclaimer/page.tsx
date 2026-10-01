@@ -3,8 +3,8 @@ import { Breadcrumbs, EmergencyBox, AdSlot, DisclaimerBar } from "@/components/u
 import { SITE } from "@/lib/site";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 
-const seoTitle = "Medical Disclaimer — Educational Only | BHG";
-const seoDescription = "Bharat Health Guide is educational information only — not diagnosis, treatment or emergency care. Read full disclaimer, emergency guidance, medicines, herbs safety.";
+const seoTitle = "Medical Disclaimer — Educational Only | Premium Health";
+const seoDescription = "Premium Health Platform is educational information only — not diagnosis, treatment or emergency care. Read full disclaimer, emergency guidance, medicines, herbs safety.";
 const url = "/disclaimer";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Disclaimer — BHG")}&category=${encodeURIComponent("Disclaimer")}&type=tool`;
@@ -24,15 +24,15 @@ export default function DisclaimerPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Disclaimer", item: "/disclaimer" }]}
         faqs={[
-          { q: "Is BHG medical advice?", a: "No — educational only, not diagnosis, treatment or emergency care. Never start, stop, reduce or change medicines without medical supervision. For emergency, call 102/108." },
+          { q: "Is Premium Health Platform medical advice?", a: "No — educational only, not diagnosis, treatment or emergency care. Never start, stop, reduce or change medicines without medical supervision. For emergency, call 102/108." },
           { q: "Are herbs & Ayurveda safe?", a: "Traditional uses distinguished from clinical evidence. Concentrated products can interact with medicines or harm liver/kidney — coordinate Vaidya + doctor, buy AYUSH-licensed tested products." },
         ]}
-        howTo={{ name: "How to use BHG safely", steps: ["Read as education, not prescription", "Never self-adjust medicines based on BHG", "Consult doctor + pharmacist + Vaidya for personal advice", "For emergency symptoms, call 102/108 immediately, not BHG tools"] }}
+        howTo={{ name: "How to use Premium Health Platform safely", steps: ["Read as education, not prescription", "Never self-adjust medicines based on this site", "Consult doctor + pharmacist + Vaidya for personal advice", "For emergency symptoms, call 102/108 immediately, not BHG tools"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-stone-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">SEO Pro — E-E-A-T — Trust — Disclaimer — Emergency Guidance</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Disclaimer — Emergency Guidance</p>
         <h1 className="font-display mt-1 text-3xl font-black">Medical Disclaimer — Educational Only — Not Diagnosis</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Bharat Health Guide is educational information only — not diagnosis, treatment or emergency care. Read full disclaimer, emergency guidance, medicines, herbs safety, calculators limits. SEO HowTo+FAQ+OG.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Premium Health Platform is educational information only — not diagnosis, treatment or emergency care. Read full disclaimer, emergency guidance, medicines, herbs safety, calculators limits.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -50,14 +50,6 @@ export default function DisclaimerPage() {
           <div className="mt-4"><EmergencyBox signs={["Chest pain or pressure", "Severe difficulty breathing", "Sudden weakness / face droop / speech difficulty", "Severe allergic reaction or loss of consciousness", "Severe bleeding or suspected stroke", "Severe hypoglycaemia (confusion, seizures)"]} /></div>
         </div>
         <div className="space-y-4">
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Disclaimer is E-E-A-T + SEO Pro</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>E-E-A-T: About + Contact + Privacy + Terms + Disclaimer + Affiliate Disclosure — trust signals</li>
-              <li>EmergencyBox with 6 red flags — safety + SEO</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + canonical+hreflang + internal linking</li>
-            </ul>
-          </div>
         </div>
       </div>
 

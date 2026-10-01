@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const listing = BUSINESS_LISTINGS.find((l) => l.slug === slug);
   if (!listing) return { title: "Provider not found" };
-  const title = `${listing.title} — ${listing.providerType} | BHG`.slice(0, 60);
+  const title = `${listing.title} — ${listing.providerType} | Premium Health`.slice(0, 60);
   const desc = `${listing.description} ${listing.location} — ${listing.tier} listing.`.slice(0, 155);
   const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent(listing.title)}&category=${encodeURIComponent(listing.providerType)}&type=tool`;
   return {

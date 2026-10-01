@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar | BHG";
-const seoDescription = "Traditional Indian yoga timer: pranayama 4-2-4, Surya Namaskar rounds, meditation — guided breathing, hold, exhale. Unique India, premium + affiliate earning.";
+const seoTitle = "Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar | Premium Health";
+const seoDescription = "Traditional Indian yoga timer: pranayama 4-2-4, Surya Namaskar rounds, meditation — guided breathing, hold, exhale.";
 const url = "/yoga-timer";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Yoga Timer — Pranayama India")}&category=${encodeURIComponent("Yoga India")}&type=tool`;
@@ -34,9 +34,9 @@ export default function YogaTimerPage() {
         howTo={{ name: "How to use yoga timer", steps: ["Choose pranayama: 4-2-4, box breathing, or Surya Namaskar counter", "Set rounds + duration, start timer with guided cues", "Follow inhale-hold-exhale audio, sit straight", "Log session, unlock premium history + weekly plan"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Unique India — Earning Platform</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar</h1>
-        <p className="mt-2 max-w-2xl text-sm text-violet-100/90">4-2-4 breathing, Surya Namaskar counter, meditation timer — traditional + modern, guided cues. Stop if dizzy. SEO: HowTo + FAQ + OG /api/og + PremiumCTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-violet-100/90">4-2-4 breathing, Surya Namaskar counter, meditation timer — traditional + modern, guided cues. Stop if dizzy.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -47,15 +47,6 @@ export default function YogaTimerPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Yoga Timer is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>4-2-4 pranayama — beginner-friendly, traditional Indian breathing</li>
-              <li>Surya Namaskar counter + rest timer — home workout, no equipment</li>
-              <li>Earning: yoga mat affiliate ₹599 + premium weekly plans</li>
-              <li>SEO: FAQ (4-2-4 meaning, Surya Namaskar count) + HowTo 4 steps</li>
-            </ul>
-          </div>
         </div>
       </div>
 

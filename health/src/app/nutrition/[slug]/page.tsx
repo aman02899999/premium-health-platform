@@ -28,17 +28,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // they were served as soft 404s (HTTP 200 with "not found" content).
 export const dynamicParams = false;
 
+const Sec = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
+    <h2 className="font-display text-xl font-bold">{title}</h2>
+    <div className="mt-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200">{children}</div>
+  </section>
+);
+
 export default async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const f = getFood(slug);
   if (!f) notFound();
   const related = f.relatedDiseases.map(getDisease).filter(Boolean);
-  const Sec = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h2 className="font-display text-xl font-bold">{title}</h2>
-      <div className="mt-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200">{children}</div>
-    </section>
-  );
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
@@ -66,7 +67,7 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
               <tbody>{f.nutrients.map((n) => <tr key={n.nutrient} className="border-b last:border-0 dark:border-stone-800"><td className="py-2 pr-3 font-medium">{n.nutrient}</td><td className="py-2 pr-3">{n.amount}</td><td className="py-2 text-stone-500">{n.note || "—"}</td></tr>)}</tbody>
             </table>
           </div>
-          <div className="mt-4"><NutrientDonut title={`${f.name}: why it fits Indian plates (illustrative)`} source="BHG editorial; precise values in table above" data={[{ name: "Fibre + protein value", value: 55 }, { name: "Micronutrients", value: 30 }, { name: "Energy density", value: 15 }]} /></div>
+          <div className="mt-4"><NutrientDonut title={`${f.name}: why it fits Indian plates (illustrative)`} source="Editorial; precise values in table above" data={[{ name: "Fibre + protein value", value: 55 }, { name: "Micronutrients", value: 30 }, { name: "Energy density", value: 15 }]} /></div>
         </Sec>
         <div className="grid gap-4 sm:grid-cols-2">
           <Sec title="Potential benefits"><ul className="space-y-1.5">{f.benefits.map((b, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{b}</li>)}</ul></Sec>

@@ -245,3 +245,11 @@ body {
   header, footer, nav, .no-print { display: none !important; }
   body { background: #fff !important; }
 }
+
+/* Grid items default to min-width:auto, so one long word, table or code block
+   stretches its column past the screen on phones. Let columns shrink instead. */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}

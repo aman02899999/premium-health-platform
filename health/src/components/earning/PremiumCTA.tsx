@@ -30,7 +30,7 @@ export function PremiumCTA({ compact }: { compact?: boolean }) {
 
   return (
     <div className="rounded-3xl bg-gradient-to-br from-stone-900 via-emerald-950 to-stone-900 p-6 text-white">
-      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-amber-300"><Crown className="h-4 w-4" /> Premium — Earning Platform</p>
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-amber-300"><Crown className="h-4 w-4" /> Premium</p>
       <h3 className="mt-2 font-display text-2xl font-black">Unlock Pro — Ad-free + Personalized</h3>
       <ul className="mt-3 space-y-1.5 text-sm text-emerald-100/90">
         <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Unlimited thali builder + millet swap + dosha meals</li>

@@ -22,17 +22,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // they were served as soft 404s (HTTP 200 with "not found" content).
 export const dynamicParams = false;
 
+const Sec = ({ title, children }: { title: string; children: React.ReactNode }) => (
+  <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
+    <h2 className="font-display text-xl font-bold">{title}</h2>
+    <div className="mt-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200">{children}</div>
+  </section>
+);
+
 export default async function SymptomPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const s = getSymptom(slug);
   if (!s) notFound();
   const related = s.relatedDiseases.map(getDisease).filter(Boolean);
-  const Sec = ({ title, children }: { title: string; children: React.ReactNode }) => (
-    <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h2 className="font-display text-xl font-bold">{title}</h2>
-      <div className="mt-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200">{children}</div>
-    </section>
-  );
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">

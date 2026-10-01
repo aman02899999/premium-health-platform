@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Nutrition Tracker — Indian Foods Calories | BHG";
-const seoDescription = "Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI. Unique India, premium + affiliate earning.";
+const seoTitle = "Nutrition Tracker — Indian Foods Calories | Premium Health";
+const seoDescription = "Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.";
 const url = "/nutrition-tracker";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Nutrition Tracker — Indian Foods")}&category=${encodeURIComponent("Nutrition Tracker")}&type=tool`;
@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to track nutrition", steps: ["Add foods: e.g., 2 roti + dal + sabzi + curd","View calories, protein, fibre, GI load + balanced thali score","Get swap suggestions: millet roti, more dal, less ghee","Save day log in premium, export weekly PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-green-800 to-emerald-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-green-200">Unique India — Earning Platform — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-green-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Nutrition Tracker — Indian Foods Calories — Unique</h1>
-        <p className="mt-2 max-w-2xl text-sm text-green-100/90">Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI. Unique India, premium history + PDF. SEO HowTo+FAQ+OG+PremiumCTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-green-100/90">Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -44,15 +44,6 @@ export default function Page() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Nutrition Tracker is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>India-first: Nutrition Tracker with Indian context, INR, FSSAI, ICMR</li>
-              <li>Earning: affiliate + premium + lead gen + ad — pro platform</li>
-              <li>SEO: FAQ (2) + HowTo 4 steps + Breadcrumb JSON-LD + OG /api/og + internal linking</li>
-              <li>Digital marketing: UTM capture, gtag events, newsletter, exit-intent, sticky CTA</li>
-            </ul>
-          </div>
         </div>
       </div>
 

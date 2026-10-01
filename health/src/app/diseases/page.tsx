@@ -3,8 +3,8 @@ import DiseasesClient from "./DiseasesClient";
 import { DISEASES, DISEASE_SYSTEMS, DISEASE_CATEGORIES } from "@/data/diseases-index";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Disease Directory — 120+ Conditions India | BHG";
-const seoDescription = "Searchable Indian disease database: 120+ conditions — symptoms, causes, tests, modern treatment, Ayurveda, herbs, nutrition. SEO pro + ItemList JSON-LD + earning.";
+const seoTitle = "Disease Directory — 120+ Conditions India | Premium Health";
+const seoDescription = "Searchable Indian disease database: 120+ conditions — symptoms, causes, tests, modern treatment, Ayurveda, herbs, nutrition..";
 const url = "/diseases";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Diseases — 120+ India")}&category=${encodeURIComponent("Diseases")}&type=tool`;

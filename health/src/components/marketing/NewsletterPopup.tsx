@@ -44,7 +44,7 @@ export function NewsletterPopup() {
     <div className="fixed bottom-4 left-4 z-50 w-full max-w-sm rounded-3xl border border-stone-200 bg-white p-5 shadow-2xl dark:border-stone-700 dark:bg-stone-900">
       <button onClick={() => setShow(false)} className="absolute right-2 top-2 rounded-full p-1 hover:bg-stone-100 dark:hover:bg-stone-800"><X className="h-4 w-4" /></button>
       <p className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-600" /> Free 7-Day Thali Plan PDF</p>
-      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Get balanced Indian thali + millet swap + dosha meals — weekly, no spam. 20% conversion demo, UTM tracked.</p>
+      <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Get balanced Indian thali + millet swap + dosha meals — weekly, no spam.</p>
       {!done ? (
         <form onSubmit={submit} className="mt-3 flex gap-2">
           <div className="relative flex-1">

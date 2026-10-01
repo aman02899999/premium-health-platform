@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { ArrowUp, Bookmark, Check, Lightbulb, Printer, ThumbsDown, ThumbsUp } from "lucide-react";
 import { cn } from "@/lib/format";
 
@@ -57,6 +57,7 @@ function readBookmarks(): string[] {
 }
 export function useBookmarks() {
   const [marks, setMarks] = useState<string[]>([]);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- read localStorage after mount (SSR-safe)
   useEffect(() => setMarks(readBookmarks()), []);
   const toggle = useCallback((slug: string) => {
     setMarks((prev) => {
@@ -97,6 +98,7 @@ export function HelpfulVote({ slug }: { slug: string }) {
   useEffect(() => {
     try {
       const v = localStorage.getItem(`bhg-vote-${slug}`);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- read localStorage after mount (SSR-safe)
       if (v === "up" || v === "down") setVoted(v);
     } catch { /* ignore */ }
   }, [slug]);
@@ -185,8 +187,14 @@ const TIPS = [
   { tip: "Millets 4x a week instead of white rice cuts post-meal spikes while keeping the same bhat satisfaction.", link: "/nutrition/ragi-finger-millet", label: "Ragi guide" },
 ];
 
+// Day of month in India. The page HTML is prerendered, so the server shows a fixed
+// tip and the browser swaps in today's after hydration (no mismatch error).
+const istDay = () => Number(new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", day: "numeric" }).format(new Date()));
+const noSubscribe = () => () => {};
+
 export function HealthTipOfDay() {
-  const tip = useMemo(() => TIPS[new Date().getDate() % TIPS.length], []);
+  const day = useSyncExternalStore(noSubscribe, istDay, () => 0);
+  const tip = TIPS[day % TIPS.length];
   return (
     <div className="flex gap-3 rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-800 dark:from-amber-950/40 dark:to-orange-950/20">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-white"><Lightbulb className="h-4 w-4" /></span>

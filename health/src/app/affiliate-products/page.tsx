@@ -8,7 +8,7 @@ import { AdBanner } from "@/components/monetization/AdComponents";
 import { PremiumCTA } from "@/components/earning/PremiumCTA";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 
-const seoTitle = "Affiliate Products — Modular Engine | BHG";
+const seoTitle = "Affiliate Products — Modular Engine | Premium Health";
 const seoDescription = "Central affiliate product engine: diabetes, BP, heart, weight, yoga, nutrition — modular config, tracking impressions/clicks/CTR, disclosure, no fabricated ratings.";
 const url = "/affiliate-products";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -35,9 +35,9 @@ export default function AffiliateProductsPage() {
         howTo={{ name: "How to create affiliate product", steps: ["Add to AFFILIATE_PRODUCTS config with all required fields — never fabricate ratings/reviews", "Set affiliateUrl (real merchant URL) + disclosure 'Affiliate link — we may earn commission'", "Set category, tags, priority for contextual recommendations", "Test impression + click tracking via /api/monetization/analytics + gtag"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-amber-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate Product Engine — Modular — Tracking + Disclosure</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate Product Engine — Tracking + Disclosure</p>
         <h1 className="font-display mt-1 text-3xl font-black">Affiliate Products — Central Config Engine — {AFFILIATE_PRODUCTS.length} Products</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Modular affiliate engine — not hardcoded. Categories: Diabetes, BP, Heart, Weight, Fitness, Nutrition, Ayurveda, Yoga, Women's, Men's, Senior, Devices, Books, Healthy Foods, Supplements, Wellness. Tracking: impressions, clicks, CTR, destination, product ID, page source. Disclosure on every card.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Modular affiliate engine — not hardcoded. Categories: Diabetes, BP, Heart, Weight, Fitness, Nutrition, Ayurveda, Yoga, Women&apos;s, Men&apos;s, Senior, Devices, Books, Healthy Foods, Supplements, Wellness. Tracking: impressions, clicks, CTR, destination, product ID, page source. Disclosure on every card.</p>
         <div className="mt-3 flex flex-wrap gap-1.5">{categories.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs">{c}</span>)}</div>
       </div>
       <div className="mt-4"><AdBanner placement="products_sidebar" page="/affiliate-products" /></div>

@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${d.name} — Symptoms, Causes, Tests, Treatment & Diet`,
     description: d.short,
     alternates: { canonical: `/diseases/${slug}` },
-    openGraph: { title: `${d.name} | Bharat Health Guide`, description: d.short, type: "article" },
+    openGraph: { title: `${d.name} | Premium Health Platform`, description: d.short, type: "article" },
   };
 }
 
@@ -103,7 +103,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
         {detail.hindiName && <p className="mt-1 text-lg text-stone-500 dark:text-stone-400">{detail.hindiName}</p>}
         <p className="mt-3 max-w-3xl text-[16px] leading-relaxed text-stone-600 dark:text-stone-300">{detail.definition}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
-          <span>By <strong>BHG Editorial Team</strong></span>
+          <span>By <strong>Editorial Team</strong></span>
           <span>Medically reviewed by: <strong>Review pending — placeholder</strong></span>
           <span>Updated: {formatDate(detail.updatedAt)}</span>
           <LikeButton id={slug} />
@@ -155,7 +155,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             <Bullets items={detail.causes} />
             <p className="mb-2 mt-4 text-sm font-bold">Risk factors</p>
             <div className="flex flex-wrap gap-1.5">{detail.riskFactors.map((r) => <span key={r} className="rounded-full bg-amber-50 px-3 py-1.5 text-[13px] font-medium text-amber-900 dark:bg-amber-950/50 dark:text-amber-100">{r}</span>)}</div>
-            <div className="mt-4"><RiskBarChart title="Which risk factors matter most? (educational pattern)" source="BHG editorial synthesis — illustrative, not trial data" data={detail.riskFactors.slice(0, 5).map((r, i) => ({ name: r.length > 18 ? r.slice(0, 18) + "…" : r, value: 90 - i * 14 }))} /></div>
+            <div className="mt-4"><RiskBarChart title="Which risk factors matter most? (educational pattern)" source="Editorial synthesis — illustrative, not trial data" data={detail.riskFactors.slice(0, 5).map((r, i) => ({ name: r.length > 18 ? r.slice(0, 18) + "…" : r, value: 90 - i * 14 }))} /></div>
           </Section>
 
           <Section id="types" icon={<BookOpen className="h-4 w-4" />} title="Types & patterns">

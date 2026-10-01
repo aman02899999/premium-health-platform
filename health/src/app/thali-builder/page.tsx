@@ -10,11 +10,11 @@ import { AffiliateProducts } from "@/components/earning/AffiliateProducts";
 import { WhatsAppOptIn, PushPrompt } from "@/components/marketing/WhatsAppOptIn";
 
 export const metadata: Metadata = {
-  title: seoTitle("Thali Builder — Balanced Indian Thali | Unique India | SEO Optimized"),
-  description: seoDescription("Build balanced Indian thali: half veg, quarter millet grain, quarter dal/protein + curd — unique India-first feature. Salad first, protein second, grain last — lowers sugar spikes. SEO optimized with HowTo + FAQ."),
+  title: seoTitle("Thali Builder — Balanced Indian Thali | Unique India"),
+  description: seoDescription("Build balanced Indian thali: half veg, quarter millet grain, quarter dal/protein + curd — unique India-first feature. Salad first, protein second, grain last — lowers sugar spikes."),
   alternates: { canonical: "/thali-builder", languages: { "en-IN": absoluteUrl("/thali-builder"), "en": absoluteUrl("/thali-builder"), "x-default": absoluteUrl("/thali-builder") } },
   openGraph: {
-    title: "Thali Builder — Unique India | SEO Optimized",
+    title: "Thali Builder — Unique India",
     description: "Half veg, quarter millet grain, quarter dal/protein + curd — unique India-first thali builder.",
     type: "website",
     url: absoluteUrl("/thali-builder"),
@@ -48,8 +48,8 @@ export default function ThaliBuilderPage() {
         }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-amber-700 p-6 text-white md:p-8">
-        <h1 className="font-display text-3xl font-black">Thali Builder — Unique India — SEO Pro</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Half veg, quarter millet grain, quarter dal/protein + curd. Salad first, protein second, grain last — lowers sugar spikes. Educational only. SEO: HowTo + FAQ JSON-LD, OG image, breadcrumbs, internal linking.</p>
+        <h1 className="font-display text-3xl font-black">Thali Builder — Unique India</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Half veg, quarter millet grain, quarter dal/protein + curd. Salad first, protein second, grain last — lowers sugar spikes. Educational only.</p>
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2"><ThaliBuilder /></div>

@@ -13,8 +13,8 @@ import { AdBanner, AdRectangle } from "@/components/monetization/AdComponents";
 import { HealthProductRecommendations } from "@/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/components/monetization/MonetizationCTA";
 
-const seoTitle = "Latest Health Articles — Fresh SEO Content | BHG";
-const seoDescription = "Latest health guides updated weekly — diabetes, thyroid, PCOS, nutrition, Ayurveda — fresh content for Google freshness signal, SEO pro + earning.";
+const seoTitle = "Latest Health Articles | Premium Health";
+const seoDescription = "Latest health guides updated weekly — diabetes, thyroid, PCOS, nutrition, Ayurveda — fresh content for Google freshness signal.";
 const url = "/blog/latest";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Latest — Health Articles")}&category=${encodeURIComponent("Blog Freshness")}&type=Blog`;
@@ -37,17 +37,16 @@ export default function LatestPage() {
         breadcrumbs={[{ name: "Home", item: "/" }, { name: "Blog", item: "/blog" }, { name: "Latest", item: "/blog/latest" }]}
         faqs={[
           { q: "How often is blog updated?", a: "Weekly — latest page sorted by updatedAt, Google freshness signal, 12 guides, 30+ FAQs, 50+ sections, real photography, citations PubMed/ICMR/FSSAI." },
-          { q: "Why latest matters for SEO?", a: "Freshness + E-E-A-T + internal linking + related + trending reduces bounce, increases dwell, improves ranking for diabetes, thyroid, PCOS, nutrition queries." },
-        ]}
+          ]}
         howTo={{ name: "How to use latest articles", steps: ["Visit /blog/latest for fresh guides sorted by updated date", "Read article + FAQs + references + related + trending", "Subscribe newsletter + push + WhatsApp for weekly digest", "Share via referral — viral loop 7d free + Rs50 credit"] }}
       />
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: "Latest", path: "/blog/latest" }]} />
       <ItemListJsonLd items={articles.map((a) => ({ name: a.title, path: `/blog/${a.slug}`, image: a.heroImage }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">SEO Pro — Freshness Signal — Earning Platform — ItemList + Breadcrumb</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Latest Articles — SEO Freshness — {articles.length} Guides Weekly</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">{articles.length} guides sorted by updated date — Google loves fresh content. Updated weekly. SEO: ItemList + Breadcrumb + FAQ + HowTo + OG /api/og + PremiumCTA + Affiliate.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Freshness Signal</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Latest articlesness — {articles.length} Guides Weekly</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">{articles.length} guides sorted by updated date — Google loves fresh content. Updated weekly.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

@@ -3,8 +3,8 @@ import SearchClient from "./SearchClient";
 import { EXAMPLE_SEARCHES } from "@/lib/site";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Search — Diseases, Herbs, Foods, Yoga | BHG";
-const seoDescription = "Global health search across diseases, symptoms, medicines, herbs, nutrition, lab tests and articles with autocomplete. SEO pro + earning + India-first.";
+const seoTitle = "Search — Diseases, Herbs, Foods, Yoga | Premium Health";
+const seoDescription = "Global health search across diseases, symptoms, medicines, herbs, nutrition, lab tests and articles with autocomplete..";
 const url = "/search";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Search — BHG India")}&category=${encodeURIComponent("Search")}&type=tool`;

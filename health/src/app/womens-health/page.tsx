@@ -8,8 +8,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Women's Health — PCOS, Periods, Pregnancy, Thyroid | BHG";
-const seoDescription = "Indian women's health hub: menstrual health, PCOS, thyroid, anemia, pregnancy nutrition and menopause with responsible guidance. SEO pro + earning.";
+const seoTitle = "Women's Health — PCOS, Periods, Pregnancy, Thyroid | Premium Health";
+const seoDescription = "Indian women's health hub: menstrual health, PCOS, thyroid, anemia, pregnancy nutrition and menopause with responsible guidance..";
 const url = "/womens-health";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Women's Health — PCOS India")}&category=${encodeURIComponent("Women's Health")}&type=tool`;
@@ -37,9 +37,9 @@ export default function WomensPage() {
         howTo={{ name: "How to use women's health hub", steps: ["Pick topic: PCOS, menstrual health, pregnancy nutrition, iron deficiency, thyroid, menopause", "Read symptoms, causes, tests, treatment, nutrition, India cost", "Check related blog + diet + lab tests + calculators", "Book consult via lead form if red flags"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-rose-800 via-pink-800 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-rose-200">SEO Pro — Earning Platform — Women's Health — ItemList</p>
-        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Women's Health — PCOS, Periods, Pregnancy, Thyroid & More</h1>
-        <p className="mt-2 max-w-2xl text-sm text-white/90">Periods, PCOS, thyroid, anemia, pregnancy and menopause — explained kindly, with nutrition, tests and when to seek care. Pregnancy content carries extra safety warnings. SEO HowTo+FAQ+OG+PremiumCTA+Affiliate.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-rose-200">Women&apos;s Health</p>
+        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Women&apos;s Health — PCOS, Periods, Pregnancy, Thyroid & More</h1>
+        <p className="mt-2 max-w-2xl text-sm text-white/90">Periods, PCOS, thyroid, anemia, pregnancy and menopause — explained kindly, with nutrition, tests and when to seek care. Pregnancy content carries extra safety warnings.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -55,14 +55,6 @@ export default function WomensPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Women's Health is SEO Pro + Earning</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>9 topics: PCOS, menstrual health, pregnancy nutrition, iron deficiency, thyroid, menopause, anemia, fertility, breast health</li>
-              <li>Earning: lab bookings + dietitian + affiliate + premium</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + ItemList JSON-LD + internal linking</li>
-            </ul>
-          </div>
         </div>
       </div>
 

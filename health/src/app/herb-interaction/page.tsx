@@ -7,8 +7,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Herb-Drug Interaction Checker — Ayurveda Safety | BHG";
-const seoDescription = "Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety checker. Unique India, premium + affiliate.";
+const seoTitle = "Herb-Drug Interaction Checker — Ayurveda Safety | Premium Health";
+const seoDescription = "Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety checker.";
 const url = "/herb-interaction";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Herb-Drug Interaction Checker")}&category=${encodeURIComponent("Herb Safety")}&type=tool`;
@@ -34,9 +34,9 @@ export default function HerbInteractionPage() {
         howTo={{ name: "How to check herb-drug interaction", steps: ["Select Ayurvedic herb: ashwagandha, giloy, shatavari, guggulu etc", "Select allopathy medicine: metformin, warfarin, thyroxine etc", "View interaction level + mechanism + references", "Save check in premium, consult doctor — not prescription"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India — Earning Platform — SEO Pro</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India</p>
         <h1 className="font-display mt-1 text-3xl font-black">Herb-Drug Interaction Checker — Ayurveda + Allopathy Safety</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety. Educational, not prescription. SEO HowTo+FAQ+OG+Premium.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety. Educational, not prescription.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -47,14 +47,6 @@ export default function HerbInteractionPage() {
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Herb Safety is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>India-relevant combos: Ayurveda herbs + allopathy — FSSAI + ICMR safety</li>
-              <li>Earning: affiliate + premium + lead gen — pro platform</li>
-              <li>SEO: FAQ + HowTo 4 steps + Breadcrumb JSON-LD + OG /api/og</li>
-            </ul>
-          </div>
         </div>
       </div>
 

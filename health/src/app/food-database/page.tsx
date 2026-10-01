@@ -6,8 +6,8 @@ import { LatestArticles } from "@/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/components/seo/UniquePageSEO";
 import { SITE } from "@/lib/site";
 
-const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA | BHG";
-const seoDescription = "Search Indian foods: GI, protein, fibre, FSSAI — roti, dal, millet + Open Food Facts barcode + USDA. Unique India, SEO + affiliate earning.";
+const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA | Premium Health";
+const seoDescription = "Search Indian foods: GI, protein, fibre, FSSAI — roti, dal, millet + Open Food Facts barcode + USDA..";
 const url = "/food-database";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/api/og?title=${encodeURIComponent("Food Database — Indian Foods")}&category=${encodeURIComponent("Food Database")}&type=tool`;
@@ -49,9 +49,9 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
         howTo={{ name: "How to search food database", steps: ["Search food: e.g., 'millet', 'dal', 'roti' or barcode 8901030875020", "Filter by GI low, high protein, veg, diabetic-friendly", "View GI, protein, fibre, FSSAI tips + Nutri-Score + healthier swap", "Save favorites in premium, build thali, scan barcode"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-yellow-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India — Earning Platform — SEO Pro — Open Food Facts + USDA</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India — Open Food Facts + USDA</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Food Database — Indian Foods GI Protein — Search + Barcode</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90"><strong>Open Food Facts</strong> (ODbL, free keyless, barcode) + <strong>USDA FoodData Central</strong> (public domain) + India GI protein fibre. SEO HowTo+FAQ+OG+Premium.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90"><strong>Open Food Facts</strong> (ODbL, free keyless, barcode) + <strong>USDA FoodData Central</strong> (public domain) + India GI protein fibre.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/food-database">
           <input name="q" defaultValue={query} placeholder="Try apple, maggi, atta, milk…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
           <select name="provider" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
@@ -95,15 +95,6 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
         </div>
         <div className="space-y-4">
           <PremiumCTA compact />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Why Food Database is Unique India</h3>
-            <ul className="mt-2 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>200+ Indian foods GI + protein + fibre + FSSAI + Open Food Facts barcode</li>
-              <li>Earning: high protein foods affiliate + premium thali + ad</li>
-              <li>SEO: FAQ + HowTo + Breadcrumb + OG /api/og + internal linking</li>
-              <li>APIs: /api/health/food + /api/health/barcode/:code — free keyless</li>
-            </ul>
-          </div>
         </div>
       </div>
 
