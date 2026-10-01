@@ -5,6 +5,9 @@ import { randomUUID } from "crypto";
 import { cache } from "react";
 import { DEFAULT_CONTENT } from "./defaults";
 import type { Lead, SiteContent } from "./types";
+import { mergeContent } from "./merge";
+
+export { mergeContent };
 import { supabaseConfigured } from "@/lib/supabase/config";
 import { createClient, createPublicClient } from "@/lib/supabase/server";
 
@@ -18,22 +21,6 @@ import { createClient, createPublicClient } from "@/lib/supabase/server";
 const DATA_DIR = path.join(process.cwd(), ".data");
 
 export const storageMode = supabaseConfigured ? "supabase" : "file";
-
-/** Saved values win; any section missing from storage falls back to the default. */
-export function mergeContent(saved: Partial<SiteContent> | null | undefined): SiteContent {
-  if (!saved || typeof saved !== "object") return DEFAULT_CONTENT;
-  const merged = { ...DEFAULT_CONTENT } as Record<string, unknown>;
-  for (const key of Object.keys(DEFAULT_CONTENT) as (keyof SiteContent)[]) {
-    const value = saved[key];
-    if (value === undefined || value === null) continue;
-    const def = DEFAULT_CONTENT[key];
-    merged[key] =
-      def && typeof def === "object" && !Array.isArray(def) && typeof value === "object" && !Array.isArray(value)
-        ? { ...def, ...value }
-        : value;
-  }
-  return merged as SiteContent;
-}
 
 async function readRaw(): Promise<Partial<SiteContent> | null> {
   if (supabaseConfigured) {

@@ -13,6 +13,9 @@ export const NAV = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+/** Neighbourhoods the gym serves: shown on /contact and in the LocalBusiness structured data. */
+export const AREAS_SERVED = ["Gejha", "Sector 93", "Sector 93A", "Sector 93B", "Sector 100", "Sector 104"] as const;
+
 export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }] as const;
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;

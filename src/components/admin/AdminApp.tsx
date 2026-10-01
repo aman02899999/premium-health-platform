@@ -26,6 +26,10 @@ import { parseMarkdown } from "@/lib/markdown";
 import { CALCULATORS } from "@/lib/calculators";
 import { Markdown } from "@/components/blog/Markdown";
 import { ListEditor, ObjectEditor, type Field } from "./fields";
+import { DEFAULT_POSTS } from "@/lib/content/default-posts";
+import { LOCAL_POSTS } from "@/lib/content/local-posts";
+
+const BUILTIN_POST_SLUGS = new Set([...DEFAULT_POSTS, ...LOCAL_POSTS].map((p) => p.slug));
 
 const uid = () => Math.random().toString(36).slice(2, 9);
 
@@ -531,9 +535,15 @@ function BlogEditor({ posts, onChange, business }: { posts: BlogPost[]; onChange
             <button
               type="button"
               className="text-sm text-red-300/70 hover:text-red-300"
-              onClick={() => confirm(`Delete "${p.title}"?`) && onChange(posts.filter((_, k) => k !== i))}
+              onClick={() => {
+                // Built-in posts come back on the next save (see mergePosts), so hide them instead.
+                if (BUILTIN_POST_SLUGS.has(p.slug)) {
+                  if (confirm(`Hide "${p.title}"? Built-in articles are kept as drafts so they can be restored.`))
+                    onChange(posts.map((x, k) => (k === i ? { ...x, draft: true } : x)));
+                } else if (confirm(`Delete "${p.title}"?`)) onChange(posts.filter((_, k) => k !== i));
+              }}
             >
-              Delete
+              {BUILTIN_POST_SLUGS.has(p.slug) ? "Hide" : "Delete"}
             </button>
           </div>
         ))}

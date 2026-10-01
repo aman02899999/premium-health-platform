@@ -1,5 +1,6 @@
 import type { SiteContent } from "./types";
 import { DEFAULT_POSTS } from "./default-posts";
+import { LOCAL_POSTS } from "./local-posts";
 
 // Seed content used until the admin saves their own. Facts about the gym come
 // from its public listings (Google Business Profile, Justdial, Instagram).
@@ -190,6 +191,11 @@ export const DEFAULT_CONTENT: SiteContent = {
       a: "Yes. Couples joining together pay 1.5× the single price — for example ₹3,000 a month for two instead of ₹4,000, or ₹21,000 a year for two instead of ₹28,000.",
     },
     {
+      id: "fees",
+      q: "What are the gym fees?",
+      a: "Plans start at ₹2,000 for one month. Longer plans cost less per month: ₹5,000 for 3 months, ₹8,000 for 6 months, ₹14,000 for 12 months and ₹16,000 for 15 months. Couples joining together pay 1.5× the single price.",
+    },
+    {
       id: "trial",
       q: "Can I try the gym before joining?",
       a: "Yes. Book a free trial session using the form or WhatsApp us — a trainer will show you around and take you through a workout.",
@@ -220,7 +226,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       a: "Quarterly and longer memberships include diet guidance built around normal Indian home food, for both vegetarians and non-vegetarians.",
     },
   ],
-  posts: DEFAULT_POSTS,
+  posts: [...DEFAULT_POSTS, ...LOCAL_POSTS],
   seo: {
     title: "Royal Fitness Club — Best Gym in Sector 93, Noida",
     description:

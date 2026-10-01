@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { BlogPost, SiteContent } from "./content/types";
-import { SITE_URL, absoluteUrl } from "./site";
+import { AREAS_SERVED, SITE_URL, absoluteUrl } from "./site";
 
 // Day-name expansion for opening hours like "Monday – Friday".
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -67,7 +67,7 @@ export function localBusinessJsonLd(c: SiteContent) {
       addressCountry: b.address.country,
     },
     geo: { "@type": "GeoCoordinates", latitude: b.geo.lat, longitude: b.geo.lng },
-    areaServed: ["Sector 93", "Gejha", "Sector 93A", "Sector 93B", "Sector 100", "Sector 104", "Noida"].map((name) => ({ "@type": "Place", name })),
+    areaServed: [...AREAS_SERVED, "Noida"].map((name) => ({ "@type": "Place", name })),
     openingHoursSpecification: b.hours.map((h) => ({
       "@type": "OpeningHoursSpecification",
       dayOfWeek: expandDays(h.days),
