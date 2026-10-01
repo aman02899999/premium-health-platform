@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { ADMIN_COOKIE, adminPassword, allowLoginAttempt, checkPassword, createSessionToken, sessionCookieOptions } from "@/lib/auth";
+import { supabaseConfigured } from "@/lib/supabase/config";
 
 export async function POST(req: Request) {
+  if (supabaseConfigured) {
+    return NextResponse.json({ error: "Password login is off: sign in with Google at /admin/login." }, { status: 403 });
+  }
   if (!adminPassword()) {
     return NextResponse.json({ error: "Admin is disabled: set the ADMIN_PASSWORD environment variable." }, { status: 503 });
   }

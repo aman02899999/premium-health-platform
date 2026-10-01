@@ -16,6 +16,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ url });
   } catch (err) {
     console.error("[admin] upload failed:", err);
-    return NextResponse.json({ error: "Upload failed — on serverless hosting configure DATABASE_URL." }, { status: 500 });
+    return NextResponse.json({ error: `Upload failed: ${(err as Error).message}` }, { status: 500 });
   }
 }

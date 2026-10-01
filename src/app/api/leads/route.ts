@@ -23,7 +23,8 @@ export async function POST(req: Request) {
   if (rateLimited(ip)) return NextResponse.json({ error: "Too many requests — please WhatsApp us instead." }, { status: 429 });
 
   const name = clean(body.name, 80);
-  const phone = clean(body.phone, 20);
+  // Keep only characters the database accepts for phone numbers.
+  const phone = clean(body.phone, 20).replace(/[^0-9+ -]/g, "");
   if (name.length < 2) return NextResponse.json({ error: "Please enter your name." }, { status: 400 });
   if (phone.replace(/\D/g, "").length < 10) return NextResponse.json({ error: "Please enter a valid 10-digit mobile number." }, { status: 400 });
 

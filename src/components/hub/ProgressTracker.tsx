@@ -36,8 +36,8 @@ function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weig
         </defs>
         {[0, 0.5, 1].map((t) => (
           <g key={t}>
-            <line x1="30" x2={W - 20} y1={15 + t * (H - 40)} y2={15 + t * (H - 40)} stroke="#2a2a35" />
-            <text x="0" y={19 + t * (H - 40)} fill="#8a8a96" fontSize="11">
+            <line x1="30" x2={W - 20} y1={15 + t * (H - 40)} y2={15 + t * (H - 40)} stroke="#1d3a57" />
+            <text x="0" y={19 + t * (H - 40)} fill="#7f97ad" fontSize="11">
               {(max - t * (max - min)).toFixed(0)}
             </text>
           </g>
@@ -75,7 +75,7 @@ export function ProgressTracker() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
-      <form onSubmit={add} className="glass gold-border h-fit space-y-4 rounded-3xl p-6">
+      <form onSubmit={add} className="glass brand-border h-fit space-y-4 rounded-3xl p-6">
         <h2 className="font-display text-2xl text-white">Log a check-in</h2>
         <label className="block text-sm">
           <span className="text-white/65">Date</span>
@@ -89,23 +89,23 @@ export function ProgressTracker() {
           <span className="text-white/65">Waist (cm)</span>
           <input type="number" step="0.5" inputMode="decimal" value={form.waist} onChange={(e) => setForm({ ...form, waist: e.target.value })} className="field mt-1" placeholder="e.g. 88" />
         </label>
-        <button type="submit" className="btn-gold w-full rounded-full py-3 font-bold">
+        <button type="submit" className="btn-brand w-full rounded-full py-3 font-bold">
           Save check-in
         </button>
         <p className="text-xs text-white/45">Weigh in the morning after the washroom, before eating. Saved only on this device.</p>
       </form>
       <div className="space-y-6">
         <div className="glass rounded-3xl p-6">
-          <Chart entries={entries} field="weight" color="#d4a94a" unit="kg" />
+          <Chart entries={entries} field="weight" color="#e8394b" unit="kg" />
         </div>
         <div className="glass rounded-3xl p-6">
-          <Chart entries={entries} field="waist" color="#34d399" unit="cm" />
+          <Chart entries={entries} field="waist" color="#7cc0ee" unit="cm" />
         </div>
         {entries.length > 0 && (
           <div className="glass rounded-3xl p-6">
             <div className="mb-3 flex items-center justify-between">
               <h3 className="font-semibold text-white">History</h3>
-              <button type="button" onClick={csv} className="inline-flex items-center gap-1.5 text-sm text-gold">
+              <button type="button" onClick={csv} className="inline-flex items-center gap-1.5 text-sm text-brand">
                 <Download className="h-4 w-4" /> CSV
               </button>
             </div>

@@ -20,13 +20,13 @@ export function Toc({ items }: { items: { id: string; text: string; level: numbe
   if (items.length < 2) return null;
   return (
     <nav aria-label="Table of contents" className="glass rounded-2xl p-5">
-      <p className="mb-3 text-xs font-bold uppercase tracking-widest text-gold">On this page</p>
+      <p className="mb-3 text-xs font-bold uppercase tracking-widest text-brand">On this page</p>
       <ol className="space-y-1.5 text-sm">
         {items.map((i) => (
           <li key={i.id} className={i.level === 3 ? "pl-4" : ""}>
             <a
               href={`#${i.id}`}
-              className={`block border-l-2 py-0.5 pl-3 transition-colors ${active === i.id ? "border-gold text-white" : "border-transparent text-white/55 hover:text-white"}`}
+              className={`block border-l-2 py-0.5 pl-3 transition-colors ${active === i.id ? "border-brand text-white" : "border-transparent text-white/55 hover:text-white"}`}
             >
               {i.text}
             </a>

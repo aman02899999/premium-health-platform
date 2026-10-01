@@ -65,7 +65,7 @@ function Slider({
               if (e.target.value !== "" && v >= min && v <= max) onChange(v);
             }}
             onBlur={() => setDraft(null)}
-            className="w-20 rounded-lg border border-line bg-black/40 px-2 py-1 text-right font-semibold text-white outline-none focus:border-gold"
+            className="w-20 rounded-lg border border-line bg-black/40 px-2 py-1 text-right font-semibold text-white outline-none focus:border-brand"
             aria-label={`${label} (${unit})`}
           />
           <span className="w-8 text-white/50">{unit}</span>
@@ -79,7 +79,7 @@ function Slider({
         value={Math.min(max, Math.max(min, value))}
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full"
-        style={{ background: `linear-gradient(90deg, var(--color-gold) ${pct}%, #2a2a35 ${pct}%)`, height: 6, borderRadius: 9, appearance: "none" }}
+        style={{ background: `linear-gradient(90deg, var(--color-brand) ${pct}%, #1d3a57 ${pct}%)`, height: 6, borderRadius: 9, appearance: "none" }}
         aria-label={label}
       />
     </label>
@@ -96,7 +96,7 @@ function Toggle<T extends string>({ value, onChange, options, label }: { value: 
           role="radio"
           aria-checked={value === o.v}
           onClick={() => onChange(o.v)}
-          className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-gold text-black" : "text-white/70 hover:text-white"}`}
+          className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand text-white" : "text-white/70 hover:text-white"}`}
         >
           {o.l}
         </button>
@@ -127,10 +127,11 @@ function ActivitySelect({ value, onChange }: { value: ActivityId; onChange: (v: 
 
 // ---------- outputs ----------
 
-function Big({ value, unit, label, tone = "gold" }: { value: ReactNode; unit?: string; label: string; tone?: "gold" | "white" }) {
+function Big({ value, unit, label, tone = "brand" }: { value: ReactNode; unit?: string; label: string; tone?: "brand" | "white" }) {
   return (
     <div className="rounded-2xl bg-black/35 p-4 text-center ring-1 ring-white/10">
-      <div className={`font-display text-4xl ${tone === "gold" ? "text-gold-gradient" : "text-white"}`}>
+      {/* Word results ("Overweight", "Obese (Class I)") get a smaller size so they fit the card. */}
+      <div className={`font-display break-words ${typeof value === "string" && value.length > 7 ? "text-2xl leading-tight" : "text-4xl"} ${tone === "brand" ? "text-brand-gradient" : "text-white"}`}>
         {value}
         {unit && <span className="ml-1 text-lg text-white/60">{unit}</span>}
       </div>
@@ -155,7 +156,7 @@ function Gauge({ value, min, max, bands }: { value: number; min: number; max: nu
       <g style={{ transform: `rotate(${angle}deg)`, transformOrigin: "100px 100px", transition: "transform .8s cubic-bezier(.2,.8,.2,1)" }}>
         <line x1="100" y1="100" x2="100" y2="32" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
       </g>
-      <circle cx="100" cy="100" r="7" fill="#d4a94a" />
+      <circle cx="100" cy="100" r="7" fill="#e8394b" />
     </svg>
   );
 }
@@ -163,9 +164,9 @@ function Gauge({ value, min, max, bands }: { value: number; min: number; max: nu
 function MacroBar({ protein, carbs, fat }: { protein: number; carbs: number; fat: number }) {
   const total = protein * 4 + carbs * 4 + fat * 9 || 1;
   const parts = [
-    { l: "Protein", g: protein, kcal: protein * 4, c: "#d4a94a" },
-    { l: "Carbs", g: carbs, kcal: carbs * 4, c: "#6ea8fe" },
-    { l: "Fat", g: fat, kcal: fat * 9, c: "#e23b3b" },
+    { l: "Protein", g: protein, kcal: protein * 4, c: "#e8394b" },
+    { l: "Carbs", g: carbs, kcal: carbs * 4, c: "#7cc0ee" },
+    { l: "Fat", g: fat, kcal: fat * 9, c: "#f59e0b" },
   ];
   return (
     <div>
@@ -213,7 +214,7 @@ function BmiCalc() {
               { to: 18.5, color: "#6ea8fe", label: "Under" },
               { to: 23, color: "#34d399", label: "Healthy" },
               { to: 25, color: "#fbbf24", label: "Over" },
-              { to: 35, color: "#e23b3b", label: "Obese" },
+              { to: 35, color: "#e8394b", label: "Obese" },
             ]}
           />
           <div className="grid grid-cols-2 gap-3">
@@ -303,14 +304,14 @@ function BodyFatCalc() {
                       { to: 14, color: "#34d399", label: "Athletic" },
                       { to: 18, color: "#a3e635", label: "Fit" },
                       { to: 25, color: "#fbbf24", label: "Average" },
-                      { to: 45, color: "#e23b3b", label: "High" },
+                      { to: 45, color: "#e8394b", label: "High" },
                     ]
                   : [
                       { to: 14, color: "#6ea8fe", label: "Essential" },
                       { to: 21, color: "#34d399", label: "Athletic" },
                       { to: 25, color: "#a3e635", label: "Fit" },
                       { to: 32, color: "#fbbf24", label: "Average" },
-                      { to: 45, color: "#e23b3b", label: "High" },
+                      { to: 45, color: "#e8394b", label: "High" },
                     ]
               }
             />
@@ -344,7 +345,7 @@ function OneRmCalc() {
           <Big value={r.estimate} unit="kg" label="Estimated 1RM" />
           <div className="overflow-hidden rounded-xl ring-1 ring-white/10">
             <table className="w-full text-sm">
-              <thead className="bg-black/40 text-left text-xs uppercase tracking-wider text-gold">
+              <thead className="bg-black/40 text-left text-xs uppercase tracking-wider text-brand">
                 <tr>
                   <th className="px-3 py-2">% 1RM</th>
                   <th className="px-3 py-2">Weight</th>
@@ -469,7 +470,7 @@ function HeartCalc() {
   const [age, setAge] = useState(30);
   const [rest, setRest] = useState(70);
   const r = heartRateZones(age, rest);
-  const colors = ["#6ea8fe", "#34d399", "#fbbf24", "#fb923c", "#e23b3b"];
+  const colors = ["#6ea8fe", "#34d399", "#fbbf24", "#fb923c", "#e8394b"];
   return (
     <Layout
       inputs={
@@ -507,7 +508,7 @@ function IdrsCalc() {
   const [act, setAct] = useState<ActivityIdrs>("mild");
   const [fam, setFam] = useState<FamilyHistory>("none");
   const r = idrs(sex, age, waist, act, fam);
-  const color = r.risk === "High" ? "#e23b3b" : r.risk === "Moderate" ? "#fbbf24" : "#34d399";
+  const color = r.risk === "High" ? "#e8394b" : r.risk === "Moderate" ? "#fbbf24" : "#34d399";
   return (
     <Layout
       inputs={
@@ -529,7 +530,7 @@ function IdrsCalc() {
       }
       result={
         <>
-          <Gauge value={r.score} min={0} max={100} bands={[{ to: 30, color: "#34d399", label: "Low" }, { to: 60, color: "#fbbf24", label: "Moderate" }, { to: 100, color: "#e23b3b", label: "High" }]} />
+          <Gauge value={r.score} min={0} max={100} bands={[{ to: 30, color: "#34d399", label: "Low" }, { to: 60, color: "#fbbf24", label: "Moderate" }, { to: 100, color: "#e8394b", label: "High" }]} />
           <div className="grid grid-cols-2 gap-3">
             <Big value={r.score} label="IDRS score / 100" />
             <div className="rounded-2xl bg-black/35 p-4 text-center ring-1 ring-white/10">
@@ -560,7 +561,7 @@ function WhtrCalc() {
       }
       result={
         <>
-          <Gauge value={r.ratio} min={0.3} max={0.8} bands={[{ to: 0.4, color: "#6ea8fe", label: "Lean" }, { to: 0.5, color: "#34d399", label: "Healthy" }, { to: 0.6, color: "#fbbf24", label: "Increased" }, { to: 0.8, color: "#e23b3b", label: "High" }]} />
+          <Gauge value={r.ratio} min={0.3} max={0.8} bands={[{ to: 0.4, color: "#6ea8fe", label: "Lean" }, { to: 0.5, color: "#34d399", label: "Healthy" }, { to: 0.6, color: "#fbbf24", label: "Increased" }, { to: 0.8, color: "#e8394b", label: "High" }]} />
           <div className="grid grid-cols-2 gap-3">
             <Big value={r.ratio.toFixed(2)} label="Waist ÷ height" />
             <Big value={r.category} label="Category" tone="white" />
@@ -607,8 +608,8 @@ function FastingCalc() {
       result={
         <>
           <div className="relative h-8 overflow-hidden rounded-full bg-white/10" aria-hidden>
-            <div className="absolute inset-y-0 bg-gold" style={{ left: `${startPct}%`, width: `${Math.min(eatPct, 100 - startPct)}%` }} />
-            {startPct + eatPct > 100 && <div className="absolute inset-y-0 left-0 bg-gold" style={{ width: `${startPct + eatPct - 100}%` }} />}
+            <div className="absolute inset-y-0 bg-brand" style={{ left: `${startPct}%`, width: `${Math.min(eatPct, 100 - startPct)}%` }} />
+            {startPct + eatPct > 100 && <div className="absolute inset-y-0 left-0 bg-brand" style={{ width: `${startPct + eatPct - 100}%` }} />}
           </div>
           <div className="flex justify-between text-[10px] text-white/40">
             <span>12 AM</span>
@@ -622,7 +623,7 @@ function FastingCalc() {
             <Big value={r.eatUntil} label="Stop eating" tone="white" />
           </div>
           <p className="text-center text-sm text-white/70">
-            Best workout time: <strong className="text-gold">{r.bestTraining}</strong>
+            Best workout time: <strong className="text-brand">{r.bestTraining}</strong>
           </p>
         </>
       }
@@ -634,7 +635,7 @@ function Layout({ inputs, result }: { inputs: ReactNode; result: ReactNode }) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       <div className="space-y-5">{inputs}</div>
-      <div className="space-y-4 rounded-2xl bg-gradient-to-b from-gold/10 to-transparent p-4 ring-1 ring-gold/25" aria-live="polite">
+      <div className="space-y-4 rounded-2xl bg-gradient-to-b from-brand/10 to-transparent p-4 ring-1 ring-brand/25" aria-live="polite">
         {result}
       </div>
     </div>
@@ -660,16 +661,16 @@ export function Calculator({ calcKey, embedded = false }: { calcKey: string; emb
   const Comp = MAP[calcKey as CalculatorKey];
   if (!meta || !Comp) return null;
   return (
-    <section className="glass gold-border my-8 rounded-3xl p-5 sm:p-7" aria-label={meta.title}>
+    <section className="glass brand-border my-8 rounded-3xl p-5 sm:p-7" aria-label={meta.title}>
       {embedded && (
         <header className="mb-5 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15">
-              <Icon name={meta.icon} className="h-5 w-5 text-gold" />
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand/15">
+              <Icon name={meta.icon} className="h-5 w-5 text-brand" />
             </span>
             <span className="font-display text-xl text-white">{meta.title}</span>
           </div>
-          <Link href={`/tools/${meta.slug}`} className="hidden text-sm text-gold underline-offset-4 hover:underline sm:block">
+          <Link href={`/tools/${meta.slug}`} className="hidden text-sm text-brand underline-offset-4 hover:underline sm:block">
             Open full tool →
           </Link>
         </header>

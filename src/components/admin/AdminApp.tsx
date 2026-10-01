@@ -106,7 +106,7 @@ export function AdminApp({ storage }: { storage: string }) {
   if (!content) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-gold" />
+        <Loader2 className="h-8 w-8 animate-spin text-brand" />
       </div>
     );
   }
@@ -118,7 +118,7 @@ export function AdminApp({ storage }: { storage: string }) {
       <header className="sticky top-0 z-30 border-b border-white/10 bg-ink/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
           <span className="font-display text-lg text-white">
-            Admin <span className="text-gold">· {content.business.name}</span>
+            Admin <span className="text-brand">· {content.business.name}</span>
           </span>
           <span className="hidden rounded-full bg-white/5 px-2 py-0.5 text-[11px] text-white/45 sm:inline">storage: {storage}</span>
           <div className="ml-auto flex items-center gap-2">
@@ -132,7 +132,7 @@ export function AdminApp({ storage }: { storage: string }) {
               type="button"
               onClick={save}
               disabled={!dirty || status?.kind === "busy"}
-              className="btn-gold inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-bold disabled:opacity-40"
+              className="btn-brand inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-bold disabled:opacity-40"
             >
               {status?.kind === "busy" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               {dirty ? "Save changes" : "Saved"}
@@ -160,7 +160,7 @@ export function AdminApp({ storage }: { storage: string }) {
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
-              className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium ${tab === t.id ? "bg-gold text-black" : "text-white/70 hover:bg-white/5"}`}
+              className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium ${tab === t.id ? "bg-brand text-white" : "text-white/70 hover:bg-white/5"}`}
             >
               <t.icon className="h-4 w-4" /> {t.label}
             </button>
@@ -257,7 +257,7 @@ export function AdminApp({ storage }: { storage: string }) {
                   fields={[
                     { key: "eyebrow", label: "Small label above title", wide: true },
                     { key: "title", label: "Title (white)" },
-                    { key: "highlight", label: "Title (gold)" },
+                    { key: "highlight", label: "Title (highlighted)" },
                     { key: "subtitle", label: "Subtitle", type: "textarea" },
                     { key: "primaryCta", label: "Main button text" },
                     { key: "secondaryCta", label: "Second button text" },
@@ -419,8 +419,8 @@ export function AdminApp({ storage }: { storage: string }) {
                   value={content.theme}
                   onChange={(v) => set("theme", v)}
                   fields={[
-                    { key: "gold", label: "Primary (gold)", type: "color" },
-                    { key: "accent", label: "Accent (red)", type: "color" },
+                    { key: "primary", label: "Primary (logo red)", type: "color" },
+                    { key: "secondary", label: "Secondary (logo navy)", type: "color" },
                   ]}
                 />
               </Card>
@@ -551,7 +551,7 @@ function BlogEditor({ posts, onChange, business }: { posts: BlogPost[]; onChange
           ]);
           setEditing(0);
         }}
-        className="btn-gold mt-5 rounded-xl px-4 py-2.5 text-sm font-bold"
+        className="btn-brand mt-5 rounded-xl px-4 py-2.5 text-sm font-bold"
       >
         + New post
       </button>
@@ -582,7 +582,7 @@ function Leads() {
   return (
     <Card title="Free-trial enquiries" help="Submitted from the website forms. Tap WhatsApp to reply instantly.">
       {!leads ? (
-        <Loader2 className="h-6 w-6 animate-spin text-gold" />
+        <Loader2 className="h-6 w-6 animate-spin text-brand" />
       ) : leads.length === 0 ? (
         <p className="text-white/55">No enquiries yet.</p>
       ) : (
@@ -608,7 +608,7 @@ function Leads() {
                     <td className="whitespace-nowrap p-2 text-white/60">{new Date(l.createdAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</td>
                     <td className="p-2 font-semibold text-white">{l.name}</td>
                     <td className="whitespace-nowrap p-2">
-                      <a className="text-gold" href={`https://wa.me/${l.phone.replace(/\D/g, "").replace(/^(\d{10})$/, "91$1")}`} target="_blank" rel="noreferrer">
+                      <a className="text-brand" href={`https://wa.me/${l.phone.replace(/\D/g, "").replace(/^(\d{10})$/, "91$1")}`} target="_blank" rel="noreferrer">
                         {l.phone}
                       </a>
                     </td>

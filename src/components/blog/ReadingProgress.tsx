@@ -16,7 +16,7 @@ export function ReadingProgress() {
   }, []);
   return (
     <div className="fixed inset-x-0 top-0 z-[60] h-1 bg-transparent" aria-hidden>
-      <div className="h-full origin-left bg-gradient-to-r from-gold via-gold-soft to-ember" style={{ transform: `scaleX(${p})` }} />
+      <div className="h-full origin-left bg-gradient-to-r from-brand via-brand-soft to-ember" style={{ transform: `scaleX(${p})` }} />
     </div>
   );
 }

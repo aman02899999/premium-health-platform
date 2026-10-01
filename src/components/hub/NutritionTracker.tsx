@@ -13,7 +13,7 @@ function Ring({ value, target, label, unit, color }: { value: number; target: nu
   return (
     <div className="flex flex-col items-center">
       <svg viewBox="0 0 80 80" className="h-24 w-24 -rotate-90" aria-hidden>
-        <circle cx="40" cy="40" r="34" stroke="#2a2a35" strokeWidth="8" fill="none" />
+        <circle cx="40" cy="40" r="34" stroke="#1d3a57" strokeWidth="8" fill="none" />
         <circle cx="40" cy="40" r="34" stroke={color} strokeWidth="8" fill="none" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - pct)} style={{ transition: "stroke-dashoffset .6s" }} />
       </svg>
       <div className="-mt-[66px] mb-8 text-center">
@@ -69,7 +69,7 @@ export function NutritionTracker() {
         </div>
         <div className="glass overflow-x-auto rounded-3xl">
           <table className="w-full text-sm">
-            <thead className="text-left text-[11px] uppercase tracking-wider text-gold">
+            <thead className="text-left text-[11px] uppercase tracking-wider text-brand">
               <tr>
                 <th className="px-4 py-3">Food</th>
                 <th className="px-2 py-3">Serving</th>
@@ -91,11 +91,11 @@ export function NutritionTracker() {
                   </td>
                   <td className="px-2 text-white/55">{f.serving}</td>
                   <td className="px-2 text-right text-white/80">{f.kcal}</td>
-                  <td className="px-2 text-right font-semibold text-gold">{f.protein}g</td>
+                  <td className="px-2 text-right font-semibold text-brand">{f.protein}g</td>
                   <td className="px-2 text-right text-white/70">{f.carbs}g</td>
                   <td className="px-2 text-right text-white/70">{f.fat}g</td>
                   <td className="px-4 text-right">
-                    <button type="button" onClick={() => add(f.id)} className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-gold/15 text-gold hover:bg-gold hover:text-black" aria-label={`Add ${f.name}`}>
+                    <button type="button" onClick={() => add(f.id)} className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand/15 text-brand hover:bg-brand hover:text-white" aria-label={`Add ${f.name}`}>
                       <Plus className="h-4 w-4" />
                     </button>
                   </td>
@@ -107,10 +107,10 @@ export function NutritionTracker() {
         <p className="mt-3 text-xs text-white/45">Approximate values for typical home recipes (IFCT/USDA based). Green = veg, yellow = egg, red = non-veg.</p>
       </div>
 
-      <aside className="glass gold-border h-fit rounded-3xl p-6 lg:sticky lg:top-28">
+      <aside className="glass brand-border h-fit rounded-3xl p-6 lg:sticky lg:top-28">
         <h2 className="font-display text-2xl text-white">Today&apos;s log</h2>
         <div className="mt-5 grid grid-cols-2 gap-2">
-          <Ring value={t.kcal} target={target.kcal} label="Calories" unit="" color="#d4a94a" />
+          <Ring value={t.kcal} target={target.kcal} label="Calories" unit="" color="#e8394b" />
           <Ring value={t.protein} target={target.protein} label="Protein" unit="g" color="#34d399" />
         </div>
         <div className="mt-2 grid grid-cols-3 gap-2 text-center text-xs">

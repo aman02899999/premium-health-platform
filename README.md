@@ -27,16 +27,66 @@ Website for **Royal Fitness Club**, Gejha, Sector 93, Noida. Built with Next.js 
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000, admin at /admin (dev password: royal-admin)
+npm run dev          # http://localhost:3000 — without Supabase env: admin at /admin, password royal-admin
 npm test             # calculator, markdown and validation unit tests
 npm run lint && npm run typecheck && npm run build
 ```
 
-## Deploying
+## Backend: Supabase
 
-1. Set `NEXT_PUBLIC_SITE_URL` and `ADMIN_PASSWORD`.
-2. On Vercel or another serverless host, also set `DATABASE_URL` to a PostgreSQL database (Neon, Supabase, etc.). Admin edits, uploads and enquiries are stored there. The tables are created automatically.
-3. After launch, submit `/sitemap.xml` in Google Search Console and link the site from your Google Business Profile and Instagram bio.
+Supabase provides the database, Google sign-in and image storage. The schema and security rules live in `supabase/migrations/`, and every table uses row-level security:
+
+| Table / bucket | Who can read | Who can write |
+|---|---|---|
+| `site_content` | everyone | admins |
+| `leads` (trial enquiries) | admins | anyone (insert only, validated by CHECK constraints) |
+| `user_data` (member plan, food log, progress) | that member | that member |
+| `admins` | the admin themself | nobody through the API (SQL editor only) |
+| storage bucket `media` | everyone (public URLs) | admins |
+
+- **Admin:** sign in with Google at `/admin`. The account's email must be listed in `public.admins`. To add someone, run this in the Supabase SQL editor:
+  `insert into public.admins (email) values ('name@gmail.com');`
+- **Members:** the header's **Sign in** button uses Google. The workout planner, food tracker and progress tracker then sync to the member's account.
+- **Without Supabase env vars** (local dev), the site falls back to JSON files in `.data/` and a password login.
+
+### One-time setup
+1. **Vercel env vars:** set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, plus `NEXT_PUBLIC_SITE_URL`.
+2. **Google OAuth client:** in Google Cloud Console → APIs & Services → Credentials, create an OAuth client ID of type Web application.
+   - Authorized redirect URI: `https://trcnjdtbaydmtmdmpxbj.supabase.co/auth/v1/callback`.
+3. **Enable Google in Supabase:** Authentication → Providers → Google, then paste the client ID and secret.
+4. **Allow your URLs in Supabase:** Authentication → URL Configuration.
+   - Site URL: your domain.
+   - Redirect URLs: `https://yourdomain/**` and `https://*-aman-sh-projects.vercel.app/**` for previews.
+
+### After launch
+- Submit `https://yourdomain/sitemap.xml` in Google Search Console.
+- Add the website link to your Google Business Profile and Instagram bio.
+
+## Two sites, one app: the portal
+
+One Next.js app, one Vercel project (`premium-health-platform`), one Supabase project:
+
+| Site | URL | Code |
+| --- | --- | --- |
+| Royal Fitness Club (gym) | `/` | `src/app/(gym)`, `src/components`, `src/lib` |
+| Premium Health Platform | `/health` | `src/app/(health)/health`, `src/health/**` (imported as `@/health/...`) |
+
+The two sites have separate root layouts, styles and navigation (moving between them
+is a full page load), but share the domain — so **one Google sign-in covers both**
+(same Supabase session cookie) — plus the admin list (`public.admins`) and env vars.
+
+- **Chooser:** on a visitor's first visit to `/`, a full-screen 3D chooser offers both
+  sites. It is skipped for returning visitors, for people arriving from Google/Bing
+  (they searched for the gym), and for crawlers. `/portal` always shows it and is
+  the link to share. `?portal=1` forces it, `?portal=0` hides it.
+- **Database:** the health site's 75 tables live in their own `health` schema
+  (`supabase/health-drizzle/0000_health_init.sql`, already applied), reached only by
+  the server connection in `DATABASE_URL`. The gym's tables stay in `public`.
+  Schema changes: `npx drizzle-kit generate --config drizzle.health.config.ts`.
+- **Premium** on the health site is read from `health.premium_subscriptions`
+  (status `active`); nothing on the client can grant it. There's no payment gateway
+  yet, so "Join Premium" opens WhatsApp.
+- **Health docs** (audit, monetization, data sources) are in `docs/health/`.
 
 ## Editing content
 

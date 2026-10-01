@@ -31,20 +31,20 @@ export function SmartImage({
     );
   }
   const seed = [...alt].reduce((a, c) => a + c.charCodeAt(0), 0);
-  const hue = 30 + (seed % 25);
+  const hue = 200 + (seed % 15);
   return (
     <div
       role="img"
       aria-label={alt}
       className={`relative flex h-full w-full items-center justify-center overflow-hidden ${className}`}
       style={{
-        background: `radial-gradient(circle at ${20 + (seed % 60)}% 25%, hsla(${hue},70%,55%,.35), transparent 55%), radial-gradient(circle at 80% 90%, rgba(226,59,59,.18), transparent 50%), linear-gradient(160deg,#17171f,#0a0a0e)`,
+        background: `radial-gradient(circle at ${20 + (seed % 60)}% 25%, hsla(${hue},85%,40%,.45), transparent 55%), radial-gradient(circle at 80% 90%, rgba(232,57,75,.2), transparent 50%), linear-gradient(160deg,#0f2438,#06111c)`,
       }}
     >
       <div className="grid-floor absolute inset-x-0 bottom-0 h-2/3 [transform:perspective(400px)_rotateX(60deg)] origin-bottom" />
       <div className="relative flex flex-col items-center gap-3 text-center">
-        <div className="rounded-2xl border border-gold/40 bg-black/40 p-4 shadow-[0_0_40px_-8px_rgba(212,169,74,.6)]">
-          <Icon name={icon} className="h-10 w-10 text-gold" />
+        <div className="rounded-2xl border border-brand/40 bg-black/40 p-4 shadow-[0_0_40px_-8px_rgba(232,57,75,.6)]">
+          <Icon name={icon} className="h-10 w-10 text-brand" />
         </div>
         {label && <span className="font-display text-lg tracking-wider text-white/85">{label}</span>}
       </div>

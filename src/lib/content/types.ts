@@ -102,7 +102,8 @@ export type Seo = {
   googleVerification: string;
 };
 
-export type Theme = { gold: string; accent: string };
+// primary = logo red (buttons, highlights), secondary = logo navy (surfaces).
+export type Theme = { primary: string; secondary: string };
 
 export type SiteContent = {
   business: Business;

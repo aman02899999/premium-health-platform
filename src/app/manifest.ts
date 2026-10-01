@@ -9,8 +9,8 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     description: c.seo.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#07070a",
-    theme_color: "#07070a",
+    background_color: "#06111c",
+    theme_color: "#04466d",
     categories: ["health", "fitness", "sports"],
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png" },

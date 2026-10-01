@@ -1,0 +1,53 @@
+import type { Metadata } from "next";
+import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
+import { HealthQA } from "@/health/components/health/health-qa";
+import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
+import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
+import { LatestArticles } from "@/health/components/blog/LatestArticles";
+import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
+import { SITE } from "@/health/lib/site";
+
+const seoTitle = "Health Q&A — Evidence-Based Answers India | Premium Health";
+const seoDescription = "Ask health questions — evidence-based answers with citations: PubMed, ICMR, FSSAI.";
+const url = "/health/health-qa";
+const absoluteUrl = `${SITE.url}${url}`;
+const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Health Q&A — Evidence India")}&category=${encodeURIComponent("Health Q&A")}&type=tool`;
+
+export const metadata: Metadata = {
+  title: seoTitle.slice(0, 60),
+  description: seoDescription.slice(0, 155),
+  alternates: { canonical: url, languages: { "en-IN": absoluteUrl, "en": absoluteUrl, "x-default": absoluteUrl } },
+  openGraph: { title: seoTitle, description: seoDescription, url: absoluteUrl, type: "website", images: [{ url: ogImage, width: 1200, height: 630, alt: seoTitle }] },
+  twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
+};
+
+export default function Page() {
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Health Q&A" }]} />
+      <UniquePageSEO
+        breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Health Q&A", item: "/health/health-qa" }]}
+        faqs={[{"q":"Are answers medically reviewed?","a":"Answers use PubMed/ICMR/FSSAI citations + AI draft + placeholder review tag. Always consult doctor. Premium gets priority Q&A with citations."},{"q":"Can I ask in Hinglish?","a":"Yes — health-qa supports Hinglish + English + Hindi. Try hinglish-search for better Hinglish understanding."}]}
+        howTo={{ name: "How to ask health question", steps: ["Type question in English/Hinglish/Hindi — e.g., diabetes millet","View evidence answer with PubMed/ICMR citations + disclaimer","Ask follow-up, save Q&A in premium","For personal advice, book dietitian via lead form"] }}
+      />
+      <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Health Q&A — Evidence-Based Answers — India Focus</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Ask health questions — evidence-based answers with citations: PubMed, ICMR, FSSAI.</p>
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-4">
+          <HealthQA />
+          <AffiliateProducts limit={4} title="Health Books — Affiliate" />
+          <LatestArticles limit={4} />
+        </div>
+        <div className="space-y-4">
+          <PremiumCTA compact />
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-4"><AdSlot slot="Health QA footer" /><DisclaimerBar compact /></div>
+    </div>
+  );
+}

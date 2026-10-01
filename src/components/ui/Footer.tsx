@@ -10,23 +10,23 @@ export function Footer({ content }: { content: SiteContent }) {
   const b = content.business;
   return (
     <footer className="relative mt-24 border-t border-white/10 bg-coal">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <FullLogo name={b.name} className="w-40" />
           <p className="mt-5 text-sm leading-relaxed text-white/60">{b.description}</p>
           <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
-            <Star className="h-4 w-4 fill-gold text-gold" />
+            <Star className="h-4 w-4 fill-brand text-brand" />
             <strong>{b.rating.value}</strong> / 5 · {b.rating.count}+ reviews
           </div>
           <div className="mt-5 flex gap-3">
-            <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-gold hover:text-gold">
+            <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
               <InstagramIcon className="h-5 w-5" />
             </a>
-            <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-gold hover:text-gold">
+            <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
               <WhatsAppIcon className="h-5 w-5" />
             </a>
-            <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Google Maps" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-gold hover:text-gold">
+            <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Google Maps" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
               <MapPin className="h-5 w-5" />
             </a>
           </div>
@@ -37,7 +37,7 @@ export function Footer({ content }: { content: SiteContent }) {
           <ul className="grid grid-cols-2 gap-2 text-sm text-white/65 lg:grid-cols-1">
             {FOOTER_LINKS.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="hover:text-gold">
+                <Link href={n.href} className="hover:text-brand">
                   {n.label}
                 </Link>
               </li>
@@ -50,7 +50,7 @@ export function Footer({ content }: { content: SiteContent }) {
           <ul className="space-y-2 text-sm text-white/65">
             {HUB.map((h) => (
               <li key={h.href}>
-                <Link href={h.href} className="hover:text-gold">
+                <Link href={h.href} className="hover:text-brand">
                   {h.title}
                 </Link>
               </li>
@@ -61,16 +61,16 @@ export function Footer({ content }: { content: SiteContent }) {
         <div>
           <h2 className="font-display mb-4 text-lg text-white">Visit Us</h2>
           <address className="space-y-4 text-sm not-italic text-white/65">
-            <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-gold">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+            <a href={b.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-brand">
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
               {fullAddress(b)}
             </a>
-            <a href={telHref(b.phone)} className="flex gap-3 hover:text-gold">
-              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+            <a href={telHref(b.phone)} className="flex gap-3 hover:text-brand">
+              <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
               {b.phone}
             </a>
             <div className="flex gap-3">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
               <ul>
                 {b.hours.map((h) => (
                   <li key={h.label + h.open}>
@@ -89,9 +89,9 @@ export function Footer({ content }: { content: SiteContent }) {
             © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
           </p>
           <p className="flex gap-4">
-            <Link href="/privacy" className="hover:text-gold">Privacy</Link>
-            <Link href="/terms" className="hover:text-gold">Terms</Link>
-            <Link href="/sitemap.xml" className="hover:text-gold">Sitemap</Link>
+            <Link href="/privacy" className="hover:text-brand">Privacy</Link>
+            <Link href="/terms" className="hover:text-brand">Terms</Link>
+            <Link href="/sitemap.xml" className="hover:text-brand">Sitemap</Link>
           </p>
         </div>
       </div>

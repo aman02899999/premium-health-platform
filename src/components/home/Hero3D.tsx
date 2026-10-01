@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
-// Hero WebGL scene: a gold/black hex dumbbell with orbiting rings and gold
+// Hero WebGL scene: a navy/red hex dumbbell (the logo colours) with orbiting rings and
 // dust. Pointer tilts the scene, scroll spins the dumbbell. Rendering pauses
 // when off-screen or the tab is hidden; reduced-motion renders one still frame.
 
-function buildDumbbell(gold: THREE.Material, black: THREE.Material, chrome: THREE.Material) {
+function buildDumbbell(red: THREE.Material, navy: THREE.Material, chrome: THREE.Material) {
   const group = new THREE.Group();
 
   const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 2.3, 32), chrome);
@@ -17,25 +17,25 @@ function buildDumbbell(gold: THREE.Material, black: THREE.Material, chrome: THRE
 
   // Knurled grip: thin rings along the centre of the handle.
   for (let i = -6; i <= 6; i++) {
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.012, 6, 24), gold);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.012, 6, 24), red);
     ring.rotation.y = Math.PI / 2;
     ring.position.x = i * 0.07;
     group.add(ring);
   }
 
   for (const side of [-1, 1]) {
-    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.14, 32), gold);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.14, 32), red);
     collar.rotation.z = Math.PI / 2;
     collar.position.x = side * 0.72;
     group.add(collar);
 
-    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.62, 0.62, 6), black);
+    const head = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.62, 0.62, 6), navy);
     head.rotation.z = Math.PI / 2;
     head.position.x = side * 1.1;
     group.add(head);
 
     for (const offset of [-0.31, 0.31]) {
-      const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.64, 0.64, 0.06, 6), gold);
+      const rim = new THREE.Mesh(new THREE.CylinderGeometry(0.64, 0.64, 0.06, 6), red);
       rim.rotation.z = Math.PI / 2;
       rim.position.x = side * 1.1 + offset;
       group.add(rim);
@@ -81,19 +81,19 @@ export default function Hero3D() {
     const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
     camera.position.set(0, 0.4, small ? 8.2 : 7.2);
 
-    const gold = new THREE.MeshPhysicalMaterial({ color: 0xd4a94a, metalness: 1, roughness: 0.22, clearcoat: 0.6, clearcoatRoughness: 0.2 });
-    const black = new THREE.MeshPhysicalMaterial({ color: 0x0c0c10, metalness: 0.4, roughness: 0.35, clearcoat: 1, clearcoatRoughness: 0.15 });
+    const red = new THREE.MeshPhysicalMaterial({ color: 0xc8202f, metalness: 0.85, roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.15 });
+    const navy = new THREE.MeshPhysicalMaterial({ color: 0x04466d, metalness: 0.45, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.12 });
     const chrome = new THREE.MeshStandardMaterial({ color: 0xe6e6ee, metalness: 1, roughness: 0.12 });
 
     const rig = new THREE.Group();
     scene.add(rig);
 
-    const dumbbell = buildDumbbell(gold, black, chrome);
+    const dumbbell = buildDumbbell(red, navy, chrome);
     dumbbell.rotation.set(0.35, -0.5, 0.25);
     dumbbell.scale.setScalar(small ? 0.7 : 0.85);
     rig.add(dumbbell);
 
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4a94a, transparent: true, opacity: 0.55 });
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x7cc0ee, transparent: true, opacity: 0.5 });
     const rings = [2.2, 2.6, 3.05].map((r, i) => {
       const ring = new THREE.Mesh(new THREE.TorusGeometry(r, 0.008 + i * 0.002, 8, 160), ringMat);
       ring.rotation.set(Math.PI / 2 + (i - 1) * 0.35, (i - 1) * 0.4, 0);
@@ -101,9 +101,9 @@ export default function Hero3D() {
       return ring;
     });
 
-    // Small gold "plates" riding the rings.
+    // Small red "plates" riding the rings.
     const orbiters = rings.map((ring, i) => {
-      const m = new THREE.Mesh(new THREE.OctahedronGeometry(0.07 + i * 0.015), gold);
+      const m = new THREE.Mesh(new THREE.OctahedronGeometry(0.07 + i * 0.015), red);
       ring.add(m);
       return { mesh: m, radius: (ring.geometry as THREE.TorusGeometry).parameters.radius, speed: 0.5 - i * 0.12, phase: i * 2 };
     });
@@ -134,14 +134,14 @@ export default function Hero3D() {
     const dotTex = new THREE.CanvasTexture(dot);
     const dust = new THREE.Points(
       dustGeo,
-      new THREE.PointsMaterial({ color: 0xf2d88f, size: 0.06, map: dotTex, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }),
+      new THREE.PointsMaterial({ color: 0xbfe2ff, size: 0.06, map: dotTex, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }),
     );
     scene.add(dust);
 
-    const key = new THREE.DirectionalLight(0xfff2d0, 2.2);
+    const key = new THREE.DirectionalLight(0xffffff, 2.2);
     key.position.set(3, 4, 5);
     scene.add(key);
-    const rimLight = new THREE.PointLight(0xe23b3b, 30, 12);
+    const rimLight = new THREE.PointLight(0xe8394b, 30, 12);
     rimLight.position.set(-3, -1, -2);
     scene.add(rimLight);
 
@@ -216,7 +216,7 @@ export default function Hero3D() {
       scene.traverse((obj) => {
         if (obj instanceof THREE.Mesh || obj instanceof THREE.Points) obj.geometry.dispose();
       });
-      [gold, black, chrome, ringMat, dust.material as THREE.Material].forEach((m) => m.dispose());
+      [red, navy, chrome, ringMat, dust.material as THREE.Material].forEach((m) => m.dispose());
       envTex.dispose();
       dotTex.dispose();
       pmrem.dispose();

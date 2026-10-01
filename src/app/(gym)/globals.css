@@ -1,0 +1,518 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette from the club logo: red (#be1b2c) and navy (#04466d).
+     brand is the logo red lifted slightly so small text stays readable on dark navy. */
+  --color-ink: #06111c;
+  --color-coal: #0a1a2a;
+  --color-steel: #10263b;
+  --color-line: #1d3a57;
+  --color-brand: var(--brand, #e8394b);
+  --color-brand-soft: #ff9aa4;
+  --color-navy: var(--navy, #04466d);
+  --color-sky: #7cc0ee;
+  --color-ember: #e8394b;
+  --font-display: "Oswald", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: var(--color-ink);
+  color: #e9f0f6;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* Navy-blue to red, echoing the two figures in the logo. */
+.text-brand-gradient {
+  background: linear-gradient(100deg, #7cc0ee 0%, #ffffff 30%, #ff6b79 55%, #e8394b 75%, #7cc0ee 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.btn-brand {
+  background: linear-gradient(135deg, #f0525f, #be1b2c 50%, #8e1220);
+  color: #fff;
+  box-shadow: 0 10px 30px -10px rgba(232, 57, 75, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -12px rgba(232, 57, 75, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.glass {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.brand-border {
+  position: relative;
+}
+.brand-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(140deg, rgba(124, 192, 238, 0.85), rgba(4, 70, 109, 0.25) 40%, rgba(190, 27, 44, 0.15) 60%, rgba(232, 57, 75, 0.8));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.grid-floor {
+  background-image:
+    linear-gradient(rgba(124, 192, 238, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 192, 238, 0.09) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+
+/* 3D tilt cards (driven by --rx/--ry/--mx/--my from TiltCard.tsx) */
+.tilt {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out;
+  will-change: transform;
+}
+.tilt-glare {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(190, 225, 255, 0.2), transparent 55%);
+  opacity: var(--glare, 0);
+  transition: opacity 0.3s;
+}
+.pop-3d {
+  transform: translateZ(40px);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+@keyframes float {
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+@keyframes pulse-ring {
+  from {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  to {
+    box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+  }
+}
+
+/* Blog prose */
+.prose-royal {
+  font-size: 1.075rem;
+  line-height: 1.8;
+  color: #d6d6de;
+}
+.prose-royal h2 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: #fff;
+  margin: 2.5rem 0 1rem;
+}
+.prose-royal h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 2rem 0 0.75rem;
+}
+.prose-royal p {
+  margin: 1rem 0;
+}
+.prose-royal a {
+  color: var(--color-sky);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-royal strong {
+  color: #fff;
+}
+.prose-royal ul,
+.prose-royal ol {
+  margin: 1rem 0;
+  padding-left: 1.4rem;
+}
+.prose-royal ul {
+  list-style: none;
+}
+.prose-royal ul li {
+  position: relative;
+  margin: 0.4rem 0;
+}
+.prose-royal ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--color-brand);
+}
+.prose-royal ol {
+  list-style: decimal;
+}
+.prose-royal ol li::marker {
+  color: var(--color-brand);
+  font-weight: 700;
+}
+.prose-royal blockquote {
+  border-left: 3px solid var(--color-brand);
+  background: rgba(4, 70, 109, 0.25);
+  padding: 1rem 1.25rem;
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: #dbeaf6;
+  margin: 1.5rem 0;
+}
+.prose-royal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose-royal th {
+  text-align: left;
+  color: var(--color-sky);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.6rem 0.75rem;
+  white-space: nowrap;
+}
+.prose-royal td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.6rem 0.75rem;
+}
+.prose-royal code {
+  background: #10263b;
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+/* Form controls */
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: #081624;
+  padding: 0.7rem 0.9rem;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field:focus {
+  border-color: var(--color-sky);
+  box-shadow: 0 0 0 3px rgba(124, 192, 238, 0.2);
+}
+.field::placeholder {
+  color: #5f7890;
+}
+
+input[type="range"] {
+  accent-color: var(--color-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Portal: two-site 3D chooser ---------- */
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  overflow-y: auto;
+  background: var(--color-ink);
+}
+html[data-portal="show"] .portal-overlay {
+  display: block;
+}
+html[data-portal="show"] body {
+  overflow: hidden;
+}
+.portal-overlay.portal-closing {
+  animation: portal-out 0.45s ease forwards;
+}
+@keyframes portal-out {
+  to {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
+.portal-stage {
+  perspective: 1400px;
+}
+.portal-rise {
+  animation: portal-rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes portal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.portal-orbit {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: min(1100px, 150vw);
+  aspect-ratio: 1;
+  margin-left: calc(min(1100px, 150vw) / -2);
+  margin-top: calc(min(1100px, 150vw) / -2);
+  border-radius: 9999px;
+  border: 1px solid rgba(124, 192, 238, 0.18);
+  box-shadow: 0 0 60px -20px rgba(124, 192, 238, 0.35) inset;
+  transform-style: preserve-3d;
+}
+.portal-orbit::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--color-brand);
+  box-shadow: 0 0 18px 4px rgba(232, 57, 75, 0.7);
+}
+.portal-orbit-a {
+  animation: portal-orbit-a 26s linear infinite;
+}
+.portal-orbit-b {
+  width: min(760px, 110vw);
+  margin-left: calc(min(760px, 110vw) / -2);
+  margin-top: calc(min(760px, 110vw) / -2);
+  border-color: rgba(52, 211, 153, 0.18);
+  animation: portal-orbit-b 19s linear infinite;
+}
+.portal-orbit-b::after {
+  background: #34d399;
+  box-shadow: 0 0 18px 4px rgba(52, 211, 153, 0.7);
+}
+@keyframes portal-orbit-a {
+  from {
+    transform: rotateX(74deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(74deg) rotateZ(360deg);
+  }
+}
+@keyframes portal-orbit-b {
+  from {
+    transform: rotateX(70deg) rotateY(12deg) rotateZ(360deg);
+  }
+  to {
+    transform: rotateX(70deg) rotateY(12deg) rotateZ(0deg);
+  }
+}
+
+.portal-cards {
+  transform-style: preserve-3d;
+}
+.portal-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 30%;
+  position: relative;
+  display: block;
+  border-radius: 2rem;
+  outline: none;
+  transform-style: preserve-3d;
+  animation: portal-card-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--delay);
+}
+.portal-card-gym {
+  --from: -65deg;
+}
+.portal-card-health {
+  --from: 65deg;
+}
+@keyframes portal-card-in {
+  from {
+    opacity: 0;
+    transform: translateZ(-400px) rotateY(var(--from));
+  }
+}
+.portal-card-inner {
+  position: relative;
+  display: block;
+  min-height: 25rem;
+  overflow: hidden;
+  border-radius: inherit;
+  padding: 2rem;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s ease-out, box-shadow 0.3s ease;
+  animation: portal-float 6s ease-in-out infinite;
+  animation-delay: calc(var(--delay) * 10);
+}
+.portal-card-gym .portal-card-inner {
+  background: linear-gradient(145deg, #0a5a8a 0%, #04466d 45%, #7a1220 100%);
+  box-shadow: 0 40px 80px -30px rgba(4, 70, 109, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+.portal-card-health .portal-card-inner {
+  background: linear-gradient(145deg, #065f46 0%, #064e3b 45%, #92400e 100%);
+  box-shadow: 0 40px 80px -30px rgba(6, 95, 70, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+.portal-card:hover .portal-card-inner,
+.portal-card:focus-visible .portal-card-inner {
+  animation-play-state: paused;
+}
+.portal-card-gym:hover .portal-card-inner,
+.portal-card-gym:focus-visible .portal-card-inner {
+  box-shadow: 0 50px 100px -30px rgba(232, 57, 75, 0.75), 0 0 0 2px rgba(232, 57, 75, 0.7) inset;
+}
+.portal-card-health:hover .portal-card-inner,
+.portal-card-health:focus-visible .portal-card-inner {
+  box-shadow: 0 50px 100px -30px rgba(52, 211, 153, 0.7), 0 0 0 2px rgba(52, 211, 153, 0.7) inset;
+}
+@keyframes portal-float {
+  50% {
+    translate: 0 -12px;
+  }
+}
+.portal-layer {
+  position: relative;
+  transform-style: preserve-3d;
+}
+.portal-z-20 {
+  transform: translateZ(20px);
+}
+.portal-z-40 {
+  transform: translateZ(40px);
+}
+.portal-z-60 {
+  transform: translateZ(60px);
+}
+.portal-z-80 {
+  transform: translateZ(80px);
+}
+.portal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.28);
+  padding: 0.35rem 0.75rem;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+.portal-emblem {
+  position: absolute;
+  right: -2.5rem;
+  bottom: -2.5rem;
+  width: 15rem;
+  height: 15rem;
+  color: rgba(255, 255, 255, 0.07);
+  transform: translateZ(-30px) rotate(-18deg);
+}
+.portal-glare {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx) var(--my), rgba(255, 255, 255, 0.22), transparent 45%);
+  mix-blend-mode: soft-light;
+}
+@media (max-width: 767px) {
+  .portal-card-inner {
+    min-height: 0;
+    padding: 1.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portal-orbit,
+  .portal-card-inner {
+    animation: none;
+  }
+}
+
+/* Grid items default to min-width:auto, so a wide child (a scrollable table)
+   stretches its column past the phone screen. Let columns shrink instead. */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}

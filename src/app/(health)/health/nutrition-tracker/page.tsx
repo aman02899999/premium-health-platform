@@ -1,0 +1,53 @@
+import type { Metadata } from "next";
+import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
+import { NutritionTracker } from "@/health/components/health/nutrition-tracker";
+import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
+import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
+import { LatestArticles } from "@/health/components/blog/LatestArticles";
+import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
+import { SITE } from "@/health/lib/site";
+
+const seoTitle = "Nutrition Tracker — Indian Foods Calories | Premium Health";
+const seoDescription = "Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.";
+const url = "/health/nutrition-tracker";
+const absoluteUrl = `${SITE.url}${url}`;
+const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Nutrition Tracker — Indian Foods")}&category=${encodeURIComponent("Nutrition Tracker")}&type=tool`;
+
+export const metadata: Metadata = {
+  title: seoTitle.slice(0, 60),
+  description: seoDescription.slice(0, 155),
+  alternates: { canonical: url, languages: { "en-IN": absoluteUrl, "en": absoluteUrl, "x-default": absoluteUrl } },
+  openGraph: { title: seoTitle, description: seoDescription, url: absoluteUrl, type: "website", images: [{ url: ogImage, width: 1200, height: 630, alt: seoTitle }] },
+  twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
+};
+
+export default function Page() {
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-8">
+      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Nutrition Tracker" }]} />
+      <UniquePageSEO
+        breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Nutrition Tracker", item: "/health/nutrition-tracker" }]}
+        faqs={[{"q":"How to track roti calories?","a":"1 phulka ~70 kcal, 1 tbsp ghee ~45 kcal, dal 1 katori ~120 kcal — tracker sums + fibre + protein. Educational, not prescription."},{"q":"Does it have Indian foods?","a":"Yes — 200+ Indian foods: roti, paratha, idli, dosa, dal, sabzi, biryani, mithai — with GI, fibre, protein, FSSAI tips."}]}
+        howTo={{ name: "How to track nutrition", steps: ["Add foods: e.g., 2 roti + dal + sabzi + curd","View calories, protein, fibre, GI load + balanced thali score","Get swap suggestions: millet roti, more dal, less ghee","Save day log in premium, export weekly PDF"] }}
+      />
+      <div className="mt-3 rounded-3xl bg-gradient-to-br from-green-800 to-emerald-700 p-6 text-white md:p-8">
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-green-200">Unique India</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Nutrition Tracker — Indian Foods Calories — Unique</h1>
+        <p className="mt-2 max-w-2xl text-sm text-green-100/90">Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.</p>
+      </div>
+
+      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+        <div className="lg:col-span-2 space-y-4">
+          <NutritionTracker />
+          <AffiliateProducts limit={4} title="Kitchen Scale + Protein — Affiliate" />
+          <LatestArticles limit={4} />
+        </div>
+        <div className="space-y-4">
+          <PremiumCTA compact />
+        </div>
+      </div>
+
+      <div className="mt-8 space-y-4"><AdSlot slot="Nutrition tracker footer" /><DisclaimerBar compact /></div>
+    </div>
+  );
+}

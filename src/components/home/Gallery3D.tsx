@@ -108,7 +108,7 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-4">
-        <button type="button" onClick={() => go(-1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-gold hover:text-gold" aria-label="Previous photo">
+        <button type="button" onClick={() => go(-1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand" aria-label="Previous photo">
           <ChevronLeft className="h-5 w-5" />
         </button>
         <div className="flex gap-2">
@@ -117,13 +117,13 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
               key={item.id}
               type="button"
               onClick={() => setActive(i)}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-gold" : "w-2 bg-white/25"}`}
+              className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-brand" : "w-2 bg-white/25"}`}
               aria-label={`Show ${item.title}`}
               aria-current={i === active}
             />
           ))}
         </div>
-        <button type="button" onClick={() => go(1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-gold hover:text-gold" aria-label="Next photo">
+        <button type="button" onClick={() => go(1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand" aria-label="Next photo">
           <ChevronRight className="h-5 w-5" />
         </button>
       </div>

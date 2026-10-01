@@ -40,7 +40,7 @@ export function ImageInput({ value, onChange }: { value: string; onChange: (v: s
       <div className="flex-1 space-y-2">
         <input className="field text-sm" value={value} placeholder="Paste image URL or upload →" onChange={(e) => onChange(e.target.value)} />
         <div className="flex flex-wrap items-center gap-2">
-          <button type="button" onClick={() => input.current?.click()} className="inline-flex items-center gap-1.5 rounded-lg bg-gold px-3 py-1.5 text-xs font-bold text-black" disabled={busy}>
+          <button type="button" onClick={() => input.current?.click()} className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-3 py-1.5 text-xs font-bold text-white" disabled={busy}>
             {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />} Upload
           </button>
           {value && (
@@ -87,7 +87,7 @@ function FieldInput({ field, value, onChange }: { field: Field; value: unknown; 
     case "bool":
       return (
         <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" checked={Boolean(value)} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-[#d4a94a]" /> Yes
+          <input type="checkbox" checked={Boolean(value)} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-[#e8394b]" /> Yes
         </label>
       );
     case "color":
@@ -188,7 +188,7 @@ export function ListEditor<T extends Obj>({
           onChange([...items, create()]);
           setOpen(items.length);
         }}
-        className="inline-flex items-center gap-2 rounded-xl border border-dashed border-gold/50 px-4 py-2.5 text-sm font-semibold text-gold hover:bg-gold/10"
+        className="inline-flex items-center gap-2 rounded-xl border border-dashed border-brand/50 px-4 py-2.5 text-sm font-semibold text-brand hover:bg-brand/10"
       >
         <Plus className="h-4 w-4" /> {addLabel}
       </button>

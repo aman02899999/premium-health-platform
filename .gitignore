@@ -31,3 +31,4 @@ yarn-error.log*
 
 # local CMS storage (file mode)
 /.data/
+
