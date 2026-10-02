@@ -70,7 +70,7 @@ export default function AboutPage() {
                 <li><strong>ClinicalTrials.gov API v2</strong>: registered trials per condition — /api/realtime/trials</li>
                 <li><strong>World Bank Open Data</strong>: India health indicators on /about — /api/realtime/worldbank</li>
                 <li><strong>Open-Meteo</strong>: weather + AQI + UV + sunrise/sunset in Live Pulse — /api/realtime/pulse</li>
-                <li><strong>openFDA + Open Food Facts + disease.sh</strong>: drug labels, food Nutri-Score, COVID — existing live stack</li>
+                <li><strong>WHO + openFDA + PubMed + Open Food Facts</strong>: outbreak reports, drug labels and recalls, new research, food Nutri-Score</li>
                 <li>All server-side, cached (10min–24h), with live:false graceful fallbacks — no keys, no secrets</li>
               </ul>
             </section>
@@ -83,7 +83,7 @@ export default function AboutPage() {
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
               <h2 className="font-display text-xl font-bold">How we sustain</h2>
               <ul className="mt-2 list-disc pl-5 text-sm">
-                <li>Premium ₹199/mo — ad-free + unlimited India-first tools</li>
+                <li>Premium (coming soon) — ad-free reading and saved plans; all tools stay free</li>
                 <li>Affiliate 8% avg — glucometer, BP monitor, millet, yoga mat, protein</li>
                 <li>AdSense optimized slots — premium ad-free, free monetized, no CLS</li>
                 <li>Lead gen — lab tests, dietitian, insurance — high-ticket India</li>

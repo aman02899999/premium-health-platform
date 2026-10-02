@@ -19,10 +19,10 @@ export function PremiumCTA({ compact }: { compact?: boolean }) {
   if (compact) {
     return (
       <div className="rounded-2xl bg-gradient-to-br from-stone-900 to-emerald-900 p-4 text-white">
-        <p className="flex items-center gap-2 text-sm font-bold"><Crown className="h-4 w-4 text-amber-400" /> Go Premium — ₹199/mo</p>
-        <p className="mt-1 text-xs text-emerald-100/80">Ad-free, thali plans, millet swaps, herb-drug checker unlimited.</p>
+        <p className="flex items-center gap-2 text-sm font-bold"><Crown className="h-4 w-4 text-amber-400" /> Premium — coming soon</p>
+        <p className="mt-1 text-xs text-emerald-100/80">Ad-free reading, saved meal plans and PDF exports. Join the waitlist — nothing to pay now.</p>
         <div className="mt-3 flex gap-2">
-          <Link href="/health/premium" className="rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">View Plans</Link>
+          <Link href="/health/premium" className="rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">Join the waitlist</Link>
         </div>
       </div>
     );
@@ -30,16 +30,16 @@ export function PremiumCTA({ compact }: { compact?: boolean }) {
 
   return (
     <div className="rounded-3xl bg-gradient-to-br from-stone-900 via-emerald-950 to-stone-900 p-6 text-white">
-      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-amber-300"><Crown className="h-4 w-4" /> Premium</p>
-      <h3 className="mt-2 font-display text-2xl font-black">Unlock Pro — Ad-free + Personalized</h3>
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-amber-300"><Crown className="h-4 w-4" /> Premium · coming soon</p>
+      <h3 className="mt-2 font-display text-2xl font-black">Ad-free, personal and saved — in the works</h3>
       <ul className="mt-3 space-y-1.5 text-sm text-emerald-100/90">
-        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Unlimited thali builder + millet swap + dosha meals</li>
-        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Herb-drug checker unlimited + fasting planner</li>
-        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Ad-free reading + priority health Q&A</li>
-        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Weekly meal PDF + WhatsApp tips</li>
+        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Ad-free reading</li>
+        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Save thali plans and calculator results</li>
+        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> Weekly meal-plan PDF</li>
+        <li className="flex items-center gap-2"><Check className="h-4 w-4 text-amber-400" /> All free tools stay free</li>
       </ul>
       <div className="mt-4 flex gap-2">
-        <Link href="/health/premium" className="flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-stone-900 hover:bg-amber-400"><Zap className="h-4 w-4" /> Go Premium ₹199/mo</Link>
+        <Link href="/health/premium" className="flex items-center gap-2 rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-stone-900 hover:bg-amber-400"><Zap className="h-4 w-4" /> Join the waitlist</Link>
       </div>
     </div>
   );
@@ -55,8 +55,8 @@ export function EarningStats() {
       </div>
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <p className="text-xs font-bold uppercase text-stone-500">Premium Users</p>
-        <p className="mt-1 text-2xl font-black">1,247</p>
-        <p className="text-[11px] text-emerald-600">+12% this month (demo)</p>
+        <p className="mt-1 text-2xl font-black">0</p>
+        <p className="text-[11px] text-stone-400">Premium not launched — no payments taken</p>
       </div>
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <p className="text-xs font-bold uppercase text-stone-500">Ad Revenue (est.)</p>

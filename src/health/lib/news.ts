@@ -1,13 +1,14 @@
-import { desc, eq } from "drizzle-orm";
+import { and, desc, eq } from "drizzle-orm";
 import type { NewsItem } from "@/health/types";
 import { db } from "@/health/db";
 import { newsItems } from "@/health/db/schema";
 import { getSeedNews, istDateKey } from "@/health/data/news";
 
 /** Rows from the database are trusted CMS content; seed items guarantee a live feed even with no DB rows. */
-async function readDb(): Promise<NewsItem[]> {
+async function readDb(slug?: string): Promise<NewsItem[]> {
   try {
-    const rows = await db.select().from(newsItems).where(eq(newsItems.status, "published")).orderBy(desc(newsItems.publishedAt)).limit(30);
+    const published = eq(newsItems.status, "published");
+    const rows = await db.select().from(newsItems).where(slug ? and(published, eq(newsItems.slug, slug)) : published).orderBy(desc(newsItems.publishedAt)).limit(slug ? 1 : 40);
     const mapped: (NewsItem | null)[] = rows
       .map((r): NewsItem | null => {
         const b = (r.body ?? {}) as Partial<NewsItem>;
@@ -46,16 +47,19 @@ export async function getNewsFeed(date: Date = new Date()): Promise<NewsItem[]> 
   const fromDb = await readDb();
   if (!fromDb.length) return seed;
   const seen = new Set(fromDb.map((n) => n.slug));
-  // DB content wins; seed fills any missing day so the feed never looks stale.
-  return [...fromDb, ...seed.filter((s) => !seen.has(s.slug))].sort(
-    (a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt)
-  );
+  // Real dated items (live sources + CMS) first, newest first; evergreen guides follow
+  // so a guide never sits above an actual report as if it were today's news.
+  const dated = [...fromDb].sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+  return [...dated, ...seed.filter((s) => !seen.has(s.slug))];
 }
 
 export async function getNewsItem(slug: string, date: Date = new Date()): Promise<NewsItem | null> {
   const feed = await getNewsFeed(date);
   const found = feed.find((n) => n.slug === slug);
   if (found) return found;
+  // Older synced items drop out of the feed but keep their page.
+  const [stored] = await readDb(slug);
+  if (stored) return stored;
   // Daily briefings are deterministic — allow "briefing-YYYY-MM-DD" forever.
   if (slug.startsWith("briefing-")) {
     const key = slug.replace("briefing-", "");

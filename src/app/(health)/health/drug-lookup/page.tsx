@@ -5,6 +5,9 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
+import { openFDAProvider } from "@/health/services/health/providers/openfda/provider";
+import { rxNormProvider } from "@/health/services/health/providers/rxnorm/provider";
+import { pubChemProvider } from "@/health/services/health/providers/pubchem/provider";
 
 const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem | Premium Health";
 const seoDescription = "Lookup allopathy medicines: dose, side effects, interactions — India brands, educational. openFDA + RxNorm + PubChem free keyless. Unique, premium + affiliate.";
@@ -21,11 +24,10 @@ export const metadata: Metadata = {
 };
 
 async function getDrugs(q: string, provider: string) {
+  // Call the provider directly — a server page fetching its own API by URL breaks whenever the base URL is wrong.
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${base}/api/health/drugs?q=${encodeURIComponent(q)}&limit=10&provider=${provider}`, { next: { revalidate: 3600 } }).catch(() => null);
-    if (!res?.ok) return null;
-    return await res.json();
+    const p = provider === "rxnorm" ? rxNormProvider : provider === "pubchem" ? pubChemProvider : openFDAProvider;
+    return await p.search({ query: q, limit: 10 });
   } catch {
     return null;
   }

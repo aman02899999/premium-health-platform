@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getIndiaPulse } from "@/health/lib/realtime";
 
-export const revalidate = 600;
+// Dynamic so it is never frozen at build time; the CDN still caches it for 10 minutes.
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {

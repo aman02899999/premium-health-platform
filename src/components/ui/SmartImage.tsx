@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- admin-uploaded images come from /api/media or arbitrary hosts */
 import { Icon } from "@/components/Icon";
+import { uncropped } from "@/lib/uncropped";
 
 // Shows the admin-provided image, or a branded 3D-ish artwork when none is set,
 // so the site never looks broken before real photos are uploaded.
@@ -10,6 +11,7 @@ export function SmartImage({
   icon = "Crown",
   label,
   priority = false,
+  fit = "cover",
 }: {
   src?: string;
   alt: string;
@@ -17,7 +19,25 @@ export function SmartImage({
   icon?: string;
   label?: string;
   priority?: boolean;
+  /** "contain" shows the whole photo, with a blurred copy filling the empty sides. */
+  fit?: "cover" | "contain";
 }) {
+  if (src && fit === "contain") {
+    const full = uncropped(src);
+    return (
+      <div className={`relative h-full w-full overflow-hidden bg-black ${className}`}>
+        <img src={full} alt="" aria-hidden className="absolute inset-0 h-full w-full scale-110 object-cover opacity-50 blur-2xl" loading={priority ? "eager" : "lazy"} decoding="async" />
+        <img
+          src={full}
+          alt={alt}
+          className="relative h-full w-full object-contain"
+          loading={priority ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={priority ? "high" : "auto"}
+        />
+      </div>
+    );
+  }
   if (src) {
     return (
       <img

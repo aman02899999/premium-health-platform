@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 import { getPaymentProvider, generateDownloadToken } from "@/health/lib/monetization/payment";
 import { verifyPaymentSignature } from "@/lib/payments/signature";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   try {
     const body = await req.json();
     const { orderId, paymentId, signature, provider } = body;

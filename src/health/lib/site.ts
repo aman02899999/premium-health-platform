@@ -195,7 +195,7 @@ export const PRIMARY_NAV: NavItem[] = [
     href: "/health/premium",
     description: "Ad-free + meal plans",
     children: [
-      { label: "Premium Plans", href: "/health/premium", description: "Ad-free + thali plans — ₹199/mo" },
+      { label: "Premium Plans", href: "/health/premium", description: "Coming soon — join the waitlist" },
       { label: "Deals", href: "/health/deals", description: "Health product deals & coupons" },
       { label: "Sign in", href: "/health/login", description: "Google or email link" },
       { label: "Profile", href: "/health/profile", description: "Your account & premium status" },

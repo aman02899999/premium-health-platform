@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { getIndiaHealthIndicators } from "@/health/lib/worldbank";
 
-export const revalidate = 86400; // 24h
+// Dynamic so it is never frozen at build time; the CDN header below caches it.
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {

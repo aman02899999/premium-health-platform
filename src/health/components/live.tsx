@@ -17,10 +17,10 @@ export function LiveTicker() {
   }, []);
   const items = pulse
     ? [
-        `🕒 ${pulse.istTime} IST`,
+        `🕒 Updated ${pulse.istTime} IST`,
         `🌿 ${pulse.season}`,
         ...pulse.cities.slice(0, 5).map((c) => `${c.city}: ${c.tempC ?? "–"}°C · AQI ${c.aqiUS ?? "–"} (${c.aqiLabel}) · UV ${c.uvIndex ?? "–"} ${c.uvIndex != null ? `(${uvLabel(c.uvIndex)})` : ""}`),
-        pulse.covid.live ? `🦠 India COVID active: ${pulse.covid.active.toLocaleString("en-IN")}` : "🦠 COVID tracker: updating",
+        "📡 Weather & air quality: Open-Meteo",
       ]
     : ["Loading live India health pulse…"];
   const row = [...items, ...items];
@@ -135,7 +135,7 @@ export function IndiaPulseDashboard() {
           <p className="mt-3 text-[11px] text-stone-500">Source: Open-Meteo (live, keyless) — weather + AQI + UV + sunrise/sunset. {worst ? `Highest AQI now: ${worst.city} (AQI ${worst.aqiUS ?? "–"}). ` : ""}{worst?.advice} UV data helps plan outdoor exercise.</p>
         </div>
 
-        {/* Season + COVID */}
+        {/* Season + official alerts */}
         <div className="space-y-4">
           <div className="rounded-3xl bg-gradient-to-br from-emerald-800 via-emerald-900 to-teal-950 p-5 text-white shadow-lg">
             <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-300">{pulse.season}</p>
@@ -143,20 +143,9 @@ export function IndiaPulseDashboard() {
             <Link href="/health/news" className="mt-3 inline-block rounded-xl bg-white/10 px-4 py-2 text-xs font-bold hover:bg-white/20">Today&apos;s health briefing →</Link>
           </div>
           <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-700 dark:bg-stone-900">
-            <p className="flex items-center gap-2 text-sm font-bold"><Activity className="h-4 w-4 text-rose-500" /> India COVID snapshot {pulse.covid.live && <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">LIVE</span>}</p>
-            {pulse.covid.live ? (
-              <dl className="mt-3 grid grid-cols-2 gap-2 text-center">
-                {[["Active", pulse.covid.active], ["Total cases", pulse.covid.cases], ["Recovered", pulse.covid.recovered], ["Deaths", pulse.covid.deaths]].map(([l, v]) => (
-                  <div key={l as string} className="rounded-xl bg-stone-50 p-2.5 dark:bg-stone-800/60">
-                    <dt className="text-[10px] font-bold uppercase text-stone-500">{l}</dt>
-                    <dd className="text-base font-black tabular-nums">{(v as number).toLocaleString("en-IN")}</dd>
-                  </div>
-                ))}
-              </dl>
-            ) : (
-              <p className="mt-2 text-xs text-stone-500">Tracker updating — check our news briefing for the latest advisories.</p>
-            )}
-            <p className="mt-2 text-[11px] text-stone-400">Source: disease.sh · Updated {new Date(pulse.covid.updated).toLocaleDateString("en-IN")}</p>
+            <p className="flex items-center gap-2 text-sm font-bold"><Activity className="h-4 w-4 text-rose-500" /> Official health alerts</p>
+            <p className="mt-2 text-xs leading-relaxed text-stone-600 dark:text-stone-300">WHO outbreak reports, US FDA recalls of Indian-made medicines and new Indian research — synced every morning, each with its source and real date.</p>
+            <Link href="/health/news" className="mt-3 inline-block rounded-xl bg-rose-600 px-4 py-2 text-xs font-bold text-white hover:bg-rose-500">See today&apos;s alerts →</Link>
           </div>
         </div>
       </div>
@@ -240,7 +229,7 @@ export function FoodLookup() {
             {data.nutriScore && <span className={`flex h-11 w-11 items-center justify-center rounded-2xl text-lg font-black text-white ${GRADE_COLOR[data.nutriScore] ?? "bg-stone-400"}`}>{data.nutriScore}</span>}
             <div>
               <p className="text-sm font-bold leading-tight">{data.name}</p>
-              <p className="text-[11px] text-stone-500">{data.brand}{data.nova ? ` · NOVA ${data.nova}` : ""} · per 100 g</p>
+              <p className="text-[11px] text-stone-500">{data.brand}{data.nova ? ` · NOVA ${data.nova}` : ""} · per 100 g{data.basis === "as prepared" ? " as prepared" : ""}</p>
             </div>
           </div>
           <div className="mt-2 grid grid-cols-4 gap-1.5 text-center text-[11px]">

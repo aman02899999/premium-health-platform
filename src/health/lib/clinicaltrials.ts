@@ -56,6 +56,7 @@ type CtGovResponse = {
         startDateStruct?: { date?: string };
         primaryCompletionDateStruct?: { date?: string };
       };
+      designModule?: { phases?: string[] };
       conditionsModule?: {
         conditions?: string[];
       };
@@ -80,11 +81,11 @@ export async function searchClinicalTrials(query: string, pageSize = 5): Promise
     return { live: false, query: q, count: 0, trials: [], fetchedAt: now };
   }
 
-  // Build query: term + optional India filter via AREA filter? For simplicity we search term and include all, but show locations
-  // Using query.term which searches across fields
-  const url = `https://clinicaltrials.gov/api/v2/studies?query.term=${encodeURIComponent(q)}&pageSize=${pageSize}&sort=LastUpdatePostDate`;
-
-  const json = (await fetchJson(url)) as CtGovResponse | null;
+  // Match the condition field (query.term also hits eligibility text like "excludes diabetes")
+  // and prefer trials with a site in India; fall back worldwide if India has none.
+  const base = `https://clinicaltrials.gov/api/v2/studies?query.cond=${encodeURIComponent(q)}&pageSize=${pageSize}&sort=LastUpdatePostDate`;
+  let json = (await fetchJson(`${base}&query.locn=India`)) as CtGovResponse | null;
+  if (json && !(json.studies ?? []).length) json = (await fetchJson(base)) as CtGovResponse | null;
 
   if (!json) {
     const res: TrialsResponse = { live: false, query: q, count: 0, trials: [], fetchedAt: now };
@@ -102,10 +103,12 @@ export async function searchClinicalTrials(query: string, pageSize = 5): Promise
     const nctId = idMod?.nctId ?? "Unknown";
     const title = idMod?.briefTitle ?? idMod?.officialTitle ?? `Clinical trial ${nctId}`;
     const status = statusMod?.overallStatus ?? "Unknown";
-    const phase = statusMod?.phase ?? [];
+    const phase = s.protocolSection?.designModule?.phases ?? statusMod?.phase ?? [];
     const conditions = condMod?.conditions ?? [];
     const locationsRaw = locMod?.locations ?? [];
-    const locations = locationsRaw
+    // Indian sites first — readers care whether they could take part here.
+    const locations = [...locationsRaw]
+      .sort((a, b) => Number(b.country === "India") - Number(a.country === "India"))
       .map((l) => [l.city, l.state, l.country].filter(Boolean).join(", "))
       .filter(Boolean)
       .slice(0, 3);

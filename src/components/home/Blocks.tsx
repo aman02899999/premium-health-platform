@@ -101,7 +101,7 @@ export function PostCard({ post, index = 0 }: { post: BlogPost; index?: number }
       <TiltCard className="group h-full rounded-3xl" max={6}>
         <article className="glass flex h-full flex-col overflow-hidden rounded-3xl">
           <Link href={`/blog/${post.slug}`} className="block aspect-[16/9] overflow-hidden" tabIndex={-1} aria-hidden>
-            <SmartImage src={post.cover} alt={post.title} icon="Activity" label={post.category} className="transition-transform duration-700 group-hover:scale-105" />
+            <SmartImage src={post.cover} alt={post.title} fit="contain" icon="Activity" label={post.category} className="transition-transform duration-700 group-hover:scale-105" />
           </Link>
           <div className="flex flex-1 flex-col p-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-brand">

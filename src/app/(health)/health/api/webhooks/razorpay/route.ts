@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 
 // Mock Razorpay webhook — in production verify signature with RAZORPAY_WEBHOOK_SECRET
 export async function POST(req: NextRequest) {
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   try {
     const body = await req.json();
     const event = body.event || "payment.captured";
