@@ -28,7 +28,7 @@ export function ExitIntent() {
       <div className="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl dark:bg-stone-900">
         <button onClick={() => setShow(false)} className="absolute right-3 top-3 rounded-full p-1 hover:bg-stone-100 dark:hover:bg-stone-800"><X className="h-4 w-4" /></button>
         <p className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-600" /> Wait — Get 7 Days Premium Free!</p>
-        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Join 12k+ Indians getting thali plans, millet swaps, herb-drug checker — free for 7 days, then ₹199/mo.</p>
+        <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Thali plans, millet swaps and the herb-drug checker — free for 7 days, then ₹199/mo.</p>
         <div className="mt-4 flex gap-2">
           <Link href="/health/register" onClick={() => setShow(false)} className="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-bold text-stone-900">Claim Free Trial</Link>
           <button onClick={() => setShow(false)} className="rounded-xl border px-5 py-2.5 text-sm font-bold">No thanks</button>

@@ -105,7 +105,7 @@ export default async function PostPage({ params }: Props) {
         {post.cover && (
           <div className="mx-auto mb-10 max-w-5xl px-4 sm:px-6">
             <div className="aspect-[16/8] overflow-hidden rounded-3xl ring-1 ring-white/10">
-              <SmartImage src={post.cover} alt={post.title} priority />
+              <SmartImage src={post.cover} alt={post.title} priority fit="contain" />
             </div>
           </div>
         )}
