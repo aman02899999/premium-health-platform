@@ -27,8 +27,8 @@ export type NewsItem = {
   updatedAt: string;
   sourceName: string;
   sourceUrl: string;
-  /** "briefing" = our own daily digest; "advisory" = pointer to official guidance */
-  kind: "briefing" | "advisory" | "digest";
+  /** "briefing" = our own evergreen guide; "advisory" = pointer to official guidance; "live" = synced daily from an official source */
+  kind: "briefing" | "advisory" | "digest" | "live";
   status: "draft" | "published";
   body: { heading: string; paragraphs?: string[]; bullets?: string[] }[];
   keyTakeaways: string[];
