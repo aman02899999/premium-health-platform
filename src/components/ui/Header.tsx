@@ -45,12 +45,12 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
           <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
             <Logo name={name} />
           </Link>
-          <ul className="hidden items-center gap-1 xl:flex">
+          <ul className="hidden items-center gap-0.5 xl:flex 2xl:gap-1">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors 2xl:px-3.5 ${
+                  className={`whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium transition-colors 2xl:px-3.5 ${
                     isActive(item.href) ? "bg-white/10 text-brand" : "text-white/75 hover:text-white"
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}

@@ -30,6 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/progress", 0.5, "yearly"],
     ["/blog", 0.8, "weekly"],
     ["/library", 0.8, "monthly"],
+    ["/store", 0.8, "monthly"],
     ["/privacy", 0.2, "yearly"],
     ["/terms", 0.2, "yearly"],
     ["/refund-policy", 0.2, "yearly"],
