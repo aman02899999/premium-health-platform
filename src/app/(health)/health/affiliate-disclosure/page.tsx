@@ -26,7 +26,7 @@ export default function AffiliatePage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Affiliate Disclosure", item: "/health/affiliate-disclosure" }]}
         faqs={[
-          { q: "How does affiliate earning work?", a: "When you buy via our link, merchant pays 8% avg commission — e.g., glucometer Rs1999 * 8% = Rs160. No extra cost to you. Tracked via gtag affiliate_click + UTM + /api/affiliate/click + localStorage bhg-aff-clicks + Product JSON-LD." },
+          { q: "How does affiliate earning work?", a: "When you buy through one of our Amazon links, Amazon pays us a small commission — the rate depends on the product category and is set by Amazon. You pay the same price. We count clicks on these links to see which recommendations are useful; we never sell your data." },
           { q: "Does affiliate influence editorial?", a: "No — evidence badges, safety warnings, limitations written before monetisation. Negative findings never hidden to protect sale. Disclosure on every page + /affiliate-disclosure + /deals + /products." },
         ]}
         howTo={{ name: "How affiliate disclosure works", steps: ["Product pages show merchant, price placeholder, rating placeholder, CTA View Product/Check Price/Learn More", "Links resolve via configurable affiliate URLs in DB — never hardcoded", "Click tracked via UTM + gtag + /api/affiliate/click POST productId", "Buy on merchant, commission supports independent health journalism"] }}
