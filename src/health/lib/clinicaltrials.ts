@@ -106,7 +106,9 @@ export async function searchClinicalTrials(query: string, pageSize = 5): Promise
     const phase = s.protocolSection?.designModule?.phases ?? statusMod?.phase ?? [];
     const conditions = condMod?.conditions ?? [];
     const locationsRaw = locMod?.locations ?? [];
-    const locations = locationsRaw
+    // Indian sites first — readers care whether they could take part here.
+    const locations = [...locationsRaw]
+      .sort((a, b) => Number(b.country === "India") - Number(a.country === "India"))
       .map((l) => [l.city, l.state, l.country].filter(Boolean).join(", "))
       .filter(Boolean)
       .slice(0, 3);
