@@ -26,3 +26,14 @@ export async function signedBookUrl(slug: string, filename: string): Promise<str
   if (error || !data?.signedUrl) throw new Error(error?.message || "Could not sign the download");
   return data.signedUrl;
 }
+
+/** Slugs whose PDF is in the private bucket. Cached briefly so checkout doesn't list storage on every click. */
+let uploadedCache: { at: number; slugs: Set<string> } | null = null;
+export async function uploadedBookSlugs(): Promise<Set<string>> {
+  if (uploadedCache && Date.now() - uploadedCache.at < 60_000) return uploadedCache.slugs;
+  const { data, error } = await serviceClient().storage.from(LIBRARY_BUCKET).list("books", { limit: 1000 });
+  if (error) throw new Error(error.message);
+  const slugs = new Set((data ?? []).filter((f) => f.name.endsWith(".pdf")).map((f) => f.name.replace(/\.pdf$/, "")));
+  uploadedCache = { at: Date.now(), slugs };
+  return slugs;
+}
