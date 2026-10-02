@@ -84,7 +84,8 @@ function cached<T>(key: string, ttlMs: number, loader: () => Promise<T>): Promis
   const hit = cache.get(key);
   if (hit && Date.now() - hit.at < ttlMs) return Promise.resolve(hit.data as T);
   return loader().then((data) => {
-    cache.set(key, { at: Date.now(), data });
+    // Don't remember failures: an upstream blip shouldn't hide results for the whole TTL.
+    if (data !== null) cache.set(key, { at: Date.now(), data });
     return data;
   });
 }
@@ -124,19 +125,16 @@ export function uvAdvice(uv: number | null): string {
   return "Extreme — avoid midday sun, full cover required.";
 }
 
-function formatTimeIST(iso: string | null): string | null {
-  if (!iso) return null;
-  try {
-    const d = new Date(iso);
-    return new Intl.DateTimeFormat("en-IN", {
-      timeZone: "Asia/Kolkata",
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    }).format(d);
-  } catch {
-    return iso;
-  }
+/**
+ * Open-Meteo is called with timezone=Asia/Kolkata, so it returns IST wall-clock time
+ * without an offset ("2026-10-02T06:14"). Parsing that with new Date() treats it as the
+ * server's zone (UTC on Vercel) and shifts it by 5h30m — so read the clock digits directly.
+ */
+export function formatTimeIST(local: string | null): string | null {
+  const m = /T(\d{2}):(\d{2})/.exec(local ?? "");
+  if (!m) return null;
+  const h = Number(m[1]);
+  return `${h % 12 || 12}:${m[2]} ${h < 12 ? "am" : "pm"}`;
 }
 
 async function fetchCity(city: { name: string; lat: number; lon: number }): Promise<CityPulse> {
@@ -169,39 +167,23 @@ async function fetchCity(city: { name: string; lat: number; lon: number }): Prom
   };
 }
 
-export type CovidIndia = {
-  cases: number; todayCases: number; deaths: number; todayDeaths: number;
-  recovered: number; active: number; updated: number; live: boolean;
-};
-
-async function fetchCovid(): Promise<CovidIndia> {
-  const d = (await fetchJson("https://disease.sh/v3/covid-19/countries/india?strict=true")) as Record<string, number> | null;
-  if (!d || typeof d.cases !== "number") {
-    return { cases: 0, todayCases: 0, deaths: 0, todayDeaths: 0, recovered: 0, active: 0, updated: Date.now(), live: false };
-  }
-  return {
-    cases: d.cases, todayCases: d.todayCases ?? 0, deaths: d.deaths ?? 0,
-    todayDeaths: d.todayDeaths ?? 0, recovered: d.recovered ?? 0,
-    active: d.active ?? 0, updated: d.updated ?? Date.now(), live: true,
-  };
-}
-
 export type IndiaPulse = {
   fetchedAt: string;
   istTime: string;
   season: string;
   seasonAdvice: string;
   cities: CityPulse[];
-  covid: CovidIndia;
   liveSources: string[];
 };
 
 function seasonNow(date = new Date()): { season: string; advice: string } {
-  const m = date.getMonth(); // 0-based
+  const m = new Date(date.getTime() + 5.5 * 3600 * 1000).getUTCMonth(); // IST month, 0-based
   if (m === 11 || m === 0 || m === 1)
     return { season: "Winter (Shishira)", advice: "Smog season in North India: check AQI before morning walks; asthmatics keep relievers handy; moisturise skin; ensure vitamin D." };
   if (m >= 2 && m <= 5)
     return { season: "Summer (Grishma)", advice: "Heat-wave risk: hydrate with water + ORS on exertion days, avoid 12–4 PM sun, watch for heat exhaustion in elders and outdoor workers." };
+  if (m >= 9)
+    return { season: "Post-monsoon (Sharad)", advice: "Dengue and chikungunya peak after the rains: empty stagnant water weekly, use repellents, and see a doctor for high fever with body ache, rash or bleeding." };
   return { season: "Monsoon (Varsha)", advice: "Dengue/malaria season: empty stagnant water weekly, use repellents, drink safe water; seek care for high fever with rash or bleeding." };
 }
 
@@ -213,23 +195,18 @@ function istClock(date = new Date()): string {
 }
 
 export function getIndiaPulse(): Promise<IndiaPulse> {
-  return cached<IndiaPulse>("pulse-v2", 10 * 60 * 1000, async () => {
-    const [cities, covid] = await Promise.all([
-      Promise.all(CITIES.map(fetchCity)),
-      fetchCovid(),
-    ]);
+  return cached<IndiaPulse>("pulse-v3", 10 * 60 * 1000, async () => {
+    const cities = await Promise.all(CITIES.map(fetchCity));
     const now = new Date();
     const s = seasonNow(now);
     const liveSources: string[] = [];
     if (cities.some((c) => c.live)) liveSources.push("Open-Meteo weather + air quality + UV + sunrise/sunset");
-    if (covid.live) liveSources.push("disease.sh COVID-19");
     return {
       fetchedAt: now.toISOString(),
       istTime: istClock(now),
       season: s.season,
       seasonAdvice: s.advice,
       cities,
-      covid,
       liveSources,
     };
   });
@@ -244,14 +221,29 @@ export type DrugLive = {
   live: boolean;
 };
 
+type DrugLabel = { openfda?: { generic_name?: string[]; brand_name?: string[] }; warnings?: string[]; boxed_warning?: string[] };
+
+/**
+ * openFDA's generic-name search also matches combination products ("sitagliptin and
+ * metformin" for "metformin"), in arbitrary order. Prefer a label whose generic name is
+ * the drug on its own, then the one with the fewest ingredients.
+ */
+export function pickDrugLabel<T extends DrugLabel>(results: T[], query: string): T | undefined {
+  const q = query.trim().toLowerCase();
+  const name = (r: T) => (r.openfda?.generic_name?.[0] ?? "").toLowerCase();
+  const ingredients = (r: T) => name(r).split(/\s+and\s+|,\s*/).filter(Boolean).length || 99;
+  const score = (r: T) => (name(r) === q || name(r).startsWith(`${q} `) ? 0 : 1) * 100 + ingredients(r);
+  return [...results].filter((r) => name(r)).sort((a, b) => score(a) - score(b))[0];
+}
+
 export async function getDrugLive(query: string): Promise<DrugLive> {
   const q = query.trim().toLowerCase().slice(0, 60);
   if (!q) return { found: false, genericName: query, brandNames: [], warnings: [], live: false };
-  return cached<DrugLive>(`drug-${q}`, 60 * 60 * 1000, async () => {
-    const d = (await fetchJson(`https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22${encodeURIComponent(q)}%22&limit=1`)) as {
-      results?: { openfda?: { generic_name?: string[]; brand_name?: string[] }; warnings?: string[]; boxed_warning?: string[] }[];
+  return cached<DrugLive>(`drug-v2-${q}`, 60 * 60 * 1000, async () => {
+    const d = (await fetchJson(`https://api.fda.gov/drug/label.json?search=openfda.generic_name:%22${encodeURIComponent(q)}%22&limit=20`)) as {
+      results?: DrugLabel[];
     } | null;
-    const r = d?.results?.[0];
+    const r = pickDrugLabel(d?.results ?? [], q);
     if (!r) return { found: false, genericName: query, brandNames: [], warnings: [], live: true };
     const warnings = [...(r.boxed_warning ?? []), ...(r.warnings ?? [])]
       .map((w) => w.replace(/\s+/g, " ").trim().slice(0, 600))
@@ -283,14 +275,16 @@ export type FoodLive = {
 export async function searchFoodLive(query: string): Promise<FoodLive | null> {
   const q = query.trim().slice(0, 60);
   if (!q) return null;
-  return cached<FoodLive | null>(`food2-${q.toLowerCase()}`, 60 * 60 * 1000, async () => {
-    // Light search first (heavy nutriments queries get 503s), then one product fetch.
-    const d = (await fetchJson(
-      `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(q)}&search_simple=1&action=process&json=1&page_size=8&fields=code,product_name,brands`
-    )) as {
-      products?: { code?: string; product_name?: string; brands?: string }[];
-    } | null;
-    const hit = (d?.products ?? []).find((x) => x.code && x.product_name && x.product_name.trim().length > 1);
+  return cached<FoodLive | null>(`food3-${q.toLowerCase()}`, 60 * 60 * 1000, async () => {
+    // Open Food Facts' search service (the old cgi/search.pl now returns HTML). Prefer
+    // products sold in India and ones with a Nutri-Score, then fetch the full record.
+    type Hit = { code?: string; product_name?: string; nutrition_grades?: string };
+    const search = async (extra: string) =>
+      ((await fetchJson(`https://search.openfoodfacts.org/search?q=${encodeURIComponent(q)}${extra}&page_size=10&fields=code,product_name,nutrition_grades`)) as { hits?: Hit[] } | null)?.hits ?? [];
+    let hits = await search(encodeURIComponent(' countries_tags:"en:india"'));
+    if (!hits.length) hits = await search("");
+    const usable = hits.filter((x) => x.code && x.product_name && x.product_name.trim().length > 1);
+    const hit = usable.find((x) => /^[a-e]$/.test(x.nutrition_grades ?? "")) ?? usable[0];
     if (!hit?.code) return null;
     const full = (await fetchJson(
       `https://world.openfoodfacts.org/api/v0/product/${hit.code}.json?fields=product_name,brands,nutrition_grades,nova_group,nutriments,image_url`,
@@ -298,7 +292,7 @@ export async function searchFoodLive(query: string): Promise<FoodLive | null> {
     )) as {
       status?: number; product?: { product_name?: string; brands?: string; nutrition_grades?: string; nova_group?: number; image_url?: string; nutriments?: Record<string, number> };
     } | null;
-    const p = full?.status === 1 && full.product ? full.product : { product_name: hit.product_name, brands: hit.brands };
+    const p = full?.status === 1 && full.product ? full.product : { product_name: hit.product_name, brands: undefined as string | undefined };
     if (!p.product_name) return null;
     const n = p.nutriments ?? {};
     const rawGrade = (p.nutrition_grades ?? "").toUpperCase();

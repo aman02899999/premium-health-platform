@@ -30,7 +30,7 @@ export const INDICATORS: { code: string; label: string; unit: string }[] = [
   { code: "SH.STA.MMRT", label: "Maternal mortality ratio", unit: "per 100,000 live births" },
   { code: "SP.DYN.TFRT.IN", label: "Fertility rate", unit: "births per woman" },
   { code: "SH.XPD.CHEX.GD.ZS", label: "Current health expenditure", unit: "% of GDP" },
-  { code: "SH.MED.BEDS.ZS", label: "Hospital beds", unit: "per 10,000 people" },
+  { code: "SH.MED.BEDS.ZS", label: "Hospital beds", unit: "per 1,000 people" },
   { code: "SH.MED.PHYS.ZS", label: "Physicians", unit: "per 1,000 people" },
   { code: "SH.STA.STNT.ZS", label: "Child stunting", unit: "% of children under 5" },
 ];
@@ -65,14 +65,14 @@ type WBApiItem = {
 const cache = new Map<string, { at: number; data: WBResponse }>();
 
 export async function getIndiaHealthIndicators(): Promise<WBResponse> {
-  const key = "wb-india-health-v1";
+  const key = "wb-india-health-v2";
   const hit = cache.get(key);
   if (hit && Date.now() - hit.at < 24 * 60 * 60 * 1000) return hit.data;
 
   const now = new Date().toISOString();
   const codes = INDICATORS.map((i) => i.code).join(";");
 
-  const url = `https://api.worldbank.org/v2/country/IN/indicator/${codes}?format=json&per_page=200&source=2`;
+  const url = `https://api.worldbank.org/v2/country/IN/indicator/${codes}?format=json&per_page=200&source=2&mrnev=1`;
 
   const json = (await fetchJson(url)) as [unknown, WBApiItem[]] | null;
 

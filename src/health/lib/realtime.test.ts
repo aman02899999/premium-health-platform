@@ -63,3 +63,26 @@ describe("realtime helpers", () => {
     expect(sample.sunset).toContain("PM");
   });
 });
+
+describe("formatTimeIST", () => {
+  it("reads Open-Meteo local times without shifting them", async () => {
+    const { formatTimeIST } = await import("./realtime");
+    expect(formatTimeIST("2026-10-02T06:14")).toBe("6:14 am");
+    expect(formatTimeIST("2026-10-02T18:06")).toBe("6:06 pm");
+    expect(formatTimeIST("2026-10-02T00:05")).toBe("12:05 am");
+    expect(formatTimeIST("2026-10-02T12:30")).toBe("12:30 pm");
+    expect(formatTimeIST(null)).toBeNull();
+  });
+});
+
+describe("pickDrugLabel", () => {
+  it("prefers the single-ingredient label over combinations", async () => {
+    const { pickDrugLabel } = await import("./realtime");
+    const combo = { openfda: { generic_name: ["SITAGLIPTIN AND METFORMIN HYDROCHLORIDE"], brand_name: ["ZITUVIMET"] } };
+    const plain = { openfda: { generic_name: ["METFORMIN HYDROCHLORIDE"], brand_name: ["GLUCOPHAGE"] } };
+    const triple = { openfda: { generic_name: ["A, B AND METFORMIN"] } };
+    expect(pickDrugLabel([combo, triple, plain], "metformin")).toBe(plain);
+    expect(pickDrugLabel([combo], "metformin")).toBe(combo);
+    expect(pickDrugLabel([], "metformin")).toBeUndefined();
+  });
+});

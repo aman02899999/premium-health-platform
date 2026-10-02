@@ -44,7 +44,7 @@ export default function BlogPage() {
           <Link href="/health/blog/category" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Categories →</Link>
           <Link href="/health/blog/latest" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Latest →</Link>
           <Link href="/health/blog/trending" className="rounded-full bg-white/10 px-3 py-1.5 font-bold hover:bg-white/20">Trending →</Link>
-          <Link href="/health/premium" className="rounded-full bg-amber-500 px-3 py-1.5 font-bold text-stone-900">Go Premium →</Link>
+          <Link href="/health/health-calculators" className="rounded-full bg-amber-500 px-3 py-1.5 font-bold text-stone-900">Free calculators →</Link>
         </div>
       </div>
 

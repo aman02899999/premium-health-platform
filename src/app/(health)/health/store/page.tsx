@@ -34,7 +34,7 @@ export default function StorePage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Store", item: "/health/store" }]}
         faqs={[
-          { q: "What is in the store?", a: "Digital health guides: Indian Diabetes Diet Guide 60 pages ₹199, 30-Day Weight Management Plan ₹299, High-Protein Vegetarian Diet ₹149, Ayurvedic Herbs Reference 50 herbs ₹249 — educational PDFs, not medical diagnosis." },
+          { q: "What is in the store?", a: "Hand-picked health products on Amazon (we may earn a small commission at no extra cost to you). Our own digital guides aren't on sale yet." },
           { q: "How does delivery work?", a: "After payment verified server-side via /api/monetization/checkout/verify, we generate expiring download token 72h, download limit 3, via /download/[token]. Private PDF URLs never exposed publicly. Order tracked in /orders + /my-purchases." },
         ]}
         howTo={{ name: "How to buy a health guide", steps: ["Browse by category: Health Guides, Diet Plans, Ayurveda, Fitness", "View details + preview 2 pages + pages + file size", "Click Buy — checkout via Razorpay/mock, server-side verification", "Download via secure token /download/[token] — expires 72h, 3 downloads"] }}

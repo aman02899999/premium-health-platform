@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
  */
 
 export async function POST(req: NextRequest) {
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   try {
     const body = await req.json();
     const { plan, email, utm } = body as { plan?: "monthly" | "yearly" | "lifetime"; email?: string; utm?: Record<string, string> };

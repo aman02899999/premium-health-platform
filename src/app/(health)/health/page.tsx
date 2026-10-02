@@ -64,8 +64,8 @@ const STATS = [
 const FAQS = [
   { q: "Is this medical advice?", a: "No — education that prepares you for better doctor visits. We never prescribe, dose, or tell you to stop medicines. Emergencies always need a hospital, not a website." },
   { q: "How is Ayurveda handled here?", a: "As a respected traditional system with its own portal — clearly separated from modern evidence grades, with safety, interaction and quality notes on every herb." },
-  { q: "Where does live data come from?", a: "Keyless public APIs: Open-Meteo (weather + AQI), disease.sh (COVID), openFDA (drug labels) and Open Food Facts — fetched server-side, cached, with graceful fallbacks." },
-  { q: "Is it free? How is the site funded?", a: "Core guides are free. The site is funded by Premium (₹199/mo: ad-free, thali plans), clearly marked affiliate links, ads and digital guides — none of which ever changes what a guide says." },
+  { q: "Where does live data come from?", a: "Keyless public APIs: Open-Meteo (weather, air quality, UV), WHO Disease Outbreak News, openFDA (drug labels and recalls), PubMed and Open Food Facts — fetched server-side, cached, each shown with its source and date." },
+  { q: "Is it free? How is the site funded?", a: "Core guides are free. The site is funded by clearly marked affiliate links and ads, and later by an optional ad-free Premium plan — none of which ever changes what a guide says." },
 ];
 
 export default function HomePage() {
@@ -92,7 +92,7 @@ export default function HomePage() {
                 <Sun className="h-3.5 w-3.5 text-amber-500" /> {SITE.tagline}
               </p>
               <LiveBadge />
-              <Link href="/health/premium" className="inline-flex items-center gap-1 rounded-full bg-amber-500 px-2.5 py-1 text-[11px] font-bold text-stone-900"><Crown className="h-3 w-3" /> Premium ₹199</Link>
+              <Link href="/health/premium" className="inline-flex items-center gap-1 rounded-full bg-amber-500 px-2.5 py-1 text-[11px] font-bold text-stone-900"><Crown className="h-3 w-3" /> Premium · soon</Link>
             </div>
             <h1 className="font-display mt-4 text-[2.6rem] font-black leading-[1.02] text-stone-900 md:text-6xl dark:text-white">
               Understand Your Health. <span className="bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 bg-clip-text text-transparent">Make Better Decisions.</span>
@@ -142,7 +142,7 @@ export default function HomePage() {
             </Link>
             <Link href="/health/premium" className="glass-strong animate-floaty absolute bottom-40 left-4 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl" style={{ animationDelay: "0.8s" }}>
               <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-700"><Crown className="h-4 w-4" /><span className="absolute -right-1 -top-1 h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" /></span>
-              <span><span className="block text-xs font-bold">Premium — ₹199</span><span className="block text-[11px] text-stone-500">Ad-free + thali plans</span></span>
+              <span><span className="block text-xs font-bold">Premium — coming soon</span><span className="block text-[11px] text-stone-500">Join the waitlist</span></span>
             </Link>
           </div>
         </div>
@@ -341,7 +341,7 @@ export default function HomePage() {
                   <p className="mt-1 text-xs text-stone-500">Free and private — educational, not a diagnosis.</p>
                 </Link>
                 <Link href="/health/premium" className="rounded-2xl bg-gradient-to-br from-stone-900 to-emerald-900 p-4 text-white">
-                  <p className="text-[11px] font-bold uppercase text-amber-300">Premium Resources — ₹199/mo</p>
+                  <p className="text-[11px] font-bold uppercase text-amber-300">Premium — coming soon</p>
                   <p className="mt-1 text-sm font-bold">Ad-free + Thali Plans + Millet Swaps + Herb-Drug Unlimited</p>
                   <p className="mt-1 text-xs text-emerald-100/70">Weekly PDF + WhatsApp tips — educational, not medical advice.</p>
                 </Link>
