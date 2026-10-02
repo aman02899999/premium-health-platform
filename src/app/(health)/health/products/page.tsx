@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
-import { PRODUCTS } from "@/health/data/editorial";
+import { AFFILIATE_PRODUCTS } from "@/health/lib/monetization/config";
+import { AffiliateProductCard } from "@/health/components/monetization/ProductCards";
 import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
@@ -21,9 +22,9 @@ export const metadata: Metadata = {
   alternates: { canonical: url, languages: { "en-IN": absoluteUrl, "en": absoluteUrl, "x-default": absoluteUrl } },
   openGraph: { title: seoTitle, description: seoDescription, url: absoluteUrl, type: "website", images: [{ url: ogImage, width: 1200, height: 630, alt: seoTitle }] },
   twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
-  // Keep the page out of search until it lists real products.
-  ...(PRODUCTS.length === 0 ? { robots: { index: false, follow: true } } : {}),
 };
+
+const PRODUCTS = AFFILIATE_PRODUCTS.filter((p) => p.active).sort((a, b) => b.priority - a.priority);
 
 export default function ProductsPage() {
   const cats = Array.from(new Set(PRODUCTS.map((p) => p.category)));
@@ -55,16 +56,9 @@ export default function ProductsPage() {
               <Link href="/library" className="mt-3 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Premium Library →</Link>
             </div>
           )}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PRODUCTS.map((p) => (
-              <Link key={p.slug} href={`/health/products/${p.slug}`} className="card-3d rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{p.category}</p>
-                <h3 className="mt-1 font-bold leading-snug">{p.name}</h3>
-                <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{p.short}</p>
-                <p className="mt-2 text-xs text-stone-500">{p.ratingPlaceholder}</p>
-                <p className="mt-1 text-sm font-bold text-emerald-700">{p.pricePlaceholder}</p>
-                <span className="mt-2 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">{p.cta}</span>
-              </Link>
+              <AffiliateProductCard key={p.id} product={p} page="/health/products" />
             ))}
           </div>
           <div className="mt-6 space-y-4">

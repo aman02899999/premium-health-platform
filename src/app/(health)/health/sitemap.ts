@@ -13,7 +13,7 @@ import { DIGITAL_PRODUCTS, BUSINESS_LISTINGS } from "@/health/lib/monetization/c
 const STATIC_ROUTES = [
   "", "/health/diseases", "/health/solutions", "/health/herbs", "/health/medicines", "/health/nutrition", "/health/diet", "/health/recipes",
   "/health/lab-tests", "/health/symptoms", "/health/ayurveda", "/health/homeopathy", "/health/blog", "/health/news",
-  "/health/health-calculators", "/health/search", "/health/yoga", "/health/womens-health",
+  "/health/products", "/health/health-calculators", "/health/search", "/health/yoga", "/health/womens-health",
   "/health/mens-health", "/health/child-health", "/health/mental-wellness", "/health/about", "/health/contact",
   "/health/privacy", "/health/terms", "/health/disclaimer", "/health/affiliate-disclosure",
   // Unique India pages — SEO important

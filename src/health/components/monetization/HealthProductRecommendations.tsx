@@ -92,7 +92,8 @@ export function HealthProductRecommendations({ condition, category, tags = [], l
 
   products = products.sort((a, b) => b.priority - a.priority).slice(0, limit);
 
-  if (products.length === 0) {
+  // Featured fallback only for generic slots — a page about a specific topic shows nothing rather than unrelated products.
+  if (products.length === 0 && !condition && !category && tags.length === 0) {
     // fallback to featured
     products = AFFILIATE_PRODUCTS.filter((p) => p.featured && p.active)
       .sort((a, b) => b.priority - a.priority)
