@@ -20,12 +20,15 @@ import { HERBS } from "@/health/data/herbs";
 import { MEDICINES } from "@/health/data/medicines";
 import { FOODS } from "@/health/data/nutrition";
 import { LAB_TESTS } from "@/health/data/clinical";
-import { PRODUCTS } from "@/health/data/editorial";
+import { AFFILIATE_PRODUCTS } from "@/health/lib/monetization/config";
+import { AffiliateProductCard } from "@/health/components/monetization/ProductCards";
 import { getAllEnrichedArticles, BLOG_CATEGORIES } from "@/health/data/blog-enrichment";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 import { LatestArticles, TrendingArticles } from "@/health/components/blog/LatestArticles";
 import { BlogCategoryGrid } from "@/health/components/blog/BlogCategories";
+
+const FEATURED_PRODUCTS = AFFILIATE_PRODUCTS.filter((p) => p.active && p.featured).sort((a, b) => b.priority - a.priority).slice(0, 4);
 
 export const metadata: Metadata = {
   title: `${SITE.name} — Understand Your Health. Make Better Decisions. | India-first health guides`,
@@ -304,18 +307,11 @@ export default function HomePage() {
             <SectionHeading eyebrow="Affiliate disclosure applies" title="Popular health products, store & deals" desc="Monitors, foods and yoga gear — never with false medical claims. Plus our digital guides, calculators and premium resources." id="products" />
             <Link href="/health/deals" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All deals <ArrowRight className="h-4 w-4" /></Link>
           </div>
-          {PRODUCTS.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PRODUCTS.slice(0, 4).map((p) => (
-              <Link key={p.slug} href={`/health/products/${p.slug}`} className="premium-card rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{p.category}</p>
-                <h3 className="mt-1 font-bold leading-snug">{p.name}</h3>
-                <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{p.short}</p>
-                <p className="mt-2 text-xs font-semibold text-emerald-700">{p.pricePlaceholder} · {p.cta} →</p>
-              </Link>
+            {FEATURED_PRODUCTS.map((p) => (
+              <AffiliateProductCard key={p.id} product={p} page="/health" />
             ))}
           </div>
-          )}
 
           {/* Subtle monetization sections — preserve existing visual identity */}
           <div className="mt-8 grid gap-6 lg:grid-cols-3">

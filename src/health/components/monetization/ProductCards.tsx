@@ -6,6 +6,7 @@ import { ShoppingBag, Star, ExternalLink } from "lucide-react";
 import type { AffiliateProduct, DigitalProduct, Coupon, Sponsor } from "@/health/lib/monetization/types";
 import { trackMonetizationEvent, getAttributionFromUrl } from "@/health/lib/monetization/analytics";
 import { ProductImage } from "./ProductImage";
+import { DEFAULT_OG_IMAGE } from "@/health/lib/images";
 
 export function AffiliateProductCard({ product, page = "/" }: { product: AffiliateProduct; page?: string }) {
   useEffect(() => {
@@ -22,12 +23,15 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
 
   return (
     <div className="group rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-xl dark:border-stone-700 dark:bg-stone-900">
-      <ProductImage
-        image={product.image}
-        alt={product.title}
-        className="mb-3 aspect-[4/3] w-full"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      />
+      {/* Real product photos come from Amazon's API later; until then skip the generic placeholder. */}
+      {product.image !== DEFAULT_OG_IMAGE && (
+        <ProductImage
+          image={product.image}
+          alt={product.title}
+          className="mb-3 aspect-[4/3] w-full"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
+      )}
       <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant}</p>
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>

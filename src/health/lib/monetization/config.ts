@@ -13,9 +13,9 @@ import type {
   PremiumReport,
 } from "./types";
 
-// Amazon Associates tag: set NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG (e.g. "yourtag-21")
-// to earn commission. Without it the links are plain Amazon searches.
-const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG || "";
+// Amazon Associates store ID (public — it appears in every affiliate link). Override with
+// NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG if it ever changes.
+const AMAZON_TAG = process.env.NEXT_PUBLIC_AMAZON_ASSOCIATE_TAG || "rfc93-21";
 function withAmazonTag(url: string): string {
   return AMAZON_TAG ? `${url}&tag=${encodeURIComponent(AMAZON_TAG)}` : url;
 }
@@ -79,8 +79,48 @@ function affiliate(p: AffiliateInput): AffiliateProduct {
   };
 }
 
+/** Amazon search link for an exact product, tagged with our store ID. Swap for a /dp/ link once the ASIN is known. */
+const amazon = (query: string) => withAmazonTag(`https://www.amazon.in/s?k=${encodeURIComponent(query).replace(/%20/g, "+")}`);
+
+type AmazonInput = Omit<AffiliateInput, "link" | "merchant"> & { search: string };
+const az = (p: AmazonInput) => affiliate({ ...p, link: amazon(p.search), merchant: "Amazon" });
+
+// Premium Health Platform only — affiliate products are never shown on the Royal Fitness Club site.
 export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
-  // affiliate({ ... }),
+  // ---- Monitoring devices ----
+  az({ title: "Omron HEM-7120 Upper-Arm BP Monitor", search: "Omron HEM-7120 blood pressure monitor", category: "Blood Pressure", tags: ["bp", "hypertension", "heart", "monitoring"], featured: true, priority: 100, why: "Upper-arm monitors give more reliable home readings than wrist models. Check the cuff fits your arm." }),
+  az({ title: "Omron HEM-7156T Bluetooth BP Monitor (Wide Cuff)", search: "Omron HEM-7156T blood pressure monitor", category: "Blood Pressure", tags: ["bp", "hypertension", "senior", "monitoring"], priority: 90, why: "Wide-range cuff for larger arms, with app sync to share readings with your doctor." }),
+  az({ title: "Accu-Chek Instant Glucometer", search: "Accu-Chek Instant glucometer", category: "Diabetes", tags: ["diabetes", "glucometer", "monitoring", "prediabetes"], featured: true, priority: 100, why: "Simple home sugar checks for fasting and post-meal readings. Strip cost is the real running cost — compare it." }),
+  az({ title: "OneTouch Select Plus Simple Glucometer", search: "OneTouch Select Plus Simple glucometer", category: "Diabetes", tags: ["diabetes", "glucometer", "monitoring"], priority: 85, why: "Basic, no-frills meter with colour range indicators — easy for elderly parents." }),
+  az({ title: "Accu-Chek Instant Test Strips (50)", search: "Accu-Chek Instant test strips 50", category: "Diabetes", tags: ["diabetes", "glucometer"], priority: 80, why: "Refill strips for the Accu-Chek Instant meter. Check the expiry date on delivery." }),
+  az({ title: "Digital Thermometer", search: "Omron digital thermometer", category: "Medical Devices", tags: ["fever", "child", "monitoring"], priority: 70, why: "Quick, reliable temperature checks for the whole family." }),
+  az({ title: "Fingertip Pulse Oximeter", search: "fingertip pulse oximeter", category: "Medical Devices", tags: ["oxygen", "breathing", "senior", "monitoring"], priority: 65, why: "Spot-checks oxygen saturation and pulse. Low readings or breathlessness need a doctor, not just a device." }),
+  az({ title: "Body Composition Smart Scale", search: "body composition smart weighing scale", category: "Weight Management", tags: ["weight", "obesity", "bmi", "fitness"], priority: 75, why: "Tracks weight trends; body-fat numbers are estimates — watch the trend, not one reading." }),
+  az({ title: "Digital Kitchen Food Scale", search: "digital kitchen weighing scale 10kg", category: "Nutrition", tags: ["nutrition", "weight", "diet", "protein"], priority: 70, why: "Weighing food for two weeks teaches portion sizes better than any app." }),
+  // ---- Fitness & yoga ----
+  az({ title: "Yoga Mat 6 mm, Anti-Skid", search: "yoga mat 6mm anti skid", category: "Yoga", tags: ["yoga", "fitness", "back pain"], featured: true, priority: 80, why: "6 mm cushions knees and wrists; anti-skid texture keeps you stable in standing poses." }),
+  az({ title: "Yoga Blocks & Strap Set", search: "yoga blocks and strap set", category: "Yoga", tags: ["yoga", "back pain", "flexibility", "senior"], priority: 60, why: "Bring the floor closer — makes poses safe for beginners, stiff backs and seniors." }),
+  az({ title: "Resistance Bands Set (Loop + Tube)", search: "resistance bands set loop and tube", category: "Fitness", tags: ["fitness", "home workout", "women", "senior"], priority: 70, why: "A full strength workout at home or while travelling, for every level." }),
+  az({ title: "Dumbbell Set for Home", search: "dumbbell set for home gym", category: "Fitness", tags: ["fitness", "strength", "home workout"], priority: 65, why: "Strength training twice a week is one of the best habits for blood sugar, bones and weight." }),
+  az({ title: "Skipping Rope with Ball Bearings", search: "skipping rope ball bearing", category: "Fitness", tags: ["fitness", "cardio", "weight"], priority: 50, why: "Cheap, portable cardio. Start with 30-second rounds if you're new." }),
+  az({ title: "Foam Roller", search: "foam roller for muscle recovery", category: "Fitness", tags: ["fitness", "recovery", "back pain"], priority: 50, why: "Eases muscle tightness after workouts and long hours at a desk." }),
+  az({ title: "Kettlebell 8 kg", search: "kettlebell 8 kg", category: "Fitness", tags: ["fitness", "strength", "home workout"], priority: 45, why: "One bell trains legs, back, grip and cardio — learn the hinge first." }),
+  az({ title: "Fitness Band with Heart-Rate Tracking", search: "fitness band heart rate tracker", category: "Fitness", tags: ["fitness", "steps", "heart", "sleep"], priority: 55, why: "Counting steps is the simplest way to move more — aim to beat yesterday." }),
+  // ---- Nutrition (well-known, lab-tested brands) ----
+  az({ title: "Optimum Nutrition Gold Standard Whey", search: "Optimum Nutrition Gold Standard 100% Whey", category: "Supplements", tags: ["protein", "fitness", "muscle", "nutrition"], featured: true, priority: 75, why: "Convenient protein when food alone falls short. Buy from the brand's official store to avoid fakes." }),
+  az({ title: "MuscleBlaze Raw Whey (Unflavoured)", search: "MuscleBlaze Raw Whey Protein unflavoured", category: "Supplements", tags: ["protein", "fitness", "nutrition"], priority: 60, why: "Budget unflavoured whey — mix into lassi, oats or besan chilla." }),
+  az({ title: "Creatine Monohydrate (Unflavoured)", search: "creatine monohydrate unflavoured", category: "Supplements", tags: ["fitness", "muscle", "strength"], priority: 55, why: "The most-researched gym supplement: 3–5 g a day. Kidney disease? Ask your doctor first." }),
+  az({ title: "Plant Protein Powder", search: "plant protein powder pea protein", category: "Supplements", tags: ["protein", "vegan", "nutrition", "women"], priority: 50, why: "Dairy-free protein option for vegans or people who don't tolerate whey." }),
+  az({ title: "Unpolished Millet Combo Pack", search: "unpolished millets combo foxtail kodo little millet", category: "Healthy Foods", tags: ["millets", "diabetes", "weight", "nutrition"], featured: true, priority: 85, why: "Start by swapping half your rice with millets a few times a week." }),
+  az({ title: "Ragi (Finger Millet) Flour", search: "ragi flour", category: "Healthy Foods", tags: ["millets", "child", "nutrition", "women"], priority: 55, why: "Calcium-rich flour for rotis, dosa and porridge." }),
+  az({ title: "Rolled Oats 1 kg", search: "rolled oats 1kg", category: "Healthy Foods", tags: ["heart", "cholesterol", "fibre", "nutrition"], priority: 60, why: "Soluble fibre (beta-glucan) supports healthy cholesterol as part of a balanced diet." }),
+  az({ title: "Roasted Makhana (Plain)", search: "roasted makhana plain", category: "Healthy Foods", tags: ["snacks", "weight", "nutrition"], priority: 45, why: "A light, crunchy swap for namkeen and chips." }),
+  az({ title: "Flax Seeds (Alsi)", search: "flax seeds alsi", category: "Healthy Foods", tags: ["heart", "fibre", "women", "nutrition"], priority: 45, why: "Grind before eating — a spoon a day adds fibre and plant omega-3." }),
+  // ---- Kitchen & home ----
+  az({ title: "Stainless Steel 3-Tier Steamer", search: "stainless steel 3 tier steamer", category: "Healthy Foods", tags: ["cooking", "weight", "fatty liver", "nutrition"], priority: 40, why: "Oil-free idli, dhokla, vegetables and fish." }),
+  az({ title: "Air Fryer 4 L", search: "air fryer 4 litre", category: "Weight Management", tags: ["cooking", "weight", "heart"], priority: 45, why: "Crisp snacks with a fraction of the oil — still count the portions." }),
+  az({ title: "1-Litre Steel Water Bottle", search: "steel water bottle 1 litre", category: "General Wellness", tags: ["water", "fitness", "wellness"], priority: 35, why: "Keep a bottle in sight and you'll drink more water through the day." }),
+  az({ title: "Weekly Pill Organiser", search: "weekly pill organizer box", category: "Senior Health", tags: ["medicines", "senior", "diabetes", "bp"], priority: 55, why: "Stops missed and double doses for anyone on daily medicines." }),
 ];
 
 // Digital Products — PDFs, eBooks, guides, diet plans
