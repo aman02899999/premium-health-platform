@@ -304,6 +304,7 @@ export default function HomePage() {
             <SectionHeading eyebrow="Affiliate disclosure applies" title="Popular health products, store & deals" desc="Monitors, foods and yoga gear — never with false medical claims. Plus our digital guides, calculators and premium resources." id="products" />
             <Link href="/health/deals" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All deals <ArrowRight className="h-4 w-4" /></Link>
           </div>
+          {PRODUCTS.length > 0 && (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PRODUCTS.slice(0, 4).map((p) => (
               <Link key={p.slug} href={`/health/products/${p.slug}`} className="premium-card rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
@@ -314,33 +315,34 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+          )}
 
           {/* Subtle monetization sections — preserve existing visual identity */}
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             <div className="space-y-4">
-              <h3 className="text-sm font-bold">Featured Health Guides — Store — Digital PDFs</h3>
+              <h3 className="text-sm font-bold">Featured Health Guides — Premium Library</h3>
               <div className="grid gap-3">
-                <Link href="/health/store/indian-diabetes-diet-guide" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-amber-600">Health Guides · 60 pages · ₹199</p>
-                  <p className="mt-1 text-sm font-bold">Indian Diabetes Diet Guide — Educational</p>
-                  <p className="mt-1 text-xs text-stone-500">Thali plates, millet swaps, monitoring checklists — discuss with professional.</p>
+                <Link href="/library/53-exercise-for-type-2-diabetes" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
+                  <p className="text-[11px] font-bold uppercase text-amber-600">Premium Library · 59 pages · ₹699</p>
+                  <p className="mt-1 text-sm font-bold">Exercise for Type 2 Diabetes</p>
+                  <p className="mt-1 text-xs text-stone-500">Safe exercise for blood-sugar control — to use alongside your doctor&apos;s care.</p>
                 </Link>
-                <Link href="/health/store/30-day-indian-weight-management-plan" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">Diet Plans · 45 pages · ₹299</p>
-                  <p className="mt-1 text-sm font-bold">30-Day Weight Management Plan — Educational</p>
-                  <p className="mt-1 text-xs text-stone-500">Vegetarian thali, protein 1.2-1.6g/kg, strength 3x/week — no guaranteed loss.</p>
+                <Link href="/library/03-fat-loss-blueprint" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
+                  <p className="text-[11px] font-bold uppercase text-emerald-600">Premium Library · 60 pages · ₹699</p>
+                  <p className="mt-1 text-sm font-bold">The Fat-Loss Blueprint</p>
+                  <p className="mt-1 text-xs text-stone-500">Fat loss with Indian food, family meals and busy jobs — no crash diets.</p>
                 </Link>
-                <Link href="/health/store" className="text-xs font-bold text-emerald-700 underline">Explore Store — All Guides →</Link>
+                <Link href="/library" className="text-xs font-bold text-emerald-700 underline">Explore the Premium Library — 60 books →</Link>
               </div>
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-sm font-bold">Free Health Calculators — Premium Reports ₹49-₹99</h3>
+              <h3 className="text-sm font-bold">Free Health Calculators</h3>
               <div className="grid gap-3">
                 <Link href="/health/health-calculators" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-violet-600">Calculators · Free + Premium</p>
+                  <p className="text-[11px] font-bold uppercase text-violet-600">Calculators · Free</p>
                   <p className="mt-1 text-sm font-bold">BMI, Calorie, Body Fat, BMR, Protein, Heart Risk, Diabetes Risk</p>
-                  <p className="mt-1 text-xs text-stone-500">Free calculators + premium detailed report ₹49-₹99 — educational, not diagnosis.</p>
+                  <p className="mt-1 text-xs text-stone-500">Free and private — educational, not a diagnosis.</p>
                 </Link>
                 <Link href="/health/premium" className="rounded-2xl bg-gradient-to-br from-stone-900 to-emerald-900 p-4 text-white">
                   <p className="text-[11px] font-bold uppercase text-amber-300">Premium Resources — ₹199/mo</p>
@@ -354,9 +356,9 @@ export default function HomePage() {
               <h3 className="text-sm font-bold">Today&apos;s Health Deals — Coupons + Affiliate</h3>
               <div className="grid gap-3">
                 <Link href="/health/deals" className="rounded-2xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-950/30">
-                  <p className="text-[11px] font-bold uppercase text-amber-700">Deals · 8% avg · Rs160/sale</p>
-                  <p className="mt-1 text-sm font-bold">Millet Combo 20% OFF — Code MILLET20 — Expires 30d</p>
-                  <p className="mt-1 text-xs text-stone-600">Glucometer, BP monitor, millets, yoga mat, protein — picked for Indian homes.</p>
+                  <p className="text-[11px] font-bold uppercase text-amber-700">Deals · Affiliate</p>
+                  <p className="mt-1 text-sm font-bold">Health product picks for Indian homes</p>
+                  <p className="mt-1 text-xs text-stone-600">Monitors, healthy foods and fitness gear — live prices on the seller&apos;s site.</p>
                 </Link>
                 <Link href="/health/providers" className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
                   <p className="text-[11px] font-bold uppercase text-violet-600">Featured Partners — Business Directory</p>

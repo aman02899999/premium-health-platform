@@ -10,7 +10,7 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
 const seoTitle = "Products — Glucometer, BP Monitor, Millet | Premium Health";
-const seoDescription = "Affiliate-ready product catalogue with honest benefits, limitations and disclosures. Sample listings — check prices with the seller.";
+const seoDescription = "Health products we recommend for Indian homes — monitors, healthy foods and fitness gear, with honest benefits, limitations and affiliate disclosures.";
 const url = "/health/products";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Products — Health India")}&category=${encodeURIComponent("Products")}&type=Product`;
@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   alternates: { canonical: url, languages: { "en-IN": absoluteUrl, "en": absoluteUrl, "x-default": absoluteUrl } },
   openGraph: { title: seoTitle, description: seoDescription, url: absoluteUrl, type: "website", images: [{ url: ogImage, width: 1200, height: 630, alt: seoTitle }] },
   twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
+  // Keep the page out of search until it lists real products.
+  ...(PRODUCTS.length === 0 ? { robots: { index: false, follow: true } } : {}),
 };
 
 export default function ProductsPage() {
@@ -31,7 +33,7 @@ export default function ProductsPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Products", item: "/health/products" }]}
         faqs={[
-          { q: "How to choose glucometer?", a: "Check ISO 15197 accuracy, strip cost (real cost), app sync, lancet pain. Demo product — compare before buying. Affiliate tracked via /api/affiliate/click + gtag." },
+          { q: "How to choose glucometer?", a: "Check ISO 15197 accuracy, the cost per strip (the real running cost), app sync and how painful the lancets are. Compare a few models before buying." },
           { q: "Are products medically reviewed?", a: "Handpicked for Indian health: glucometer, BP monitor, millet, yoga mat, protein. Educational, not prescription. Disclosure on every page + /affiliate-disclosure." },
         ]}
         howTo={{ name: "How to buy health product", steps: ["Browse by category: monitors, healthy foods, books, yoga gear", "Compare specs: accuracy, strip cost, material, protein per scoop", "Click affiliate link — tracked via UTM + gtag + /api/affiliate/click", "Buy on merchant, support independent health journalism"] }}
@@ -39,17 +41,24 @@ export default function ProductsPage() {
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate</p>
         <h1 className="font-display mt-1 flex items-center gap-2 text-3xl font-black md:text-4xl"><ShoppingBag className="h-7 w-7" /> Products — Health Essentials</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Demo catalogue across monitors, healthy foods, books and yoga gear. Affiliate links configurable via DB, never hardcoded. We never make false medical claims to sell.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Monitors, healthy foods, books and yoga gear we&apos;d use ourselves. We never make medical claims to sell a product.</p>
         <p className="mt-2 text-[11px] text-amber-200"><strong>Affiliate disclosure:</strong> {SITE.affiliateDisclosure} <Link href="/health/affiliate-disclosure" className="underline">Learn more</Link></p>
         <div className="mt-3 flex flex-wrap gap-1.5">{cats.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}</div>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
+          {PRODUCTS.length === 0 && (
+            <div className="rounded-2xl border border-dashed border-stone-300 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-900">
+              <p className="font-bold">Our product picks are being updated.</p>
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Meanwhile, browse our evidence-based guides.</p>
+              <Link href="/library" className="mt-3 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Premium Library →</Link>
+            </div>
+          )}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {PRODUCTS.map((p) => (
               <Link key={p.slug} href={`/health/products/${p.slug}`} className="card-3d rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{p.category} · Sample listing</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{p.category}</p>
                 <h3 className="mt-1 font-bold leading-snug">{p.name}</h3>
                 <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{p.short}</p>
                 <p className="mt-2 text-xs text-stone-500">{p.ratingPlaceholder}</p>

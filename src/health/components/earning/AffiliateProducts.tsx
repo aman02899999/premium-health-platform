@@ -7,6 +7,7 @@ import { trackAffiliateClick } from "@/health/components/marketing/Analytics";
 
 export function AffiliateProducts({ limit = 4, title = "Recommended Products — Earn via Affiliate" }: { limit?: number; title?: string }) {
   const prods = PRODUCTS.slice(0, limit);
+  if (prods.length === 0) return null;
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="flex items-center gap-2 text-sm font-bold"><ShoppingBag className="h-4 w-4 text-emerald-600" /> {title}</h3>

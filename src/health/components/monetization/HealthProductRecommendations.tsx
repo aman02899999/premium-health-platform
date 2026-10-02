@@ -99,6 +99,8 @@ export function HealthProductRecommendations({ condition, category, tags = [], l
       .slice(0, limit);
   }
 
+  if (products.length === 0) return null;
+
   const displayTitle = title || (condition ? CONDITION_MAP[condition.toLowerCase()]?.title || `Recommended for ${condition}` : category ? `Recommended — ${category}` : "Products that may help with monitoring, education, or lifestyle management");
 
   return (

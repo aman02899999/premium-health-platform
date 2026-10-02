@@ -28,20 +28,25 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
         className="mb-3 aspect-[4/3] w-full"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
-      <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant} · Demo</p>
+      <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant}</p>
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>
       {product.rating && (
         <p className="mt-2 flex items-center gap-1 text-xs"><Star className="h-3 w-3 text-amber-500" /> {product.rating} {product.ratingCount ? `(${product.ratingCount})` : ""}</p>
       )}
+      {/* Prices change daily on the merchant's site, so we only show one if it was explicitly set. */}
       <div className="mt-2 flex items-center gap-2">
-        <span className="text-sm font-black text-emerald-700">₹{product.price.toLocaleString("en-IN")}</span>
-        {product.originalPrice && <span className="text-xs line-through text-stone-400">₹{product.originalPrice.toLocaleString("en-IN")}</span>}
-        {product.discountPercent && <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-700">{product.discountPercent}% OFF</span>}
+        {product.price > 0 ? (
+          <>
+            <span className="text-sm font-black text-emerald-700">₹{product.price.toLocaleString("en-IN")}</span>
+            {product.originalPrice && <span className="text-xs line-through text-stone-400">₹{product.originalPrice.toLocaleString("en-IN")}</span>}
+          </>
+        ) : (
+          <span className="text-xs font-semibold text-stone-500">Check today&apos;s price on {product.merchant}</span>
+        )}
       </div>
       <div className="mt-3 flex gap-2">
-        <Link href={`/health/products/${product.slug}`} className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold hover:bg-stone-50 dark:border-stone-700">View Product</Link>
-        <a href={product.affiliateUrl || "#"} target="_blank" rel="noopener noreferrer" onClick={handleClick} className="flex items-center gap-1 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-800">
+        <a href={product.affiliateUrl} target="_blank" rel="sponsored noopener noreferrer" onClick={handleClick} className="flex items-center gap-1 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-800">
           {product.ctaText} <ExternalLink className="h-3 w-3" />
         </a>
       </div>
