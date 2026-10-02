@@ -15,7 +15,8 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ toke
   // In production: check order status paid, check download limit, serve file from private storage with signed URL
   // Never expose private PDF file URLs publicly — use expiring/signed download URLs
 
-  const product = DIGITAL_PRODUCTS.find((p) => p.id === verification.productId || p.slug === verification.productId) || DIGITAL_PRODUCTS[0];
+  const product = DIGITAL_PRODUCTS.find((p) => p.id === verification.productId || p.slug === verification.productId);
+  if (!product) return NextResponse.json({ ok: false, error: "Product not found" }, { status: 404 });
 
   // For demo, return JSON with download info — in prod would stream file or redirect to presigned S3 URL
   return NextResponse.json({

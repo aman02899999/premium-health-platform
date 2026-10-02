@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: seoDescription.slice(0, 155),
   alternates: { canonical: url, languages: { "en-IN": absoluteUrl, "en": absoluteUrl, "x-default": absoluteUrl } },
   openGraph: { title: seoTitle, description: seoDescription, url: absoluteUrl, type: "website", images: [{ url: ogImage, width: 1200, height: 630, alt: seoTitle }] },
+  // Internal setup page — and empty until real affiliate links are added.
+  robots: { index: false, follow: true },
 };
 
 export default function AffiliateProductsPage() {
