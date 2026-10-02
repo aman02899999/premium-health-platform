@@ -267,10 +267,32 @@ export type FoodLive = {
   nutriScore: string | null;
   nova: number | null;
   nutrients: { energyKcal?: number; sugars?: number; fat?: number; satFat?: number; sodium?: number; fiber?: number; protein?: number };
+  /** Whether nutrients are per 100 g as sold or as prepared; null when none are listed. */
+  basis: "as sold" | "as prepared" | null;
   image: string | null;
   verdict: string;
   live: boolean;
 };
+
+/**
+ * Per-100 g nutrients. Some products (e.g. instant noodles) only list values "as
+ * prepared"; use those when the as-sold values are missing, and say which it is.
+ */
+export function foodNutrients(n: Record<string, number>): Pick<FoodLive, "nutrients" | "basis"> {
+  const keys = { energyKcal: "energy-kcal", sugars: "sugars", fat: "fat", satFat: "saturated-fat", sodium: "sodium", fiber: "fiber", protein: "proteins" } as const;
+  const pick = (suffix: string) => {
+    const out: FoodLive["nutrients"] = {};
+    for (const [k, off] of Object.entries(keys)) {
+      const v = n[`${off}${suffix}`];
+      if (typeof v === "number" && Number.isFinite(v)) out[k as keyof FoodLive["nutrients"]] = Math.round(v * 10) / 10;
+    }
+    return out;
+  };
+  const sold = pick("_100g");
+  if (Object.keys(sold).length) return { nutrients: sold, basis: "as sold" };
+  const prepared = pick("_prepared_100g");
+  return Object.keys(prepared).length ? { nutrients: prepared, basis: "as prepared" } : { nutrients: {}, basis: null };
+}
 
 export async function searchFoodLive(query: string): Promise<FoodLive | null> {
   const q = query.trim().slice(0, 60);
@@ -295,7 +317,8 @@ export async function searchFoodLive(query: string): Promise<FoodLive | null> {
     const p = full?.status === 1 && full.product ? full.product : { product_name: hit.product_name, brands: undefined as string | undefined };
     if (!p.product_name) return null;
     const n = p.nutriments ?? {};
-    const rawGrade = (p.nutrition_grades ?? "").toUpperCase();
+    // The product record sometimes lacks the grade the search index has.
+    const rawGrade = (p.nutrition_grades || hit.nutrition_grades || "").toUpperCase();
     const grade = ["A", "B", "C", "D", "E"].includes(rawGrade) ? rawGrade : "";
     const verdict =
       grade === "A" || grade === "B"
@@ -311,10 +334,7 @@ export async function searchFoodLive(query: string): Promise<FoodLive | null> {
       brand: p.brands ?? "",
       nutriScore: grade || null,
       nova: p.nova_group ?? null,
-      nutrients: {
-        energyKcal: n["energy-kcal_100g"], sugars: n.sugars_100g, fat: n.fat_100g,
-        satFat: n["saturated-fat_100g"], sodium: n.sodium_100g, fiber: n.fiber_100g, protein: n.proteins_100g,
-      },
+      ...foodNutrients(n),
       image: p.image_url ?? null,
       verdict,
       live: true,

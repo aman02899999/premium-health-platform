@@ -6,6 +6,7 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
+import { wgerProvider } from "@/health/services/health/providers/wger/provider";
 
 const seoTitle = "Exercises — Yoga + Home Workout India | wger | Premium Health";
 const seoDescription = "Exercises: yoga, pranayama, home workout — India heat friendly, no equipment + 400+ wger free keyless.";
@@ -22,11 +23,9 @@ export const metadata: Metadata = {
 };
 
 async function getExercises(q: string) {
+  // Call the provider directly — a server page fetching its own API by URL breaks whenever the base URL is wrong.
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${base}/api/health/exercises?q=${encodeURIComponent(q)}&limit=12`, { next: { revalidate: 3600 } }).catch(() => null);
-    if (!res?.ok) return null;
-    return await res.json();
+    return await wgerProvider.search({ query: q, limit: 12, offset: 0 });
   } catch {
     return null;
   }

@@ -229,7 +229,7 @@ export function FoodLookup() {
             {data.nutriScore && <span className={`flex h-11 w-11 items-center justify-center rounded-2xl text-lg font-black text-white ${GRADE_COLOR[data.nutriScore] ?? "bg-stone-400"}`}>{data.nutriScore}</span>}
             <div>
               <p className="text-sm font-bold leading-tight">{data.name}</p>
-              <p className="text-[11px] text-stone-500">{data.brand}{data.nova ? ` · NOVA ${data.nova}` : ""} · per 100 g</p>
+              <p className="text-[11px] text-stone-500">{data.brand}{data.nova ? ` · NOVA ${data.nova}` : ""} · per 100 g{data.basis === "as prepared" ? " as prepared" : ""}</p>
             </div>
           </div>
           <div className="mt-2 grid grid-cols-4 gap-1.5 text-center text-[11px]">

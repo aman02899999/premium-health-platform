@@ -5,6 +5,8 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
+import { openFoodFactsProvider } from "@/health/services/health/providers/openfoodfacts/provider";
+import { usdaProvider } from "@/health/services/health/providers/usda/provider";
 
 const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA | Premium Health";
 const seoDescription = "Search Indian foods: GI, protein, fibre, FSSAI — roti, dal, millet + Open Food Facts barcode + USDA..";
@@ -21,11 +23,9 @@ export const metadata: Metadata = {
 };
 
 async function getFoods(q: string, provider: string) {
+  // Call the provider directly — a server page fetching its own API by URL breaks whenever the base URL is wrong.
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${base}/api/health/food?q=${encodeURIComponent(q)}&limit=12&provider=${provider}`, { next: { revalidate: 3600 } }).catch(() => null);
-    if (!res?.ok) return null;
-    return await res.json();
+    return provider === "usda" ? await usdaProvider.search({ query: q, limit: 12 }) : await openFoodFactsProvider.search({ query: q, limit: 12 });
   } catch {
     return null;
   }
