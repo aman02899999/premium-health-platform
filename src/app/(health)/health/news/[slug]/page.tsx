@@ -57,7 +57,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
           <span className="rounded-full bg-emerald-700 px-2.5 py-1 text-white">Health News</span>
           <span className="rounded-full bg-amber-100 px-2.5 py-1 text-amber-800 dark:bg-amber-900 dark:text-amber-200">{item.category}</span>
-          <span className="flex items-center gap-1 text-stone-500"><Clock className="h-3 w-3" />{item.kind === "briefing" ? "Evergreen guide" : `Published ${formatDate(item.publishedAt)}`}</span>
+          <span className="flex items-center gap-1 text-stone-500"><Clock className="h-3 w-3" />{item.evergreen || item.kind === "briefing" ? "Evergreen guide" : `Published ${formatDate(item.publishedAt)}`}</span>
         </div>
         <h1 className="font-display mt-3 text-3xl font-black leading-tight md:text-[2.5rem]">{item.title}</h1>
         <p className="mt-3 text-[17px] leading-relaxed text-stone-600 dark:text-stone-300">{item.summary}</p>
@@ -102,7 +102,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
             <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer nofollow" className="flex items-center gap-1 font-bold text-emerald-700 underline">Official source <ExternalLink className="h-3 w-3" /></a>
           </p>
           <p className="mt-2 rounded-xl bg-amber-50 p-3 text-xs leading-relaxed text-amber-900 dark:bg-amber-950/40 dark:text-amber-100">
-            This item is general educational guidance. It does not diagnose, prescribe or change doses. {item.kind === "briefing" ? "It is an evergreen guide, not a report of a specific event." : item.kind === "live" ? "It summarises the official source linked above, which is the authority — check it for the latest figures." : ""}
+            This item is general educational guidance. It does not diagnose, prescribe or change doses. {item.evergreen || item.kind === "briefing" ? "It is an evergreen guide, not a report of a specific event." : item.kind === "live" ? "It summarises the official source linked above, which is the authority — check it for the latest figures." : ""}
           </p>
         </section>
 
