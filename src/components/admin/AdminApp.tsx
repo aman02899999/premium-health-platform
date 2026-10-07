@@ -21,6 +21,7 @@ import {
   Home,
   IndianRupee,
   BookOpen,
+  Salad,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -134,6 +135,9 @@ export function AdminApp({ storage }: { storage: string }) {
             {status && (
               <span className={`hidden text-sm md:inline ${status.kind === "err" ? "text-red-300" : status.kind === "ok" ? "text-emerald-300" : "text-white/60"}`}>{status.msg}</span>
             )}
+            <a href="/admin/diet-pro" className="inline-flex items-center gap-1.5 rounded-lg border border-brand/50 bg-brand/10 px-3 py-2 text-sm font-semibold text-white">
+              <Salad className="h-4 w-4 text-brand" /> <span className="hidden sm:inline">Diet Pro</span>
+            </a>
             <a href="/" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-sm text-white/80">
               <ExternalLink className="h-4 w-4" /> <span className="hidden sm:inline">View site</span>
             </a>
