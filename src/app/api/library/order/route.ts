@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { parseBuyerForm, phoneDigits, quoteCart } from "@/lib/library/pricing";
 import { insertBookOrder } from "@/lib/library/orders";
+import { librarySigningConfigured, uploadedBookSlugs } from "@/lib/library/storage";
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +31,18 @@ export async function POST(req: Request) {
   if (!quote) return NextResponse.json({ error: "Your cart has an item that isn't available. Please refresh and try again." }, { status: 400 });
   const buyer = parseBuyerForm(body);
   if (typeof buyer === "string") return NextResponse.json({ error: buyer }, { status: 400 });
+
+  // Never take money for a book we can't deliver: every PDF in the order must already be uploaded.
+  try {
+    if (!librarySigningConfigured()) throw new Error("download signing is not configured");
+    const uploaded = await uploadedBookSlugs();
+    if (quote.slugs.some((slug) => !uploaded.has(slug))) {
+      return NextResponse.json({ error: "Some of these books are still being prepared for download. Please WhatsApp us and we'll send them as soon as they're ready." }, { status: 503 });
+    }
+  } catch (err) {
+    console.error("[library] availability check failed:", (err as Error).message);
+    return NextResponse.json({ error: "Downloads are temporarily unavailable — please WhatsApp us to buy." }, { status: 503 });
+  }
 
   try {
     const order = await createRazorpayOrder({

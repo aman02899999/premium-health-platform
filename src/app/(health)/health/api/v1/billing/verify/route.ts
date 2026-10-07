@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 import { readSessionIdentity } from "@/health/lib/saas/session";
 import { paymentAttestation, settleApiSubscription } from "@/health/lib/saas/billing";
 import { getPaymentProvider } from "@/health/lib/monetization/payment";
@@ -19,6 +20,7 @@ export const dynamic = "force-dynamic";
  *      silently got a demo upgrade" is exactly the bug worth failing closed on.
  */
 export async function POST(req: NextRequest) {
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   const identity = await readSessionIdentity();
   if (!identity) {
     return NextResponse.json(

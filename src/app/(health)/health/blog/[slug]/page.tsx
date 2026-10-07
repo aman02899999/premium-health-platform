@@ -19,6 +19,7 @@ import { AdBanner, AdInArticle, AdRectangle } from "@/health/components/monetiza
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 import { DIGITAL_PRODUCTS } from "@/health/lib/monetization/config";
+import { uncropped } from "@/lib/uncropped";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -134,8 +135,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
           {/* Hero image */}
           <figure className="mt-5 overflow-hidden rounded-3xl border border-stone-200 dark:border-stone-700">
-            <div className="relative aspect-[16/9] w-full bg-stone-100 dark:bg-stone-800">
-              <Image src={a.heroImage} alt={a.heroImageAlt} fill priority sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover" />
+            <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-900">
+              <Image src={uncropped(a.heroImage)} alt="" aria-hidden fill sizes="10vw" className="scale-110 object-cover opacity-50 blur-2xl" />
+              <Image src={uncropped(a.heroImage)} alt={a.heroImageAlt} fill priority sizes="(max-width: 1024px) 100vw, 66vw" className="object-contain" />
             </div>
             <figcaption className="bg-white px-4 py-2 text-[11px] text-stone-500 dark:bg-stone-900 dark:text-stone-400">
               {a.heroImageAlt} · Photo: {a.heroImageCredit} · Educational image, not medical advice
@@ -159,8 +161,9 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                 {i === midPoint - 1 && (
                   <>
                     <figure className="mt-5 overflow-hidden rounded-3xl border border-stone-200 dark:border-stone-700">
-                      <div className="relative aspect-[16/9] w-full bg-stone-100 dark:bg-stone-800">
-                        <Image src={a.inlineImage} alt={a.inlineImageAlt} fill loading="lazy" sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover" />
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-900">
+                        <Image src={uncropped(a.inlineImage)} alt="" aria-hidden fill loading="lazy" sizes="10vw" className="scale-110 object-cover opacity-50 blur-2xl" />
+                        <Image src={uncropped(a.inlineImage)} alt={a.inlineImageAlt} fill loading="lazy" sizes="(max-width: 1024px) 100vw, 66vw" className="object-contain" />
                       </div>
                       <figcaption className="bg-white px-4 py-2 text-[11px] text-stone-500 dark:bg-stone-900 dark:text-stone-400">{a.inlineImageAlt} · Photo: Pexels</figcaption>
                     </figure>

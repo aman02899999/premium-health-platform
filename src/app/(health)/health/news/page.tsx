@@ -7,7 +7,7 @@ import { SITE } from "@/health/lib/site";
 export const revalidate = 600;
 
 const seoTitle = "Health News — India Medical Briefings | Premium Health";
-const seoDescription = "Daily updated Indian health news: outbreak advisories, seasonal care, drug-safety watch, AYUSH updates and evidence digests with sources and medical review..";
+const seoDescription = "Synced daily from official sources: WHO outbreak reports, US FDA recalls of Indian-made medicines and new Indian research from PubMed — plus evergreen health guides.";
 const url = "/health/news";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("News — Health India")}&category=${encodeURIComponent("News")}&type=Blog`;

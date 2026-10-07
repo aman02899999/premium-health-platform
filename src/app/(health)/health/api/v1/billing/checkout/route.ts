@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 import { readSessionIdentity } from "@/health/lib/saas/session";
 import { createApiSubscription, paymentAttestation } from "@/health/lib/saas/billing";
 import { getPaymentProvider } from "@/health/lib/monetization/payment";
@@ -20,6 +21,7 @@ const SELF_SERVE_PLANS: PlanId[] = ["starter", "pro"];
  * verify with the mock in that state, so we refuse the checkout instead.
  */
 export async function POST(req: NextRequest) {
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   const identity = await readSessionIdentity();
   if (!identity) {
     return NextResponse.json(

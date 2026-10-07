@@ -183,6 +183,11 @@ export const DEFAULT_CONTENT: SiteContent = {
     { id: "g-chest", title: "Royal Mind. Savage Body.", caption: "Chest and shoulder detail — Aman Sharma", image: "/gallery/aman-sharma-chest-shoulders.webp" },
     { id: "g-backflex", title: "Built From the Back", caption: "Back and triceps — Aman Sharma", image: "/gallery/aman-sharma-back-flex.webp" },
     { id: "g-rest", title: "Earn Every Rep", caption: "Catching breath between sets — Aman Sharma", image: "/gallery/aman-sharma-between-sets.webp" },
+    { id: "g-worst", title: "Even At My Worst", caption: "Rear pose on the club floor — Aman Sharma", image: "/gallery/aman-sharma-even-at-my-worst.webp" },
+    { id: "g-study", title: "Don't Study Me", caption: "Abs and thigh pose — Aman Sharma", image: "/gallery/aman-sharma-dont-study-me.webp" },
+    { id: "g-front", title: "Owning The Floor", caption: "Front pose at Royal Fitness Club — Aman Sharma", image: "/gallery/aman-sharma-front-pose.webp" },
+    { id: "g-slow", title: "Slow Success Builds Character", caption: "Conditioning check — Aman Sharma", image: "/gallery/aman-sharma-slow-success.webp" },
+    { id: "g-selfie", title: "Post-Workout Pump", caption: "Chest and arm pump after training — Aman Sharma", image: "/gallery/aman-sharma-gym-selfie.webp" },
   ],
   testimonials: [],
   faqs: [

@@ -12,7 +12,8 @@ import { cn, formatDate } from "@/health/lib/format";
 import { SITE } from "@/health/lib/site";
 
 const KIND_META: Record<NewsItem["kind"], { label: string; cls: string }> = {
-  briefing: { label: "Daily Briefing", cls: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100" },
+  live: { label: "Live · Official Source", cls: "bg-rose-100 text-rose-900 dark:bg-rose-900/60 dark:text-rose-100" },
+  briefing: { label: "Evergreen Guide", cls: "bg-emerald-100 text-emerald-900 dark:bg-emerald-900 dark:text-emerald-100" },
   advisory: { label: "Public-Health Advisory", cls: "bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100" },
   digest: { label: "Evidence Digest", cls: "bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-100" },
 };
@@ -102,7 +103,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
         </div>
       </div>
 
-      <p className="mt-4 text-sm text-stone-500 dark:text-stone-400" role="status">{filtered.length} item{filtered.length === 1 ? "" : "s"} in view · newest first</p>
+      <p className="mt-4 text-sm text-stone-500 dark:text-stone-400" role="status">{filtered.length} item{filtered.length === 1 ? "" : "s"} in view · live official updates first, then evergreen guides</p>
 
       {filtered.length === 0 ? (
         <div className="mt-6 rounded-2xl border border-dashed p-10 text-center text-sm text-stone-500">
@@ -116,7 +117,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
                   <span className={cn("rounded-full px-2.5 py-1", KIND_META[top.kind].cls)}>{KIND_META[top.kind].label}</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">{top.category}</span>
-                  <span className="flex items-center gap-1 text-stone-400"><Clock className="h-3 w-3" /><RelTime iso={top.publishedAt} /></span>
+                  <span className="flex items-center gap-1 text-stone-400"><Clock className="h-3 w-3" />{top.kind === "briefing" ? "Evergreen guide" : <RelTime iso={top.publishedAt} />}</span>
                 </div>
                 <h2 className="font-display mt-3 text-2xl font-black leading-tight md:text-3xl">
                   <Link href={`/health/news/${top.slug}`} className="hover:text-emerald-700 dark:hover:text-emerald-300">{top.title}</Link>
@@ -129,7 +130,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 )}
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
                   <p className="flex items-center gap-1.5 text-xs text-stone-500"><Globe2 className="h-3.5 w-3.5" />{top.sourceName}</p>
-                  <Link href={`/health/news/${top.slug}`} className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600">Read full briefing →</Link>
+                  <Link href={`/health/news/${top.slug}`} className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white hover:bg-emerald-600">{top.kind === "live" ? "Read summary & source →" : "Read full guide →"}</Link>
                 </div>
               </article>
             )}
@@ -146,7 +147,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                   </h3>
                   <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-stone-600 dark:text-stone-300">{n.summary}</p>
                   <div className="mt-3 flex items-center justify-between border-t border-stone-100 pt-2.5 text-[11px] text-stone-500 dark:border-stone-800">
-                    <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" /><RelTime iso={n.publishedAt} /></span>
+                    <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" />{n.kind === "briefing" ? "Evergreen guide" : <RelTime iso={n.publishedAt} />}</span>
                     <Link href={`/health/news/${n.slug}`} className="font-bold text-emerald-700 dark:text-emerald-300">Read →</Link>
                   </div>
                 </article>

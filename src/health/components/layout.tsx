@@ -276,7 +276,7 @@ export function Footer() {
             </div>
             <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400"><strong>Affiliate disclosure:</strong> {SITE.affiliateDisclosure}</p>
             <div className="mt-3 flex gap-2">
-              <Link href="/health/premium" className="rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-bold text-stone-900">Premium — ₹199/mo</Link>
+              <Link href="/health/premium" className="rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-bold text-stone-900">Premium — coming soon</Link>
               <Link href="/health/login" className="rounded-xl border px-3 py-1.5 text-xs font-bold">Login</Link>
             </div>
           </div>

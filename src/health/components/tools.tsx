@@ -8,23 +8,7 @@ import {
   BMI_ASIAN, TDEE_FACTORS, PROTEIN_TARGETS, WHR_CUTOFF, WATER_GUIDANCE,
   bmiCategory, mifflinStJeor, idrsScore, clamp,
 } from "@/health/lib/med-accuracy";
-import { trackMonetizationEvent, getAttributionFromUrl } from "@/health/lib/monetization/analytics";
-
-function PremiumReportUpsell({ reportSlug, price, title }: { reportSlug: string; price: number; title: string }) {
-  const handleClick = () => {
-    trackMonetizationEvent({ type: "premium_report_purchase", productId: reportSlug, page: "/health/health-calculators", cta: title, utm: getAttributionFromUrl() });
-  };
-  return (
-    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-950/30">
-      <p className="flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-200"><Crown className="h-3.5 w-3.5" /> Premium Report — Educational — Not Diagnosis</p>
-      <p className="mt-1 text-[11px] text-stone-600 dark:text-stone-300">Download detailed report: calculated values + interpretation + educational info + general lifestyle recommendations + questions to discuss with healthcare professional. No prescriptions, no diagnosis.</p>
-      <Link href={`/health/store/${reportSlug}`} onClick={handleClick} className="mt-2 inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900 hover:bg-amber-400">
-        <Download className="h-3.5 w-3.5" /> {title} — ₹{price}
-      </Link>
-      <p className="mt-1 text-[10px] text-stone-400">Free calculator always free — premium report optional — educational resource.</p>
-    </div>
-  );
-}
+import { NumField } from "@/health/components/calc-ui";
 
 function Card({ title, desc, source, children }: { title: string; desc: string; source?: string; children: React.ReactNode }) {
   return (
@@ -39,19 +23,7 @@ function Card({ title, desc, source, children }: { title: string; desc: string; 
 }
 
 function Num({ label, value, set, min = 0, max = 500, step = 1, unit }: { label: string; value: number; set: (n: number) => void; min?: number; max?: number; step?: number; unit?: string }) {
-  return (
-    <label className="block">
-      <span className="mb-1 flex justify-between text-xs font-semibold text-stone-600 dark:text-stone-300">{label}{unit && <span className="text-stone-400">{unit}</span>}</span>
-      <input
-        type="number" value={Number.isFinite(value) ? value : ""} min={min} max={max} step={step}
-        onChange={(e) => {
-          const n = Number(e.target.value);
-          set(clamp(n, min, max, min));
-        }}
-        className="h-10 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 text-sm outline-none focus:border-emerald-400 dark:border-stone-700 dark:bg-stone-800"
-      />
-    </label>
-  );
+  return <NumField label={label} value={value} onChange={set} min={min} max={max} step={step} unit={unit} />;
 }
 
 function Result({ children, tone = "ok" }: { children: React.ReactNode; tone?: "ok" | "warn" | "alert" }) {
@@ -83,7 +55,6 @@ export function BmiCalc() {
       <Result tone={cat.tone}>
         {Number.isFinite(bmi) ? <>BMI: <strong>{bmi.toFixed(1)}</strong> — {cat.label}. {bmi >= 23 && "A gradual 5–10% weight goal with diet + activity is the evidence-based first step."}</> : cat.label}
       </Result>
-      <PremiumReportUpsell reportSlug="bmi-wellness-report-49" price={49} title="Download Detailed BMI & Wellness Report" />
     </Card>
   );
 }
@@ -114,7 +85,6 @@ export function CalorieCalc() {
         </select>
       </label>
       <Result>BMR ≈ <strong>{Math.round(bmr)} kcal</strong> · Maintenance ≈ <strong>{Math.round(tdee)} kcal</strong> · Gentle loss ≈ <strong>{lossTarget} kcal/day</strong> (never below {floor})</Result>
-      <PremiumReportUpsell reportSlug="personalized-nutrition-report-99" price={99} title="Personalized Nutrition Report" />
     </Card>
   );
 }
@@ -134,7 +104,6 @@ export function ProteinCalc() {
         </label>
       </div>
       <Result>Target ≈ <strong>{Math.round(g)} g/day</strong> (~{Math.round(g / 3)} g per meal). Dal + curd + paneer/soya/eggs across meals; CKD patients must personalise.</Result>
-      <PremiumReportUpsell reportSlug="personalized-nutrition-report-99" price={99} title="Personalized Nutrition Report" />
     </Card>
   );
 }
@@ -157,7 +126,6 @@ export function WaterCalc() {
         </label>
       </div>
       <Result>Target ≈ <strong>{l.toFixed(1)} L/day</strong> (~{glasses} glasses) from water + buttermilk + dal + fruits. Pale-yellow urine = well hydrated.</Result>
-      <PremiumReportUpsell reportSlug="detailed-wellness-report-99" price={99} title="Detailed Wellness Report" />
     </Card>
   );
 }
@@ -176,7 +144,6 @@ export function WaistHeightCalc() {
       <Result tone={!Number.isFinite(r) ? "warn" : ok ? "ok" : "alert"}>
         {Number.isFinite(r) ? <>Ratio: <strong>{r.toFixed(2)}</strong> {ok ? "— healthy (<0.50). Maintain with activity + diet." : "— above 0.50: higher diabetes/heart risk. Target gradual waist loss (~0.5 cm/week)."}</> : "Enter valid measurements."}
       </Result>
-      <PremiumReportUpsell reportSlug="detailed-wellness-report-99" price={99} title="Detailed Wellness Report" />
     </Card>
   );
 }
@@ -211,7 +178,6 @@ export function DiabetesRiskQuiz() {
       <Result tone={r.level === "Low" ? "ok" : r.level === "Medium" ? "warn" : "alert"}>
         IDRS: <strong>{r.score}/100 — {r.level} risk</strong>. {r.advice} <Link href="/health/lab-tests/hba1c" className="underline">HbA1c guide</Link> · <Link href="/health/diseases/prediabetes" className="underline">Prediabetes guide</Link>
       </Result>
-      <PremiumReportUpsell reportSlug="personalized-nutrition-report-99" price={99} title="Personalized Nutrition Report — Diabetes Risk" />
     </Card>
   );
 }
@@ -231,7 +197,6 @@ export function HeartRiskEdu() {
       <Result tone={count === 0 ? "ok" : count === 1 ? "warn" : "alert"}>
         {count} of 5 risk factors. {count >= 2 ? <>Discuss <Link href="/health/lab-tests/lipid-profile" className="underline">lipid profile</Link>, BP optimisation and a formal 10-year risk score with your doctor. Read <Link href="/health/diseases/cardiovascular-risk" className="underline">cardiovascular risk</Link>.</> : count === 1 ? "One factor to fix now — early action prevents the second." : "Protect this status: no tobacco, active life, healthy weight, annual BP + sugar checks."}
       </Result>
-      <PremiumReportUpsell reportSlug="detailed-wellness-report-99" price={99} title="Detailed Wellness Report — Heart Risk" />
     </Card>
   );
 }
@@ -245,7 +210,6 @@ export function IdealWeight() {
     <Card title="Healthy Weight Range" desc="Asian BMI 18.5–22.9 (strict) shown with WHO 18.5–24.9 for reference. Athletes, elderly and pregnancy differ." source="WHO Asia-Pacific 18.5–22.9; WHO global 18.5–24.9">
       <Num label="Height" value={h} set={setH} min={50} max={250} unit="cm" />
       <Result>Asian healthy range ≈ <strong>{low.toFixed(1)}–{highAsian.toFixed(1)} kg</strong> · WHO range ≤<strong>{highWho.toFixed(1)} kg</strong> for {h} cm. Aim for gradual progress (~0.5 kg/week).</Result>
-      <PremiumReportUpsell reportSlug="bmi-wellness-report-49" price={49} title="Detailed BMI & Wellness Report" />
     </Card>
   );
 }

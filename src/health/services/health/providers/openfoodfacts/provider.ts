@@ -5,8 +5,12 @@ import { TTL } from "../../cache";
 type OFFProduct = {
   code: string;
   product_name: string;
-  brands?: string;
+  /** String from the product API, array from the search service. */
+  brands?: string | string[];
   categories?: string;
+  categories_tags?: string[];
+  allergens_tags?: string[];
+  nutrition_grades?: string;
   nutriments?: Record<string, number>;
   ingredients_text?: string;
   allergens?: string;
@@ -33,9 +37,14 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
     const key = `off-search-${params.query.toLowerCase()}-${params.limit ?? 20}`;
     return this.cachedSearch(key, this.config.ttlMs, async () => {
       const limit = params.limit ?? 20;
-      const url = `${this.config.baseUrl}/cgi/search.pl?search_terms=${encodeURIComponent(params.query)}&search_simple=1&action=process&json=1&page_size=${limit}&fields=code,product_name,brands,categories,nutriments,ingredients_text,allergens,serving_size,image_url,nutriscore_grade,nova_group`;
-      const json = (await this.fetchJson(url)) as { products: OFFProduct[]; count: number } | null;
-      if (!json?.products) {
+      // Open Food Facts' search service (the old cgi/search.pl now returns an HTML page).
+      // Products sold in India first; worldwide if there are none.
+      const fields = "code,product_name,brands,categories_tags,nutriments,allergens_tags,serving_size,image_url,nutrition_grades,nova_group";
+      const search = async (q: string) =>
+        (await this.fetchJson(`https://search.openfoodfacts.org/search?q=${encodeURIComponent(q)}&page_size=${limit}&fields=${fields}`)) as { hits?: OFFProduct[]; count?: number } | null;
+      let json = await search(`${params.query} countries_tags:"en:india"`);
+      if (json && !json.hits?.length) json = await search(params.query);
+      if (!json?.hits) {
         return {
           data: [],
           total: 0,
@@ -48,10 +57,10 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
           fetchedAt: new Date().toISOString(),
         };
       }
-      const data = json.products.filter((p) => p.product_name).map((p) => this.normalize(p));
+      const data = json.hits.filter((p) => p.product_name).map((p) => this.normalize(p));
       return {
         data,
-        total: json.count,
+        total: json.count ?? data.length,
         limit,
         offset: 0,
         hasMore: false,
@@ -80,9 +89,9 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
     return {
       id: p.code,
       name: p.product_name,
-      brand: p.brands,
+      brand: Array.isArray(p.brands) ? p.brands.join(", ") : p.brands,
       barcode: p.code,
-      category: p.categories?.split(",")[0]?.trim(),
+      category: p.categories?.split(",")[0]?.trim() ?? p.categories_tags?.[0]?.replace(/^\w\w:/, "").replace(/-/g, " "),
       nutrients: {
         calories: n["energy-kcal_100g"],
         protein: n.proteins_100g,
@@ -94,10 +103,10 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
         saturatedFat: n["saturated-fat_100g"],
       },
       ingredients: p.ingredients_text?.split(",").map((s) => s.trim()).slice(0, 20),
-      allergens: p.allergens?.split(",").map((s) => s.trim()),
+      allergens: p.allergens ? p.allergens.split(",").map((s) => s.trim()) : p.allergens_tags?.map((t) => t.replace(/^\w\w:/, "")),
       servingSize: p.serving_size,
       image: p.image_url,
-      nutriScore: p.nutriscore_grade?.toUpperCase(),
+      nutriScore: [p.nutriscore_grade, p.nutrition_grades].map((g) => g?.toUpperCase()).find((g) => g && /^[A-E]$/.test(g)),
       novaGroup: p.nova_group,
       provenance: {
         source: this.displayName,

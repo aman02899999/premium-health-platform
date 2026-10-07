@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requireAdmin } from "@/health/lib/auth/server";
 import Link from "next/link";
+import { headers } from "next/headers";
 import { Breadcrumbs } from "@/health/components/ui";
 
 export const metadata: Metadata = {
@@ -10,9 +11,10 @@ export const metadata: Metadata = {
 
 async function getStatus() {
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const h = await headers();
+    const base = `${h.get("x-forwarded-proto") ?? "https"}://${h.get("host")}`;
     // Use relative fetch for SSR
-    const res = await fetch(`${base}/api/health/status`, { cache: "no-store" }).catch(() => null);
+    const res = await fetch(`${base}/health/api/health/status`, { cache: "no-store" }).catch(() => null);
     if (!res?.ok) return null;
     return await res.json();
   } catch {
@@ -22,8 +24,9 @@ async function getStatus() {
 
 async function getProviders() {
   try {
-    const base = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${base}/api/health/providers?health=true`, { cache: "no-store" }).catch(() => null);
+    const h = await headers();
+    const base = `${h.get("x-forwarded-proto") ?? "https"}://${h.get("host")}`;
+    const res = await fetch(`${base}/health/api/health/providers?health=true`, { cache: "no-store" }).catch(() => null);
     if (!res?.ok) return null;
     return await res.json();
   } catch {

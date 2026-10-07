@@ -4,11 +4,13 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
+import Link from "next/link";
 import { SITE } from "@/health/lib/site";
+import { CALCULATOR_PAGES } from "@/health/data/calculator-pages";
 import { BmiCalc, CalorieCalc, ProteinCalc, WaterCalc, WaistHeightCalc, DiabetesRiskQuiz, HeartRiskEdu, IdealWeight } from "@/health/components/tools";
 
 const seoTitle = "Health Calculators — BMI, Calories, Protein, Diabetes Risk | Premium Health";
-const seoDescription = "8 interactive Indian health calculators with Asian cut-offs: BMI, calories, protein, water, waist-height, diabetes & heart risk. Estimates only.";
+const seoDescription = "Free Indian health calculators: pregnancy due date, ovulation, BMI (Asian cut-offs), calories & macros, body fat, protein, water and diabetes risk.";
 const url = "/health/health-calculators";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Health Calculators — BMI India")}&category=${encodeURIComponent("Calculators")}&type=tool`;
@@ -36,7 +38,21 @@ export default function Page() {
         <p className="mt-2 max-w-2xl text-sm text-teal-100/90">Asian cut-offs, Indian portions, honest limits. Every result is an estimate for education — confirm with lab tests and doctor.</p>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-3">
+      <section className="mt-6" aria-labelledby="full-tools">
+        <h2 id="full-tools" className="font-display text-xl font-bold">Full calculators</h2>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {CALCULATOR_PAGES.map((c) => (
+            <Link key={c.slug} href={`/health/health-calculators/${c.slug}`} className="group rounded-2xl border border-stone-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-emerald-400 hover:shadow-md dark:border-stone-700 dark:bg-stone-900">
+              <p className="font-bold group-hover:text-emerald-700 dark:group-hover:text-emerald-300">{c.name}</p>
+              <p className="mt-1 line-clamp-3 text-xs text-stone-500">{c.intro}</p>
+              <p className="mt-2 text-xs font-bold text-emerald-700 dark:text-emerald-300">Open →</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <h2 className="font-display mt-8 text-xl font-bold">Quick checks</h2>
+      <div className="mt-3 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <div className="grid gap-4 md:grid-cols-2"><BmiCalc /><IdealWeight /><CalorieCalc /><ProteinCalc /><WaterCalc /><WaistHeightCalc /><DiabetesRiskQuiz /><HeartRiskEdu /></div>
           <AffiliateProducts limit={4} title="Weighing Scale + Measuring Tape — Affiliate" />

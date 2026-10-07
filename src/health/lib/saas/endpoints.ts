@@ -225,17 +225,17 @@ export const API_ENDPOINTS: readonly ApiEndpoint[] = [
   {
     method: "GET",
     path: "/health/api/v1/outbreaks",
-    title: "Outbreak totals",
+    title: "Outbreak reports",
     summary:
-      "Cases, deaths, recoveries and testing for a country — or worldwide when no country is given. Each record carries the upstream `sourceUpdatedAt`, because an outbreak figure without its as-of date misleads.",
+      "Latest WHO Disease Outbreak News reports, newest first, each with WHO's own publication date and a link to the full report. Filter by a country or disease word in the title.",
     auth: "api_key",
-    params: [{ name: "country", type: "string", required: false, description: "Country name, ISO2 or ISO3 code. Omit for worldwide.", example: "india" }],
+    params: [{ name: "country", type: "string", required: false, description: "Word to match in the report title (country or disease). Omit for all recent reports.", example: "congo" }],
     source: {
-      name: "Open Disease (disease.sh)",
-      url: "https://disease.sh/docs",
-      license: "Aggregator MIT — case data from Johns Hopkins CSSE / WHO",
+      name: "World Health Organization — Disease Outbreak News",
+      url: "https://www.who.int/emergencies/disease-outbreak-news",
+      license: "© WHO — summaries link to the original report",
     },
-    sample: { results: [{ location: "India", cases: 45000000, deaths: 533000, sourceUpdatedAt: "2026-09-13T04:00:00.000Z" }] },
+    sample: { results: [{ id: "who-2026-don618", title: "Ebola disease caused by Bundibugyo virus - Democratic Republic of the Congo", publishedAt: "2026-09-25T15:30:18.000Z", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON618" }] },
   },
   {
     method: "GET",
