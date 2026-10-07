@@ -347,6 +347,7 @@ export function getSeedNews(date: Date = new Date(), limit = 12): NewsItem[] {
       ...p,
       slug: i === 0 && key === todayKey ? `briefing-${key}` : `${p.slugStem}-${key}`,
       status: "published",
+      evergreen: true,
       publishedAt: published.toISOString(),
       updatedAt: published.toISOString(),
     };

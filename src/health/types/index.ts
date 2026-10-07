@@ -30,6 +30,8 @@ export type NewsItem = {
   /** "briefing" = our own evergreen guide; "advisory" = pointer to official guidance; "live" = synced daily from an official source */
   kind: "briefing" | "advisory" | "digest" | "live";
   status: "draft" | "published";
+  /** Rotating explainer from our seed pool — not a dated report, so no date is shown. */
+  evergreen?: boolean;
   body: { heading: string; paragraphs?: string[]; bullets?: string[] }[];
   keyTakeaways: string[];
   tags: string[];

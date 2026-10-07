@@ -117,7 +117,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
                   <span className={cn("rounded-full px-2.5 py-1", KIND_META[top.kind].cls)}>{KIND_META[top.kind].label}</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">{top.category}</span>
-                  <span className="flex items-center gap-1 text-stone-400"><Clock className="h-3 w-3" />{top.kind === "briefing" ? "Evergreen guide" : <RelTime iso={top.publishedAt} />}</span>
+                  <span className="flex items-center gap-1 text-stone-400"><Clock className="h-3 w-3" />{top.evergreen || top.kind === "briefing" ? "Evergreen guide" : <RelTime iso={top.publishedAt} />}</span>
                 </div>
                 <h2 className="font-display mt-3 text-2xl font-black leading-tight md:text-3xl">
                   <Link href={`/health/news/${top.slug}`} className="hover:text-emerald-700 dark:hover:text-emerald-300">{top.title}</Link>
@@ -147,7 +147,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                   </h3>
                   <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-stone-600 dark:text-stone-300">{n.summary}</p>
                   <div className="mt-3 flex items-center justify-between border-t border-stone-100 pt-2.5 text-[11px] text-stone-500 dark:border-stone-800">
-                    <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" />{n.kind === "briefing" ? "Evergreen guide" : <RelTime iso={n.publishedAt} />}</span>
+                    <span className="flex items-center gap-1"><CalendarDays className="h-3 w-3" />{n.evergreen || n.kind === "briefing" ? "Evergreen guide" : <RelTime iso={n.publishedAt} />}</span>
                     <Link href={`/health/news/${n.slug}`} className="font-bold text-emerald-700 dark:text-emerald-300">Read →</Link>
                   </div>
                 </article>
