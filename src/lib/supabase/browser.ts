@@ -31,3 +31,11 @@ export async function signInWithEmail(email: string, next = "/account"): Promise
   });
   return error ? error.message : null;
 }
+
+/** Signs in with the 6-digit code from the sign-in email (when the email template includes {{ .Token }}). */
+export async function verifyEmailCode(email: string, code: string): Promise<string | null> {
+  const supabase = getBrowserClient();
+  if (!supabase) return "Sign-in isn't switched on for this site yet.";
+  const { error } = await supabase.auth.verifyOtp({ email, token: code, type: "email" });
+  return error ? error.message : null;
+}

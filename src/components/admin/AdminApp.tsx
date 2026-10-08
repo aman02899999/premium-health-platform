@@ -23,6 +23,7 @@ import {
   BookOpen,
   Salad,
   TrendingUp,
+  ShoppingBag,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -174,6 +175,9 @@ export function AdminApp({ storage }: { storage: string }) {
           </a>
           <a href="/admin/growth" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-emerald-400/40 hover:bg-emerald-500/20">
             <TrendingUp className="h-4 w-4 text-emerald-300" /> Growth &amp; renewals
+          </a>
+          <a href="/admin/shop" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-amber-400/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-amber-400/40 hover:bg-amber-400/20">
+            <ShoppingBag className="h-4 w-4 text-amber-300" /> Supplement store
           </a>
           {TABS.map((t) => (
             <button

@@ -21,6 +21,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.amazonaws.com" },
       { protocol: "https", hostname: "**.r2.cloudflarestorage.com" },
       { protocol: "https", hostname: "**.r2.dev" },
+      // Supabase Storage public buckets (store product images uploaded in admin)
+      { protocol: "https", hostname: "**.supabase.co", pathname: "/storage/v1/object/public/**" },
     ],
   },
 

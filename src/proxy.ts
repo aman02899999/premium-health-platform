@@ -30,6 +30,8 @@ export const config = {
   matcher: [
     // Royal Fitness Club
     "/admin/:path*", "/api/admin/:path*", "/account",
+    // Royal Supplements store: customer sign-in for orders and checkout prefill
+    "/shop/account", "/shop/checkout", "/api/shop/order", "/api/shop/my-orders",
     // Premium Health Platform (/health)
     "/health/admin/:path*", "/health/profile", "/health/earn",
     "/health/api/auth/:path*", "/health/api/premium/:path*", "/health/api/v1/keys/:path*", "/health/api/v1/billing/:path*",

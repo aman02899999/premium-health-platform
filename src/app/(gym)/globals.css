@@ -444,6 +444,9 @@ html[data-portal="show"] body {
 .portal-card-health {
   --from: 65deg;
 }
+.portal-card-shop {
+  --from: 0deg;
+}
 @keyframes portal-card-in {
   from {
     opacity: 0;
@@ -478,6 +481,14 @@ html[data-portal="show"] body {
 .portal-card-gym:hover .portal-card-inner,
 .portal-card-gym:focus-visible .portal-card-inner {
   box-shadow: 0 50px 100px -30px rgba(232, 57, 75, 0.75), 0 0 0 2px rgba(232, 57, 75, 0.7) inset;
+}
+.portal-card-shop .portal-card-inner {
+  background: linear-gradient(145deg, #78350f 0%, #1c1917 50%, #b45309 100%);
+  box-shadow: 0 40px 80px -30px rgba(180, 83, 9, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+.portal-card-shop:hover .portal-card-inner,
+.portal-card-shop:focus-visible .portal-card-inner {
+  box-shadow: 0 50px 100px -30px rgba(251, 191, 36, 0.7), 0 0 0 2px rgba(251, 191, 36, 0.7) inset;
 }
 .portal-card-health:hover .portal-card-inner,
 .portal-card-health:focus-visible .portal-card-inner {

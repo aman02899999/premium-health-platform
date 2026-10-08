@@ -4,6 +4,8 @@ import { markFailed, markPaid } from "@/lib/payments/orders";
 import { markBookFailed, markBookPaid } from "@/lib/library/orders";
 import { afterDietPaid, afterMembershipPaid } from "@/lib/growth/hooks";
 import { markDietFailed } from "@/lib/growth/diet-orders";
+import { afterShopPaid } from "@/lib/shop/paid";
+import { markShopFailed } from "@/lib/shop/store";
 
 export const dynamic = "force-dynamic";
 
@@ -24,10 +26,12 @@ export async function POST(req: Request) {
       if (await markPaid(payment.order_id, payment.id)) await afterMembershipPaid(payment.order_id);
       await markBookPaid(payment.order_id, payment.id);
       await afterDietPaid(payment.order_id, payment.id);
+      await afterShopPaid(payment.order_id, payment.id);
     } else if (event.event === "payment.failed") {
       await markFailed(payment.order_id);
       await markBookFailed(payment.order_id);
       await markDietFailed(payment.order_id);
+      await markShopFailed(payment.order_id);
     }
   } catch (err) {
     console.error("[razorpay webhook] update failed:", (err as Error).message);
