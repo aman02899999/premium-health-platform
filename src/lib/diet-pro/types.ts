@@ -3,7 +3,8 @@
 export type Sex = "male" | "female";
 export type DietPref = "vegan" | "veg" | "jain" | "egg" | "nonveg";
 export type Goal = "fat-loss" | "recomp" | "maintain" | "lean-gain" | "gain";
-export type Style = "balanced" | "high-protein" | "low-carb" | "keto" | "diabetic" | "pcos";
+export type Style = "balanced" | "high-protein" | "low-carb" | "keto" | "diabetic" | "pcos" | "heart" | "high-fibre" | "vrat" | "sattvic";
+export type Cuisine = "any" | "north" | "south" | "west" | "east";
 export type Allergen = "dairy" | "gluten" | "nuts" | "peanut" | "soy" | "egg" | "fish" | "shellfish" | "sesame";
 export type ActivityId = "sedentary" | "light" | "moderate" | "active" | "athlete";
 export type FoodRole = "carb" | "legume" | "protein" | "dairy" | "fat" | "veg" | "fruit";
@@ -77,6 +78,12 @@ export type ClientProfile = {
   style: Style;
   diet: DietPref;
   mealsPerDay: 3 | 4 | 5 | 6;
+  /** Regional preference; other dishes still appear when nothing regional fits. */
+  cuisine?: Cuisine;
+  /** Leave out costly or imported foods (salmon, quinoa, chia, olive oil…). */
+  budget?: boolean;
+  /** "HH:MM", used to time the meals on the chart. */
+  wakeTime?: string;
   allergies: Allergen[];
   conditions: Conditions;
   useWhey: boolean;

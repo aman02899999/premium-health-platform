@@ -87,7 +87,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
         {state === "sending" && <Loader2 className="h-5 w-5 animate-spin" />}
         Book My Free Trial
       </button>
-      <p className="text-center text-xs text-white/45">No spam. We only call to schedule your session.</p>
+      <p className="text-center text-xs text-white/45">No spam. We<p className="text-center text-xs text-white/45">No spam. We only call to schedule your session.</p>apos;ll call or WhatsApp you (at most 3 messages) only to schedule your trial.</p>
     </form>
   );
 }

@@ -192,7 +192,7 @@ export function Newsletter({ compact }: { compact?: boolean }) {
       <h3 className="font-display mt-2 text-2xl font-bold md:text-3xl">One useful health email. Every Sunday.</h3>
       <p className="mt-2 max-w-xl text-sm text-emerald-100">Diabetes, thyroid, heart, Ayurveda and nutrition — explained simply. No spam, no miracle cures. Unsubscribe anytime.</p>
       {done ? (
-        <p className="mt-4 flex items-center gap-2 rounded-xl bg-white/10 p-3 text-sm font-medium"><CheckCircle2 className="h-4 w-4 text-amber-300" /> {already ? "You're already on the list — see you Sunday!" : "You're in! The Indian Health Weekly arrives every Sunday."}</p>
+        <p className="mt-4 flex items-center gap-2 rounded-xl bg-white/10 p-3 text-sm font-medium"><CheckCircle2 className="h-4 w-4 text-amber-300" /> {already ? "You're already on the list." : "You're subscribed to the Indian Health Weekly."}</p>
       ) : (
         <>
           <form className="mt-4 flex flex-col gap-2 sm:flex-row" onSubmit={submit}>

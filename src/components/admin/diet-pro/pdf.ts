@@ -3,6 +3,7 @@
 // Branded client PDF for Diet Pro, built in the browser (jsPDF + AutoTable, loaded on demand).
 import type { Targets } from "@/lib/diet-pro/engine";
 import type { Note, TrainingDay } from "@/lib/diet-pro/guidance";
+import { MEASURE_LEGEND, household, mealTime } from "@/lib/diet-pro/household";
 import type { PlannedDay } from "@/lib/diet-pro/meals";
 import type { ClientProfile } from "@/lib/diet-pro/types";
 
@@ -55,6 +56,8 @@ async function toDataUrl(src: string): Promise<string | null> {
   }
 }
 
+/** "Rice, white (raw)" → "rice"; "Hung curd / Greek yogurt (fat-free)" → "hung curd / Greek yogurt". */
+const shortName = (name: string) => name.replace(/\s*\([^)]*\)/g, "").split(", ")[0].replace(/^\w/, (ch) => ch.toLowerCase());
 const n0 = (v: number) => Math.round(v).toLocaleString("en-IN");
 const n1 = (v: number) => (Math.round(v * 10) / 10).toString();
 
@@ -70,6 +73,7 @@ export async function downloadPlanPdf(input: Input) {
   const today = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 
   const header = (title: string) => {
+    const W = doc.internal.pageSize.getWidth(); // the weekly chart page is landscape
     doc.setFillColor(...NAVY);
     doc.rect(0, 0, W, 16, "F");
     doc.setFillColor(...RED);
@@ -209,21 +213,48 @@ export async function downloadPlanPdf(input: Input) {
     doc.text(lines, M, y + 1);
   }
 
+  // ───── Week at a glance (the chart a client pins on the fridge) ─────
+  const C = input.client;
+  const whey = C.useWhey ? C.whey : undefined;
+  const qty = (id: string, g: number, dish: string) => household(id, g, dish, whey).qty;
+  doc.addPage("a4", "landscape");
+  {
+    const LW = doc.internal.pageSize.getWidth();
+    header("Diet chart · week at a glance");
+    let wy = section(26, "Your week at a glance");
+    const first = input.days[0]?.meals ?? [];
+    autoTable(doc, {
+      ...tableTheme,
+      startY: wy,
+      head: [["Day", ...first.map((m) => t(`${m.label.replace(" snack", "")}\n${mealTime(m.label, C.wakeTime, C.mealsPerDay)}`))]],
+      body: input.days.map((d) => [`Day ${d.day}`, ...d.meals.map((m) => t(`${m.template}\n${m.items.map((it) => `• ${qty(it.food.id, it.grams, m.template)} ${shortName(it.food.name)}`).join("\n")}`))]),
+      styles: { ...tableTheme.styles, fontSize: 6.4, cellPadding: 1.1, valign: "top" },
+      columnStyles: { 0: { cellWidth: 14, fontStyle: "bold", textColor: NAVY } },
+      margin: { left: M, right: M },
+      tableWidth: LW - 2 * M,
+      didDrawPage: () => header("Diet chart · week at a glance"),
+    });
+    wy = lastY() + 5;
+    doc.setFontSize(7.5);
+    doc.setTextColor(...MUTED);
+    doc.text(t(`On waking (${mealTime("Wake", C.wakeTime)}): 1-2 glasses of water. Measures: ${MEASURE_LEGEND.join(" · ")}. Grains and dals are weighed raw; the cooked katori is a guide.`), M, wy, { maxWidth: LW - 2 * M });
+  }
+
   // ───── 7-day meal plan ─────
   for (const day of input.days) {
-    doc.addPage();
+    doc.addPage("a4", "portrait");
     header(`Meal plan · Day ${day.day}`);
     let yy = section(26, `Day ${day.day}`);
     const body: (string | { content: string; colSpan?: number; styles?: Record<string, unknown> })[][] = [];
     for (const m of day.meals) {
-      body.push([{ content: t(`${m.label} — ${m.template}`), colSpan: 6, styles: { fillColor: [232, 241, 248], textColor: NAVY, fontStyle: "bold" } }]);
-      for (const it of m.items) body.push([t(it.food.name), t(it.label), n0(it.macro.kcal), n1(it.macro.p), n1(it.macro.c), n1(it.macro.f)]);
+      body.push([{ content: t(`${mealTime(m.label, C.wakeTime, C.mealsPerDay)} · ${m.label} — ${m.template}`), colSpan: 6, styles: { fillColor: [232, 241, 248], textColor: NAVY, fontStyle: "bold" } }]);
+      for (const it of m.items) body.push([t(it.food.name), t(`${qty(it.food.id, it.grams, m.template)} (${it.label})`), n0(it.macro.kcal), n1(it.macro.p), n1(it.macro.c), n1(it.macro.f)]);
       body.push([{ content: "Meal total", styles: { fontStyle: "bold" } }, "", { content: n0(m.total.kcal), styles: { fontStyle: "bold" } }, { content: n1(m.total.p), styles: { fontStyle: "bold" } }, { content: n1(m.total.c), styles: { fontStyle: "bold" } }, { content: n1(m.total.f), styles: { fontStyle: "bold" } }]);
     }
     autoTable(doc, {
       ...tableTheme,
       startY: yy,
-      head: [["Food", "Amount", "kcal", "Protein g", "Carbs g", "Fat g"]],
+      head: [["Food", "Measure (weight)", "kcal", "Protein g", "Carbs g", "Fat g"]],
       body,
       foot: [
         ["Day total", "", n0(day.total.kcal), n1(day.total.p), n1(day.total.c), n1(day.total.f)],
@@ -314,6 +345,8 @@ export async function downloadPlanPdf(input: Input) {
   const pages = doc.getNumberOfPages();
   for (let i = 1; i <= pages; i++) {
     doc.setPage(i);
+    const W = doc.internal.pageSize.getWidth();
+    const H = doc.internal.pageSize.getHeight();
     if (mark && i > 1) {
       const g = doc.GState({ opacity: 0.05 });
       doc.setGState(g);

@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { verifyPaymentSignature } from "@/lib/payments/razorpay";
 import { markPaid } from "@/lib/payments/orders";
 import { formatPaise } from "@/lib/payments/membership";
+import { afterMembershipPaid } from "@/lib/growth/hooks";
+import { memberForOrder } from "@/lib/growth/members";
+import { formatDate } from "@/lib/growth/dates";
 
 export const dynamic = "force-dynamic";
 
@@ -18,7 +21,12 @@ export async function POST(req: Request) {
   try {
     const order = await markPaid(orderId, paymentId);
     if (!order) return NextResponse.json({ error: "Order not found. Please WhatsApp us your payment ID." }, { status: 404 });
+    // Membership days, welcome message and referral bonus (idempotent; never fails the payment).
+    await afterMembershipPaid(orderId);
+    const member = await memberForOrder(orderId).catch(() => null);
     return NextResponse.json({
+      validUntil: member ? formatDate(member.expiresOn) : null,
+      referralCode: member?.referralCode ?? null,
       ok: true,
       paymentId,
       plan: `${order.planName} (${order.duration}${order.couple ? ", couple" : ""})`,

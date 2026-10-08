@@ -4,6 +4,7 @@ export const HUB = [
   { href: "/exercises", title: "Exercise Library", text: "Step-by-step form guides with an interactive muscle map.", icon: "Activity" },
   { href: "/nutrition", title: "Indian Food Tracker", text: "Protein & calories for 60+ Indian foods — log your day.", icon: "Salad" },
   { href: "/diet-plans", title: "Diet Plans", text: "Veg & non-veg plans for fat loss and muscle gain.", icon: "PieChart" },
+  { href: "/diet-chart", title: "Personal Diet Chart", text: "A coach-made 7-day Indian chart for your body and food.", icon: "Salad" },
   { href: "/tools", title: "Health Calculators", text: "BMI, calories, body fat, diabetes risk and 7 more.", icon: "Scale" },
   { href: "/timers", title: "Gym Timers", text: "Tabata, HIIT, rest timer and guided breathing.", icon: "Timer" },
   { href: "/progress", title: "Progress Tracker", text: "Chart your weight and waist week by week.", icon: "Trophy" },

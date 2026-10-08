@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/exercises", 0.8, "monthly"],
     ["/nutrition", 0.8, "monthly"],
     ["/diet-plans", 0.8, "monthly"],
+    ["/diet-chart", 0.8, "monthly"],
     ["/timers", 0.6, "yearly"],
     ["/progress", 0.5, "yearly"],
     ["/blog", 0.8, "weekly"],

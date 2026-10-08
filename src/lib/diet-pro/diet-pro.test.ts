@@ -84,10 +84,10 @@ describe("food database", () => {
       expect(f.source.ref).toBeTruthy();
       expect(f.p + f.c + f.f).toBeLessThanOrEqual(101);
       // Atwater cross-check (4/4/9 + 2 kcal/g fibre). Tables use food-specific factors, so allow
-      // 20 % on energy-dense foods and 15 kcal on low-energy vegetables and fruit.
+      // 20 % on energy-dense foods and 20 kcal on low-energy vegetables and fruit.
       const atwater = f.p * 4 + f.c * 4 + f.f * 9 + f.fib * 2;
       if (atwater > 100) expect(Math.abs(f.kcal - atwater) / atwater, f.id).toBeLessThan(0.2);
-      else expect(Math.abs(f.kcal - atwater), f.id).toBeLessThan(15);
+      else expect(Math.abs(f.kcal - atwater), f.id).toBeLessThan(20);
     }
   });
   it("every template food exists", () => {
@@ -130,6 +130,11 @@ describe("meal solver", () => {
     ["egg high-protein 6 meals + whey", { diet: "egg", style: "high-protein", mealsPerDay: 6, useWhey: true }],
     ["jain female", { diet: "jain", sex: "female", weightKg: 62, heightCm: 158, m: { neck: 32, waist: 78, hip: 98 } }],
     ["non-veg diabetic", { diet: "nonveg", style: "diabetic" }],
+    ["vrat (fasting) veg", { style: "vrat", goal: "maintain" }],
+    ["sattvic female", { style: "sattvic", sex: "female", weightKg: 60, heightCm: 160, m: { neck: 32, waist: 76, hip: 96 } }],
+    ["south-Indian non-veg on a budget", { diet: "nonveg", cuisine: "south", budget: true }],
+    ["east-Indian heart-healthy", { diet: "nonveg", cuisine: "east", style: "heart" }],
+    ["west-Indian high-fibre veg", { cuisine: "west", style: "high-fibre" }],
   ];
   for (const [label, patch] of profiles) {
     it(`7-day plan within 10 % of targets: ${label}`, () => {

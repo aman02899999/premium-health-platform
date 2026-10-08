@@ -22,6 +22,7 @@ import {
   IndianRupee,
   BookOpen,
   Salad,
+  TrendingUp,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -136,7 +137,7 @@ export function AdminApp({ storage }: { storage: string }) {
               <span className={`hidden text-sm md:inline ${status.kind === "err" ? "text-red-300" : status.kind === "ok" ? "text-emerald-300" : "text-white/60"}`}>{status.msg}</span>
             )}
             <a href="/admin/diet-pro" className="inline-flex items-center gap-1.5 rounded-lg border border-brand/50 bg-brand/10 px-3 py-2 text-sm font-semibold text-white">
-              <Salad className="h-4 w-4 text-brand" /> <span className="hidden sm:inline">Diet Pro</span>
+              <Salad className="h-4 w-4 text-brand" /> <span className="hidden sm:inline">Diet Calculator</span>
             </a>
             <a href="/" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-sm text-white/80">
               <ExternalLink className="h-4 w-4" /> <span className="hidden sm:inline">View site</span>
@@ -168,6 +169,12 @@ export function AdminApp({ storage }: { storage: string }) {
 
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 lg:grid-cols-[220px_1fr]">
         <nav className="flex gap-1 overflow-x-auto lg:sticky lg:top-20 lg:flex-col lg:self-start" aria-label="Sections">
+          <a href="/admin/diet-pro" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-brand/15 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-brand/50 hover:bg-brand/25">
+            <Salad className="h-4 w-4 text-brand" /> Diet Calculator
+          </a>
+          <a href="/admin/growth" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-emerald-400/40 hover:bg-emerald-500/20">
+            <TrendingUp className="h-4 w-4 text-emerald-300" /> Growth &amp; renewals
+          </a>
           {TABS.map((t) => (
             <button
               key={t.id}

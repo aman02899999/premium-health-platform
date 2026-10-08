@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/health/components/ui";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
-import { WhatsAppOptIn, PushPrompt } from "@/health/components/marketing/WhatsAppOptIn";
+import { WhatsAppOptIn } from "@/health/components/marketing/WhatsAppOptIn";
 import { Check, Crown, Zap, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
@@ -80,7 +80,7 @@ export default function PremiumPage() {
         <div className="space-y-4">
           <PremiumCTA />
           <WhatsAppOptIn compact />
-          <PushPrompt compact />
+          
         </div>
       </div>
     </div>

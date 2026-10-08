@@ -7,7 +7,7 @@ import { absoluteUrl, seoTitle, seoDescription } from "@/health/lib/seo";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
-import { WhatsAppOptIn, PushPrompt } from "@/health/components/marketing/WhatsAppOptIn";
+import { WhatsAppOptIn } from "@/health/components/marketing/WhatsAppOptIn";
 
 export const metadata: Metadata = {
   title: seoTitle("Thali Builder — Balanced Indian Thali | Unique India"),
@@ -53,7 +53,7 @@ export default function ThaliBuilderPage() {
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2"><ThaliBuilder /></div>
-        <div className="space-y-4"><PremiumCTA compact /><WhatsAppOptIn compact /><PushPrompt compact /><AffiliateProducts limit={2} /><LatestArticles limit={3} /></div>
+        <div className="space-y-4"><PremiumCTA compact /><WhatsAppOptIn compact /><AffiliateProducts limit={2} /><LatestArticles limit={3} /></div>
       </div>
       <div className="mt-8 space-y-4"><AdSlot slot="Thali footer" /><DisclaimerBar compact /></div>
     </div>

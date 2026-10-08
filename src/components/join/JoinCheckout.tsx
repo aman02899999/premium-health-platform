@@ -8,7 +8,7 @@ import type { Plan } from "@/lib/content/types";
 import { formatINR } from "@/lib/site";
 import { planMonths } from "@/components/home/PlanGrid";
 
-type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
+export type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
 declare global {
   interface Window {
@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-function loadCheckoutScript(): Promise<boolean> {
+export function loadCheckoutScript(): Promise<boolean> {
   if (window.Razorpay) return Promise.resolve(true);
   return new Promise((resolve) => {
     const s = document.createElement("script");
@@ -27,14 +27,17 @@ function loadCheckoutScript(): Promise<boolean> {
   });
 }
 
-type Receipt = { paymentId: string; plan?: string; amount?: string; name?: string; startDate?: string | null; pending?: boolean };
+type Receipt = { paymentId: string; plan?: string; amount?: string; name?: string; startDate?: string | null; pending?: boolean; validUntil?: string | null; referralCode?: string | null };
 
-export function JoinCheckout({ plans, gymName, whatsapp }: { plans: Plan[]; gymName: string; whatsapp: string }) {
+export type JoinPrefill = { name?: string; phone?: string; email?: string; referredBy?: string; renewal?: { planName: string; expiresOn: string } };
+
+export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Plan[]; gymName: string; whatsapp: string; prefill?: JoinPrefill }) {
   const params = useSearchParams();
-  const initialPlan = plans.find((p) => p.id === params.get("plan")) ?? plans.find((p) => p.featured) ?? plans[0];
+  const renewalPlan = prefill?.renewal ? plans.find((p) => prefill.renewal!.planName.replace(/ \(couple\)$/, "") === p.name) : undefined;
+  const initialPlan = plans.find((p) => p.id === params.get("plan")) ?? renewalPlan ?? plans.find((p) => p.featured) ?? plans[0];
   const [planId, setPlanId] = useState(initialPlan?.id ?? "");
   const [couple, setCouple] = useState(params.get("couple") === "1" && (initialPlan?.couplePrice ?? 0) > 0);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", partnerName: "", startDate: "", referredBy: "" });
+  const [form, setForm] = useState({ name: prefill?.name ?? "", phone: prefill?.phone ?? "", email: prefill?.email ?? "", partnerName: "", startDate: "", referredBy: prefill?.referredBy ?? "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [receipt, setReceipt] = useState<Receipt | null>(null);
@@ -106,7 +109,16 @@ export function JoinCheckout({ plans, gymName, whatsapp }: { plans: Plan[]; gymN
         <p className="text-white/75">
           {receipt.pending ? "Your payment went through and is being recorded." : `${receipt.amount} paid for ${receipt.plan}.`}
           {receipt.startDate && ` Your membership starts on ${receipt.startDate}.`}
+          {receipt.validUntil && ` It's valid until ${receipt.validUntil}.`}
         </p>
+        {receipt.referralCode && (
+          <div className="rounded-2xl bg-brand/10 p-4 text-sm text-white/80 ring-1 ring-brand/30">
+            <p>
+              Your referral code: <b className="font-mono text-white">{receipt.referralCode}</b>
+            </p>
+            <p className="mt-1 text-white/60">Share it with friends. When a friend joins with it, you both get bonus days on your membership.</p>
+          </div>
+        )}
         <p className="rounded-xl bg-white/5 px-4 py-3 font-mono text-sm text-white/80">Payment ID: {receipt.paymentId}</p>
         <p className="text-sm text-white/55">Show this screen at the front desk, or send it to us on WhatsApp so we can get your first session ready.</p>
         <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
@@ -118,6 +130,11 @@ export function JoinCheckout({ plans, gymName, whatsapp }: { plans: Plan[]; gymN
 
   return (
     <form onSubmit={pay} className="glass brand-border space-y-6 rounded-3xl p-6 sm:p-8">
+      {prefill?.renewal && (
+        <p className="rounded-2xl bg-emerald-500/10 p-4 text-sm text-emerald-100 ring-1 ring-emerald-400/30">
+          Renewing your <b>{prefill.renewal.planName}</b> membership (current end date {prefill.renewal.expiresOn}). If you renew early, the new plan starts the day after it ends — you don&apos;t lose any days.
+        </p>
+      )}
       <fieldset>
         <legend className="font-display text-xl text-white">1. Choose your plan</legend>
         <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -179,7 +196,7 @@ export function JoinCheckout({ plans, gymName, whatsapp }: { plans: Plan[]; gymN
             <input type="date" min={today} value={form.startDate} onChange={set("startDate")} className="field mt-1" />
           </label>
           <label className="text-sm text-white/70">
-            Referred by a member? <span className="text-white/40">(their name or phone)</span>
+            Referral code <span className="text-white/40">(optional, e.g. RFC-AMAN-7K2Q)</span>
             <input maxLength={80} value={form.referredBy} onChange={set("referredBy")} className="field mt-1" />
           </label>
         </div>
