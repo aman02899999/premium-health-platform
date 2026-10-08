@@ -127,12 +127,12 @@ export function AdminApp({ storage }: { storage: string }) {
   return (
     <div className="min-h-screen bg-ink">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-ink/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
-          <span className="font-display text-lg text-white">
-            Admin <span className="text-brand">· {content.business.name}</span>
+        <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-3 sm:gap-3 sm:px-4">
+          <span className="font-display min-w-0 truncate text-lg text-white">
+            Admin<span className="hidden text-brand sm:inline"> · {content.business.name}</span>
           </span>
           <span className="hidden rounded-full bg-white/5 px-2 py-0.5 text-[11px] text-white/45 sm:inline">storage: {storage}</span>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
             {status && (
               <span className={`hidden text-sm md:inline ${status.kind === "err" ? "text-red-300" : status.kind === "ok" ? "text-emerald-300" : "text-white/60"}`}>{status.msg}</span>
             )}
@@ -146,7 +146,7 @@ export function AdminApp({ storage }: { storage: string }) {
               type="button"
               onClick={save}
               disabled={!dirty || status?.kind === "busy"}
-              className="btn-brand inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-bold disabled:opacity-40"
+              className="btn-brand inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold disabled:opacity-40 sm:px-4"
             >
               {status?.kind === "busy" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               {dirty ? "Save changes" : "Saved"}

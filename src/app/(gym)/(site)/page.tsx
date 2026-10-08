@@ -18,6 +18,9 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { PortalOverlay } from "@/components/portal/PortalOverlay";
+import { applyOffer } from "@/lib/offers";
+import { todayIST } from "@/lib/growth/dates";
+
 import { PORTAL_BOOT } from "@/lib/portal";
 
 export const revalidate = 300;
@@ -89,11 +92,11 @@ export default async function HomePage() {
       <section className="relative z-10 -mt-10 px-4 sm:px-6">
         <div className="glass brand-border mx-auto grid max-w-6xl grid-cols-2 divide-white/10 rounded-3xl md:grid-cols-4 md:divide-x">
           {c.stats.map((s) => (
-            <div key={s.label} className="p-6 text-center sm:p-8">
-              <div className="font-display text-4xl text-brand-gradient sm:text-5xl">
+            <div key={s.label} className="min-w-0 px-3 py-5 text-center sm:p-8">
+              <div className="font-display text-[clamp(1.6rem,8.5vw,2.25rem)] leading-tight text-brand-gradient [overflow-wrap:anywhere] sm:text-5xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-1 text-xs uppercase tracking-widest text-white/60">{s.label}</div>
+              <div className="mt-1 text-[11px] uppercase tracking-wider text-white/60 sm:text-xs sm:tracking-widest">{s.label}</div>
             </div>
           ))}
         </div>
@@ -179,7 +182,7 @@ export default async function HomePage() {
       {/* ---------- MEMBERSHIP ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Pick your" highlight="royal plan" intro="Simple pricing, no hidden charges. Longer plans save you more." />
-        <PlanGrid plans={c.plans} note={c.planNote} payOnline={razorpayConfigured()} />
+        <PlanGrid plans={applyOffer(c.plans, todayIST())} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
 
       {/* ---------- GALLERY ---------- */}

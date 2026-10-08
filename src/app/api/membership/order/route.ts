@@ -4,6 +4,8 @@ import { getContent } from "@/lib/content/store";
 import { parseCheckoutForm, quoteMembership } from "@/lib/payments/membership";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { insertOrder } from "@/lib/payments/orders";
+import { applyOffer } from "@/lib/offers";
+import { todayIST } from "@/lib/growth/dates";
 import { looksLikeReferralCode, normaliseCode } from "@/lib/growth/config";
 import { memberByCode } from "@/lib/growth/members";
 
@@ -28,7 +30,8 @@ export async function POST(req: Request) {
   if (rateLimited(ip)) return NextResponse.json({ error: "Too many attempts — please WhatsApp us instead." }, { status: 429 });
 
   const couple = body.couple === true;
-  const quote = quoteMembership((await getContent()).plans, typeof body.planId === "string" ? body.planId : "", couple);
+  // Price on the server from today's plans (festive offer included), never from the browser.
+  const quote = quoteMembership(applyOffer((await getContent()).plans, todayIST()), typeof body.planId === "string" ? body.planId : "", couple);
   if (!quote) return NextResponse.json({ error: "That plan isn't available online. Please pick another plan." }, { status: 400 });
   const form = parseCheckoutForm(body, couple);
   if (typeof form === "string") return NextResponse.json({ error: form }, { status: 400 });

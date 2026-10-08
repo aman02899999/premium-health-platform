@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Heart, Loader2, Lock, User } from "lucide-react";
-import type { Plan } from "@/lib/content/types";
+import type { OfferPlan } from "@/lib/offers";
 import { formatINR } from "@/lib/site";
 import { planMonths } from "@/components/home/PlanGrid";
 
@@ -31,7 +31,7 @@ type Receipt = { paymentId: string; plan?: string; amount?: string; name?: strin
 
 export type JoinPrefill = { name?: string; phone?: string; email?: string; referredBy?: string; renewal?: { planName: string; expiresOn: string } };
 
-export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Plan[]; gymName: string; whatsapp: string; prefill?: JoinPrefill }) {
+export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: OfferPlan[]; gymName: string; whatsapp: string; prefill?: JoinPrefill }) {
   const params = useSearchParams();
   const renewalPlan = prefill?.renewal ? plans.find((p) => prefill.renewal!.planName.replace(/ \(couple\)$/, "") === p.name) : undefined;
   const initialPlan = plans.find((p) => p.id === params.get("plan")) ?? renewalPlan ?? plans.find((p) => p.featured) ?? plans[0];
@@ -46,7 +46,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Pla
   const canCouple = (plan?.couplePrice ?? 0) > 0;
   const isCouple = couple && canCouple;
   const price = plan ? (isCouple ? plan.couplePrice : plan.price) : 0;
-  const perMonth = plan ? Math.round(price / planMonths(plan.duration)) : 0;
+  const perMonth = plan ? Math.round(price / planMonths(isCouple ? (plan.offer?.standardDuration ?? plan.duration) : plan.duration)) : 0;
   const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -142,7 +142,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Pla
             <label key={p.id} className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl px-4 py-3 ring-1 ${p.id === planId ? "bg-brand/15 ring-brand" : "bg-white/[.03] ring-white/10 hover:ring-white/25"}`}>
               <span>
                 <span className="block font-semibold text-white">{p.name}</span>
-                <span className="text-xs text-white/55">{p.duration}</span>
+                <span className="text-xs text-white/55">{p.offer && !couple ? p.offer.gets : (p.offer?.standardDuration ?? p.duration)}</span>
               </span>
               <span className="font-bold text-white">{formatINR(couple && p.couplePrice ? p.couplePrice : p.price)}</span>
               <input type="radio" name="plan" value={p.id} checked={p.id === planId} onChange={() => setPlanId(p.id)} className="sr-only" />
@@ -205,7 +205,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Pla
       <div className="flex flex-col gap-4 rounded-2xl bg-black/30 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-white/55">
-            {plan?.name} · {plan?.duration}
+            {plan?.name} · {plan?.offer && !isCouple ? plan.offer.gets : (plan?.offer?.standardDuration ?? plan?.duration)}
             {isCouple && " · for 2 people"}
           </p>
           <p className="font-display text-3xl text-white">{formatINR(price)}</p>

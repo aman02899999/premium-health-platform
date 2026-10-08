@@ -39,15 +39,21 @@ export type Span = { months: number; days: number };
  * so no membership is ever given a guessed expiry.
  */
 export function parseDuration(text: string): Span | null {
-  const m = text.trim().toLowerCase().match(/^(\d{1,3})\s*(day|days|week|weeks|month|months|mo|year|years|yr|yrs)$/);
-  if (!m) return null;
-  const n = Number(m[1]);
-  if (!n) return null;
-  const unit = m[2];
-  if (unit.startsWith("day")) return { months: 0, days: n };
-  if (unit.startsWith("week")) return { months: 0, days: n * 7 };
-  if (unit.startsWith("y")) return { months: n * 12, days: 0 };
-  return { months: n, days: 0 };
+  // Offer plans add bonus time: "1 month + 5 days", "12 months + 2 months".
+  const parts = text.trim().toLowerCase().split(/\s*\+\s*/);
+  const span: Span = { months: 0, days: 0 };
+  for (const part of parts) {
+    const m = part.match(/^(\d{1,3})\s*(day|days|week|weeks|month|months|mo|year|years|yr|yrs)$/);
+    if (!m) return null;
+    const n = Number(m[1]);
+    if (!n) return null;
+    const unit = m[2];
+    if (unit.startsWith("day")) span.days += n;
+    else if (unit.startsWith("week")) span.days += n * 7;
+    else if (unit.startsWith("y")) span.months += n * 12;
+    else span.months += n;
+  }
+  return span;
 }
 
 /** Last valid day of a membership that starts on `start` (inclusive): 8 Oct + 1 month → 7 Nov. */

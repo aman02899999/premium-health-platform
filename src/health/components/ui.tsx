@@ -195,10 +195,10 @@ export function Newsletter({ compact }: { compact?: boolean }) {
         <p className="mt-4 flex items-center gap-2 rounded-xl bg-white/10 p-3 text-sm font-medium"><CheckCircle2 className="h-4 w-4 text-amber-300" /> {already ? "You're already on the list." : "You're subscribed to the Indian Health Weekly."}</p>
       ) : (
         <>
-          <form className="mt-4 flex flex-col gap-2 sm:flex-row" onSubmit={submit}>
+          <form className="mt-4 flex flex-wrap gap-2" onSubmit={submit}>
             <label htmlFor="nl-email" className="sr-only">Email address</label>
-            <input id="nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.in" aria-invalid={!!error} className="h-11 flex-1 rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
-            <button disabled={busy} className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-60">{busy ? "Subscribing…" : "Subscribe free"}</button>
+            <input id="nl-email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.in" aria-invalid={!!error} className="h-11 min-w-0 flex-[1_1_12rem] rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
+            <button disabled={busy} className="h-11 flex-[1_0_auto] rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-60">{busy ? "Subscribing…" : "Subscribe free"}</button>
           </form>
           {error && <p className="mt-2 rounded-lg bg-rose-500/20 px-3 py-2 text-xs font-semibold text-rose-100" role="alert">{error}</p>}
         </>

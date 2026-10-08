@@ -97,15 +97,16 @@ export function GrowthApp({ plans, gymName }: { plans: { name: string; duration:
   return (
     <div className="min-h-screen bg-ink text-white">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-ink/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
-          <a href="/admin" className="inline-flex items-center gap-1 rounded-lg px-2 py-1.5 text-sm text-white/60 hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Admin
+        <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-3 sm:gap-3 sm:px-4">
+          <a href="/admin" aria-label="Back to admin" className="inline-flex shrink-0 items-center gap-1 rounded-lg px-2 py-2 text-sm text-white/60 hover:text-white">
+            <ArrowLeft className="h-4 w-4" /> <span className="hidden sm:inline">Admin</span>
           </a>
-          <h1 className="font-display text-lg sm:text-xl">
+          <h1 className="font-display min-w-0 truncate text-lg sm:text-xl">
             <TrendingUp className="mr-1.5 inline h-5 w-5 text-emerald-300" /> Growth &amp; renewals
           </h1>
-          <button type="button" disabled={busy || !data} onClick={() => act({ action: "run-daily" }, "Daily automation ran — due messages are queued.")} className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-white/80 hover:text-white disabled:opacity-50">
-            {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Play className="h-3.5 w-3.5" />} Run today&apos;s automation
+          <button type="button" disabled={busy || !data} onClick={() => act({ action: "run-daily" }, "Daily automation ran — due messages are queued.")} className="ml-auto inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-white/80 hover:text-white disabled:opacity-50">
+            {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Play className="h-3.5 w-3.5" />} <span className="sm:hidden">Run now</span>
+            <span className="hidden sm:inline">Run today&apos;s automation</span>
           </button>
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 pb-2" role="tablist">

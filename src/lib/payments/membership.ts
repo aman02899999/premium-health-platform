@@ -1,16 +1,18 @@
-import type { Plan } from "@/lib/content/types";
+import type { OfferPlan } from "@/lib/offers";
 
 // Pure helpers for online membership checkout (no I/O, safe to unit-test).
 
 export type MembershipQuote = { planId: string; planName: string; duration: string; couple: boolean; amountPaise: number };
 
 /** Price a plan from the server's own plan list: the browser only sends a plan id. */
-export function quoteMembership(plans: Plan[], planId: string, couple: boolean): MembershipQuote | null {
+/** Pass the plans with today's offer applied (applyOffer); couples pay standard prices for standard time. */
+export function quoteMembership(plans: OfferPlan[], planId: string, couple: boolean): MembershipQuote | null {
   const plan = plans.find((p) => p.id === planId);
   if (!plan) return null;
   const rupees = couple ? plan.couplePrice : plan.price;
   if (!Number.isInteger(rupees) || rupees <= 0) return null;
-  return { planId: plan.id, planName: plan.name, duration: plan.duration, couple, amountPaise: rupees * 100 };
+  const duration = couple ? (plan.offer?.standardDuration ?? plan.duration) : plan.duration;
+  return { planId: plan.id, planName: plan.name, duration, couple, amountPaise: rupees * 100 };
 }
 
 export type CheckoutForm = {

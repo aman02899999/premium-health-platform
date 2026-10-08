@@ -294,6 +294,26 @@ input[type="range"] {
   accent-color: var(--color-brand);
 }
 
+/* ---------- Phones & touch screens ---------- */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+@media (max-width: 639px) {
+  /* iOS zooms the page into any form field under 16px; keep fields at 16px on phones. */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+@media (pointer: coarse) {
+  /* A finger needs a taller slider than a mouse does. */
+  input[type="range"] {
+    min-height: 32px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
