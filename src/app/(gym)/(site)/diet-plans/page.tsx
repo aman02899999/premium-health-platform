@@ -23,6 +23,18 @@ export default function DietPlansPage() {
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Health Hub", path: "/health-hub" }, { name: "Diet Plans", path: "/diet-plans" }])} />
       <PageHero eyebrow="Diet plans" title="Ghar ka khana," highlight="done right" intro="Four realistic Indian meal plans, timed around morning and evening gym batches. Every number is calculated from our food database." />
+      <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
+        <Link href="/diet-chart" className="glass brand-border flex flex-col gap-3 rounded-3xl p-6 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">Personal diet chart</span>
+            <span className="font-display mt-1 block text-2xl text-white">Want a chart made for your body and your food?</span>
+            <span className="mt-1 block text-white/60">A coach builds your 7-day Indian chart — your calories, your cuisine, katori and roti portions — and sends the PDF on WhatsApp.</span>
+          </span>
+          <span className="btn-brand inline-flex shrink-0 items-center gap-2 rounded-full px-6 py-3 font-bold">
+            Get my chart <ArrowRight className="h-4 w-4" />
+          </span>
+        </Link>
+      </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 md:grid-cols-2">
         {DIET_PLANS.map((p, i) => {
           const t = planTotals(p);

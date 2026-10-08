@@ -1,68 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isDbConfigured } from "@/health/db";
+import { isAdmin } from "@/health/lib/auth/server";
+import { contactStats, saveContact } from "@/health/lib/signups";
 
-type Subscriber = {
-  id: string;
-  email: string;
-  name?: string;
-  utm_source?: string;
-  utm_medium?: string;
-  utm_campaign?: string;
-  leadMagnet?: string;
-  timestamp: string;
-};
-
-const subscribers: Subscriber[] = [];
+export const dynamic = "force-dynamic";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: NextRequest) {
+  const body = (await req.json().catch(() => null)) as Record<string, unknown> | null;
+  if (!body) return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
+  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  if (!EMAIL_RE.test(email) || email.length > 120) return NextResponse.json({ ok: false, error: "Please enter a valid email address." }, { status: 400 });
+  if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Sign-ups are temporarily unavailable. Please try again later." }, { status: 503 });
   try {
-    const body = await req.json();
-    const { email, name, utm_source, utm_medium, utm_campaign, leadMagnet } = body;
-
-    if (!email || !EMAIL_RE.test(String(email))) {
-      return NextResponse.json({ ok: false, error: "Valid email required" }, { status: 400 });
-    }
-
-    const exists = subscribers.find((s) => s.email.toLowerCase() === String(email).toLowerCase());
-    if (exists) {
-      return NextResponse.json({ ok: true, id: exists.id, message: "Already subscribed — lead magnet sent", duplicate: true });
-    }
-
-    const sub: Subscriber = {
-      id: `sub_${Date.now()}_${Math.random().toString(36).slice(2, 5)}`,
-      email: String(email).toLowerCase().trim(),
-      name: name ? String(name).slice(0, 100) : undefined,
-      utm_source: utm_source?.toString().slice(0, 100),
-      utm_medium: utm_medium?.toString().slice(0, 100),
-      utm_campaign: utm_campaign?.toString().slice(0, 100),
-      leadMagnet: leadMagnet ? String(leadMagnet).slice(0, 100) : "thali-builder-pdf",
-      timestamp: new Date().toISOString(),
-    };
-
-    subscribers.push(sub);
-    if (subscribers.length > 2000) subscribers.shift();
-
-    return NextResponse.json({
-      ok: true,
-      id: sub.id,
-      message: "Subscribed — lead magnet: 7-day thali plan PDF + 20% conversion demo",
-      leadMagnet: sub.leadMagnet,
-      earning: "Newsletter 20% open, 5% click, 2% premium conversion — earning platform — digital marketing optimized",
-      next: "/health/premium?utm_source=newsletter",
-    });
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+    const result = await saveContact("email", email, { name: body.name, source: body.leadMagnet ?? "newsletter", utm_source: body.utm_source, utm_medium: body.utm_medium, utm_campaign: body.utm_campaign });
+    return NextResponse.json({ ok: true, status: result === "exists" ? "already-subscribed" : "subscribed", message: result === "exists" ? "You're already on the list." : "You're subscribed." });
+  } catch (err) {
+    console.error("[newsletter] save failed:", (err as Error).message);
+    return NextResponse.json({ ok: false, error: "Couldn't save your sign-up. Please try again." }, { status: 500 });
   }
 }
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const limit = Math.min(parseInt(searchParams.get("limit") || "50"), 200);
-  return NextResponse.json({
-    ok: true,
-    total: subscribers.length,
-    subscribers: subscribers.slice(-limit).reverse(),
-    note: "Demo in-memory — production use DB + email service + /admin/earning dashboard — UTM tracked",
-  });
+/** Admin only: subscriber counts and the latest sign-ups. */
+export async function GET() {
+  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Database not configured" }, { status: 503 });
+  return NextResponse.json({ ok: true, ...(await contactStats()) });
 }

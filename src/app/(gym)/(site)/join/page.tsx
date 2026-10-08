@@ -7,7 +7,10 @@ import { pageMeta } from "@/lib/seo";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { whatsappHref } from "@/lib/site";
 import { PageHero } from "@/components/ui/Section";
-import { JoinCheckout } from "@/components/join/JoinCheckout";
+import { JoinCheckout, type JoinPrefill } from "@/components/join/JoinCheckout";
+import { memberByRenewToken } from "@/lib/growth/members";
+import { formatDate } from "@/lib/growth/dates";
+import { looksLikeReferralCode } from "@/lib/growth/config";
 
 export const dynamic = "force-dynamic";
 
@@ -23,17 +26,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function JoinPage() {
+export default async function JoinPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const c = await getContent();
   const b = c.business;
   const plans = c.plans.filter((p) => p.price > 0);
+  const sp = await searchParams;
+  const one = (k: string) => (typeof sp[k] === "string" ? (sp[k] as string) : "");
+  // /join?renew=<token> comes from a renewal reminder; /join?ref=<code> from a member's share link.
+  let prefill: JoinPrefill | undefined;
+  const renewing = one("renew") ? await memberByRenewToken(one("renew")).catch(() => null) : null;
+  if (renewing) prefill = { name: renewing.name, phone: renewing.phone, email: renewing.email ?? "", renewal: { planName: renewing.planName, expiresOn: formatDate(renewing.expiresOn) } };
+  else if (looksLikeReferralCode(one("ref"))) prefill = { referredBy: one("ref").toUpperCase() };
   return (
     <>
       <PageHero eyebrow="Join online" title="Start" highlight="today" intro="Pick your plan, pay securely, and show your confirmation at the front desk." />
       <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
         {razorpayConfigured() ? (
           <Suspense>
-            <JoinCheckout plans={plans} gymName={b.name} whatsapp={b.whatsapp} />
+            <JoinCheckout plans={plans} gymName={b.name} whatsapp={b.whatsapp} prefill={prefill} />
           </Suspense>
         ) : (
           <div className="glass brand-border space-y-4 rounded-3xl p-8 text-center">

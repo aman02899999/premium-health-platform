@@ -1,49 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isDbConfigured } from "@/health/db";
+import { isAdmin } from "@/health/lib/auth/server";
+import { contactStats, saveContact } from "@/health/lib/signups";
 
-type WAOptIn = {
-  id: string;
-  phone: string;
-  consent: boolean;
-  utm_source?: string;
-  timestamp: string;
-};
+export const dynamic = "force-dynamic";
 
-const optins: WAOptIn[] = [];
-const PHONE_RE = /^\+?[0-9]{10,15}$/;
+/** Indian mobile → "91XXXXXXXXXX"; other countries keep their code. null if not a phone number. */
+function normalisePhone(raw: string): string | null {
+  const digits = raw.replace(/\D/g, "");
+  if (/^[6-9]\d{9}$/.test(digits)) return `91${digits}`;
+  if (/^0[6-9]\d{9}$/.test(digits)) return `91${digits.slice(1)}`;
+  if (/^91[6-9]\d{9}$/.test(digits)) return digits;
+  return raw.trim().startsWith("+") && /^\d{10,15}$/.test(digits) ? digits : null;
+}
 
 export async function POST(req: NextRequest) {
+  const body = (await req.json().catch(() => null)) as Record<string, unknown> | null;
+  if (!body) return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
+  const phone = normalisePhone(typeof body.phone === "string" ? body.phone : "");
+  if (!phone) return NextResponse.json({ ok: false, error: "Please enter a valid mobile number, e.g. 98765 43210." }, { status: 400 });
+  if (body.consent !== true) return NextResponse.json({ ok: false, error: "Please agree to receive WhatsApp messages." }, { status: 400 });
+  if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Sign-ups are temporarily unavailable. Please try again later." }, { status: 503 });
   try {
-    const body = await req.json();
-    const { phone, consent, utm_source } = body;
-    if (!phone || !PHONE_RE.test(String(phone).replace(/\s/g, ""))) {
-      return NextResponse.json({ ok: false, error: "Valid phone required, e.g., +919999999999" }, { status: 400 });
-    }
-    if (!consent) {
-      return NextResponse.json({ ok: false, error: "Consent required for WhatsApp" }, { status: 400 });
-    }
-
-    const opt: WAOptIn = {
-      id: `wa_${Date.now()}`,
-      phone: String(phone).replace(/\s/g, ""),
-      consent: true,
-      utm_source: utm_source?.toString().slice(0, 100),
-      timestamp: new Date().toISOString(),
-    };
-    optins.push(opt);
-    if (optins.length > 1000) optins.shift();
-
-    return NextResponse.json({
-      ok: true,
-      id: opt.id,
-      message: "WhatsApp opt-in saved — weekly thali PDF + fasting reminders — 40% open rate demo",
-      earning: "WhatsApp 40% open, 15% click — highest engagement + premium conversion — earning platform",
-      next: "/health/premium?utm_source=whatsapp",
-    });
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+    const result = await saveContact("whatsapp", phone, { source: "whatsapp-optin", utm_source: body.utm_source });
+    return NextResponse.json({ ok: true, status: result === "exists" ? "already-subscribed" : "subscribed" });
+  } catch (err) {
+    console.error("[whatsapp optin] save failed:", (err as Error).message);
+    return NextResponse.json({ ok: false, error: "Couldn't save your number. Please try again." }, { status: 500 });
   }
 }
 
 export async function GET() {
-  return NextResponse.json({ ok: true, total: optins.length, note: "Demo in-memory — production use WhatsApp Business API + /admin/earning" });
+  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Database not configured" }, { status: 503 });
+  const s = await contactStats();
+  return NextResponse.json({ ok: true, total: s.whatsapp });
 }

@@ -66,12 +66,12 @@ const fromRow = (r: Row): MembershipOrder => ({
   paidAt: r.paid_at ? r.paid_at.toISOString() : null,
 });
 
-export async function insertOrder(razorpayOrderId: string, quote: MembershipQuote, form: CheckoutForm): Promise<void> {
+export async function insertOrder(razorpayOrderId: string, quote: MembershipQuote, form: CheckoutForm, referralCode: string | null = null): Promise<void> {
   await pool.query(
     `insert into public.membership_orders
-       (razorpay_order_id, plan_id, plan_name, duration, couple, amount_paise, name, phone, email, partner_name, start_date, referred_by)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-    [razorpayOrderId, quote.planId, quote.planName, quote.duration, quote.couple, quote.amountPaise, form.name, form.phone, form.email, form.partnerName, form.startDate, form.referredBy],
+       (razorpay_order_id, plan_id, plan_name, duration, couple, amount_paise, name, phone, email, partner_name, start_date, referred_by, referral_code)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+    [razorpayOrderId, quote.planId, quote.planName, quote.duration, quote.couple, quote.amountPaise, form.name, form.phone, form.email, form.partnerName, form.startDate, form.referredBy, referralCode],
   );
 }
 

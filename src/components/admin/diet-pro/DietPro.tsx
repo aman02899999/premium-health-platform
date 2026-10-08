@@ -14,6 +14,7 @@ import { Check, Choice, Kpi, Num, Section, Select, Tilt } from "./ui";
 import { downloadPlanPdf, type PdfBusiness } from "./pdf";
 import { DietChart } from "./DietChart";
 import { household } from "@/lib/diet-pro/household";
+import { intakeToProfile, type DietIntake } from "@/lib/growth/diet-intake";
 
 const GOALS: { value: Goal; label: string }[] = [
   { value: "fat-loss", label: "Fat loss" },
@@ -148,6 +149,31 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
       } catch {
         if (alive) setMode("local");
       }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // Opened from a paid diet-chart order (/admin/diet-pro?order=<id>): start from the client's answers.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("order");
+    if (!id) return;
+    let alive = true;
+    (async () => {
+      const res = await fetch(`/api/admin/growth/diet-order?id=${encodeURIComponent(id)}`);
+      const json = (await res.json().catch(() => ({}))) as { order?: { name: string; intake: DietIntake }; error?: string };
+      if (!alive) return;
+      if (!res.ok || !json.order) {
+        setFlash(json.error || "Couldn't load that order");
+        return;
+      }
+      setP(intakeToProfile(json.order.name, json.order.intake, DEFAULT));
+      setClientId(null);
+      setSwaps({});
+      setExtras({});
+      setNote(json.order.intake.notes ? `Client's note: ${json.order.intake.notes}` : "");
+      setFlash(`Loaded ${json.order.name}'s order — check the profile, then download the PDF`);
     })();
     return () => {
       alive = false;

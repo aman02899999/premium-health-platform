@@ -1,5 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { saveLead } from "@/lib/content/store";
+import { isDbConfigured } from "@/health/db";
+import { afterLeadSaved } from "@/lib/growth/hooks";
 
 const recent = new Map<string, number[]>();
 
@@ -30,6 +32,8 @@ export async function POST(req: Request) {
 
   try {
     await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source: clean(body.source, 40) || "website" });
+    // After the response: thank them on WhatsApp (or queue it for the admin to send).
+    if (isDbConfigured) after(() => afterLeadSaved(phone));
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[leads] save failed:", (err as Error).message);

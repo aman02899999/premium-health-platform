@@ -4,6 +4,8 @@ import { getContent } from "@/lib/content/store";
 import { parseCheckoutForm, quoteMembership } from "@/lib/payments/membership";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { insertOrder } from "@/lib/payments/orders";
+import { looksLikeReferralCode, normaliseCode } from "@/lib/growth/config";
+import { memberByCode } from "@/lib/growth/members";
 
 export const dynamic = "force-dynamic";
 
@@ -31,13 +33,23 @@ export async function POST(req: Request) {
   const form = parseCheckoutForm(body, couple);
   if (typeof form === "string") return NextResponse.json({ error: form }, { status: 400 });
 
+  // A member's referral code earns both people bonus days; anything else is kept as a note.
+  let referralCode: string | null = null;
+  if (form.referredBy && looksLikeReferralCode(form.referredBy)) {
+    // If the lookup itself fails, don't block the payment: keep it as a note for the admin.
+    const referrer = await memberByCode(form.referredBy).catch(() => undefined);
+    if (referrer === null) return NextResponse.json({ error: "That referral code wasn't found. Check it with your friend, or leave the box empty." }, { status: 400 });
+    if (referrer?.phone === form.phone) return NextResponse.json({ error: "You can't use your own referral code." }, { status: 400 });
+    if (referrer) referralCode = normaliseCode(form.referredBy);
+  }
+
   try {
     const order = await createRazorpayOrder({
       amountPaise: quote.amountPaise,
       receipt: `rfc_${randomUUID().slice(0, 18)}`,
       notes: { plan: `${quote.planName}${couple ? " (couple)" : ""}`, name: form.name, phone: form.phone },
     });
-    await insertOrder(order.id, quote, form);
+    await insertOrder(order.id, quote, form, referralCode);
     return NextResponse.json({
       orderId: order.id,
       keyId: razorpayKeyId(),

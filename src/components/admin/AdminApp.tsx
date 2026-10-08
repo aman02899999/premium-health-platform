@@ -22,6 +22,7 @@ import {
   IndianRupee,
   BookOpen,
   Salad,
+  TrendingUp,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -170,6 +171,9 @@ export function AdminApp({ storage }: { storage: string }) {
         <nav className="flex gap-1 overflow-x-auto lg:sticky lg:top-20 lg:flex-col lg:self-start" aria-label="Sections">
           <a href="/admin/diet-pro" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-brand/15 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-brand/50 hover:bg-brand/25">
             <Salad className="h-4 w-4 text-brand" /> Diet Calculator
+          </a>
+          <a href="/admin/growth" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-emerald-400/40 hover:bg-emerald-500/20">
+            <TrendingUp className="h-4 w-4 text-emerald-300" /> Growth &amp; renewals
           </a>
           {TABS.map((t) => (
             <button
