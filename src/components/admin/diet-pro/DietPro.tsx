@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
-import { Activity, ArrowLeft, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Activity, ArrowLeft, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
@@ -65,7 +65,10 @@ const DEFAULT: ClientProfile = {
 };
 
 type LogEntry = { date: string; weight: number; waist?: number; bf?: number };
-type SavedClient = { id: string; name: string; savedAt: string; profile: ClientProfile; swaps: Record<string, number>; extras: Record<string, { id: string; grams: number }[]>; note: string; log: LogEntry[] };
+type SavedClient = { id: string; name: string; savedAt: string; profile: ClientProfile; swaps: Record<string, number>; extras: Record<string, { id: string; grams: number }[]>; note: string; log: LogEntry[]; consentAt?: string; consentBy?: string; local?: boolean };
+type CloudClient = { id: string; name: string; profile: ClientProfile; swaps: SavedClient["swaps"]; extras: SavedClient["extras"]; note: string; log: LogEntry[]; consentAt: string; consentBy: string; updatedAt: string };
+const fromCloud = (c: CloudClient): SavedClient => ({ ...c, savedAt: c.updatedAt });
+type Mode = "loading" | "cloud" | "local";
 
 const CLIENTS_KEY = "rfc-dietpro-clients-v1";
 const FOODS_KEY = "rfc-dietpro-foods-v1";
@@ -94,8 +97,18 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
   const [note, setNote] = useState("");
   const [log, setLog] = useState<LogEntry[]>([]);
   const [clientId, setClientId] = useState<string | null>(null);
-  const [clients, setClients] = useState<SavedClient[]>(() => read(CLIENTS_KEY, []));
-  const [customFoods, setCustomFoods] = useState<FoodItem[]>(() => read(FOODS_KEY, []));
+  const [consentAt, setConsentAt] = useState<string | null>(null);
+  const [mode, setMode] = useState<Mode>("loading");
+  const [cloudClients, setCloudClients] = useState<SavedClient[]>([]);
+  const [localClients, setLocalClients] = useState<SavedClient[]>(() => read<SavedClient[]>(CLIENTS_KEY, []).map((c) => ({ ...c, local: true })));
+  const [cloudFoods, setCloudFoods] = useState<FoodItem[]>([]);
+  const [localFoods, setLocalFoods] = useState<FoodItem[]>(() => read(FOODS_KEY, []));
+  const clients = mode === "cloud" ? [...cloudClients, ...localClients] : localClients;
+  const customFoods = useMemo(() => {
+    const m = new Map<string, FoodItem>();
+    for (const f of [...localFoods, ...cloudFoods]) m.set(f.id, f);
+    return [...m.values()];
+  }, [localFoods, cloudFoods]);
   const [tab, setTab] = useState<Tab>("analysis");
   const [day, setDay] = useState(0);
   const [view, setView] = useState<BodyView>("anatomy");
@@ -105,6 +118,28 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
   const [busy, setBusy] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
   const body = useRef<Body3DHandle>(null);
+
+  // Load the shared, admin-only cloud records; fall back to this browser if unavailable.
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const [c, f] = await Promise.all([fetch("/api/admin/diet-pro/clients"), fetch("/api/admin/diet-pro/foods")]);
+        if (!c.ok || !f.ok) throw new Error(String(c.status));
+        const cj = (await c.json()) as { clients: CloudClient[] };
+        const fj = (await f.json()) as { foods: FoodItem[] };
+        if (!alive) return;
+        setCloudClients(cj.clients.map(fromCloud));
+        setCloudFoods(fj.foods);
+        setMode("cloud");
+      } catch {
+        if (alive) setMode("local");
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const set = (patch: Partial<ClientProfile>) => setP((x) => ({ ...x, ...patch }));
   const T = useMemo(() => targets(p), [p]);
@@ -142,13 +177,45 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
     }
   }
 
-  function saveClient() {
+  async function api<T>(url: string, init?: RequestInit): Promise<T> {
+    const res = await fetch(url, { ...init, headers: { "content-type": "application/json", ...(init?.headers ?? {}) } });
+    const json = (await res.json().catch(() => ({}))) as T & { error?: string };
+    if (!res.ok) throw new Error(json.error || `Error ${res.status}`);
+    return json;
+  }
+
+  function saveLocal(next: SavedClient[]) {
+    setLocalClients(next);
+    write(CLIENTS_KEY, next.map(({ local: _l, ...c }) => c));
+  }
+
+  async function saveClient() {
     if (!p.name.trim()) return toast("Add the client's name first");
+    if (mode === "cloud") {
+      if (!consentAt) return toast("Tick the client's consent first");
+      setBusy(true);
+      try {
+        const isCloudId = cloudClients.some((c) => c.id === clientId);
+        const { client } = await api<{ client: CloudClient }>("/api/admin/diet-pro/clients", {
+          method: "POST",
+          body: JSON.stringify({ id: isCloudId ? clientId : undefined, name: p.name.trim(), profile: p, swaps, extras, note, log, consentAt, consentBy: coach }),
+        });
+        const rec = fromCloud(client);
+        setCloudClients((list) => [rec, ...list.filter((c) => c.id !== rec.id)]);
+        // A client that was only on this device now lives in the cloud.
+        if (clientId && !isCloudId) saveLocal(localClients.filter((c) => c.id !== clientId));
+        setClientId(rec.id);
+        toast(`Saved ${rec.name} to the cloud`);
+      } catch (e) {
+        toast((e as Error).message);
+      } finally {
+        setBusy(false);
+      }
+      return;
+    }
     const id = clientId ?? `c${Date.now().toString(36)}`;
-    const rec: SavedClient = { id, name: p.name.trim(), savedAt: new Date().toISOString(), profile: p, swaps, extras, note, log };
-    const next = [rec, ...clients.filter((c) => c.id !== id)];
-    setClients(next);
-    write(CLIENTS_KEY, next);
+    const rec: SavedClient = { id, name: p.name.trim(), savedAt: new Date().toISOString(), profile: p, swaps, extras, note, log, consentAt: consentAt ?? undefined, local: true };
+    saveLocal([rec, ...localClients.filter((c) => c.id !== id)]);
     setClientId(id);
     toast(`Saved ${rec.name} on this device`);
   }
@@ -159,14 +226,21 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
     setNote(c.note ?? "");
     setLog(c.log ?? []);
     setClientId(c.id);
+    setConsentAt(c.consentAt ?? null);
     setDay(0);
   }
-  function deleteClient(id: string) {
-    if (!confirm("Delete this client from this device?")) return;
-    const next = clients.filter((c) => c.id !== id);
-    setClients(next);
-    write(CLIENTS_KEY, next);
-    if (clientId === id) setClientId(null);
+  async function deleteClient(c: SavedClient) {
+    if (!confirm(`Permanently delete ${c.name}${c.local ? " from this device" : " and all their data"}?`)) return;
+    if (c.local) saveLocal(localClients.filter((x) => x.id !== c.id));
+    else {
+      try {
+        await api(`/api/admin/diet-pro/clients?id=${encodeURIComponent(c.id)}`, { method: "DELETE" });
+        setCloudClients((list) => list.filter((x) => x.id !== c.id));
+      } catch (e) {
+        return toast((e as Error).message);
+      }
+    }
+    if (clientId === c.id) setClientId(null);
   }
   function newClient() {
     setP(DEFAULT);
@@ -175,9 +249,68 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
     setNote("");
     setLog([]);
     setClientId(null);
+    setConsentAt(null);
+  }
+  /** Move clients and foods that only exist in this browser into the cloud. */
+  async function moveToCloud() {
+    if (!localClients.length && !localFoods.length) return;
+    if (localClients.length && !confirm(`Upload ${localClients.length} client(s) from this device? Only continue if each of them agreed to the gym storing their health data.`)) return;
+    setBusy(true);
+    let moved = 0;
+    const left: SavedClient[] = [];
+    for (const c of localClients) {
+      try {
+        const { client } = await api<{ client: CloudClient }>("/api/admin/diet-pro/clients", {
+          method: "POST",
+          body: JSON.stringify({ name: c.name, profile: c.profile, swaps: c.swaps, extras: c.extras, note: c.note, log: c.log, consentAt: c.consentAt ?? new Date().toISOString(), consentBy: c.consentAt ? coach : `${coach} (confirmed when moving to cloud)` }),
+        });
+        setCloudClients((list) => [fromCloud(client), ...list]);
+        if (clientId === c.id) setClientId(client.id);
+        moved++;
+      } catch {
+        left.push(c);
+      }
+    }
+    saveLocal(left);
+    const keptFoods: FoodItem[] = [];
+    for (const f of localFoods) {
+      try {
+        await api("/api/admin/diet-pro/foods", { method: "POST", body: JSON.stringify(f) });
+        setCloudFoods((list) => [f, ...list.filter((x) => x.id !== f.id)]);
+      } catch {
+        keptFoods.push(f);
+      }
+    }
+    setLocalFoods(keptFoods);
+    write(FOODS_KEY, keptFoods);
+    setBusy(false);
+    toast(left.length || keptFoods.length ? `Moved ${moved}; ${left.length + keptFoods.length} failed — try again` : `Moved ${moved} client(s) to the cloud`);
+  }
+  async function setFoods(next: FoodItem[]) {
+    if (mode !== "cloud") {
+      setLocalFoods(next);
+      write(FOODS_KEY, next);
+      return;
+    }
+    const added = next.filter((f) => !customFoods.some((x) => x.id === f.id));
+    const removed = customFoods.filter((f) => !next.some((x) => x.id === f.id));
+    try {
+      for (const f of added) await api("/api/admin/diet-pro/foods", { method: "POST", body: JSON.stringify(f) });
+      for (const f of removed) {
+        if (cloudFoods.some((x) => x.id === f.id)) await api(`/api/admin/diet-pro/foods?id=${encodeURIComponent(f.id)}`, { method: "DELETE" });
+      }
+      setCloudFoods((list) => [...added, ...list.filter((x) => !removed.some((r) => r.id === x.id))]);
+      if (removed.some((r) => localFoods.some((x) => x.id === r.id))) {
+        const lf = localFoods.filter((x) => !removed.some((r) => r.id === x.id));
+        setLocalFoods(lf);
+        write(FOODS_KEY, lf);
+      }
+    } catch (e) {
+      toast((e as Error).message);
+    }
   }
   function exportAll() {
-    const blob = new Blob([JSON.stringify({ clients, foods: customFoods }, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify({ clients: clients.map(({ local: _l, ...c }) => c), foods: customFoods }, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `diet-pro-backup-${new Date().toISOString().slice(0, 10)}.json`;
@@ -187,17 +320,16 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
   async function importAll(file: File) {
     try {
       const data = JSON.parse(await file.text()) as { clients?: SavedClient[]; foods?: FoodItem[] };
-      const byId = new Map(clients.map((c) => [c.id, c]));
-      for (const c of data.clients ?? []) if (c?.id && c.profile) byId.set(c.id, c);
-      const nextClients = [...byId.values()];
-      setClients(nextClients);
-      write(CLIENTS_KEY, nextClients);
-      const fById = new Map(customFoods.map((f) => [f.id, f]));
-      for (const f of data.foods ?? []) if (f?.id?.startsWith("usda-")) fById.set(f.id, f);
+      // Imports land on this device first; "Move to cloud" uploads them after a consent check.
+      const known = new Set(clients.map((c) => c.id));
+      const incoming = (data.clients ?? []).filter((c) => c?.id && c.profile && !known.has(c.id)).map((c) => ({ ...c, local: true }));
+      saveLocal([...incoming, ...localClients]);
+      const fById = new Map(localFoods.map((f) => [f.id, f]));
+      for (const f of data.foods ?? []) if (f?.id?.startsWith("usda-") && !cloudFoods.some((x) => x.id === f.id)) fById.set(f.id, f);
       const nextFoods = [...fById.values()];
-      setCustomFoods(nextFoods);
+      setLocalFoods(nextFoods);
       write(FOODS_KEY, nextFoods);
-      toast(`Imported ${data.clients?.length ?? 0} clients`);
+      toast(`Imported ${incoming.length} client(s) to this device`);
     } catch {
       toast("That file is not a Diet Pro backup");
     }
@@ -227,6 +359,9 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
             </span>
           </div>
           {flash && <span className="text-xs text-emerald-300">{flash}</span>}
+          <span className={`hidden items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ring-1 sm:inline-flex ${mode === "cloud" ? "text-emerald-200 ring-emerald-400/40" : mode === "local" ? "text-amber-200 ring-amber-300/40" : "text-white/50 ring-white/15"}`}>
+            {mode === "cloud" ? <Cloud className="h-3 w-3" /> : <CloudOff className="h-3 w-3" />} {mode === "cloud" ? "Cloud" : mode === "local" ? "This browser" : "…"}
+          </span>
           <button type="button" onClick={newClient} className="rounded-lg border border-white/15 px-3 py-2 text-xs text-white/75 hover:text-white">
             New client
           </button>
@@ -254,6 +389,13 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
               <Num label="Weight" unit="kg" value={p.weightKg} min={30} max={250} step={0.1} onChange={(v) => v && set({ weightKg: v })} />
             </div>
             <Num label="Target weight" unit="kg (optional)" value={p.targetWeightKg} optional min={30} max={250} step={0.5} onChange={(v) => set({ targetWeightKg: v })} />
+            <label className={`flex cursor-pointer items-start gap-2 rounded-xl border px-3 py-2 text-[11px] leading-snug ${consentAt ? "border-emerald-400/40 bg-emerald-400/10 text-emerald-100" : "border-amber-300/40 bg-amber-400/10 text-amber-100"}`}>
+              <input type="checkbox" className="mt-0.5 accent-[#e8394b]" checked={!!consentAt} onChange={(e) => setConsentAt(e.target.checked ? new Date().toISOString() : null)} />
+              <span>
+                Client agreed that {business.name} may store their body measurements and health details to prepare their plan, and knows they can ask for deletion at any time.
+                {consentAt && <span className="block text-[10px] opacity-70">Recorded {new Date(consentAt).toLocaleString("en-IN")}</span>}
+              </span>
+            </label>
           </Section>
 
           <Section title="Tape measurements" icon={<Ruler className="h-4 w-4 text-brand" />}>
@@ -332,15 +474,27 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
           </Section>
 
           <Section title={`Saved clients (${clients.length})`} icon={<Database className="h-4 w-4 text-brand" />} defaultOpen={false}>
-            <p className="text-[11px] text-white/45">Stored in this browser only — nothing is uploaded. Export a backup to move devices.</p>
+            <p className="text-[11px] text-white/45">
+              {mode === "cloud"
+                ? "Saved to the gym's secure database — only admins can see them, from any device. Deleting a client removes all their data."
+                : mode === "loading"
+                  ? "Connecting to the cloud…"
+                  : "Cloud unavailable — clients are kept in this browser only. Export a backup."}
+            </p>
+            {mode === "cloud" && (localClients.length > 0 || localFoods.length > 0) && (
+              <button type="button" onClick={moveToCloud} disabled={busy} className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand/20 py-2 text-xs font-bold text-white ring-1 ring-brand/50 disabled:opacity-50">
+                <CloudUpload className="h-3.5 w-3.5" /> Move {localClients.length} client(s){localFoods.length ? ` + ${localFoods.length} food(s)` : ""} from this device to the cloud
+              </button>
+            )}
             <ul className="grid max-h-56 gap-1 overflow-auto">
               {clients.map((c) => (
                 <li key={c.id} className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-xs ${clientId === c.id ? "bg-brand/20" : "bg-black/20"}`}>
                   <button type="button" onClick={() => loadClient(c)} className="flex-1 text-left">
                     <span className="font-semibold text-white">{c.name}</span>
+                    {c.local && mode === "cloud" && <span className="ml-1.5 rounded bg-amber-400/20 px-1 text-[9px] font-bold uppercase text-amber-200">this device</span>}
                     <span className="block text-[10px] text-white/40">{new Date(c.savedAt).toLocaleString("en-IN")}</span>
                   </button>
-                  <button type="button" onClick={() => deleteClient(c.id)} aria-label={`Delete ${c.name}`} className="text-white/40 hover:text-rose-300">
+                  <button type="button" onClick={() => deleteClient(c)} aria-label={`Delete ${c.name}`} className="text-white/40 hover:text-rose-300">
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
                 </li>
@@ -662,7 +816,7 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
             </div>
           )}
 
-          {tab === "foods" && <FoodData foods={foods} custom={customFoods} setCustom={(f) => (setCustomFoods(f), write(FOODS_KEY, f))} />}
+          {tab === "foods" && <FoodData foods={foods} custom={customFoods} setCustom={setFoods} />}
 
           {tab === "progress" && <Progress log={log} setLog={setLog} weight={p.weightKg} waist={p.m.waist} bf={A.bodyFat} saved={!!clientId} />}
         </section>
