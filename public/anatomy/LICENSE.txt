@@ -1,0 +1,12 @@
+3D anatomy models in this folder (muscles.glb, bones.glb, skin.glb)
+
+Adapted from Z-Anatomy (https://github.com/LluisV/Z-Anatomy), licensed CC BY-SA 4.0,
+which is derived from BodyParts3D, (c) The Database Center for Life Science (DBCLS),
+licensed CC BY-SA 2.1 Japan.
+
+Changes: converted from FBX to glTF, mesh-simplified and compressed, label objects removed,
+muscles grouped by training region, and genital / pelvic-floor regions removed from the skin.
+Rebuilt with scripts/build-anatomy.mjs.
+
+These adapted models are shared under the same licence, CC BY-SA 4.0:
+https://creativecommons.org/licenses/by-sa/4.0/

@@ -1,17 +1,19 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Activity, ArrowLeft, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
+import { Activity, ArrowLeft, ClipboardList, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
 import { lifestyle, supplements, training } from "@/lib/diet-pro/guidance";
 import { deviation, foodTable, planDays } from "@/lib/diet-pro/meals";
-import type { Allergen, ClientProfile, DietPref, FoodItem, Goal, Style } from "@/lib/diet-pro/types";
+import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style } from "@/lib/diet-pro/types";
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
-import { Body3D, filledMeasurements, type Body3DHandle, type BodyView } from "./Body3D";
+import { Body3D, filledMeasurements, type Body3DHandle, type BodyPick, type BodyView } from "./Body3D";
 import { Check, Choice, Kpi, Num, Section, Select, Tilt } from "./ui";
 import { downloadPlanPdf, type PdfBusiness } from "./pdf";
+import { DietChart } from "./DietChart";
+import { household } from "@/lib/diet-pro/household";
 
 const GOALS: { value: Goal; label: string }[] = [
   { value: "fat-loss", label: "Fat loss" },
@@ -34,6 +36,17 @@ const STYLES: { value: Style; label: string }[] = [
   { value: "keto", label: "Keto (<50 g carbs)" },
   { value: "diabetic", label: "Diabetes-friendly (low GI)" },
   { value: "pcos", label: "PCOS-friendly (low GI)" },
+  { value: "heart", label: "Heart-healthy (low sat. fat)" },
+  { value: "high-fibre", label: "High fibre (gut health)" },
+  { value: "sattvic", label: "Sattvic (no onion / mushroom)" },
+  { value: "vrat", label: "Vrat / fasting day" },
+];
+const CUISINES: { value: Cuisine; label: string }[] = [
+  { value: "any", label: "All-India mix" },
+  { value: "north", label: "North Indian (Punjabi, UP, Delhi)" },
+  { value: "south", label: "South Indian (TN, Kerala, Karnataka, AP)" },
+  { value: "west", label: "West Indian (Gujarati, Maharashtrian)" },
+  { value: "east", label: "East Indian (Bengali, Odia)" },
 ];
 const ALLERGENS: Allergen[] = ["dairy", "gluten", "nuts", "peanut", "soy", "egg", "fish", "shellfish", "sesame"];
 const label = <T extends string>(list: { value: T; label: string }[], v: T) => list.find((x) => x.value === v)?.label ?? v;
@@ -88,7 +101,7 @@ const write = (k: string, v: unknown) => {
   }
 };
 
-type Tab = "analysis" | "meals" | "training" | "guidance" | "foods" | "progress";
+type Tab = "analysis" | "chart" | "meals" | "training" | "guidance" | "foods" | "progress";
 
 export default function DietPro({ business, coach }: { business: PdfBusiness; coach: string }) {
   const [p, setP] = useState<ClientProfile>(DEFAULT);
@@ -111,9 +124,9 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
   }, [localFoods, cloudFoods]);
   const [tab, setTab] = useState<Tab>("analysis");
   const [day, setDay] = useState(0);
-  const [view, setView] = useState<BodyView>("anatomy");
+  const [view, setView] = useState<BodyView>("muscles");
   const [rings, setRings] = useState(true);
-  const [muscle, setMuscle] = useState<Muscle | null>(null);
+  const [muscle, setMuscle] = useState<BodyPick>(null);
   const [trainDay, setTrainDay] = useState(0);
   const [busy, setBusy] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
@@ -424,6 +437,16 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
           <Section title="Diet" icon={<Utensils className="h-4 w-4 text-brand" />}>
             <Choice label="Food preference" value={p.diet} onChange={(diet) => set({ diet })} options={DIETS} />
             <Select label="Diet style" value={p.style} onChange={(style) => set({ style })} options={STYLES} />
+            <Select label="Cuisine" value={p.cuisine ?? "any"} onChange={(cuisine) => set({ cuisine })} options={CUISINES} />
+            <div className="grid grid-cols-2 gap-2">
+              <label className="block">
+                <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Wakes up at</span>
+                <input type="time" value={p.wakeTime ?? "06:30"} onChange={(e) => set({ wakeTime: e.target.value || undefined })} className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
+              </label>
+              <div className="flex items-end">
+                <Check label="Budget foods only" checked={!!p.budget} onChange={(budget) => set({ budget })} />
+              </div>
+            </div>
             <Choice label="Meals per day" value={p.mealsPerDay} onChange={(mealsPerDay) => set({ mealsPerDay })} options={[3, 4, 5, 6].map((n) => ({ value: n as 3 | 4 | 5 | 6, label: String(n) }))} />
             <div>
               <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Allergies / avoid</span>
@@ -528,7 +551,7 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
             <Tilt className="relative overflow-hidden p-0" strength={2}>
               <div className="absolute inset-x-0 top-0 z-10 flex flex-wrap items-center gap-2 p-3">
-                <Choice label="" value={view} onChange={setView} options={[{ value: "anatomy", label: "Anatomy" }, { value: "skin", label: "Body" }]} />
+                <Choice label="" value={view} onChange={setView} options={[{ value: "muscles", label: "Muscles" }, { value: "xray", label: "X-ray" }, { value: "skeleton", label: "Skeleton" }, { value: "skin", label: "Body" }]} />
                 <button type="button" onClick={() => setRings((r) => !r)} className={`h-8 self-end rounded-lg px-2.5 text-xs font-bold ring-1 ${rings ? "bg-brand/20 text-white ring-brand/50" : "text-white/50 ring-white/15"}`}>
                   Tape rings
                 </button>
@@ -539,17 +562,27 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
               <div className="border-t border-white/10 p-3 text-xs">
                 {muscle ? (
                   <div>
-                    <p className="font-bold text-sky">{MUSCLES.find((x) => x.id === muscle)?.label}</p>
-                    <p className="mt-1 text-white/60">
-                      {EXERCISES.filter((e) => e.primary === muscle)
-                        .slice(0, 5)
-                        .map((e) => e.name)
-                        .join(" · ")}
+                    <p className="font-bold text-sky">
+                      {muscle.label}
+                      {muscle.side && <span className="font-normal text-white/50"> · {muscle.side}</span>}
+                      <button type="button" onClick={() => setMuscle(null)} className="ml-2 text-white/40 hover:text-white" aria-label="Clear selection">
+                        ×
+                      </button>
                     </p>
+                    <p className="text-[10px] uppercase tracking-wider text-white/40">Group: {MUSCLES.find((x) => x.id === muscle.group)?.label ?? muscle.group}</p>
+                    {MUSCLES.some((x) => x.id === muscle.group) && (
+                      <p className="mt-1 text-white/60">
+                        Train it with:{" "}
+                        {EXERCISES.filter((e) => e.primary === (muscle.group as Muscle))
+                          .slice(0, 5)
+                          .map((e) => e.name)
+                          .join(" · ")}
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <p className="text-white/45">
-                    Drag to rotate · click a muscle for exercises · red = trained on{" "}
+                    Drag to rotate · scroll to zoom · right-drag to move · click a muscle · bright red = trained on{" "}
                     {train.length ? (
                       <select value={trainDay} onChange={(e) => setTrainDay(Number(e.target.value))} className="rounded bg-black/40 px-1 text-white">
                         {train.map((d, i) => (
@@ -604,7 +637,8 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
             {(
               [
                 ["analysis", "Targets", FlaskConical],
-                ["meals", "7-day meals", Utensils],
+                ["chart", "Diet chart", ClipboardList],
+                ["meals", "Meal builder", Utensils],
                 ["training", "Training", Dumbbell],
                 ["guidance", "Guidance", HeartPulse],
                 ["foods", "Food data", Database],
@@ -668,6 +702,8 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
             </Tilt>
           )}
 
+          {tab === "chart" && <DietChart days={days} day={day} setDay={setDay} p={p} />}
+
           {tab === "meals" && meal && (
             <div className="grid gap-4">
               <div className="flex flex-wrap items-center gap-1.5">
@@ -721,7 +757,10 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
                                   {it.food.source.db !== "LABEL" ? ` ${it.food.source.ref}` : ""}
                                 </span>
                               </td>
-                              <td className="text-white/80">{it.label}</td>
+                              <td className="text-white/80">
+                                {it.label}
+                                <span className="block text-[10px] text-sky/80">{household(it.food.id, it.grams, m.template, p.useWhey ? p.whey : undefined).qty}</span>
+                              </td>
                               <td className="text-right tabular-nums">{Math.round(it.macro.kcal)}</td>
                               <td className="text-right tabular-nums">{it.macro.p.toFixed(1)}</td>
                               <td className="text-right tabular-nums">{it.macro.c.toFixed(1)}</td>

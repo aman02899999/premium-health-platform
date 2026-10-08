@@ -131,7 +131,7 @@ export const kcalFloor = (sex: Sex) => (sex === "male" ? 1500 : 1200);
 // higher end (up to ~2.3–3.1 g/kg lean mass) during a deficit (Helms 2014).
 const PROTEIN: Record<Goal, number> = { "fat-loss": 2.0, recomp: 2.0, maintain: 1.6, "lean-gain": 1.8, gain: 1.6 };
 // Fat share of energy. ICMR-NIN 2020 / WHO: 20–30 % for a balanced diet.
-const FAT_PCT: Record<Style, number> = { balanced: 0.25, "high-protein": 0.25, "low-carb": 0.4, keto: 0.7, diabetic: 0.3, pcos: 0.3 };
+const FAT_PCT: Record<Style, number> = { balanced: 0.25, "high-protein": 0.25, "low-carb": 0.4, keto: 0.7, diabetic: 0.3, pcos: 0.3, heart: 0.27, "high-fibre": 0.25, vrat: 0.3, sattvic: 0.25 };
 
 export type Warning = { tone: "warn" | "alert"; text: string };
 
@@ -218,11 +218,14 @@ export function targets(p: ClientProfile) {
     warnings.push({ tone: "warn", text: "Protein target trimmed to fit the calorie budget." });
   }
 
-  // Fibre: 14 g per 1,000 kcal (Dietary Guidelines for Americans 2020–2025).
-  const fibre = Math.round((kcal / 1000) * 14);
+  // Fibre: 14 g per 1,000 kcal (Dietary Guidelines for Americans 2020–2025); high-fibre style aims higher.
+  const fibre = Math.round((kcal / 1000) * (p.style === "high-fibre" ? 18 : 14));
   // Water: EFSA 2010 adequate total intake 2.5 L men / 2.0 L women, ~80 % from drinks; +0.5 L per training hour.
   const drinkL = (p.sex === "male" ? 2.5 : 2.0) * 0.8;
   if (p.conditions.diabetes) warnings.push({ tone: "warn", text: "Diabetes on insulin or sulfonylureas: a calorie or carbohydrate reduction can cause low sugar. Medication must be reviewed by the doctor first; monitor glucose." });
+  if (p.style === "heart") warnings.push({ tone: "warn", text: "Heart-healthy (DASH-style): plenty of vegetables, fruit, pulses and low-fat dairy; sodium ideally under 1,500 mg/day; mustard, groundnut or olive oil instead of ghee." });
+  if (p.style === "vrat" && p.diet === "vegan") warnings.push({ tone: "alert", text: "Vrat foods are dairy-based (paneer, curd, milk). A vegan vrat cannot reach protein targets, so this plan uses regular vegan meals. Use a vegetarian diet for fasting days." });
+  else if (p.style === "vrat") warnings.push({ tone: "warn", text: "Vrat / fasting plan uses only fasting foods (sabudana, kuttu, rajgira, singhara, potato, paneer, curd, fruit, nuts). Protein is harder to reach — use it for fasting days, not as a long-term diet." });
   if (p.conditions.hypertension) warnings.push({ tone: "warn", text: "Hypertension: keep sodium under 2,000 mg/day (WHO) — about 5 g salt including salt in cooking." });
   if (p.conditions.hypothyroid) warnings.push({ tone: "warn", text: "Hypothyroid: take levothyroxine on an empty stomach; keep soy, calcium and iron 4 hours away from the dose." });
   if (p.conditions.pcos) warnings.push({ tone: "warn", text: "PCOS: 5–10 % weight loss improves cycles and insulin resistance (International PCOS Guideline 2023). Low-GI carbs and regular strength training help." });
