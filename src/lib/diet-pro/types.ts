@@ -84,6 +84,8 @@ export type ClientProfile = {
   budget?: boolean;
   /** "HH:MM", used to time the meals on the chart. */
   wakeTime?: string;
+  /** "HH:MM" the session usually starts; links pre- and post-workout meals to the diet chart. */
+  trainTime?: string;
   allergies: Allergen[];
   conditions: Conditions;
   useWhey: boolean;

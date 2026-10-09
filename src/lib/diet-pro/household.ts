@@ -105,11 +105,23 @@ export function household(id: string, grams: number, dish = "", whey?: { scoopG:
 
 /** Clock times for each meal, from the client's wake-up time. Offsets in minutes. */
 const OFFSETS: Record<string, number> = { Breakfast: 90, "Mid-morning snack": 270, Lunch: 420, "Evening snack": 630, Dinner: 810, Bedtime: 930 };
-export function mealTime(label: string, wake = "06:30", meals = 5): string {
-  const [h, m] = (/^\d{1,2}:\d{2}$/.test(wake) ? wake : "06:30").split(":").map(Number);
-  // Three meals a day: dinner a little earlier, there is no evening snack to bridge to it.
-  const off = (OFFSETS[label] ?? 0) - (meals === 3 && label === "Dinner" ? 30 : 0);
-  const t = (h * 60 + m + off) % 1440;
+/** "HH:MM" → minutes after midnight (fallback when the value is missing or malformed). */
+export function toMinutes(hhmm: string | undefined, fallback = "06:30"): number {
+  const [h, m] = (hhmm && /^\d{1,2}:\d{2}$/.test(hhmm) ? hhmm : fallback).split(":").map(Number);
+  return h * 60 + m;
+}
+/** Minutes after midnight → "6:30 pm". */
+export function clock(min: number): string {
+  const t = ((min % 1440) + 1440) % 1440;
   const hh = Math.floor(t / 60);
   return `${((hh + 11) % 12) + 1}:${String(t % 60).padStart(2, "0")} ${hh < 12 ? "am" : "pm"}`;
+}
+/** When a meal is eaten, in minutes after midnight. */
+export function mealMinutes(label: string, wake = "06:30", meals = 5): number {
+  // Three meals a day: dinner a little earlier, there is no evening snack to bridge to it.
+  const off = (OFFSETS[label] ?? 0) - (meals === 3 && label === "Dinner" ? 30 : 0);
+  return (toMinutes(wake) + off) % 1440;
+}
+export function mealTime(label: string, wake = "06:30", meals = 5): string {
+  return clock(mealMinutes(label, wake, meals));
 }

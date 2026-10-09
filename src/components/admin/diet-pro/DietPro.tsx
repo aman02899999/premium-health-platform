@@ -6,12 +6,13 @@ import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianG
 import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
 import { lifestyle, supplements, training } from "@/lib/diet-pro/guidance";
+import { heartZones, weeklySchedule } from "@/lib/diet-pro/program";
 import { deviation, foodTable, planDays } from "@/lib/diet-pro/meals";
 import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style } from "@/lib/diet-pro/types";
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
 import { Body3D, filledMeasurements, type Body3DHandle, type BodyPick, type BodyView } from "./Body3D";
 import { Check, Choice, Kpi, Num, Section, Select, Tilt } from "./ui";
-import { downloadPlanPdf, type PdfBusiness, type PdfCoach } from "./pdf";
+import { downloadPlanPdf, type PdfBusiness, type PdfCoach, type PdfExtras } from "./pdf";
 import { DietChart } from "./DietChart";
 import { household } from "@/lib/diet-pro/household";
 import { intakeToProfile, type DietIntake } from "@/lib/growth/diet-intake";
@@ -88,6 +89,7 @@ type Mode = "loading" | "cloud" | "local";
 const CLIENTS_KEY = "rfc-dietpro-clients-v1";
 const FOODS_KEY = "rfc-dietpro-foods-v1";
 const BRAND_KEY = "rfc-dietpro-brand-v1";
+const EXTRAS_KEY = "rfc-dietpro-pdf-extras-v1";
 const read = <T,>(k: string, fallback: T): T => {
   try {
     const raw = localStorage.getItem(k);
@@ -112,7 +114,14 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
   const setBrandField = (patch: Partial<PdfCoach>) =>
     setBrand((b) => {
       const next = { ...b, ...patch };
-      write(BRAND_KEY, { name: next.name, title: next.title, experience: next.experience, certification: next.certification });
+      write(BRAND_KEY, { name: next.name, title: next.title, experience: next.experience, certification: next.certification, certifiedSince: next.certifiedSince });
+      return next;
+    });
+  const [extrasPdf, setExtrasPdf] = useState<PdfExtras>(() => ({ roadmap: true, grocery: true, tracker: true, ...read<Partial<PdfExtras>>(EXTRAS_KEY, {}) }));
+  const toggleExtra = (k: keyof PdfExtras, on: boolean) =>
+    setExtrasPdf((x) => {
+      const next = { ...x, [k]: on };
+      write(EXTRAS_KEY, next);
       return next;
     });
   const [p, setP] = useState<ClientProfile>(DEFAULT);
@@ -193,7 +202,9 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
   const set = (patch: Partial<ClientProfile>) => setP((x) => ({ ...x, ...patch }));
   const T = useMemo(() => targets(p), [p]);
   const days = useMemo(() => planDays(T, p, 7, swaps, customFoods, extras), [T, p, swaps, customFoods, extras]);
-  const train = useMemo(() => training(p), [p]);
+  // Training follows the goal the plan actually uses (a safety rule can turn fat loss into maintenance).
+  const train = useMemo(() => training({ ...p, goal: T.goal }), [p, T.goal]);
+  const week = useMemo(() => weeklySchedule(p, T, train, days), [p, T, train, days]);
   const supps = useMemo(() => supplements(p), [p]);
   const habits = useMemo(() => lifestyle(p), [p]);
   const foods = useMemo(() => foodTable(p, customFoods), [p, customFoods]);
@@ -220,7 +231,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
     setBusy(true);
     try {
       const img = body.current?.snapshot() ?? null;
-      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, bodyImage: img, labels });
+      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, extras: extrasPdf, bodyImage: img, labels });
     } catch (e) {
       console.error(e);
       toast(`PDF failed: ${(e as Error).message || "unknown error"}`);
@@ -470,7 +481,13 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               <Num label="Training days" unit="/week" value={p.trainingDays} min={0} max={6} onChange={(v) => v !== undefined && set({ trainingDays: v })} />
               <Select label="Level" value={p.level} onChange={(level) => set({ level })} options={[{ value: "beginner", label: "Beginner" }, { value: "intermediate", label: "Intermediate" }, { value: "advanced", label: "Advanced" }]} />
             </div>
-            <Choice label="Trains at" value={p.setting} onChange={(setting) => set({ setting })} options={[{ value: "gym", label: "Gym" }, { value: "home", label: "Home" }]} />
+            <div className="grid grid-cols-[1fr_auto] gap-2">
+              <Choice label="Trains at" value={p.setting} onChange={(setting) => set({ setting })} options={[{ value: "gym", label: "Gym" }, { value: "home", label: "Home" }]} />
+              <label className="block">
+                <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Usual time</span>
+                <input type="time" value={p.trainTime ?? "18:00"} onChange={(e) => set({ trainTime: e.target.value || undefined })} className="h-10 rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
+              </label>
+            </div>
           </Section>
 
           <Section title="Diet" icon={<Utensils className="h-4 w-4 text-brand" />}>
@@ -541,7 +558,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               [
                 ["name", "Coach name", "Aman Sharma"],
                 ["title", "Credential", "Certified Nutritionist"],
-                ["experience", "Experience", "16+ years"],
+                ["experience", "Experience", "16+ years coaching experience"],
                 ["certification", "Certificate (optional)", "e.g. ISSA Certified Nutritionist"],
               ] as const
             ).map(([key, l, ph]) => (
@@ -550,8 +567,20 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
                 <input value={brand[key]} maxLength={key === "certification" ? 80 : 40} onChange={(e) => setBrandField({ [key]: e.target.value })} placeholder={ph} className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
               </label>
             ))}
-            <p className="text-[11px] text-white/40">Only print a certificate the coach actually holds. Saved on this device.</p>
-            <button type="button" onClick={() => setBrandField({ name: coachProfile.name, title: coachProfile.title, experience: coachProfile.experience, certification: coachProfile.certification })} className="rounded-lg border border-white/15 py-2 text-xs text-white/70 hover:text-white">
+            <label className="block">
+              <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Certified since (issue date)</span>
+              <input type="date" value={brand.certifiedSince} onChange={(e) => setBrandField({ certifiedSince: e.target.value })} className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
+            </label>
+            <p className="text-[11px] text-white/40">Printed as “Certified Nutritionist since Feb 2016 · 16+ years coaching experience”. Only print a certificate the coach actually holds. Saved on this device.</p>
+            <div>
+              <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Extra client pages</span>
+              <div className="flex flex-wrap gap-1.5">
+                <Check label="12-week roadmap & check-ins" checked={extrasPdf.roadmap} onChange={(on) => toggleExtra("roadmap", on)} />
+                <Check label="Grocery list" checked={extrasPdf.grocery} onChange={(on) => toggleExtra("grocery", on)} />
+                <Check label="Habit tracker" checked={extrasPdf.tracker} onChange={(on) => toggleExtra("tracker", on)} />
+              </div>
+            </div>
+            <button type="button" onClick={() => setBrandField({ name: coachProfile.name, title: coachProfile.title, experience: coachProfile.experience, certification: coachProfile.certification, certifiedSince: coachProfile.certifiedSince })} className="rounded-lg border border-white/15 py-2 text-xs text-white/70 hover:text-white">
               Reset to default
             </button>
           </Section>
@@ -859,6 +888,40 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
 
           {tab === "training" && (
             <div className="grid gap-4 md:grid-cols-2">
+              <Tilt className="p-4 md:col-span-2" strength={0.8}>
+                <h4 className="font-display text-lg">Weekly programme — diet day ↔ workout</h4>
+                <p className="text-[11px] text-white/45">
+                  Session at {p.trainTime ?? "18:00"}. Pre-workout = the chart&apos;s meal 1–4 h before; post-workout = the first meal within 3 h after. Max HR ≈ {heartZones(p.age).max} bpm · Zone 2 {heartZones(p.age).zones[0].range}.
+                </p>
+                <div className="mt-2 overflow-x-auto">
+                  <table className="w-full min-w-[760px] text-[11px]">
+                    <thead className="text-left text-[10px] uppercase tracking-wider text-white/40">
+                      <tr>
+                        {["Day", "Workout", "Pre-workout", "Post-workout", "Cardio", "Steps", "Diet"].map((h) => (
+                          <th key={h} className="py-1 pr-2 font-semibold">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {week.map((d) => (
+                        <tr key={d.day} className={`border-t border-white/5 align-top ${d.session ? "bg-brand/10" : ""}`}>
+                          <td className="py-1.5 pr-2 font-bold">{d.day}</td>
+                          <td className="pr-2 font-semibold">{d.title}</td>
+                          <td className="pr-2 text-white/75">{d.pre ? `${d.pre.time} · ${d.pre.dish}` : d.session ? "Fruit 30 min before if needed" : "—"}</td>
+                          <td className="pr-2 text-white/75">{d.post ? `${d.post.time} · ${d.post.dish} (${d.post.p} g P)` : d.session ? "Protein meal within 2 h" : "—"}</td>
+                          <td className="pr-2 text-white/60">{d.cardio}</td>
+                          <td className="pr-2 tabular-nums">{d.steps.toLocaleString("en-IN")}</td>
+                          <td className="whitespace-nowrap tabular-nums text-white/75">
+                            {d.kcal} kcal · {d.protein} g P
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Tilt>
               {train.length ? (
                 train.map((d, i) => (
                   <Tilt key={i} className={`p-4 ${trainDay === i ? "ring-1 ring-brand/60" : ""}`} strength={1.5}>

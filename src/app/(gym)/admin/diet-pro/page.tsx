@@ -18,7 +18,7 @@ export default async function DietProPage() {
     <DietProLoader
       business={{ name: b.name, phone: b.phone, address: fullAddress(b), instagram: b.instagram, site: SITE_URL.replace(/^https?:\/\//, "") }}
       coach={coach}
-      coachProfile={{ name: coach, title: "Certified Nutritionist", experience: "16+ years", certification: "", photo: head?.image || "" }}
+      coachProfile={{ name: coach, title: "Certified Nutritionist", experience: "16+ years coaching experience", certification: "", certifiedSince: "2016-02-10", photo: head?.image || "" }}
     />
   );
 }

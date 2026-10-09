@@ -41,7 +41,12 @@ export function DietChart({ days, day, setDay, p }: { days: PlannedDay[]; day: n
                 {mealTime(m.label, p.wakeTime, p.mealsPerDay)}
               </span>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-soft">{m.label}</p>
+                <p className="flex flex-wrap items-baseline gap-x-3 text-[10px] font-bold uppercase tracking-widest text-brand-soft">
+                  {m.label}
+                  <span className="normal-case tracking-normal text-white/50">
+                    {Math.round(m.total.kcal)} kcal · P {Math.round(m.total.p)} · C {Math.round(m.total.c)} · F {Math.round(m.total.f)} g
+                  </span>
+                </p>
                 <h4 className="font-display text-base leading-tight">{m.template}</h4>
                 <ul className="mt-1.5 grid gap-x-6 gap-y-1 text-sm sm:grid-cols-2">
                   {chartLines(m, p).map((l, i) => (
@@ -70,6 +75,7 @@ export function DietChart({ days, day, setDay, p }: { days: PlannedDay[]; day: n
                     {m.label.replace(" snack", "")}
                   </th>
                 ))}
+                <th className="font-semibold">Day total</th>
               </tr>
             </thead>
             <tbody>
@@ -79,8 +85,15 @@ export function DietChart({ days, day, setDay, p }: { days: PlannedDay[]; day: n
                   {x.meals.map((m, mi) => (
                     <td key={mi} className="py-1.5 pr-2 text-white/75">
                       {m.template}
+                      <span className="block text-[10px] text-white/40">{Math.round(m.total.kcal)} kcal</span>
                     </td>
                   ))}
+                  <td className="py-1.5 tabular-nums text-white/85">
+                    {Math.round(x.total.kcal)} kcal
+                    <span className="block text-[10px] text-white/45">
+                      P {Math.round(x.total.p)} · C {Math.round(x.total.c)} · F {Math.round(x.total.f)}
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
