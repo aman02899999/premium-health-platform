@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { verifyWebhookSignature } from "@/lib/payments/razorpay";
 import { markFailed, markPaid } from "@/lib/payments/orders";
 import { markBookFailed, markBookPaid } from "@/lib/library/orders";
@@ -8,6 +8,8 @@ import { afterShopPaid } from "@/lib/shop/paid";
 import { markShopFailed } from "@/lib/shop/store";
 
 export const dynamic = "force-dynamic";
+// The paid diet order builds the client's plan PDF after the response.
+export const maxDuration = 60;
 
 // Razorpay → Webhooks: https://<your-site>/api/webhooks/razorpay, events
 // payment.captured and payment.failed. Records payments even when the buyer
@@ -25,7 +27,7 @@ export async function POST(req: Request) {
     if (event.event === "payment.captured") {
       if (await markPaid(payment.order_id, payment.id)) await afterMembershipPaid(payment.order_id);
       await markBookPaid(payment.order_id, payment.id);
-      await afterDietPaid(payment.order_id, payment.id);
+      await afterDietPaid(payment.order_id, payment.id, after);
       await afterShopPaid(payment.order_id, payment.id);
     } else if (event.event === "payment.failed") {
       await markFailed(payment.order_id);

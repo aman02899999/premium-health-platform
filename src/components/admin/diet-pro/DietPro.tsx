@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Activity, ArrowLeft, BadgeCheck, ClipboardList, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
+import { Activity, ArrowLeft, BadgeCheck, Send, ClipboardList, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
@@ -14,73 +14,16 @@ import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style 
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
 import { Body3D, filledMeasurements, type Body3DHandle, type BodyPick, type BodyView } from "./Body3D";
 import { Check, Choice, Kpi, Num, Section, Select, Tilt } from "./ui";
-import { downloadPlanPdf, type PdfBusiness, type PdfCoach, type PdfExtras } from "./pdf";
+import { downloadPlanPdf, planPdfBlob, type PdfBusiness, type PdfCoach, type PdfExtras } from "./pdf";
 import { DietChart } from "./DietChart";
 import { household } from "@/lib/diet-pro/household";
 import { intakeToProfile, type DietIntake } from "@/lib/growth/diet-intake";
 import { todayIST } from "@/lib/growth/dates";
 
-const GOALS: { value: Goal; label: string }[] = [
-  { value: "fat-loss", label: "Fat loss" },
-  { value: "recomp", label: "Recomp" },
-  { value: "maintain", label: "Maintain" },
-  { value: "lean-gain", label: "Lean gain" },
-  { value: "gain", label: "Gain" },
-];
-const DIETS: { value: DietPref; label: string }[] = [
-  { value: "veg", label: "Veg" },
-  { value: "egg", label: "Eggetarian" },
-  { value: "nonveg", label: "Non-veg" },
-  { value: "vegan", label: "Vegan" },
-  { value: "jain", label: "Jain" },
-];
-const STYLES: { value: Style; label: string }[] = [
-  { value: "balanced", label: "Balanced" },
-  { value: "high-protein", label: "High protein" },
-  { value: "low-carb", label: "Low carb" },
-  { value: "keto", label: "Keto (<50 g carbs)" },
-  { value: "diabetic", label: "Diabetes-friendly (low GI)" },
-  { value: "pcos", label: "PCOS-friendly (low GI)" },
-  { value: "heart", label: "Heart-healthy (low sat. fat)" },
-  { value: "high-fibre", label: "High fibre (gut health)" },
-  { value: "sattvic", label: "Sattvic (no onion / mushroom)" },
-  { value: "vrat", label: "Vrat / fasting day" },
-];
-const CUISINES: { value: Cuisine; label: string }[] = [
-  { value: "any", label: "All-India mix" },
-  { value: "north", label: "North Indian (Punjabi, UP, Delhi)" },
-  { value: "south", label: "South Indian (TN, Kerala, Karnataka, AP)" },
-  { value: "west", label: "West Indian (Gujarati, Maharashtrian)" },
-  { value: "east", label: "East Indian (Bengali, Odia)" },
-];
-const ALLERGENS: Allergen[] = ["dairy", "gluten", "nuts", "peanut", "soy", "egg", "fish", "shellfish", "sesame"];
-const label = <T extends string>(list: { value: T; label: string }[], v: T) => list.find((x) => x.value === v)?.label ?? v;
+import { ALLERGENS, CUISINES, DIETS, GOALS, STYLES, planLabels } from "@/lib/diet-pro/labels";
+import { DEFAULT_PROFILE } from "@/lib/diet-pro/defaults";
 
-const DEFAULT: ClientProfile = {
-  name: "",
-  age: 30,
-  sex: "male",
-  heightCm: 172,
-  weightKg: 78,
-  m: {},
-  activity: "moderate",
-  trainingDays: 4,
-  level: "intermediate",
-  setting: "gym",
-  goal: "fat-loss",
-  ratePct: 0.5,
-  style: "balanced",
-  diet: "veg",
-  mealsPerDay: 5,
-  allergies: [],
-  conditions: { pcos: false, hypothyroid: false, diabetes: false, hypertension: false, ckd: false, pregnant: false, lactating: false },
-  useWhey: false,
-  // Example label only — the coach must replace it with the client's tub.
-  whey: { scoopG: 30, kcal: 120, p: 24, c: 3, f: 1.5, edited: false },
-  bmiScale: "asian",
-  bmrFormula: "mifflin",
-  overrides: {},
-};
+const DEFAULT = DEFAULT_PROFILE;
 
 type LogEntry = { date: string; weight: number; waist?: number; bf?: number };
 type SavedClient = { id: string; name: string; savedAt: string; profile: ClientProfile; swaps: Record<string, number>; extras: Record<string, { id: string; grams: number }[]>; note: string; log: LogEntry[]; consentAt?: string; consentBy?: string; local?: boolean };
@@ -152,6 +95,8 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
   const [trainDay, setTrainDay] = useState(0);
   const [busy, setBusy] = useState(false);
   const [flash, setFlash] = useState<string | null>(null);
+  /** The paid order this page was opened from (/admin/diet-pro?order=…), if any. */
+  const [order, setOrder] = useState<{ id: string; name: string } | null>(null);
   const body = useRef<Body3DHandle>(null);
 
   // Load the shared, admin-only cloud records; fall back to this browser if unavailable.
@@ -190,11 +135,12 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
         return;
       }
       setP(intakeToProfile(json.order.name, json.order.intake, DEFAULT));
+      setOrder({ id, name: json.order.name });
       setClientId(null);
       setSwaps({});
       setExtras({});
       setNote(json.order.intake.notes ? `Client's note: ${json.order.intake.notes}` : "");
-      setFlash(`Loaded ${json.order.name}'s order — check the profile, then download the PDF`);
+      setFlash(`Loaded ${json.order.name}'s order — check the profile, then Send to client`);
     })();
     return () => {
       alive = false;
@@ -219,13 +165,32 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
     setTimeout(() => setFlash(null), 2600);
   };
 
-  const labels = {
-    // The engine can override the chosen goal for safety (pregnancy, underweight): print what the plan really is.
-    goal: `${label(GOALS, T.goal)}${T.rate ? ` · ${T.rate} %/week` : ""}${T.goal !== p.goal ? ` (changed from ${label(GOALS, p.goal).toLowerCase()} for safety)` : ""}`,
-    diet: label(DIETS, p.diet),
-    style: label(STYLES, p.style),
-    activity: ACTIVITY.find((a) => a.id === p.activity)?.label ?? p.activity,
-  };
+  const labels = planLabels(p, T);
+
+
+  /** Builds the PDF exactly as shown and sends it to the client of the order this page was opened from. */
+  async function sendToClient() {
+    if (!order) return;
+    if (p.useWhey && !p.whey.edited) return toast("Enter the client's whey label first");
+    if (!confirm(`Send this plan to ${order.name} on WhatsApp and email now? It replaces the automatic draft.`)) return;
+    setBusy(true);
+    try {
+      const img = body.current?.snapshot() ?? null;
+      const { blob, filename } = await planPdfBlob({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, extras: extrasPdf, bodyImage: img, labels });
+      const b64 = await new Promise<string>((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(String(r.result).split(",")[1] ?? "");
+        r.onerror = () => reject(new Error("Couldn't read the PDF"));
+        r.readAsDataURL(blob);
+      });
+      await api("/api/admin/growth/diet-plan", { method: "POST", body: JSON.stringify({ id: order.id, pdf: b64, filename, send: true }) });
+      toast(`Plan sent to ${order.name}`);
+    } catch (e) {
+      toast((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
 
   async function pdf() {
     if (p.useWhey && !p.whey.edited && !confirm("Whey is still using the example label values. Download anyway?")) return;
@@ -434,6 +399,11 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
           <button type="button" onClick={saveClient} className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs text-white/85 hover:text-white">
             <Save className="h-4 w-4" /> Save
           </button>
+          {order && (
+            <button type="button" onClick={sendToClient} disabled={busy} className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500 px-3 py-2 text-xs font-bold text-black disabled:opacity-50">
+              <Send className="h-4 w-4" /> Send to {order.name.split(" ")[0]}
+            </button>
+          )}
           <button type="button" onClick={pdf} disabled={busy} className="btn-brand inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold shadow-[0_10px_30px_-10px_rgba(232,57,75,0.9)] disabled:opacity-50">
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} Branded PDF
           </button>

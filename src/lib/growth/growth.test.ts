@@ -112,7 +112,7 @@ describe("diet chart intake", async () => {
   it("accepts a valid form and cleans it", () => {
     const r = parseDietOrder(ok);
     if (typeof r === "string") throw new Error(r);
-    expect(r.buyer).toEqual({ name: "Priya Verma", phone: "9876543210", email: null });
+    expect(r.buyer).toEqual({ name: "Priya Verma", phone: "9876543210", email: null, marketing: false });
     expect(r.intake).toMatchObject({ age: 29, sex: "female", heightCm: 160, weightKg: 62.4, cuisine: "south", mealsPerDay: 4, wakeTime: "07:15", conditions: ["pcos"], allergies: ["nuts"], notes: "night shifts" });
   });
   it("rejects what a coach can't plan safely", () => {

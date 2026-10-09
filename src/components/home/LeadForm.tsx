@@ -42,7 +42,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
         </div>
         <h3 className="font-display mt-5 text-3xl text-white">You&apos;re booked in!</h3>
         <p className="mt-3 text-white/70">We&apos;ll call you shortly to fix your trial time. Want it faster? Send the same details on WhatsApp.</p>
-        <a href={waLink} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+        <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
           <WhatsAppIcon className="h-5 w-5" /> Confirm on WhatsApp
         </a>
       </div>
@@ -78,7 +78,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
       {state === "error" && (
         <p className="rounded-xl bg-ember/15 px-4 py-3 text-sm text-red-200" role="alert">
           {error}{" "}
-          <a href={waLink} target="_blank" rel="noopener noreferrer" className="underline">
+          <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="underline">
             Send on WhatsApp
           </a>
         </p>
@@ -87,7 +87,7 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
         {state === "sending" && <Loader2 className="h-5 w-5 animate-spin" />}
         Book My Free Trial
       </button>
-      <p className="text-center text-xs text-white/45">No spam. We<p className="text-center text-xs text-white/45">No spam. We only call to schedule your session.</p>apos;ll call or WhatsApp you (at most 3 messages) only to schedule your trial.</p>
+      <p className="text-center text-xs text-white/45">No spam. We&apos;ll call or WhatsApp you (at most 3 messages) only to schedule your trial.</p>
     </form>
   );
 }

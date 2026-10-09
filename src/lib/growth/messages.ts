@@ -8,7 +8,12 @@ export type Draft = {
   channel: Channel;
   to: string; // WhatsApp: country code + number, digits only. Email: address.
   toName: string;
-  kind: MessageKind;
+  /** A WhatsApp MessageKind, or an email kind such as "nurture-diet-0" / "diet-plan-email". */
+  kind: string;
+  /** Email subject (email drafts only). */
+  subject?: string;
+  /** Storage path of a file: attached to the email, or the WhatsApp template's document header. */
+  attachment?: string;
   body: string;
   /** WhatsApp Cloud API template and its body parameters, in order. */
   template: string;
@@ -17,7 +22,7 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "diet-received" | "referral-bonus";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "diet-received" | "referral-bonus" | "diet-plan-ready";
 
 /**
  * WhatsApp template names and the text to submit for each in Meta Business Manager
@@ -32,6 +37,8 @@ export const TEMPLATES: Record<MessageKind, { name: string; text: string }> = {
   "lead-2": { name: "rfc_trial_reminder", text: "Hi {{1}}, just checking in from {{2}} — your free trial is still waiting. Reply with a day and time and we'll keep a trainer free for you." },
   "lead-5": { name: "rfc_trial_last", text: "Hi {{1}}, last reminder from {{2}}: see our membership plans and join online here: {{3}}. Reply if you have any questions." },
   "diet-received": { name: "rfc_diet_order_received", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
+  // Template with a DOCUMENT header (the plan PDF); the body follows.
+  "diet-plan-ready": { name: "rfc_diet_plan_ready", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
   "referral-bonus": { name: "rfc_referral_bonus", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
 };
 
@@ -67,6 +74,39 @@ export function leadMessage(kind: "lead-0" | "lead-2" | "lead-5", l: LeadLike, b
 
 export const dietReceivedMessage = (o: { id: string; name: string; phone: string }, biz: Biz, turnaround: string): Draft =>
   draft("diet-received", wa(o.phone), o.name, [first(o.name), biz.name, turnaround], `diet-received:${o.id}`);
+
+/** WhatsApp: the plan PDF as a document, sent once per plan file. */
+export const dietPlanWhatsApp = (o: { id: string; name: string; phone: string }, planName: string, file: string, biz: Biz): Draft => ({
+  ...draft("diet-plan-ready", wa(o.phone), o.name, [first(o.name), planName, biz.name], `diet-plan-ready:${o.id}:${file}`),
+  attachment: file,
+});
+
+/** Email: the plan PDF attached (transactional — sent whether or not they opted in to marketing). */
+export const dietPlanEmail = (o: { id: string; name: string; email: string }, planName: string, file: string, biz: Biz & { coach: string }): Draft => ({
+  channel: "email",
+  to: o.email.toLowerCase(),
+  toName: o.name,
+  kind: "diet-plan-email",
+  subject: `Your ${planName} is ready, ${first(o.name)}`,
+  body: `Hi ${first(o.name)},\n\nYour ${planName} from ${biz.name} is attached as a PDF.\n\nHow to use it:\n• Start with page 1 for your body analysis and daily targets.\n• Follow the 7-day diet chart — measures are in katori, roti and spoons.\n• The weekly programme shows which days to train and what to eat before and after.\n• Check the Guidance pages before starting any herb or supplement.\n\nQuestions? Reply to this email or message ${biz.coach} on WhatsApp at ${biz.phone}.\n\n— ${biz.coach}, ${biz.name}\n[[CTA:Message your coach|https://wa.me/${biz.phone.replace(/\D/g, "")}]]`,
+  template: "",
+  params: [],
+  attachment: file,
+  dedupeKey: `diet-plan-email:${o.id}:${file}`,
+});
+
+/** Email: order received (transactional). */
+export const dietReceivedEmail = (o: { id: string; name: string; email: string }, planName: string, turnaround: string, biz: Biz): Draft => ({
+  channel: "email",
+  to: o.email.toLowerCase(),
+  toName: o.name,
+  kind: "diet-received-email",
+  subject: `Payment received — your ${planName} is being prepared`,
+  body: `Hi ${first(o.name)},\n\nThanks for choosing ${biz.name}. We've received your payment for the ${planName}.\n\nYour coach is preparing your plan from the details you shared. It will reach you on WhatsApp and by email within ${turnaround}.\n\nIf anything in your details has changed — weight, medicines, health — reply to this email before we send your plan.`,
+  template: "",
+  params: [],
+  dedupeKey: `diet-received-email:${o.id}`,
+});
 
 export const referralBonusMessage = (referrer: MemberLike, referredName: string, days: number, biz: Biz, rewardId: string): Draft =>
   draft("referral-bonus", wa(referrer.phone), referrer.name, [first(referrer.name), first(referredName), biz.name, String(days), formatDate(referrer.expiresOn)], `referral-bonus:${rewardId}`);

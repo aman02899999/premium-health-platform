@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { isDbConfigured } from "@/health/db";
-import { DIET_CHART } from "@/lib/growth/config";
+import { dietPlan } from "@/lib/growth/config";
 import { parseDietOrder } from "@/lib/growth/diet-intake";
 import { insertDietOrder } from "@/lib/growth/diet-orders";
+import { recordEmailConsent } from "@/lib/growth/marketing";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
 export const dynamic = "force-dynamic";
@@ -27,16 +28,19 @@ export async function POST(req: Request) {
 
   const parsed = parseDietOrder(body);
   if (typeof parsed === "string") return NextResponse.json({ error: parsed }, { status: 400 });
-  const amountPaise = DIET_CHART.priceRupees * 100;
+  // The price always comes from the server's plan list, never from the browser.
+  const plan = dietPlan(parsed.plan);
+  const amountPaise = plan.priceRupees * 100;
   try {
-    const order = await createRazorpayOrder({ amountPaise, receipt: `rfc_diet_${randomUUID().slice(0, 13)}`, notes: { item: "Personal diet chart", name: parsed.buyer.name, phone: parsed.buyer.phone } });
-    await insertDietOrder(order.id, amountPaise, parsed.buyer, parsed.intake);
+    const order = await createRazorpayOrder({ amountPaise, receipt: `rfc_diet_${randomUUID().slice(0, 13)}`, notes: { item: plan.name, plan: plan.id, name: parsed.buyer.name, phone: parsed.buyer.phone } });
+    await insertDietOrder(order.id, amountPaise, parsed.buyer, parsed.intake, plan.id);
+    if (parsed.buyer.marketing && parsed.buyer.email) await recordEmailConsent(parsed.buyer.email, parsed.buyer.name, "diet-checkout").catch(() => {});
     return NextResponse.json({
       orderId: order.id,
       keyId: razorpayKeyId(),
       amount: amountPaise,
       currency: "INR",
-      description: "Personal Indian diet chart",
+      description: plan.name,
       prefill: { name: parsed.buyer.name, contact: `+91${parsed.buyer.phone}`, email: parsed.buyer.email ?? undefined },
     });
   } catch (err) {

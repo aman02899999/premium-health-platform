@@ -4,6 +4,7 @@ import { currentUser, isAdmin } from "@/lib/auth";
 import { getContent } from "@/lib/content/store";
 import { fullAddress, SITE_URL } from "@/lib/site";
 import { DietProLoader } from "@/components/admin/diet-pro/DietProLoader";
+import { DEFAULT_COACH } from "@/lib/diet-pro/defaults";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Diet Pro · Admin", robots: { index: false, follow: false } };
@@ -18,7 +19,7 @@ export default async function DietProPage() {
     <DietProLoader
       business={{ name: b.name, phone: b.phone, address: fullAddress(b), instagram: b.instagram, site: SITE_URL.replace(/^https?:\/\//, "") }}
       coach={coach}
-      coachProfile={{ name: coach, title: "Certified Nutritionist", experience: "16+ years coaching experience", certification: "", certifiedSince: "2016-02-10", photo: head?.image || "" }}
+      coachProfile={{ name: coach, ...DEFAULT_COACH, photo: head?.image || "" }}
     />
   );
 }

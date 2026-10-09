@@ -2,6 +2,10 @@ import { NextResponse, after } from "next/server";
 import { saveLead } from "@/lib/content/store";
 import { isDbConfigured } from "@/health/db";
 import { afterLeadSaved } from "@/lib/growth/hooks";
+import { insertLead } from "@/lib/growth/leads";
+import { recordEmailConsent } from "@/lib/growth/marketing";
+
+const INTERESTS = ["diet", "pt", "membership", "other"] as const;
 
 const recent = new Map<string, number[]>();
 
@@ -30,10 +34,22 @@ export async function POST(req: Request) {
   if (name.length < 2) return NextResponse.json({ error: "Please enter your name." }, { status: 400 });
   if (phone.replace(/\D/g, "").length < 10) return NextResponse.json({ error: "Please enter a valid 10-digit mobile number." }, { status: 400 });
 
+  const email = clean(body.email, 120).toLowerCase();
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return NextResponse.json({ error: "Please enter a valid email address, or leave it blank." }, { status: 400 });
+  const interest = INTERESTS.find((i) => i === body.interest) ?? "";
+  // Marketing emails only with an explicit tick, and only if there is an address to send to.
+  const marketing = body.marketing === true && !!email;
+  const source = clean(body.source, 40) || "website";
+
   try {
-    await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source: clean(body.source, 40) || "website" });
-    // After the response: thank them on WhatsApp (or queue it for the admin to send).
-    if (isDbConfigured) after(() => afterLeadSaved(phone));
+    if (isDbConfigured) {
+      const id = await insertLead({ name, phone, email: email || null, interest, goal: clean(body.goal, 60), message: clean(body.message, 600), source, marketing });
+      if (marketing) await recordEmailConsent(email, name, source).catch((e: Error) => console.error("[leads] consent:", e.message));
+      // After the response: WhatsApp thank-you and/or the first email (or queue them for the admin).
+      after(() => afterLeadSaved(phone, id));
+    } else {
+      await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source });
+    }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[leads] save failed:", (err as Error).message);

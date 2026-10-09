@@ -5,6 +5,7 @@ import { CONDITION_LIST, FEMALE_ONLY } from "@/lib/diet-pro/conditions";
 import Link from "next/link";
 import { CheckCircle2, Loader2, Lock } from "lucide-react";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
+import { DIET_PLANS, isDietPlanId, type DietPlanId } from "@/lib/growth/config";
 
 const GOALS = [
   ["fat-loss", "Lose fat"],
@@ -37,14 +38,15 @@ const ACTIVITY = [
 const CONDITIONS = CONDITION_LIST.map((c) => [c.key, c.label] as const);
 const ALLERGIES = ["dairy", "gluten", "nuts", "peanut", "soy", "egg", "fish", "shellfish", "sesame"] as const;
 
-type Form = { name: string; phone: string; email: string; age: string; sex: "male" | "female" | ""; heightCm: string; weightKg: string; goal: string; diet: string; cuisine: string; activity: string; mealsPerDay: string; wakeTime: string; conditions: string[]; allergies: string[]; notes: string; consent: boolean };
+type Form = { plan: DietPlanId; marketing: boolean; neckCm: string; waistCm: string; hipCm: string; targetWeightKg: string; trainingDays: string; trainTime: string; setting: string; medicines: string; name: string; phone: string; email: string; age: string; sex: "male" | "female" | ""; heightCm: string; weightKg: string; goal: string; diet: string; cuisine: string; activity: string; mealsPerDay: string; wakeTime: string; conditions: string[]; allergies: string[]; notes: string; consent: boolean };
 
-export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { price: number; turnaround: string; gymName: string; whatsapp: string }) {
-  const [f, setF] = useState<Form>({ name: "", phone: "", email: "", age: "", sex: "", heightCm: "", weightKg: "", goal: "fat-loss", diet: "veg", cuisine: "any", activity: "light", mealsPerDay: "5", wakeTime: "06:30", conditions: [], allergies: [], notes: "", consent: false });
+export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }: { turnaround: string; gymName: string; whatsapp: string; initialPlan?: string }) {
+  const [f, setF] = useState<Form>({ plan: isDietPlanId(initialPlan) ? initialPlan : "3m", marketing: false, neckCm: "", waistCm: "", hipCm: "", targetWeightKg: "", trainingDays: "", trainTime: "18:00", setting: "gym", medicines: "", name: "", phone: "", email: "", age: "", sex: "", heightCm: "", weightKg: "", goal: "fat-loss", diet: "veg", cuisine: "any", activity: "light", mealsPerDay: "5", wakeTime: "06:30", conditions: [], allergies: [], notes: "", consent: false });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState<{ paymentId: string } | null>(null);
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((x) => ({ ...x, [k]: v }));
+  const plan = DIET_PLANS.find((p) => p.id === f.plan) ?? DIET_PLANS[0];
   const toggle = (k: "conditions" | "allergies", v: string) => setF((x) => ({ ...x, [k]: x[k].includes(v) ? x[k].filter((y) => y !== v) : [...x[k], v] }));
 
   async function pay(e: React.FormEvent) {
@@ -55,7 +57,7 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
       const res = await fetch("/api/diet-chart/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...f, age: Number(f.age), heightCm: Number(f.heightCm), weightKg: Number(f.weightKg), mealsPerDay: Number(f.mealsPerDay) }),
+        body: JSON.stringify({ ...f, age: Number(f.age), heightCm: Number(f.heightCm), weightKg: Number(f.weightKg), mealsPerDay: Number(f.mealsPerDay), marketing: f.marketing && !!f.email.trim(), trainingDays: f.trainingDays === "" ? undefined : Number(f.trainingDays) }),
       });
       const order = await res.json();
       if (!res.ok) throw new Error(order.error || "Couldn't start the payment.");
@@ -97,9 +99,12 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
       <div id="diet-result" className="glass brand-border scroll-mt-28 space-y-4 rounded-3xl p-8 text-center">
         <CheckCircle2 className="mx-auto h-14 w-14 text-emerald-400" />
         <h2 className="font-display text-3xl text-white">Payment received</h2>
-        <p className="text-white/75">Your coach will prepare your chart and send it on WhatsApp to {f.phone} within {turnaround}.</p>
+        <p className="text-white/75">
+          Your coach will prepare your {plan.name} and send it on WhatsApp to {f.phone}
+          {f.email ? ` and by email to ${f.email}` : ""} within {turnaround}.
+        </p>
         <p className="rounded-xl bg-white/5 px-4 py-3 font-mono text-sm text-white/80">Payment ID: {done.paymentId}</p>
-        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
           Message us on WhatsApp
         </a>
       </div>
@@ -109,7 +114,32 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
   const field = "field mt-1";
   const female = f.sex === "female";
   return (
-    <form onSubmit={pay} className="glass brand-border space-y-6 rounded-3xl p-6 sm:p-8">
+    <form id="order" onSubmit={pay} className="glass brand-border scroll-mt-28 space-y-6 rounded-3xl p-6 sm:p-8">
+      <fieldset className="space-y-3">
+        <legend className="font-display text-xl text-white">Choose your plan</legend>
+        <div role="radiogroup" aria-label="Plan" className="grid gap-2">
+          {DIET_PLANS.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              role="radio"
+              aria-checked={f.plan === p.id}
+              onClick={() => set("plan", p.id)}
+              className={`flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left ring-1 transition ${f.plan === p.id ? "bg-brand/15 ring-brand" : "bg-white/[.03] ring-white/10 hover:ring-white/25"}`}
+            >
+              <span className="min-w-0">
+                <span className="flex flex-wrap items-center gap-2 font-semibold text-white">
+                  {p.name}
+                  {p.popular && <span className="rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-black">Most popular</span>}
+                </span>
+                <span className="block text-xs text-white/55">{p.summary}</span>
+              </span>
+              <span className="font-display shrink-0 text-xl text-white">₹{p.priceRupees.toLocaleString("en-IN")}</span>
+            </button>
+          ))}
+        </div>
+      </fieldset>
+
       <fieldset className="space-y-3">
         <legend className="font-display text-xl text-white">1. About you</legend>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -149,6 +179,70 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
               <input required type="number" min={30} max={200} step={0.1} value={f.weightKg} onChange={(e) => set("weightKg", e.target.value)} className={field} />
             </label>
           </div>
+          <label className="text-sm text-white/70">
+            Target weight (kg) <span className="text-white/40">(optional)</span>
+            <input type="number" min={30} max={200} step={0.5} value={f.targetWeightKg} onChange={(e) => set("targetWeightKg", e.target.value)} className={field} />
+          </label>
+        </div>
+        {f.email.trim() && (
+          <label className="flex cursor-pointer items-start gap-2 text-sm text-white/70">
+            <input type="checkbox" checked={f.marketing} onChange={(e) => set("marketing", e.target.checked)} className="mt-1 accent-[#e8394b]" />
+            <span>Also email me tips and offers. I can unsubscribe at any time. (Your plan is emailed either way.)</span>
+          </label>
+        )}
+      </fieldset>
+
+      <fieldset className="space-y-3">
+        <legend className="font-display text-xl text-white">Body measurements <span className="text-base text-white/45">(recommended)</span></legend>
+        <p className="text-sm text-white/55">Use a tape in the morning, before food, relaxed and level. With these we calculate your body fat instead of estimating it.</p>
+        <div className="grid grid-cols-3 gap-3">
+          {(
+            [
+              ["neckCm", "Neck (cm)", "just below the throat"],
+              ["waistCm", "Waist (cm)", "at the navel"],
+              ["hipCm", "Hip (cm)", "widest part"],
+            ] as const
+          ).map(([k, l, hint]) => (
+            <label key={k} className="text-sm text-white/70">
+              {l}
+              <input type="number" min={20} max={200} step={0.5} value={f[k]} onChange={(e) => set(k, e.target.value)} className={field} />
+              <span className="mt-0.5 block text-[11px] text-white/40">{hint}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-3">
+        <legend className="font-display text-xl text-white">Workouts</legend>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <label className="text-sm text-white/70">
+            Workout days a week
+            <select value={f.trainingDays} onChange={(e) => set("trainingDays", e.target.value)} className={field}>
+              <option value="" className="bg-ink">
+                Not sure yet
+              </option>
+              {["0", "2", "3", "4", "5", "6"].map((n) => (
+                <option key={n} value={n} className="bg-ink">
+                  {n === "0" ? "None right now" : `${n} days`}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="text-sm text-white/70">
+            Usual workout time
+            <input type="time" value={f.trainTime} onChange={(e) => set("trainTime", e.target.value)} className={field} />
+          </label>
+          <label className="text-sm text-white/70">
+            Where
+            <select value={f.setting} onChange={(e) => set("setting", e.target.value)} className={field}>
+              <option value="gym" className="bg-ink">
+                Gym
+              </option>
+              <option value="home" className="bg-ink">
+                Home
+              </option>
+            </select>
+          </label>
         </div>
       </fieldset>
 
@@ -212,6 +306,10 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
           ))}
         </div>
         <label className="block text-sm text-white/70">
+          Medicines you take daily <span className="text-white/40">(optional, but important for herbs and supplements)</span>
+          <input maxLength={200} value={f.medicines} onChange={(e) => set("medicines", e.target.value)} placeholder="e.g. thyroxine 50 mcg, metformin" className={field} />
+        </label>
+        <label className="block text-sm text-white/70">
           Anything else your coach should know? <span className="text-white/40">(optional)</span>
           <textarea maxLength={500} rows={3} value={f.notes} onChange={(e) => set("notes", e.target.value)} placeholder="e.g. night shifts, no time for breakfast, medicines you take" className={field} />
         </label>
@@ -220,17 +318,17 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
       <label className="flex items-start gap-3 rounded-2xl bg-black/30 p-4 text-sm text-white/75">
         <input type="checkbox" required checked={f.consent} onChange={(e) => set("consent", e.target.checked)} className="mt-1 accent-[#e8394b]" />
         <span>
-          I agree that {gymName} stores these details to prepare my diet chart and contacts me on WhatsApp about it. The chart is general nutrition guidance, not medical treatment; with a medical condition I will check it with my doctor. See our <Link href="/privacy" className="underline">privacy policy</Link>.
+          I agree that {gymName} stores these details to prepare my plan and contacts me on WhatsApp and email about it. The chart is general nutrition guidance, not medical treatment; with a medical condition I will check it with my doctor. See our <Link href="/privacy" className="underline">privacy policy</Link>.
         </span>
       </label>
 
       <div className="flex flex-col gap-4 rounded-2xl bg-black/30 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm text-white/55">Personal Indian diet chart · 7 days · PDF on WhatsApp</p>
-          <p className="font-display text-3xl text-white">₹{price.toLocaleString("en-IN")}</p>
+          <p className="text-sm text-white/55">{plan.name} · PDF on WhatsApp{f.email ? " and email" : ""}</p>
+          <p className="font-display text-3xl text-white">₹{plan.priceRupees.toLocaleString("en-IN")}</p>
         </div>
         <button type="submit" disabled={busy || !f.sex} className="btn-brand inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold disabled:opacity-60">
-          {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-4 w-4" />} Pay ₹{price.toLocaleString("en-IN")}
+          {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-4 w-4" />} Pay ₹{plan.priceRupees.toLocaleString("en-IN")}
         </button>
       </div>
       {!f.sex && <p className="text-xs text-white/45">Choose male or female above to continue.</p>}
