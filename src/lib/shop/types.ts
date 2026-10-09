@@ -90,6 +90,11 @@ export type ShopSettings = {
   phone: string;
   whatsapp: string;
   address: string;
+  /** Legal name of the food business, exactly as on the FSSAI certificate. */
+  sellerName: string;
+  /** FSSAI basic/State registration or a licence: decides the label shown to buyers. */
+  fssaiType: "registration" | "licence";
+  /** The 14-digit FSSAI registration or licence number. */
   fssaiLicence: string;
   gstin: string;
   /** Flat delivery charge; 0 = free delivery. */

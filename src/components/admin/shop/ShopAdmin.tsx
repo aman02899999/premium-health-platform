@@ -121,7 +121,7 @@ function Dashboard({ data, go }: { data: ShopData; go: (t: Tab) => void }) {
   const max = Math.max(1, ...s.daily.map((d) => d.revenue));
   const setup = [
     { ok: data.products.length > 0, text: "Add your products (Products → New product)", tab: "products" as Tab },
-    { ok: !!data.settings.fssaiLicence, text: "Add your FSSAI licence number (Store settings) — required to sell food supplements online", tab: "settings" as Tab },
+    { ok: !!data.settings.fssaiLicence, text: "Add your FSSAI registration / licence number (Store settings) — required to sell food supplements online", tab: "settings" as Tab },
     { ok: !!data.settings.orderEmail, text: "Set the email that receives orders (Store settings)", tab: "settings" as Tab },
     { ok: data.channels.email, text: "Connect email sending (RESEND_API_KEY + EMAIL_FROM in Vercel) so order emails go out", tab: null },
     { ok: data.channels.razorpay, text: "Connect Razorpay (RAZORPAY_KEY_ID / SECRET in Vercel) to take payments", tab: null },

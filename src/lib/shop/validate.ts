@@ -114,7 +114,8 @@ export function parseSettings(b: R): ShopSettings | string {
   if (s.storeName.length < 2) return "Enter the store name.";
   if (s.orderEmail && !s.orderEmail.split(",").every((e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()))) return "Order email: enter valid email addresses separated by commas.";
   s.whatsapp = s.whatsapp.replace(/\D/g, "");
-  if (s.fssaiLicence && !/^\d{14}$/.test(s.fssaiLicence.replace(/\s/g, ""))) return "An FSSAI licence number has 14 digits.";
+  if (s.fssaiType !== "registration" && s.fssaiType !== "licence") return "Choose whether the FSSAI number is a registration or a licence.";
+  if (s.fssaiLicence && !/^\d{14}$/.test(s.fssaiLicence.replace(/\s/g, ""))) return "An FSSAI registration or licence number has 14 digits.";
   if (s.gstin && !/^[0-9]{2}[A-Z0-9]{13}$/.test(s.gstin.toUpperCase())) return "A GSTIN has 15 characters, e.g. 09ABCDE1234F1Z5.";
   s.gstin = s.gstin.toUpperCase();
   s.fssaiLicence = s.fssaiLicence.replace(/\s/g, "");

@@ -59,3 +59,13 @@ describe("page titles", () => {
     expect((fitTitle("x".repeat(90), "S") as { absolute: string }).absolute).toHaveLength(63);
   });
 });
+
+describe("FSSAI details", () => {
+  it("keeps a registration labelled as a registration", async () => {
+    const { fssaiLabel } = await import("./format");
+    expect(fssaiLabel("registration")).toBe("FSSAI Reg. No.");
+    expect(fssaiLabel("licence")).toBe("FSSAI Lic. No.");
+    expect(parseSettings({ ...DEFAULT_SETTINGS, fssaiType: "permit" })).toMatch(/registration or a licence/);
+    expect(parseSettings({ ...DEFAULT_SETTINGS, sellerName: " Royal Fitness Club ", fssaiType: "registration", fssaiLicence: "22726926001404" })).toMatchObject({ sellerName: "Royal Fitness Club", fssaiType: "registration", fssaiLicence: "22726926001404" });
+  });
+});

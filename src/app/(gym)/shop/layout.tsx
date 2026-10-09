@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Crown, ShieldCheck, Truck, BadgeCheck } from "lucide-react";
 import { getCatalog } from "@/lib/shop/server";
 import { SITE_URL } from "@/lib/site";
+import { fssaiLabel } from "@/lib/shop/format";
 import { CartProvider } from "@/components/shop/cart";
 import { ShopBottomNav, ShopHeader } from "@/components/shop/chrome";
 import { CartToast } from "@/components/shop/ui";
@@ -148,9 +149,12 @@ export default async function ShopLayout({
               <h2 className="font-display mb-3 text-base text-white">
                 Seller details
               </h2>
+              {s.sellerName && <p className="text-white/80">Sold by {s.sellerName}</p>}
               <p>{s.address}</p>
               {s.fssaiLicence && (
-                <p className="mt-2">FSSAI Lic. No. {s.fssaiLicence}</p>
+                <p className="mt-2">
+                  {fssaiLabel(s.fssaiType)} {s.fssaiLicence}
+                </p>
               )}
               {s.gstin && <p>GSTIN {s.gstin}</p>}
             </div>

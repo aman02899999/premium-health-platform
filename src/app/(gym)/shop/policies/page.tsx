@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { fssaiLabel } from "@/lib/shop/format";
 import { getCatalog } from "@/lib/shop/server";
 
 export const metadata: Metadata = { title: "Shipping, Returns & Contact", description: "Delivery times, return policy, seller details and how to contact the store.", alternates: { canonical: "/shop/policies" } };
@@ -18,12 +19,13 @@ export default async function Policies() {
       <h2>Seller details</h2>
       <p>
         {s.storeName}
+        {s.sellerName && ` — sold by ${s.sellerName}`}
         <br />
         {s.address}
         {s.fssaiLicence && (
           <>
             <br />
-            FSSAI Licence No. {s.fssaiLicence}
+            {fssaiLabel(s.fssaiType)} {s.fssaiLicence}
           </>
         )}
         {s.gstin && (
