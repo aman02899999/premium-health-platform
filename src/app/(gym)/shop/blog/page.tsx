@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getCatalog } from "@/lib/shop/server";
-import { listPosts } from "@/lib/shop/store";
+import { getCatalog, getPosts } from "@/lib/shop/server";
 
-export const revalidate = 300;
 export const metadata: Metadata = {
-  title: "Supplement Guides — Protein, Creatine, Pre-Workout, Aminos",
+  title: "Supplement Guides & Buying Advice",
   description: "Evidence-based guides to whey protein, creatine, pre-workout, EAA, BCAA, glutamine and multivitamins — what works, doses and safety.",
   alternates: { canonical: "/shop/blog" },
 };
 
 export default async function ShopBlog() {
   const { offline } = await getCatalog();
-  const posts = offline ? [] : await listPosts().catch(() => []);
+  const posts = offline ? [] : await getPosts();
   return (
     <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
       <h1 className="font-display text-4xl text-white sm:text-5xl">Supplement guides</h1>

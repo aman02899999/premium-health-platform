@@ -647,3 +647,142 @@ html[data-portal="show"] body {
     transform: translateX(-50%) translateY(-12px) rotate(2deg);
   }
 }
+
+/* ---------- Royal Supplements Store: black & gold theme ---------- */
+/* Re-points the palette tokens inside the store, so every bg-ink / bg-coal / from-steel turns warm black. */
+.shop-theme {
+  --color-ink: #0b0a08;
+  --color-coal: #15120e;
+  --color-steel: #221d16;
+  background: radial-gradient(ellipse at 50% -10%, #1f1a10 0%, #0b0a08 55%) fixed, #0b0a08;
+  min-height: 100vh;
+}
+.text-gold-gradient {
+  background: linear-gradient(100deg, #fde68a 0%, #f59e0b 35%, #fff7d6 55%, #d97706 80%, #fde68a 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+.btn-gold {
+  background: linear-gradient(135deg, #fde68a, #f59e0b 45%, #b45309);
+  color: #0b0a08;
+  box-shadow: 0 12px 34px -12px rgba(245, 158, 11, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px -12px rgba(245, 158, 11, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.shop-grid {
+  background-image:
+    linear-gradient(rgba(251, 191, 36, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 191, 36, 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 30% 20%, #000 20%, transparent 70%);
+}
+.cat-tile {
+  position: relative;
+  display: flex;
+  height: 100%;
+  min-height: 5.25rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  padding: 0.6rem 0.3rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.cat-tile:hover {
+  transform: translateY(-3px);
+  border-color: rgba(251, 191, 36, 0.5);
+  background: linear-gradient(160deg, rgba(251, 191, 36, 0.14), rgba(255, 255, 255, 0.02));
+}
+.cat-icon {
+  display: flex;
+  height: 2.4rem;
+  width: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(251, 191, 36, 0.12);
+  color: #fcd34d;
+  box-shadow: inset 0 0 0 1px rgba(251, 191, 36, 0.25);
+}
+@media (min-width: 640px) {
+  .cat-tile {
+    min-height: 7rem;
+    border-radius: 1.4rem;
+  }
+  .cat-icon {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+.cat-badge {
+  position: absolute;
+  right: 0.3rem;
+  top: 0.3rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #fde68a, #f59e0b);
+  padding: 0.05rem 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 900;
+  color: #0b0a08;
+}
+.promo-banner {
+  position: relative;
+  display: flex;
+  min-height: 10.5rem;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  padding: 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.promo-banner:hover {
+  transform: translateY(-3px);
+}
+.promo-gold {
+  background: linear-gradient(130deg, #fde68a 0%, #f59e0b 45%, #92400e 100%);
+  color: #0b0a08;
+  box-shadow: 0 24px 60px -30px rgba(245, 158, 11, 0.9);
+}
+.promo-red {
+  background: linear-gradient(130deg, #fb7185 0%, #be123c 45%, #3f0a14 100%);
+  color: #fff;
+  box-shadow: 0 24px 60px -30px rgba(225, 29, 72, 0.9);
+}
+.promo-emerald {
+  background: linear-gradient(130deg, #6ee7b7 0%, #059669 45%, #022c22 100%);
+  color: #fff;
+  box-shadow: 0 24px 60px -30px rgba(16, 185, 129, 0.9);
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-gold-gradient {
+    animation: none;
+  }
+}
+
+/* Tablets: three doors side by side, shorter cards. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .portal-card-inner {
+    min-height: 0;
+    padding: 1.5rem;
+  }
+}
+/* Phones: the three portal doors are compact so all of them fit on the first screen. */
+@media (max-width: 639px) {
+  .portal-card-inner {
+    padding: 1rem 1.15rem;
+  }
+  .portal-card .portal-emblem {
+    width: 8rem;
+    height: 8rem;
+    right: -1.5rem;
+    bottom: -1.5rem;
+  }
+}

@@ -4,11 +4,8 @@ import { notFound } from "next/navigation";
 import { getCatalog } from "@/lib/shop/server";
 import { SITE_URL } from "@/lib/site";
 import { AddToCart, OffBadge, Price, ProductImage } from "@/components/shop/ui";
-import { inr } from "@/lib/shop/format";
+import { fitTitle, inr } from "@/lib/shop/format";
 import { JsonLd } from "@/components/ui/JsonLd";
-
-export const revalidate = 60;
-export const generateStaticParams = () => [];
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -16,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = combos.find((x) => x.slug === slug);
   if (!c) return { title: "Combo not found", robots: { index: false } };
   return {
-    title: `${c.name} — ₹${c.price.toLocaleString("en-IN")}`,
+    title: fitTitle(`${c.name} — ₹${c.price.toLocaleString("en-IN")}`, (await getCatalog()).settings.storeName),
     description: `${c.lines.map((l) => l.product.name).join(" + ")} for ₹${c.price.toLocaleString("en-IN")} (worth ₹${c.listTotal.toLocaleString("en-IN")}).`.slice(0, 160),
     alternates: { canonical: `/shop/combos/${c.slug}` },
   };

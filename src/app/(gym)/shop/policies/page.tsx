@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getCatalog } from "@/lib/shop/server";
 
-export const revalidate = 300;
 export const metadata: Metadata = { title: "Shipping, Returns & Contact", description: "Delivery times, return policy, seller details and how to contact the store.", alternates: { canonical: "/shop/policies" } };
 
 export default async function Policies() {

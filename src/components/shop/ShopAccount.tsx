@@ -102,7 +102,7 @@ export function ShopAccount() {
             className="flex flex-col gap-2 sm:flex-row"
           >
             <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@email.com" className="field flex-1" />
-            <button disabled={busy} className="btn-brand inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-bold disabled:opacity-50">
+            <button disabled={busy} className="btn-gold inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-bold disabled:opacity-50">
               <Mail className="h-4 w-4" /> Email me a code
             </button>
           </form>
@@ -123,7 +123,7 @@ export function ShopAccount() {
             </p>
             <div className="flex gap-2">
               <input inputMode="numeric" autoComplete="one-time-code" maxLength={6} value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))} placeholder="123456" className="field flex-1 tracking-[0.4em]" />
-              <button disabled={busy || code.length !== 6} className="btn-brand rounded-full px-5 font-bold disabled:opacity-50">
+              <button disabled={busy || code.length !== 6} className="btn-gold rounded-full px-5 font-bold disabled:opacity-50">
                 Verify
               </button>
             </div>
@@ -159,7 +159,7 @@ export function ShopAccount() {
         <div className="rounded-3xl border border-white/10 p-10 text-center">
           <Package className="mx-auto h-10 w-10 text-white/25" />
           <p className="mt-3 text-white/60">No orders for this email yet.</p>
-          <Link href="/shop/products" className="btn-brand mt-5 inline-flex rounded-full px-6 py-3 font-bold">
+          <Link href="/shop/products" className="btn-gold mt-5 inline-flex rounded-full px-6 py-3 font-bold">
             Shop now
           </Link>
         </div>

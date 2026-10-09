@@ -177,7 +177,7 @@ export function AdminApp({ storage }: { storage: string }) {
             <TrendingUp className="h-4 w-4 text-emerald-300" /> Growth &amp; renewals
           </a>
           <a href="/admin/shop" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-amber-400/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-amber-400/40 hover:bg-amber-400/20">
-            <ShoppingBag className="h-4 w-4 text-amber-300" /> Supplement store
+            <ShoppingBag className="h-4 w-4 text-amber-300" /> Royal Supplements Store
           </a>
           {TABS.map((t) => (
             <button

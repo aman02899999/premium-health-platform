@@ -124,7 +124,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
           </li>
           <li>
             <Link href="/shop" onClick={() => setOpen(false)} className="font-display flex items-center gap-2 px-6 py-2 text-xl text-amber-300">
-              <ShoppingBag className="h-5 w-5" /> Supplements Store
+              <ShoppingBag className="h-5 w-5" /> Royal Supplements Store
             </Link>
           </li>
           <li className="mt-6">

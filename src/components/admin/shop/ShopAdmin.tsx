@@ -63,7 +63,7 @@ export function ShopAdmin() {
             <ArrowLeft className="h-5 w-5" />
           </a>
           <ShoppingBag className="h-5 w-5 text-amber-300" />
-          <h1 className="font-display text-lg sm:text-xl">Supplement store</h1>
+          <h1 className="font-display text-lg sm:text-xl">Royal Supplements Store</h1>
           <a href="/shop" target="_blank" className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-sm text-white/80">
             View store <ExternalLink className="h-3.5 w-3.5" />
           </a>

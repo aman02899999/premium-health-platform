@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Inter, Oswald } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
 import { ADSENSE_SRC } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 
-// Self-hosted at build time: no render-blocking request to Google, preloaded, with a size-matched fallback.
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-inter", display: "swap" });
-const oswald = Oswald({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-oswald", display: "swap" });
+// Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
+const inter = localFont({ src: "./fonts/inter-latin-wght-normal.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
+const oswald = localFont({ src: "./fonts/oswald-latin-wght-normal.woff2", weight: "200 700", variable: "--font-oswald", display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#06111c",

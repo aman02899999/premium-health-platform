@@ -3,9 +3,8 @@ import { Suspense } from "react";
 import { getCatalog } from "@/lib/shop/server";
 import { ProductBrowser } from "@/components/shop/ProductBrowser";
 
-export const revalidate = 60;
 export const metadata: Metadata = {
-  title: "All Supplements — Protein, Pre-Workout, Aminos & More",
+  title: "Buy Supplements Online — All Products",
   description: "Shop genuine whey protein, pre-workout, EAA, BCAA, glutamine, creatine and multivitamins at sale prices. Secure Razorpay checkout.",
   alternates: { canonical: "/shop/products" },
 };

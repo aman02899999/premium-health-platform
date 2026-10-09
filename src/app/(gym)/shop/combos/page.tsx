@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { getCatalog } from "@/lib/shop/server";
 import { ComboCard } from "@/components/shop/cards";
 
-export const revalidate = 60;
 export const metadata: Metadata = {
-  title: "Supplement Combo Offers — Extra Savings on Bundles",
+  title: "Supplement Combo Offers",
   description: "Supplement combos at sale prices plus an extra discount: protein, pre-workout, aminos and multivitamins bundled together.",
   alternates: { canonical: "/shop/combos" },
 };

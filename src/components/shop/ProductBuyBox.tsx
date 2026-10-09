@@ -82,6 +82,19 @@ export function ProductBuyBox(p: Props) {
           <Zap className="h-4 w-4" /> Buy now
         </button>
       </div>
+      {/* Phones: price and add-to-cart stay on screen above the bottom navigation. */}
+      <div className="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-30 flex items-center gap-3 border-t border-amber-300/20 bg-ink/95 px-4 py-2.5 backdrop-blur-xl lg:hidden">
+        <div className="min-w-0 flex-1">
+          <p className="font-display text-xl leading-none text-white">₹{p.sale.toLocaleString("en-IN")}</p>
+          {p.list > p.sale && (
+            <p className="mt-0.5 text-[11px] text-white/45">
+              <s>₹{p.list.toLocaleString("en-IN")}</s> <b className="text-emerald-300">{Math.round(((p.list - p.sale) / p.list) * 100)}% off</b>
+              {flavour ? ` · ${flavour}` : ""}
+            </p>
+          )}
+        </div>
+        <AddToCart line={line} name={p.name} disabled={out} className="!px-6" />
+      </div>
     </div>
   );
 }

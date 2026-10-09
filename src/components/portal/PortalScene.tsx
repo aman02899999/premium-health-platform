@@ -62,7 +62,7 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
   const shopRef = useTilt<HTMLAnchorElement>();
 
   return (
-    <div className="portal-stage relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-12 sm:px-6">
+    <div className="portal-stage relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-6 sm:py-12">
       {/* depth backdrop: glow, perspective floor and two orbit rings */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_25%_40%,rgba(4,70,109,.6),transparent_55%),radial-gradient(ellipse_at_80%_60%,rgba(16,185,129,.22),transparent_50%),radial-gradient(ellipse_at_50%_100%,rgba(232,57,75,.18),transparent_55%)]" />
       <div className="grid-floor pointer-events-none absolute inset-x-0 bottom-0 h-1/2 origin-bottom opacity-70 [transform:perspective(600px)_rotateX(62deg)]" />
@@ -71,12 +71,12 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
 
       <header className="portal-rise relative z-10 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky">One account · three worlds</p>
-        <h1 className="font-display mt-3 text-4xl leading-none text-white sm:text-6xl">
+        <h1 className="font-display mt-2 text-[2rem] leading-none text-white sm:mt-3 sm:text-6xl">
           Where do you want <span className="text-brand-gradient">to go?</span>
         </h1>
       </header>
 
-      <div className="portal-cards relative z-10 mt-10 grid w-full max-w-5xl gap-6 sm:mt-14 md:grid-cols-2 md:gap-8 xl:max-w-7xl xl:grid-cols-3">
+      <div className="portal-cards relative z-10 mt-5 grid w-full max-w-5xl gap-3 sm:mt-14 sm:gap-6 md:grid-cols-3 md:gap-5 xl:max-w-7xl xl:gap-8">
         <Link
           ref={gymRef}
           href="/"
@@ -98,16 +98,16 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
               </span>
               <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">Gym · Sector 93 Noida</span>
             </span>
-            <span className="portal-layer portal-z-80 font-display mt-8 block text-4xl leading-[0.95] text-white sm:text-5xl xl:text-[2.75rem]">
+            <span className="portal-layer portal-z-80 font-display mt-3 block text-[1.9rem] leading-[0.95] text-white sm:mt-8 sm:text-5xl md:text-[2.1rem] lg:text-5xl xl:text-[2.75rem]">
               Royal<br />Fitness Club
             </span>
-            <span className="portal-layer portal-z-40 mt-4 block max-w-xs text-sm text-white/75">Memberships, trainers, timings, photos, free trial — and your workout &amp; diet tools.</span>
-            <span className="portal-layer portal-z-20 mt-6 flex flex-wrap gap-2 text-[11px] font-semibold text-white/80">
+            <span className="portal-layer portal-z-40 mt-4 hidden max-w-xs text-sm text-white/75 sm:block md:hidden lg:block">Memberships, trainers, timings, photos, free trial — and your workout &amp; diet tools.</span>
+            <span className="portal-layer portal-z-20 mt-6 hidden flex-wrap gap-2 sm:flex md:hidden xl:flex text-[11px] font-semibold text-white/80">
               <span className="portal-chip"><Dumbbell className="h-3.5 w-3.5" /> Programs</span>
               <span className="portal-chip"><Users className="h-3.5 w-3.5" /> Couple plans</span>
               <span className="portal-chip"><Timer className="h-3.5 w-3.5" /> 5:30 AM–10 PM</span>
             </span>
-            <span className="portal-layer portal-z-60 mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-bold text-white shadow-[0_10px_30px_-10px_rgba(232,57,75,.9)]">
+            <span className="portal-layer portal-z-60 mt-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full sm:mt-8 bg-brand px-4 py-2 text-sm font-bold sm:px-5 sm:py-3 text-white shadow-[0_10px_30px_-10px_rgba(232,57,75,.9)]">
               Enter the gym <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
             <Dumbbell className="portal-emblem" aria-hidden />
@@ -130,16 +130,16 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
               </span>
               <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">Health knowledge</span>
             </span>
-            <span className="portal-layer portal-z-80 font-display mt-8 block text-4xl leading-[0.95] text-white sm:text-5xl xl:text-[2.75rem]">
+            <span className="portal-layer portal-z-80 font-display mt-3 block text-[1.9rem] leading-[0.95] text-white sm:mt-8 sm:text-5xl md:text-[2.1rem] lg:text-5xl xl:text-[2.75rem]">
               Premium Health<br />Platform
             </span>
-            <span className="portal-layer portal-z-40 mt-4 block max-w-xs text-sm text-white/75">Diseases, foods, Indian diet plans, Ayurveda, calculators and evidence-based guides.</span>
-            <span className="portal-layer portal-z-20 mt-6 flex flex-wrap gap-2 text-[11px] font-semibold text-white/80">
+            <span className="portal-layer portal-z-40 mt-4 hidden max-w-xs text-sm text-white/75 sm:block md:hidden lg:block">Diseases, foods, Indian diet plans, Ayurveda, calculators and evidence-based guides.</span>
+            <span className="portal-layer portal-z-20 mt-6 hidden flex-wrap gap-2 sm:flex md:hidden xl:flex text-[11px] font-semibold text-white/80">
               <span className="portal-chip"><Stethoscope className="h-3.5 w-3.5" /> Conditions</span>
               <span className="portal-chip"><Salad className="h-3.5 w-3.5" /> Nutrition</span>
               <span className="portal-chip"><Leaf className="h-3.5 w-3.5" /> Ayurveda</span>
             </span>
-            <span className="portal-layer portal-z-60 mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-bold text-stone-900 shadow-[0_10px_30px_-10px_rgba(52,211,153,.9)]">
+            <span className="portal-layer portal-z-60 mt-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full sm:mt-8 bg-emerald-400 px-4 py-2 text-sm font-bold sm:px-5 sm:py-3 text-stone-900 shadow-[0_10px_30px_-10px_rgba(52,211,153,.9)]">
               Explore health <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
             <HeartPulse className="portal-emblem" aria-hidden />
@@ -151,9 +151,9 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
           ref={shopRef}
           href="/shop"
           onClick={() => remember("shop")}
-          className="portal-card portal-card-shop group md:col-span-2 xl:col-span-1"
+          className="portal-card portal-card-shop group"
           style={{ ["--delay" as string]: "280ms" }}
-          aria-label="Royal Supplements — supplement store"
+          aria-label="Royal Supplements Store"
         >
           <span className="portal-card-inner">
             <span className="portal-layer portal-z-40 flex items-center gap-3">
@@ -162,16 +162,16 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
               </span>
               <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">Online store · Mega sale</span>
             </span>
-            <span className="portal-layer portal-z-80 font-display mt-8 block text-4xl leading-[0.95] text-white sm:text-5xl xl:text-[2.75rem]">
-              Supplements<br />Store
+            <span className="portal-layer portal-z-80 font-display mt-3 block text-[1.9rem] leading-[0.95] text-white sm:mt-8 sm:text-5xl md:text-[2.1rem] lg:text-5xl xl:text-[2.75rem]">
+              Royal Supplements<br />Store
             </span>
-            <span className="portal-layer portal-z-40 mt-4 block max-w-xs text-sm text-white/75">Genuine whey, pre-workout, aminos and multivitamins — up to 50% off, plus value combos.</span>
-            <span className="portal-layer portal-z-20 mt-6 flex flex-wrap gap-2 text-[11px] font-semibold text-white/80">
+            <span className="portal-layer portal-z-40 mt-4 hidden max-w-xs text-sm text-white/75 sm:block md:hidden lg:block">Genuine whey, pre-workout, aminos and multivitamins — up to 50% off, plus value combos.</span>
+            <span className="portal-layer portal-z-20 mt-6 hidden flex-wrap gap-2 sm:flex md:hidden xl:flex text-[11px] font-semibold text-white/80">
               <span className="portal-chip"><BadgePercent className="h-3.5 w-3.5" /> Up to 50% off</span>
               <span className="portal-chip"><Gift className="h-3.5 w-3.5" /> Combos</span>
               <span className="portal-chip"><Truck className="h-3.5 w-3.5" /> Home delivery</span>
             </span>
-            <span className="portal-layer portal-z-60 mt-8 inline-flex items-center gap-2 rounded-full bg-amber-400 px-5 py-3 text-sm font-bold text-black shadow-[0_10px_30px_-10px_rgba(251,191,36,.9)]">
+            <span className="portal-layer portal-z-60 mt-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full sm:mt-8 bg-amber-400 px-4 py-2 text-sm font-bold sm:px-5 sm:py-3 text-black shadow-[0_10px_30px_-10px_rgba(251,191,36,.9)]">
               Shop supplements <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </span>
             <ShoppingBag className="portal-emblem" aria-hidden />
@@ -180,7 +180,7 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
         </Link>
       </div>
 
-      <p className="portal-rise relative z-10 mt-10 flex items-center gap-2 text-center text-xs text-white/55" style={{ animationDelay: "400ms" }}>
+      <p className="portal-rise relative z-10 mt-5 flex sm:mt-10 items-center gap-2 text-center text-xs text-white/55" style={{ animationDelay: "400ms" }}>
         <ShieldCheck className="h-4 w-4 text-sky" /> Sign in once with Google — the same account works everywhere.
       </p>
     </div>

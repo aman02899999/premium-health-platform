@@ -50,3 +50,12 @@ describe("checkout input", () => {
     expect(orderNumber()).toMatch(/^RS-[2-9A-HJKMNP-Z]{8}$/);
   });
 });
+
+describe("page titles", () => {
+  it("drops the store suffix, then trims, to stay inside a Google result", async () => {
+    const { fitTitle } = await import("./format");
+    expect(fitTitle("Protein — 50% off", "Royal Supplements Store")).toBe("Protein — 50% off");
+    expect(fitTitle("Pre-Workout Supplements: What Works and How to Stay Safe", "Royal Supplements Store")).toEqual({ absolute: "Pre-Workout Supplements: What Works and How to Stay Safe" });
+    expect((fitTitle("x".repeat(90), "S") as { absolute: string }).absolute).toHaveLength(63);
+  });
+});

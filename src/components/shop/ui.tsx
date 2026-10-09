@@ -1,6 +1,7 @@
 "use client";
 
 import { inr } from "@/lib/shop/format";
+import { BannerArt } from "./art";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -12,8 +13,9 @@ import type { CartLine } from "@/lib/shop/types";
 export function ProductImage({ src, alt, sizes, priority = false, className = "" }: { src: string | null | undefined; alt: string; sizes: string; priority?: boolean; className?: string }) {
   if (!src) {
     return (
-      <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-steel to-coal ${className}`} aria-label={alt} role="img">
-        <Package className="h-12 w-12 text-white/20" />
+      <div className={`relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-steel to-coal ${className}`} aria-label={`${alt} — photo coming soon`} role="img">
+        <BannerArt tone="gold" word="ROYAL" className="h-4/5 w-4/5 opacity-90" />
+        <span className="absolute bottom-2 text-[10px] font-semibold uppercase tracking-widest text-white/35">Photo soon</span>
       </div>
     );
   }
@@ -66,10 +68,10 @@ export function AddToCart({ line, name, disabled, label = "Add to cart", classNa
         cart.announce(name);
         setDone(true);
       }}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-40 ${done ? "bg-emerald-500 text-white" : "btn-brand"} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-40 ${done ? "bg-emerald-500 text-white" : "btn-gold"} ${className}`}
     >
       {done ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
-      {disabled ? "Out of stock" : done ? "Added" : label}
+      {disabled ? "Sold out" : done ? "Added" : label}
     </button>
   );
 }

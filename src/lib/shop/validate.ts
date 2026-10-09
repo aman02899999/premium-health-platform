@@ -118,6 +118,8 @@ export function parseSettings(b: R): ShopSettings | string {
   if (s.gstin && !/^[0-9]{2}[A-Z0-9]{13}$/.test(s.gstin.toUpperCase())) return "A GSTIN has 15 characters, e.g. 09ABCDE1234F1Z5.";
   s.gstin = s.gstin.toUpperCase();
   s.fssaiLicence = s.fssaiLicence.replace(/\s/g, "");
-  if (s.heroImage && !url(s.heroImage)) return "Hero image must be an https:// link or an uploaded image.";
+  for (const k of ["heroImage", "banner1Image", "banner2Image", "banner3Image"] as const) {
+    if (s[k] && !url(s[k])) return "Images must be an https:// link or an uploaded image.";
+  }
   return s;
 }

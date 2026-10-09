@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
+import { fitTitle } from "@/lib/shop/format";
 import { getCatalog } from "@/lib/shop/server";
 import { parseMarkdown } from "@/lib/markdown";
 import { SITE_URL } from "@/lib/site";
@@ -10,21 +11,18 @@ import { ComboCard, ProductCard } from "@/components/shop/cards";
 import { ProductBuyBox, ProductGallery } from "@/components/shop/ProductBuyBox";
 import { JsonLd } from "@/components/ui/JsonLd";
 
-export const revalidate = 60;
-export const generateStaticParams = () => [];
-
 const abs = (u: string) => (u.startsWith("http") ? u : `${SITE_URL}${u}`);
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const { products } = await getCatalog();
+  const { products, settings } = await getCatalog();
   const p = products.find((x) => x.slug === slug);
   if (!p) return { title: "Product not found", robots: { index: false } };
   const off = p.discount > 0 ? ` — ${p.discount}% OFF` : "";
   const title = p.seoTitle || `${p.name}${p.size ? ` ${p.size}` : ""}${off}`;
   const description = (p.seoDescription || `Buy ${p.name} online at ₹${p.salePrice.toLocaleString("en-IN")}${p.discount ? ` (${p.discount}% off ₹${p.listPrice.toLocaleString("en-IN")})` : ""}. ${p.shortDescription}`).slice(0, 160);
   return {
-    title,
+    title: fitTitle(title, settings.storeName),
     description,
     alternates: { canonical: `/shop/p/${p.slug}` },
     openGraph: { type: "website", title, description, url: `${SITE_URL}/shop/p/${p.slug}`, images: p.images.slice(0, 1).map((u) => ({ url: abs(u), alt: p.name })) },
@@ -168,6 +166,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         )}
       </section>
+      {/* Room for the phone buy bar */}
+      <div aria-hidden className="h-16 lg:hidden" />
     </>
   );
 }

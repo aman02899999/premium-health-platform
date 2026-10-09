@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 
   const buyer = parseBuyer(body);
   if (typeof buyer === "string") return NextResponse.json({ error: buyer }, { status: 400 });
-  const cat = await getCatalog();
+  const cat = await getCatalog({ fresh: true });
   if (cat.offline) return NextResponse.json({ error: "The store is being updated — please try again in a minute." }, { status: 503 });
   const quote = quoteCart(parseCart(body.lines), cat.productById, cat.comboById, cat.settings);
   if (quote.problems.length) return NextResponse.json({ error: quote.problems[0], quote }, { status: 409 });

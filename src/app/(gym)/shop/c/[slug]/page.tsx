@@ -2,13 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Link from "next/link";
+import { fitTitle } from "@/lib/shop/format";
 import { getCatalog } from "@/lib/shop/server";
 import { SITE_URL } from "@/lib/site";
 import { ProductBrowser } from "@/components/shop/ProductBrowser";
 import { JsonLd } from "@/components/ui/JsonLd";
-
-export const revalidate = 60;
-export const generateStaticParams = () => [];
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -17,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!c) return { title: "Category not found", robots: { index: false } };
   const off = c.discountPct > 0 ? ` — ${c.discountPct}% off` : "";
   return {
-    title: c.seoTitle || `${c.name}${off}`,
+    title: fitTitle(c.seoTitle || `${c.name}${off}`, (await getCatalog()).settings.storeName),
     description: c.seoDescription || `${c.description} Genuine products at sale prices with secure checkout.`.slice(0, 160),
     alternates: { canonical: `/shop/c/${c.slug}` },
   };

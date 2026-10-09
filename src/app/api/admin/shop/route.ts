@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
 import { isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { emailConfigured } from "@/lib/growth/providers";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { suggestCombo } from "@/lib/shop/pricing";
+import { expireShop } from "@/lib/shop/server";
 import {
   deleteCategory, deleteCombo, deletePost, deleteProduct, listOrders, listPosts, loadCatalog, saveCategory, saveCombo, savePost, saveProduct, saveSettings, updateOrder,
 } from "@/lib/shop/store";
@@ -76,8 +76,7 @@ export async function POST(req: Request) {
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b || typeof b.action !== "string") return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   const done = (data: Record<string, unknown> = {}) => {
-    revalidatePath("/shop", "layout");
-    revalidatePath("/sitemap.xml");
+    expireShop();
     return NextResponse.json({ ok: true, ...data });
   };
   const bad = (msg: string) => NextResponse.json({ error: msg }, { status: 400 });
@@ -109,8 +108,8 @@ export async function POST(req: Request) {
         if (!isUuid(b.id)) return bad("Invalid id");
         const fn = { product: deleteProduct, category: deleteCategory, combo: deleteCombo, post: deletePost }[String(b.kind)];
         if (!fn) return bad("Invalid kind");
-        await fn(b.id);
-        return done();
+        const refused = await fn(b.id);
+        return refused ? NextResponse.json({ error: refused }, { status: 409 }) : done();
       }
       case "order": {
         if (!isUuid(b.id)) return bad("Invalid id");

@@ -37,8 +37,11 @@ export function ShopHeader({ storeName, announcement, categories }: { storeName:
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-300 to-amber-600 text-black shadow-lg shadow-amber-500/30">
               <Crown className="h-5 w-5" />
             </span>
-            <span className="font-display text-lg leading-none tracking-wide text-white sm:text-xl">
-              {storeName.split(" ")[0]} <span className="text-amber-300">{storeName.split(" ").slice(1).join(" ")}</span>
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-[1.05rem] tracking-wide text-white sm:text-xl">
+                {storeName.split(" ")[0]} <span className="text-gold-gradient">{storeName.split(" ").slice(1, 2).join(" ")}</span>
+              </span>
+              {storeName.split(" ").length > 2 && <span className="mt-0.5 text-[9px] font-bold uppercase tracking-[0.42em] text-amber-200/70 sm:text-[10px]">{storeName.split(" ").slice(2).join(" ")}</span>}
             </span>
           </Link>
           <nav className="ml-6 hidden items-center gap-1 lg:flex" aria-label="Store">

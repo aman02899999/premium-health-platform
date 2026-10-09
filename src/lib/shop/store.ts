@@ -81,8 +81,12 @@ export async function saveCategory(c: Omit<Category, "id"> & { id?: string }): P
   return catFrom(rows[0]);
 }
 
-export async function deleteCategory(id: string): Promise<void> {
+/** Refuses (returns a message) while products use it: they would silently lose the category discount. */
+export async function deleteCategory(id: string): Promise<string | null> {
+  const { rows } = await pool.query<{ n: number }>(`select count(*)::int as n from public.shop_products where category_id = $1`, [id]);
+  if (rows[0].n > 0) return `${rows[0].n} product(s) are in this category. Move them to another category first, or hide the category instead.`;
   await pool.query(`delete from public.shop_categories where id = $1`, [id]);
+  return null;
 }
 
 /* ---------- products ---------- */
@@ -114,8 +118,12 @@ export async function saveProduct(p: ProductInput): Promise<Product> {
   return prodFrom(rows[0]);
 }
 
-export async function deleteProduct(id: string): Promise<void> {
+/** Refuses (returns a message) while a combo contains it; past orders keep their own snapshot. */
+export async function deleteProduct(id: string): Promise<string | null> {
+  const { rows } = await pool.query<{ name: string }>(`select name from public.shop_combos where items @> $1::jsonb`, [JSON.stringify([{ productId: id }])]);
+  if (rows.length) return `It's in ${rows.map((r) => `“${r.name}”`).join(", ")}. Remove it from those combos first, or untick “Show on store” to hide it.`;
   await pool.query(`delete from public.shop_products where id = $1`, [id]);
+  return null;
 }
 
 /* ---------- combos ---------- */
@@ -137,8 +145,9 @@ export async function saveCombo(c: Omit<Combo, "id" | "updatedAt"> & { id?: stri
   return comboFrom(rows[0]);
 }
 
-export async function deleteCombo(id: string): Promise<void> {
+export async function deleteCombo(id: string): Promise<string | null> {
   await pool.query(`delete from public.shop_combos where id = $1`, [id]);
+  return null;
 }
 
 /* ---------- the priced catalogue ---------- */
@@ -191,8 +200,9 @@ export async function savePost(p: Omit<Post, "id" | "createdAt" | "updatedAt"> &
   return postFrom(rows[0]);
 }
 
-export async function deletePost(id: string): Promise<void> {
+export async function deletePost(id: string): Promise<string | null> {
   await pool.query(`delete from public.shop_posts where id = $1`, [id]);
+  return null;
 }
 
 /* ---------- orders ---------- */
@@ -237,15 +247,24 @@ export async function markShopPaid(razorpayOrderId: string, paymentId: string): 
       for (const it of o.items) {
         if (it.kind === "product") need.set(it.id, (need.get(it.id) ?? 0) + it.qty);
       }
-      const comboIds = o.items.filter((i) => i.kind === "combo").map((i) => i.id);
-      if (comboIds.length) {
-        const { rows: cr } = await client.query<{ id: string; items: Combo["items"] }>(`select id, items from public.shop_combos where id = any($1::uuid[])`, [comboIds]);
-        for (const it of o.items.filter((i) => i.kind === "combo")) {
-          for (const ci of cr.find((c) => c.id === it.id)?.items ?? []) need.set(ci.productId, (need.get(ci.productId) ?? 0) + ci.qty * it.qty);
-        }
+      // Combos use the contents snapshotted at checkout; older orders without ids fall back to the combo as it is now.
+      const legacy = o.items.filter((i) => i.kind === "combo" && !(i.contents?.length && i.contents.every((c) => c.productId)));
+      const { rows: cr } = legacy.length
+        ? await client.query<{ id: string; items: Combo["items"] }>(`select id, items from public.shop_combos where id = any($1::uuid[])`, [legacy.map((i) => i.id)])
+        : { rows: [] as { id: string; items: Combo["items"] }[] };
+      for (const it of o.items.filter((i) => i.kind === "combo")) {
+        const parts = legacy.includes(it) ? (cr.find((c) => c.id === it.id)?.items ?? []) : (it.contents ?? []).map((c) => ({ productId: c.productId!, qty: c.qty }));
+        for (const ci of parts) need.set(ci.productId, (need.get(ci.productId) ?? 0) + ci.qty * it.qty);
       }
-      for (const [id, qty] of need) await client.query(`update public.shop_products set stock = greatest(stock - $2, 0), updated_at = now() where id = $1`, [id, qty]);
-      await client.query(`update public.shop_orders set stock_applied = true where id = $1`, [o.id]);
+      // Two shoppers can pay for the last unit at the same time: never go below zero, and flag it for the admin.
+      const short: string[] = [];
+      for (const [id, qty] of need) {
+        const { rows: pr } = await client.query<{ name: string; stock: number }>(`select name, stock from public.shop_products where id = $1 for update`, [id]);
+        if (pr[0] && pr[0].stock < qty) short.push(`${pr[0].name}: needed ${qty}, had ${pr[0].stock}`);
+        await client.query(`update public.shop_products set stock = greatest(stock - $2, 0), updated_at = now() where id = $1`, [id, qty]);
+      }
+      const note = short.length ? `⚠ Stock was short when this order was paid — ${short.join("; ")}. Check before packing.` : "";
+      await client.query(`update public.shop_orders set stock_applied = true, admin_notes = case when $2 = '' then admin_notes else left(trim(both from $2 || E'\n' || admin_notes), 2000) end where id = $1`, [o.id, note]);
     }
     const fresh = (await client.query<OrderRow>(`select * from public.shop_orders where id = $1`, [o.id])).rows[0];
     await client.query("commit");

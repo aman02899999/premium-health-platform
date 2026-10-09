@@ -4,13 +4,16 @@ import type { ShopSettings } from "./types";
 export const SHOP_PATH = "/shop";
 
 export const DEFAULT_SETTINGS: ShopSettings = {
-  storeName: "Royal Supplements",
+  storeName: "Royal Supplements Store",
   tagline: "Genuine supplements, honest prices — from the team at Royal Fitness Club",
   announcement: "MEGA SALE · Protein 50% OFF · Pre-workout, EAA, BCAA & Glutamine 50% OFF · Tablets 30% OFF",
   heroTitle: "Fuel that",
   heroHighlight: "actually works",
   heroText: "Authentic protein, pre-workouts, aminos and daily essentials — picked by coaches, sold at sale prices, delivered to your door.",
   heroImage: "",
+  banner1Image: "",
+  banner2Image: "",
+  banner3Image: "",
   orderEmail: "",
   phone: "+91 88518 30081",
   whatsapp: "918851830081",
@@ -22,7 +25,7 @@ export const DEFAULT_SETTINGS: ShopSettings = {
   dispatchText: "Orders are packed within 24 hours and delivered in 2–6 working days.",
   returnPolicy:
     "Sealed, unopened products can be returned within 7 days of delivery. Opened food supplements can't be returned for hygiene reasons. If anything arrives damaged or wrong, WhatsApp us a photo within 48 hours and we'll replace it.",
-  seoTitle: "Royal Supplements — Genuine Protein & Supplements Online, Noida",
+  seoTitle: "Royal Supplements Store — Genuine Supplements Online, Noida",
   seoDescription: "Buy genuine whey protein, pre-workout, EAA, BCAA, creatine and multivitamins online. Sale prices up to 50% off, secure Razorpay checkout, delivery across India.",
 };
 

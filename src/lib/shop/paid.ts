@@ -1,6 +1,6 @@
 import "server-only";
-import { revalidatePath } from "next/cache";
 import { notifyOrderPaid } from "./notify";
+import { expireShop } from "./server";
 import { getSettings, markShopPaid } from "./store";
 
 /**
@@ -18,7 +18,7 @@ export async function afterShopPaid(razorpayOrderId: string, paymentId: string):
     }
     // Stock changed: refresh the storefront pages.
     try {
-      revalidatePath("/shop", "layout");
+      expireShop();
     } catch {
       /* outside a request context (tests) */
     }

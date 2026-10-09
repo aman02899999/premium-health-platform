@@ -98,10 +98,10 @@ export default function CheckoutPage() {
         <p className="mt-2 text-white/70">
           {inr(done.total)} paid. Your order number is <b className="font-mono text-amber-300">{done.number}</b>.
         </p>
-        <p className="mt-2 text-sm text-white/55">We&apos;ve emailed the details to {f.email}. We&apos;ll pack it within 24 hours.</p>
+        <p className="mt-2 text-sm text-white/55">Keep this order number. You can follow packing and delivery any time under My orders — sign in with {f.email}.</p>
         <p className="mt-1 font-mono text-xs text-white/40">Payment ID {done.paymentId}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/shop/account" className="btn-brand rounded-full px-6 py-3 font-bold">
+          <Link href="/shop/account" className="btn-gold rounded-full px-6 py-3 font-bold">
             Track my order
           </Link>
           <Link href="/shop" className="rounded-full border border-white/20 px-6 py-3 font-bold text-white">
@@ -116,7 +116,7 @@ export default function CheckoutPage() {
     return (
       <section className="mx-auto max-w-xl px-4 py-16 text-center">
         <h1 className="font-display text-3xl text-white">Your cart is empty</h1>
-        <Link href="/shop/products" className="btn-brand mt-6 inline-flex rounded-full px-6 py-3 font-bold">
+        <Link href="/shop/products" className="btn-gold mt-6 inline-flex rounded-full px-6 py-3 font-bold">
           Start shopping
         </Link>
       </section>

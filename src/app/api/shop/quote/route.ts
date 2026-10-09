@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 /** Live prices and stock for the cart page. */
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as { lines?: unknown } | null;
-  const cat = await getCatalog();
+  const cat = await getCatalog({ fresh: true });
   if (cat.offline) return NextResponse.json({ error: "The store is being updated — please try again in a minute." }, { status: 503 });
   return NextResponse.json({ quote: quoteCart(parseCart(body?.lines), cat.productById, cat.comboById, cat.settings) });
 }

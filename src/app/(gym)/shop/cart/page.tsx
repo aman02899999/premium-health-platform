@@ -17,7 +17,7 @@ export default function CartPage() {
         <ShoppingBag className="mx-auto h-14 w-14 text-white/20" />
         <h1 className="font-display mt-4 text-3xl text-white">Your cart is empty</h1>
         <p className="mt-2 text-white/60">Protein at up to 50% off is waiting.</p>
-        <Link href="/shop/products" className="btn-brand mt-6 inline-flex rounded-full px-6 py-3 font-bold">
+        <Link href="/shop/products" className="btn-gold mt-6 inline-flex rounded-full px-6 py-3 font-bold">
           Start shopping
         </Link>
       </section>
@@ -99,7 +99,7 @@ export default function CartPage() {
         <Link
           href="/shop/checkout"
           aria-disabled={!quote || quote.total <= 0 || quote.problems.length > 0}
-          className={`btn-brand mt-5 block rounded-full py-3.5 text-center font-bold ${!quote || quote.total <= 0 || quote.problems.length > 0 ? "pointer-events-none opacity-40" : ""}`}
+          className={`btn-gold mt-5 block rounded-full py-3.5 text-center font-bold ${!quote || quote.total <= 0 || quote.problems.length > 0 ? "pointer-events-none opacity-40" : ""}`}
         >
           Checkout securely
         </Link>

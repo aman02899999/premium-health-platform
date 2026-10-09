@@ -67,7 +67,7 @@ export function quoteCart(cart: CartLine[], products: Map<string, Priced>, combo
         qty,
         unitList: c.listTotal,
         unitPrice: c.price,
-        contents: c.lines.map((l) => ({ name: l.product.name, qty: l.qty })),
+        contents: c.lines.map((l) => ({ productId: l.product.id, name: l.product.name, qty: l.qty })),
         image: c.image ?? c.lines[0]?.product.images[0] ?? null,
         lineList: c.listTotal * qty,
         lineTotal: c.price * qty,

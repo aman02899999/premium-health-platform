@@ -81,6 +81,10 @@ export type ShopSettings = {
   heroHighlight: string;
   heroText: string;
   heroImage: string;
+  /** Optional photos for the three home-page promo banners; designed artwork is used when empty. */
+  banner1Image: string;
+  banner2Image: string;
+  banner3Image: string;
   /** Orders are emailed here (comma-separated for several). */
   orderEmail: string;
   phone: string;
@@ -112,7 +116,7 @@ export type OrderItem = {
   unitList: number;
   unitPrice: number;
   /** For combos: what is inside. */
-  contents?: { name: string; qty: number }[];
+  contents?: { productId?: string; name: string; qty: number }[];
 };
 
 export type Fulfilment = "new" | "packed" | "shipped" | "delivered" | "cancelled" | "refunded";

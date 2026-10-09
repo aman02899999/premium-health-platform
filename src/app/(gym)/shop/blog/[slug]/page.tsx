@@ -1,19 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCatalog } from "@/lib/shop/server";
-import { listPosts } from "@/lib/shop/store";
+import { fitTitle } from "@/lib/shop/format";
+import { getCatalog, getPosts } from "@/lib/shop/server";
 import { parseMarkdown } from "@/lib/markdown";
 import { SITE_URL } from "@/lib/site";
 import { Markdown } from "@/components/blog/Markdown";
 import { ProductCard } from "@/components/shop/cards";
 import { JsonLd } from "@/components/ui/JsonLd";
 
-export const revalidate = 300;
-export const generateStaticParams = () => [];
-
 async function find(slug: string) {
-  const posts = await listPosts().catch(() => []);
+  const posts = await getPosts();
   return { post: posts.find((p) => p.slug === slug), posts };
 }
 
@@ -22,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { post } = await find(slug);
   if (!post) return { title: "Guide not found", robots: { index: false } };
   return {
-    title: post.seoTitle || post.title,
+    title: fitTitle(post.seoTitle || post.title, (await getCatalog()).settings.storeName),
     description: (post.seoDescription || post.excerpt).slice(0, 160),
     alternates: { canonical: `/shop/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.excerpt, url: `${SITE_URL}/shop/blog/${post.slug}`, publishedTime: post.createdAt, modifiedTime: post.updatedAt },

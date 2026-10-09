@@ -138,7 +138,10 @@ const GROUPS: { title: string; fields: { k: keyof ShopSettings; label: string; h
       { k: "heroTitle", label: "Home headline" },
       { k: "heroHighlight", label: "Headline highlight (gold text)" },
       { k: "heroText", label: "Home intro text", area: true },
-      { k: "heroImage", label: "Home hero image", image: true },
+      { k: "heroImage", label: "Home hero image (optional — designed artwork shows when empty)", image: true },
+      { k: "banner1Image", label: "Promo banner 1 photo — protein sale (optional)", image: true },
+      { k: "banner2Image", label: "Promo banner 2 photo — combos (optional)", image: true },
+      { k: "banner3Image", label: "Promo banner 3 photo — tablets / aminos (optional)", image: true },
     ],
   },
   {

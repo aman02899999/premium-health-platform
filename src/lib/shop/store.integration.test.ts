@@ -32,7 +32,7 @@ describe.skipIf(!url)("supplement store on a real database", () => {
     expect(cats.find((c) => c.slug === "multivitamins-tablets")?.discountPct).toBe(30);
     expect(cats.find((c) => c.slug === "amino-acids")?.discountPct).toBe(50);
     expect((await s.listPosts()).length).toBe(8);
-    expect((await s.getSettings()).storeName).toBe("Royal Supplements");
+    expect((await s.getSettings()).storeName).toBe("Royal Supplements Store");
     // Deleting all posts doesn't bring them back.
     await pool.query("delete from public.shop_posts");
     vi.resetModules();
@@ -76,5 +76,29 @@ describe.skipIf(!url)("supplement store on a real database", () => {
     expect((await s.ordersForCustomer("00000000-0000-0000-0000-000000000000", "a@X.in")).map((o) => o.number)).toEqual(["RS-ABC123"]);
     const shipped = await s.updateOrder(results[0]!.order.id, { fulfilment: "shipped", courier: "Delhivery", tracking: "DL123" });
     expect(shipped).toMatchObject({ fulfilment: "shipped", courier: "Delhivery", tracking: "DL123" });
+  });
+
+  it("uses the combo contents the customer bought, and flags overselling instead of hiding it", async () => {
+    const whey = await s.saveProduct(product({ stock: 1 }));
+    const multi = await s.saveProduct(product({ slug: "multi", name: "Multi", listPrice: 999, stock: 10, flavours: [] }));
+    const combo = await s.saveCombo({ slug: "pair", name: "Pair", description: "", image: null, items: [{ productId: whey.id, qty: 1 }, { productId: multi.id, qty: 1 }], extraPct: 10, featured: false, active: true });
+    const order = (n: string, rzp: string) =>
+      s.insertOrder({
+        number: n, razorpayOrderId: rzp, userId: null, name: "Aman", email: "a@x.in", phone: "9876543210",
+        address: { line1: "1", line2: "", landmark: "", city: "Noida", state: "UP", pincode: "201304" },
+        items: [{ kind: "combo", id: combo.id, slug: "pair", name: "Pair", qty: 1, unitList: 6998, unitPrice: 3599, contents: [{ productId: whey.id, name: "Blackwolf Whey", qty: 1 }, { productId: multi.id, name: "Multi", qty: 1 }] }],
+        listTotal: 6998, discountTotal: 3399, shipping: 0, total: 3599, note: "",
+      });
+    await order("RS-AAA111", "order_a");
+    await order("RS-BBB222", "order_b");
+    // The admin edits the combo after both checkouts: payment must still deduct what was sold.
+    await s.saveCombo({ id: combo.id, slug: "pair", name: "Pair", description: "", image: null, items: [{ productId: multi.id, qty: 3 }, { productId: whey.id, qty: 1 }], extraPct: 10, featured: false, active: true });
+    const a = await s.markShopPaid("order_a", "pay_a");
+    const b = await s.markShopPaid("order_b", "pay_b");
+    const stock = new Map((await s.listProducts()).map((p) => [p.slug, p.stock]));
+    expect(stock.get("multi")).toBe(8);
+    expect(stock.get("blackwolf-whey")).toBe(0);
+    expect(a!.order.adminNotes).toBe("");
+    expect(b!.order.adminNotes).toMatch(/Stock was short.*Blackwolf Whey: needed 1, had 0/);
   });
 });
