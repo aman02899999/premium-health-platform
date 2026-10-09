@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { ShoppingBag, Star, ExternalLink } from "lucide-react";
+import { ShoppingBag, Star, ExternalLink, BadgeCheck } from "lucide-react";
 import type { AffiliateProduct, DigitalProduct, Coupon, Sponsor } from "@/health/lib/monetization/types";
 import { trackMonetizationEvent, getAttributionFromUrl } from "@/health/lib/monetization/analytics";
 import { ProductImage } from "./ProductImage";
@@ -33,6 +33,11 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
         />
       )}
       <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant}</p>
+      {product.brand && (
+        <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300">
+          <BadgeCheck className="h-3 w-3" /> Trusted brand · {product.brand}
+        </p>
+      )}
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>
       {product.rating && (
@@ -54,6 +59,17 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
           {product.ctaText} <ExternalLink className="h-3 w-3" />
         </a>
       </div>
+      {product.brand && product.merchant === "Amazon" && (
+        <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">
+          {product.sellerCheck ? (
+            <>
+              <b className="text-emerald-700 dark:text-emerald-400">Seller checked:</b> sold by {product.sellerCheck.seller} (checked {product.sellerCheck.checkedOn}).
+            </>
+          ) : (
+            <>Buy where &ldquo;Sold by&rdquo; is the {product.brand} brand store or the listing says &ldquo;Fulfilled by Amazon&rdquo;.</>
+          )}
+        </p>
+      )}
       <p className="mt-2 text-[10px] text-stone-400">{product.disclosure}</p>
     </div>
   );
