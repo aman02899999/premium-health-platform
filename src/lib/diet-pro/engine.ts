@@ -231,9 +231,13 @@ export function targets(p: ClientProfile) {
   if (p.conditions.pcos) warnings.push({ tone: "warn", text: "PCOS: 5–10 % weight loss improves cycles and insulin resistance (International PCOS Guideline 2023). Low-GI carbs and regular strength training help." });
   if (p.age < 18) warnings.push({ tone: "alert", text: "These adult formulas are not valid under 18 years." });
 
+  // Weekly change and time to goal follow the calories actually prescribed — after the 25 % cap,
+  // the safety floor or a manual override — not the rate that was requested.
+  const actualWeeklyKg = Math.round((((kcal - tdee) * 7) / KCAL_PER_KG) * 100) / 100;
+  const effectiveWeeklyKg = Math.abs(actualWeeklyKg) < 0.05 ? 0 : actualWeeklyKg;
   const weeksToGoal =
-    p.targetWeightKg && weeklyKg !== 0 && Math.sign(p.targetWeightKg - p.weightKg) === Math.sign(weeklyKg)
-      ? Math.ceil(Math.abs(p.targetWeightKg - p.weightKg) / Math.abs(weeklyKg))
+    p.targetWeightKg && effectiveWeeklyKg !== 0 && Math.sign(p.targetWeightKg - p.weightKg) === Math.sign(effectiveWeeklyKg)
+      ? Math.ceil(Math.abs(p.targetWeightKg - p.weightKg) / Math.abs(effectiveWeeklyKg))
       : null;
 
   return {
@@ -246,7 +250,10 @@ export function targets(p: ClientProfile) {
     tdee: Math.round(tdee),
     goal,
     rate,
-    weeklyKg: Math.round(weeklyKg * 100) / 100,
+    /** Expected change per week at the prescribed calories (0 within ±50 g, i.e. maintenance). */
+    weeklyKg: effectiveWeeklyKg,
+    /** What the chosen goal and rate asked for, before safety caps and overrides. */
+    requestedWeeklyKg: Math.round(weeklyKg * 100) / 100,
     delta: Math.round(kcal - tdee),
     kcal,
     floor,

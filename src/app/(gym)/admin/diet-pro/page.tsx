@@ -12,11 +12,13 @@ export default async function DietProPage() {
   if (!(await isAdmin())) redirect("/admin/login");
   const [content, user] = await Promise.all([getContent(), currentUser()]);
   const b = content.business;
-  const coach = content.trainers?.[0]?.name || user?.name || b.shortName;
+  const head = content.trainers?.[0];
+  const coach = head?.name || user?.name || b.shortName;
   return (
     <DietProLoader
       business={{ name: b.name, phone: b.phone, address: fullAddress(b), instagram: b.instagram, site: SITE_URL.replace(/^https?:\/\//, "") }}
       coach={coach}
+      coachProfile={{ name: coach, title: "Certified Nutritionist", experience: "16+ years", certification: "", photo: head?.image || "" }}
     />
   );
 }

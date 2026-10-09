@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Activity, ArrowLeft, ClipboardList, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
+import { Activity, ArrowLeft, BadgeCheck, ClipboardList, Cloud, CloudOff, CloudUpload, Database, Download, Dumbbell, FileJson, FlaskConical, HeartPulse, Loader2, Plus, Repeat2, Ruler, Save, Search, ShieldCheck, Trash2, Upload, User, Utensils, X } from "lucide-react";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
@@ -11,10 +11,11 @@ import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style 
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
 import { Body3D, filledMeasurements, type Body3DHandle, type BodyPick, type BodyView } from "./Body3D";
 import { Check, Choice, Kpi, Num, Section, Select, Tilt } from "./ui";
-import { downloadPlanPdf, type PdfBusiness } from "./pdf";
+import { downloadPlanPdf, type PdfBusiness, type PdfCoach } from "./pdf";
 import { DietChart } from "./DietChart";
 import { household } from "@/lib/diet-pro/household";
 import { intakeToProfile, type DietIntake } from "@/lib/growth/diet-intake";
+import { todayIST } from "@/lib/growth/dates";
 
 const GOALS: { value: Goal; label: string }[] = [
   { value: "fat-loss", label: "Fat loss" },
@@ -86,6 +87,7 @@ type Mode = "loading" | "cloud" | "local";
 
 const CLIENTS_KEY = "rfc-dietpro-clients-v1";
 const FOODS_KEY = "rfc-dietpro-foods-v1";
+const BRAND_KEY = "rfc-dietpro-brand-v1";
 const read = <T,>(k: string, fallback: T): T => {
   try {
     const raw = localStorage.getItem(k);
@@ -104,7 +106,15 @@ const write = (k: string, v: unknown) => {
 
 type Tab = "analysis" | "chart" | "meals" | "training" | "guidance" | "foods" | "progress";
 
-export default function DietPro({ business, coach }: { business: PdfBusiness; coach: string }) {
+export default function DietPro({ business, coach, coachProfile }: { business: PdfBusiness; coach: string; coachProfile: PdfCoach }) {
+  // PDF credit block: server defaults (head coach), adjustable per device.
+  const [brand, setBrand] = useState<PdfCoach>(() => ({ ...coachProfile, ...read<Partial<PdfCoach>>(BRAND_KEY, {}) }));
+  const setBrandField = (patch: Partial<PdfCoach>) =>
+    setBrand((b) => {
+      const next = { ...b, ...patch };
+      write(BRAND_KEY, { name: next.name, title: next.title, experience: next.experience, certification: next.certification });
+      return next;
+    });
   const [p, setP] = useState<ClientProfile>(DEFAULT);
   const [swaps, setSwaps] = useState<Record<string, number>>({});
   const [extras, setExtras] = useState<Record<string, { id: string; grams: number }[]>>({});
@@ -196,7 +206,8 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
   };
 
   const labels = {
-    goal: `${label(GOALS, p.goal)}${T.rate ? ` · ${T.rate} %/week` : ""}`,
+    // The engine can override the chosen goal for safety (pregnancy, underweight): print what the plan really is.
+    goal: `${label(GOALS, T.goal)}${T.rate ? ` · ${T.rate} %/week` : ""}${T.goal !== p.goal ? ` (changed from ${label(GOALS, p.goal).toLowerCase()} for safety)` : ""}`,
     diet: label(DIETS, p.diet),
     style: label(STYLES, p.style),
     activity: ACTIVITY.find((a) => a.id === p.activity)?.label ?? p.activity,
@@ -204,13 +215,15 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
 
   async function pdf() {
     if (p.useWhey && !p.whey.edited && !confirm("Whey is still using the example label values. Download anyway?")) return;
+    if (!p.name.trim() && !confirm("No client name — the PDF will say “Client”. Download anyway?")) return;
+    if (!brand.name.trim()) return toast("Add the coach name under PDF branding");
     setBusy(true);
     try {
       const img = body.current?.snapshot() ?? null;
-      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach, coachNote: note, bodyImage: img, labels });
+      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, bodyImage: img, labels });
     } catch (e) {
       console.error(e);
-      toast("PDF failed — see console");
+      toast(`PDF failed: ${(e as Error).message || "unknown error"}`);
     } finally {
       setBusy(false);
     }
@@ -522,6 +535,27 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
             </div>
           </Section>
 
+          <Section title="PDF branding" icon={<BadgeCheck className="h-4 w-4 text-brand" />} defaultOpen={false}>
+            <p className="text-[11px] text-white/45">Printed on the cover, every page header, the watermark and the signed coach card, so the client knows who designed the plan.</p>
+            {(
+              [
+                ["name", "Coach name", "Aman Sharma"],
+                ["title", "Credential", "Certified Nutritionist"],
+                ["experience", "Experience", "16+ years"],
+                ["certification", "Certificate (optional)", "e.g. ISSA Certified Nutritionist"],
+              ] as const
+            ).map(([key, l, ph]) => (
+              <label key={key} className="block">
+                <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">{l}</span>
+                <input value={brand[key]} maxLength={key === "certification" ? 80 : 40} onChange={(e) => setBrandField({ [key]: e.target.value })} placeholder={ph} className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
+              </label>
+            ))}
+            <p className="text-[11px] text-white/40">Only print a certificate the coach actually holds. Saved on this device.</p>
+            <button type="button" onClick={() => setBrandField({ name: coachProfile.name, title: coachProfile.title, experience: coachProfile.experience, certification: coachProfile.certification })} className="rounded-lg border border-white/15 py-2 text-xs text-white/70 hover:text-white">
+              Reset to default
+            </button>
+          </Section>
+
           <Section title={`Saved clients (${clients.length})`} icon={<Database className="h-4 w-4 text-brand" />} defaultOpen={false}>
             <p className="text-[11px] text-white/45">
               {mode === "cloud"
@@ -628,7 +662,7 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
 
             <div className="grid content-start gap-3">
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                <Kpi label="Calories" value={T.kcal.toLocaleString("en-IN")} sub={<span className="text-white/60">{T.delta === 0 ? "maintenance" : `${T.delta > 0 ? "+" : ""}${T.delta} vs TDEE`}</span>} tone="alert" />
+                <Kpi label="Calories" value={T.kcal.toLocaleString("en-IN")} sub={<span className="text-white/60">{T.weeklyKg === 0 ? "maintenance" : `${T.delta > 0 ? "+" : ""}${T.delta} vs TDEE`}</span>} tone="alert" />
                 <Kpi label="Protein" value={`${T.protein} g`} sub={<span className="text-white/60">{T.proteinPerKg} g/kg · ref {T.refKg} kg</span>} />
                 <Kpi label="Carbs · Fat" value={`${T.carb} · ${T.fat}`} sub={<span className="text-white/60">grams / day</span>} />
                 <Kpi label="BMI" value={A.bmi} sub={A.bmiBand.label} tone={A.bmiBand.tone} />
@@ -636,7 +670,7 @@ export default function DietPro({ business, coach }: { business: PdfBusiness; co
                 <Kpi label="Lean mass" value={`${A.leanKg} kg`} sub={<span className="text-white/60">FFMI {A.ffmi} (norm. {A.ffmiNorm})</span>} />
                 <Kpi label="BMR" value={T.bmr} sub={<span className="text-white/60">{T.bmrFormula}</span>} />
                 <Kpi label="TDEE" value={T.tdee} sub={<span className="text-white/60">× {T.factor}</span>} />
-                <Kpi label="Per week" value={`${T.weeklyKg > 0 ? "+" : ""}${T.weeklyKg} kg`} sub={<span className="text-white/60">{T.weeksToGoal ? `goal in ~${T.weeksToGoal} wk` : "planned change"}</span>} />
+                <Kpi label="Per week" value={`${T.weeklyKg > 0 ? "+" : ""}${T.weeklyKg} kg`} sub={<span className="text-white/60">{T.weeksToGoal ? `goal in ~${T.weeksToGoal} wk` : T.weeklyKg !== T.requestedWeeklyKg ? `asked ${T.requestedWeeklyKg} kg` : "planned change"}</span>} />
               </div>
               <Tilt className="p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/50">Waist risk</p>
@@ -1122,7 +1156,7 @@ function Progress({ log, setLog, weight, waist, bf, saved }: { log: LogEntry[]; 
     <Tilt className="p-5" strength={1}>
       <div className="flex flex-wrap items-center gap-2">
         <h3 className="mr-auto font-display text-lg">Progress log</h3>
-        <button type="button" onClick={() => setLog([...log.filter((e) => e.date !== new Date().toISOString().slice(0, 10)), { date: new Date().toISOString().slice(0, 10), weight, waist, bf }])} className="btn-brand rounded-lg px-3 py-2 text-xs font-bold">
+        <button type="button" onClick={() => setLog([...log.filter((e) => e.date !== todayIST()), { date: todayIST(), weight, waist, bf }])} className="btn-brand rounded-lg px-3 py-2 text-xs font-bold">
           Log today ({weight} kg{waist ? `, waist ${waist} cm` : ""})
         </button>
       </div>
