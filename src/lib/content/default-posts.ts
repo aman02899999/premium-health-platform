@@ -8,7 +8,7 @@ import type { BlogPost } from "./types";
 export const DEFAULT_POSTS: BlogPost[] = [
   {
     slug: "best-gym-in-sector-93-noida-checklist",
-    title: "Choosing the Best Gym in Sector 93, Noida: A 10-Point Checklist",
+    title: "Choosing a Gym in Sector 93, Noida: A 10-Point Checklist",
     excerpt:
       "Before you pay for a membership in Sector 93, Gejha or 93A/93B, run through these ten checks. They separate a gym you'll actually use from one you'll quit in a month.",
     category: "Gym Guide",
@@ -18,7 +18,7 @@ export const DEFAULT_POSTS: BlogPost[] = [
     published: "2026-09-01",
     updated: "2026-09-28",
     draft: false,
-    seoTitle: "Best Gym in Sector 93 Noida — 10-Point Checklist Before You Join",
+    seoTitle: "Gym in Sector 93 Noida — 10-Point Checklist Before You Join",
     seoDescription:
       "How to pick the right gym in Sector 93, Gejha, 93A & 93B Noida: trainers, equipment, hygiene, timings, pricing and trial sessions explained.",
     body: `Most people pick a gym on price alone, then stop going within six weeks. The gym that gets you results is the one you keep showing up to — and that comes down to a handful of practical things you can check in a single visit.

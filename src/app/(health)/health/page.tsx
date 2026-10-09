@@ -132,7 +132,7 @@ export default function HomePage() {
                 <p className="font-display mt-1 text-xl font-bold text-white md:text-2xl">Modern + Ayurveda + Nutrition — honestly compared, clearly referenced.</p>
               </div>
             </div>
-            <Link href="/health/diseases/type-2-diabetes" className="glass-strong animate-floaty absolute -left-3 top-6 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl md:-left-8">
+            <Link href="/health/diseases/type-2-diabetes" className="glass-strong animate-floaty absolute left-2 top-6 xl:-left-8 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl ">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700"><Activity className="h-4 w-4" /></span>
               <span><span className="block text-xs font-bold">HbA1c guide</span><span className="block text-[11px] text-stone-500">Targets, diet, medicines</span></span>
             </Link>

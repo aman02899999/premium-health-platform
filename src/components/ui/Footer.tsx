@@ -34,10 +34,10 @@ export function Footer({ content }: { content: SiteContent }) {
 
         <div>
           <h2 className="font-display mb-4 text-lg text-white">Explore</h2>
-          <ul className="grid grid-cols-2 gap-2 text-sm text-white/65 lg:grid-cols-1">
+          <ul className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-sm text-white/65 lg:grid-cols-1">
             {FOOTER_LINKS.map((n) => (
               <li key={n.href}>
-                <Link href={n.href} className="hover:text-brand">
+                <Link href={n.href} className="inline-block py-1 hover:text-brand">
                   {n.label}
                 </Link>
               </li>
@@ -47,10 +47,10 @@ export function Footer({ content }: { content: SiteContent }) {
 
         <div>
           <h2 className="font-display mb-4 text-lg text-white">Health &amp; Fitness Hub</h2>
-          <ul className="space-y-2 text-sm text-white/65">
+          <ul className="space-y-0.5 text-sm text-white/65">
             {HUB.map((h) => (
               <li key={h.href}>
-                <Link href={h.href} className="hover:text-brand">
+                <Link href={h.href} className="inline-block py-1 hover:text-brand">
                   {h.title}
                 </Link>
               </li>
@@ -65,7 +65,7 @@ export function Footer({ content }: { content: SiteContent }) {
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
               {fullAddress(b)}
             </a>
-            <a href={telHref(b.phone)} className="flex gap-3 hover:text-brand">
+            <a href={telHref(b.phone)} className="flex gap-3 py-1 hover:text-brand">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
               {b.phone}
             </a>
@@ -88,12 +88,12 @@ export function Footer({ content }: { content: SiteContent }) {
           <p>
             © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
           </p>
-          <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <Link href="/privacy" className="hover:text-brand">Privacy</Link>
-            <Link href="/terms" className="hover:text-brand">Terms</Link>
-            <Link href="/refund-policy" className="hover:text-brand">Refunds</Link>
-            <Link href="/delivery-policy" className="hover:text-brand">Delivery</Link>
-            <Link href="/sitemap.xml" className="hover:text-brand">Sitemap</Link>
+          <p className="flex flex-wrap justify-center gap-x-4">
+            <Link href="/privacy" className="inline-block py-1.5 hover:text-brand">Privacy</Link>
+            <Link href="/terms" className="inline-block py-1.5 hover:text-brand">Terms</Link>
+            <Link href="/refund-policy" className="inline-block py-1.5 hover:text-brand">Refunds</Link>
+            <Link href="/delivery-policy" className="inline-block py-1.5 hover:text-brand">Delivery</Link>
+            <Link href="/sitemap.xml" className="inline-block py-1.5 hover:text-brand">Sitemap</Link>
           </p>
         </div>
       </div>

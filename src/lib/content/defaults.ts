@@ -165,8 +165,8 @@ export const DEFAULT_CONTENT: SiteContent = {
     {
       id: "head-coach",
       name: "Aman Sharma",
-      role: "Founder",
-      bio: "Founder of Royal Fitness Club — building a serious, well-equipped neighbourhood gym for Gejha and Sector 93, Noida.",
+      role: "Founder & Head Coach",
+      bio: "Head coach with 15+ years of experience. Founder of Royal Fitness Club — building a serious, well-equipped neighbourhood gym for Gejha and Sector 93, Noida.",
       image: "/gallery/aman-sharma-royal-fitness-gym.webp",
       specialties: ["Strength", "Body transformation", "Nutrition"],
       instagram: "royalfitness93_",
@@ -234,13 +234,12 @@ export const DEFAULT_CONTENT: SiteContent = {
   ],
   posts: [...DEFAULT_POSTS, ...LOCAL_POSTS, ...HINGLISH_POSTS],
   seo: {
-    title: "Royal Fitness Club — Best Gym in Sector 93, Noida",
+    title: "Royal Fitness Club — AC Gym in Sector 93, Noida",
     description:
       "Royal Fitness Club, Gejha Sector 93 Noida: AC gym with certified trainers, personal training, fat loss & muscle gain programs. Rated 4.7★ by 300+ members. Book a free trial.",
     keywords: [
       "gym in sector 93 noida",
       "gym near me noida",
-      "best gym in noida",
       "royal fitness club noida",
       "gym in gejha",
       "personal trainer noida",

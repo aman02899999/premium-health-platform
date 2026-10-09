@@ -16,7 +16,8 @@ export async function createRazorpayOrder(input: { amountPaise: number; receipt:
   const keyId = process.env.RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
   if (!keyId || !keySecret) throw new Error("Razorpay is not configured");
-  const res = await fetch("https://api.razorpay.com/v1/orders", {
+  // RAZORPAY_API_URL exists only so end-to-end tests can point at a local stand-in.
+  const res = await fetch(`${process.env.RAZORPAY_API_URL || "https://api.razorpay.com"}/v1/orders`, {
     method: "POST",
     headers: {
       Authorization: `Basic ${Buffer.from(`${keyId}:${keySecret}`).toString("base64")}`,

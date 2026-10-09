@@ -6,6 +6,8 @@ import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { FloatingActions } from "@/components/ui/FloatingActions";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { activeOffer } from "@/lib/offers";
+import { todayIST } from "@/lib/growth/dates";
 
 export default async function SiteLayout({ children }: { children: ReactNode }) {
   const c = await getContent();
@@ -15,7 +17,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         Skip to content
       </a>
       <JsonLd data={[localBusinessJsonLd(c), websiteJsonLd(c)]} />
-      <Header name={c.business.name} phoneHref={telHref(c.business.phone)} announcement={c.announcement} />
+      <Header name={c.business.name} phoneHref={telHref(c.business.phone)} announcement={activeOffer(todayIST())?.banner ?? c.announcement} />
       <main id="main">{children}</main>
       <Footer content={c} />
       <FloatingActions whatsapp={whatsappHref(c.business)} phone={telHref(c.business.phone)} />

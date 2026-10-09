@@ -66,7 +66,7 @@ export function TrainerGrid({ trainers }: { trainers: Trainer[] }) {
                   ))}
                 </div>
                 {t.instagram && (
-                  <a href={instagramHref(t.instagram)} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm text-white/70 hover:text-brand">
+                  <a href={instagramHref(t.instagram)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 py-1.5 text-sm text-white/70 hover:text-brand">
                     <InstagramIcon className="h-4 w-4" /> @{t.instagram}
                   </a>
                 )}
@@ -113,7 +113,7 @@ export function PostCard({ post, index = 0 }: { post: BlogPost; index?: number }
               </Link>
             </h3>
             <p className="mt-3 line-clamp-3 flex-1 text-sm text-white/60">{post.excerpt}</p>
-            <Link href={`/blog/${post.slug}`} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+            <Link href={`/blog/${post.slug}`} className="mt-3 inline-flex items-center gap-1 py-2 text-sm font-semibold text-brand">
               Read article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

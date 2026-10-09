@@ -48,7 +48,7 @@ export function NewsletterPopup() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 z-50 w-full max-w-sm rounded-3xl border border-stone-200 bg-white p-5 shadow-2xl dark:border-stone-700 dark:bg-stone-900">
+    <div className="fixed inset-x-3 bottom-20 z-50 rounded-3xl sm:inset-x-auto sm:left-4 sm:w-full sm:max-w-sm lg:bottom-4 border border-stone-200 bg-white p-5 shadow-2xl dark:border-stone-700 dark:bg-stone-900">
       <button onClick={() => setShow(false)} className="absolute right-2 top-2 rounded-full p-1 hover:bg-stone-100 dark:hover:bg-stone-800"><X className="h-4 w-4" /></button>
       <p className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-600" /> Indian thali tips by email</p>
       {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}

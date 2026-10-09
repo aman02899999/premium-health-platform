@@ -111,16 +111,12 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
         <button type="button" onClick={() => go(-1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand" aria-label="Previous photo">
           <ChevronLeft className="h-5 w-5" />
         </button>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap justify-center">
           {items.map((item, i) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setActive(i)}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-brand" : "w-2 bg-white/25"}`}
-              aria-label={`Show ${item.title}`}
-              aria-current={i === active}
-            />
+            // The visible dot is small; the button around it is a full finger-sized target.
+            <button key={item.id} type="button" onClick={() => setActive(i)} className="flex h-8 min-w-6 items-center justify-center px-1" aria-label={`Show ${item.title}`} aria-current={i === active}>
+              <span className={`h-2 rounded-full transition-all ${i === active ? "w-8 bg-brand" : "w-2 bg-white/25"}`} />
+            </button>
           ))}
         </div>
         <button type="button" onClick={() => go(1)} className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand" aria-label="Next photo">

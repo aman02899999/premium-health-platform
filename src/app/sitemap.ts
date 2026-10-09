@@ -5,12 +5,16 @@ import { absoluteUrl, categorySlug, publishedPosts } from "@/lib/site";
 import { EXERCISES } from "@/lib/fitness/exercises";
 import { DIET_PLANS } from "@/lib/fitness/diet-plans";
 import { BOOKS } from "@/lib/library/catalog";
+import { getCatalog } from "@/lib/shop/server";
+import { listPosts as listShopPosts } from "@/lib/shop/store";
 
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const c = await getContent();
   const posts = publishedPosts(c);
+  const shop = await getCatalog();
+  const shopPosts = shop.offline ? [] : await listShopPosts().catch(() => []);
   const latest = posts[0]?.updated || posts[0]?.published || new Date().toISOString();
   const pages: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1, "weekly"],
@@ -44,6 +48,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...DIET_PLANS.map((p) => ({ url: absoluteUrl(`/diet-plans/${p.slug}`), priority: 0.7, changeFrequency: "monthly" as const })),
     ...CALCULATORS.map((t) => ({ url: absoluteUrl(`/tools/${t.slug}`), priority: 0.7, changeFrequency: "yearly" as const })),
     ...[...new Set(posts.map((p) => categorySlug(p.category)))].map((s) => ({ url: absoluteUrl(`/blog/category/${s}`), priority: 0.5, changeFrequency: "weekly" as const })),
+    // Royal Supplements store
+    ...["/shop", "/shop/products", "/shop/combos", "/shop/blog", "/shop/policies"].map((path) => ({ url: absoluteUrl(path), priority: path === "/shop" ? 0.9 : 0.7, changeFrequency: "daily" as const })),
+    ...shop.categories.map((x) => ({ url: absoluteUrl(`/shop/c/${x.slug}`), priority: 0.8, changeFrequency: "daily" as const })),
+    ...shop.products.map((p) => ({ url: absoluteUrl(`/shop/p/${p.slug}`), lastModified: p.updatedAt, priority: 0.8, changeFrequency: "daily" as const, images: p.images.slice(0, 3).map((u) => (u.startsWith("http") ? u : absoluteUrl(u))) })),
+    ...shop.combos.map((x) => ({ url: absoluteUrl(`/shop/combos/${x.slug}`), lastModified: x.updatedAt, priority: 0.7, changeFrequency: "daily" as const })),
+    ...shopPosts.map((p) => ({ url: absoluteUrl(`/shop/blog/${p.slug}`), lastModified: p.updatedAt, priority: 0.6, changeFrequency: "monthly" as const })),
     ...posts.map((p) => ({
       url: absoluteUrl(`/blog/${p.slug}`),
       lastModified: p.updated || p.published,

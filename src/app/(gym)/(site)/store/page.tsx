@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { BadgeCheck, Ban, MessageCircle, ShieldCheck, Tag } from "lucide-react";
+import Link from "next/link";
+import { BadgeCheck, Ban, MessageCircle, ShieldCheck, ShoppingBag, Tag } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { pageMeta } from "@/lib/seo";
 import { whatsappHref } from "@/lib/site";
@@ -36,6 +37,15 @@ export default async function StorePage() {
       />
 
       <section className="mx-auto max-w-6xl px-4 pb-6 sm:px-6">
+        <Link href="/shop" className="mb-6 flex flex-col gap-3 rounded-3xl bg-gradient-to-r from-amber-500 via-amber-300 to-amber-500 p-5 text-black sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <span>
+            <span className="font-display block text-2xl leading-none sm:text-3xl">Buy direct from our own store</span>
+            <span className="mt-1 block text-sm font-semibold text-black/75">Mega sale — protein, pre-workout and aminos up to 50% off, multivitamins 30% off, plus value combos. Delivered home.</span>
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-black px-5 py-3 text-sm font-bold text-amber-300 sm:self-auto">
+            <ShoppingBag className="h-4 w-4" /> Shop the sale
+          </span>
+        </Link>
         <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {PROMISES.map(({ icon: Icon, title, text }) => (
             <li key={title} className="glass brand-border rounded-2xl p-4 sm:p-5">

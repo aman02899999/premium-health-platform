@@ -166,7 +166,7 @@ export function Header() {
   return (
     <>
       <div className="bg-emerald-950 text-center text-[11px] font-medium text-emerald-100/90 md:text-xs">
-        <p className="mx-auto max-w-7xl px-4 py-1.5"><a href={GYM_URL} className="mr-2 font-bold text-amber-300 underline-offset-2 hover:underline">← Royal Fitness Club</a> Educational information only — not a substitute for medical advice. <Link href="/health/disclaimer" className="underline underline-offset-2 hover:text-amber-300">Read disclaimer</Link> · <button onClick={toggleMotion} className="underline underline-offset-2 hover:text-amber-300">{reduceMotion ? "Enable animations" : "Reduce motion"}</button></p>
+        <p className="mx-auto max-w-7xl px-4 py-1.5"><a href={GYM_URL} className="mr-2 font-bold text-amber-300 underline-offset-2 hover:underline">← Royal Fitness Club</a> Educational information only — not a substitute for medical advice. <Link href="/health/disclaimer" className="underline underline-offset-2 hover:text-amber-300">Read disclaimer</Link> · <button onClick={toggleMotion} className="py-1 underline underline-offset-2 hover:text-amber-300">{reduceMotion ? "Enable animations" : "Reduce motion"}</button></p>
       </div>
       <header className="sticky top-0 z-40 border-b border-stone-200/70 bg-white/85 backdrop-blur-xl dark:border-stone-800 dark:bg-stone-950/85">
         <div className="mx-auto flex h-[68px] max-w-7xl items-center gap-3 px-4">
@@ -294,11 +294,11 @@ export function Footer() {
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row dark:border-stone-800 dark:text-stone-400">
           <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families.</p>
           <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <Link href="/health/privacy" className="hover:underline">Privacy</Link>
-            <Link href="/health/terms" className="hover:underline">Terms</Link>
-            <Link href="/health/disclaimer" className="hover:underline">Disclaimer</Link>
-            <Link href="/health/affiliate-disclosure" className="hover:underline">Affiliate Disclosure</Link>
-            <Link href="/health/sitemap.xml" className="hover:underline">Sitemap</Link>
+            <Link href="/health/privacy" className="inline-block py-1.5 hover:underline">Privacy</Link>
+            <Link href="/health/terms" className="inline-block py-1.5 hover:underline">Terms</Link>
+            <Link href="/health/disclaimer" className="inline-block py-1.5 hover:underline">Disclaimer</Link>
+            <Link href="/health/affiliate-disclosure" className="inline-block py-1.5 hover:underline">Affiliate Disclosure</Link>
+            <Link href="/health/sitemap.xml" className="inline-block py-1.5 hover:underline">Sitemap</Link>
           </p>
         </div>
       </div>

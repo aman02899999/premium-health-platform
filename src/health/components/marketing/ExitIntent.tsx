@@ -53,8 +53,10 @@ export function StickyCTA() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-20 left-1/2 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 shadow-xl lg:bottom-4 dark:border-stone-700 dark:bg-stone-900">
-      <span className="text-xs font-bold">Free health calculators — due date, BMI, calories</span>
+    // Desktop only: on phones the bottom navigation already links the tools, and a floating
+    // pill there would cover the article being read.
+    <div className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-stone-200 bg-white px-4 py-2 shadow-xl lg:flex dark:border-stone-700 dark:bg-stone-900">
+      <span className="whitespace-nowrap text-xs font-bold">Free health calculators — due date, BMI, calories</span>
       <Link href="/health/health-calculators" className="rounded-full bg-amber-500 px-3 py-1 text-xs font-bold text-stone-900">Open</Link>
     </div>
   );
