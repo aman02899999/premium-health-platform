@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
   return pageMeta(c, {
     title: "Supplement Store — Whey, Creatine & Gym Gear Picked by Our Coaches",
-    description: `Whey protein, creatine, peanut butter and gym gear recommended by the coaches at ${c.business.name}. Genuine brands, live prices on Amazon, no fat burners or steroids.`,
+    description: `Whey protein, creatine, peanut butter and gym gear recommended by the coaches at ${c.business.name}. Genuine brands, live prices on Amazon, no steroids or banned substances.`,
     path: "/store",
   });
 }
@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 const PROMISES = [
   { icon: BadgeCheck, title: "Picked by our coaches", text: "Only what we'd recommend to members on the floor." },
   { icon: ShieldCheck, title: "Genuine brands", text: "Well-known, lab-tested brands. Buy from the brand's official store." },
-  { icon: Ban, title: "No risky stuff", text: "No fat burners, testosterone boosters or steroids — ever." },
+  { icon: Ban, title: "Nothing banned", text: "No steroids or banned substances — ever." },
   { icon: Tag, title: "Live prices", text: "Prices and offers update on Amazon, so you always see today's deal." },
 ];
 

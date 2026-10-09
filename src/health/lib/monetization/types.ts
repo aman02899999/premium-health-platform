@@ -60,6 +60,10 @@ export interface AffiliateProduct extends BaseMonetizationItem {
   discountPercent?: number; // computed or explicit, never fabricated
   affiliateNetwork?: string;
   isAffiliate: true;
+  /** The maker. Every Amazon pick names one: no unbranded listings from unknown sellers. */
+  brand?: string;
+  /** Set only after we opened the exact listing and checked who sells it (Amazon "Sold by"). */
+  sellerCheck?: { seller: string; checkedOn: string };
 }
 
 // Digital Products (PDFs, eBooks, guides, diet plans)

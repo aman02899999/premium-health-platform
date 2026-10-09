@@ -164,15 +164,14 @@ export function AdminMonetizationManager() {
 
             {tab === "overview" && data?.stats && (
               <div className="space-y-3 text-xs">
-                <p className="font-bold">Revenue Dashboard — TOTAL REVENUE, THIS MONTH, AFFILIATE, DIGITAL, AD, SPONSOR, LEAD, TOTAL ORDERS, CONVERSION RATE, TOP 10</p>
+                <p className="font-bold">Activity overview</p>
+                {/* Counts only from tracked events. Revenue lives in Amazon Associates / Razorpay — never shown as made-up figures here. */}
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                  <div className="rounded-xl bg-emerald-50 p-3"><p>Total Revenue (Demo)</p><p className="text-lg font-black">₹3,31,103</p></div>
-                  <div className="rounded-xl bg-amber-50 p-3"><p>Affiliate Revenue</p><p className="text-lg font-black">₹18,400</p></div>
-                  <div className="rounded-xl bg-violet-50 p-3"><p>Digital Sales</p><p className="text-lg font-black">₹12,450 (demo)</p></div>
-                  <div className="rounded-xl bg-sky-50 p-3"><p>Ad Revenue</p><p className="text-lg font-black">₹42,300</p></div>
-                  <div className="rounded-xl bg-pink-50 p-3"><p>Lead Revenue</p><p className="text-lg font-black">₹22,250</p></div>
-                  <div className="rounded-xl bg-stone-50 p-3"><p>Conversion Rate</p><p className="text-lg font-black">3.2% (demo)</p></div>
+                  <div className="rounded-xl bg-emerald-50 p-3"><p>Product views</p><p className="text-lg font-black">{data.stats.byType?.affiliate_product_view || 0}</p></div>
+                  <div className="rounded-xl bg-amber-50 p-3"><p>Affiliate clicks</p><p className="text-lg font-black">{data.stats.byType?.affiliate_product_click || 0}</p></div>
+                  <div className="rounded-xl bg-sky-50 p-3"><p>All tracked events</p><p className="text-lg font-black">{data.stats.total || 0}</p></div>
                 </div>
+                <p className="text-[11px] text-stone-500">Affiliate earnings are reported in your Amazon Associates account; paid orders in Razorpay.</p>
                 <p>Top Pages: {data.stats.topPages?.slice(0, 3).map((p: any) => p[0]).join(", ") || "No data yet"}</p>
                 <p>Top Products: {data.stats.topProducts?.slice(0, 3).map((p: any) => p[0]).join(", ") || "No data yet"}</p>
               </div>
