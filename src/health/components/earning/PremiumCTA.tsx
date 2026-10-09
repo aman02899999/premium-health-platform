@@ -49,7 +49,7 @@ export function EarningStats() {
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-        <p className="text-xs font-bold uppercase text-stone-500">Affiliate Clicks (demo)</p>
+        <p className="text-xs font-bold uppercase text-stone-500">Affiliate clicks (this browser)</p>
         <p className="mt-1 text-2xl font-black" id="aff-clicks">—</p>
         <p className="text-[11px] text-stone-400">Tracked via localStorage + gtag</p>
       </div>
@@ -59,9 +59,9 @@ export function EarningStats() {
         <p className="text-[11px] text-stone-400">Premium not launched — no payments taken</p>
       </div>
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-        <p className="text-xs font-bold uppercase text-stone-500">Ad Revenue (est.)</p>
-        <p className="mt-1 text-2xl font-black">₹42,300</p>
-        <p className="text-[11px] text-stone-400">AdSense + affiliate (demo)</p>
+        <p className="text-xs font-bold uppercase text-stone-500">Ad &amp; affiliate revenue</p>
+        <p className="mt-1 text-2xl font-black">—</p>
+        <p className="text-[11px] text-stone-400">See your AdSense and Amazon Associates dashboards</p>
       </div>
     </div>
   );
