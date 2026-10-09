@@ -389,7 +389,8 @@ export async function downloadPlanPdf(input: Input) {
       }
     }
     const first = input.days[0]?.meals ?? [];
-    autoTable(doc, {
+    // Shrink the type a little when a long week would otherwise spill a day onto a second page.
+    const weekOpts = (fontSize: number) => ({
       ...tableTheme,
       startY: wy,
       head: [["Day", ...first.map((m) => t(`${m.label.replace(" snack", "")}\n${mealTime(m.label, C.wakeTime, C.mealsPerDay)}`)), t(`Day total\ntarget ${n0(T.kcal)} kcal`)]],
@@ -401,13 +402,19 @@ export async function downloadPlanPdf(input: Input) {
       didParseCell: (h: CellHookData) => {
         if (h.section === "body" && h.column.index === first.length + 1) Object.assign(h.cell.styles, { fillColor: [232, 241, 248], textColor: NAVY, fontStyle: "bold" });
       },
-      styles: { ...tableTheme.styles, fontSize: 6, cellPadding: 0.85, valign: "top" },
-      rowPageBreak: "avoid",
-      columnStyles: { 0: { cellWidth: 15, fontStyle: "bold", textColor: NAVY }, [first.length + 1]: { cellWidth: 25 } },
+      styles: { ...tableTheme.styles, fontSize, cellPadding: fontSize < 6 ? 0.7 : 0.85, valign: "top" as const },
+      rowPageBreak: "avoid" as const,
+      columnStyles: { 0: { cellWidth: 15, fontStyle: "bold" as const, textColor: NAVY }, [first.length + 1]: { cellWidth: 25 } },
       margin: { ...tableTheme.margin },
       tableWidth: LW - 2 * M,
-      didDrawPage: () => header("Diet chart · week at a glance"),
     });
+    const fits = (fontSize: number) => {
+      const probe = new jsPDF({ unit: "mm", format: "a4", orientation: "landscape" });
+      autoTable(probe, weekOpts(fontSize));
+      return probe.getNumberOfPages() === 1;
+    };
+    const fontSize = [6, 5.7, 5.4, 5.1].find(fits) ?? 5.1;
+    autoTable(doc, { ...weekOpts(fontSize), didDrawPage: () => header("Diet chart · week at a glance") });
   }
 
   // ───── Weekly programme: diet day ↔ workout ↔ meals around training ─────

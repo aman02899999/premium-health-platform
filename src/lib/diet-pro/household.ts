@@ -45,13 +45,45 @@ const PIECE: Record<string, [number, string, string?]> = {
   egg: [50, "whole egg"],
   eggWhite: [33, "egg white"],
   breadWholeWheat: [28, "slice"],
+  // IFCT expansion
+  eggRaw: [50, "whole egg"],
+  eggCountry: [40, "desi egg"],
+  eggDuck: [65, "duck egg"],
+  eggQuail: [9, "quail egg"],
+  eggWhiteRaw: [33, "egg white"],
+  eggYolkRaw: [17, "egg yolk"],
+  eggYolkBoiled: [17, "egg yolk"],
+  maizeTender: [100, "bhutta (corn cob)", "bhuttas (corn cobs)"],
+  rawBanana: [100, "raw banana", "raw bananas"],
+  avocado: [150, "avocado"],
+  appleGreen: [150, "green apple"],
+  bananaRed: [100, "red banana", "red bananas"],
+  bananaPoovan: [60, "elaichi banana", "elaichi bananas"],
+  bananaMontham: [150, "banana"],
+  guavaPink: [150, "guava"],
+  mosambi: [150, "mosambi", "mosambis"],
+  peach: [150, "peach", "peaches"],
+  plum: [60, "plum"],
+  fig: [50, "fig"],
+  amla: [30, "amla", "amlas"],
+  mangoKesar: [200, "mango", "mangoes"],
+  mangoTotapuri: [200, "mango", "mangoes"],
+  litchi: [10, "litchi", "litchis"],
+  ber: [15, "ber"],
+  cherries: [5, "cherry", "cherries"],
 };
+/** Meat and poultry, weighed raw without bone: a palm-size portion is about 100 g. */
+const MEAT = new Set(["chickenThigh", "chickenWing", "chickenLiver", "chickenGizzard", "desiChickenLeg", "desiChickenBreast", "desiChickenThigh", "duck", "emu", "guineaFowl", "quail", "turkeyLeg", "turkeyBreast", "goatShoulder", "goatChops", "goatHeart", "goatLiver", "goatKidney", "lambShoulder", "lambChops", "lambLeg", "lambLiver", "rabbit"]);
+/** Fish served as pieces (about 80 g a medium piece). */
+const FISH = new Set(["anchovy", "bhetki", "bombayDuck", "hilsa", "karimeen", "milkFish", "mullet", "trevally", "pomfretWhite", "queenFish", "redSnapper", "salmonIndian", "silverCarp", "soleFish", "tilapia", "tunaIndian", "surmai", "catfishMarine", "catfishFresh", "pangas"]);
+/** Shellfish and squid, by the katori. */
+const SHELLFISH = new Set(["lobster", "oyster", "tigerPrawns", "clam", "squid", "prawnsSmall"]);
 // Counted small items, grams each.
-const NUTS: Record<string, [number, string]> = { almonds: [1.2, "almonds"], cashew: [1.5, "cashews"], pistachio: [0.7, "pistachios"], walnuts: [2.5, "walnut halves"], dates: [8, "dates"], singhara: [15, "singhara"] };
+const NUTS: Record<string, [number, string]> = { almonds: [1.2, "almonds"], cashew: [1.5, "cashews"], pistachio: [0.7, "pistachios"], walnuts: [2.5, "walnut halves"], dates: [8, "dates"], singhara: [15, "singhara"], datesPale: [8, "dates"], apricotDried: [8, "dried apricots"] };
 // Tablespoons, grams per tbsp.
-const TBSP: Record<string, number> = { chia: 12, flaxseed: 10, pumpkinSeed: 9, sesame: 9, peanuts: 9, peanutButter: 16, coconutFresh: 8, raisins: 10, besan: 10, ragi: 10, makki: 10, kuttu: 10, rajgira: 10 };
+const TBSP: Record<string, number> = { chia: 12, flaxseed: 10, pumpkinSeed: 9, sesame: 9, peanuts: 9, peanutButter: 16, coconutFresh: 8, raisins: 10, besan: 10, ragi: 10, makki: 10, kuttu: 10, rajgira: 10, sunflowerSeeds: 9, halimSeeds: 10, sesameBlack: 9, nigerSeeds: 9, pineNut: 9, coconutDry: 6, raisinsBlack: 10, khoa: 15, maida: 10, tamarind: 15 };
 // Katori of the cooked dish, per gram of dry food.
-const COOKED_KATORI: Record<string, number> = { poha: 35, suji: 40, oats: 35, dalia: 35, sabudana: 45, quinoa: 45, samai: 45, kodo: 45, riceWhite: 55, riceBrown: 55, moongDal: 30, masoorDal: 30, toorDal: 30, chanaDal: 30, uradWhole: 30, rajma: 35, kalaChana: 35, lobia: 35, kulthi: 35, moth: 35, matarDry: 35, soybean: 35, soyaChunks: 30 };
+const COOKED_KATORI: Record<string, number> = { barley: 45, bulgur: 45, vermicelli: 40, riceParboiled: 55, amaranthSeed: 45, uradDal: 30, masoorWhole: 30, moongWhole: 35, cowpeaBrown: 35, valBlack: 35, valBrown: 35, rajmaBlack: 35, rajmaBrown: 35, toorWhole: 35, ricebean: 35, soybeanBrown: 35, poha: 35, suji: 40, oats: 35, dalia: 35, sabudana: 45, quinoa: 45, samai: 45, kodo: 45, riceWhite: 55, riceBrown: 55, moongDal: 30, masoorDal: 30, toorDal: 30, chanaDal: 30, uradWhole: 30, rajma: 35, kalaChana: 35, lobia: 35, kulthi: 35, moth: 35, matarDry: 35, soybean: 35, soyaChunks: 30 };
 
 /**
  * A household measure for `grams` of food `id` within dish `dish` (the template name),
@@ -100,6 +132,11 @@ export function household(id: string, grams: number, dish = "", whey?: { scoopG:
   if (id === "coconutMilk") return { qty: `${count(grams / 15)} tbsp` };
   if (id === "curd" || id === "greekYogurt") return { qty: grams >= 60 ? `${half(grams / 150)} katori` : `${count(grams / 15)} tbsp` };
   if (id === "paneer" || id === "tofu") return { qty: `${count(grams / 25)} matchbox-size pieces`, note: `${g} g` };
+  if (id === "puffedRice") return { qty: plural(half(grams / 15), "cup"), note: `${g} g` };
+  if (id.startsWith("omelette")) return { qty: `${count(grams / 55)}-egg omelette`, note: `${g} g` };
+  if (MEAT.has(id)) return { qty: `${half(grams / 100)} palm-size portion`, note: `${g} g raw` };
+  if (FISH.has(id)) return { qty: plural(half(grams / 80), "medium piece"), note: `${g} g` };
+  if (SHELLFISH.has(id) || id === "tenderToor") return { qty: `${half(grams / 100)} katori`, note: `${g} g` };
   if (["chickenBreast", "chickenRaw", "goatLeg"].includes(id)) return { qty: `${half(grams / 100)} palm-size portion`, note: `${g} g ${id === "chickenBreast" ? "cooked" : "raw"}` };
   if (["rohu", "catla", "pomfret", "mackerel", "sardine", "salmon"].includes(id)) return { qty: plural(half(grams / 80), "medium piece"), note: `${g} g` };
   if (["prawns", "prawnsRaw", "tuna", "sprouts"].includes(id)) return { qty: `${half(grams / 100)} katori` };
@@ -110,8 +147,10 @@ export function household(id: string, grams: number, dish = "", whey?: { scoopG:
   if (NUTS[id]) return { qty: `${count(grams / NUTS[id][0])} ${NUTS[id][1]}` };
   if (TBSP[id]) return { qty: `${half(grams / TBSP[id])} tbsp` };
   if (COOKED_KATORI[id]) return { qty: `${half(grams / COOKED_KATORI[id])} katori cooked`, note: `${g} g raw` };
-  if (["papaya", "pomegranate", "pineapple", "grapes", "watermelon", "muskmelon", "sweetCorn", "peas"].includes(id)) return { qty: `${half(grams / 150)} katori` };
+  if (["papaya", "pomegranate", "pineapple", "grapes", "watermelon", "muskmelon", "sweetCorn", "peas", "grapesBlack", "grapesSeedless", "jamunBlack", "strawberry", "phalsa", "pomelo", "muskmelonOrange", "jackfruitRipe", "starFruit", "bael", "woodApple", "jambu"].includes(id)) return { qty: `${half(grams / 150)} katori` };
   if (["ragi", "makki", "kuttu", "rajgira", "jowar", "bajra"].includes(id)) return { qty: `${half(grams / 10)} tbsp flour` };
+  // Starchy roots and seeds cooked as sabzi: by the katori even in small amounts.
+  if (["suran", "sweetPotatoPink", "tapioca", "yam", "jackfruitSeed"].includes(id)) return { qty: `${half(grams / 150)} katori sabzi`, note: `${g} g raw` };
   // Remaining vegetables: cooked as sabzi or eaten as salad.
   if (grams >= 75) return { qty: `${half(grams / 150)} katori`, note: `${g} g raw` };
   return { qty: "a handful", note: `${g} g` };
