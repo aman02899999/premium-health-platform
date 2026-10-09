@@ -1,6 +1,7 @@
 // The paid diet chart's intake form: what the client tells us, validated on the server.
 // Pure (no I/O) so it can be unit-tested and shared with the order route.
 import type { ActivityId, Allergen, ClientProfile, Cuisine, DietPref, Goal } from "@/lib/diet-pro/types";
+import { CONDITION_KEYS, FEMALE_ONLY, type ConditionKey } from "@/lib/diet-pro/conditions";
 
 export type DietIntake = {
   age: number;
@@ -13,7 +14,7 @@ export type DietIntake = {
   activity: ActivityId;
   mealsPerDay: 3 | 4 | 5 | 6;
   wakeTime: string;
-  conditions: ("diabetes" | "pcos" | "hypothyroid" | "hypertension" | "pregnant" | "lactating" | "ckd")[];
+  conditions: ConditionKey[];
   allergies: Allergen[];
   notes: string;
 };
@@ -24,7 +25,6 @@ const GOALS: Goal[] = ["fat-loss", "recomp", "maintain", "lean-gain", "gain"];
 const DIETS: DietPref[] = ["veg", "egg", "nonveg", "vegan", "jain"];
 const CUISINES: Cuisine[] = ["any", "north", "south", "west", "east"];
 const ACTIVITY: ActivityId[] = ["sedentary", "light", "moderate", "active", "athlete"];
-const CONDITIONS = ["diabetes", "pcos", "hypothyroid", "hypertension", "pregnant", "lactating", "ckd"] as const;
 const ALLERGENS: Allergen[] = ["dairy", "gluten", "nuts", "peanut", "soy", "egg", "fish", "shellfish", "sesame"];
 
 const text = (v: unknown, max: number) => (typeof v === "string" ? v.trim().replace(/\s+/g, " ").slice(0, max) : "");
@@ -55,8 +55,8 @@ export function parseDietOrder(b: Record<string, unknown>): { buyer: DietBuyer; 
   if (!sex || !goal || !diet || !activity) return "Please answer every question in the form.";
   const meals = num(b.mealsPerDay);
   const wakeTime = text(b.wakeTime, 5);
-  const conditions = pickMany(b.conditions, CONDITIONS);
-  if (sex === "male" && conditions.some((c) => c === "pregnant" || c === "lactating" || c === "pcos")) return "Please check the health conditions you selected.";
+  const conditions = pickMany(b.conditions, CONDITION_KEYS);
+  if (sex === "male" && conditions.some((c) => FEMALE_ONLY.has(c))) return "Please check the health conditions you selected.";
   if (b.consent !== true) return "Please confirm the consent box so we can use these details to prepare your chart.";
   return {
     buyer: { name, phone, email: email || null },
@@ -97,7 +97,7 @@ export function intakeToProfile(name: string, i: DietIntake, base: ClientProfile
     mealsPerDay: i.mealsPerDay,
     wakeTime: i.wakeTime,
     allergies: i.allergies,
-    style: has("diabetes") ? "diabetic" : has("pcos") ? "pcos" : has("hypertension") ? "heart" : base.style,
-    conditions: { pcos: has("pcos"), hypothyroid: has("hypothyroid"), diabetes: has("diabetes"), hypertension: has("hypertension"), ckd: has("ckd"), pregnant: has("pregnant"), lactating: has("lactating") },
+    style: has("diabetes") ? "diabetic" : has("pcos") ? "pcos" : has("hypertension") || has("cholesterol") || has("heart") ? "heart" : base.style,
+    conditions: { ...base.conditions, ...Object.fromEntries(CONDITION_KEYS.map((k) => [k, has(k)])) },
   };
 }

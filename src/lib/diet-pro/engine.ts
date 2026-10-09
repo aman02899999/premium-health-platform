@@ -221,7 +221,8 @@ export function targets(p: ClientProfile) {
   // Fibre: 14 g per 1,000 kcal (Dietary Guidelines for Americans 2020–2025); high-fibre style aims higher.
   const fibre = Math.round((kcal / 1000) * (p.style === "high-fibre" ? 18 : 14));
   // Water: EFSA 2010 adequate total intake 2.5 L men / 2.0 L women, ~80 % from drinks; +0.5 L per training hour.
-  const drinkL = (p.sex === "male" ? 2.5 : 2.0) * 0.8;
+  // Kidney stones: drink enough for ≥2.5 L of urine a day (EAU urolithiasis guideline 2023), i.e. about 2.5–3 L of fluid.
+  const drinkL = p.conditions.kidneyStones ? Math.max(2.5, (p.sex === "male" ? 2.5 : 2.0) * 0.8) : (p.sex === "male" ? 2.5 : 2.0) * 0.8;
   if (p.conditions.diabetes) warnings.push({ tone: "warn", text: "Diabetes on insulin or sulfonylureas: a calorie or carbohydrate reduction can cause low sugar. Medication must be reviewed by the doctor first; monitor glucose." });
   if (p.style === "heart") warnings.push({ tone: "warn", text: "Heart-healthy (DASH-style): plenty of vegetables, fruit, pulses and low-fat dairy; sodium ideally under 1,500 mg/day; mustard, groundnut or olive oil instead of ghee." });
   if (p.style === "vrat" && p.diet === "vegan") warnings.push({ tone: "alert", text: "Vrat foods are dairy-based (paneer, curd, milk). A vegan vrat cannot reach protein targets, so this plan uses regular vegan meals. Use a vegetarian diet for fasting days." });
@@ -229,6 +230,31 @@ export function targets(p: ClientProfile) {
   if (p.conditions.hypertension) warnings.push({ tone: "warn", text: "Hypertension: keep sodium under 2,000 mg/day (WHO) — about 5 g salt including salt in cooking." });
   if (p.conditions.hypothyroid) warnings.push({ tone: "warn", text: "Hypothyroid: take levothyroxine on an empty stomach; keep soy, calcium and iron 4 hours away from the dose." });
   if (p.conditions.pcos) warnings.push({ tone: "warn", text: "PCOS: 5–10 % weight loss improves cycles and insulin resistance (International PCOS Guideline 2023). Low-GI carbs and regular strength training help." });
+  const c = p.conditions;
+  if (c.cholesterol || c.heart)
+    warnings.push({ tone: "warn", text: "High cholesterol / heart: saturated fat under 7–10 % of energy — ghee, coconut oil, khoa and fatty red meat are left out of the plan; oats, dals, fruit and vegetables (soluble fibre) help lower LDL. Keep taking any statin as prescribed." });
+  if (c.heart)
+    warnings.push({ tone: "alert", text: "Heart disease: train only after the cardiologist clears exercise. Stay in Zone 2 (talk test), no heavy max lifts or sprints, and stop for chest pain, breathlessness or dizziness." });
+  if (c.fattyLiver)
+    warnings.push({ tone: "warn", text: "Fatty liver: losing 7–10 % of body weight reduces liver fat (AASLD 2023). No alcohol, no sugary drinks or juices; the plan keeps saturated fat low." });
+  if (c.gout)
+    warnings.push({ tone: "warn", text: "Gout / high uric acid: organ meats, shellfish, sardine, anchovy and mackerel are left out; keep red meat small, avoid alcohol and sweet drinks, and drink plenty of water (ACR gout guideline 2020)." });
+  if (c.kidneyStones)
+    warnings.push({ tone: "warn", text: "Kidney stones: drink 2.5–3 L of fluid a day, keep salt low and calcium normal (dairy is fine). High-oxalate greens (spinach, amaranth, beet greens) are left out." });
+  if (c.anaemia)
+    warnings.push({ tone: "warn", text: `Anaemia: iron-rich foods (dals, greens, ${p.diet === "nonveg" ? "liver, meat, " : ""}ragi, bajra) with vitamin C (amla, guava, lemon); keep tea and coffee an hour away from meals. Take iron tablets only as the doctor prescribes.` });
+  if (c.gerd)
+    warnings.push({ tone: "warn", text: "Acid reflux: smaller meals, dinner at least 3 hours before bed, and go easy on fried and very spicy food, tea/coffee and citrus if they trigger symptoms." });
+  if (c.ibs)
+    warnings.push({ tone: "warn", text: "IBS: note which foods trigger bloating (rajma, chole, onion, cabbage and milk are common). A low-FODMAP trial should be done with a dietitian, not long-term." });
+  if (c.lactose)
+    warnings.push({ tone: "warn", text: "Lactose intolerance: milk and khoa are left out. Curd, hung curd, buttermilk and paneer are usually tolerated in normal portions." });
+  if (c.osteoporosis || c.menopause)
+    warnings.push({ tone: "warn", text: "Bone health: calcium 1,200 mg a day from food, check vitamin D, and keep strength training 2–3 times a week — it is the best exercise for bone density." });
+  if (c.menopause)
+    warnings.push({ tone: "warn", text: "Menopause: protein at every meal and regular strength training protect muscle; weight tends to settle around the waist, so track waist, not only weight." });
+  if (c.jointPain)
+    warnings.push({ tone: "warn", text: "Knee / joint pain: low-impact cardio (cycling, swimming, cross-trainer) instead of running or jumping; strengthen the thighs and hips with pain-free range. Each kg lost takes about 4 kg of load off the knee." });
   if (p.age < 18) warnings.push({ tone: "alert", text: "These adult formulas are not valid under 18 years." });
 
   // Weekly change and time to goal follow the calories actually prescribed — after the 25 % cap,
@@ -267,7 +293,7 @@ export function targets(p: ClientProfile) {
     waterTrainL: r1(drinkL + 0.5),
     sodiumMaxMg: 2000,
     potassiumMinMg: 3510, // WHO 2012: ≥90 mmol/day
-    calciumMg: 1000, // ICMR-NIN 2020 RDA, adults
+    calciumMg: c.osteoporosis || c.menopause || p.age >= 50 ? 1200 : 1000, // ICMR-NIN 2020 RDA, adults (1,200 mg post-menopause / older adults)
     ironMg: p.sex === "male" ? 19 : 29, // ICMR-NIN 2020 RDA, adults
     weeksToGoal,
     warnings,

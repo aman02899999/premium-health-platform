@@ -7,6 +7,7 @@ import { ACTIVITY, DEFAULT_RATE, targets } from "@/lib/diet-pro/engine";
 import { FOOD_DB } from "@/lib/diet-pro/foods";
 import { lifestyle, supplements, training } from "@/lib/diet-pro/guidance";
 import { heartZones, weeklySchedule } from "@/lib/diet-pro/program";
+import { CONDITION_LIST, FEMALE_ONLY, conditionLabels } from "@/lib/diet-pro/conditions";
 import { deviation, foodTable, planDays } from "@/lib/diet-pro/meals";
 import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style } from "@/lib/diet-pro/types";
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
@@ -445,7 +446,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Name</span>
               <input value={p.name} onChange={(e) => set({ name: e.target.value })} placeholder="Client name (shown on the PDF)" className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
             </label>
-            <Choice label="Sex" value={p.sex} onChange={(sex) => set({ sex, conditions: { ...p.conditions, pcos: sex === "male" ? false : p.conditions.pcos, pregnant: sex === "male" ? false : p.conditions.pregnant, lactating: sex === "male" ? false : p.conditions.lactating } })} options={[{ value: "male", label: "Male" }, { value: "female", label: "Female" }]} />
+            <Choice label="Sex" value={p.sex} onChange={(sex) => set({ sex, conditions: sex === "male" ? { ...p.conditions, pcos: false, pregnant: false, lactating: false, menopause: false } : p.conditions })} options={[{ value: "male", label: "Male" }, { value: "female", label: "Female" }]} />
             <div className="grid grid-cols-3 gap-2">
               <Num label="Age" unit="yr" value={p.age} min={18} max={90} onChange={(v) => v && set({ age: v })} />
               <Num label="Height" unit="cm" value={p.heightCm} min={120} max={230} step={0.5} onChange={(v) => v && set({ heightCm: v })} />
@@ -525,18 +526,11 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
             )}
           </Section>
 
-          <Section title="Health conditions" icon={<HeartPulse className="h-4 w-4 text-brand" />} defaultOpen={false}>
+          <Section title={`Health conditions${conditionLabels(p.conditions).length ? ` (${conditionLabels(p.conditions).length})` : ""}`} icon={<HeartPulse className="h-4 w-4 text-brand" />} defaultOpen={false}>
+            <p className="text-[11px] text-white/45">Each one changes the plan: foods left out, targets, training and warnings on the PDF. Medical conditions still need the doctor&apos;s advice.</p>
             <div className="flex flex-wrap gap-1.5">
-              {(
-                [
-                  ["diabetes", "Diabetes / prediabetes"],
-                  ["hypertension", "High BP"],
-                  ["hypothyroid", "Hypothyroid"],
-                  ["ckd", "Kidney disease"],
-                  ...(p.sex === "female" ? ([["pcos", "PCOS / PCOD"], ["pregnant", "Pregnant"], ["lactating", "Breastfeeding"]] as const) : []),
-                ] as const
-              ).map(([key, l]) => (
-                <Check key={key} label={l} checked={p.conditions[key]} onChange={(on) => set({ conditions: { ...p.conditions, [key]: on } })} />
+              {CONDITION_LIST.filter((x) => p.sex === "female" || !FEMALE_ONLY.has(x.key)).map((x) => (
+                <Check key={x.key} label={x.label} checked={!!p.conditions[x.key]} onChange={(on) => set({ conditions: { ...p.conditions, [x.key]: on } })} />
               ))}
             </div>
           </Section>

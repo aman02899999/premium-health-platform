@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CONDITION_LIST, FEMALE_ONLY } from "@/lib/diet-pro/conditions";
 import Link from "next/link";
 import { CheckCircle2, Loader2, Lock } from "lucide-react";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
@@ -33,15 +34,7 @@ const ACTIVITY = [
   ["active", "Very active (6–7 workouts or physical job)"],
   ["athlete", "Athlete / twice-a-day training"],
 ] as const;
-const CONDITIONS = [
-  ["diabetes", "Diabetes / pre-diabetes"],
-  ["pcos", "PCOS / PCOD"],
-  ["hypothyroid", "Thyroid (hypothyroid)"],
-  ["hypertension", "High blood pressure"],
-  ["ckd", "Kidney disease"],
-  ["pregnant", "Pregnant"],
-  ["lactating", "Breastfeeding"],
-] as const;
+const CONDITIONS = CONDITION_LIST.map((c) => [c.key, c.label] as const);
 const ALLERGIES = ["dairy", "gluten", "nuts", "peanut", "soy", "egg", "fish", "shellfish", "sesame"] as const;
 
 type Form = { name: string; phone: string; email: string; age: string; sex: "male" | "female" | ""; heightCm: string; weightKg: string; goal: string; diet: string; cuisine: string; activity: string; mealsPerDay: string; wakeTime: string; conditions: string[]; allergies: string[]; notes: string; consent: boolean };
@@ -202,7 +195,7 @@ export function DietChartCheckout({ price, turnaround, gymName, whatsapp }: { pr
         <legend className="font-display text-xl text-white">3. Health</legend>
         <p className="text-sm text-white/55">Tick anything that applies. Your coach adjusts the chart for it.</p>
         <div className="flex flex-wrap gap-2">
-          {CONDITIONS.filter(([v]) => female || (v !== "pregnant" && v !== "lactating" && v !== "pcos")).map(([v, l]) => (
+          {CONDITIONS.filter(([v]) => female || !FEMALE_ONLY.has(v)).map(([v, l]) => (
             <label key={v} className={`cursor-pointer rounded-xl px-3 py-2 text-sm ring-1 ${f.conditions.includes(v) ? "bg-brand/15 text-white ring-brand" : "bg-white/[.03] text-white/65 ring-white/10"}`}>
               <input type="checkbox" className="sr-only" checked={f.conditions.includes(v)} onChange={() => toggle("conditions", v)} />
               {l}

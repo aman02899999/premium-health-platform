@@ -48,6 +48,7 @@ export type Measurements = {
 
 export type WheyLabel = { scoopG: number; kcal: number; p: number; c: number; f: number; edited: boolean };
 
+/** The original seven are always present; the newer ones are optional so older saved clients still load. */
 export type Conditions = {
   pcos: boolean;
   hypothyroid: boolean;
@@ -56,6 +57,18 @@ export type Conditions = {
   ckd: boolean;
   pregnant: boolean;
   lactating: boolean;
+  cholesterol?: boolean;
+  heart?: boolean;
+  fattyLiver?: boolean;
+  kidneyStones?: boolean;
+  gout?: boolean;
+  anaemia?: boolean;
+  gerd?: boolean;
+  ibs?: boolean;
+  lactose?: boolean;
+  osteoporosis?: boolean;
+  jointPain?: boolean;
+  menopause?: boolean;
 };
 
 export type ClientProfile = {

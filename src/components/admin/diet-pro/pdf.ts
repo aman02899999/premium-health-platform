@@ -6,6 +6,7 @@ import type { Note, TrainingDay } from "@/lib/diet-pro/guidance";
 import { MEASURE_LEGEND, household, mealTime } from "@/lib/diet-pro/household";
 import type { PlannedDay } from "@/lib/diet-pro/meals";
 import type { CellHookData } from "jspdf-autotable";
+import { conditionLabels } from "@/lib/diet-pro/conditions";
 import { groceryList, habits, heartZones, principles, projection, weeklySchedule } from "@/lib/diet-pro/program";
 import type { ClientProfile } from "@/lib/diet-pro/types";
 
@@ -256,9 +257,10 @@ export async function downloadPlanPdf(input: Input) {
     ["Diet", input.labels.diet, "Style", input.labels.style],
     ["Activity", input.labels.activity, "Training", c.trainingDays ? `${c.trainingDays} days/week (${c.setting})` : "Not training yet"],
     ["Meals/day", String(c.mealsPerDay), "Allergies", c.allergies.length ? c.allergies.join(", ") : "None reported"],
+    ["Health", conditionLabels(c.conditions).join(", ") || "None reported", "Workout time", input.training.length ? mealTime("Wake", c.trainTime || "18:00", 5) : "—"],
   ];
   const bodyW = input.bodyImage ? 52 : 0;
-  autoTable(doc, { ...tableTheme, startY: y, body: profileRows.map((r) => r.map(t)), theme: "grid", margin: { ...tableTheme.margin, right: M + bodyW + 3 }, columnStyles: { 0: { fontStyle: "bold", textColor: NAVY }, 2: { fontStyle: "bold", textColor: NAVY } } });
+  autoTable(doc, { ...tableTheme, startY: y, body: profileRows.map((r) => r.map(t)), theme: "grid", margin: { ...tableTheme.margin, right: M + bodyW + 3 }, styles: { ...tableTheme.styles, fontSize: 7.9, cellPadding: 1.2 }, columnStyles: { 0: { fontStyle: "bold", textColor: NAVY, cellWidth: 24 }, 2: { fontStyle: "bold", textColor: NAVY, cellWidth: 23 } } });
   y = lastY() + 8;
 
   if (input.bodyImage) {
@@ -289,6 +291,7 @@ export async function downloadPlanPdf(input: Input) {
       ...(A.whr ? [["Waist ÷ hip", String(A.whr), A.whrBand!.label]] : []),
       ...(A.waistBand ? [["Waist", `${c.m.waist} cm`, A.waistBand.label]] : []),
     ].map((r) => r.map(t)),
+    styles: { ...tableTheme.styles, fontSize: 7.9, cellPadding: 1.2 },
     columnStyles: { 0: { fontStyle: "bold", cellWidth: 30 }, 1: { cellWidth: 32 } },
   });
   y = Math.max(lastY(), input.bodyImage ? 160 + DY : 0) + 8;
@@ -463,7 +466,16 @@ export async function downloadPlanPdf(input: Input) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7.4);
   doc.setTextColor(...MUTED);
-  doc.text(t(`Estimated maximum heart rate ${hr.max} bpm (Tanaka 2001: 208 − 0.7 × age). On blood-pressure medicines such as beta-blockers, use the talk test instead of the numbers.`), M, y, { maxWidth: W - 2 * M });
+  doc.text(
+    t(
+      `Estimated maximum heart rate ${hr.max} bpm (Tanaka 2001: 208 − 0.7 × age). On blood-pressure medicines such as beta-blockers, use the talk test instead of the numbers.${
+        c.conditions.heart ? " Heart condition: stay in Zone 2 unless your cardiologist clears harder work." : ""
+      }`,
+    ),
+    M,
+    y,
+    { maxWidth: W - 2 * M },
+  );
 
   // ───── 7-day meal plan ─────
   for (const day of input.days) {

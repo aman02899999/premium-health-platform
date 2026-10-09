@@ -82,7 +82,8 @@ export function weeklySchedule(p: ClientProfile, T: Targets, train: TrainingDay[
   const slots = TRAINING_SLOTS[train.length] ?? [];
   const start = toMinutes(p.trainTime, "18:00");
   const steps = stepTarget(T.goal, p.age);
-  const cardio = CARDIO[T.goal];
+  const lowImpact = (x: string) => (p.conditions.jointPain ? x.replace(/brisk walk(?: or cycling)?|incline walk|walk/g, "cycling or swimming") : x);
+  const cardio = { train: lowImpact(CARDIO[T.goal].train), rest: lowImpact(CARDIO[T.goal].rest) };
   const restDays = [0, 1, 2, 3, 4, 5, 6].filter((i) => !slots.includes(i));
   return days.slice(0, 7).map((d, i) => {
     const k = slots.indexOf(i);
