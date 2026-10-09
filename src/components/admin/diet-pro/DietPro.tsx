@@ -8,6 +8,7 @@ import { FOOD_DB } from "@/lib/diet-pro/foods";
 import { lifestyle, supplements, training } from "@/lib/diet-pro/guidance";
 import { heartZones, weeklySchedule } from "@/lib/diet-pro/program";
 import { CONDITION_LIST, FEMALE_ONLY, conditionLabels } from "@/lib/diet-pro/conditions";
+import { herbAdvice } from "@/lib/diet-pro/herbs";
 import { deviation, foodTable, planDays } from "@/lib/diet-pro/meals";
 import type { Allergen, ClientProfile, Cuisine, DietPref, FoodItem, Goal, Style } from "@/lib/diet-pro/types";
 import { EXERCISES, MUSCLES, type Muscle } from "@/lib/fitness/exercises";
@@ -208,6 +209,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
   const week = useMemo(() => weeklySchedule(p, T, train, days), [p, T, train, days]);
   const supps = useMemo(() => supplements(p), [p]);
   const habits = useMemo(() => lifestyle(p), [p]);
+  const herbs = useMemo(() => herbAdvice(p), [p]);
   const foods = useMemo(() => foodTable(p, customFoods), [p, customFoods]);
   const A = T.analysis;
   const filled = filledMeasurements(p.sex, p.heightCm, p.weightKg, p.m);
@@ -945,6 +947,30 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
 
           {tab === "guidance" && (
             <div className="grid gap-4 md:grid-cols-2">
+              <Tilt className="p-5 md:col-span-2" strength={0.8}>
+                <h3 className="font-display text-lg">Herbs &amp; supplements for this client&apos;s conditions</h3>
+                {herbs.notes.map((n) => (
+                  <p key={n} className="mt-1 text-[11px] text-amber-200/80">
+                    {n}
+                  </p>
+                ))}
+                <ul className="mt-3 grid gap-3 text-sm md:grid-cols-2">
+                  {herbs.items.map((h) => (
+                    <li key={h.name} className="rounded-xl border border-white/10 bg-black/20 p-3">
+                      <p className="flex flex-wrap items-baseline gap-2">
+                        <b>{h.name}</b>
+                        <span className="rounded bg-white/10 px-1.5 text-[9px] font-bold uppercase tracking-wider text-white/60">{h.kind === "kitchen" ? "kitchen herb" : h.kind === "herbal" ? "herbal" : "supplement"}</span>
+                        <span className="text-[10px] text-sky">{h.when}</span>
+                      </p>
+                      <p className="mt-1 text-white/80">{h.how}</p>
+                      <p className="mt-1 text-xs text-emerald-200/80">{h.why}</p>
+                      <p className="mt-1 text-xs text-rose-200/80">⚠ {h.caution}</p>
+                      <p className="mt-1 text-[10px] text-white/35">{h.source}</p>
+                    </li>
+                  ))}
+                </ul>
+                {herbs.items.length === 1 && <p className="mt-2 text-xs text-white/45">Tick a health condition to see the herbs and supplements that may support it.</p>}
+              </Tilt>
               <Tilt className="p-5" strength={1.5}>
                 <h3 className="font-display text-lg">Supplements — evidence first</h3>
                 <ul className="mt-3 grid gap-3 text-sm">

@@ -81,6 +81,20 @@ export function household(id: string, grams: number, dish = "", whey?: { scoopG:
   if (["drumstick", "tomato", "onion"].includes(id) && d.includes("sambar")) return { qty: "in the sambar", note: `${g} g` };
   if (id === "coconutFresh" && d.includes("chutney")) return { qty: `${half(grams / 8)} tbsp chutney`, note: `${g} g coconut` };
   if (id === "potato" && d.includes("masala dosa")) return { qty: "dosa filling", note: `${g} g potato` };
+  // Herbs and spices: spoons, cloves, sprigs and pinches.
+  const spoon = (gPerTsp: number) => (grams / gPerTsp < 0.4 ? "a pinch" : `${half(grams / gPerTsp)} tsp`);
+  if (id === "garlic") return { qty: plural(count(grams / 3), "clove") };
+  if (id === "ginger") return { qty: `${half(grams / 6)} inch piece` };
+  if (id === "curryLeaves") return { qty: plural(half(grams / 2), "sprig") };
+  if (id === "corianderLeaves") return { qty: `${half(grams / 4)} tbsp chopped` };
+  if (id === "mint") return { qty: `${half(grams / 3)} tbsp chopped` };
+  if (id === "greenChilli") return { qty: plural(count(grams / 3), "chilli", "chillies") };
+  if (id === "elaichi") return { qty: plural(count(grams / 0.2), "pod") };
+  if (id === "cloves") return { qty: plural(count(grams / 0.1), "clove") };
+  if (id === "hing") return { qty: "a pinch" };
+  const TSP: Record<string, number> = { turmeric: 3, blackPepper: 2.5, jeera: 2, methiSeeds: 4, ajwain: 2.5, corianderSeeds: 2 };
+  if (TSP[id]) return { qty: spoon(TSP[id]) };
+  if (id === "coconutWater") return { qty: plural(half(grams / 200), "glass", "glasses") };
   if (id === "ghee" || id.endsWith("Oil")) return { qty: `${half(grams / 5)} tsp` };
   if (["milkCow", "milkLowFat", "milkSkim", "milkBuffalo", "buttermilk"].includes(id)) return { qty: grams >= 150 ? plural(half(grams / 200), "glass", "glasses") : `${half(grams / 150)} cup` };
   if (id === "coconutMilk") return { qty: `${count(grams / 15)} tbsp` };

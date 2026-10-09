@@ -139,7 +139,7 @@ export function projection(p: ClientProfile, T: Targets, weeks = 12): { week: nu
   return out;
 }
 
-const ROLE_ORDER = ["carb", "legume", "protein", "dairy", "veg", "fruit", "fat"] as const;
+const ROLE_ORDER = ["carb", "legume", "protein", "dairy", "veg", "fruit", "fat", "herb"] as const;
 const ROLE_LABEL: Record<(typeof ROLE_ORDER)[number], string> = {
   carb: "Grains & cereals",
   legume: "Dals & pulses",
@@ -148,6 +148,7 @@ const ROLE_LABEL: Record<(typeof ROLE_ORDER)[number], string> = {
   veg: "Vegetables",
   fruit: "Fruit",
   fat: "Oils, nuts & seeds",
+  herb: "Herbs & spices",
 };
 
 /** "1.25 kg", "450 g", "1.5 L": rounded up to a buyable amount. */

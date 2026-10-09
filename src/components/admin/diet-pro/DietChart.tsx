@@ -3,6 +3,7 @@ import { Clock } from "lucide-react";
 import { MEASURE_LEGEND, household, mealTime } from "@/lib/diet-pro/household";
 import type { PlannedDay, PlannedMeal } from "@/lib/diet-pro/meals";
 import type { ClientProfile } from "@/lib/diet-pro/types";
+import { herbRoutine } from "@/lib/diet-pro/herbs";
 import { Tilt } from "./ui";
 
 /** One line per food, in household measures ("2 phulka", "1 katori dal"). */
@@ -32,7 +33,10 @@ export function DietChart({ days, day, setDay, p }: { days: PlannedDay[]; day: n
         <ol className="divide-y divide-white/5">
           <li className="flex gap-3 px-4 py-3 text-xs text-white/70">
             <span className="w-16 shrink-0 font-bold text-sky">{mealTime("Wake", p.wakeTime, p.mealsPerDay)}</span>
-            <span>On waking: 1–2 glasses of water. {p.style === "vrat" ? "" : "Optional: soaked methi or jeera water."}</span>
+            <span>
+              On waking: 1–2 glasses of water. {p.style === "vrat" ? "" : "Optional: soaked methi or jeera water."}
+              {herbRoutine(p) && <span className="mt-0.5 block text-emerald-200/80">Daily herbs — {herbRoutine(p)}</span>}
+            </span>
           </li>
           {d.meals.map((m, mi) => (
             <li key={mi} className="grid gap-2 px-4 py-3 sm:grid-cols-[4rem_1fr]">

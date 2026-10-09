@@ -7,7 +7,7 @@ export type Style = "balanced" | "high-protein" | "low-carb" | "keto" | "diabeti
 export type Cuisine = "any" | "north" | "south" | "west" | "east";
 export type Allergen = "dairy" | "gluten" | "nuts" | "peanut" | "soy" | "egg" | "fish" | "shellfish" | "sesame";
 export type ActivityId = "sedentary" | "light" | "moderate" | "active" | "athlete";
-export type FoodRole = "carb" | "legume" | "protein" | "dairy" | "fat" | "veg" | "fruit";
+export type FoodRole = "carb" | "legume" | "protein" | "dairy" | "fat" | "veg" | "fruit" | "herb";
 
 export type FoodItem = {
   id: string;

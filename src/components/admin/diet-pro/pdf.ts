@@ -5,8 +5,9 @@ import type { Targets } from "@/lib/diet-pro/engine";
 import type { Note, TrainingDay } from "@/lib/diet-pro/guidance";
 import { MEASURE_LEGEND, household, mealTime } from "@/lib/diet-pro/household";
 import type { PlannedDay } from "@/lib/diet-pro/meals";
-import type { CellHookData } from "jspdf-autotable";
+import type { CellHookData, RowInput } from "jspdf-autotable";
 import { conditionLabels } from "@/lib/diet-pro/conditions";
+import { herbAdvice, herbRoutine } from "@/lib/diet-pro/herbs";
 import { groceryList, habits, heartZones, principles, projection, weeklySchedule } from "@/lib/diet-pro/program";
 import type { ClientProfile } from "@/lib/diet-pro/types";
 
@@ -364,24 +365,35 @@ export async function downloadPlanPdf(input: Input) {
     const LW = doc.internal.pageSize.getWidth();
     header("Diet chart · week at a glance");
     const wy = section(26, "Your week at a glance");
-    // The key sits beside the heading so the whole week fits on one landscape page.
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(6.2);
-    doc.setTextColor(...MUTED);
-    doc.text(
-      doc.splitTextToSize(
-        t(`On waking (${mealTime("Wake", C.wakeTime)}): 1-2 glasses of water. Each meal ends with its calories and P/C/F (protein, carbs, fat in g). Measures: ${MEASURE_LEGEND.join(" · ")}. Grains and dals weighed raw.`),
-        LW - 2 * M - 80,
-      ),
-      M + 80,
-      21.6,
-    );
+    // The key (and the daily herb routine) sits beside the heading so the whole week fits on one landscape page.
+    {
+      const kw = LW - 2 * M - 80;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(6);
+      const routine = herbRoutine(C);
+      const herbLines = routine ? (doc.splitTextToSize(t(`Daily herbs — ${routine} (doses and cautions on the Guidance page)`), kw) as string[]).slice(0, 2) : [];
+      doc.setFont("helvetica", "normal");
+      const legend = (doc.splitTextToSize(t(`On waking (${mealTime("Wake", C.wakeTime)}): 1-2 glasses of water. Each meal ends with its calories and P/C/F (protein, carbs, fat in g). Measures: ${MEASURE_LEGEND.join(" · ")}. Grains and dals weighed raw.`), kw) as string[]).slice(0, 4 - herbLines.length);
+      let ky = 19.9;
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(22, 101, 52);
+      for (const l of herbLines) {
+        doc.text(l, M + 80, ky);
+        ky += 2.45;
+      }
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(...MUTED);
+      for (const l of legend) {
+        doc.text(l, M + 80, ky);
+        ky += 2.45;
+      }
+    }
     const first = input.days[0]?.meals ?? [];
     autoTable(doc, {
       ...tableTheme,
       startY: wy,
       head: [["Day", ...first.map((m) => t(`${m.label.replace(" snack", "")}\n${mealTime(m.label, C.wakeTime, C.mealsPerDay)}`)), t(`Day total\ntarget ${n0(T.kcal)} kcal`)]],
-      body: input.days.map((d, i) => [
+      body: input.days.map((d, i): RowInput => [
         t(`Day ${d.day}\n${week[i]?.session ? "Workout" : "Rest"}`),
         ...d.meals.map((m) => t(`${m.template}\n${m.items.map((it) => `• ${qty(it.food.id, it.grams, m.template)} ${shortName(it.food.name)}`).join("\n")}\n= ${n0(m.total.kcal)} kcal · P ${n0(m.total.p)} · C ${n0(m.total.c)} · F ${n0(m.total.f)} g`)),
         t(`${n0(d.total.kcal)} kcal\nP ${n0(d.total.p)} · C ${n0(d.total.c)} g\nF ${n0(d.total.f)} · fibre ${n0(d.total.fib)} g`),
@@ -549,6 +561,37 @@ export async function downloadPlanPdf(input: Input) {
   y = section(26, "Medical & safety notes");
   const warn = T.warnings.length ? T.warnings.map((w) => [w.tone === "alert" ? "Important" : "Note", t(w.text)]) : [["—", "No medical flags reported. Tell your coach about any condition or medicine change."]];
   autoTable(doc, { ...tableTheme, startY: y, body: warn, columnStyles: { 0: { cellWidth: 22, fontStyle: "bold", textColor: RED } }, didDrawPage: () => header("Guidance") });
+  // Herbs & supplements matched to the client's conditions: dose, timing, evidence and safety.
+  {
+    const { items, notes } = herbAdvice(c);
+    y = section(ensure(lastY() + 9, 40, "Guidance"), "Herbs & supplements for your health");
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(7.8);
+    doc.setTextColor(...RED);
+    for (const n of notes) {
+      const ls = doc.splitTextToSize(t(n), W - 2 * M) as string[];
+      y = ensure(y, ls.length * 3.4, "Guidance");
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(7.8);
+      doc.setTextColor(...RED);
+      doc.text(ls, M, y + 0.5);
+      y += ls.length * 3.4;
+    }
+    autoTable(doc, {
+      ...tableTheme,
+      startY: y + 1,
+      head: [["Herb / supplement", "When & how to take", "Why it may help", "Caution"]],
+      body: items.map((h) => [
+        t(`${h.name}\n${h.kind === "kitchen" ? "Kitchen herb" : h.kind === "herbal" ? "Herbal supplement" : "Supplement"}`),
+        t(`${h.when}: ${h.how}`),
+        t(`${h.why}\nSource: ${h.source}`),
+        t(h.caution),
+      ]),
+      styles: { ...tableTheme.styles, fontSize: 7.1, cellPadding: 1.3, valign: "top" },
+      columnStyles: { 0: { cellWidth: 38, fontStyle: "bold", textColor: NAVY }, 1: { cellWidth: 62 }, 3: { textColor: [150, 40, 52] } },
+      didDrawPage: () => header("Guidance"),
+    });
+  }
   y = section(ensure(lastY() + 9, 30, "Guidance"), "Supplements (evidence-based, test first)");
   autoTable(doc, { ...tableTheme, startY: y, head: [["Supplement", "How", "Evidence"]], body: input.supplements.map((s) => [t(s.title), t(s.text), t(s.source)]), columnStyles: { 0: { cellWidth: 32, fontStyle: "bold" }, 2: { cellWidth: 50, textColor: MUTED, fontSize: 7.2 } }, didDrawPage: () => header("Guidance") });
   y = section(ensure(lastY() + 9, 30, "Guidance"), "Habits that make the plan work");

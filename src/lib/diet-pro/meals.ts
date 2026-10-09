@@ -276,7 +276,7 @@ const BOUNDS: Record<string, [number, number]> = {
   breadWholeWheat: [30, 200], peanutButter: [0, 32], moongDal: [20, 90], rajma: [20, 90], kalaChana: [20, 90], sprouts: [50, 250],
   chia: [0, 25], flaxseed: [0, 25], pumpkinSeed: [0, 30], sesame: [0, 20],
 };
-const ROLE_BOUNDS: Record<FoodItem["role"], [number, number]> = { protein: [25, 250], carb: [15, 250], legume: [20, 90], dairy: [50, 350], fat: [0, 40], veg: [0, 300], fruit: [50, 300] };
+const ROLE_BOUNDS: Record<FoodItem["role"], [number, number]> = { protein: [25, 250], carb: [15, 250], legume: [20, 90], dairy: [50, 350], fat: [0, 40], veg: [0, 300], fruit: [50, 300], herb: [0, 15] };
 const OILS = new Set(["ghee", "mustardOil", "groundnutOil", "oliveOil"]);
 
 export type BoundsFn = (f: FoodItem) => [number, number];
@@ -364,6 +364,7 @@ export function roundGrams(f: FoodItem, g: number): number {
   if (f.id === "eggWhite") return Math.max(33, Math.round(g / 33) * 33);
   if (f.id === "whey") return Math.round(g);
   if (f.role === "fat") return Math.round(g);
+  if (f.role === "herb") return Math.max(1, Math.round(g));
   return Math.round(g / 5) * 5;
 }
 

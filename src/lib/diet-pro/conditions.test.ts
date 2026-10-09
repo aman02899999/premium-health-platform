@@ -19,12 +19,15 @@ const foodsIn = (p: ClientProfile) => new Set(week(p).flatMap((d) => d.meals.fla
 const mains = (p: ClientProfile) => week(p).flatMap((d) => d.meals.map((m) => (m.items.find((i) => i.food.role === "protein") ?? m.items[0]).food.diet));
 
 describe("food database", () => {
-  it("has 300 foods with unique ids, sources and sane values", () => {
-    expect(FOOD_DB.length).toBe(300);
-    expect(new Set(FOOD_DB.map((f) => f.id)).size).toBe(300);
+  it("has 316 foods (300 foods + 16 herbs/spices) with unique ids, sources and sane values", () => {
+    expect(FOOD_DB.length).toBe(316);
+    expect(new Set(FOOD_DB.map((f) => f.id)).size).toBe(316);
+    expect(FOOD_DB.filter((f) => f.role === "herb").length).toBe(15);
     for (const f of FOOD_DB) {
       expect(f.source.ref, f.id).toBeTruthy();
       expect(f.p + f.c + f.f, f.id).toBeGreaterThan(0);
+      // Spices use food-specific energy factors in IFCT and are eaten in grams; skip the Atwater check for them.
+      if (f.role === "herb") continue;
       // Energy roughly matches the macros (Atwater 4/4/9), allowing for fibre, alcohols and rounding.
       expect(Math.abs(f.kcal - (f.p * 4 + f.c * 4 + f.f * 9)), f.id).toBeLessThan(Math.max(45, f.kcal * 0.25));
     }

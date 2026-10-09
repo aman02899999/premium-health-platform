@@ -100,6 +100,7 @@ describe("food database", () => {
       expect(f.p + f.c + f.f).toBeLessThanOrEqual(101);
       // Atwater cross-check (4/4/9 + 2 kcal/g fibre). Tables use food-specific factors, so allow
       // 20 % on energy-dense foods and 20 kcal on low-energy vegetables and fruit.
+      if (f.role === "herb") continue; // spices: IFCT food-specific factors, eaten in grams
       const atwater = f.p * 4 + f.c * 4 + f.f * 9 + f.fib * 2;
       if (atwater > 100) expect(Math.abs(f.kcal - atwater) / atwater, f.id).toBeLessThan(0.2);
       else expect(Math.abs(f.kcal - atwater), f.id).toBeLessThan(20);
