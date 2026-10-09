@@ -128,7 +128,7 @@ export function BlogTab({ data, done }: { data: ShopData; done: Done }) {
   );
 }
 
-const GROUPS: { title: string; fields: { k: keyof ShopSettings; label: string; help?: string; area?: boolean; image?: boolean }[] }[] = [
+const GROUPS: { title: string; fields: { k: keyof ShopSettings; label: string; help?: string; area?: boolean; image?: boolean; options?: [string, string][] }[] }[] = [
   {
     title: "Store & home page",
     fields: [
@@ -156,7 +156,9 @@ const GROUPS: { title: string; fields: { k: keyof ShopSettings; label: string; h
   {
     title: "Legal",
     fields: [
-      { k: "fssaiLicence", label: "FSSAI licence number", help: "14 digits. Shown in the footer — required for selling food supplements online." },
+      { k: "sellerName", label: "Registered business name", help: "Exactly as on the FSSAI certificate. Shown as “Sold by …” in the footer." },
+      { k: "fssaiType", label: "FSSAI certificate type", options: [["registration", "Registration (basic / Form C)"], ["licence", "Licence (State / Central)"]] },
+      { k: "fssaiLicence", label: "FSSAI registration / licence number", help: "14 digits. Shown in the footer — required for selling food supplements online." },
       { k: "gstin", label: "GSTIN (optional)" },
     ],
   },
@@ -204,7 +206,15 @@ export function SettingsTab({ data, done }: { data: ShopData; done: Done }) {
           <div className="grid gap-4 sm:grid-cols-2">
             {g.fields.map((f) => (
               <Label key={f.k} label={f.label} help={f.help} wide={f.area || f.image}>
-                {f.image ? (
+                {f.options ? (
+                  <select className="field" value={String(s[f.k] ?? "")} onChange={(e) => set(f.k, e.target.value)}>
+                    {f.options.map(([v, l]) => (
+                      <option key={v} value={v}>
+                        {l}
+                      </option>
+                    ))}
+                  </select>
+                ) : f.image ? (
                   <ImageInput value={String(s[f.k] ?? "")} onChange={(v) => set(f.k, v)} />
                 ) : f.area ? (
                   <textarea className="field" rows={3} value={String(s[f.k] ?? "")} onChange={(e) => set(f.k, e.target.value)} />

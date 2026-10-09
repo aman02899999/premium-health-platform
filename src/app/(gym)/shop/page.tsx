@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, BookOpen, ChevronDown, Crown, Gift, Lock, MessageCircle, Truck } from "lucide-react";
 import { getCatalog, getPosts } from "@/lib/shop/server";
-import { inr } from "@/lib/shop/format";
+import { fssaiLabel, inr } from "@/lib/shop/format";
 import { SITE_URL } from "@/lib/site";
 import { ComboCard, ProductCard } from "@/components/shop/cards";
 import { BannerArt, HeroArt } from "@/components/shop/art";
@@ -216,7 +216,7 @@ export default async function ShopHome() {
           </h2>
           <div className="relative mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: BadgeCheck, t: "Genuine stock", d: s.fssaiLicence ? `Authorised supply, sold with a bill. FSSAI Lic. ${s.fssaiLicence}.` : "Authorised supply, sold with a bill and sealed packs." },
+              { icon: BadgeCheck, t: "Genuine stock", d: s.fssaiLicence ? `Authorised supply, sold with a bill. ${fssaiLabel(s.fssaiType)} ${s.fssaiLicence}.` : "Authorised supply, sold with a bill and sealed packs." },
               { icon: Lock, t: "Safe payment", d: "Razorpay checkout — UPI, cards, net banking. We never see your card details." },
               { icon: Truck, t: "Fast dispatch", d: s.dispatchText },
               { icon: MessageCircle, t: "Coach advice, free", d: "Not sure what you need? WhatsApp the coaches at Royal Fitness Club before you buy." },

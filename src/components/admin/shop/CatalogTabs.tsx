@@ -15,7 +15,7 @@ type Draft = Omit<Product, "id" | "updatedAt" | "discountPct"> & { id?: string; 
 const blank = (categoryId: string | null): Draft => ({
   slug: "",
   name: "",
-  brand: "Blackwolf",
+  brand: "Blackkwolf",
   categoryId,
   sku: "",
   listPrice: 0,
@@ -68,7 +68,7 @@ export function ProductsTab({ data, done }: { data: ShopData; done: Done }) {
         <input className="field w-full text-sm sm:ml-auto sm:w-60" placeholder="Search products" value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
       {list.length === 0 ? (
-        <Empty>{data.products.length ? "No products match." : "No products yet. Add the Blackwolf range with “New product”: name, real price (MRP), stock and photos. The sale price is worked out from the category discount."}</Empty>
+        <Empty>{data.products.length ? "No products match." : "No products yet. Add the Blackkwolf range with “New product”: name, real price (MRP), stock and photos. The sale price is worked out from the category discount."}</Empty>
       ) : (
         <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {list.map((p) => (
@@ -145,7 +145,7 @@ function ProductEditor({ initial, data, close, done }: { initial: Draft; data: S
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Label label="Product name" wide>
-          <input className="field" value={p.name} onChange={(e) => set("name", e.target.value)} placeholder="Blackwolf 100% Whey Protein 2 kg" />
+          <input className="field" value={p.name} onChange={(e) => set("name", e.target.value)} placeholder="Blackkwolf ISO Whey Protein 2 kg" />
         </Label>
         <Label label="Brand">
           <input className="field" value={p.brand} onChange={(e) => set("brand", e.target.value)} />
