@@ -59,6 +59,7 @@ async function roundPhoto(src: string): Promise<string | null> {
 /** The note on page 1, by package. */
 export function autoCoachNote(planId: string, firstName: string): string {
   const p = dietPlan(planId);
+  if (p.trial) return `Welcome, ${firstName}! This is your 7-day trial, built on your own numbers. Follow it exactly for 7 days, fill the tracker each morning, and send it to me on Day 7 — we'll review your week together and plan what comes next.`;
   const checkIn = p.checkIns > 0 ? ` In 2 weeks I'll message you for your weight and waist, and update this plan for you.` : " Message me on WhatsApp with any question.";
   return `Welcome, ${firstName}! Start tomorrow morning: follow the diet chart, drink your water and hit your daily steps. Don't aim for perfect — aim for 5 good days out of 7.${checkIn}`;
 }
@@ -90,6 +91,7 @@ export async function renderOrderPlan(order: DietOrder): Promise<{ pdf: Buffer; 
       extras: { roadmap: true, grocery: true, tracker: true },
       bodyImage: null,
       labels: planLabels(client, T),
+      trial: Boolean(dietPlan(order.plan).trial),
     },
     assets,
   );

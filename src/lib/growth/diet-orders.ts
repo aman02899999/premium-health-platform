@@ -34,6 +34,12 @@ export async function insertDietOrder(razorpayOrderId: string, amountPaise: numb
   );
 }
 
+/** True when this number already paid for a 7-day trial (one trial per person). */
+export async function hasPaidTrial(phone: string): Promise<boolean> {
+  const { rows } = await pool.query(`select 1 from public.diet_orders where phone = $1 and plan = 'trial' and status = 'paid' limit 1`, [phone]);
+  return rows.length > 0;
+}
+
 /** Records the generated plan PDF; moves a new order to "draft_ready" (never moves a sent order back). */
 export async function setDietPlanFile(id: string, path: string): Promise<void> {
   await pool.query(

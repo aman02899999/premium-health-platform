@@ -3,7 +3,7 @@ import { randomUUID } from "crypto";
 import { isDbConfigured } from "@/health/db";
 import { dietPlan } from "@/lib/growth/config";
 import { parseDietOrder } from "@/lib/growth/diet-intake";
-import { insertDietOrder } from "@/lib/growth/diet-orders";
+import { hasPaidTrial, insertDietOrder } from "@/lib/growth/diet-orders";
 import { recordEmailConsent } from "@/lib/growth/marketing";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
@@ -31,6 +31,8 @@ export async function POST(req: Request) {
   // The price always comes from the server's plan list, never from the browser.
   const plan = dietPlan(parsed.plan);
   const amountPaise = plan.priceRupees * 100;
+  if (plan.trial && (await hasPaidTrial(parsed.buyer.phone)))
+    return NextResponse.json({ error: "You've already had your 7-day trial on this number — choose a full plan to continue, or WhatsApp us." }, { status: 409 });
   try {
     const order = await createRazorpayOrder({ amountPaise, receipt: `rfc_diet_${randomUUID().slice(0, 13)}`, notes: { item: plan.name, plan: plan.id, name: parsed.buyer.name, phone: parsed.buyer.phone } });
     await insertDietOrder(order.id, amountPaise, parsed.buyer, parsed.intake, plan.id);

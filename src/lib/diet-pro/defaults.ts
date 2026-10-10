@@ -28,4 +28,4 @@ export const DEFAULT_PROFILE: ClientProfile = {
 };
 
 /** The head coach's credentials (the name and photo come from the site content). */
-export const DEFAULT_COACH = { title: "Certified Nutritionist", experience: "16+ years coaching experience", certification: "", certifiedSince: "2016-02-10" };
+export const DEFAULT_COACH = { title: "Certified Nutritionist", experience: "15+ years coaching experience", certification: "", certifiedSince: "2016-02-10" };

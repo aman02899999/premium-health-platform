@@ -18,7 +18,7 @@ const wa = (biz: NurtureBiz, text: string) => `https://wa.me/${biz.whatsapp}?tex
 export function steps(interest: Interest, lead: NurtureLead, biz: NurtureBiz): Step[] {
   const n = first(lead.name);
   const three = DIET_PLANS.find((p) => p.id === "3m")!;
-  const starter = DIET_PLANS.find((p) => p.id === "starter")!;
+  const trial = DIET_PLANS.find((p) => p.id === "trial")!;
   const dietUrl = (plan: string) => `${biz.siteUrl}/diet-chart?plan=${plan}#order`;
   if (interest === "diet")
     return [
@@ -37,8 +37,8 @@ export function steps(interest: Interest, lead: NurtureLead, biz: NurtureBiz): S
       {
         day: 5,
         subject: "Veg, egg or non-veg — your plan fits your kitchen",
-        body: `Hi ${n},\n\nYou don't need special foods. Your plan is built from what your family already cooks — dal, roti, rice, sabzi, curd, paneer, eggs, chicken or fish — in amounts you can measure with a katori and a spoon.\n\nHave thyroid, PCOS, diabetes, high BP or acidity? Tell us in the form: the plan leaves out what doesn't suit you and adds herb and supplement guidance with safe doses. (It supports your treatment; it never replaces your doctor.)\n\nWant to try it first? The ${starter.name} is ${inr(starter.priceRupees)}.`,
-        cta: { label: "Choose my plan", url: dietUrl("starter") },
+        body: `Hi ${n},\n\nYou don't need special foods. Your plan is built from what your family already cooks — dal, roti, rice, sabzi, curd, paneer, eggs, chicken or fish — in amounts you can measure with a katori and a spoon.\n\nHave thyroid, PCOS, diabetes, high BP or acidity? Tell us in the form: the plan leaves out what doesn't suit you and adds herb and supplement guidance with safe doses. (It supports your treatment; it never replaces your doctor.)\n\nWant to try it first? Your personal ${trial.name} is just ${inr(trial.priceRupees)}: 7 days of your own chart and workouts, then a Day-7 review with ${biz.coach}.`,
+        cta: { label: `Try 7 days for ${inr(trial.priceRupees)}`, url: dietUrl("trial") },
       },
       {
         day: 9,

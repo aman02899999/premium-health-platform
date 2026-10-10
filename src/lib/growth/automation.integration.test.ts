@@ -106,6 +106,16 @@ describe.skipIf(!url)("sales automation on a real database", () => {
     expect((await diet.getDietOrder(order.id))!.stage).toBe("sent");
   });
 
+  it("a ₹49 trial order builds the watermarked trial PDF, and only one paid trial is allowed per number", async () => {
+    await diet.insertDietOrder("order_T", 4900, { name: "Neha Gupta", phone: "9876500009", email: null }, intake as never, "trial");
+    expect(await diet.hasPaidTrial("9876500009")).toBe(false);
+    expect(await hooks.afterDietPaid("order_T", "pay_T")).toBe(true);
+    expect(await diet.hasPaidTrial("9876500009")).toBe(true);
+    expect(await diet.hasPaidTrial("9876500010")).toBe(false);
+    const order = (await diet.listDietOrders()).find((o) => o.razorpayOrderId === "order_T")!;
+    expect(order.planPath).toMatch(/royal-fitness-7-day-trial-neha-gupta-/);
+  });
+
   it("auto-send 'no-conditions' sends healthy clients' plans at once but holds plans with a condition", async () => {
     process.env.DIET_AUTO_SEND = "no-conditions";
     try {
