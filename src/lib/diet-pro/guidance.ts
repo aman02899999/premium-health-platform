@@ -20,8 +20,7 @@ export function supplements(p: ClientProfile): Note[] {
     out.push({ title: "Iron", text: "Check haemoglobin and ferritin. Take iron only if deficient; pair iron-rich meals with vitamin C (lemon, guava, amla) and keep tea/coffee an hour away.", source: "ICMR-NIN 2020; Anaemia Mukt Bharat" });
   if (p.diet !== "nonveg")
     out.push({ title: "Omega-3", text: "No fish in the diet: include flaxseed, chia or walnuts daily (in the plan). An algae-oil EPA/DHA supplement is optional.", source: "WHO/FAO fats and fatty acids in human nutrition, 2010" });
-  if (c.pcos)
-    out.push({ title: "Myo-inositol (PCOS)", text: "Has evidence for cycle regularity in PCOS. Start only after discussing with the gynaecologist.", source: "International evidence-based PCOS guideline, 2023" });
+  // Condition-specific herbs and supplements (myo-inositol, isabgol, omega-3, iron, calcium…) live in herbs.ts.
   if (p.trainingDays >= 3 && !c.hypertension && !c.pregnant)
     out.push({ title: "Caffeine (optional)", text: "3 mg/kg 45–60 min before training improves performance. Not after 4 pm; skip if it disturbs sleep.", source: "ISSN position stand: caffeine (Guest et al., 2021)" });
   return out;

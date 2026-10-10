@@ -5,6 +5,7 @@ import { telHref, whatsappHref } from "@/lib/site";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
 import { FloatingActions } from "@/components/ui/FloatingActions";
+import { WhatsAppCapture } from "@/components/ui/WhatsAppCapture";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { activeOffer } from "@/lib/offers";
 import { todayIST } from "@/lib/growth/dates";
@@ -21,6 +22,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
       <main id="main">{children}</main>
       <Footer content={c} />
       <FloatingActions whatsapp={whatsappHref(c.business)} phone={telHref(c.business.phone)} />
+      <WhatsAppCapture whatsapp={c.business.whatsapp} />
     </>
   );
 }

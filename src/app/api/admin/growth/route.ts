@@ -3,14 +3,18 @@ import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { runDaily } from "@/lib/growth/daily";
 import { listDietOrders, setDietStage } from "@/lib/growth/diet-orders";
+import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { applyPaidOrder, deleteMember, listMembers, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
 import { listOutbox, markOutbox } from "@/lib/growth/outbox";
 import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
+import { storageConfigured } from "@/lib/growth/storage";
 import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
+// "Regenerate" builds a plan PDF on the server.
+export const maxDuration = 60;
 
 const OFFLINE = () => NextResponse.json({ error: "The database connection isn't configured, so growth tools are offline." }, { status: 503 });
 const isUuid = (s: unknown): s is string => typeof s === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
@@ -24,7 +28,7 @@ export async function GET() {
     return NextResponse.json({
       today: todayIST(),
       siteUrl: SITE_URL,
-      channels: { whatsappApi: whatsappConfigured(), email: emailConfigured(), cronSecret: Boolean(process.env.CRON_SECRET) },
+      channels: { whatsappApi: whatsappConfigured(), email: emailConfigured(), cronSecret: Boolean(process.env.CRON_SECRET), storage: storageConfigured(), autoSend: autoSendMode() },
       members,
       leads,
       outbox,
@@ -71,9 +75,21 @@ export async function POST(req: Request) {
         await markOutbox(b.id, b.status as "sent" | "cancelled" | "pending", by);
         return NextResponse.json({ ok: true });
       case "diet-stage":
-        if (!isUuid(b.id) || !["new", "in_progress", "sent", "refunded"].includes(b.stage as string)) break;
-        await setDietStage(b.id, b.stage as "new" | "in_progress" | "sent" | "refunded");
+        if (!isUuid(b.id) || !["new", "draft_ready", "in_progress", "sent", "refunded"].includes(b.stage as string)) break;
+        await setDietStage(b.id, b.stage as "new" | "draft_ready" | "in_progress" | "sent" | "refunded");
         return NextResponse.json({ ok: true });
+      case "diet-send": {
+        // Approve & send: the stored plan goes to the client on WhatsApp and email.
+        if (!isUuid(b.id)) break;
+        const r = await sendDietPlan(b.id).catch((e: Error) => e);
+        if (r instanceof Error) return NextResponse.json({ error: r.message }, { status: 400 });
+        return NextResponse.json({ ok: true, ...r });
+      }
+      case "diet-regenerate": {
+        if (!isUuid(b.id)) break;
+        const r = await prepareDietPlan(b.id);
+        return r ? NextResponse.json({ ok: true, ...r }) : NextResponse.json({ error: "Order not found or not paid" }, { status: 404 });
+      }
       case "apply-order": {
         if (typeof b.razorpayOrderId !== "string") break;
         const applied = await applyPaidOrder(b.razorpayOrderId);

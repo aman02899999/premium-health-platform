@@ -11,11 +11,21 @@ export const emailConfigured = () => Boolean(process.env.RESEND_API_KEY && proce
 
 export type SendResult = { ok: true; id: string } | { ok: false; error: string; retry: boolean };
 
+// Overridable for local end-to-end tests against mock servers.
+const WA_API = () => (process.env.WHATSAPP_API_URL || "https://graph.facebook.com/v21.0").replace(/\/$/, "");
+const RESEND_API = () => (process.env.RESEND_API_URL || "https://api.resend.com").replace(/\/$/, "");
+
+/** A document shown above the template text (the template must have a DOCUMENT header). */
+export type DocumentHeader = { link: string; filename: string };
+
 /** Sends an approved template message (business-initiated messages must use templates). */
-export async function sendWhatsAppTemplate(to: string, template: string, params: string[]): Promise<SendResult> {
+export async function sendWhatsAppTemplate(to: string, template: string, params: string[], doc?: DocumentHeader): Promise<SendResult> {
   if (!whatsappConfigured()) return { ok: false, error: "WhatsApp API not configured", retry: false };
+  const components: unknown[] = [];
+  if (doc) components.push({ type: "header", parameters: [{ type: "document", document: { link: doc.link, filename: doc.filename } }] });
+  if (params.length) components.push({ type: "body", parameters: params.map((text) => ({ type: "text", text })) });
   try {
-    const res = await fetch(`https://graph.facebook.com/v21.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
+    const res = await fetch(`${WA_API()}/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
       method: "POST",
       headers: { authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`, "content-type": "application/json" },
       body: JSON.stringify({
@@ -25,7 +35,7 @@ export async function sendWhatsAppTemplate(to: string, template: string, params:
         template: {
           name: template,
           language: { code: process.env.WHATSAPP_TEMPLATE_LANG || "en" },
-          components: params.length ? [{ type: "body", parameters: params.map((text) => ({ type: "text", text })) }] : [],
+          components,
         },
       }),
       signal: AbortSignal.timeout(10_000),
@@ -39,14 +49,31 @@ export async function sendWhatsAppTemplate(to: string, template: string, params:
   }
 }
 
-export async function sendEmail(to: string, subject: string, text: string): Promise<SendResult> {
+export type EmailExtras = {
+  html?: string;
+  /** Files to attach; content is base64. */
+  attachments?: { filename: string; content: string }[];
+  headers?: Record<string, string>;
+  replyTo?: string;
+};
+
+export async function sendEmail(to: string, subject: string, text: string, extras: EmailExtras = {}): Promise<SendResult> {
   if (!emailConfigured()) return { ok: false, error: "Email not configured", retry: false };
   try {
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await fetch(`${RESEND_API()}/emails`, {
       method: "POST",
       headers: { authorization: `Bearer ${process.env.RESEND_API_KEY}`, "content-type": "application/json" },
-      body: JSON.stringify({ from: process.env.EMAIL_FROM, to: [to], subject, text }),
-      signal: AbortSignal.timeout(10_000),
+      body: JSON.stringify({
+        from: process.env.EMAIL_FROM,
+        to: [to],
+        subject,
+        text,
+        ...(extras.html ? { html: extras.html } : {}),
+        ...(extras.attachments?.length ? { attachments: extras.attachments } : {}),
+        ...(extras.headers ? { headers: extras.headers } : {}),
+        ...(extras.replyTo ? { reply_to: extras.replyTo } : {}),
+      }),
+      signal: AbortSignal.timeout(20_000), // attachments make the request bigger
     });
     const json = (await res.json().catch(() => ({}))) as { id?: string; message?: string };
     if (res.ok && json.id) return { ok: true, id: json.id };

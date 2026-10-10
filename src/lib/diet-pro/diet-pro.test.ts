@@ -73,6 +73,21 @@ describe("targets", () => {
   it("caps protein in kidney disease", () => {
     expect(targets({ ...base, conditions: { ...base.conditions, ckd: true } }).proteinPerKg).toBeLessThanOrEqual(0.8);
   });
+  it("weekly change and time to goal follow the prescribed calories, not the requested rate", () => {
+    // 1 %/week for a light, sedentary woman hits the 25 % cap and the floor: real change is far below the request.
+    const capped = targets({ ...base, sex: "female", weightKg: 60, heightCm: 158, activity: "sedentary", ratePct: 1, targetWeightKg: 55 });
+    expect(capped.requestedWeeklyKg).toBe(-0.6);
+    expect(capped.weeklyKg).toBeCloseTo(((capped.kcal - capped.tdee) * 7) / 7700, 2);
+    expect(Math.abs(capped.weeklyKg)).toBeLessThan(0.6);
+    expect(capped.weeksToGoal).toBe(Math.ceil(5 / Math.abs(capped.weeklyKg)));
+    // A manual calorie override at maintenance means no planned change and no goal date.
+    const flat = targets({ ...base, targetWeightKg: 70 });
+    const atTdee = targets({ ...base, targetWeightKg: 70, overrides: { calories: flat.tdee } });
+    expect(atTdee.weeklyKg).toBe(0);
+    expect(atTdee.weeksToGoal).toBeNull();
+    // Maintenance rounding (kcal to the nearest 10) never shows as a tiny weekly change.
+    expect(targets({ ...base, goal: "maintain" }).weeklyKg).toBe(0);
+  });
   it("keto keeps carbs at 50 g", () => {
     expect(targets({ ...base, style: "keto" }).carb).toBe(50);
   });
@@ -85,6 +100,7 @@ describe("food database", () => {
       expect(f.p + f.c + f.f).toBeLessThanOrEqual(101);
       // Atwater cross-check (4/4/9 + 2 kcal/g fibre). Tables use food-specific factors, so allow
       // 20 % on energy-dense foods and 20 kcal on low-energy vegetables and fruit.
+      if (f.role === "herb") continue; // spices: IFCT food-specific factors, eaten in grams
       const atwater = f.p * 4 + f.c * 4 + f.f * 9 + f.fib * 2;
       if (atwater > 100) expect(Math.abs(f.kcal - atwater) / atwater, f.id).toBeLessThan(0.2);
       else expect(Math.abs(f.kcal - atwater), f.id).toBeLessThan(20);

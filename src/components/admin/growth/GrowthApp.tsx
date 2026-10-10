@@ -5,15 +5,16 @@ import { AlertTriangle, ArrowLeft, Check, Copy, Gift, Inbox, Loader2, MessageCir
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
 import type { DietIntake } from "@/lib/growth/diet-intake";
+import { DIET_PLANS } from "@/lib/growth/config";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
-type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean };
+type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string };
 type LeadStatus = "new" | "contacted" | "trial" | "joined" | "lost";
 type Msg = { id: string; createdAt: string; channel: string; to: string; toName: string; kind: string; body: string; status: "pending" | "sent" | "failed" | "cancelled"; attempts: number; lastError: string | null; sentAt: string | null; sentBy: string | null };
-type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "in_progress" | "sent" | "refunded"; sentAt: string | null };
+type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
-type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[] };
+type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[] };
 type Tab = "today" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
@@ -42,6 +43,13 @@ export function GrowthApp({ plans, gymName }: { plans: { name: string; duration:
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState("");
   const [tab, setTab] = useState<Tab>("today");
+  useEffect(() => {
+    // Deep link from the coach's "new order" email: /admin/growth?tab=diet
+    const t = new URLSearchParams(window.location.search).get("tab");
+    const found = (["today", "messages", "members", "leads", "diet", "referrals"] as const).find((x) => x === t);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
+    if (found) setTab(found);
+  }, []);
   const [flash, setFlash] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -89,7 +97,7 @@ export function GrowthApp({ plans, gymName }: { plans: { name: string; duration:
       expired: data.members.filter((m) => left(m) < 0 && left(m) >= -30),
       newLeads: data.leads.filter((l) => l.status === "new"),
       pending: data.outbox.filter((m) => m.status === "pending"),
-      dietToDo: data.dietOrders.filter((o) => o.stage === "new" || o.stage === "in_progress"),
+      dietToDo: data.dietOrders.filter((o) => o.stage === "new" || o.stage === "draft_ready" || o.stage === "in_progress"),
       joinedFromLeads: data.leads.filter((l) => l.status === "joined").length,
     };
   }, [data]);
@@ -493,6 +501,7 @@ function Leads({ data, act }: { data: Data; act: Act }) {
                 <p className="font-semibold">{l.name}</p>
                 <p className="text-xs text-white/45">
                   {l.phone} · {when(l.createdAt)} · {l.source}
+                  {l.email && ` · ${l.email}`}
                   {l.goal && ` · ${l.goal}`}
                 </p>
               </div>
@@ -525,12 +534,17 @@ function Leads({ data, act }: { data: Data; act: Act }) {
   );
 }
 
-const STAGES = { new: "New", in_progress: "Preparing", sent: "Sent", refunded: "Refunded" } as const;
+const STAGES = { new: "New", draft_ready: "Draft ready", in_progress: "Editing", sent: "Sent", refunded: "Refunded" } as const;
+const PLAN_NAMES: Record<string, string> = Object.fromEntries(DIET_PLANS.map((p) => [p.id, p.name]));
 
 function DietOrders({ data, act }: { data: Data; act: Act }) {
   return (
     <div className="grid gap-3">
-      <p className="text-xs text-white/45">Paid personal diet charts. Open each one in the Diet Calculator, where the client&apos;s answers are already filled in. Check the profile, download the branded PDF, send it on WhatsApp, then mark it sent.</p>
+      <p className="text-xs text-white/45">
+        Paid plans. A draft PDF is built automatically from the client&apos;s answers. <b>Preview</b> it, then <b>Approve &amp; send</b> — it goes to the client on WhatsApp and email. To change anything, open it in the Diet Calculator and use <b>Send to client</b> there.
+        {data.channels.autoSend && data.channels.autoSend !== "off" && <span className="text-amber-200"> Auto-send is on ({data.channels.autoSend === "all" ? "every plan" : "clients with no health condition or medicines"}).</span>}
+        {!data.channels.email && " Email isn't connected yet, so plans queue in Messages."}
+      </p>
       {data.dietOrders.length === 0 && <p className="text-sm text-white/50">No paid diet-chart orders yet. The order page is at /diet-chart.</p>}
       <ul className="grid gap-3 md:grid-cols-2">
         {data.dietOrders.map((o) => {
@@ -541,7 +555,8 @@ function DietOrders({ data, act }: { data: Data; act: Act }) {
                 <div className="mr-auto">
                   <p className="font-semibold">{o.name}</p>
                   <p className="text-xs text-white/45">
-                    {o.phone} · {rupees(o.amountPaise)} · paid {o.paidAt ? when(o.paidAt) : "—"}
+                    {PLAN_NAMES[o.plan] ?? o.plan} · {o.phone}
+                    {o.email ? ` · ${o.email}` : ""} · {rupees(o.amountPaise)} · paid {o.paidAt ? when(o.paidAt) : "—"}
                   </p>
                 </div>
                 <select value={o.stage} onChange={(e) => act({ action: "diet-stage", id: o.id, stage: e.target.value }, "Updated")} className="rounded-lg bg-white/10 px-2 py-1 text-xs font-bold">
@@ -556,8 +571,28 @@ function DietOrders({ data, act }: { data: Data; act: Act }) {
                 {i.sex}, {i.age} y · {i.heightCm} cm · {i.weightKg} kg · goal {i.goal} · {i.diet} · {i.cuisine === "any" ? "all-India" : `${i.cuisine} Indian`} · {i.mealsPerDay} meals · wakes {i.wakeTime}
               </p>
               {(i.conditions.length > 0 || i.allergies.length > 0) && <p className="mt-1 text-xs text-amber-200">{[...i.conditions, ...i.allergies.map((a) => `avoid ${a}`)].join(" · ")}</p>}
+              {i.medicines && <p className="mt-1 text-xs text-amber-200">Medicines: {i.medicines}</p>}
               {i.notes && <p className="mt-1 text-xs text-white/60">“{i.notes}”</p>}
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                {o.planPath ? (
+                  <>
+                    <a href={`/api/admin/growth/diet-plan?id=${o.id}`} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/10 px-3 py-1.5 font-bold">
+                      Preview plan
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => confirm(`Send ${o.name.split(" ")[0]}'s plan on WhatsApp${o.email ? " and email" : ""} now?`) && act({ action: "diet-send", id: o.id }, "Plan sent")}
+                      className="rounded-lg bg-emerald-500 px-3 py-1.5 font-bold text-black"
+                    >
+                      {o.stage === "sent" ? "Send again" : "Approve & send"}
+                    </button>
+                  </>
+                ) : (
+                  <span className="rounded-lg bg-amber-400/15 px-3 py-1.5 text-amber-200">No draft yet</span>
+                )}
+                <button type="button" onClick={() => act({ action: "diet-regenerate", id: o.id }, "Draft rebuilt")} className="rounded-lg bg-white/10 px-3 py-1.5">
+                  {o.planPath ? "Rebuild draft" : "Build draft"}
+                </button>
                 <a href={`/admin/diet-pro?order=${o.id}`} className="inline-flex items-center gap-1 rounded-lg bg-brand px-3 py-1.5 font-bold">
                   <Salad className="h-3.5 w-3.5" /> Open in Diet Calculator
                 </a>

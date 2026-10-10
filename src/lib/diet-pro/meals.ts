@@ -55,6 +55,13 @@ export const TEMPLATES: Template[] = [
   T("Vegetable dalia with milk", BL, ["greekYogurt"], ["dalia"], ["ghee", "mustardOil"], [["milkLowFat", 150], ["carrot", 30], ["peas", 30]], rN),
   T("Sabudana khichdi with peanuts & curd", BL, ["greekYogurt", "paneer"], ["sabudana"], ["peanuts", "ghee"], [["potato", 60]], VO),
   T("Rajgira porridge with milk & banana", BL, ["greekYogurt", "paneer"], ["rajgira"], ["almonds", "cashew"], [["milkLowFat", 150], ["banana", 60]], VO),
+  T("Masala omelette with toast", BL, ["omelette", "eggWhite"], ["breadWholeWheat", "atta"], ["groundnutOil", "mustardOil"], [["onion", 30], ["tomato", 40], ["capsicum", 30]]),
+  T("Egg paratha with curd", BL, ["eggRaw", "egg"], ["atta"], ["ghee", "mustardOil"], [["onion", 20], ["curd", 100]], rN),
+  T("Boiled eggs, toast & papaya", BL, ["egg", "eggCountry"], ["breadWholeWheat", "atta"], ["peanutButter", "almonds"], [["papaya", 120]]),
+  T("Appam with egg roast", BL, ["egg", "eggWhite"], ["riceWhite"], ["coconutOil", "coconutMilk"], [["onion", 30], ["tomato", 30]], rS),
+  T("Chicken keema sandwich", BL, ["chickenRaw", "chickenThigh"], ["breadWholeWheat"], ["oliveOil", "mustardOil"], [["onion", 20], ["tomato", 30], ["lettuce", 20]]),
+  T("Barley-vegetable upma with curd", BL, ["greekYogurt", "tofu"], ["barley", "bulgur", "dalia"], ["groundnutOil", "mustardOil"], [["carrot", 30], ["peas", 30], ["beans", 30]]),
+  T("Vermicelli upma with curd", BL, ["greekYogurt", "tofu"], ["vermicelli", "suji"], ["groundnutOil", "coconutOil"], [["peas", 30], ["carrot", 30], ["onion", 20]], { r: ["south", "west"] }),
   // ── Lunch & dinner ──
   T("Paneer sabzi, dal, phulka & salad", LU, ["paneer"], ["atta"], ["ghee", "mustardOil"], [["moongDal", 30], ["cauliflower", 150], ["cucumber", 100], ["tomato", 50]], rN),
   T("Soya chunk curry, rice, dal & curd", LU, ["soyaChunks"], ["riceWhite"], ["mustardOil", "oliveOil"], [["toorDal", 30], ["beans", 150], ["curd", 100]]),
@@ -99,6 +106,35 @@ export const TEMPLATES: Template[] = [
   T("Soya keema with phulka", DI, ["soyaChunks"], ["atta"], ["mustardOil", "ghee"], [["onion", 40], ["tomato", 50], ["peas", 40]], rN),
   T("Paneer tikka with sweet-potato chaat", DI, ["paneer"], ["sweetPotato"], ["ghee", "groundnutOil"], [["cucumber", 80]], VO),
   T("Singhara & paneer sabzi with curd", DI, ["paneer", "greekYogurt"], ["singhara"], ["ghee", "groundnutOil"], [["lauki", 100], ["curd", 100]], VO),
+  T("Chicken curry with rice & salad", LU, ["chickenThigh", "desiChickenThigh", "chickenRaw"], ["riceWhite", "riceParboiled"], ["mustardOil", "groundnutOil"], [["onion", 40], ["tomato", 50], ["cucumber", 100]]),
+  T("Tandoori chicken with phulka & salad", DI, ["chickenThigh", "chickenRaw"], ["atta", "jowar"], ["mustardOil", "oliveOil"], [["curd", 50], ["onion", 30], ["cucumber", 100], ["lettuce", 50]], rN),
+  T("Chicken tikka salad bowl", DI, ["chickenRaw", "chickenThigh"], ["quinoa", "riceBrown"], ["oliveOil", "mustardOil"], [["lettuce", 60], ["capsicumRed", 50], ["cucumber", 80], ["tomato", 50]]),
+  T("Chicken biryani (lite) with raita", LU, ["chickenThigh", "chickenRaw"], ["riceWhite"], ["ghee", "groundnutOil"], [["onion", 40], ["curd", 100], ["cucumber", 60]]),
+  T("Chicken & veg soup with toast", DI, ["chickenRaw"], ["breadWholeWheat", "atta"], ["oliveOil", "mustardOil"], [["carrot", 40], ["beans", 40], ["cabbage", 60], ["babyCorn", 30]]),
+  T("Kaleji (liver) masala with phulka", DI, ["chickenLiver", "goatLiver"], ["atta"], ["mustardOil", "groundnutOil"], [["onion", 40], ["tomato", 40], ["capsicum", 40]], rN),
+  T("Mutton keema with peas & phulka", LU, ["goatShoulder", "goatLeg"], ["atta"], ["mustardOil", "ghee"], [["peas", 40], ["onion", 40], ["tomato", 50]], rN),
+  T("Mutton rogan josh (lite) with rice", LU, ["lambLeg", "goatLeg", "goatShoulder"], ["riceWhite"], ["mustardOil", "ghee"], [["curd", 50], ["onion", 30], ["cucumber", 80]], rN),
+  T("Shorshe ilish with rice & lal saag", LU, ["hilsa", "rohu", "catla"], ["riceWhite"], ["mustardOil"], [["amaranthRed", 100], ["tomato", 30]], rE),
+  T("Bhetki paturi with rice & greens", DI, ["bhetki", "rohu", "catla"], ["riceWhite"], ["mustardOil"], [["pumpkinLeaves", 80], ["lauki", 80]], rE),
+  T("Surmai fry with jowar bhakri & salad", LU, ["surmai", "pomfretWhite", "mackerel"], ["jowar", "riceWhite"], ["coconutOil", "groundnutOil"], [["onion", 20], ["cucumber", 100], ["tomato", 40]], rW),
+  T("Karimeen pollichathu with rice", DI, ["karimeen", "pomfret", "pomfretWhite"], ["riceWhite", "riceParboiled"], ["coconutOil"], [["onion", 30], ["tomato", 30], ["beans", 80]], rS),
+  T("Squid (calamari) masala with rice", LD, ["squid", "prawns", "prawnsRaw"], ["riceWhite"], ["coconutOil", "mustardOil"], [["onion", 30], ["tomato", 40], ["coconutFresh", 15]], { r: ["south", "west", "east"] }),
+  T("Prawn & drumstick curry with rice", LU, ["prawnsSmall", "prawnsRaw", "prawns"], ["riceWhite", "riceParboiled"], ["coconutOil", "groundnutOil"], [["drumstick", 60], ["onion", 30], ["tomato", 30]], { r: ["south", "west"] }),
+  T("Lemon-garlic tilapia with veg & brown rice", DI, ["tilapia", "pangas", "rohu"], ["riceBrown", "riceWhite"], ["oliveOil", "mustardOil"], [["broccoli", 80], ["carrot", 50], ["zucchiniGreen", 60]]),
+  T("Desi egg curry with jeera rice", LU, ["eggCountry", "egg"], ["riceWhite"], ["groundnutOil", "mustardOil"], [["onion", 40], ["tomato", 50], ["peas", 30]]),
+  T("Egg & veg fried rice", DI, ["eggWhite", "egg"], ["riceBrown", "riceWhite"], ["sesame", "groundnutOil"], [["cabbage", 60], ["carrot", 40], ["capsicum", 40], ["springOnion", 20]]),
+  T("Egg-white bhurji with bajra roti", DI, ["eggWhite", "eggWhiteRaw"], ["bajra", "atta"], ["egg", "mustardOil"], [["onion", 30], ["tomato", 40], ["methi", 30]], { r: ["north", "west"] }),
+  T("Kathal sabzi, masoor dal & phulka", LU, ["greekYogurt", "paneer", "tofu"], ["atta"], ["mustardOil", "ghee"], [["rawJackfruit", 120], ["masoorDal", 30], ["cucumber", 80]], { r: ["north", "east"] }),
+  T("Whole moong, tindora sabzi & rice", LU, ["greekYogurt", "tofu"], ["riceWhite"], ["groundnutOil", "mustardOil"], [["moongWhole", 35], ["tindora", 120]], { r: ["west", "south"] }),
+  T("Aloo-parwal, masoor dal & rice", LU, ["paneer", "greekYogurt", "tofu"], ["riceWhite"], ["mustardOil", "ghee"], [["parwal", 120], ["masoorDal", 30], ["potato", 40]], rE),
+  T("Kamal kakdi sabzi, urad dal & phulka", LU, ["greekYogurt", "paneer", "tofu"], ["atta"], ["ghee", "mustardOil"], [["lotusRoot", 100], ["uradDal", 30], ["tomato", 40]], rN),
+  T("Gongura pappu with rice & curd", LU, ["greekYogurt", "tofu"], ["riceWhite"], ["groundnutOil", "tilOil"], [["gongura", 60], ["toorDal", 35]], rS),
+  T("Lal saag, masoor dal & rice", DI, ["paneer", "tofu", "greekYogurt"], ["riceWhite"], ["mustardOil"], [["amaranthRed", 120], ["masoorDal", 30]], rE),
+  T("Black rajma & barley bowl", LU, ["tofu", "greekYogurt"], ["barley", "riceBrown"], ["oliveOil", "mustardOil"], [["rajmaBlack", 35], ["lettuce", 50], ["capsicumRed", 50], ["cucumber", 60]]),
+  T("Paneer-zucchini stir-fry with bulgur", DI, ["paneer", "tofu"], ["bulgur", "quinoa", "dalia"], ["oliveOil", "mustardOil"], [["zucchiniGreen", 100], ["capsicumYellow", 60], ["springOnion", 20]]),
+  T("Snake gourd kootu with rice", DI, ["greekYogurt", "tofu"], ["riceWhite", "riceParboiled"], ["coconutOil", "groundnutOil"], [["snakeGourd", 120], ["moongDal", 30], ["coconutFresh", 15]], rS),
+  T("Undhiyu (lite) with rotli & chaas", LU, ["greekYogurt", "paneer"], ["atta"], ["groundnutOil"], [["semBeans", 60], ["rawBanana", 40], ["brinjal", 50], ["buttermilk", 200]], rW),
+  T("Raw-banana & chana sabzi with phulka", DI, ["paneer", "tofu", "greekYogurt"], ["atta", "jowar"], ["mustardOil", "groundnutOil"], [["rawBanana", 70], ["kalaChana", 25], ["tomato", 40]], { r: ["east", "south"] }),
   // ── Snacks ──
   T("Hung curd, fruit & nuts", SN, ["greekYogurt"], ["apple", "guava", "papaya", "pear"], ["almonds", "walnuts", "pumpkinSeed"], [], VR),
   T("Whey shake with banana & peanut butter", SN, ["whey"], ["banana"], ["peanutButter", "almonds"], [], { whey: true }),
@@ -109,10 +145,17 @@ export const TEMPLATES: Template[] = [
   T("Lobia / chana sundal", SN, ["greekYogurt", "tofu"], undefined, ["coconutFresh", "groundnutOil"], [["lobia", 30], ["carrot", 30]], rS),
   T("Sweet-potato chaat with curd", SN, ["greekYogurt", "paneer"], ["sweetPotato"], ["peanuts", "almonds"], [], VR),
   T("Paneer cubes with seasonal fruit", SN, ["paneer"], ["chikoo", "pear", "orange", "apple"], undefined, [], VR),
+  T("Boiled egg & sprouts chaat", SN, ["egg", "eggCountry"], ["apple", "guava"], undefined, [["sprouts", 60], ["onion", 20], ["tomato", 30]]),
+  T("Chicken tikka bites with salad", SN, ["chickenRaw", "chickenThigh"], undefined, ["oliveOil", "mustardOil"], [["cucumber", 60], ["capsicum", 40]]),
+  T("Bhutta with lemon & hung curd", SN, ["greekYogurt", "tofu"], ["maizeTender", "sweetCorn"], undefined, []),
+  T("Murmura bhel with sprouts & curd", SN, ["greekYogurt", "tofu"], ["puffedRice", "poha"], ["peanuts", "pumpkinSeed"], [["sprouts", 50], ["onion", 20], ["tomato", 30], ["cucumber", 40]], { r: ["west", "east"] }),
+  T("Fruit bowl with curd & sunflower seeds", SN, ["greekYogurt", "paneer"], ["mosambi", "papaya", "apple"], ["sunflowerSeeds", "pumpkinSeed"]),
+  T("Amla, guava & roasted chana with curd", SN, ["greekYogurt", "paneer"], ["guavaPink", "guava"], ["peanuts", "almonds"], [["amla", 30], ["kalaChana", 20]]),
   // ── Bedtime ──
   T("Hung curd with walnuts", BT, ["greekYogurt", "paneer"], undefined, ["walnuts", "almonds", "chia"], [], VR),
   T("Haldi milk with almonds", BT, ["milkLowFat", "milkSkim"], undefined, ["almonds", "cashew"], [], VR),
   T("Tofu with seeds", BT, ["tofu"], undefined, ["pumpkinSeed", "flaxseed"]),
+  T("Boiled egg whites with seeds", BT, ["eggWhite"], undefined, ["pumpkinSeed", "flaxseed", "almonds"]),
 ];
 
 /** Meal slots and their share of the day's energy. */
@@ -153,8 +196,28 @@ export function foodTable(p: ClientProfile, extra: FoodItem[] = []): Map<string,
   return m;
 }
 
+/** Saturated-fat-rich: left out for high cholesterol, heart disease and fatty liver. */
+const SAT_FAT = new Set(["ghee", "coconutOil", "coconutMilk", "coconutDry", "khoa"]);
+/** High-purine foods to avoid in gout (ACR 2020). */
+const HIGH_PURINE = new Set(["chickenLiver", "chickenGizzard", "goatHeart", "goatLiver", "goatKidney", "lambLiver", "sardine", "anchovy", "mackerel"]);
+const LACTOSE = new Set(["milkCow", "milkLowFat", "milkSkim", "milkBuffalo", "khoa"]);
+/** High-oxalate greens to limit with calcium-oxalate kidney stones. */
+const HIGH_OXALATE = new Set(["spinach", "palakAmaranth", "amaranthRed", "beetGreens", "bathua", "colocasiaLeaves"]);
+
+/** A food a health condition rules out. Dishes that depend on it are dropped, not served without it. */
+export function conditionBlocked(food: FoodItem, p: ClientProfile): boolean {
+  const c = p.conditions;
+  // Fatty meat and poultry with skin (≥10 g fat/100 g) go too; oily fish stays — its fat is mostly unsaturated.
+  if ((c.cholesterol || c.heart || c.fattyLiver) && (SAT_FAT.has(food.id) || (food.diet === "nonveg" && !food.allergen && food.f >= 10))) return true;
+  if (c.gout && (HIGH_PURINE.has(food.id) || food.allergen === "shellfish")) return true;
+  if (c.lactose && LACTOSE.has(food.id)) return true;
+  if (c.kidneyStones && HIGH_OXALATE.has(food.id)) return true;
+  return false;
+}
+
 export function allowed(food: FoodItem | undefined, p: ClientProfile): boolean {
   if (!food) return false;
+  if (conditionBlocked(food, p)) return false;
   if (DIET_RANK[food.diet] > ALLOWED_RANK[p.diet]) return false;
   if (p.diet === "jain" && !food.jain) return false;
   if (food.allergen && p.allergies.includes(food.allergen)) return false;
@@ -192,6 +255,8 @@ export function resolvedTemplates(slot: Slot, p: ClientProfile, foods: Map<strin
     const ff = pick(t.f, p, foods);
     if (t.f && !ff) continue;
     const fixed: [FoodItem, number][] = [];
+    // "Palak paneer" without palak is not palak paneer: skip dishes whose ingredients a condition rules out.
+    if ((t.fixed ?? []).some(([id]) => { const fd = foods.get(id); return !!fd && conditionBlocked(fd, p); })) continue;
     for (const [id, g] of t.fixed ?? []) {
       const swap = (p.style === "diabetic" || p.style === "pcos") && LOW_GI[id] ? LOW_GI[id] : id;
       const fd = foods.get(swap);
@@ -211,7 +276,7 @@ const BOUNDS: Record<string, [number, number]> = {
   breadWholeWheat: [30, 200], peanutButter: [0, 32], moongDal: [20, 90], rajma: [20, 90], kalaChana: [20, 90], sprouts: [50, 250],
   chia: [0, 25], flaxseed: [0, 25], pumpkinSeed: [0, 30], sesame: [0, 20],
 };
-const ROLE_BOUNDS: Record<FoodItem["role"], [number, number]> = { protein: [25, 250], carb: [15, 250], legume: [20, 90], dairy: [50, 350], fat: [0, 40], veg: [0, 300], fruit: [50, 300] };
+const ROLE_BOUNDS: Record<FoodItem["role"], [number, number]> = { protein: [25, 250], carb: [15, 250], legume: [20, 90], dairy: [50, 350], fat: [0, 40], veg: [0, 300], fruit: [50, 300], herb: [0, 15] };
 const OILS = new Set(["ghee", "mustardOil", "groundnutOil", "oliveOil"]);
 
 export type BoundsFn = (f: FoodItem) => [number, number];
@@ -299,6 +364,7 @@ export function roundGrams(f: FoodItem, g: number): number {
   if (f.id === "eggWhite") return Math.max(33, Math.round(g / 33) * 33);
   if (f.id === "whey") return Math.round(g);
   if (f.role === "fat") return Math.round(g);
+  if (f.role === "herb") return Math.max(1, Math.round(g));
   return Math.round(g / 5) * 5;
 }
 
@@ -402,6 +468,11 @@ export function planDays(t: Targets, p: ClientProfile, days = 7, swaps: Record<s
         // other regions last. Day-level balancing below absorbs the small macro cost.
         const cu = p.cuisine;
         if (cu && cu !== "any" && opts[k].region.length) score += opts[k].region.includes(cu) ? -45 : 45;
+        // Food preference: a non-veg client gets chicken, mutton or fish at most lunches and dinners and an
+        // eggetarian gets eggs most days; the weekly-use penalty above still keeps the dishes varied.
+        const mainDiet = opts[k].p.diet;
+        if (p.diet === "nonveg" && mainDiet === "nonveg" && (m.slot === "lunch" || m.slot === "dinner")) score -= 35;
+        if (mainDiet === "egg" && (p.diet === "egg" || (p.diet === "nonveg" && m.slot === "breakfast"))) score -= 25;
         score += ((k - d - mi * 3) % n + n) % n; // rotate ties so the week varies
         if (score < bestScore) [best, bestScore] = [k, score];
       }

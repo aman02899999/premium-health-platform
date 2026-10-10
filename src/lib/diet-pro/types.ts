@@ -7,7 +7,7 @@ export type Style = "balanced" | "high-protein" | "low-carb" | "keto" | "diabeti
 export type Cuisine = "any" | "north" | "south" | "west" | "east";
 export type Allergen = "dairy" | "gluten" | "nuts" | "peanut" | "soy" | "egg" | "fish" | "shellfish" | "sesame";
 export type ActivityId = "sedentary" | "light" | "moderate" | "active" | "athlete";
-export type FoodRole = "carb" | "legume" | "protein" | "dairy" | "fat" | "veg" | "fruit";
+export type FoodRole = "carb" | "legume" | "protein" | "dairy" | "fat" | "veg" | "fruit" | "herb";
 
 export type FoodItem = {
   id: string;
@@ -48,6 +48,7 @@ export type Measurements = {
 
 export type WheyLabel = { scoopG: number; kcal: number; p: number; c: number; f: number; edited: boolean };
 
+/** The original seven are always present; the newer ones are optional so older saved clients still load. */
 export type Conditions = {
   pcos: boolean;
   hypothyroid: boolean;
@@ -56,6 +57,18 @@ export type Conditions = {
   ckd: boolean;
   pregnant: boolean;
   lactating: boolean;
+  cholesterol?: boolean;
+  heart?: boolean;
+  fattyLiver?: boolean;
+  kidneyStones?: boolean;
+  gout?: boolean;
+  anaemia?: boolean;
+  gerd?: boolean;
+  ibs?: boolean;
+  lactose?: boolean;
+  osteoporosis?: boolean;
+  jointPain?: boolean;
+  menopause?: boolean;
 };
 
 export type ClientProfile = {
@@ -84,6 +97,8 @@ export type ClientProfile = {
   budget?: boolean;
   /** "HH:MM", used to time the meals on the chart. */
   wakeTime?: string;
+  /** "HH:MM" the session usually starts; links pre- and post-workout meals to the diet chart. */
+  trainTime?: string;
   allergies: Allergen[];
   conditions: Conditions;
   useWhey: boolean;

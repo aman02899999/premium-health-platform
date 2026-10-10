@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { PdfBusiness } from "./pdf";
+import type { PdfBusiness, PdfCoach } from "./pdf";
 
 // Client-only: the planner reads saved clients from localStorage and renders WebGL.
 const DietPro = dynamic(() => import("./DietPro"), {
@@ -9,6 +9,6 @@ const DietPro = dynamic(() => import("./DietPro"), {
   loading: () => <div className="grid min-h-screen place-items-center bg-ink text-sm text-white/50">Loading Diet Pro…</div>,
 });
 
-export function DietProLoader(props: { business: PdfBusiness; coach: string }) {
+export function DietProLoader(props: { business: PdfBusiness; coach: string; coachProfile: PdfCoach }) {
   return <DietPro {...props} />;
 }

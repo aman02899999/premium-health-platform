@@ -16,18 +16,29 @@ export type DietOrder = {
   email: string | null;
   intake: DietIntake;
   paidAt: string | null;
-  stage: "new" | "in_progress" | "sent" | "refunded";
+  stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded";
   sentAt: string | null;
+  plan: string;
+  planPath: string | null;
+  planGeneratedAt: string | null;
 };
 
-type Row = { id: string; created_at: Date; razorpay_order_id: string; razorpay_payment_id: string | null; status: DietOrder["status"]; amount_paise: number; name: string; phone: string; email: string | null; intake: DietIntake; paid_at: Date | null; stage: DietOrder["stage"]; sent_at: Date | null };
-const COLUMNS = "id, created_at, razorpay_order_id, razorpay_payment_id, status, amount_paise, name, phone, email, intake, paid_at, stage, sent_at";
-const fromRow = (r: Row): DietOrder => ({ id: r.id, createdAt: r.created_at.toISOString(), razorpayOrderId: r.razorpay_order_id, razorpayPaymentId: r.razorpay_payment_id, status: r.status, amountPaise: r.amount_paise, name: r.name, phone: r.phone, email: r.email, intake: r.intake, paidAt: r.paid_at?.toISOString() ?? null, stage: r.stage, sentAt: r.sent_at?.toISOString() ?? null });
+type Row = { id: string; created_at: Date; razorpay_order_id: string; razorpay_payment_id: string | null; status: DietOrder["status"]; amount_paise: number; name: string; phone: string; email: string | null; intake: DietIntake; paid_at: Date | null; stage: DietOrder["stage"]; sent_at: Date | null; plan: string; plan_path: string | null; plan_generated_at: Date | null };
+const COLUMNS = "id, created_at, razorpay_order_id, razorpay_payment_id, status, amount_paise, name, phone, email, intake, paid_at, stage, sent_at, plan, plan_path, plan_generated_at";
+const fromRow = (r: Row): DietOrder => ({ id: r.id, createdAt: r.created_at.toISOString(), razorpayOrderId: r.razorpay_order_id, razorpayPaymentId: r.razorpay_payment_id, status: r.status, amountPaise: r.amount_paise, name: r.name, phone: r.phone, email: r.email, intake: r.intake, paidAt: r.paid_at?.toISOString() ?? null, stage: r.stage, sentAt: r.sent_at?.toISOString() ?? null, plan: r.plan, planPath: r.plan_path, planGeneratedAt: r.plan_generated_at?.toISOString() ?? null });
 
-export async function insertDietOrder(razorpayOrderId: string, amountPaise: number, buyer: DietBuyer, intake: DietIntake): Promise<void> {
+export async function insertDietOrder(razorpayOrderId: string, amountPaise: number, buyer: DietBuyer, intake: DietIntake, plan = "starter"): Promise<void> {
   await pool.query(
-    `insert into public.diet_orders (razorpay_order_id, amount_paise, name, phone, email, intake, consent_at) values ($1, $2, $3, $4, $5, $6, now())`,
-    [razorpayOrderId, amountPaise, buyer.name, buyer.phone, buyer.email, JSON.stringify(intake)],
+    `insert into public.diet_orders (razorpay_order_id, amount_paise, name, phone, email, intake, consent_at, plan) values ($1, $2, $3, $4, $5, $6, now(), $7)`,
+    [razorpayOrderId, amountPaise, buyer.name, buyer.phone, buyer.email, JSON.stringify(intake), plan],
+  );
+}
+
+/** Records the generated plan PDF; moves a new order to "draft_ready" (never moves a sent order back). */
+export async function setDietPlanFile(id: string, path: string): Promise<void> {
+  await pool.query(
+    `update public.diet_orders set plan_path = $2, plan_generated_at = now(), stage = case when stage = 'new' then 'draft_ready' else stage end, updated_at = now() where id = $1`,
+    [id, path],
   );
 }
 

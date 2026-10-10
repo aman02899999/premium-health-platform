@@ -21,6 +21,16 @@ describe("household measures", () => {
     expect(household("almonds", 12, "x").qty).toBe("10 almonds");
     expect(household("whey", 30, "x", { scoopG: 30 }).qty).toBe("1 scoop");
   });
+  it("every food from the IFCT expansion gets a kitchen measure, not 'a handful'", () => {
+    expect(household("barley", 45, "Black rajma & barley bowl").qty).toBe("1 katori cooked");
+    expect(household("rajmaBlack", 35, "x").qty).toBe("1 katori cooked");
+    expect(household("hilsa", 160, "x").qty).toBe("2 medium pieces");
+    expect(household("goatShoulder", 150, "x").qty).toBe("1½ palm-size portion");
+    expect(household("eggCountry", 80, "x").qty).toBe("2 desi eggs");
+    expect(household("omelette", 110, "x").qty).toBe("2-egg omelette");
+    expect(household("sunflowerSeeds", 9, "x").qty).toBe("1 tbsp");
+    expect(household("puffedRice", 30, "x").qty).toBe("2 cups");
+  });
   it("times meals from the wake-up time", () => {
     expect(mealTime("Breakfast", "06:30")).toBe("8:00 am");
     expect(mealTime("Lunch", "06:30")).toBe("1:30 pm");

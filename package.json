@@ -23,6 +23,7 @@
     "react-dom": "19.2.6",
     "recharts": "^3.10.1",
     "server-only": "^0.0.1",
+    "sharp": "^0.34.5",
     "three": "^0.186.1"
   },
   "devDependencies": {
