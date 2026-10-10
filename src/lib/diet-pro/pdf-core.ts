@@ -10,6 +10,7 @@ import { conditionLabels } from "@/lib/diet-pro/conditions";
 import { herbAdvice, herbRoutine } from "@/lib/diet-pro/herbs";
 import { groceryList, habits, heartZones, principles, projection, weeklySchedule } from "@/lib/diet-pro/program";
 import type { ClientProfile } from "@/lib/diet-pro/types";
+import { DIET_PLANS } from "@/lib/growth/config";
 
 export type PdfBusiness = { name: string; phone: string; address: string; instagram: string; site: string };
 /** Who designed the plan: printed on the cover, headers, footers, watermark and the signed coach card. */
@@ -30,7 +31,12 @@ export type PlanPdfInput = {
   extras: PdfExtras;
   bodyImage: string | null;
   labels: Record<string, string>;
+  /** 7-day trial: same personal chart, tiled "7-DAY TRIAL PLAN" watermark, locked herb doses and a full-programme page. */
+  trial?: boolean;
 };
+
+/** Length of the trial plan in days. */
+export const TRIAL_DAYS = 7;
 
 const NAVY: [number, number, number] = [4, 70, 109];
 const RED: [number, number, number] = [232, 57, 75];
@@ -79,7 +85,9 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   // India time, so a plan made on the server at 1 am IST carries the right date.
   const fmtDate = (d: Date) => d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata" });
   const today = fmtDate(new Date());
-  const nextReview = fmtDate(new Date(Date.now() + 14 * 86_400_000));
+  const trial = Boolean(input.trial);
+  const validTill = fmtDate(new Date(Date.now() + (TRIAL_DAYS - 1) * 86_400_000));
+  const nextReview = fmtDate(new Date(Date.now() + (trial ? TRIAL_DAYS : 14) * 86_400_000));
   const coachName = `Coach ${K.name.trim().replace(/^coach\s+/i, "")}`;
   const since = /^\d{4}-\d{2}-\d{2}$/.test(K.certifiedSince) ? new Date(`${K.certifiedSince}T00:00:00`).toLocaleDateString("en-IN", { month: "short", year: "numeric" }) : "";
   // "Certified Nutritionist since Feb 2016 · 16+ years coaching experience": the two claims stay separate.
@@ -87,7 +95,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   const years = K.experience.match(/\d+\+?/)?.[0] ?? "";
   const ig = igHandle(B.instagram);
   const clientName = c.name.trim() || "Client";
-  doc.setProperties({ title: `Nutrition & training plan — ${clientName}`, subject: `Prepared by ${coachName}, ${K.title}`, author: `${coachName} · ${B.name}`, creator: B.name });
+  doc.setProperties({ title: `${trial ? "7-day trial plan" : "Nutrition & training plan"} — ${clientName}`, subject: `Prepared by ${coachName}, ${K.title}`, author: `${coachName} · ${B.name}`, creator: B.name });
 
   /** Shorten a single line with an ellipsis so it never wraps into the next one. */
   const fit = (s: string, maxW: number) => {
@@ -152,14 +160,29 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("Personal Nutrition &", M + 52, 22);
-  doc.text("Training Plan", M + 52, 31);
+  doc.text(trial ? "Your 7-Day Trial" : "Personal Nutrition &", M + 52, 22);
+  doc.text(trial ? "Diet & Training Plan" : "Training Plan", M + 52, 31);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
   doc.text(t(`Prepared for ${clientName}`), M + 52, 40);
   doc.setFontSize(8.5);
   doc.setTextColor(200, 220, 235);
-  doc.text(t(`${today}  ·  ${B.name}`), M + 52, 46);
+  doc.text(t(trial ? `Valid ${today} – ${validTill}  ·  ${B.name}` : `${today}  ·  ${B.name}`), M + 52, 46);
+  if (trial) {
+    // Corner badge.
+    const cx = W - M - 13;
+    const cy = 22;
+    doc.setFillColor(...GOLD);
+    doc.circle(cx, cy, 13, "F");
+    doc.setFillColor(...RED);
+    doc.circle(cx, cy, 11.6, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(17);
+    doc.text(String(TRIAL_DAYS), cx, cy + 1.2, { align: "center" });
+    doc.setFontSize(5.6);
+    doc.text("DAY TRIAL", cx, cy + 5.6, { align: "center", charSpace: 0.3 });
+  }
 
   // Credential strip: who designed this plan.
   {
@@ -315,6 +338,67 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
       doc.text(line, M + 4, y + 1.5);
       y += 4.4;
     }
+  }
+
+  // Trial: what is inside this PDF and what the full programme unlocks, on the cover.
+  if (trial) {
+    const inside = [
+      `Calorie & macro targets (${n0(T.kcal)} kcal, ${T.protein} g protein) from your body analysis`,
+      "7-day Indian diet chart in katori, roti and spoon measures",
+      "Day-by-day meal plans with calories and protein for every meal",
+      `${input.training.length ? `${input.training.length}-day` : "Starter"} workout week matched to your diet`,
+      "Grocery list, habit tracker and Day-7 progress tracker",
+    ];
+    const locked = ["A fresh chart every 2 weeks as your body changes", "Coach check-ins and plan changes when progress stalls", "Exact herb & supplement doses for your health", "12-week roadmap tracked with your coach", "WhatsApp support"];
+    const colW = (W - 2 * M - 4) / 2;
+    const h = 8 + Math.max(inside.length, locked.length) * 7.2;
+    doc.addPage("a4", "portrait");
+    header("Your 7-day trial");
+    y = section(26, "What you get in this trial");
+    const box = (x: number, title: string, items: string[], tone: "in" | "lock") => {
+      doc.setFillColor(...(tone === "in" ? ([236, 253, 243] as [number, number, number]) : GOLD_SOFT));
+      doc.roundedRect(x, y, colW, h, 2.5, 2.5, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.6);
+      doc.setTextColor(...(tone === "in" ? ([22, 101, 52] as [number, number, number]) : GOLD));
+      doc.text(title, x + 4, y + 6);
+      let iy = y + 12;
+      for (const it of items) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.text(tone === "in" ? "+" : "*", x + 4, iy);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7.6);
+        doc.setTextColor(...INK);
+        doc.text((doc.splitTextToSize(t(it), colW - 12) as string[]).slice(0, 2), x + 8, iy, { lineHeightFactor: 1.15 });
+        doc.setTextColor(...(tone === "in" ? ([22, 101, 52] as [number, number, number]) : GOLD));
+        iy += 7.2;
+      }
+    };
+    box(M, `Included in your ${TRIAL_DAYS}-day trial`, inside, "in");
+    box(M + colW + 4, "Unlocked in the full programme", locked, "lock");
+    y += h + 12;
+    y = section(y, "How to get the most from your 7 days");
+    const steps: [string, string][] = [
+      ["Day 0", `Shop with the grocery list, and weigh yourself in the morning (you start at ${c.weightKg} kg${c.m.waist ? `, waist ${c.m.waist} cm` : ""}).`],
+      ["Days 1–7", `Follow the diet chart meal by meal. Drink ${T.waterRestL}–${T.waterTrainL} L of water and do the workout on each training day.`],
+      ["Every morning", "Fill one row of the 7-day trial tracker: weight, water, steps, meals followed, energy and hunger."],
+      ["Day 7", `Send the tracker, your waist and one photo to ${coachName}${B.phone ? ` on WhatsApp ${B.phone}` : ""}. We review your week together.`],
+      ["Day 8", "Continue with the full programme from the numbers your trial week gave us, so nothing is lost."],
+    ];
+    autoTable(doc, {
+      ...tableTheme,
+      startY: y,
+      body: steps.map((r) => r.map(t)),
+      styles: { ...tableTheme.styles, fontSize: 8.6, cellPadding: 2.2 },
+      columnStyles: { 0: { cellWidth: 30, fontStyle: "bold", textColor: RED } },
+      didDrawPage: () => header("Your 7-day trial"),
+    });
+    y = lastY() + 8;
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(8);
+    doc.setTextColor(...MUTED);
+    doc.text(t("One week is enough to learn the plan, feel the difference in energy and hunger, and see the first change on the scale. Most of that early change is water and food weight; fat loss builds over the following weeks."), M, y, { maxWidth: W - 2 * M });
   }
 
   // ───── Week at a glance (the chart a client pins on the fridge) ─────
@@ -552,12 +636,12 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
       head: [["Herb / supplement", "When & how to take", "Why it may help", "Caution"]],
       body: items.map((h) => [
         t(`${h.name}\n${h.kind === "kitchen" ? "Kitchen herb" : h.kind === "herbal" ? "Herbal supplement" : "Supplement"}`),
-        t(`${h.when}: ${h.how}`),
+        t(trial ? "Exact dose & timing unlocked in your full plan" : `${h.when}: ${h.how}`),
         t(`${h.why}\nSource: ${h.source}`),
         t(h.caution),
       ]),
       styles: { ...tableTheme.styles, fontSize: 7.1, cellPadding: 1.3, valign: "top" },
-      columnStyles: { 0: { cellWidth: 38, fontStyle: "bold", textColor: NAVY }, 1: { cellWidth: 62 }, 3: { textColor: [150, 40, 52] } },
+      columnStyles: { 0: { cellWidth: 38, fontStyle: "bold", textColor: NAVY }, 1: { cellWidth: 62, ...(trial ? { textColor: GOLD, fontStyle: "bolditalic" as const } : {}) }, 3: { textColor: [150, 40, 52] } },
       didDrawPage: () => header("Guidance"),
     });
   }
@@ -567,7 +651,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   autoTable(doc, { ...tableTheme, startY: y, body: input.lifestyle.map((s) => [t(s.title), t(s.text), t(s.source)]), columnStyles: { 0: { cellWidth: 26, fontStyle: "bold" }, 2: { cellWidth: 50, textColor: MUTED, fontSize: 7.2 } }, didDrawPage: () => header("Guidance") });
 
   // ───── 12-week roadmap + check-ins ─────
-  if (input.extras.roadmap) {
+  if (input.extras.roadmap || trial) {
     doc.addPage("a4", "portrait");
     header("Your 12-week roadmap");
     y = section(26, "Your 12-week roadmap");
@@ -633,6 +717,23 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
       doc.text(t("Your plan is set at maintenance: the goal is a steady weight with better strength, energy and body shape. Track waist and strength at each check-in."), M, y + 1, { maxWidth: W - 2 * M });
       y += 12;
     }
+    if (trial) {
+      y = section(ensure(y + 4, 70, "Your 12-week roadmap"), "Your 7-day trial tracker");
+      autoTable(doc, {
+        ...tableTheme,
+        startY: y,
+        head: [["Day", "Morning weight", "Water (L)", "Steps", "Meals followed", "Workout done", "Energy 1–5", "Hunger 1–5"]],
+        body: Array.from({ length: TRIAL_DAYS }, (_, i) => [`Day ${i + 1}`, i === 0 ? `${c.weightKg} kg` : "", "", "", "   / " + c.mealsPerDay, "", "", ""]),
+        styles: { ...tableTheme.styles, minCellHeight: 8.5, valign: "middle" },
+        columnStyles: { 0: { cellWidth: 16, fontStyle: "bold", textColor: NAVY } },
+        didDrawPage: () => header("Your 12-week roadmap"),
+      });
+      y = ensure(lastY() + 5, 10, "Your 12-week roadmap");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.2);
+      doc.setTextColor(...RED);
+      doc.text(t(`Day-7 review (${nextReview}): send this table, your waist measurement and one photo to ${coachName}${B.phone ? ` on WhatsApp ${B.phone}` : ""}. We go through your week together and show you how the full plan builds on it.`), M, y, { maxWidth: W - 2 * M });
+    } else {
     y = section(ensure(y + 4, 60, "Your 12-week roadmap"), "Check-in log — every 2 weeks");
     const row0 = ["Today", `${c.weightKg} kg`, c.m.waist ? `${c.m.waist} cm` : "", c.m.hip ? `${c.m.hip} cm` : "", "", "", ""];
     autoTable(doc, {
@@ -649,6 +750,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
     doc.setFontSize(7.6);
     doc.setTextColor(...MUTED);
     doc.text(t("Measure first thing in the morning, after the toilet and before food. Take front, side and back photos in the same light every 4 weeks."), M, y, { maxWidth: W - 2 * M });
+    }
   }
 
   // ───── Grocery list ─────
@@ -681,27 +783,184 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   // ───── Habit tracker ─────
   if (input.extras.tracker) {
     doc.addPage("a4", "portrait");
-    header("4-week habit tracker");
-    y = section(26, "4-week habit tracker");
+    const trackerTitle = trial ? "7-day habit tracker" : "4-week habit tracker";
+    header(trackerTitle);
+    y = section(26, trackerTitle);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8.2);
     doc.setTextColor(...MUTED);
     doc.text(t("Print this page and tick each box daily. Consistency beats perfection: aim for 5 ticks out of 7 on every row."), M, y + 1, { maxWidth: W - 2 * M });
     y += 5;
     const rows = habits(c, T);
-    for (let wk = 1; wk <= 4; wk++) {
+    for (let wk = 1; wk <= (trial ? 1 : 4); wk++) {
       autoTable(doc, {
         ...tableTheme,
-        startY: ensure(y + 2, 52, "4-week habit tracker"),
-        head: [[`Week ${wk}`, "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]],
+        startY: ensure(y + 2, 52, trackerTitle),
+        head: [[trial ? "Trial week" : `Week ${wk}`, ...(trial ? ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"] : ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"])]],
         body: rows.map((h) => [t(h), "", "", "", "", "", "", ""]),
         styles: { ...tableTheme.styles, fontSize: 7.6, cellPadding: 1.2, minCellHeight: 5.2 },
         columnStyles: { 0: { cellWidth: 62, fontStyle: "bold" } },
-        didDrawPage: () => header("4-week habit tracker"),
+        didDrawPage: () => header(trackerTitle),
       });
       y = lastY() + 3;
     }
   }
+
+  /** Trial only: what the full programme adds, the client's own forecast and the plan prices. */
+  function fullProgrammePage() {
+    const title = "Your full programme";
+    doc.addPage("a4", "portrait");
+    header(title);
+    const first = clientName.split(/\s+/)[0];
+    let y = 22;
+
+    // Hero band.
+    doc.setFillColor(...NAVY);
+    doc.roundedRect(M, y, W - 2 * M, 27, 3, 3, "F");
+    doc.setFillColor(...RED);
+    doc.rect(M, y, 1.8, 27, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(15);
+    doc.text(t(`${TRIAL_DAYS} days shows you the plan. 12 weeks changes your body.`), M + 6, y + 9);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.6);
+    doc.setTextColor(214, 228, 240);
+    doc.text(
+      doc.splitTextToSize(
+        t(`${first}, this trial is already built on your own body analysis. Lasting change comes from adjusting it as your body responds week after week — that is what the full programme does with ${coachName} beside you.`),
+        W - 2 * M - 12,
+      ) as string[],
+      M + 6,
+      y + 15,
+    );
+    y += 34;
+
+    // The client's own forecast at their calories.
+    const pr = projection(c, T, 12);
+    if (pr.length > 12) {
+      y = section(y, `Your forecast at ${n0(T.kcal)} kcal a day`);
+      const loss = T.weeklyKg < 0;
+      const diff = (w: number) => `${loss ? "-" : "+"}${n1(Math.abs(pr[w].kg - c.weightKg))} kg`;
+      const tiles: [string, string, string][] = [
+        ["After this trial", diff(1), `about ${n1(pr[1].kg)} kg`],
+        ["In 4 weeks", diff(4), `about ${n1(pr[4].kg)} kg`],
+        ["In 12 weeks", diff(12), `about ${n1(pr[12].kg)} kg`],
+        ["Your target", c.targetWeightKg ? `${c.targetWeightKg} kg` : "—", T.weeksToGoal ? `in about ${T.weeksToGoal} weeks` : "set with your coach"],
+      ];
+      const tw = (W - 2 * M - 3 * 3) / 4;
+      tiles.forEach(([label, value, sub], i) => {
+        const x = M + i * (tw + 3);
+        const hot = i === 2;
+        doc.setFillColor(...(hot ? RED : ([241, 245, 249] as [number, number, number])));
+        doc.roundedRect(x, y, tw, 19, 2, 2, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(6.8);
+        doc.setTextColor(...(hot ? ([255, 255, 255] as [number, number, number]) : MUTED));
+        doc.text(label.toUpperCase(), x + tw / 2, y + 5, { align: "center" });
+        doc.setFontSize(13);
+        doc.setTextColor(...(hot ? ([255, 255, 255] as [number, number, number]) : NAVY));
+        doc.text(t(value), x + tw / 2, y + 11.6, { align: "center" });
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(6.6);
+        doc.setTextColor(...(hot ? ([255, 230, 232] as [number, number, number]) : MUTED));
+        doc.text(t(sub), x + tw / 2, y + 16.2, { align: "center" });
+      });
+      y += 22;
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(6.9);
+      doc.setTextColor(...MUTED);
+      doc.text(t("Estimate from your calorie gap (about 7,700 kcal per kg). Real progress depends on following the plan, and slows as weight changes — which is why the full programme re-sets your numbers every check-in."), M, y + 1, { maxWidth: W - 2 * M });
+      y += 9;
+    }
+
+    // Trial vs full programme.
+    y = section(y + 2, "What the full programme adds");
+    const rows: [string, string, string][] = [
+      ["Calorie & macro targets from your body analysis", "Yes", "Re-calculated at every check-in"],
+      ["Indian diet chart in kitchen measures", "1 week", "A fresh chart every 2 weeks as your weight changes"],
+      ["Workout programme matched to your diet", "1 week", "Progressive: weights, reps and cardio step up"],
+      ["Check-ins with your coach", "One Day-7 review", "Every 2 weeks · weekly on Premium"],
+      ["Plan changed when progress stalls", "—", "Calories, carbs and cardio adjusted for you"],
+      ["Herbs & supplements: exact dose and timing", "Locked", "Full instructions with safety checks"],
+      ["12-week roadmap & progress log", "Preview", "Tracked and updated together"],
+      ["WhatsApp support from your coach", "—", "Yes"],
+    ];
+    autoTable(doc, {
+      ...tableTheme,
+      startY: y,
+      head: [["What you get", `${TRIAL_DAYS}-day trial`, "Full programme"]],
+      body: rows.map((r) => r.map(t)),
+      styles: { ...tableTheme.styles, fontSize: 7.9, cellPadding: 1.35 },
+      columnStyles: { 0: { fontStyle: "bold", cellWidth: 74 }, 1: { cellWidth: 32, halign: "center", textColor: MUTED }, 2: { textColor: [22, 101, 52], fontStyle: "bold" } },
+      didDrawPage: () => header(title),
+    });
+    y = lastY() + 8;
+
+    // Plan prices.
+    const plans = DIET_PLANS.filter((p) => p.months > 0);
+    const cw = (W - 2 * M - (plans.length - 1) * 3) / plans.length;
+    const ch = 47;
+    y = section(ensure(y, ch + 12, title), "Choose your programme");
+    y += 2;
+    plans.forEach((p, i) => {
+      const x = M + i * (cw + 3);
+      const hot = Boolean(p.popular);
+      doc.setDrawColor(...(hot ? RED : ([203, 213, 225] as [number, number, number])));
+      doc.setLineWidth(hot ? 0.8 : 0.3);
+      doc.setFillColor(...(hot ? ([255, 245, 246] as [number, number, number]) : ([255, 255, 255] as [number, number, number])));
+      doc.roundedRect(x, y, cw, ch, 2.5, 2.5, "FD");
+      if (hot) {
+        doc.setFillColor(...RED);
+        doc.roundedRect(x + cw / 2 - 14, y - 2.6, 28, 5.2, 2.6, 2.6, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(6);
+        doc.setTextColor(255, 255, 255);
+        doc.text("MOST POPULAR", x + cw / 2, y + 0.9, { align: "center", charSpace: 0.3 });
+      }
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.2);
+      doc.setTextColor(...NAVY);
+      const name = doc.splitTextToSize(t(p.name), cw - 4) as string[];
+      doc.text(name.slice(0, 2), x + cw / 2, y + 7, { align: "center" });
+      doc.setFontSize(15);
+      doc.setTextColor(...(hot ? RED : INK));
+      doc.text(t(`Rs ${n0(p.priceRupees)}`), x + cw / 2, y + 19, { align: "center" });
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(7);
+      doc.setTextColor(...MUTED);
+      doc.text(t(`Rs ${Math.round(p.priceRupees / (p.months * 30))} a day · ${p.checkIns} check-ins`), x + cw / 2, y + 24, { align: "center" });
+      doc.setFontSize(6.8);
+      doc.setTextColor(...INK);
+      const sum = doc.splitTextToSize(t(p.summary), cw - 5) as string[];
+      doc.text(sum.slice(0, 5), x + cw / 2, y + 29.5, { align: "center", lineHeightFactor: 1.2 });
+    });
+    y += ch + 6;
+
+    // Call to action.
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.4);
+    const cta = doc.splitTextToSize(
+      t(`Reply "FULL PLAN" to ${B.phone || "us"} on WhatsApp, or choose a plan at ${B.site}/diet-chart. Upgrade by ${validTill} and ${coachName} continues from your trial numbers and your Day-7 review, so you never start over.`),
+      W - 2 * M - 12,
+    ) as string[];
+    const boxH = 9 + cta.length * 3.9;
+    y = ensure(y, boxH, title);
+    doc.setFillColor(...GOLD_SOFT);
+    doc.setDrawColor(...GOLD);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(M, y, W - 2 * M, boxH, 2.5, 2.5, "FD");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(...NAVY);
+    doc.text("Liked your week? Keep the momentum going.", M + 6, y + 6);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.4);
+    doc.setTextColor(...INK);
+    doc.text(cta, M + 6, y + 10.8, { lineHeightFactor: 1.3 });
+  }
+
+  if (trial) fullProgrammePage();
 
   // ───── Sources & disclaimer ─────
   doc.addPage();
@@ -783,7 +1042,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
     doc.text(t(`Issued ${today}`), sx + sw / 2, top + 33, { align: "center" });
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...RED);
-    doc.text(t(`Next review: ${nextReview}`), sx + sw / 2, top + 37.5, { align: "center" });
+    doc.text(t(`${trial ? "Day-7 review" : "Next review"}: ${nextReview}`), sx + sw / 2, top + 37.5, { align: "center" });
   }
 
   // Watermark + credited footer on every page.
@@ -815,6 +1074,17 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
     draw(wm1, diag * 0.66, 54, 0);
     doc.setTextColor(...RED);
     draw(wm2, diag * 0.5, 16, 12);
+    if (trial) {
+      // Repeating "7-DAY TRIAL PLAN" across the whole page, between the header band and the footer.
+      doc.setGState(doc.GState({ opacity: 0.09 }));
+      doc.setTextColor(...RED);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(13);
+      const tile = `${TRIAL_DAYS}-DAY TRIAL PLAN`;
+      for (let ty = 34, row = 0; ty < H - 16; ty += 34, row++) {
+        for (let tx = M - 6 + (row % 2) * 48; tx < W; tx += 96) doc.text(tile, tx, ty, { angle: 22, charSpace: 0.5 });
+      }
+    }
     doc.setGState(doc.GState({ opacity: 1 }));
 
     doc.setDrawColor(...GOLD);
@@ -828,9 +1098,13 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
     doc.setTextColor(...MUTED);
     doc.text(`Page ${i} of ${pages}`, W - M, H - 8, { align: "right" });
     doc.setFontSize(6.8);
-    doc.text(fit(`${B.name} · ${B.phone}${ig ? ` · ${ig}` : ""} · ${B.site} · Confidential — prepared for ${clientName}`, W - 2 * M), M, H - 4.4);
+    doc.text(
+      fit(trial ? `${TRIAL_DAYS}-day trial plan · valid until ${validTill} · prepared only for ${clientName} · ${B.name} · ${B.phone}` : `${B.name} · ${B.phone}${ig ? ` · ${ig}` : ""} · ${B.site} · Confidential — prepared for ${clientName}`, W - 2 * M),
+      M,
+      H - 4.4,
+    );
   }
 
   const safe = (c.name.trim() || "client").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase();
-  return { doc, filename: `royal-fitness-plan-${safe}-${new Date().toISOString().slice(0, 10)}.pdf` };
+  return { doc, filename: `royal-fitness-${trial ? "7-day-trial" : "plan"}-${safe}-${new Date().toISOString().slice(0, 10)}.pdf` };
 }

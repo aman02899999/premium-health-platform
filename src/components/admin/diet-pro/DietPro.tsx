@@ -71,6 +71,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
     });
   const [p, setP] = useState<ClientProfile>(DEFAULT);
   const [swaps, setSwaps] = useState<Record<string, number>>({});
+  const [trialPdf, setTrialPdf] = useState(false);
   const [extras, setExtras] = useState<Record<string, { id: string; grams: number }[]>>({});
   const [note, setNote] = useState("");
   const [log, setLog] = useState<LogEntry[]>([]);
@@ -199,7 +200,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
     setBusy(true);
     try {
       const img = body.current?.snapshot() ?? null;
-      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, extras: extrasPdf, bodyImage: img, labels });
+      await downloadPlanPdf({ client: p, t: T, days, training: train, supplements: supps, lifestyle: habits, business, coach: brand, coachNote: note, extras: extrasPdf, bodyImage: img, labels, trial: trialPdf });
     } catch (e) {
       console.error(e);
       toast(`PDF failed: ${(e as Error).message || "unknown error"}`);
@@ -404,8 +405,11 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               <Send className="h-4 w-4" /> Send to {order.name.split(" ")[0]}
             </button>
           )}
+          <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-amber-300/30 px-3 py-2 text-xs text-amber-200" title="Same personal chart for 7 days, with a repeating 7-DAY TRIAL PLAN watermark, locked herb doses, a 7-day tracker and a page showing what the full programme adds and its prices.">
+            <input type="checkbox" checked={trialPdf} onChange={(e) => setTrialPdf(e.target.checked)} className="accent-amber-400" /> 7-day trial
+          </label>
           <button type="button" onClick={pdf} disabled={busy} className="btn-brand inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold shadow-[0_10px_30px_-10px_rgba(232,57,75,0.9)] disabled:opacity-50">
-            {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} Branded PDF
+            {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} {trialPdf ? "Trial PDF" : "Branded PDF"}
           </button>
         </div>
       </header>
