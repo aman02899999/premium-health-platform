@@ -55,7 +55,12 @@ type Tab = "analysis" | "chart" | "meals" | "training" | "guidance" | "foods" | 
 
 export default function DietPro({ business, coach, coachProfile }: { business: PdfBusiness; coach: string; coachProfile: PdfCoach }) {
   // PDF credit block: server defaults (head coach), adjustable per device.
-  const [brand, setBrand] = useState<PdfCoach>(() => ({ ...coachProfile, ...read<Partial<PdfCoach>>(BRAND_KEY, {}) }));
+  const [brand, setBrand] = useState<PdfCoach>(() => {
+    const saved = read<Partial<PdfCoach>>(BRAND_KEY, {});
+    // The old default ("16+ years") was saved on devices that opened Diet Pro before it changed.
+    if (saved.experience === "16+ years coaching experience") delete saved.experience;
+    return { ...coachProfile, ...saved };
+  });
   const setBrandField = (patch: Partial<PdfCoach>) =>
     setBrand((b) => {
       const next = { ...b, ...patch };
@@ -528,7 +533,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               [
                 ["name", "Coach name", "Aman Sharma"],
                 ["title", "Credential", "Certified Nutritionist"],
-                ["experience", "Experience", "16+ years coaching experience"],
+                ["experience", "Experience", "15+ years coaching experience"],
                 ["certification", "Certificate (optional)", "e.g. ISSA Certified Nutritionist"],
               ] as const
             ).map(([key, l, ph]) => (
@@ -541,7 +546,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
               <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Certified since (issue date)</span>
               <input type="date" value={brand.certifiedSince} onChange={(e) => setBrandField({ certifiedSince: e.target.value })} className="h-10 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-sky" />
             </label>
-            <p className="text-[11px] text-white/40">Printed as “Certified Nutritionist since Feb 2016 · 16+ years coaching experience”. Only print a certificate the coach actually holds. Saved on this device.</p>
+            <p className="text-[11px] text-white/40">Printed as “Certified Nutritionist since Feb 2016 · 15+ years coaching experience”. Only print a certificate the coach actually holds. Saved on this device.</p>
             <div>
               <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-white/55">Extra client pages</span>
               <div className="flex flex-wrap gap-1.5">

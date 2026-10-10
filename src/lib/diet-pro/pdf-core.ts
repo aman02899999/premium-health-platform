@@ -90,7 +90,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
   const nextReview = fmtDate(new Date(Date.now() + (trial ? TRIAL_DAYS : 14) * 86_400_000));
   const coachName = `Coach ${K.name.trim().replace(/^coach\s+/i, "")}`;
   const since = /^\d{4}-\d{2}-\d{2}$/.test(K.certifiedSince) ? new Date(`${K.certifiedSince}T00:00:00`).toLocaleDateString("en-IN", { month: "short", year: "numeric" }) : "";
-  // "Certified Nutritionist since Feb 2016 · 16+ years coaching experience": the two claims stay separate.
+  // "Certified Nutritionist since Feb 2016 · 15+ years coaching experience": the two claims stay separate.
   const credLine = [K.title.trim() && `${K.title.trim()}${since ? ` since ${since}` : ""}`, K.experience.trim()].filter(Boolean).join(" · ");
   const years = K.experience.match(/\d+\+?/)?.[0] ?? "";
   const ig = igHandle(B.instagram);
