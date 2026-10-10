@@ -13,7 +13,8 @@ describe("diet plan packages", () => {
   it("are priced on the server, with the 3-month plan at ₹2,999 and a safe default", () => {
     expect(dietPlan("3m")).toMatchObject({ priceRupees: 2999, checkIns: 6, popular: true });
     expect(dietPlan("nope").id).toBe("starter");
-    expect(DIET_PLANS.map((p) => p.priceRupees)).toEqual([999, 1999, 2999, 4999, 5999]);
+    expect(DIET_PLANS.map((p) => p.priceRupees)).toEqual([49, 999, 1999, 2999, 4999, 5999]);
+    expect(dietPlan("trial")).toMatchObject({ priceRupees: 49, trial: true });
   });
 });
 
