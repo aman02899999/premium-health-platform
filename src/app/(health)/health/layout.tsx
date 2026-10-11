@@ -12,6 +12,7 @@ import { ExitIntent, StickyCTA } from "@/health/components/marketing/ExitIntent"
 import { NewsletterPopup } from "@/health/components/marketing/NewsletterPopup";
 import { ADSENSE_SRC } from "@/lib/adsense";
 import { organizationJsonLd, websiteJsonLd } from "@/health/lib/seo";
+import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <NewsletterPopup />
           </Providers>
         </AuthProvider>
+        <VercelAnalytics />
       </body>
     </html>
   );

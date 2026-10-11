@@ -5,6 +5,7 @@ import "./globals.css";
 import { getContent } from "@/lib/content/store";
 import { ADSENSE_SRC } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
+import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 
 // Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
 const inter = localFont({ src: "./fonts/inter-latin-wght-normal.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
@@ -62,7 +63,10 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
         <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
       </head>
-      <body className="noise min-h-screen">{children}</body>
+      <body className="noise min-h-screen">
+        {children}
+        <VercelAnalytics />
+      </body>
     </html>
   );
 }
