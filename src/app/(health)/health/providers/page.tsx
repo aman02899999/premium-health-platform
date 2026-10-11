@@ -31,10 +31,10 @@ export default function ProvidersPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Providers", item: "/health/providers" }]}
         faqs={[
-          { q: "What is providers directory?", a: "Business directory for Dietitians, Nutritionists, Fitness coaches, Yoga instructors, Clinics, Diagnostic centers, Wellness businesses — Free, Featured, Premium listings. Do not imply paid = medically superior. Clearly separate Featured from Recommended based on clinical evidence. Do not fabricate credentials." },
-          { q: "How to get listed?", a: "Submit via /partner-with-us lead form — name, service, location, credentials (never fabricated), tier free/featured/premium. Admin approves via /admin/earning. Featured listings clearly labeled, not medical endorsement." },
+          { q: "What is the providers directory?", a: "A list of dietitians, nutritionists, fitness coaches, yoga instructors and clinics you can contact directly. Featured listings are paid and clearly labelled." },
+          { q: "How do I get listed?", a: "Fill in the form on the Partner with us page. We verify your credentials before listing you." },
         ]}
-        howTo={{ name: "How to find provider", steps: ["Browse by type: Dietitian, Nutritionist, Fitness Coach, Yoga Instructor, Clinic", "Check tier: free, featured, premium — featured clearly labeled, not superior quality", "View profile + credentials (never fabricated) + location", "Inquire via lead form — minimal data, consent, rate limiting"] }}
+        howTo={{ name: "How to find a provider", steps: ["Browse by type: dietitian, nutritionist, fitness coach, yoga instructor or clinic", "Check their credentials and location", "Send an enquiry with the form", "The provider contacts you"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-900 to-emerald-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Business Directory — Free/Featured/Premium — Lead Gen</p>
@@ -50,15 +50,6 @@ export default function ProvidersPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <LeadForm config={leadForm} page="/health/providers" />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">How to Create Featured Listing</h3>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Add to BUSINESS_LISTINGS in src/lib/monetization/config.ts — id, slug, title, providerType, tier free/featured/premium, location, credentials (never fabricated), verified false until admin verifies</li>
-              <li>Set tier: free (basic), featured (highlighted), premium (top + badge)</li>
-              <li>Clearly label Featured — not medical endorsement — disclaimer required</li>
-              <li>Admin approves via /admin/earning + /api/monetization/providers?type=Dietitian</li>
-            </ol>
-          </div>
         </div>
       </div>
       <div className="mt-8 space-y-4"><AdSlot slot="Providers footer" /><DisclaimerBar compact /></div>

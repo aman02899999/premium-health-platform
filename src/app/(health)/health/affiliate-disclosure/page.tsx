@@ -29,7 +29,7 @@ export default function AffiliatePage() {
           { q: "How does affiliate earning work?", a: "When you buy through one of our Amazon links, Amazon pays us a small commission — the rate depends on the product category and is set by Amazon. You pay the same price. We count clicks on these links to see which recommendations are useful; we never sell your data." },
           { q: "Does affiliate influence editorial?", a: "No — evidence badges, safety warnings, limitations written before monetisation. Negative findings never hidden to protect sale. Disclosure on every page + /affiliate-disclosure + /deals + /products." },
         ]}
-        howTo={{ name: "How affiliate disclosure works", steps: ["Product pages show merchant, price placeholder, rating placeholder, CTA View Product/Check Price/Learn More", "Links resolve via configurable affiliate URLs in DB — never hardcoded", "Click tracked via UTM + gtag + /api/affiliate/click POST productId", "Buy on merchant, commission supports independent health journalism"] }}
+        howTo={{ name: "How our affiliate links work", steps: ["Some product buttons link to a seller such as Amazon", "If you buy, the seller may pay us a small commission", "You pay the same price", "Commissions never affect our health advice"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate Disclosure</p>
@@ -41,13 +41,12 @@ export default function AffiliatePage() {
         <div className="lg:col-span-2">
           <div className="space-y-4 rounded-3xl border border-stone-200 bg-white p-6 text-[14px] leading-relaxed text-stone-700 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-200">
             <p><strong>Disclosure:</strong> {SITE.affiliateDisclosure}</p>
-            <p><strong>How it works:</strong> Product pages show merchant, price placeholder, rating placeholder and CTA (View Product / Check Price / Learn More). Links resolve via configurable affiliate URLs stored in DB — never hardcoded in components. Tracked via gtag affiliate_click + UTM source/campaign + localStorage + /api/affiliate/click + /api/affiliate/stats.</p>
+            <p><strong>How it works:</strong> Each product shows the seller, a guide price and a button that opens the seller&apos;s own page. We count clicks on these buttons (without collecting personal details) so we know which recommendations are useful.</p>
             <p><strong>Editorial independence:</strong> Evidence badges, safety warnings and limitations sections written before any monetisation. Negative findings never hidden to protect sale. See /about editorial policy.</p>
-            <p><strong>Current status:</strong> All products clearly marked Demo with placeholder prices until real merchant integrations configured. 10 products: glucometer, BP monitor, mustard oil, millet combo, yoga mat, whey protein, herbs book, steamer, millet cooker, protein shaker.</p>
-            <p><strong>Earning APIs:</strong> /api/affiliate/click POST productId + UTM, /api/affiliate/stats GET aggregated, /api/earn/stats GET total monthly, /admin/earning dashboard MRR + affiliate + ads + lead.</p>
+            <p><strong>Prices:</strong> Prices shown are a guide only; always check the current price on the seller&apos;s site before you buy.</p>
           </div>
           <div className="mt-6 space-y-4">
-            <AffiliateProducts limit={6} title="Affiliate Products — Demo" />
+            <AffiliateProducts limit={6} title="Products we recommend" />
           </div>
         </div>
         <div className="space-y-4">

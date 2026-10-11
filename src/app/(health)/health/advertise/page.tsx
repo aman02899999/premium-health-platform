@@ -31,10 +31,10 @@ export default function AdvertisePage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Advertise", item: "/health/advertise" }]}
         faqs={[
-          { q: "What ad slots available?", a: "homepage_top, homepage_middle, disease_top, disease_middle, disease_bottom, article_top, article_middle, article_bottom, products_sidebar, footer, store_top, newsletter_inline, calculator_results — configurable via ADVERTISEMENTS config in src/lib/monetization/config.ts. Components: AdBanner, AdRectangle, AdInArticle, AdSidebar, SponsoredCard." },
-          { q: "How sponsored content works?", a: "Sponsor system with fields sponsor, campaign, startDate, endDate, placement, CTA, URL, active, priority, disclosure. Every sponsored item clearly labeled Sponsored / Paid partnership. Editorial content remains independent, sponsors cannot modify medical evidence. Auto-hide expired via getActiveSponsors()." },
+          { q: "What advertising options do you offer?", a: "Clearly labelled banner placements on our health pages and sponsored spots in our weekly newsletter. Every paid placement is marked Advertisement or Sponsored." },
+          { q: "Do you accept any advertiser?", a: "No. We only run ads for products and services that are legal, safe and relevant to our readers, and ads never change our health content." },
         ]}
-        howTo={{ name: "How to advertise", steps: ["Review ad slots + sponsored placements — clearly labeled Advertisement/Sponsored", "Submit inquiry via lead form — minimal data, consent", "Admin creates sponsor in SPONSORS config + ad slot in ADVERTISEMENTS", "Track via /api/monetization/analytics — ad_impression, ad_click, sponsor_clicked + gtag"] }}
+        howTo={{ name: "How to advertise", steps: ["Tell us what you'd like to promote using the enquiry form", "We reply with available placements, dates and prices", "Approve the creative — every placement is labelled Advertisement or Sponsored", "Your campaign goes live for the agreed dates"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-900 to-stone-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Advertising — Clearly Labeled — Editorial Independence</p>
@@ -49,27 +49,6 @@ export default function AdvertisePage() {
           <AdRectangle placement="article_bottom" page="/health/advertise" />
           <div className="grid gap-4 sm:grid-cols-2">
             {sponsors.map((s) => <SponsoredCard key={s.id} sponsor={s} page="/health/advertise" />)}
-          </div>
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">Ad Setup Instructions</h2>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Create ad slot in ADVERTISEMENTS config — id, slug, placement (homepage_top, disease_middle, etc.), adType banner/rectangle/in-article/sidebar/sponsored-card, active, priority</li>
-              <li>Render via components: AdBanner, AdRectangle, AdInArticle, AdSidebar, SponsoredCard — each tracks ad_impression via analytics</li>
-              <li>Initially use clearly marked placeholders — Advertisement label</li>
-              <li>Later integrate Google AdSense: set NEXT_PUBLIC_ADSENSE_CLIENT_ID in .env, replace placeholder with AdSense component</li>
-              <li>Do not create fake ads, do not auto-click, do not encourage clicks — AdSense policy</li>
-              <li>Track ad_impression + ad_click via /api/monetization/analytics + gtag</li>
-            </ol>
-          </div>
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">Sponsored Campaign Setup</h2>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Create sponsor in SPONSORS config — sponsorName, campaign, placement, CTA, URL, startDate, endDate, disclosure, active, priority</li>
-              <li>Every sponsored item must be clearly labeled Sponsored / Paid partnership</li>
-              <li>Editorial content must remain independent — sponsors cannot modify medical evidence</li>
-              <li>Auto-hide expired via getActiveSponsors() filtering startDate/endDate</li>
-              <li>Track sponsor_clicked via analytics + POST /api/monetization/analytics</li>
-            </ol>
           </div>
           <LeadForm config={leadForm} page="/health/advertise" />
         </div>

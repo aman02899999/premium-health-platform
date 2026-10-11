@@ -45,7 +45,7 @@ export default function DisclaimerPage() {
             <p><strong>Herbs & Ayurveda:</strong> Traditional uses distinguished from clinical evidence. Concentrated products can interact with medicines or harm liver/kidney — coordinate all practitioners. See /herb-interaction + /ayurveda.</p>
             <p><strong>Symptom tools & calculators:</strong> Educational estimates only, never diagnoses. Emergency symptoms need immediate care, not home tools. See /symptoms + /health-calculators + /india-risk.</p>
             <p><strong>Pregnancy & children:</strong> Extra caution applies. Doses individual and weight-based; this site never provides personalised pediatric or obstetric dosing. See /womens-health + /child-health + /child-growth.</p>
-            <p><strong>Monetisation:</strong> Ads and affiliates never override safety. Sponsored content clearly labelled. Affiliate disclosure at /affiliate-disclosure + /deals + /products + Product JSON-LD.</p>
+            <p><strong>Monetisation:</strong> Ads and affiliates never override safety. Sponsored content clearly labelled. Affiliate disclosure at /affiliate-disclosure + /deals + /products.</p>
           </div>
           <div className="mt-4"><EmergencyBox signs={["Chest pain or pressure", "Severe difficulty breathing", "Sudden weakness / face droop / speech difficulty", "Severe allergic reaction or loss of consciousness", "Severe bleeding or suspected stroke", "Severe hypoglycaemia (confusion, seizures)"]} /></div>
         </div>

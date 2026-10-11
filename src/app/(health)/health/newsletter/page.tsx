@@ -30,10 +30,10 @@ export default function NewsletterPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Newsletter", item: "/health/newsletter" }]}
         faqs={[
-          { q: "What is newsletter monetization?", a: "Free newsletter Indian Health Weekly every Sunday + sponsored slots: sponsor banner + sponsored recommendation. Track subscribers, campaign, clicks, unsubscribe, sponsor CTR via /api/newsletter + /api/monetization/analytics. Do not sell email addresses, do not expose subscriber info to sponsors." },
-          { q: "How to sponsor newsletter?", a: "Create sponsor in SPONSORS config with placement newsletter, startDate, endDate, CTA, URL, active true. Auto-hide expired. Track via sponsor_clicked event. Example: Demo Wellness Labs campaign." },
+          { q: "What do I get?", a: "A free weekly email with practical health guides on diabetes, thyroid, nutrition, Ayurveda and fitness. You can unsubscribe at any time." },
+          { q: "Do you share my email?", a: "Never. We don't sell or share subscriber details. Any sponsored slot in the newsletter is clearly labelled Sponsored." },
         ]}
-        howTo={{ name: "How to subscribe & sponsor", steps: ["Subscribe free via form — consent + privacy policy", "Receive weekly health guides — diabetes, thyroid, nutrition, Ayurveda", "Sponsored slots clearly labeled Sponsored + disclosure", "Track via /api/newsletter?limit=20 + /api/monetization/analytics?type=newsletter_signup"] }}
+        howTo={{ name: "How to subscribe", steps: ["Enter your email in the form", "Tick the consent box", "Confirm", "Get the newsletter every week — unsubscribe any time"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Newsletter Monetization — Free + Sponsored</p>
@@ -45,11 +45,11 @@ export default function NewsletterPage() {
         <div className="lg:col-span-2 space-y-6">
           <Newsletter />
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-800 dark:bg-amber-950/30">
-            <h3 className="text-sm font-bold">Sponsored Newsletter Slots — Demo</h3>
+            <h3 className="text-sm font-bold">Newsletter sponsors</h3>
             <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Sponsored content must be clearly labeled Sponsored / Paid partnership. Editorial content remains independent. Do not allow sponsors to modify medical evidence. Auto-hide expired campaigns via getActiveSponsors().</p>
             <div className="mt-3 grid gap-3">
               {sponsors.map((s) => <SponsoredCard key={s.id} sponsor={s} page="/health/newsletter" />)}
-              {sponsors.length === 0 && <p className="text-xs text-stone-500">No newsletter sponsors active — demo shows homepage sponsors below.</p>}
+              {sponsors.length === 0 && <p className="text-xs text-stone-500">No newsletter sponsors active.</p>}
               {allSponsors.slice(0, 2).map((s) => <SponsoredCard key={s.id} sponsor={s} page="/health/newsletter" />)}
             </div>
           </div>
@@ -58,16 +58,6 @@ export default function NewsletterPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <LatestArticles limit={4} />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Newsletter Setup — Sponsorship</h3>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Add sponsor to SPONSORS in src/lib/monetization/config.ts — placement newsletter, startDate, endDate, CTA, URL, disclosure</li>
-              <li>Track: POST /api/newsletter with email + consent, GET /api/newsletter?limit=20 for subs, /api/monetization/analytics?type=newsletter_signup</li>
-              <li>Sponsored slot: render SponsoredCard with Sponsored label + disclosure</li>
-              <li>Do not sell subscriber emails — do not expose subscriber info to sponsors — privacy policy</li>
-              <li>Auto-hide expired via getActiveSponsors() filtering startDate/endDate</li>
-            </ol>
-          </div>
         </div>
       </div>
 

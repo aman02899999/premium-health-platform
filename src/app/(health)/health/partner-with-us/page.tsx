@@ -27,10 +27,10 @@ export default function PartnerPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Partner With Us", item: "/health/partner-with-us" }]}
         faqs={[
-          { q: "Who can partner?", a: "Dietitians, Nutritionists, Fitness coaches, Yoga instructors, Clinics, Diagnostic centers, Wellness businesses — Free/Featured/Premium listings in /providers. Clearly separate Featured from Recommended based on clinical evidence." },
-          { q: "How partnership works?", a: "Submit via lead form — minimal data, consent. Admin reviews credentials (never fabricated) in /admin/earning + /api/monetization/providers. Featured listings clearly labeled, not medical endorsement. Sponsorship via SPONSORS config." },
+          { q: "Who can partner?", a: "Dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centres and wellness businesses." },
+          { q: "How does it work?", a: "Send an enquiry through the form. We check your credentials, then list you in our directory. Featured listings are clearly labelled and are not a medical endorsement." },
         ]}
-        howTo={{ name: "How to partner", steps: ["Fill partnership inquiry — name, email, phone, service, message, consent", "Admin reviews via /admin/earning + /api/monetization/providers", "Choose tier free/featured/premium — featured clearly labeled", "Get listed in /providers + lead gen + sponsorship opportunities"] }}
+        howTo={{ name: "How to partner with us", steps: ["Fill in the partnership enquiry form", "We verify your credentials", "Choose a free or featured listing", "Get listed and start receiving enquiries"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Partnership — Business Directory + Sponsorship + Lead Gen</p>
@@ -44,10 +44,8 @@ export default function PartnerPage() {
             <h2 className="font-bold">Partnership Benefits</h2>
             <ul className="mt-2 list-disc pl-5 text-sm text-stone-600 dark:text-stone-300">
               <li>Listing in /providers directory — Free/Featured/Premium tiers</li>
-              <li>Lead generation via /consultation + /api/monetization/leads</li>
               <li>Sponsored content: articles, product cards, banners, category placements, newsletter — clearly labeled Sponsored</li>
               <li>Coupon/deal promotion in /deals — auto-expire handling</li>
-              <li>Analytics: track via /api/monetization/analytics — leads, sponsor clicks, provider views</li>
             </ul>
           </div>
         </div>

@@ -28,10 +28,10 @@ export default function ConsultationPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Consultation", item: "/health/consultation" }]}
         faqs={[
-          { q: "What is lead generation?", a: "Generic lead engine for diet consultation, fitness consultation, wellness consultation, health package inquiry, clinic inquiry, corporate wellness inquiry. Collect only necessary info: name, email, phone, service, message, consent, timestamp. Do not request unnecessary sensitive medical info. Spam protection + rate limiting 5/min via /api/monetization/leads." },
-          { q: "How to create lead form?", a: "Add config to LEAD_FORMS in src/lib/monetization/config.ts — id, title, description, service, fields, active, ctaText, successMessage. Render via <LeadForm config={} page='' />. Track lead_submitted via analytics + POST /api/monetization/leads." },
+          { q: "What can I ask for?", a: "Diet, fitness and wellness consultations, health packages and corporate wellness. Tell us what you need and we'll get back to you." },
+          { q: "What details do you need?", a: "Only your name, email or phone and a short message. Please don't share medical reports in the form; we'll ask if we need them." },
         ]}
-        howTo={{ name: "How to request consultation", steps: ["Pick service: diet, fitness, wellness, health package, clinic, corporate", "Fill minimal info — name, email, phone, message, consent", "Submit — rate limiting + validation + privacy policy", "Track via /api/monetization/leads?limit=20 + analytics lead_submitted"] }}
+        howTo={{ name: "How to request a consultation", steps: ["Pick the service you're interested in", "Fill in your name, contact details and a short message", "Submit the form", "We contact you, usually within 24 hours"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Lead Generation — Privacy-Conscious — Rate Limited</p>
@@ -50,17 +50,6 @@ export default function ConsultationPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <LatestArticles limit={4} />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Lead Setup — Admin</h3>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Create form config in LEAD_FORMS — id, title, service, fields, ctaText, successMessage</li>
-              <li>Render via LeadForm component — handles validation, consent, rate limiting</li>
-              <li>POST /api/monetization/leads — validates name 2-100 chars, email regex, consent required, message max 1000</li>
-              <li>GET /api/monetization/leads?limit=20 — admin view (auth required in prod)</li>
-              <li>Track lead_submitted via /api/monetization/analytics + gtag</li>
-              <li>Do not store unnecessary health info — protect customer info — privacy policy</li>
-            </ol>
-          </div>
         </div>
       </div>
 

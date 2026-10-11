@@ -6,7 +6,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import Link from "next/link";
 
 const seoTitle = "Orders — Digital Product Orders | Premium Health";
-const seoDescription = "View orders: order ID, product, amount, payment status, date — secure delivery, server-side verification, no sensitive payment credentials displayed.";
+const seoDescription = "Help with your digital guide orders: where your download link is, how long it lasts, and what to do if it has expired.";
 const url = "/health/orders";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Orders — Digital Products")}&category=${encodeURIComponent("Store")}&type=tool`;
@@ -25,43 +25,31 @@ export default function OrdersPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Store", item: "/health/store" }, { name: "Orders", item: "/health/orders" }]}
         faqs={[
-          { q: "How orders work?", a: "After payment verified server-side via /api/monetization/checkout/verify, order status paid, download token generated expiring 72h, limit 3. View in /orders + /my-purchases. Never display sensitive payment credentials." },
-          { q: "Where is my download?", a: "After successful payment, go to /my-purchases or /download/[token] — token expiring, secure, private PDF URLs never public. Check /api/monetization/orders?limit=20 for order status." },
+          { q: "Where is my order?", a: "As soon as your payment is confirmed, your download link opens on screen. The link works for 72 hours and up to 3 downloads." },
+          { q: "My link expired or I lost it — what now?", a: "Write to us through the contact page with your order ID, and we'll send a fresh link." },
         ]}
-        howTo={{ name: "How to view orders", steps: ["Complete purchase via /store/[slug] + checkout", "Verify payment server-side via /api/monetization/checkout/verify", "View orders in /orders + /my-purchases", "Download via /download/[token] — expiring 72h"] }}
+        howTo={{ name: "How to get your guide after buying", steps: ["Choose a guide in the store and pay securely with Razorpay", "Your download link opens right away", "Download the PDF within 72 hours (up to 3 times)", "Lost the link? Contact us with your order ID"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Orders — Secure Delivery — Server-Side Verification</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Orders — Digital Product Orders — Secure</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">View order ID, product, amount, payment status, date — secure delivery, server-side verification, expiring tokens, no sensitive payment credentials displayed. Privacy-conscious.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Orders &amp; downloads</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Your orders</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Bought a guide or diet plan? Here&apos;s how to get to it — and what to do if the link has expired.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">Your Orders — Demo</h2>
-            <p className="mt-1 text-xs text-stone-500">In production, fetch from /api/monetization/orders?limit=20 with user auth. Demo shows API usage.</p>
-            <div className="mt-4 rounded-xl bg-stone-50 p-4 text-xs font-mono dark:bg-stone-800">
-              <p>GET /api/monetization/orders?limit=20</p>
-              <p className="mt-2">Returns: id, productId, productTitle, amount, currency, status pending/paid/failed/refunded/expired, paymentProvider, checkoutUrl, createdAt</p>
-              <p className="mt-2">Never display sensitive payment credentials — only order ID, product, amount, status, date.</p>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link href="/health/api/monetization/orders?limit=20" className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">View Orders API</Link>
-              <Link href="/health/my-purchases" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">My Purchases →</Link>
-              <Link href="/health/store" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Store →</Link>
-            </div>
-          </div>
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">Payment Architecture — Abstraction</h2>
-            <p className="mt-1 text-xs text-stone-500">PaymentProvider abstraction with support for payment URL, checkout, verification, order creation, refund status. Initially mock + Razorpay. Server-side verification required.</p>
-            <ul className="mt-3 list-disc pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Mock provider for dev — no real money — order creation + verification mocked</li>
-              <li>Razorpay provider — uses RAZORPAY_KEY_ID, SECRET, WEBHOOK_SECRET — server-side only, never frontend</li>
-              <li>Verification: POST /api/monetization/checkout/verify with orderId, paymentId, signature — verifies HMAC SHA256 server-side</li>
-              <li>Never claim payment success based only on frontend state — server verification mandatory</li>
-              <li>Env vars: PAYMENT_PROVIDER, RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, RAZORPAY_WEBHOOK_SECRET, NEXTAUTH_SECRET</li>
+            <h2 className="font-bold">How delivery works</h2>
+            <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-stone-600 dark:text-stone-300">
+              <li>Payments are handled by Razorpay. We never see or store your card or UPI details.</li>
+              <li>Once the payment is confirmed, your download link opens on screen.</li>
+              <li>Each link works for 72 hours and up to 3 downloads, so keep the PDF on your phone or computer.</li>
+              <li>Link expired or lost? Contact us with your order ID and we&apos;ll resend it.</li>
             </ul>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link href="/health/store" className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Browse the store →</Link>
+              <Link href="/health/contact" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Contact us</Link>
+            </div>
           </div>
         </div>
         <div className="space-y-4">
