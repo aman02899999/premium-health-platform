@@ -7,6 +7,7 @@ import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { membersNearExpiry } from "./members";
 import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
+import { coachPostEmail, dailyPost } from "./daily-posts";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -36,6 +37,9 @@ export async function runDaily(now = new Date()) {
   const today = todayIST(now);
   const [biz, members, leads, nb, nl] = await Promise.all([business(), membersNearExpiry(today), openLeads(today), nurtureBusiness(), nurtureLeads(today)]);
   const drafts = [...dueMessages(today, members, leads, biz), ...nurtureDrafts(today, nl, nb)];
+  // The day's marketing post goes to the coach's inbox each morning, ready to copy.
+  const coach = process.env.COACH_EMAIL;
+  if (coach) drafts.push(coachPostEmail(dailyPost(today, nb), coach, `${SITE_URL}/admin/growth?tab=marketing`));
   const queued = await enqueue(drafts);
   const sent = await dispatch();
   return { today, due: drafts.length, queued, ...sent };

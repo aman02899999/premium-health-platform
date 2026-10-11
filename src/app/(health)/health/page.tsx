@@ -142,7 +142,7 @@ export default function HomePage() {
             </Link>
             <Link href="/health/premium" className="glass-strong animate-floaty absolute bottom-40 left-4 flex items-center gap-2 rounded-2xl border border-white/60 p-2.5 pr-4 shadow-xl" style={{ animationDelay: "0.8s" }}>
               <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-amber-100 text-amber-700"><Crown className="h-4 w-4" /><span className="absolute -right-1 -top-1 h-2.5 w-2.5 animate-pulse rounded-full bg-amber-500" /></span>
-              <span><span className="block text-xs font-bold">Premium — coming soon</span><span className="block text-[11px] text-stone-500">Join the waitlist</span></span>
+              <span><span className="block text-xs font-bold">Your own diet plan</span><span className="block text-[11px] text-stone-500">Try 7 days for ₹49</span></span>
             </Link>
           </div>
         </div>
@@ -341,9 +341,9 @@ export default function HomePage() {
                   <p className="mt-1 text-xs text-stone-500">Free and private — educational, not a diagnosis.</p>
                 </Link>
                 <Link href="/health/premium" className="rounded-2xl bg-gradient-to-br from-stone-900 to-emerald-900 p-4 text-white">
-                  <p className="text-[11px] font-bold uppercase text-amber-300">Premium — coming soon</p>
-                  <p className="mt-1 text-sm font-bold">Ad-free + Thali Plans + Millet Swaps + Herb-Drug Unlimited</p>
-                  <p className="mt-1 text-xs text-emerald-100/70">Weekly PDF + WhatsApp tips — educational, not medical advice.</p>
+                  <p className="text-[11px] font-bold uppercase text-amber-300">Premium · Royal Fitness Club</p>
+                  <p className="mt-1 text-sm font-bold">A personal Indian diet &amp; workout plan made for your body</p>
+                  <p className="mt-1 text-xs text-emerald-100/70">By a certified nutritionist · try 7 days for ₹49</p>
                 </Link>
               </div>
             </div>

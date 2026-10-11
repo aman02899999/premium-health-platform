@@ -126,8 +126,14 @@ export function MonetizationCTA({ pageType = "general", page = "/", customCTAs }
     getServerSnapshot
   );
 
-  // True only once a variant actually exists in storage — i.e. after hydration.
-  const ready = Boolean(experimentId && readVariant(experimentId));
+  // True only once a variant actually exists in storage. Read through the same external store
+  // (server snapshot false) so a returning visitor's first client render still matches the server
+  // HTML; reading localStorage directly during render caused React hydration error #418.
+  const ready = useSyncExternalStore(
+    experimentId ? getSubscribeFor(experimentId) : noopSubscribe,
+    () => Boolean(experimentId && readVariant(experimentId)),
+    () => false
+  );
 
   const variantConfig = experiment?.variants.find((v) => v.id === variant);
   const order: ABOrder = variantConfig?.order ?? "default";

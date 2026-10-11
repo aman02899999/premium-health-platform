@@ -72,7 +72,7 @@ export default function AboutPage() {
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
               <h2 className="font-display text-xl font-bold">How we sustain</h2>
               <ul className="mt-2 list-disc pl-5 text-sm">
-                <li>Premium (coming soon) — ad-free reading and saved plans; all tools stay free</li>
+                <li>Premium coaching by Royal Fitness Club: personal diet and workout plans from a certified nutritionist; all tools stay free</li>
                 <li>Affiliate 8% avg — glucometer, BP monitor, millet, yoga mat, protein</li>
                 <li>AdSense optimized slots — premium ad-free, free monetized, no CLS</li>
                 <li>Lead gen — lab tests, dietitian, insurance — high-ticket India</li>

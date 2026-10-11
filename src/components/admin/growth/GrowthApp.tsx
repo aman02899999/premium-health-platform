@@ -1,11 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AlertTriangle, ArrowLeft, Check, Copy, Gift, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
 import type { DietIntake } from "@/lib/growth/diet-intake";
 import { DIET_PLANS } from "@/lib/growth/config";
+import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string };
@@ -15,7 +16,7 @@ type DietOrder = { id: string; createdAt: string; name: string; phone: string; e
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
 type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[] };
-type Tab = "today" | "messages" | "members" | "leads" | "diet" | "referrals";
+type Tab = "today" | "marketing" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
   "renew-7": "Renewal · 7 days",
@@ -39,14 +40,14 @@ async function post(body: Record<string, unknown>) {
   return json;
 }
 
-export function GrowthApp({ plans, gymName }: { plans: { name: string; duration: string }[]; gymName: string }) {
+export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; duration: string }[]; gymName: string; postBiz: PostBiz }) {
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState("");
   const [tab, setTab] = useState<Tab>("today");
   useEffect(() => {
     // Deep link from the coach's "new order" email: /admin/growth?tab=diet
     const t = new URLSearchParams(window.location.search).get("tab");
-    const found = (["today", "messages", "members", "leads", "diet", "referrals"] as const).find((x) => x === t);
+    const found = (["today", "marketing", "messages", "members", "leads", "diet", "referrals"] as const).find((x) => x === t);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
     if (found) setTab(found);
   }, []);
@@ -121,6 +122,7 @@ export function GrowthApp({ plans, gymName }: { plans: { name: string; duration:
           {(
             [
               ["today", "Today", TrendingUp, stats ? stats.pending.length + stats.expiring.length : 0],
+              ["marketing", "Marketing", Megaphone, 0],
               ["messages", "Messages", MessageCircle, stats?.pending.length ?? 0],
               ["members", "Members", Users, 0],
               ["leads", "Leads", Inbox, stats?.newLeads.length ?? 0],
@@ -148,6 +150,7 @@ export function GrowthApp({ plans, gymName }: { plans: { name: string; duration:
         {data && stats && (
           <>
             {tab === "today" && <Today data={data} stats={stats} go={setTab} act={act} />}
+            {tab === "marketing" && <Marketing today={data.today} biz={postBiz} />}
             {tab === "messages" && <Messages data={data} act={act} />}
             {tab === "members" && <Members data={data} plans={plans} act={act} gymName={gymName} />}
             {tab === "leads" && <Leads data={data} act={act} />}
@@ -645,6 +648,84 @@ function Referrals({ data }: { data: Data }) {
           ))}
         </ul>
       </section>
+    </div>
+  );
+}
+
+/** Daily marketing: today's ready-to-post message for WhatsApp Status, Instagram and Google, plus the week ahead. */
+function Marketing({ today, biz }: { today: string; biz: PostBiz }) {
+  const posts = useMemo(() => upcomingPosts(today, biz, 7), [today, biz]);
+  const [pick, setPick] = useState(0);
+  const [copied, setCopied] = useState("");
+  const p: DailyPost = posts[pick];
+  const copy = async (key: string, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(key);
+      setTimeout(() => setCopied(""), 1800);
+    } catch {
+      setCopied("");
+    }
+  };
+  const blocks: [string, string, string, string | null][] = [
+    ["whatsapp", "WhatsApp Status / broadcast", p.whatsapp, `https://wa.me/?text=${encodeURIComponent(p.whatsapp)}`],
+    ["instagram", "Instagram caption (put the link in your bio)", p.instagram, null],
+    ["google", "Google Business Profile post", p.google, "https://business.google.com/"],
+  ];
+  return (
+    <div className="grid gap-5 lg:grid-cols-[1fr_300px]">
+      <section className="space-y-4">
+        <div className="rounded-2xl border border-white/10 bg-white/[.03] p-5">
+          <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">{pick === 0 ? "Today's post" : formatDate(p.date)} · {p.theme}</p>
+          <h2 className="font-display mt-1 text-2xl text-white">{p.title}</h2>
+          <p className="mt-2 text-sm text-white/60"><strong className="text-white/80">Photo / design:</strong> {p.visual}</p>
+          <p className="mt-2 text-xs text-white/40">Links are tagged with the channel and date, so orders from this post can be traced.</p>
+        </div>
+        {blocks.map(([key, label, text, open]) => (
+          <div key={key} className="rounded-2xl border border-white/10 bg-white/[.03] p-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-sm font-bold text-white">{label}</p>
+              <div className="flex gap-2">
+                <button type="button" onClick={() => copy(key, text)} className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/85 hover:text-white">
+                  {copied === key ? <Check className="h-3.5 w-3.5 text-emerald-300" /> : <Copy className="h-3.5 w-3.5" />} {copied === key ? "Copied" : "Copy"}
+                </button>
+                {open && (
+                  <a href={open} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-emerald-500 px-3 py-1.5 text-xs font-bold text-black">
+                    {key === "whatsapp" ? "Share on WhatsApp" : "Open Google"}
+                  </a>
+                )}
+              </div>
+            </div>
+            <pre className="mt-3 whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-white/80">{text}</pre>
+          </div>
+        ))}
+      </section>
+      <aside className="space-y-3">
+        <div className="rounded-2xl border border-white/10 bg-white/[.03] p-4">
+          <p className="text-sm font-bold text-white">This week</p>
+          <ul className="mt-2 space-y-1">
+            {posts.map((x, i) => (
+              <li key={x.date}>
+                <button type="button" onClick={() => setPick(i)} className={`w-full rounded-lg px-2.5 py-2 text-left text-xs ${i === pick ? "bg-white/10 text-white" : "text-white/60 hover:text-white"}`}>
+                  <span className="block font-semibold">{i === 0 ? "Today" : formatDate(x.date)}</span>
+                  <span className="block text-white/45">{x.theme}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-white/[.03] p-4 text-xs leading-relaxed text-white/55">
+          <p className="font-bold text-white/80">Daily routine (10 minutes)</p>
+          <ol className="mt-1 list-decimal space-y-1 pl-4">
+            <li>Take the photo or make the graphic.</li>
+            <li>Post the WhatsApp Status and send it to your broadcast list.</li>
+            <li>Post on Instagram with the caption.</li>
+            <li>Add the Google Business post.</li>
+            <li>Reply to every message within an hour.</li>
+          </ol>
+          <p className="mt-2">With COACH_EMAIL set, this post is also emailed to you every morning.</p>
+        </div>
+      </aside>
     </div>
   );
 }

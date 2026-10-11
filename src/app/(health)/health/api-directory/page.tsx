@@ -54,7 +54,7 @@ function buildHref(sp: SearchParams, overrides: Partial<SearchParams>): string {
   if (merged.integrated === "yes") params.set("integrated", "yes");
   if (merged.page && merged.page !== "1") params.set("page", merged.page);
   const query = params.toString();
-  return `/api-directory${query ? `?${query}` : ""}`;
+  return `/health/api-directory${query ? `?${query}` : ""}`;
 }
 
 export default async function ApiDirectoryPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
