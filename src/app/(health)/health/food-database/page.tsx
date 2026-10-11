@@ -60,7 +60,7 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
           </select>
           <button className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 hover:bg-amber-400">Search</button>
         </form>
-        <p className="mt-2 text-[11px] text-amber-200/70">Source: {data?.source ?? provider} · Live: {data?.live ? "yes" : "fallback"} · Barcode: /api/health/barcode/8901030875020</p>
+        <p className="mt-2 text-[11px] text-amber-200/70">Source: {data?.source ?? provider} · Live: {data?.live ? "yes" : "fallback"}</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -77,7 +77,7 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
                   <div className="rounded bg-stone-50 p-1 dark:bg-stone-800"><p className="font-bold">{f.nutrients.fat ?? "—"}g</p><p>fat</p></div>
                 </div>
               </div>
-            )) ?? <p className="text-sm text-stone-500">No foods found — check /api/health/food?q={query}</p>}
+            )) ?? <p className="text-sm text-stone-500">No foods found — try a different spelling</p>}
           </div>
           <div className="mt-8">
             <h2 className="text-sm font-bold">Barcode Lookup — Open Food Facts India</h2>
@@ -86,7 +86,6 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
               <input name="code" placeholder="Enter 8-14 digit barcode" className="h-10 w-full max-w-xs rounded-xl border border-stone-200 bg-white px-3 text-sm dark:border-stone-700 dark:bg-stone-900" />
               <button className="h-10 rounded-xl bg-emerald-700 px-4 text-xs font-bold text-white">Lookup via API</button>
             </form>
-            <p className="mt-2 text-[11px] text-stone-400">Frontend: /food-database · API: /api/health/barcode/:code (validates format, 24h cache) — SEO + earning</p>
           </div>
           <div className="mt-6 space-y-4">
             <AffiliateProducts limit={4} title="High Protein Foods — Affiliate" />

@@ -190,12 +190,20 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
 
           <Section id="herbs" icon={<Leaf className="h-4 w-4" />} title="Herbs traditionally used">
             <div className="grid gap-2 sm:grid-cols-2">
-              {detail.herbsUsed.map((h) => (
+              {detail.herbsUsed.map((h) =>
+                // Only herbs with their own page get a link; food notes (e.g. green tea) would 404.
+                getHerb(h.slug) ? (
                 <Link key={h.slug} href={`/health/herbs/${h.slug}`} className="rounded-2xl border border-stone-100 p-3 hover:border-emerald-300 dark:border-stone-800">
                   <p className="text-sm font-bold text-emerald-700">{h.name} →</p>
                   <p className="mt-1 text-[13px] text-stone-600 dark:text-stone-300">{h.note}</p>
                 </Link>
-              ))}
+                ) : (
+                <div key={h.slug} className="rounded-2xl border border-stone-100 p-3 dark:border-stone-800">
+                  <p className="text-sm font-bold text-emerald-700">{h.name}</p>
+                  <p className="mt-1 text-[13px] text-stone-600 dark:text-stone-300">{h.note}</p>
+                </div>
+                )
+              )}
             </div>
           </Section>
 

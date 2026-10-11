@@ -63,17 +63,6 @@ export default function AboutPage() {
               <p className="mt-3 text-[11px] text-stone-500">Indicators: SP.DYN.LE00.IN (life expectancy), SP.POP.TOTL (population), SH.DYN.MORT (under-5 mortality), SH.DYN.NMRT (neonatal), SH.STA.MMRT (maternal), SP.DYN.TFRT.IN (fertility), SH.XPD.CHEX.GD.ZS (health spend %GDP), SH.MED.BEDS.ZS (beds), SH.MED.PHYS.ZS (physicians), SH.STA.STNT.ZS (stunting). Source: api.worldbank.org/v2 — free, no key.</p>
             </section>
 
-            <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-              <h2 className="font-display text-xl font-bold">Live data stack (free keyless APIs)</h2>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-stone-700 dark:text-stone-200">
-                <li><strong>PubMed (NCBI E-utilities)</strong>: latest peer-reviewed studies per condition — /api/realtime/pubmed</li>
-                <li><strong>ClinicalTrials.gov API v2</strong>: registered trials per condition — /api/realtime/trials</li>
-                <li><strong>World Bank Open Data</strong>: India health indicators on /about — /api/realtime/worldbank</li>
-                <li><strong>Open-Meteo</strong>: weather + AQI + UV + sunrise/sunset in Live Pulse — /api/realtime/pulse</li>
-                <li><strong>WHO + openFDA + PubMed + Open Food Facts</strong>: outbreak reports, drug labels and recalls, new research, food Nutri-Score</li>
-                <li>All server-side, cached (10min–24h), with live:false graceful fallbacks — no keys, no secrets</li>
-              </ul>
-            </section>
 
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
               <h2 className="font-display text-xl font-bold">Content workflow</h2>
@@ -83,7 +72,7 @@ export default function AboutPage() {
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
               <h2 className="font-display text-xl font-bold">How we sustain</h2>
               <ul className="mt-2 list-disc pl-5 text-sm">
-                <li>Premium (coming soon) — ad-free reading and saved plans; all tools stay free</li>
+                <li>Premium coaching by Royal Fitness Club: personal diet and workout plans from a certified nutritionist; all tools stay free</li>
                 <li>Affiliate 8% avg — glucometer, BP monitor, millet, yoga mat, protein</li>
                 <li>AdSense optimized slots — premium ad-free, free monetized, no CLS</li>
                 <li>Lead gen — lab tests, dietitian, insurance — high-ticket India</li>

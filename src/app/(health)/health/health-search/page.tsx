@@ -76,7 +76,7 @@ export default async function HealthSearchPage({ searchParams }: { searchParams:
                 </div>
               ))
             ) : (
-              <p className="text-sm text-stone-500">No results — try /api/health/search?q={query}</p>
+              <p className="text-sm text-stone-500">No results — try a different word</p>
             )}
           </div>
           <div className="mt-6 space-y-4">

@@ -25,16 +25,13 @@ const STATIC_ROUTES = [
   // Marketing / earning — pro
   "/health/premium", "/health/deals", "/health/lead", "/health/referral",
   "/health/blog/search", "/health/blog/author",
-  "/health/admin/earning",
-  // Monetization platform — new earning routes (must be in sitemap per spec)
+  // Monetization pages (order and purchase help pages are robots-disallowed, so not listed)
   "/health/store",
   "/health/providers",
   "/health/newsletter",
   "/health/consultation",
   "/health/partner-with-us",
   "/health/advertise",
-  "/health/orders",
-  "/health/my-purchases",
   // Developer platform — public, indexable surfaces only.
   // /developers/dashboard is intentionally absent: it is a signed-in view with
   // robots noindex set on the page itself, so listing it here would be a lie.

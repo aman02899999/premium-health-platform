@@ -31,10 +31,10 @@ export default function AffiliateProductsPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Affiliate Products", item: "/health/affiliate-products" }]}
         faqs={[
-          { q: "How affiliate system works?", a: "Central config AFFILIATE_PRODUCTS in src/lib/monetization/config.ts — id, title, description, category, image, price, originalPrice, currency, affiliateUrl, merchant, rating (only if legit), disclosure, active, featured, priority, CTA, trackingId. Track impressions, clicks, CTR, destination, product ID, page source via /api/monetization/analytics + gtag + localStorage. No personal health info stored." },
-          { q: "How to create affiliate product?", a: "Add entry to AFFILIATE_PRODUCTS with id, slug, title, description, category (Diabetes, BP, Heart, Weight, Fitness, Nutrition, Ayurveda, Yoga, Women's, Men's, Senior, Devices, Books, Healthy Foods, Supplements, Wellness), image, price, merchant, affiliateUrl, disclosure, active, featured, priority, ctaText, trackingId. Set active true. Test /api/monetization/products?category=Diabetes." },
+          { q: "Why do you recommend products?", a: "We list a few health products our readers often ask about. Some links are affiliate links: if you buy, the shop may pay us a small commission at no extra cost to you." },
+          { q: "Do commissions affect your advice?", a: "No. We never invent ratings or reviews, and a product's commission has no effect on our health advice." },
         ]}
-        howTo={{ name: "How to create affiliate product", steps: ["Add to AFFILIATE_PRODUCTS config with all required fields — never fabricate ratings/reviews", "Set affiliateUrl (real merchant URL) + disclosure 'Affiliate link — we may earn commission'", "Set category, tags, priority for contextual recommendations", "Test impression + click tracking via /api/monetization/analytics + gtag"] }}
+        howTo={{ name: "How to buy a recommended product", steps: ["Read the product summary and check it suits you", "Tap the button to open the seller's page", "Check the latest price, reviews and return policy on the seller's site", "Buy directly from the seller"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-amber-800 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Affiliate Product Engine — Tracking + Disclosure</p>
@@ -50,17 +50,6 @@ export default function AffiliateProductsPage() {
         <div className="space-y-4">
           <PremiumCTA compact />
           <LatestArticles limit={4} />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">Setup Instructions — Affiliate</h3>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Create merchant account (Amazon, etc.) — get affiliate ID</li>
-              <li>Set NEXT_PUBLIC_AFFILIATE_DEFAULT_MERCHANT in .env</li>
-              <li>Update AFFILIATE_PRODUCTS affiliateUrl with real URL + trackingId + utm</li>
-              <li>Enable click tracking: /api/affiliate/click + /api/monetization/analytics + gtag affiliate_product_click</li>
-              <li>Test: click product → check localStorage bhg-aff-clicks + /api/monetization/analytics?type=affiliate_product_click</li>
-              <li>Add disclosure to footer + /affiliate-disclosure</li>
-            </ol>
-          </div>
         </div>
       </div>
       <div className="mt-8 space-y-4"><AdSlot slot="Affiliate footer" /><DisclaimerBar compact /></div>

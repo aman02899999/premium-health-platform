@@ -6,7 +6,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import Link from "next/link";
 
 const seoTitle = "My Purchases — Downloads, Reports | Premium Health";
-const seoDescription = "My purchases: digital products, diet plans, premium reports — download via secure expiring token /download/[token], 72h expiry, 3 download limit.";
+const seoDescription = "Your health guides and diet plans: how to download your PDF, how long the link lasts, and how to get a new link.";
 const url = "/health/my-purchases";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("My Purchases")}&category=${encodeURIComponent("Store")}&type=tool`;
@@ -25,43 +25,30 @@ export default function MyPurchasesPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Store", item: "/health/store" }, { name: "My Purchases", item: "/health/my-purchases" }]}
         faqs={[
-          { q: "How to download my purchase?", a: "After payment verified server-side, you get download token via /api/monetization/checkout/verify — token expiring 72h, limit 3. Use /download/[token] to get secure link. Private PDF URLs never public. Check /orders for order status." },
-          { q: "What if download expired?", a: "Token expires after 72h or 3 downloads — request a new link through the contact page (/health/contact) with your order ID. In producti." },
+          { q: "How do I download my purchase?", a: "Use the download link shown after payment. Each link works for 72 hours and up to 3 downloads." },
+          { q: "What if my download link expired?", a: "Contact us through the contact page with your order ID, and we'll send you a new link." },
         ]}
-        howTo={{ name: "How to access purchases", steps: ["Complete purchase via /store/[slug]", "Verify payment via /api/monetization/checkout/verify — server-side", "Get download token + URL /download/[token] — expiring 72h", "Download PDF — private URL, secure, not public"] }}
+        howTo={{ name: "How to access your purchases", steps: ["Buy a guide in the store", "Open the download link shown after payment", "Save the PDF to your device", "Need a new link? Contact us with your order ID"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-emerald-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">My Purchases — Secure Delivery — Expiring Tokens</p>
-        <h1 className="font-display mt-1 text-3xl font-black">My Purchases — Digital Guides, Diet Plans, Reports</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Access your digital products — diet plans, health guides, premium reports — via secure expiring token /download/[token]. 72h expiry, 3 download limit, private URLs never public, server-side verification.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">My purchases</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Your guides and diet plans</h1>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Everything you buy is a PDF you keep. Download it from the link shown after payment.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-bold">Your Purchases — Demo Flow</h2>
-            <p className="mt-1 text-xs text-stone-500">Demo flow — in production, list user&apos;s paid orders from DB with auth.</p>
-            <div className="mt-4 space-y-3 text-sm">
-              <div className="rounded-xl bg-stone-50 p-4 dark:bg-stone-800">
-                <p className="font-bold">1. Create Order</p>
-                <p className="text-xs font-mono">POST /api/monetization/orders with productId, productType, email, page, utm</p>
-                <p className="mt-1 text-xs">Returns order id + checkoutUrl — payment abstraction mock/razorpay</p>
-              </div>
-              <div className="rounded-xl bg-stone-50 p-4 dark:bg-stone-800">
-                <p className="font-bold">2. Verify Payment (Server-Side)</p>
-                <p className="text-xs font-mono">POST /api/monetization/checkout/verify with orderId, paymentId, signature</p>
-                <p className="mt-1 text-xs">Verifies HMAC SHA256 server-side — never trust frontend alone. Returns downloadToken + downloadUrl /download/[token] + expiresAt 72h</p>
-              </div>
-              <div className="rounded-xl bg-stone-50 p-4 dark:bg-stone-800">
-                <p className="font-bold">3. Download via Secure Token</p>
-                <p className="text-xs font-mono">GET /api/monetization/download/[token] — verifies token, checks expiry, returns presigned URL or streams PDF</p>
-                <p className="mt-1 text-xs">Private PDF URLs never public — expiring/signed URLs — download limit 3 — audit logging</p>
-              </div>
-            </div>
+            <h2 className="font-bold">Getting your PDF</h2>
+            <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-stone-600 dark:text-stone-300">
+              <li>Pay securely with Razorpay (UPI, card or net banking).</li>
+              <li>Your download link opens straight away.</li>
+              <li>Download within 72 hours. Each link works up to 3 times, so save the file once it&apos;s downloaded.</li>
+            </ol>
+            <p className="mt-3 text-sm text-stone-600 dark:text-stone-300">Lost the link or it expired? Contact us with your order ID and we&apos;ll send a new one.</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link href="/health/store" className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Browse Store →</Link>
-              <Link href="/health/orders" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Orders →</Link>
-              <Link href="/health/api/monetization/digital-products?limit=5" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Digital Products API</Link>
+              <Link href="/health/store" className="rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">Browse the store →</Link>
+              <Link href="/health/contact" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Contact us</Link>
             </div>
           </div>
         </div>

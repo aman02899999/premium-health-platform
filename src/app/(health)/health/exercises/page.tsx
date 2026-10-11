@@ -68,14 +68,12 @@ export default async function ExercisesPage({ searchParams }: { searchParams: Pr
                 {ex.description && <p className="mt-2 line-clamp-3 text-[13px] text-stone-600 dark:text-stone-300">{ex.description.slice(0, 200)}</p>}
                 <p className="mt-2 text-[11px] text-stone-400">ID: {ex.id} · wger.de</p>
               </div>
-            )) ?? <p className="text-sm text-stone-500">No exercises found — try a different term or check /api/health/exercises?q={query}</p>}
+            )) ?? <p className="text-sm text-stone-500">No exercises found — try a different term</p>}
           </div>
 
           <div className="mt-8">
             <h2 className="text-sm font-bold">Workout Plans (synthesized)</h2>
-            <p className="mt-1 text-xs text-stone-500">Example plans built from wger exercises — see /api/health/workouts + workout-builder + yoga-timer — internal linking SEO</p>
             <div className="mt-3 flex gap-2">
-              <Link href="/health/api/health/workouts?q=beginner" className="rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300">View workout API →</Link>
               <Link href="/health/health-calculators" className="rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700">Calculators →</Link>
               <Link href="/health/workout-builder" className="rounded-xl bg-emerald-700 px-4 py-2 text-sm font-bold text-white hover:bg-emerald-600">Workout Builder →</Link>
             </div>

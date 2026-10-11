@@ -56,7 +56,9 @@ function useTilt<T extends HTMLElement>() {
  * Three floating 3D doors: Royal Fitness Club (this site), the Premium Health
  * Platform and the supplement store. `onGym` lets the homepage overlay simply close instead of navigating.
  */
-export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: string }) {
+/** `overlay` renders the title as an h2: the overlay sits on top of the home page, which has its own h1. */
+export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () => void; gymName: string; overlay?: boolean }) {
+  const Title = overlay ? "h2" : "h1";
   const gymRef = useTilt<HTMLAnchorElement>();
   const healthRef = useTilt<HTMLAnchorElement>();
   const shopRef = useTilt<HTMLAnchorElement>();
@@ -71,9 +73,9 @@ export function PortalScene({ onGym, gymName }: { onGym?: () => void; gymName: s
 
       <header className="portal-rise relative z-10 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky">One account · three worlds</p>
-        <h1 className="font-display mt-2 text-[2rem] leading-none text-white sm:mt-3 sm:text-6xl">
+        <Title className="font-display mt-2 text-[2rem] leading-none text-white sm:mt-3 sm:text-6xl">
           Where do you want <span className="text-brand-gradient">to go?</span>
-        </h1>
+        </Title>
       </header>
 
       <div className="portal-cards relative z-10 mt-5 grid w-full max-w-5xl gap-3 sm:mt-14 sm:gap-6 md:grid-cols-3 md:gap-5 xl:max-w-7xl xl:gap-8">

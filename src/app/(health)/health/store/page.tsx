@@ -12,8 +12,8 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { BOOKS } from "@/lib/library/catalog";
 import { COMPLETE_LIBRARY_PRICE } from "@/lib/library/pricing";
 
-const seoTitle = "Store — Health Guides, Diet Plans, Premium PDFs | Premium Health";
-const seoDescription = "Digital health store: diabetes diet guide, 30-day weight plan, high-protein vegetarian, Ayurveda herbs — educational PDFs, secure delivery, Razorpay-ready.";
+const seoTitle = "Health Store — Products We Recommend | Premium Health";
+const seoDescription = "Hand-picked health products for Indian families, sold by trusted sellers. Our own PDF guides and diet plans are coming soon.";
 const url = "/health/store";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Store — Health Guides India")}&category=${encodeURIComponent("Digital Products")}&type=Product`;
@@ -35,14 +35,14 @@ export default function StorePage() {
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Store", item: "/health/store" }]}
         faqs={[
           { q: "What is in the store?", a: "Hand-picked health products on Amazon (we may earn a small commission at no extra cost to you). Our own digital guides aren't on sale yet." },
-          { q: "How does delivery work?", a: "After payment verified server-side via /api/monetization/checkout/verify, we generate expiring download token 72h, download limit 3, via /download/[token]. Private PDF URLs never exposed publicly. Order tracked in /orders + /my-purchases." },
+          { q: "Will you sell your own guides?", a: "Yes, our own PDF guides and diet plans are coming. Until then, for a personal diet plan made for you, see the diet chart page." },
         ]}
-        howTo={{ name: "How to buy a health guide", steps: ["Browse by category: Health Guides, Diet Plans, Ayurveda, Fitness", "View details + preview 2 pages + pages + file size", "Click Buy — checkout via Razorpay/mock, server-side verification", "Download via secure token /download/[token] — expires 72h, 3 downloads"] }}
+        howTo={{ name: "How to buy a recommended product", steps: ["Browse the products by health goal", "Read why we recommend it", "Tap the button to open the seller's page", "Check price and returns, then buy from the seller"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Digital Product Store — Modular Monetization — Payment Abstraction</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Store — Health Guides, Diet Plans, Premium PDFs — India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Educational PDFs: diabetes diet, weight management, high-protein vegetarian, heart-healthy, Ayurveda herbs — 40-80 pages, secure delivery, Razorpay-ready, refund policy. No medical promises or guaranteed outcomes.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Health store</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Health products we recommend</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Hand-picked products for everyday health, sold by trusted sellers. Our own PDF guides and diet plans are coming soon. Nothing here replaces advice from your doctor.</p>
         <div className="mt-3 flex flex-wrap gap-2">{categories.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}</div>
       </div>
 
@@ -81,16 +81,6 @@ export default function StorePage() {
           <PremiumCTA compact />
           <AdSidebar placement="products_sidebar" page="/health/store" />
           <LatestArticles limit={4} />
-          <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-            <h3 className="text-sm font-bold">How to Upload/Sell a PDF — Admin</h3>
-            <ol className="mt-2 list-decimal pl-5 text-xs text-stone-600 dark:text-stone-300">
-              <li>Add entry to DIGITAL_PRODUCTS in src/lib/monetization/config.ts with id, slug, title, price, pages, fileSize, format, previewUrl</li>
-              <li>Upload PDF to private storage (S3, R2, etc.) — never public URL</li>
-              <li>Set fileUrl env PRIVATE_PDF_BUCKET + signed URL generation in /api/monetization/download/[token]</li>
-              <li>Test: /api/monetization/digital-products?limit=1 + /store + checkout + /download/[token] expiry</li>
-              <li>Configure Razorpay: set RAZORPAY_KEY_ID, SECRET, WEBHOOK_SECRET in .env</li>
-            </ol>
-          </div>
         </div>
       </div>
 
