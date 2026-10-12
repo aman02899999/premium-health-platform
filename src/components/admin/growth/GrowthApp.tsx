@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AlertTriangle, ArrowLeft, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Bot, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
 import type { DietIntake } from "@/lib/growth/diet-intake";
 import { DIET_PLANS } from "@/lib/growth/config";
 import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
+import type { SocialStatus } from "@/lib/social/automation";
+import { Social } from "./Social";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string };
@@ -15,8 +17,8 @@ type Msg = { id: string; createdAt: string; channel: string; to: string; toName:
 type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
-type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[] };
-type Tab = "today" | "marketing" | "messages" | "members" | "leads" | "diet" | "referrals";
+type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null };
+type Tab = "today" | "marketing" | "social" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
   "renew-7": "Renewal · 7 days",
@@ -47,7 +49,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
   useEffect(() => {
     // Deep link from the coach's "new order" email: /admin/growth?tab=diet
     const t = new URLSearchParams(window.location.search).get("tab");
-    const found = (["today", "marketing", "messages", "members", "leads", "diet", "referrals"] as const).find((x) => x === t);
+    const found = (["today", "marketing", "social", "messages", "members", "leads", "diet", "referrals"] as const).find((x) => x === t);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
     if (found) setTab(found);
   }, []);
@@ -123,6 +125,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
             [
               ["today", "Today", TrendingUp, stats ? stats.pending.length + stats.expiring.length : 0],
               ["marketing", "Marketing", Megaphone, 0],
+              ["social", "Instagram & WhatsApp", Bot, 0],
               ["messages", "Messages", MessageCircle, stats?.pending.length ?? 0],
               ["members", "Members", Users, 0],
               ["leads", "Leads", Inbox, stats?.newLeads.length ?? 0],
@@ -151,6 +154,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
           <>
             {tab === "today" && <Today data={data} stats={stats} go={setTab} act={act} />}
             {tab === "marketing" && <Marketing today={data.today} biz={postBiz} />}
+            {tab === "social" && <Social status={data.social} siteUrl={data.siteUrl} />}
             {tab === "messages" && <Messages data={data} act={act} />}
             {tab === "members" && <Members data={data} plans={plans} act={act} gymName={gymName} />}
             {tab === "leads" && <Leads data={data} act={act} />}

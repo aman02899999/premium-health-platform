@@ -8,6 +8,7 @@ import { membersNearExpiry } from "./members";
 import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
+import { runInstagram } from "@/lib/social/automation";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -42,5 +43,7 @@ export async function runDaily(now = new Date()) {
   if (coach) drafts.push(coachPostEmail(dailyPost(today, nb), coach, `${SITE_URL}/admin/growth?tab=marketing`));
   const queued = await enqueue(drafts);
   const sent = await dispatch();
-  return { today, due: drafts.length, queued, ...sent };
+  // The same post goes on Instagram by itself once INSTAGRAM_ACCESS_TOKEN is set.
+  const social = await runInstagram(now, nb).catch((err) => ({ instagram: `error: ${(err as Error).message}` }));
+  return { today, due: drafts.length, queued, ...sent, ...social };
 }
