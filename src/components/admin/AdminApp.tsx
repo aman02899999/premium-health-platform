@@ -28,6 +28,7 @@ import {
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
 import { parseMarkdown } from "@/lib/markdown";
+import { SITE_URL } from "@/lib/site";
 import { CALCULATORS } from "@/lib/calculators";
 import { Markdown } from "@/components/blog/Markdown";
 import { ListEditor, ObjectEditor, type Field } from "./fields";
@@ -463,7 +464,7 @@ export function AdminApp({ storage }: { storage: string }) {
 function SeoPreview({ title, description }: { title: string; description: string }) {
   return (
     <div className="mt-6 rounded-xl bg-white p-4 text-left">
-      <p className="text-xs text-[#202124]">royalfitnessclub.in</p>
+      <p className="text-xs text-[#202124]">{SITE_URL.replace(/^https?:\/\//, "")}</p>
       <p className="truncate text-lg text-[#1a0dab]">{title}</p>
       <p className="line-clamp-2 text-sm text-[#4d5156]">{description}</p>
       <p className={`mt-2 text-xs ${title.length > 60 || description.length > 160 ? "text-red-600" : "text-green-700"}`}>
