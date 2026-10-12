@@ -147,7 +147,6 @@ export function productJsonLd(input: {
   image: string;
   category: string;
   price?: string;
-  rating?: string;
   brand?: string;
 }) {
   return {
@@ -166,14 +165,6 @@ export function productJsonLd(input: {
       availability: "https://schema.org/InStock",
       url: absoluteUrl(input.slug),
     },
-    aggregateRating: input.rating
-      ? {
-          "@type": "AggregateRating",
-          ratingValue: input.rating.split("/")[0],
-          bestRating: "5",
-          ratingCount: "127",
-        }
-      : undefined,
   };
 }
 
