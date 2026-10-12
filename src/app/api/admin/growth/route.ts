@@ -11,6 +11,7 @@ import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
 import { storageConfigured } from "@/lib/growth/storage";
 import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
+import { socialStatus } from "@/lib/social/automation";
 
 export const dynamic = "force-dynamic";
 // "Regenerate" builds a plan PDF on the server.
@@ -24,7 +25,16 @@ export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return OFFLINE();
   try {
-    const [members, leads, outbox, dietOrders, rewards, unapplied] = await Promise.all([listMembers(), listPipeline(), listOutbox("all", 400), listDietOrders(), listRewards(), unappliedPaidOrders()]);
+    const [members, leads, outbox, dietOrders, rewards, unapplied, social] = await Promise.all([
+      listMembers(),
+      listPipeline(),
+      listOutbox("all", 400),
+      listDietOrders(),
+      listRewards(),
+      unappliedPaidOrders(),
+      // The rest of the dashboard still loads if the social tables aren't migrated yet.
+      socialStatus().catch(() => null),
+    ]);
     return NextResponse.json({
       today: todayIST(),
       siteUrl: SITE_URL,
@@ -35,6 +45,7 @@ export async function GET() {
       dietOrders,
       rewards,
       unapplied,
+      social,
     });
   } catch (err) {
     console.error("[growth] load failed:", (err as Error).message);
