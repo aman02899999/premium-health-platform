@@ -41,7 +41,9 @@ function createPool(): Pool {
   // and callers handle it (readDb try/catch, health reports db:down).
   const pool = new Pool({
     ...poolConfig(databaseUrl ?? "postgresql://127.0.0.1:1/postgres"),
-    connectionTimeoutMillis: 3000,
+    // Functions run in icn1 next to the Seoul database (vercel.json); 8s still covers a cold TLS
+    // handshake to the pooler, which 3s did not when the functions ran in iad1.
+    connectionTimeoutMillis: 8000,
     idleTimeoutMillis: 10000,
     max: 5,
   });
