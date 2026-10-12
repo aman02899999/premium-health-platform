@@ -104,15 +104,15 @@ const IDEAS: Idea[] = [
     tags: ["PersonalTrainer", "NoidaFitness", "StrengthTraining"],
   },
   {
-    theme: "Sunday motivation",
+    theme: "Consistency",
     path: "/diet-chart?plan=trial",
     visual: "Calendar page with 5 of 7 days ticked. Caption overlay: '5 good days out of 7'.",
     build: () => ({
       hook: "You don't need a perfect week. You need 5 good days out of 7.",
-      body: "Plan Monday's meals tonight, keep water near you, and walk after dinner. Small, repeatable steps beat a crash diet every time.",
+      body: "Plan tomorrow's meals tonight, keep water near you, and walk after dinner. Small, repeatable steps beat a crash diet every time.",
       cta: "Want a week planned for you? Try 7 days",
     }),
-    tags: ["SundayMotivation", "Consistency", "HealthyHabits"],
+    tags: ["Motivation", "Consistency", "HealthyHabits"],
   },
   {
     theme: "PCOS & thyroid support",
