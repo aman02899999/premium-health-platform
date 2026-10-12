@@ -76,9 +76,8 @@ export function localBusinessJsonLd(c: SiteContent) {
       opens: h.open,
       closes: h.close,
     })),
-    aggregateRating: b.rating.count
-      ? { "@type": "AggregateRating", ratingValue: b.rating.value, reviewCount: b.rating.count, bestRating: 5 }
-      : undefined,
+    // No aggregateRating: Google treats a business rating copied from Maps onto its own site as
+    // self-serving review markup (no stars shown, manual-action risk). The real stars live on Maps.
     sameAs: [`https://www.instagram.com/${b.instagram}/`, b.googleMapsUrl].filter(Boolean),
     amenityFeature: ["Air conditioning", "CCTV", "Certified trainers", "Emergency exit", "Lockers"].map((name) => ({
       "@type": "LocationFeatureSpecification",
