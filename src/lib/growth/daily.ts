@@ -9,6 +9,9 @@ import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
 import { runInstagram } from "@/lib/social/automation";
+import { pool } from "@/health/db";
+import { getAllEnrichedArticles } from "@/health/data/blog-enrichment";
+import { NEWSLETTER_SOURCES, isSunday, weeklyNewsletter } from "./newsletter";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -41,6 +44,18 @@ export async function runDaily(now = new Date()) {
   // The day's marketing post goes to the coach's inbox each morning, ready to copy.
   const coach = process.env.COACH_EMAIL;
   if (coach) drafts.push(coachPostEmail(dailyPost(today, nb), coach, `${SITE_URL}/admin/growth?tab=marketing`));
+  // Sundays: the "Indian Health Weekly" to everyone who signed up for it on /health.
+  if (isSunday(today)) {
+    const { rows } = await pool.query<{ address: string }>(
+      `select address from public.marketing_contacts where channel = 'email' and unsubscribed_at is null and consent_at is not null and source = any($1)`,
+      [NEWSLETTER_SOURCES],
+    );
+    const articles = getAllEnrichedArticles().map((a) => ({ slug: a.slug, title: a.title, excerpt: a.excerpt }));
+    for (const r of rows) {
+      const d = weeklyNewsletter(today, r.address, articles, SITE_URL);
+      if (d) drafts.push(d);
+    }
+  }
   const queued = await enqueue(drafts);
   const sent = await dispatch();
   // The same post goes on Instagram by itself once INSTAGRAM_ACCESS_TOKEN is set.
