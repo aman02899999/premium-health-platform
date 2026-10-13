@@ -3,12 +3,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { HeartPulse, Menu, Phone, ShoppingBag, X } from "lucide-react";
+import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, ShoppingBag, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
 import { healthHref } from "@/lib/portal";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
 import { AccountMenu } from "@/components/auth/AccountMenu";
 import { supabaseConfigured } from "@/lib/supabase/config";
+
+const NAV_ICONS: Record<string, LucideIcon> = {
+  "/": Home,
+  "/programs": Dumbbell,
+  "/membership": CreditCard,
+  "/health-hub": Stethoscope,
+  "/tools": Calculator,
+  "/blog": Newspaper,
+  "/library": BookOpen,
+  "/store": Store,
+  "/gallery": Images,
+  "/contact": Phone,
+};
 
 export function Header({ name, phoneHref, announcement }: { name: string; phoneHref: string; announcement: string }) {
   const pathname = usePathname();
@@ -24,6 +37,13 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   if (pathname.startsWith("/admin")) return null;
@@ -88,51 +108,86 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
         </nav>
       </div>
 
-      <div
-        id="mobile-menu"
-        className={`fixed inset-0 top-0 -z-10 bg-ink/97 backdrop-blur-xl transition-all duration-500 xl:hidden ${
-          open ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-      >
-        <ul className="flex h-full flex-col items-center justify-center gap-2">
-          {NAV.map((item, i) => (
-            <li
-              key={item.href}
-              className="transition-all duration-500"
-              style={{ transitionDelay: open ? `${i * 45}ms` : "0ms", transform: open ? "none" : "translateY(16px)", opacity: open ? 1 : 0 }}
-            >
-              <Link
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`font-display block px-6 py-2 text-3xl ${isActive(item.href) ? "text-brand" : "text-white"}`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-          {supabaseConfigured && (
-            <li>
-              <Link href="/account" onClick={() => setOpen(false)} className="font-display block px-6 py-2 text-xl text-sky">
-                My account
-              </Link>
-            </li>
-          )}
-          <li>
-            <a href={healthHref} onClick={() => setOpen(false)} className="font-display flex items-center gap-2 px-6 py-2 text-xl text-emerald-300">
-              <HeartPulse className="h-5 w-5" /> Premium Health Platform
-            </a>
-          </li>
-          <li>
-            <Link href="/shop" onClick={() => setOpen(false)} className="font-display flex items-center gap-2 px-6 py-2 text-xl text-amber-300">
-              <ShoppingBag className="h-5 w-5" /> Royal Supplements Store
-            </Link>
-          </li>
-          <li className="mt-6">
-            <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand rounded-full px-8 py-3 font-bold">
+      {/* Mobile drawer: slides in from the right, scrolls on short screens, CTA pinned at the bottom. */}
+      <div className={`fixed inset-0 z-10 xl:hidden ${open ? "visible" : "invisible"}`} aria-hidden={!open}>
+        <button
+          type="button"
+          tabIndex={-1}
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`}
+        />
+        <div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className={`absolute inset-y-0 right-0 flex h-[100dvh] w-[min(88vw,380px)] flex-col border-l border-white/10 bg-ink shadow-2xl transition-transform duration-300 ease-out ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <span className="font-display text-lg tracking-wide text-white">Menu</span>
+            <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:text-white">
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-3" aria-label="Mobile">
+            <ul className="space-y-0.5">
+              {NAV.map((item) => {
+                const Icon = NAV_ICONS[item.href] ?? ChevronRight;
+                const active = isActive(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold transition-colors ${
+                        active ? "bg-brand/15 text-white ring-1 ring-brand/40" : "text-white/80 hover:bg-white/5 hover:text-white"
+                      }`}
+                    >
+                      <Icon className={`h-5 w-5 shrink-0 ${active ? "text-brand" : "text-white/45"}`} />
+                      <span className="flex-1">{item.label}</span>
+                      <ChevronRight className="h-4 w-4 text-white/25" />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <p className="mt-5 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/40">More from us</p>
+            <ul className="mt-2 space-y-2">
+              {supabaseConfigured && (
+                <li>
+                  <Link href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                    <UserRound className="h-5 w-5 shrink-0" /> My account
+                  </Link>
+                </li>
+              )}
+              <li>
+                <a href={healthHref} onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-emerald-400/25 bg-emerald-500/5 px-3 py-3 text-[15px] font-semibold text-emerald-300 hover:bg-emerald-500/10">
+                  <HeartPulse className="h-5 w-5 shrink-0" /> Premium Health Platform
+                </a>
+              </li>
+              <li>
+                <Link href="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3 py-3 text-[15px] font-semibold text-amber-300 hover:bg-amber-500/10">
+                  <ShoppingBag className="h-5 w-5 shrink-0" /> Royal Supplements Store
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="grid grid-cols-[1fr_auto] gap-2 border-t border-white/10 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+            <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold">
               Book Free Trial
             </Link>
-          </li>
-        </ul>
+            <a href={phoneHref} aria-label="Call the gym" className="flex h-11 w-11 items-center justify-center self-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand">
+              <Phone className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );
