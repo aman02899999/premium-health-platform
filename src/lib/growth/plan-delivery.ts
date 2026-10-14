@@ -8,6 +8,7 @@ import { dietPlanEmail, dietPlanWhatsApp, type Draft } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { renderOrderPlan } from "./plan-render";
 import { putFile } from "./storage";
+import { markPathSent, upsertDraft } from "./client-plans";
 
 // After payment: build the client's plan, keep it as a draft, and send it once approved.
 //
@@ -24,6 +25,7 @@ export async function prepareDietPlan(orderId: string): Promise<{ path: string; 
   const path = planPath(order, filename, "auto");
   await putFile(path, pdf);
   await setDietPlanFile(order.id, path);
+  await upsertDraft(order.id, path, order.intake, "checkout");
   if (!needsReview(order)) {
     await sendDietPlan(order.id);
     return { path, sent: true };
@@ -40,6 +42,7 @@ export async function storeCoachPlan(orderId: string, pdf: Buffer, filename: str
   const path = planPath(order, filename, "coach");
   await putFile(path, pdf);
   await setDietPlanFile(order.id, path);
+  await upsertDraft(order.id, path, order.intake, "coach");
   return path;
 }
 
@@ -55,6 +58,8 @@ export async function sendDietPlan(orderId: string): Promise<{ queued: number }>
   if (order.email) drafts.push(dietPlanEmail({ id: order.id, name: order.name, email: order.email }, name, order.planPath, { ...biz, coach }));
   const queued = await enqueue(drafts);
   await setDietStage(order.id, "sent");
+  // The client's dashboard shows a plan once it has been sent to them.
+  await markPathSent(order.id, order.planPath);
   await dispatch(5);
   return { queued };
 }

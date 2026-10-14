@@ -27,8 +27,9 @@ describe("order form", () => {
     expect(r.buyer.marketing).toBe(true);
     expect(r.intake).toMatchObject({ neckCm: 33, waistCm: 86, hipCm: 102.5, targetWeightKg: 60, trainingDays: 4, trainTime: "07:15", setting: "home", medicines: "thyroxine 50 mcg" });
   });
-  it("drops implausible numbers instead of guessing, and needs an email for marketing", () => {
-    const r = parseDietOrder({ ...base, email: "", plan: "free-plan", marketing: true, waistCm: 5, trainingDays: 9, trainTime: "25:00" });
+  it("drops implausible numbers instead of guessing; email is required (it is the dashboard login), marketing is opt-in", () => {
+    expect(parseDietOrder({ ...base, email: "" })).toMatch(/email/);
+    const r = parseDietOrder({ ...base, plan: "free-plan", waistCm: 5, trainingDays: 9, trainTime: "25:00" });
     if (typeof r === "string") throw new Error(r);
     expect(r.plan).toBe("starter");
     expect(r.buyer.marketing).toBe(false);

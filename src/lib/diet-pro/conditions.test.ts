@@ -95,11 +95,11 @@ describe("health conditions", () => {
     for (const k of ["cholesterol", "fattyLiver", "gout", "kidneyStones", "anaemia", "gerd", "ibs", "lactose", "jointPain"] as const) expect(targets(withC({ [k]: true })).warnings.length, k).toBeGreaterThan(plain);
   });
   it("the order form accepts every condition and maps them onto the profile", () => {
-    const r = parseDietOrder({ name: "Priya", phone: "9876543210", email: "", age: 40, sex: "female", heightCm: 160, weightKg: 70, goal: "fat-loss", diet: "egg", activity: "light", conditions: [...CONDITION_KEYS, "made-up"], consent: true });
+    const r = parseDietOrder({ name: "Priya", phone: "9876543210", email: "priya@example.com", age: 40, sex: "female", heightCm: 160, weightKg: 70, goal: "fat-loss", diet: "egg", activity: "light", conditions: [...CONDITION_KEYS, "made-up"], consent: true });
     if (typeof r === "string") throw new Error(r);
     expect(r.intake.conditions.length).toBe(CONDITION_KEYS.length);
     const prof = intakeToProfile("Priya", r.intake, base);
     expect(prof.conditions.gout && prof.conditions.menopause && prof.conditions.pcos).toBe(true);
-    expect(parseDietOrder({ name: "Raj", phone: "9876543210", age: 40, sex: "male", heightCm: 170, weightKg: 70, goal: "fat-loss", diet: "veg", activity: "light", conditions: ["menopause"], consent: true })).toMatch(/health conditions/);
+    expect(parseDietOrder({ name: "Raj", phone: "9876543210", email: "raj@example.com", age: 40, sex: "male", heightCm: 170, weightKg: 70, goal: "fat-loss", diet: "veg", activity: "light", conditions: ["menopause"], consent: true })).toMatch(/health conditions/);
   });
 });

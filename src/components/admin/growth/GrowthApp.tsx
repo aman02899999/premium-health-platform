@@ -14,7 +14,7 @@ type Member = { id: string; name: string; phone: string; email: string | null; p
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string };
 type LeadStatus = "new" | "contacted" | "trial" | "joined" | "lost";
 type Msg = { id: string; createdAt: string; channel: string; to: string; toName: string; kind: string; body: string; status: "pending" | "sent" | "failed" | "cancelled"; attempts: number; lastError: string | null; sentAt: string | null; sentBy: string | null };
-type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null };
+type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null ; userId?: string | null; extraGenerations?: number; accessUntil?: string | null; revokedAt?: string | null; versions?: { id: string; version: number; createdAt: string; source: string; status: "draft" | "sent" | "rejected" }[]; entitlement?: { allowed: number; used: number; remaining: number; accessUntil: string; nextAt: string | null; reason: string } };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
 type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null };
@@ -607,11 +607,89 @@ function DietOrders({ data, act }: { data: Data; act: Act }) {
                   WhatsApp
                 </a>
               </div>
+              <ClientAccess o={o} act={act} />
             </li>
           );
         })}
       </ul>
     </div>
+  );
+}
+
+const REASON: Record<string, string> = { ok: "can update now", "too-soon": "next update not open yet", "in-review": "waiting for your review", "none-left": "all plans used", "single-plan": "single-plan package", expired: "package ended", revoked: "paused by you" };
+
+/** The client's dashboard access: what they have used, and the admin's controls over it. */
+function ClientAccess({ o, act }: { o: DietOrder; act: Act }) {
+  const e = o.entitlement;
+  const [extra, setExtra] = useState(String(o.extraGenerations ?? 0));
+  const [until, setUntil] = useState(o.accessUntil ?? "");
+  const [email, setEmail] = useState(o.email ?? "");
+  if (!e) return null;
+  return (
+    <details className="mt-3 rounded-xl bg-black/20 p-3 text-xs">
+      <summary className="cursor-pointer select-none font-semibold text-white/80">
+        Client dashboard · {e.used} of {e.allowed} plans · {REASON[e.reason] ?? e.reason} · {o.userId ? "signed in" : "not signed in yet"}
+      </summary>
+      <p className="mt-2 text-white/55">
+        Plan updates until {e.accessUntil}
+        {e.nextAt ? ` · next update opens ${e.nextAt}` : ""}. The client signs in at /account/plans with {o.email ?? "their email"}.
+      </p>
+      <ul className="mt-2 divide-y divide-white/5">
+        {(o.versions ?? []).map((v) => (
+          <li key={v.id} className="flex flex-wrap items-center gap-2 py-1.5">
+            <span className="w-8 font-bold">#{v.version}</span>
+            <span className="flex-1 text-white/60">
+              {when(v.createdAt)} · {v.source} ·{" "}
+              <span className={v.status === "sent" ? "text-emerald-300" : v.status === "draft" ? "text-amber-200" : "text-white/40 line-through"}>{v.status === "draft" ? "waiting for review" : v.status}</span>
+            </span>
+            <a href={`/api/admin/growth/diet-plan?v=${v.id}`} target="_blank" rel="noopener noreferrer" className="rounded bg-white/10 px-2 py-1">
+              Preview
+            </a>
+            {v.status !== "rejected" && (
+              <button type="button" onClick={() => confirm(`Remove plan #${v.version}? It disappears from the client's dashboard and no longer counts against the package.`) && act({ action: "version-reject", versionId: v.id }, "Plan removed")} className="rounded bg-red-500/15 px-2 py-1 text-red-200">
+                Remove
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-3 grid gap-2 sm:grid-cols-3">
+        <label className="text-white/60">
+          Extra plans (+/-)
+          <input type="number" min={-50} max={50} value={extra} onChange={(ev) => setExtra(ev.target.value)} className="mt-1 w-full rounded-lg bg-white/10 px-2 py-1.5 text-white" />
+        </label>
+        <label className="text-white/60">
+          Updates until
+          <input type="date" value={until} onChange={(ev) => setUntil(ev.target.value)} className="mt-1 w-full rounded-lg bg-white/10 px-2 py-1.5 text-white" />
+        </label>
+        <label className="text-white/60">
+          Login email
+          <input type="email" value={email} onChange={(ev) => setEmail(ev.target.value)} className="mt-1 w-full rounded-lg bg-white/10 px-2 py-1.5 text-white" />
+        </label>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() =>
+            act(
+              { action: "client-access", id: o.id, extraGenerations: Number(extra) || 0, accessUntil: until || null, ...(email && email !== o.email ? { email } : {}) },
+              "Access saved",
+            )
+          }
+          className="rounded-lg bg-emerald-500 px-3 py-1.5 font-bold text-black"
+        >
+          Save access
+        </button>
+        <button type="button" onClick={() => act({ action: "client-access", id: o.id, revoked: !o.revokedAt }, o.revokedAt ? "Access resumed" : "Access paused")} className="rounded-lg bg-white/10 px-3 py-1.5">
+          {o.revokedAt ? "Resume updates" : "Pause updates"}
+        </button>
+        {o.userId && (
+          <button type="button" onClick={() => confirm("Unlink this order from the account that claimed it? The next account to sign in with the order's email gets it.") && act({ action: "client-access", id: o.id, unlink: true }, "Unlinked")} className="rounded-lg bg-white/10 px-3 py-1.5">
+            Unlink account
+          </button>
+        )}
+      </div>
+    </details>
   );
 }
 

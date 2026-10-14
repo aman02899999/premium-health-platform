@@ -108,11 +108,12 @@ describe("scheduled messages", () => {
 
 describe("diet chart intake", async () => {
   const { parseDietOrder, intakeToProfile } = await import("./diet-intake");
-  const ok = { name: "Priya Verma", phone: "+91 98765 43210", email: "", age: "29", sex: "female", heightCm: 160, weightKg: "62.4", goal: "fat-loss", diet: "veg", cuisine: "south", activity: "light", mealsPerDay: 4, wakeTime: "07:15", conditions: ["pcos", "pcos", "made-up"], allergies: ["nuts"], notes: "  night   shifts ", consent: true };
+  const ok = { name: "Priya Verma", phone: "+91 98765 43210", email: "Priya@Example.com", age: "29", sex: "female", heightCm: 160, weightKg: "62.4", goal: "fat-loss", diet: "veg", cuisine: "south", activity: "light", mealsPerDay: 4, wakeTime: "07:15", conditions: ["pcos", "pcos", "made-up"], allergies: ["nuts"], notes: "  night   shifts ", consent: true };
   it("accepts a valid form and cleans it", () => {
     const r = parseDietOrder(ok);
     if (typeof r === "string") throw new Error(r);
-    expect(r.buyer).toEqual({ name: "Priya Verma", phone: "9876543210", email: null, marketing: false });
+    expect(r.buyer).toEqual({ name: "Priya Verma", phone: "9876543210", email: "priya@example.com", marketing: false });
+    expect(parseDietOrder({ ...ok, email: "" })).toMatch(/email/);
     expect(r.intake).toMatchObject({ age: 29, sex: "female", heightCm: 160, weightKg: 62.4, cuisine: "south", mealsPerDay: 4, wakeTime: "07:15", conditions: ["pcos"], allergies: ["nuts"], notes: "night shifts" });
   });
   it("rejects what a coach can't plan safely", () => {

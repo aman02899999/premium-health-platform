@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { runDaily } from "@/lib/growth/daily";
-import { listDietOrders, setDietStage } from "@/lib/growth/diet-orders";
+import { setDietStage } from "@/lib/growth/diet-orders";
 import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { applyPaidOrder, deleteMember, listMembers, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
@@ -12,6 +12,7 @@ import { storageConfigured } from "@/lib/growth/storage";
 import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
 import { socialStatus } from "@/lib/social/automation";
+import { listClientOrders, rejectVersion, updateAccess } from "@/lib/growth/client-plans";
 
 export const dynamic = "force-dynamic";
 // "Regenerate" builds a plan PDF on the server.
@@ -29,7 +30,7 @@ export async function GET() {
       listMembers(),
       listPipeline(),
       listOutbox("all", 400),
-      listDietOrders(),
+      listClientOrders(),
       listRewards(),
       unappliedPaidOrders(),
       // The rest of the dashboard still loads if the social tables aren't migrated yet.
@@ -100,6 +101,24 @@ export async function POST(req: Request) {
         if (!isUuid(b.id)) break;
         const r = await prepareDietPlan(b.id);
         return r ? NextResponse.json({ ok: true, ...r }) : NextResponse.json({ error: "Order not found or not paid" }, { status: 404 });
+      }
+      case "client-access": {
+        // Admin control over a client's plan access: extra plans, end date, pause, email.
+        if (!isUuid(b.id)) break;
+        const r = await updateAccess(b.id, {
+          extraGenerations: typeof b.extraGenerations === "number" ? b.extraGenerations : undefined,
+          accessUntil: typeof b.accessUntil === "string" || b.accessUntil === null ? (b.accessUntil as string | null) : undefined,
+          revoked: typeof b.revoked === "boolean" ? b.revoked : undefined,
+          email: typeof b.email === "string" ? b.email.trim() : undefined,
+          unlink: b.unlink === true,
+        }).catch((e: Error) => e);
+        if (r instanceof Error) return NextResponse.json({ error: r.message }, { status: 400 });
+        return NextResponse.json({ ok: true });
+      }
+      case "version-reject": {
+        if (!isUuid(b.versionId)) break;
+        await rejectVersion(b.versionId);
+        return NextResponse.json({ ok: true });
       }
       case "apply-order": {
         if (typeof b.razorpayOrderId !== "string") break;

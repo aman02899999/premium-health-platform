@@ -52,7 +52,8 @@ export function parseDietOrder(b: Record<string, unknown>): { buyer: DietBuyer; 
   const email = text(b.email, 120);
   if (name.length < 2) return "Please enter your full name.";
   if (!/^[6-9]\d{9}$/.test(phone)) return "Please enter a valid 10-digit Indian mobile number.";
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Please enter a valid email address, or leave it blank.";
+  // The email is the login to the client's plan dashboard, so it is required.
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Please enter your email address: you sign in with it to see your plans.";
 
   const age = num(b.age);
   const heightCm = num(b.heightCm);
@@ -79,7 +80,7 @@ export function parseDietOrder(b: Record<string, unknown>): { buyer: DietBuyer; 
   const days = num(b.trainingDays);
   return {
     plan: isDietPlanId(b.plan) ? b.plan : "starter",
-    buyer: { name, phone, email: email || null, marketing: b.marketing === true && !!email },
+    buyer: { name, phone, email: email.toLowerCase(), marketing: b.marketing === true },
     intake: {
       age,
       sex,

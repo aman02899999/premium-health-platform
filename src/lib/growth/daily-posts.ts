@@ -6,7 +6,7 @@ import { DIET_PLANS, REFERRER_BONUS_DAYS } from "./config";
 import type { Draft } from "./messages";
 
 export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string };
-export type Channel = "whatsapp" | "instagram" | "google";
+export type Channel = "whatsapp" | "instagram" | "google" | "facebook";
 export type DailyPost = {
   date: string;
   theme: string;
@@ -15,6 +15,8 @@ export type DailyPost = {
   whatsapp: string;
   instagram: string;
   google: string;
+  /** Facebook Page post: like Instagram, but Facebook keeps links clickable. */
+  facebook: string;
   /** The landing page (without tracking), and the same page tagged per channel. */
   path: string;
   links: Record<Channel, string>;
@@ -213,6 +215,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     whatsapp: trackedLink(biz.siteUrl, idea.path, "whatsapp", date),
     instagram: trackedLink(biz.siteUrl, idea.path, "instagram", date),
     google: trackedLink(biz.siteUrl, idea.path, "google", date),
+    facebook: trackedLink(biz.siteUrl, idea.path, "facebook", date),
   };
   const tags = ["RoyalFitnessClub", ...idea.tags].map((t) => `#${t}`).join(" ");
   return {
@@ -223,6 +226,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     // Instagram captions can't hold clickable links: point to the bio link instead.
     instagram: `${hook}\n\n${body}\n\n${cta} — link in bio.\n\n${tags}`,
     google: `${hook} ${body} ${cta}. ${links.google}`,
+    facebook: `${hook}\n\n${body}\n\n👉 ${cta}: ${links.facebook}\n\n${tags}`,
     path: idea.path,
     links,
     visual: idea.visual,
