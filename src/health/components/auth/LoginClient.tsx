@@ -14,7 +14,7 @@ function GoogleIcon() {
   );
 }
 
-export function LoginClient() {
+export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
   const { signInWithGoogle, signInWithEmail, user, loading, available } = useAuth();
   const router = useRouter();
   const params = useSearchParams();
@@ -54,7 +54,12 @@ export function LoginClient() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-      <h1 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Sign in</h1>
+      {/* The register page has its own heading, so the box's title is a sub-heading there. */}
+      {embedded ? (
+        <h2 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Sign in</h2>
+      ) : (
+        <h1 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Sign in</h1>
+      )}
       <p className="mt-1 text-xs text-stone-500">One account for Premium Health Platform and Royal Fitness Club.</p>
 
       {!available && (

@@ -17,7 +17,7 @@ type Msg = { id: string; createdAt: string; channel: string; to: string; toName:
 type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null ; userId?: string | null; extraGenerations?: number; accessUntil?: string | null; revokedAt?: string | null; versions?: { id: string; version: number; createdAt: string; source: string; status: "draft" | "sent" | "rejected" }[]; entitlement?: { allowed: number; used: number; remaining: number; accessUntil: string; nextAt: string | null; reason: string } };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
-type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null };
+type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null; system?: { lastRun: { at: string; source: string; ok: boolean; summary: string } | null; recent: boolean; setup: { key: string; label: string; on: boolean; why: string }[] } };
 type Tab = "today" | "marketing" | "social" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
@@ -180,6 +180,41 @@ function Card({ label, value, sub, tone = "text-white", onClick }: { label: stri
   );
 }
 
+/** Did the daily automation run, and which settings are still missing in Vercel. */
+function SystemCard({ system }: { system: NonNullable<Data["system"]> }) {
+  const r = system.lastRun;
+  const fresh = r && r.ok && system.recent;
+  const missing = system.setup.filter((x) => !x.on);
+  return (
+    <div className="rounded-2xl bg-white/[.04] p-4 text-sm ring-1 ring-white/10">
+      <p className={`flex items-center gap-2 font-semibold ${fresh ? "text-emerald-200" : "text-amber-200"}`}>
+        {fresh ? <Check className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
+        {r ? `Daily automation last ran ${when(r.at)} (${r.source === "cron" ? "by the schedule" : "by you"})${r.ok ? "" : " and FAILED"}` : "The daily automation hasn't run yet"}
+        {!fresh && r?.ok ? " — more than a day ago" : ""}
+      </p>
+      {missing.length > 0 ? (
+        <details className="mt-2">
+          <summary className="cursor-pointer text-white/70">
+            {missing.length} setting{missing.length === 1 ? "" : "s"} missing in Vercel — {missing.map((m) => m.label).join(", ")}
+          </summary>
+          <ul className="mt-2 grid gap-1.5">
+            {system.setup.map((x) => (
+              <li key={x.key} className="flex gap-2 text-xs">
+                <span className={x.on ? "text-emerald-300" : "text-red-300"}>{x.on ? "✓" : "✗"}</span>
+                <span>
+                  <b className="text-white/85">{x.label}</b> <code className="text-white/40">{x.key}</code> — <span className="text-white/60">{x.why}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : (
+        <p className="mt-1 text-xs text-emerald-200/80">Every setting is in place.</p>
+      )}
+    </div>
+  );
+}
+
 function Today({ data, stats, go, act }: { data: Data; stats: Stats; go: (t: Tab) => void; act: Act }) {
   return (
     <div className="grid gap-5">
@@ -193,6 +228,8 @@ function Today({ data, stats, go, act }: { data: Data; stats: Stats; go: (t: Tab
         )}
         {!data.channels.cronSecret && <p className="mt-1 text-white/60">The daily schedule needs CRON_SECRET set in Vercel; until then, press “Run today&apos;s automation” once a day.</p>}
       </div>
+
+      {data.system && <SystemCard system={data.system} />}
 
       {data.unapplied.length > 0 && (
         <div className="rounded-2xl bg-red-500/10 p-4 text-sm ring-1 ring-red-400/30">

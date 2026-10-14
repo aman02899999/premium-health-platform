@@ -13,6 +13,7 @@ import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
 import { socialStatus } from "@/lib/social/automation";
 import { listClientOrders, rejectVersion, updateAccess } from "@/lib/growth/client-plans";
+import { lastDailyRun, recordDailyRun, setupChecklist } from "@/lib/growth/system-status";
 
 export const dynamic = "force-dynamic";
 // "Regenerate" builds a plan PDF on the server.
@@ -36,6 +37,7 @@ export async function GET() {
       // The rest of the dashboard still loads if the social tables aren't migrated yet.
       socialStatus().catch(() => null),
     ]);
+    const lastRun = await lastDailyRun();
     return NextResponse.json({
       today: todayIST(),
       siteUrl: SITE_URL,
@@ -47,6 +49,7 @@ export async function GET() {
       rewards,
       unapplied,
       social,
+      system: { lastRun, recent: !!lastRun && Date.now() - Date.parse(lastRun.at) < 26 * 3_600_000, setup: setupChecklist() },
     });
   } catch (err) {
     console.error("[growth] load failed:", (err as Error).message);
@@ -125,8 +128,11 @@ export async function POST(req: Request) {
         const applied = await applyPaidOrder(b.razorpayOrderId);
         return NextResponse.json({ ok: true, applied: Boolean(applied) });
       }
-      case "run-daily":
-        return NextResponse.json({ ok: true, result: await runDaily() });
+      case "run-daily": {
+        const result = await runDaily();
+        await recordDailyRun("admin", true, result);
+        return NextResponse.json({ ok: true, result });
+      }
     }
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   } catch (err) {
