@@ -18,7 +18,7 @@ describe("admin morning email", () => {
         failedMessages: 0,
       },
       "admin@example.com",
-      "https://www.royalfitnesclub.in/admin/growth",
+      "https://www.royalfitnessclub.in/admin/growth",
     );
     expect(d.subject).toBe("2026-10-14: ₹4,499 from 2 payments · 1 new lead · 2 need you");
     expect(d.body).toContain("• Review Priya's 3-Month Transformation (health details shared)");

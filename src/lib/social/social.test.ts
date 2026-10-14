@@ -7,7 +7,7 @@ import { indianMobile, parseWebhook } from "./inbound";
 
 vi.mock("server-only", () => ({}));
 
-const ctx = (today: string): ReplyCtx => ({ business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, today), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Kumar" });
+const ctx = (today: string): ReplyCtx => ({ business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, today), siteUrl: "https://www.royalfitnessclub.in", name: "Rahul Kumar" });
 
 describe("detectIntent", () => {
   it.each([
@@ -48,7 +48,7 @@ describe("buildReply", () => {
     const diet = buildReply("diet", ctx("2026-10-12"));
     expect(diet).toContain("• 7-Day Trial Plan: ₹49");
     expect(diet).toContain("• 3-Month Transformation: ₹2,999");
-    expect(diet).toContain("https://www.royalfitnesclub.in/diet-chart#order");
+    expect(diet).toContain("https://www.royalfitnessclub.in/diet-chart#order");
   });
 
   it("greets by first name with a keyword menu; Instagram loses the asterisks", () => {

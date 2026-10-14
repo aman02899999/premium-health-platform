@@ -102,12 +102,12 @@ describe.skipIf(!url)("social automation on a real database", () => {
     const fb = calls.filter((c) => c.url.endsWith("/PAGE1/messages"));
     expect(fb).toHaveLength(1);
     expect(fb[0].body!.recipient).toEqual({ comment_id: "c9" });
-    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma" };
+    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnessclub.in", coach: "Coach Aman Sharma" };
     const now = new Date("2026-10-12T02:15:00Z");
     expect(await social.runFacebook(now, biz)).toEqual({ facebook: "published" });
     expect(await social.runFacebook(now, biz)).toEqual({ facebook: "already-posted" });
     const photo = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
-    expect(photo.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
+    expect(photo.body).toMatchObject({ url: "https://www.royalfitnessclub.in/api/social/post-image/2026-10-12.jpg" });
     expect(String(photo.body!.message)).toContain("utm_source=facebook");
   });
 
@@ -119,7 +119,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
   });
 
   it("posts the day's image to Instagram once, refreshes the token, and retries a failed day", async () => {
-    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma", membershipFrom: 2000 };
+    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnessclub.in", coach: "Coach Aman Sharma", membershipFrom: 2000 };
     const now = new Date("2026-10-12T02:15:00Z");
 
     publishFails = true;
@@ -130,7 +130,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect((await social.runInstagram(now, biz)).instagram).toBe("already-posted");
 
     const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
-    expect(media[1].body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
+    expect(media[1].body).toMatchObject({ image_url: "https://www.royalfitnessclub.in/api/social/post-image/2026-10-12.jpg" });
     expect(String(media[1].body!.caption)).toContain("#RoyalFitnessClub");
     expect(calls.filter((c) => c.url.endsWith("/media_publish"))).toHaveLength(1);
     // First run refreshed the seed token and stored it; later calls use the stored one.

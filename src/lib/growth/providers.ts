@@ -4,7 +4,7 @@ import "server-only";
 // message waits in the outbox and the admin sends it with one tap from their own WhatsApp.
 //
 // WhatsApp Cloud API (Meta):   WHATSAPP_TOKEN, WHATSAPP_PHONE_NUMBER_ID, optional WHATSAPP_TEMPLATE_LANG (default "en")
-// Email (Resend):              RESEND_API_KEY, EMAIL_FROM (e.g. "Royal Fitness Club <hello@royalfitnesclub.in>")
+// Email (Resend):              RESEND_API_KEY, EMAIL_FROM (e.g. "Royal Fitness Club <hello@royalfitnessclub.in>")
 
 export const whatsappConfigured = () => Boolean(process.env.WHATSAPP_TOKEN && process.env.WHATSAPP_PHONE_NUMBER_ID);
 export const emailConfigured = () => Boolean(process.env.RESEND_API_KEY && process.env.EMAIL_FROM);

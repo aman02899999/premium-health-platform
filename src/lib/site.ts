@@ -1,6 +1,6 @@
 import type { Business, SiteContent } from "./content/types";
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.royalfitnessclub.in").replace(/\/$/, "");
 
 export const NAV = [
   { href: "/", label: "Home" },

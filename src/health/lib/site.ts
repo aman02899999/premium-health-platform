@@ -6,7 +6,7 @@ export const SITE = {
   heroSubtitle:
     "Evidence-informed health information combined with Indian Ayurveda, nutrition, lifestyle and modern medical knowledge.",
   // Same origin as the Royal Fitness Club site; every health route lives under /health.
-  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, ""),
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://www.royalfitnessclub.in").replace(/\/$/, ""),
   locale: "en-IN",
   language: "en",
   // Public contact address; set NEXT_PUBLIC_CONTACT_EMAIL. Without it the contact page shows the gym phone only.

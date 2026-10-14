@@ -19,7 +19,7 @@ describe.skipIf(!url)("weekly newsletter in the daily run", () => {
   beforeAll(async () => {
     process.env.POSTGRES_URL = url;
     process.env.RESEND_API_KEY = "re_test";
-    process.env.EMAIL_FROM = "Royal Fitness Club <hello@royalfitnesclub.in>";
+    process.env.EMAIL_FROM = "Royal Fitness Club <hello@royalfitnessclub.in>";
     for (const k of ["WHATSAPP_TOKEN", "INSTAGRAM_ACCESS_TOKEN", "COACH_EMAIL"]) delete process.env[k];
     vi.stubGlobal("fetch", async (_u: string, init: { body: string }) => {
       emails.push(JSON.parse(init.body));

@@ -21,7 +21,7 @@ describe("weekly newsletter", () => {
   });
 
   it("builds a marketing email with tracked links, a disclaimer, a CTA and a per-week dedupe key", () => {
-    const d = weeklyNewsletter("2026-10-18", "Reader@Example.com", lib, "https://www.royalfitnesclub.in")!;
+    const d = weeklyNewsletter("2026-10-18", "Reader@Example.com", lib, "https://www.royalfitnessclub.in")!;
     expect(d.kind.startsWith("nurture-")).toBe(true); // gets the unsubscribe link and headers
     expect(d.to).toBe("reader@example.com");
     expect(d.dedupeKey).toBe("weekly:2026-10-18:reader@example.com");
