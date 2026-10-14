@@ -13,7 +13,7 @@ import { BOOKS } from "@/lib/library/catalog";
 import { COMPLETE_LIBRARY_PRICE } from "@/lib/library/pricing";
 
 const seoTitle = "Health Store — Products We Recommend | Premium Health";
-const seoDescription = "Hand-picked health products for Indian families, sold by trusted sellers. Our own PDF guides and diet plans are coming soon.";
+const seoDescription = "Hand-picked health products for Indian families, sold by trusted sellers, plus our own PDF guides and personal diet plans.";
 const url = "/health/store";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Store — Health Guides India")}&category=${encodeURIComponent("Digital Products")}&type=Product`;
@@ -42,7 +42,7 @@ export default function StorePage() {
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Health store</p>
         <h1 className="font-display mt-1 text-3xl font-black">Health products we recommend</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Hand-picked products for everyday health, sold by trusted sellers. Our own PDF guides and diet plans are coming soon. Nothing here replaces advice from your doctor.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Hand-picked products for everyday health, sold by trusted sellers. Our own PDF guides are in the Premium Library below, and personal diet plans are on the Royal Fitness Club diet chart page. Nothing here replaces advice from your doctor.</p>
         <div className="mt-3 flex flex-wrap gap-2">{categories.map((c) => <span key={c} className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">{c}</span>)}</div>
       </div>
 

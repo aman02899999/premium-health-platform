@@ -17,9 +17,9 @@ export function ProfileClient() {
   if (!user) {
     return (
       <div className="rounded-3xl border border-stone-200 bg-white p-8 text-center dark:border-stone-700 dark:bg-stone-900">
-        <p className="text-sm font-bold">Not logged in</p>
+        <h1 className="text-sm font-bold">Not logged in</h1>
         <p className="mt-1 text-xs text-stone-500">Sign in to see your profile and premium status.</p>
-        <button onClick={() => router.push("/health/login?next=/profile")} className="mt-4 rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-bold text-white">Sign in</button>
+        <button onClick={() => router.push("/health/login?next=/health/profile")} className="mt-4 rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-bold text-white">Sign in</button>
       </div>
     );
   }

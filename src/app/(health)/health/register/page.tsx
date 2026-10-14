@@ -16,7 +16,7 @@ export default function RegisterPage() {
       <div className="mt-6 max-w-md mx-auto">
         <h1 className="font-display text-2xl font-black">Create your account</h1>
         <p className="mt-1 text-sm text-stone-600">Join to unlock premium, save thali plans, track health.</p>
-        <div className="mt-4"><Suspense><LoginClient /></Suspense></div>
+        <div className="mt-4"><Suspense><LoginClient embedded /></Suspense></div>
       </div>
     </div>
   );
