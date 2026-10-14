@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, ShoppingBag, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
+import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, Salad, ShoppingBag, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
 import { healthHref } from "@/lib/portal";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -163,6 +163,13 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                 <li>
                   <Link href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
                     <UserRound className="h-5 w-5 shrink-0" /> My account
+                  </Link>
+                </li>
+              )}
+              {supabaseConfigured && (
+                <li>
+                  <Link href="/account/plans" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                    <Salad className="h-5 w-5 shrink-0" /> My diet &amp; workout plans
                   </Link>
                 </li>
               )}

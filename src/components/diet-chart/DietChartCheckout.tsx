@@ -7,7 +7,7 @@ import { CheckCircle2, Loader2, Lock } from "lucide-react";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
 import { DIET_PLANS, isDietPlanId, type DietPlanId } from "@/lib/growth/config";
 
-const GOALS = [
+export const GOALS = [
   ["fat-loss", "Lose fat"],
   ["recomp", "Lose fat & tone up"],
   ["maintain", "Stay at my weight, eat healthier"],
@@ -28,7 +28,7 @@ const CUISINES = [
   ["west", "Gujarati / Maharashtrian"],
   ["east", "Bengali / Odia"],
 ] as const;
-const ACTIVITY = [
+export const ACTIVITY = [
   ["sedentary", "Mostly sitting (desk job, little walking)"],
   ["light", "Light (walks, 1–3 workouts a week)"],
   ["moderate", "Moderate (3–5 workouts a week)"],
@@ -152,8 +152,8 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
             <input required type="tel" inputMode="numeric" autoComplete="tel-national" placeholder="10-digit number" value={f.phone} onChange={(e) => set("phone", e.target.value)} className={field} />
           </label>
           <label className="text-sm text-white/70">
-            Email <span className="text-white/40">(optional)</span>
-            <input type="email" autoComplete="email" value={f.email} onChange={(e) => set("email", e.target.value)} className={field} />
+            Email <span className="text-white/40">(you sign in with it to see your plans)</span>
+            <input required type="email" autoComplete="email" value={f.email} onChange={(e) => set("email", e.target.value)} className={field} />
           </label>
           <div className="text-sm text-white/70">
             Sex

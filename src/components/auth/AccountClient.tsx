@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import { Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
+import { ChevronRight, Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { SignInOptions, SignOutButton } from "./AuthButtons";
 
@@ -80,6 +80,17 @@ export function AccountClient() {
         </div>
         <SignOutButton />
       </div>
+
+      <Link href="/account/plans" className="glass brand-border flex items-center gap-4 rounded-3xl p-5 hover:ring-1 hover:ring-brand/60">
+        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/20">
+          <Salad className="h-6 w-6 text-brand" />
+        </span>
+        <span className="flex-1">
+          <span className="block font-display text-xl text-white">My diet &amp; workout plans</span>
+          <span className="text-sm text-white/60">Download your plans and ask for your next update</span>
+        </span>
+        <ChevronRight className="h-5 w-5 text-white/40" />
+      </Link>
 
       <div className="glass rounded-3xl p-6">
         <h2 className="font-display text-xl text-white">Synced to your account</h2>

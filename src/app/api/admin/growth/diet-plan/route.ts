@@ -4,6 +4,7 @@ import { isDbConfigured } from "@/health/db";
 import { getDietOrder } from "@/lib/growth/diet-orders";
 import { sendDietPlan, storeCoachPlan } from "@/lib/growth/plan-delivery";
 import { getFile } from "@/lib/growth/storage";
+import { versionPath } from "@/lib/growth/client-plans";
 
 export const dynamic = "force-dynamic";
 
@@ -13,13 +14,16 @@ const isUuid = (s: unknown): s is string => typeof s === "string" && /^[0-9a-f]{
 export async function GET(req: Request) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
-  const id = new URL(req.url).searchParams.get("id");
-  const order = isUuid(id) ? await getDietOrder(id) : null;
-  if (!order?.planPath) return NextResponse.json({ error: "No plan for this order yet" }, { status: 404 });
+  const q = new URL(req.url).searchParams;
+  const id = q.get("id");
+  const v = q.get("v");
+  // ?v=<version id> opens any earlier plan; ?id=<order id> the current one.
+  const path = isUuid(v) ? await versionPath(v) : isUuid(id) ? (await getDietOrder(id))?.planPath : null;
+  if (!path) return NextResponse.json({ error: "No plan for this order yet" }, { status: 404 });
   try {
-    const pdf = await getFile(order.planPath);
+    const pdf = await getFile(path);
     return new NextResponse(new Uint8Array(pdf), {
-      headers: { "content-type": "application/pdf", "content-disposition": `inline; filename="${order.planPath.split("/").pop()}"`, "cache-control": "private, no-store" },
+      headers: { "content-type": "application/pdf", "content-disposition": `inline; filename="${path.split("/").pop()}"`, "cache-control": "private, no-store" },
     });
   } catch (err) {
     console.error("[diet-plan] read failed:", (err as Error).message);

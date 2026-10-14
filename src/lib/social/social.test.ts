@@ -121,6 +121,30 @@ describe("parseWebhook", () => {
     ]);
   });
 
+  it("reads Facebook Messenger messages and new Page comments, never the Page's own", () => {
+    const items = parseWebhook({
+      object: "page",
+      entry: [
+        {
+          id: "PAGE1",
+          messaging: [
+            { sender: { id: "u1" }, message: { mid: "fm1", text: "timing?" } },
+            { sender: { id: "PAGE1" }, message: { mid: "fm2", text: "reply", is_echo: true } },
+          ],
+          changes: [
+            { field: "feed", value: { item: "comment", verb: "add", comment_id: "c9", message: "PRICE", from: { id: "u2", name: "Ravi K" } } },
+            { field: "feed", value: { item: "comment", verb: "edited", comment_id: "c10", message: "x", from: { id: "u3" } } },
+            { field: "feed", value: { item: "comment", verb: "add", comment_id: "c11", message: "thanks", from: { id: "PAGE1" } } },
+          ],
+        },
+      ],
+    });
+    expect(items.map((i) => [i.id, i.channel, i.kind, i.from])).toEqual([
+      ["fb:fm1", "facebook", "message", "u1"],
+      ["fbc:c9", "facebook", "comment", "u2"],
+    ]);
+  });
+
   it("keeps only Indian mobiles for leads", () => {
     expect(indianMobile("919876543210")).toBe("9876543210");
     expect(indianMobile("14155550123")).toBeNull();

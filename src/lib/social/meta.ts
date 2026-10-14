@@ -140,3 +140,33 @@ export async function sendInstagramMessage(recipient: { id: string } | { comment
   const id = (r.json.message_id as string | undefined) ?? r.json.id;
   return r.ok && id ? { ok: true, id } : fail(r);
 }
+
+// ---------- Facebook Page ----------
+//   FACEBOOK_PAGE_ID, FACEBOOK_PAGE_TOKEN   a Page access token (from a System User: it doesn't expire)
+
+export const facebookConfigured = () => Boolean(process.env.FACEBOOK_PAGE_ID && process.env.FACEBOOK_PAGE_TOKEN);
+const FB_API = () => (process.env.FACEBOOK_API_URL || "https://graph.facebook.com/v21.0").replace(/\/$/, "");
+
+/** A Messenger reply, or a private reply to a Page comment (recipient { comment_id }). */
+export async function sendFacebookMessage(recipient: { id: string } | { comment_id: string }, text: string): Promise<SendResult> {
+  if (!facebookConfigured()) return { ok: false, error: "Facebook Page not configured", retry: false };
+  const r = await graph(`${FB_API()}/${process.env.FACEBOOK_PAGE_ID}/messages`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${process.env.FACEBOOK_PAGE_TOKEN}`, "content-type": "application/json" },
+    body: JSON.stringify({ recipient, messaging_type: "RESPONSE", message: { text: text.slice(0, 2000) } }),
+  });
+  const id = (r.json.message_id as string | undefined) ?? r.json.id;
+  return r.ok && id ? { ok: true, id } : fail(r);
+}
+
+/** Posts a photo with its caption on the Page. */
+export async function publishFacebookPhoto(imageUrl: string, caption: string): Promise<SendResult & { permalink?: string }> {
+  if (!facebookConfigured()) return { ok: false, error: "Facebook Page not configured", retry: false };
+  const r = await graph(`${FB_API()}/${process.env.FACEBOOK_PAGE_ID}/photos`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${process.env.FACEBOOK_PAGE_TOKEN}`, "content-type": "application/json" },
+    body: JSON.stringify({ url: imageUrl, message: caption.slice(0, 5000), published: true }),
+  });
+  const postId = (r.json.post_id as string | undefined) ?? r.json.id;
+  return r.ok && postId ? { ok: true, id: postId, permalink: `https://www.facebook.com/${postId}` } : fail(r);
+}

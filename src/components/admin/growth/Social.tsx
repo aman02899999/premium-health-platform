@@ -18,12 +18,13 @@ function Chip({ on, label }: { on: boolean; label: string }) {
 export function Social({ status, siteUrl }: { status: SocialStatus | null; siteUrl: string }) {
   if (!status) return <p className="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-100">Apply the latest database migration (social automation) to turn this on.</p>;
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
-  const allOn = status.instagram && status.whatsapp && status.webhook;
+  const allOn = status.instagram && status.facebook && status.whatsapp && status.webhook;
   return (
     <div className="space-y-6">
       <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
         <div className="flex flex-wrap gap-2">
           <Chip on={status.instagram} label="Instagram daily post" />
+          <Chip on={status.facebook} label="Facebook Page" />
           <Chip on={status.whatsapp} label="WhatsApp API" />
           <Chip on={status.webhook} label="Meta webhook" />
           <Chip on={status.autoReply} label="Auto-replies" />
@@ -37,6 +38,7 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
             <li>
               Vercel: add META_APP_SECRET (and INSTAGRAM_APP_SECRET if Instagram shows a different one) and META_VERIFY_TOKEN (any phrase). In Meta → Webhooks, use the callback URL <code className="rounded bg-white/10 px-1">{siteUrl}/api/webhooks/meta</code> with that phrase, and subscribe to WhatsApp &quot;messages&quot; and Instagram &quot;messages&quot; and &quot;comments&quot;.
             </li>
+            <li>Facebook Page: add FACEBOOK_PAGE_ID and FACEBOOK_PAGE_TOKEN (a System User token for the Page), and subscribe the Page webhook to &quot;messages&quot; and &quot;feed&quot;.</li>
             <li>Redeploy. The daily post then goes out every morning at about 7:45 am, and every message gets an answer in seconds.</li>
           </ol>
         )}
@@ -52,12 +54,13 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
           </a>
         </div>
         <div>
-          <h2 className="mb-2 text-sm font-bold text-white/80">Instagram posts</h2>
+          <h2 className="mb-2 text-sm font-bold text-white/80">Instagram &amp; Facebook posts</h2>
           {status.posts.length ? (
             <ul className="divide-y divide-white/5 rounded-xl border border-white/10">
               {status.posts.map((p) => (
-                <li key={p.date} className="flex flex-wrap items-center gap-2 p-3 text-sm">
+                <li key={`${p.date}-${p.channel}`} className="flex flex-wrap items-center gap-2 p-3 text-sm">
                   <span className="w-24 shrink-0 text-white/60">{p.date}</span>
+                  <span className="w-20 shrink-0 text-xs font-semibold capitalize text-white/70">{p.channel}</span>
                   <span className="min-w-0 flex-1 truncate">{p.theme}</span>
                   {p.status === "published" && p.permalink ? (
                     <a href={p.permalink} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-300 hover:underline">
@@ -84,7 +87,7 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
             {status.inbox.map((m) => (
               <li key={m.id} className="p-3 text-sm">
                 <div className="flex flex-wrap items-center gap-2 text-xs text-white/55">
-                  <span className="font-semibold text-white/80">{m.channel === "whatsapp" ? "WhatsApp" : m.kind === "comment" ? "Instagram comment" : "Instagram DM"}</span>
+                  <span className="font-semibold text-white/80">{m.channel === "whatsapp" ? "WhatsApp" : `${m.channel === "facebook" ? "Facebook" : "Instagram"} ${m.kind === "comment" ? "comment" : "message"}`}</span>
                   <span>{m.name || (m.channel === "whatsapp" ? `+${m.from}` : m.from)}</span>
                   <span>· {when(m.createdAt)}</span>
                   <span className="rounded bg-white/5 px-1.5">{INTENT[m.intent] ?? m.intent}</span>

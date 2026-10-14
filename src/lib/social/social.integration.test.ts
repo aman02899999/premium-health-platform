@@ -22,6 +22,8 @@ describe.skipIf(!url)("social automation on a real database", () => {
     process.env.WHATSAPP_TOKEN = "wa-token";
     process.env.WHATSAPP_PHONE_NUMBER_ID = "123";
     process.env.INSTAGRAM_ACCESS_TOKEN = "ig-seed-token";
+    process.env.FACEBOOK_PAGE_ID = "PAGE1";
+    process.env.FACEBOOK_PAGE_TOKEN = "fb-page-token";
     delete process.env.SOCIAL_AUTO_REPLY;
     vi.stubGlobal("fetch", async (u: string, init?: { body?: string }) => {
       calls.push({ url: u, body: init?.body ? JSON.parse(init.body) : null });
@@ -34,6 +36,8 @@ describe.skipIf(!url)("social automation on a real database", () => {
       if (u.includes("media-9?fields=permalink")) return json({ permalink: "https://www.instagram.com/p/abc/" });
       if (u.endsWith("/17841400000/messages")) return json({ recipient_id: "555", message_id: "mid.out" });
       if (u.endsWith("/123/messages")) return json({ messages: [{ id: "wamid.out" }] });
+      if (u.endsWith("/PAGE1/messages")) return json({ recipient_id: "u2", message_id: "fbmid.out" });
+      if (u.endsWith("/PAGE1/photos")) return json({ id: "photo1", post_id: "PAGE1_post9" });
       return json({ error: { message: `unexpected ${u}` } }, 404);
     });
     pool = (await import("@/health/db")).pool;
@@ -91,6 +95,20 @@ describe.skipIf(!url)("social automation on a real database", () => {
     const text = (dms[0].body!.message as { text: string }).text;
     expect(text).toContain("Royal Fitness Club: membership fees");
     expect(text).not.toContain("*");
+  });
+
+  it("Facebook: a 'PRICE' comment gets a private reply; the day's post goes on the Page once", async () => {
+    await social.handleInbound({ id: "fbc:c9", channel: "facebook", kind: "comment", from: "u2", fromName: "Ravi K", text: "PRICE" });
+    const fb = calls.filter((c) => c.url.endsWith("/PAGE1/messages"));
+    expect(fb).toHaveLength(1);
+    expect(fb[0].body!.recipient).toEqual({ comment_id: "c9" });
+    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma" };
+    const now = new Date("2026-10-12T02:15:00Z");
+    expect(await social.runFacebook(now, biz)).toEqual({ facebook: "published" });
+    expect(await social.runFacebook(now, biz)).toEqual({ facebook: "already-posted" });
+    const photo = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
+    expect(photo.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
+    expect(String(photo.body!.message)).toContain("utm_source=facebook");
   });
 
   it("SOCIAL_AUTO_REPLY=off logs messages without answering", async () => {
