@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isDbConfigured } from "@/health/db";
 import { runDaily } from "@/lib/growth/daily";
+import { recordDailyRun } from "@/lib/growth/system-status";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -14,9 +15,12 @@ export async function GET(req: Request) {
   }
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   try {
-    return NextResponse.json({ ok: true, ...(await runDaily()) });
+    const result = await runDaily();
+    await recordDailyRun("cron", true, result);
+    return NextResponse.json({ ok: true, ...result });
   } catch (err) {
     console.error("[cron] daily growth run failed:", (err as Error).message);
+    await recordDailyRun("cron", false, (err as Error).message);
     return NextResponse.json({ ok: false, error: "Run failed" }, { status: 500 });
   }
 }
