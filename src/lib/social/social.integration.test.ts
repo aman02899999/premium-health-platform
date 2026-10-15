@@ -14,7 +14,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
   type Pool = import("pg").Pool;
   let pool: Pool;
   let social: typeof import("./automation");
-  const calls: { url: string; body: Record<string, unknown> | null }[] = [];
+  const calls: { url: string; body: Record<string, unknown> | null; auth?: string }[] = [];
   let publishFails = false;
 
   beforeAll(async () => {
@@ -25,8 +25,8 @@ describe.skipIf(!url)("social automation on a real database", () => {
     process.env.FACEBOOK_PAGE_ID = "PAGE1";
     process.env.FACEBOOK_PAGE_TOKEN = "fb-page-token";
     delete process.env.SOCIAL_AUTO_REPLY;
-    vi.stubGlobal("fetch", async (u: string, init?: { body?: string }) => {
-      calls.push({ url: u, body: init?.body ? JSON.parse(init.body) : null });
+    vi.stubGlobal("fetch", async (u: string, init?: { body?: string; headers?: Record<string, string> }) => {
+      calls.push({ url: u, body: init?.body ? JSON.parse(init.body) : null, auth: init?.headers?.authorization });
       const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { "content-type": "application/json" } });
       if (u.includes("/refresh_access_token")) return json({ access_token: "ig-fresh-token", expires_in: 5184000 });
       if (u.includes("/me?fields=user_id")) return json({ user_id: "17841400000", username: "royalfitness93_" });
@@ -36,6 +36,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
       if (u.includes("media-9?fields=permalink")) return json({ permalink: "https://www.instagram.com/p/abc/" });
       if (u.endsWith("/17841400000/messages")) return json({ recipient_id: "555", message_id: "mid.out" });
       if (u.endsWith("/123/messages")) return json({ messages: [{ id: "wamid.out" }] });
+      if (u.endsWith("/PAGE1?fields=access_token")) return json({ access_token: "page-own-token", id: "PAGE1" });
       if (u.endsWith("/PAGE1/messages")) return json({ recipient_id: "u2", message_id: "fbmid.out" });
       if (u.endsWith("/PAGE1/photos")) return json({ id: "photo1", post_id: "PAGE1_post9" });
       return json({ error: { message: `unexpected ${u}` } }, 404);
@@ -102,11 +103,14 @@ describe.skipIf(!url)("social automation on a real database", () => {
     const fb = calls.filter((c) => c.url.endsWith("/PAGE1/messages"));
     expect(fb).toHaveLength(1);
     expect(fb[0].body!.recipient).toEqual({ comment_id: "c9" });
+    // The System User token is swapped for the Page's own token, which Meta requires to act as the Page.
+    expect(fb[0].auth).toBe("Bearer page-own-token");
     const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma" };
     const now = new Date("2026-10-12T02:15:00Z");
     expect(await social.runFacebook(now, biz)).toEqual({ facebook: "published" });
     expect(await social.runFacebook(now, biz)).toEqual({ facebook: "already-posted" });
     const photo = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
+    expect(photo.auth).toBe("Bearer page-own-token");
     expect(photo.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
     expect(String(photo.body!.message)).toContain("utm_source=facebook");
   });

@@ -142,17 +142,32 @@ export async function sendInstagramMessage(recipient: { id: string } | { comment
 }
 
 // ---------- Facebook Page ----------
-//   FACEBOOK_PAGE_ID, FACEBOOK_PAGE_TOKEN   a Page access token (from a System User: it doesn't expire)
+//   FACEBOOK_PAGE_ID, FACEBOOK_PAGE_TOKEN   a System User token (doesn't expire) or a Page access token
 
 export const facebookConfigured = () => Boolean(process.env.FACEBOOK_PAGE_ID && process.env.FACEBOOK_PAGE_TOKEN);
 const FB_API = () => (process.env.FACEBOOK_API_URL || "https://graph.facebook.com/v21.0").replace(/\/$/, "");
+
+// Business Settings hands out a System User token, which Meta treats as a person: posting with it
+// fails with "(#200) publish_actions … deprecated". Ask for the Page's own token with it (works with
+// a Page token too, which returns itself) and keep it for an hour.
+let pageToken: { value: string; source: string; until: number } | null = null;
+
+async function facebookPageToken(): Promise<string> {
+  const configured = process.env.FACEBOOK_PAGE_TOKEN!;
+  if (pageToken && pageToken.source === configured && pageToken.until > Date.now()) return pageToken.value;
+  const r = await graph(`${FB_API()}/${process.env.FACEBOOK_PAGE_ID}?fields=access_token`, { headers: { authorization: `Bearer ${configured}` } });
+  const value = typeof r.json.access_token === "string" && r.json.access_token ? r.json.access_token : configured;
+  if (!r.ok) console.error("[facebook] couldn't get the Page token:", r.json.error?.message ?? r.status);
+  pageToken = { value, source: configured, until: Date.now() + (r.ok ? 60 * 60 * 1000 : 0) };
+  return value;
+}
 
 /** A Messenger reply, or a private reply to a Page comment (recipient { comment_id }). */
 export async function sendFacebookMessage(recipient: { id: string } | { comment_id: string }, text: string): Promise<SendResult> {
   if (!facebookConfigured()) return { ok: false, error: "Facebook Page not configured", retry: false };
   const r = await graph(`${FB_API()}/${process.env.FACEBOOK_PAGE_ID}/messages`, {
     method: "POST",
-    headers: { authorization: `Bearer ${process.env.FACEBOOK_PAGE_TOKEN}`, "content-type": "application/json" },
+    headers: { authorization: `Bearer ${await facebookPageToken()}`, "content-type": "application/json" },
     body: JSON.stringify({ recipient, messaging_type: "RESPONSE", message: { text: text.slice(0, 2000) } }),
   });
   const id = (r.json.message_id as string | undefined) ?? r.json.id;
@@ -164,7 +179,7 @@ export async function publishFacebookPhoto(imageUrl: string, caption: string): P
   if (!facebookConfigured()) return { ok: false, error: "Facebook Page not configured", retry: false };
   const r = await graph(`${FB_API()}/${process.env.FACEBOOK_PAGE_ID}/photos`, {
     method: "POST",
-    headers: { authorization: `Bearer ${process.env.FACEBOOK_PAGE_TOKEN}`, "content-type": "application/json" },
+    headers: { authorization: `Bearer ${await facebookPageToken()}`, "content-type": "application/json" },
     body: JSON.stringify({ url: imageUrl, message: caption.slice(0, 5000), published: true }),
   });
   const postId = (r.json.post_id as string | undefined) ?? r.json.id;
