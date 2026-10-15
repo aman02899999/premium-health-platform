@@ -9,6 +9,7 @@ import { getLead, latestLeadByPhone } from "./leads";
 import { nurtureDrafts } from "./nurture";
 import { todayIST } from "./dates";
 import { cancelPending, dispatch, enqueue } from "./outbox";
+import { trackMembership } from "./resend-events";
 
 // Called after a payment is confirmed (browser verify or Razorpay webhook, in either order).
 // Each step is idempotent. Failures are logged, never thrown: the payment itself is already
@@ -18,6 +19,8 @@ export async function afterMembershipPaid(razorpayOrderId: string): Promise<void
   try {
     const applied = await applyPaidOrder(razorpayOrderId);
     if (!applied) return;
+    // Stops the Resend welcome series from sending its "join us" nudge to a paying member.
+    if (applied.member.email) await trackMembership(applied.member.email, applied.member.planName);
     const biz = await business();
     const drafts = [welcomeMessage(applied.member, biz, applied.orderId)];
     if (applied.reward) drafts.push(referralBonusMessage(applied.reward.referrer, applied.member.name, applied.reward.days, biz, applied.reward.id));
