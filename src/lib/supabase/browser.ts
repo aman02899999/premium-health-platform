@@ -37,5 +37,8 @@ export async function verifyEmailCode(email: string, code: string): Promise<stri
   const supabase = getBrowserClient();
   if (!supabase) return "Sign-in isn't switched on for this site yet.";
   const { error } = await supabase.auth.verifyOtp({ email, token: code, type: "email" });
-  return error ? error.message : null;
+  if (error) return error.message;
+  // The code path skips /auth/callback, so ask the server to start the welcome series instead.
+  void fetch("/api/account/welcome", { method: "POST" }).catch(() => {});
+  return null;
 }

@@ -9,6 +9,7 @@ import { getLead, latestLeadByPhone } from "./leads";
 import { nurtureDrafts } from "./nurture";
 import { todayIST } from "./dates";
 import { cancelPending, dispatch, enqueue } from "./outbox";
+import { trackMembership } from "./resend-events";
 
 // Called after a payment is confirmed (browser verify or Razorpay webhook, in either order).
 // Each step is idempotent. Failures are logged, never thrown: the payment itself is already
@@ -25,6 +26,8 @@ export async function afterMembershipPaid(razorpayOrderId: string): Promise<void
     await cancelPending("", applied.member.id);
     await enqueue(drafts);
     await dispatch(5);
+    // Last, so a slow Resend never delays the WhatsApp welcome. Stops the "join us" nudge email.
+    if (applied.member.email) await trackMembership(applied.member.email, applied.member.planName);
   } catch (err) {
     console.error("[growth] membership automation failed:", (err as Error).message);
   }
