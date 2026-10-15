@@ -3,9 +3,10 @@
 // Pure: the same date always gives the same post. Honest by rule: no invented results, reviews,
 // numbers or fake deadlines; health claims are framed as support, never cure.
 import { DIET_PLANS, REFERRER_BONUS_DAYS } from "./config";
+import { TIPS, type Category, type Tip } from "./content-library";
 import type { Draft } from "./messages";
 
-export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string };
+export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string; address?: string };
 export type Channel = "whatsapp" | "instagram" | "google" | "facebook";
 export type DailyPost = {
   date: string;
@@ -22,6 +23,10 @@ export type DailyPost = {
   links: Record<Channel, string>;
   /** What to photograph or design for today's post. */
   visual: string;
+  /** Tip posts: the three points and takeaway shown on the image. Offer posts: the body text. */
+  points: string[];
+  takeaway: string;
+  category: Category | "Offer";
 };
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -207,29 +212,97 @@ export function trackedLink(siteUrl: string, path: string, channel: Channel, dat
   return url.toString() + (path.startsWith("/diet-chart") ? "#order" : "");
 }
 
-/** The post for an IST date ("YYYY-MM-DD"). The 14 ideas rotate, so nothing repeats within two weeks. */
+// The calendar: six tip days, then one offer day, repeating. 89 tips + 14 offers = 103 days
+// (about 3½ months) before anything repeats. Day 0 is 16 Oct 2026.
+const CALENDAR_START = dayNumber("2026-10-16");
+// Smallest day count whose tip days (all except every 7th) use each tip exactly once.
+export const CALENDAR_DAYS = (() => {
+  let n = TIPS.length;
+  while (n - Math.floor((n + 1) / 7) < TIPS.length) n++;
+  return n;
+})();
+
+// Rotate topics so a week mixes fat loss, muscle, health, supplements, food and recovery
+// instead of fourteen fat-loss posts in a row.
+const ORDERED: Tip[] = (() => {
+  const groups = new Map<Category, Tip[]>();
+  for (const t of TIPS) groups.set(t.category, [...(groups.get(t.category) ?? []), t]);
+  const queues = [...groups.values()];
+  const out: Tip[] = [];
+  while (out.length < TIPS.length) for (const q of queues) if (q.length) out.push(q.shift()!);
+  return out;
+})();
+
+type Slot = { kind: "tip"; tip: Tip } | { kind: "offer"; idea: Idea };
+function slotFor(date: string): Slot {
+  const i = (((dayNumber(date) - CALENDAR_START) % CALENDAR_DAYS) + CALENDAR_DAYS) % CALENDAR_DAYS;
+  if (i % 7 === 6) return { kind: "offer", idea: IDEAS[Math.floor(i / 7) % IDEAS.length] };
+  return { kind: "tip", tip: ORDERED[(i - Math.floor((i + 1) / 7)) % ORDERED.length] };
+}
+
+// What a reader of each kind of tip most likely wants next.
+const TIP_CTA: Record<Category, { path: string; cta: (b: PostBiz) => string }> = {
+  "Fat loss": { path: "/diet-chart?plan=trial", cta: () => `Want this built into a plan for your body? Try 7 days for ${inr(trial.priceRupees)}` },
+  "Food facts": { path: "/diet-chart?plan=trial", cta: () => `Get a 7-day Indian diet made for you, ${inr(trial.priceRupees)}` },
+  "Health & diet": { path: "/diet-chart?plan=3m", cta: (b) => `Get a diet plan that fits your reports, from ${b.coach}` },
+  "Women's health": { path: "/diet-chart?plan=3m", cta: (b) => `Get a plan made around your health, from ${b.coach}` },
+  "Muscle gain": { path: "/membership", cta: (b) => `Train with us: free trial session, call ${b.phone}` },
+  Recovery: { path: "/membership", cta: (b) => `Train with a coach who plans this for you: ${b.phone}` },
+  Supplements: { path: "/shop", cta: () => "Genuine supplements, explained honestly: Royal Supplements Store" },
+};
+const MEDICAL = new Set<Category>(["Health & diet", "Women's health"]);
+
+/** The post for an IST date ("YYYY-MM-DD"). The same date always gives the same post. */
 export function dailyPost(date: string, biz: PostBiz): DailyPost {
-  const idea = IDEAS[((dayNumber(date) % IDEAS.length) + IDEAS.length) % IDEAS.length];
-  const { hook, body, cta } = idea.build(biz);
+  const slot = slotFor(date);
+  const sign = [`— ${biz.coach}, ${biz.name}`, biz.address ? `📍 ${biz.address}` : "", `📞 ${biz.phone}`].filter(Boolean).join("\n");
+  let theme: string, path: string, visual: string, hook: string, cta: string, tagList: string[], points: string[], takeaway: string, category: DailyPost["category"];
+  let bodyText: string;
+  if (slot.kind === "tip") {
+    const t = slot.tip;
+    ({ theme, category } = t);
+    ({ path } = TIP_CTA[t.category]);
+    cta = TIP_CTA[t.category].cta(biz);
+    hook = t.hook;
+    points = [...t.points];
+    takeaway = t.takeaway;
+    tagList = t.tags;
+    visual = "Auto-generated tip card (1080×1350) with the three points.";
+    bodyText = `${points.map((p) => `✅ ${p}`).join("\n")}\n\n💡 ${takeaway}${MEDICAL.has(t.category) ? "\n\nGeneral information, not medical advice. Keep taking the medicines your doctor prescribed." : ""}`;
+  } else {
+    const idea = slot.idea;
+    const built = idea.build(biz);
+    ({ theme, path, visual } = idea);
+    hook = built.hook;
+    cta = built.cta;
+    tagList = idea.tags;
+    points = [built.body];
+    takeaway = "";
+    category = "Offer";
+    bodyText = built.body;
+  }
   const links = {
-    whatsapp: trackedLink(biz.siteUrl, idea.path, "whatsapp", date),
-    instagram: trackedLink(biz.siteUrl, idea.path, "instagram", date),
-    google: trackedLink(biz.siteUrl, idea.path, "google", date),
-    facebook: trackedLink(biz.siteUrl, idea.path, "facebook", date),
+    whatsapp: trackedLink(biz.siteUrl, path, "whatsapp", date),
+    instagram: trackedLink(biz.siteUrl, path, "instagram", date),
+    google: trackedLink(biz.siteUrl, path, "google", date),
+    facebook: trackedLink(biz.siteUrl, path, "facebook", date),
   };
-  const tags = ["RoyalFitnessClub", ...idea.tags].map((t) => `#${t}`).join(" ");
+  const tags = ["RoyalFitnessClub", "CoachAman", ...tagList, "NoidaFitness"].map((t) => `#${t}`).join(" ");
   return {
     date,
-    theme: idea.theme,
+    theme,
     title: hook,
-    whatsapp: `*${hook}*\n\n${body}\n\n👉 ${cta}\n${links.whatsapp}`,
+    whatsapp: `*${hook}*\n\n${bodyText}\n\n👉 ${cta}\n${links.whatsapp}\n\n${sign}`,
     // Instagram captions can't hold clickable links: point to the bio link instead.
-    instagram: `${hook}\n\n${body}\n\n${cta} — link in bio.\n\n${tags}`,
-    google: `${hook} ${body} ${cta}. ${links.google}`,
-    facebook: `${hook}\n\n${body}\n\n👉 ${cta}: ${links.facebook}\n\n${tags}`,
-    path: idea.path,
+    instagram: `${hook}\n\n${bodyText}\n\n${cta} — link in bio.\n\n${sign}\n\n${tags}`,
+    google: `${hook} ${slot.kind === "tip" ? `${points.join(" ")} ${takeaway}` : bodyText} ${cta}. ${links.google}`,
+    facebook: `${hook}\n\n${bodyText}\n\n👉 ${cta}: ${links.facebook}\n\n${sign}\n\n${tags}`,
+    path,
     links,
-    visual: idea.visual,
+    visual,
+    points,
+    takeaway,
+    category,
   };
 }
 
@@ -239,6 +312,7 @@ export function upcomingPosts(from: string, biz: PostBiz, days = 7): DailyPost[]
 }
 
 export const IDEA_COUNT = IDEAS.length;
+export const TIP_COUNT = TIPS.length;
 
 /** The morning email to the coach with the day's post, ready to copy. One per day (deduped). */
 export function coachPostEmail(post: DailyPost, to: string, adminUrl: string): Draft {
