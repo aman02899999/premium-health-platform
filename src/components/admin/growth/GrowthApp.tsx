@@ -156,7 +156,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
             {tab === "marketing" && <Marketing today={data.today} biz={postBiz} />}
             {tab === "social" && <Social status={data.social} siteUrl={data.siteUrl} />}
             {tab === "messages" && <Messages data={data} act={act} />}
-            {tab === "members" && <Members data={data} plans={plans} act={act} gymName={gymName} />}
+            {tab === "members" && <Members data={data} plans={plans} act={act} gymName={gymName} reload={load} />}
             {tab === "leads" && <Leads data={data} act={act} />}
             {tab === "diet" && <DietOrders data={data} act={act} />}
             {tab === "referrals" && <Referrals data={data} />}
@@ -344,9 +344,181 @@ function Messages({ data, act }: { data: Data; act: Act }) {
   );
 }
 
+type ImportResult = {
+  committed: boolean;
+  columns: Record<string, string>;
+  counts: { add: number; update: number; unchanged: number; errors: number; duplicates: number; remindSoon: number };
+  add: { row: number; name: string; phone: string; planName: string; expiresOn: string }[];
+  update: { row: number; name: string; phone: string; expiresOn: string; was: string }[];
+  errors: { row: number; message: string }[];
+};
+const FIELD_LABEL: Record<string, string> = { name: "Name", phone: "Mobile", email: "Email", plan: "Plan", start: "Start date", end: "End date", duration: "Duration", notes: "Notes" };
+const TEMPLATE = "Name,Mobile,Email,Plan,Start date,End date,Notes\nRahul Kumar,9876543210,rahul@example.com,Quarterly,01/09/2026,30/11/2026,Morning batch\n";
+
+/** Upload a CSV or Excel member list: a preview first (nothing saved), then one click to import. */
+function ImportMembers({ reload }: { reload: () => Promise<void> }) {
+  const [file, setFile] = useState<File | null>(null);
+  const [result, setResult] = useState<ImportResult | null>(null);
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const send = async (f: File, commit: boolean) => {
+    setBusy(true);
+    setError("");
+    try {
+      const form = new FormData();
+      form.set("file", f);
+      form.set("commit", commit ? "1" : "0");
+      const res = await fetch("/api/admin/members/import", { method: "POST", body: form });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setResult(null);
+        setError(json.error || "Couldn't read the file.");
+        return;
+      }
+      setResult(json as ImportResult);
+      if (commit) await reload();
+    } finally {
+      setBusy(false);
+    }
+  };
+  const close = () => {
+    setFile(null);
+    setResult(null);
+    setError("");
+  };
+  const c = result?.counts;
+  return (
+    <>
+      <label className={`inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-white/15 px-3 py-2 text-xs font-bold ${busy ? "opacity-60" : ""}`}>
+        {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Users className="h-3.5 w-3.5" />} Import CSV / Excel
+        <input
+          type="file"
+          accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          className="sr-only"
+          disabled={busy}
+          onChange={(e) => {
+            const f = e.target.files?.[0];
+            e.target.value = "";
+            if (!f) return;
+            setFile(f);
+            setResult(null);
+            void send(f, false);
+          }}
+        />
+      </label>
+      {(error || result) && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-3 sm:items-center" role="dialog" aria-modal="true" aria-label="Import members">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-white/10 bg-ink p-4 text-sm sm:p-5">
+            <div className="mb-3 flex items-center gap-2">
+              <h2 className="font-bold">{result?.committed ? "Import finished" : "Check before importing"}</h2>
+              <span className="truncate text-xs text-white/50">{file?.name}</span>
+              <button type="button" onClick={close} aria-label="Close" className="ml-auto rounded-lg p-1 text-white/60 hover:text-white">
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            {error && (
+              <div className="space-y-3">
+                <p className="rounded-xl bg-rose-500/15 px-3 py-2 text-rose-100">{error}</p>
+                <p className="text-xs text-white/60">
+                  Needed columns: Name, Mobile and an End date (or a Start date with a Duration such as &quot;3 months&quot;). Plan, Email and Notes are optional. Dates like 15/10/2026 or 15-Oct-2026 work.{" "}
+                  <a href={`data:text/csv;charset=utf-8,${encodeURIComponent(TEMPLATE)}`} download="members-template.csv" className="font-semibold text-sky-300 underline">
+                    Download a template
+                  </a>
+                </p>
+              </div>
+            )}
+            {result && c && (
+              <div className="space-y-4">
+                <p className="text-xs text-white/60">
+                  Columns found:{" "}
+                  {Object.entries(result.columns)
+                    .map(([k, v]) => `${FIELD_LABEL[k] ?? k} ← "${v}"`)
+                    .join(" · ")}
+                </p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {[
+                    [result.committed ? "Added" : "New members", c.add, "text-emerald-300"],
+                    [result.committed ? "Extended" : "Later end date", c.update, "text-sky-300"],
+                    ["Already up to date", c.unchanged, "text-white/70"],
+                    ["Rows skipped", c.errors + c.duplicates, c.errors + c.duplicates ? "text-amber-300" : "text-white/70"],
+                  ].map(([label, n, color]) => (
+                    <div key={label as string} className="rounded-xl border border-white/10 p-3">
+                      <p className={`text-2xl font-bold ${color}`}>{n as number}</p>
+                      <p className="text-xs text-white/55">{label as string}</p>
+                    </div>
+                  ))}
+                </div>
+                {c.remindSoon > 0 && (
+                  <p className="rounded-xl bg-amber-500/10 px-3 py-2 text-xs text-amber-100">
+                    {c.remindSoon} of them end within a week or ended in the last 10 days, so they get a renewal reminder at the next morning run.
+                  </p>
+                )}
+                {result.add.length > 0 && (
+                  <div>
+                    <p className="mb-1 text-xs font-semibold text-white/70">{result.committed ? "Added" : "Will be added"}
+                      {c.add > result.add.length ? ` (first ${result.add.length} of ${c.add})` : ""}</p>
+                    <ul className="divide-y divide-white/5 rounded-xl border border-white/10 text-xs">
+                      {result.add.map((m) => (
+                        <li key={m.row} className="flex flex-wrap gap-x-3 px-3 py-1.5">
+                          <span className="font-semibold">{m.name}</span>
+                          <span className="text-white/60">{m.phone}</span>
+                          <span className="text-white/60">{m.planName}</span>
+                          <span className="ml-auto text-white/60">ends {formatDate(m.expiresOn)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {result.update.length > 0 && (
+                  <div>
+                    <p className="mb-1 text-xs font-semibold text-white/70">Existing members with a later end date in the file</p>
+                    <ul className="divide-y divide-white/5 rounded-xl border border-white/10 text-xs">
+                      {result.update.map((m) => (
+                        <li key={m.row} className="flex flex-wrap gap-x-3 px-3 py-1.5">
+                          <span className="font-semibold">{m.name}</span>
+                          <span className="text-white/60">{m.phone}</span>
+                          <span className="ml-auto text-white/60">
+                            {formatDate(m.was)} → {formatDate(m.expiresOn)}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {result.errors.length > 0 && (
+                  <div>
+                    <p className="mb-1 text-xs font-semibold text-amber-200">Rows that will be skipped (fix them in the file and upload again)</p>
+                    <ul className="max-h-40 overflow-y-auto rounded-xl border border-amber-400/20 text-xs">
+                      {result.errors.map((e, i) => (
+                        <li key={`${e.row}-${i}`} className="px-3 py-1">
+                          Row {e.row}: {e.message}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="flex flex-wrap justify-end gap-2">
+                  <button type="button" onClick={close} className="rounded-xl border border-white/15 px-3 py-2 text-xs">
+                    {result.committed ? "Done" : "Cancel"}
+                  </button>
+                  {!result.committed && file && c.add + c.update > 0 && (
+                    <button type="button" disabled={busy} onClick={() => void send(file, true)} className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-3 py-2 text-xs font-bold disabled:opacity-60">
+                      {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />} Import {c.add + c.update} member{c.add + c.update === 1 ? "" : "s"}
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 const emptyMember = (today: string) => ({ id: "", name: "", phone: "", email: "", planName: "", startOn: today, expiresOn: addDays(today, 29), notes: "", reminders: true });
 
-function Members({ data, plans, act, gymName }: { data: Data; plans: { name: string; duration: string }[]; act: Act; gymName: string }) {
+function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { name: string; duration: string }[]; act: Act; gymName: string; reload: () => Promise<void> }) {
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | "active" | "expiring" | "expired">("all");
   const [edit, setEdit] = useState<ReturnType<typeof emptyMember> | null>(null);
@@ -386,9 +558,12 @@ function Members({ data, plans, act, gymName }: { data: Data; plans: { name: str
             {f}
           </button>
         ))}
-        <button type="button" onClick={() => setEdit(emptyMember(t))} className="ml-auto inline-flex items-center gap-1.5 rounded-xl bg-brand px-3 py-2 text-xs font-bold">
-          <Plus className="h-3.5 w-3.5" /> Add desk member
-        </button>
+        <div className="ml-auto flex flex-wrap gap-2">
+          <ImportMembers reload={reload} />
+          <button type="button" onClick={() => setEdit(emptyMember(t))} className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-3 py-2 text-xs font-bold">
+            <Plus className="h-3.5 w-3.5" /> Add desk member
+          </button>
+        </div>
       </div>
       {copied && (
         <p className="break-all rounded-xl bg-white/10 px-3 py-2 text-xs" role="status">
