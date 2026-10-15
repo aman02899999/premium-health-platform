@@ -33,6 +33,7 @@ export async function nurtureBusiness(): Promise<NurtureBiz> {
     siteUrl: SITE_URL,
     coach: `Coach ${(c.trainers?.[0]?.name || "Aman Sharma").replace(/^coach\s+/i, "")}`,
     membershipFrom: monthly?.price,
+    address: [c.business.address?.street, c.business.address?.locality, `${c.business.address?.city ?? ""} ${c.business.address?.postalCode ?? ""}`.trim()].filter(Boolean).join(", "),
   };
 }
 

@@ -3,6 +3,7 @@ import type { PoolClient } from "pg";
 import { pool } from "@/health/db";
 import { REFERRED_BONUS_DAYS, REFERRER_BONUS_DAYS, makeReferralCode, normaliseCode } from "./config";
 import { addDays, expiryFor, isIsoDate, parseDuration, renewalStart, todayIST } from "./dates";
+import type { Candidate, RowError } from "./member-import";
 
 // public.members, public.referral_rewards: server-only tables (RLS on, no policies),
 // reached through the direct database connection after the caller's own checks.
@@ -85,7 +86,7 @@ export async function memberByCode(code: string): Promise<Member | null> {
  * Inserts with a fresh referral code, retrying on the (unlikely) code collision. Inside a
  * transaction a failed statement aborts everything, so each try runs under a savepoint.
  */
-async function insertMember(db: PoolClient | typeof pool, m: { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: Member["source"]; notes?: string }, inTxn = false): Promise<Member> {
+export async function insertMember(db: PoolClient | typeof pool, m: { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: Member["source"]; notes?: string }, inTxn = false): Promise<Member> {
   for (let attempt = 0; attempt < 5; attempt++) {
     if (inTxn) await db.query("savepoint member_insert");
     try {
@@ -135,6 +136,67 @@ export async function saveDeskMember(input: DeskInput, id?: string): Promise<Mem
     return fromRow(rows[0]);
   }
   return insertMember(pool, { ...input, source: "desk" });
+}
+
+export type ImportPlan = {
+  add: Candidate[];
+  update: (Candidate & { was: string })[];
+  unchanged: Candidate[];
+  duplicates: RowError[];
+  remindSoon: number;
+};
+
+/**
+ * Decides what an import does without changing anything: new numbers are added; a number that is
+ * already a member is updated only when the file gives a later end date (an import never shortens
+ * a membership that was renewed online since). The same number twice keeps the later end date.
+ * With commit, applies it in one transaction.
+ */
+export async function importMembers(candidates: Candidate[], today: string, commit: boolean): Promise<ImportPlan> {
+  const byPhone = new Map<string, Candidate>();
+  const duplicates: RowError[] = [];
+  for (const c of candidates) {
+    const prev = byPhone.get(c.phone);
+    if (!prev) byPhone.set(c.phone, c);
+    else {
+      const [keep, drop] = c.expiresOn > prev.expiresOn ? [c, prev] : [prev, c];
+      byPhone.set(c.phone, keep);
+      duplicates.push({ row: drop.row, message: `Same mobile as row ${keep.row}; kept the later end date.` });
+    }
+  }
+  const unique = [...byPhone.values()];
+  const { rows } = await pool.query<{ phone: string; expires_on: string }>(`select phone, to_char(expires_on, 'YYYY-MM-DD') as expires_on from public.members where phone = any($1)`, [unique.map((c) => c.phone)]);
+  const existing = new Map(rows.map((r) => [r.phone, r.expires_on]));
+  const plan: ImportPlan = { add: [], update: [], unchanged: [], duplicates, remindSoon: 0 };
+  for (const c of unique) {
+    const was = existing.get(c.phone);
+    if (!was) plan.add.push(c);
+    else if (c.expiresOn > was) plan.update.push({ ...c, was });
+    else plan.unchanged.push(c);
+  }
+  const lo = addDays(today, -10);
+  const hi = addDays(today, 7);
+  plan.remindSoon = [...plan.add, ...plan.update].filter((c) => c.expiresOn >= lo && c.expiresOn <= hi).length;
+  if (!commit) return plan;
+
+  const client = await pool.connect();
+  try {
+    await client.query("begin");
+    for (const c of plan.add) await insertMember(client, { ...c, source: "desk" }, true);
+    for (const c of plan.update) {
+      await client.query(
+        `update public.members set plan_name = $2, start_on = least(start_on, $3::date), expires_on = $4, email = coalesce(email, $5), updated_at = now() where phone = $1`,
+        [c.phone, c.planName, c.startOn, c.expiresOn, c.email],
+      );
+    }
+    await client.query("commit");
+  } catch (err) {
+    await client.query("rollback").catch(() => {});
+    throw err;
+  } finally {
+    client.release();
+  }
+  return plan;
 }
 
 export async function deleteMember(id: string): Promise<void> {

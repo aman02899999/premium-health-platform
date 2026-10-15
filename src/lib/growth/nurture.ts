@@ -7,7 +7,7 @@ import type { Draft } from "./messages";
 
 export type Interest = "diet" | "pt" | "membership";
 export type NurtureLead = { id: string; name: string; email: string; interest: Interest; createdAt: string };
-export type NurtureBiz = { name: string; phone: string; whatsapp: string; siteUrl: string; coach: string; membershipFrom?: number };
+export type NurtureBiz = { name: string; phone: string; whatsapp: string; siteUrl: string; coach: string; membershipFrom?: number; address?: string };
 
 type Step = { day: number; subject: string; body: string; cta: { label: string; url: string } };
 
