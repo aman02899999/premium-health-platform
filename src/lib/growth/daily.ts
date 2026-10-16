@@ -16,7 +16,8 @@ import { getAllEnrichedArticles } from "@/health/data/blog-enrichment";
 import { NEWSLETTER_SOURCES, isSunday, weeklyNewsletter } from "./newsletter";
 import { adminDigest, type DigestData } from "./admin-digest";
 import { dietPlan } from "./config";
-import { addDays } from "./dates";
+import { addDays, daysBetween } from "./dates";
+import { trackMembershipExpiring } from "./resend-events";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -47,6 +48,8 @@ export async function runDaily(now = new Date()) {
   const today = todayIST(now);
   const [biz, members, leads, nb, nl] = await Promise.all([business(), membersNearExpiry(today), openLeads(today), nurtureBusiness(), nurtureLeads(today)]);
   const drafts = [...dueMessages(today, members, leads, biz), ...nurtureDrafts(today, nl, nb)];
+  // Renewal email sequence (Resend), alongside the WhatsApp reminders: fired once, exactly 7 days out.
+  await Promise.all(members.filter((m) => m.reminders && m.email && daysBetween(today, m.expiresOn) === 7).map((m) => trackMembershipExpiring(m.email, m.expiresOn, m.name)));
   // The day's marketing post goes to the coach's inbox each morning, ready to copy.
   const coach = process.env.COACH_EMAIL;
   if (coach) {

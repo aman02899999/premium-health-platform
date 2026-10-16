@@ -9,7 +9,7 @@ import { getLead, latestLeadByPhone } from "./leads";
 import { nurtureDrafts } from "./nurture";
 import { todayIST } from "./dates";
 import { cancelPending, dispatch, enqueue } from "./outbox";
-import { trackMembership } from "./resend-events";
+import { trackMemberJoined, trackMemberRenewed, trackMembership, trackTrialBooked } from "./resend-events";
 
 // Called after a payment is confirmed (browser verify or Razorpay webhook, in either order).
 // Each step is idempotent. Failures are logged, never thrown: the payment itself is already
@@ -20,7 +20,12 @@ export async function afterMembershipPaid(razorpayOrderId: string): Promise<void
     const applied = await applyPaidOrder(razorpayOrderId);
     if (!applied) return;
     // Stops the Resend welcome series from sending its "join us" nudge to a paying member.
-    if (applied.member.email) await trackMembership(applied.member.email, applied.member.planName);
+    if (applied.member.email) {
+      await trackMembership(applied.member.email, applied.member.planName);
+      // Email sequences: onboarding for a first membership, stop the renewal reminders for a renewal.
+      if (applied.isNew) await trackMemberJoined(applied.member.email, applied.member.planName, applied.member.name);
+      else await trackMemberRenewed(applied.member.email);
+    }
     const biz = await business();
     const drafts = [welcomeMessage(applied.member, biz, applied.orderId)];
     if (applied.reward) drafts.push(referralBonusMessage(applied.reward.referrer, applied.member.name, applied.reward.days, biz, applied.reward.id));
@@ -74,6 +79,8 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
   try {
     const lead = leadId ? await getLead(leadId) : await latestLeadByPhone(phone);
     if (!lead) return;
+    // Free-trial form (home / contact page) with an email: the trial confirmation email sequence.
+    if (lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name);
     const drafts = [];
     if (lead.followUps) {
       const d = leadMessage("lead-0", lead, await business());
