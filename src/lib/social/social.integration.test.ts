@@ -115,6 +115,17 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(String(photo.body!.message)).toContain("utm_source=facebook");
   });
 
+  it("publishes the day's sales Story once, as a STORIES media with the story image", async () => {
+    const now = new Date("2026-10-16T02:15:00Z");
+    expect(await social.runInstagramStory(now)).toEqual({ story: "published" });
+    expect(await social.runInstagramStory(now)).toEqual({ story: "already-posted" });
+    const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media).toHaveLength(1);
+    expect(media[0].body).toEqual({ image_url: expect.stringMatching(/\/api\/social\/story-image\/2026-10-16\.jpg$/), media_type: "STORIES" });
+    const rows = (await pool.query("select channel, status from public.social_posts")).rows;
+    expect(rows).toEqual([{ channel: "instagram-story", status: "published" }]);
+  });
+
   it("SOCIAL_AUTO_REPLY=off logs messages without answering", async () => {
     process.env.SOCIAL_AUTO_REPLY = "off";
     expect(await social.handleInbound(wa("20", "price"))).toBe("logged");

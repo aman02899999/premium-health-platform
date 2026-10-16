@@ -105,13 +105,22 @@ async function igUserId(token: string): Promise<string | null> {
 
 /** Publishes one photo with its caption. The image must be a public JPEG URL. */
 export async function publishInstagramPhoto(imageUrl: string, caption: string): Promise<SendResult & { permalink?: string }> {
+  return publishInstagramMedia({ image_url: imageUrl, caption: caption.slice(0, 2200) });
+}
+
+/** Publishes a 9:16 image as a Story (Stories take no caption). */
+export async function publishInstagramStory(imageUrl: string): Promise<SendResult & { permalink?: string }> {
+  return publishInstagramMedia({ image_url: imageUrl, media_type: "STORIES" });
+}
+
+async function publishInstagramMedia(media: Record<string, string>): Promise<SendResult & { permalink?: string }> {
   const token = await instagramToken();
   if (!token) return { ok: false, error: "Instagram not configured", retry: false };
   const auth = { authorization: `Bearer ${token}`, "content-type": "application/json" };
   const user = await igUserId(token);
   if (!user) return { ok: false, error: "Instagram token rejected (check INSTAGRAM_ACCESS_TOKEN)", retry: false };
 
-  const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify({ image_url: imageUrl, caption: caption.slice(0, 2200) }) });
+  const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify(media) });
   if (!created.ok || !created.json.id) return fail(created);
   // Instagram downloads and processes the image first; photos are usually ready within seconds.
   for (let i = 0; i < 6; i++) {

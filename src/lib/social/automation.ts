@@ -6,9 +6,10 @@ import { SITE_URL } from "@/lib/site";
 import { todayIST } from "@/lib/growth/dates";
 import { insertLead } from "@/lib/growth/leads";
 import { dailyPost, type PostBiz } from "@/lib/growth/daily-posts";
+import { storyItem } from "@/lib/growth/sales-catalog";
 import { buildReply, detectIntent, forInstagram, shouldReply, type Intent, type ReplyCtx } from "./auto-reply";
 import { indianMobile, type Inbound } from "./inbound";
-import { autoReplyOn, facebookConfigured, instagramConfigured, publishFacebookPhoto, publishInstagramPhoto, refreshInstagramToken, sendFacebookMessage, sendInstagramMessage, sendWhatsAppText, whatsappReplyConfigured } from "./meta";
+import { autoReplyOn, facebookConfigured, instagramConfigured, publishFacebookPhoto, publishInstagramPhoto, publishInstagramStory, refreshInstagramToken, sendFacebookMessage, sendInstagramMessage, sendWhatsAppText, whatsappReplyConfigured } from "./meta";
 
 async function replyCtx(name: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -70,13 +71,14 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
 }
 
 export const postImageUrl = (date: string) => `${SITE_URL}/api/social/post-image/${date}.jpg`;
+export const storyImageUrl = (date: string) => `${SITE_URL}/api/social/story-image/${date}.jpg`;
 
 /**
  * Publishes the day's post to Instagram once. Re-running the same day is a no-op once it has
  * published; a failed day is retried on the next run.
  */
 /** Claims today's post for a channel (or a failed one to retry); null when it's already done. */
-async function claimPost(channel: "instagram" | "facebook", date: string, theme: string): Promise<string | null> {
+async function claimPost(channel: "instagram" | "facebook" | "instagram-story", date: string, theme: string): Promise<string | null> {
   const { rows } = await pool.query<{ id: string }>(
     `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
      on conflict (channel, post_date) do update set status = 'pending', error = null
@@ -112,6 +114,18 @@ export async function runInstagram(now = new Date(), biz: PostBiz): Promise<{ in
   await recordPost(id, res);
   if (!res.ok) console.error("[instagram] publish failed:", res.error);
   return { instagram: res.ok ? "published" : `failed: ${res.error}`, token };
+}
+
+/** The day's sales Story on Instagram (one product from the catalogue), once a day. */
+export async function runInstagramStory(now = new Date()): Promise<{ story: string }> {
+  if (!instagramConfigured()) return { story: "off" };
+  const today = todayIST(now);
+  const id = await claimPost("instagram-story", today, storyItem(today).title);
+  if (!id) return { story: "already-posted" };
+  const res = await publishInstagramStory(storyImageUrl(today));
+  await recordPost(id, res);
+  if (!res.ok) console.error("[instagram] story failed:", res.error);
+  return { story: res.ok ? "published" : `failed: ${res.error}` };
 }
 
 /** The same post on the Facebook Page, with a clickable link. */
