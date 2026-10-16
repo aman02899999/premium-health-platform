@@ -9,6 +9,7 @@ import { formatDate } from "./dates";
 //   checkout.started      -> "Abandoned Checkout Recovery"  (stopped by member.joined)
 //   member.joined         -> "New Member Onboarding (30 days)"
 //   membership.expiring   -> "Membership Renewal"           (stopped by member.renewed)
+//   member.inactive       -> "Inactive Member Win-back"     (stopped by member.renewed)
 // Best-effort: no-op without RESEND_API_KEY, never throws, short timeouts.
 
 const API = () => (process.env.RESEND_API_URL || "https://api.resend.com").replace(/\/$/, "");
@@ -78,3 +79,6 @@ export const trackMemberRenewed = (email: string | null) => fire("member.renewed
 /** Seven days before the end date (daily cron). */
 export const trackMembershipExpiring = (email: string | null, expiresOn: string, name?: string | null) =>
   fire("membership.expiring", email, { expiry_date: `on ${formatDate(expiresOn)}` }, firstWord(name));
+
+/** A month after a membership ended without a renewal (daily cron). */
+export const trackMemberLapsed = (email: string | null, name?: string | null) => fire("member.inactive", email, undefined, firstWord(name));

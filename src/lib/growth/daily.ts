@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
 import { nurtureLeads, openLeads } from "./leads";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
-import { membersNearExpiry } from "./members";
+import { lapsedMembers, membersNearExpiry } from "./members";
 import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
@@ -17,7 +17,7 @@ import { NEWSLETTER_SOURCES, isSunday, weeklyNewsletter } from "./newsletter";
 import { adminDigest, type DigestData } from "./admin-digest";
 import { dietPlan } from "./config";
 import { addDays, daysBetween } from "./dates";
-import { trackMembershipExpiring } from "./resend-events";
+import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -60,6 +60,11 @@ export async function runDaily(now = new Date()) {
   // per end date, even if the daily run happens twice that day ("Run now" plus the schedule).
   for (const m of members.filter((m) => m.reminders && m.email && daysBetween(today, m.expiresOn) === 7)) {
     if (await claimEvent(`membership.expiring:${m.email!.trim().toLowerCase()}:${m.expiresOn}`)) await trackMembershipExpiring(m.email, m.expiresOn, m.name);
+  }
+  // Win-back emails a month after a membership ended without a renewal. The window is a week wide so
+  // a missed daily run doesn't skip anyone; the claim keeps it to once per member per end date.
+  for (const m of await lapsedMembers(today)) {
+    if (await claimEvent(`member.inactive:${m.email!.trim().toLowerCase()}:${m.expiresOn}`)) await trackMemberLapsed(m.email, m.name);
   }
   // The day's marketing post goes to the coach's inbox each morning, ready to copy.
   const coach = process.env.COACH_EMAIL;
