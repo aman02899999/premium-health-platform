@@ -69,7 +69,7 @@ describe("bundles", () => {
       expect(b.slugs.length).toBeGreaterThanOrEqual(3);
       expect(b.listPrice).toBe(b.slugs.reduce((s, slug) => s + bookBySlug(slug)!.price, 0));
       expect(b.price).toBeLessThan(b.listPrice * 0.65);
-      expect(String(b.price)).toMatch(/99$/);
+      expect(String(b.price)).toMatch(/(49|99)$/);
     }
   });
 

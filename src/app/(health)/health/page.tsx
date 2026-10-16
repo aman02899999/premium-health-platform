@@ -7,6 +7,7 @@ import {
   Stethoscope, Sun, Users, Apple, BadgeCheck, BookOpen, Crown, TrendingUp, Clock,
 } from "lucide-react";
 import { SITE, EXAMPLE_SEARCHES } from "@/health/lib/site";
+import { bookBySlug } from "@/lib/library/pricing";
 import { IMG } from "@/health/lib/images";
 import { SearchBar } from "@/health/components/layout";
 import { SectionHeading, TopicCard, Newsletter, AdSlot, EvidenceBadge, DisclaimerBar } from "@/health/components/ui";
@@ -319,12 +320,12 @@ export default function HomePage() {
               <h3 className="text-sm font-bold">Featured Health Guides — Premium Library</h3>
               <div className="grid gap-3">
                 <Link href="/library/53-exercise-for-type-2-diabetes" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-amber-600">Premium Library · 59 pages · ₹699</p>
+                  <p className="text-[11px] font-bold uppercase text-amber-600">{`Premium Library · ${bookBySlug("53-exercise-for-type-2-diabetes")?.pages ?? 59} pages · ₹${bookBySlug("53-exercise-for-type-2-diabetes")?.price ?? ""}`}</p>
                   <p className="mt-1 text-sm font-bold">Exercise for Type 2 Diabetes</p>
                   <p className="mt-1 text-xs text-stone-500">Safe exercise for blood-sugar control — to use alongside your doctor&apos;s care.</p>
                 </Link>
                 <Link href="/library/03-fat-loss-blueprint" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">Premium Library · 60 pages · ₹699</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-600">{`Premium Library · ${bookBySlug("03-fat-loss-blueprint")?.pages ?? 60} pages · ₹${bookBySlug("03-fat-loss-blueprint")?.price ?? ""}`}</p>
                   <p className="mt-1 text-sm font-bold">The Fat-Loss Blueprint</p>
                   <p className="mt-1 text-xs text-stone-500">Fat loss with Indian food, family meals and busy jobs — no crash diets.</p>
                 </Link>

@@ -8,7 +8,7 @@ import { priceCart, type CartQuote, type PriceTable } from "./cart";
 
 export const COMPLETE_LIBRARY_ID = "complete-library";
 /** Complete library price in rupees. */
-export const COMPLETE_LIBRARY_PRICE = 2999;
+export const COMPLETE_LIBRARY_PRICE = 999;
 
 export type LibraryQuote = {
   /** Comma-separated cart ids ("complete-library", bundle ids, book slugs). */
