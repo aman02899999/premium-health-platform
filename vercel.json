@@ -11,6 +11,14 @@
     {
       "path": "/api/cron/daily",
       "schedule": "15 2 * * *"
+    },
+    {
+      "path": "/api/cron/reel",
+      "schedule": "20 13 * * *"
+    },
+    {
+      "path": "/api/cron/reel?retry=1",
+      "schedule": "40 15 * * *"
     }
   ]
 }

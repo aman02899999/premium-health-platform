@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
-import { runDaily } from "@/lib/growth/daily";
+import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
 import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
@@ -11,13 +11,14 @@ import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
 import { storageConfigured } from "@/lib/growth/storage";
 import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
-import { socialStatus } from "@/lib/social/automation";
+import { runReels, socialStatus } from "@/lib/social/automation";
 import { listClientOrders, rejectVersion, updateAccess } from "@/lib/growth/client-plans";
 import { lastDailyRun, recordDailyRun, setupChecklist } from "@/lib/growth/system-status";
 
 export const dynamic = "force-dynamic";
-// "Regenerate" builds a plan PDF on the server.
-export const maxDuration = 60;
+// "Regenerate" builds a plan PDF on the server; "Post today's Reel" renders a video and waits for
+// Instagram to process it.
+export const maxDuration = 300;
 
 const OFFLINE = () => NextResponse.json({ error: "The database connection isn't configured, so growth tools are offline." }, { status: 503 });
 const isUuid = (s: unknown): s is string => typeof s === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(s);
@@ -131,6 +132,11 @@ export async function POST(req: Request) {
       case "run-daily": {
         const result = await runDaily();
         await recordDailyRun("admin", true, result);
+        return NextResponse.json({ ok: true, result });
+      }
+      case "post-reel": {
+        const result = await runReels(new Date(), await nurtureBusiness());
+        await recordDailyRun("admin", true, result, "reel-run");
         return NextResponse.json({ ok: true, result });
       }
     }

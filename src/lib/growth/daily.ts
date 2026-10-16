@@ -8,7 +8,7 @@ import { membersNearExpiry } from "./members";
 import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
-import { runFacebook, runInstagram, runInstagramStory, storyImageUrl } from "@/lib/social/automation";
+import { runInstagramStory, storyImageUrl } from "@/lib/social/automation";
 import { reelScript, storyItem } from "./sales-catalog";
 import { checkoutReminder, coachsPick, isMonday, isWednesday, weeklyPicks, type AbandonedOrder } from "./sales-emails";
 import { pool } from "@/health/db";
@@ -83,11 +83,10 @@ export async function runDaily(now = new Date()) {
   }
   const queued = await enqueue(drafts);
   const sent = await dispatch();
-  // The same post goes on Instagram by itself once INSTAGRAM_ACCESS_TOKEN is set.
-  const social = await runInstagram(now, nb).catch((err) => ({ instagram: `error: ${(err as Error).message}` }));
-  const fb = await runFacebook(now, nb).catch((err) => ({ facebook: `error: ${(err as Error).message}` }));
+  // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
+  // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, ...sent, ...social, ...fb, ...story };
+  return { today, due: drafts.length, queued, ...sent, ...story };
 }
 
 /**

@@ -108,12 +108,20 @@ export async function publishInstagramPhoto(imageUrl: string, caption: string): 
   return publishInstagramMedia({ image_url: imageUrl, caption: caption.slice(0, 2200) });
 }
 
+/**
+ * Publishes a Reel (also shown in the feed). Instagram downloads the MP4 from the public URL and
+ * transcodes it, which takes up to a couple of minutes.
+ */
+export async function publishInstagramReel(videoUrl: string, caption: string): Promise<SendResult & { permalink?: string }> {
+  return publishInstagramMedia({ media_type: "REELS", video_url: videoUrl, caption: caption.slice(0, 2200), share_to_feed: "true" }, { tries: 30, everyMs: 4000 });
+}
+
 /** Publishes a 9:16 image as a Story (Stories take no caption). */
 export async function publishInstagramStory(imageUrl: string): Promise<SendResult & { permalink?: string }> {
   return publishInstagramMedia({ image_url: imageUrl, media_type: "STORIES" });
 }
 
-async function publishInstagramMedia(media: Record<string, string>): Promise<SendResult & { permalink?: string }> {
+async function publishInstagramMedia(media: Record<string, string>, wait = { tries: 6, everyMs: 2000 }): Promise<SendResult & { permalink?: string }> {
   const token = await instagramToken();
   if (!token) return { ok: false, error: "Instagram not configured", retry: false };
   const auth = { authorization: `Bearer ${token}`, "content-type": "application/json" };
@@ -122,12 +130,18 @@ async function publishInstagramMedia(media: Record<string, string>): Promise<Sen
 
   const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify(media) });
   if (!created.ok || !created.json.id) return fail(created);
-  // Instagram downloads and processes the image first; photos are usually ready within seconds.
-  for (let i = 0; i < 6; i++) {
+  // Instagram downloads and processes the media first: photos within seconds, videos in minutes.
+  const what = media.media_type === "REELS" ? "video" : "image";
+  for (let i = 0; ; i++) {
     const s = await graph(`${IG_API()}/${created.json.id}?fields=status_code`, { headers: { authorization: `Bearer ${token}` } });
     if (s.json.status_code === "FINISHED" || !s.json.status_code) break;
-    if (s.json.status_code === "ERROR" || s.json.status_code === "EXPIRED") return { ok: false, error: `Instagram could not process the image (${s.json.status_code})`, retry: false };
-    await new Promise((r) => setTimeout(r, 2000));
+    if (s.json.status_code === "ERROR" || s.json.status_code === "EXPIRED") return { ok: false, error: `Instagram could not process the ${what} (${s.json.status_code})`, retry: false };
+    // Photos are published after the last check either way; a video that isn't ready can't be.
+    if (i >= wait.tries - 1) {
+      if (what === "video") return { ok: false, error: "Instagram was still processing the video", retry: true };
+      break;
+    }
+    await new Promise((r) => setTimeout(r, wait.everyMs));
   }
   const published = await graph(`${IG_API()}/${user}/media_publish`, { method: "POST", headers: auth, body: JSON.stringify({ creation_id: created.json.id }) });
   if (!published.ok || !published.json.id) return fail(published);
@@ -193,4 +207,28 @@ export async function publishFacebookPhoto(imageUrl: string, caption: string): P
   });
   const postId = (r.json.post_id as string | undefined) ?? r.json.id;
   return r.ok && postId ? { ok: true, id: postId, permalink: `https://www.facebook.com/${postId}` } : fail(r);
+}
+
+/**
+ * Publishes a Reel on the Page: start an upload, let Facebook fetch the MP4 from its public URL,
+ * then publish it with the caption. Facebook finishes processing on its side after this returns.
+ */
+export async function publishFacebookReel(videoUrl: string, caption: string): Promise<SendResult & { permalink?: string }> {
+  if (!facebookConfigured()) return { ok: false, error: "Facebook Page not configured", retry: false };
+  const token = await facebookPageToken();
+  const endpoint = `${FB_API()}/${process.env.FACEBOOK_PAGE_ID}/video_reels`;
+  const json = { authorization: `Bearer ${token}`, "content-type": "application/json" };
+  const start = await graph(endpoint, { method: "POST", headers: json, body: JSON.stringify({ upload_phase: "start" }) });
+  const videoId = typeof start.json.video_id === "string" ? start.json.video_id : null;
+  const uploadUrl = typeof start.json.upload_url === "string" ? start.json.upload_url : null;
+  if (!start.ok || !videoId || !uploadUrl) return fail(start);
+  const upload = await graph(uploadUrl, { method: "POST", headers: { authorization: `OAuth ${token}`, file_url: videoUrl } });
+  if (!upload.ok || upload.json.success === false) return fail(upload);
+  const finish = await graph(endpoint, {
+    method: "POST",
+    headers: json,
+    body: JSON.stringify({ upload_phase: "finish", video_id: videoId, video_state: "PUBLISHED", description: caption.slice(0, 5000) }),
+  });
+  if (!finish.ok || finish.json.success === false) return fail(finish);
+  return { ok: true, id: videoId, permalink: `https://www.facebook.com/reel/${videoId}` };
 }
