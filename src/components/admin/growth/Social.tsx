@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, ExternalLink, X } from "lucide-react";
+import { Check, Clapperboard, ExternalLink, X } from "lucide-react";
 import type { SocialStatus } from "@/lib/social/automation";
 
 const INTENT: Record<string, string> = { price: "Fees", diet: "Diet", trial: "Trial", visit: "Timing / address", shop: "Shop", hello: "Greeting", other: "Other" };
@@ -15,7 +15,7 @@ function Chip({ on, label }: { on: boolean; label: string }) {
 }
 
 /** Instagram auto-post and the WhatsApp / Instagram auto-replies: what is on, what was posted, what came in. */
-export function Social({ status, siteUrl }: { status: SocialStatus | null; siteUrl: string }) {
+export function Social({ status, siteUrl, busy = false, onPostReel }: { status: SocialStatus | null; siteUrl: string; busy?: boolean; onPostReel?: () => void }) {
   if (!status) return <p className="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-100">Apply the latest database migration (social automation) to turn this on.</p>;
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
   const allOn = status.instagram && status.facebook && status.whatsapp && status.webhook;
@@ -23,7 +23,7 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
     <div className="space-y-6">
       <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
         <div className="flex flex-wrap gap-2">
-          <Chip on={status.instagram} label="Instagram daily post" />
+          <Chip on={status.instagram} label="Instagram Reel + Story" />
           <Chip on={status.facebook} label="Facebook Page" />
           <Chip on={status.whatsapp} label="WhatsApp API" />
           <Chip on={status.webhook} label="Meta webhook" />
@@ -39,14 +39,26 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
               Vercel: add META_APP_SECRET (and INSTAGRAM_APP_SECRET if Instagram shows a different one) and META_VERIFY_TOKEN (any phrase). In Meta → Webhooks, use the callback URL <code className="rounded bg-white/10 px-1">{siteUrl}/api/webhooks/meta</code> with that phrase, and subscribe to WhatsApp &quot;messages&quot; and Instagram &quot;messages&quot; and &quot;comments&quot;.
             </li>
             <li>Facebook Page: add FACEBOOK_PAGE_ID and FACEBOOK_PAGE_TOKEN (a System User token for the Page), and subscribe the Page webhook to &quot;messages&quot; and &quot;feed&quot;.</li>
-            <li>Redeploy. The daily post then goes out every morning at about 7:45 am, and every message gets an answer in seconds.</li>
+            <li>Redeploy. The Story then goes out every morning at about 7:45 am, the day&apos;s Reel at about 7 pm, and every message gets an answer in seconds.</li>
           </ol>
         )}
       </section>
 
       <section className="grid gap-4 md:grid-cols-[minmax(0,280px)_1fr]">
         <div>
-          <h2 className="mb-2 text-sm font-bold text-white/80">Today&apos;s Instagram image</h2>
+          <h2 className="mb-2 text-sm font-bold text-white/80">Today&apos;s Reel</h2>
+          <p className="mb-2 text-xs text-white/60">Posts by itself at about 7 pm on Instagram and Facebook (peak time). If a Reel can&apos;t be posted, the image below goes out instead.</p>
+          <div className="mb-5 flex flex-wrap gap-2">
+            <a href={`/api/admin/social/reel/${today}.mp4`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-white/80 hover:text-white">
+              <Clapperboard className="h-3.5 w-3.5" /> Preview Reel (takes ~20 s)
+            </a>
+            {onPostReel && (
+              <button type="button" disabled={busy} onClick={onPostReel} className="inline-flex items-center gap-1.5 rounded-lg bg-rose-600 px-3 py-2 text-xs font-semibold text-white hover:bg-rose-500 disabled:opacity-50">
+                {busy ? "Posting… (up to 3 min)" : "Post today's Reel now"}
+              </button>
+            )}
+          </div>
+          <h2 className="mb-2 text-sm font-bold text-white/80">Today&apos;s post image</h2>
           {/* eslint-disable-next-line @next/next/no-img-element -- generated JPEG, shown as is */}
           <img src={`/api/social/post-image/${today}.jpg`} alt="Today's post" width={1080} height={1350} className="w-full rounded-xl border border-white/10" />
           <a href={`/api/social/post-image/${today}.jpg`} download className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:underline">
@@ -70,7 +82,7 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
                   <span className="min-w-0 flex-1 truncate">{p.theme}</span>
                   {p.status === "published" && p.permalink ? (
                     <a href={p.permalink} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-300 hover:underline">
-                      Posted ↗
+                      {p.permalink.includes("/reel/") ? "Reel posted ↗" : "Posted ↗"}
                     </a>
                   ) : (
                     <span className={`text-xs font-semibold ${p.status === "failed" ? "text-rose-300" : "text-white/60"}`} title={p.error ?? undefined}>

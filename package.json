@@ -15,6 +15,7 @@
     "dotenv": "17.3.1",
     "drizzle-orm": "0.45.2",
     "fflate": "^0.8.3",
+    "ffmpeg-static": "^5.2.0",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
     "lucide-react": "^1.41.0",

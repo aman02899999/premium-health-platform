@@ -9,7 +9,24 @@ import { dailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import { storyItem } from "@/lib/growth/sales-catalog";
 import { buildReply, detectIntent, forInstagram, shouldReply, type Intent, type ReplyCtx } from "./auto-reply";
 import { indianMobile, type Inbound } from "./inbound";
-import { autoReplyOn, facebookConfigured, instagramConfigured, publishFacebookPhoto, publishInstagramPhoto, publishInstagramStory, refreshInstagramToken, sendFacebookMessage, sendInstagramMessage, sendWhatsAppText, whatsappReplyConfigured } from "./meta";
+import { addDays } from "@/lib/growth/dates";
+import { mediaStorageConfigured, putPublicMedia, removePublicMedia } from "./media-storage";
+import {
+  autoReplyOn,
+  facebookConfigured,
+  instagramConfigured,
+  publishFacebookPhoto,
+  publishFacebookReel,
+  publishInstagramPhoto,
+  publishInstagramReel,
+  publishInstagramStory,
+  refreshInstagramToken,
+  sendFacebookMessage,
+  sendInstagramMessage,
+  sendWhatsAppText,
+  whatsappReplyConfigured,
+} from "./meta";
+import { renderReel } from "./reel";
 
 async function replyCtx(name: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -73,16 +90,14 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
 export const postImageUrl = (date: string) => `${SITE_URL}/api/social/post-image/${date}.jpg`;
 export const storyImageUrl = (date: string) => `${SITE_URL}/api/social/story-image/${date}.jpg`;
 
-/**
- * Publishes the day's post to Instagram once. Re-running the same day is a no-op once it has
- * published; a failed day is retried on the next run.
- */
 /** Claims today's post for a channel (or a failed one to retry); null when it's already done. */
 async function claimPost(channel: "instagram" | "facebook" | "instagram-story", date: string, theme: string): Promise<string | null> {
   const { rows } = await pool.query<{ id: string }>(
     `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
-     on conflict (channel, post_date) do update set status = 'pending', error = null
+     on conflict (channel, post_date) do update set status = 'pending', error = null, created_at = now()
        where public.social_posts.status = 'failed'
+          -- A run that died half way (a timeout) leaves 'pending' behind: take it over after 20 minutes.
+          or (public.social_posts.status = 'pending' and public.social_posts.created_at < now() - interval '20 minutes')
      returning id`,
     [channel, date, theme.slice(0, 80)],
   );
@@ -99,46 +114,79 @@ async function recordPost(id: string, res: { ok: true; id: string; permalink?: s
   ]);
 }
 
-/**
- * Publishes the day's post to Instagram once. Re-running the same day is a no-op once it has
- * published; a failed day is retried on the next run.
- */
-export async function runInstagram(now = new Date(), biz: PostBiz): Promise<{ instagram: string; token?: string }> {
-  if (!instagramConfigured()) return { instagram: "off" };
+/** The day's sales Story on Instagram (one product from the catalogue), once a day. */
+export async function runInstagramStory(now = new Date()): Promise<{ story: string; token?: string }> {
+  if (!instagramConfigured()) return { story: "off" };
+  // The morning run keeps the long-lived Instagram token fresh (it refreshes at most weekly).
   const token = await refreshInstagramToken(now).catch(() => "failed" as const);
   const today = todayIST(now);
-  const post = dailyPost(today, biz);
-  const id = await claimPost("instagram", today, post.theme);
-  if (!id) return { instagram: "already-posted", token };
-  const res = await publishInstagramPhoto(postImageUrl(today), post.instagram);
-  await recordPost(id, res);
-  if (!res.ok) console.error("[instagram] publish failed:", res.error);
-  return { instagram: res.ok ? "published" : `failed: ${res.error}`, token };
-}
-
-/** The day's sales Story on Instagram (one product from the catalogue), once a day. */
-export async function runInstagramStory(now = new Date()): Promise<{ story: string }> {
-  if (!instagramConfigured()) return { story: "off" };
-  const today = todayIST(now);
   const id = await claimPost("instagram-story", today, storyItem(today).title);
-  if (!id) return { story: "already-posted" };
+  if (!id) return { story: "already-posted", token };
   const res = await publishInstagramStory(storyImageUrl(today));
   await recordPost(id, res);
   if (!res.ok) console.error("[instagram] story failed:", res.error);
-  return { story: res.ok ? "published" : `failed: ${res.error}` };
+  return { story: res.ok ? "published" : `failed: ${res.error}`, token };
 }
 
-/** The same post on the Facebook Page, with a clickable link. */
-export async function runFacebook(now = new Date(), biz: PostBiz): Promise<{ facebook: string }> {
-  if (!facebookConfigured()) return { facebook: "off" };
+type ReelDeps = { render: (date: string, biz: PostBiz) => Promise<Buffer>; upload: (path: string, data: Buffer, type: string) => Promise<string>; remove: (path: string) => Promise<void> };
+const REEL_DEPS: ReelDeps = { render: renderReel, upload: putPublicMedia, remove: removePublicMedia };
+
+/**
+ * The evening run (peak time): the day's post as a Reel on Instagram and the Facebook Page. The
+ * video is rendered and uploaded once; if a Reel can't be published on a channel, the day's photo
+ * post goes there instead, so the feed never misses a day. Safe to run again: a channel that is
+ * already done is skipped, a failed one is retried.
+ */
+export async function runReels(now = new Date(), biz: PostBiz, deps: ReelDeps = REEL_DEPS): Promise<{ reel: string; instagram: string; facebook: string }> {
+  const ig = instagramConfigured();
+  const fb = facebookConfigured();
+  if (!ig && !fb) return { reel: "off", instagram: "off", facebook: "off" };
   const today = todayIST(now);
   const post = dailyPost(today, biz);
-  const id = await claimPost("facebook", today, post.theme);
-  if (!id) return { facebook: "already-posted" };
-  const res = await publishFacebookPhoto(postImageUrl(today), post.facebook);
-  await recordPost(id, res);
-  if (!res.ok) console.error("[facebook] publish failed:", res.error);
-  return { facebook: res.ok ? "published" : `failed: ${res.error}` };
+  const igId = ig ? await claimPost("instagram", today, post.theme) : null;
+  const fbId = fb ? await claimPost("facebook", today, post.theme) : null;
+  if (!igId && !fbId) return { reel: "already-posted", instagram: ig ? "already-posted" : "off", facebook: fb ? "already-posted" : "off" };
+
+  let videoUrl: string | null = null;
+  let reel = "rendered";
+  if (!mediaStorageConfigured() && deps === REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
+  else {
+    try {
+      videoUrl = await deps.upload(`reels/${today}.mp4`, await deps.render(today, biz), "video/mp4");
+      // Keep storage small: last month's Reel is no longer needed once Instagram has its copy.
+      await deps.remove(`reels/${addDays(today, -30)}.mp4`).catch(() => {});
+    } catch (err) {
+      reel = `failed: ${(err as Error).message.slice(0, 200)}`;
+      console.error("[reel] render/upload failed:", (err as Error).message);
+    }
+  }
+
+  const publish = async (
+    id: string | null,
+    on: boolean,
+    asReel: (url: string) => ReturnType<typeof publishInstagramReel>,
+    asPhoto: () => ReturnType<typeof publishInstagramPhoto>,
+    label: string,
+  ): Promise<string> => {
+    if (!on) return "off";
+    if (!id) return "already-posted";
+    const r = videoUrl ? await asReel(videoUrl) : null;
+    if (r?.ok) {
+      await recordPost(id, r);
+      return "reel";
+    }
+    if (r && !r.ok) console.error(`[${label}] reel failed, posting the photo instead:`, r.error);
+    const p = await asPhoto();
+    await recordPost(id, p.ok ? p : { ok: false, error: r && !r.ok ? `Reel: ${r.error} · Photo: ${p.error}` : p.error });
+    if (!p.ok) return `failed: ${p.error}`;
+    return r && !r.ok ? `photo (reel failed: ${r.error.slice(0, 120)})` : "photo";
+  };
+
+  const [instagram, facebook] = await Promise.all([
+    publish(igId, ig, (u) => publishInstagramReel(u, post.instagram), () => publishInstagramPhoto(postImageUrl(today), post.instagram), "instagram"),
+    publish(fbId, fb, (u) => publishFacebookReel(u, post.facebook), () => publishFacebookPhoto(postImageUrl(today), post.facebook), "facebook"),
+  ]);
+  return { reel, instagram, facebook };
 }
 
 export type SocialStatus = {

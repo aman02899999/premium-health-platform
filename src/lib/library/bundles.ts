@@ -21,8 +21,8 @@ export type Bundle = {
 const COMBO_OFF = 0.4;
 const SECTION_OFF = 0.5;
 
-/** Price after `off`, rounded down to a …99 figure. */
-const offerPrice = (list: number, off: number) => Math.floor((list * (1 - off) + 1) / 100) * 100 - 1;
+/** Price after `off`, rounded down to a …49 or …99 figure (never below ₹49). */
+const offerPrice = (list: number, off: number) => Math.max(49, Math.floor((list * (1 - off) + 1) / 50) * 50 - 1);
 
 const byVolume = new Map(BOOKS.map((b) => [b.volume, b]));
 

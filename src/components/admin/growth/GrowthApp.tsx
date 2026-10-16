@@ -154,7 +154,17 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
           <>
             {tab === "today" && <Today data={data} stats={stats} go={setTab} act={act} />}
             {tab === "marketing" && <Marketing today={data.today} biz={postBiz} />}
-            {tab === "social" && <Social status={data.social} siteUrl={data.siteUrl} />}
+            {tab === "social" && (
+              <Social
+                status={data.social}
+                siteUrl={data.siteUrl}
+                busy={busy}
+                onPostReel={async () => {
+                  const out = (await act({ action: "post-reel" })) as { result?: { reel: string; instagram: string; facebook: string } } | null;
+                  if (out?.result) setFlash(`Reel: ${out.result.reel} · Instagram: ${out.result.instagram} · Facebook: ${out.result.facebook}`);
+                }}
+              />
+            )}
             {tab === "messages" && <Messages data={data} act={act} />}
             {tab === "members" && <Members data={data} plans={plans} act={act} gymName={gymName} reload={load} />}
             {tab === "leads" && <Leads data={data} act={act} />}

@@ -30,6 +30,10 @@ export type DailyPost = {
   category: Category | "Offer" | "Shop";
   /** Shop posts: the product's cover image path, when it has one. */
   cover: string | null;
+  /** The call to action on its own ("Get your plan"), for cards and Reels. */
+  cta: string;
+  /** Health content: carries the "not medical advice" line. */
+  medical: boolean;
 };
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -268,6 +272,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
   let theme: string, path: string, visual: string, hook: string, cta: string, tagList: string[], points: string[], takeaway: string, category: DailyPost["category"];
   let bodyText: string;
   let cover: string | null = null;
+  let medical = false;
   if (slot.kind === "tip") {
     const t = slot.tip;
     ({ theme, category } = t);
@@ -277,6 +282,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     points = [...t.points];
     takeaway = t.takeaway;
     tagList = t.tags;
+    medical = MEDICAL.has(t.category);
     visual = "Auto-generated tip card (1080×1350) with the three points.";
     bodyText = `${points.map((p) => `✅ ${p}`).join("\n")}\n\n💡 ${takeaway}${MEDICAL.has(t.category) ? "\n\nGeneral information, not medical advice. Keep taking the medicines your doctor prescribed." : ""}`;
   } else if (slot.kind === "shop") {
@@ -291,6 +297,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     tagList = it.tags;
     visual = "Auto-generated product card (1080×1350).";
     cover = it.cover;
+    medical = it.medical;
     bodyText = `${it.title}: ${it.subtitle}\n\n${points.map((p) => `✅ ${p}`).join("\n")}\n\n💰 ${takeaway}${it.medical ? `\n\n${MEDICAL_NOTE}` : ""}`;
   } else {
     const idea = slot.idea;
@@ -327,6 +334,8 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     takeaway,
     category,
     cover,
+    cta,
+    medical,
   };
 }
 
@@ -350,7 +359,7 @@ export function coachPostEmail(post: DailyPost, to: string, adminUrl: string, ex
     toName: "Coach",
     kind: "coach-daily-post",
     subject: `Today's post: ${post.theme}`,
-    body: `Today's marketing post (${post.theme}). Copy, add the photo, and post before 10 am.\n\nPHOTO / DESIGN\n${post.visual}\n\nWHATSAPP STATUS\n${post.whatsapp}\n\nINSTAGRAM CAPTION\n${post.instagram}\n\nGOOGLE BUSINESS POST\n${post.google}${story}${reels}\n\n[[CTA:Open today's post|${adminUrl}]]`,
+    body: `Today's post (${post.theme}). It goes out by itself as a Reel on Instagram and Facebook at about 7 pm, when most people are online. Below: the same post for WhatsApp Status and Google.\n\nPHOTO / DESIGN\n${post.visual}\n\nWHATSAPP STATUS\n${post.whatsapp}\n\nINSTAGRAM CAPTION\n${post.instagram}\n\nGOOGLE BUSINESS POST\n${post.google}${story}${reels}\n\n[[CTA:Open today's post|${adminUrl}]]`,
     template: "",
     params: [],
     dedupeKey: `coach-daily-post:${post.date}`,

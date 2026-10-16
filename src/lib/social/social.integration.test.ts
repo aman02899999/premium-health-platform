@@ -16,6 +16,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
   let social: typeof import("./automation");
   const calls: { url: string; body: Record<string, unknown> | null; auth?: string }[] = [];
   let publishFails = false;
+  let reelFails = false;
 
   beforeAll(async () => {
     process.env.POSTGRES_URL = url;
@@ -30,7 +31,11 @@ describe.skipIf(!url)("social automation on a real database", () => {
       const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { "content-type": "application/json" } });
       if (u.includes("/refresh_access_token")) return json({ access_token: "ig-fresh-token", expires_in: 5184000 });
       if (u.includes("/me?fields=user_id")) return json({ user_id: "17841400000", username: "royalfitness93_" });
-      if (u.endsWith("/17841400000/media")) return publishFails ? json({ error: { message: "Only photo or video can be accepted as media type." } }, 400) : json({ id: "container-1" });
+      if (u.endsWith("/17841400000/media")) {
+        if (publishFails) return json({ error: { message: "Only photo or video can be accepted as media type." } }, 400);
+        const isReel = (JSON.parse(init?.body ?? "{}") as { media_type?: string }).media_type === "REELS";
+        return isReel && reelFails ? json({ error: { message: "The video file you selected is in a format that we don't support." } }, 400) : json({ id: "container-1" });
+      }
       if (u.includes("container-1?fields=status_code")) return json({ status_code: "FINISHED" });
       if (u.endsWith("/media_publish")) return json({ id: "media-9" });
       if (u.includes("media-9?fields=permalink")) return json({ permalink: "https://www.instagram.com/p/abc/" });
@@ -39,6 +44,12 @@ describe.skipIf(!url)("social automation on a real database", () => {
       if (u.endsWith("/PAGE1?fields=access_token")) return json({ access_token: "page-own-token", id: "PAGE1" });
       if (u.endsWith("/PAGE1/messages")) return json({ recipient_id: "u2", message_id: "fbmid.out" });
       if (u.endsWith("/PAGE1/photos")) return json({ id: "photo1", post_id: "PAGE1_post9" });
+      if (u.endsWith("/PAGE1/video_reels")) {
+        if (reelFails) return json({ error: { message: "(#100) Reels upload not allowed" } }, 400);
+        const phase = (JSON.parse(init?.body ?? "{}") as { upload_phase?: string }).upload_phase;
+        return phase === "start" ? json({ video_id: "v77", upload_url: "https://rupload.facebook.test/video-upload/v21.0/v77" }) : json({ success: true });
+      }
+      if (u === "https://rupload.facebook.test/video-upload/v21.0/v77") return json({ success: true });
       return json({ error: { message: `unexpected ${u}` } }, 404);
     });
     pool = (await import("@/health/db")).pool;
@@ -48,6 +59,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
     await pool.query("truncate public.social_inbox, public.social_posts, public.integration_tokens, public.leads, public.members cascade");
     calls.length = 0;
     publishFails = false;
+    reelFails = false;
   });
   afterAll(async () => {
     vi.unstubAllGlobals();
@@ -105,20 +117,12 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(fb[0].body!.recipient).toEqual({ comment_id: "c9" });
     // The System User token is swapped for the Page's own token, which Meta requires to act as the Page.
     expect(fb[0].auth).toBe("Bearer page-own-token");
-    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma" };
-    const now = new Date("2026-10-12T02:15:00Z");
-    expect(await social.runFacebook(now, biz)).toEqual({ facebook: "published" });
-    expect(await social.runFacebook(now, biz)).toEqual({ facebook: "already-posted" });
-    const photo = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
-    expect(photo.auth).toBe("Bearer page-own-token");
-    expect(photo.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
-    expect(String(photo.body!.message)).toContain("utm_source=facebook");
   });
 
   it("publishes the day's sales Story once, as a STORIES media with the story image", async () => {
     const now = new Date("2026-10-16T02:15:00Z");
-    expect(await social.runInstagramStory(now)).toEqual({ story: "published" });
-    expect(await social.runInstagramStory(now)).toEqual({ story: "already-posted" });
+    expect((await social.runInstagramStory(now)).story).toBe("published");
+    expect((await social.runInstagramStory(now)).story).toBe("already-posted");
     const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
     expect(media).toHaveLength(1);
     expect(media[0].body).toEqual({ image_url: expect.stringMatching(/\/api\/social\/story-image\/2026-10-16\.jpg$/), media_type: "STORIES" });
@@ -133,25 +137,96 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(calls.filter((c) => c.url.endsWith("/123/messages"))).toHaveLength(0);
   });
 
-  it("posts the day's image to Instagram once, refreshes the token, and retries a failed day", async () => {
-    const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma", membershipFrom: 2000 };
-    const now = new Date("2026-10-12T02:15:00Z");
+  const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma", membershipFrom: 2000 };
+  const VIDEO = "https://store.test/storage/v1/object/public/social-media/reels/2026-10-12.mp4";
+  const fakeDeps = (log: string[], renderFails = false) => ({
+    render: async (date: string) => {
+      log.push(`render ${date}`);
+      if (renderFails) throw new Error("ffmpeg exited 1: out of memory");
+      return Buffer.from("mp4");
+    },
+    upload: async (path: string, _d: Buffer, type: string) => (log.push(`upload ${path} ${type}`), `https://store.test/storage/v1/object/public/social-media/${path}`),
+    remove: async (path: string) => void log.push(`remove ${path}`),
+  });
 
-    publishFails = true;
-    expect((await social.runInstagram(now, biz)).instagram).toMatch(/^failed: Only photo/);
-    publishFails = false;
-    const ok = await social.runInstagram(now, biz);
-    expect(ok).toEqual({ instagram: "published", token: "fresh" });
-    expect((await social.runInstagram(now, biz)).instagram).toBe("already-posted");
+  it("the evening Reel: rendered once, published as a Reel on Instagram and Facebook, once a day", async () => {
+    const now = new Date("2026-10-12T13:20:00Z"); // 6:50 pm in India
+    const log: string[] = [];
+    expect(await social.runReels(now, biz, fakeDeps(log))).toEqual({ reel: "rendered", instagram: "reel", facebook: "reel" });
+    expect(log).toEqual(["render 2026-10-12", "upload reels/2026-10-12.mp4 video/mp4", "remove reels/2026-09-12.mp4"]);
 
     const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
-    expect(media[1].body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
-    expect(String(media[1].body!.caption)).toContain("#RoyalFitnessClub");
-    expect(calls.filter((c) => c.url.endsWith("/media_publish"))).toHaveLength(1);
-    // First run refreshed the seed token and stored it; later calls use the stored one.
+    expect(media).toHaveLength(1);
+    expect(media[0].body).toMatchObject({ media_type: "REELS", video_url: VIDEO, share_to_feed: "true" });
+    expect(String(media[0].body!.caption)).toContain("#RoyalFitnessClub");
+    const reels = calls.filter((c) => c.url.endsWith("/PAGE1/video_reels"));
+    expect(reels.map((c) => c.body!.upload_phase)).toEqual(["start", "finish"]);
+    expect(reels[1].body).toMatchObject({ video_id: "v77", video_state: "PUBLISHED" });
+    expect(String(reels[1].body!.description)).toContain("utm_source=facebook");
+    expect(reels[0].auth).toBe("Bearer page-own-token");
+    expect(calls.find((c) => c.url.startsWith("https://rupload.facebook.test/"))!.auth).toBe("OAuth page-own-token");
+    expect(calls.filter((c) => c.url.endsWith("/PAGE1/photos"))).toHaveLength(0);
+
+    const posts = (await pool.query("select channel, status, external_id, permalink from public.social_posts order by channel")).rows;
+    expect(posts).toEqual([
+      { channel: "facebook", status: "published", external_id: "v77", permalink: "https://www.facebook.com/reel/v77" },
+      { channel: "instagram", status: "published", external_id: "media-9", permalink: "https://www.instagram.com/p/abc/" },
+    ]);
+    // The retry run later that evening finds nothing to do and renders nothing.
+    const again: string[] = [];
+    expect(await social.runReels(new Date("2026-10-12T15:40:00Z"), biz, fakeDeps(again))).toEqual({ reel: "already-posted", instagram: "already-posted", facebook: "already-posted" });
+    expect(again).toEqual([]);
+  });
+
+  it("a Reel that can't be published falls back to the day's photo, so the feed never misses a day", async () => {
+    reelFails = true;
+    const out = await social.runReels(new Date("2026-10-12T13:20:00Z"), biz, fakeDeps([]));
+    expect(out.reel).toBe("rendered");
+    expect(out.instagram).toMatch(/^photo \(reel failed: The video file/);
+    expect(out.facebook).toMatch(/^photo \(reel failed: \(#100\)/);
+    const igMedia = calls.filter((c) => c.url.endsWith("/17841400000/media")).map((c) => c.body);
+    expect(igMedia[1]).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
+    expect(calls.find((c) => c.url.endsWith("/PAGE1/photos"))!.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/post-image/2026-10-12.jpg" });
+    const rows = (await pool.query("select channel, status from public.social_posts order by channel")).rows;
+    expect(rows).toEqual([
+      { channel: "facebook", status: "published" },
+      { channel: "instagram", status: "published" },
+    ]);
+  });
+
+  it("a video that fails to render still posts the photo; a failed day is retried by the next run", async () => {
+    const log: string[] = [];
+    publishFails = true; // Instagram rejects even the photo this time
+    const first = await social.runReels(new Date("2026-10-12T13:20:00Z"), biz, fakeDeps(log, true));
+    expect(first.reel).toBe("failed: ffmpeg exited 1: out of memory");
+    expect(first.instagram).toMatch(/^failed: Only photo/);
+    expect(first.facebook).toBe("photo");
+    publishFails = false;
+    const retry = await social.runReels(new Date("2026-10-12T15:40:00Z"), biz, fakeDeps(log));
+    expect(retry).toEqual({ reel: "rendered", instagram: "reel", facebook: "already-posted" });
+    const rows = (await pool.query("select channel, status from public.social_posts order by channel")).rows;
+    expect(rows).toEqual([
+      { channel: "facebook", status: "published" },
+      { channel: "instagram", status: "published" },
+    ]);
+  });
+
+  it("a run that died half way is taken over after 20 minutes, not before", async () => {
+    await pool.query(`insert into public.social_posts (channel, post_date, theme, status, created_at) values ('instagram', '2026-10-12', 't', 'pending', now() - interval '5 minutes')`);
+    process.env.FACEBOOK_PAGE_ID = "";
+    try {
+      expect((await social.runReels(new Date("2026-10-12T13:20:00Z"), biz, fakeDeps([]))).instagram).toBe("already-posted");
+      await pool.query(`update public.social_posts set created_at = now() - interval '25 minutes'`);
+      expect((await social.runReels(new Date("2026-10-12T13:20:00Z"), biz, fakeDeps([]))).instagram).toBe("reel");
+    } finally {
+      process.env.FACEBOOK_PAGE_ID = "PAGE1";
+    }
+  });
+
+  it("the morning Story keeps the Instagram token fresh", async () => {
+    const out = await social.runInstagramStory(new Date("2026-10-12T02:15:00Z"));
+    expect(out).toEqual({ story: "published", token: "refreshed" });
     expect(calls.filter((c) => c.url.includes("/refresh_access_token"))).toHaveLength(1);
     expect((await pool.query("select value from public.integration_tokens")).rows).toEqual([{ value: "ig-fresh-token" }]);
-    const posts = (await pool.query("select post_date::text as d, status, external_id, permalink from public.social_posts")).rows;
-    expect(posts).toEqual([{ d: "2026-10-12", status: "published", external_id: "media-9", permalink: "https://www.instagram.com/p/abc/" }]);
   });
 });
