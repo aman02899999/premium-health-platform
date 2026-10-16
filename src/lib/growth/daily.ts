@@ -44,12 +44,23 @@ export async function nurtureBusiness(): Promise<NurtureBiz> {
  * The daily automation: queue every reminder and follow-up that is due, then send what the
  * WhatsApp API can send. Safe to run more than once a day (the outbox dedupes).
  */
+/** Records an automation event as sent; false when it already was (or the table isn't migrated yet). */
+async function claimEvent(key: string): Promise<boolean> {
+  const { rowCount } = await pool
+    .query(`insert into public.automation_events (key) values ($1) on conflict (key) do nothing`, [key.slice(0, 200)])
+    .catch((err: Error) => (console.error("[automation-events] claim:", err.message), { rowCount: 0 }));
+  return rowCount === 1;
+}
+
 export async function runDaily(now = new Date()) {
   const today = todayIST(now);
   const [biz, members, leads, nb, nl] = await Promise.all([business(), membersNearExpiry(today), openLeads(today), nurtureBusiness(), nurtureLeads(today)]);
   const drafts = [...dueMessages(today, members, leads, biz), ...nurtureDrafts(today, nl, nb)];
-  // Renewal email sequence (Resend), alongside the WhatsApp reminders: fired once, exactly 7 days out.
-  await Promise.all(members.filter((m) => m.reminders && m.email && daysBetween(today, m.expiresOn) === 7).map((m) => trackMembershipExpiring(m.email, m.expiresOn, m.name)));
+  // Renewal email sequence (Resend), alongside the WhatsApp reminders: 7 days out, once per member
+  // per end date, even if the daily run happens twice that day ("Run now" plus the schedule).
+  for (const m of members.filter((m) => m.reminders && m.email && daysBetween(today, m.expiresOn) === 7)) {
+    if (await claimEvent(`membership.expiring:${m.email!.trim().toLowerCase()}:${m.expiresOn}`)) await trackMembershipExpiring(m.email, m.expiresOn, m.name);
+  }
   // The day's marketing post goes to the coach's inbox each morning, ready to copy.
   const coach = process.env.COACH_EMAIL;
   if (coach) {
