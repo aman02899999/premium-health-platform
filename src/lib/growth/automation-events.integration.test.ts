@@ -59,4 +59,32 @@ describe.skipIf(!url)("renewal email event in the daily run", () => {
     await daily.runDaily(new Date("2026-11-21T02:15:00Z"));
     expect(events.filter((e) => e.event === "membership.expiring").map((e) => e.payload!.expiry_date)).toEqual(["on 28 Oct 2026", "on 28 Nov 2026"]);
   });
+
+  it("keeps the email sequences in step with members added or renewed at the desk", async () => {
+    const { saveDeskMember, memberById } = await import("./members");
+    const { afterDeskMemberSaved } = await import("./hooks");
+    const input = { name: "Desk Joiner", phone: "9876500001", email: "Desk@Example.com", planName: "Monthly", startOn: "2026-10-15", expiresOn: "2026-11-14", notes: "", reminders: true };
+
+    // New joiner this week: marked as a member and onboarding starts.
+    const joined = await saveDeskMember(input);
+    await afterDeskMemberSaved(null, joined, "2026-10-16");
+    expect(events.map((e) => [e.event, e.email])).toEqual([["member.joined", "desk@example.com"]]);
+
+    // Renewed in cash: the renewal emails stop; no second onboarding.
+    events.length = 0;
+    const before = await memberById(joined.id);
+    const renewed = await saveDeskMember({ ...input, expiresOn: "2026-12-14" }, joined.id);
+    await afterDeskMemberSaved(before, renewed, "2026-11-10");
+    expect(events.map((e) => e.event)).toEqual(["member.renewed"]);
+
+    // A notes-only edit sends nothing.
+    events.length = 0;
+    await afterDeskMemberSaved(renewed, await saveDeskMember({ ...input, expiresOn: "2026-12-14", notes: "paid cash" }, joined.id), "2026-11-10");
+    expect(events).toEqual([]);
+
+    // A long-standing member typed in now doesn't get "your first week" emails.
+    const old = await saveDeskMember({ ...input, phone: "9876500002", email: "old@example.com", startOn: "2026-01-01" });
+    await afterDeskMemberSaved(null, old, "2026-10-16");
+    expect(events).toEqual([]);
+  });
 });

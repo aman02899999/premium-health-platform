@@ -1,11 +1,12 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
 import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
-import { applyPaidOrder, deleteMember, listMembers, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
+import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
+import { deleteMember, listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
 import { listOutbox, markOutbox } from "@/lib/growth/outbox";
 import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
 import { storageConfigured } from "@/lib/growth/storage";
@@ -70,7 +71,10 @@ export async function POST(req: Request) {
       case "save-member": {
         const input = parseDeskInput(b);
         if (typeof input === "string") return NextResponse.json({ error: input }, { status: 400 });
-        const member = await saveDeskMember(input, isUuid(b.id) ? b.id : undefined);
+        const id = isUuid(b.id) ? b.id : undefined;
+        const before = id ? await memberById(id) : null;
+        const member = await saveDeskMember(input, id);
+        after(() => afterDeskMemberSaved(before, member));
         return NextResponse.json({ ok: true, member });
       }
       case "delete-member":
@@ -126,8 +130,9 @@ export async function POST(req: Request) {
       }
       case "apply-order": {
         if (typeof b.razorpayOrderId !== "string") break;
-        const applied = await applyPaidOrder(b.razorpayOrderId);
-        return NextResponse.json({ ok: true, applied: Boolean(applied) });
+        // The same steps as a live payment: welcome message, email sequences, referral reward.
+        const applied = await afterMembershipPaid(b.razorpayOrderId);
+        return NextResponse.json({ ok: true, applied });
       }
       case "run-daily": {
         const result = await runDaily();
