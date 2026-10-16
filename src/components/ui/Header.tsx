@@ -61,16 +61,18 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
         </div>
       )}
       <div className={`transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-ink/90 py-2.5 backdrop-blur-xl" : "py-4"}`}>
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6" aria-label="Main">
-          <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)}>
-            <Logo name={name} />
+        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 min-[106.25rem]:max-w-[1600px]" aria-label="Main">
+          {/* The full menu needs the room on laptops: there the logo is the badge alone (the link
+              label names the club); the wordmark comes back on wide screens and wherever the menu is folded. */}
+          <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)} className="shrink-0">
+            <Logo name={name} textClassName="xl:hidden min-[106.25rem]:block" />
           </Link>
-          <ul className="hidden items-center gap-0.5 xl:flex 2xl:gap-1">
+          <ul className="hidden items-center gap-0.5 xl:flex min-[106.25rem]:gap-1">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium transition-colors 2xl:px-3.5 ${
+                  className={`whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-medium transition-colors min-[106.25rem]:px-3.5 ${
                     isActive(item.href) ? "bg-white/10 text-brand" : "text-white/75 hover:text-white"
                   }`}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -84,11 +86,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <a href={phoneHref} className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand sm:flex" aria-label="Call the gym">
               <Phone className="h-4 w-4" />
             </a>
-            <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Premium Health Platform">
-              <HeartPulse className="h-4 w-4" /> Health
+            <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Premium Health Platform" aria-label="Premium Health Platform">
+              <HeartPulse className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Health</span>
             </a>
-            <Link href="/shop" className="hidden h-10 items-center gap-1.5 rounded-full border border-amber-400/40 px-3 text-xs font-bold text-amber-300 hover:border-amber-300 hover:text-amber-200 xl:flex" title="Supplement store">
-              <ShoppingBag className="h-4 w-4" /> Shop
+            <Link href="/shop" className="hidden h-10 items-center gap-1.5 rounded-full border border-amber-400/40 px-3 text-xs font-bold text-amber-300 hover:border-amber-300 hover:text-amber-200 xl:flex" title="Royal Supplements Store" aria-label="Royal Supplements Store">
+              <ShoppingBag className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Shop</span>
             </Link>
             <AccountMenu />
             <Link href="/contact#trial" className="btn-brand hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">

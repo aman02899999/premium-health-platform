@@ -10,12 +10,13 @@ export function BrandMark({ className = "h-10" }: { className?: string }) {
   );
 }
 
-export function Logo({ name, compact = false }: { name: string; compact?: boolean }) {
+/** `textClassName` hides the wordmark where space is short (the desktop header shows only the badge there). */
+export function Logo({ name, compact = false, textClassName = "" }: { name: string; compact?: boolean; textClassName?: string }) {
   const [first, ...rest] = name.split(" ");
   return (
     <span className="flex items-center gap-2.5">
       <BrandMark className="h-11" />
-      <span className="leading-none">
+      <span className={`leading-none ${textClassName}`}>
         <span className="font-display block text-xl tracking-wider text-white">{first}</span>
         {!compact && <span className="block text-[10px] font-semibold uppercase tracking-[0.35em] text-brand">{rest.join(" ")}</span>}
       </span>
