@@ -87,4 +87,14 @@ describe.skipIf(!url)("renewal email event in the daily run", () => {
     await afterDeskMemberSaved(null, old, "2026-10-16");
     expect(events).toEqual([]);
   });
+
+  it("sends the win-back event once, a month after a membership ended without a renewal", async () => {
+    await member("Lapsed", "9876500010", "lapsed@example.com", "2026-10-21");
+    await member("Too recent", "9876500011", "recent@example.com", "2026-11-01");
+    await member("No email", "9876500012", null, "2026-10-21");
+    await member("Opted out", "9876500013", "optout@example.com", "2026-10-21", false);
+    await daily.runDaily(new Date("2026-11-20T02:15:00Z"));
+    await daily.runDaily(new Date("2026-11-21T02:15:00Z"));
+    expect(events.filter((e) => e.event === "member.inactive").map((e) => e.email)).toEqual(["lapsed@example.com"]);
+  });
 });

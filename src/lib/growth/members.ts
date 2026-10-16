@@ -71,6 +71,15 @@ export async function membersNearExpiry(today: string): Promise<Member[]> {
   return rows.map(fromRow);
 }
 
+/** Members with an email whose membership ended 30 to 37 days ago and wasn't renewed: the win-back window. */
+export async function lapsedMembers(today: string): Promise<Member[]> {
+  const { rows } = await pool.query<Row>(
+    `select ${COLUMNS} from public.members where reminders and email is not null and expires_on between $1::date and $2::date`,
+    [addDays(today, -37), addDays(today, -30)],
+  );
+  return rows.map(fromRow);
+}
+
 export async function memberById(id: string): Promise<Member | null> {
   const { rows } = await pool.query<Row>(`select ${COLUMNS} from public.members where id = $1`, [id]);
   return rows[0] ? fromRow(rows[0]) : null;
