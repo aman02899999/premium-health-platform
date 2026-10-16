@@ -92,7 +92,7 @@ export function ProgressTracker() {
         <button type="submit" className="btn-brand w-full rounded-full py-3 font-bold">
           Save check-in
         </button>
-        <p className="text-xs text-white/45">Weigh in the morning after the washroom, before eating. Saved only on this device.</p>
+        <p className="text-xs text-white/45">Weigh in the morning after the washroom, before eating. Saved on this device, and to your account when you're signed in.</p>
       </form>
       <div className="space-y-6">
         <div className="glass rounded-3xl p-6">
