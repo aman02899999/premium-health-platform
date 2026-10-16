@@ -3,11 +3,11 @@ import { DIET_CHART, dietPlan } from "./config";
 import { prepareDietPlan } from "./plan-delivery";
 import { business, nurtureBusiness } from "./daily";
 import { markDietPaid } from "./diet-orders";
-import { applyPaidOrder } from "./members";
+import { applyPaidOrder, type Member } from "./members";
 import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, welcomeMessage } from "./messages";
 import { getLead, latestLeadByPhone } from "./leads";
 import { nurtureDrafts } from "./nurture";
-import { todayIST } from "./dates";
+import { daysBetween, todayIST } from "./dates";
 import { cancelPending, dispatch, enqueue } from "./outbox";
 import { trackMemberJoined, trackMemberRenewed, trackMembership, trackTrialBooked } from "./resend-events";
 
@@ -15,10 +15,11 @@ import { trackMemberJoined, trackMemberRenewed, trackMembership, trackTrialBooke
 // Each step is idempotent. Failures are logged, never thrown: the payment itself is already
 // recorded, and the admin page lists paid orders that weren't applied.
 
-export async function afterMembershipPaid(razorpayOrderId: string): Promise<void> {
+/** Returns true if the order was a paid membership order that is now applied. */
+export async function afterMembershipPaid(razorpayOrderId: string): Promise<boolean> {
   try {
     const applied = await applyPaidOrder(razorpayOrderId);
-    if (!applied) return;
+    if (!applied) return false;
     // Stops the Resend welcome series from sending its "join us" nudge to a paying member.
     if (applied.member.email) {
       await trackMembership(applied.member.email, applied.member.planName);
@@ -33,8 +34,31 @@ export async function afterMembershipPaid(razorpayOrderId: string): Promise<void
     await cancelPending("", applied.member.id);
     await enqueue(drafts);
     await dispatch(5);
+    return true;
   } catch (err) {
     console.error("[growth] membership automation failed:", (err as Error).message);
+    return false;
+  }
+}
+
+/**
+ * A member added or edited at the front desk (cash or UPI at the gym). Keeps the Resend sequences
+ * in step with online payments: marks the contact as a member, starts onboarding for someone who
+ * joined in the last week, and stops the renewal emails when the end date moves later.
+ */
+export async function afterDeskMemberSaved(before: Member | null, after: Member, today = todayIST()): Promise<void> {
+  if (!after.email) return;
+  try {
+    await trackMembership(after.email, after.planName);
+    const sameEmail = before?.email?.trim().toLowerCase() === after.email.trim().toLowerCase();
+    if (!before || !sameEmail) {
+      // A long-standing member entered (or given an email) now shouldn't get "your first week" emails.
+      const since = daysBetween(after.startOn, today);
+      if (since >= 0 && since <= 7) await trackMemberJoined(after.email, after.planName, after.name);
+    }
+    if (before && after.expiresOn > before.expiresOn) await trackMemberRenewed(after.email);
+  } catch (err) {
+    console.error("[growth] desk member email sync failed:", (err as Error).message);
   }
 }
 

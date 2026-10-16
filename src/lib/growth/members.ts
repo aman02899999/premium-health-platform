@@ -71,6 +71,11 @@ export async function membersNearExpiry(today: string): Promise<Member[]> {
   return rows.map(fromRow);
 }
 
+export async function memberById(id: string): Promise<Member | null> {
+  const { rows } = await pool.query<Row>(`select ${COLUMNS} from public.members where id = $1`, [id]);
+  return rows[0] ? fromRow(rows[0]) : null;
+}
+
 /** True if this phone number already has a membership (current or lapsed). */
 export async function isMemberPhone(phone: string): Promise<boolean> {
   const { rows } = await pool.query(`select 1 from public.members where phone = $1 limit 1`, [phone]);

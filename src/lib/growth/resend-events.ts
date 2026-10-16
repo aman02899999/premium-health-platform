@@ -49,15 +49,17 @@ const firstWord = (name?: string | null) => (name || "").trim().split(/\s+/)[0] 
 
 /** First sign-in on the gym site: make sure the contact exists, then start the welcome series. */
 export async function trackSignup(email: string, firstName?: string | null): Promise<void> {
-  await call("POST", "/contacts", { email, first_name: firstName || undefined, unsubscribed: false });
-  await call("POST", "/events/send", { event: "user.signed_up", email });
+  const to = norm(email);
+  await call("POST", "/contacts", { email: to, first_name: firstName || undefined, unsubscribed: false }, true);
+  await call("POST", "/events/send", { event: "user.signed_up", email: to });
 }
 
 /** Paid membership: mark the contact so the automation skips the "join us" email. */
 export async function trackMembership(email: string, planName: string): Promise<void> {
+  const to = norm(email);
   const properties = { plan: planName || "member" };
-  const updated = await call("PATCH", `/contacts/${encodeURIComponent(email)}`, { properties });
-  if (!updated) await call("POST", "/contacts", { email, properties });
+  const updated = await call("PATCH", `/contacts/${encodeURIComponent(to)}`, { properties }, true);
+  if (!updated) await call("POST", "/contacts", { email: to, properties });
 }
 
 /** A free-trial request from the website form, when the person left an email. */
