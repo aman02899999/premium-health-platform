@@ -9,15 +9,28 @@ describe("daily marketing posts", () => {
     expect(dailyPost("2026-10-12", biz).theme).not.toBe(dailyPost("2026-10-11", biz).theme);
   });
 
-  it("runs 3½ months without repeating: every tip once, an offer every 7th day", () => {
-    expect(CALENDAR_DAYS).toBeGreaterThanOrEqual(90);
+  it("runs ~4 months of tips: 5 tips, 1 shop post and 1 gym offer every week", () => {
+    expect(CALENDAR_DAYS).toBeGreaterThanOrEqual(120);
     const posts = upcomingPosts("2026-10-16", biz, CALENDAR_DAYS);
-    expect(new Set(posts.map((p) => p.theme)).size).toBe(CALENDAR_DAYS);
-    expect(posts.filter((p) => p.category === "Offer")).toHaveLength(IDEA_COUNT);
-    expect(posts.filter((p) => p.category !== "Offer")).toHaveLength(TIP_COUNT);
-    expect(posts.map((p, i) => (p.category === "Offer" ? i % 7 : -1)).filter((x) => x >= 0).every((x) => x === 6)).toBe(true);
-    // Then the calendar starts again from the top.
+    posts.forEach((p, i) => expect(p.category === "Shop" ? 2 : p.category === "Offer" ? 6 : -1).toBe(i % 7 === 2 ? 2 : i % 7 === 6 ? 6 : -1));
+    const tips = posts.filter((p) => p.category !== "Offer" && p.category !== "Shop");
+    expect(new Set(tips.slice(0, TIP_COUNT).map((p) => p.theme)).size).toBe(TIP_COUNT);
+    const shop = posts.filter((p) => p.category === "Shop");
+    expect(new Set(shop.map((p) => p.theme)).size).toBe(shop.length);
+    expect(new Set(posts.filter((p) => p.category === "Offer").slice(0, IDEA_COUNT).map((p) => p.theme)).size).toBe(IDEA_COUNT);
+    // The first post (16 Oct 2026) is a tip; the cycle starts again after CALENDAR_DAYS.
+    expect(posts[0].category).not.toBe("Shop");
     expect(upcomingPosts("2026-10-16", biz, CALENDAR_DAYS + 1)[CALENDAR_DAYS].theme).toBe(posts[0].theme);
+  });
+
+  it("shop posts show the product, its price and a link to buy it", () => {
+    for (const p of upcomingPosts("2026-10-16", biz, CALENDAR_DAYS).filter((x) => x.category === "Shop")) {
+      expect(p.points).toHaveLength(3);
+      expect(p.takeaway).toMatch(/^₹[\d,]+/);
+      expect(p.instagram).toContain(p.takeaway);
+      expect(p.path).toMatch(/^\/(diet-chart\?plan=|library)/);
+      expect(new URL(p.links.facebook).searchParams.get("utm_source")).toBe("facebook");
+    }
   });
 
   it("signs every post as the coach with the gym address, and fits the image", () => {
@@ -26,7 +39,7 @@ describe("daily marketing posts", () => {
         expect(text).toContain("— Coach Aman Sharma, Royal Fitness Club");
         expect(text).toContain("📍 Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida 201304");
       }
-      if (p.category === "Offer") continue;
+      if (p.category === "Offer" || p.category === "Shop") continue;
       expect(p.points).toHaveLength(3);
       expect(p.title.length).toBeLessThanOrEqual(75);
       for (const pt of p.points) expect(pt.length).toBeLessThanOrEqual(120);

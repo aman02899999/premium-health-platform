@@ -8,7 +8,9 @@ import { membersNearExpiry } from "./members";
 import { dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
-import { runFacebook, runInstagram } from "@/lib/social/automation";
+import { runFacebook, runInstagram, runInstagramStory, storyImageUrl } from "@/lib/social/automation";
+import { reelScript, storyItem } from "./sales-catalog";
+import { checkoutReminder, coachsPick, isMonday, isWednesday, weeklyPicks, type AbandonedOrder } from "./sales-emails";
 import { pool } from "@/health/db";
 import { getAllEnrichedArticles } from "@/health/data/blog-enrichment";
 import { NEWSLETTER_SOURCES, isSunday, weeklyNewsletter } from "./newsletter";
@@ -48,7 +50,13 @@ export async function runDaily(now = new Date()) {
   // The day's marketing post goes to the coach's inbox each morning, ready to copy.
   const coach = process.env.COACH_EMAIL;
   if (coach) {
-    drafts.push(coachPostEmail(dailyPost(today, nb), coach, `${SITE_URL}/admin/growth?tab=marketing`));
+    drafts.push(
+      coachPostEmail(dailyPost(today, nb), coach, `${SITE_URL}/admin/growth?tab=marketing`, {
+        story: { title: storyItem(today).title, imageUrl: storyImageUrl(today) },
+        // Mondays: three Reel scripts for the week's featured products, ready to film.
+        reels: isMonday(today) ? weeklyPicks(today).map((item, i) => reelScript(item, i)) : undefined,
+      }),
+    );
     // The morning summary: payments, leads and anything that needs a person.
     drafts.push(adminDigest(today, await digestData(today), coach, `${SITE_URL}/admin/growth`));
   }
@@ -64,12 +72,56 @@ export async function runDaily(now = new Date()) {
       if (d) drafts.push(d);
     }
   }
+  // Someone started paying for a plan or a book and didn't finish: one gentle reminder.
+  for (const o of await abandonedCheckouts(now)) drafts.push(checkoutReminder(o, SITE_URL, nb.coach, nb.phone));
+  // Wednesdays: the Coach's Pick to everyone who asked for emails.
+  if (isWednesday(today)) {
+    const { rows } = await pool.query<{ address: string }>(
+      `select address from public.marketing_contacts where channel = 'email' and unsubscribed_at is null and consent_at is not null`,
+    );
+    for (const r of rows) drafts.push(coachsPick(today, r.address, SITE_URL, nb.coach));
+  }
   const queued = await enqueue(drafts);
   const sent = await dispatch();
   // The same post goes on Instagram by itself once INSTAGRAM_ACCESS_TOKEN is set.
   const social = await runInstagram(now, nb).catch((err) => ({ instagram: `error: ${(err as Error).message}` }));
   const fb = await runFacebook(now, nb).catch((err) => ({ facebook: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, ...sent, ...social, ...fb };
+  const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
+  return { today, due: drafts.length, queued, ...sent, ...social, ...fb, ...story };
+}
+
+/**
+ * Diet-plan and library orders started 2–72 hours ago and never paid, from people who haven't
+ * paid for the same thing since and haven't unsubscribed. Each source is optional.
+ */
+async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
+  const window = "o.created_at between $1::timestamptz - interval '72 hours' and $1::timestamptz - interval '2 hours'";
+  const unsubscribed = `exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.address = lower(o.email) and c.unsubscribed_at is not null)`;
+  // At most one checkout reminder per person every 14 days, whatever they abandoned.
+  const remindedRecently = `exists (select 1 from public.message_outbox m where m.kind = 'nurture-checkout' and m.to_address = lower(o.email) and m.created_at > $1::timestamptz - interval '14 days')`;
+  const [diet, books] = await Promise.all([
+    pool
+      .query<{ id: string; name: string; email: string; plan: string; amount_paise: number }>(
+        `select distinct on (lower(o.email)) o.id, o.name, o.email, o.plan, o.amount_paise from public.diet_orders o
+         where o.status = 'created' and o.email is not null and ${window} and not ${unsubscribed} and not ${remindedRecently}
+           and not exists (select 1 from public.diet_orders p where p.status = 'paid' and (p.phone = o.phone or lower(p.email) = lower(o.email)) and p.created_at >= o.created_at - interval '1 day')
+         order by lower(o.email), o.created_at desc`,
+        [now.toISOString()],
+      )
+      .then((r) => r.rows.map((x): AbandonedOrder => ({ kind: "diet", id: x.id, name: x.name, email: x.email, plan: x.plan, itemId: "", title: "", amountPaise: x.amount_paise })))
+      .catch(() => [] as AbandonedOrder[]),
+    pool
+      .query<{ id: string; name: string; email: string; item_id: string; title: string; amount_paise: number }>(
+        `select distinct on (lower(o.email)) o.id, o.name, o.email, o.item_id, o.title, o.amount_paise from public.book_orders o
+         where o.status = 'created' and ${window} and not ${unsubscribed} and not ${remindedRecently}
+           and not exists (select 1 from public.book_orders p where p.status = 'paid' and lower(p.email) = lower(o.email) and p.created_at >= o.created_at - interval '1 day')
+         order by lower(o.email), o.created_at desc`,
+        [now.toISOString()],
+      )
+      .then((r) => r.rows.map((x): AbandonedOrder => ({ kind: "book", id: x.id, name: x.name, email: x.email, plan: "", itemId: x.item_id, title: x.title, amountPaise: x.amount_paise })))
+      .catch(() => [] as AbandonedOrder[]),
+  ]);
+  return [...diet, ...books];
 }
 
 /** The last 24 hours, for the admin's morning email. Each source is optional (a missing table reads as empty). */

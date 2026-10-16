@@ -52,15 +52,21 @@ export function Social({ status, siteUrl }: { status: SocialStatus | null; siteU
           <a href={`/api/social/post-image/${today}.jpg`} download className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:underline">
             Download for WhatsApp Status <ExternalLink className="h-3 w-3" />
           </a>
+          <h2 className="mb-2 mt-5 text-sm font-bold text-white/80">Today&apos;s sales Story</h2>
+          {/* eslint-disable-next-line @next/next/no-img-element -- generated JPEG, shown as is */}
+          <img src={`/api/social/story-image/${today}.jpg`} alt="Today's story" width={1080} height={1920} className="w-2/3 rounded-xl border border-white/10" />
+          <a href={`/api/social/story-image/${today}.jpg`} download className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-sky-300 hover:underline">
+            Download for Facebook / WhatsApp Status <ExternalLink className="h-3 w-3" />
+          </a>
         </div>
         <div>
-          <h2 className="mb-2 text-sm font-bold text-white/80">Instagram &amp; Facebook posts</h2>
+          <h2 className="mb-2 text-sm font-bold text-white/80">Instagram posts, Stories &amp; Facebook</h2>
           {status.posts.length ? (
             <ul className="divide-y divide-white/5 rounded-xl border border-white/10">
               {status.posts.map((p) => (
                 <li key={`${p.date}-${p.channel}`} className="flex flex-wrap items-center gap-2 p-3 text-sm">
                   <span className="w-24 shrink-0 text-white/60">{p.date}</span>
-                  <span className="w-20 shrink-0 text-xs font-semibold capitalize text-white/70">{p.channel}</span>
+                  <span className="w-24 shrink-0 text-xs font-semibold text-white/70">{p.channel === "instagram-story" ? "IG Story" : p.channel === "facebook" ? "Facebook" : "Instagram"}</span>
                   <span className="min-w-0 flex-1 truncate">{p.theme}</span>
                   {p.status === "published" && p.permalink ? (
                     <a href={p.permalink} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold text-emerald-300 hover:underline">

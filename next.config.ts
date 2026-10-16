@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Read with fs at runtime, so the tracer can't see them: ship them with the route.
   outputFileTracingIncludes: {
-    "/api/social/post-image/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png"],
+    "/api/social/post-image/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png", "./public/library/covers/*.webp"],
+    "/api/social/story-image/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png", "./public/library/covers/*.webp"],
   },
 
   images: {

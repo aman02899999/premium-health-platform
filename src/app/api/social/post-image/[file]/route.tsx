@@ -5,6 +5,7 @@ import sharp from "sharp";
 import { nurtureBusiness } from "@/lib/growth/daily";
 import { dailyPost } from "@/lib/growth/daily-posts";
 import { loadLogo } from "@/lib/og";
+import { coverDataUrl } from "@/lib/social/cover";
 import { SITE_URL } from "@/lib/site";
 
 // The day's marketing post as a 1080×1350 JPEG (Instagram's 4:5 feed size; its API takes JPEG
@@ -29,7 +30,9 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
     font("rupee.ttf"),
   ]);
   const post = dailyPost(date, biz);
-  const isTip = post.category !== "Offer";
+  const isShop = post.category === "Shop";
+  const isTip = post.category !== "Offer" && !isShop;
+  const cover = isShop ? await coverDataUrl(post.cover, 420) : null;
   const cta = (post.instagram.split("\n\n").find((p) => p.endsWith(" — link in bio.")) ?? "").replace(/ — link in bio\.$/, "");
   const len = post.title.length;
   const hookSize = len > 70 ? 64 : len > 55 ? 72 : len > 40 ? 84 : 100;
@@ -59,16 +62,36 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
             <div style={{ fontSize: 22, color: "rgba(255,255,255,.65)" }}>Gejha, Sector 93, Noida</div>
           </div>
           <div style={{ display: "flex", marginLeft: "auto", fontSize: 22, fontWeight: 800, color: "#ffcf5a", border: "2px solid rgba(255,207,90,.6)", borderRadius: 999, padding: "8px 20px" }}>
-            {isTip ? "SAVE THIS POST" : "FROM COACH AMAN"}
+            {isTip ? "SAVE THIS POST" : isShop ? "ROYAL STORE" : "FROM COACH AMAN"}
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", flexGrow: 1, justifyContent: "center" }}>
           <div style={{ display: "flex", fontSize: 26, fontWeight: 800, color: "#ff5b6b", letterSpacing: 3, textTransform: "uppercase", marginBottom: 22 }}>
-            {isTip ? `${post.category} · ${post.theme}` : post.theme}
+            {isTip ? `${post.category} · ${post.theme}` : isShop ? "Coach's pick" : post.theme}
           </div>
           <div style={{ display: "flex", fontFamily: "Oswald", fontSize: hookSize, lineHeight: 1.06, textTransform: "uppercase" }}>{post.title}</div>
-          {isTip ? (
+          {isShop ? (
+            <div style={{ display: "flex", gap: 40, marginTop: 40, alignItems: "flex-start" }}>
+              {cover && (
+                // eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only
+                <img src={cover} alt="" width={300} height={420} style={{ borderRadius: 18, objectFit: "cover", boxShadow: "0 20px 60px rgba(0,0,0,.5)" }} />
+              )}
+              <div style={{ display: "flex", flexDirection: "column", gap: 18, flex: 1 }}>
+                <div style={{ display: "flex", fontSize: 38, fontWeight: 800, lineHeight: 1.15 }}>{post.theme}</div>
+                {post.points.map((p, i) => (
+                  <div key={i} style={{ display: "flex", gap: 14, fontSize: cover ? 27 : 32, lineHeight: 1.3, color: "rgba(255,255,255,.88)" }}>
+                    <div style={{ display: "flex", width: 13, height: 26, marginTop: 4, flexShrink: 0, borderRight: "5px solid #ffcf5a", borderBottom: "5px solid #ffcf5a", transform: "rotate(45deg) translate(-4px, -4px)" }} />
+                    <div style={{ display: "flex", flex: 1 }}>{p}</div>
+                  </div>
+                ))}
+                <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 10 }}>
+                  <div style={{ display: "flex", background: "#e8394b", borderRadius: 999, padding: "14px 30px", fontSize: 34, fontWeight: 800 }}>{post.takeaway}</div>
+                </div>
+                <div style={{ display: "flex", fontSize: 26, fontWeight: 800, color: "#ffcf5a" }}>{cta} · link in bio</div>
+              </div>
+            </div>
+          ) : isTip ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 22, marginTop: 40 }}>
               {post.points.map((p, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 20 }}>
