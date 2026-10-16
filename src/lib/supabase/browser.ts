@@ -29,7 +29,10 @@ export async function signInWithEmail(email: string, next = "/account"): Promise
     email,
     options: { emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}` },
   });
-  return error ? error.message : null;
+  if (!error) return null;
+  // Supabase caps sign-in emails per hour; say what to do instead of showing its raw message.
+  if (error.status === 429 || /rate limit/i.test(error.message)) return "Too many sign-in emails were sent in the last few minutes. Please use Continue with Google, or try again in a little while.";
+  return error.message;
 }
 
 /** Signs in with the 6-digit code from the sign-in email (when the email template includes {{ .Token }}). */

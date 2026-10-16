@@ -41,7 +41,7 @@ export function AccountMenu() {
     return (
       <Link
         href={pathname === "/" || pathname === "/account" ? "/account" : `/account?next=${encodeURIComponent(pathname)}`}
-        className="hidden h-10 items-center gap-2 rounded-full border border-white/15 px-4 text-sm font-semibold text-white/85 hover:border-sky hover:text-white md:flex"
+        className="hidden h-10 items-center gap-2 whitespace-nowrap rounded-full border border-white/15 px-4 text-sm font-semibold text-white/85 hover:border-sky hover:text-white md:flex"
       >
         <UserRound className="h-4 w-4" /> Sign in
       </Link>
