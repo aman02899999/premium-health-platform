@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { randomUUID } from "crypto";
 import { getContent } from "@/lib/content/store";
 import { parseCheckoutForm, quoteMembership } from "@/lib/payments/membership";
@@ -7,7 +7,8 @@ import { insertOrder } from "@/lib/payments/orders";
 import { applyOffer } from "@/lib/offers";
 import { todayIST } from "@/lib/growth/dates";
 import { looksLikeReferralCode, normaliseCode } from "@/lib/growth/config";
-import { memberByCode } from "@/lib/growth/members";
+import { isMemberPhone, memberByCode } from "@/lib/growth/members";
+import { trackCheckoutStarted } from "@/lib/growth/resend-events";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +54,13 @@ export async function POST(req: Request) {
       notes: { plan: `${quote.planName}${couple ? " (couple)" : ""}`, name: form.name, phone: form.phone },
     });
     await insertOrder(order.id, quote, form, referralCode);
+    // Abandoned-checkout emails are for first-time joiners only; renewals have their own sequence.
+    if (form.email) {
+      const email = form.email;
+      after(async () => {
+        if (!(await isMemberPhone(form.phone).catch(() => true))) await trackCheckoutStarted(email, quote.planName, quote.planId, form.name);
+      });
+    }
     return NextResponse.json({
       orderId: order.id,
       keyId: razorpayKeyId(),
