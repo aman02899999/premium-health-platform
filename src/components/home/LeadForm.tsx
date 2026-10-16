@@ -62,6 +62,10 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
         </label>
       </div>
       <label className="block">
+        <span className="mb-1.5 block text-sm text-white/75">Email (optional, for your trial confirmation)</span>
+        <input name="email" type="email" maxLength={120} autoComplete="email" className="field" placeholder="you@example.com" />
+      </label>
+      <label className="block">
         <span className="mb-1.5 block text-sm text-white/75">Your goal</span>
         <select name="goal" className="field" defaultValue={GOALS[0]}>
           {GOALS.map((g) => (
