@@ -180,6 +180,7 @@ describe("diet reply follows what they asked for", () => {
     const r = reply("Need a fat lose diet plan");
     expect(r.startsWith("Hi Pratibha! 🙏 Welcome to *Royal Fitness Club*.")).toBe(true);
     expect(r).toContain("*3-Month Fat-Loss Program*");
+    expect(r).toContain("Certified Nutritionist since 2016 with 15+ years of coaching experience");
     expect(r).toContain("calorie deficit with high protein");
     expect(r).toContain("6 check-ins");
     expect(r).toContain("Branded PDF within *48 hours*");
