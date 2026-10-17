@@ -120,7 +120,7 @@ function dietReply(c: ReplyCtx): string {
     `💰 *${main.name}: ${inr(main.priceRupees)}*`,
     `Other options: ${others.map((d) => `${d.name} ${inr(d.priceRupees)}`).join(" · ")}`,
     `\n👉 Start here: ${c.siteUrl}/diet-chart?plan=${main.id}#order`,
-    `Or reply *YES* and the coach will send you a short form 📋`,
+    `New here? Try the *7-Day Trial Plan for ${inr(DIET_PLANS.find((d) => d.trial)?.priceRupees ?? 49)}* first: ${c.siteUrl}/diet-chart?plan=trial#order`,
     p.condition ? `\n_General guidance, not medical treatment. Herbs and supplements support, and never replace, your doctor's advice._` : null,
   ]
     .filter((l) => l !== null)

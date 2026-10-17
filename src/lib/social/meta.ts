@@ -60,6 +60,17 @@ export async function sendWhatsAppText(to: string, body: string): Promise<SendRe
   return r.ok && r.json.messages?.[0]?.id ? { ok: true, id: r.json.messages[0].id } : fail(r);
 }
 
+/** Reply buttons, a list or a link button, inside the 24-hour window (see wa-flow.ts). */
+export async function sendWhatsAppInteractive(to: string, interactive: Record<string, unknown>): Promise<SendResult> {
+  if (!whatsappReplyConfigured()) return { ok: false, error: "WhatsApp API not configured", retry: false };
+  const r = await graph(`${WA_API()}/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`, "content-type": "application/json" },
+    body: JSON.stringify({ messaging_product: "whatsapp", recipient_type: "individual", to, type: "interactive", interactive }),
+  });
+  return r.ok && r.json.messages?.[0]?.id ? { ok: true, id: r.json.messages[0].id } : fail(r);
+}
+
 /** A PDF from a public URL, inside the 24-hour window that the person's own message opened. */
 export async function sendWhatsAppDocument(to: string, link: string, filename: string, caption: string): Promise<SendResult> {
   if (!whatsappReplyConfigured()) return { ok: false, error: "WhatsApp API not configured", retry: false };

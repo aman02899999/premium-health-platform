@@ -48,14 +48,14 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
   });
 
   const PEER = "919876543210";
-  const wa = (id: string, text: string, media?: { type: "image"; id: string }) => ({ id: `wa:${id}`, channel: "whatsapp" as const, kind: "message" as const, from: PEER, fromName: "Pratibha", text, ...(media ? { media } : {}) });
+  const wa = (id: string, text: string, media?: { type: "image"; id: string }, replyId?: string) => ({ id: `wa:${id}`, channel: "whatsapp" as const, kind: "message" as const, from: PEER, fromName: "Pratibha", text, ...(media ? { media } : {}), ...(replyId ? { replyId } : {}) });
 
   it("shows the customer's messages, the auto-replies and the sample PDF as one conversation", async () => {
     expect(await social.handleInbound(wa("1", "Need a fat lose diet plan"))).toBe("replied");
     await social.handleInbound(wa("2", "", { type: "image", id: "55501" }));
 
-    // Text reply, then the sample PDF as a document.
-    expect(sent.map((s) => s.type)).toEqual(["text", "document"]);
+    // The trial offer with buttons, then the sample PDF as a document.
+    expect(sent.map((s) => s.type)).toEqual(["interactive", "document"]);
     expect((sent[1].document as { link: string }).link).toMatch(/\/samples\/royal-fitness-diet-plan-sample\.pdf$/);
 
     const t = await chat.chatThread(PEER);
@@ -67,7 +67,8 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
       [false, "auto-reply"],
       [true, ""],
     ]);
-    expect(t.messages[1].body).toContain("*3-Month Fat-Loss Program*");
+    expect(t.messages[1].body).toContain("*7-Day Trial Plan: just ₹49*");
+    expect(t.messages[1].body).toContain("[✅ Start 7-day ₹49] [📋 See all plans] [💬 Talk to coach]");
     expect(t.messages[3].media).toEqual({ type: "image", id: "55501" });
 
     const [summary] = await chat.listChats();
@@ -181,6 +182,51 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     sent.length = 0;
     expect(await social.handleInbound(wa("20", "Hi"))).toBe("replied");
     expect(await social.handleInbound(wa("21", "Hi again"))).toBe("logged"); // one greeting per 12 hours
-    expect(sent.filter((s) => s.type === "text")).toHaveLength(1);
+    expect(sent).toHaveLength(1);
+  });
+
+  it("the trial funnel: offer → 'Yes' → ₹49 checkout button; plans and coach buttons; 'yes' without an offer is not a sale", async () => {
+    const inter = () => sent.filter((s) => s.type === "interactive").map((s) => s.interactive as { type: string; body: { text: string }; action: Record<string, unknown> });
+    expect(await social.handleInbound(wa("30", "yes"))).toBe("replied"); // no offer yet: the menu, not a checkout
+    expect(inter().map((i) => i.type)).toEqual(["list"]);
+    sent.length = 0;
+
+    await social.handleInbound(wa("31", "Need diet plan for weight loss, veg"));
+    const [offer] = inter();
+    expect(offer.type).toBe("button");
+    expect(offer.body.text).toContain("for *fat-loss*");
+    expect(offer.body.text).toContain("100% vegetarian");
+    expect((offer.action.buttons as { reply: { id: string } }[]).map((b) => b.reply.id)).toEqual(["rfc_trial7", "rfc_plans", "rfc_coach"]);
+    sent.length = 0;
+
+    expect(await social.handleInbound(wa("32", "Yes"))).toBe("replied");
+    const [cta] = inter();
+    expect(cta.type).toBe("cta_url");
+    expect(cta.action).toEqual({ name: "cta_url", parameters: { display_text: "Start for ₹49", url: expect.stringMatching(/\/diet-chart\?plan=trial&utm_source=whatsapp.*#order$/) } });
+    sent.length = 0;
+
+    await social.handleInbound(wa("33", "📋 See all plans", undefined, "rfc_plans"));
+    expect(inter()[0].body.text).toContain("*3-Month Transformation: ₹2,999*");
+    sent.length = 0;
+    await social.handleInbound(wa("34", "💬 Talk to coach", undefined, "rfc_coach"));
+    expect((sent[0].text as { body: string }).body).toContain("Coach Aman will reply here personally");
+
+    const t = await chat.chatThread(PEER);
+    expect(t.messages.filter((m) => m.by === "auto-reply").map((m) => m.body.split("\n")[0])).toContain("Great choice! 🎉 Here's how your *7-Day Trial Plan* works:");
+  });
+
+  it("a button message Meta refuses still reaches the customer as text", async () => {
+    vi.stubGlobal("fetch", async (u: string, init?: { body?: string }) => {
+      const b = JSON.parse(init?.body ?? "{}");
+      if (u.endsWith("/123/messages")) {
+        sent.push(b);
+        return b.type === "interactive" ? new Response(JSON.stringify({ error: { message: "(#131009) Parameter value is not valid" } }), { status: 400 }) : new Response(JSON.stringify({ messages: [{ id: "wamid.t" }] }));
+      }
+      return new Response("{}", { status: 404 });
+    });
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    expect(await social.handleInbound(wa("40", "Hi"))).toBe("replied");
+    expect(sent.map((s) => s.type)).toEqual(["interactive", "text"]);
+    expect((sent[1].text as { body: string }).body).toContain("• 7-day diet plan ₹49");
   });
 });

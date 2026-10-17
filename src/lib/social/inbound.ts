@@ -10,6 +10,8 @@ export type Inbound = {
   from: string;
   fromName: string;
   text: string;
+  /** WhatsApp: the id of a tapped reply button or list row (see wa-flow.ts). */
+  replyId?: string;
   /** A photo, voice note, video, document or sticker (WhatsApp): Meta's media id, fetched on demand. */
   media?: { type: MediaType; id: string };
 };
@@ -23,8 +25,8 @@ type WaMessage = {
   from?: string;
   type?: string;
   text?: { body?: string };
-  button?: { text?: string };
-  interactive?: { button_reply?: { title?: string }; list_reply?: { title?: string } };
+  button?: { text?: string; payload?: string };
+  interactive?: { button_reply?: { id?: string; title?: string }; list_reply?: { id?: string; title?: string } };
   image?: WaMedia;
   audio?: WaMedia;
   video?: WaMedia;
@@ -57,6 +59,7 @@ export function parseWebhook(body: MetaWebhook): Inbound[] {
           const text = m.text?.body ?? m.button?.text ?? m.interactive?.button_reply?.title ?? m.interactive?.list_reply?.title ?? media?.caption ?? loc;
           if (!m.id || !m.from) continue;
           const name = v.contacts?.find((c) => c.wa_id === m.from)?.profile?.name ?? "";
+          const replyId = clean(m.interactive?.button_reply?.id ?? m.interactive?.list_reply?.id ?? m.button?.payload, 100);
           out.push({
             id: `wa:${m.id}`,
             channel: "whatsapp",
@@ -64,6 +67,7 @@ export function parseWebhook(body: MetaWebhook): Inbound[] {
             from: m.from.replace(/\D/g, ""),
             fromName: clean(name, 80),
             text: clean(text, 1000),
+            ...(replyId ? { replyId } : {}),
             ...(type && media?.id ? { media: { type, id: media.id } } : {}),
           });
         }

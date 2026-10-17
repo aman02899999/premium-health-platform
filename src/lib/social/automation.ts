@@ -24,10 +24,12 @@ import {
   sendFacebookMessage,
   sendInstagramMessage,
   sendWhatsAppDocument,
+  sendWhatsAppInteractive,
   sendWhatsAppText,
   whatsappReplyConfigured,
 } from "./meta";
 import { renderReel } from "./reel";
+import { TRIAL_OFFER_MARK, flowAction, flowReply, logText, toInteractive, type FlowAction } from "./wa-flow";
 import { recordReply } from "./chat";
 import { chatAlertEmail } from "./chat-window";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
@@ -109,26 +111,54 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
     [m.channel, m.from, m.id],
   );
   const canSend = m.channel === "whatsapp" ? whatsappReplyConfigured() : m.channel === "facebook" ? facebookConfigured() : instagramConfigured();
-  if (!autoReplyOn() || !canSend || !shouldReply(intent, m.kind, rows[0].n > 0)) return "logged";
+  // WhatsApp runs the button conversation (wa-flow.ts): a tapped button, or "yes" to the trial
+  // offer, always gets its next step; typed messages follow the usual reply rules.
+  const flow = m.channel === "whatsapp" ? flowAction({ replyId: m.replyId, text: m.text }, await offeredTrial(m.from)) : null;
+  if (!autoReplyOn() || !canSend || (!flow?.tapped && !shouldReply(intent, m.kind, rows[0].n > 0))) return "logged";
+  if (flow) return replyOnWhatsApp(m, flow.action);
 
-  const text = buildReply(intent, await replyCtx(m.fromName, m.text));
+  // Instagram and Facebook: one text reply.
+  const text = forInstagram(buildReply(intent, await replyCtx(m.fromName, m.text)));
   const res =
-    m.channel === "whatsapp"
-      ? await sendWhatsAppText(m.from, text)
-      : m.channel === "facebook"
-        ? await sendFacebookMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^fbc:/, "") } : { id: m.from }, forInstagram(text))
-        : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, forInstagram(text));
+    m.channel === "facebook"
+      ? await sendFacebookMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^fbc:/, "") } : { id: m.from }, text)
+      : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, text);
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
-  // WhatsApp replies show up in the admin chat next to the customer's messages.
-  if (m.channel === "whatsapp") await recordReply({ to: m.from, body: text, by: "auto-reply", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
-  // A diet enquiry on WhatsApp also gets the plan preview, so they see what they'd receive.
-  if (res.ok && intent === "diet" && m.channel === "whatsapp") {
+  return res.ok ? "replied" : "failed";
+}
+
+/** True when our auto-reply offered the 7-Day Trial in the last 24 hours, so "yes" means "start it". */
+async function offeredTrial(peer: string): Promise<boolean> {
+  const { rowCount } = await pool.query(
+    `select 1 from public.chat_replies where to_id = $1 and sent_by = 'auto-reply' and created_at > now() - interval '24 hours' and position($2 in body) > 0 limit 1`,
+    [peer, TRIAL_OFFER_MARK],
+  );
+  return Boolean(rowCount);
+}
+
+/** Sends one step of the WhatsApp conversation; a button message that fails goes again as plain text. */
+async function replyOnWhatsApp(m: Inbound, action: FlowAction): Promise<"replied" | "failed"> {
+  const steps = flowReply(action, await replyCtx(m.fromName, m.text));
+  let first: { ok: boolean; error?: string } | null = null;
+  for (const step of steps) {
+    const interactive = toInteractive(step);
+    let res = interactive ? await sendWhatsAppInteractive(m.from, interactive) : await sendWhatsAppText(m.from, step.body);
+    if (!res.ok && interactive) {
+      console.error("[social] interactive reply failed, sending text:", res.error);
+      res = await sendWhatsAppText(m.from, logText(step));
+    }
+    first ??= res.ok ? { ok: true } : { ok: false, error: res.error };
+    await recordReply({ to: m.from, body: logText(step), by: "auto-reply", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
+  }
+  await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, first?.ok ?? false, first?.ok ? null : (first?.error ?? "").slice(0, 300)]);
+  // A diet enquiry also gets the plan preview, so they see what they'd receive.
+  if (first?.ok && action === "diet") {
     const caption = "📄 A real sample plan (made for an example client). Yours is built on your own body, food and goal.";
     const doc = await sendWhatsAppDocument(m.from, DIET_SAMPLE_URL, "Royal Fitness Club - sample diet plan.pdf", caption);
     if (!doc.ok) console.error("[social] diet sample PDF:", doc.error);
     await recordReply({ to: m.from, body: `📄 Sample diet plan PDF\n${caption}`, kind: "document", by: "auto-reply", ok: doc.ok, error: doc.ok ? null : doc.error, externalId: doc.ok ? doc.id : null });
   }
-  return res.ok ? "replied" : "failed";
+  return first?.ok ? "replied" : "failed";
 }
 
 export const postImageUrl = (date: string) => `${SITE_URL}/api/social/post-image/${date}.jpg`;

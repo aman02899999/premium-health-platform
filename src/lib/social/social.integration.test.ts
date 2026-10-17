@@ -74,10 +74,10 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(await social.handleInbound(wa("2", "hello?"))).toBe("logged"); // a coach may be chatting by now
     expect(await social.handleInbound(wa("3", "fees kitni hai"))).toBe("replied");
 
-    const sent = calls.filter((c) => c.url.endsWith("/123/messages")).map((c) => (c.body!.text as { body: string }).body);
-    expect(sent).toHaveLength(2);
-    expect(sent[0]).toContain("Hi Rahul! Thanks for messaging Royal Fitness Club.");
-    expect(sent[1]).toContain("*Royal Fitness Club: membership fees*");
+    const out = calls.filter((c) => c.url.endsWith("/123/messages")).map((c) => c.body!.interactive as { type: string; body: { text: string } });
+    expect(out.map((o) => o.type)).toEqual(["list", "button"]); // the menu, then fees with buttons
+    expect(out[0].body.text).toContain("Hi Rahul! 👋 Welcome to *Royal Fitness Club*.");
+    expect(out[1].body.text).toContain("*Royal Fitness Club: membership fees*");
 
     const leads = (await pool.query("select name, phone, source, interest, follow_ups from public.leads")).rows;
     expect(leads).toEqual([{ name: "Rahul Kumar", phone: "9876543210", source: "whatsapp-inbound", interest: "", follow_ups: false }]);
