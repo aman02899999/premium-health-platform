@@ -7,6 +7,7 @@ import { CheckCircle2, Heart, Loader2, Lock, User } from "lucide-react";
 import type { OfferPlan } from "@/lib/offers";
 import { formatINR } from "@/lib/site";
 import { planMonths } from "@/components/home/PlanGrid";
+import { trackPixel } from "@/lib/meta-pixel";
 
 export type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
@@ -83,6 +84,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
           const out = await v.json().catch(() => ({}));
           setBusy(false);
           if (v.ok) {
+            trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "membership" }, r.razorpay_payment_id);
             setReceipt(out);
             requestAnimationFrame(() => document.getElementById("join-result")?.scrollIntoView({ behavior: "smooth", block: "center" }));
           }
@@ -93,6 +95,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
         setError(r.error?.description || "The payment failed. No money was taken — please try again.");
         setBusy(false);
       });
+      trackPixel("InitiateCheckout", { value: order.amount / 100, currency: "INR", content_name: "membership" });
       rzp.open();
     } catch (err) {
       setError((err as Error).message);

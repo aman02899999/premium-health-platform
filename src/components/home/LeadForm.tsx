@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { newEventId, trackPixel } from "@/lib/meta-pixel";
 
 const GOALS = ["Fat loss", "Muscle gain", "General fitness", "Personal training", "Women's fitness", "Other"];
 
@@ -20,13 +21,15 @@ export function LeadForm({ whatsapp, gymName, source = "website" }: { whatsapp: 
     const message = `Hi ${gymName}! I'm ${data.name}. I'd like a free trial. Goal: ${data.goal}.${data.message ? ` ${data.message}` : ""}`;
     setWaLink(`https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`);
     try {
+      const eventId = newEventId();
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...data, source }),
+        body: JSON.stringify({ ...data, source, eventId }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.error || "Could not send — please WhatsApp us instead.");
+      trackPixel("Lead", { content_name: "free-trial" }, eventId);
       setState("done");
     } catch (err) {
       setError((err as Error).message);

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { BadgePercent, Crown, Loader2, Lock, ShoppingBag, Trash2 } from "lucide-react";
 import { MULTI_BUY, priceCart, type PriceTable } from "@/lib/library/cart";
 import { useCart } from "./useCart";
+import { trackPixel } from "@/lib/meta-pixel";
 
 type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
@@ -79,6 +80,7 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
           const v = await fetch("/api/library/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(r) });
           const out = await v.json().catch(() => ({}));
           if (v.ok && out.accessUrl) {
+            trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "book" }, r.razorpay_payment_id);
             clear();
             window.location.href = `${out.accessUrl}?paid=1`;
           } else {
@@ -91,6 +93,7 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
         setError(resp.error?.description || "Payment failed. No money was taken — please try again.");
         setBusy(false);
       });
+      trackPixel("InitiateCheckout", { value: order.amount / 100, currency: "INR", content_name: "book" });
       rzp.open();
     } catch (err) {
       setError((err as Error).message);

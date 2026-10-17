@@ -4,6 +4,7 @@ import { isDbConfigured } from "@/health/db";
 import { afterLeadSaved } from "@/lib/growth/hooks";
 import { insertLead } from "@/lib/growth/leads";
 import { recordEmailConsent } from "@/lib/growth/marketing";
+import { browserContext, sendCapiEvent } from "@/lib/growth/meta-capi";
 
 const INTERESTS = ["diet", "pt", "membership", "other"] as const;
 
@@ -40,6 +41,9 @@ export async function POST(req: Request) {
   // Marketing emails only with an explicit tick, and only if there is an address to send to.
   const marketing = body.marketing === true && !!email;
   const source = clean(body.source, 40) || "website";
+  // The browser pixel's event id for this lead, so Meta counts the server copy once.
+  const eventId = /^[\w-]{8,64}$/.test(clean(body.eventId, 64)) ? clean(body.eventId, 64) : `lead-${crypto.randomUUID()}`;
+  const capi = { name: "Lead" as const, id: eventId, user: { email, phone }, context: browserContext(req), contentName: interest || source, url: req.headers.get("referer") ?? undefined };
 
   try {
     if (isDbConfigured) {
@@ -47,6 +51,7 @@ export async function POST(req: Request) {
       if (marketing) await recordEmailConsent(email, name, source).catch((e: Error) => console.error("[leads] consent:", e.message));
       // After the response: WhatsApp thank-you and/or the first email (or queue them for the admin).
       after(() => afterLeadSaved(phone, id));
+      after(() => sendCapiEvent(capi));
     } else {
       await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source });
     }

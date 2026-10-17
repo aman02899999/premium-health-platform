@@ -9,6 +9,7 @@ import { inr } from "@/lib/shop/format";
 import { INDIAN_STATES } from "@/lib/shop/checkout";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
+import { trackPixel } from "@/lib/meta-pixel";
 
 const FORM_KEY = "rs-checkout-v1";
 type Form = { name: string; email: string; phone: string; line1: string; line2: string; landmark: string; city: string; state: string; pincode: string; note: string };
@@ -73,6 +74,7 @@ export default function CheckoutPage() {
           const out = await v.json().catch(() => ({}));
           setBusy(false);
           if (v.ok) {
+            trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "shop" }, r.razorpay_payment_id);
             cart.clear();
             setDone({ number: order.number, paymentId: r.razorpay_payment_id, total: order.amount / 100 });
             window.scrollTo({ top: 0 });
@@ -83,6 +85,7 @@ export default function CheckoutPage() {
         setError(r.error?.description || "The payment failed. No money was taken — please try again.");
         setBusy(false);
       });
+      trackPixel("InitiateCheckout", { value: order.amount / 100, currency: "INR", content_name: "shop" });
       rzp.open();
     } catch (err) {
       setError((err as Error).message);
