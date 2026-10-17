@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Clock, MapPin, Phone, Star } from "lucide-react";
 import type { SiteContent } from "@/lib/content/types";
 import { HUB } from "@/lib/hub";
-import { FOOTER_LINKS, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
+import { FOOTER_LINKS, LEGAL, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { InstagramIcon, WhatsAppIcon } from "./BrandIcons";
 import { FullLogo } from "./Logo";
 
@@ -85,9 +85,14 @@ export function Footer({ content }: { content: SiteContent }) {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/45 sm:flex-row sm:px-6">
-          <p>
-            © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
-          </p>
+          <div className="text-center sm:text-left">
+            <p>
+              © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
+            </p>
+            <p className="mt-1 text-white/35">
+              {LEGAL.name} · {LEGAL.entity} · Udyam {LEGAL.udyam} · FSSAI Reg. No. {LEGAL.fssai}
+            </p>
+          </div>
           <p className="flex flex-wrap justify-center gap-x-4">
             <Link href="/privacy" className="inline-block py-1.5 hover:text-brand">Privacy</Link>
             <Link href="/terms" className="inline-block py-1.5 hover:text-brand">Terms</Link>
