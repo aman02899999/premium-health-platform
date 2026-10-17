@@ -174,4 +174,13 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
       delete process.env.CALL_FOLLOWUP;
     }
   });
+
+  it("a burst of greetings delivered at once still gets one reply", async () => {
+    // A later message from the same burst is already stored when the first one is handled.
+    await pool.query(`insert into public.social_inbox (id, channel, kind, from_id, from_name, body, intent, created_at) values ('wa:later', 'whatsapp', 'message', $1, 'Pratibha', 'Hi', 'hello', now() + interval '1 second')`, [PEER]);
+    sent.length = 0;
+    expect(await social.handleInbound(wa("20", "Hi"))).toBe("replied");
+    expect(await social.handleInbound(wa("21", "Hi again"))).toBe("logged"); // one greeting per 12 hours
+    expect(sent.filter((s) => s.type === "text")).toHaveLength(1);
+  });
 });

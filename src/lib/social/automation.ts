@@ -102,7 +102,10 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
   if (leadId) await pool.query(`update public.social_inbox set lead_id = $2 where id = $1`, [m.id, leadId]);
 
   const { rows } = await pool.query<{ n: number }>(
-    `select count(*)::int as n from public.social_inbox where channel = $1 and from_id = $2 and kind = 'message' and id <> $3 and created_at > now() - interval '12 hours'`,
+    // Only messages that came before this one: when Meta delivers a burst at once, the first still gets its reply.
+    `select count(*)::int as n from public.social_inbox p, public.social_inbox me
+      where me.id = $3 and p.channel = $1 and p.from_id = $2 and p.kind = 'message' and p.id <> $3
+        and p.created_at > me.created_at - interval '12 hours' and p.created_at < me.created_at`,
     [m.channel, m.from, m.id],
   );
   const canSend = m.channel === "whatsapp" ? whatsappReplyConfigured() : m.channel === "facebook" ? facebookConfigured() : instagramConfigured();
