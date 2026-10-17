@@ -35,6 +35,7 @@ import { chatAlertEmail } from "./chat-window";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
 import { promotionsRequest } from "@/lib/growth/messages";
 import { setPromotionsOptOut } from "@/lib/growth/optouts";
+import { botPaused } from "./chat-tools";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -115,6 +116,8 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
   // offer, always gets its next step; typed messages follow the usual reply rules.
   const flow = m.channel === "whatsapp" ? flowAction({ replyId: m.replyId, text: m.text }, await offeredTrial(m.from)) : null;
   if (!autoReplyOn() || !canSend || (!flow?.tapped && !shouldReply(intent, m.kind, rows[0].n > 0))) return "logged";
+  // The coach paused the bot for this customer (or is chatting with them right now).
+  if (flow && (await botPaused(m.from))) return "logged";
   if (flow) return replyOnWhatsApp(m, flow.action);
 
   // Instagram and Facebook: one text reply.

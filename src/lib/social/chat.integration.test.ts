@@ -1,6 +1,6 @@
 // The admin WhatsApp chat on a real Postgres (migrations applied), with Meta's API stubbed:
 //   TEST_DATABASE_URL=postgresql://postgres:pg@127.0.0.1:5432/rfc_test npx vitest run src/lib/social/chat.integration.test.ts
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, onTestFinished, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/content/store", async () => {
@@ -39,7 +39,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     meta = await import("./meta");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members, public.whatsapp_optouts, public.whatsapp_calls cascade");
+    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members, public.whatsapp_optouts, public.whatsapp_calls, public.chat_contacts cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -216,6 +216,10 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
   });
 
   it("a button message Meta refuses still reaches the customer as text", async () => {
+    const normal = globalThis.fetch;
+    onTestFinished(() => {
+      vi.stubGlobal("fetch", normal);
+    });
     vi.stubGlobal("fetch", async (u: string, init?: { body?: string }) => {
       const b = JSON.parse(init?.body ?? "{}");
       if (u.endsWith("/123/messages")) {
@@ -228,5 +232,43 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     expect(await social.handleInbound(wa("40", "Hi"))).toBe("replied");
     expect(sent.map((s) => s.type)).toEqual(["interactive", "text"]);
     expect((sent[1].text as { body: string }).body).toContain("• 7-day diet plan ₹49");
+  });
+
+  it("coach tools: profile, one-tap replies, bot pause, and templates once the window has closed", async () => {
+    const tools = await import("./chat-tools");
+    await pool.query(`insert into public.leads (name, phone, source, status) values ('Pratibha', '98765 43210', 'website', 'new')`);
+    await social.handleInbound(wa("50", "kitne ka hai"));
+
+    let c = await tools.contactInfo(PEER);
+    expect(c).toMatchObject({ name: "Pratibha", optedOut: false, botPausedUntil: null, member: null, lead: { status: "new" } });
+
+    // One-tap trial link: the checkout button goes out, and the bot steps back for 2 hours.
+    sent.length = 0;
+    expect(await tools.sendQuickReply(PEER, "trial7", "coach@x.in")).toEqual({ ok: true });
+    expect((sent[0].interactive as { type: string }).type).toBe("cta_url");
+    expect((await tools.contactInfo(PEER)).botPausedUntil).not.toBeNull();
+    sent.length = 0;
+    expect(await social.handleInbound(wa("51", "diet plan?"))).toBe("logged"); // paused: the coach answers
+    expect(sent).toEqual([]);
+    await tools.pauseBot(PEER, null);
+    expect(await social.handleInbound(wa("52", "diet plan?"))).toBe("replied");
+
+    // Lead status, notes and promotions from the panel.
+    expect(await tools.setLeadStatus(PEER, "trial")).toEqual({ ok: true });
+    expect(await tools.setLeadStatus(PEER, "vip")).toMatchObject({ ok: false, status: 400 });
+    await tools.saveNotes(PEER, "Knee injury, evening batch");
+    c = await tools.contactInfo(PEER);
+    expect(c).toMatchObject({ notes: "Knee injury, evening batch", lead: { status: "trial" } });
+
+    // The window closes: free text is refused, a template still goes.
+    await pool.query(`update public.social_inbox set created_at = now() - interval '25 hours'`);
+    expect(await tools.sendQuickReply(PEER, "trial7", "coach@x.in")).toMatchObject({ ok: false, status: 409 });
+    sent.length = 0;
+    expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toEqual({ ok: true });
+    expect(sent[0]).toMatchObject({ type: "template", template: { name: "rfc_call_followup_v1" } });
+    await tools.setOptOut(PEER, true);
+    expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toMatchObject({ ok: false });
+    const [summary] = await chat.listChats();
+    expect(summary).toMatchObject({ tag: "lead", botPaused: false });
   });
 });

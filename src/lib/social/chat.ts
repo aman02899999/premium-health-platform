@@ -8,7 +8,7 @@ import { sendWhatsAppText } from "./meta";
 //   chat_replies    what the site sent inside the conversation (auto-replies, the coach)
 //   message_outbox  scheduled template messages (renewals, trial follow-ups, welcome)
 
-export type ChatSummary = { peer: string; name: string; lastAt: string; lastBody: string; lastFromThem: boolean; window: WindowState };
+export type ChatSummary = { peer: string; name: string; lastAt: string; lastBody: string; lastFromThem: boolean; window: WindowState; tag: "member" | "lead" | null; botPaused: boolean };
 export type ChatMessage = {
   id: string;
   at: string;
@@ -48,13 +48,25 @@ export async function listChats(limit = 200): Promise<ChatSummary[]> {
        from ev group by peer order by max(at) desc limit $1`,
     [limit],
   );
-  return rows.map((r) => ({
+  // Who each number is: a member, a lead, or neither; and whether the coach paused the bot.
+  const tens = rows.map((r) => (r.peer.length === 12 && r.peer.startsWith("91") ? r.peer.slice(2) : r.peer));
+  const [members, leads, paused] = await Promise.all([
+    pool.query<{ phone: string }>(`select distinct phone from public.members where phone = any($1)`, [tens]),
+    pool.query<{ phone: string }>(`select distinct right(regexp_replace(phone, '\\D', '', 'g'), 10) as phone from public.leads where right(regexp_replace(phone, '\\D', '', 'g'), 10) = any($1)`, [tens]),
+    pool.query<{ peer: string }>(`select peer from public.chat_contacts where peer = any($1) and bot_paused_until > now()`, [rows.map((r) => r.peer)]),
+  ]);
+  const isMember = new Set(members.rows.map((r) => r.phone));
+  const isLead = new Set(leads.rows.map((r) => r.phone));
+  const isPaused = new Set(paused.rows.map((r) => r.peer));
+  return rows.map((r, i) => ({
     peer: r.peer,
     name: r.name ?? "",
     lastAt: r.last_at.toISOString(),
     lastBody: r.last_body || (r.last_media ? mediaLabel(r.last_media) : ""),
     lastFromThem: r.last_from_them,
     window: chatWindow(r.last_in),
+    tag: isMember.has(tens[i]) ? "member" : isLead.has(tens[i]) ? "lead" : null,
+    botPaused: isPaused.has(r.peer),
   }));
 }
 
@@ -111,5 +123,12 @@ export async function sendChatReply(peer: string, text: string, by: string): Pro
   }
   const res = await sendWhatsAppText(id, body);
   await recordReply({ to: id, body, by, ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
+  // The coach is talking: the bot stays quiet for a while so it doesn't answer over them.
+  if (res.ok)
+    await pool.query(
+      `insert into public.chat_contacts (peer, bot_paused_until) values ($1, now() + interval '2 hours')
+       on conflict (peer) do update set bot_paused_until = greatest(coalesce(public.chat_contacts.bot_paused_until, now()), now() + interval '2 hours'), updated_at = now()`,
+      [id],
+    );
   return res.ok ? { ok: true } : { ok: false, error: res.error, status: 502 };
 }
