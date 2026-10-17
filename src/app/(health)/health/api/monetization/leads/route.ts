@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -19,9 +20,9 @@ function isRateLimited(ip: string): boolean {
 }
 
 export async function GET(req: NextRequest) {
+  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const { searchParams } = new URL(req.url);
   const limit = Math.min(parseInt(searchParams.get("limit") || "20", 10), 100);
-  // Admin-only in production — check auth
   return NextResponse.json({ ok: true, count: LEADS.length, leads: LEADS.slice(-limit).reverse() });
 }
 

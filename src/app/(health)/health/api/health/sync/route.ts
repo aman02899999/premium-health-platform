@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
 import { syncAll, syncFoods, syncExercises, syncDrugs, syncHerbs, syncMedicalLiterature, syncClinicalTrials, listJobs, getSyncCapabilities, clearCacheForProvider } from "@/health/services/health/sync";
+import { isAdmin } from "@/lib/auth";
+
+// Starting or clearing sync jobs costs third-party API quota: the admin or the cron only.
+async function adminOrCron(req: Request) {
+  const secret = process.env.CRON_SECRET;
+  return (secret && req.headers.get("authorization") === `Bearer ${secret}`) || (await isAdmin());
+}
 
 export const revalidate = 0;
 
@@ -27,6 +34,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
+  if (!(await adminOrCron(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const body = await req.json().catch(() => ({}));
     const jobType = (body.jobType || "all") as string;
@@ -64,6 +72,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  if (!(await adminOrCron(req))) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const { searchParams } = new URL(req.url);
   const provider = searchParams.get("provider");
   if (!provider) return NextResponse.json({ error: "Missing ?provider=" }, { status: 400 });

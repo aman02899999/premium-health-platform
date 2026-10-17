@@ -18,6 +18,7 @@ import { adminDigest, type DigestData } from "./admin-digest";
 import { dietPlan } from "./config";
 import { addDays, daysBetween } from "./dates";
 import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
+import { runRecurringCampaigns } from "./campaigns";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -101,11 +102,13 @@ export async function runDaily(now = new Date()) {
     for (const r of rows) drafts.push(coachsPick(today, r.address, SITE_URL, nb.coach));
   }
   const queued = await enqueue(drafts);
+  // Recurring admin campaigns that are due today (they queue through the same outbox).
+  const campaigns = await runRecurringCampaigns(today).catch((err) => (console.error("[daily] campaigns:", (err as Error).message), { runs: 0, queued: 0 }));
   const sent = await dispatch();
   // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
   // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, ...sent, ...story };
+  return { today, due: drafts.length, queued, campaigns, ...sent, ...story };
 }
 
 /**

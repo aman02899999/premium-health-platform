@@ -176,7 +176,7 @@ function coachHandOff(c: ReplyCtx): WaOut {
   const b = c.business;
   return {
     kind: "buttons",
-    body: [`Thank you! 🙏 *Coach Aman* will reply here personally soon.`, `🕐 ${hours(b).join(" · ")} (${days(b)})`, ``, askDetails()].join("\n"),
+    body: [`Thank you! 🙏 *Coach Aman* will reply here personally soon.`, `🕐 ${hours(b).join(" · ")} (${days(b)})`, `📞 Prefer to talk? Call or WhatsApp the coach: ${b.phone}`, ``, askDetails()].join("\n"),
     footer: FOOTER,
     buttons: [BUTTON.trial7],
   };
