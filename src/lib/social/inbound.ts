@@ -103,3 +103,39 @@ export function indianMobile(waNumber: string): string | null {
   const ten = d.length === 12 && d.startsWith("91") ? d.slice(2) : d;
   return /^[6-9]\d{9}$/.test(ten) ? ten : null;
 }
+
+/**
+ * A WhatsApp voice-call event (webhook field "calls"). Shape per Meta's Calling API docs; the raw
+ * payload is stored with each event until a real call has confirmed it.
+ */
+export type CallEvent = { id: string; from: string; fromName: string; event: string; status: string; direction: string; raw: unknown };
+
+type WaCall = { id?: string; from?: string; event?: string; status?: string | string[]; direction?: string };
+
+export function parseCalls(body: MetaWebhook): CallEvent[] {
+  if (body.object !== "whatsapp_business_account") return [];
+  const out: CallEvent[] = [];
+  for (const entry of body.entry ?? []) {
+    for (const change of entry.changes ?? []) {
+      if (change.field !== "calls") continue;
+      const v = (change.value ?? {}) as WaValue & { calls?: WaCall[] };
+      for (const c of v.calls ?? []) {
+        if (!c.id || !c.from) continue;
+        const from = c.from.replace(/\D/g, "");
+        out.push({
+          id: c.id.slice(0, 200),
+          from,
+          fromName: clean(v.contacts?.find((x) => x.wa_id === c.from)?.profile?.name, 80),
+          event: clean(c.event, 40).toLowerCase(),
+          status: clean(Array.isArray(c.status) ? c.status.join(",") : c.status, 80).toLowerCase(),
+          direction: clean(c.direction, 40).toUpperCase(),
+          raw: change.value,
+        });
+      }
+    }
+  }
+  return out;
+}
+
+/** Only a call the customer made, once it has ended, earns a follow-up. */
+export const wantsCallFollowUp = (c: Pick<CallEvent, "event" | "direction">) => c.event === "terminate" && c.direction !== "BUSINESS_INITIATED";

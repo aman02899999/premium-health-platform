@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
 import { applyOffer } from "@/lib/offers";
 import { buildReply, detectIntent, forInstagram, shouldReply, type ReplyCtx } from "./auto-reply";
-import { indianMobile, parseWebhook } from "./inbound";
+import { indianMobile, parseCalls, parseWebhook, wantsCallFollowUp } from "./inbound";
 import { chatWindow, peerId, windowLabel } from "./chat-window";
 
 vi.mock("server-only", () => ({}));
@@ -238,5 +238,28 @@ describe("WhatsApp media and the 24-hour reply window", () => {
     expect(windowLabel(chatWindow("2026-10-17T02:00:00Z", now), now)).toBe("Reply window open for 14 h 0 min");
     expect(windowLabel(chatWindow(null, now), now)).toMatch(/^Closed/);
     expect(peerId("+91 98765-43210")).toBe("919876543210");
+  });
+});
+
+describe("parseCalls (WhatsApp voice calls)", () => {
+  const body = (calls: unknown[]) => ({
+    object: "whatsapp_business_account",
+    entry: [{ changes: [{ field: "calls", value: { messaging_product: "whatsapp", contacts: [{ wa_id: "919876543210", profile: { name: "Pratibha" } }], calls } }] }],
+  });
+  it("reads the caller, the event and the direction", () => {
+    const [c] = parseCalls(body([{ id: "wacid.1", from: "919876543210", to: "918851830081", event: "terminate", direction: "USER_INITIATED", status: "COMPLETED", duration: 42 }]));
+    expect(c).toMatchObject({ id: "wacid.1", from: "919876543210", fromName: "Pratibha", event: "terminate", direction: "USER_INITIATED", status: "completed" });
+    expect(wantsCallFollowUp(c)).toBe(true);
+  });
+  it("follows up only on a customer's ended call", () => {
+    const [connect] = parseCalls(body([{ id: "wacid.2", from: "919876543210", event: "connect", direction: "USER_INITIATED" }]));
+    const [ours] = parseCalls(body([{ id: "wacid.3", from: "919876543210", event: "terminate", direction: "BUSINESS_INITIATED" }]));
+    expect(wantsCallFollowUp(connect)).toBe(false);
+    expect(wantsCallFollowUp(ours)).toBe(false);
+  });
+  it("ignores messages, other objects and calls without a caller", () => {
+    expect(parseCalls(body([{ id: "x", event: "terminate" }]))).toEqual([]);
+    expect(parseCalls({ object: "instagram", entry: [] })).toEqual([]);
+    expect(parseCalls({ object: "whatsapp_business_account", entry: [{ changes: [{ field: "messages", value: { messages: [] } }] }] })).toEqual([]);
   });
 });

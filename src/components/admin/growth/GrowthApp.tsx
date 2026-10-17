@@ -30,6 +30,7 @@ const KIND: Record<string, string> = {
   "lead-5": "Lead · day 5",
   "trial-offer": "Lead · trial offer (promo)",
   comeback: "Win-back · 1 month (promo)",
+  "call-followup": "After a WhatsApp call (promo)",
   "diet-received": "Diet chart · paid",
   "referral-bonus": "Referral bonus",
 };
