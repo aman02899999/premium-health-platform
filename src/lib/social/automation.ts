@@ -23,15 +23,19 @@ import {
   refreshInstagramToken,
   sendFacebookMessage,
   sendInstagramMessage,
+  sendWhatsAppDocument,
   sendWhatsAppText,
   whatsappReplyConfigured,
 } from "./meta";
 import { renderReel } from "./reel";
 
-async function replyCtx(name: string): Promise<ReplyCtx> {
+async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
-  return { business: c.business, plans: applyOffer(c.plans, todayIST()), siteUrl: SITE_URL, name };
+  return { business: c.business, plans: applyOffer(c.plans, todayIST()), siteUrl: SITE_URL, name, text };
 }
+
+/** The plan preview sent with a diet reply on WhatsApp (public/samples). */
+export const DIET_SAMPLE_URL = `${SITE_URL}/samples/royal-fitness-diet-plan-sample.pdf`;
 
 const LEAD_INTEREST: Partial<Record<Intent, "diet" | "membership">> = { diet: "diet", price: "membership", trial: "membership", visit: "membership" };
 
@@ -76,7 +80,7 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
   const canSend = m.channel === "whatsapp" ? whatsappReplyConfigured() : m.channel === "facebook" ? facebookConfigured() : instagramConfigured();
   if (!autoReplyOn() || !canSend || !shouldReply(intent, m.kind, rows[0].n > 0)) return "logged";
 
-  const text = buildReply(intent, await replyCtx(m.fromName));
+  const text = buildReply(intent, await replyCtx(m.fromName, m.text));
   const res =
     m.channel === "whatsapp"
       ? await sendWhatsAppText(m.from, text)
@@ -84,6 +88,11 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
         ? await sendFacebookMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^fbc:/, "") } : { id: m.from }, forInstagram(text))
         : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, forInstagram(text));
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
+  // A diet enquiry on WhatsApp also gets the plan preview, so they see what they'd receive.
+  if (res.ok && intent === "diet" && m.channel === "whatsapp") {
+    const doc = await sendWhatsAppDocument(m.from, DIET_SAMPLE_URL, "Royal Fitness Club - sample diet plan.pdf", "📄 A real sample plan (made for an example client). Yours is built on your own body, food and goal.");
+    if (!doc.ok) console.error("[social] diet sample PDF:", doc.error);
+  }
   return res.ok ? "replied" : "failed";
 }
 
