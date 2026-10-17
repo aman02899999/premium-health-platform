@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CheckCircle2, Loader2, Lock } from "lucide-react";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
 import { DIET_PLANS, isDietPlanId, type DietPlanId } from "@/lib/growth/config";
+import { trackPixel } from "@/lib/meta-pixel";
 
 export const GOALS = [
   ["fat-loss", "Lose fat"],
@@ -77,6 +78,7 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
           const out = await v.json().catch(() => ({}));
           setBusy(false);
           if (v.ok) {
+            trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "diet-plan" }, r.razorpay_payment_id);
             setDone({ paymentId: r.razorpay_payment_id });
             requestAnimationFrame(() => document.getElementById("diet-result")?.scrollIntoView({ behavior: "smooth", block: "center" }));
           } else setError(`${out.error || "We couldn't confirm the payment."} Payment ID: ${r.razorpay_payment_id}`);
@@ -86,6 +88,7 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
         setError(r.error?.description || "The payment failed. No money was taken — please try again.");
         setBusy(false);
       });
+      trackPixel("InitiateCheckout", { value: order.amount / 100, currency: "INR", content_name: "diet-plan" });
       rzp.open();
     } catch (err) {
       setError((err as Error).message);

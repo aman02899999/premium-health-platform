@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Loader2, MessageCircle, X } from "lucide-react";
+import { newEventId, trackPixel } from "@/lib/meta-pixel";
 
 // Every "WhatsApp us" button on the site opens this short form first, so the coach knows who is
 // writing and what about — and, if they agree, can send them the plans by email. "Skip" always
@@ -74,12 +75,14 @@ export function WhatsAppCapture({ whatsapp }: { whatsapp: string }) {
     if (!/^(91)?[6-9]\d{9}$/.test(digits)) return setError("Please enter a valid 10-digit mobile number.");
     if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) return setError("Please check your email address, or leave it blank.");
     setBusy(true);
+    const eventId = newEventId();
+    trackPixel("Lead", { content_name: f.interest }, eventId);
     // keepalive: the request finishes even though WhatsApp opens straight away.
     fetch("/api/leads", {
       method: "POST",
       keepalive: true,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: f.name.trim(), phone: digits.slice(-10), email: f.email.trim(), interest: f.interest, marketing: f.marketing && !!f.email.trim(), source: `whatsapp-${f.interest}`, message: target!.text.slice(0, 600), goal: LABEL[f.interest].slice(0, 60) }),
+      body: JSON.stringify({ name: f.name.trim(), phone: digits.slice(-10), email: f.email.trim(), interest: f.interest, marketing: f.marketing && !!f.email.trim(), source: `whatsapp-${f.interest}`, message: target!.text.slice(0, 600), goal: LABEL[f.interest].slice(0, 60), eventId }),
     }).catch(() => {});
     try {
       localStorage.setItem(KEY, JSON.stringify({ at: Date.now() }));

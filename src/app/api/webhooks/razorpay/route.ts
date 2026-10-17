@@ -6,6 +6,7 @@ import { afterDietPaid, afterMembershipPaid } from "@/lib/growth/hooks";
 import { markDietFailed } from "@/lib/growth/diet-orders";
 import { afterShopPaid } from "@/lib/shop/paid";
 import { markShopFailed } from "@/lib/shop/store";
+import { sendCapiEvent } from "@/lib/growth/meta-capi";
 
 export const dynamic = "force-dynamic";
 // The paid diet order builds the client's plan PDF after the response.
@@ -19,7 +20,10 @@ export async function POST(req: Request) {
   if (!verifyWebhookSignature(raw, req.headers.get("x-razorpay-signature"))) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
-  const event = JSON.parse(raw) as { event?: string; payload?: { payment?: { entity?: { id?: string; order_id?: string } } } };
+  const event = JSON.parse(raw) as {
+    event?: string;
+    payload?: { payment?: { entity?: { id?: string; order_id?: string; amount?: number; email?: string; contact?: string; description?: string } } };
+  };
   const payment = event.payload?.payment?.entity;
   if (!payment?.order_id || !payment.id) return NextResponse.json({ ok: true });
   try {
@@ -29,6 +33,11 @@ export async function POST(req: Request) {
       await markBookPaid(payment.order_id, payment.id);
       await afterDietPaid(payment.order_id, payment.id, after);
       await afterShopPaid(payment.order_id, payment.id);
+      // The sale for Meta ads, with the payment id as the event id: the browser's Purchase event and
+      // Razorpay's retries of this webhook all count once.
+      after(() =>
+        sendCapiEvent({ name: "Purchase", id: payment.id!, user: { email: payment.email, phone: payment.contact }, value: (payment.amount ?? 0) / 100, contentName: payment.description, source: "system_generated" }),
+      );
     } else if (event.event === "payment.failed") {
       await markFailed(payment.order_id);
       await markBookFailed(payment.order_id);

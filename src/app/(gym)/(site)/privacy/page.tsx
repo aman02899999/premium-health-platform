@@ -73,6 +73,13 @@ export default async function PrivacyPage() {
           <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>, and learn more in{" "}
           <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">how Google uses data from sites that use its services</a>.
         </p>
+        <p>
+          We use the Meta Pixel and Meta&apos;s Conversions API to measure our Facebook and Instagram ads: when you view a page, send a trial or
+          enquiry form, or complete a purchase, Meta is told that this happened. Your email and mobile number are sent only as one-way hashes,
+          never in readable form, and we never share payment details. Meta may use its cookies to show you our ads on its apps. You can control
+          this in your{" "}
+          <a href="https://accountscenter.facebook.com/ad_preferences" target="_blank" rel="noopener noreferrer">Meta ad preferences</a>.
+        </p>
         <h2>Contact</h2>
         <p>
           {c.business.name}, {c.business.address.street}, {c.business.address.locality}, {c.business.address.city} {c.business.address.postalCode}.
