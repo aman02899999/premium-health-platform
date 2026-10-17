@@ -21,7 +21,7 @@ export default async function PremiumPage() {
   const biz = await nurtureBusiness().catch(() => null);
   const trial = DIET_PLANS.find((p) => p.trial)!;
   const programmes = DIET_PLANS.filter((p) => p.months > 0);
-  const wa = biz?.whatsapp || "918851830081";
+  const wa = biz?.whatsapp || "919266840289";
   const coach = biz?.coach || "Coach Aman Sharma";
   const gym = biz?.name || "Royal Fitness Club";
 
