@@ -1,10 +1,11 @@
 // Automatic first replies to WhatsApp messages, Instagram DMs and Instagram comments.
 // Pure: every price, offer, address and timing comes from the same content and offer rules the
 // website uses, so a reply can never quote a price the site doesn't charge.
-import { DIET_PLANS } from "@/lib/growth/config";
+import { DIET_CHART, DIET_PLANS } from "@/lib/growth/config";
 import type { OfferPlan } from "@/lib/offers";
 import type { Business } from "@/lib/content/types";
 import { formatTime } from "@/lib/site";
+import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
 export type Intent = "price" | "diet" | "trial" | "visit" | "shop" | "hello" | "other";
 
@@ -16,7 +17,7 @@ const RULES: [Exclude<Intent, "hello" | "other">, RegExp][] = [
   ["trial", /\b(trial|demo|free\s*session|try)\b/i],
   ["visit", /\b(time|timing|timings|open|close|closed|hours?|address|location|kah[aā]n?|where|map|direction|sunday|batch)\b/i],
   ["shop", /\b(supplements?|protein|whey|creatine|gainer|pre-?workout|eaa|bcaa|shop|store|blackkwolf|multivitamin)\b/i],
-  ["diet", /\b(weight|fat|vajan|wajan|motapa|belly|khana)\b/i],
+  ["diet", /\b(weight|fat|vajan|wajan|motapa|belly|khana|muscle|bulk|pcos|pcod|thyroid|diabetes|sugar)\b/i],
 ];
 const GREETING = /^\s*(hi+|hello+|hey+|hii+|namaste|namaskar|ram ram|good (morning|evening|afternoon)|info|details?|start|menu|help)\b[\s!.?]*$/i;
 
@@ -37,6 +38,8 @@ export type ReplyCtx = {
   siteUrl: string;
   /** First name of the person, if known. */
   name?: string;
+  /** What they wrote, so a diet reply can be about their goal. */
+  text?: string;
 };
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -63,13 +66,66 @@ function priceReply(c: ReplyCtx): string {
     .join("\n");
 }
 
+const FOOD_LINE: Record<NonNullable<DietProfile["food"]>, string> = { veg: "100% vegetarian", egg: "vegetarian + eggs", "non-veg": "non-veg" };
+
+const GOAL_DIET: Record<DietProfile["goal"], string> = {
+  "fat-loss": "a calorie deficit with high protein, so you lose fat, not muscle",
+  "muscle-gain": "high-protein meals in a controlled surplus to build lean muscle",
+  "weight-gain": "calorie-rich, wholesome meals to gain weight the healthy way",
+  toning: "balanced meals that keep you lean while you build shape",
+  general: "balanced meals for energy, strength and steady progress",
+};
+
+const GOAL_WORKOUT: Record<DietProfile["goal"], string> = {
+  "fat-loss": "fat-burning workouts, gym or home, plus a daily step target",
+  "muscle-gain": "strength training split for muscle growth, gym or home",
+  "weight-gain": "strength training to put the weight on as muscle",
+  toning: "strength + conditioning workouts, gym or home",
+  general: "workouts matched to your diet, gym or home",
+};
+
+const CONDITION_DIET: Record<NonNullable<DietProfile["condition"]>, string> = {
+  pcos: "PCOS-friendly, low-GI Indian meals",
+  thyroid: "thyroid-friendly meals and timing",
+  diabetes: "low-GI meals to keep blood sugar steady",
+  bp: "low-salt, heart-friendly meals",
+};
+
+/**
+ * The first reply to a diet enquiry, written around what they asked for: their goal, food and any
+ * health condition they mentioned. The recommended programme and every price come from the plans
+ * the checkout charges.
+ */
 function dietReply(c: ReplyCtx): string {
+  const p = dietProfile(c.text ?? "");
+  const hi = firstName(c.name);
+  const main = DIET_PLANS.find((d) => d.popular) ?? DIET_PLANS[DIET_PLANS.length - 1];
+  const others = DIET_PLANS.filter((d) => d.id !== main.id && d.id !== "premium");
+  const food = p.food ? FOOD_LINE[p.food] : "veg / egg / non-veg";
+  const forWhat = p.condition ? ` for ${CONDITION_LABEL[p.condition]}` : "";
   return [
-    `*Personal diet plans from our coach*`,
-    ...DIET_PLANS.map((p) => `• ${p.name}: ${inr(p.priceRupees)}`),
-    `\nEach plan is made for your body numbers, food preference (veg or non-veg) and any health condition you tell us about. Delivered as a PDF on WhatsApp.`,
-    `Order here: ${c.siteUrl}/diet-chart#order`,
-  ].join("\n");
+    `Hi${hi ? ` ${hi}` : ""}! 🙏 Welcome to *${c.business.name}*.`,
+    `\nI'm *Coach Aman Sharma*, Certified Nutritionist since 2016.`,
+    `\nHere's my *${main.months}-Month ${GOAL_TITLE[p.goal]}${forWhat}*, built on your body measurements, not a copy-paste chart:`,
+    ``,
+    `📊 *Body analysis*: BMI, body fat %, lean mass, waist risk, your exact calories & protein`,
+    `🥗 *Personal diet chart*: ${food}, your regional food, ${p.condition ? CONDITION_DIET[p.condition] : GOAL_DIET[p.goal]}, measured in katori & roti`,
+    `🏋️ *Workout plan*: ${GOAL_WORKOUT[p.goal]}`,
+    `🔄 *Plan updated every 2 weeks*: ${main.checkIns} check-ins; calories, meals & workouts adjusted to your progress`,
+    `🌿 *Herbs & supplement guidance*${p.condition ? ` for ${CONDITION_LABEL[p.condition]}` : " for any health condition (thyroid, PCOS, sugar, BP)"}`,
+    `🛒 Weekly grocery list, 12-week roadmap & habit tracker`,
+    `💬 *WhatsApp support* for ${main.months} months`,
+    `📄 Branded PDF within *${DIET_CHART.turnaround}*`,
+    ``,
+    `💰 *${main.name}: ${inr(main.priceRupees)}*`,
+    `Other options: ${others.map((d) => `${d.name} ${inr(d.priceRupees)}`).join(" · ")}`,
+    `\n👉 Start here: ${c.siteUrl}/diet-chart?plan=${main.id}#order`,
+    `Or reply *YES* and the coach will send you a short form 📋`,
+    p.condition ? `\n_General guidance, not medical treatment. Herbs and supplements support, and never replace, your doctor's advice._` : null,
+  ]
+    .filter((l) => l !== null)
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n");
 }
 
 function hoursLines(b: ReplyCtx["business"]): string[] {

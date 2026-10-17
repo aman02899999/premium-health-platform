@@ -60,6 +60,17 @@ export async function sendWhatsAppText(to: string, body: string): Promise<SendRe
   return r.ok && r.json.messages?.[0]?.id ? { ok: true, id: r.json.messages[0].id } : fail(r);
 }
 
+/** A PDF from a public URL, inside the 24-hour window that the person's own message opened. */
+export async function sendWhatsAppDocument(to: string, link: string, filename: string, caption: string): Promise<SendResult> {
+  if (!whatsappReplyConfigured()) return { ok: false, error: "WhatsApp API not configured", retry: false };
+  const r = await graph(`${WA_API()}/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`, "content-type": "application/json" },
+    body: JSON.stringify({ messaging_product: "whatsapp", to, type: "document", document: { link, filename, caption: caption.slice(0, 1000) } }),
+  });
+  return r.ok && r.json.messages?.[0]?.id ? { ok: true, id: r.json.messages[0].id } : fail(r);
+}
+
 // ---------- Instagram token ----------
 // The token pasted in Vercel is the seed. The site refreshes it weekly and keeps the fresh one in
 // public.integration_tokens, keyed by a hash of the seed: paste a new token and the old row is ignored.
