@@ -28,16 +28,41 @@ export default async function PrivacyPage() {
           Our calculators run entirely in your browser — the numbers you enter are never sent to us. If you use the Health Hub without signing in, your
           data stays only in your browser.
         </p>
+        <h2>Google user data</h2>
+        <p>
+          When you choose &ldquo;Continue with Google&rdquo;, we receive only your name, email address and profile photo from your Google account. We
+          use them only to create and sign you in to your {c.business.name} account and to show your name on your account page. We do not read your
+          Gmail, contacts, calendar or any other Google data, we do not use Google user data for advertising, and we never sell it or share it with
+          anyone. Our use of information received from Google APIs follows the{" "}
+          <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.
+        </p>
         <h2>Where it is stored</h2>
         <p>
           Accounts and saved data are stored with our database provider, Supabase. Each member can only access their own data. You can delete your
-          synced data at any time from <a href="/account">My account</a>.
+          synced data at any time from <a href="/account">My account</a>. The website is hosted on Vercel, emails are sent through Resend, WhatsApp
+          messages through Meta&apos;s WhatsApp Business platform, and online payments are handled by Razorpay. These providers process data only to
+          provide their service to us.
         </p>
         <h2>How we use it</h2>
-        <p>We use your details only to contact you about your trial, membership or order, to deliver the books you buy and to help you recover your downloads. We never sell or share your data with third parties for marketing.</p>
+        <ul>
+          <li>To reply to your enquiry and schedule your free trial.</li>
+          <li>To run your account, membership or order: payment receipts, plan delivery, book downloads and membership renewal reminders.</li>
+          <li>
+            To send a short series of welcome and fitness-tip emails after you sign up, and occasional offers or our weekly newsletter if you opted in.
+            Every such email has an unsubscribe link. To stop WhatsApp messages, message us on WhatsApp and we will turn them off.
+          </li>
+          <li>To keep the site secure and fix problems.</li>
+        </ul>
+        <p>We never sell your data or share it with third parties for their own marketing.</p>
         <h2>Your choices</h2>
         <p>
-          To have your enquiry or your account deleted, call us at {c.business.phone} or message us on WhatsApp and we will remove it.
+          You can unsubscribe from emails at any time with the link in any email. To see, correct or delete your personal data or your account,
+          email us at <a href={`mailto:${c.business.email}`}>{c.business.email}</a>, call {c.business.phone} or message us on WhatsApp.
+        </p>
+        <h2>How long we keep it</h2>
+        <p>
+          We keep your details for as long as you have an account, membership or open enquiry with us, and payment records for as long as Indian
+          tax law requires. You can ask us to delete the rest at any time.
         </p>
         <h2>Third-party services</h2>
         <p>Our contact page embeds Google Maps, and links go to Instagram and WhatsApp. Those services have their own privacy policies.</p>
@@ -48,6 +73,12 @@ export default async function PrivacyPage() {
           <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>, and learn more in{" "}
           <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">how Google uses data from sites that use its services</a>.
         </p>
+        <h2>Contact</h2>
+        <p>
+          {c.business.name}, {c.business.address.street}, {c.business.address.locality}, {c.business.address.city} {c.business.address.postalCode}.
+          Email <a href={`mailto:${c.business.email}`}>{c.business.email}</a>.
+        </p>
+        <p>Last updated: 17 October 2026.</p>
       </section>
     </>
   );
