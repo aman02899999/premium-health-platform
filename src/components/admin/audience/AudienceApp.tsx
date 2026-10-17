@@ -98,6 +98,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
   const [link, setLink] = useState("trial");
   const [offer, setOffer] = useState("");
   const [subject, setSubject] = useState("");
+  const [repeat, setRepeat] = useState("none");
   const [agree, setAgree] = useState(false);
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState("");
@@ -113,7 +114,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
       const r = await call<{ queued: number; skipped: { optedOut: number; recent: number; missing: number } }>("/api/admin/audience", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ action: "campaign", name, segment, channel, link, offer, subject }),
+        body: JSON.stringify({ action: "campaign", name, segment, channel, link, offer, subject, repeat }),
       });
       setResult(`✅ ${r.queued} messages queued. Skipped: ${r.skipped.optedOut} opted out, ${r.skipped.recent} got a promotion this week, ${r.skipped.missing} have no ${channel === "whatsapp" ? "mobile" : "email"}. Use "Send next 50" below.`);
       setAgree(false);
@@ -151,6 +152,11 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
           <p className="text-right text-xs text-white/40">
             {offer.length}/{channel === "whatsapp" ? 160 : 1000}
           </p>
+          <select value={repeat} onChange={(e) => setRepeat(e.target.value)} className={input}>
+            <option value="none" className="bg-[#111]">Send once</option>
+            <option value="weekly" className="bg-[#111]">Repeat every week (new people each time)</option>
+            <option value="monthly" className="bg-[#111]">Repeat every month (new people each time)</option>
+          </select>
           <select value={link} onChange={(e) => setLink(e.target.value)} className={input}>
             {data.links.map((l) => (
               <option key={l.id} value={l.id} className="bg-[#111]">
@@ -179,6 +185,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
           </div>
           <p className="text-xs text-white/60">
             Reaches up to <b>{reach}</b> people. Opted-out people and anyone who got a promotion in the last 7 days are skipped automatically.
+            {repeat !== "none" && <> It runs again every {repeat === "weekly" ? "week" : "month"} with the daily automation, for whoever is in the group then; nobody gets the same run twice.</>}
             {channel === "whatsapp" && (
               <>
                 {" "}
@@ -241,6 +248,14 @@ export function AudienceApp() {
       setSendNote((e as Error).message);
     } finally {
       setSending(false);
+    }
+  }
+  async function stop(id: string) {
+    try {
+      await call("/api/admin/audience", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "stop", id }) });
+      await load();
+    } catch (e) {
+      setSendNote((e as Error).message);
     }
   }
   return (
@@ -307,7 +322,7 @@ export function AudienceApp() {
                 <p className="mt-2 text-sm text-white/50">No campaigns yet.</p>
               ) : (
                 <div className="mt-3 overflow-x-auto">
-                  <table className="w-full min-w-[640px] text-left text-sm">
+                  <table className="w-full min-w-[760px] text-left text-sm">
                     <thead className="text-xs uppercase text-white/50">
                       <tr>
                         <th className="py-2">Campaign</th>
@@ -316,6 +331,7 @@ export function AudienceApp() {
                         <th>Waiting</th>
                         <th>Failed</th>
                         <th>Skipped</th>
+                        <th>Repeats</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -332,6 +348,20 @@ export function AudienceApp() {
                           <td>{c.pending}</td>
                           <td className={c.failed ? "text-red-300" : ""}>{c.failed}</td>
                           <td className="text-white/50">{c.skipped + c.cancelled}</td>
+                          <td className="text-xs">
+                            {c.repeat === "none" || !c.active ? (
+                              <span className="text-white/40">{c.repeat === "none" ? "Once" : "Stopped"}</span>
+                            ) : (
+                              <span className="flex flex-col items-start gap-1">
+                                <span>
+                                  {c.repeat === "weekly" ? "Weekly" : "Monthly"} · next {c.nextRun}
+                                </span>
+                                <button onClick={() => stop(c.id)} className="rounded-lg bg-white/10 px-2 py-0.5 hover:bg-white/20">
+                                  Stop repeating
+                                </button>
+                              </span>
+                            )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

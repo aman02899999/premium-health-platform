@@ -29,7 +29,11 @@ create table if not exists public.campaigns (
   subject text not null default '' check (char_length(subject) <= 120),
   audience integer not null default 0,
   queued integer not null default 0,
-  skipped integer not null default 0
+  skipped integer not null default 0,
+  -- Recurring campaigns run again on next_run (the daily job), for whoever is newly eligible.
+  repeat text not null default 'none' check (repeat in ('none', 'weekly', 'monthly')),
+  next_run date,
+  active boolean not null default true
 );
 create index if not exists campaigns_created_idx on public.campaigns (created_at desc);
 alter table public.campaigns enable row level security;

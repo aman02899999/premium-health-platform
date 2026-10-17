@@ -2,7 +2,7 @@ import "server-only";
 import { pool } from "@/health/db";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
-import { addDays } from "./dates";
+import { addDays, addMonths } from "./dates";
 import { campaignDraft, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
 import { TEMPLATES } from "./messages";
 import { dispatch, enqueue } from "./outbox";
@@ -113,7 +113,8 @@ export async function segmentCounts(today: string): Promise<{ id: SegmentId; lab
   );
 }
 
-export type CampaignRequest = { name: string; segment: string; channel: string; offer: string; link: string; subject?: string };
+export type Repeat = "none" | "weekly" | "monthly";
+export type CampaignRequest = { name: string; segment: string; channel: string; offer: string; link: string; subject?: string; repeat?: string };
 export type CampaignResult = { ok: true; id: string; audience: number; queued: number; skipped: { optedOut: number; recent: number; missing: number } } | { ok: false; error: string };
 
 export function validateCampaign(b: CampaignRequest): string | null {
@@ -125,19 +126,25 @@ export function validateCampaign(b: CampaignRequest): string | null {
   if (offer.length < 5) return "Write the offer (at least a few words).";
   if (b.channel === "whatsapp" && /https?:\/\//i.test(offer)) return "Leave links out of the offer text: the message adds the button link itself.";
   if (b.channel === "email" && !b.subject?.trim()) return "Write an email subject.";
+  if (b.repeat && !["none", "weekly", "monthly"].includes(b.repeat)) return "Pick how often it repeats.";
   return null;
 }
 
-/** Queues a campaign: one outbox message per eligible person. Sending happens in batches. */
-export async function createCampaign(b: CampaignRequest, by: string, today: string): Promise<CampaignResult> {
-  const invalid = validateCampaign(b);
-  if (invalid) return { ok: false, error: invalid };
-  const channel = b.channel as "whatsapp" | "email";
-  const all = await recipients(b.segment as SegmentId, today);
-  const reachable = all.filter((r) => (channel === "whatsapp" ? r.phone : r.email));
-  const addresses = reachable.map((r) => (channel === "whatsapp" ? `91${r.phone}` : r.email!));
+export const nextRun = (repeat: Repeat, today: string) => (repeat === "weekly" ? addDays(today, 7) : repeat === "monthly" ? addMonths(today, 1) : null);
+
+type Stored = { id: string; name: string; segment: string; channel: "whatsapp" | "email"; offer: string; link: string; subject: string };
+type RunCounts = { audience: number; queued: number; skipped: { optedOut: number; recent: number; missing: number } };
+
+/**
+ * One run of a campaign: a message to everyone in the segment today who can be reached, hasn't
+ * opted out and hasn't had a promotion this week. `run` keeps repeats apart in the dedupe key.
+ */
+async function queueRun(c: Stored, run: string | null, today: string): Promise<RunCounts> {
+  const all = await recipients(c.segment as SegmentId, today);
+  const reachable = all.filter((r) => (c.channel === "whatsapp" ? r.phone : r.email));
+  const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));
   const [optedOut, recent] = await Promise.all([
-    channel === "whatsapp"
+    c.channel === "whatsapp"
       ? pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1)`, [addresses])
       : pool.query<{ a: string }>(`select address as a from public.marketing_contacts where channel = 'email' and unsubscribed_at is not null and address = any($1)`, [addresses]),
     pool.query<{ a: string }>(
@@ -149,29 +156,60 @@ export async function createCampaign(b: CampaignRequest, by: string, today: stri
   ]);
   const out = new Set(optedOut.rows.map((r) => r.a));
   const rec = new Set(recent.rows.map((r) => r.a));
-  const { rows } = await pool.query<{ id: string }>(
-    `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject, audience) values ($1, $2, $3, $4, $5, $6, $7, $8) returning id`,
-    [by.slice(0, 200), b.name.trim(), b.segment, channel, offerText(b.offer), b.link, (b.subject ?? "").trim().slice(0, 120), all.length],
-  );
-  const id = rows[0].id;
-  const c: CampaignInput = { id, name: b.name.trim(), channel, offer: channel === "whatsapp" ? offerText(b.offer) : b.offer.trim().slice(0, 1000), link: b.link as LinkId, subject: b.subject ?? "" };
   const content = await getContent();
   const biz = { name: content.business.name, siteUrl: SITE_URL, coach: `Coach ${(content.trainers?.[0]?.name || "Aman Sharma").replace(/^coach\s+/i, "")}` };
+  const input: CampaignInput = { id: run ? `${c.id}:${run}` : c.id, name: c.name, channel: c.channel, offer: c.offer, link: c.link as LinkId, subject: c.subject };
   const drafts = reachable
     .filter((_, i) => !out.has(addresses[i]) && !rec.has(addresses[i].toLowerCase()))
-    .map((r) => campaignDraft(c, r, biz))
+    .map((r) => campaignDraft(input, r, biz))
     .filter((d) => d !== null);
   const queued = await enqueue(drafts);
-  const skipped = { optedOut: reachable.filter((_, i) => out.has(addresses[i])).length, recent: reachable.filter((_, i) => !out.has(addresses[i]) && rec.has(addresses[i].toLowerCase())).length, missing: all.length - reachable.length };
-  await pool.query(`update public.campaigns set queued = $2, skipped = $3 where id = $1`, [id, queued, skipped.optedOut + skipped.recent + skipped.missing]);
-  return { ok: true, id, audience: all.length, queued, skipped };
+  const optedOutN = reachable.filter((_, i) => out.has(addresses[i])).length;
+  return { audience: all.length, queued, skipped: { optedOut: optedOutN, recent: reachable.length - optedOutN - drafts.length, missing: all.length - reachable.length } };
 }
 
-export type CampaignRow = { id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number };
+/** Queues a campaign: one outbox message per eligible person. Sending happens in batches. */
+export async function createCampaign(b: CampaignRequest, by: string, today: string): Promise<CampaignResult> {
+  const invalid = validateCampaign(b);
+  if (invalid) return { ok: false, error: invalid };
+  const channel = b.channel as "whatsapp" | "email";
+  const repeat = (b.repeat ?? "none") as Repeat;
+  const offer = channel === "whatsapp" ? offerText(b.offer) : b.offer.trim().slice(0, 1000);
+  const { rows } = await pool.query<{ id: string }>(
+    `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject, repeat, next_run) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id`,
+    [by.slice(0, 200), b.name.trim(), b.segment, channel, offer.slice(0, 160), b.link, (b.subject ?? "").trim().slice(0, 120), repeat, nextRun(repeat, today)],
+  );
+  const id = rows[0].id;
+  const r = await queueRun({ id, name: b.name.trim(), segment: b.segment, channel, offer, link: b.link, subject: b.subject ?? "" }, null, today);
+  await pool.query(`update public.campaigns set audience = $2, queued = $3, skipped = $4 where id = $1`, [id, r.audience, r.queued, r.skipped.optedOut + r.skipped.recent + r.skipped.missing]);
+  return { ok: true, id, ...r };
+}
+
+/** The daily job: every recurring campaign that is due runs again for whoever is newly eligible. */
+export async function runRecurringCampaigns(today: string): Promise<{ runs: number; queued: number }> {
+  const { rows } = await pool.query<Stored & { repeat: Repeat }>(
+    `select id, name, segment, channel, offer, link, subject, repeat from public.campaigns where active and repeat <> 'none' and next_run <= $1 order by created_at`,
+    [today],
+  );
+  let queued = 0;
+  for (const c of rows) {
+    const r = await queueRun(c, today, today);
+    queued += r.queued;
+    await pool.query(`update public.campaigns set next_run = $2, queued = queued + $3 where id = $1`, [c.id, nextRun(c.repeat, today), r.queued]);
+  }
+  return { runs: rows.length, queued };
+}
+
+/** Stops a recurring campaign; messages already queued still go. */
+export async function stopRepeating(id: string): Promise<void> {
+  await pool.query(`update public.campaigns set active = false, next_run = null where id = $1`, [id]);
+}
+
+export type CampaignRow = { id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; nextRun: string | null; active: boolean };
 
 export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
-  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number }>(
-    `select c.*, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled
+  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; next_run_s: string | null; active: boolean }>(
+    `select c.*, to_char(c.next_run, 'YYYY-MM-DD') as next_run_s, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled
        from public.campaigns c
        left join lateral (
          select count(*) filter (where status = 'sent') as sent, count(*) filter (where status = 'failed') as failed,
@@ -180,7 +218,7 @@ export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
       order by c.created_at desc limit $1`,
     [limit],
   );
-  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled }));
+  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled, repeat: r.repeat, nextRun: r.next_run_s, active: r.active }));
 }
 
 /** Sends the next batch of pending messages (campaigns and everything else waiting in the outbox). */

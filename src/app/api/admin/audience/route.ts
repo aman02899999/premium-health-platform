@@ -3,14 +3,14 @@ import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
 import { LINKS, isSegment, metaAudienceCsv, toContacts } from "@/lib/growth/audience";
-import { createCampaign, importContacts, importedCount, listCampaigns, recipients, segmentCounts, sendBatch } from "@/lib/growth/campaigns";
+import { createCampaign, importContacts, importedCount, listCampaigns, recipients, segmentCounts, sendBatch, stopRepeating } from "@/lib/growth/campaigns";
 import { SheetError, readSheet } from "@/lib/growth/sheet";
 
 // Admin audience and campaigns.
 // GET                      segments with counts, imported lists, campaigns with progress
 // GET ?export=<segment>    customer-list CSV for Meta Ads (Custom audience)
 // POST multipart file      contacts import (commit=0 preview, commit=1 apply)
-// POST { action: "campaign" | "send" }
+// POST { action: "campaign" | "send" | "stop" }
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
@@ -54,11 +54,15 @@ export async function POST(req: Request) {
     const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
     if (b?.action === "campaign") {
       const res = await createCampaign(
-        { name: String(b.name ?? ""), segment: String(b.segment ?? ""), channel: String(b.channel ?? ""), offer: String(b.offer ?? ""), link: String(b.link ?? ""), subject: String(b.subject ?? "") },
+        { name: String(b.name ?? ""), segment: String(b.segment ?? ""), channel: String(b.channel ?? ""), offer: String(b.offer ?? ""), link: String(b.link ?? ""), subject: String(b.subject ?? ""), repeat: String(b.repeat ?? "none") },
         (await adminIdentity()) || "admin",
         todayIST(),
       );
       return res.ok ? NextResponse.json(res) : NextResponse.json({ error: res.error }, { status: 400 });
+    }
+    if (b?.action === "stop" && typeof b.id === "string" && /^[0-9a-f-]{36}$/i.test(b.id)) {
+      await stopRepeating(b.id);
+      return NextResponse.json({ ok: true });
     }
     if (b?.action === "send") return NextResponse.json(await sendBatch(Number(b.max) || 50));
     return NextResponse.json({ error: "Unknown action" }, { status: 400 });

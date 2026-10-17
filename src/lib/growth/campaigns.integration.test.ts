@@ -99,4 +99,24 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     const { rows } = await pool.query(`select to_address, kind, subject from public.message_outbox where dedupe_key like 'campaign:%'`);
     expect(rows).toEqual([{ to_address: "yes@x.in", kind: "nurture-campaign", subject: "Your diet, made for you" }]);
   });
+
+  it("a monthly campaign runs again with the daily job for whoever is eligible then, until it is stopped", async () => {
+    await member("Asha", "9000000041", "2026-09-01");
+    const r = await cm.createCampaign({ name: "Monthly comeback", segment: "ex-recent", channel: "whatsapp", offer: "Restart this month for ₹1,500", link: "membership", repeat: "monthly" }, "coach", TODAY);
+    expect(r).toMatchObject({ ok: true, queued: 1 });
+    expect((await cm.listCampaigns())[0]).toMatchObject({ repeat: "monthly", nextRun: "2026-11-17", active: true });
+    expect(await cm.runRecurringCampaigns(TODAY)).toEqual({ runs: 0, queued: 0 }); // not due yet
+
+    // A month on: a new ex-member joined the segment, and Asha's last promotion is old.
+    await pool.query(`update public.message_outbox set created_at = now() - interval '31 days'`);
+    await member("Bina", "9000000042", "2026-11-01");
+    expect(await cm.runRecurringCampaigns("2026-11-17")).toEqual({ runs: 1, queued: 2 });
+    expect(await cm.runRecurringCampaigns("2026-11-17")).toEqual({ runs: 0, queued: 0 }); // moved on to next month
+    expect((await cm.listCampaigns())[0]).toMatchObject({ nextRun: "2026-12-17", queued: 3 });
+
+    await cm.stopRepeating(r.ok ? r.id : "");
+    await pool.query(`update public.message_outbox set created_at = now() - interval '31 days'`);
+    expect(await cm.runRecurringCampaigns("2026-12-17")).toEqual({ runs: 0, queued: 0 });
+    expect((await cm.listCampaigns())[0]).toMatchObject({ active: false, nextRun: null });
+  });
 });
