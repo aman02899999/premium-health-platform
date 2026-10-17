@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { addDays, addMonths, daysBetween, expiryFor, formatDate, isIsoDate, parseDuration, renewalStart, todayIST } from "./dates";
 import { looksLikeReferralCode, makeReferralCode } from "./config";
-import { dueMessages, leadMessage, renewalMessage, waLink, type LeadLike, type MemberLike } from "./messages";
+import { TEMPLATES, dueMessages, leadMessage, renewalMessage, templateBody, waLink, type LeadLike, type MemberLike } from "./messages";
 
 describe("dates (IST)", () => {
   it("today is the Indian date, not UTC", () => {
@@ -138,5 +138,17 @@ describe("diet chart intake", async () => {
     expect(p).toMatchObject({ name: "Priya", sex: "female", style: "pcos", cuisine: "south", wakeTime: "07:15", m: {} });
     expect(p.conditions.pcos).toBe(true);
     expect(p.conditions.diabetes).toBe(false);
+  });
+});
+
+describe("WhatsApp template bodies submitted to Meta", () => {
+  it("never end with a variable, even one followed by a full stop", () => {
+    for (const t of Object.values(TEMPLATES)) {
+      const body = templateBody(t.text);
+      expect(body, t.name).not.toMatch(/\{\{\d+\}\}[\s.,!?]*$/);
+      expect(body, t.name).not.toMatch(/^\s*\{\{\d+\}\}/);
+    }
+    expect(templateBody("Coach will send it within {{3}}.")).toBe("Coach will send it within {{3}}.\n\nSee you at the gym!");
+    expect(templateBody("Hi {{1}}, see you soon.")).toBe("Hi {{1}}, see you soon.");
   });
 });

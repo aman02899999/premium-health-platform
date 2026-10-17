@@ -42,6 +42,13 @@ export const TEMPLATES: Record<MessageKind, { name: string; text: string }> = {
   "referral-bonus": { name: "rfc_referral_bonus", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
 };
 
+/**
+ * The body text submitted to Meta for review. Meta rejects a body that ends with a variable, and
+ * "...within {{3}}." still counts, so those get a closing line. Only the stored template changes:
+ * the site sends the same template name and parameters.
+ */
+export const templateBody = (text: string) => (/\{\{\d+\}\}[\s.,!?]*$/.test(text) ? `${text}\n\nSee you at the gym!` : text);
+
 const fill = (kind: MessageKind, params: string[]) => TEMPLATES[kind].text.replace(/\{\{(\d)\}\}/g, (_, n) => params[Number(n) - 1] ?? "");
 const first = (name: string) => name.trim().split(/\s+/)[0] || name;
 const wa = (phone10: string) => `91${phone10}`;
