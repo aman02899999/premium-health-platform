@@ -5,6 +5,11 @@ import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "@
 // Refreshes the Supabase auth cookie before server code reads it. Only runs on
 // routes that use the session, so public pages stay fully static/cacheable.
 export async function proxy(request: NextRequest) {
+  // Admin and account writes only from this site's own pages (defence in depth on top of SameSite cookies).
+  if (request.method !== "GET" && request.method !== "HEAD" && /^\/(api\/admin|api\/account)\//.test(request.nextUrl.pathname)) {
+    const origin = request.headers.get("origin");
+    if (origin && origin !== request.nextUrl.origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  }
   let response = NextResponse.next({ request });
   if (!supabaseConfigured) return response;
 

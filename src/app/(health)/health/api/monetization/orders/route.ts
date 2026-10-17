@@ -1,15 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/health/lib/monetization/config";
 import { getPaymentProvider, generateDownloadToken } from "@/health/lib/monetization/payment";
+import { isAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 const ORDERS: any[] = [];
 
 export async function GET(req: NextRequest) {
+  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const { searchParams } = new URL(req.url);
   const limit = Math.min(parseInt(searchParams.get("limit") || "20", 10), 100);
-  // In production, admin auth + user-specific filtering
   return NextResponse.json({ ok: true, count: ORDERS.length, orders: ORDERS.slice(-limit).reverse() });
 }
 
