@@ -28,6 +28,9 @@ import {
   whatsappReplyConfigured,
 } from "./meta";
 import { renderReel } from "./reel";
+import { recordReply } from "./chat";
+import { chatAlertEmail } from "./chat-window";
+import { dispatch, enqueue } from "@/lib/growth/outbox";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -65,10 +68,18 @@ async function ensureLead(m: Inbound, intent: Intent): Promise<string | null> {
 export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied" | "logged" | "failed"> {
   const intent = detectIntent(m.text);
   const ins = await pool.query(
-    `insert into public.social_inbox (id, channel, kind, from_id, from_name, body, intent) values ($1, $2, $3, $4, $5, $6, $7) on conflict (id) do nothing`,
-    [m.id, m.channel, m.kind, m.from, m.fromName, m.text, intent],
+    `insert into public.social_inbox (id, channel, kind, from_id, from_name, body, intent, media_type, media_id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict (id) do nothing`,
+    [m.id, m.channel, m.kind, m.from, m.fromName, m.text, intent, m.media?.type ?? null, m.media?.id ?? null],
   );
   if (!ins.rowCount) return "duplicate";
+
+  // The coach has no phone app on an API number: email them so a customer is never left waiting.
+  const coach = process.env.COACH_EMAIL;
+  if (coach && m.channel === "whatsapp" && m.kind === "message") {
+    await enqueue([chatAlertEmail({ peer: m.from, name: m.fromName, text: m.text }, coach, `${SITE_URL}/admin/chats`)])
+      .then((n) => (n ? dispatch(3) : null))
+      .catch((err: Error) => console.error("[social] chat alert:", err.message));
+  }
 
   const leadId = m.channel === "whatsapp" ? await ensureLead(m, intent).catch((err) => (console.error("[social] lead:", (err as Error).message), null)) : null;
   if (leadId) await pool.query(`update public.social_inbox set lead_id = $2 where id = $1`, [m.id, leadId]);
@@ -88,10 +99,14 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
         ? await sendFacebookMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^fbc:/, "") } : { id: m.from }, forInstagram(text))
         : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, forInstagram(text));
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
+  // WhatsApp replies show up in the admin chat next to the customer's messages.
+  if (m.channel === "whatsapp") await recordReply({ to: m.from, body: text, by: "auto-reply", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
   // A diet enquiry on WhatsApp also gets the plan preview, so they see what they'd receive.
   if (res.ok && intent === "diet" && m.channel === "whatsapp") {
-    const doc = await sendWhatsAppDocument(m.from, DIET_SAMPLE_URL, "Royal Fitness Club - sample diet plan.pdf", "📄 A real sample plan (made for an example client). Yours is built on your own body, food and goal.");
+    const caption = "📄 A real sample plan (made for an example client). Yours is built on your own body, food and goal.";
+    const doc = await sendWhatsAppDocument(m.from, DIET_SAMPLE_URL, "Royal Fitness Club - sample diet plan.pdf", caption);
     if (!doc.ok) console.error("[social] diet sample PDF:", doc.error);
+    await recordReply({ to: m.from, body: `📄 Sample diet plan PDF\n${caption}`, kind: "document", by: "auto-reply", ok: doc.ok, error: doc.ok ? null : doc.error, externalId: doc.ok ? doc.id : null });
   }
   return res.ok ? "replied" : "failed";
 }

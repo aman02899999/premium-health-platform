@@ -71,6 +71,28 @@ export async function sendWhatsAppDocument(to: string, link: string, filename: s
   return r.ok && r.json.messages?.[0]?.id ? { ok: true, id: r.json.messages[0].id } : fail(r);
 }
 
+/**
+ * A file a customer sent on WhatsApp. Meta gives a short-lived URL for the media id that itself
+ * needs the token, so the admin route streams it through. Null when it's gone (Meta keeps media
+ * for about 30 days) or too big to proxy.
+ */
+export async function whatsappMedia(mediaId: string): Promise<{ data: ArrayBuffer; type: string } | null> {
+  if (!whatsappReplyConfigured() || !/^\d{5,40}$/.test(mediaId)) return null;
+  const auth = { authorization: `Bearer ${process.env.WHATSAPP_TOKEN}` };
+  const meta = await graph(`${WA_API()}/${mediaId}`, { headers: auth });
+  const url = typeof meta.json.url === "string" ? meta.json.url : "";
+  if (!meta.ok || !url.startsWith("https://")) return null;
+  try {
+    const res = await fetch(url, { headers: auth, signal: AbortSignal.timeout(20_000) });
+    if (!res.ok) return null;
+    const data = await res.arrayBuffer();
+    if (data.byteLength > 16 * 1024 * 1024) return null;
+    return { data, type: res.headers.get("content-type") || (typeof meta.json.mime_type === "string" ? meta.json.mime_type : "application/octet-stream") };
+  } catch {
+    return null;
+  }
+}
+
 // ---------- Instagram token ----------
 // The token pasted in Vercel is the seed. The site refreshes it weekly and keeps the fresh one in
 // public.integration_tokens, keyed by a hash of the seed: paste a new token and the old row is ignored.

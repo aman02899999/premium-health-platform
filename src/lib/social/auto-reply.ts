@@ -105,7 +105,7 @@ function dietReply(c: ReplyCtx): string {
   const forWhat = p.condition ? ` for ${CONDITION_LABEL[p.condition]}` : "";
   return [
     `Hi${hi ? ` ${hi}` : ""}! 🙏 Welcome to *${c.business.name}*.`,
-    `\nI'm *Coach Aman Sharma*, Certified Nutritionist since 2016.`,
+    `\nI'm *Coach Aman Sharma*, Certified Nutritionist since 2016 with 15+ years of coaching experience.`,
     `\nHere's my *${main.months}-Month ${GOAL_TITLE[p.goal]}${forWhat}*, built on your body measurements, not a copy-paste chart:`,
     ``,
     `📊 *Body analysis*: BMI, body fat %, lean mass, waist risk, your exact calories & protein`,
