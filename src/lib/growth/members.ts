@@ -65,9 +65,9 @@ export async function listMembers(): Promise<Member[]> {
   return rows.map(fromRow);
 }
 
-/** Members whose reminders could be due: ending within 7 days or ended in the last 10. */
+/** Members whose reminders could be due: ending within 7 days, or ended in the last 37 (the win-back message). */
 export async function membersNearExpiry(today: string): Promise<Member[]> {
-  const { rows } = await pool.query<Row>(`select ${COLUMNS} from public.members where reminders and expires_on between $1::date and $2::date`, [addDays(today, -10), addDays(today, 7)]);
+  const { rows } = await pool.query<Row>(`select ${COLUMNS} from public.members where reminders and expires_on between $1::date and $2::date`, [addDays(today, -37), addDays(today, 7)]);
   return rows.map(fromRow);
 }
 

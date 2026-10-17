@@ -20,11 +20,11 @@ export async function listPipeline(limit = 1000): Promise<PipelineLead[]> {
   return rows.map(fromRow);
 }
 
-/** Open leads young enough to still get a follow-up (created in the last 10 days). */
+/** Open leads young enough to still get a follow-up (created in the last 21 days: the trial offer is day 14–20). */
 export async function openLeads(today: string): Promise<PipelineLead[]> {
   const { rows } = await pool.query<Row>(
     `select ${COLUMNS} from public.leads where follow_ups and status in ('new', 'contacted') and created_at >= ($1::date - interval '5 hours 30 minutes')`,
-    [addDays(today, -10)],
+    [addDays(today, -21)],
   );
   return rows.map(fromRow);
 }
