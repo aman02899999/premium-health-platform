@@ -9,13 +9,16 @@ const abs = (url: string, site: string) => (/^https?:\/\//.test(url) ? url : `${
 const plain = (s: string) => s.replace(/[#*_`>]/g, "").replace(/\s+/g, " ").trim();
 const cell = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
 
+/** "Blackkwolf Ashwagandha" stays as it is; "Whey Protein" by Royal becomes "Royal Whey Protein". */
+const withBrand = (name: string, brand: string) => (!brand || name.toLowerCase().startsWith(brand.toLowerCase()) ? name : `${brand} ${name}`);
+
 export function metaCatalogCsv(products: Priced[], site: string): string {
   const rows = products
     // Meta rejects items without an image or a price.
     .filter((p) => p.active && p.images.length > 0 && p.salePrice > 0)
     .map((p) => ({
       id: p.sku || p.id,
-      title: plain(`${p.brand ? `${p.brand} ` : ""}${p.name}${p.size ? ` ${p.size}` : ""}`).slice(0, 150),
+      title: plain(`${withBrand(p.name, p.brand)}${p.size && !p.name.toLowerCase().includes(p.size.toLowerCase()) ? ` ${p.size}` : ""}`).slice(0, 150),
       description: (plain(p.shortDescription || p.description) || p.name).slice(0, 5000),
       availability: p.stock > 0 ? "in stock" : "out of stock",
       condition: "new",
