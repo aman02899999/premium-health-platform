@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { Crown, ShieldCheck, Truck, BadgeCheck } from "lucide-react";
 import { getCatalog } from "@/lib/shop/server";
-import { SITE_URL } from "@/lib/site";
+import { LEGAL, SITE_URL } from "@/lib/site";
 import { fssaiLabel } from "@/lib/shop/format";
 import { CartProvider } from "@/components/shop/cart";
 import { ShopBottomNav, ShopHeader } from "@/components/shop/chrome";
@@ -151,11 +151,11 @@ export default async function ShopLayout({
               </h2>
               {s.sellerName && <p className="text-white/80">Sold by {s.sellerName}</p>}
               <p>{s.address}</p>
-              {s.fssaiLicence && (
-                <p className="mt-2">
-                  {fssaiLabel(s.fssaiType)} {s.fssaiLicence}
-                </p>
-              )}
+              <p className="mt-2">{LEGAL.entity}</p>
+              <p>Udyam {LEGAL.udyam}</p>
+              <p>
+                {s.fssaiLicence ? `${fssaiLabel(s.fssaiType)} ${s.fssaiLicence}` : `FSSAI Reg. No. ${LEGAL.fssai}`}
+              </p>
               {s.gstin && <p>GSTIN {s.gstin}</p>}
             </div>
           </div>
