@@ -4,7 +4,7 @@ import { formatDate } from "@/lib/growth/dates";
 import { TEMPLATES, renewUrl, type MessageKind } from "@/lib/growth/messages";
 import type { LeadStatus } from "@/lib/growth/leads";
 import type { ReplyCtx } from "./auto-reply";
-import { flowReply, type WaOut } from "./wa-flow";
+import { askDetailsMessage, flowReply, type WaOut } from "./wa-flow";
 
 export type ContactFacts = {
   peer: string;
@@ -19,7 +19,7 @@ export type QuickReplyId = "trial7" | "offer" | "plans" | "fees" | "visit" | "gy
 export const QUICK_REPLIES: { id: QuickReplyId; label: string; build: (c: ReplyCtx) => WaOut[] }[] = [
   { id: "trial7", label: "₹49 trial link", build: (c) => flowReply("trial7", c) },
   { id: "offer", label: "Trial offer", build: (c) => flowReply("diet", c) },
-  { id: "details", label: "Ask body details", build: () => [{ kind: "text", body: "To make your plan, please send these in one message:\n\n• Goal: fat loss / muscle gain / weight gain / toning\n• Age, height and weight\n• Veg, egg or non-veg\n• Any health condition or medicine\n\nThank you! 🙏" }] },
+  { id: "details", label: "Ask body details", build: () => [askDetailsMessage()] },
   { id: "plans", label: "All plans", build: (c) => flowReply("plans", c) },
   { id: "fees", label: "Gym fees", build: (c) => flowReply("price", c) },
   { id: "gymtrial", label: "Free gym trial", build: (c) => flowReply("trial", c) },

@@ -36,8 +36,8 @@ describe("WhatsApp trial funnel", () => {
 
   it("the offer leads with the ₹49 trial and never promises a reply it can't give", () => {
     const [offer] = flowReply("diet", { ...ctx, text: "PCOS diet chart" });
-    expect(offer.body).toContain("*7-Day Trial Plan: just ₹49*");
-    expect(offer.body).toContain("guidance, not medical treatment");
+    expect(offer.body).toContain("*7-Day Trial Plan* for just *₹49*");
+    expect(offer.body).toContain("Guidance only, not medical treatment");
     expect(offer.body).not.toMatch(/reply \*?YES/i);
     expect(logText(offer)).toContain("[✅ Start 7-day ₹49] [📋 See all plans] [💬 Talk to coach]");
   });

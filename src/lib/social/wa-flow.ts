@@ -8,8 +8,9 @@
 //   See all plans → every plan + [Start 7-day ₹49] [Talk to coach]
 //   Talk to coach → the coach takes over (and gets the usual email alert)
 //   "hi" → a menu list: diet trial, fees, free gym trial, timings, supplements
-import { DIET_CHART, DIET_PLANS } from "@/lib/growth/config";
-import { buildReply, detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
+import { DIET_CHART, DIET_PLANS, type DietPlanId } from "@/lib/growth/config";
+import { formatTime } from "@/lib/site";
+import { detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
 import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
 export type WaButton = { id: string; title: string };
@@ -31,6 +32,9 @@ export const BUTTON = {
   trial7: { id: "rfc_trial7", title: `✅ Start 7-day ${inr(TRIAL.priceRupees)}` },
   plans: { id: "rfc_plans", title: "📋 See all plans" },
   coach: { id: "rfc_coach", title: "💬 Talk to coach" },
+  gymTrial: { id: "rfc_gymtrial", title: "🏋️ Book free trial" },
+  location: { id: "rfc_location", title: "📍 Location" },
+  fees: { id: "rfc_fees", title: "💪 Gym fees" },
 } satisfies Record<string, WaButton>;
 
 const MENU: (WaRow & { action: FlowAction })[] = [
@@ -45,6 +49,9 @@ const BY_ID: Record<string, FlowAction> = {
   [BUTTON.trial7.id]: "trial7",
   [BUTTON.plans.id]: "plans",
   [BUTTON.coach.id]: "coach",
+  [BUTTON.gymTrial.id]: "trial",
+  [BUTTON.location.id]: "visit",
+  [BUTTON.fees.id]: "price",
   ...Object.fromEntries(MENU.map((r) => [r.id, r.action])),
 };
 
@@ -68,30 +75,37 @@ export function flowAction(m: { replyId?: string; text: string }, offeredTrial: 
 /** Our auto-replies that make "yes" mean "start the trial". */
 export const TRIAL_OFFER_MARK = "7-Day Trial Plan";
 
-const FOOD: Record<NonNullable<DietProfile["food"]>, string> = { veg: "100% vegetarian", egg: "veg + eggs", "non-veg": "non-veg" };
-const GOAL_SHORT = (g: DietProfile["goal"]) => GOAL_TITLE[g].replace(/ Program$/, "").toLowerCase();
+const FOOD: Record<NonNullable<DietProfile["food"]>, string> = { veg: "pure veg", egg: "veg + eggs", "non-veg": "non-veg" };
+const GOAL: Record<DietProfile["goal"], string> = { "fat-loss": "Fat loss", "muscle-gain": "Muscle gain", "weight-gain": "Healthy weight gain", toning: "Toning", general: "" };
 
 export const trialUrl = (siteUrl: string) => `${siteUrl}/diet-chart?plan=${TRIAL.id}&utm_source=whatsapp&utm_medium=chat&utm_campaign=trial7#order`;
 
+const hours = (b: ReplyCtx["business"]) => b.hours.map((h) => `${h.label}: ${formatTime(h.open)} – ${formatTime(h.close)}`);
+const days = (b: ReplyCtx["business"]) => [...new Set(b.hours.map((h) => h.days))].join(", ");
+
+// The diet offer: who the coach is, the ₹49 trial in four lines, delivery time. Nothing else.
 function dietOffer(c: ReplyCtx): WaOut {
   const p = dietProfile(c.text ?? "");
   const hi = first(c.name);
-  const goal = p.goal === "general" ? "" : ` for *${GOAL_SHORT(p.goal)}*`;
   return {
     kind: "buttons",
     body: [
-      `Hi${hi ? ` ${hi}` : ""}! 🙏 I'm *Coach Aman Sharma*, Certified Nutritionist with 15+ years of coaching experience.`,
+      `Hi${hi ? ` ${hi}` : ""}! 👋 I'm *Coach Aman Sharma*`,
+      `Certified Nutritionist · 15+ years experience`,
       ``,
-      `Try my plan${goal} for one week first 👇`,
+      `Start with my *${TRIAL.name}* for just *${inr(TRIAL.priceRupees)}* 👇`,
+      GOAL[p.goal] ? `🎯 Made for your goal: *${GOAL[p.goal]}*` : null,
       ``,
-      `*${TRIAL.name}: just ${inr(TRIAL.priceRupees)}*`,
-      `✅ Personal diet chart: ${p.food ? FOOD[p.food] : "veg, egg or non-veg"}, your home food, in katori & roti`,
-      `✅ 7-day workout plan, gym or home`,
-      `✅ Day-7 review with me on WhatsApp`,
-      `📄 Your PDF here within ${DIET_CHART.turnaround}`,
+      `🥗 Diet chart made for you (${p.food ? FOOD[p.food] : "veg / egg / non-veg"}, home food)`,
+      `🏋️ 7-day workout plan (gym or home)`,
+      `📊 Your daily calories & protein target`,
+      `💬 Day-7 review with me on WhatsApp`,
       ``,
-      `One trial per person.${p.condition ? ` We take ${CONDITION_LABEL[p.condition]} into account; this is guidance, not medical treatment.` : ""}`,
-    ].join("\n"),
+      `📄 Delivered here within *${DIET_CHART.turnaround}*`,
+      p.condition ? `\n_We plan around ${CONDITION_LABEL[p.condition]}. Guidance only, not medical treatment._` : null,
+    ]
+      .filter((l) => l !== null)
+      .join("\n"),
     footer: FOOTER,
     buttons: [BUTTON.trial7, BUTTON.plans, BUTTON.coach],
   };
@@ -101,45 +115,134 @@ function trialSteps(c: ReplyCtx): WaOut {
   return {
     kind: "cta",
     body: [
-      `Great choice! 🎉 Here's how your *${TRIAL.name}* works:`,
+      `Great choice! 🎉 Just 3 easy steps:`,
       ``,
-      `1️⃣ Tap the button below and answer a few quick questions: age, height, weight, food habits (2 minutes)`,
-      `2️⃣ Pay ${inr(TRIAL.priceRupees)} by UPI or card`,
-      `3️⃣ Your personal plan arrives right here on WhatsApp within ${DIET_CHART.turnaround}`,
+      `1️⃣ Tap *Start for ${inr(TRIAL.priceRupees)}* below`,
+      `2️⃣ Fill a 2-minute form (age, height, weight, food)`,
+      `3️⃣ Pay ${inr(TRIAL.priceRupees)} by UPI or card`,
       ``,
-      `Any question? Just reply here.`,
+      `✅ Your plan arrives here within *${DIET_CHART.turnaround}*`,
     ].join("\n"),
-    footer: FOOTER,
+    footer: "Questions? Just reply here.",
     label: `Start for ${inr(TRIAL.priceRupees)}`,
     url: trialUrl(c.siteUrl),
   };
 }
 
+/** One short line per plan; the checkout's own summary is the fallback. */
+const PLAN_LINE: Partial<Record<DietPlanId, { icon: string; line: string; tag?: string }>> = {
+  trial: { icon: "🟢", line: "Try it: diet + workout for 1 week" },
+  starter: { icon: "⚪", line: "One-time 7-day diet chart + workout plan" },
+  "1m": { icon: "🔵", line: "Plan + 1 update + WhatsApp support" },
+  "3m": { icon: "⭐", line: "Updated every 2 weeks + supplement guidance", tag: "Most popular" },
+  "6m": { icon: "🟣", line: "12 check-ins + keep the weight off" },
+  premium: { icon: "👑", line: "Weekly check-ins + monthly video call" },
+};
+
 function allPlans(c: ReplyCtx): WaOut {
   return {
     kind: "buttons",
     body: [
-      `*Diet & workout plans* by Coach Aman Sharma`,
+      `*Diet & Workout Plans* 🥗🏋️`,
+      `by Coach Aman Sharma`,
+      ...DIET_PLANS.map((p) => {
+        const l = PLAN_LINE[p.id];
+        return `\n${l?.icon ?? "•"} *${p.name}* – ${inr(p.priceRupees)}${l?.tag ? ` _(${l.tag})_` : ""}\n${l?.line ?? p.summary}`;
+      }),
       ``,
-      ...DIET_PLANS.map((p) => `• *${p.name}: ${inr(p.priceRupees)}*\n  ${p.summary}`),
-      ``,
-      `Details: ${c.siteUrl}/diet-chart`,
-      `New here? Start with the ${inr(TRIAL.priceRupees)} trial and upgrade later.`,
+      `👉 New here? Start with the *${inr(TRIAL.priceRupees)}* trial.`,
+      `Full details: ${c.siteUrl}/diet-chart`,
     ].join("\n"),
     footer: FOOTER,
     buttons: [BUTTON.trial7, BUTTON.coach],
   };
 }
 
+function askDetails(): string {
+  return [
+    `To make your plan, please send 👇`,
+    ``,
+    `1. Goal (fat loss / muscle gain / weight gain / toning)`,
+    `2. Age`,
+    `3. Height & weight`,
+    `4. Veg / egg / non-veg`,
+    `5. Any health issue or medicine`,
+    ``,
+    `_Example: Fat loss, 28, 5'6", 82 kg, veg, thyroid_`,
+  ].join("\n");
+}
+
 function coachHandOff(c: ReplyCtx): WaOut {
+  const b = c.business;
   return {
-    kind: "text",
+    kind: "buttons",
+    body: [`Thank you! 🙏 *Coach Aman* will reply here personally soon.`, `🕐 ${hours(b).join(" · ")} (${days(b)})`, ``, askDetails()].join("\n"),
+    footer: FOOTER,
+    buttons: [BUTTON.trial7],
+  };
+}
+
+function fees(c: ReplyCtx): WaOut {
+  const plans = c.plans.filter((p) => p.price > 0);
+  const offer = plans.find((p) => p.offer)?.offer;
+  const couple = plans.find((p) => p.couplePrice > 0 && /^\s*1\s*month/i.test(p.offer?.standardDuration ?? p.duration));
+  const ends = offer ? new Date(`${offer.endsOn}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "";
+  return {
+    kind: "buttons",
     body: [
-      `Done! 🙌 Coach Aman will reply here personally, usually within a few hours during gym timings.`,
+      `*Gym Membership* 💪`,
       ``,
-      `To help faster, send your *goal, age, height and weight* in one message.`,
-      `Want to start right away? The ${inr(TRIAL.priceRupees)} trial is here: ${trialUrl(c.siteUrl)}`,
+      ...plans.map((p) => `• *${p.name}* – ${inr(p.price)} · ${p.offer?.gets ?? p.duration}`),
+      ``,
+      offer ? `🎉 ${offer.title}: these prices till *${ends}*` : null,
+      couple ? `👫 Couples: ${inr(couple.couplePrice)}/month for two` : null,
+      `✅ First session *FREE*: try before you join`,
+      ``,
+      `Join online: ${c.siteUrl}/membership`,
+    ]
+      .filter((l) => l !== null)
+      .join("\n"),
+    footer: FOOTER,
+    buttons: [BUTTON.gymTrial, BUTTON.location, BUTTON.coach],
+  };
+}
+
+function gymTrial(c: ReplyCtx): WaOut {
+  const b = c.business;
+  return {
+    kind: "buttons",
+    body: [
+      `Your *first session is FREE* 💪`,
+      ``,
+      `A trainer will:`,
+      `✅ Check your goal & fitness level`,
+      `✅ Show you the right workout`,
+      `✅ Answer your diet questions`,
+      ``,
+      `🕐 ${hours(b).join(" · ")}`,
+      `📅 ${days(b)}`,
+      ``,
+      `👉 Reply with a *day & time* and we'll book you in.`,
     ].join("\n"),
+    footer: FOOTER,
+    buttons: [BUTTON.location, BUTTON.fees, BUTTON.coach],
+  };
+}
+
+function visit(c: ReplyCtx): WaOut {
+  const b = c.business;
+  const a = b.address;
+  const body = [`📍 *${b.name}*`, `${a.street}, ${a.locality}, ${a.city} ${a.postalCode}`, ``, `🕐 *Timings* (${days(b)})`, ...hours(b), ``, `📞 ${b.phone}`].join("\n");
+  return b.googleMapsUrl ? { kind: "cta", body, footer: FOOTER, label: "Open in Maps", url: b.googleMapsUrl } : { kind: "buttons", body, footer: FOOTER, buttons: [BUTTON.gymTrial, BUTTON.coach] };
+}
+
+function shop(c: ReplyCtx): WaOut {
+  return {
+    kind: "cta",
+    body: [`*Royal Supplements Store* 🛒`, `Protein · Creatine · Pre-workout · Multivitamins`, ``, `✅ Order online, delivered to you`, `✅ Not sure what you need? Ask the coach here`].join("\n"),
+    footer: FOOTER,
+    label: "Shop now",
+    url: `${c.siteUrl}/shop`,
   };
 }
 
@@ -147,8 +250,8 @@ function menu(c: ReplyCtx): WaOut {
   const hi = first(c.name);
   return {
     kind: "list",
-    body: `Hi${hi ? ` ${hi}` : ""}! 👋 Welcome to *${c.business.name}*.\n\nWhat would you like to know? Tap below and choose. A coach also replies personally during gym timings.`,
-    footer: FOOTER,
+    body: `Hi${hi ? ` ${hi}` : ""}! 👋 Welcome to *${c.business.name}*, Noida.\n\nHow can we help you today? Tap *Choose an option* below 👇`,
+    footer: "A coach also replies personally in gym hours",
     button: "Choose an option",
     rows: MENU.map(({ id, title, description }) => ({ id, title, description })),
   };
@@ -165,13 +268,21 @@ export function flowReply(action: FlowAction, c: ReplyCtx): WaOut[] {
       return [allPlans(c)];
     case "coach":
       return [coachHandOff(c)];
-    case "menu":
-      return [menu(c)];
+    case "price":
+      return [fees(c)];
+    case "trial":
+      return [gymTrial(c)];
+    case "visit":
+      return [visit(c)];
+    case "shop":
+      return [shop(c)];
     default:
-      // Fees, free gym trial, timings, supplements: the full answer, then one tap to the diet trial.
-      return [{ kind: "buttons", body: buildReply(action, c).slice(0, 1024), footer: FOOTER, buttons: [BUTTON.trial7, BUTTON.coach] }];
+      return [menu(c)];
   }
 }
+
+/** The "send your goal, age, height, weight" message (a coach quick reply). */
+export const askDetailsMessage = (): WaOut => ({ kind: "text", body: askDetails() });
 
 /** The Cloud API "interactive" object (null for plain text). */
 export function toInteractive(o: WaOut): Record<string, unknown> | null {

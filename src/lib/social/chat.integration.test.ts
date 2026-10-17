@@ -67,7 +67,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
       [false, "auto-reply"],
       [true, ""],
     ]);
-    expect(t.messages[1].body).toContain("*7-Day Trial Plan: just ₹49*");
+    expect(t.messages[1].body).toContain("Start with my *7-Day Trial Plan* for just *₹49*");
     expect(t.messages[1].body).toContain("[✅ Start 7-day ₹49] [📋 See all plans] [💬 Talk to coach]");
     expect(t.messages[3].media).toEqual({ type: "image", id: "55501" });
 
@@ -194,8 +194,8 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     await social.handleInbound(wa("31", "Need diet plan for weight loss, veg"));
     const [offer] = inter();
     expect(offer.type).toBe("button");
-    expect(offer.body.text).toContain("for *fat-loss*");
-    expect(offer.body.text).toContain("100% vegetarian");
+    expect(offer.body.text).toContain("Made for your goal: *Fat loss*");
+    expect(offer.body.text).toContain("pure veg");
     expect((offer.action.buttons as { reply: { id: string } }[]).map((b) => b.reply.id)).toEqual(["rfc_trial7", "rfc_plans", "rfc_coach"]);
     sent.length = 0;
 
@@ -206,13 +206,13 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     sent.length = 0;
 
     await social.handleInbound(wa("33", "📋 See all plans", undefined, "rfc_plans"));
-    expect(inter()[0].body.text).toContain("*3-Month Transformation: ₹2,999*");
+    expect(inter()[0].body.text).toContain("*3-Month Transformation* – ₹2,999");
     sent.length = 0;
     await social.handleInbound(wa("34", "💬 Talk to coach", undefined, "rfc_coach"));
-    expect((sent[0].text as { body: string }).body).toContain("Coach Aman will reply here personally");
+    expect(inter()[0].body.text).toContain("*Coach Aman* will reply here personally");
 
     const t = await chat.chatThread(PEER);
-    expect(t.messages.filter((m) => m.by === "auto-reply").map((m) => m.body.split("\n")[0])).toContain("Great choice! 🎉 Here's how your *7-Day Trial Plan* works:");
+    expect(t.messages.filter((m) => m.by === "auto-reply").map((m) => m.body.split("\n")[0])).toContain("Great choice! 🎉 Just 3 easy steps:");
   });
 
   it("a button message Meta refuses still reaches the customer as text", async () => {

@@ -76,8 +76,8 @@ describe.skipIf(!url)("social automation on a real database", () => {
 
     const out = calls.filter((c) => c.url.endsWith("/123/messages")).map((c) => c.body!.interactive as { type: string; body: { text: string } });
     expect(out.map((o) => o.type)).toEqual(["list", "button"]); // the menu, then fees with buttons
-    expect(out[0].body.text).toContain("Hi Rahul! 👋 Welcome to *Royal Fitness Club*.");
-    expect(out[1].body.text).toContain("*Royal Fitness Club: membership fees*");
+    expect(out[0].body.text).toContain("Hi Rahul! 👋 Welcome to *Royal Fitness Club*, Noida.");
+    expect(out[1].body.text).toContain("*Gym Membership* 💪");
 
     const leads = (await pool.query("select name, phone, source, interest, follow_ups from public.leads")).rows;
     expect(leads).toEqual([{ name: "Rahul Kumar", phone: "9876543210", source: "whatsapp-inbound", interest: "", follow_ups: false }]);
