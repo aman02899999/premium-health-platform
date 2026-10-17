@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
-import { TEMPLATES, templateBody, type MessageKind } from "@/lib/growth/messages";
+import { STOP_PROMOTIONS, TEMPLATES, templateBody, type MessageKind } from "@/lib/growth/messages";
 
 // One-time setup page: /api/admin/whatsapp-templates (sign in to /admin first).
 // GET shows which of the site's WhatsApp templates exist in Meta and their review status.
@@ -22,6 +22,8 @@ const SAMPLES: Record<MessageKind, string[]> = {
   "lead-0": ["Rahul", "Royal Fitness Club", "8851830081"],
   "lead-2": ["Rahul", "Royal Fitness Club"],
   "lead-5": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/membership"],
+  "trial-offer": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/contact#trial"],
+  comeback: ["Rahul", "Royal Fitness Club", "Quarterly", "https://www.royalfitnesclub.in/join?renew=abc"],
   "diet-received": ["Rahul", "Royal Fitness Club", "24 hours"],
   "referral-bonus": ["Rahul", "Priya", "Royal Fitness Club", "7", "30 Nov 2026"],
   "diet-plan-ready": ["Rahul", "fat-loss diet plan", "Royal Fitness Club"],
@@ -85,7 +87,7 @@ async function rows() {
       kind,
       name,
       status: r?.status ?? "MISSING",
-      note: r ? r.category : other ? `exists in ${other.language}, the site sends ${LANG()}` : MANUAL.includes(kind) ? "create by hand (needs a PDF header)" : "",
+      note: r ? (r.category === TEMPLATES[kind].category ? r.category : `${r.category} (submitted as ${TEMPLATES[kind].category})`) : other ? `exists in ${other.language}, the site sends ${LANG()}` : MANUAL.includes(kind) ? "create by hand (needs a PDF header)" : "",
     };
   });
 }
@@ -112,14 +114,13 @@ export async function POST(req: Request) {
   try {
     for (const r of await rows()) {
       if (r.status !== "MISSING" || MANUAL.includes(r.kind)) continue;
+      const t = TEMPLATES[r.kind];
+      const components: object[] = [{ type: "BODY", text: templateBody(t.text), example: { body_text: [SAMPLES[r.kind]] } }];
+      // Every promotion carries the opt-out button; the webhook records a tap on it.
+      if (t.category === "MARKETING") components.push({ type: "BUTTONS", buttons: [{ type: "QUICK_REPLY", text: STOP_PROMOTIONS }] });
       const { ok, json } = await graph(`/${WABA()}/message_templates`, {
         method: "POST",
-        body: JSON.stringify({
-          name: r.name,
-          language: LANG(),
-          category: "UTILITY",
-          components: [{ type: "BODY", text: templateBody(TEMPLATES[r.kind].text), example: { body_text: [SAMPLES[r.kind]] } }],
-        }),
+        body: JSON.stringify({ name: r.name, language: LANG(), category: t.category, components }),
       });
       log.push(ok ? `✓ ${r.name}: submitted (${json.status ?? "PENDING"})` : `✗ ${r.name}: ${json?.error?.error_user_msg || json?.error?.message || "failed"}`);
     }

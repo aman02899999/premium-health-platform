@@ -31,6 +31,8 @@ import { renderReel } from "./reel";
 import { recordReply } from "./chat";
 import { chatAlertEmail } from "./chat-window";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
+import { promotionsRequest } from "@/lib/growth/messages";
+import { setPromotionsOptOut } from "@/lib/growth/optouts";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -72,6 +74,21 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
     [m.id, m.channel, m.kind, m.from, m.fromName, m.text, intent, m.media?.type ?? null, m.media?.id ?? null],
   );
   if (!ins.rowCount) return "duplicate";
+
+  // "Stop promotions" (the button on Marketing templates) or "Start promotions": record it and confirm.
+  const promo = m.channel === "whatsapp" && m.kind === "message" ? promotionsRequest(m.text) : null;
+  if (promo) {
+    await setPromotionsOptOut(m.from, promo === "stop");
+    if (!whatsappReplyConfigured()) return "logged";
+    const text =
+      promo === "stop"
+        ? "Done: you won't get promotional messages from us any more. Messages about your own membership, trial or order still come through. Reply START PROMOTIONS to turn offers back on."
+        : "Done: you'll get our offers and updates again. Reply STOP PROMOTIONS any time to stop them.";
+    const res = await sendWhatsAppText(m.from, text);
+    await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
+    await recordReply({ to: m.from, body: text, by: "auto-reply", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
+    return res.ok ? "replied" : "failed";
+  }
 
   // The coach has no phone app on an API number: email them so a customer is never left waiting.
   const coach = process.env.COACH_EMAIL;

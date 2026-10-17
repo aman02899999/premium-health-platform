@@ -22,25 +22,45 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "diet-received" | "referral-bonus" | "diet-plan-ready";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready";
+
+export type TemplateCategory = "UTILITY" | "MARKETING";
+
+/** The quick-reply button on every Marketing template; tapping it opts the number out of promotions. */
+export const STOP_PROMOTIONS = "Stop promotions";
 
 /**
- * WhatsApp template names and the text to submit for each in Meta Business Manager
- * (category: Utility, language: English). {{n}} are the params in order.
+ * WhatsApp template names and the text to submit for each in Meta Business Manager (language:
+ * English). {{n}} are the params in order. Utility templates must stay about the customer's own
+ * membership or request: promotional wording gets them re-categorised as Marketing by Meta.
+ * Marketing templates carry the "Stop promotions" button and are never sent to numbers that tapped it.
  */
-export const TEMPLATES: Record<MessageKind, { name: string; text: string }> = {
-  "renew-7": { name: "rfc_renewal_7d", text: "Hi {{1}}, your {{2}} membership at {{3}} ends on {{4}}. Renew in one tap to keep your spot: {{5}}" },
-  "renew-1": { name: "rfc_renewal_1d", text: "Hi {{1}}, a reminder that your {{2}} membership at {{3}} ends on {{4}}. Renew now so your training isn't interrupted: {{5}}" },
-  "expired-3": { name: "rfc_membership_expired", text: "Hi {{1}}, your membership at {{3}} ended on {{4}}. We'd love to have you back — renew your {{2}} plan here: {{5}}" },
-  welcome: { name: "rfc_welcome_member", text: "Welcome to {{3}}, {{1}}! Your {{2}} membership runs until {{4}}. Share your code {{5}} with friends — when they join, you both get bonus days." },
-  "lead-0": { name: "rfc_trial_thanks", text: "Hi {{1}}, thanks for contacting {{2}}! Your free trial session is ready. Reply with a time that suits you, or call {{3}}." },
-  "lead-2": { name: "rfc_trial_reminder", text: "Hi {{1}}, just checking in from {{2}} — your free trial is still waiting. Reply with a day and time and we'll keep a trainer free for you." },
-  "lead-5": { name: "rfc_trial_last", text: "Hi {{1}}, last reminder from {{2}}: see our membership plans and join online here: {{3}}. Reply if you have any questions." },
-  "diet-received": { name: "rfc_diet_order_received", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
+export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCategory; text: string }> = {
+  "renew-7": { name: "rfc_renewal_7d", category: "UTILITY", text: "Hi {{1}}, your {{2}} membership at {{3}} ends on {{4}}. Renew in one tap to keep your spot: {{5}}" },
+  "renew-1": { name: "rfc_renewal_1d", category: "UTILITY", text: "Hi {{1}}, a reminder that your {{2}} membership at {{3}} ends on {{4}}. Renew now so your training isn't interrupted: {{5}}" },
+  "expired-3": { name: "rfc_membership_expired_v2", category: "UTILITY", text: "Hi {{1}}, your {{2}} membership at {{3}} ended on {{4}}. To renew the same plan, use your renewal link: {{5}}" },
+  welcome: { name: "rfc_welcome_v2", category: "UTILITY", text: "Welcome to {{3}}, {{1}}! Your {{2}} membership is active until {{4}}. Your member code is {{5}}. Keep it for renewals and referrals." },
+  "lead-0": { name: "rfc_trial_thanks", category: "UTILITY", text: "Hi {{1}}, thanks for contacting {{2}}! Your free trial session is ready. Reply with a time that suits you, or call {{3}}." },
+  "lead-2": { name: "rfc_trial_reminder_v2", category: "UTILITY", text: "Hi {{1}}, this is {{2}} about your free trial request. Your session isn't booked yet. Reply with a day and time that suits you and we'll confirm it." },
+  "lead-5": { name: "rfc_trial_last_v2", category: "UTILITY", text: "Hi {{1}}, we're closing your free trial request at {{2}} this week. To book it, reply with a day and time. Plan details for your reference: {{3}}" },
+  "trial-offer": { name: "rfc_trial_offer_v2", category: "MARKETING", text: "Hi {{1}}, your free trial session at {{2}} is still available: one workout with a trainer, no payment needed. Book it here: {{3}}" },
+  comeback: { name: "rfc_comeback_offer_v2", category: "MARKETING", text: "Hi {{1}}, it's been a month since your {{3}} plan at {{2}} ended. Your spot is still here. Restart whenever you're ready: {{4}}" },
+  "diet-received": { name: "rfc_diet_order_received", category: "UTILITY", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
   // Template with a DOCUMENT header (the plan PDF); the body follows.
-  "diet-plan-ready": { name: "rfc_diet_plan_ready", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
-  "referral-bonus": { name: "rfc_referral_bonus", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
+  "diet-plan-ready": { name: "rfc_diet_plan_ready", category: "UTILITY", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
+  "referral-bonus": { name: "rfc_referral_bonus_v2", category: "MARKETING", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
 };
+
+/** Outbox kinds sent with a Marketing template: these respect "Stop promotions". */
+export const isMarketingKind = (kind: string) => (TEMPLATES as Record<string, { category: TemplateCategory }>)[kind]?.category === "MARKETING";
+
+/** "Stop promotions" (the button, or typed) opts out; "Start promotions" opts back in. */
+export function promotionsRequest(text: string): "stop" | "start" | null {
+  const t = text.trim().toLowerCase().replace(/[.!]+$/, "");
+  if (t === "stop promotions" || t === "stop" || t === "unsubscribe") return "stop";
+  if (t === "start promotions") return "start";
+  return null;
+}
 
 /**
  * The body text submitted to Meta for review. Meta rejects a body that ends with a variable, and
@@ -71,13 +91,19 @@ export function renewalMessage(kind: "renew-7" | "renew-1" | "expired-3", m: Mem
 export const welcomeMessage = (m: MemberLike, biz: Biz, orderId: string): Draft =>
   draft("welcome", wa(m.phone), m.name, [first(m.name), m.planName, biz.name, formatDate(m.expiresOn), m.referralCode], `welcome:${orderId}`);
 
-export function leadMessage(kind: "lead-0" | "lead-2" | "lead-5", l: LeadLike, biz: Biz): Draft | null {
+export function leadMessage(kind: "lead-0" | "lead-2" | "lead-5" | "trial-offer", l: LeadLike, biz: Biz): Draft | null {
   const digits = l.phone.replace(/\D/g, "");
   const phone10 = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
   if (!/^[6-9]\d{9}$/.test(phone10)) return null; // only Indian mobiles can be messaged
-  const params = kind === "lead-5" ? [first(l.name), biz.name, `${biz.siteUrl}/membership`] : kind === "lead-0" ? [first(l.name), biz.name, biz.phone] : [first(l.name), biz.name];
+  // The trial offer links to the booking form; the last reminder to the plans.
+  const params =
+    kind === "trial-offer" ? [first(l.name), biz.name, `${biz.siteUrl}/contact#trial`] : kind === "lead-5" ? [first(l.name), biz.name, `${biz.siteUrl}/membership`] : kind === "lead-0" ? [first(l.name), biz.name, biz.phone] : [first(l.name), biz.name];
   return draft(kind, wa(phone10), l.name, params, `${kind}:${l.id}`);
 }
+
+/** A month after a membership ended without a renewal: one win-back message per end date. */
+export const comebackMessage = (m: MemberLike & { renewToken: string }, biz: Biz): Draft =>
+  draft("comeback", wa(m.phone), m.name, [first(m.name), biz.name, m.planName, renewUrl(biz.siteUrl, m.renewToken)], `comeback:${m.id}:${m.expiresOn}`);
 
 export const dietReceivedMessage = (o: { id: string; name: string; phone: string }, biz: Biz, turnaround: string): Draft =>
   draft("diet-received", wa(o.phone), o.name, [first(o.name), biz.name, turnaround], `diet-received:${o.id}`);
@@ -130,11 +156,12 @@ export function dueMessages(today: string, members: (MemberLike & { renewToken: 
     if (left >= 2 && left <= 7) out.push(renewalMessage("renew-7", m, biz));
     else if (left >= 0 && left <= 1) out.push(renewalMessage("renew-1", m, biz));
     else if (left <= -3 && left >= -10) out.push(renewalMessage("expired-3", m, biz));
+    else if (left <= -30 && left >= -37) out.push(comebackMessage(m, biz));
   }
   for (const l of leads) {
     if (!l.followUps || (l.status !== "new" && l.status !== "contacted")) continue;
     const age = daysBetween(todayIST(new Date(l.createdAt)), today);
-    const kind = age <= 1 ? "lead-0" : age >= 2 && age <= 4 ? "lead-2" : age >= 5 && age <= 8 ? "lead-5" : null;
+    const kind = age <= 1 ? "lead-0" : age >= 2 && age <= 4 ? "lead-2" : age >= 5 && age <= 8 ? "lead-5" : age >= 14 && age <= 20 ? "trial-offer" : null;
     if (!kind) continue;
     const d = leadMessage(kind, l, biz);
     if (d) out.push(d);

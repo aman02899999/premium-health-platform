@@ -3,7 +3,7 @@ import { pool } from "@/health/db";
 import { SITE_URL } from "@/lib/site";
 import { emailHtml, emailText } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
-import type { Draft } from "./messages";
+import { isMarketingKind, type Draft } from "./messages";
 import { emailConfigured, sendEmail, sendWhatsAppTemplate, whatsappConfigured, type SendResult } from "./providers";
 import { getFile, signedUrl } from "./storage";
 
@@ -116,6 +116,15 @@ export async function dispatch(max = 100): Promise<{ sent: number; failed: numbe
       if (!m) {
         await client.query("rollback");
         break;
+      }
+      // Promotions never go to a number that tapped "Stop promotions".
+      if (m.channel === "whatsapp" && isMarketingKind(m.kind)) {
+        const { rowCount } = await client.query(`select 1 from public.whatsapp_optouts where phone = $1`, [m.to_address]);
+        if (rowCount) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = 'Opted out of promotions' where id = $1`, [m.id]);
+          await client.query("commit");
+          continue;
+        }
       }
       const r = await sendOne(m).catch((err: Error): SendResult => ({ ok: false, error: err.message.slice(0, 300), retry: true }));
       if (r.ok) {

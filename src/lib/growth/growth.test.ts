@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { addDays, addMonths, daysBetween, expiryFor, formatDate, isIsoDate, parseDuration, renewalStart, todayIST } from "./dates";
 import { looksLikeReferralCode, makeReferralCode } from "./config";
-import { TEMPLATES, dueMessages, leadMessage, renewalMessage, templateBody, waLink, type LeadLike, type MemberLike } from "./messages";
+import { TEMPLATES, dueMessages, isMarketingKind, leadMessage, promotionsRequest, renewalMessage, templateBody, waLink, type LeadLike, type MemberLike } from "./messages";
 
 describe("dates (IST)", () => {
   it("today is the Indian date, not UTC", () => {
@@ -72,6 +72,8 @@ describe("scheduled messages", () => {
     expect(kinds("2026-10-16")).toEqual([]);
     expect(kinds("2026-10-18")).toEqual(["expired-3"]);
     expect(kinds("2026-10-26")).toEqual([]); // gave up after 10 days
+    expect(kinds("2026-11-14")).toEqual(["comeback"]); // a month after it ended: one win-back promotion
+    expect(kinds("2026-11-22")).toEqual([]);
     expect(kinds("2026-10-08", [member("2026-10-15", { reminders: false })])).toEqual([]);
   });
   it("one key per member per expiry, so each reminder goes once", () => {
@@ -92,6 +94,8 @@ describe("scheduled messages", () => {
     expect(kinds("2026-10-10", [], [lead(at)])).toEqual(["lead-2"]);
     expect(kinds("2026-10-13", [], [lead(at)])).toEqual(["lead-5"]);
     expect(kinds("2026-10-20", [], [lead(at)])).toEqual([]);
+    expect(kinds("2026-10-22", [], [lead(at)])).toEqual(["trial-offer"]); // two weeks on, still not booked
+    expect(kinds("2026-10-29", [], [lead(at)])).toEqual([]);
     expect(kinds("2026-10-10", [], [lead(at, { status: "joined" })])).toEqual([]);
     expect(kinds("2026-10-10", [], [lead(at, { followUps: false })])).toEqual([]);
     // Lead at 23:00 IST on the 8th is a day-0 lead on the 8th, not the 9th.
@@ -150,5 +154,31 @@ describe("WhatsApp template bodies submitted to Meta", () => {
     }
     expect(templateBody("Coach will send it within {{3}}.")).toBe("Coach will send it within {{3}}.\n\nSee you at the gym!");
     expect(templateBody("Hi {{1}}, see you soon.")).toBe("Hi {{1}}, see you soon.");
+  });
+});
+
+describe("WhatsApp template set (v2)", () => {
+  it("sends the _v2 names, with as many params as the template has variables", () => {
+    const vars = (text: string) => new Set(text.match(/\{\{\d+\}\}/g)).size;
+    const m = { ...member("2026-10-15"), renewToken: "tok" };
+    const at = "2026-10-08T04:00:00Z";
+    const drafts = [...dueMessages("2026-11-14", [m], [], biz), ...dueMessages("2026-10-22", [], [lead(at)], biz), ...dueMessages("2026-10-18", [m], [], biz), ...dueMessages("2026-10-13", [], [lead(at)], biz)];
+    expect(drafts.map((d) => d.template)).toEqual(["rfc_comeback_offer_v2", "rfc_trial_offer_v2", "rfc_membership_expired_v2", "rfc_trial_last_v2"]);
+    for (const d of drafts) expect(d.params, d.template).toHaveLength(vars(TEMPLATES[d.kind as keyof typeof TEMPLATES].text));
+    expect(drafts[0].body).toBe("Hi Aman, it's been a month since your Monthly plan at Royal Fitness Club ended. Your spot is still here. Restart whenever you're ready: https://example.in/join?renew=tok");
+    expect(drafts[1].params[2]).toBe("https://example.in/contact#trial");
+    expect(TEMPLATES.welcome.name).toBe("rfc_welcome_v2");
+    expect(TEMPLATES["lead-2"].name).toBe("rfc_trial_reminder_v2");
+  });
+  it("promotions are Marketing; reminders about the customer's own membership stay Utility", () => {
+    expect(["referral-bonus", "trial-offer", "comeback"].every(isMarketingKind)).toBe(true);
+    expect(["welcome", "lead-2", "lead-5", "expired-3", "renew-7", "diet-received", "nurture-diet-0"].some(isMarketingKind)).toBe(false);
+  });
+  it("reads the Stop promotions button and typed opt-outs", () => {
+    expect(promotionsRequest("Stop promotions")).toBe("stop");
+    expect(promotionsRequest(" STOP ")).toBe("stop");
+    expect(promotionsRequest("Start promotions!")).toBe("start");
+    expect(promotionsRequest("stop by at 7?")).toBeNull();
+    expect(promotionsRequest("Need a diet plan")).toBeNull();
   });
 });

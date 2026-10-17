@@ -39,7 +39,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     meta = await import("./meta");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members cascade");
+    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members, public.whatsapp_optouts cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -121,5 +121,32 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     expect(file?.type).toBe("image/jpeg");
     expect(new Uint8Array(file!.data)).toEqual(new Uint8Array([0xff, 0xd8, 0xff]));
     expect(await meta.whatsappMedia("../etc/passwd")).toBeNull();
+  });
+
+  it("'Stop promotions' opts the number out: promotions are cancelled, membership messages still go", async () => {
+    expect(await social.handleInbound(wa("10", "Stop promotions"))).toBe("replied");
+    expect((sent[0].text as { body: string }).body).toMatch(/won't get promotional messages/);
+    expect((await pool.query(`select phone from public.whatsapp_optouts`)).rows).toEqual([{ phone: PEER }]);
+    // No lead, no diet reply: a tap on the button isn't an enquiry.
+    expect((await pool.query(`select count(*)::int as n from public.leads`)).rows[0].n).toBe(0);
+
+    const { enqueue, dispatch } = await import("@/lib/growth/outbox");
+    const base = { channel: "whatsapp" as const, to: PEER, toName: "Pratibha", body: "x", params: ["Pratibha"] };
+    await enqueue([
+      { ...base, kind: "comeback", template: "rfc_comeback_offer_v2", dedupeKey: "comeback:t" },
+      { ...base, kind: "renew-7", template: "rfc_renewal_7d", dedupeKey: "renew-7:t" },
+    ]);
+    sent.length = 0;
+    await dispatch(5);
+    expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_renewal_7d"]);
+    const { rows } = await pool.query(`select kind, status, last_error from public.message_outbox where to_address = $1 order by kind`, [PEER]);
+    expect(rows).toEqual([
+      { kind: "comeback", status: "cancelled", last_error: "Opted out of promotions" },
+      { kind: "renew-7", status: "sent", last_error: null },
+    ]);
+
+    // "Start promotions" turns them back on.
+    await social.handleInbound(wa("11", "Start promotions"));
+    expect((await pool.query(`select count(*)::int as n from public.whatsapp_optouts`)).rows[0].n).toBe(0);
   });
 });
