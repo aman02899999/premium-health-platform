@@ -4,6 +4,7 @@ import { DEFAULT_CONTENT } from "@/lib/content/defaults";
 import { applyOffer } from "@/lib/offers";
 import { buildReply, detectIntent, forInstagram, shouldReply, type ReplyCtx } from "./auto-reply";
 import { indianMobile, parseWebhook } from "./inbound";
+import { chatWindow, peerId, windowLabel } from "./chat-window";
 
 vi.mock("server-only", () => ({}));
 
@@ -206,5 +207,36 @@ describe("diet reply follows what they asked for", () => {
     const prices = [...reply("diet plan").matchAll(/₹([\d,]+)/g)].map((m) => Number(m[1].replace(/,/g, "")));
     expect(prices.length).toBeGreaterThan(1);
     for (const p of prices) expect([49, 999, 1999, 2999, 4999, 5999]).toContain(p);
+  });
+});
+
+describe("WhatsApp media and the 24-hour reply window", () => {
+  it("keeps a photo's caption as text and its media id; locations become a map link", () => {
+    const body = {
+      object: "whatsapp_business_account",
+      entry: [{ changes: [{ field: "messages", value: {
+        contacts: [{ wa_id: "919876543210", profile: { name: "Pratibha" } }],
+        messages: [
+          { id: "m1", from: "919876543210", type: "image", image: { id: "55501", caption: "payment done" } },
+          { id: "m2", from: "919876543210", type: "audio", audio: { id: "55502" } },
+          { id: "m3", from: "919876543210", type: "location", location: { latitude: 28.52, longitude: 77.38 } },
+        ],
+      } }] }],
+    };
+    const [img, voice, loc] = parseWebhook(body);
+    expect(img).toMatchObject({ text: "payment done", media: { type: "image", id: "55501" }, fromName: "Pratibha" });
+    expect(voice).toMatchObject({ text: "", media: { type: "audio", id: "55502" } });
+    expect(loc.text).toBe("📍 Location: https://maps.google.com/?q=28.52,77.38");
+    expect(loc.media).toBeUndefined();
+  });
+
+  it("is open for 24 hours after the customer's last message", () => {
+    const now = new Date("2026-10-17T12:00:00Z");
+    expect(chatWindow(null, now).open).toBe(false);
+    expect(chatWindow("2026-10-17T02:00:00Z", now)).toEqual({ open: true, closesAt: "2026-10-18T02:00:00.000Z" });
+    expect(chatWindow("2026-10-16T11:59:00Z", now).open).toBe(false);
+    expect(windowLabel(chatWindow("2026-10-17T02:00:00Z", now), now)).toBe("Reply window open for 14 h 0 min");
+    expect(windowLabel(chatWindow(null, now), now)).toMatch(/^Closed/);
+    expect(peerId("+91 98765-43210")).toBe("919876543210");
   });
 });

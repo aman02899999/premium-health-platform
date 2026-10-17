@@ -10,9 +10,28 @@ export type Inbound = {
   from: string;
   fromName: string;
   text: string;
+  /** A photo, voice note, video, document or sticker (WhatsApp): Meta's media id, fetched on demand. */
+  media?: { type: MediaType; id: string };
 };
 
-type WaMessage = { id?: string; from?: string; type?: string; text?: { body?: string }; button?: { text?: string }; interactive?: { button_reply?: { title?: string }; list_reply?: { title?: string } } };
+export type MediaType = "image" | "audio" | "video" | "document" | "sticker";
+const MEDIA_TYPES: MediaType[] = ["image", "audio", "video", "document", "sticker"];
+type WaMedia = { id?: string; caption?: string; filename?: string };
+
+type WaMessage = {
+  id?: string;
+  from?: string;
+  type?: string;
+  text?: { body?: string };
+  button?: { text?: string };
+  interactive?: { button_reply?: { title?: string }; list_reply?: { title?: string } };
+  image?: WaMedia;
+  audio?: WaMedia;
+  video?: WaMedia;
+  document?: WaMedia;
+  sticker?: WaMedia;
+  location?: { latitude?: number; longitude?: number; name?: string };
+};
 type WaValue = { contacts?: { wa_id?: string; profile?: { name?: string } }[]; messages?: WaMessage[] };
 type IgMessaging = { sender?: { id?: string }; message?: { mid?: string; text?: string; is_echo?: boolean } };
 type FbFeed = { item?: string; verb?: string; comment_id?: string; message?: string; from?: { id?: string; name?: string } };
@@ -30,11 +49,23 @@ export function parseWebhook(body: MetaWebhook): Inbound[] {
         if (change.field !== "messages") continue;
         const v = (change.value ?? {}) as WaValue;
         for (const m of v.messages ?? []) {
-          // Text, a tapped quick-reply button, or a list choice; media and stickers carry no words to answer.
-          const text = m.text?.body ?? m.button?.text ?? m.interactive?.button_reply?.title ?? m.interactive?.list_reply?.title ?? "";
+          // Text, a tapped quick-reply button, or a list choice. A photo or document keeps its caption
+          // as the text; the file itself is kept as a media id for the admin chat.
+          const type = MEDIA_TYPES.find((t) => t === m.type);
+          const media = type ? m[type] : undefined;
+          const loc = m.location && typeof m.location.latitude === "number" ? `📍 Location: https://maps.google.com/?q=${m.location.latitude},${m.location.longitude}` : "";
+          const text = m.text?.body ?? m.button?.text ?? m.interactive?.button_reply?.title ?? m.interactive?.list_reply?.title ?? media?.caption ?? loc;
           if (!m.id || !m.from) continue;
           const name = v.contacts?.find((c) => c.wa_id === m.from)?.profile?.name ?? "";
-          out.push({ id: `wa:${m.id}`, channel: "whatsapp", kind: "message", from: m.from.replace(/\D/g, ""), fromName: clean(name, 80), text: clean(text, 1000) });
+          out.push({
+            id: `wa:${m.id}`,
+            channel: "whatsapp",
+            kind: "message",
+            from: m.from.replace(/\D/g, ""),
+            fromName: clean(name, 80),
+            text: clean(text, 1000),
+            ...(type && media?.id ? { media: { type, id: media.id } } : {}),
+          });
         }
       }
     } else if (body.object === "page") {
