@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
-import { TEMPLATES, type MessageKind } from "@/lib/growth/messages";
+import { TEMPLATES, templateBody, type MessageKind } from "@/lib/growth/messages";
 
 // One-time setup page: /api/admin/whatsapp-templates (sign in to /admin first).
 // GET shows which of the site's WhatsApp templates exist in Meta and their review status.
@@ -30,9 +30,6 @@ const SAMPLES: Record<MessageKind, string[]> = {
 // Needs a PDF header sample uploaded through Meta's file API; create it by hand in WhatsApp Manager.
 const MANUAL: MessageKind[] = ["diet-plan-ready"];
 
-// Meta rejects a body that starts or ends with a variable. Only the stored template text changes;
-// the site sends the same name and parameters.
-const bodyFor = (text: string) => (/\{\{\d+\}\}\s*$/.test(text) ? `${text}\n\nSee you at the gym!` : text);
 
 type Remote = { name: string; status: string; language: string; category: string };
 
@@ -121,7 +118,7 @@ export async function POST(req: Request) {
           name: r.name,
           language: LANG(),
           category: "UTILITY",
-          components: [{ type: "BODY", text: bodyFor(TEMPLATES[r.kind].text), example: { body_text: [SAMPLES[r.kind]] } }],
+          components: [{ type: "BODY", text: templateBody(TEMPLATES[r.kind].text), example: { body_text: [SAMPLES[r.kind]] } }],
         }),
       });
       log.push(ok ? `✓ ${r.name}: submitted (${json.status ?? "PENDING"})` : `✗ ${r.name}: ${json?.error?.error_user_msg || json?.error?.message || "failed"}`);
