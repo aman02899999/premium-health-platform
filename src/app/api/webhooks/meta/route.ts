@@ -1,13 +1,14 @@
 import { NextResponse, after } from "next/server";
 import { isDbConfigured } from "@/health/db";
 import { handleInbound } from "@/lib/social/automation";
-import { parseWebhook, type MetaWebhook } from "@/lib/social/inbound";
+import { handleCall } from "@/lib/social/calls";
+import { parseCalls, parseWebhook, type MetaWebhook } from "@/lib/social/inbound";
 import { verifyMetaSignature } from "@/lib/social/meta";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-// Meta webhooks for WhatsApp (field "messages") and Instagram (fields "messages" and "comments").
+// Meta webhooks for WhatsApp (fields "messages" and "calls") and Instagram (fields "messages" and "comments").
 // Callback URL: https://<your-site>/api/webhooks/meta, verify token: META_VERIFY_TOKEN.
 
 /** Meta's one-time check when the callback URL is saved. */
@@ -32,11 +33,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
   const items = parseWebhook(body);
+  const calls = parseCalls(body);
   // Answer Meta at once (it retries slow webhooks); replies go out after the response.
-  if (items.length && isDbConfigured) {
+  if ((items.length || calls.length) && isDbConfigured) {
     after(async () => {
       for (const m of items) {
         await handleInbound(m).catch((err) => console.error("[meta webhook]", m.channel, (err as Error).message));
+      }
+      for (const c of calls) {
+        await handleCall(c)
+          .then((r) => console.log("[meta webhook] call", c.event, c.direction, c.status, r))
+          .catch((err) => console.error("[meta webhook] call", (err as Error).message));
       }
     });
   }

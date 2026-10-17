@@ -39,7 +39,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     meta = await import("./meta");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members, public.whatsapp_optouts cascade");
+    await pool.query("truncate public.social_inbox, public.chat_replies, public.message_outbox, public.leads, public.members, public.whatsapp_optouts, public.whatsapp_calls cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -148,5 +148,30 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     // "Start promotions" turns them back on.
     await social.handleInbound(wa("11", "Start promotions"));
     expect((await pool.query(`select count(*)::int as n from public.whatsapp_optouts`)).rows[0].n).toBe(0);
+  });
+
+  it("after a customer's call: one follow-up template a week, only when switched on, never after Stop promotions", async () => {
+    const { handleCall } = await import("./calls");
+    const call = (id: string, event = "terminate") => ({ id, from: PEER, fromName: "Pratibha", event, status: "completed", direction: "USER_INITIATED", raw: { calls: [{ id }] } });
+    sent.length = 0;
+    // Off until a real payload has been checked: logged, nothing sent.
+    expect(await handleCall(call("c1"))).toBe("off");
+    expect(sent).toEqual([]);
+    process.env.CALL_FOLLOWUP = "on";
+    try {
+      expect(await handleCall(call("c1"))).toBe("duplicate");
+      expect(await handleCall(call("c2", "connect"))).toBe("logged");
+      expect(await handleCall(call("c2"))).toBe("queued");
+      expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_call_followup_v1"]);
+      expect(await handleCall(call("c3"))).toBe("limited"); // a second call the same week
+      await pool.query(`update public.message_outbox set created_at = now() - interval '8 days' where kind = 'call-followup'`);
+      await pool.query(`insert into public.whatsapp_optouts (phone) values ($1)`, [PEER]);
+      expect(await handleCall(call("c4"))).toBe("opted-out");
+      const { rows } = await pool.query(`select count(*)::int as n, max(payload::text) as p from public.whatsapp_calls`);
+      expect(rows[0].n).toBe(5);
+      expect(rows[0].p).toContain('"calls"');
+    } finally {
+      delete process.env.CALL_FOLLOWUP;
+    }
   });
 });

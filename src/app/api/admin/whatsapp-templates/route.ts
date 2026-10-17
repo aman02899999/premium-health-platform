@@ -25,6 +25,7 @@ const SAMPLES: Record<MessageKind, string[]> = {
   "trial-offer": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/contact#trial"],
   comeback: ["Rahul", "Royal Fitness Club", "Quarterly", "https://www.royalfitnesclub.in/join?renew=abc"],
   "diet-received": ["Rahul", "Royal Fitness Club", "24 hours"],
+  "call-followup": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/membership"],
   "referral-bonus": ["Rahul", "Priya", "Royal Fitness Club", "7", "30 Nov 2026"],
   "diet-plan-ready": ["Rahul", "fat-loss diet plan", "Royal Fitness Club"],
 };

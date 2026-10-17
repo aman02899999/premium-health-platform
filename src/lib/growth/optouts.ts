@@ -12,3 +12,8 @@ export async function setPromotionsOptOut(phone: string, optOut: boolean): Promi
   if (optOut) await pool.query(`insert into public.whatsapp_optouts (phone) values ($1) on conflict (phone) do nothing`, [p]);
   else await pool.query(`delete from public.whatsapp_optouts where phone = $1`, [p]);
 }
+
+export async function optedOutOfPromotions(phone: string): Promise<boolean> {
+  const { rowCount } = await pool.query(`select 1 from public.whatsapp_optouts where phone = $1`, [digits(phone)]);
+  return Boolean(rowCount);
+}
