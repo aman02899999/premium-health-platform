@@ -1,0 +1,47 @@
+import { describe, expect, it } from "vitest";
+import { readCsv } from "./sheet";
+import { campaignDraft, campaignUrl, metaAudienceCsv, offerText, toContacts } from "./audience";
+
+const biz = { name: "Royal Fitness Club", siteUrl: "https://x.in", coach: "Coach Aman Sharma" };
+
+describe("contacts import", () => {
+  it("reads name + mobile and/or email in any column order, and explains every skipped row", () => {
+    const out = toContacts(readCsv("S.No,Member Name,E-mail,Mobile No\n1,Rahul Verma,RAHUL@x.in,+91 98765-43210\n2,Priya,,9.87E+09\n3,Neha,neha@x.in,\n4,Dup,,09876543210\n5,,,\n"));
+    if (typeof out === "string") throw new Error(out);
+    expect(out.columns).toEqual({ name: "Member Name", email: "E-mail", phone: "Mobile No" });
+    expect(out.contacts).toEqual([
+      { row: 2, name: "Rahul Verma", phone: "9876543210", email: "rahul@x.in" },
+      { row: 4, name: "Neha", phone: null, email: "neha@x.in" },
+    ]);
+    expect(out.errors.map((e) => e.row)).toEqual([3, 5]);
+    expect(out.errors[1].message).toMatch(/Same mobile/);
+    expect(toContacts(readCsv("Amount,Date\n1,2\n"))).toMatch(/header row/);
+  });
+});
+
+describe("campaign messages", () => {
+  const c = { id: "c1", name: "Diwali Comeback!", channel: "whatsapp" as const, offer: "3 months gym\n+ diet plan for ₹4,000", link: "membership" as const, subject: "" };
+  it("WhatsApp: the approved template with one-line params and a tagged link, once per person", () => {
+    const d = campaignDraft(c, { name: "Rahul Verma", phone: "9876543210", email: null }, biz)!;
+    expect(d).toMatchObject({ channel: "whatsapp", to: "919876543210", kind: "offer-broadcast", template: "rfc_offer_broadcast_v1", dedupeKey: "campaign:c1:919876543210" });
+    expect(d.params).toEqual(["Rahul", "Royal Fitness Club", "3 months gym + diet plan for ₹4,000", "https://x.in/membership?utm_source=whatsapp&utm_medium=campaign&utm_campaign=diwali-comeback"]);
+    expect(campaignDraft(c, { name: "No Phone", phone: null, email: "a@b.in" }, biz)).toBeNull();
+  });
+  it("email: a marketing email with the CTA and the unsubscribe handling of nurture emails", () => {
+    const d = campaignDraft({ ...c, channel: "email", subject: "Come back this Diwali", link: "trial" }, { name: "Neha", phone: null, email: "Neha@X.in" }, biz)!;
+    expect(d).toMatchObject({ channel: "email", to: "neha@x.in", kind: "nurture-campaign", subject: "Come back this Diwali", dedupeKey: "campaign:c1:neha@x.in" });
+    expect(d.body).toContain("[[CTA:Start the ₹49 trial|https://x.in/diet-chart?plan=trial&utm_source=email&utm_medium=campaign&utm_campaign=diwali-comeback#order]]");
+  });
+  it("cleans offers and links", () => {
+    expect(offerText("  Big\toffer \n\n now   ")).toBe("Big offer now");
+    expect(campaignUrl("https://x.in", "gymtrial", "A", "email")).toBe("https://x.in/contact?utm_source=email&utm_medium=campaign&utm_campaign=a#trial");
+  });
+});
+
+describe("Meta ads customer list", () => {
+  it("has Meta's column names, the country code, and escapes names", () => {
+    expect(metaAudienceCsv([{ name: "Rahul Kumar Verma", phone: "9876543210", email: "r@x.in" }, { name: 'Sam "Big"', phone: null, email: "s@x.in" }])).toBe(
+      'email,phone,fn,ln,country\nr@x.in,919876543210,Rahul,Kumar Verma,in\ns@x.in,,Sam,"""Big""",in\n',
+    );
+  });
+});

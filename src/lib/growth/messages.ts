@@ -22,7 +22,7 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast";
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
@@ -48,6 +48,8 @@ export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCa
   "diet-received": { name: "rfc_diet_order_received", category: "UTILITY", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
   // Template with a DOCUMENT header (the plan PDF); the body follows.
   "diet-plan-ready": { name: "rfc_diet_plan_ready", category: "UTILITY", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
+  // An admin campaign to members, ex-members and imported contacts (Audience page).
+  "offer-broadcast": { name: "rfc_offer_broadcast_v1", category: "MARKETING", text: "Hi {{1}}, {{2}} has something for you: {{3}}. See details here: {{4}}" },
   // After a customer's WhatsApp call ends (at most once a week per number).
   "call-followup": { name: "rfc_call_followup_v1", category: "MARKETING", text: "Hi {{1}}, thanks for calling {{2}}! If we missed anything on the call, reply here. Plans, timings and free trial booking: {{3}}" },
   "referral-bonus": { name: "rfc_referral_bonus_v2", category: "MARKETING", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },

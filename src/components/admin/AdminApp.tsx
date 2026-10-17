@@ -21,6 +21,7 @@ import {
   Home,
   IndianRupee,
   BookOpen,
+  Megaphone,
   MessageCircle,
   Salad,
   TrendingUp,
@@ -177,6 +178,9 @@ export function AdminApp({ storage }: { storage: string }) {
           </a>
           <a href="/admin/chats" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-emerald-500/15 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-emerald-400/50 hover:bg-emerald-500/25">
             <MessageCircle className="h-4 w-4 text-emerald-300" /> WhatsApp chats
+          </a>
+          <a href="/admin/audience" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-sky-500/15 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-sky-400/50 hover:bg-sky-500/25">
+            <Megaphone className="h-4 w-4 text-sky-300" /> Audience & campaigns
           </a>
           <a href="/admin/growth" className="flex shrink-0 items-center gap-2.5 rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-left text-sm font-bold text-white ring-1 ring-emerald-400/40 hover:bg-emerald-500/20">
             <TrendingUp className="h-4 w-4 text-emerald-300" /> Growth &amp; renewals

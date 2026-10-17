@@ -17,7 +17,7 @@ describe("security", () => {
   });
 
   it("customer orders, leads and analytics on /health are admin-only; sync needs the admin or the cron", async () => {
-    const req = (u: string, init?: RequestInit) => new NextRequest(`https://x.in${u}`, init);
+    const req = (u: string, init?: { method?: string; body?: string }) => new NextRequest(`https://x.in${u}`, init);
     const orders = await import("./app/(health)/health/api/monetization/orders/route");
     const leads = await import("./app/(health)/health/api/monetization/leads/route");
     const analytics = await import("./app/(health)/health/api/monetization/analytics/route");
