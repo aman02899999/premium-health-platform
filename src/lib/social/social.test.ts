@@ -24,7 +24,7 @@ describe("detectIntent", () => {
     ["free trial", "trial"],
     ["gym ka address kya hai", "visit"],
     ["Sunday open?", "visit"],
-    ["whey protein available?", "shop"],
+    ["whey protein available?", "other"],
     ["Hi", "hello"],
     ["Namaste!", "hello"],
     ["👍", "other"],

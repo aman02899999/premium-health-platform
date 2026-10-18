@@ -61,13 +61,16 @@ export const isSegment = (s: unknown): s is SegmentId => SEGMENTS.some((x) => x.
 
 export type Recipient = { name: string; phone: string | null; email: string | null };
 
-/** Where the campaign's button goes. UTM-tagged so sales from each campaign show up in analytics. */
+/**
+ * Where the campaign's button goes. UTM-tagged so sales from each campaign show up in analytics.
+ * The supplement shop is email-only: WhatsApp's commerce policy doesn't allow selling supplements.
+ */
 export const LINKS = {
-  trial: { label: "Start the ₹49 trial", path: "/diet-chart?plan=trial" },
-  plans: { label: "See diet plans", path: "/diet-chart" },
-  membership: { label: "See membership offers", path: "/membership" },
-  gymtrial: { label: "Book a free gym trial", path: "/contact" },
-  shop: { label: "Shop supplements", path: "/shop" },
+  trial: { label: "Start the ₹49 trial", path: "/diet-chart?plan=trial", whatsapp: true },
+  plans: { label: "See diet plans", path: "/diet-chart", whatsapp: true },
+  membership: { label: "See membership offers", path: "/membership", whatsapp: true },
+  gymtrial: { label: "Book a free gym trial", path: "/contact", whatsapp: true },
+  shop: { label: "Shop supplements (email only)", path: "/shop", whatsapp: false },
 } as const;
 export type LinkId = keyof typeof LINKS;
 export const isLink = (s: unknown): s is LinkId => typeof s === "string" && s in LINKS;

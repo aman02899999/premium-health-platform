@@ -7,7 +7,7 @@
 //   Start / "yes" → 3 steps + [Start for ₹49] link button to the checkout
 //   See all plans → every plan + [Start 7-day ₹49] [Talk to coach]
 //   Talk to coach → the coach takes over (and gets the usual email alert)
-//   "hi" → a menu list: diet trial, fees, free gym trial, timings, supplements
+//   "hi" → a menu list: diet trial, fees, free gym trial, timings
 import { DIET_CHART, DIET_PLANS, type DietPlanId } from "@/lib/growth/config";
 import { formatTime } from "@/lib/site";
 import { detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
@@ -42,7 +42,6 @@ const MENU: (WaRow & { action: FlowAction })[] = [
   { id: "rfc_m_price", action: "price", title: "Membership fees", description: "Gym plans and current offers" },
   { id: "rfc_m_trial", action: "trial", title: "Free gym trial", description: "One free session with a trainer" },
   { id: "rfc_m_visit", action: "visit", title: "Timings & address", description: "Batches and directions" },
-  { id: "rfc_m_shop", action: "shop", title: "Supplements", description: "Protein, creatine and more" },
 ];
 
 const BY_ID: Record<string, FlowAction> = {
@@ -236,16 +235,6 @@ function visit(c: ReplyCtx): WaOut {
   return b.googleMapsUrl ? { kind: "cta", body, footer: FOOTER, label: "Open in Maps", url: b.googleMapsUrl } : { kind: "buttons", body, footer: FOOTER, buttons: [BUTTON.gymTrial, BUTTON.coach] };
 }
 
-function shop(c: ReplyCtx): WaOut {
-  return {
-    kind: "cta",
-    body: [`*Royal Supplements Store* 🛒`, `Protein · Creatine · Pre-workout · Multivitamins`, ``, `✅ Order online, delivered to you`, `✅ Not sure what you need? Ask the coach here`].join("\n"),
-    footer: FOOTER,
-    label: "Shop now",
-    url: `${c.siteUrl}/shop`,
-  };
-}
-
 function menu(c: ReplyCtx): WaOut {
   const hi = first(c.name);
   return {
@@ -257,7 +246,7 @@ function menu(c: ReplyCtx): WaOut {
   };
 }
 
-/** The messages for one step, in order. Price, timings and the shop keep their full text replies. */
+/** The messages for one step, in order. Price and timings keep their full text replies. */
 export function flowReply(action: FlowAction, c: ReplyCtx): WaOut[] {
   switch (action) {
     case "diet":
@@ -274,8 +263,6 @@ export function flowReply(action: FlowAction, c: ReplyCtx): WaOut[] {
       return [gymTrial(c)];
     case "visit":
       return [visit(c)];
-    case "shop":
-      return [shop(c)];
     default:
       return [menu(c)];
   }

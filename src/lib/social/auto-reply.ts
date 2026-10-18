@@ -7,7 +7,7 @@ import type { Business } from "@/lib/content/types";
 import { formatTime } from "@/lib/site";
 import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
-export type Intent = "price" | "diet" | "trial" | "visit" | "shop" | "hello" | "other";
+export type Intent = "price" | "diet" | "trial" | "visit" | "hello" | "other";
 
 // Checked in this order: "diet plan kitne ka" is a diet question, "free trial fees" a price
 // question, and "weight loss membership" a membership one.
@@ -16,7 +16,6 @@ const RULES: [Exclude<Intent, "hello" | "other">, RegExp][] = [
   ["price", /\b(price|prices|pricing|fee|fees|charges?|rate|rates|cost|kitn[aei]|kitne|paise|membership|plan|plans|package|offer|join|joining)\b/i],
   ["trial", /\b(trial|demo|free\s*session|try)\b/i],
   ["visit", /\b(time|timing|timings|open|close|closed|hours?|address|location|kah[aā]n?|where|map|direction|sunday|batch)\b/i],
-  ["shop", /\b(supplements?|protein|whey|creatine|gainer|pre-?workout|eaa|bcaa|shop|store|blackkwolf|multivitamin)\b/i],
   ["diet", /\b(weight|fat|vajan|wajan|motapa|belly|khana|muscle|bulk|pcos|pcod|thyroid|diabetes|sugar)\b/i],
 ];
 const GREETING = /^\s*(hi+|hello+|hey+|hii+|namaste|namaskar|ram ram|good (morning|evening|afternoon)|info|details?|start|menu|help)\b[\s!.?]*$/i;
@@ -157,14 +156,6 @@ function trialReply(c: ReplyCtx): string {
   ].join("\n");
 }
 
-function shopReply(c: ReplyCtx): string {
-  return [
-    `*Royal Supplements Store*`,
-    `Protein, pre-workout, amino acids, multivitamins and more. See prices and order here: ${c.siteUrl}/shop`,
-    `\nNot sure what you need? Tell us your goal and a coach will suggest what is worth buying, and what isn't.`,
-  ].join("\n");
-}
-
 function menuReply(c: ReplyCtx): string {
   const hi = firstName(c.name);
   return [
@@ -174,7 +165,6 @@ function menuReply(c: ReplyCtx): string {
     `*DIET*: personal diet plans`,
     `*TRIAL*: book a free trial session`,
     `*TIMING*: address and gym timings`,
-    `*SHOP*: supplements`,
     `\nA coach will also reply to you personally during gym hours.`,
   ].join("\n");
 }
@@ -190,8 +180,6 @@ export function buildReply(intent: Intent, c: ReplyCtx): string {
       return trialReply(c);
     case "visit":
       return visitReply(c);
-    case "shop":
-      return shopReply(c);
     default:
       return menuReply(c);
   }

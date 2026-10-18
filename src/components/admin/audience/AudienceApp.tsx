@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { CampaignRow } from "@/lib/growth/campaigns";
 
 type Segment = { id: string; label: string; hint: string; total: number; whatsapp: number; email: number };
-type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; links: { id: string; label: string }[] };
+type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; links: { id: string; label: string; whatsapp: boolean }[] };
 type Preview = { committed: boolean; columns: Record<string, string>; plan: { add: number; update: number; members: number; total: number }; errors: { row: number; message: string }[]; errorCount: number };
 
 const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-4";
@@ -158,7 +158,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
             <option value="monthly" className="bg-[#111]">Repeat every month (new people each time)</option>
           </select>
           <select value={link} onChange={(e) => setLink(e.target.value)} className={input}>
-            {data.links.map((l) => (
+            {data.links.filter((l) => channel === "email" || l.whatsapp).map((l) => (
               <option key={l.id} value={l.id} className="bg-[#111]">
                 Button: {l.label}
               </option>

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
+import { buildReply } from "./auto-reply";
 import { parseWebhook } from "./inbound";
 import { BUTTON, flowAction, flowReply, logText, toInteractive, type FlowAction } from "./wa-flow";
 
@@ -18,7 +19,7 @@ describe("WhatsApp trial funnel", () => {
   });
 
   it("every step fits WhatsApp's limits", () => {
-    const actions: FlowAction[] = ["diet", "trial7", "plans", "coach", "menu", "price", "trial", "visit", "shop"];
+    const actions: FlowAction[] = ["diet", "trial7", "plans", "coach", "menu", "price", "trial", "visit"];
     for (const a of actions) {
       for (const step of flowReply(a, ctx)) {
         expect(step.body.length, a).toBeLessThanOrEqual(1024);
@@ -48,5 +49,24 @@ describe("WhatsApp trial funnel", () => {
     expect(parseWebhook(body({ type: "interactive", interactive: { type: "list_reply", list_reply: { id: "rfc_m_price", title: "Membership fees" } } }))[0]).toMatchObject({ replyId: "rfc_m_price" });
     expect(parseWebhook(body({ type: "button", button: { text: "Stop promotions", payload: "Stop promotions" } }))[0]).toMatchObject({ text: "Stop promotions" });
     expect(parseWebhook(body({ type: "text", text: { body: "hi" } }))[0].replyId).toBeUndefined();
+  });
+});
+
+describe("no supplement sales in the bot", () => {
+  const actions: FlowAction[] = ["diet", "trial7", "plans", "coach", "menu", "price", "trial", "visit"];
+  const sells = /\/shop|supplements store|shop now|order online/i;
+
+  it("no WhatsApp step or menu row links to the shop or sells supplements", () => {
+    for (const a of actions)
+      for (const step of flowReply(a, ctx)) {
+        expect(JSON.stringify(step), a).not.toMatch(sells);
+        if (step.kind === "list") for (const r of step.rows) expect(`${r.title} ${r.description}`, a).not.toMatch(/supplement|protein|creatine/i);
+      }
+  });
+
+  it("product questions and an old Supplements tap get the menu, not a store link", () => {
+    for (const text of ["whey protein available?", "creatine available?", "supplements", "shop"]) expect(flowAction({ text }, false)?.action, text).toBe("menu");
+    expect(flowAction({ replyId: "rfc_m_shop", text: "Supplements" }, false)).toEqual({ action: "menu", tapped: false });
+    for (const intent of ["price", "diet", "trial", "visit", "hello", "other"] as const) expect(buildReply(intent, ctx), intent).not.toMatch(sells);
   });
 });

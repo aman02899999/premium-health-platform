@@ -3,7 +3,7 @@ import { pool } from "@/health/db";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
 import { addDays, addMonths } from "./dates";
-import { campaignDraft, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
+import { LINKS, campaignDraft, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
 import { TEMPLATES } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 
@@ -122,6 +122,7 @@ export function validateCampaign(b: CampaignRequest): string | null {
   if (!isSegment(b.segment)) return "Pick who to send it to.";
   if (b.channel !== "whatsapp" && b.channel !== "email") return "Pick WhatsApp or email.";
   if (!isLink(b.link)) return "Pick where the button goes.";
+  if (b.channel === "whatsapp" && !LINKS[b.link].whatsapp) return "WhatsApp messages can't link to the supplement shop (WhatsApp commerce policy). Use email for shop offers.";
   const offer = offerText(b.offer ?? "");
   if (offer.length < 5) return "Write the offer (at least a few words).";
   if (b.channel === "whatsapp" && /https?:\/\//i.test(offer)) return "Leave links out of the offer text: the message adds the button link itself.";
@@ -140,6 +141,8 @@ type RunCounts = { audience: number; queued: number; skipped: { optedOut: number
  * opted out and hasn't had a promotion this week. `run` keeps repeats apart in the dedupe key.
  */
 async function queueRun(c: Stored, run: string | null, today: string): Promise<RunCounts> {
+  // Never send a WhatsApp campaign that links to the supplement shop (also blocked on create).
+  if (c.channel === "whatsapp" && !(isLink(c.link) && LINKS[c.link].whatsapp)) return { audience: 0, queued: 0, skipped: { optedOut: 0, recent: 0, missing: 0 } };
   const all = await recipients(c.segment as SegmentId, today);
   const reachable = all.filter((r) => (c.channel === "whatsapp" ? r.phone : r.email));
   const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));

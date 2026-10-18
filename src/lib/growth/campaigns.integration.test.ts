@@ -77,6 +77,8 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     );
     const req = { name: "Diwali comeback", segment: "ex-recent", channel: "whatsapp", offer: "3 months for ₹4,000 till 31 Oct", link: "membership" };
     expect(cm.validateCampaign({ ...req, offer: "see https://x.in" })).toMatch(/links/);
+    expect(cm.validateCampaign({ ...req, channel: "whatsapp", link: "shop" })).toMatch(/supplement shop/);
+    expect(cm.validateCampaign({ ...req, channel: "email", subject: "Offer", link: "shop" })).toBeNull();
     const r = await cm.createCampaign(req, "coach@x.in", TODAY);
     expect(r).toMatchObject({ ok: true, audience: 3, queued: 1, skipped: { optedOut: 1, recent: 1, missing: 0 } });
     await cm.sendBatch(50);
