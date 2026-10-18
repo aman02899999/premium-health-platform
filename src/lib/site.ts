@@ -29,7 +29,7 @@ export const LEGAL = {
   fssai: "22726926001404",
 } as const;
 
-export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }] as const;
+export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }, { href: "/reviews", label: "Reviews" }] as const;
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 

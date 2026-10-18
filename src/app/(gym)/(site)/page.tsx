@@ -22,6 +22,9 @@ import { applyOffer } from "@/lib/offers";
 import { todayIST } from "@/lib/growth/dates";
 
 import { PORTAL_BOOT } from "@/lib/portal";
+import { isDbConfigured } from "@/health/db";
+import { approvedReviews } from "@/lib/reviews/store";
+import { ReviewCard } from "@/components/reviews/ReviewCard";
 
 export const revalidate = 300;
 
@@ -39,6 +42,8 @@ export default async function HomePage() {
   const b = c.business;
   const posts = publishedPosts(c).slice(0, 3);
   const wa = whatsappHref(b);
+  // Verified reviews from members and plan clients (see /reviews); the admin's own testimonials otherwise.
+  const reviews = isDbConfigured ? (await approvedReviews(3).catch(() => [])) : [];
 
   return (
     <>
@@ -231,8 +236,18 @@ export default async function HomePage() {
 
       {/* ---------- TESTIMONIALS ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
-        <SectionHeading eyebrow="Member love" title="Rated" highlight={`${b.rating.value}★ by ${b.rating.count}+ members`} />
-        {c.testimonials.length > 0 ? (
+        <SectionHeading eyebrow="Member love" title="Rated" highlight={`${b.rating.value}★ on ${b.rating.source || "Google"} (${b.rating.count}+ ratings)`} />
+        {reviews.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {reviews.map((r, i) => (
+              <Reveal key={r.id} delay={i * 80}>
+                <TiltCard className="h-full rounded-3xl" max={6}>
+                  <ReviewCard r={r} />
+                </TiltCard>
+              </Reveal>
+            ))}
+          </div>
+        ) : c.testimonials.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {c.testimonials.map((t, i) => (
               <Reveal key={t.id} delay={i * 80}>
@@ -259,6 +274,9 @@ export default async function HomePage() {
           </Reveal>
         )}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
+          <Link href="/reviews" className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-white hover:bg-brand/90">
+            <BadgeCheck className="h-4 w-4" /> Verified member reviews
+          </Link>
           <a href={b.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-brand/50 px-6 py-3 font-semibold text-brand hover:bg-brand hover:text-white">
             <Star className="h-4 w-4" /> Read & write Google reviews
           </a>
