@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Droplets, Flame, Loader2, Lock, Salad } from "lucide-react";
+import { ArrowRight, Check, Droplets, Flame, Loader2, Lock, Mail, Salad } from "lucide-react";
+import { newEventId, trackPixel } from "@/lib/meta-pixel";
 import type { DietPreview } from "@/lib/diet-pro/preview";
 
 const GOALS = [
@@ -39,10 +40,12 @@ export function DietPreviewTool({ trialPrice }: { trialPrice: number }) {
   const [result, setResult] = useState<DietPreview | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [goal, setGoal] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.currentTarget));
+    setGoal(String(data.goal ?? ""));
     setBusy(true);
     setError("");
     try {
@@ -176,8 +179,74 @@ export function DietPreviewTool({ trialPrice }: { trialPrice: number }) {
               Get the full week for ₹{trialPrice} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+          <EmailMe result={result} goal={goal} />
         </section>
       )}
     </div>
+  );
+}
+
+/** Saves a diet lead (with the numbers, for the coach); the three diet emails follow. */
+function EmailMe({ result, goal }: { result: DietPreview; goal: string }) {
+  const [state, setState] = useState<"idle" | "sending" | "done">("idle");
+  const [error, setError] = useState("");
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    setState("sending");
+    setError("");
+    try {
+      const eventId = newEventId();
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          email: data.email,
+          interest: "diet",
+          source: "diet-tool",
+          marketing: data.consent === "on",
+          goal: goal.slice(0, 60),
+          message: `Free diet tool: ${result.kcal} kcal, ${result.protein} g protein, BMI ${result.bmi}`,
+          eventId,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || "Couldn't send. Please try again.");
+      trackPixel("Lead", { content_name: "diet-tool" }, eventId);
+      setState("done");
+    } catch (err) {
+      setError((err as Error).message);
+      setState("idle");
+    }
+  }
+  if (state === "done")
+    return (
+      <p className="glass inline-flex items-center gap-2 rounded-2xl px-5 py-4 text-sm text-white/80">
+        <Check className="h-5 w-5 text-brand" /> Done! Check your inbox: how the full 7-day plan works, and your first tips, are on the way.
+      </p>
+    );
+  return (
+    <form onSubmit={onSubmit} className="glass grid gap-3 rounded-3xl p-6 sm:grid-cols-3 sm:p-8">
+      <p className="inline-flex items-center gap-2 font-semibold text-white sm:col-span-3">
+        <Mail className="h-4 w-4 text-brand" /> Email me how the full plan works
+      </p>
+      <input name="name" required minLength={2} maxLength={80} autoComplete="name" placeholder="Your name" aria-label="Your name" className="field" />
+      <input name="phone" required type="tel" inputMode="tel" autoComplete="tel" placeholder="WhatsApp number" aria-label="WhatsApp number" className="field" />
+      <input name="email" required type="email" maxLength={120} autoComplete="email" placeholder="Email" aria-label="Email" className="field" />
+      <label className="flex items-start gap-2 text-xs text-white/60 sm:col-span-3">
+        <input type="checkbox" name="consent" required className="mt-0.5 accent-[#e8394b]" />
+        <span>Email me diet tips and plan offers (3 emails, unsubscribe any time). A coach may also WhatsApp me about my plan.</span>
+      </label>
+      {error && (
+        <p role="alert" className="text-sm text-red-300 sm:col-span-3">
+          {error}
+        </p>
+      )}
+      <button type="submit" disabled={state === "sending"} className="inline-flex items-center justify-center gap-2 rounded-full border border-brand/50 px-6 py-3 text-sm font-bold text-brand hover:bg-brand hover:text-white disabled:opacity-60 sm:col-span-3 sm:justify-self-start">
+        {state === "sending" && <Loader2 className="h-4 w-4 animate-spin" />} Send it to me
+      </button>
+    </form>
   );
 }
