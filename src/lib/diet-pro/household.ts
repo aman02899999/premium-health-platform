@@ -178,3 +178,9 @@ export function mealMinutes(label: string, wake = "06:30", meals = 5): number {
 export function mealTime(label: string, wake = "06:30", meals = 5): string {
   return clock(mealMinutes(label, wake, meals));
 }
+
+/** "1 medium tomato", "1 katori cooked toor dal": the measure, plus the food's name unless the measure already says it. */
+export function withName(qty: string, name: string): string {
+  const head = name.toLowerCase().split(/[\s/]+/)[0].replace(/e?s$/, "");
+  return head.length > 2 && qty.toLowerCase().includes(head) ? qty : `${qty} ${name}`;
+}

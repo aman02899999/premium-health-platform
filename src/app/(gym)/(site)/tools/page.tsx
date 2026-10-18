@@ -34,6 +34,18 @@ export default function ToolsPage() {
         ]}
       />
       <PageHero eyebrow="Free tools" title="Fitness" highlight="calculators" intro="Instant, private (nothing leaves your browser) and tuned for Indian bodies." />
+      <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+        <Link href="/diet-plan-generator" className="glass brand-border group flex flex-col gap-3 rounded-3xl p-7 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand">New · Free</span>
+            <span className="mt-1 block text-xl font-bold text-white">Indian diet plan generator</span>
+            <span className="mt-1 block text-sm text-white/60">Your calories, protein and a full day&apos;s veg, Jain, egg or non-veg menu in roti and katori.</span>
+          </span>
+          <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand">
+            Make my plan <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </Link>
+      </section>
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
         {CALCULATORS.map((t, i) => (
           <Reveal key={t.slug} delay={(i % 4) * 70}>
