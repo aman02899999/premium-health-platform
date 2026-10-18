@@ -22,7 +22,7 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request";
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
@@ -52,6 +52,9 @@ export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCa
   "offer-broadcast": { name: "rfc_offer_broadcast_v1", category: "MARKETING", text: "Hi {{1}}, {{2}} has something for you: {{3}}. See details here: {{4}}" },
   // After a customer's WhatsApp call ends (at most once a week per number).
   "call-followup": { name: "rfc_call_followup_v1", category: "MARKETING", text: "Hi {{1}}, thanks for calling {{2}}! If we missed anything on the call, reply here. Plans, timings and free trial booking: {{3}}" },
+  // Once per person: a member about a month in, or a diet client a week after their plan arrived.
+  // Everyone in those windows is asked (Google forbids asking only happy customers), nothing is offered for it.
+  "review-request": { name: "rfc_review_request_v1", category: "MARKETING", text: "Hi {{1}}, thank you for choosing {{2}}! If you have a minute, an honest Google review helps other people in Noida find us: {{3}}" },
   "referral-bonus": { name: "rfc_referral_bonus_v2", category: "MARKETING", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
 };
 
@@ -147,6 +150,23 @@ export const dietReceivedEmail = (o: { id: string; name: string; email: string }
   template: "",
   params: [],
   dedupeKey: `diet-received-email:${o.id}`,
+});
+
+/** WhatsApp: the Google review request, at most once per number ever. */
+export const reviewRequestMessage = (p: { name: string; phone: string }, biz: Biz, reviewUrl: string): Draft =>
+  draft("review-request", wa(p.phone), p.name, [first(p.name), biz.name, reviewUrl], `review-request:${wa(p.phone)}`);
+
+/** Email: the same request, once per address ever; "nurture-" so it carries the unsubscribe link. */
+export const reviewRequestEmail = (p: { name: string; email: string }, biz: Biz, reviewUrl: string): Draft => ({
+  channel: "email",
+  to: p.email.toLowerCase(),
+  toName: p.name,
+  kind: "nurture-review",
+  subject: `A quick favour, ${first(p.name)}?`,
+  body: `Hi ${first(p.name)},\n\nThank you for choosing ${biz.name}. If you have a minute, an honest Google review helps other people in Noida find a gym they can trust. Good or bad, tell it as it is: we read every one.\n\n[[CTA:Write a Google review|${reviewUrl}]]\n\nThank you,\n${biz.name}`,
+  template: "",
+  params: [],
+  dedupeKey: `nurture-review:${p.email.toLowerCase()}`,
 });
 
 export const referralBonusMessage = (referrer: MemberLike, referredName: string, days: number, biz: Biz, rewardId: string): Draft =>
