@@ -3,7 +3,7 @@
 // the caller supplies the images, so this file never touches the DOM or the filesystem.
 import type { Targets } from "@/lib/diet-pro/engine";
 import type { Note, TrainingDay } from "@/lib/diet-pro/guidance";
-import { MEASURE_LEGEND, household, mealTime } from "@/lib/diet-pro/household";
+import { MEASURE_LEGEND, household, mealTime, withName } from "@/lib/diet-pro/household";
 import type { PlannedDay } from "@/lib/diet-pro/meals";
 import type { CellHookData, RowInput } from "jspdf-autotable";
 import { conditionLabels } from "@/lib/diet-pro/conditions";
@@ -442,7 +442,7 @@ export async function buildPlanPdf(input: PlanPdfInput, assets: PdfAssets) {
       head: [["Day", ...first.map((m) => t(`${m.label.replace(" snack", "")}\n${mealTime(m.label, C.wakeTime, C.mealsPerDay)}`)), t(`Day total\ntarget ${n0(T.kcal)} kcal`)]],
       body: input.days.map((d, i): RowInput => [
         t(`Day ${d.day}\n${week[i]?.session ? "Workout" : "Rest"}`),
-        ...d.meals.map((m) => t(`${m.template}\n${m.items.map((it) => `• ${qty(it.food.id, it.grams, m.template)} ${shortName(it.food.name)}`).join("\n")}\n= ${n0(m.total.kcal)} kcal · P ${n0(m.total.p)} · C ${n0(m.total.c)} · F ${n0(m.total.f)} g`)),
+        ...d.meals.map((m) => t(`${m.template}\n${m.items.map((it) => `• ${withName(qty(it.food.id, it.grams, m.template), shortName(it.food.name))}`).join("\n")}\n= ${n0(m.total.kcal)} kcal · P ${n0(m.total.p)} · C ${n0(m.total.c)} · F ${n0(m.total.f)} g`)),
         t(`${n0(d.total.kcal)} kcal\nP ${n0(d.total.p)} · C ${n0(d.total.c)} g\nF ${n0(d.total.f)} · fibre ${n0(d.total.fib)} g`),
       ]),
       didParseCell: (h: CellHookData) => {

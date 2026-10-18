@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { half, household, mealTime } from "./household";
+import { half, household, mealTime, withName } from "./household";
 
 describe("household measures", () => {
   it("rounds to halves with the ½ glyph", () => {
@@ -37,5 +37,16 @@ describe("household measures", () => {
     expect(mealTime("Dinner", "07:00")).toBe("8:30 pm");
     expect(mealTime("Dinner", "07:00", 3)).toBe("8:00 pm");
     expect(mealTime("Breakfast", "bad")).toBe("8:00 am");
+  });
+});
+
+describe("withName", () => {
+  it("adds the food's name unless the measure already says it", () => {
+    expect(withName("1 medium tomato", "tomato")).toBe("1 medium tomato");
+    expect(withName("67 cashews", "cashew nuts")).toBe("67 cashews");
+    expect(withName("3 egg whites", "egg white")).toBe("3 egg whites");
+    expect(withName("13 dates", "dates")).toBe("13 dates");
+    expect(withName("1 katori", "cooked toor dal")).toBe("1 katori cooked toor dal");
+    expect(withName("2 tsp", "mustard oil")).toBe("2 tsp mustard oil");
   });
 });
