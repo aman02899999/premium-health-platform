@@ -55,8 +55,9 @@ export async function insertLead(l: NewLead): Promise<string> {
   const { rows } = await pool.query<{ id: string }>(
     `insert into public.leads (name, phone, email, interest, goal, message, source, marketing_consent_at, follow_ups)
      values ($1, $2, $3, $4, $5, $6, $7, case when $8 then now() else null end, $9) returning id`,
-    // WhatsApp chats are answered by a person, so the automatic WhatsApp trial reminders stay off for them.
-    [l.name, l.phone, l.email, l.interest, l.goal, l.message, l.source, l.marketing, !l.source.startsWith("whatsapp")],
+    // WhatsApp chats are answered by a person, and the free diet tool's visitors asked about food, not a
+    // gym trial, so the automatic WhatsApp trial reminders stay off for both (diet leads get the diet emails).
+    [l.name, l.phone, l.email, l.interest, l.goal, l.message, l.source, l.marketing, !/^(whatsapp|diet-tool)/.test(l.source)],
   );
   return rows[0].id;
 }

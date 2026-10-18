@@ -64,6 +64,13 @@ describe.skipIf(!url)("sales automation on a real database", () => {
     expect(await rows("to_address = 'ravi@example.com'")).toHaveLength(0);
   });
 
+  it("a free diet-tool lead gets the diet emails, never the WhatsApp gym-trial message", async () => {
+    const id = await leads.insertLead({ name: "Meera Iyer", phone: "9876500003", email: "meera@example.com", interest: "diet", goal: "fat-loss", message: "Free diet tool: 1730 kcal", source: "diet-tool", marketing: true });
+    await hooks.afterLeadSaved("9876500003", id);
+    expect((await rows()).map((x) => [x.channel, x.kind])).toEqual([["email", "nurture-diet-0"]]);
+    expect((await pool.query(`select follow_ups from public.leads where id = $1`, [id])).rows[0].follow_ups).toBe(false);
+  });
+
   it("unsubscribing cancels pending emails and stops the sequence; buyers stop getting it too", async () => {
     const id = await leads.insertLead({ name: "Priya Verma", phone: "9876543210", email: "priya@example.com", interest: "diet", goal: "", message: "", source: "whatsapp-diet", marketing: true });
     await hooks.afterLeadSaved("9876543210", id);
