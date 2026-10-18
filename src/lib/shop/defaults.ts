@@ -16,7 +16,7 @@ export const DEFAULT_SETTINGS: ShopSettings = {
   banner3Image: "",
   orderEmail: "",
   phone: "+91 88518 30081",
-  whatsapp: "919266840289",
+  whatsapp: "918851830081",
   address: "Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida, Uttar Pradesh 201304",
   sellerName: "Royal Fitness Club",
   fssaiType: "registration",

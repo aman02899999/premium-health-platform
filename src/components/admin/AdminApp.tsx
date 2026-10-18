@@ -215,7 +215,7 @@ export function AdminApp({ storage }: { storage: string }) {
                     { key: "description", label: "Description", type: "textarea" },
                     { key: "phone", label: "Phone" },
                     { key: "altPhone", label: "Alternate phone" },
-                    { key: "whatsapp", label: "WhatsApp number", help: "Digits with country code, e.g. 919266840289" },
+                    { key: "whatsapp", label: "WhatsApp number", help: "Digits with country code, e.g. 918851830081" },
                     { key: "email", label: "Email" },
                     { key: "instagram", label: "Instagram handle", help: "Without @" },
                     { key: "foundedYear", label: "Founded year", type: "number" },
