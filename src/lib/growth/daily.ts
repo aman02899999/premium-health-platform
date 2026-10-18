@@ -19,6 +19,7 @@ import { dietPlan } from "./config";
 import { addDays, daysBetween } from "./dates";
 import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
 import { runRecurringCampaigns } from "./campaigns";
+import { dueReviewRequests } from "./reviews";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -101,6 +102,11 @@ export async function runDaily(now = new Date()) {
     );
     for (const r of rows) drafts.push(coachsPick(today, r.address, SITE_URL, nb.coach));
   }
+  // Google review requests (members a month in, diet clients a week after their plan): only once a
+  // real review link is set in Admin → Business; a failure here never stops the reminders.
+  const site = (await getContent()).business;
+  const reviews = await dueReviewRequests(today, biz, site.googleReviewUrl, site.googleMapsUrl).catch((err: Error) => (console.error("[daily] reviews:", err.message), []));
+  drafts.push(...reviews);
   const queued = await enqueue(drafts);
   // Recurring admin campaigns that are due today (they queue through the same outbox).
   const campaigns = await runRecurringCampaigns(today).catch((err) => (console.error("[daily] campaigns:", (err as Error).message), { runs: 0, queued: 0 }));
@@ -108,7 +114,7 @@ export async function runDaily(now = new Date()) {
   // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
   // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, campaigns, ...sent, ...story };
+  return { today, due: drafts.length, queued, reviews: reviews.length, campaigns, ...sent, ...story };
 }
 
 /**

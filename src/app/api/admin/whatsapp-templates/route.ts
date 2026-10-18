@@ -29,6 +29,7 @@ const SAMPLES: Record<MessageKind, string[]> = {
   "call-followup": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/membership"],
   "referral-bonus": ["Rahul", "Priya", "Royal Fitness Club", "7", "30 Nov 2026"],
   "diet-plan-ready": ["Rahul", "fat-loss diet plan", "Royal Fitness Club"],
+  "review-request": ["Rahul", "Royal Fitness Club", "https://g.page/r/royal-fitness-club/review"],
 };
 
 // Needs a PDF header sample uploaded through Meta's file API; create it by hand in WhatsApp Manager.

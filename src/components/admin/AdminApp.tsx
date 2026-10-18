@@ -220,7 +220,7 @@ export function AdminApp({ storage }: { storage: string }) {
                     { key: "instagram", label: "Instagram handle", help: "Without @" },
                     { key: "foundedYear", label: "Founded year", type: "number" },
                     { key: "googleMapsUrl", label: "Google Maps link", wide: true },
-                    { key: "googleReviewUrl", label: "Google review link", wide: true, help: "From your Google Business Profile → Ask for reviews" },
+                    { key: "googleReviewUrl", label: "Google review link", wide: true, help: "Google Business Profile → Ask for reviews → copy the link. Setting it switches on automatic review requests (WhatsApp + email, once per person)." },
                     { key: "mapEmbedUrl", label: "Map embed URL", wide: true, help: "Google Maps → Share → Embed a map → copy the src URL" },
                     { key: "priceRange", label: "Price range (₹, ₹₹, ₹₹₹)" },
                   ]}
