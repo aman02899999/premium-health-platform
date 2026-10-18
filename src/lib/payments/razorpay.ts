@@ -16,6 +16,8 @@ export async function createRazorpayOrder(input: { amountPaise: number; receipt:
   const keyId = process.env.RAZORPAY_KEY_ID;
   const keySecret = process.env.RAZORPAY_KEY_SECRET;
   if (!keyId || !keySecret) throw new Error("Razorpay is not configured");
+  // Razorpay's minimum order is ₹1.
+  if (!Number.isInteger(input.amountPaise) || input.amountPaise < 100) throw new Error(`Razorpay order amount must be a whole number of paise, at least 100 (got ${input.amountPaise})`);
   // RAZORPAY_API_URL exists only so end-to-end tests can point at a local stand-in.
   const res = await fetch(`${process.env.RAZORPAY_API_URL || "https://api.razorpay.com"}/v1/orders`, {
     method: "POST",
@@ -27,6 +29,7 @@ export async function createRazorpayOrder(input: { amountPaise: number; receipt:
     cache: "no-store",
   });
   const json = (await res.json().catch(() => ({}))) as RazorpayOrder & { error?: { description?: string } };
+  if (res.status === 401) throw new Error("Razorpay rejected the API keys (401): check RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET are a matching pair for the same mode (test or live)");
   if (!res.ok) throw new Error(json.error?.description || `Razorpay order failed (${res.status})`);
   return json;
 }
