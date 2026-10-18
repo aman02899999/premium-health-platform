@@ -18,7 +18,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     foundedYear: 2019,
     phone: "+91 88518 30081",
     altPhone: "",
-    whatsapp: "919266840289",
+    whatsapp: "918851830081",
     email: "",
     instagram: "royalfitness93_",
     googleMapsUrl: "https://www.google.com/maps?cid=9789213701935789540",

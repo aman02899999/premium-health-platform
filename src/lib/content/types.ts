@@ -9,7 +9,7 @@ export type Business = {
   foundedYear: number;
   phone: string;
   altPhone: string;
-  whatsapp: string; // digits only, with country code, e.g. 919266840289
+  whatsapp: string; // digits only, with country code, e.g. 918851830081
   email: string;
   instagram: string; // handle without @
   googleMapsUrl: string;

@@ -149,7 +149,7 @@ const GROUPS: { title: string; fields: { k: keyof ShopSettings; label: string; h
     fields: [
       { k: "orderEmail", label: "Send new orders to (email)", help: "Several? Separate with commas. Needs email sending connected." },
       { k: "phone", label: "Phone shown to customers" },
-      { k: "whatsapp", label: "WhatsApp number", help: "With country code, e.g. 919266840289." },
+      { k: "whatsapp", label: "WhatsApp number", help: "With country code, e.g. 918851830081." },
       { k: "address", label: "Business address", area: true },
     ],
   },
