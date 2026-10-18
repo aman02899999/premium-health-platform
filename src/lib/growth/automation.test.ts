@@ -83,6 +83,16 @@ describe("email layout", () => {
   });
 });
 
+describe("personal layout (order, plan and booking emails)", () => {
+  it("is a plain letter: no banner, background, button or unsubscribe, the link written out", () => {
+    const body = "Hi <b>Priya</b>,\n\nYour plan is attached.\n[[CTA:Message your coach|https://wa.me/918851830081]]";
+    const html = emailHtml(body, { brand: "Royal Fitness Club", footer: "Royal Fitness Club, Noida", style: "personal" });
+    expect(html).toContain("&lt;b&gt;Priya&lt;/b&gt;");
+    expect(html).toContain('Message your coach: <a href="https://wa.me/918851830081"');
+    expect(html).not.toMatch(/background:#04466d|border-radius:999px|Unsubscribe|role="presentation"/);
+  });
+});
+
 describe("plan delivery messages", () => {
   const o = { id: "o1", name: "Priya Verma", phone: "9876543210", email: "Priya@Example.com" };
   const b = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://example.in" };

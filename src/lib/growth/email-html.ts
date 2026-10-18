@@ -17,7 +17,13 @@ export function emailText(body: string, footer: string): string {
   return `${text}${cta ? `\n\n${cta.label}: ${cta.url}` : ""}\n\n—\n${footer}`;
 }
 
-export function emailHtml(body: string, opts: { brand: string; footer: string; unsubscribeUrl?: string }): string {
+/**
+ * "newsletter": the branded layout (header band, button) for marketing emails, which belong in
+ * Gmail's Promotions tab. "personal": a plain letter for order, plan and booking emails, so Gmail
+ * treats them like a person's mail and keeps them in Primary (no banner, no background, no button).
+ */
+export function emailHtml(body: string, opts: { brand: string; footer: string; unsubscribeUrl?: string; style?: "newsletter" | "personal" }): string {
+  if (opts.style === "personal") return personalHtml(body, opts.footer);
   const { text, cta } = splitCta(body);
   const paras = text
     .split(/\n{2,}/)
@@ -39,4 +45,16 @@ export function emailHtml(body: string, opts: { brand: string; footer: string; u
 <tr><td style="padding:28px;font-size:15px;line-height:1.6">${paras}${button}</td></tr>
 <tr><td style="padding:16px 28px 24px;font-size:12px;line-height:1.5;color:#64748b;border-top:1px solid #e2e8f0">${esc(opts.footer)}${unsub}</td></tr>
 </table></td></tr></table></body></html>`;
+}
+
+function personalHtml(body: string, footer: string): string {
+  const { text, cta } = splitCta(body);
+  const paras = text
+    .split(/\n{2,}/)
+    .map((p) => `<p style="margin:0 0 14px">${p.split("\n").map(linkify).join("<br>")}</p>`)
+    .join("");
+  const link = cta ? `<p style="margin:0 0 14px">${esc(cta.label)}: <a href="${esc(cta.url)}" style="color:#1a56db">${esc(cta.url)}</a></p>` : "";
+  return `<!doctype html><html><body style="margin:0;padding:16px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.55;color:#1f2937">
+${paras}${link}<p style="margin:24px 0 0;font-size:12px;color:#6b7280">${esc(footer)}</p>
+</body></html>`;
 }

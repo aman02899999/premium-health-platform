@@ -85,7 +85,8 @@ async function sendOne(m: Pending): Promise<SendResult> {
   const unsub = marketing ? unsubscribeUrl(m.to_address) : undefined;
   const attachments = m.attachment ? [{ filename: fileName(m.attachment), content: (await getFile(m.attachment)).toString("base64") }] : undefined;
   return sendEmail(m.to_address, m.subject || "Royal Fitness Club", emailText(m.body, `${FOOTER}${unsub ? `\nUnsubscribe: ${unsub}` : ""}`), {
-    html: emailHtml(m.body, { brand: "Royal Fitness Club", footer: `${FOOTER} · ${SITE_URL.replace(/^https?:\/\//, "")}`, unsubscribeUrl: unsub }),
+    // Order, plan and booking emails are written as a plain letter so Gmail keeps them in Primary.
+    html: emailHtml(m.body, { brand: "Royal Fitness Club", footer: `${FOOTER} · ${SITE_URL.replace(/^https?:\/\//, "")}`, unsubscribeUrl: unsub, style: marketing ? "newsletter" : "personal" }),
     attachments,
     headers: unsub ? { "List-Unsubscribe": `<${unsub}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" } : undefined,
     replyTo: process.env.EMAIL_REPLY_TO || undefined,
