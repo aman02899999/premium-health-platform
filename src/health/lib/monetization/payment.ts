@@ -172,9 +172,16 @@ export function getPaymentProvider(name?: PaymentProviderName): PaymentProvider 
 
 const DOWNLOAD_TOKEN_TTL_HOURS = 72;
 
-/** Signing key: dedicated secret, falling back to the NextAuth secret. */
+/**
+ * Signing key: dedicated secret, falling back to the NextAuth secret. In production there is no
+ * built-in fallback: without a secret, minting throws and every token is rejected, because a
+ * key that is public in the source would let anyone forge a download link.
+ */
 function downloadTokenSecret(): string {
-  return process.env.DOWNLOAD_TOKEN_SECRET || process.env.NEXTAUTH_SECRET || "demo-secret";
+  const secret = process.env.DOWNLOAD_TOKEN_SECRET || process.env.NEXTAUTH_SECRET;
+  if (secret) return secret;
+  if (process.env.NODE_ENV === "production") throw new Error("DOWNLOAD_TOKEN_SECRET is not set");
+  return "dev-only-download-secret";
 }
 
 function signDownloadPayload(payload: string): string {

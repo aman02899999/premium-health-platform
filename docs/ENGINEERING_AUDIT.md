@@ -80,7 +80,7 @@ These were checked and should not be changed without a reason:
 
 - A signed but malformed body threw inside the route (a generic 500). It now returns 400.
 
-### F7. Store stock is not reserved at checkout, so the last unit can be oversold. Medium. CONFIRMED. Not changed.
+### F7. Store stock is not reserved at checkout, so the last unit can be oversold. Medium. CONFIRMED. Fixed in round three: an unpaid checkout holds its units for 20 minutes (no schema change).
 
 - `markShopPaid` never lets stock go below zero and writes a warning into the order's admin notes when it was short, but two buyers can both pay for the last unit. A reservation at order creation would need expiry handling for abandoned checkouts; worth doing with the abandoned-checkout work (Phase 6), not in this PR.
 
@@ -96,7 +96,7 @@ These were checked and should not be changed without a reason:
 
 - `recent` maps in the order and lead routes are per serverless instance, so the effective limit is higher than the number in the code. Razorpay order creation costs nothing, so the main risk is junk rows. A shared limiter (database or Vercel KV) would fix it.
 
-### F11. Download tokens on the health site fall back to a hard-coded secret. Medium. CONFIRMED in code. Not changed.
+### F11. Download tokens on the health site fall back to a hard-coded secret. Medium. CONFIRMED in code. Fixed in round three: production fails closed without a secret.
 
 - `src/health/lib/monetization/payment.ts` signs tokens with `DOWNLOAD_TOKEN_SECRET || NEXTAUTH_SECRET || "demo-secret"`. Today the download route only returns demo JSON and the minting routes are off in production, so nothing paid is exposed. It must be made to fail closed before that store goes live.
 

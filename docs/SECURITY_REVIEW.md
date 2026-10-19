@@ -25,7 +25,7 @@ site's API keys were not reviewed in this pass.
 ## Residual risks, ranked
 
 1. **`next` 16.2.6 advisories (critical per npm audit).** Upgrade to 16.4.2 in its own PR. The admin APIs still check authorisation themselves, so a proxy bypass would remove the origin check, not the login.
-2. **Health download tokens can be signed with `"demo-secret"`** if neither `DOWNLOAD_TOKEN_SECRET` nor `NEXTAUTH_SECRET` is set. Harmless today (demo responses, minting off in production); must fail closed before that store sells anything.
+2. **Health download tokens can be signed with `"demo-secret"`** if neither `DOWNLOAD_TOKEN_SECRET` nor `NEXTAUTH_SECRET` is set. Fixed: in production, minting now throws and every token is rejected when no secret is set.
 3. **Per-instance rate limits** on order and lead endpoints. Junk orders and leads are possible at scale.
 4. **`sharp` and `postcss` advisories.** `sharp` needs a major upgrade; review separately.
 5. **Cron secret comparison is a plain string compare**, not constant-time. Low practical risk over the network; easy fix when that file is next touched.

@@ -64,3 +64,11 @@ order, at most one per person every 14 days, never to anyone who unsubscribed or
 for supplements never when the order was cancelled or an item is now inactive or out of stock.
 Payment reconciliation runs first in the same cron, so an order Razorpay captured without a webhook
 is marked paid before reminders are chosen.
+
+## Supplement stock holds
+
+When someone opens a supplement checkout, the units in their cart are held for 20 minutes
+(`HOLD_MINUTES` in `src/lib/shop/store.ts`) so another shopper can't buy the last one while they pay.
+Their own retry isn't blocked. Holds are computed from unpaid orders, so nothing needs releasing.
+A payment that arrives after its hold expired can still take stock below what's on the shelf; the
+order's admin notes say so, as before.

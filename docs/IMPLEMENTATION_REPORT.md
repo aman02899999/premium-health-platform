@@ -20,7 +20,9 @@ PRODUCTION VERIFIED: Razorpay was replaced by built events and a stubbed API, an
 | Double payment on a paid order flagged, not reported to Meta twice | F5 | IMPLEMENTED, TESTED |
 | Malformed signed webhook body returns 400 | F6 | IMPLEMENTED, TESTED |
 | Webhook says in the log when `RAZORPAY_WEBHOOK_SECRET` is missing | | IMPLEMENTED, TESTED |
-| F7 to F13 | | Not changed; see the audit for why and what to do |
+| Unpaid supplement checkouts hold their stock for 20 minutes; a buyer's own retry isn't blocked | F7 | IMPLEMENTED, TESTED (real Postgres) |
+| Health download tokens fail closed in production without a signing secret | F11 | IMPLEMENTED, TESTED |
+| F8 to F10, F12, F13 | | Not changed; see the audit for why and what to do |
 | First- and last-touch attribution cookie (`rfc_attr`), stored once on leads and all four order tables | Phase 4 | IMPLEMENTED, TESTED (unit and real Postgres); not clicked through in a browser |
 | Campaign results count supplement and book orders, net of refunds | Phase 4 | IMPLEMENTED, TESTED |
 | `/health/admin/earning`: real collected, refunded and net revenue, conversion and channel tables; fabricated numbers removed | Phases 4, 9 | IMPLEMENTED, type-checked, built and query-tested; page not opened in a browser |
@@ -121,4 +123,4 @@ This deletes data, so it needs a backup and the owner's approval first.
 - Confirm in Razorpay that payments are captured automatically (F8).
 - Then test on a preview deployment with Razorpay test keys: one paid order, one refund, one webhook resend from the Razorpay dashboard.
 - Upgrade `next` to 16.4.2 in its own PR (F12).
-- Not started: supplement stock reservation (F7), post-purchase retention, WhatsApp checkout reminders (no approved template and no recorded WhatsApp marketing consent at checkout, so email only), recording ad spend and product costs so CAC, ROAS and profit can be computed.
+- Not started: post-purchase retention, WhatsApp checkout reminders (no approved template and no recorded WhatsApp marketing consent at checkout, so email only), recording ad spend and product costs so CAC, ROAS and profit can be computed.
