@@ -37,6 +37,12 @@ export function whatsappHref(b: Business, message = `Hi ${b.name}, I'd like to b
   return `https://wa.me/${b.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 }
 
+/** "919266840289" → "+91 92668 40289" (Indian mobiles); other numbers as "+<digits>". */
+export function formatWhatsApp(digits: string) {
+  const d = digits.replace(/\D/g, "");
+  return /^91\d{10}$/.test(d) ? `+91 ${d.slice(2, 7)} ${d.slice(7)}` : `+${d}`;
+}
+
 export const instagramHref = (handle: string) => `https://www.instagram.com/${handle.replace(/^@/, "")}/`;
 
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;

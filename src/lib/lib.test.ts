@@ -3,6 +3,7 @@ import { bmi, bodyFatNavy, heartRateZones, idealWeight, macros, oneRepMax, tdee,
 import { parseInline, parseMarkdown, toc } from "./markdown";
 import { validateContent } from "./content/validate";
 import { DEFAULT_CONTENT } from "./content/defaults";
+import { formatWhatsApp } from "./site";
 
 describe("calculators", () => {
   it("bmi uses Asian cut-offs", () => {
@@ -133,5 +134,13 @@ describe("opening hours", async () => {
   it("Mon–Sat excludes Sunday in schema and says so on the page", () => {
     expect(expandDays("Monday – Saturday")).toEqual(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
     expect(hoursDays(DEFAULT_CONTENT.business.hours)).toBe("Monday – Saturday · Sunday closed");
+  });
+});
+
+describe("formatWhatsApp", () => {
+  it("spaces an Indian mobile the way people write it", () => {
+    expect(formatWhatsApp("919266840289")).toBe("+91 92668 40289");
+    expect(formatWhatsApp("+91 92668-40289")).toBe("+91 92668 40289");
+    expect(formatWhatsApp("14155550123")).toBe("+14155550123");
   });
 });

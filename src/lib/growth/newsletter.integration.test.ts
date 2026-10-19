@@ -50,5 +50,6 @@ describe.skipIf(!url)("weekly newsletter in the daily run", () => {
     expect(emails[0].subject).toMatch(/^Indian Health Weekly: /);
     expect(emails[0].headers?.["List-Unsubscribe"]).toMatch(/\/api\/unsubscribe\?e=/);
     expect(emails[0].text).toContain("Unsubscribe:");
+    expect(emails[0].text).toContain("WhatsApp +91 92668 40289"); // the footer follows the site's WhatsApp number
   });
 });

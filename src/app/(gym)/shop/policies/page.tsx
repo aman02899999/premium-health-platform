@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { fssaiLabel } from "@/lib/shop/format";
-import { LEGAL } from "@/lib/site";
+import { LEGAL, formatWhatsApp } from "@/lib/site";
 import { getCatalog } from "@/lib/shop/server";
 
 export const metadata: Metadata = { title: "Shipping, Returns & Contact", description: "Delivery times, return policy, seller details and how to contact the store.", alternates: { canonical: "/shop/policies" } };
@@ -36,7 +36,9 @@ export default async function Policies() {
       </p>
       <h2>Contact</h2>
       <p>
-        Phone / WhatsApp: <a href={`https://wa.me/${s.whatsapp}`}>{s.phone}</a>
+        Phone: <a href={`tel:${s.phone.replace(/[^\d+]/g, "")}`}>{s.phone}</a>
+        <br />
+        WhatsApp: <a href={`https://wa.me/${s.whatsapp}`}>{formatWhatsApp(s.whatsapp)}</a>
       </p>
     </section>
   );

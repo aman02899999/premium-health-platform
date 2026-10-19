@@ -1,6 +1,7 @@
 import "server-only";
 import { pool } from "@/health/db";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, formatWhatsApp } from "@/lib/site";
+import { getContent } from "@/lib/content/store";
 import { emailHtml, emailText } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
 import { MARKETING_KINDS, isMarketingKind, type Draft } from "./messages";
@@ -66,7 +67,13 @@ export async function cancelPending(kindPrefix: string, refId: string): Promise<
 
 type Pending = { id: string; channel: "whatsapp" | "email"; to_address: string; to_name: string; kind: string; body: string; template: string | null; params: string[]; attempts: number; subject: string | null; attachment: string | null };
 
-const FOOTER = "Royal Fitness Club · Gejha, Sector 93, Noida · WhatsApp +91 88518 30081";
+/** The email footer, with the WhatsApp number the website uses (so replies reach the chat bot). */
+async function emailFooter(): Promise<string> {
+  const wa = await getContent()
+    .then((c) => c.business?.whatsapp ?? "")
+    .catch(() => "");
+  return `Royal Fitness Club · Gejha, Sector 93, Noida${wa ? ` · WhatsApp ${formatWhatsApp(wa)}` : ""}`;
+}
 const fileName = (p: string) => p.split("/").pop() || "plan.pdf";
 
 async function sendOne(m: Pending): Promise<SendResult> {
@@ -84,6 +91,7 @@ async function sendOne(m: Pending): Promise<SendResult> {
   const marketing = m.kind.startsWith("nurture-");
   const unsub = marketing ? unsubscribeUrl(m.to_address) : undefined;
   const attachments = m.attachment ? [{ filename: fileName(m.attachment), content: (await getFile(m.attachment)).toString("base64") }] : undefined;
+  const FOOTER = await emailFooter();
   return sendEmail(m.to_address, m.subject || "Royal Fitness Club", emailText(m.body, `${FOOTER}${unsub ? `\nUnsubscribe: ${unsub}` : ""}`), {
     // Order, plan and booking emails are written as a plain letter so Gmail keeps them in Primary.
     html: emailHtml(m.body, { brand: "Royal Fitness Club", footer: `${FOOTER} · ${SITE_URL.replace(/^https?:\/\//, "")}`, unsubscribeUrl: unsub, style: marketing ? "newsletter" : "personal" }),
