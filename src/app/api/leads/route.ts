@@ -49,10 +49,10 @@ export async function POST(req: Request) {
   try {
     if (isDbConfigured) {
       const id = await insertLead({ name, phone, email: email || null, interest, goal: clean(body.goal, 60), message: clean(body.message, 600), source, marketing });
-      await attributeFromRequest(req, "lead", id);
       if (marketing) await recordEmailConsent(email, name, source).catch((e: Error) => console.error("[leads] consent:", e.message));
       // After the response: WhatsApp thank-you and/or the first email (or queue them for the admin).
       after(() => afterLeadSaved(phone, id));
+      await attributeFromRequest(req, "lead", id);
       after(() => sendCapiEvent(capi));
     } else {
       await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source });

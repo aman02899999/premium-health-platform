@@ -119,7 +119,7 @@ export async function runDaily(now = new Date()) {
 }
 
 /**
- * Diet-plan, library and supplement orders started 2–72 hours ago and never paid, from people who haven't
+ * Diet-plan and library orders started 2–72 hours ago and never paid, from people who haven't
  * paid for the same thing since and haven't unsubscribed. Each source is optional.
  */
 async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
