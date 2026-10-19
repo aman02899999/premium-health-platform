@@ -1,7 +1,7 @@
 // Sales emails, built here and sent through the outbox. Both are "nurture-*" kinds, so every one
 // carries an unsubscribe link and the one-click List-Unsubscribe headers, and nobody who has
 // unsubscribed is queued (the daily run filters them out).
-//   - Checkout reminder: someone started paying for a plan or a book and didn't finish. One gentle
+//   - Checkout reminder: someone started paying for a plan, a book or a supplement order and didn't finish. One gentle
 //     email, 2–72 hours later; one per order and at most one per person every 14 days.
 //   - Coach's Pick: Wednesdays, to people who asked for emails: a diet plan, a programme or book,
 //     and a bundle, rotating through the whole catalogue.
@@ -21,11 +21,13 @@ const withUtm = (siteUrl: string, path: string, campaign: string) => {
   return `${siteUrl}${base}${base.includes("?") ? "&" : "?"}${utm(campaign)}${hash ? `#${hash}` : ""}`;
 };
 
-export type AbandonedOrder = { kind: "diet" | "book"; id: string; name: string; email: string; plan: string; itemId: string; title: string; amountPaise: number };
+/** For "shop", itemId is the store path of a single-item order ("p/<slug>" or "combos/<slug>"), else "". */
+export type AbandonedOrder = { kind: "diet" | "book" | "shop"; id: string; name: string; email: string; plan: string; itemId: string; title: string; amountPaise: number };
 
 /** Where to send someone back to finish an order. */
 export function resumePath(o: AbandonedOrder): string {
   if (o.kind === "diet") return `/diet-chart?plan=${encodeURIComponent(o.plan)}#order`;
+  if (o.kind === "shop") return /^(p|combos)\/[a-z0-9-]{2,80}$/.test(o.itemId) ? `/shop/${o.itemId}` : "/shop";
   const ids = o.itemId.split(",");
   if (ids.length === 1 && BOOKS.some((b) => b.slug === ids[0])) return `/library/${ids[0]}`;
   if (ids.length === 1 && bundleById(ids[0])) return "/library#combos";
@@ -39,7 +41,9 @@ export function checkoutReminder(o: AbandonedOrder, siteUrl: string, coach: stri
   const why =
     o.kind === "diet"
       ? ["Calories and protein worked out from your own body", "Indian meals you already eat, in katori and roti measures", "Workouts that match your goal"]
-      : ["Instant PDF download right after payment", "Read on your phone, tablet or laptop", "Your download link is emailed to you too"];
+      : o.kind === "shop"
+        ? ["Paid securely through Razorpay", "Not sure it suits you? Ask us before you order"]
+        : ["Instant PDF download right after payment", "Read on your phone, tablet or laptop", "Your download link is emailed to you too"];
   return {
     channel: "email",
     to: o.email.toLowerCase(),

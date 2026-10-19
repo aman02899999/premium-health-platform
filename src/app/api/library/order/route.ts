@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { parseBuyerForm, phoneDigits, quoteCart } from "@/lib/library/pricing";
 import { insertBookOrder } from "@/lib/library/orders";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { librarySigningConfigured, uploadedBookSlugs } from "@/lib/library/storage";
 
 export const dynamic = "force-dynamic";
@@ -51,6 +52,7 @@ export async function POST(req: Request) {
       notes: { kind: "library", item: quote.itemId.slice(0, 250), name: buyer.name, email: buyer.email },
     });
     await insertBookOrder(order.id, quote, buyer);
+    await attributeFromRequest(req, "library", order.id);
     return NextResponse.json({
       orderId: order.id,
       keyId: razorpayKeyId(),

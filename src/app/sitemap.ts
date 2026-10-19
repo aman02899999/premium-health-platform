@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/programs", 0.9, "monthly"],
     ...c.programs.filter((p) => PROGRAM_GUIDES[p.id]).map((p) => [`/programs/${p.id}`, 0.8, "monthly"] as [string, number, "monthly"]),
     ["/why-royal-fitness", 0.8, "monthly"],
+    ["/faq", 0.8, "weekly"],
     ["/membership/price-sheet", 0.6, "monthly"],
     ["/contact", 0.9, "monthly"],
     ["/gallery", 0.7, "monthly"],

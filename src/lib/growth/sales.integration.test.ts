@@ -21,7 +21,7 @@ describe.skipIf(!url)("sales automation in the daily run", () => {
     daily = await import("./daily");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.message_outbox, public.diet_orders, public.book_orders, public.marketing_contacts, public.social_posts cascade");
+    await pool.query("truncate public.message_outbox, public.diet_orders, public.book_orders, public.shop_orders, public.shop_products, public.marketing_contacts, public.social_posts cascade");
   });
   afterAll(async () => {
     await pool.end();
@@ -73,6 +73,32 @@ describe.skipIf(!url)("sales automation in the daily run", () => {
     await diet("d-again", { hours: -20 });
     await daily.runDaily(new Date(NOW.getTime() + 26 * 3_600_000));
     expect(await after()).toEqual(["asha@example.com", "new@example.com", "ravi@example.com"]);
+  });
+
+  it("reminds supplement shoppers too, but never to buy something out of stock or cancelled", async () => {
+    const product = async (slug: string, stock: number, active = true) =>
+      (await pool.query<{ id: string }>(`insert into public.shop_products (slug, name, list_price, stock, active) values ($1, $2, 2000, $3, $4) returning id`, [slug, `Whey ${slug}`, stock, active])).rows[0].id;
+    const inStock = await product("whey-a", 5);
+    const soldOut = await product("whey-b", 0);
+    const shop = (n: string, email: string, phone: string, items: { id: string; slug: string; qty?: number }[], hours: number, o: { status?: string; fulfilment?: string } = {}) =>
+      pool.query(
+        `insert into public.shop_orders (number, razorpay_order_id, status, fulfilment, name, email, phone, address, items, list_total, discount_total, total, created_at)
+         values ($1, $2, $3, $4, 'Kiran Shah', $5, $6, '{}', $7, 2000, 0, 2000, $8)`,
+        [`RS-${n}`, `s-${n}`, o.status ?? "created", o.fulfilment ?? "new", email, phone, JSON.stringify(items.map((i) => ({ kind: "product", id: i.id, slug: i.slug, name: `Whey ${i.slug}`, qty: i.qty ?? 1, unitList: 2000, unitPrice: 2000 }))), ago(hours)],
+      );
+    await shop("ABC001", "kiran@example.com", "9000000101", [{ id: inStock, slug: "whey-a" }], 5); // reminded
+    await shop("ABC002", "soldout@example.com", "9000000102", [{ id: soldOut, slug: "whey-b" }], 5);
+    await shop("ABC003", "toomany@example.com", "9000000103", [{ id: inStock, slug: "whey-a", qty: 9 }], 5);
+    await shop("ABC004", "cancel@example.com", "9000000104", [{ id: inStock, slug: "whey-a" }], 5, { fulfilment: "cancelled" });
+    await shop("ABC005", "bought@example.com", "9000000105", [{ id: inStock, slug: "whey-a" }], 6);
+    await shop("ABC006", "bought@example.com", "9000000105", [{ id: inStock, slug: "whey-a" }], 5, { status: "paid" });
+
+    await daily.runDaily(NOW);
+    const rows = (await pool.query(`select to_address, subject, body, dedupe_key from public.message_outbox where kind = 'nurture-checkout'`)).rows;
+    expect(rows.map((r) => r.to_address)).toEqual(["kiran@example.com"]);
+    expect(rows[0].subject).toBe("Kiran, your Whey whey-a is one step away");
+    expect(rows[0].body).toContain("/shop/p/whey-a?utm_source=email");
+    expect(rows[0].dedupe_key).toMatch(/^checkout:shop:/);
   });
 
   it("sends the Coach's Pick on Wednesdays only, and only to people who asked for emails", async () => {

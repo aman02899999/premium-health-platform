@@ -22,6 +22,8 @@ export type MembershipOrder = {
   startDate: string | null;
   referredBy: string | null;
   paidAt: string | null;
+  refundedPaise: number;
+  disputedAt: string | null;
 };
 
 type Row = {
@@ -41,11 +43,13 @@ type Row = {
   start_date: string | null;
   referred_by: string | null;
   paid_at: Date | null;
+  refunded_paise: number;
+  disputed_at: Date | null;
 };
 
 // start_date as text: node-postgres would turn a DATE into a midnight Date object.
 const COLUMNS = `id, created_at, razorpay_order_id, razorpay_payment_id, status, plan_name, duration, couple,
-  amount_paise, name, phone, email, partner_name, to_char(start_date, 'YYYY-MM-DD') as start_date, referred_by, paid_at`;
+  amount_paise, name, phone, email, partner_name, to_char(start_date, 'YYYY-MM-DD') as start_date, referred_by, paid_at, refunded_paise, disputed_at`;
 
 const fromRow = (r: Row): MembershipOrder => ({
   id: r.id,
@@ -64,6 +68,8 @@ const fromRow = (r: Row): MembershipOrder => ({
   startDate: r.start_date,
   referredBy: r.referred_by,
   paidAt: r.paid_at ? r.paid_at.toISOString() : null,
+  refundedPaise: r.refunded_paise,
+  disputedAt: r.disputed_at ? r.disputed_at.toISOString() : null,
 });
 
 export async function insertOrder(razorpayOrderId: string, quote: MembershipQuote, form: CheckoutForm, referralCode: string | null = null): Promise<void> {

@@ -229,6 +229,28 @@ export async function insertOrder(o: { number: string; razorpayOrderId: string; 
  * Marks an order paid exactly once and takes its items out of stock in the same transaction.
  * Returns the order and whether this call was the one that paid it (so emails go out once).
  */
+/** How long an unpaid checkout holds its stock: about as long as a Razorpay payment window stays open. */
+export const HOLD_MINUTES = 20;
+
+/**
+ * Units held by other shoppers' unpaid checkouts from the last HOLD_MINUTES, by product id
+ * (combos count through their contents). The buyer's own earlier attempts don't count, so a
+ * retry after a failed payment isn't blocked by itself.
+ */
+export async function heldStock(buyerPhone: string, buyerEmail: string): Promise<Map<string, number>> {
+  const { rows } = await pool.query<{ id: string; qty: number }>(
+    `select coalesce(c->>'productId', i->>'id') as id, sum(coalesce((i->>'qty')::int, 1) * coalesce((c->>'qty')::int, 1))::int as qty
+       from public.shop_orders o
+       cross join lateral jsonb_array_elements(o.items) i
+       left join lateral jsonb_array_elements(case when i->>'kind' = 'combo' then coalesce(i->'contents', '[]'::jsonb) else '[null]'::jsonb end) c on true
+      where o.status = 'created' and o.created_at > now() - make_interval(mins => $3)
+        and o.phone <> $1 and lower(o.email) <> lower($2)
+      group by 1`,
+    [buyerPhone, buyerEmail, HOLD_MINUTES],
+  );
+  return new Map(rows.filter((r) => r.id).map((r) => [r.id, r.qty]));
+}
+
 export async function markShopPaid(razorpayOrderId: string, paymentId: string): Promise<{ order: Order; firstTime: boolean } | null> {
   const client: PoolClient = await pool.connect();
   try {

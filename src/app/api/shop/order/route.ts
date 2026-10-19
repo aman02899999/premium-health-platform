@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { orderNumber, parseBuyer, parseCart } from "@/lib/shop/checkout";
-import { quoteCart } from "@/lib/shop/pricing";
+import { quoteCart, withHolds } from "@/lib/shop/pricing";
 import { currentCustomer, getCatalog } from "@/lib/shop/server";
-import { insertOrder } from "@/lib/shop/store";
+import { heldStock, insertOrder } from "@/lib/shop/store";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
 export const dynamic = "force-dynamic";
@@ -28,7 +29,9 @@ export async function POST(req: Request) {
   if (typeof buyer === "string") return NextResponse.json({ error: buyer }, { status: 400 });
   const cat = await getCatalog({ fresh: true });
   if (cat.offline) return NextResponse.json({ error: "The store is being updated — please try again in a minute." }, { status: 503 });
-  const quote = quoteCart(parseCart(body.lines), cat.productById, cat.comboById, cat.settings);
+  // Units in other shoppers' open checkouts aren't for sale again until those expire (F7).
+  const held = await heldStock(buyer.phone, buyer.email).catch((err: Error) => (console.error("[shop] holds:", err.message), new Map<string, number>()));
+  const quote = quoteCart(parseCart(body.lines), withHolds(cat.productById, held), cat.comboById, cat.settings);
   if (quote.problems.length) return NextResponse.json({ error: quote.problems[0], quote }, { status: 409 });
   if (quote.total <= 0) return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
   // The total the shopper saw; if prices changed meanwhile, show the new total first.
@@ -51,6 +54,7 @@ export async function POST(req: Request) {
       shipping: quote.shipping,
       total: quote.total,
     });
+    await attributeFromRequest(req, "shop", rzp.id);
     return NextResponse.json({
       number,
       orderId: rzp.id,

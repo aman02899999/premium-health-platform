@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { requireAdmin } from "@/health/lib/auth/server";
 import { Breadcrumbs } from "@/health/components/ui";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
-import { EarningCharts } from "@/health/components/earning/EarningCharts";
+import { RevenueDashboard } from "@/health/components/earning/RevenueDashboard";
+import { isDbConfigured } from "@/health/db";
+import { todayIST } from "@/lib/growth/dates";
+import { healthAudience, parsePeriod, revenueReport } from "@/lib/revenue/report";
 import { AdminMonetizationManager } from "@/health/components/monetization/AdminManager";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Admin — Earning Dashboard Charts | Pro Analytics";
-const seoDescription = "Admin earning dashboard with charts: MRR, affiliate clicks, ad revenue, UTM sources, funnel — digital marketing optimized, SSO protected, SEO pro + earning APIs.";
+const seoTitle = "Admin — Earnings";
+const seoDescription = "Admin only: money collected, refunds, net revenue, leads and conversion by channel and campaign, from the site's own records.";
 const url = "/health/admin/earning";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Admin Earning Dashboard Charts")}&category=${encodeURIComponent("Admin Pro")}&type=tool`;
@@ -21,52 +24,41 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function AdminEarningPage() {
+export default async function AdminEarningPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   await requireAdmin("/health/admin/earning");
+  const q = await searchParams;
+  const one = (v: string | string[] | undefined) => (typeof v === "string" ? v : null);
+  const period = parsePeriod(one(q.from), one(q.to), todayIST());
+  const [report, audience] = isDbConfigured ? await Promise.all([revenueReport(period).catch(() => null), healthAudience().catch(() => null)]) : [null, null];
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Admin", href: "/health/admin/health" }, { label: "Earning Dashboard Charts" }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Admin", href: "/health/admin/health" }, { label: "Earnings" }]} />
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Admin", item: "/health/admin/health" }, { name: "Earning Dashboard", item: "/health/admin/earning" }]}
         faqs={[
-          { q: "What does earning dashboard track?", a: "MRR premium 1247×₹199, affiliate 8% avg Rs160-360/sale via /api/affiliate/click + gtag + UTM, AdSense 120k views ₹35 CPM, lead gen Rs150-500/lead, UTM sources, referral viral loop 22% conv — all via /api/earn/stats + /admin/earning charts." },
-          { q: "How to use charts for marketing?", a: "Weekly bar chart shows Premium+Affiliate+Ads+Leads daily, breakdown stacked bar, UTM bar + conv%, funnel visitor→newsletter→lead→premium — optimized via ExitIntent+StickyCTA+NewsletterPopup+WhatsAppOptIn+PushPrompt+Referral." },
+          { q: "What does the earning dashboard track?", a: "Money actually collected through the site (memberships, diet plans, supplement store, book library), refunds, net revenue, leads, lead-to-customer conversion and the campaigns that brought them, all computed from the order and lead records. Figures without data behind them, such as ad spend and profit, are marked as not available." },
+          { q: "Why do some leads and orders show as Unknown?", a: "Where someone came from is recorded only since attribution tracking was added, and only when their browser kept the site's attribution cookie. Older records, and visitors who blocked cookies, show as Unknown rather than being guessed." },
         ]}
-        howTo={{ name: "How to use earning dashboard", steps: ["View KPI cards MRR, affiliate, ads, leads with localStorage bhg-aff-clicks", "Analyze weekly bar chart + revenue breakdown + UTM sources + funnel", "Check affiliate clicks via /api/affiliate/click?limit=20 + newsletter + leads + referrals", "Optimize marketing via UTMTracker + gtag + referral viral loop"] }}
+        howTo={{ name: "How to use earning dashboard", steps: ["Pick a date range (India time)", "Read collected, refunded and net money by product", "Compare channels and campaigns by leads, paid orders and net revenue", "Tag every link you share with utm_source, utm_medium and utm_campaign so it shows up here"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-amber-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">SEO Pro — Earning Platform — Charts + FAQ+HowTo+Breadcrumb+OG — Admin SSO Protected</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Earning Dashboard — Charts + Analytics — Admin Pro</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">MRR, affiliate, ads, leads, UTM, funnel — with bar charts, breakdown, conversion funnel — digital marketing optimized, SSO protected (admin role), SEO pro FAQ+HowTo+Breadcrumb+OG /api/og + earning APIs.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Admin</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Earnings</h1>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Money collected through the site, refunds, and which channels and campaigns brought leads and buyers. Revenue, not profit: costs aren&apos;t recorded.</p>
       </div>
 
-      <div className="mt-6"><EarningCharts /></div>
+      <div className="mt-6">
+        {report ? <RevenueDashboard report={report} audience={audience} /> : <p className="rounded-2xl bg-amber-50 p-4 text-sm dark:bg-amber-950">Couldn&apos;t load the figures from the database. Nothing is shown rather than a guess.</p>}
+      </div>
 
       <div className="mt-6"><AdminMonetizationManager /></div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="text-sm font-bold">Affiliate Clicks — Recent (Demo, localStorage + /api/affiliate/click + /api/blog/related)</h2>
+            <h2 className="text-sm font-bold">Affiliate clicks</h2>
             <p className="mt-1 text-xs text-stone-500">Tracked via gtag + localStorage bhg-aff-clicks + POST /api/affiliate/click — product, merchant, UTM, timestamp. Related API /api/blog/related?slug=xxx boosts internal linking dwell time + affiliate CTR.</p>
             <div className="mt-3 rounded-xl bg-stone-50 p-3 text-[11px] font-mono dark:bg-stone-800">Check localStorage: bhg-aff-clicks, bhg-utm, bhg-pageviews + APIs: /api/affiliate/click?limit=20 + /api/blog/related?slug=complete-indian-guide-type-2-diabetes + /api/blog/trending + /api/blog/latest</div>
-          </div>
-
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="text-sm font-bold">New Earning + Blog APIs — Pro SEO + Digital Marketing</h2>
-            <div className="mt-3 space-y-2 text-xs">
-              <div className="flex justify-between"><span>/api/blog/related?slug=xxx&limit=6</span><span className="font-bold">Related scoring category+tags+featured — SEO internal linking</span></div>
-              <div className="flex justify-between"><span>/api/blog/trending?limit=6</span><span className="font-bold">Trending flag + updatedAt — social proof FOMO</span></div>
-              <div className="flex justify-between"><span>/api/blog/latest?limit=8&category=Nutrition</span><span className="font-bold">Freshness signal — latest + filter category</span></div>
-              <div className="flex justify-between"><span>/api/affiliate/click POST productId</span><span className="font-bold">8% avg, Rs160/sale — gtag + UTM</span></div>
-              <div className="flex justify-between"><span>/api/newsletter POST email leadMagnet</span><span className="font-bold">20% open, 2% premium conv</span></div>
-              <div className="flex justify-between"><span>/api/push/subscribe POST endpoint</span><span className="font-bold">30% open, 8% click</span></div>
-              <div className="flex justify-between"><span>/api/whatsapp/optin POST phone consent</span><span className="font-bold">40% open, 15% click — best</span></div>
-              <div className="flex justify-between"><span>/api/webhooks/razorpay POST payment</span><span className="font-bold">MRR confirm, gtag purchase</span></div>
-              <div className="flex justify-between"><span>/api/lead POST lab/dietitian/insurance</span><span className="font-bold">Rs150-500/lead</span></div>
-              <div className="flex justify-between"><span>/api/referral POST viral loop</span><span className="font-bold">22% conv — best UTM</span></div>
-              <div className="flex justify-between"><span>/api/premium/checkout POST plan</span><span className="font-bold">Rs199/1999/4999 mock Razorpay</span></div>
-            </div>
           </div>
 
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">

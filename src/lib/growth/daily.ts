@@ -1,5 +1,6 @@
 import "server-only";
 import { getContent } from "@/lib/content/store";
+import { indexNowUrls, submitIndexNow } from "@/lib/indexnow";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
 import { funnelBySource, nurtureLeads, openLeads, uncontactedLeads } from "./leads";
@@ -94,7 +95,7 @@ export async function runDaily(now = new Date()) {
       if (d) drafts.push(d);
     }
   }
-  // Someone started paying for a plan or a book and didn't finish: one gentle reminder.
+  // Someone started paying for a plan, a book or a supplement order and didn't finish: one gentle reminder.
   for (const o of await abandonedCheckouts(now)) drafts.push(checkoutReminder(o, SITE_URL, nb.coach, nb.phone));
   // Wednesdays: the Coach's Pick to everyone who asked for emails.
   if (isWednesday(today)) {
@@ -116,7 +117,12 @@ export async function runDaily(now = new Date()) {
   // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
   // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, reviews: reviews.length, campaigns, ...sent, ...story };
+  // Changed pages go to Bing the same day, so AI answers pick up new prices, offers and posts.
+  const indexnow = await pool
+    .query<{ updated_at: Date }>(`select max(updated_at) as updated_at from public.site_content`)
+    .then(async (r) => submitIndexNow(indexNowUrls(await getContent(), now, r.rows[0]?.updated_at ?? null, isMonday(today))))
+    .catch((err: Error) => `error: ${err.message}`);
+  return { today, due: drafts.length, queued, reviews: reviews.length, campaigns, ...sent, ...story, indexnow };
 }
 
 /**
@@ -143,7 +149,7 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
   const unsubscribed = `exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.address = lower(o.email) and c.unsubscribed_at is not null)`;
   // At most one checkout reminder per person every 14 days, whatever they abandoned.
   const remindedRecently = `exists (select 1 from public.message_outbox m where m.kind = 'nurture-checkout' and m.to_address = lower(o.email) and m.created_at > $1::timestamptz - interval '14 days')`;
-  const [diet, books] = await Promise.all([
+  const [diet, books, shop] = await Promise.all([
     pool
       .query<{ id: string; name: string; email: string; plan: string; amount_paise: number }>(
         `select distinct on (lower(o.email)) o.id, o.name, o.email, o.plan, o.amount_paise from public.diet_orders o
@@ -164,8 +170,38 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
       )
       .then((r) => r.rows.map((x): AbandonedOrder => ({ kind: "book", id: x.id, name: x.name, email: x.email, plan: "", itemId: x.item_id, title: x.title, amountPaise: x.amount_paise })))
       .catch(() => [] as AbandonedOrder[]),
+    abandonedShopOrders(window, unsubscribed, remindedRecently, now),
   ]);
-  return [...diet, ...books];
+  return [...diet, ...books, ...shop];
+}
+
+/**
+ * Supplement orders: the same rules, plus never for an order the admin cancelled, and never to
+ * sell something that is now inactive or out of stock. (The payment reconciler runs before this
+ * in the daily cron, so an order Razorpay captured without a webhook is already marked paid.)
+ */
+async function abandonedShopOrders(window: string, unsubscribed: string, remindedRecently: string, now: Date): Promise<AbandonedOrder[]> {
+  const unavailable = `exists (select 1 from jsonb_array_elements(o.items) i
+      left join public.shop_products sp on i->>'kind' = 'product' and sp.id::text = i->>'id'
+      left join public.shop_combos sc on i->>'kind' = 'combo' and sc.id::text = i->>'id'
+      where case when i->>'kind' = 'combo' then sc.id is null or not sc.active
+                 else sp.id is null or not sp.active or sp.stock < coalesce((i->>'qty')::int, 1) end)`;
+  return pool
+    .query<{ id: string; name: string; email: string; items: { kind: string; slug: string; name: string }[]; total: number }>(
+      `select distinct on (lower(o.email)) o.id, o.name, o.email, o.items, o.total from public.shop_orders o
+       where o.status = 'created' and o.fulfilment = 'new' and ${window} and not ${unsubscribed} and not ${remindedRecently} and not ${unavailable}
+         and not exists (select 1 from public.shop_orders p where p.status = 'paid' and (p.phone = o.phone or lower(p.email) = lower(o.email)) and p.created_at >= o.created_at - interval '1 day')
+       order by lower(o.email), o.created_at desc`,
+      [now.toISOString()],
+    )
+    .then((r) =>
+      r.rows.map((x): AbandonedOrder => {
+        const one = x.items.length === 1 ? x.items[0] : null;
+        const title = one ? one.name : `${x.items[0]?.name ?? "supplement order"} and ${x.items.length - 1} more`;
+        return { kind: "shop", id: x.id, name: x.name, email: x.email, plan: "", itemId: one ? `${one.kind === "combo" ? "combos" : "p"}/${one.slug}` : "", title: title.slice(0, 80), amountPaise: x.total * 100 };
+      }),
+    )
+    .catch((err: Error) => (console.error("[daily] shop reminders:", err.message), [] as AbandonedOrder[]));
 }
 
 /** The last 24 hours, for the admin's morning email. Each source is optional (a missing table reads as empty). */
