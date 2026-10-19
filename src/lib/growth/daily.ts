@@ -23,7 +23,7 @@ import { dueReviewRequests } from "./reviews";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
-  return { name: b.name, phone: b.phone, siteUrl: SITE_URL };
+  return { name: b.name, phone: b.phone, siteUrl: SITE_URL, mapsUrl: b.googleMapsUrl || undefined };
 }
 
 /** Business details the marketing emails need (WhatsApp link, coach, lowest membership price). */
@@ -156,8 +156,15 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
 async function digestData(today: string): Promise<DigestData> {
   const q = async <T,>(sql: string, params: unknown[] = []): Promise<T[]> => (await pool.query(sql, params).catch(() => ({ rows: [] as T[] }))).rows as T[];
   const since = "now() - interval '24 hours'";
-  const [leads, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
+  const [leads, trials, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
     q<{ name: string; source: string }>(`select name, source from public.leads where created_at > ${since} order by created_at desc limit 50`),
+    // Trials today, and past trials (last 3 days) nobody has marked as came / didn't come.
+    q<{ name: string; trial_at: Date; showed_up: boolean | null; status: string }>(
+      `select name, trial_at, showed_up, status from public.leads
+        where trial_at >= ($1::date - interval '3 days' - interval '5 hours 30 minutes') and trial_at < ($1::date + interval '1 day' - interval '5 hours 30 minutes')
+          and status in ('new', 'contacted') and showed_up is null order by trial_at`,
+      [today],
+    ),
     q<{ name: string; plan_name: string; amount_paise: number }>(`select name, plan_name, amount_paise from public.membership_orders where status = 'paid' and paid_at > ${since}`),
     q<{ name: string; plan: string; amount_paise: number }>(`select name, plan, amount_paise from public.diet_orders where status = 'paid' and paid_at > ${since}`),
     q<{ name: string; number: string; total: number }>(`select name, number, total from public.shop_orders where status = 'paid' and paid_at > ${since}`),
@@ -173,6 +180,7 @@ async function digestData(today: string): Promise<DigestData> {
   ]);
   return {
     leads: leads.map((l) => ({ name: l.name, source: l.source })),
+    trials: trials.map((t) => ({ name: t.name, at: t.trial_at.toISOString() })),
     payments: [
       ...members.map((m) => ({ kind: "Membership" as const, name: m.name, what: m.plan_name, rupees: m.amount_paise / 100 })),
       ...diets.map((d) => ({ kind: "Diet plan" as const, name: d.name, what: dietPlan(d.plan).name, rupees: d.amount_paise / 100 })),

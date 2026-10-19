@@ -4,7 +4,7 @@ import { prepareDietPlan } from "./plan-delivery";
 import { business, nurtureBusiness } from "./daily";
 import { markDietPaid } from "./diet-orders";
 import { applyPaidOrder, type Member } from "./members";
-import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, welcomeMessage } from "./messages";
+import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, trialBookedEmail, trialMessage, welcomeMessage } from "./messages";
 import { getLead, latestLeadByPhone } from "./leads";
 import { nurtureDrafts } from "./nurture";
 import { daysBetween, todayIST } from "./dates";
@@ -104,10 +104,16 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
     const lead = leadId ? await getLead(leadId) : await latestLeadByPhone(phone);
     if (!lead) return;
     // Free-trial form (home / contact page) with an email: the trial confirmation email sequence.
-    if (lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name);
+    if (lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name, lead.trialAt);
     const drafts = [];
-    if (lead.followUps) {
-      const d = leadMessage("lead-0", lead, await business());
+    const biz = await business();
+    if (lead.trialAt) {
+      // A picked time: confirm it (WhatsApp, and email when given) instead of asking them to choose one.
+      const d = trialMessage("trial-booked", { ...lead, trialAt: lead.trialAt }, biz);
+      if (d) drafts.push(d);
+      if (lead.email) drafts.push(trialBookedEmail({ id: lead.id, name: lead.name, email: lead.email, trialAt: lead.trialAt }, { ...biz, address: (await nurtureBusiness()).address }));
+    } else if (lead.followUps) {
+      const d = leadMessage("lead-0", lead, biz);
       if (d) drafts.push(d);
     }
     if (leadId) {

@@ -5,6 +5,7 @@ import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
 import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
+import { toInstant } from "@/lib/growth/trials";
 import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
 import { deleteMember, listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
 import { listOutbox, markOutbox } from "@/lib/growth/outbox";
@@ -89,10 +90,15 @@ export async function POST(req: Request) {
       case "lead":
         if (!isUuid(b.id)) break;
         if (b.status !== undefined && !LEAD_STATUSES.includes(b.status as LeadStatus)) break;
+        // trialAt: "YYYY-MM-DDTHH:MM" in India time from the admin's picker, or "" to clear it.
+        if (b.trialAt !== undefined && !(b.trialAt === "" || (typeof b.trialAt === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(b.trialAt)))) break;
+        if (b.showedUp !== undefined && b.showedUp !== null && typeof b.showedUp !== "boolean") break;
         await updateLead(b.id, {
           status: b.status as LeadStatus | undefined,
           notes: typeof b.notes === "string" ? b.notes : undefined,
           followUps: typeof b.followUps === "boolean" ? b.followUps : undefined,
+          trialAt: typeof b.trialAt === "string" ? (b.trialAt ? toInstant(b.trialAt.slice(0, 10), b.trialAt.slice(11)) : null) : undefined,
+          showedUp: b.showedUp as boolean | null | undefined,
         });
         return NextResponse.json({ ok: true });
       case "message":

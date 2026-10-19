@@ -6,7 +6,7 @@ type Fbq = (cmd: "track" | "trackCustom", event: string, params?: Record<string,
 
 export const newEventId = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`);
 
-export function trackPixel(event: "Lead" | "InitiateCheckout" | "Purchase" | "Contact", params: Record<string, unknown> = {}, eventId?: string) {
+export function trackPixel(event: "Lead" | "InitiateCheckout" | "Purchase" | "Contact" | "Schedule", params: Record<string, unknown> = {}, eventId?: string) {
   const fbq = (globalThis as { fbq?: Fbq }).fbq;
   if (typeof fbq === "function") fbq("track", event, params, eventId ? { eventID: eventId } : undefined);
 }

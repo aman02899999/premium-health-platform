@@ -319,7 +319,7 @@ export default async function HomePage() {
             </a>
           </div>
           <Reveal delay={120}>
-            <LeadForm whatsapp={b.whatsapp} gymName={b.name} source="home" />
+            <LeadForm whatsapp={b.whatsapp} gymName={b.name} source="home" hours={b.hours} address={fullAddress(b)} />
           </Reveal>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import "server-only";
 import { SITE_URL } from "@/lib/site";
 import { formatDate } from "./dates";
+import { formatTrial } from "./trials";
 
 // Resend Automations (Resend dashboard → Automations). Each event below starts or stops one:
 //   user.signed_up        -> "Welcome Series - New Signup v2" (membership nudge skipped when the
@@ -64,7 +65,9 @@ export async function trackMembership(email: string, planName: string): Promise<
 }
 
 /** A free-trial request from the website form, when the person left an email. */
-export const trackTrialBooked = (email: string | null, name?: string | null) => fire("trial.booked", email, undefined, firstWord(name));
+/** trialAt: the time picked on the form, passed to the email as trial_time ("Tue 21 Oct, 6:00 PM"). */
+export const trackTrialBooked = (email: string | null, name?: string | null, trialAt?: string | null) =>
+  fire("trial.booked", email, trialAt ? { trial_time: formatTrial(trialAt) } : undefined, firstWord(name));
 
 /** A first-time joiner opened Razorpay. The recovery emails go out only if member.joined doesn't follow. */
 export const trackCheckoutStarted = (email: string | null, planName: string, planId: string, name?: string | null) =>

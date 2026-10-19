@@ -1,6 +1,7 @@
 // What each automated message says, and which approved WhatsApp template carries it.
 // Pure functions: the scheduler and the admin "send now" button both use them.
 import { daysBetween, formatDate, todayIST } from "./dates";
+import { formatTrial, istParts, trialStage } from "./trials";
 
 export type Channel = "whatsapp" | "email";
 
@@ -22,7 +23,7 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request" | "trial-booked" | "trial-today" | "trial-missed" | "trial-join" | "trial-join-last";
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
@@ -43,6 +44,13 @@ export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCa
   "lead-0": { name: "rfc_trial_thanks", category: "UTILITY", text: "Hi {{1}}, thanks for contacting {{2}}! Your free trial session is ready. Reply with a time that suits you, or call {{3}}." },
   "lead-2": { name: "rfc_trial_reminder_v2", category: "UTILITY", text: "Hi {{1}}, this is {{2}} about your free trial request. Your session isn't booked yet. Reply with a day and time that suits you and we'll confirm it." },
   "lead-5": { name: "rfc_trial_last_v2", category: "UTILITY", text: "Hi {{1}}, we're closing your free trial request at {{2}} this week. To book it, reply with a day and time. Plan details for your reference: {{3}}" },
+  // A visitor who picked a trial time on the website: confirmation, the morning of, and a new time if the desk marked them absent.
+  "trial-booked": { name: "rfc_trial_booked_v1", category: "UTILITY", text: "Hi {{1}}, your free trial at {{2}} is booked for {{3}}. Directions: {{4}}. To change the time, reply to this message." },
+  "trial-today": { name: "rfc_trial_today_v1", category: "UTILITY", text: "Hi {{1}}, see you today at {{2}} for your free trial at {{3}}. Bring sports shoes and a water bottle. Can't make it? Reply here and we'll move it." },
+  "trial-missed": { name: "rfc_trial_missed_v1", category: "UTILITY", text: "Hi {{1}}, we missed you at your free trial at {{2}}. Your trial is still open. Pick a new time here: {{3}}" },
+  // After the desk marks that they came: the plans the next day, and a last word a few days later.
+  "trial-join": { name: "rfc_trial_join_v1", category: "MARKETING", text: "Hi {{1}}, thanks for training with us at {{2}}! To keep going with a trainer by your side, choose your plan here: {{3}}" },
+  "trial-join-last": { name: "rfc_trial_join_last_v1", category: "MARKETING", text: "Hi {{1}}, the first week decides whether a new habit sticks. Your spot at {{2}} is ready. Plans and online joining: {{3}}" },
   "trial-offer": { name: "rfc_trial_offer_v2", category: "MARKETING", text: "Hi {{1}}, your free trial session at {{2}} is still available: one workout with a trainer, no payment needed. Book it here: {{3}}" },
   comeback: { name: "rfc_comeback_offer_v2", category: "MARKETING", text: "Hi {{1}}, it's been a month since your {{3}} plan at {{2}} ended. Your spot is still here. Restart whenever you're ready: {{4}}" },
   "diet-received": { name: "rfc_diet_order_received", category: "UTILITY", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
@@ -83,8 +91,9 @@ const first = (name: string) => name.trim().split(/\s+/)[0] || name;
 const wa = (phone10: string) => `91${phone10}`;
 
 export type MemberLike = { id: string; name: string; phone: string; planName: string; expiresOn: string; reminders: boolean; referralCode: string };
-export type LeadLike = { id: string; name: string; phone: string; createdAt: string; status: string; followUps: boolean };
-export type Biz = { name: string; phone: string; siteUrl: string };
+export type LeadLike = { id: string; name: string; phone: string; createdAt: string; status: string; followUps: boolean; trialAt?: string | null; showedUp?: boolean | null };
+/** mapsUrl: the Google Maps link from Admin → Business, for directions in the trial confirmation. */
+export type Biz = { name: string; phone: string; siteUrl: string; mapsUrl?: string };
 
 export const renewUrl = (siteUrl: string, token: string) => `${siteUrl}/join?renew=${token}`;
 
@@ -100,14 +109,67 @@ export function renewalMessage(kind: "renew-7" | "renew-1" | "expired-3", m: Mem
 export const welcomeMessage = (m: MemberLike, biz: Biz, orderId: string): Draft =>
   draft("welcome", wa(m.phone), m.name, [first(m.name), m.planName, biz.name, formatDate(m.expiresOn), m.referralCode], `welcome:${orderId}`);
 
-export function leadMessage(kind: "lead-0" | "lead-2" | "lead-5" | "trial-offer", l: LeadLike, biz: Biz): Draft | null {
-  const digits = l.phone.replace(/\D/g, "");
+/** The 10-digit Indian mobile in a lead's phone, or null (only Indian mobiles can be messaged). */
+function mobile10(phone: string): string | null {
+  const digits = phone.replace(/\D/g, "");
   const phone10 = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
-  if (!/^[6-9]\d{9}$/.test(phone10)) return null; // only Indian mobiles can be messaged
+  return /^[6-9]\d{9}$/.test(phone10) ? phone10 : null;
+}
+
+export function leadMessage(kind: "lead-0" | "lead-2" | "lead-5" | "trial-offer", l: LeadLike, biz: Biz): Draft | null {
+  const phone10 = mobile10(l.phone);
+  if (!phone10) return null;
   // The trial offer links to the booking form; the last reminder to the plans.
   const params =
     kind === "trial-offer" ? [first(l.name), biz.name, `${biz.siteUrl}/contact#trial`] : kind === "lead-5" ? [first(l.name), biz.name, `${biz.siteUrl}/membership`] : kind === "lead-0" ? [first(l.name), biz.name, biz.phone] : [first(l.name), biz.name];
   return draft(kind, wa(phone10), l.name, params, `${kind}:${l.id}`);
+}
+
+/**
+ * Messages about a booked trial. The trial time is part of every key, so a lead who rebooks gets
+ * the confirmation and reminders again for the new time.
+ */
+export function trialMessage(kind: "trial-booked" | "trial-today" | "trial-missed" | "trial-join" | "trial-join-last", l: LeadLike & { trialAt: string }, biz: Biz): Draft | null {
+  const phone10 = mobile10(l.phone);
+  if (!phone10) return null;
+  const n = first(l.name);
+  const rebook = `${biz.siteUrl}/contact#trial`;
+  const plans = `${biz.siteUrl}/membership`;
+  const params =
+    kind === "trial-booked" ? [n, biz.name, formatTrial(l.trialAt), biz.mapsUrl || `${biz.siteUrl}/contact`]
+    : kind === "trial-today" ? [n, timeOf(l.trialAt), biz.name]
+    : kind === "trial-missed" ? [n, biz.name, rebook]
+    : [n, biz.name, plans];
+  return draft(kind, wa(phone10), l.name, params, `${kind}:${l.id}:${l.trialAt}`);
+}
+
+const timeOf = (iso: string) => formatTrial(iso).split(", ").pop()!;
+
+/** Email: the booking confirmation for a visitor who gave an address (transactional). */
+export const trialBookedEmail = (l: { id: string; name: string; email: string; trialAt: string }, biz: Biz & { address?: string }): Draft => ({
+  channel: "email",
+  to: l.email.toLowerCase(),
+  toName: l.name,
+  kind: "trial-booked-email",
+  subject: `Your free trial: ${formatTrial(l.trialAt)}`,
+  body: `Hi ${first(l.name)},\n\nYour free trial at ${biz.name} is booked for ${formatTrial(l.trialAt)}.\n\n${biz.address ? `Where: ${biz.address}\n` : ""}What to bring: sports shoes, a water bottle and a small towel.\nWhat happens: a short chat about your goal, a few movement checks, and a workout with a trainer. No payment needed.\n\nNeed a different time? Reply to this email or call ${biz.phone}.\n[[CTA:Get directions|${biz.mapsUrl || `${biz.siteUrl}/contact`}]]`,
+  template: "",
+  params: [],
+  dedupeKey: `trial-booked-email:${l.id}:${l.trialAt}`,
+});
+
+/** What a booked lead is due today, from the stage the desk marked. */
+function trialDue(l: LeadLike & { trialAt: string }, today: string, biz: Biz): Draft | null {
+  const stage = trialStage({ status: l.status, trialAt: l.trialAt, showedUp: l.showedUp ?? null }, today);
+  const since = daysBetween(istParts(l.trialAt).date, today);
+  const open = l.status === "new" || l.status === "contacted";
+  if (stage === "booked" && open && since === 0) return trialMessage("trial-today", l, biz);
+  if (stage === "no-show" && open && since >= 0 && since <= 5) return trialMessage("trial-missed", l, biz);
+  if (stage === "came" && l.status === "trial") {
+    if (since >= 1 && since <= 3) return trialMessage("trial-join", l, biz);
+    if (since >= 4 && since <= 7) return trialMessage("trial-join-last", l, biz);
+  }
+  return null;
 }
 
 /** A month after a membership ended without a renewal: one win-back message per end date. */
@@ -189,7 +251,14 @@ export function dueMessages(today: string, members: (MemberLike & { renewToken: 
     else if (left <= -30 && left >= -37) out.push(comebackMessage(m, biz));
   }
   for (const l of leads) {
-    if (!l.followUps || (l.status !== "new" && l.status !== "contacted")) continue;
+    if (!l.followUps) continue;
+    // A booked trial replaces the "please book" reminders with ones about the visit itself.
+    if (l.trialAt) {
+      const d = trialDue({ ...l, trialAt: l.trialAt }, today, biz);
+      if (d) out.push(d);
+      continue;
+    }
+    if (l.status !== "new" && l.status !== "contacted") continue;
     const age = daysBetween(todayIST(new Date(l.createdAt)), today);
     const kind = age <= 1 ? "lead-0" : age >= 2 && age <= 4 ? "lead-2" : age >= 5 && age <= 8 ? "lead-5" : age >= 14 && age <= 20 ? "trial-offer" : null;
     if (!kind) continue;

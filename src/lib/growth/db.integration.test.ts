@@ -150,6 +150,31 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     expect(all.map((x) => [x.kind, x.to, x.status])).toEqual([["lead-0", "919811199988", "pending"]]);
   });
 
+  it("a booked trial is confirmed instead of 'pick a time', and the desk's marks drive the follow-ups", async () => {
+    const at = "2026-10-21T12:30:00.000Z"; // 6:00 PM India time
+    const id = await leads.insertLead({ name: "Neha Test", phone: "98111 77766", email: null, interest: "", goal: "", message: "", source: "home", marketing: false, trialAt: at });
+    await hooks.afterLeadSaved("98111 77766", id);
+    expect((await outbox.listOutbox()).map((x) => [x.kind, x.to])).toEqual([["trial-booked", "919811177766"]]);
+    // On the day it's an open lead; a week after the trial it still is.
+    expect((await leads.openLeads("2026-10-21")).map((l) => [l.id, l.trialAt])).toEqual([[id, at]]);
+    await leads.updateLead(id, { showedUp: false });
+    let l = (await leads.getLead(id))!;
+    expect([l.status, l.showedUp, l.contactedAt]).toEqual(["new", false, null]);
+    await leads.updateLead(id, { showedUp: true });
+    l = (await leads.getLead(id))!;
+    expect([l.status, l.showedUp, !!l.contactedAt]).toEqual(["trial", true, true]);
+    expect((await leads.openLeads("2026-10-28")).map((x) => x.id)).toEqual([id]);
+    expect(await leads.openLeads("2026-11-05")).toEqual([]);
+    // Correcting "came" to "no-show" reopens the lead; a new time clears the mark.
+    await leads.updateLead(id, { showedUp: false });
+    expect((await leads.getLead(id))!.status).toBe("contacted");
+    await leads.updateLead(id, { trialAt: "2026-10-23T01:30:00.000Z" });
+    l = (await leads.getLead(id))!;
+    expect([l.trialAt, l.showedUp]).toEqual(["2026-10-23T01:30:00.000Z", null]);
+    await leads.updateLead(id, { trialAt: null });
+    expect((await leads.getLead(id))!.trialAt).toBeNull();
+  });
+
   it("diet orders flip to paid once, even with concurrent confirmations", async () => {
     const intake = { age: 30, sex: "male", heightCm: 175, weightKg: 80, goal: "fat-loss", diet: "veg", cuisine: "north", activity: "moderate", mealsPerDay: 5, wakeTime: "06:30", conditions: [], allergies: [], notes: "" } as const;
     await diet.insertDietOrder("order_DIET", 99900, { name: "Aman", phone: "9876543210", email: null }, { ...intake, conditions: [], allergies: [] });

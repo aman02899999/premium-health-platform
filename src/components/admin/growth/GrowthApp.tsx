@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AlertTriangle, ArrowLeft, Bot, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Bot, CalendarClock, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
 import type { DietIntake } from "@/lib/growth/diet-intake";
@@ -12,7 +12,7 @@ import type { KitText } from "@/lib/social/app-kit";
 import { Social } from "./Social";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
-type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string };
+type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string; trialAt?: string | null; showedUp?: boolean | null };
 type LeadStatus = "new" | "contacted" | "trial" | "joined" | "lost";
 type Msg = { id: string; createdAt: string; channel: string; to: string; toName: string; kind: string; body: string; status: "pending" | "sent" | "failed" | "cancelled"; attempts: number; lastError: string | null; sentAt: string | null; sentBy: string | null };
 type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null ; userId?: string | null; extraGenerations?: number; accessUntil?: string | null; revokedAt?: string | null; versions?: { id: string; version: number; createdAt: string; source: string; status: "draft" | "sent" | "rejected" }[]; entitlement?: { allowed: number; used: number; remaining: number; accessUntil: string; nextAt: string | null; reason: string } };
@@ -728,7 +728,9 @@ function Leads({ data, act }: { data: Data; act: Act }) {
           </button>
         ))}
       </div>
-      <p className="text-xs text-white/45">New leads get a WhatsApp thank-you, then follow-ups on day 2 and day 5 while they&apos;re “new” or “contacted”. Mark them joined or lost to stop the follow-ups.</p>
+      <p className="text-xs text-white/45">
+        Leads who picked a trial time get a confirmation and a reminder on the morning of the trial. After the trial, mark <b>Came</b> (they get the plans the next day and a last nudge on day 4) or <b>No-show</b> (they get a link to pick a new time). Leads without a time get follow-ups on day 2 and day 5. Mark them joined or lost to stop the follow-ups.
+      </p>
       <ul className="grid gap-3 md:grid-cols-2">
         {rows.map((l) => (
           <li key={l.id} className="rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10">
@@ -750,6 +752,7 @@ function Leads({ data, act }: { data: Data; act: Act }) {
               </select>
             </div>
             {l.message && <p className="mt-2 text-sm text-white/70">“{l.message}”</p>}
+            <TrialRow lead={l} act={act} />
             <textarea defaultValue={l.notes} placeholder="Notes (saved when you click away)" onBlur={(e) => e.target.value !== l.notes && act({ action: "lead", id: l.id, notes: e.target.value }, "Notes saved")} rows={2} className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 p-2 text-xs text-white" />
             <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
               <a href={`tel:${l.phone.replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1">
@@ -766,6 +769,36 @@ function Leads({ data, act }: { data: Data; act: Act }) {
         ))}
         {rows.length === 0 && <li className="text-sm text-white/45">No leads here.</li>}
       </ul>
+    </div>
+  );
+}
+
+/** India-time "YYYY-MM-DDTHH:MM" for a datetime-local input. */
+const istInput = (iso: string) => new Date(new Date(iso).getTime() + 330 * 60_000).toISOString().slice(0, 16);
+
+/** The booked trial: set or change the time, then mark whether they came. */
+function TrialRow({ lead: l, act }: { lead: Lead; act: Act }) {
+  const mark = l.status === "trial" || l.showedUp === true ? "came" : l.showedUp === false ? "no-show" : null;
+  return (
+    <div className="mt-2 flex flex-wrap items-center gap-2 rounded-xl bg-black/20 px-2 py-1.5 text-xs">
+      <CalendarClock className="h-3.5 w-3.5 text-white/50" />
+      <span className="text-white/60">Trial</span>
+      <input
+        type="datetime-local"
+        defaultValue={l.trialAt ? istInput(l.trialAt) : ""}
+        onBlur={(e) => e.target.value !== (l.trialAt ? istInput(l.trialAt) : "") && act({ action: "lead", id: l.id, trialAt: e.target.value }, e.target.value ? "Trial time saved" : "Trial time cleared")}
+        className="rounded-lg border border-white/10 bg-black/30 px-1.5 py-0.5 text-white [color-scheme:dark]"
+      />
+      {l.trialAt && (
+        <span className="ml-auto flex gap-1">
+          <button type="button" onClick={() => act({ action: "lead", id: l.id, showedUp: true }, "Marked as came")} className={`rounded-lg px-2 py-0.5 font-bold ${mark === "came" ? "bg-emerald-500/25 text-emerald-200" : "border border-white/15 text-white/70"}`}>
+            Came
+          </button>
+          <button type="button" onClick={() => act({ action: "lead", id: l.id, showedUp: false }, "Marked as no-show")} className={`rounded-lg px-2 py-0.5 font-bold ${mark === "no-show" ? "bg-rose-500/25 text-rose-200" : "border border-white/15 text-white/70"}`}>
+            No-show
+          </button>
+        </span>
+      )}
     </div>
   );
 }
