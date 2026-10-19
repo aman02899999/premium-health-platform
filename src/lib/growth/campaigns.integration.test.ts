@@ -160,4 +160,20 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     expect(imported.map((r) => r.phone)).toEqual(["9000000062"]);
     expect((await cm.recipients("ex-recent", TODAY)).map((r) => r.phone)).toEqual(["9000000061"]);
   });
+
+  it("credits a campaign with people who paid within 14 days of its message", async () => {
+    await member("Asha", "9000000071", "2026-09-01");
+    await member("Bina", "9000000072", "2026-09-02");
+    const r = await cm.createCampaign({ name: "Comeback", segment: "ex-recent", channel: "whatsapp", offer: "Restart this month for ₹1,500", link: "membership" }, "coach", TODAY);
+    expect(r).toMatchObject({ ok: true, queued: 2 });
+    await pool.query(`update public.message_outbox set status = 'sent', sent_at = now() - interval '20 days' where dedupe_key like 'campaign:%'`);
+    const order = (id: string, phone: string, paise: number, daysAgo: number) =>
+      pool.query(
+        `insert into public.membership_orders (razorpay_order_id, status, plan_id, plan_name, duration, amount_paise, name, phone, paid_at) values ($1, 'paid', 'monthly', 'Monthly', '1 month', $2, 'Buyer', $3, now() - make_interval(days => $4))`,
+        [id, paise, phone, daysAgo],
+      );
+    await order("order_A", "+91 90000 00071", 150000, 15); // 5 days after the message
+    await order("order_B", "9000000072", 200000, 1); // 19 days after: not credited
+    expect((await cm.listCampaigns())[0]).toMatchObject({ sent: 2, buyers: 1, revenue: 1500 });
+  });
 });
