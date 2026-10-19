@@ -176,4 +176,36 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await order("order_B", "9000000072", 200000, 1); // 19 days after: not credited
     expect((await cm.listCampaigns())[0]).toMatchObject({ sent: 2, buyers: 1, revenue: 1500 });
   });
+
+  it("holds marketing emails at the daily email cap and sends receipts first", async () => {
+    const outbox = await import("./outbox");
+    const sentMail: string[] = [];
+    vi.stubGlobal("fetch", async (u: string, init?: { body?: string }) => {
+      const b = JSON.parse(init?.body ?? "{}");
+      if (String(u).includes("resend")) sentMail.push(Array.isArray(b.to) ? b.to[0] : b.to);
+      return new Response(JSON.stringify({ id: `re_${sentMail.length}`, messages: [{ id: "w" }] }), { headers: { "content-type": "application/json" } });
+    });
+    process.env.RESEND_API_KEY = "re_test";
+    process.env.EMAIL_FROM = "Gym <hi@x.in>";
+    process.env.EMAIL_MARKETING_DAILY_CAP = "1";
+    try {
+      const q = (kind: string, to: string, key: string, minsAgo: number) =>
+        pool.query(`insert into public.message_outbox (channel, to_address, kind, body, subject, dedupe_key, created_at) values ('email', $1, $2, 'x', 's', $3, now() - make_interval(mins => $4))`, [to, kind, key, minsAgo]);
+      await q("nurture-campaign", "a@x.in", "e1", 30);
+      await q("nurture-campaign", "b@x.in", "e2", 29);
+      await q("diet-received", "c@x.in", "r1", 1);
+      await outbox.dispatch(10);
+      expect(sentMail).toEqual(["c@x.in", "a@x.in"]);
+      const { rows } = await pool.query(`select dedupe_key, status from public.message_outbox order by dedupe_key`);
+      expect(rows).toEqual([
+        { dedupe_key: "e1", status: "sent" },
+        { dedupe_key: "e2", status: "pending" },
+        { dedupe_key: "r1", status: "sent" },
+      ]);
+    } finally {
+      delete process.env.EMAIL_MARKETING_DAILY_CAP;
+      delete process.env.RESEND_API_KEY;
+      delete process.env.EMAIL_FROM;
+    }
+  });
 });
