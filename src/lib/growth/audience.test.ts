@@ -45,3 +45,23 @@ describe("Meta ads customer list", () => {
     );
   });
 });
+
+describe("playbook", async () => {
+  const { playbook } = await import("./audience");
+  const { applyOffer } = await import("@/lib/offers");
+  const { planMonths } = await import("@/lib/content/plans");
+  const { DEFAULT_CONTENT } = await import("@/lib/content/defaults");
+  it("quotes today's offer prices during an offer and standard prices after it", () => {
+    const during = playbook(applyOffer(DEFAULT_CONTENT.plans, "2026-11-01"), planMonths);
+    expect(during.map((p) => p.segment)).toEqual(["ex-recent", "ex-old", "expiring", "current", "leads"]);
+    expect(during[0].offer).toBe("Festive Offer: restart with 1 month + 5 bonus days for ₹1,500 till 31/12/2026");
+    expect(during[2].offer).toContain("₹14,000");
+    const after = playbook(applyOffer(DEFAULT_CONTENT.plans, "2027-01-15"), planMonths);
+    expect(after[0].offer).toBe("your spot is still here. Restart this month, plans from ₹1,067 a month");
+    expect(after[2].offer).toBe("renew before your plan ends. Annual works out to ₹1,167 a month");
+    for (const p of [...during, ...after]) {
+      expect(p.offer.length).toBeLessThanOrEqual(160);
+      if (p.channel === "whatsapp") expect(p.link).not.toBe("shop");
+    }
+  });
+});

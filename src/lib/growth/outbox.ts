@@ -3,7 +3,7 @@ import { pool } from "@/health/db";
 import { SITE_URL } from "@/lib/site";
 import { emailHtml, emailText } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
-import { isMarketingKind, type Draft } from "./messages";
+import { MARKETING_KINDS, isMarketingKind, type Draft } from "./messages";
 import { emailConfigured, sendEmail, sendWhatsAppTemplate, whatsappConfigured, type SendResult } from "./providers";
 import { getFile, signedUrl } from "./storage";
 
@@ -98,20 +98,43 @@ async function sendOne(m: Pending): Promise<SendResult> {
  * Each row is claimed with SKIP LOCKED so two overlapping runs never send the same message twice.
  * Messages for a channel that isn't configured stay pending for the admin to send by hand.
  */
-export async function dispatch(max = 100): Promise<{ sent: number; failed: number; skipped: boolean }> {
+/**
+ * WhatsApp promotions sent per rolling 24 hours. A new business number may message only a limited
+ * number of new people a day (Meta's messaging tier, 250 until the business is verified), and a
+ * burst of promotions to old contacts drags the number's quality rating down. Raise
+ * WHATSAPP_MARKETING_DAILY_CAP as Meta raises the tier.
+ */
+export const marketingDailyCap = () => {
+  const n = Number(process.env.WHATSAPP_MARKETING_DAILY_CAP);
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : 200;
+};
+
+/**
+ * Sends pending messages. Receipts, plans and reminders always go first; WhatsApp promotions wait
+ * behind them and stop for the day at the daily cap (they stay pending for the next run).
+ * `deadline` (epoch ms) stops the loop in time for the caller's function limit.
+ */
+export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean }> {
   const channels = [whatsappConfigured() && "whatsapp", emailConfigured() && "email"].filter(Boolean) as string[];
   if (!channels.length) return { sent: 0, failed: 0, skipped: true };
   let sent = 0;
   let failed = 0;
-  for (let i = 0; i < max; i++) {
+  const cap = marketingDailyCap();
+  const { rows: used } = await pool.query<{ n: number }>(
+    `select count(*)::int as n from public.message_outbox where channel = 'whatsapp' and kind = any($1) and status = 'sent' and sent_at > now() - interval '24 hours'`,
+    [MARKETING_KINDS],
+  );
+  let marketingLeft = Math.max(0, cap - (used[0]?.n ?? 0));
+  for (let i = 0; i < max && Date.now() < deadline; i++) {
     const client = await pool.connect();
     try {
       await client.query("begin");
       const { rows } = await client.query<Pending>(
         `select id, channel, to_address, to_name, kind, body, template, params, attempts, subject, attachment from public.message_outbox
           where status = 'pending' and channel = any($1) and attempts < 3
-          order by created_at limit 1 for update skip locked`,
-        [channels],
+            and ($3 or not (channel = 'whatsapp' and kind = any($2)))
+          order by (channel = 'whatsapp' and kind = any($2)), created_at limit 1 for update skip locked`,
+        [channels, MARKETING_KINDS, marketingLeft > 0],
       );
       const m = rows[0];
       if (!m) {
@@ -131,6 +154,7 @@ export async function dispatch(max = 100): Promise<{ sent: number; failed: numbe
       if (r.ok) {
         await client.query(`update public.message_outbox set status = 'sent', sent_at = now(), sent_by = $2, attempts = attempts + 1, last_error = null where id = $1`, [m.id, m.channel === "whatsapp" ? "whatsapp-api" : "email-api"]);
         sent++;
+        if (m.channel === "whatsapp" && isMarketingKind(m.kind)) marketingLeft--;
       } else {
         await client.query(`update public.message_outbox set attempts = attempts + 1, last_error = $2, status = case when $3 then 'pending' else 'failed' end where id = $1`, [m.id, r.error, r.retry && m.attempts + 1 < 3]);
         failed++;
@@ -143,5 +167,5 @@ export async function dispatch(max = 100): Promise<{ sent: number; failed: numbe
       client.release();
     }
   }
-  return { sent, failed, skipped: false };
+  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 };
 }

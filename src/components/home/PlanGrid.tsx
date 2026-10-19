@@ -8,15 +8,8 @@ import { formatINR } from "@/lib/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { TiltCard } from "@/components/ui/TiltCard";
 
-/** Whole months in a duration, counting offer bonus months ("12 months + 2 months" → 14; bonus days don't count). */
-export const planMonths = (d: string) =>
-  Math.max(
-    1,
-    d.split("+").reduce((sum, part) => {
-      const n = Number(part.match(/\d+/)?.[0] ?? 0);
-      return sum + (/year/i.test(part) ? n * 12 : /month/i.test(part) ? n : 0);
-    }, 0),
-  );
+export { planMonths } from "@/lib/content/plans";
+import { planMonths } from "@/lib/content/plans";
 
 /** payOnline: plan buttons open /join (Razorpay checkout) instead of the free-trial form. */
 export function PlanGrid({ plans, note, payOnline = false }: { plans: OfferPlan[]; note: string; payOnline?: boolean }) {

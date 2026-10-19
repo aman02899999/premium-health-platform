@@ -4,7 +4,7 @@ import { runDaily } from "@/lib/growth/daily";
 import { recordDailyRun } from "@/lib/growth/system-status";
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 // Vercel Cron (vercel.json) calls this every morning with "Authorization: Bearer $CRON_SECRET".
 // Without CRON_SECRET it refuses to run in production; the admin's "Run now" button still works.

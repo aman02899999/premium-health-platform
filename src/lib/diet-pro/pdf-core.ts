@@ -58,6 +58,7 @@ const t = (s: string) =>
     .replace(/[‘’]/g, "'")
     .replace(/₹/g, "Rs ")
     .replace(/[^\x00-\xFF–—•·×½…]/g, "");
+export const pdfText = t;
 
 /** "royalfitness93_", "@x" or an instagram.com URL → "@handle". */
 const igHandle = (v: string) => {

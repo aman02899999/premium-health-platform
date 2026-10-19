@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getContent } from "@/lib/content/store";
+import { PROGRAM_GUIDES } from "@/lib/content/program-guides";
 import { CALCULATORS } from "@/lib/calculators";
 import { absoluteUrl, categorySlug, publishedPosts } from "@/lib/site";
 import { EXERCISES } from "@/lib/fitness/exercises";
@@ -20,6 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/", 1, "weekly"],
     ["/membership", 0.9, "monthly"],
     ["/programs", 0.9, "monthly"],
+    ...c.programs.filter((p) => PROGRAM_GUIDES[p.id]).map((p) => [`/programs/${p.id}`, 0.8, "monthly"] as [string, number, "monthly"]),
+    ["/why-royal-fitness", 0.8, "monthly"],
+    ["/membership/price-sheet", 0.6, "monthly"],
     ["/contact", 0.9, "monthly"],
     ["/gallery", 0.7, "monthly"],
     ["/about", 0.7, "yearly"],

@@ -190,6 +190,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     { id: "g-selfie", title: "Post-Workout Pump", caption: "Chest and arm pump after training — Aman Sharma", image: "/gallery/aman-sharma-gym-selfie.webp" },
   ],
   testimonials: [],
+  caseStudies: [],
   faqs: [
     {
       id: "couple",
@@ -236,17 +237,17 @@ export const DEFAULT_CONTENT: SiteContent = {
   seo: {
     title: "Royal Fitness Club — AC Gym in Sector 93, Noida",
     description:
-      "Royal Fitness Club, Gejha Sector 93 Noida: AC gym with certified trainers, personal training, fat loss & muscle gain programs. Rated 4.7★ by 300+ members. Book a free trial.",
+      "AC gym Sector 93 Noida by Royal Fitness Club — certified trainers, personal training, fat loss, muscle gain, diet plans Noida, nutrition coaching. Unisex gym Noida with premium facilities. Book a free trial.",
     keywords: [
+      "ac gym sector 93 noida",
       "gym in sector 93 noida",
-      "gym near me noida",
-      "royal fitness club noida",
-      "gym in gejha",
+      "unisex gym noida",
       "personal trainer noida",
       "fat loss gym noida",
-      "gym near sector 93a",
-      "gym near sector 100 noida",
-      "women gym noida",
+      "muscle gain gym noida",
+      "diet plans noida",
+      "nutrition coaching noida",
+      "royal fitness club noida",
     ],
     ogImage: "",
     googleVerification: "",

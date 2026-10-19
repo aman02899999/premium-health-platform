@@ -59,6 +59,8 @@ export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCa
 };
 
 /** Outbox kinds sent with a Marketing template: these respect "Stop promotions". */
+/** Every WhatsApp template kind Meta bills and rate-limits as marketing. */
+export const MARKETING_KINDS = (Object.keys(TEMPLATES) as MessageKind[]).filter((k) => TEMPLATES[k].category === "MARKETING");
 export const isMarketingKind = (kind: string) => (TEMPLATES as Record<string, { category: TemplateCategory }>)[kind]?.category === "MARKETING";
 
 /** "Stop promotions" (the button, or typed) opts out; "Start promotions" opts back in. */
