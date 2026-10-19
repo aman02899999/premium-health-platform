@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isDbConfigured } from "@/health/db";
-import { nurtureBusiness } from "@/lib/growth/daily";
+import { nurtureBusiness, runLeadEscalation } from "@/lib/growth/daily";
 import { recordDailyRun } from "@/lib/growth/system-status";
 import { runReels } from "@/lib/social/automation";
 
@@ -16,8 +16,10 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
+  // Evening check for leads nobody has called yet; it never holds up the Reel.
+  const leads = await runLeadEscalation().catch((err: Error) => (console.error("[cron] lead escalation:", err.message), { waiting: 0, queued: 0 }));
   try {
-    const result = await runReels(new Date(), await nurtureBusiness());
+    const result = { ...(await runReels(new Date(), await nurtureBusiness())), leads };
     await recordDailyRun("cron", true, result, "reel-run");
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {

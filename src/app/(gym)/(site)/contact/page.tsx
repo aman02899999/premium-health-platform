@@ -67,7 +67,7 @@ export default async function ContactPage() {
             </a>
           </div>
         </div>
-        <LeadForm whatsapp={b.whatsapp} gymName={b.name} source="contact" />
+        <LeadForm whatsapp={b.whatsapp} gymName={b.name} source="contact" hours={b.hours} address={fullAddress(b)} />
       </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="overflow-hidden rounded-3xl ring-1 ring-brand/30">

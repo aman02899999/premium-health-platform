@@ -150,6 +150,64 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     expect(all.map((x) => [x.kind, x.to, x.status])).toEqual([["lead-0", "919811199988", "pending"]]);
   });
 
+  it("a booked trial is confirmed instead of 'pick a time', and the desk's marks drive the follow-ups", async () => {
+    const at = "2026-10-21T12:30:00.000Z"; // 6:00 PM India time
+    const id = await leads.insertLead({ name: "Neha Test", phone: "98111 77766", email: null, interest: "", goal: "", message: "", source: "home", marketing: false, trialAt: at });
+    await hooks.afterLeadSaved("98111 77766", id);
+    expect((await outbox.listOutbox()).map((x) => [x.kind, x.to])).toEqual([["trial-booked", "919811177766"]]);
+    // On the day it's an open lead; a week after the trial it still is.
+    expect((await leads.openLeads("2026-10-21")).map((l) => [l.id, l.trialAt])).toEqual([[id, at]]);
+    await leads.updateLead(id, { showedUp: false });
+    let l = (await leads.getLead(id))!;
+    expect([l.status, l.showedUp, l.contactedAt]).toEqual(["new", false, null]);
+    await leads.updateLead(id, { showedUp: true });
+    l = (await leads.getLead(id))!;
+    expect([l.status, l.showedUp, !!l.contactedAt]).toEqual(["trial", true, true]);
+    expect((await leads.openLeads("2026-10-28")).map((x) => x.id)).toEqual([id]);
+    expect(await leads.openLeads("2026-11-05")).toEqual([]);
+    // Correcting "came" to "no-show" reopens the lead; a new time clears the mark.
+    await leads.updateLead(id, { showedUp: false });
+    expect((await leads.getLead(id))!.status).toBe("contacted");
+    await leads.updateLead(id, { trialAt: "2026-10-23T01:30:00.000Z" });
+    l = (await leads.getLead(id))!;
+    expect([l.trialAt, l.showedUp]).toEqual(["2026-10-23T01:30:00.000Z", null]);
+    await leads.updateLead(id, { trialAt: null });
+    expect((await leads.getLead(id))!.trialAt).toBeNull();
+  });
+
+  it("the coach hears about a form lead at once, and in the evening if nobody has contacted it", async () => {
+    process.env.COACH_EMAIL = "coach@example.com";
+    try {
+      const id = await leads.insertLead({ name: "Ravi Test", phone: "98111 55544", email: null, interest: "", goal: "Fat loss", message: "", source: "home", marketing: false });
+      await hooks.afterLeadSaved("98111 55544", id);
+      expect((await outbox.listOutbox()).map((x) => x.kind).sort()).toEqual(["admin-lead-alert", "lead-0"]);
+      const later = new Date(Date.now() + 3 * 3600_000);
+      expect(await daily.runLeadEscalation(later)).toEqual({ waiting: 1, queued: 1 });
+      expect(await daily.runLeadEscalation(later)).toEqual({ waiting: 1, queued: 0 }); // once a day
+      await leads.updateLead(id, { status: "contacted" });
+      expect((await leads.uncontactedLeads(later)).length).toBe(0);
+    } finally {
+      delete process.env.COACH_EMAIL;
+    }
+  });
+
+  it("the funnel follows each lead from enquiry to member, by source", async () => {
+    const add = (name: string, phone: string, source: string, trialAt: string | null = null) => leads.insertLead({ name, phone, email: null, interest: "", goal: "", message: "", source, marketing: false, trialAt });
+    const a = await add("Lead A", "98111 00001", "home", "2026-10-21T12:30:00.000Z");
+    const b = await add("Lead B", "98111 00002", "home", "2026-10-21T13:30:00.000Z");
+    await add("Lead C", "+91 98111 00003", "contact");
+    await leads.updateLead(a, { showedUp: true });
+    await leads.updateLead(b, { showedUp: false });
+    // C joined at the desk today, India date (no lead status change); A paid online.
+    await pool.query(`insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Lead C', '9811100003', 'Monthly', (now() at time zone 'Asia/Kolkata')::date, (now() at time zone 'Asia/Kolkata')::date + 30, 'LEADC-1')`);
+    await pool.query(`insert into public.membership_orders (razorpay_order_id, status, plan_id, plan_name, duration, amount_paise, name, phone, paid_at) values ('order_F1', 'paid', 'm1', 'Monthly', '1 month', 150000, 'Lead A', '9811100001', now())`);
+    await leads.updateLead(a, { status: "joined" });
+    expect(await leads.funnelBySource(30)).toEqual([
+      { source: "home", leads: 2, booked: 2, came: 1, joined: 1, onlineRupees: 1500 },
+      { source: "contact", leads: 1, booked: 0, came: 0, joined: 1, onlineRupees: 0 },
+    ]);
+  });
+
   it("diet orders flip to paid once, even with concurrent confirmations", async () => {
     const intake = { age: 30, sex: "male", heightCm: 175, weightKg: 80, goal: "fat-loss", diet: "veg", cuisine: "north", activity: "moderate", mealsPerDay: 5, wakeTime: "06:30", conditions: [], allergies: [], notes: "" } as const;
     await diet.insertDietOrder("order_DIET", 99900, { name: "Aman", phone: "9876543210", email: null }, { ...intake, conditions: [], allergies: [] });

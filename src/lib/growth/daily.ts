@@ -3,7 +3,8 @@ import { getContent } from "@/lib/content/store";
 import { indexNowUrls, submitIndexNow } from "@/lib/indexnow";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
-import { nurtureLeads, openLeads } from "./leads";
+import { funnelBySource, nurtureLeads, openLeads, uncontactedLeads } from "./leads";
+import { uncontactedAlert } from "./lead-alerts";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { lapsedMembers, membersNearExpiry } from "./members";
 import { MARKETING_KINDS, dueMessages, type Biz } from "./messages";
@@ -24,7 +25,7 @@ import { dueReviewRequests } from "./reviews";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
-  return { name: b.name, phone: b.phone, siteUrl: SITE_URL };
+  return { name: b.name, phone: b.phone, siteUrl: SITE_URL, mapsUrl: b.googleMapsUrl || undefined };
 }
 
 /** Business details the marketing emails need (WhatsApp link, coach, lowest membership price). */
@@ -125,6 +126,21 @@ export async function runDaily(now = new Date()) {
 }
 
 /**
+ * The evening check (with the Reel cron): if any form lead is still waiting for a first call two
+ * hours or more after arriving, the coach gets one list with a WhatsApp link for each.
+ */
+export async function runLeadEscalation(now = new Date()): Promise<{ waiting: number; queued: number }> {
+  const coach = process.env.COACH_EMAIL;
+  if (!coach) return { waiting: 0, queued: 0 };
+  const [leads, biz] = await Promise.all([uncontactedLeads(now), business()]);
+  const d = uncontactedAlert(leads, coach, biz.name, `${SITE_URL}/admin/growth`, now, todayIST(now));
+  if (!d) return { waiting: 0, queued: 0 };
+  const queued = await enqueue([d]);
+  await dispatch(3);
+  return { waiting: leads.length, queued };
+}
+
+/**
  * Diet-plan and library orders started 2–72 hours ago and never paid, from people who haven't
  * paid for the same thing since and haven't unsubscribed. Each source is optional.
  */
@@ -192,8 +208,16 @@ async function abandonedShopOrders(window: string, unsubscribed: string, reminde
 async function digestData(today: string): Promise<DigestData> {
   const q = async <T,>(sql: string, params: unknown[] = []): Promise<T[]> => (await pool.query(sql, params).catch(() => ({ rows: [] as T[] }))).rows as T[];
   const since = "now() - interval '24 hours'";
-  const [leads, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
+  const [leads, uncontacted, trials, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
     q<{ name: string; source: string }>(`select name, source from public.leads where created_at > ${since} order by created_at desc limit 50`),
+    q<{ n: number }>(`select count(*)::int as n from public.leads where status = 'new' and follow_ups and created_at between now() - interval '3 days' and now() - interval '2 hours'`),
+    // Trials today, and past trials (last 3 days) nobody has marked as came / didn't come.
+    q<{ name: string; trial_at: Date; showed_up: boolean | null; status: string }>(
+      `select name, trial_at, showed_up, status from public.leads
+        where trial_at >= ($1::date - interval '3 days' - interval '5 hours 30 minutes') and trial_at < ($1::date + interval '1 day' - interval '5 hours 30 minutes')
+          and status in ('new', 'contacted') and showed_up is null order by trial_at`,
+      [today],
+    ),
     q<{ name: string; plan_name: string; amount_paise: number }>(`select name, plan_name, amount_paise from public.membership_orders where status = 'paid' and paid_at > ${since}`),
     q<{ name: string; plan: string; amount_paise: number }>(`select name, plan, amount_paise from public.diet_orders where status = 'paid' and paid_at > ${since}`),
     q<{ name: string; number: string; total: number }>(`select name, number, total from public.shop_orders where status = 'paid' and paid_at > ${since}`),
@@ -209,6 +233,9 @@ async function digestData(today: string): Promise<DigestData> {
   ]);
   return {
     leads: leads.map((l) => ({ name: l.name, source: l.source })),
+    trials: trials.map((t) => ({ name: t.name, at: t.trial_at.toISOString() })),
+    uncontacted: uncontacted[0]?.n ?? 0,
+    funnel: isMonday(today) ? await funnelBySource(30).catch(() => []) : undefined,
     payments: [
       ...members.map((m) => ({ kind: "Membership" as const, name: m.name, what: m.plan_name, rupees: m.amount_paise / 100 })),
       ...diets.map((d) => ({ kind: "Diet plan" as const, name: d.name, what: dietPlan(d.plan).name, rupees: d.amount_paise / 100 })),
