@@ -56,7 +56,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
     social = await import("./automation");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.social_inbox, public.social_posts, public.integration_tokens, public.leads, public.members cascade");
+    await pool.query("truncate public.social_inbox, public.social_posts, public.integration_tokens, public.leads, public.members, public.message_outbox, public.chat_replies cascade");
     calls.length = 0;
     publishFails = false;
     reelFails = false;
@@ -87,6 +87,26 @@ describe.skipIf(!url)("social automation on a real database", () => {
       { id: "wa:2", intent: "hello", replied: false, has_lead: true },
       { id: "wa:3", intent: "price", replied: true, has_lead: true },
     ]);
+  });
+
+  it("a reply to a campaign offer gets the fees once and becomes a membership lead; a 'no' is left to the coach", async () => {
+    const offer = (to: string) =>
+      pool.query(
+        `insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, status, sent_at) values ('whatsapp', $1, 'offer-broadcast', 'offer', 'rfc_offer_broadcast_v1', $2, 'sent', now() - interval '1 hour')`,
+        [to, `campaign:test:${to}`],
+      );
+    await offer("919876543210");
+    await offer("919811112222");
+
+    expect(await social.handleInbound(wa("30", "Interested"))).toBe("replied");
+    expect(await social.handleInbound(wa("31", "ok"))).toBe("logged"); // we've answered since the offer: back to the usual rules
+    expect(await social.handleInbound(wa("32", "nahi chahiye", "919811112222", "Neha"))).toBe("logged");
+
+    const out = calls.filter((c) => c.url.endsWith("/123/messages"));
+    expect(out).toHaveLength(1);
+    expect((out[0].body!.interactive as { body: { text: string } }).body.text).toContain("*Gym Membership* 💪");
+    const leads = (await pool.query("select phone, source, interest, follow_ups from public.leads order by phone")).rows;
+    expect(leads).toEqual([{ phone: "9876543210", source: "whatsapp-campaign", interest: "membership", follow_ups: false }]);
   });
 
   it("an existing member who messages is not added as a lead, and a foreign number never is", async () => {

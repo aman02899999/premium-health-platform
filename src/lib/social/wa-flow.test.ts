@@ -18,6 +18,17 @@ describe("WhatsApp trial funnel", () => {
     expect(flowAction({ replyId: "someone-elses-id", text: "hi" }, false)).toEqual({ action: "menu", tapped: false });
   });
 
+  it("after a campaign offer, 'yes' or a plain hello gets the fees, and a 'no' gets nothing", () => {
+    expect(flowAction({ text: "Interested" }, false, true)).toEqual({ action: "price", tapped: true });
+    expect(flowAction({ text: "ok" }, false, true)).toEqual({ action: "price", tapped: true });
+    expect(flowAction({ text: "Hi" }, false, true)).toEqual({ action: "price", tapped: false });
+    expect(flowAction({ text: "kab aa sakte hai" }, false, true)).toEqual({ action: "price", tapped: false });
+    expect(flowAction({ text: "timing?" }, false, true)).toEqual({ action: "visit", tapped: false });
+    expect(flowAction({ text: "weight loss diet" }, false, true)).toEqual({ action: "diet", tapped: false });
+    expect(flowAction({ text: "ok" }, true, true)).toEqual({ action: "trial7", tapped: true }); // the trial offer came later
+    for (const text of ["No", "not interested", "nahi chahiye", "wrong number", "who is this?"]) expect(flowAction({ text }, false, true), text).toBeNull();
+  });
+
   it("every step fits WhatsApp's limits", () => {
     const actions: FlowAction[] = ["diet", "trial7", "plans", "coach", "menu", "price", "trial", "visit"];
     for (const a of actions) {
