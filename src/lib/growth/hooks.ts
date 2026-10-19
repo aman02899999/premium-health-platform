@@ -6,6 +6,7 @@ import { markDietPaid } from "./diet-orders";
 import { applyPaidOrder, type Member } from "./members";
 import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, trialBookedEmail, trialMessage, welcomeMessage } from "./messages";
 import { getLead, latestLeadByPhone } from "./leads";
+import { newLeadAlert } from "./lead-alerts";
 import { nurtureDrafts } from "./nurture";
 import { daysBetween, todayIST } from "./dates";
 import { cancelPending, dispatch, enqueue } from "./outbox";
@@ -116,6 +117,9 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
       const d = leadMessage("lead-0", lead, biz);
       if (d) drafts.push(d);
     }
+    // Speed to lead: the coach gets the details and a one-tap WhatsApp reply straight away.
+    const coach = process.env.COACH_EMAIL;
+    if (coach && lead.followUps) drafts.push(newLeadAlert(lead, coach, biz.name, `${biz.siteUrl}/admin/growth`));
     if (leadId) {
       const full = lead as Awaited<ReturnType<typeof getLead>>;
       if (full?.email && full.marketing && (full.interest === "diet" || full.interest === "pt" || full.interest === "membership"))

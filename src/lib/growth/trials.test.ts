@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { adminDigest } from "./admin-digest";
 import { TEMPLATES, dueMessages, isMarketingKind, trialBookedEmail, trialMessage, type LeadLike } from "./messages";
+import { newLeadAlert, uncontactedAlert } from "./lead-alerts";
 import { coversDay, formatTrial, parseTrialSlot, toInstant, trialSlots, trialStage } from "./trials";
 
 const HOURS = [
@@ -98,5 +99,28 @@ describe("morning email: trials", () => {
     expect(d.subject).toContain("1 need you");
     expect(d.body).toContain("Did Neha come for the trial on Tue, 20 Oct, 7:00 AM? Mark Came or No-show in Leads");
     expect(d.body).toContain("TRIALS TODAY (1)\n• 6:00 PM: Rahul");
+  });
+});
+
+describe("speed to lead", () => {
+  const l = { id: "l9", name: "Rahul Verma", phone: "98765 43210", goal: "Fat loss", message: "Knee pain", source: "home", trialAt: toInstant("2026-10-21", "18:00"), createdAt: "2026-10-19T10:00:00Z" };
+  it("the instant alert carries the details and a ready WhatsApp reply", () => {
+    const d = newLeadAlert(l, "coach@x.in", "Royal Fitness Club", "https://example.in/admin/growth");
+    expect(d).toMatchObject({ channel: "email", to: "coach@x.in", kind: "admin-lead-alert", subject: "New lead: Rahul Verma, trial Wed, 21 Oct, 6:00 PM", dedupeKey: "admin-lead-alert:l9" });
+    expect(d.body).toContain("• Note: \"Knee pain\"");
+    expect(d.body).toMatch(/\[\[CTA:WhatsApp Rahul now\|https:\/\/wa\.me\/919876543210\?text=Hi%20Rahul/);
+    expect(newLeadAlert({ ...l, trialAt: null }, "c@x.in", "RFC", "u").subject).toBe("New lead: Rahul Verma, wants a call");
+  });
+  it("the evening list goes out once a day and only when someone is waiting", () => {
+    const now = new Date("2026-10-19T13:20:00Z");
+    expect(uncontactedAlert([], "c@x.in", "RFC", "u", now, "2026-10-19")).toBeNull();
+    const d = uncontactedAlert([l, { ...l, id: "l10", name: "Neha", trialAt: null }], "c@x.in", "RFC", "u", now, "2026-10-19")!;
+    expect(d.subject).toBe("2 leads still waiting for you");
+    expect(d.dedupeKey).toBe("admin-lead-escalation:2026-10-19");
+    expect(d.body).toContain("• Rahul Verma, 98765 43210, waiting 3 h 20 min, trial Wed, 21 Oct, 6:00 PM");
+  });
+  it("the morning email flags leads nobody has contacted", () => {
+    const d = adminDigest("2026-10-21", { leads: [], uncontacted: 2, payments: [], plansToReview: [], clientUpdates: 0, unanswered: [], expiringMembers: [], failedMessages: 0 }, "a@x.in", "u");
+    expect(d.body).toContain("2 leads have had no call or message yet (Leads → New)");
   });
 });

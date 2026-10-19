@@ -718,6 +718,8 @@ function Leads({ data, act }: { data: Data; act: Act }) {
   const [filter, setFilter] = useState<LeadStatus | "open" | "all">("open");
   const rows = data.leads.filter((l) => (filter === "all" ? true : filter === "open" ? l.status === "new" || l.status === "contacted" || l.status === "trial" : l.status === filter));
   const counts = (s: LeadStatus) => data.leads.filter((l) => l.status === s).length;
+  // Calling or messaging a new lead counts as contact, which stops the "still waiting" alerts.
+  const contacted = (l: Lead) => l.status === "new" && act({ action: "lead", id: l.id, status: "contacted" }, "Marked as contacted");
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap gap-1.5">
@@ -755,10 +757,10 @@ function Leads({ data, act }: { data: Data; act: Act }) {
             <TrialRow lead={l} act={act} />
             <textarea defaultValue={l.notes} placeholder="Notes (saved when you click away)" onBlur={(e) => e.target.value !== l.notes && act({ action: "lead", id: l.id, notes: e.target.value }, "Notes saved")} rows={2} className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 p-2 text-xs text-white" />
             <div className="mt-2 flex flex-wrap items-center gap-2 text-xs">
-              <a href={`tel:${l.phone.replace(/[^\d+]/g, "")}`} className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1">
+              <a href={`tel:${l.phone.replace(/[^\d+]/g, "")}`} onClick={() => contacted(l)} className="inline-flex items-center gap-1 rounded-lg border border-white/15 px-2 py-1">
                 <Phone className="h-3 w-3" /> Call
               </a>
-              <a href={waLink(l.phone.replace(/\D/g, "").length === 10 ? `91${l.phone.replace(/\D/g, "")}` : l.phone, `Hi ${l.name.split(" ")[0]}, `)} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-[#25d366]/20 px-2 py-1 text-emerald-200">
+              <a href={waLink(l.phone.replace(/\D/g, "").length === 10 ? `91${l.phone.replace(/\D/g, "")}` : l.phone, `Hi ${l.name.split(" ")[0]}, `)} target="_blank" rel="noopener noreferrer" onClick={() => contacted(l)} className="rounded-lg bg-[#25d366]/20 px-2 py-1 text-emerald-200">
                 WhatsApp
               </a>
               <label className="ml-auto flex items-center gap-1.5 text-white/60">

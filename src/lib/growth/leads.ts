@@ -97,6 +97,17 @@ export async function nurtureLeads(today: string): Promise<NurtureLead[]> {
   return rows.map((r) => ({ id: r.id, name: r.name, email: r.email, interest: r.interest, createdAt: r.created_at.toISOString() }));
 }
 
+/** Form leads nobody has called or messaged yet: "new", arrived 2 hours to 3 days ago. */
+export async function uncontactedLeads(now = new Date()): Promise<PipelineLead[]> {
+  const { rows } = await pool.query<Row>(
+    `select ${COLUMNS} from public.leads
+      where status = 'new' and follow_ups and created_at between $1::timestamptz - interval '3 days' and $1::timestamptz - interval '2 hours'
+      order by created_at`,
+    [now.toISOString()],
+  );
+  return rows.map(fromRow);
+}
+
 export async function getLead(id: string): Promise<(PipelineLead & { email: string | null; interest: string; marketing: boolean }) | null> {
   const { rows } = await pool.query<Row & { marketing_consent_at: Date | null }>(`select ${COLUMNS}, marketing_consent_at from public.leads where id = $1`, [id]);
   const r = rows[0];

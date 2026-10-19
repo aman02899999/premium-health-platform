@@ -175,6 +175,22 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     expect((await leads.getLead(id))!.trialAt).toBeNull();
   });
 
+  it("the coach hears about a form lead at once, and in the evening if nobody has contacted it", async () => {
+    process.env.COACH_EMAIL = "coach@example.com";
+    try {
+      const id = await leads.insertLead({ name: "Ravi Test", phone: "98111 55544", email: null, interest: "", goal: "Fat loss", message: "", source: "home", marketing: false });
+      await hooks.afterLeadSaved("98111 55544", id);
+      expect((await outbox.listOutbox()).map((x) => x.kind).sort()).toEqual(["admin-lead-alert", "lead-0"]);
+      const later = new Date(Date.now() + 3 * 3600_000);
+      expect(await daily.runLeadEscalation(later)).toEqual({ waiting: 1, queued: 1 });
+      expect(await daily.runLeadEscalation(later)).toEqual({ waiting: 1, queued: 0 }); // once a day
+      await leads.updateLead(id, { status: "contacted" });
+      expect((await leads.uncontactedLeads(later)).length).toBe(0);
+    } finally {
+      delete process.env.COACH_EMAIL;
+    }
+  });
+
   it("diet orders flip to paid once, even with concurrent confirmations", async () => {
     const intake = { age: 30, sex: "male", heightCm: 175, weightKg: 80, goal: "fat-loss", diet: "veg", cuisine: "north", activity: "moderate", mealsPerDay: 5, wakeTime: "06:30", conditions: [], allergies: [], notes: "" } as const;
     await diet.insertDietOrder("order_DIET", 99900, { name: "Aman", phone: "9876543210", email: null }, { ...intake, conditions: [], allergies: [] });
