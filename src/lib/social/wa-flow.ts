@@ -57,17 +57,24 @@ const BY_ID: Record<string, FlowAction> = {
 /** "yes", "haan", "ok", "49"... right after the trial offer means "start my trial". */
 const YES = /^\s*(yes+|y|yeah|yep|ha+n?|haa+n|ji|ok+|okay|sure|start|interested|done|49|₹?\s*49)\b[\s!.]*$/i;
 
+/** "No thanks", "nahi chahiye"... to a campaign offer: left for the coach, never answered with prices. */
+const NO = /\b(no+|nope|not interested|nahi+|nahin|nhi|na|mat|don'?t|do not|wrong number|who is this|kaun)\b/i;
+
 /**
  * What the customer asked for: a tapped button or list row first, then "yes" to a trial offer we
- * just made, then the usual keywords. Null when it is none of these (left to the coach).
+ * just made, then the usual keywords. After a campaign offer (afterOffer), "yes", "interested" or
+ * anything without a keyword means the offer, so they get the fees rather than the general menu;
+ * a "no" is null (logged and left to the coach).
  */
-export function flowAction(m: { replyId?: string; text: string }, offeredTrial: boolean): { action: FlowAction; tapped: boolean } | null {
+export function flowAction(m: { replyId?: string; text: string }, offeredTrial: boolean, afterOffer = false): { action: FlowAction; tapped: boolean } | null {
   const byId = m.replyId ? BY_ID[m.replyId] : undefined;
   if (byId) return { action: byId, tapped: true };
   if (offeredTrial && YES.test(m.text)) return { action: "trial7", tapped: true };
+  if (afterOffer && YES.test(m.text)) return { action: "price", tapped: true };
   const intent = detectIntent(m.text);
   if (intent === "diet") return { action: "diet", tapped: false };
-  if (intent === "hello" || intent === "other") return { action: "menu", tapped: false };
+  if (afterOffer && intent === "other" && NO.test(m.text)) return null;
+  if (intent === "hello" || intent === "other") return { action: afterOffer ? "price" : "menu", tapped: false };
   return { action: intent, tapped: false };
 }
 

@@ -48,7 +48,7 @@ export const DIET_SAMPLE_URL = `${SITE_URL}/samples/royal-fitness-diet-plan-samp
 const LEAD_INTEREST: Partial<Record<Intent, "diet" | "membership">> = { diet: "diet", price: "membership", trial: "membership", visit: "membership" };
 
 /** A WhatsApp sender becomes a lead once a month, unless they are already a member. */
-async function ensureLead(m: Inbound, intent: Intent): Promise<string | null> {
+async function ensureLead(m: Inbound, intent: Intent, afterOffer = false): Promise<string | null> {
   const phone = indianMobile(m.from);
   if (!phone) return null;
   const { rows } = await pool.query<{ id: string }>(
@@ -61,10 +61,10 @@ async function ensureLead(m: Inbound, intent: Intent): Promise<string | null> {
     name: m.fromName.length >= 2 ? m.fromName : "WhatsApp enquiry",
     phone,
     email: null,
-    interest: LEAD_INTEREST[intent] ?? "",
+    interest: LEAD_INTEREST[intent] ?? (afterOffer ? "membership" : ""),
     goal: "",
     message: m.text.slice(0, 600),
-    source: "whatsapp-inbound",
+    source: afterOffer ? "whatsapp-campaign" : "whatsapp-inbound",
     marketing: false,
   });
 }
@@ -101,7 +101,15 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
       .catch((err: Error) => console.error("[social] chat alert:", err.message));
   }
 
-  const leadId = m.channel === "whatsapp" ? await ensureLead(m, intent).catch((err) => (console.error("[social] lead:", (err as Error).message), null)) : null;
+  // A reply to a campaign offer (the offer was the last thing we sent them) is about membership.
+  const afterOffer = m.channel === "whatsapp" && m.kind === "message" && (await repliedToOffer(m.from));
+  // WhatsApp runs the button conversation (wa-flow.ts): a tapped button, or "yes" to the trial
+  // offer, always gets its next step; typed messages follow the usual reply rules.
+  const flow = m.channel === "whatsapp" ? flowAction({ replyId: m.replyId, text: m.text }, await offeredTrial(m.from), afterOffer) : null;
+  // "No thanks" to an offer: logged for the coach (already emailed above), not a lead, no reply.
+  if (m.channel === "whatsapp" && !flow) return "logged";
+
+  const leadId = m.channel === "whatsapp" ? await ensureLead(m, intent, afterOffer).catch((err) => (console.error("[social] lead:", (err as Error).message), null)) : null;
   if (leadId) await pool.query(`update public.social_inbox set lead_id = $2 where id = $1`, [m.id, leadId]);
 
   const { rows } = await pool.query<{ n: number }>(
@@ -112,9 +120,6 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
     [m.channel, m.from, m.id],
   );
   const canSend = m.channel === "whatsapp" ? whatsappReplyConfigured() : m.channel === "facebook" ? facebookConfigured() : instagramConfigured();
-  // WhatsApp runs the button conversation (wa-flow.ts): a tapped button, or "yes" to the trial
-  // offer, always gets its next step; typed messages follow the usual reply rules.
-  const flow = m.channel === "whatsapp" ? flowAction({ replyId: m.replyId, text: m.text }, await offeredTrial(m.from)) : null;
   if (!autoReplyOn() || !canSend || (!flow?.tapped && !shouldReply(intent, m.kind, rows[0].n > 0))) return "logged";
   // The coach paused the bot for this customer (or is chatting with them right now).
   if (flow && (await botPaused(m.from))) return "logged";
@@ -128,6 +133,22 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
       : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, text);
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
   return res.ok ? "replied" : "failed";
+}
+
+/**
+ * True when a campaign offer reached this number in the last 14 days and nothing has been sent to
+ * them since, so their message is an answer to the offer.
+ */
+async function repliedToOffer(peer: string): Promise<boolean> {
+  const { rowCount } = await pool.query(
+    `select 1 from public.message_outbox o
+      where o.channel = 'whatsapp' and o.kind = 'offer-broadcast' and o.status = 'sent'
+        and right(o.to_address, 10) = right($1, 10) and o.sent_at > now() - interval '14 days'
+        and not exists (select 1 from public.chat_replies r where r.channel = 'whatsapp' and r.to_id = $1 and r.created_at > o.sent_at)
+      limit 1`,
+    [peer],
+  );
+  return Boolean(rowCount);
 }
 
 /** True when our auto-reply offered the 7-Day Trial in the last 24 hours, so "yes" means "start it". */
