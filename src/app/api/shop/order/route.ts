@@ -4,6 +4,7 @@ import { quoteCart, withHolds } from "@/lib/shop/pricing";
 import { currentCustomer, getCatalog } from "@/lib/shop/server";
 import { heldStock, insertOrder } from "@/lib/shop/store";
 import { attributeFromRequest } from "@/lib/attribution-store";
+import { saveReminderConsent, wantsReminder } from "@/lib/growth/reminder-consent";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
 export const dynamic = "force-dynamic";
@@ -55,6 +56,7 @@ export async function POST(req: Request) {
       total: quote.total,
     });
     await attributeFromRequest(req, "shop", rzp.id);
+    if (wantsReminder(body)) await saveReminderConsent("shop", rzp.id);
     return NextResponse.json({
       number,
       orderId: rzp.id,

@@ -29,6 +29,7 @@ const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 export function Checkout({ table, online, whatsappBase }: { table: PriceTable; online: boolean; whatsappBase: string }) {
   const { items, remove, replace, clear } = useCart();
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [remind, setRemind] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) => setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -60,7 +61,7 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
       const res = await fetch("/api/library/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: valid, ...form }),
+        body: JSON.stringify({ items: valid, ...form, remind }),
       });
       const order = await res.json();
       if (!res.ok) throw new Error(order.error || "Couldn't start the payment.");
@@ -175,6 +176,10 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
             <input required autoComplete="name" placeholder="Your name" value={form.name} onChange={set("name")} className={input} />
             <input required type="email" autoComplete="email" placeholder="Email (to recover your downloads)" value={form.email} onChange={set("email")} className={input} />
             <input required type="tel" autoComplete="tel" placeholder="Mobile (10 digits, or +country code)" value={form.phone} onChange={set("phone")} className={input} />
+            <label className="flex cursor-pointer items-start gap-2 text-sm text-white/70">
+            <input type="checkbox" checked={remind} onChange={(e) => setRemind(e.target.checked)} className="mt-1 accent-[#e8394b]" />
+            <span>If my payment doesn&apos;t go through, email me one reminder.</span>
+          </label>
             {error && <p role="alert" className="rounded-xl bg-red-500/15 px-4 py-3 text-sm text-red-200">{error}</p>}
             <button disabled={busy} className="btn-brand flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold disabled:opacity-60">
               {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <Lock className="h-4 w-4" />}

@@ -10,6 +10,7 @@ import { todayIST } from "@/lib/growth/dates";
 import { looksLikeReferralCode, normaliseCode } from "@/lib/growth/config";
 import { isMemberPhone, memberByCode } from "@/lib/growth/members";
 import { trackCheckoutStarted } from "@/lib/growth/resend-events";
+import { saveReminderConsent, wantsReminder } from "@/lib/growth/reminder-consent";
 
 export const dynamic = "force-dynamic";
 
@@ -56,8 +57,10 @@ export async function POST(req: Request) {
     });
     await insertOrder(order.id, quote, form, referralCode);
     await attributeFromRequest(req, "membership", order.id);
-    // Abandoned-checkout emails are for first-time joiners only; renewals have their own sequence.
-    if (form.email) {
+    const remind = wantsReminder(body);
+    if (remind) await saveReminderConsent("membership", order.id);
+    // Abandoned-checkout emails are for first-time joiners who asked for a reminder; renewals have their own sequence.
+    if (form.email && remind) {
       const email = form.email;
       after(async () => {
         if (!(await isMemberPhone(form.phone).catch(() => true))) await trackCheckoutStarted(email, quote.planName, quote.planId, form.name);

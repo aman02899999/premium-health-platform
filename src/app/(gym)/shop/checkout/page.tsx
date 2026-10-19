@@ -19,6 +19,7 @@ export default function CheckoutPage() {
   const cart = useCart();
   const { quote, error: quoteError, loading } = useQuote();
   const [f, setF] = useState<Form>(EMPTY);
+  const [remind, setRemind] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState<{ number: string; paymentId: string; total: number } | null>(null);
@@ -55,7 +56,7 @@ export default function CheckoutPage() {
       } catch {
         /* ignore */
       }
-      const res = await fetch("/api/shop/order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lines: cart.lines, expectedTotal: quote.total }) });
+      const res = await fetch("/api/shop/order", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, remind, lines: cart.lines, expectedTotal: quote.total }) });
       const order = await res.json();
       if (!res.ok) throw new Error(order.error || "Couldn't start the payment.");
       if (!(await loadCheckoutScript()) || !window.Razorpay) throw new Error("Couldn't load the payment window. Check your connection and try again.");
@@ -145,6 +146,10 @@ export default function CheckoutPage() {
           <label className="text-sm text-white/70 sm:col-span-2">
             Email <span className="text-white/40">(order confirmation and tracking)</span>
             <input required type="email" autoComplete="email" value={f.email} onChange={set("email")} className={field} />
+          </label>
+          <label className="sm:col-span-2 flex cursor-pointer items-start gap-2 text-sm text-white/70">
+            <input type="checkbox" checked={remind} onChange={(e) => setRemind(e.target.checked)} className="mt-1 accent-[#e8394b]" />
+            <span>If my payment doesn&apos;t go through, email me one reminder.</span>
           </label>
         </fieldset>
         <fieldset className="grid gap-3 rounded-3xl border border-white/10 bg-white/[.03] p-5 sm:grid-cols-2">
