@@ -119,10 +119,10 @@ These were checked and should not be changed without a reason:
 7. **Admin endpoints protected server-side?** Yes (see section 2).
 8. **Scheduled jobs authenticated?** `/api/cron/daily` and `/api/cron/reel` require `Bearer $CRON_SECRET` and refuse in production without it. `/health/api/cron/daily` runs without the secret but is rate-limited to once every 6 hours. Whether `CRON_SECRET` is set in Vercel is NOT VERIFIED.
 9. **Marketing suppressed for opted-out recipients?** WhatsApp marketing kinds are cancelled for numbers in `whatsapp_optouts` at send time. Email not audited in this pass.
-10. **Attribution?** Not covered.
+10. **Attribution?** Before this branch, UTM tags were added to outgoing links but never read back: no lead or order recorded where it came from, campaign revenue ignored supplement and book orders and refunds, and `/health/admin/earning` and the public `/health/api/earn/stats` showed invented figures ("1247 users × ₹199"). Fixed in the second round; see the implementation report.
 11. **Behaviour when PostgreSQL or Razorpay is down?** Order creation returns 502 or 503 with a WhatsApp fallback message; verify routes return "pending" after a valid signature so the buyer isn't told the payment failed; the webhook answers 500 so Razorpay retries; reconciliation skips Razorpay errors per order.
 12. **Missing migrations, stale env vars?** All migrations apply cleanly in order. The new migration must be applied before this code is deployed (see the operations runbook).
 
 ## 5. Not covered in this pass
 
-Phases 3 to 8 and 12 of the brief: sales pipeline, campaign attribution and dashboards, WhatsApp and email automation beyond the opt-out check above, abandoned-checkout recovery, post-purchase retention, revenue and profit reporting, and UX. Lead stages, trial follow-ups and the funnel scoreboard (`src/lib/growth/leads.ts`, `src/app/(health)/health/api/earn/stats/route.ts`) are being changed in a separate thread and were left alone here.
+In the first pass, phases 3 to 8 and 12 were not covered. The second round added attribution, real revenue reporting and supplement checkout reminders. Still not covered: post-purchase retention, profit reporting (no cost data exists), WhatsApp checkout reminders and UX. Lead stages, trial follow-ups and the funnel scoreboard are in a separate pull request.

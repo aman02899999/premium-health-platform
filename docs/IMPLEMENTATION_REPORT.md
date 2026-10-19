@@ -1,4 +1,4 @@
-# Implementation report: payment and order reliability
+# Implementation report: payments, attribution and revenue reporting
 
 Branch `claude/audit-payment-hardening-zv4ko2`. Findings referenced as F1 to F13 are in
 [ENGINEERING_AUDIT.md](ENGINEERING_AUDIT.md).
@@ -21,8 +21,26 @@ PRODUCTION VERIFIED: Razorpay was replaced by built events and a stubbed API, an
 | Malformed signed webhook body returns 400 | F6 | IMPLEMENTED, TESTED |
 | Webhook says in the log when `RAZORPAY_WEBHOOK_SECRET` is missing | | IMPLEMENTED, TESTED |
 | F7 to F13 | | Not changed; see the audit for why and what to do |
+| First- and last-touch attribution cookie (`rfc_attr`), stored once on leads and all four order tables | Phase 4 | IMPLEMENTED, TESTED (unit and real Postgres); not clicked through in a browser |
+| Campaign results count supplement and book orders, net of refunds | Phase 4 | IMPLEMENTED, TESTED |
+| `/health/admin/earning`: real collected, refunded and net revenue, conversion and channel tables; fabricated numbers removed | Phases 4, 9 | IMPLEMENTED, type-checked, built and query-tested; page not opened in a browser |
+| `/health/api/earn/stats` admin-only, real figures (it was public and returned invented numbers) | Phase 9, security | IMPLEMENTED, built |
+| Checkout reminder email for unpaid supplement orders (consent, stock and cancellation checks) | Phase 6 | IMPLEMENTED, TESTED (real Postgres) |
 
 ## Files changed
+
+Second round (attribution, revenue, supplement reminders):
+
+- `supabase/migrations/20261019150000_attribution.sql`: nullable `attribution jsonb` (size-capped) on `leads` and the four order tables. Additive only.
+- `src/lib/attribution.ts`, `src/components/ui/AttributionTracker.tsx` (in the gym layout), `src/lib/attribution-store.ts`: cookie, re-validation on the server, one-line save after each lead or order insert.
+- `src/lib/growth/campaigns.ts`: campaign revenue unions all four order tables, net of refunds.
+- `src/lib/revenue/report.ts`, `src/health/components/earning/RevenueDashboard.tsx`, `src/app/(health)/health/admin/earning/page.tsx`, `src/app/(health)/health/api/earn/stats/route.ts`; `EarningCharts.tsx` (demo data) deleted.
+- `src/lib/growth/daily.ts`, `src/lib/growth/sales-emails.ts`: supplement orders in the checkout reminder.
+- `/privacy`: describes the attribution cookie.
+- Tests: `src/lib/attribution.test.ts`, `src/lib/revenue/report.integration.test.ts`, additions to `campaigns.integration.test.ts`, `sales.integration.test.ts`, `sales.test.ts`.
+
+First round (payments):
+
 
 New:
 
@@ -98,9 +116,9 @@ This deletes data, so it needs a backup and the owner's approval first.
 
 ## Outstanding
 
-- Apply the migration in Supabase **before** deploying this code (the new queries read the new columns).
+- Apply both migrations in Supabase **before** deploying this code (the new queries read the new columns).
 - Add `refund.processed` and `payment.dispute.created` to the Razorpay webhook's events.
 - Confirm in Razorpay that payments are captured automatically (F8).
 - Then test on a preview deployment with Razorpay test keys: one paid order, one refund, one webhook resend from the Razorpay dashboard.
 - Upgrade `next` to 16.4.2 in its own PR (F12).
-- Phases 3 to 8 and 12 of the brief have not been started in this branch.
+- Not started: supplement stock reservation (F7), post-purchase retention, WhatsApp checkout reminders (no approved template and no recorded WhatsApp marketing consent at checkout, so email only), recording ad spend and product costs so CAC, ROAS and profit can be computed.

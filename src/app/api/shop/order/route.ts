@@ -3,6 +3,7 @@ import { orderNumber, parseBuyer, parseCart } from "@/lib/shop/checkout";
 import { quoteCart } from "@/lib/shop/pricing";
 import { currentCustomer, getCatalog } from "@/lib/shop/server";
 import { insertOrder } from "@/lib/shop/store";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
 export const dynamic = "force-dynamic";
@@ -51,6 +52,7 @@ export async function POST(req: Request) {
       shipping: quote.shipping,
       total: quote.total,
     });
+    await attributeFromRequest(req, "shop", rzp.id);
     return NextResponse.json({
       number,
       orderId: rzp.id,
