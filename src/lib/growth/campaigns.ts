@@ -80,7 +80,11 @@ export async function recipients(segment: SegmentId, today: string): Promise<Rec
   if (segment === "expiring") parts.push(await m(`expires_on between $1 and $2`, [today, addDays(today, 30)]));
   if (want("ex-recent")) parts.push(await m(`expires_on < $1 and expires_on >= $2`, [today, addDays(today, -90)]));
   if (want("ex-old")) parts.push(await m(`expires_on < $1`, [addDays(today, -90)]));
-  if (want("imported")) parts.push((await pool.query<Recipient>(`select name, phone, email from public.audience_contacts order by created_at`)).rows);
+  // Someone imported as a contact and later added to the member list belongs to the member segments.
+  if (want("imported"))
+    parts.push(
+      (await pool.query<Recipient>(`select a.name, a.phone, a.email from public.audience_contacts a where a.phone is null or not exists (select 1 from public.members m where m.phone = a.phone) order by a.created_at`)).rows,
+    );
   if (want("leads"))
     parts.push(
       (

@@ -62,7 +62,8 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await pool.query(`insert into public.audience_contacts (name, phone) values ('Imported', '9000000015'), ('Same As Old Ex', '9000000014')`);
     await pool.query(`insert into public.leads (name, phone, source, status) values ('Lead', '90000 00016', 'website', 'new'), ('Joined Lead', '9000000011', 'website', 'new')`);
     const counts = Object.fromEntries((await cm.segmentCounts(TODAY)).map((s) => [s.id, s.total]));
-    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 2, leads: 1, everyone: 6 });
+    // "Same As Old Ex" is on the member list, so only the member segments count them.
+    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 1, leads: 1, everyone: 6 });
     const everyone = await cm.recipients("everyone", TODAY);
     expect(everyone.map((r) => r.phone).sort()).toEqual(["9000000011", "9000000012", "9000000013", "9000000014", "9000000015", "9000000016"]);
   });
@@ -120,5 +121,43 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await pool.query(`update public.message_outbox set created_at = now() - interval '31 days'`);
     expect(await cm.runRecurringCampaigns("2026-12-17")).toEqual({ runs: 0, queued: 0 });
     expect((await cm.listCampaigns())[0]).toMatchObject({ active: false, nextRun: null });
+  });
+
+  it("sends receipts before promotions and holds WhatsApp promotions at the daily cap", async () => {
+    const outbox = await import("./outbox");
+    const q = (kind: string, to: string, key: string, minsAgo: number) =>
+      pool.query(`insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, created_at) values ('whatsapp', $1, $2, 'x', 'tpl', $3, now() - make_interval(mins => $4))`, [to, kind, key, minsAgo]);
+    process.env.WHATSAPP_MARKETING_DAILY_CAP = "2";
+    try {
+      // Three promotions queued first, then a payment receipt.
+      await q("offer-broadcast", "919000000051", "p1", 30);
+      await q("offer-broadcast", "919000000052", "p2", 29);
+      await q("offer-broadcast", "919000000053", "p3", 28);
+      await q("welcome", "919000000054", "w1", 1);
+      const r = await outbox.dispatch(10);
+      expect(r).toMatchObject({ sent: 3, failed: 0, marketingHeld: true });
+      expect(sent.map((x) => x.to)).toEqual(["919000000054", "919000000051", "919000000052"]);
+      const { rows } = await pool.query(`select dedupe_key, status from public.message_outbox order by dedupe_key`);
+      expect(rows).toEqual([
+        { dedupe_key: "p1", status: "sent" },
+        { dedupe_key: "p2", status: "sent" },
+        { dedupe_key: "p3", status: "pending" }, // tomorrow's run
+        { dedupe_key: "w1", status: "sent" },
+      ]);
+      // The cap counts the last 24 hours, so a second run today still holds it.
+      expect(await outbox.dispatch(10)).toMatchObject({ sent: 0 });
+    } finally {
+      delete process.env.WHATSAPP_MARKETING_DAILY_CAP;
+    }
+  });
+
+  it("an imported contact who later goes on the member list leaves the imported segment", async () => {
+    const sheet = toContacts(readCsv("Name,Mobile\nOld One,9000000061\nStill Contact,9000000062\n"));
+    if (typeof sheet === "string") throw new Error(sheet);
+    await cm.importContacts(sheet.contacts, { tag: "", status: "past" }, true);
+    await member("Old One", "9000000061", "2026-08-01");
+    const imported = await cm.recipients("imported", TODAY);
+    expect(imported.map((r) => r.phone)).toEqual(["9000000062"]);
+    expect((await cm.recipients("ex-recent", TODAY)).map((r) => r.phone)).toEqual(["9000000061"]);
   });
 });

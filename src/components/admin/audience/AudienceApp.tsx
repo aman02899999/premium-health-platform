@@ -6,7 +6,8 @@ import type { CampaignRow } from "@/lib/growth/campaigns";
 
 type Segment = { id: string; label: string; hint: string; total: number; whatsapp: number; email: number };
 type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; links: { id: string; label: string; whatsapp: boolean }[] };
-type Preview = { committed: boolean; columns: Record<string, string>; plan: { add: number; update: number; members: number; total: number }; errors: { row: number; message: string }[]; errorCount: number };
+type MemberPlan = { add: number; update: number; unchanged: number; remindSoon: number; active: number; expiring: number; lapsedRecent: number; lapsedOld: number };
+type Preview = { committed: boolean; columns: Record<string, string>; plan: { add: number; update: number; members: number; total: number }; members: MemberPlan | null; errors: { row: number; message: string }[]; errorCount: number };
 
 const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-4";
 const input = "w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-emerald-400/60 focus:outline-none";
@@ -51,7 +52,7 @@ function ImportCard({ onDone }: { onDone: () => void }) {
       <h2 className="flex items-center gap-2 font-display text-lg">
         <Upload className="h-5 w-5 text-emerald-300" /> Import old members or contacts
       </h2>
-      <p className="mt-1 text-sm text-white/60">A CSV or Excel sheet with columns like <b>Name</b>, <b>Mobile</b> and <b>Email</b>. People already on your member list are skipped. Nothing is sent when you import.</p>
+      <p className="mt-1 text-sm text-white/60">A CSV or Excel sheet with columns like <b>Name</b>, <b>Mobile</b> and <b>Email</b>. Add an <b>End date / Expiry</b> column (or <b>Start date</b> + <b>Duration</b>) and each person is sorted automatically: active members go on the member list with renewal reminders, lapsed ones into the &ldquo;left in the last 3 months&rdquo; and &ldquo;left over 3 months ago&rdquo; segments. Nothing is sent when you import.</p>
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         <input type="file" accept=".csv,.xlsx,.xls" onChange={(e) => (setFile(e.target.files?.[0] ?? null), setPreview(null))} className="text-sm text-white/70 file:mr-3 file:rounded-lg file:border-0 file:bg-white/10 file:px-3 file:py-2 file:text-white sm:col-span-3" />
         <input value={tag} onChange={(e) => setTag(e.target.value)} placeholder="List name, e.g. Members 2023" maxLength={60} className={input} />
@@ -66,8 +67,20 @@ function ImportCard({ onDone }: { onDone: () => void }) {
       </div>
       {preview && (
         <div className="mt-3 rounded-xl bg-white/5 p-3 text-sm">
+          {preview.members && (
+            <div className="mb-2 rounded-lg bg-emerald-500/10 p-2.5">
+              <p>
+                {preview.committed ? "✅ Member list: " : "Rows with dates → member list: "}
+                <b>{preview.members.add}</b> new · <b>{preview.members.update}</b> renewed later · {preview.members.unchanged} unchanged
+              </p>
+              <p className="mt-1 text-xs text-white/70">
+                <b>{preview.members.active}</b> active today ({preview.members.expiring} expiring in 30 days) · <b>{preview.members.lapsedRecent}</b> left in the last 3 months · <b>{preview.members.lapsedOld}</b> left earlier
+                {preview.members.remindSoon > 0 && ` · ${preview.members.remindSoon} get a renewal reminder from the next daily run`}
+              </p>
+            </div>
+          )}
           <p>
-            {preview.committed ? "✅ Imported: " : "Found: "}
+            {preview.committed ? "✅ Contacts: " : preview.members ? "Rows without dates → contacts: " : "Found: "}
             <b>{preview.plan.add}</b> new · <b>{preview.plan.update}</b> updated · {preview.plan.members} already members (skipped) · {preview.errorCount} rows with problems
           </p>
           <p className="mt-1 text-xs text-white/50">Columns read: {Object.entries(preview.columns).map(([k, v]) => `${k} ← "${v}"`).join(", ")}</p>
@@ -80,9 +93,9 @@ function ImportCard({ onDone }: { onDone: () => void }) {
               ))}
             </ul>
           )}
-          {!preview.committed && preview.plan.add + preview.plan.update > 0 && (
+          {!preview.committed && preview.plan.add + preview.plan.update + (preview.members ? preview.members.add + preview.members.update : 0) > 0 && (
             <button disabled={busy} onClick={() => run(true)} className={`${btn} mt-3 bg-emerald-500`}>
-              Import {preview.plan.add + preview.plan.update} contacts
+              Import {preview.plan.add + preview.plan.update + (preview.members ? preview.members.add + preview.members.update : 0)} people
             </button>
           )}
         </div>
