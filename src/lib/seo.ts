@@ -79,6 +79,12 @@ export function localBusinessJsonLd(c: SiteContent) {
     // No aggregateRating: Google treats a business rating copied from Maps onto its own site as
     // self-serving review markup (no stars shown, manual-action risk). The real stars live on Maps.
     sameAs: [`https://www.instagram.com/${b.instagram}/`, b.googleMapsUrl].filter(Boolean),
+    slogan: b.tagline,
+    // What the gym is known for and who coaches there: assistants quote these when asked
+    // "who are the trainers" or "does it do personal training".
+    knowsAbout: c.programs.map((p) => p.title),
+    ...(c.trainers.find((t) => /founder/i.test(t.role)) ? { founder: personJsonLd(c.trainers.find((t) => /founder/i.test(t.role))!) } : {}),
+    ...(c.trainers.length ? { employee: c.trainers.map(personJsonLd) } : {}),
     amenityFeature: ["Air conditioning", "CCTV", "Certified trainers", "Emergency exit", "Lockers"].map((name) => ({
       "@type": "LocationFeatureSpecification",
       name,
@@ -88,6 +94,22 @@ export function localBusinessJsonLd(c: SiteContent) {
       { "@type": "Offer", name: `${p.name} membership (${p.duration})`, price: p.price, priceCurrency: "INR", ...(p.offer ? { priceValidUntil: p.offer.endsOn } : {}) },
       ...(p.couplePrice ? [{ "@type": "Offer", name: `${p.name} couple membership (${p.offer?.standardDuration ?? p.duration})`, price: p.couplePrice, priceCurrency: "INR" }] : []),
     ]),
+  };
+}
+
+/** A coach, with only the credentials the admin entered (never invented). */
+export function personJsonLd(t: SiteContent["trainers"][number]) {
+  const creds = (t.credentials ?? []).map((x) => x.trim()).filter(Boolean);
+  return {
+    "@type": "Person",
+    name: t.name,
+    jobTitle: t.role,
+    ...(t.bio ? { description: t.bio } : {}),
+    ...(t.image ? { image: /^https?:\/\//.test(t.image) ? t.image : absoluteUrl(t.image) } : {}),
+    ...(t.specialties.length ? { knowsAbout: t.specialties } : {}),
+    ...(creds.length ? { hasCredential: creds.map((name) => ({ "@type": "EducationalOccupationalCredential", name })) } : {}),
+    ...(t.instagram ? { sameAs: [`https://www.instagram.com/${t.instagram.replace(/^@/, "")}/`] } : {}),
+    worksFor: { "@id": `${SITE_URL}/#gym` },
   };
 }
 
