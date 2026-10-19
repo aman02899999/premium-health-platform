@@ -15,6 +15,7 @@ export function validateContent(input: unknown): { ok: true; content: SiteConten
   for (const key of ARRAY_KEYS) {
     if (!Array.isArray(c[key])) return { ok: false, error: `"${key}" must be a list` };
   }
+  if (c.caseStudies !== undefined && !Array.isArray(c.caseStudies)) return { ok: false, error: '"caseStudies" must be a list' };
   const posts = c.posts as { slug?: unknown; title?: unknown }[];
   const slugs = new Set<string>();
   for (const post of posts) {

@@ -66,7 +66,7 @@ export function activeOffer(today: string, offers: Offer[] = OFFERS): Offer | nu
 }
 
 /** A plan as shown and sold today. `standardDuration` is what couples get (no bonus). */
-export type OfferPlan = Plan & { offer?: { title: string; gets: string; endsOn: string; standardPrice: number; standardDuration: string } };
+export type OfferPlan = Plan & { offer?: { title: string; gets: string; endsOn: string; standardPrice: number; standardDuration: string; perks?: string[] } };
 
 export function applyOffer(plans: Plan[], today: string, offers: Offer[] = OFFERS): OfferPlan[] {
   const o = activeOffer(today, offers);
@@ -83,7 +83,7 @@ export function applyOffer(plans: Plan[], today: string, offers: Offer[] = OFFER
             duration: `${p.duration} + ${po.bonus}`,
             originalPrice: po.showStandard && po.price < p.price ? p.price : 0,
             perks: [...po.perks, ...p.perks],
-            offer: { title: o.title, gets: po.gets, endsOn: o.endsOn, standardPrice: p.price, standardDuration: p.duration },
+            offer: { title: o.title, gets: po.gets, endsOn: o.endsOn, standardPrice: p.price, standardDuration: p.duration, perks: po.perks },
           }
         : p,
     );

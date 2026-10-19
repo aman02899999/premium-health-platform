@@ -70,6 +70,33 @@ export type Trainer = {
   image: string;
   specialties: string[];
   instagram: string;
+  /** Certifications and qualifications, one per line, e.g. "ACE Certified Personal Trainer (2016)". */
+  credentials?: string[];
+  /** Photo or scan of a certificate, shown as evidence on the Why Royal Fitness page. */
+  certificateImage?: string;
+};
+
+/**
+ * A member's real before/after numbers, entered by the admin from the gym's own records and
+ * published only with the member's consent. 0 means "not recorded".
+ */
+export type CaseStudy = {
+  id: string;
+  name: string; // first name + initial, e.g. "Rahul S."
+  program: string;
+  weeks: number;
+  startWeight: number;
+  endWeight: number;
+  startWaist: number;
+  endWaist: number;
+  liftName: string;
+  startLift: number;
+  endLift: number;
+  story: string;
+  beforeImage: string;
+  afterImage: string;
+  verifiedOn: string; // ISO date the end measurements were taken
+  consent: boolean;
 };
 
 export type GalleryItem = { id: string; title: string; caption: string; image: string };
@@ -115,6 +142,7 @@ export type SiteContent = {
   trainers: Trainer[];
   gallery: GalleryItem[];
   testimonials: Testimonial[];
+  caseStudies: CaseStudy[];
   faqs: Faq[];
   posts: BlogPost[];
   seo: Seo;

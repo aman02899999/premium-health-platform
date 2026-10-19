@@ -51,6 +51,7 @@ const TABS = [
   { id: "trainers", label: "Trainers", icon: Users },
   { id: "gallery", label: "Gallery", icon: ImageIcon },
   { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote },
+  { id: "results", label: "Member Results", icon: TrendingUp },
   { id: "faqs", label: "FAQs", icon: HelpCircle },
   { id: "blog", label: "Blog", icon: FileText },
   { id: "seo", label: "SEO & Theme", icon: Search },
@@ -368,7 +369,7 @@ export function AdminApp({ storage }: { storage: string }) {
                 items={content.trainers}
                 titleKey="name"
                 onChange={(v) => set("trainers", v)}
-                create={() => ({ id: uid(), name: "New trainer", role: "Certified Trainer", bio: "", image: "", specialties: [], instagram: "" })}
+                create={() => ({ id: uid(), name: "New trainer", role: "Trainer", bio: "", image: "", specialties: [], instagram: "", credentials: [], certificateImage: "" })}
                 addLabel="Add trainer"
                 fields={[
                   { key: "name", label: "Name" },
@@ -377,6 +378,8 @@ export function AdminApp({ storage }: { storage: string }) {
                   { key: "image", label: "Photo", type: "image" },
                   { key: "specialties", label: "Specialties (one per line)", type: "lines" },
                   { key: "instagram", label: "Instagram handle" },
+                  { key: "credentials", label: "Certifications & qualifications (one per line)", type: "lines", help: "Only ones the coach really holds, e.g. \"ACE Certified Personal Trainer (2016)\". Shown on Why Royal Fitness." },
+                  { key: "certificateImage", label: "Certificate photo (optional)", type: "image" },
                 ]}
               />
             </Card>
@@ -412,6 +415,38 @@ export function AdminApp({ storage }: { storage: string }) {
                   { key: "rating", label: "Stars (1–5)", type: "number" },
                   { key: "result", label: "Result (e.g. Lost 12 kg in 4 months)", wide: true },
                   { key: "text", label: "Review text", type: "textarea" },
+                ]}
+              />
+            </Card>
+          )}
+
+          {tab === "results" && (
+            <Card
+              title="Member results"
+              help="Real before/after numbers from your own records. A result appears on Why Royal Fitness (and in the proof-of-results PDF) only after you tick consent — get the member's permission in writing or on WhatsApp first. Use first name + initial. Leave a number at 0 if it wasn't measured."
+            >
+              <ListEditor
+                items={content.caseStudies}
+                titleKey="name"
+                onChange={(v) => set("caseStudies", v)}
+                create={() => ({ id: uid(), name: "", program: "", weeks: 12, startWeight: 0, endWeight: 0, startWaist: 0, endWaist: 0, liftName: "", startLift: 0, endLift: 0, story: "", beforeImage: "", afterImage: "", verifiedOn: "", consent: false })}
+                addLabel="Add member result"
+                fields={[
+                  { key: "name", label: "Name (e.g. Rahul S.)" },
+                  { key: "program", label: "Program (e.g. Fat Loss)" },
+                  { key: "weeks", label: "Weeks between measurements", type: "number" },
+                  { key: "verifiedOn", label: "Date of end measurement", type: "date" },
+                  { key: "startWeight", label: "Start weight (kg)", type: "number" },
+                  { key: "endWeight", label: "End weight (kg)", type: "number" },
+                  { key: "startWaist", label: "Start waist (cm)", type: "number" },
+                  { key: "endWaist", label: "End waist (cm)", type: "number" },
+                  { key: "liftName", label: "Tracked lift (e.g. Squat)" },
+                  { key: "startLift", label: "Start lift (kg)", type: "number" },
+                  { key: "endLift", label: "End lift (kg)", type: "number" },
+                  { key: "beforeImage", label: "Before photo", type: "image" },
+                  { key: "afterImage", label: "After photo", type: "image" },
+                  { key: "story", label: "Short story in their words", type: "textarea" },
+                  { key: "consent", label: "Member agreed to publish these numbers and photos", type: "bool" },
                 ]}
               />
             </Card>

@@ -8,6 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { InstagramIcon } from "@/components/ui/BrandIcons";
+import { PROGRAM_GUIDES } from "@/lib/content/program-guides";
 
 export function ProgramGrid({ programs }: { programs: Program[] }) {
   return (
@@ -35,6 +36,11 @@ export function ProgramGrid({ programs }: { programs: Program[] }) {
                     </li>
                   ))}
                 </ul>
+                {PROGRAM_GUIDES[p.id] && (
+                  <Link href={`/programs/${p.id}`} className="mt-auto inline-flex items-center gap-1 pt-5 text-sm font-semibold text-brand">
+                    Full guide &amp; sample weeks <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )}
               </div>
             </article>
           </TiltCard>
