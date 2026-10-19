@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AlertTriangle, ArrowLeft, Bot, CalendarClock, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
-import { biggestLeak, funnelTotals, pct, sourceName, type FunnelRow } from "@/lib/growth/funnel";
+import { biggestLeak, funnelLines, funnelTotals, pct, sourceName, type FunnelRow } from "@/lib/growth/funnel";
 import type { DietIntake } from "@/lib/growth/diet-intake";
 import { DIET_PLANS } from "@/lib/growth/config";
 import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
@@ -785,7 +785,17 @@ function FunnelBoard({ rows }: { rows: FunnelRow[] }) {
   return (
     <div className="rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10">
       <p className="text-sm font-bold">Funnel, last 30 days</p>
-      <div className="mt-2 overflow-x-auto">
+      {/* Phones: one line per source, so Came and Joined don't hide off-screen. */}
+      <ul className="mt-2 space-y-1 text-xs text-white/75 sm:hidden">
+        {funnelLines(rows)
+          .filter((line) => !line.startsWith("Biggest leak"))
+          .map((line, i) => (
+            <li key={line} className={i === 0 ? "font-bold text-white" : ""}>
+              {line}
+            </li>
+          ))}
+      </ul>
+      <div className="mt-2 hidden overflow-x-auto sm:block">
         <table className="w-full min-w-[520px] text-left text-xs">
           <thead className="text-white/45">
             <tr>
