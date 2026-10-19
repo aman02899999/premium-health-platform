@@ -37,6 +37,24 @@ export function whatsappHref(b: Business, message = `Hi ${b.name}, I'd like to b
   return `https://wa.me/${b.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 }
 
+/** "919266840289" → "+91 92668 40289" (Indian mobiles); other numbers as "+<digits>". */
+export function formatWhatsApp(digits: string) {
+  const d = digits.replace(/\D/g, "");
+  return /^91\d{10}$/.test(d) ? `+91 ${d.slice(2, 7)} ${d.slice(7)}` : `+${d}`;
+}
+
+/**
+ * The number people call and chat with a person on (the WhatsApp Business app). The API number
+ * (business.whatsapp) sends and auto-replies; every message it sends points here for a human.
+ */
+export const liveDigits = (phone: string) => {
+  const d = phone.replace(/\D/g, "");
+  return d.length === 10 ? `91${d}` : d;
+};
+
+/** Click-to-chat on the live number, with a first message already typed. */
+export const liveChatUrl = (phone: string, text: string) => `https://wa.me/${liveDigits(phone)}?text=${encodeURIComponent(text)}`;
+
 export const instagramHref = (handle: string) => `https://www.instagram.com/${handle.replace(/^@/, "")}/`;
 
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;

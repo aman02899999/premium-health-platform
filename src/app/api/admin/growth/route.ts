@@ -13,6 +13,9 @@ import { storageConfigured } from "@/lib/growth/storage";
 import { todayIST } from "@/lib/growth/dates";
 import { SITE_URL } from "@/lib/site";
 import { runReels, socialStatus } from "@/lib/social/automation";
+import { businessAppKit } from "@/lib/social/app-kit";
+import { getContent } from "@/lib/content/store";
+import { applyOffer } from "@/lib/offers";
 import { listClientOrders, rejectVersion, updateAccess } from "@/lib/growth/client-plans";
 import { lastDailyRun, recordDailyRun, setupChecklist } from "@/lib/growth/system-status";
 
@@ -39,7 +42,8 @@ export async function GET() {
       // The rest of the dashboard still loads if the social tables aren't migrated yet.
       socialStatus().catch(() => null),
     ]);
-    const lastRun = await lastDailyRun();
+    const [lastRun, content] = await Promise.all([lastDailyRun(), getContent()]);
+    const appKit = businessAppKit(content.business, applyOffer(content.plans, todayIST()), SITE_URL);
     return NextResponse.json({
       today: todayIST(),
       siteUrl: SITE_URL,
@@ -51,6 +55,7 @@ export async function GET() {
       rewards,
       unapplied,
       social,
+      appKit,
       system: { lastRun, recent: !!lastRun && Date.now() - Date.parse(lastRun.at) < 26 * 3_600_000, setup: setupChecklist() },
     });
   } catch (err) {

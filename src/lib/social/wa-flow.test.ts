@@ -29,6 +29,11 @@ describe("WhatsApp trial funnel", () => {
     for (const text of ["No", "not interested", "nahi chahiye", "wrong number", "who is this?"]) expect(flowAction({ text }, false, true), text).toBeNull();
   });
 
+  it("replies point to the number a person answers; fees link to a chat about the offer", () => {
+    for (const a of ["menu", "price", "trial", "visit", "coach"] as FlowAction[]) expect(flowReply(a, ctx)[0].body, a).toContain(DEFAULT_CONTENT.business.phone);
+    expect(flowReply("price", ctx)[0].body).toContain("https://wa.me/918851830081?text=");
+  });
+
   it("every step fits WhatsApp's limits", () => {
     const actions: FlowAction[] = ["diet", "trial7", "plans", "coach", "menu", "price", "trial", "visit"];
     for (const a of actions) {
