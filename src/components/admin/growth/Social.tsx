@@ -1,6 +1,8 @@
 "use client";
 
-import { Check, Clapperboard, ExternalLink, X } from "lucide-react";
+import { useState } from "react";
+import { Check, Clapperboard, Copy, ExternalLink, X } from "lucide-react";
+import type { KitText } from "@/lib/social/app-kit";
 import type { SocialStatus } from "@/lib/social/automation";
 
 const INTENT: Record<string, string> = { price: "Fees", diet: "Diet", trial: "Trial", visit: "Timing / address", shop: "Shop", hello: "Greeting", other: "Other" };
@@ -14,13 +16,52 @@ function Chip({ on, label }: { on: boolean; label: string }) {
   );
 }
 
+/** Greeting, away message and quick replies for the WhatsApp Business app, each with a copy button. */
+function AppKit({ kit }: { kit: KitText[] }) {
+  const [copied, setCopied] = useState("");
+  const copy = async (k: KitText) => {
+    try {
+      await navigator.clipboard.writeText(k.text);
+      setCopied(k.id);
+      setTimeout(() => setCopied(""), 1500);
+    } catch {
+      setCopied("");
+    }
+  };
+  return (
+    <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+      <h3 className="font-display text-lg text-white">WhatsApp Business app kit</h3>
+      <p className="mt-1 text-sm text-white/60">
+        For the number you call and chat on. The app can&apos;t be run by the website, so paste these into its own automation (WhatsApp Business → Settings → Business tools). Prices follow your plans and offer; copy them again when the offer changes.
+      </p>
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        {kit.map((k) => (
+          <article key={k.id} className="flex flex-col rounded-xl border border-white/10 bg-black/20 p-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p className="text-sm font-semibold text-white">{k.title}</p>
+                <p className="text-xs text-white/45">{k.where}</p>
+              </div>
+              <button type="button" onClick={() => copy(k)} className="inline-flex shrink-0 items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white hover:bg-white/20">
+                {copied === k.id ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />} {copied === k.id ? "Copied" : "Copy"}
+              </button>
+            </div>
+            <pre className="mt-2 whitespace-pre-wrap break-words font-sans text-xs text-white/75">{k.text}</pre>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 /** Instagram auto-post and the WhatsApp / Instagram auto-replies: what is on, what was posted, what came in. */
-export function Social({ status, siteUrl, busy = false, onPostReel }: { status: SocialStatus | null; siteUrl: string; busy?: boolean; onPostReel?: () => void }) {
+export function Social({ status, siteUrl, appKit, busy = false, onPostReel }: { status: SocialStatus | null; siteUrl: string; appKit?: KitText[]; busy?: boolean; onPostReel?: () => void }) {
   if (!status) return <p className="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-100">Apply the latest database migration (social automation) to turn this on.</p>;
   const today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
   const allOn = status.instagram && status.facebook && status.whatsapp && status.webhook;
   return (
     <div className="space-y-6">
+      {appKit && appKit.length > 0 && <AppKit kit={appKit} />}
       <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
         <div className="flex flex-wrap gap-2">
           <Chip on={status.instagram} label="Instagram Reel + Story" />

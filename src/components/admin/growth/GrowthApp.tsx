@@ -8,6 +8,7 @@ import type { DietIntake } from "@/lib/growth/diet-intake";
 import { DIET_PLANS } from "@/lib/growth/config";
 import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import type { SocialStatus } from "@/lib/social/automation";
+import type { KitText } from "@/lib/social/app-kit";
 import { Social } from "./Social";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
@@ -17,7 +18,7 @@ type Msg = { id: string; createdAt: string; channel: string; to: string; toName:
 type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null ; userId?: string | null; extraGenerations?: number; accessUntil?: string | null; revokedAt?: string | null; versions?: { id: string; version: number; createdAt: string; source: string; status: "draft" | "sent" | "rejected" }[]; entitlement?: { allowed: number; used: number; remaining: number; accessUntil: string; nextAt: string | null; reason: string } };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
-type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null; system?: { lastRun: { at: string; source: string; ok: boolean; summary: string } | null; recent: boolean; setup: { key: string; label: string; on: boolean; why: string }[] } };
+type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null; appKit?: KitText[]; system?: { lastRun: { at: string; source: string; ok: boolean; summary: string } | null; recent: boolean; setup: { key: string; label: string; on: boolean; why: string }[] } };
 type Tab = "today" | "marketing" | "social" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
@@ -162,6 +163,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
             {tab === "social" && (
               <Social
                 status={data.social}
+                appKit={data.appKit}
                 siteUrl={data.siteUrl}
                 busy={busy}
                 onPostReel={async () => {

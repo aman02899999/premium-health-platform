@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { readCsv } from "./sheet";
 import { campaignDraft, campaignUrl, metaAudienceCsv, offerText, toContacts } from "./audience";
+import { emailHtml } from "./email-html";
 
 const biz = { name: "Royal Fitness Club", siteUrl: "https://x.in", coach: "Coach Aman Sharma" };
 
@@ -31,6 +32,18 @@ describe("campaign messages", () => {
     const d = campaignDraft({ ...c, channel: "email", subject: "Come back this Diwali", link: "trial" }, { name: "Neha", phone: null, email: "Neha@X.in" }, biz)!;
     expect(d).toMatchObject({ channel: "email", to: "neha@x.in", kind: "nurture-campaign", subject: "Come back this Diwali", dedupeKey: "campaign:c1:neha@x.in" });
     expect(d.body).toContain("[[CTA:Start the ₹49 trial|https://x.in/diet-chart?plan=trial&utm_source=email&utm_medium=campaign&utm_campaign=diwali-comeback#order]]");
+    // The button only renders when the CTA is the last line.
+    const html = emailHtml(d.body, { brand: "Royal Fitness Club", footer: "f", style: "newsletter" });
+    expect(html).toContain('href="https://x.in/diet-chart?plan=trial&amp;utm_source=email&amp;utm_medium=campaign&amp;utm_campaign=diwali-comeback#order"');
+    expect(html).not.toContain("[[CTA");
+  });
+  it("names the number a person answers, in WhatsApp offers and emails", () => {
+    const live = { ...biz, phone: "+91 88518 30081" };
+    const w = campaignDraft(c, { name: "Rahul Verma", phone: "9876543210", email: null }, live)!;
+    expect(w.params[2]).toBe("3 months gym + diet plan for ₹4,000. Call or WhatsApp +91 88518 30081");
+    expect(w.body).toContain("Call or WhatsApp +91 88518 30081. See details here:");
+    const e = campaignDraft({ ...c, channel: "email" }, { name: "Neha", phone: null, email: "neha@x.in" }, live)!;
+    expect(e.body).toContain("Prefer to talk? Call or WhatsApp +91 88518 30081: https://wa.me/918851830081?text=");
   });
   it("cleans offers and links", () => {
     expect(offerText("  Big\toffer \n\n now   ")).toBe("Big offer now");

@@ -164,7 +164,7 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
   const out = new Set(optedOut.rows.map((r) => r.a));
   const rec = new Set(recent.rows.map((r) => r.a));
   const content = await getContent();
-  const biz = { name: content.business.name, siteUrl: SITE_URL, coach: `Coach ${(content.trainers?.[0]?.name || "Aman Sharma").replace(/^coach\s+/i, "")}` };
+  const biz = { name: content.business.name, siteUrl: SITE_URL, phone: content.business.phone, coach: `Coach ${(content.trainers?.[0]?.name || "Aman Sharma").replace(/^coach\s+/i, "")}` };
   const input: CampaignInput = { id: run ? `${c.id}:${run}` : c.id, name: c.name, channel: c.channel, offer: c.offer, link: c.link as LinkId, subject: c.subject };
   const drafts = reachable
     .filter((_, i) => !out.has(addresses[i]) && !rec.has(addresses[i].toLowerCase()))

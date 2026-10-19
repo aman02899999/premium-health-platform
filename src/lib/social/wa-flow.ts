@@ -9,7 +9,7 @@
 //   Talk to coach → the coach takes over (and gets the usual email alert)
 //   "hi" → a menu list: diet trial, fees, free gym trial, timings
 import { DIET_CHART, DIET_PLANS, type DietPlanId } from "@/lib/growth/config";
-import { formatTime } from "@/lib/site";
+import { formatTime, liveChatUrl } from "@/lib/site";
 import { detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
 import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
@@ -85,6 +85,9 @@ const FOOD: Record<NonNullable<DietProfile["food"]>, string> = { veg: "pure veg"
 const GOAL: Record<DietProfile["goal"], string> = { "fat-loss": "Fat loss", "muscle-gain": "Muscle gain", "weight-gain": "Healthy weight gain", toning: "Toning", general: "" };
 
 export const trialUrl = (siteUrl: string) => `${siteUrl}/diet-chart?plan=${TRIAL.id}&utm_source=whatsapp&utm_medium=chat&utm_campaign=trial7#order`;
+
+/** The line every reply carries: the number a person answers (calls and the WhatsApp Business app). */
+const liveLine = (b: ReplyCtx["business"]) => `📞 Call / WhatsApp a coach: ${b.phone}`;
 
 const hours = (b: ReplyCtx["business"]) => b.hours.map((h) => `${h.label}: ${formatTime(h.open)} – ${formatTime(h.close)}`);
 const days = (b: ReplyCtx["business"]) => [...new Set(b.hours.map((h) => h.days))].join(", ");
@@ -205,6 +208,9 @@ function fees(c: ReplyCtx): WaOut {
       `✅ First session *FREE*: try before you join`,
       ``,
       `Join online: ${c.siteUrl}/membership`,
+      ``,
+      liveLine(c.business),
+      `💬 Get the offer from a coach: ${liveChatUrl(c.business.phone, offer ? `Hi, I want the ${offer.title}` : "Hi, I'd like to join the gym")}`,
     ]
       .filter((l) => l !== null)
       .join("\n"),
@@ -229,6 +235,7 @@ function gymTrial(c: ReplyCtx): WaOut {
       `📅 ${days(b)}`,
       ``,
       `👉 Reply with a *day & time* and we'll book you in.`,
+      liveLine(b),
     ].join("\n"),
     footer: FOOTER,
     buttons: [BUTTON.location, BUTTON.fees, BUTTON.coach],
@@ -238,7 +245,7 @@ function gymTrial(c: ReplyCtx): WaOut {
 function visit(c: ReplyCtx): WaOut {
   const b = c.business;
   const a = b.address;
-  const body = [`📍 *${b.name}*`, `${a.street}, ${a.locality}, ${a.city} ${a.postalCode}`, ``, `🕐 *Timings* (${days(b)})`, ...hours(b), ``, `📞 ${b.phone}`].join("\n");
+  const body = [`📍 *${b.name}*`, `${a.street}, ${a.locality}, ${a.city} ${a.postalCode}`, ``, `🕐 *Timings* (${days(b)})`, ...hours(b), ``, liveLine(b)].join("\n");
   return b.googleMapsUrl ? { kind: "cta", body, footer: FOOTER, label: "Open in Maps", url: b.googleMapsUrl } : { kind: "buttons", body, footer: FOOTER, buttons: [BUTTON.gymTrial, BUTTON.coach] };
 }
 
@@ -246,7 +253,7 @@ function menu(c: ReplyCtx): WaOut {
   const hi = first(c.name);
   return {
     kind: "list",
-    body: `Hi${hi ? ` ${hi}` : ""}! 👋 Welcome to *${c.business.name}*, Noida.\n\nHow can we help you today? Tap *Choose an option* below 👇`,
+    body: `Hi${hi ? ` ${hi}` : ""}! 👋 Welcome to *${c.business.name}*, Noida.\n\nHow can we help you today? Tap *Choose an option* below 👇\n\n${liveLine(c.business)}`,
     footer: "A coach also replies personally in gym hours",
     button: "Choose an option",
     rows: MENU.map(({ id, title, description }) => ({ id, title, description })),

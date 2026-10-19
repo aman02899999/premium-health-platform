@@ -1,6 +1,6 @@
 import "server-only";
 import { pool } from "@/health/db";
-import { SITE_URL, formatWhatsApp } from "@/lib/site";
+import { SITE_URL } from "@/lib/site";
 import { getContent } from "@/lib/content/store";
 import { emailHtml, emailText } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
@@ -67,12 +67,12 @@ export async function cancelPending(kindPrefix: string, refId: string): Promise<
 
 type Pending = { id: string; channel: "whatsapp" | "email"; to_address: string; to_name: string; kind: string; body: string; template: string | null; params: string[]; attempts: number; subject: string | null; attachment: string | null };
 
-/** The email footer, with the WhatsApp number the website uses (so replies reach the chat bot). */
+/** The email footer: the number people call or WhatsApp to talk to a person (the Business app line). */
 async function emailFooter(): Promise<string> {
-  const wa = await getContent()
-    .then((c) => c.business?.whatsapp ?? "")
+  const phone = await getContent()
+    .then((c) => c.business?.phone ?? "")
     .catch(() => "");
-  return `Royal Fitness Club · Gejha, Sector 93, Noida${wa ? ` · WhatsApp ${formatWhatsApp(wa)}` : ""}`;
+  return `Royal Fitness Club · Gejha, Sector 93, Noida${phone ? ` · Call / WhatsApp ${phone}` : ""}`;
 }
 const fileName = (p: string) => p.split("/").pop() || "plan.pdf";
 

@@ -3,6 +3,7 @@
 // Meta ads. The database side is in campaigns.ts.
 import { mapHeader, parsePhone, MAX_ROWS } from "./member-import";
 import type { Draft } from "./messages";
+import { liveChatUrl } from "@/lib/site";
 
 export type Contact = { row: number; name: string; phone: string | null; email: string | null };
 export type ContactError = { row: number; message: string };
@@ -90,12 +91,14 @@ const first = (name: string) => name.trim().split(/\s+/)[0] || "";
 export type CampaignInput = { id: string; name: string; channel: "whatsapp" | "email"; offer: string; link: LinkId; subject: string };
 
 /** One message per recipient, deduped per campaign so a re-run never sends twice. */
-export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: string; siteUrl: string; coach: string }): Draft | null {
+export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: string; siteUrl: string; coach: string; phone?: string }): Draft | null {
   const url = campaignUrl(biz.siteUrl, c.link, c.name, c.channel);
   const hi = first(r.name);
   if (c.channel === "whatsapp") {
     if (!r.phone) return null;
-    const params = [hi || "there", biz.name, offerText(c.offer), url];
+    // The template sends from the API number; the offer text names the line a person answers.
+    const offer = biz.phone ? `${offerText(c.offer).replace(/[.\s]+$/, "")}. Call or WhatsApp ${biz.phone}` : offerText(c.offer);
+    const params = [hi || "there", biz.name, offer, url];
     return {
       channel: "whatsapp",
       to: `91${r.phone}`,
@@ -115,7 +118,8 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
     // "nurture-" emails carry the unsubscribe link and headers, and stop after an unsubscribe.
     kind: "nurture-campaign",
     subject: (c.subject.trim() || c.name).slice(0, 120),
-    body: `Hi${hi ? ` ${hi}` : ""},\n\n${c.offer.trim()}\n\n[[CTA:${LINKS[c.link].label}|${url}]]\n\n— ${biz.coach}, ${biz.name}`,
+    // The CTA has to be the last line: that's where the email builder turns it into a button.
+    body: `Hi${hi ? ` ${hi}` : ""},\n\n${c.offer.trim()}${biz.phone ? `\n\nPrefer to talk? Call or WhatsApp ${biz.phone}: ${liveChatUrl(biz.phone, `Hi, I'd like the offer: ${c.name}`)}` : ""}\n\n— ${biz.coach}, ${biz.name}\n[[CTA:${LINKS[c.link].label}|${url}]]`,
     template: "",
     params: [],
     dedupeKey: `campaign:${c.id}:${r.email.toLowerCase()}`,
