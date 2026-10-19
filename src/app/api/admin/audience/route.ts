@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
-import { LINKS, isSegment, metaAudienceCsv, toContacts } from "@/lib/growth/audience";
+import { LINKS, isSegment, metaAudienceCsv, playbook, toContacts } from "@/lib/growth/audience";
+import { getContent } from "@/lib/content/store";
+import { applyOffer } from "@/lib/offers";
+import { planMonths } from "@/lib/content/plans";
 import { createCampaign, importContacts, importedCount, listCampaigns, recipients, segmentCounts, sendBatch, stopRepeating } from "@/lib/growth/campaigns";
 import { SheetError, readSheet } from "@/lib/growth/sheet";
 import { toCandidates } from "@/lib/growth/member-import";
@@ -31,8 +34,8 @@ export async function GET(req: Request) {
         headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="royal-fitness-${exp}-${today}.csv"`, "cache-control": "no-store" },
       });
     }
-    const [segments, campaigns, imported] = await Promise.all([segmentCounts(today), listCampaigns(), importedCount()]);
-    return NextResponse.json({ segments, campaigns, imported, links: Object.entries(LINKS).map(([id, l]) => ({ id, label: l.label, whatsapp: l.whatsapp })) });
+    const [segments, campaigns, imported, content] = await Promise.all([segmentCounts(today), listCampaigns(), importedCount(), getContent()]);
+    return NextResponse.json({ segments, campaigns, imported, playbook: playbook(applyOffer(content.plans, today), planMonths), links: Object.entries(LINKS).map(([id, l]) => ({ id, label: l.label, whatsapp: l.whatsapp })) });
   } catch (err) {
     console.error("[audience]", (err as Error).message);
     return NextResponse.json({ error: "Couldn't load the audience. Is the latest database migration applied?" }, { status: 500 });

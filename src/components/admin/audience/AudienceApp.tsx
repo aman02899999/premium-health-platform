@@ -5,7 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 import type { CampaignRow } from "@/lib/growth/campaigns";
 
 type Segment = { id: string; label: string; hint: string; total: number; whatsapp: number; email: number };
-type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; links: { id: string; label: string; whatsapp: boolean }[] };
+type Preset = { id: string; name: string; segment: string; channel: "whatsapp" | "email"; link: string; repeat: string; offer: string; subject: string; why: string };
+type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; playbook: Preset[]; links: { id: string; label: string; whatsapp: boolean }[] };
 type MemberPlan = { add: number; update: number; unchanged: number; remindSoon: number; active: number; expiring: number; lapsedRecent: number; lapsedOld: number };
 type Preview = { committed: boolean; columns: Record<string, string>; plan: { add: number; update: number; members: number; total: number }; members: MemberPlan | null; errors: { row: number; message: string }[]; errorCount: number };
 
@@ -143,6 +144,39 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
       <h2 className="flex items-center gap-2 font-display text-lg">
         <Megaphone className="h-5 w-5 text-emerald-300" /> New campaign
       </h2>
+      {data.playbook?.length > 0 && (
+        <div className="mt-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-white/50">Playbook: pick one to fill the form, check it, then queue</p>
+          <div className="mt-2 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            {data.playbook.map((p) => {
+              const n = data.segments.find((s) => s.id === p.segment);
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => {
+                    setName(p.name);
+                    setSegment(p.segment);
+                    setChannel(p.channel);
+                    setLink(p.link);
+                    setRepeat(p.repeat);
+                    setOffer(p.offer);
+                    setSubject(p.subject);
+                    setAgree(false);
+                    setResult("");
+                  }}
+                  className="rounded-xl border border-white/10 bg-white/5 p-3 text-left text-sm hover:border-emerald-400/60"
+                >
+                  <span className="font-bold text-white">{p.name}</span>
+                  <span className="mt-0.5 block text-xs text-emerald-200">
+                    {p.channel === "whatsapp" ? "WhatsApp" : "Email"} · {p.repeat === "none" ? "once" : p.repeat} · {n ? `${p.channel === "whatsapp" ? n.whatsapp : n.email} reachable` : ""}
+                  </span>
+                  <span className="mt-1 block text-xs text-white/55">{p.why}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
       <div className="mt-3 grid gap-3 lg:grid-cols-2">
         <div className="space-y-2">
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Campaign name, e.g. Diwali comeback" maxLength={80} className={input} />

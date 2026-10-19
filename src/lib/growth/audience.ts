@@ -137,3 +137,77 @@ export function metaAudienceCsv(recipients: Recipient[]): string {
     });
   return ["email,phone,fn,ln,country", ...rows].join("\n") + "\n";
 }
+
+export type Preset = { id: string; name: string; segment: SegmentId; channel: "whatsapp" | "email"; link: LinkId; repeat: "none" | "weekly" | "monthly"; offer: string; subject: string; why: string };
+type PlanLike = { id: string; name: string; price: number; duration: string; offer?: { title: string; gets: string; endsOn: string } };
+
+const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+const fit = (s: string) => (s.length <= 160 ? s : `${s.slice(0, 157).trimEnd()}…`);
+
+/**
+ * The standard campaign for each segment, built from today's plans and any running offer, so the
+ * text never quotes a price the plan cards don't show. Picking one only fills the form.
+ */
+export function playbook(plans: PlanLike[], months: (duration: string) => number): Preset[] {
+  const monthly = plans.find((p) => p.id === "monthly") ?? plans[0];
+  const yearly = plans.find((p) => p.id === "yearly");
+  const cheapest = plans.length ? Math.min(...plans.map((p) => Math.round(p.price / months(p.duration)))) : 0;
+  const until = (p?: PlanLike) => (p?.offer ? ` till ${p.offer.endsOn.split("-").reverse().join("/")}` : "");
+  const presets: Preset[] = [];
+  presets.push({
+    id: "comeback",
+    name: "Comeback: left in last 3 months",
+    segment: "ex-recent",
+    channel: "whatsapp",
+    link: "membership",
+    repeat: "monthly",
+    offer: fit(monthly?.offer ? `${monthly.offer.title}: restart with ${monthly.offer.gets} for ${rupees(monthly.price)}${until(monthly)}` : `your spot is still here. Restart this month, plans from ${rupees(cheapest)} a month`),
+    subject: "",
+    why: "Recently lapsed members come back most often. Runs monthly for whoever newly lapses.",
+  });
+  presets.push({
+    id: "winback",
+    name: "Win-back: left over 3 months ago",
+    segment: "ex-old",
+    channel: "email",
+    link: "gymtrial",
+    repeat: "monthly",
+    offer: "It's been a while! Come in for a free trial session with a trainer, see what's new on the floor, and restart only if it feels right.",
+    subject: "Your free comeback session at Royal Fitness Club",
+    why: "Email first: cheaper, and it doesn't risk WhatsApp blocks from people who've moved on.",
+  });
+  presets.push({
+    id: "renew",
+    name: "Renew & upgrade: expiring in 30 days",
+    segment: "expiring",
+    channel: "whatsapp",
+    link: "membership",
+    repeat: "weekly",
+    offer: fit(yearly?.offer ? `renew before your plan ends. Annual is ${yearly.offer.gets} for ${rupees(yearly.price)}${until(yearly)}` : yearly ? `renew before your plan ends. Annual works out to ${rupees(Math.round(yearly.price / months(yearly.duration)))} a month` : "renew before your plan ends and keep your progress going"),
+    subject: "",
+    why: "On top of the automatic 7-day and 1-day reminders: pushes the longer plan a few weeks earlier.",
+  });
+  presets.push({
+    id: "referral",
+    name: "Refer a friend: current members",
+    segment: "current",
+    channel: "whatsapp",
+    link: "gymtrial",
+    repeat: "monthly",
+    offer: "bring a friend! Their first trial session is free, and you both get bonus days when they join with your member code",
+    subject: "",
+    why: "Happy members are the cheapest new members. Bonus days are added automatically.",
+  });
+  presets.push({
+    id: "leads",
+    name: "Nudge: enquired but didn't join",
+    segment: "leads",
+    channel: "whatsapp",
+    link: "gymtrial",
+    repeat: "weekly",
+    offer: "your free trial session with a trainer is still waiting. Pick a morning or evening batch that suits you",
+    subject: "",
+    why: "Catches enquiries the automatic 3-message follow-up didn't convert.",
+  });
+  return presets;
+}
