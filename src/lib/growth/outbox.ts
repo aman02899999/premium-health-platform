@@ -110,8 +110,18 @@ export const marketingDailyCap = () => {
 };
 
 /**
- * Sends pending messages. Receipts, plans and reminders always go first; WhatsApp promotions wait
- * behind them and stop for the day at the daily cap (they stay pending for the next run).
+ * Marketing emails ("nurture-" kinds: sequences, campaigns, review asks) per rolling 24 hours.
+ * Resend's free plan stops at 100 emails a day for everything, so promotions stop at 70 and
+ * leave room for receipts and plans. On a paid plan, raise EMAIL_MARKETING_DAILY_CAP.
+ */
+export const emailMarketingDailyCap = () => {
+  const n = Number(process.env.EMAIL_MARKETING_DAILY_CAP);
+  return Number.isFinite(n) && n >= 0 ? Math.floor(n) : 70;
+};
+
+/**
+ * Sends pending messages. Receipts, plans and reminders always go first; WhatsApp promotions and
+ * marketing emails wait behind them and stop for the day at their caps (they stay pending for the next run).
  * `deadline` (epoch ms) stops the loop in time for the caller's function limit.
  */
 export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean }> {
@@ -119,12 +129,13 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
   if (!channels.length) return { sent: 0, failed: 0, skipped: true };
   let sent = 0;
   let failed = 0;
-  const cap = marketingDailyCap();
-  const { rows: used } = await pool.query<{ n: number }>(
-    `select count(*)::int as n from public.message_outbox where channel = 'whatsapp' and kind = any($1) and status = 'sent' and sent_at > now() - interval '24 hours'`,
+  const { rows: used } = await pool.query<{ wa: number; email: number }>(
+    `select count(*) filter (where channel = 'whatsapp' and kind = any($1))::int as wa, count(*) filter (where channel = 'email' and kind like 'nurture-%')::int as email
+       from public.message_outbox where status = 'sent' and sent_at > now() - interval '24 hours'`,
     [MARKETING_KINDS],
   );
-  let marketingLeft = Math.max(0, cap - (used[0]?.n ?? 0));
+  let marketingLeft = Math.max(0, marketingDailyCap() - (used[0]?.wa ?? 0));
+  let emailLeft = Math.max(0, emailMarketingDailyCap() - (used[0]?.email ?? 0));
   for (let i = 0; i < max && Date.now() < deadline; i++) {
     const client = await pool.connect();
     try {
@@ -133,8 +144,9 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
         `select id, channel, to_address, to_name, kind, body, template, params, attempts, subject, attachment from public.message_outbox
           where status = 'pending' and channel = any($1) and attempts < 3
             and ($3 or not (channel = 'whatsapp' and kind = any($2)))
-          order by (channel = 'whatsapp' and kind = any($2)), created_at limit 1 for update skip locked`,
-        [channels, MARKETING_KINDS, marketingLeft > 0],
+            and ($4 or not (channel = 'email' and kind like 'nurture-%'))
+          order by ((channel = 'whatsapp' and kind = any($2)) or (channel = 'email' and kind like 'nurture-%')), created_at limit 1 for update skip locked`,
+        [channels, MARKETING_KINDS, marketingLeft > 0, emailLeft > 0],
       );
       const m = rows[0];
       if (!m) {
@@ -155,6 +167,7 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
         await client.query(`update public.message_outbox set status = 'sent', sent_at = now(), sent_by = $2, attempts = attempts + 1, last_error = null where id = $1`, [m.id, m.channel === "whatsapp" ? "whatsapp-api" : "email-api"]);
         sent++;
         if (m.channel === "whatsapp" && isMarketingKind(m.kind)) marketingLeft--;
+        if (m.channel === "email" && m.kind.startsWith("nurture-")) emailLeft--;
       } else {
         await client.query(`update public.message_outbox set attempts = attempts + 1, last_error = $2, status = case when $3 then 'pending' else 'failed' end where id = $1`, [m.id, r.error, r.retry && m.attempts + 1 < 3]);
         failed++;
@@ -167,5 +180,5 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
       client.release();
     }
   }
-  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 };
+  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 || emailLeft <= 0 };
 }
