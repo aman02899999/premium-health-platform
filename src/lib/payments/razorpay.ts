@@ -34,4 +34,21 @@ export async function createRazorpayOrder(input: { amountPaise: number; receipt:
   return json;
 }
 
+export type RazorpayPayment = { id: string; order_id: string | null; amount: number; currency: string; status: "created" | "authorized" | "captured" | "refunded" | "failed"; amount_refunded?: number };
+
+/** Every payment attempt on an order, as Razorpay has it (for reconciliation). Read-only. */
+export async function fetchOrderPayments(orderId: string): Promise<RazorpayPayment[]> {
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  if (!keyId || !keySecret) throw new Error("Razorpay is not configured");
+  if (!/^order_[A-Za-z0-9]{6,40}$/.test(orderId)) throw new Error(`Not a Razorpay order id: ${orderId}`);
+  const res = await fetch(`${process.env.RAZORPAY_API_URL || "https://api.razorpay.com"}/v1/orders/${orderId}/payments`, {
+    headers: { Authorization: `Basic ${Buffer.from(`${keyId}:${keySecret}`).toString("base64")}` },
+    cache: "no-store",
+  });
+  const json = (await res.json().catch(() => ({}))) as { items?: RazorpayPayment[]; error?: { description?: string } };
+  if (!res.ok) throw new Error(json.error?.description || `Razorpay payments lookup failed (${res.status})`);
+  return Array.isArray(json.items) ? json.items : [];
+}
+
 export { verifyPaymentSignature, verifyWebhookSignature } from "./signature";

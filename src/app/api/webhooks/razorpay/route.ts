@@ -1,52 +1,39 @@
 import { NextResponse, after } from "next/server";
 import { verifyWebhookSignature } from "@/lib/payments/razorpay";
-import { markFailed, markPaid } from "@/lib/payments/orders";
-import { markBookFailed, markBookPaid } from "@/lib/library/orders";
-import { afterDietPaid, afterMembershipPaid } from "@/lib/growth/hooks";
-import { markDietFailed } from "@/lib/growth/diet-orders";
-import { afterShopPaid } from "@/lib/shop/paid";
-import { markShopFailed } from "@/lib/shop/store";
+import { handleRazorpayEvent } from "@/lib/payments/process";
+import { parseRazorpayEvent } from "@/lib/payments/webhook-event";
 import { sendCapiEvent } from "@/lib/growth/meta-capi";
 
 export const dynamic = "force-dynamic";
 // The paid diet order builds the client's plan PDF after the response.
 export const maxDuration = 60;
 
-// Razorpay → Webhooks: https://<your-site>/api/webhooks/razorpay, events
-// payment.captured and payment.failed. Records payments even when the buyer
-// closes the tab before the browser reaches /api/membership/verify, /api/library/verify or /api/diet-chart/verify.
+// Razorpay → Webhooks: https://<your-site>/api/webhooks/razorpay, events payment.captured,
+// payment.failed, refund.processed and payment.dispute.created. Records payments even when the
+// buyer closes the tab before the browser reaches the verify step, and refunds and chargebacks,
+// which only Razorpay knows about. Each delivery is logged in payment_events by its event id.
 export async function POST(req: Request) {
   const raw = await req.text();
   if (!verifyWebhookSignature(raw, req.headers.get("x-razorpay-signature"))) {
+    if (!process.env.RAZORPAY_WEBHOOK_SECRET) console.error("[razorpay webhook] RAZORPAY_WEBHOOK_SECRET is not set: every webhook is refused");
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
-  const event = JSON.parse(raw) as {
-    event?: string;
-    payload?: { payment?: { entity?: { id?: string; order_id?: string; amount?: number; email?: string; contact?: string; description?: string } } };
-  };
-  const payment = event.payload?.payment?.entity;
-  if (!payment?.order_id || !payment.id) return NextResponse.json({ ok: true });
-  try {
-    // The order id belongs to a membership, book or diet-chart order; each update is a no-op for the other tables.
-    if (event.event === "payment.captured") {
-      if (await markPaid(payment.order_id, payment.id)) await afterMembershipPaid(payment.order_id);
-      await markBookPaid(payment.order_id, payment.id);
-      await afterDietPaid(payment.order_id, payment.id, after);
-      await afterShopPaid(payment.order_id, payment.id);
-      // The sale for Meta ads, with the payment id as the event id: the browser's Purchase event and
-      // Razorpay's retries of this webhook all count once.
-      after(() =>
-        sendCapiEvent({ name: "Purchase", id: payment.id!, user: { email: payment.email, phone: payment.contact }, value: (payment.amount ?? 0) / 100, contentName: payment.description, source: "system_generated" }),
-      );
-    } else if (event.event === "payment.failed") {
-      await markFailed(payment.order_id);
-      await markBookFailed(payment.order_id);
-      await markDietFailed(payment.order_id);
-      await markShopFailed(payment.order_id);
-    }
-  } catch (err) {
-    console.error("[razorpay webhook] update failed:", (err as Error).message);
+  const event = parseRazorpayEvent(raw, req.headers.get("x-razorpay-event-id"));
+  if (!event) return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+
+  const res = await handleRazorpayEvent(event, after);
+  if (res.status === 500) {
+    console.error(`[razorpay webhook] ${event.event} ${event.eventId} failed:`, res.detail);
     return NextResponse.json({ error: "Temporary failure" }, { status: 500 }); // Razorpay retries
   }
-  return NextResponse.json({ ok: true });
+  if (res.outcome === "amount_mismatch" || (res.outcome === "applied" && res.detail && event.event === "payment.captured")) {
+    console.error(`[razorpay webhook] ${event.event} ${event.eventId} needs a person:`, res.detail);
+  }
+  if (res.purchase && event.paymentId) {
+    // The sale for Meta ads, with the payment id as the event id: the browser's Purchase event and
+    // Razorpay's retries of this webhook all count once.
+    const { paymentId, email, contact, amountPaise, description } = event;
+    after(() => sendCapiEvent({ name: "Purchase", id: paymentId, user: { email: email ?? undefined, phone: contact ?? undefined }, value: (amountPaise ?? 0) / 100, contentName: description ?? undefined, source: "system_generated" }));
+  }
+  return NextResponse.json({ ok: true, outcome: res.outcome });
 }
