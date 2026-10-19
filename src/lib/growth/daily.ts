@@ -5,7 +5,7 @@ import { todayIST } from "./dates";
 import { nurtureLeads, openLeads } from "./leads";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { lapsedMembers, membersNearExpiry } from "./members";
-import { dueMessages, type Biz } from "./messages";
+import { MARKETING_KINDS, dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
 import { runInstagramStory, storyImageUrl } from "@/lib/social/automation";
@@ -18,7 +18,7 @@ import { adminDigest, type DigestData } from "./admin-digest";
 import { dietPlan } from "./config";
 import { addDays, daysBetween } from "./dates";
 import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
-import { runRecurringCampaigns } from "./campaigns";
+import { listCampaigns, runRecurringCampaigns } from "./campaigns";
 import { dueReviewRequests } from "./reviews";
 
 export async function business(): Promise<Biz> {
@@ -156,7 +156,7 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
 async function digestData(today: string): Promise<DigestData> {
   const q = async <T,>(sql: string, params: unknown[] = []): Promise<T[]> => (await pool.query(sql, params).catch(() => ({ rows: [] as T[] }))).rows as T[];
   const since = "now() - interval '24 hours'";
-  const [leads, members, diets, shop, books, review, updates, unanswered, expiring, failed] = await Promise.all([
+  const [leads, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
     q<{ name: string; source: string }>(`select name, source from public.leads where created_at > ${since} order by created_at desc limit 50`),
     q<{ name: string; plan_name: string; amount_paise: number }>(`select name, plan_name, amount_paise from public.membership_orders where status = 'paid' and paid_at > ${since}`),
     q<{ name: string; plan: string; amount_paise: number }>(`select name, plan, amount_paise from public.diet_orders where status = 'paid' and paid_at > ${since}`),
@@ -167,6 +167,9 @@ async function digestData(today: string): Promise<DigestData> {
     q<{ channel: string; from_name: string; body: string }>(`select channel, from_name, body from public.social_inbox where not replied and kind = 'message' and created_at > ${since} order by created_at desc limit 10`),
     q<{ name: string; expires_on: string }>(`select name, expires_on::text from public.members where expires_on between $1::date and $2::date order by expires_on`, [today, addDays(today, 7)]),
     q<{ n: number }>(`select count(*)::int as n from public.message_outbox where status = 'failed' and created_at > now() - interval '7 days'`),
+    q<{ n: number }>(`select count(*)::int as n from public.message_outbox where dedupe_key like 'campaign:%' and status = 'sent' and sent_at > ${since}`),
+    q<{ n: number }>(`select count(*)::int as n from public.message_outbox where status = 'pending' and channel = 'whatsapp' and kind = any($1)`, [MARKETING_KINDS]),
+    listCampaigns(20).catch(() => []),
   ]);
   return {
     leads: leads.map((l) => ({ name: l.name, source: l.source })),
@@ -181,5 +184,10 @@ async function digestData(today: string): Promise<DigestData> {
     unanswered: unanswered.map((u) => ({ channel: u.channel, name: u.from_name, text: u.body })),
     expiringMembers: expiring.map((m) => ({ name: m.name, expiresOn: m.expires_on })),
     failedMessages: failed[0]?.n ?? 0,
+    campaigns: {
+      sent: campaignSent[0]?.n ?? 0,
+      held: held[0]?.n ?? 0,
+      results: campaignRows.filter((c) => c.buyers > 0).slice(0, 5).map((c) => ({ name: c.name, buyers: c.buyers, revenue: c.revenue })),
+    },
   };
 }
