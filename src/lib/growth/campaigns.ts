@@ -212,20 +212,36 @@ export async function stopRepeating(id: string): Promise<void> {
   await pool.query(`update public.campaigns set active = false, next_run = null where id = $1`, [id]);
 }
 
-export type CampaignRow = { id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; nextRun: string | null; active: boolean };
+export type CampaignRow = { id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; nextRun: string | null; active: boolean; buyers: number; revenue: number };
 
+/**
+ * Campaigns with delivery counts and results: people who received a campaign message and then
+ * paid for a membership or a diet plan within 14 days (matched by mobile or email). A purchase
+ * soon after two campaigns counts for both, so treat it as "influenced", not exact attribution.
+ */
 export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
-  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; next_run_s: string | null; active: boolean }>(
-    `select c.*, to_char(c.next_run, 'YYYY-MM-DD') as next_run_s, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled
+  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; next_run_s: string | null; active: boolean; buyers: number; revenue_paise: string }>(
+    `with paid as (
+       select right(regexp_replace(phone, '\\D', '', 'g'), 10) as p, lower(email) as e, amount_paise, paid_at from public.membership_orders where status = 'paid' and paid_at is not null
+       union all
+       select phone, lower(email), amount_paise, paid_at from public.diet_orders where status = 'paid' and paid_at is not null
+     )
+     select c.*, to_char(c.next_run, 'YYYY-MM-DD') as next_run_s, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled,
+            coalesce(v.buyers, 0)::int as buyers, coalesce(v.revenue, 0)::text as revenue_paise
        from public.campaigns c
        left join lateral (
          select count(*) filter (where status = 'sent') as sent, count(*) filter (where status = 'failed') as failed,
                 count(*) filter (where status = 'pending') as pending, count(*) filter (where status = 'cancelled') as cancelled
            from public.message_outbox where dedupe_key like 'campaign:' || c.id || ':%') o on true
+       left join lateral (
+         select count(distinct r.k) as buyers, sum(paid.amount_paise) as revenue
+           from (select case when channel = 'whatsapp' then right(to_address, 10) else lower(to_address) end as k, min(sent_at) as sent_at
+                   from public.message_outbox where dedupe_key like 'campaign:' || c.id || ':%' and status = 'sent' group by 1) r
+           join paid on (paid.p = r.k or paid.e = r.k) and paid.paid_at between r.sent_at and r.sent_at + interval '14 days') v on true
       order by c.created_at desc limit $1`,
     [limit],
   );
-  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled, repeat: r.repeat, nextRun: r.next_run_s, active: r.active }));
+  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled, repeat: r.repeat, nextRun: r.next_run_s, active: r.active, buyers: r.buyers, revenue: Math.round(Number(r.revenue_paise) / 100) }));
 }
 
 /** Sends the next batch of pending messages (campaigns and everything else waiting in the outbox). */

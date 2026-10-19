@@ -378,6 +378,7 @@ export function AudienceApp() {
                         <th>Waiting</th>
                         <th>Failed</th>
                         <th>Skipped</th>
+                        <th title="Paid for a membership or diet plan within 14 days of the message">Paid in 14 days</th>
                         <th>Repeats</th>
                       </tr>
                     </thead>
@@ -395,6 +396,7 @@ export function AudienceApp() {
                           <td>{c.pending}</td>
                           <td className={c.failed ? "text-red-300" : ""}>{c.failed}</td>
                           <td className="text-white/50">{c.skipped + c.cancelled}</td>
+                          <td>{c.buyers ? <span className="font-semibold text-emerald-300">{c.buyers} · ₹{c.revenue.toLocaleString("en-IN")}</span> : <span className="text-white/40">—</span>}</td>
                           <td className="text-xs">
                             {c.repeat === "none" || !c.active ? (
                               <span className="text-white/40">{c.repeat === "none" ? "Once" : "Stopped"}</span>
