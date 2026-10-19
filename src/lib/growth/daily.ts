@@ -2,7 +2,7 @@ import "server-only";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
-import { nurtureLeads, openLeads, uncontactedLeads } from "./leads";
+import { funnelBySource, nurtureLeads, openLeads, uncontactedLeads } from "./leads";
 import { uncontactedAlert } from "./lead-alerts";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { lapsedMembers, membersNearExpiry } from "./members";
@@ -199,6 +199,7 @@ async function digestData(today: string): Promise<DigestData> {
     leads: leads.map((l) => ({ name: l.name, source: l.source })),
     trials: trials.map((t) => ({ name: t.name, at: t.trial_at.toISOString() })),
     uncontacted: uncontacted[0]?.n ?? 0,
+    funnel: isMonday(today) ? await funnelBySource(30).catch(() => []) : undefined,
     payments: [
       ...members.map((m) => ({ kind: "Membership" as const, name: m.name, what: m.plan_name, rupees: m.amount_paise / 100 })),
       ...diets.map((d) => ({ kind: "Diet plan" as const, name: d.name, what: dietPlan(d.plan).name, rupees: d.amount_paise / 100 })),

@@ -4,7 +4,7 @@ import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
 import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
-import { LEAD_STATUSES, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
+import { LEAD_STATUSES, funnelBySource, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { toInstant } from "@/lib/growth/trials";
 import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
 import { deleteMember, listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
@@ -33,7 +33,7 @@ export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return OFFLINE();
   try {
-    const [members, leads, outbox, dietOrders, rewards, unapplied, social] = await Promise.all([
+    const [members, leads, outbox, dietOrders, rewards, unapplied, social, funnel] = await Promise.all([
       listMembers(),
       listPipeline(),
       listOutbox("all", 400),
@@ -42,6 +42,8 @@ export async function GET() {
       unappliedPaidOrders(),
       // The rest of the dashboard still loads if the social tables aren't migrated yet.
       socialStatus().catch(() => null),
+      // Empty until the trial-booking migration is applied.
+      funnelBySource(30).catch(() => []),
     ]);
     const [lastRun, content] = await Promise.all([lastDailyRun(), getContent()]);
     const appKit = businessAppKit(content.business, applyOffer(content.plans, todayIST()), SITE_URL);
@@ -56,6 +58,7 @@ export async function GET() {
       rewards,
       unapplied,
       social,
+      funnel,
       appKit,
       system: { lastRun, recent: !!lastRun && Date.now() - Date.parse(lastRun.at) < 26 * 3_600_000, setup: setupChecklist() },
     });

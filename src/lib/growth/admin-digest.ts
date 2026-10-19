@@ -3,6 +3,7 @@
 // database. It lists names and counts, never health details (those stay behind the admin login).
 import type { Draft } from "./messages";
 import { formatTrial, istParts } from "./trials";
+import { funnelLines, type FunnelRow } from "./funnel";
 
 export type DigestData = {
   leads: { name: string; source: string }[];
@@ -10,6 +11,8 @@ export type DigestData = {
   trials?: { name: string; at: string }[];
   /** Form leads still "new" 2 hours to 3 days after arriving. */
   uncontacted?: number;
+  /** Mondays: the last 30 days, enquiry to member, by source. */
+  funnel?: FunnelRow[];
   payments: { kind: "Membership" | "Diet plan" | "Supplements" | "Book"; name: string; rupees: number; what: string }[];
   plansToReview: { name: string; plan: string }[];
   clientUpdates: number;
@@ -55,10 +58,11 @@ export function adminDigest(date: string, d: DigestData, to: string, adminUrl: s
           "",
         )
       : "",
+    d.funnel?.length ? section("FUNNEL, LAST 30 DAYS", funnelLines(d.funnel), "") : "",
     d.clientUpdates ? `Clients built ${d.clientUpdates} updated plan${d.clientUpdates === 1 ? "" : "s"} from their dashboard.` : "",
     `[[CTA:Open the admin|${adminUrl}]]`,
   ]
     .filter(Boolean)
     .join("\n\n");
-  return { channel: "email", to, toName: "Admin", kind: "admin-digest", subject: subject.slice(0, 200), body: body.slice(0, 2000), template: "", params: [], dedupeKey: `admin-digest:${date}` };
+  return { channel: "email", to, toName: "Admin", kind: "admin-digest", subject: subject.slice(0, 200), body: body.slice(0, 4000), template: "", params: [], dedupeKey: `admin-digest:${date}` };
 }

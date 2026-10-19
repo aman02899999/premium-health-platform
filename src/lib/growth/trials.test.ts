@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { adminDigest } from "./admin-digest";
 import { TEMPLATES, dueMessages, isMarketingKind, trialBookedEmail, trialMessage, type LeadLike } from "./messages";
 import { newLeadAlert, uncontactedAlert } from "./lead-alerts";
+import { biggestLeak, funnelLines, funnelTotals } from "./funnel";
 import { coversDay, formatTrial, parseTrialSlot, toInstant, trialSlots, trialStage } from "./trials";
 
 const HOURS = [
@@ -122,5 +123,24 @@ describe("speed to lead", () => {
   it("the morning email flags leads nobody has contacted", () => {
     const d = adminDigest("2026-10-21", { leads: [], uncontacted: 2, payments: [], plansToReview: [], clientUpdates: 0, unanswered: [], expiringMembers: [], failedMessages: 0 }, "a@x.in", "u");
     expect(d.body).toContain("2 leads have had no call or message yet (Leads → New)");
+  });
+});
+
+describe("funnel scoreboard", () => {
+  const rows = [
+    { source: "home", leads: 20, booked: 12, came: 6, joined: 3, onlineRupees: 4500 },
+    { source: "whatsapp-inbound", leads: 5, booked: 0, came: 0, joined: 1, onlineRupees: 0 },
+  ];
+  it("totals the sources and names the weakest step", () => {
+    expect(funnelTotals(rows)).toEqual({ source: "All", leads: 25, booked: 12, came: 6, joined: 4, onlineRupees: 4500 });
+    expect(biggestLeak(funnelTotals(rows))).toBe("Only 48% of leads book a trial. Call new leads within minutes and offer two times.");
+    expect(biggestLeak({ ...funnelTotals(rows), leads: 9 })).toBeNull(); // too few to judge
+  });
+  it("reads as one line per source in the Monday email", () => {
+    const lines = funnelLines(rows);
+    expect(lines[0]).toBe("All sources: 25 leads → 12 booked (48%) → 6 came → 4 joined (16%), ₹4,500 online");
+    expect(lines[1]).toBe("Website: home page form: 20 leads → 12 booked (60%) → 6 came → 3 joined (15%), ₹4,500 online");
+    expect(lines[2]).toBe("WhatsApp chat: 5 leads → 0 booked (0%) → 0 came → 1 joined (20%)");
+    expect(funnelLines([])).toEqual([]);
   });
 });

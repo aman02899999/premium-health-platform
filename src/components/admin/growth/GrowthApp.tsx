@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AlertTriangle, ArrowLeft, Bot, CalendarClock, Check, Copy, Gift, Megaphone, Inbox, Loader2, MessageCircle, Phone, Play, Plus, Salad, Search, Send, TrendingUp, Users, X } from "lucide-react";
 import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/lib/growth/dates";
 import { waLink } from "@/lib/growth/messages";
+import { biggestLeak, funnelTotals, pct, sourceName, type FunnelRow } from "@/lib/growth/funnel";
 import type { DietIntake } from "@/lib/growth/diet-intake";
 import { DIET_PLANS } from "@/lib/growth/config";
 import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
@@ -18,7 +19,7 @@ type Msg = { id: string; createdAt: string; channel: string; to: string; toName:
 type DietOrder = { id: string; createdAt: string; name: string; phone: string; email: string | null; amountPaise: number; intake: DietIntake; paidAt: string | null; stage: "new" | "draft_ready" | "in_progress" | "sent" | "refunded"; sentAt: string | null; plan: string; planPath: string | null; planGeneratedAt: string | null ; userId?: string | null; extraGenerations?: number; accessUntil?: string | null; revokedAt?: string | null; versions?: { id: string; version: number; createdAt: string; source: string; status: "draft" | "sent" | "rejected" }[]; entitlement?: { allowed: number; used: number; remaining: number; accessUntil: string; nextAt: string | null; reason: string } };
 type Reward = { id: string; createdAt: string; referrer: string; referrerCode: string; referred: string; days: number };
 type Unapplied = { razorpayOrderId: string; name: string; phone: string; planName: string; duration: string; paidAt: string };
-type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null; appKit?: KitText[]; system?: { lastRun: { at: string; source: string; ok: boolean; summary: string } | null; recent: boolean; setup: { key: string; label: string; on: boolean; why: string }[] } };
+type Data = { today: string; siteUrl: string; channels: { whatsappApi: boolean; email: boolean; cronSecret: boolean; storage?: boolean; autoSend?: "off" | "no-conditions" | "all" }; members: Member[]; leads: Lead[]; outbox: Msg[]; dietOrders: DietOrder[]; rewards: Reward[]; unapplied: Unapplied[]; social: SocialStatus | null; funnel?: FunnelRow[]; appKit?: KitText[]; system?: { lastRun: { at: string; source: string; ok: boolean; summary: string } | null; recent: boolean; setup: { key: string; label: string; on: boolean; why: string }[] } };
 type Tab = "today" | "marketing" | "social" | "messages" | "members" | "leads" | "diet" | "referrals";
 
 const KIND: Record<string, string> = {
@@ -730,6 +731,7 @@ function Leads({ data, act }: { data: Data; act: Act }) {
           </button>
         ))}
       </div>
+      <FunnelBoard rows={data.funnel ?? []} />
       <p className="text-xs text-white/45">
         Leads who picked a trial time get a confirmation and a reminder on the morning of the trial. After the trial, mark <b>Came</b> (they get the plans the next day and a last nudge on day 4) or <b>No-show</b> (they get a link to pick a new time). Leads without a time get follow-ups on day 2 and day 5. Mark them joined or lost to stop the follow-ups.
       </p>
@@ -771,6 +773,52 @@ function Leads({ data, act }: { data: Data; act: Act }) {
         ))}
         {rows.length === 0 && <li className="text-sm text-white/45">No leads here.</li>}
       </ul>
+    </div>
+  );
+}
+
+/** Last 30 days, enquiry to member, by source. */
+function FunnelBoard({ rows }: { rows: FunnelRow[] }) {
+  const t = funnelTotals(rows);
+  if (!t.leads) return null;
+  const leak = biggestLeak(t);
+  return (
+    <div className="rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10">
+      <p className="text-sm font-bold">Funnel, last 30 days</p>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full min-w-[520px] text-left text-xs">
+          <thead className="text-white/45">
+            <tr>
+              <th className="py-1 pr-2 font-normal">Source</th>
+              <th className="py-1 pr-2 font-normal">Leads</th>
+              <th className="py-1 pr-2 font-normal">Booked a trial</th>
+              <th className="py-1 pr-2 font-normal">Came</th>
+              <th className="py-1 pr-2 font-normal">Joined</th>
+              <th className="py-1 font-normal">Paid online</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[t, ...rows].map((r) => (
+              <tr key={r.source} className={r.source === "All" ? "font-bold" : "text-white/75"}>
+                <td className="py-1 pr-2">{r.source === "All" ? "All sources" : sourceName(r.source)}</td>
+                <td className="py-1 pr-2">{r.leads}</td>
+                <td className="py-1 pr-2">
+                  {r.booked} <span className="text-white/40">{pct(r.booked, r.leads)}</span>
+                </td>
+                <td className="py-1 pr-2">
+                  {r.came} <span className="text-white/40">{pct(r.came, r.booked)}</span>
+                </td>
+                <td className="py-1 pr-2">
+                  {r.joined} <span className="text-white/40">{pct(r.joined, r.leads)}</span>
+                </td>
+                <td className="py-1">{rupees(r.onlineRupees * 100)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {leak && <p className="mt-2 text-xs text-amber-200">Biggest leak: {leak}</p>}
+      <p className="mt-1 text-[11px] text-white/40">“Came” counts only trials the desk marked. “Joined” includes desk joins with the same mobile number; desk payments have no amount here.</p>
     </div>
   );
 }

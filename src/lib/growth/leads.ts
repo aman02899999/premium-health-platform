@@ -2,6 +2,7 @@ import "server-only";
 import { pool } from "@/health/db";
 import { addDays } from "./dates";
 import type { LeadLike } from "./messages";
+import type { FunnelRow } from "./funnel";
 import type { Interest, NurtureLead } from "./nurture";
 
 // The lead pipeline on public.leads (status, notes, follow-ups), via the server connection.
@@ -106,6 +107,35 @@ export async function uncontactedLeads(now = new Date()): Promise<PipelineLead[]
     [now.toISOString()],
   );
   return rows.map(fromRow);
+}
+
+/**
+ * Leads from the last `days` days by source, and how far each got: trial booked, came (the desk's
+ * mark), joined (marked joined, or a membership for the same mobile starting after the enquiry),
+ * and what they paid online for memberships since. Desk payments have no amount, so they count as
+ * joins only.
+ */
+export async function funnelBySource(days = 30): Promise<FunnelRow[]> {
+  const { rows } = await pool.query<{ source: string; leads: number; booked: number; came: number; joined: number; paise: string }>(
+    `with l as (
+       select l.*, right(regexp_replace(l.phone, '\\D', '', 'g'), 10) as p10 from public.leads l
+        where l.created_at >= now() - make_interval(days => $1)
+     ), x as (
+       select l.source, l.trial_at, l.showed_up, l.status,
+              l.status = 'joined' or exists (select 1 from public.members m where m.phone = l.p10 and m.start_on >= (l.created_at at time zone 'Asia/Kolkata')::date) as joined,
+              coalesce((select sum(o.amount_paise) from public.membership_orders o
+                         where o.status = 'paid' and right(regexp_replace(o.phone, '\\D', '', 'g'), 10) = l.p10 and o.paid_at >= l.created_at), 0) as paise
+         from l
+     )
+     select coalesce(nullif(source, ''), 'website') as source, count(*)::int as leads,
+            count(*) filter (where trial_at is not null)::int as booked,
+            count(*) filter (where showed_up is true or status = 'trial' or (joined and trial_at is not null and showed_up is not false))::int as came,
+            count(*) filter (where joined)::int as joined,
+            sum(paise)::text as paise
+       from x group by 1 order by 2 desc`,
+    [days],
+  );
+  return rows.map((r) => ({ source: r.source, leads: r.leads, booked: r.booked, came: r.came, joined: r.joined, onlineRupees: Number(r.paise) / 100 }));
 }
 
 export async function getLead(id: string): Promise<(PipelineLead & { email: string | null; interest: string; marketing: boolean }) | null> {

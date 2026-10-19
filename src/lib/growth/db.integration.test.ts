@@ -191,6 +191,23 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     }
   });
 
+  it("the funnel follows each lead from enquiry to member, by source", async () => {
+    const add = (name: string, phone: string, source: string, trialAt: string | null = null) => leads.insertLead({ name, phone, email: null, interest: "", goal: "", message: "", source, marketing: false, trialAt });
+    const a = await add("Lead A", "98111 00001", "home", "2026-10-21T12:30:00.000Z");
+    const b = await add("Lead B", "98111 00002", "home", "2026-10-21T13:30:00.000Z");
+    await add("Lead C", "+91 98111 00003", "contact");
+    await leads.updateLead(a, { showedUp: true });
+    await leads.updateLead(b, { showedUp: false });
+    // C joined at the desk (no lead status change); A paid online.
+    await pool.query(`insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Lead C', '9811100003', 'Monthly', current_date, current_date + 30, 'LEADC-1')`);
+    await pool.query(`insert into public.membership_orders (razorpay_order_id, status, plan_id, plan_name, duration, amount_paise, name, phone, paid_at) values ('order_F1', 'paid', 'm1', 'Monthly', '1 month', 150000, 'Lead A', '9811100001', now())`);
+    await leads.updateLead(a, { status: "joined" });
+    expect(await leads.funnelBySource(30)).toEqual([
+      { source: "home", leads: 2, booked: 2, came: 1, joined: 1, onlineRupees: 1500 },
+      { source: "contact", leads: 1, booked: 0, came: 0, joined: 1, onlineRupees: 0 },
+    ]);
+  });
+
   it("diet orders flip to paid once, even with concurrent confirmations", async () => {
     const intake = { age: 30, sex: "male", heightCm: 175, weightKg: 80, goal: "fat-loss", diet: "veg", cuisine: "north", activity: "moderate", mealsPerDay: 5, wakeTime: "06:30", conditions: [], allergies: [], notes: "" } as const;
     await diet.insertDietOrder("order_DIET", 99900, { name: "Aman", phone: "9876543210", email: null }, { ...intake, conditions: [], allergies: [] });
