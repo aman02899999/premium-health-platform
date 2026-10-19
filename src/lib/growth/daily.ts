@@ -6,7 +6,7 @@ import { todayIST } from "./dates";
 import { nurtureLeads, openLeads } from "./leads";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { lapsedMembers, membersNearExpiry } from "./members";
-import { MARKETING_KINDS, dueMessages, type Biz } from "./messages";
+import { MARKETING_KINDS, checkoutReminderMessage, dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
 import { runInstagramStory, storyImageUrl } from "@/lib/social/automation";
@@ -94,8 +94,10 @@ export async function runDaily(now = new Date()) {
       if (d) drafts.push(d);
     }
   }
-  // Someone started paying for a plan, a book or a supplement order and didn't finish: one gentle reminder.
+  // Someone started paying for a membership, a plan, a book or a supplement order, didn't finish, and
+  // asked to be reminded: one gentle email, or a WhatsApp for a membership buyer who left no email.
   for (const o of await abandonedCheckouts(now)) drafts.push(checkoutReminder(o, SITE_URL, nb.coach, nb.phone));
+  for (const o of await abandonedMembershipsByPhone(now)) drafts.push(checkoutReminderMessage(o, biz));
   // Wednesdays: the Coach's Pick to everyone who asked for emails.
   if (isWednesday(today)) {
     const { rows } = await pool.query<{ address: string }>(
@@ -127,17 +129,21 @@ export async function runDaily(now = new Date()) {
 /**
  * Diet-plan and library orders started 2–72 hours ago and never paid, from people who haven't
  * paid for the same thing since and haven't unsubscribed. Each source is optional.
+ * Supplement and first-time membership orders too, and only for buyers who asked to be reminded:
+ * the checkout's reminder tick, or marketing consent for that address.
  */
 async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
-  const window = "o.created_at between $1::timestamptz - interval '72 hours' and $1::timestamptz - interval '2 hours'";
+  const window = CHECKOUT_WINDOW;
   const unsubscribed = `exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.address = lower(o.email) and c.unsubscribed_at is not null)`;
+  const marketingConsent = `exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.address = lower(o.email) and c.consent_at is not null)`;
+  const asked = `(o.reminder_consent_at is not null or ${marketingConsent})`;
   // At most one checkout reminder per person every 14 days, whatever they abandoned.
   const remindedRecently = `exists (select 1 from public.message_outbox m where m.kind = 'nurture-checkout' and m.to_address = lower(o.email) and m.created_at > $1::timestamptz - interval '14 days')`;
-  const [diet, books, shop] = await Promise.all([
+  const [diet, books, shop, members] = await Promise.all([
     pool
       .query<{ id: string; name: string; email: string; plan: string; amount_paise: number }>(
         `select distinct on (lower(o.email)) o.id, o.name, o.email, o.plan, o.amount_paise from public.diet_orders o
-         where o.status = 'created' and o.email is not null and ${window} and not ${unsubscribed} and not ${remindedRecently}
+         where o.status = 'created' and o.email is not null and ${window} and ${marketingConsent} and not ${unsubscribed} and not ${remindedRecently}
            and not exists (select 1 from public.diet_orders p where p.status = 'paid' and (p.phone = o.phone or lower(p.email) = lower(o.email)) and p.created_at >= o.created_at - interval '1 day')
          order by lower(o.email), o.created_at desc`,
         [now.toISOString()],
@@ -147,16 +153,55 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
     pool
       .query<{ id: string; name: string; email: string; item_id: string; title: string; amount_paise: number }>(
         `select distinct on (lower(o.email)) o.id, o.name, o.email, o.item_id, o.title, o.amount_paise from public.book_orders o
-         where o.status = 'created' and ${window} and not ${unsubscribed} and not ${remindedRecently}
+         where o.status = 'created' and ${window} and ${asked} and not ${unsubscribed} and not ${remindedRecently}
            and not exists (select 1 from public.book_orders p where p.status = 'paid' and lower(p.email) = lower(o.email) and p.created_at >= o.created_at - interval '1 day')
          order by lower(o.email), o.created_at desc`,
         [now.toISOString()],
       )
       .then((r) => r.rows.map((x): AbandonedOrder => ({ kind: "book", id: x.id, name: x.name, email: x.email, plan: "", itemId: x.item_id, title: x.title, amountPaise: x.amount_paise })))
       .catch(() => [] as AbandonedOrder[]),
-    abandonedShopOrders(window, unsubscribed, remindedRecently, now),
+    abandonedShopOrders(window, `${asked} and not ${unsubscribed}`, remindedRecently, now),
+    pool
+      .query<{ id: string; name: string; email: string; plan_id: string; plan_name: string; amount_paise: number }>(
+        `select distinct on (lower(o.email)) o.id, o.name, o.email, o.plan_id, o.plan_name, o.amount_paise from public.membership_orders o
+         where o.status = 'created' and o.email is not null and ${window} and ${asked} and not ${unsubscribed} and not ${remindedRecently} and not ${MEMBERSHIP_SETTLED}
+         order by lower(o.email), o.created_at desc`,
+        [now.toISOString()],
+      )
+      .then((r) => r.rows.map((x): AbandonedOrder => ({ kind: "membership", id: x.id, name: x.name, email: x.email, plan: x.plan_id, itemId: "", title: x.plan_name, amountPaise: x.amount_paise })))
+      .catch((err: Error) => (console.error("[daily] membership reminders:", err.message), [] as AbandonedOrder[])),
   ]);
-  return [...diet, ...books, ...shop];
+  return [...diet, ...books, ...shop, ...members];
+}
+
+const CHECKOUT_WINDOW = "o.created_at between $1::timestamptz - interval '72 hours' and $1::timestamptz - interval '2 hours'";
+// A membership reminder is for first-time joiners: a phone already on the members list (renewals
+// have their own sequence) or that has paid for a membership since is skipped.
+const MEMBERSHIP_SETTLED = `(exists (select 1 from public.members mb where mb.phone = o.phone)
+  or exists (select 1 from public.membership_orders p where p.status = 'paid' and p.phone = o.phone and p.created_at >= o.created_at - interval '1 day'))`;
+
+/**
+ * Membership orders with no email whose buyer ticked the reminder box: the same window and rules,
+ * one WhatsApp per number every 14 days. It is a Marketing template, so the outbox also skips
+ * numbers that tapped "Stop promotions" and applies the promotions cap.
+ */
+async function abandonedMembershipsByPhone(now: Date): Promise<{ id: string; name: string; phone: string; planName: string; resumeUrl: string }[]> {
+  const { rows } = await pool
+    .query<{ id: string; name: string; phone: string; plan_id: string; plan_name: string; couple: boolean }>(
+      `select distinct on (o.phone) o.id, o.name, o.phone, o.plan_id, o.plan_name, o.couple from public.membership_orders o
+       where o.status = 'created' and o.email is null and o.reminder_consent_at is not null and ${CHECKOUT_WINDOW} and not ${MEMBERSHIP_SETTLED}
+         and not exists (select 1 from public.message_outbox m where m.kind = 'checkout-reminder' and m.to_address = '91' || o.phone and m.created_at > $1::timestamptz - interval '14 days')
+       order by o.phone, o.created_at desc`,
+      [now.toISOString()],
+    )
+    .catch((err: Error) => (console.error("[daily] membership WhatsApp reminders:", err.message), { rows: [] }));
+  return rows.map((x) => ({
+    id: x.id,
+    name: x.name,
+    phone: x.phone,
+    planName: x.plan_name,
+    resumeUrl: `${SITE_URL}/join?plan=${encodeURIComponent(x.plan_id)}${x.couple ? "&couple=1" : ""}&utm_source=whatsapp&utm_medium=whatsapp&utm_campaign=checkout-reminder`,
+  }));
 }
 
 /**
@@ -164,7 +209,7 @@ async function abandonedCheckouts(now: Date): Promise<AbandonedOrder[]> {
  * sell something that is now inactive or out of stock. (The payment reconciler runs before this
  * in the daily cron, so an order Razorpay captured without a webhook is already marked paid.)
  */
-async function abandonedShopOrders(window: string, unsubscribed: string, remindedRecently: string, now: Date): Promise<AbandonedOrder[]> {
+async function abandonedShopOrders(window: string, eligible: string, remindedRecently: string, now: Date): Promise<AbandonedOrder[]> {
   const unavailable = `exists (select 1 from jsonb_array_elements(o.items) i
       left join public.shop_products sp on i->>'kind' = 'product' and sp.id::text = i->>'id'
       left join public.shop_combos sc on i->>'kind' = 'combo' and sc.id::text = i->>'id'
@@ -173,7 +218,7 @@ async function abandonedShopOrders(window: string, unsubscribed: string, reminde
   return pool
     .query<{ id: string; name: string; email: string; items: { kind: string; slug: string; name: string }[]; total: number }>(
       `select distinct on (lower(o.email)) o.id, o.name, o.email, o.items, o.total from public.shop_orders o
-       where o.status = 'created' and o.fulfilment = 'new' and ${window} and not ${unsubscribed} and not ${remindedRecently} and not ${unavailable}
+       where o.status = 'created' and o.fulfilment = 'new' and ${window} and ${eligible} and not ${remindedRecently} and not ${unavailable}
          and not exists (select 1 from public.shop_orders p where p.status = 'paid' and (p.phone = o.phone or lower(p.email) = lower(o.email)) and p.created_at >= o.created_at - interval '1 day')
        order by lower(o.email), o.created_at desc`,
       [now.toISOString()],

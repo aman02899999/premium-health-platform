@@ -4,6 +4,7 @@ import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/pa
 import { parseBuyerForm, phoneDigits, quoteCart } from "@/lib/library/pricing";
 import { insertBookOrder } from "@/lib/library/orders";
 import { attributeFromRequest } from "@/lib/attribution-store";
+import { saveReminderConsent, wantsReminder } from "@/lib/growth/reminder-consent";
 import { librarySigningConfigured, uploadedBookSlugs } from "@/lib/library/storage";
 
 export const dynamic = "force-dynamic";
@@ -53,6 +54,7 @@ export async function POST(req: Request) {
     });
     await insertBookOrder(order.id, quote, buyer);
     await attributeFromRequest(req, "library", order.id);
+    if (wantsReminder(body)) await saveReminderConsent("library", order.id);
     return NextResponse.json({
       orderId: order.id,
       keyId: razorpayKeyId(),

@@ -39,6 +39,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
   const [planId, setPlanId] = useState(initialPlan?.id ?? "");
   const [couple, setCouple] = useState(params.get("couple") === "1" && (initialPlan?.couplePrice ?? 0) > 0);
   const [form, setForm] = useState({ name: prefill?.name ?? "", phone: prefill?.phone ?? "", email: prefill?.email ?? "", partnerName: "", startDate: "", referredBy: prefill?.referredBy ?? "" });
+  const [remind, setRemind] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [receipt, setReceipt] = useState<Receipt | null>(null);
@@ -59,7 +60,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
       const res = await fetch("/api/membership/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId, couple: isCouple, ...form }),
+        body: JSON.stringify({ planId, couple: isCouple, ...form, remind }),
       });
       const order = await res.json();
       if (!res.ok) throw new Error(order.error || "Couldn't start the payment.");
@@ -201,6 +202,10 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
           <label className="text-sm text-white/70">
             Referral code <span className="text-white/40">(optional, e.g. RFC-AMAN-7K2Q)</span>
             <input maxLength={80} value={form.referredBy} onChange={set("referredBy")} className="field mt-1" />
+          </label>
+          <label className="sm:col-span-2 flex cursor-pointer items-start gap-2 text-sm text-white/70">
+            <input type="checkbox" checked={remind} onChange={(e) => setRemind(e.target.checked)} className="mt-1 accent-[#e8394b]" />
+            <span>If my payment doesn&apos;t go through, remind me once on WhatsApp (or by email, if I gave one).</span>
           </label>
         </div>
       </fieldset>

@@ -1,8 +1,9 @@
 // Sales emails, built here and sent through the outbox. Both are "nurture-*" kinds, so every one
 // carries an unsubscribe link and the one-click List-Unsubscribe headers, and nobody who has
 // unsubscribed is queued (the daily run filters them out).
-//   - Checkout reminder: someone started paying for a plan, a book or a supplement order and didn't finish. One gentle
-//     email, 2–72 hours later; one per order and at most one per person every 14 days.
+//   - Checkout reminder: someone started paying for a membership, a plan, a book or a supplement order and didn't
+//     finish. One gentle email, 2–72 hours later; one per order and at most one per person every 14 days. Only to
+//     people who asked: the checkout's reminder tick, or the diet checkout's marketing tick.
 //   - Coach's Pick: Wednesdays, to people who asked for emails: a diet plan, a programme or book,
 //     and a bundle, rotating through the whole catalogue.
 import { DIET_PLANS } from "./config";
@@ -21,12 +22,16 @@ const withUtm = (siteUrl: string, path: string, campaign: string) => {
   return `${siteUrl}${base}${base.includes("?") ? "&" : "?"}${utm(campaign)}${hash ? `#${hash}` : ""}`;
 };
 
-/** For "shop", itemId is the store path of a single-item order ("p/<slug>" or "combos/<slug>"), else "". */
-export type AbandonedOrder = { kind: "diet" | "book" | "shop"; id: string; name: string; email: string; plan: string; itemId: string; title: string; amountPaise: number };
+/**
+ * For "shop", itemId is the store path of a single-item order ("p/<slug>" or "combos/<slug>"), else "".
+ * For "membership", plan is the plan id and title the plan name.
+ */
+export type AbandonedOrder = { kind: "diet" | "book" | "shop" | "membership"; id: string; name: string; email: string; plan: string; itemId: string; title: string; amountPaise: number };
 
 /** Where to send someone back to finish an order. */
 export function resumePath(o: AbandonedOrder): string {
   if (o.kind === "diet") return `/diet-chart?plan=${encodeURIComponent(o.plan)}#order`;
+  if (o.kind === "membership") return `/join?plan=${encodeURIComponent(o.plan)}`;
   if (o.kind === "shop") return /^(p|combos)\/[a-z0-9-]{2,80}$/.test(o.itemId) ? `/shop/${o.itemId}` : "/shop";
   const ids = o.itemId.split(",");
   if (ids.length === 1 && BOOKS.some((b) => b.slug === ids[0])) return `/library/${ids[0]}`;
@@ -36,13 +41,15 @@ export function resumePath(o: AbandonedOrder): string {
 
 export function checkoutReminder(o: AbandonedOrder, siteUrl: string, coach: string, phone: string): Draft {
   const plan = DIET_PLANS.find((p) => p.id === o.plan);
-  const what = o.kind === "diet" ? (plan?.name ?? "your diet plan") : o.title.replace(/^Vol\. \d+ · /, "");
+  const what = o.kind === "diet" ? (plan?.name ?? "your diet plan") : o.kind === "membership" ? `${o.title} membership` : o.title.replace(/^Vol\. \d+ · /, "");
   const link = withUtm(siteUrl, resumePath(o), "checkout-reminder");
   const why =
     o.kind === "diet"
       ? ["Calories and protein worked out from your own body", "Indian meals you already eat, in katori and roti measures", "Workouts that match your goal"]
       : o.kind === "shop"
         ? ["Paid securely through Razorpay", "Not sure it suits you? Ask us before you order"]
+        : o.kind === "membership"
+          ? ["Pay securely with UPI, card or net banking", "Not sure which plan suits you? Ask us before you pay"]
         : ["Instant PDF download right after payment", "Read on your phone, tablet or laptop", "Your download link is emailed to you too"];
   return {
     channel: "email",

@@ -22,7 +22,7 @@ export type Draft = {
   dedupeKey: string;
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request" | "checkout-reminder";
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
@@ -55,6 +55,8 @@ export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCa
   // Once per person: a member about a month in, or a diet client a week after their plan arrived.
   // Everyone in those windows is asked (Google forbids asking only happy customers), nothing is offered for it.
   "review-request": { name: "rfc_review_request_v1", category: "MARKETING", text: "Hi {{1}}, thank you for choosing {{2}}! If you have a minute, an honest Google review helps other people in Noida find us: {{3}}" },
+  // Once, to a membership buyer with no email who ticked "remind me if my payment doesn't go through".
+  "checkout-reminder": { name: "rfc_checkout_reminder_v1", category: "MARKETING", text: "Hi {{1}}, your {{2}} membership payment at {{3}} didn't go through. You asked us to remind you once, so here it is. Finish joining here: {{4}}" },
   "referral-bonus": { name: "rfc_referral_bonus_v2", category: "MARKETING", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
 };
 
@@ -173,6 +175,10 @@ export const reviewRequestEmail = (p: { name: string; email: string }, biz: Biz,
 
 export const referralBonusMessage = (referrer: MemberLike, referredName: string, days: number, biz: Biz, rewardId: string): Draft =>
   draft("referral-bonus", wa(referrer.phone), referrer.name, [first(referrer.name), first(referredName), biz.name, String(days), formatDate(referrer.expiresOn)], `referral-bonus:${rewardId}`);
+
+/** WhatsApp: the one reminder for an unpaid membership checkout; the order id keeps it to one per order. */
+export const checkoutReminderMessage = (o: { id: string; name: string; phone: string; planName: string; resumeUrl: string }, biz: Biz): Draft =>
+  draft("checkout-reminder", wa(o.phone), o.name, [first(o.name), o.planName, biz.name, o.resumeUrl], `checkout-reminder:${o.id}`);
 
 /**
  * Everything due today. Run daily; re-running is harmless (the outbox dedupes), and a missed
