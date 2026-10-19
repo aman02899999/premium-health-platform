@@ -4,6 +4,7 @@ import { getContent } from "@/lib/content/store";
 import { parseCheckoutForm, quoteMembership } from "@/lib/payments/membership";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { insertOrder } from "@/lib/payments/orders";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { applyOffer } from "@/lib/offers";
 import { todayIST } from "@/lib/growth/dates";
 import { looksLikeReferralCode, normaliseCode } from "@/lib/growth/config";
@@ -54,6 +55,7 @@ export async function POST(req: Request) {
       notes: { plan: `${quote.planName}${couple ? " (couple)" : ""}`, name: form.name, phone: form.phone },
     });
     await insertOrder(order.id, quote, form, referralCode);
+    await attributeFromRequest(req, "membership", order.id);
     // Abandoned-checkout emails are for first-time joiners only; renewals have their own sequence.
     if (form.email) {
       const email = form.email;

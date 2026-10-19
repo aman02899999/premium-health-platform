@@ -63,6 +63,10 @@ describe("sales emails", () => {
   it("sends people back to exactly what they were buying", () => {
     expect(resumePath(diet)).toBe("/diet-chart?plan=3m#order");
     expect(resumePath(book)).toBe(`/library/${BOOKS[0].slug}`);
+    const shop: AbandonedOrder = { ...book, kind: "shop", itemId: "combos/bulk-stack" };
+    expect(resumePath(shop)).toBe("/shop/combos/bulk-stack");
+    expect(resumePath({ ...shop, itemId: "" })).toBe("/shop");
+    expect(resumePath({ ...shop, itemId: "../admin" })).toBe("/shop");
     expect(resumePath({ ...book, itemId: BUNDLES[0].id })).toBe("/library#combos");
     expect(resumePath({ ...book, itemId: `${BOOKS[0].slug},${BOOKS[1].slug}` })).toBe("/library");
   });

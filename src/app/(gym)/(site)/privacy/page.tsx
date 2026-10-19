@@ -80,6 +80,11 @@ export default async function PrivacyPage() {
           this in your{" "}
           <a href="https://accountscenter.facebook.com/ad_preferences" target="_blank" rel="noopener noreferrer">Meta ad preferences</a>.
         </p>
+        <p>
+          A cookie of our own (rfc_attr, kept for 90 days) remembers how you first found us and what brought you back last: the campaign tags in
+          the link you clicked, the website you came from and the page you landed on. It holds nothing about you personally. If you send an
+          enquiry or buy something, we store those details with it so we know which of our posts, ads and messages actually bring members.
+        </p>
         <h2>Contact</h2>
         <p>
           {c.business.name}, {c.business.address.street}, {c.business.address.locality}, {c.business.address.city} {c.business.address.postalCode}.

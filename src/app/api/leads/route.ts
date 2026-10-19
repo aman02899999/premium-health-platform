@@ -3,6 +3,7 @@ import { saveLead } from "@/lib/content/store";
 import { isDbConfigured } from "@/health/db";
 import { afterLeadSaved } from "@/lib/growth/hooks";
 import { insertLead } from "@/lib/growth/leads";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { recordEmailConsent } from "@/lib/growth/marketing";
 import { browserContext, sendCapiEvent } from "@/lib/growth/meta-capi";
 
@@ -51,6 +52,7 @@ export async function POST(req: Request) {
       if (marketing) await recordEmailConsent(email, name, source).catch((e: Error) => console.error("[leads] consent:", e.message));
       // After the response: WhatsApp thank-you and/or the first email (or queue them for the admin).
       after(() => afterLeadSaved(phone, id));
+      await attributeFromRequest(req, "lead", id);
       after(() => sendCapiEvent(capi));
     } else {
       await saveLead({ name, phone, goal: clean(body.goal, 60), message: clean(body.message, 600), source });

@@ -5,6 +5,7 @@ import { dietPlan } from "@/lib/growth/config";
 import { parseDietOrder } from "@/lib/growth/diet-intake";
 import { hasPaidTrial, insertDietOrder } from "@/lib/growth/diet-orders";
 import { recordEmailConsent } from "@/lib/growth/marketing";
+import { attributeFromRequest } from "@/lib/attribution-store";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 
 export const dynamic = "force-dynamic";
@@ -36,6 +37,7 @@ export async function POST(req: Request) {
   try {
     const order = await createRazorpayOrder({ amountPaise, receipt: `rfc_diet_${randomUUID().slice(0, 13)}`, notes: { item: plan.name, plan: plan.id, name: parsed.buyer.name, phone: parsed.buyer.phone } });
     await insertDietOrder(order.id, amountPaise, parsed.buyer, parsed.intake, plan.id);
+    await attributeFromRequest(req, "diet", order.id);
     if (parsed.buyer.marketing && parsed.buyer.email) await recordEmailConsent(parsed.buyer.email, parsed.buyer.name, "diet-checkout").catch(() => {});
     return NextResponse.json({
       orderId: order.id,

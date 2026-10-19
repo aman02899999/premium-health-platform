@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isDbConfigured } from "@/health/db";
 import { runDaily } from "@/lib/growth/daily";
 import { recordDailyRun } from "@/lib/growth/system-status";
+import { reconcilePayments } from "@/lib/payments/reconcile";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -14,8 +15,11 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
+  // First, payments Razorpay captured that the site never recorded (read-only lookups; on its own
+  // so a Razorpay outage can't stop the reminders).
+  const payments = await reconcilePayments().catch((err: Error) => ({ error: err.message }));
   try {
-    const result = await runDaily();
+    const result = { ...(await runDaily()), payments };
     await recordDailyRun("cron", true, result);
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {

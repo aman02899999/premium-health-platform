@@ -101,4 +101,27 @@ describe.skipIf(!url)("supplement store on a real database", () => {
     expect(a!.order.adminNotes).toBe("");
     expect(b!.order.adminNotes).toMatch(/Stock was short.*Blackwolf Whey: needed 1, had 0/);
   });
+
+  it("holds stock for other shoppers' open checkouts, but not against the buyer's own retry", async () => {
+    const whey = await s.saveProduct(product({ stock: 5 }));
+    const order = (n: string, phone: string, email: string, items: import("./types").OrderItem[], minsAgo = 0) =>
+      s.insertOrder({ number: n, razorpayOrderId: `o-${n}`, userId: null, name: "Buyer", email, phone, address: { line1: "1", line2: "", landmark: "", city: "Noida", state: "UP", pincode: "201304" }, items, listTotal: 1, discountTotal: 0, shipping: 0, total: 1, note: "" })
+        .then(() => pool.query(`update public.shop_orders set created_at = now() - make_interval(mins => $2) where number = $1`, [n, minsAgo]));
+    const line = (qty: number): import("./types").OrderItem => ({ kind: "product", id: whey.id, slug: whey.slug, name: whey.name, qty, unitList: 1, unitPrice: 1 });
+    await order("RS-HLD001", "9000000001", "a@x.in", [line(2)]); // held
+    await order("RS-HLD002", "9000000002", "b@x.in", [{ kind: "combo", id: "c", slug: "duo", name: "Duo", qty: 2, unitList: 1, unitPrice: 1, contents: [{ productId: whey.id, name: whey.name, qty: 1 }] }]); // 2 held via a combo
+    await order("RS-HLD003", "9000000003", "c@x.in", [line(4)], 30); // expired
+    await order("RS-HLD004", "9000000004", "d@x.in", [line(1)]);
+    await pool.query(`update public.shop_orders set status = 'paid' where number = 'RS-HLD004'`); // already deducted on payment
+    expect((await s.heldStock("9999999999", "z@x.in")).get(whey.id)).toBe(4);
+    expect((await s.heldStock("9000000001", "new@x.in")).get(whey.id)).toBe(2); // own retry by phone
+    expect((await s.heldStock("9999999999", "B@X.in")).get(whey.id)).toBe(2); // own retry by email
+
+    const { withHolds, quoteCart, priceProduct } = await import("./pricing");
+    const priced = new Map([[whey.id, priceProduct(whey, [])]]);
+    const cart = [{ kind: "product" as const, id: whey.id, qty: 2 }];
+    const settings = { shippingFee: 0, freeShippingOver: 0 };
+    expect(quoteCart(cart, priced, new Map(), settings).problems).toEqual([]);
+    expect(quoteCart(cart, withHolds(priced, await s.heldStock("9999999999", "z@x.in")), new Map(), settings).problems[0]).toMatch(/Only 1 of/);
+  });
 });

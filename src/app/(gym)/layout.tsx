@@ -7,6 +7,7 @@ import { ADSENSE_SRC } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 import { MetaPixel } from "@/components/ui/MetaPixel";
+import { AttributionTracker } from "@/components/ui/AttributionTracker";
 
 // Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
 const inter = localFont({ src: "./fonts/inter-latin-wght-normal.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
@@ -68,6 +69,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         {children}
         <VercelAnalytics />
         <MetaPixel />
+        <AttributionTracker />
       </body>
     </html>
   );

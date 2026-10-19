@@ -175,6 +175,17 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await order("order_A", "+91 90000 00071", 150000, 15); // 5 days after the message
     await order("order_B", "9000000072", 200000, 1); // 19 days after: not credited
     expect((await cm.listCampaigns())[0]).toMatchObject({ sent: 2, buyers: 1, revenue: 1500 });
+    // Supplement and book orders count too, net of refunds; a fully refunded one adds nothing.
+    await pool.query(
+      `insert into public.shop_orders (number, razorpay_order_id, status, name, email, phone, address, items, list_total, discount_total, total, refunded_paise, paid_at)
+       values ('RS-CAMP01', 'order_S', 'paid', 'Bina', 'bina@example.com', '9000000072', '{}', '[]', 800, 0, 800, 30000, now() - interval '17 days')`,
+    );
+    await pool.query(
+      `insert into public.book_orders (razorpay_order_id, status, item_id, title, slugs, amount_paise, refunded_paise, name, email, phone, access_token, paid_at)
+       values ('order_K', 'paid', 'x', 'Book', '{x}', 69900, 69900, 'Asha', 'asha@example.com', '9000000071', 'tok-camp', now() - interval '16 days')`,
+    );
+    expect((await cm.listCampaigns())[0]).toMatchObject({ sent: 2, buyers: 2, revenue: 2000 });
+    await pool.query(`delete from public.shop_orders where razorpay_order_id = 'order_S'; delete from public.book_orders where razorpay_order_id = 'order_K'`);
   });
 
   it("holds marketing emails at the daily email cap and sends receipts first", async () => {

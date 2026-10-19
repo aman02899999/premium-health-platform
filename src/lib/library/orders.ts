@@ -90,12 +90,12 @@ export async function markBookFailed(razorpayOrderId: string): Promise<boolean> 
   return (rowCount ?? 0) > 0;
 }
 
-/** A paid, unexpired order for this access token. */
+/** A paid, unexpired, not fully refunded order for this access token. */
 export async function orderByToken(token: string): Promise<BookOrder | null> {
   if (!/^[A-Za-z0-9_-]{20,64}$/.test(token)) return null;
   const { rows } = await pool.query<Row>(
     `select * from public.book_orders
-      where access_token = $1 and status = 'paid' and paid_at > now() - make_interval(days => $2)`,
+      where access_token = $1 and status = 'paid' and refunded_paise < amount_paise and paid_at > now() - make_interval(days => $2)`,
     [token, ACCESS_DAYS],
   );
   return rows[0] ? fromRow(rows[0]) : null;
@@ -116,7 +116,7 @@ export async function claimDownload(orderId: string, slug: string): Promise<bool
 export async function recoverToken(email: string, paymentId: string): Promise<string | null> {
   const { rows } = await pool.query<{ access_token: string }>(
     `select access_token from public.book_orders
-      where lower(email) = lower($1) and razorpay_payment_id = $2 and status = 'paid'
+      where lower(email) = lower($1) and razorpay_payment_id = $2 and status = 'paid' and refunded_paise < amount_paise
       limit 1`,
     [email, paymentId],
   );

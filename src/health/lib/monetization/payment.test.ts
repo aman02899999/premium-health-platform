@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { createHmac } from "crypto";
 import { generateDownloadToken, verifyDownloadToken } from "./payment";
 
@@ -121,5 +121,20 @@ describe("generateDownloadToken / verifyDownloadToken", () => {
     // A token minted with the auth secret must not verify against a different download secret.
     process.env.DOWNLOAD_TOKEN_SECRET = "rotated-download-secret";
     expect(verifyDownloadToken(token).valid).toBe(false);
+  });
+});
+
+describe("download tokens without a secret in production", () => {
+  it("refuses to mint or accept tokens instead of using a public fallback key", () => {
+    const good = generateDownloadToken("order", "product").token; // test env: dev fallback
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("DOWNLOAD_TOKEN_SECRET", "");
+    vi.stubEnv("NEXTAUTH_SECRET", "");
+    try {
+      expect(() => generateDownloadToken("order", "product")).toThrow(/DOWNLOAD_TOKEN_SECRET/);
+      expect(verifyDownloadToken(good).valid).toBe(false);
+    } finally {
+      vi.unstubAllEnvs();
+    }
   });
 });

@@ -34,6 +34,12 @@ export function priceCombo(c: Combo, products: Map<string, Priced>): PricedCombo
   return { ...c, lines, listTotal, saleTotal, price: applyPct(saleTotal, c.extraPct), available };
 }
 
+/** The catalogue as a new shopper sees it: stock minus units held by other unpaid checkouts. */
+export function withHolds(products: Map<string, Priced>, held: Map<string, number>): Map<string, Priced> {
+  if (!held.size) return products;
+  return new Map([...products].map(([id, p]) => [id, held.has(id) ? { ...p, stock: Math.max(0, p.stock - (held.get(id) ?? 0)) } : p]));
+}
+
 export type QuoteLine = OrderItem & { image: string | null; lineList: number; lineTotal: number; problem?: string };
 export type Quote = { lines: QuoteLine[]; listTotal: number; subtotal: number; discountTotal: number; shipping: number; total: number; problems: string[] };
 

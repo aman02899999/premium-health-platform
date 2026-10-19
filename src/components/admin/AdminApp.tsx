@@ -654,10 +654,14 @@ type Order = {
   partnerName: string | null;
   startDate: string | null;
   referredBy: string | null;
+  refundedPaise: number;
+  disputedAt: string | null;
 };
 
+type FlaggedPayment = { eventId: string; event: string; razorpayOrderId: string | null; razorpayPaymentId: string | null; amountPaise: number | null; outcome: string; detail: string; receivedAt: string };
+
 function Payments() {
-  const [data, setData] = useState<{ configured: boolean; orders: Order[]; error?: string } | null>(null);
+  const [data, setData] = useState<{ configured: boolean; orders: Order[]; flagged?: FlaggedPayment[]; error?: string } | null>(null);
   const [showAll, setShowAll] = useState(false);
   useEffect(() => {
     fetch("/api/admin/payments")
@@ -669,9 +673,12 @@ function Payments() {
   if (!data) return <Loader2 className="h-6 w-6 animate-spin text-brand" />;
   const paid = data.orders.filter((o) => o.status === "paid");
   const shown = showAll ? data.orders : paid;
-  const total = paid.reduce((sum, o) => sum + o.amountPaise, 0) / 100;
+  // Collected minus refunded: what the gym actually kept.
+  const net = (list: Order[]) => list.reduce((sum, o) => sum + o.amountPaise - (o.refundedPaise ?? 0), 0) / 100;
+  const total = net(paid);
   const month = new Date().toISOString().slice(0, 7);
-  const thisMonth = paid.filter((o) => o.createdAt.startsWith(month)).reduce((sum, o) => sum + o.amountPaise, 0) / 100;
+  const thisMonth = net(paid.filter((o) => o.createdAt.startsWith(month)));
+  const flagged = data.flagged ?? [];
   const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
   return (
@@ -685,8 +692,8 @@ function Payments() {
       <div className="mb-5 grid grid-cols-3 gap-3">
         {[
           ["Paid members", String(paid.length)],
-          ["This month", inr(thisMonth)],
-          ["All time", inr(total)],
+          ["This month (net of refunds)", inr(thisMonth)],
+          ["All time (net of refunds)", inr(total)],
         ].map(([label, value]) => (
           <div key={label} className="rounded-xl bg-white/[.04] p-3 ring-1 ring-white/10">
             <div className="text-xs text-white/50">{label}</div>
@@ -694,6 +701,20 @@ function Payments() {
           </div>
         ))}
       </div>
+      {flagged.length > 0 && (
+        <div className="mb-5 rounded-xl bg-yellow-500/10 p-3 ring-1 ring-yellow-500/30">
+          <div className="mb-2 text-sm font-semibold text-yellow-100">Needs a look in Razorpay (all products)</div>
+          <ul className="space-y-1.5 text-xs text-white/75">
+            {flagged.map((f) => (
+              <li key={f.eventId}>
+                <span className="text-white/50">{new Date(f.receivedAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</span> · {f.event}
+                {f.amountPaise !== null && <> · {inr(f.amountPaise / 100)}</>} · {f.detail || f.outcome.replace("_", " ")}
+                {f.razorpayPaymentId && <span className="ml-1 font-mono text-[10px] text-white/40">{f.razorpayPaymentId}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <label className="mb-3 flex items-center gap-2 text-sm text-white/60">
         <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> Show unfinished and failed attempts too
       </label>
@@ -735,6 +756,8 @@ function Payments() {
                     <span className={`rounded px-1.5 py-0.5 text-xs ${o.status === "paid" ? "bg-emerald-500/20 text-emerald-200" : o.status === "failed" ? "bg-red-500/20 text-red-200" : "bg-white/10 text-white/60"}`}>
                       {o.status === "created" ? "not paid" : o.status}
                     </span>
+                    {o.refundedPaise > 0 && <span className="mt-1 block text-xs text-yellow-200">refunded {inr(o.refundedPaise / 100)}</span>}
+                    {o.disputedAt && <span className="mt-1 block text-xs text-red-200">disputed</span>}
                     {o.razorpayPaymentId && <span className="mt-1 block font-mono text-[10px] text-white/40">{o.razorpayPaymentId}</span>}
                   </td>
                 </tr>
