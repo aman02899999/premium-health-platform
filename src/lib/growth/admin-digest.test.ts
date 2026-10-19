@@ -34,4 +34,12 @@ describe("admin morning email", () => {
     expect(d.subject).toBe("2026-10-14: no payments · 0 new leads");
     expect(d.body).toContain("Nothing: the automation handled everything.");
   });
+
+  it("reports campaign sends, held promotions and results, and stays quiet when there are none", () => {
+    const base = { leads: [], payments: [], plansToReview: [], clientUpdates: 0, unanswered: [], expiringMembers: [], failedMessages: 0 };
+    const d = adminDigest("2026-10-20", { ...base, campaigns: { sent: 180, held: 40, results: [{ name: "Comeback", buyers: 3, revenue: 4500 }] } }, "a@b.c", "u");
+    expect(d.body).toContain("CAMPAIGNS\n• 180 campaign messages sent\n• 40 WhatsApp promotions waiting for tomorrow");
+    expect(d.body).toContain("• Comeback: 3 paid within 14 days, ₹4,500");
+    expect(adminDigest("2026-10-20", { ...base, campaigns: { sent: 0, held: 0, results: [] } }, "a@b.c", "u").body).not.toContain("CAMPAIGNS");
+  });
 });

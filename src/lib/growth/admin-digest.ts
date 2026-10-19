@@ -11,6 +11,8 @@ export type DigestData = {
   unanswered: { channel: string; name: string; text: string }[];
   expiringMembers: { name: string; expiresOn: string }[];
   failedMessages: number;
+  /** Campaign activity: messages sent in the last 24 hours, WhatsApp promotions waiting for the daily cap, and campaigns that led to payments. */
+  campaigns?: { sent: number; held: number; results: { name: string; buyers: number; revenue: number }[] };
 };
 
 const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -30,6 +32,17 @@ export function adminDigest(date: string, d: DigestData, to: string, adminUrl: s
     section(`PAYMENTS (${inr(revenue)})`, d.payments.map((p) => `${p.kind}: ${p.name}, ${p.what}, ${inr(p.rupees)}`), "None today."),
     section(`NEW LEADS (${d.leads.length})`, d.leads.slice(0, 20).map((l) => `${l.name} (${l.source})`), "None today."),
     section("RENEWALS DUE THIS WEEK", d.expiringMembers.slice(0, 20).map((m) => `${m.name}, ends ${m.expiresOn} (reminder sent automatically)`), "None."),
+    d.campaigns && (d.campaigns.sent || d.campaigns.held || d.campaigns.results.length)
+      ? section(
+          "CAMPAIGNS",
+          [
+            ...(d.campaigns.sent ? [`${d.campaigns.sent} campaign message${d.campaigns.sent === 1 ? "" : "s"} sent`] : []),
+            ...(d.campaigns.held ? [`${d.campaigns.held} WhatsApp promotion${d.campaigns.held === 1 ? "" : "s"} waiting for tomorrow (daily limit protects your number)`] : []),
+            ...d.campaigns.results.map((r) => `${r.name}: ${r.buyers} paid within 14 days, ${inr(r.revenue)}`),
+          ],
+          "",
+        )
+      : "",
     d.clientUpdates ? `Clients built ${d.clientUpdates} updated plan${d.clientUpdates === 1 ? "" : "s"} from their dashboard.` : "",
     `[[CTA:Open the admin|${adminUrl}]]`,
   ]
