@@ -1,5 +1,6 @@
 import "server-only";
 import { getContent } from "@/lib/content/store";
+import { indexNowUrls, submitIndexNow } from "@/lib/indexnow";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
 import { nurtureLeads, openLeads } from "./leads";
@@ -115,7 +116,12 @@ export async function runDaily(now = new Date()) {
   // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
   // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));
-  return { today, due: drafts.length, queued, reviews: reviews.length, campaigns, ...sent, ...story };
+  // Changed pages go to Bing the same day, so AI answers pick up new prices, offers and posts.
+  const indexnow = await pool
+    .query<{ updated_at: Date }>(`select max(updated_at) as updated_at from public.site_content`)
+    .then(async (r) => submitIndexNow(indexNowUrls(await getContent(), now, r.rows[0]?.updated_at ?? null, isMonday(today))))
+    .catch((err: Error) => `error: ${err.message}`);
+  return { today, due: drafts.length, queued, reviews: reviews.length, campaigns, ...sent, ...story, indexnow };
 }
 
 /**
