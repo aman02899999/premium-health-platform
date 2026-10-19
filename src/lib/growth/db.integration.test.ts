@@ -198,8 +198,8 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     await add("Lead C", "+91 98111 00003", "contact");
     await leads.updateLead(a, { showedUp: true });
     await leads.updateLead(b, { showedUp: false });
-    // C joined at the desk (no lead status change); A paid online.
-    await pool.query(`insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Lead C', '9811100003', 'Monthly', current_date, current_date + 30, 'LEADC-1')`);
+    // C joined at the desk today, India date (no lead status change); A paid online.
+    await pool.query(`insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Lead C', '9811100003', 'Monthly', (now() at time zone 'Asia/Kolkata')::date, (now() at time zone 'Asia/Kolkata')::date + 30, 'LEADC-1')`);
     await pool.query(`insert into public.membership_orders (razorpay_order_id, status, plan_id, plan_name, duration, amount_paise, name, phone, paid_at) values ('order_F1', 'paid', 'm1', 'Monthly', '1 month', 150000, 'Lead A', '9811100001', now())`);
     await leads.updateLead(a, { status: "joined" });
     expect(await leads.funnelBySource(30)).toEqual([
