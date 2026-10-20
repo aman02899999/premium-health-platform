@@ -12,6 +12,8 @@ describe("AI-facing facts", () => {
     const byId = Object.fromEntries(f.faqs.map((q) => [q.id, q.a]));
     for (const p of plans.filter((x) => x.price > 0)) expect(byId["ai-plans"]).toContain(`₹${p.price.toLocaleString("en-IN")}`);
     expect(byId["ai-hours"]).toMatch(/^Royal Fitness Club is not a 24-hour gym\. It is open morning/);
+    expect(byId["ai-hours"]).toContain("Closed on Sunday.");
+    expect(byId["ai-classes"]).toMatch(/^No\. Royal Fitness Club does not run group classes\./);
     expect(byId["ai-discounts"]).toMatch(/^Yes\. Festive Offer until 31 December 2026/);
     expect(f.faqs.every((q) => q.a.length < 600)).toBe(true);
   });

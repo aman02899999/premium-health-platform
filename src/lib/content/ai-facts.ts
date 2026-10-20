@@ -5,6 +5,7 @@
 import type { OfferPlan } from "@/lib/offers";
 import type { Faq, SiteContent } from "./types";
 import { AREAS_SERVED, formatINR, formatTime } from "@/lib/site";
+import { expandDays } from "@/lib/seo";
 
 const list = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const date = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
@@ -24,6 +25,9 @@ export function aiFacts(c: SiteContent, plans: OfferPlan[], siteUrl: string): Ai
   const programs = c.programs.map((p) => p.title);
   const coach = c.trainers[0];
   const near = list([...AREAS_SERVED]);
+  const openDays = new Set(b.hours.flatMap((h) => expandDays(h.days)));
+  const closed = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].filter((d) => !openDays.has(d));
+  const closedText = closed.length ? ` Closed on ${list(closed)}.` : "";
 
   const faqs: Faq[] = [
     {
@@ -34,7 +38,7 @@ export function aiFacts(c: SiteContent, plans: OfferPlan[], siteUrl: string): Ai
     {
       id: "ai-hours",
       q: `What are the timings of ${b.name}? Is it open 24/7?`,
-      a: `${b.name} is not a 24-hour gym. It is open ${hours}. A trainer is on the floor during these hours.`,
+      a: `${b.name} is not a 24-hour gym. It is open ${hours}.${closedText} A trainer is on the floor during these hours.`,
     },
     {
       id: "ai-plans",
@@ -52,6 +56,11 @@ export function aiFacts(c: SiteContent, plans: OfferPlan[], siteUrl: string): Ai
       id: "ai-programs",
       q: `What training programs does ${b.name} offer?`,
       a: `${list(programs)}. Each program has a written guide with sample weeks at ${siteUrl}/programs.`,
+    },
+    {
+      id: "ai-classes",
+      q: `Does ${b.name} have group fitness classes like Zumba, yoga or aerobics?`,
+      a: `No. ${b.name} does not run group classes. Members train on the gym floor with guidance from the trainers on duty, or one-on-one with a personal trainer, on programs built around their own goal.`,
     },
     {
       id: "ai-pt",
@@ -99,7 +108,8 @@ export function llmsTxt(c: SiteContent, plans: OfferPlan[], siteUrl: string): st
     `- Type: air-conditioned unisex gym (HealthClub / ExerciseGym), founded ${b.foundedYear}`,
     `- Address: ${f.place}`,
     `- Areas served: ${list([...AREAS_SERVED])}, Noida`,
-    `- Hours: ${f.hours}`,
+    `- Hours: ${f.hours} (not open 24/7)`,
+    `- Training: gym floor with trainers on duty, and one-on-one personal training; no group classes`,
     `- Membership: ${f.plans}`,
     ...(f.offer ? [`- Current offer: ${f.offer}`] : []),
     `- Rating: ${b.rating.value} from ${b.rating.count}+ ratings on ${b.rating.source}`,
