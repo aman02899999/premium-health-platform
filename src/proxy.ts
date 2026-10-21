@@ -3,14 +3,22 @@ import { NextResponse, type NextRequest } from "next/server";
 import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "@/lib/supabase/config";
 import { allowed, isRole } from "@/lib/admin/team-core";
 
+// The APIs that read the signed-in session (the rest only get the origin check below).
+const SESSION_API = /^\/api\/(admin|account|shop\/order|shop\/my-orders)(\/|$)/;
+
 // Refreshes the Supabase auth cookie before server code reads it. Only runs on
 // routes that use the session, so public pages stay fully static/cacheable.
 export async function proxy(request: NextRequest) {
-  // Admin and account writes only from this site's own pages (defence in depth on top of SameSite cookies).
-  if (request.method !== "GET" && request.method !== "HEAD" && /^\/(api\/admin|api\/account)\//.test(request.nextUrl.pathname)) {
+  const path = request.nextUrl.pathname;
+  // Writes only from this site's own pages: admin and account (defence in depth on top of SameSite
+  // cookies), and every public form and payment step, so another site can't post into them from a
+  // visitor's browser. Webhooks and the scheduler are server-to-server and send no Origin.
+  if (request.method !== "GET" && request.method !== "HEAD" && path.startsWith("/api/") && !/^\/api\/(webhooks|cron)\//.test(path)) {
     const origin = request.headers.get("origin");
     if (origin && origin !== request.nextUrl.origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   }
+  // Public APIs don't use the session: nothing more to do here.
+  if (path.startsWith("/api/") && !SESSION_API.test(path)) return NextResponse.next();
   let response = NextResponse.next({ request });
   if (!supabaseConfigured) return response;
 
@@ -32,7 +40,6 @@ export async function proxy(request: NextRequest) {
 
   // Team roles: an agent or manager who opens an area their role doesn't cover is turned away
   // here, for every admin page and API at once. The admin's own row is readable under RLS.
-  const path = request.nextUrl.pathname;
   const email = typeof data?.claims?.email === "string" ? data.claims.email.toLowerCase() : null;
   if (email && /^\/(admin|api\/admin)(\/|$)/.test(path)) {
     const { data: me, error } = await supabase.from("admins").select("role").eq("email", email).maybeSingle<{ role: string }>();
@@ -53,9 +60,11 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     // Royal Fitness Club
-    "/admin/:path*", "/api/admin/:path*", "/account", "/account/:path*", "/api/account/:path*",
+    "/admin/:path*", "/account", "/account/:path*",
+    // Every API: the origin check for writes; the session refresh only where it's used (SESSION_API).
+    "/api/:path*",
     // Royal Supplements store: customer sign-in for orders and checkout prefill
-    "/shop/account", "/shop/checkout", "/api/shop/order", "/api/shop/my-orders",
+    "/shop/account", "/shop/checkout",
     // Premium Health Platform (/health)
     "/health/admin/:path*", "/health/profile", "/health/earn",
     "/health/api/auth/:path*", "/health/api/premium/:path*", "/health/api/v1/keys/:path*", "/health/api/v1/billing/:path*",

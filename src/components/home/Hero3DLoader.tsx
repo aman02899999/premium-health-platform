@@ -24,7 +24,7 @@ export function Hero3DLoader() {
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-img-element -- tiny decorative still; next/image adds nothing here */}
-      <img src="/hero/dumbbell-poster.webp" alt="" aria-hidden width={720} height={706} decoding="async" fetchPriority="low" className="hero-poster md:hidden" />
+      <img src="/hero/dumbbell-poster.webp" alt="" aria-hidden width={720} height={706} fetchPriority="high" className="hero-poster md:hidden" />
       {live && <Hero3D />}
     </>
   );
