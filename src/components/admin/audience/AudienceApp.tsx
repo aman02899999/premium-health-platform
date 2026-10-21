@@ -59,7 +59,7 @@ function ImportCard({ onDone }: { onDone: () => void }) {
     }
   }
   return (
-    <section className={card}>
+    <section className={card} id="contacts">
       <h2 className="flex items-center gap-2 font-display text-lg">
         <Upload className="h-5 w-5 text-emerald-300" /> Import old members or contacts
       </h2>

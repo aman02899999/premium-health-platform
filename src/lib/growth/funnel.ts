@@ -8,6 +8,7 @@ const SOURCE_NAMES: Record<string, string> = {
   contact: "Website: contact page form",
   website: "Website: other forms",
   "whatsapp-inbound": "WhatsApp chat",
+  "whatsapp-campaign": "Reply to a WhatsApp campaign",
   "diet-tool": "Free diet tool",
 };
 export const sourceName = (s: string) => SOURCE_NAMES[s] ?? s.replace(/[-_]/g, " ");
