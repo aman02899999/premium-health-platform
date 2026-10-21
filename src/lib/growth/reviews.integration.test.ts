@@ -76,7 +76,7 @@ describe.skipIf(!url)("review requests on a real database", () => {
     const drafts = await rv.dueReviewRequests(TODAY, BIZ, REVIEW, MAPS);
     expect(drafts.map((d) => `${d.channel}:${d.to}`).sort()).toEqual(["email:asha@x.in", "whatsapp:919000000101", "whatsapp:919000000201"]);
     const wa = drafts.find((d) => d.to === "919000000201")!;
-    expect(wa).toMatchObject({ kind: "review-request", template: "rfc_review_request_v1", params: ["Priya", "Royal Fitness Club", REVIEW] });
+    expect(wa).toMatchObject({ kind: "review-request", template: "rfc_review_request_v3", params: ["Priya", "Royal Fitness Club", REVIEW] });
     expect(drafts.find((d) => d.channel === "email")!.body).toContain(`[[CTA:Write a Google review|${REVIEW}]]`);
 
     // Queued twice (two daily runs, a week apart): still one ask each.

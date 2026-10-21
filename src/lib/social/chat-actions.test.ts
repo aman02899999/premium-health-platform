@@ -9,8 +9,9 @@ describe("templates for a closed window", () => {
     expect(manualTemplates({ ...base, lead: { status: "new", interest: "", source: "", createdAt: "" } }, biz).map((t) => t.kind)).toEqual(["lead-2", "trial-offer", "call-followup"]);
     const active = manualTemplates({ ...base, member: { planName: "Quarterly", expiresOn: "2026-11-01", active: true, renewToken: "tok" } }, biz);
     expect(active.map((t) => t.kind)).toEqual(["renew-7", "call-followup"]);
-    expect(active[0].preview).toBe("Hi Pratibha, your Quarterly membership at Royal Fitness Club ends on 1 Nov 2026. Renew in one tap to keep your spot: https://x.in/join?renew=tok");
-    expect(manualTemplates({ ...base, member: { planName: "Monthly", expiresOn: "2026-09-01", active: false, renewToken: "tok" } }, biz)[0]).toMatchObject({ kind: "comeback", name: "rfc_comeback_offer_v2", marketing: true });
+    expect(active[0].preview).toContain("Hi Pratibha, your *Quarterly* membership at Royal Fitness Club ends on *1 Nov 2026*.");
+    expect(active[0].preview).toContain("👉 https://x.in/join?renew=tok");
+    expect(manualTemplates({ ...base, member: { planName: "Monthly", expiresOn: "2026-09-01", active: false, renewToken: "tok" } }, biz)[0]).toMatchObject({ kind: "comeback", name: "rfc_comeback_offer_v3", marketing: true });
   });
   it("leaves promotions out after Stop promotions", () => {
     expect(manualTemplates({ ...base, optedOut: true }, biz)).toEqual([]);

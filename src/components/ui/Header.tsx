@@ -64,7 +64,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 min-[106.25rem]:max-w-[1600px]" aria-label="Main">
           {/* The full menu needs the room on laptops: there the logo is the badge alone (the link
               label names the club); the wordmark comes back on wide screens and wherever the menu is folded. */}
-          <Link href="/" aria-label={`${name} home`} onClick={() => setOpen(false)} className="shrink-0">
+          <Link href="/" aria-label={name} onClick={() => setOpen(false)} className="shrink-0">
             <Logo name={name} textClassName="xl:hidden min-[106.25rem]:block" />
           </Link>
           <ul className="hidden items-center gap-0.5 xl:flex min-[106.25rem]:gap-1">

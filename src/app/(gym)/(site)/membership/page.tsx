@@ -38,6 +38,7 @@ export default async function MembershipPage() {
       <JsonLd data={[breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Membership", path: "/membership" }]), faqJsonLd([...policy, ...faqs])]} />
       <PageHero eyebrow="Membership" title="Invest in" highlight="yourself" intro="Transparent single and couple pricing, and a free trial before you commit." />
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+        <h2 className="sr-only">Membership plans and prices</h2>
         <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">

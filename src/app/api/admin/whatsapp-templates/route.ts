@@ -1,11 +1,15 @@
 import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
 import { STOP_PROMOTIONS, TEMPLATES, templateBody, type MessageKind } from "@/lib/growth/messages";
+import { bannerUrl } from "@/lib/growth/wa-templates";
+import { getContent } from "@/lib/content/store";
 
 // One-time setup page: /api/admin/whatsapp-templates (sign in to /admin first).
 // GET shows which of the site's WhatsApp templates exist in Meta and their review status.
 // POST (the button) submits every missing one to Meta for review.
 // Needs WHATSAPP_TOKEN and WHATSAPP_BUSINESS_ACCOUNT_ID (the WABA id, not the phone number id).
+// Templates with a banner are created with an IMAGE header: the sample image goes up through Meta's
+// resumable upload API, which needs the app id (META_APP_ID, or read from the token).
 
 export const dynamic = "force-dynamic";
 
@@ -54,6 +58,34 @@ async function graph(path: string, init?: RequestInit) {
   return { ok: res.ok, json };
 }
 
+const FOOTER = "Royal Fitness Club · Sector 93, Noida";
+
+/** The Meta app the token belongs to: META_APP_ID, or asked from the Graph API. */
+async function appId(): Promise<string> {
+  if (process.env.META_APP_ID) return process.env.META_APP_ID;
+  const { ok, json } = await graph(`/app`);
+  if (!ok || !json?.id) throw new Error("Couldn't find the Meta app id: add META_APP_ID in Vercel");
+  return String(json.id);
+}
+
+/** Uploads a banner as the template's sample header and returns Meta's file handle. */
+async function headerHandle(banner: string): Promise<string> {
+  const img = await fetch(bannerUrl(banner), { signal: AbortSignal.timeout(15000) });
+  if (!img.ok) throw new Error(`Banner ${banner} not reachable (${img.status})`);
+  const bytes = Buffer.from(await img.arrayBuffer());
+  const start = await graph(`/${await appId()}/uploads?file_name=${banner}.jpg&file_length=${bytes.length}&file_type=image%2Fjpeg`, { method: "POST" });
+  if (!start.ok || !start.json?.id) throw new Error(start.json?.error?.message || "Upload session failed");
+  const res = await fetch(`${API()}/${start.json.id}`, {
+    method: "POST",
+    headers: { authorization: `OAuth ${process.env.WHATSAPP_TOKEN}`, file_offset: "0" },
+    body: bytes,
+    signal: AbortSignal.timeout(30000),
+  });
+  const json = (await res.json().catch(() => ({}))) as { h?: string; error?: { message?: string } };
+  if (!res.ok || !json.h) throw new Error(json.error?.message || "Upload failed");
+  return json.h;
+}
+
 async function remoteTemplates(): Promise<Remote[]> {
   const { ok, json } = await graph(`/${WABA()}/message_templates?fields=name,status,language,category&limit=250`);
   if (!ok) throw new Error(json?.error?.message || "Couldn't read templates from Meta");
@@ -95,7 +127,12 @@ async function rows() {
       kind,
       name,
       status: r?.status ?? "MISSING",
-      note: r ? (r.category === TEMPLATES[kind].category ? r.category : `${r.category} (submitted as ${TEMPLATES[kind].category})`) : other ? `exists in ${other.language}, the site sends ${LANG()}` : MANUAL.includes(kind) ? "create by hand (needs a PDF header)" : "",
+      note: [
+        r ? (r.category === TEMPLATES[kind].category ? r.category : `${r.category} (submitted as ${TEMPLATES[kind].category})`) : other ? `exists in ${other.language}, the site sends ${LANG()}` : MANUAL.includes(kind) ? "create by hand (needs a PDF header)" : "",
+        TEMPLATES[kind].legacy && r?.status !== "APPROVED" ? `until approved, ${TEMPLATES[kind].legacy} keeps sending` : "",
+      ]
+        .filter(Boolean)
+        .join(" · "),
     };
   });
 }
@@ -120,12 +157,29 @@ export async function POST(req: Request) {
   if (err) return page([], err);
   const log: string[] = [];
   try {
+    // The "Call a coach" button rings the number a person answers, not the API number.
+    const phone = ((await getContent().catch(() => null))?.business.phone ?? "").replace(/[^\d+]/g, "");
+    const handles = new Map<string, string>();
     for (const r of await rows()) {
       if (r.status !== "MISSING" || MANUAL.includes(r.kind)) continue;
       const t = TEMPLATES[r.kind];
-      const components: object[] = [{ type: "BODY", text: templateBody(t.text), example: { body_text: [SAMPLES[r.kind]] } }];
+      const components: object[] = [];
+      if (t.header) {
+        try {
+          if (!handles.has(t.header)) handles.set(t.header, await headerHandle(t.header));
+          components.push({ type: "HEADER", format: "IMAGE", example: { header_handle: [handles.get(t.header)] } });
+        } catch (e) {
+          log.push(`✗ ${r.name}: banner upload failed (${(e as Error).message}); the old template keeps sending`);
+          continue;
+        }
+      }
+      components.push({ type: "BODY", text: templateBody(t.text), example: { body_text: [SAMPLES[r.kind]] } });
+      components.push({ type: "FOOTER", text: FOOTER });
+      const buttons: object[] = [];
+      if (phone.length >= 12) buttons.push({ type: "PHONE_NUMBER", text: "Call a coach", phone_number: phone });
       // Every promotion carries the opt-out button; the webhook records a tap on it.
-      if (t.category === "MARKETING") components.push({ type: "BUTTONS", buttons: [{ type: "QUICK_REPLY", text: STOP_PROMOTIONS }] });
+      if (t.category === "MARKETING") buttons.push({ type: "QUICK_REPLY", text: STOP_PROMOTIONS });
+      if (buttons.length) components.push({ type: "BUTTONS", buttons });
       const { ok, json } = await graph(`/${WABA()}/message_templates`, {
         method: "POST",
         body: JSON.stringify({ name: r.name, language: LANG(), category: t.category, components }),

@@ -47,9 +47,9 @@ describe("trial messages", () => {
 
   it("confirms the booking with the time and directions", () => {
     const d = trialMessage("trial-booked", { ...lead(), trialAt: at }, biz)!;
-    expect(d.template).toBe("rfc_trial_booked_v1");
+    expect(d.template).toBe("rfc_trial_booked_v3");
     expect(d.to).toBe("919876543210");
-    expect(d.body).toBe("Hi Rahul, your free trial at Royal Fitness Club is booked for Wed, 21 Oct, 6:00 PM. Directions: https://maps.example/rfc. To change the time, reply to this message.");
+    expect(d.body).toBe("✅ *Free trial booked*\n\nHi Rahul, your free trial at *Royal Fitness Club* is booked for *Wed, 21 Oct, 6:00 PM*.\n\n📍 Directions: https://maps.example/rfc\n\nTo change the time, reply to this message.");
     const e = trialBookedEmail({ id: "l1", name: "Rahul", email: "R@X.in", trialAt: at }, { ...biz, address: "Gejha, Noida" });
     expect(e).toMatchObject({ channel: "email", to: "r@x.in", kind: "trial-booked-email", subject: "Your free trial: Wed, 21 Oct, 6:00 PM" });
   });
@@ -57,7 +57,7 @@ describe("trial messages", () => {
     const l = lead({ trialAt: at });
     expect(kinds("2026-10-20", l)).toEqual([]);
     expect(kinds("2026-10-21", l)).toEqual(["trial-today"]);
-    expect(dueMessages("2026-10-21", [], [l], biz)[0].body).toContain("see you today at 6:00 PM");
+    expect(dueMessages("2026-10-21", [], [l], biz)[0].body).toContain("See you at *6:00 PM* for your free trial");
     expect(kinds("2026-10-22", l)).toEqual([]); // nobody marked the visit: no guessing
   });
   it("no-show gets a rebooking link; came gets the plans on day 1–3 and a last nudge on day 4–7", () => {

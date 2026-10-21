@@ -87,7 +87,7 @@ export default async function HomePage() {
               </Link>
             </Reveal>
             <Reveal delay={400} className="mt-10">
-              <RatingBadge value={b.rating.value} count={b.rating.count} source={b.rating.source} href={b.googleMapsUrl} />
+              <RatingBadge value={b.rating.value} count={b.rating.count} source={b.rating.source} href={/google/i.test(b.rating.source) ? b.googleMapsUrl : undefined} />
             </Reveal>
           </div>
         </div>
@@ -314,7 +314,7 @@ export default async function HomePage() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading center={false} eyebrow="Free trial" title="Your first workout is" highlight="on the house" intro="Leave your number and we'll call to fix a time that suits you. Or skip the form and WhatsApp us directly." />
-            <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3.5 font-bold text-white">
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3.5 font-bold text-[#0b141a]">
               <WhatsAppIcon className="h-5 w-5" /> Chat on WhatsApp
             </a>
           </div>

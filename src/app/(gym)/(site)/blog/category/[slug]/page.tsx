@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const { c, name } = await load(slug);
   if (!name) return {};
-  return pageMeta(c, { title: `${name} Articles`, description: `All ${name.toLowerCase()} guides from ${c.business.name}, Noida.`, path: `/blog/category/${slug}` });
+  return pageMeta(c, { title: `${name} Articles`, description: `${name} guides from the coaches at ${c.business.name}, a gym in Sector 93 Noida: practical training, diet and recovery advice you can use today.`, path: `/blog/category/${slug}` });
 }
 
 export default async function CategoryPage({ params }: Props) {

@@ -82,7 +82,6 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
               key={item.id}
               type="button"
               tabIndex={d === 0 ? 0 : -1}
-              aria-label={`${item.title}${d === 0 ? " — open full size" : ""}`}
               onClick={() => {
                 if (drag.current?.moved) return;
                 if (d === 0) setLightbox(i);
@@ -101,6 +100,7 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-5 text-left">
                 <span className="font-display block text-xl text-white">{item.title}</span>
                 <span className="text-sm text-white/70">{item.caption}</span>
+                {d === 0 && <span className="sr-only"> (open full size)</span>}
               </span>
             </button>
           );
