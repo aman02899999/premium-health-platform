@@ -12,6 +12,7 @@ import type { SocialStatus } from "@/lib/social/automation";
 import type { KitText } from "@/lib/social/app-kit";
 import { Social } from "./Social";
 import { CallList } from "./CallList";
+import { NotificationBell } from "@/components/admin/NotificationBell";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string; trialAt?: string | null; showedUp?: boolean | null };
@@ -131,6 +132,7 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
             {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Play className="h-3.5 w-3.5" />} <span className="sm:hidden">Run now</span>
             <span className="hidden sm:inline">Run today&apos;s automation</span>
           </button>
+          <NotificationBell />
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 pb-2" role="tablist">
           {(

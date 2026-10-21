@@ -6,6 +6,7 @@ import { initials } from "@/lib/admin/team-core";
 import type { ChatMessage, ChatSummary } from "@/lib/social/chat";
 import type { Contact } from "@/lib/social/chat-tools";
 import { windowLabel, type WindowState } from "@/lib/social/chat-window";
+import { NotificationBell } from "@/components/admin/NotificationBell";
 
 const LIST_EVERY = 20_000;
 const THREAD_EVERY = 8_000;
@@ -619,6 +620,7 @@ export function ChatsApp() {
         <button onClick={load} aria-label="Refresh" className="rounded-lg p-1.5 text-white/70 hover:bg-white/10">
           <RefreshCw className="h-4 w-4" />
         </button>
+        <NotificationBell />
       </header>
       <div className="flex min-h-0 flex-1">
         <aside className={`flex min-h-0 w-full flex-col border-white/10 md:flex md:w-80 md:border-r ${active ? "hidden" : "flex"}`}>

@@ -24,6 +24,7 @@ const AGENT_AREAS = [
   "/api/admin/members",
   "/api/admin/leads",
   "/api/admin/call-list",
+  "/api/admin/notifications",
   "/admin/qr",
   "/api/admin/qr",
   "/api/admin/me",

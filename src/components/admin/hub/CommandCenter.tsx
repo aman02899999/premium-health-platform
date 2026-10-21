@@ -41,6 +41,7 @@ import {
 } from "lucide-react";
 import { attention, badgeText, filterSections, inr, pctOf, sectionsFor, type Counters } from "@/lib/admin/hub";
 import { ROLES, allowed, type Role } from "@/lib/admin/team-core";
+import { NotificationBell } from "@/components/admin/NotificationBell";
 
 const ICONS: Record<string, LucideIcon> = {
   Activity,
@@ -127,6 +128,7 @@ export function CommandCenter({ name, counters, role = "owner", denied = false }
             Command Center<span className="hidden text-brand sm:inline"> · {name}</span>
           </span>
           <div className="ml-auto flex shrink-0 items-center gap-1.5">
+            <NotificationBell />
             <a href="/" target="_blank" className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-sm text-white/80">
               <ExternalLink className="h-4 w-4" /> <span className="hidden sm:inline">View site</span>
             </a>
