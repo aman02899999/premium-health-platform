@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
-import { LINKS, isSegment, metaAudienceCsv, playbook, toContacts } from "@/lib/growth/audience";
+import { LINKS, metaAudienceCsv, playbook, toContacts } from "@/lib/growth/audience";
 import { getContent } from "@/lib/content/store";
 import { applyOffer } from "@/lib/offers";
 import { planMonths } from "@/lib/content/plans";
-import { createCampaign, importContacts, importedCount, listCampaigns, recipients, segmentCounts, sendBatch, stopRepeating } from "@/lib/growth/campaigns";
+import { createCampaign, importContacts, isAudience, importedCount, listCampaigns, recipients, segmentCounts, sendBatch, stopRepeating } from "@/lib/growth/campaigns";
 import { SheetError, readSheet } from "@/lib/growth/sheet";
 import { toCandidates } from "@/lib/growth/member-import";
 import { importMembers } from "@/lib/growth/members";
@@ -29,9 +29,9 @@ export async function GET(req: Request) {
   const exp = new URL(req.url).searchParams.get("export");
   try {
     if (exp) {
-      if (!isSegment(exp)) return NextResponse.json({ error: "Unknown segment" }, { status: 400 });
+      if (!isAudience(exp)) return NextResponse.json({ error: "Unknown segment" }, { status: 400 });
       return new Response(metaAudienceCsv(await recipients(exp, today)), {
-        headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="royal-fitness-${exp}-${today}.csv"`, "cache-control": "no-store" },
+        headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="royal-fitness-${exp.replace(/[^a-z0-9-]+/g, "-")}-${today}.csv"`, "cache-control": "no-store" },
       });
     }
     const [segments, campaigns, imported, content] = await Promise.all([segmentCounts(today), listCampaigns(), importedCount(), getContent()]);

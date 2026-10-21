@@ -279,6 +279,12 @@ export function AudienceApp() {
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState("");
   const [segment, setSegment] = useState("ex-recent");
+  useEffect(() => {
+    // From Contacts: /admin/audience?segment=tag:vip#composer opens the composer on that list.
+    const s = new URLSearchParams(window.location.search).get("segment");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
+    if (s) setSegment(s);
+  }, []);
   const [sending, setSending] = useState(false);
   const [sendNote, setSendNote] = useState("");
   const load = useCallback(async () => {
@@ -293,6 +299,10 @@ export function AudienceApp() {
     const t = setTimeout(load, 0);
     return () => clearTimeout(t);
   }, [load]);
+  useEffect(() => {
+    // The #composer anchor exists only once the data has loaded.
+    if (data && location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
+  }, [data]);
   const pending = data?.campaigns.reduce((a, c) => a + c.pending, 0) ?? 0;
   async function sendNext() {
     setSending(true);
