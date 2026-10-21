@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Bot, Check, CircleAlert, Clock, Info, Pause, Play, RefreshCw, Search, Send, X, Zap } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { initials } from "@/lib/admin/team-core";
 import type { ChatMessage, ChatSummary } from "@/lib/social/chat";
 import type { Contact } from "@/lib/social/chat-tools";
 import { windowLabel, type WindowState } from "@/lib/social/chat-window";
@@ -92,7 +93,9 @@ async function postAction(peer: string, body: Record<string, unknown>) {
 }
 
 /** Who the customer is, and the coach's controls: lead status, notes, promotions, bot pause. */
-function ContactPanel({ peer, data, onChange, onClose }: { peer: string; data: ThreadData; onChange: () => void; onClose: () => void }) {
+type Assign = { team: { email: string; name: string }[]; me: string; assignedTo: string | null; onAssigned: () => void };
+
+function ContactPanel({ peer, data, onChange, onClose, assign }: { peer: string; data: ThreadData; onChange: () => void; onClose: () => void; assign?: Assign }) {
   const c = data.contact;
   const [notes, setNotes] = useState(c.notes);
   const [saved, setSaved] = useState("");
@@ -119,6 +122,28 @@ function ContactPanel({ peer, data, onChange, onClose }: { peer: string; data: T
       </div>
       <p className="font-semibold">{c.name || pretty(peer)}</p>
       <p className="text-white/50">{pretty(peer)}</p>
+
+      {assign && assign.team.length > 0 && (
+        <label className="mt-4 block rounded-xl border border-white/10 p-3">
+          <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-white/50">Assigned to</span>
+          <select
+            value={assign.assignedTo ?? ""}
+            onChange={(e) =>
+              act({ action: "assign", email: e.target.value }, e.target.value ? "Assigned" : "Unassigned").then(assign.onAssigned)
+            }
+            className="w-full rounded-lg bg-white/[.06] px-2 py-1.5 text-sm ring-1 ring-white/10"
+            aria-label="Assign this chat"
+          >
+            <option value="">Nobody (anyone can reply)</option>
+            {assign.team.map((m) => (
+              <option key={m.email} value={m.email}>
+                {m.name || m.email}
+                {m.email === assign.me ? " (me)" : ""}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
 
       <section className="mt-4 rounded-xl border border-white/10 p-3">
         <h3 className="mb-1 text-xs font-bold uppercase tracking-wide text-white/50">Status</h3>
@@ -249,7 +274,7 @@ function TemplatePicker({ peer, templates, onSent }: { peer: string; templates: 
   );
 }
 
-function Thread({ peer, fallbackName, onBack, onSent }: { peer: string; fallbackName: string; onBack: () => void; onSent: () => void }) {
+function Thread({ peer, fallbackName, onBack, onSent, assign }: { peer: string; fallbackName: string; onBack: () => void; onSent: () => void; assign?: Assign }) {
   const [data, setData] = useState<ThreadData | null>(null);
   const [error, setError] = useState("");
   const [text, setText] = useState("");
@@ -402,18 +427,20 @@ function Thread({ peer, fallbackName, onBack, onSent }: { peer: string; fallback
       </div>
       {data && (
         <aside className={`${panel ? "fixed inset-0 z-20 block bg-[#0b0b0f]" : "hidden"} border-white/10 lg:static lg:block lg:w-72 lg:shrink-0 lg:border-l`}>
-          <ContactPanel key={data.contact.notes} peer={peer} data={data} onChange={load} onClose={() => setPanel(false)} />
+          <ContactPanel key={data.contact.notes} peer={peer} data={data} onChange={load} onClose={() => setPanel(false)} assign={assign} />
         </aside>
       )}
     </div>
   );
 }
 
-type Filter = "waiting" | "all" | "lead" | "member";
+type Filter = "waiting" | "mine" | "all" | "lead" | "member";
 
 /** WhatsApp inbox for the coach: conversations on the left, the open chat in the middle, the customer on the right. */
 export function ChatsApp() {
   const [chats, setChats] = useState<ChatSummary[] | null>(null);
+  const [team, setTeam] = useState<{ email: string; name: string }[]>([]);
+  const [me, setMe] = useState("");
   const [error, setError] = useState("");
   const [active, setActive] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("all");
@@ -427,7 +454,10 @@ export function ChatsApp() {
 
   const load = useCallback(async () => {
     try {
-      setChats((await getJson<{ chats: ChatSummary[] }>("/api/admin/chats")).chats);
+      const j = await getJson<{ chats: ChatSummary[]; team?: { email: string; name: string }[]; me?: string }>("/api/admin/chats");
+      setChats(j.chats);
+      setTeam(j.team ?? []);
+      setMe(j.me ?? "");
       setError("");
     } catch (e) {
       setError((e as Error).message);
@@ -453,13 +483,14 @@ export function ChatsApp() {
   const digits = needle.replace(/\D/g, "");
   const shown = (chats ?? []).filter(
     (c) =>
-      (filter === "all" || (filter === "waiting" ? isWaiting(c) : c.tag === filter)) &&
+      (filter === "all" || (filter === "waiting" ? isWaiting(c) : filter === "mine" ? c.assignedTo === me : c.tag === filter)) &&
       (!needle || c.name.toLowerCase().includes(needle) || (digits.length >= 3 && c.peer.includes(digits)) || c.lastBody.toLowerCase().includes(needle)),
   );
-  const counts: Record<Filter, number> = { waiting, all: chats?.length ?? 0, lead: chats?.filter((c) => c.tag === "lead").length ?? 0, member: chats?.filter((c) => c.tag === "member").length ?? 0 };
+  const counts: Record<Filter, number> = { waiting, mine: chats?.filter((c) => c.assignedTo === me && me !== "").length ?? 0, all: chats?.length ?? 0, lead: chats?.filter((c) => c.tag === "lead").length ?? 0, member: chats?.filter((c) => c.tag === "member").length ?? 0 };
   const tabs: [Filter, string][] = [
     ["all", "All"],
     ["waiting", "Waiting"],
+    ...(team.length > 1 ? ([["mine", "Mine"]] as [Filter, string][]) : []),
     ["lead", "Leads"],
     ["member", "Members"],
   ];
@@ -523,6 +554,14 @@ export function ChatsApp() {
                   <span className="mt-0.5 flex items-center gap-1.5">
                     {c.tag && <span className={`shrink-0 rounded px-1.5 text-[10px] font-bold uppercase ${c.tag === "member" ? "bg-emerald-500/20 text-emerald-200" : "bg-sky-500/20 text-sky-200"}`}>{c.tag}</span>}
                     {c.botPaused && <Pause className="h-3 w-3 shrink-0 text-amber-300" aria-label="Bot paused" />}
+                    {c.assignedTo && (
+                      <span
+                        className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[9px] font-bold ${c.assignedTo === me ? "bg-brand text-white" : "bg-white/15 text-white/80"}`}
+                        title={`Assigned to ${team.find((m) => m.email === c.assignedTo)?.name || c.assignedTo}`}
+                      >
+                        {initials(team.find((m) => m.email === c.assignedTo)?.name ?? "", c.assignedTo)}
+                      </span>
+                    )}
                     <span className={`flex-1 truncate text-sm ${c.lastFromThem ? "text-white" : "text-white/50"}`}>{c.lastFromThem ? "" : "You: "}{c.lastBody}</span>
                     {isWaiting(c) && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-400" aria-label="Waiting for a reply" />}
                   </span>
@@ -533,7 +572,7 @@ export function ChatsApp() {
         </aside>
         <main className={`min-h-0 min-w-0 flex-1 ${active ? "block" : "hidden md:block"}`}>
           {active ? (
-            <Thread key={active} peer={active} fallbackName={current?.name ?? ""} onBack={() => setActive(null)} onSent={load} />
+            <Thread key={active} peer={active} fallbackName={current?.name ?? ""} onBack={() => setActive(null)} onSent={load} assign={{ team, me, assignedTo: current?.assignedTo ?? null, onAssigned: load }} />
           ) : (
             <p className="flex h-full items-center justify-center p-6 text-center text-sm text-white/40">Pick a conversation to read and reply.</p>
           )}

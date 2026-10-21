@@ -2,6 +2,7 @@
 // console groups them (Start here / Grow / Manage / Settings), with live numbers on the tiles that
 // need a person. Pure (tile list, search, chart maths) so it is tested without a database; the
 // numbers come from hub-data.ts.
+import { allowed, type Role } from "./team-core";
 
 export type Counters = {
   /** WhatsApp conversations whose last message is the customer's (last 7 days). */
@@ -99,6 +100,7 @@ export const HUB_SECTIONS: Section[] = [
     title: "Settings",
     tiles: [
       { id: "system", title: "System status", hint: "WhatsApp, email, payments, daily run", href: "/admin/growth?tab=today#system", icon: "Activity", keywords: "health setup status cron integration api key" },
+      { id: "team", title: "Team & agents", hint: "Who can sign in, and what each role can open", href: "/admin/team", icon: "ShieldCheck", keywords: "team staff agent manager owner role access login permission user" },
       { id: "business", title: "Business details", hint: "Phone, WhatsApp, hours, address", href: "/admin/website?tab=business", icon: "Building2", keywords: "phone number hours address timing whatsapp" },
       { id: "site", title: "View live site", hint: "Open the website in a new tab", href: "/", icon: "ExternalLink", keywords: "preview open website" },
     ],
@@ -106,6 +108,11 @@ export const HUB_SECTIONS: Section[] = [
 ];
 
 const words = (s: string) => s.toLowerCase().split(/\s+/).filter(Boolean);
+
+/** Only the tiles a role may open (the proxy enforces the same rule on every request). */
+export function sectionsFor(role: Role, sections: Section[] = HUB_SECTIONS): Section[] {
+  return sections.map((s) => ({ ...s, tiles: s.tiles.filter((t) => allowed(role, t.href.split(/[?#]/)[0])) })).filter((s) => s.tiles.length);
+}
 
 /** Tiles matching every word of the query (title, hint and keywords); the whole layout when empty. */
 export function filterSections(query: string, sections: Section[] = HUB_SECTIONS): Section[] {

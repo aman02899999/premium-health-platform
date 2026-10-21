@@ -1,0 +1,54 @@
+import { describe, expect, it } from "vitest";
+import { allowed, initials, normEmail, teamChangeError, type Member } from "./team-core";
+import { HUB_SECTIONS, sectionsFor } from "./hub";
+
+describe("who may open what", () => {
+  it("owners open everything", () => {
+    for (const p of ["/admin", "/admin/team", "/api/admin/team", "/admin/shop", "/api/admin/payments", "/admin/website"]) expect(allowed("owner", p)).toBe(true);
+  });
+  it("managers open everything except the team", () => {
+    expect(allowed("manager", "/admin/team")).toBe(false);
+    expect(allowed("manager", "/api/admin/team")).toBe(false);
+    for (const p of ["/admin/shop", "/api/admin/audience", "/admin/ads", "/admin/website"]) expect(allowed("manager", p)).toBe(true);
+  });
+  it("agents get the desk's work only", () => {
+    for (const p of ["/admin", "/admin/", "/admin/chats", "/api/admin/chats/919811111111", "/admin/contacts", "/api/admin/contacts", "/admin/growth", "/api/admin/growth/diet-order", "/admin/qr", "/api/admin/me", "/admin/login", "/api/admin/logout"])
+      expect([p, allowed("agent", p)]).toEqual([p, true]);
+    for (const p of ["/admin/team", "/admin/shop", "/api/admin/shop/orders", "/admin/audience", "/api/admin/audience", "/admin/ads", "/admin/website", "/api/admin/content", "/api/admin/payments", "/admin/analytics", "/api/admin/whatsapp-templates"])
+      expect([p, allowed("agent", p)]).toEqual([p, false]);
+  });
+  it("prefixes match whole path segments only", () => {
+    expect(allowed("agent", "/admin/chatsabc")).toBe(false);
+    expect(allowed("manager", "/admin/teamwork")).toBe(true);
+  });
+  it("non-admin paths are left to their pages", () => {
+    expect(allowed("agent", "/membership")).toBe(true);
+  });
+  it("the hub only shows tiles the role can open", () => {
+    const tiles = (role: "owner" | "manager" | "agent") => sectionsFor(role).flatMap((s) => s.tiles.map((t) => t.id));
+    expect(tiles("owner")).toContain("team");
+    expect(tiles("manager")).not.toContain("team");
+    expect(tiles("agent")).toEqual(expect.arrayContaining(["chats", "contacts", "leads", "members", "qr", "today"]));
+    for (const id of ["broadcast", "ads", "shop", "payments", "website", "analytics", "team"]) expect(tiles("agent")).not.toContain(id);
+    expect(tiles("owner").length).toBe(HUB_SECTIONS.flatMap((s) => s.tiles).length);
+  });
+});
+
+describe("team changes", () => {
+  const m = (email: string, role: Member["role"]): Member => ({ email, name: "", role, createdAt: "", addedBy: "" });
+  const team = [m("a@x.in", "owner"), m("b@x.in", "manager"), m("c@x.in", "agent")];
+  it("keeps at least one owner and stops self-lockout", () => {
+    expect(teamChangeError(team, "a@x.in", { kind: "remove", email: "a@x.in" })).toMatch(/yourself/);
+    expect(teamChangeError(team, "a@x.in", { kind: "role", email: "a@x.in", role: "agent" })).toMatch(/your own role/);
+    expect(teamChangeError([m("a@x.in", "owner"), m("d@x.in", "owner")], "a@x.in", { kind: "role", email: "d@x.in", role: "agent" })).toBeNull();
+    expect(teamChangeError(team, "a@x.in", { kind: "remove", email: "c@x.in" })).toBeNull();
+    expect(teamChangeError(team, "a@x.in", { kind: "remove", email: "z@x.in" })).toMatch(/isn't on the team/);
+  });
+  it("normalises emails and initials", () => {
+    expect(normEmail(" Ritu@Gmail.com ")).toBe("ritu@gmail.com");
+    expect(normEmail("nope")).toBeNull();
+    expect(initials("Ritu Sharma", "r@x.in")).toBe("RS");
+    expect(initials("", "desk.team@x.in")).toBe("DT");
+    expect(initials("Ritu (front desk)", "r@x.in")).toBe("RF");
+  });
+});

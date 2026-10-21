@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "@/lib/supabase/config";
+import { allowed, isRole } from "@/lib/admin/team-core";
 
 // Refreshes the Supabase auth cookie before server code reads it. Only runs on
 // routes that use the session, so public pages stay fully static/cacheable.
@@ -27,7 +28,25 @@ export async function proxy(request: NextRequest) {
     },
   });
   // Do not put code between client creation and getClaims(): it refreshes the token.
-  await supabase.auth.getClaims();
+  const { data } = await supabase.auth.getClaims();
+
+  // Team roles: an agent or manager who opens an area their role doesn't cover is turned away
+  // here, for every admin page and API at once. The admin's own row is readable under RLS.
+  const path = request.nextUrl.pathname;
+  const email = typeof data?.claims?.email === "string" ? data.claims.email.toLowerCase() : null;
+  if (email && /^\/(admin|api\/admin)(\/|$)/.test(path)) {
+    const { data: me, error } = await supabase.from("admins").select("role").eq("email", email).maybeSingle<{ role: string }>();
+    // No row: not an admin (the route itself refuses). An error (e.g. before the migration): let the route decide.
+    if (!error && me && isRole(me.role) && !allowed(me.role, path)) {
+      const home = request.nextUrl.clone();
+      home.pathname = "/admin";
+      home.search = "?denied=1";
+      const denied = path.startsWith("/api/") ? NextResponse.json({ error: "Your role doesn't include this. Ask an owner." }, { status: 403 }) : NextResponse.redirect(home);
+      // Keep any session cookie refreshed above.
+      response.cookies.getAll().forEach((c) => denied.cookies.set(c));
+      return denied;
+    }
+  }
   return response;
 }
 

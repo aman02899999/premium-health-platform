@@ -5,11 +5,13 @@ import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
 import { chatThread, sendChatReply, type SendOutcome } from "@/lib/social/chat";
 import { QUICK_REPLIES, manualTemplates } from "@/lib/social/chat-actions";
+import { assignChat } from "@/lib/admin/team";
+import { peerId } from "@/lib/social/chat-window";
 import { contactInfo, pauseBot, saveNotes, sendManualTemplate, sendQuickReply, setLeadStatus, setOptOut } from "@/lib/social/chat-tools";
 
 // One WhatsApp conversation for the coach.
 // GET: the messages, who the customer is, one-tap replies and the templates that fit them.
-// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out.
+// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out | assign.
 export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ peer: string }> };
@@ -66,6 +68,13 @@ export async function POST(req: Request, { params }: Params) {
       case "lead-status":
         res = await setLeadStatus(peer, str("status"));
         break;
+      case "assign": {
+        // email: a team member's email, or "" to unassign.
+        const to = str("email").trim().toLowerCase();
+        const err = await assignChat(peerId(peer), to || null);
+        res = err ? { ok: false, error: err, status: 400 } : { ok: true };
+        break;
+      }
       case "opt-out":
         await setOptOut(peer, b.optedOut === true);
         res = { ok: true };

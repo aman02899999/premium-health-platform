@@ -8,7 +8,7 @@ import { sendWhatsAppText } from "./meta";
 //   chat_replies    what the site sent inside the conversation (auto-replies, the coach)
 //   message_outbox  scheduled template messages (renewals, trial follow-ups, welcome)
 
-export type ChatSummary = { peer: string; name: string; lastAt: string; lastBody: string; lastFromThem: boolean; window: WindowState; tag: "member" | "lead" | null; botPaused: boolean };
+export type ChatSummary = { peer: string; name: string; lastAt: string; lastBody: string; lastFromThem: boolean; window: WindowState; tag: "member" | "lead" | null; botPaused: boolean; assignedTo: string | null };
 export type ChatMessage = {
   id: string;
   at: string;
@@ -53,11 +53,12 @@ export async function listChats(limit = 200): Promise<ChatSummary[]> {
   const [members, leads, paused] = await Promise.all([
     pool.query<{ phone: string }>(`select distinct phone from public.members where phone = any($1)`, [tens]),
     pool.query<{ phone: string }>(`select distinct right(regexp_replace(phone, '\\D', '', 'g'), 10) as phone from public.leads where right(regexp_replace(phone, '\\D', '', 'g'), 10) = any($1)`, [tens]),
-    pool.query<{ peer: string }>(`select peer from public.chat_contacts where peer = any($1) and bot_paused_until > now()`, [rows.map((r) => r.peer)]),
+    pool.query<{ peer: string; paused: boolean; assigned_to: string | null }>(`select peer, coalesce(bot_paused_until > now(), false) as paused, assigned_to from public.chat_contacts where peer = any($1)`, [rows.map((r) => r.peer)]),
   ]);
   const isMember = new Set(members.rows.map((r) => r.phone));
   const isLead = new Set(leads.rows.map((r) => r.phone));
-  const isPaused = new Set(paused.rows.map((r) => r.peer));
+  const isPaused = new Set(paused.rows.filter((r) => r.paused).map((r) => r.peer));
+  const assigned = new Map(paused.rows.map((r) => [r.peer, r.assigned_to]));
   return rows.map((r, i) => ({
     peer: r.peer,
     name: r.name ?? "",
@@ -67,6 +68,7 @@ export async function listChats(limit = 200): Promise<ChatSummary[]> {
     window: chatWindow(r.last_in),
     tag: isMember.has(tens[i]) ? "member" : isLead.has(tens[i]) ? "lead" : null,
     botPaused: isPaused.has(r.peer),
+    assignedTo: assigned.get(r.peer) ?? null,
   }));
 }
 
