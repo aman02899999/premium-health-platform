@@ -49,6 +49,7 @@ export const HUB_SECTIONS: Section[] = [
     tiles: [
       { id: "chats", title: "Live Chat", hint: "WhatsApp inbox, quick replies, templates", href: "/admin/chats", icon: "MessageCircle", keywords: "whatsapp inbox reply conversation team inbox", badge: { key: "chatsWaiting", alert: true } },
       { id: "broadcast", title: "Broadcast", hint: "Send an offer to a segment, WhatsApp + email", href: "/admin/audience", icon: "Megaphone", keywords: "campaign bulk send blast promotion offer", badge: { key: "pending" } },
+      { id: "ads", title: "Ads Manager", hint: "Ad links, spend, cost per lead, return on spend", href: "/admin/ads", icon: "TrendingUp", keywords: "ads advertising facebook instagram meta google campaign spend roi roas cpl click to whatsapp audience" },
       { id: "today", title: "Today's tasks", hint: "Who to call, renewals, trials, follow-ups", href: "/admin/growth?tab=today", icon: "ListChecks", keywords: "todo calls renewals dashboard", badge: { key: "trialsToday" } },
       { id: "social", title: "Social & Reels", hint: "Daily posts, reels, Business app kit", href: "/admin/growth?tab=social", icon: "Clapperboard", keywords: "instagram facebook reel post images ai creative greeting away quick replies", badge: undefined },
     ],
