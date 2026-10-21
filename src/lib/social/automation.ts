@@ -214,6 +214,8 @@ async function replyOnWhatsApp(m: Inbound, action: FlowAction): Promise<"replied
     await recordReply({ to: m.from, body: logText(step), by: "auto-reply", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
   }
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, first?.ok ?? false, first?.ok ? null : (first?.error ?? "").slice(0, 300)]);
+  // A refund, cancellation or complaint: the bot steps back so a coach can take over.
+  if (first?.ok && action === "support") await pauseBot(m.from, new Date(Date.now() + COACH_PAUSE_HOURS * 3_600_000), false);
   // A diet enquiry also gets the plan preview, so they see what they'd receive.
   if (first?.ok && action === "diet") {
     const caption = "📄 A real sample plan (made for an example client). Yours is built on your own body, food and goal.";

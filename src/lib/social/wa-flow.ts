@@ -10,7 +10,7 @@
 //   "hi" → a menu list: diet trial, fees, free gym trial, timings
 import { DIET_CHART, DIET_PLANS, type DietPlanId } from "@/lib/growth/config";
 import { formatTime, liveChatUrl } from "@/lib/site";
-import { detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
+import { buildReply, detectIntent, type Intent, type ReplyCtx } from "./auto-reply";
 import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
 export type WaButton = { id: string; title: string };
@@ -271,6 +271,8 @@ export function flowReply(action: FlowAction, c: ReplyCtx): WaOut[] {
       return [allPlans(c)];
     case "coach":
       return [coachHandOff(c)];
+    case "support":
+      return [{ kind: "text", body: buildReply("support", c) }];
     case "price":
       return [fees(c)];
     case "trial":

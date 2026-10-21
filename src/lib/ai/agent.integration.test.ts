@@ -119,8 +119,8 @@ describe.skipIf(!url)("AI agent on a real database", () => {
 
   it("hands off: adds the coach's number, pauses the bot, and stays quiet after", async () => {
     await save({});
-    next = { answer: { reply: "Sorry to hear that. A coach will reply to you shortly.", handoff: true, reason: "Complaint" } };
-    await social.handleInbound(msg("919811100005", "The trainer was rude to me yesterday"));
+    next = { answer: { reply: "Sorry to hear that. A coach will reply to you shortly.", handoff: true, reason: "Not in the facts" } };
+    await social.handleInbound(msg("919811100005", "Do you sell gift cards for a friend?"));
     expect(lastText()).toBe("Sorry to hear that. A coach will reply to you shortly.\n\n📞 Call / WhatsApp a coach: +91 88518 30081");
     const { rows } = await pool.query(`select bot_paused_until > now() as paused from public.chat_contacts where peer = '919811100005'`);
     expect(rows[0].paused).toBe(true);
