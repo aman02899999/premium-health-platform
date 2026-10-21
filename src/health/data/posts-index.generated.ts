@@ -504,6 +504,252 @@ export const POSTS: PostMeta[] = [
     "ads": 3
   },
   {
+    "lang": "en",
+    "slug": "muscle-after-40-sarcopenia-india",
+    "title": "Muscle After 40: Sarcopenia, Protein in Indian Diets, and a Strength Plan That Works",
+    "hindiTitle": "40 के बाद मांसपेशियाँ: सार्कोपीनिया, भारतीय खाने में प्रोटीन, और ताक़त बढ़ाने की कारगर योजना",
+    "description": "Muscle quietly declines with age, and it decides how well you age. Simple self-checks, how much protein Indian meals give, and a 12-week strength plan.",
+    "category": "Fitness & Healthy Ageing",
+    "tags": [
+      "sarcopenia",
+      "muscle loss",
+      "strength training",
+      "protein",
+      "healthy ageing",
+      "grip strength"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/muscle-after-40-sarcopenia-india/hero.svg",
+    "heroAlt": "Illustration of a dumbbell, a walking figure, a plate and a clock, standing for strength training, protein and staying active with age",
+    "sources": [
+      {
+        "title": "Asian Working Group for Sarcopenia: 2019 Consensus Update on Sarcopenia Diagnosis and Treatment",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32033882/"
+      },
+      {
+        "title": "Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2)",
+        "publisher": "Age and Ageing",
+        "year": "2019",
+        "url": "https://doi.org/10.1093/ageing/afy169"
+      },
+      {
+        "title": "Prognostic value of grip strength (Prospective Urban Rural Epidemiology, PURE study)",
+        "publisher": "The Lancet",
+        "year": "2015",
+        "url": "https://doi.org/10.1016/S0140-6736(14)62000-6"
+      },
+      {
+        "title": "Evidence-based recommendations for optimal dietary protein intake in older people (PROT-AGE)",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2013",
+        "url": "https://doi.org/10.1016/j.jamda.2013.05.021"
+      },
+      {
+        "title": "WHO guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1136/bjsports-2020-102955"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "High-protein vegetarian guide",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "Osteoporosis",
+        "href": "/health/diseases/osteoporosis"
+      },
+      {
+        "label": "Protein deficiency",
+        "href": "/health/diseases/protein-deficiency"
+      },
+      {
+        "label": "Workout builder",
+        "href": "/health/workout-builder"
+      },
+      {
+        "label": "Calorie calculator",
+        "href": "/health/health-calculators/calorie-calculator"
+      }
+    ],
+    "headings": [
+      "Why muscle is the organ of ageing well",
+      "What sarcopenia actually means",
+      "Check yourself: three simple tests",
+      "Protein in Indian diets: the gap at breakfast and dinner",
+      "The strength plan: 12 weeks, two to three sessions a week",
+      "A sample week for a busy 45-year-old",
+      "Questions to take to your doctor",
+      "Special situations",
+      "Myths about muscle and age",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "How much protein do I need after 40?",
+        "a": "Many healthy older adults are advised to aim for roughly 1.0 to 1.2 g of protein per kg of body weight a day, spread across meals. Needs vary with health, activity and kidney function, so check with your doctor or dietitian, especially if you have kidney disease."
+      },
+      {
+        "q": "Can I build muscle at home without a gym?",
+        "a": "Yes. Chair squats, wall or table push-ups, resistance band rows, hip bridges, step-ups and carrying heavy bags work well. Add load over time with bands, dumbbells or filled water bottles. A gym makes progression easier, but isn't essential."
+      },
+      {
+        "q": "How quickly will I see results?",
+        "a": "Many people feel stronger within four to eight weeks, because the nervous system learns to use muscle better. Visible muscle and bigger strength gains take months of consistent training and enough protein."
+      },
+      {
+        "q": "Do I need supplements like creatine or protein powder?",
+        "a": "Most people can meet their needs from food. Some supplements have evidence for specific groups, but they aren't needed by everyone and may not suit people with certain health conditions. Discuss any supplement with your doctor before starting."
+      },
+      {
+        "q": "I have knee pain. Should I avoid leg exercises?",
+        "a": "Usually not. Stronger thigh and hip muscles often reduce knee pain. Choose pain-free ranges, such as squatting to a higher chair, and ask a physiotherapist for modifications if pain persists."
+      }
+    ],
+    "words": 2541,
+    "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "sleep-guide-indians",
+    "title": "Sleep for Indians: Screens, Chai, Shift Work and the Red Flags of Sleep Apnoea",
+    "hindiTitle": "भारतीयों के लिए नींद: स्क्रीन, चाय, शिफ़्ट वर्क और स्लीप एप्निया के ख़तरे के संकेत",
+    "description": "Why so many Indians sleep badly, how late chai and screens steal sleep, a playbook for night-shift workers, and the snoring signs that need a doctor.",
+    "category": "Sleep & Mind",
+    "tags": [
+      "sleep",
+      "insomnia",
+      "caffeine",
+      "chai",
+      "screens",
+      "shift work",
+      "sleep apnoea"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/sleep-guide-indians/hero.svg",
+    "heroAlt": "Illustration of a crescent moon, a clock, a phone and a cup of chai, standing for the everyday habits that shape sleep",
+    "sources": [
+      {
+        "title": "Seven or more hours of sleep per night: a health necessity for adults (AASM and Sleep Research Society consensus)",
+        "publisher": "American Academy of Sleep Medicine",
+        "year": "2015",
+        "url": "https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity/"
+      },
+      {
+        "title": "Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed",
+        "publisher": "Journal of Clinical Sleep Medicine",
+        "year": "2013",
+        "url": "https://doi.org/10.5664/jcsm.3170"
+      },
+      {
+        "title": "Evening use of light-emitting eReaders negatively affects sleep, circadian timing, and next-morning alertness",
+        "publisher": "PNAS",
+        "year": "2015",
+        "url": "https://doi.org/10.1073/pnas.1418490112"
+      },
+      {
+        "title": "Management of chronic insomnia disorder in adults (clinical practice guideline)",
+        "publisher": "Annals of Internal Medicine (American College of Physicians)",
+        "year": "2016",
+        "url": "https://doi.org/10.7326/M15-2175"
+      },
+      {
+        "title": "STOP questionnaire: a tool to screen patients for obstructive sleep apnea",
+        "publisher": "Anesthesiology",
+        "year": "2008",
+        "url": "https://doi.org/10.1097/ALN.0b013e31816d83e4"
+      },
+      {
+        "title": "IARC Monographs Volume 124: Night Shift Work",
+        "publisher": "International Agency for Research on Cancer",
+        "year": "2020",
+        "url": "https://publications.iarc.who.int/593"
+      }
+    ],
+    "related": [
+      {
+        "label": "Snoring and sleep apnoea guide",
+        "href": "/health/blog/sleep-apnea-indian-guide"
+      },
+      {
+        "label": "Sleep problems",
+        "href": "/health/diseases/sleep-problems"
+      },
+      {
+        "label": "Stress",
+        "href": "/health/diseases/stress"
+      },
+      {
+        "label": "Yoga timer for wind-down breathing",
+        "href": "/health/yoga-timer"
+      },
+      {
+        "label": "Mental wellness hub",
+        "href": "/health/mental-wellness"
+      }
+    ],
+    "headings": [
+      "How much sleep you actually need",
+      "The Indian sleep thieves, one by one",
+      "A sleep plan that works in a real Indian home",
+      "Night shifts and rotating shifts: a playbook",
+      "Sleep apnoea: when snoring is a warning",
+      "Chronic insomnia: why pills aren't the first answer",
+      "Sleep, weight and your workouts",
+      "Sleep for women and older adults",
+      "Children and teenagers",
+      "Myths about sleep",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "What is the best time to go to bed?",
+        "a": "There isn't one perfect clock time for everyone. What matters most is getting seven or more hours and keeping your wake-up time consistent. Work backwards from your wake-up time to set your bedtime."
+      },
+      {
+        "q": "Is it bad to drink chai in the evening?",
+        "a": "For many people, caffeine in the late afternoon or evening shortens and lightens sleep, even if they fall asleep easily. Try stopping caffeine by early afternoon for two weeks and see how you feel. Caffeine-free options can replace the evening cup."
+      },
+      {
+        "q": "Are daytime naps good or bad?",
+        "a": "Short naps of up to about 30 minutes, taken before mid-afternoon, can boost alertness without hurting night sleep. Long or late naps can make it harder to sleep at night, especially if you have insomnia."
+      },
+      {
+        "q": "Can I fix insomnia without medicines?",
+        "a": "Many people can. Good sleep habits help, and for chronic insomnia, CBT-I is the recommended first treatment. A doctor can also look for causes such as depression, anxiety, pain, sleep apnoea or medicines that disturb sleep."
+      },
+      {
+        "q": "How do I know if I have sleep apnoea?",
+        "a": "Warning signs include loud snoring, pauses in breathing seen by others, waking up choking, morning headaches, daytime sleepiness and high blood pressure. Only a sleep study can confirm it, so talk to your doctor if several apply."
+      }
+    ],
+    "words": 2596,
+    "ads": 3
+  },
+  {
     "lang": "hi",
     "slug": "air-pollution-aqi-action-plan",
     "title": "Air Pollution and Your Body: An AQI Action Plan for Indian Families",
@@ -961,6 +1207,238 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 1992,
+    "ads": 2
+  },
+  {
+    "lang": "hi",
+    "slug": "muscle-after-40-sarcopenia-india",
+    "title": "Muscle After 40: Sarcopenia, Protein in Indian Diets, and a Strength Plan That Works",
+    "hindiTitle": "40 के बाद मांसपेशियाँ: सार्कोपीनिया, भारतीय खाने में प्रोटीन, और ताक़त बढ़ाने की कारगर योजना",
+    "description": "उम्र के साथ मांसपेशियाँ चुपचाप घटती हैं और यही तय करती हैं कि बुढ़ापा कैसा होगा। आसान जाँचें, भारतीय खाने में प्रोटीन, और 12 हफ़्ते की योजना।",
+    "category": "फ़िटनेस और स्वस्थ बुढ़ापा",
+    "tags": [
+      "सार्कोपीनिया",
+      "मांसपेशियों का घटना",
+      "स्ट्रेंथ ट्रेनिंग",
+      "प्रोटीन",
+      "ग्रिप स्ट्रेंथ"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/muscle-after-40-sarcopenia-india/hero.svg",
+    "heroAlt": "डम्बल, चलता हुआ व्यक्ति, थाली और घड़ी का चित्र: उम्र के साथ ताक़त की कसरत, प्रोटीन और सक्रिय रहना",
+    "sources": [
+      {
+        "title": "Asian Working Group for Sarcopenia: 2019 Consensus Update",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32033882/"
+      },
+      {
+        "title": "Sarcopenia: revised European consensus on definition and diagnosis (EWGSOP2)",
+        "publisher": "Age and Ageing",
+        "year": "2019",
+        "url": "https://doi.org/10.1093/ageing/afy169"
+      },
+      {
+        "title": "Prognostic value of grip strength (PURE study)",
+        "publisher": "The Lancet",
+        "year": "2015",
+        "url": "https://doi.org/10.1016/S0140-6736(14)62000-6"
+      },
+      {
+        "title": "Evidence-based recommendations for optimal dietary protein intake in older people (PROT-AGE)",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2013",
+        "url": "https://doi.org/10.1016/j.jamda.2013.05.021"
+      },
+      {
+        "title": "WHO guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1136/bjsports-2020-102955"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "हाई-प्रोटीन शाकाहारी गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "ऑस्टियोपोरोसिस (अंग्रेज़ी)",
+        "href": "/health/diseases/osteoporosis"
+      },
+      {
+        "label": "प्रोटीन की कमी (अंग्रेज़ी)",
+        "href": "/health/diseases/protein-deficiency"
+      },
+      {
+        "label": "वर्कआउट बिल्डर (अंग्रेज़ी)",
+        "href": "/health/workout-builder"
+      }
+    ],
+    "headings": [
+      "मांसपेशियाँ: अच्छे बुढ़ापे का अंग",
+      "सार्कोपीनिया का असल मतलब",
+      "ख़ुद जाँचें: तीन आसान टेस्ट",
+      "भारतीय खाने में प्रोटीन: नाश्ते और रात की कमी",
+      "ताक़त की योजना: 12 हफ़्ते, हफ़्ते में दो-तीन सेशन",
+      "ख़ास हालात",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "40 के बाद कितना प्रोटीन चाहिए?",
+        "a": "कई स्वस्थ बुज़ुर्गों को शरीर के वज़न के हर किलो पर रोज़ लगभग 1.0 से 1.2 ग्राम प्रोटीन, खानों में बाँटकर, लेने की सलाह दी जाती है। ज़रूरत सेहत, सक्रियता और किडनी के हिसाब से बदलती है, इसलिए डॉक्टर या डाइटीशियन से पूछें।"
+      },
+      {
+        "q": "क्या बिना जिम के घर पर मांसपेशी बन सकती है?",
+        "a": "हाँ। कुर्सी स्क्वैट, दीवार या मेज़ पर पुश-अप, बैंड से रो, हिप ब्रिज, स्टेप-अप और भारी थैले उठाकर चलना अच्छा काम करते हैं। समय के साथ बैंड, डम्बल या पानी भरी बोतलों से वज़न बढ़ाएँ।"
+      },
+      {
+        "q": "नतीजे कितनी जल्दी दिखेंगे?",
+        "a": "बहुत से लोग चार से आठ हफ़्तों में ज़्यादा ताक़तवर महसूस करते हैं, क्योंकि दिमाग़ मांसपेशियों का बेहतर इस्तेमाल सीखता है। दिखने वाली मांसपेशी और बड़ी ताक़त के लिए महीनों की नियमित कसरत और पर्याप्त प्रोटीन चाहिए।"
+      },
+      {
+        "q": "क्या क्रिएटिन या प्रोटीन पाउडर ज़रूरी है?",
+        "a": "ज़्यादातर लोग खाने से ज़रूरत पूरी कर सकते हैं। कुछ सप्लीमेंट ख़ास समूहों के लिए सबूत रखते हैं, पर सबको ज़रूरी नहीं और कुछ बीमारियों में ठीक नहीं। कोई भी सप्लीमेंट शुरू करने से पहले डॉक्टर से बात करें।"
+      },
+      {
+        "q": "घुटने में दर्द है, क्या पैरों की कसरत न करूँ?",
+        "a": "आमतौर पर नहीं। जाँघ और कूल्हे की मज़बूत मांसपेशियाँ अक्सर घुटने का दर्द घटाती हैं। ऊँची कुर्सी तक स्क्वैट जैसी बिना दर्द वाली रेंज चुनें, और दर्द बना रहे तो फ़िज़ियोथेरेपिस्ट से पूछें।"
+      }
+    ],
+    "words": 2058,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "sleep-guide-indians",
+    "title": "Sleep for Indians: Screens, Chai, Shift Work and the Red Flags of Sleep Apnoea",
+    "hindiTitle": "भारतीयों के लिए नींद: स्क्रीन, चाय, शिफ़्ट वर्क और स्लीप एप्निया के ख़तरे के संकेत",
+    "description": "इतने भारतीय ठीक से क्यों नहीं सोते, देर की चाय और स्क्रीन नींद कैसे चुराते हैं, नाइट शिफ़्ट वालों की योजना, और ख़र्राटों के वे संकेत जिन पर डॉक्टर चाहिए।",
+    "category": "नींद और मन",
+    "tags": [
+      "नींद",
+      "अनिद्रा",
+      "कैफ़ीन",
+      "चाय",
+      "स्क्रीन",
+      "शिफ़्ट वर्क",
+      "स्लीप एप्निया"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/sleep-guide-indians/hero.svg",
+    "heroAlt": "आधा चाँद, घड़ी, फ़ोन और चाय का कप: रोज़ की आदतें जो नींद तय करती हैं",
+    "sources": [
+      {
+        "title": "Seven or more hours of sleep per night: a health necessity for adults",
+        "publisher": "American Academy of Sleep Medicine",
+        "year": "2015",
+        "url": "https://aasm.org/seven-or-more-hours-of-sleep-per-night-a-health-necessity/"
+      },
+      {
+        "title": "Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed",
+        "publisher": "Journal of Clinical Sleep Medicine",
+        "year": "2013",
+        "url": "https://doi.org/10.5664/jcsm.3170"
+      },
+      {
+        "title": "Evening use of light-emitting eReaders negatively affects sleep and circadian timing",
+        "publisher": "PNAS",
+        "year": "2015",
+        "url": "https://doi.org/10.1073/pnas.1418490112"
+      },
+      {
+        "title": "Management of chronic insomnia disorder in adults",
+        "publisher": "Annals of Internal Medicine",
+        "year": "2016",
+        "url": "https://doi.org/10.7326/M15-2175"
+      },
+      {
+        "title": "STOP questionnaire: a tool to screen patients for obstructive sleep apnea",
+        "publisher": "Anesthesiology",
+        "year": "2008",
+        "url": "https://doi.org/10.1097/ALN.0b013e31816d83e4"
+      },
+      {
+        "title": "IARC Monographs Volume 124: Night Shift Work",
+        "publisher": "International Agency for Research on Cancer",
+        "year": "2020",
+        "url": "https://publications.iarc.who.int/593"
+      }
+    ],
+    "related": [
+      {
+        "label": "ख़र्राटे और स्लीप एप्निया गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/sleep-apnea-indian-guide"
+      },
+      {
+        "label": "नींद की समस्याएँ (अंग्रेज़ी)",
+        "href": "/health/diseases/sleep-problems"
+      },
+      {
+        "label": "तनाव (अंग्रेज़ी)",
+        "href": "/health/diseases/stress"
+      },
+      {
+        "label": "योगा टाइमर (अंग्रेज़ी)",
+        "href": "/health/yoga-timer"
+      }
+    ],
+    "headings": [
+      "असल में कितनी नींद चाहिए",
+      "भारतीय घरों के नींद के चोर",
+      "असली भारतीय घर में काम करने वाली योजना",
+      "नाइट और बदलती शिफ़्ट वालों के लिए",
+      "स्लीप एप्निया: जब ख़र्राटे चेतावनी हों",
+      "पुरानी अनिद्रा: गोलियाँ पहला जवाब क्यों नहीं",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "सोने का सबसे अच्छा समय क्या है?",
+        "a": "हर किसी के लिए एक तय घड़ी का समय नहीं है। सबसे ज़रूरी है सात या ज़्यादा घंटे सोना और उठने का समय एक जैसा रखना। उठने के समय से पीछे गिनकर सोने का समय तय करें।"
+      },
+      {
+        "q": "क्या शाम को चाय पीना बुरा है?",
+        "a": "बहुत से लोगों में दोपहर बाद या शाम का कैफ़ीन नींद को छोटा और हल्का कर देता है, भले ही नींद आसानी से आ जाए। दो हफ़्ते दोपहर तक कैफ़ीन बंद करके देखें कि कैसा लगता है।"
+      },
+      {
+        "q": "दिन की झपकी अच्छी है या बुरी?",
+        "a": "दोपहर के बीच तक ली गई लगभग 30 मिनट तक की छोटी झपकी रात की नींद बिगाड़े बिना चुस्ती बढ़ा सकती है। लंबी या देर की झपकी रात में नींद मुश्किल कर सकती है, ख़ासकर अनिद्रा में।"
+      },
+      {
+        "q": "क्या बिना दवा के अनिद्रा ठीक हो सकती है?",
+        "a": "बहुत से लोगों में हाँ। अच्छी आदतें मदद करती हैं, और पुरानी अनिद्रा में CBT-I पहला सुझाया इलाज है। डॉक्टर डिप्रेशन, चिंता, दर्द, स्लीप एप्निया या नींद बिगाड़ने वाली दवाओं जैसी वजहें भी देख सकते हैं।"
+      },
+      {
+        "q": "कैसे पता चले कि मुझे स्लीप एप्निया है?",
+        "a": "तेज़ ख़र्राटे, दूसरों का साँस रुकते देखना, घुटन के साथ जागना, सुबह सिरदर्द, दिन में नींद और हाई BP इसके संकेत हैं। पक्का सिर्फ़ स्लीप स्टडी से होता है, इसलिए कई संकेत हों तो डॉक्टर से बात करें।"
+      }
+    ],
+    "words": 2162,
     "ads": 2
   }
 ];

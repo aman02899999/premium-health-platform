@@ -159,6 +159,60 @@ const RENDER = { hero, cards, bars, bands };
 
 // Theme: [primary, secondary, accent]
 export const SPECS = {
+  "muscle-after-40-sarcopenia-india": {
+    theme: ["#14532d", "#15803d", "#facc15"],
+    hero: { kicker: "Fitness & healthy ageing", title: "Muscle after 40: test it, feed it, train it", icons: ["dumbbell", "walk", "plate", "clock"] },
+    "inline-1": {
+      type: "cards",
+      title: "Three checks for muscle and function",
+      subtitle: "Cut-offs from the Asian Working Group for Sarcopenia (2019). Screening only: talk to your doctor about low results.",
+      items: [
+        { icon: "check", head: "Grip strength", text: "Low if under 28 kg for men or under 18 kg for women (hand dynamometer)" },
+        { icon: "clock", head: "Five chair stands", text: "Low if it takes 12 seconds or more, arms crossed, no hands" },
+        { icon: "walk", head: "6-metre walking speed", text: "Low if slower than 1.0 metre per second (over 6 seconds for 6 metres)" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Protein at every meal",
+      subtitle: "Typical Indian days are light on protein at breakfast and dinner. Fix those two meals first.",
+      items: [
+        { icon: "sun", head: "Breakfast", text: "Besan or moong chilla, paneer or egg bhurji, curd with nuts, sprouts poha" },
+        { icon: "bowl", head: "Lunch", text: "Thick dal plus curd or buttermilk; chana, rajma, paneer, soya or chicken" },
+        { icon: "leaf", head: "Evening snack", text: "Roasted chana, milk or buttermilk, sprouts chaat, peanuts, a boiled egg" },
+        { icon: "moon", head: "Dinner", text: "Dal plus paneer, tofu, soya, egg, fish or chicken; fewer rotis, more vegetables" },
+      ],
+    },
+  },
+  "sleep-guide-indians": {
+    theme: ["#1e1b4b", "#3730a3", "#fbbf24"],
+    hero: { kicker: "Sleep & mind", title: "Sleep for Indians: screens, chai, shifts and snoring", icons: ["moon", "clock", "screen", "cup"] },
+    "inline-1": {
+      type: "cards",
+      title: "Seven sleep thieves in Indian homes",
+      subtitle: "Most people have two or three. Fix the biggest one first.",
+      items: [
+        { icon: "cup", head: "Late chai or coffee", text: "Caffeine lasts for hours; try a 2 pm cut-off", tone: "bad" },
+        { icon: "screen", head: "Phone in bed", text: "Light and scrolling delay sleep; screens away an hour before", tone: "bad" },
+        { icon: "plate", head: "Late, heavy dinner", text: "Finish two to three hours before bed, and keep it lighter", tone: "bad" },
+        { icon: "clock", head: "Wake time all over the place", text: "One wake-up time, seven days a week", tone: "bad" },
+        { icon: "home", head: "Hot, bright, noisy room", text: "Curtains or eye mask, earplugs or steady fan, cooler room", tone: "bad" },
+        { icon: "moon", head: "Night shifts, untreated snoring", text: "Protect day sleep; get loud snoring with pauses checked", tone: "bad" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Sleep apnoea red flags",
+      subtitle: "If several of these apply, tell your doctor. Only a sleep study can confirm it.",
+      items: [
+        { icon: "alert", head: "Loud snoring most nights", text: "Especially with pauses in breathing that others notice", tone: "bad" },
+        { icon: "lungs", head: "Choking or gasping at night", text: "Waking up short of breath, or a dry mouth and headache in the morning", tone: "bad" },
+        { icon: "moon", head: "Sleepy in the daytime", text: "Dozing off while reading, watching TV or, worst of all, driving", tone: "bad" },
+        { icon: "heart", head: "High blood pressure", text: "Especially if hard to control despite medicines", tone: "bad" },
+        { icon: "scale", head: "Large neck or belly", text: "Extra weight around the neck and waist narrows the airway" },
+      ],
+    },
+  },
   "air-pollution-aqi-action-plan": {
     theme: ["#334155", "#475569", "#f59e0b"],
     hero: { kicker: "Environmental health · AQI", title: "Air pollution and your body: an AQI action plan", icons: ["lungs", "mask", "home", "sun"] },
