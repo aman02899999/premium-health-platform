@@ -19,7 +19,7 @@ describe.skipIf(!url)("command center numbers on a real database", () => {
     hub = await import("./hub-data");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.leads, public.members, public.membership_orders, public.diet_orders, public.shop_orders, public.message_outbox, public.message_events, public.social_inbox, public.chat_replies, public.reviews cascade");
+    await pool.query("truncate public.leads, public.members, public.membership_orders, public.diet_orders, public.shop_orders, public.book_orders, public.payment_requests, public.message_outbox, public.message_events, public.social_inbox, public.chat_replies, public.reviews cascade");
   });
   afterAll(async () => {
     await pool.end();

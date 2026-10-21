@@ -30,7 +30,8 @@ const PAID = `
   select paid_at, (amount_paise - refunded_paise) / 100.0 as rupees, 'Membership' as kind from public.membership_orders where status = 'paid' and paid_at is not null
   union all select paid_at, (amount_paise - refunded_paise) / 100.0, 'Diet plan' from public.diet_orders where status = 'paid' and paid_at is not null
   union all select paid_at, total - refunded_paise / 100.0, 'Supplements' from public.shop_orders where status = 'paid' and paid_at is not null
-  union all select paid_at, (amount_paise - refunded_paise) / 100.0, 'Book' from public.book_orders where status = 'paid' and paid_at is not null`;
+  union all select paid_at, (amount_paise - refunded_paise) / 100.0, 'Book' from public.book_orders where status = 'paid' and paid_at is not null
+  union all select paid_at, (amount_paise - refunded_paise) / 100.0, 'Payment link' from public.payment_requests where status = 'paid' and paid_at is not null`;
 
 // India's calendar day for a timestamp.
 const IST_DAY = (col: string) => `to_char(${col} at time zone 'Asia/Kolkata', 'YYYY-MM-DD')`;

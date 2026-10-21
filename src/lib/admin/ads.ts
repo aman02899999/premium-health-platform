@@ -8,7 +8,8 @@ const ORDERS = `
   select 'm' || id as oid, amount_paise::bigint - refunded_paise as net, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10) as phone, attribution from public.membership_orders where status = 'paid'
   union all select 'd' || id, amount_paise - refunded_paise, paid_at, phone, attribution from public.diet_orders where status = 'paid'
   union all select 's' || id, total::bigint * 100 - refunded_paise, paid_at, phone, attribution from public.shop_orders where status = 'paid'
-  union all select 'b' || id, amount_paise - refunded_paise, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10), attribution from public.book_orders where status = 'paid'`;
+  union all select 'b' || id, amount_paise - refunded_paise, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10), attribution from public.book_orders where status = 'paid'
+  union all select 'r' || id, amount_paise - refunded_paise, paid_at, phone, attribution from public.payment_requests where status = 'paid'`;
 
 // Tagged with the campaign at first or last touch (UTM values are stored lowercased).
 const TAGGED = (alias: string) => `(${alias}.attribution -> 'first' ->> 'campaign' = c.slug or ${alias}.attribution -> 'last' ->> 'campaign' = c.slug)`;

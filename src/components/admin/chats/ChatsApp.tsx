@@ -77,7 +77,81 @@ type ThreadData = {
   contact: Contact;
   quickReplies: { id: string; label: string }[];
   templates: { kind: string; label: string; marketing: boolean; preview: string }[];
+  payments?: { id: string; url: string; purpose: string; rupees: number; state: "open" | "paid" | "cancelled" | "expired"; createdAt: string; paymentId: string | null }[];
+  purposes?: string[];
 };
+
+const PAY_TONE = { open: "bg-sky-500/20 text-sky-100", paid: "bg-emerald-500/20 text-emerald-100", cancelled: "bg-white/10 text-white/50", expired: "bg-white/10 text-white/50" } as const;
+
+/** "Request payment": a Razorpay link for any amount, sent in the chat; the receipt comes back here. */
+function PaymentRequests({ peer, data, onChange }: { peer: string; data: ThreadData; onChange: () => void }) {
+  const [purpose, setPurpose] = useState("");
+  const [amount, setAmount] = useState("");
+  const [note, setNote] = useState("");
+  const [busy, setBusy] = useState(false);
+  async function send(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setNote("");
+    try {
+      const res = await fetch(`/api/admin/chats/${peer}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "pay-link", purpose, amount }) });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(j.error || "Couldn't create the link");
+      setNote(j.sent ? "Link sent in the chat." : `Link made, but not sent: ${j.sendError}. Copy it below and send it yourself.`);
+      setPurpose("");
+      setAmount("");
+      onChange();
+    } catch (err) {
+      setNote((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <section className="mt-3 rounded-xl border border-white/10 p-3">
+      <h3 className="mb-2 text-xs font-bold uppercase tracking-wide text-white/50">Request payment</h3>
+      <form onSubmit={send} className="space-y-2">
+        <input list="pay-purposes" value={purpose} onChange={(e) => setPurpose(e.target.value)} placeholder="What for (e.g. Personal training)" maxLength={120} required className="w-full rounded-lg bg-white/[.06] px-2 py-1.5 text-sm ring-1 ring-white/10" aria-label="Payment for" />
+        <datalist id="pay-purposes">
+          {(data.purposes ?? []).map((p) => (
+            <option key={p} value={p} />
+          ))}
+        </datalist>
+        <div className="flex gap-2">
+          <input inputMode="decimal" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="₹ amount" required className="min-w-0 flex-1 rounded-lg bg-white/[.06] px-2 py-1.5 text-sm ring-1 ring-white/10" aria-label="Amount in rupees" />
+          <button disabled={busy} className="shrink-0 rounded-lg bg-emerald-500/80 px-3 py-1.5 text-sm font-semibold text-white disabled:opacity-50">
+            {busy ? "…" : "Send link"}
+          </button>
+        </div>
+      </form>
+      {note && <p className="mt-2 text-xs text-white/70">{note}</p>}
+      {!!data.payments?.length && (
+        <ul className="mt-3 space-y-1.5">
+          {data.payments.map((r) => (
+            <li key={r.id} className="rounded-lg bg-white/[.04] px-2 py-1.5 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="min-w-0 flex-1 truncate">{r.purpose}</span>
+                <span className="shrink-0 font-semibold">{rupees(r.rupees)}</span>
+                <span className={`shrink-0 rounded px-1.5 ${PAY_TONE[r.state]}`}>{r.state}</span>
+              </div>
+              {r.state === "open" && (
+                <div className="mt-1 flex gap-3 text-white/60">
+                  <button type="button" onClick={() => navigator.clipboard.writeText(r.url).then(() => setNote("Link copied."))} className="underline">
+                    Copy link
+                  </button>
+                  <button type="button" onClick={() => postAction(peer, { action: "pay-cancel", id: r.id }).then(onChange, (e: Error) => setNote(e.message))} className="underline">
+                    Cancel
+                  </button>
+                </div>
+              )}
+              {r.paymentId && <p className="mt-0.5 text-white/40">Razorpay {r.paymentId}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
 
 const LEAD_STATUSES = ["new", "contacted", "trial", "joined", "lost"] as const;
 const rupees = (n: number) => `₹${n.toLocaleString("en-IN")}`;
@@ -210,6 +284,8 @@ function ContactPanel({ peer, data, onChange, onClose, assign }: { peer: string;
         </label>
         <p className="text-xs text-white/40">{c.optedOut ? "Off: they tapped Stop promotions, or you turned it off." : "On: offers and win-back messages may be sent."}</p>
       </section>
+
+      <PaymentRequests peer={peer} data={data} onChange={onChange} />
 
       <section className="mt-3">
         <h3 className="mb-1 text-xs font-bold uppercase tracking-wide text-white/50">Private notes</h3>

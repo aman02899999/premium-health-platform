@@ -25,7 +25,7 @@ describe.skipIf(!url)("contacts on a real database", () => {
   });
   beforeEach(async () => {
     await pool.query(
-      "truncate public.leads, public.members, public.membership_orders, public.diet_orders, public.shop_orders, public.book_orders, public.audience_contacts, public.social_inbox, public.marketing_contacts, public.contact_tags, public.contact_attributes, public.whatsapp_optouts, public.whatsapp_unreachable, public.message_outbox, public.campaigns cascade",
+      "truncate public.leads, public.members, public.membership_orders, public.diet_orders, public.shop_orders, public.book_orders, public.payment_requests, public.audience_contacts, public.social_inbox, public.marketing_contacts, public.contact_tags, public.contact_attributes, public.whatsapp_optouts, public.whatsapp_unreachable, public.message_outbox, public.campaigns cascade",
     );
     // Rahul: member, also a lead, also chatted on WhatsApp, also subscribed by email only.
     await pool.query(`insert into public.members (name, phone, email, plan_name, start_on, expires_on, referral_code) values

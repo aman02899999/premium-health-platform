@@ -58,7 +58,7 @@ export function parseRazorpayEvent(raw: string, headerEventId: string | null): R
   };
 }
 
-export type OrderKind = "membership" | "library" | "diet" | "shop";
+export type OrderKind = "membership" | "library" | "diet" | "shop" | "request";
 export type KnownOrder = { kind: OrderKind; amountPaise: number; status: string; paymentId: string | null };
 
 /**
