@@ -78,6 +78,8 @@ function check(lang, file, data, body) {
     [/^:::tip/m, "tips (:::tip)"],
   ])
     if (!re.test(body)) errors.push(`needs ${what}`);
+  const images = (body.match(/^!\[[^\]]+\]\([^)]+\)\s*$/gm) ?? []).length;
+  if (images < 2) errors.push(`${images} inline images (needs 2, each with alt text)`);
   const faqs = (body.match(/:::faq[\s\S]*?\n:::/)?.[0].match(/^###\s/gm) ?? []).length;
   if (faqs < 4 || faqs > 6) errors.push(`FAQ has ${faqs} questions (4–6)`);
   const n = words(body);

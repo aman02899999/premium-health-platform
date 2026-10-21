@@ -159,6 +159,95 @@ const RENDER = { hero, cards, bars, bands };
 
 // Theme: [primary, secondary, accent]
 export const SPECS = {
+  "air-pollution-aqi-action-plan": {
+    theme: ["#334155", "#475569", "#f59e0b"],
+    hero: { kicker: "Environmental health · AQI", title: "Air pollution and your body: an AQI action plan", icons: ["lungs", "mask", "home", "sun"] },
+    "inline-1": {
+      type: "bands",
+      title: "AQI bands and what to do",
+      subtitle: "CPCB's National Air Quality Index categories, with a simple plan for each.",
+      items: [
+        { range: "0–50", name: "Good", color: "#16a34a", dark: true, text: "Normal plans. Outdoor exercise is fine." },
+        { range: "51–100", name: "Satisfactory", color: "#84cc16", text: "Fine for most. Sensitive people note any symptoms." },
+        { range: "101–200", name: "Moderate", color: "#facc15", text: "People with lung or heart disease, children and older adults shorten outdoor exertion." },
+        { range: "201–300", name: "Poor", color: "#f97316", text: "Move workouts indoors. Mask outdoors for everyone." },
+        { range: "301–400", name: "Very Poor", color: "#dc2626", dark: true, text: "Limit time outside, run a purifier, keep windows shut at peaks." },
+        { range: "401–500", name: "Severe", color: "#7f1d1d", dark: true, text: "Stay indoors where possible. Keep medicines ready, watch symptoms." },
+      ],
+      note: "Bands: Central Pollution Control Board, National Air Quality Index. Actions are general guidance; follow your doctor's plan if you have a health condition.",
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Cleaner air at home",
+      subtitle: "Remove indoor smoke first, then filter what comes in. Start with the bedroom.",
+      items: [
+        { icon: "alert", head: "No agarbatti or coils", text: "Use electric mosquito repellents; keep incense brief and ventilated", tone: "bad" },
+        { icon: "home", head: "Exhaust on every time", text: "Frying and tadka release fine particles; close the kitchen door", tone: "good" },
+        { icon: "lungs", head: "HEPA in the bedroom", text: "Sized for the room (check CADR), doors and windows shut, filter changed on time", tone: "good" },
+        { icon: "clock", head: "Air out at the right time", text: "Often afternoon in winter, briefly, when outdoor AQI dips", tone: "good" },
+        { icon: "leaf", head: "Plants won't do it", text: "Pleasant, but they don't meaningfully clean a home's air" },
+      ],
+    },
+  },
+  "heart-attack-under-40-india": {
+    theme: ["#881337", "#be123c", "#fcd34d"],
+    hero: { kicker: "Heart health · under 40", title: "Heart attacks in young Indians: test early, train safely", icons: ["heart", "drop", "dumbbell", "family"] },
+    "inline-1": {
+      type: "cards",
+      title: "Your heart risk: fixed vs changeable",
+      subtitle: "You can't change your genes, but a high inherited risk makes the changeable ones matter more.",
+      items: [
+        { icon: "family", head: "Can't change: family history", text: "Heart disease in a father or brother before 55, or a mother or sister before 65", tone: "bad" },
+        { icon: "drop", head: "Can't change: Lp(a)", text: "Mostly set by genes. Often tested once in a lifetime", tone: "bad" },
+        { icon: "alert", head: "Change: tobacco", text: "Cigarettes, bidis, hookah, gutka, khaini: quitting is the biggest win", tone: "good" },
+        { icon: "heart", head: "Change: LDL, BP, sugar", text: "Know the numbers and treat them with your doctor", tone: "good" },
+        { icon: "scale", head: "Change: waist", text: "Belly fat matters more than weight alone for Indians", tone: "good" },
+        { icon: "moon", head: "Change: sleep and stress", text: "Seven hours or more; check loud snoring", tone: "good" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Train hard, keep your heart safe",
+      subtitle: "Stop and get checked for the warning signs. Build the habits on every session.",
+      items: [
+        { icon: "alert", head: "Stop: chest pressure", text: "Chest pain or tightness on exertion that doesn't settle quickly with rest", tone: "bad" },
+        { icon: "alert", head: "Stop: fainting or near-fainting", text: "Or sudden breathlessness, or a racing irregular heartbeat", tone: "bad" },
+        { icon: "clock", head: "Warm up 5–10 minutes", text: "No maximal effort from cold. Cool down gradually", tone: "good" },
+        { icon: "pill", head: "No steroids or stimulant stacks", text: "Avoid anabolic steroids and caffeine-heavy pre-workouts with energy drinks", tone: "good" },
+      ],
+    },
+  },
+  "anemia-mukt-bharat-home-guide": {
+    theme: ["#7f1d1d", "#b91c1c", "#fbbf24"],
+    hero: { kicker: "Women's & family health", title: "Anaemia in India: why iron tablets fail, and what works", icons: ["drop", "pill", "leaf", "family"] },
+    "inline-1": {
+      type: "bars",
+      title: "Anaemia in India (NFHS-5, 2019–21)",
+      subtitle: "Share of each group with anaemia",
+      unit: "%",
+      max: 100,
+      items: [
+        { label: "Children 6–59 months", value: 67.1, highlight: true },
+        { label: "Adolescent girls 15–19", value: 59.1 },
+        { label: "Women 15–49", value: 57 },
+        { label: "Men 15–49", value: 25 },
+      ],
+      note: "Source: National Family Health Survey (NFHS-5) 2019–21, India fact sheet, Ministry of Health and Family Welfare.",
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Seven reasons iron tablets fail",
+      subtitle: "Check each one with your doctor before deciding iron 'doesn't work' for you.",
+      items: [
+        { icon: "drop", head: "Not (only) iron", text: "B12, folate, thalassaemia trait or a chronic illness", tone: "bad" },
+        { icon: "cup", head: "Taken with chai or milk", text: "Tea, coffee and calcium cut iron absorption", tone: "bad" },
+        { icon: "clock", head: "Stopped too early", text: "Hb rises first; iron stores take much longer" },
+        { icon: "alert", head: "Blood still leaking", text: "Heavy periods, piles, ulcers, frequent donation", tone: "bad" },
+        { icon: "leaf", head: "Worms", text: "Deworming as advised, especially for children" },
+        { icon: "pill", head: "Poor absorption or side effects", text: "Gut conditions, acid medicines, skipped doses" },
+      ],
+    },
+  },
   "generic-semaglutide-india-guide": {
     theme: ["#0f4c5c", "#1b7f79", "#f4b942"],
     hero: { kicker: "Weight & metabolism · 2026", title: "Generic semaglutide in India: medicine, food and muscle together", icons: ["pen", "plate", "dumbbell", "heart"] },

@@ -4,6 +4,248 @@ import type { PostMeta } from "@/health/lib/post-types";
 export const POSTS: PostMeta[] = [
   {
     "lang": "en",
+    "slug": "air-pollution-aqi-action-plan",
+    "title": "Air Pollution and Your Body: An AQI Action Plan for Indian Families",
+    "hindiTitle": "वायु प्रदूषण और आपका शरीर: भारतीय परिवारों के लिए AQI एक्शन प्लान",
+    "description": "What each CPCB AQI band means for your body, which masks actually work, how to clean indoor air, and when it is safe to exercise outdoors.",
+    "category": "Environmental Health",
+    "tags": [
+      "air pollution",
+      "AQI",
+      "PM2.5",
+      "N95 mask",
+      "asthma",
+      "Delhi NCR",
+      "indoor air"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/air-pollution-aqi-action-plan/hero.svg",
+    "heroAlt": "Illustration of lungs, a mask, a home and the sun, standing for protecting your body from outdoor and indoor air pollution",
+    "sources": [
+      {
+        "title": "Health and economic impact of air pollution in the states of India — Global Burden of Disease Study 2019",
+        "publisher": "The Lancet Planetary Health",
+        "year": "2021",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33357500/"
+      },
+      {
+        "title": "WHO global air quality guidelines (PM2.5, PM10, ozone, NO2, SO2, CO)",
+        "publisher": "World Health Organization",
+        "year": "2021",
+        "url": "https://www.who.int/publications/i/item/9789240034228"
+      },
+      {
+        "title": "National Air Quality Index (categories and health breakpoints)",
+        "publisher": "Central Pollution Control Board",
+        "year": "2014",
+        "url": "https://cpcb.nic.in/"
+      },
+      {
+        "title": "Graded Response Action Plan for Delhi-NCR",
+        "publisher": "Commission for Air Quality Management",
+        "year": "2024",
+        "url": "https://caqm.nic.in/"
+      }
+    ],
+    "related": [
+      {
+        "label": "Asthma",
+        "href": "/health/diseases/asthma"
+      },
+      {
+        "label": "COPD",
+        "href": "/health/diseases/copd"
+      },
+      {
+        "label": "Breathing problems",
+        "href": "/health/diseases/breathing-problems"
+      },
+      {
+        "label": "Live health advisory",
+        "href": "/health/live-advisory"
+      },
+      {
+        "label": "Heart attacks under 40",
+        "href": "/health/blog/heart-attack-under-40-india"
+      }
+    ],
+    "headings": [
+      "The scale of the problem",
+      "What pollution actually does inside your body",
+      "Reading the AQI the right way",
+      "Your family AQI action plan",
+      "Masks: which ones work, and how to wear them",
+      "Clean air at home: where most of your hours are spent",
+      "Exercise and pollution: when, where and how hard",
+      "Commute, car and office: the hours people forget",
+      "How to tell if pollution is affecting you",
+      "Myths about pollution and protection",
+      "A one-week plan to set up your home",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Which AQI level is safe for outdoor exercise?",
+        "a": "For healthy adults, Good and Satisfactory days are generally fine, and Moderate days are usually fine for shorter or lighter sessions. When AQI is Poor or worse, move intense exercise indoors. People with asthma, heart disease or other conditions, and children, may need to be more cautious; follow your doctor's advice."
+      },
+      {
+        "q": "Do N95 masks really work against PM2.5?",
+        "a": "Yes, when they fit well. N95 and FFP2 respirators are designed to filter most fine particles. Leaks around the nose and chin reduce protection a lot, so fit matters as much as the mask itself."
+      },
+      {
+        "q": "Are air purifiers worth the money?",
+        "a": "A HEPA purifier sized for the room can substantially reduce indoor PM2.5 when doors and windows are kept closed. If you can afford one, the bedroom gives the best return. Change filters as advised."
+      },
+      {
+        "q": "Is pollution harmful during pregnancy?",
+        "a": "Air pollution has been linked to problems in pregnancy, including effects on the baby's growth. Pregnant women should reduce exposure where they can, use clean indoor air, wear a well-fitted mask outdoors on bad days, and discuss concerns with their doctor."
+      },
+      {
+        "q": "Should children go to school on Severe days?",
+        "a": "That depends on school and government advisories, which often close schools or move classes online on the worst days. At home, keep children indoors in clean air, limit outdoor play, and watch for breathing symptoms, especially if they have asthma."
+      }
+    ],
+    "words": 2588,
+    "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "anemia-mukt-bharat-home-guide",
+    "title": "Anaemia in India: Why Iron Tablets Often Fail, and What Actually Works",
+    "hindiTitle": "भारत में एनीमिया: आयरन की गोलियाँ अक्सर काम क्यों नहीं करतीं, और असल में क्या करें",
+    "description": "Over half of Indian women and two in three young children are anaemic (NFHS-5). Seven reasons iron tablets fail, the right tests, and what works.",
+    "category": "Women's & Family Health",
+    "tags": [
+      "anaemia",
+      "iron deficiency",
+      "ferritin",
+      "B12",
+      "periods",
+      "NFHS-5",
+      "Anemia Mukt Bharat"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/anemia-mukt-bharat-home-guide/hero.svg",
+    "heroAlt": "Illustration of a blood drop, an iron tablet and an Indian plate with dal, greens and lemon, representing testing and treating anaemia",
+    "sources": [
+      {
+        "title": "National Family Health Survey (NFHS-5) 2019–21, India Fact Sheet",
+        "publisher": "Ministry of Health and Family Welfare / IIPS",
+        "year": "2021",
+        "url": "http://rchiips.org/nfhs/NFHS-5_FCTS/India.pdf"
+      },
+      {
+        "title": "Anemia Mukt Bharat (6x6x6 strategy)",
+        "publisher": "Ministry of Health and Family Welfare",
+        "year": "2018",
+        "url": "https://anemiamuktbharat.info/"
+      },
+      {
+        "title": "Guideline on haemoglobin cutoffs to define anaemia in individuals and populations",
+        "publisher": "World Health Organization",
+        "year": "2024",
+        "url": "https://www.who.int/publications/i/item/9789240088542"
+      },
+      {
+        "title": "WHO guideline on use of ferritin concentrations to assess iron status",
+        "publisher": "World Health Organization",
+        "year": "2020",
+        "url": "https://www.who.int/publications/i/item/9789240000124"
+      },
+      {
+        "title": "Iron absorption from oral iron supplements given on consecutive versus alternate days and as single morning doses versus twice-daily split dosing",
+        "publisher": "The Lancet Haematology",
+        "year": "2017",
+        "url": "https://doi.org/10.1016/S2352-3026(17)30182-5"
+      },
+      {
+        "title": "Inhibition of non-haem iron absorption in man by polyphenolic-containing beverages",
+        "publisher": "British Journal of Nutrition",
+        "year": "1999",
+        "url": "https://doi.org/10.1017/S0007114599000537"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "Anaemia: symptoms and causes",
+        "href": "/health/diseases/anemia"
+      },
+      {
+        "label": "Iron deficiency",
+        "href": "/health/diseases/iron-deficiency"
+      },
+      {
+        "label": "Vitamin B12 deficiency",
+        "href": "/health/diseases/vitamin-b12-deficiency"
+      },
+      {
+        "label": "Thali builder",
+        "href": "/health/thali-builder"
+      },
+      {
+        "label": "High-protein vegetarian guide",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      }
+    ],
+    "headings": [
+      "How big the problem is, in one paragraph",
+      "First, what anaemia actually is",
+      "The seven reasons iron tablets \"don't work\"",
+      "The tests that end the guesswork",
+      "Eating for better iron: what actually helps",
+      "Special situations",
+      "Myths that keep India anaemic",
+      "A four-week home routine that supports treatment",
+      "Questions to take to your doctor",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "How long does it take to feel better on iron?",
+        "a": "Many people start feeling more energetic within a few weeks of the right treatment, and Hb usually rises over the following weeks. Refilling iron stores takes longer. Your doctor will set the duration and the timing of repeat tests."
+      },
+      {
+        "q": "Can I correct anaemia with diet alone?",
+        "a": "Mild iron deficiency can sometimes improve with a better diet, but moderate or severe anaemia usually needs treatment prescribed by a doctor. Diet is excellent for prevention and for staying well after treatment."
+      },
+      {
+        "q": "Why are my stools black on iron tablets?",
+        "a": "Black stools are a common, harmless effect of oral iron. Black, sticky, tar-like stools together with dizziness, weakness or belly pain can mean bleeding and need urgent medical attention."
+      },
+      {
+        "q": "Should my whole family get tested?",
+        "a": "If one person has thalassaemia trait, close relatives may too, and it matters before marriage and pregnancy. For iron deficiency, testing others depends on symptoms and diet; ask your doctor."
+      },
+      {
+        "q": "Is it safe to exercise when I'm anaemic?",
+        "a": "Gentle activity like walking is usually fine and can help. Hard training while Hb is very low can cause breathlessness or fainting. Ask your doctor when to increase intensity, and stop if you feel dizzy or have chest pain."
+      }
+    ],
+    "words": 2593,
+    "ads": 3
+  },
+  {
+    "lang": "en",
     "slug": "generic-semaglutide-india-guide",
     "title": "Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle",
     "hindiTitle": "भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ",
@@ -135,5 +377,590 @@ export const POSTS: PostMeta[] = [
     ],
     "words": 2595,
     "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "heart-attack-under-40-india",
+    "title": "Heart Attacks in Indians Under 40: Lp(a), ApoB, Family History and Safe Gym Training",
+    "hindiTitle": "40 से कम उम्र के भारतीयों में हार्ट अटैक: Lp(a), ApoB, पारिवारिक इतिहास और जिम में सुरक्षित ट्रेनिंग",
+    "description": "South Asians tend to have heart attacks younger. The tests beyond a basic lipid profile, family history that matters, and how to train hard but safely.",
+    "category": "Heart Health",
+    "tags": [
+      "heart attack",
+      "young adults",
+      "Lp(a)",
+      "ApoB",
+      "cholesterol",
+      "family history",
+      "gym safety"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/heart-attack-under-40-india/hero.svg",
+    "heroAlt": "Illustration of a heart, a blood test tube and a dumbbell, standing for heart risk testing and safe exercise for young Indians",
+    "sources": [
+      {
+        "title": "Risk factors for early myocardial infarction in South Asians compared with individuals in other countries (INTERHEART)",
+        "publisher": "JAMA",
+        "year": "2007",
+        "url": "https://doi.org/10.1001/jama.297.3.286"
+      },
+      {
+        "title": "Lipoprotein(a) in atherosclerotic cardiovascular disease and aortic stenosis — a European Atherosclerosis Society consensus statement",
+        "publisher": "European Heart Journal",
+        "year": "2022",
+        "url": "https://doi.org/10.1093/eurheartj/ehac361"
+      },
+      {
+        "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias",
+        "publisher": "European Heart Journal",
+        "year": "2020",
+        "url": "https://doi.org/10.1093/eurheartj/ehz455"
+      },
+      {
+        "title": "Lipoprotein(a): an Indian perspective (review)",
+        "publisher": "Indian Heart Journal",
+        "year": "2024",
+        "url": "https://doi.org/10.1016/j.ihj.2023.12.010"
+      },
+      {
+        "title": "Global Adult Tobacco Survey GATS 2, India 2016–17",
+        "publisher": "Ministry of Health and Family Welfare / TISS",
+        "year": "2018",
+        "url": ""
+      },
+      {
+        "title": "2020 American Heart Association Guidelines for CPR and Emergency Cardiovascular Care",
+        "publisher": "Circulation",
+        "year": "2020",
+        "url": "https://doi.org/10.1161/CIR.0000000000000916"
+      }
+    ],
+    "related": [
+      {
+        "label": "Cardiovascular risk explained",
+        "href": "/health/diseases/cardiovascular-risk"
+      },
+      {
+        "label": "High cholesterol",
+        "href": "/health/diseases/high-cholesterol"
+      },
+      {
+        "label": "Indian nutrition for heart health",
+        "href": "/health/blog/indian-nutrition-heart-health"
+      },
+      {
+        "label": "Blood pressure guide",
+        "href": "/health/blog/indian-guide-blood-pressure"
+      },
+      {
+        "label": "BMI calculator",
+        "href": "/health/health-calculators/bmi-calculator"
+      }
+    ],
+    "headings": [
+      "Why \"too young for a heart attack\" isn't true here",
+      "The usual suspects, in a young Indian",
+      "The inherited part: family history, Lp(a) and familial high cholesterol",
+      "Which tests to ask about",
+      "Training hard without risking your heart",
+      "Young women: the risk that gets dismissed",
+      "Questions to take to your doctor",
+      "Know the warning signs, including the quiet ones",
+      "Hands-only CPR in four lines",
+      "Myths young Indians believe about their hearts",
+      "A 12-week plan to lower your heart risk",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Should every young adult get an Lp(a) test?",
+        "a": "European experts recommend measuring Lp(a) at least once in every adult's lifetime. It is most useful if you have early heart disease in your family, very high LDL, or your own early heart disease. Ask your doctor whether and when to test."
+      },
+      {
+        "q": "What's the difference between LDL and ApoB?",
+        "a": "LDL cholesterol measures how much cholesterol is carried in LDL particles; ApoB counts the particles themselves. In people with high triglycerides, diabetes or obesity, ApoB can give a clearer picture of risk. Your doctor decides whether you need it."
+      },
+      {
+        "q": "Is it safe to lift heavy weights if my father had a heart attack young?",
+        "a": "Usually yes, with a doctor's check first and a sensible, gradual programme. Strength training is good for the heart. Learn the warning signs, avoid steroids and stimulant-heavy supplements, and stop if you have chest pain or feel faint."
+      },
+      {
+        "q": "Can a heart attack happen without chest pain?",
+        "a": "Yes. Some people, especially women and people with diabetes, have breathlessness, sweating, nausea, back or jaw pain, or sudden tiredness without much chest pain. If in doubt, get checked urgently."
+      },
+      {
+        "q": "Does quitting smoking really help if I've smoked for years?",
+        "a": "Yes. The heart starts benefiting soon after quitting, and the risk keeps falling over the following years. It is never too late, and help from a doctor or quitline makes success more likely."
+      }
+    ],
+    "words": 2515,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "air-pollution-aqi-action-plan",
+    "title": "Air Pollution and Your Body: An AQI Action Plan for Indian Families",
+    "hindiTitle": "वायु प्रदूषण और आपका शरीर: भारतीय परिवारों के लिए AQI एक्शन प्लान",
+    "description": "CPCB के हर AQI स्तर का शरीर पर असर, कौन-से मास्क सच में काम करते हैं, घर की हवा कैसे साफ़ करें, और बाहर कसरत कब सुरक्षित है।",
+    "category": "पर्यावरण और सेहत",
+    "tags": [
+      "वायु प्रदूषण",
+      "AQI",
+      "PM2.5",
+      "N95 मास्क",
+      "अस्थमा",
+      "दिल्ली-NCR"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/air-pollution-aqi-action-plan/hero.svg",
+    "heroAlt": "फेफड़े, मास्क, घर और सूरज का चित्र: बाहर और घर के अंदर के प्रदूषण से शरीर को बचाना",
+    "sources": [
+      {
+        "title": "Health and economic impact of air pollution in the states of India — Global Burden of Disease Study 2019",
+        "publisher": "The Lancet Planetary Health",
+        "year": "2021",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33357500/"
+      },
+      {
+        "title": "WHO global air quality guidelines",
+        "publisher": "World Health Organization",
+        "year": "2021",
+        "url": "https://www.who.int/publications/i/item/9789240034228"
+      },
+      {
+        "title": "National Air Quality Index (categories and health breakpoints)",
+        "publisher": "Central Pollution Control Board",
+        "year": "2014",
+        "url": "https://cpcb.nic.in/"
+      },
+      {
+        "title": "Graded Response Action Plan for Delhi-NCR",
+        "publisher": "Commission for Air Quality Management",
+        "year": "2024",
+        "url": "https://caqm.nic.in/"
+      }
+    ],
+    "related": [
+      {
+        "label": "अस्थमा (अंग्रेज़ी)",
+        "href": "/health/diseases/asthma"
+      },
+      {
+        "label": "COPD (अंग्रेज़ी)",
+        "href": "/health/diseases/copd"
+      },
+      {
+        "label": "साँस की तकलीफ़ (अंग्रेज़ी)",
+        "href": "/health/diseases/breathing-problems"
+      },
+      {
+        "label": "लाइव हेल्थ एडवाइज़री (अंग्रेज़ी)",
+        "href": "/health/live-advisory"
+      }
+    ],
+    "headings": [
+      "समस्या कितनी बड़ी है",
+      "प्रदूषण शरीर के अंदर क्या करता है",
+      "AQI को सही तरह से कैसे पढ़ें",
+      "परिवार का AQI एक्शन प्लान",
+      "मास्क: कौन-से काम करते हैं और कैसे पहनें",
+      "घर की हवा: जहाँ हमारे ज़्यादातर घंटे बीतते हैं",
+      "कसरत और प्रदूषण: कब, कहाँ और कितनी",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "बाहर कसरत के लिए कौन-सा AQI सुरक्षित है?",
+        "a": "स्वस्थ वयस्कों के लिए अच्छे और संतोषजनक दिन आमतौर पर ठीक हैं, और मध्यम दिनों में छोटी या हल्की कसरत आमतौर पर ठीक रहती है। AQI ख़राब या उससे बुरा हो तो ज़ोरदार कसरत अंदर करें। अस्थमा, दिल की बीमारी वाले लोग और बच्चे ज़्यादा सावधानी रखें और डॉक्टर की सलाह मानें।"
+      },
+      {
+        "q": "क्या N95 मास्क सच में PM2.5 रोकते हैं?",
+        "a": "हाँ, अगर अच्छी तरह फ़िट हों। N95 और FFP2 ज़्यादातर महीन कण रोकने के लिए बने हैं। नाक और ठुड्डी के पास से रिसाव सुरक्षा बहुत घटा देता है, इसलिए फ़िट उतना ही ज़रूरी है जितना मास्क।"
+      },
+      {
+        "q": "क्या एयर प्यूरीफ़ायर पैसे के लायक़ है?",
+        "a": "कमरे के आकार का HEPA प्यूरीफ़ायर, दरवाज़े-खिड़कियाँ बंद रखने पर, अंदर का PM2.5 काफ़ी घटा सकता है। ख़र्च उठा सकें तो बेडरूम से शुरुआत सबसे फ़ायदेमंद है।"
+      },
+      {
+        "q": "क्या गर्भावस्था में प्रदूषण नुकसान करता है?",
+        "a": "वायु प्रदूषण को गर्भावस्था की समस्याओं से जोड़ा गया है, जिनमें बच्चे की बढ़त पर असर भी शामिल है। गर्भवती महिलाएँ जहाँ हो सके जोखिम घटाएँ, अंदर साफ़ हवा रखें, बुरे दिनों में बाहर अच्छा मास्क पहनें, और चिंता हो तो डॉक्टर से बात करें।"
+      },
+      {
+        "q": "क्या गंभीर AQI वाले दिन बच्चों को स्कूल भेजें?",
+        "a": "यह स्कूल और सरकार की एडवाइज़री पर निर्भर है, जो सबसे बुरे दिनों में अक्सर स्कूल बंद या ऑनलाइन कर देती है। घर पर बच्चों को साफ़ हवा वाले कमरे में रखें, बाहर खेलना कम करें, और साँस के लक्षणों पर नज़र रखें, ख़ासकर अस्थमा हो तो।"
+      }
+    ],
+    "words": 2027,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "anemia-mukt-bharat-home-guide",
+    "title": "Anaemia in India: Why Iron Tablets Often Fail, and What Actually Works",
+    "hindiTitle": "भारत में एनीमिया: आयरन की गोलियाँ अक्सर काम क्यों नहीं करतीं, और असल में क्या करें",
+    "description": "NFHS-5 के अनुसार आधी से ज़्यादा महिलाएँ और तीन में से दो छोटे बच्चे एनीमिक हैं। आयरन की गोली क्यों फ़ेल होती है, सही जाँचें और असरदार उपाय।",
+    "category": "महिला और परिवार स्वास्थ्य",
+    "tags": [
+      "एनीमिया",
+      "आयरन की कमी",
+      "फ़ेरिटिन",
+      "B12",
+      "पीरियड",
+      "NFHS-5"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/anemia-mukt-bharat-home-guide/hero.svg",
+    "heroAlt": "ख़ून की बूँद, आयरन की गोली और दाल, हरी सब्ज़ी व नींबू वाली भारतीय थाली का चित्र: एनीमिया की जाँच और इलाज",
+    "sources": [
+      {
+        "title": "National Family Health Survey (NFHS-5) 2019–21, India Fact Sheet",
+        "publisher": "Ministry of Health and Family Welfare / IIPS",
+        "year": "2021",
+        "url": "http://rchiips.org/nfhs/NFHS-5_FCTS/India.pdf"
+      },
+      {
+        "title": "Anemia Mukt Bharat (6x6x6 strategy)",
+        "publisher": "Ministry of Health and Family Welfare",
+        "year": "2018",
+        "url": "https://anemiamuktbharat.info/"
+      },
+      {
+        "title": "Guideline on haemoglobin cutoffs to define anaemia",
+        "publisher": "World Health Organization",
+        "year": "2024",
+        "url": "https://www.who.int/publications/i/item/9789240088542"
+      },
+      {
+        "title": "WHO guideline on use of ferritin concentrations to assess iron status",
+        "publisher": "World Health Organization",
+        "year": "2020",
+        "url": "https://www.who.int/publications/i/item/9789240000124"
+      },
+      {
+        "title": "Iron absorption from oral iron supplements given on consecutive versus alternate days",
+        "publisher": "The Lancet Haematology",
+        "year": "2017",
+        "url": "https://doi.org/10.1016/S2352-3026(17)30182-5"
+      },
+      {
+        "title": "Inhibition of non-haem iron absorption by polyphenolic-containing beverages",
+        "publisher": "British Journal of Nutrition",
+        "year": "1999",
+        "url": "https://doi.org/10.1017/S0007114599000537"
+      }
+    ],
+    "related": [
+      {
+        "label": "एनीमिया: लक्षण और कारण (अंग्रेज़ी)",
+        "href": "/health/diseases/anemia"
+      },
+      {
+        "label": "आयरन की कमी (अंग्रेज़ी)",
+        "href": "/health/diseases/iron-deficiency"
+      },
+      {
+        "label": "विटामिन B12 की कमी (अंग्रेज़ी)",
+        "href": "/health/diseases/vitamin-b12-deficiency"
+      },
+      {
+        "label": "थाली बिल्डर (अंग्रेज़ी)",
+        "href": "/health/thali-builder"
+      }
+    ],
+    "headings": [
+      "समस्या कितनी बड़ी है",
+      "एनीमिया होता क्या है",
+      "सात वजहें जिनसे आयरन की गोली \"काम नहीं करती\"",
+      "जाँचें जो अंदाज़ेबाज़ी ख़त्म करती हैं",
+      "खाने से आयरन कैसे बढ़ाएँ",
+      "ख़ास हालात",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "आयरन लेने के बाद अच्छा कब महसूस होगा?",
+        "a": "सही इलाज से बहुत से लोगों को कुछ हफ़्तों में ताक़त लौटती लगती है और Hb उसके बाद के हफ़्तों में बढ़ता है। भंडार भरने में और समय लगता है। कितने दिन लेनी है और कब दोबारा जाँच हो, डॉक्टर तय करेंगे।"
+      },
+      {
+        "q": "क्या सिर्फ़ खाने से एनीमिया ठीक हो सकता है?",
+        "a": "हल्की कमी कभी-कभी बेहतर खाने से सुधर जाती है, पर मध्यम या गंभीर एनीमिया में आमतौर पर डॉक्टर का इलाज चाहिए। खाना रोकथाम और इलाज के बाद ठीक बने रहने में बहुत काम आता है।"
+      },
+      {
+        "q": "आयरन की गोली से मल काला क्यों होता है?",
+        "a": "यह आम और हानिरहित असर है। पर तारकोल जैसा चिपचिपा काला मल चक्कर, कमज़ोरी या पेट दर्द के साथ हो तो यह ख़ून निकलने का संकेत हो सकता है, तुरंत डॉक्टर को दिखाएँ।"
+      },
+      {
+        "q": "क्या पूरे परिवार की जाँच होनी चाहिए?",
+        "a": "किसी एक को थैलेसीमिया ट्रेट हो तो क़रीबी रिश्तेदारों में भी हो सकता है, और शादी व गर्भ से पहले यह जानना ज़रूरी है। आयरन की कमी में बाक़ियों की जाँच लक्षणों और खान-पान पर निर्भर है; डॉक्टर से पूछें।"
+      },
+      {
+        "q": "एनीमिया में कसरत करना सुरक्षित है?",
+        "a": "हल्की सैर आमतौर पर ठीक है और मदद करती है। Hb बहुत कम होने पर भारी कसरत से साँस फूलना या बेहोशी हो सकती है। रफ़्तार कब बढ़ानी है, डॉक्टर से पूछें, और चक्कर या सीने में दर्द हो तो रुक जाएँ।"
+      }
+    ],
+    "words": 1885,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "generic-semaglutide-india-guide",
+    "title": "Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle",
+    "hindiTitle": "भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए सही, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ",
+    "description": "मार्च 2026 से भारत में जेनेरिक सेमाग्लूटाइड मिल रहा है। यह किसके लिए है, क़ीमतें, साइड इफ़ेक्ट और वज़न घटाते हुए मांसपेशियाँ बचाने का तरीक़ा।",
+    "category": "वज़न और मेटाबॉलिज़्म",
+    "tags": [
+      "सेमाग्लूटाइड",
+      "GLP-1",
+      "वज़न घटाना",
+      "मोटापा",
+      "डायबिटीज़"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/generic-semaglutide-india-guide/hero.svg",
+    "heroAlt": "हफ़्ते में एक बार लगने वाला इंजेक्शन पेन, संतुलित भारतीय थाली और डम्बल का चित्र: दवा, खाना और ताक़त की कसरत साथ-साथ",
+    "sources": [
+      {
+        "title": "Once-Weekly Semaglutide in Adults with Overweight or Obesity (STEP 1)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2021",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2032183"
+      },
+      {
+        "title": "Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes (SELECT)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2023",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2307563"
+      },
+      {
+        "title": "Weight regain after withdrawal of semaglutide (STEP 1 extension)",
+        "publisher": "Diabetes, Obesity and Metabolism",
+        "year": "2022",
+        "url": "https://dom-pubs.onlinelibrary.wiley.com/doi/10.1111/dom.14725"
+      },
+      {
+        "title": "India is launching cheap weight-loss drugs",
+        "publisher": "CNBC",
+        "year": "2026",
+        "url": "https://www.cnbc.com/2026/03/23/novo-nordisk-cheap-weight-loss-drugs-india-generic-ozempic-wegovy-semaglutide.html"
+      },
+      {
+        "title": "Dr Reddy's launches oral semaglutide tablets in India",
+        "publisher": "Business Today",
+        "year": "2026",
+        "url": "https://www.businesstoday.in/industry/pharma/story/dr-reddys-launches-oral-semaglutide-tablets-at-rs99-per-pill-in-india-532551-2026-05-20"
+      },
+      {
+        "title": "Consensus statement on Asian Indian obesity: BMI cut-offs",
+        "publisher": "Journal of the Association of Physicians of India",
+        "year": "2009",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19582986/"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "BMI कैलकुलेटर (अंग्रेज़ी)",
+        "href": "/health/health-calculators/bmi-calculator"
+      },
+      {
+        "label": "डायबिटीज़ रिस्क स्कोर IDRS (अंग्रेज़ी)",
+        "href": "/health/india-risk"
+      },
+      {
+        "label": "हाई-प्रोटीन शाकाहारी गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "मोटापा: कारण और देखभाल (अंग्रेज़ी)",
+        "href": "/health/diseases/obesity"
+      }
+    ],
+    "headings": [
+      "2026 में असल में क्या बदला",
+      "यह दवा असल में किसके लिए है",
+      "रिसर्च ने क्या दिखाया, बिना बढ़ा-चढ़ाकर",
+      "मांसपेशियाँ बचाना: सबसे अहम हिस्सा",
+      "साइड इफ़ेक्ट, सीधी बात",
+      "परिवार में सुनी जाने वाली बातें और सच",
+      "असली महीने का ख़र्च कैसे जोड़ें",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या जेनेरिक सेमाग्लूटाइड मूल ब्रांड जितना ही अच्छा है?",
+        "a": "मंज़ूरशुदा जेनेरिक में वही दवा होनी चाहिए और उसे गुणवत्ता के मानक पूरे करने होते हैं। फ़र्क़ अक्सर पेन, पैक और क़ीमत में होता है। बड़ा ख़तरा नक़ली दवा और ठंडी न रखी गई दवा का है, इसलिए पर्चे के साथ लाइसेंस वाली दुकान से ही लें।"
+      },
+      {
+        "q": "सिर्फ़ 5 किलो घटाना है, क्या बिना डॉक्टर के ले सकते हैं?",
+        "a": "नहीं। यह डायबिटीज़ और मोटापे के लिए पर्चे वाली दवा है और इसके असली साइड इफ़ेक्ट हैं। थोड़े वज़न के लिए प्रोटीन वाला खाना, ताक़त की कसरत और अच्छी नींद ज़्यादा सुरक्षित और सस्ते हैं।"
+      },
+      {
+        "q": "क्या इससे मांसपेशियाँ घटेंगी?",
+        "a": "घटे वज़न का कुछ हिस्सा मांसपेशी हो सकता है, ख़ासकर अगर प्रोटीन बहुत कम हो और कसरत न हो। हर खाने में प्रोटीन और हफ़्ते में दो-तीन बार वज़न वाली कसरत से ज़्यादा मांसपेशी बचती है।"
+      },
+      {
+        "q": "इंजेक्शन छोड़ने पर क्या होगा?",
+        "a": "ट्रायल में ज़्यादातर लोगों का वज़न एक साल में काफ़ी लौट आया और BP-शुगर के सुधार भी कम हुए। दवा बंद करने की योजना डॉक्टर के साथ बनाएँ और खान-पान और कसरत की आदतें जारी रखें।"
+      },
+      {
+        "q": "गोली बेहतर है या इंजेक्शन?",
+        "a": "दोनों में सेमाग्लूटाइड है। गोली रोज़ सख़्त नियमों (ख़ाली पेट, थोड़ा पानी, समय) के साथ ली जाती है, इंजेक्शन हफ़्ते में एक बार। आपके लिए क्या सही है, यह आपकी बीमारी, दिनचर्या और बजट देखकर डॉक्टर के साथ तय करें।"
+      }
+    ],
+    "words": 2113,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "heart-attack-under-40-india",
+    "title": "Heart Attacks in Indians Under 40: Lp(a), ApoB, Family History and Safe Gym Training",
+    "hindiTitle": "40 से कम उम्र में हार्ट अटैक: Lp(a), ApoB, पारिवारिक इतिहास और जिम में सुरक्षित ट्रेनिंग",
+    "description": "दक्षिण एशियाई लोगों को हार्ट अटैक कम उम्र में होता है। साधारण लिपिड प्रोफ़ाइल से आगे की जाँचें, पारिवारिक इतिहास, और सुरक्षित तरीक़े से ज़ोरदार ट्रेनिंग।",
+    "category": "दिल की सेहत",
+    "tags": [
+      "हार्ट अटैक",
+      "युवा",
+      "Lp(a)",
+      "ApoB",
+      "कोलेस्ट्रॉल",
+      "पारिवारिक इतिहास",
+      "जिम"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/heart-attack-under-40-india/hero.svg",
+    "heroAlt": "दिल, ख़ून की जाँच की ट्यूब और डम्बल का चित्र: युवा भारतीयों के लिए दिल की जाँच और सुरक्षित कसरत",
+    "sources": [
+      {
+        "title": "Risk factors for early myocardial infarction in South Asians compared with individuals in other countries (INTERHEART)",
+        "publisher": "JAMA",
+        "year": "2007",
+        "url": "https://doi.org/10.1001/jama.297.3.286"
+      },
+      {
+        "title": "Lipoprotein(a) in atherosclerotic cardiovascular disease and aortic stenosis — EAS consensus statement",
+        "publisher": "European Heart Journal",
+        "year": "2022",
+        "url": "https://doi.org/10.1093/eurheartj/ehac361"
+      },
+      {
+        "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias",
+        "publisher": "European Heart Journal",
+        "year": "2020",
+        "url": "https://doi.org/10.1093/eurheartj/ehz455"
+      },
+      {
+        "title": "Lipoprotein(a): an Indian perspective (review)",
+        "publisher": "Indian Heart Journal",
+        "year": "2024",
+        "url": "https://doi.org/10.1016/j.ihj.2023.12.010"
+      },
+      {
+        "title": "Global Adult Tobacco Survey GATS 2, India 2016–17",
+        "publisher": "Ministry of Health and Family Welfare / TISS",
+        "year": "2018",
+        "url": ""
+      },
+      {
+        "title": "2020 American Heart Association Guidelines for CPR and Emergency Cardiovascular Care",
+        "publisher": "Circulation",
+        "year": "2020",
+        "url": "https://doi.org/10.1161/CIR.0000000000000916"
+      }
+    ],
+    "related": [
+      {
+        "label": "कार्डियोवैस्कुलर रिस्क (अंग्रेज़ी)",
+        "href": "/health/diseases/cardiovascular-risk"
+      },
+      {
+        "label": "हाई कोलेस्ट्रॉल (अंग्रेज़ी)",
+        "href": "/health/diseases/high-cholesterol"
+      },
+      {
+        "label": "दिल के लिए भारतीय खाना (अंग्रेज़ी)",
+        "href": "/health/blog/indian-nutrition-heart-health"
+      },
+      {
+        "label": "ब्लड प्रेशर गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/indian-guide-blood-pressure"
+      }
+    ],
+    "headings": [
+      "\"इतनी कम उम्र में हार्ट अटैक नहीं होता\" यहाँ सच नहीं",
+      "युवा भारतीय में आम वजहें",
+      "वंशानुगत हिस्सा: पारिवारिक इतिहास, Lp(a) और पारिवारिक हाई कोलेस्ट्रॉल",
+      "कौन-सी जाँचों के बारे में पूछें",
+      "दिल को जोखिम में डाले बिना ज़ोरदार ट्रेनिंग",
+      "युवा महिलाएँ: वह ख़तरा जिसे अनदेखा किया जाता है",
+      "चेतावनी के संकेत, शांत वाले भी",
+      "युवाओं के मिथक",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या हर युवा को Lp(a) जाँच करानी चाहिए?",
+        "a": "यूरोपियन विशेषज्ञ हर वयस्क में ज़िंदगी में कम से कम एक बार Lp(a) नापने की सलाह देते हैं। सबसे ज़्यादा फ़ायदेमंद तब है जब परिवार में कम उम्र में दिल की बीमारी हो, LDL बहुत ऊँचा हो, या आपको ख़ुद कम उम्र में दिल की बीमारी हुई हो। कब जाँच करानी है, डॉक्टर से पूछें।"
+      },
+      {
+        "q": "LDL और ApoB में क्या फ़र्क़ है?",
+        "a": "LDL कोलेस्ट्रॉल बताता है कि LDL कणों में कितना कोलेस्ट्रॉल है; ApoB ख़ुद कणों को गिनता है। ज़्यादा ट्राइग्लिसराइड, डायबिटीज़ या मोटापे में ApoB ख़तरे की साफ़ तस्वीर दे सकता है।"
+      },
+      {
+        "q": "पिता को कम उम्र में हार्ट अटैक हुआ था, क्या मैं भारी वज़न उठा सकता हूँ?",
+        "a": "आमतौर पर हाँ, पहले डॉक्टर की जाँच और धीरे-धीरे बढ़ने वाले प्रोग्राम के साथ। ताक़त की कसरत दिल के लिए अच्छी है। चेतावनी के संकेत पहचानें, स्टेरॉयड और स्टिमुलेंट वाले सप्लीमेंट से बचें, और सीने में दर्द या चक्कर हो तो रुक जाएँ।"
+      },
+      {
+        "q": "क्या बिना सीने के दर्द के हार्ट अटैक हो सकता है?",
+        "a": "हाँ। कुछ लोगों में, ख़ासकर महिलाओं और डायबिटीज़ वालों में, साँस फूलना, पसीना, जी मिचलाना, पीठ या जबड़े में दर्द या अचानक थकान होती है। शक हो तो तुरंत जाँच कराएँ।"
+      },
+      {
+        "q": "सालों से सिगरेट पी रहा हूँ, क्या अब छोड़ने से फ़ायदा होगा?",
+        "a": "हाँ। छोड़ने के कुछ समय बाद से ही दिल को फ़ायदा होने लगता है और आने वाले सालों में ख़तरा घटता जाता है। कभी देर नहीं होती, और डॉक्टर या क्विटलाइन की मदद से कामयाबी ज़्यादा मिलती है।"
+      }
+    ],
+    "words": 1992,
+    "ads": 2
   }
 ];
