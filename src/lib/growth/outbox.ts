@@ -132,18 +132,56 @@ export const emailMarketingDailyCap = () => {
  * marketing emails wait behind them and stop for the day at their caps (they stay pending for the next run).
  * `deadline` (epoch ms) stops the loop in time for the caller's function limit.
  */
-export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean }> {
+export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCap?: boolean } = {}): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean; waitedMs?: number }> {
   const channels = [whatsappConfigured() && "whatsapp", emailConfigured() && "email"].filter(Boolean) as string[];
   if (!channels.length) return { sent: 0, failed: 0, skipped: true };
   let sent = 0;
   let failed = 0;
-  const { rows: used } = await pool.query<{ wa: number; email: number }>(
-    `select count(*) filter (where channel = 'whatsapp' and kind = any($1))::int as wa, count(*) filter (where channel = 'email' and kind like 'nurture-%')::int as email
-       from public.message_outbox where status = 'sent' and sent_at > now() - interval '24 hours'`,
-    [MARKETING_KINDS],
-  );
-  let marketingLeft = Math.max(0, marketingDailyCap() - (used[0]?.wa ?? 0));
-  let emailLeft = Math.max(0, emailMarketingDailyCap() - (used[0]?.email ?? 0));
+  let waitedMs = 0;
+  let marketingLeft = 0;
+  let emailLeft = 0;
+  /** Promotions sent in the last 24 hours, and when the oldest of each falls out of that window. */
+  const refreshCaps = async () => {
+    const { rows } = await pool.query<{ wa: number; email: number; wa_free: Date | null; email_free: Date | null }>(
+      `select count(*) filter (where channel = 'whatsapp' and kind = any($1))::int as wa, count(*) filter (where channel = 'email' and kind like 'nurture-%')::int as email,
+              min(sent_at) filter (where channel = 'whatsapp' and kind = any($1)) + interval '24 hours' as wa_free,
+              min(sent_at) filter (where channel = 'email' and kind like 'nurture-%') + interval '24 hours' as email_free
+         from public.message_outbox where status = 'sent' and sent_at > now() - interval '24 hours'`,
+      [MARKETING_KINDS],
+    );
+    marketingLeft = Math.max(0, marketingDailyCap() - (rows[0]?.wa ?? 0));
+    emailLeft = Math.max(0, emailMarketingDailyCap() - (rows[0]?.email ?? 0));
+    return { waFree: rows[0]?.wa_free ?? null, emailFree: rows[0]?.email_free ?? null };
+  };
+  /**
+   * The daily run fires at the same time every day, so yesterday's batch is often still inside the
+   * 24-hour window for a few minutes. With `waitForCap`, a full cap that frees up before the
+   * deadline is waited out (then the batch goes), instead of skipping the whole day. Meta's limit is
+   * per rolling 24 hours, so this never sends more than the cap in any 24 hours.
+   */
+  const waitForRoom = async (): Promise<boolean> => {
+    if (!opts.waitForCap) return false;
+    const { waFree, emailFree } = await refreshCaps();
+    const pending = await pool.query<{ wa: boolean | null; email: boolean | null }>(
+      `select bool_or(channel = 'whatsapp' and kind = any($1)) as wa, bool_or(channel = 'email' and kind like 'nurture-%') as email
+         from public.message_outbox where status = 'pending' and attempts < 3 and channel = any($2)`,
+      [MARKETING_KINDS, channels],
+    );
+    const waWaiting = !!pending.rows[0]?.wa;
+    const emailWaiting = !!pending.rows[0]?.email;
+    // Room opened up (time passed) for something that is waiting: go and send it.
+    if ((waWaiting && marketingLeft > 0) || (emailWaiting && emailLeft > 0)) return true;
+    // Otherwise wait for the first blocked cap that frees up before the deadline.
+    const frees = [waWaiting && marketingLeft <= 0 ? waFree : null, emailWaiting && emailLeft <= 0 ? emailFree : null].filter((d): d is Date => !!d).map((d) => d.getTime());
+    const next = frees.length ? Math.min(...frees) : Infinity;
+    if (next + 1000 >= deadline) return false;
+    const ms = Math.max(0, next - Date.now()) + 500;
+    await new Promise((r) => setTimeout(r, ms));
+    waitedMs += ms;
+    await refreshCaps();
+    return true;
+  };
+  await refreshCaps();
   for (let i = 0; i < max && Date.now() < deadline; i++) {
     const client = await pool.connect();
     try {
@@ -159,6 +197,8 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
       const m = rows[0];
       if (!m) {
         await client.query("rollback");
+        // Only promotions are left and their cap is full: wait if it frees up in time.
+        if ((marketingLeft <= 0 || emailLeft <= 0) && (await waitForRoom())) continue;
         break;
       }
       // Promotions never go to a number that tapped "Stop promotions".
@@ -197,5 +237,5 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
       client.release();
     }
   }
-  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 || emailLeft <= 0 };
+  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 || emailLeft <= 0, ...(waitedMs ? { waitedMs } : {}) };
 }

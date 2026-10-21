@@ -124,6 +124,13 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(consent).toEqual([{ channel: "whatsapp", address: "919822224444", name: "Sonia", source: "whatsapp: start promotions", active: true }]);
   });
 
+  it("a chat from a Click-to-WhatsApp ad is credited to the ad campaign", async () => {
+    await pool.query("truncate public.ad_campaigns cascade");
+    await pool.query(`insert into public.ad_campaigns (name, platform, slug, start_on) values ('Diwali offer', 'meta', 'diwali-offer', current_date)`);
+    expect(await social.handleInbound(wa("50", "Hi! I saw your ad. Please share the membership offer. (ad diwali-offer)"))).toBe("replied");
+    expect((await pool.query("select source from public.leads")).rows).toEqual([{ source: "ad:diwali-offer" }]);
+  });
+
   it("an existing member who messages is not added as a lead, and a foreign number never is", async () => {
     await pool.query(
       `insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Asha Rao', '9123456780', 'Monthly', current_date, current_date + 30, 'RFC-ASHA-2345')`,

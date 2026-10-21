@@ -11,7 +11,7 @@ const SOURCE_NAMES: Record<string, string> = {
   "whatsapp-campaign": "Reply to a WhatsApp campaign",
   "diet-tool": "Free diet tool",
 };
-export const sourceName = (s: string) => SOURCE_NAMES[s] ?? (s.startsWith("qr:") ? `QR code ${s.slice(3)}` : s.replace(/[-_]/g, " "));
+export const sourceName = (s: string) => SOURCE_NAMES[s] ?? (s.startsWith("qr:") ? `QR code ${s.slice(3)}` : s.startsWith("ad:") ? `WhatsApp ad: ${s.slice(3)}` : s.replace(/[-_]/g, " "));
 
 export const pct = (part: number, whole: number) => (whole ? `${Math.round((part / whole) * 100)}%` : "–");
 

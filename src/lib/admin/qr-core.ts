@@ -7,7 +7,6 @@
 //   optin   WhatsApp chat with the API number, "START PROMOTIONS" pre-typed: one tap to opt in
 //   page    a page of this site, tagged utm_source=qr so the visit and any lead are attributed
 //   review  the gym's Google review link
-import { randomBytes } from "node:crypto";
 
 export type QrKind = "bot" | "desk" | "optin" | "page" | "review";
 export const QR_KINDS: { id: QrKind; label: string; hint: string }[] = [
@@ -49,7 +48,8 @@ export function refFromText(text: string): string | null {
 
 export function newQrCode(): string {
   const A = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789"; // no 0/O, 1/l/I
-  return [...randomBytes(8)].map((b) => A[b % A.length]).join("");
+  // Web Crypto: available in Node and the browser, so this file can be imported by both.
+  return [...crypto.getRandomValues(new Uint8Array(8))].map((b) => A[b % A.length]).join("");
 }
 
 export type QrRequest = { kind: unknown; label: unknown; page?: unknown; text?: unknown };

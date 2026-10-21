@@ -113,7 +113,8 @@ export async function runDaily(now = new Date()) {
   // Recurring admin campaigns that are due today (they queue through the same outbox).
   const campaigns = await runRecurringCampaigns(today).catch((err) => (console.error("[daily] campaigns:", (err as Error).message), { runs: 0, queued: 0 }));
   // Up to the WhatsApp promotions cap plus every reminder and receipt, within the function limit.
-  const sent = await dispatch(600, Date.now() + 200_000);
+  // Yesterday's batch may still be inside the 24-hour window for a few minutes: wait it out.
+  const sent = await dispatch(600, Date.now() + 200_000, { waitForCap: true });
   // Mornings: the sales Story. The day's post itself goes out as a Reel at peak time in the
   // evening (/api/cron/reel), when most people are on Instagram and Facebook.
   const story = await runInstagramStory(now).catch((err) => ({ story: `error: ${(err as Error).message}` }));

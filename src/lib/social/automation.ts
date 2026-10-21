@@ -37,6 +37,8 @@ import { promotionsRequest } from "@/lib/growth/messages";
 import { setPromotionsOptOut } from "@/lib/growth/optouts";
 import { qrLeadSource } from "@/lib/admin/qr";
 import { refFromText } from "@/lib/admin/qr-core";
+import { adLeadSource } from "@/lib/admin/ads";
+import { adRefFromText } from "@/lib/admin/ads-core";
 import { botPaused } from "./chat-tools";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
@@ -66,8 +68,8 @@ async function ensureLead(m: Inbound, intent: Intent, afterOffer = false): Promi
     interest: LEAD_INTEREST[intent] ?? (afterOffer ? "membership" : ""),
     goal: "",
     message: m.text.slice(0, 600),
-    // A chat opened from a printed QR carries "(ref <code>)" in its pre-typed text.
-    source: afterOffer ? "whatsapp-campaign" : ((await qrLeadSource(refFromText(m.text))) ?? "whatsapp-inbound"),
+    // A chat opened from a Click-to-WhatsApp ad ends "(ad <slug>)", one from a printed QR "(ref <code>)".
+    source: afterOffer ? "whatsapp-campaign" : ((await adLeadSource(adRefFromText(m.text))) ?? (await qrLeadSource(refFromText(m.text))) ?? "whatsapp-inbound"),
     marketing: false,
   });
 }
