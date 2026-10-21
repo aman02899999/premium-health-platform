@@ -160,7 +160,7 @@ Hair fall can happen during any rapid weight loss, usually temporarily. Mood cha
 |---|---|
 | "It melts fat, so diet and exercise don't matter." | Trial results came with lifestyle support. Without protein and strength training, more of what you lose is muscle. |
 | "Generic means low quality." | Generics must meet regulatory standards. The real risks are fakes, wrong storage and unlicensed sellers, so buy only from licensed pharmacies. |
-| "Take it for three months, then you're cured." | Most people regained most of the weight within a year of stopping. Plan long-term with your doctor. |
+| "Take it for three months and the weight stays off for good." | Most people regained most of the weight within a year of stopping. Plan long-term with your doctor. |
 | "It's just for weight loss." | Semaglutide is also a diabetes medicine, and in one trial it lowered heart events in people with existing heart disease. |
 | "If one injection works, a bigger dose works faster." | Doses are raised slowly to limit side effects. Jumping ahead raises the risk of vomiting, dehydration and pancreatitis. |
 | "Ayurvedic powders do the same thing." | No herbal product has shown effects like this in trials. Some sold online have been found mixed with undeclared drugs. |

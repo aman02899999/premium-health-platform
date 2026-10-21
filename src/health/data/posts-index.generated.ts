@@ -375,7 +375,7 @@ export const POSTS: PostMeta[] = [
         "a": "Both contain semaglutide. The tablet is taken daily with strict rules about timing and water, while the injection is weekly. Which suits you depends on your conditions, routine and budget, and is a decision for you and your doctor."
       }
     ],
-    "words": 2595,
+    "words": 2599,
     "ads": 3
   },
   {
@@ -501,6 +501,119 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2515,
+    "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "indian-fermented-foods-gut-health",
+    "title": "Gut Health with Indian Fermented Foods: Curd, Idli-Dosa Batter and Kanji, Evidence vs Hype",
+    "hindiTitle": "भारतीय ख़मीर वाले खाने और पेट की सेहत: दही, इडली-डोसा का घोल और कांजी, सबूत बनाम बढ़ा-चढ़ाकर दावे",
+    "description": "What fermented foods can and can't do for your gut, which Indian staples contain live microbes, how to make them safely, and when gut symptoms need a doctor.",
+    "category": "Nutrition",
+    "tags": [
+      "gut health",
+      "fermented foods",
+      "probiotics",
+      "curd",
+      "idli",
+      "kanji",
+      "microbiome"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/indian-fermented-foods-gut-health/hero.svg",
+    "heroAlt": "Illustration of a bowl of curd, a leaf and a fermenting jar, standing for traditional Indian fermented foods and gut health",
+    "sources": [
+      {
+        "title": "Gut-microbiota-targeted diets modulate human immune status",
+        "publisher": "Cell",
+        "year": "2021",
+        "url": "https://doi.org/10.1016/j.cell.2021.06.019"
+      },
+      {
+        "title": "The International Scientific Association for Probiotics and Prebiotics (ISAPP) consensus statement on fermented foods",
+        "publisher": "Nature Reviews Gastroenterology & Hepatology",
+        "year": "2021",
+        "url": "https://doi.org/10.1038/s41575-020-00390-5"
+      },
+      {
+        "title": "Expert consensus document on the scope and appropriate use of the term probiotic (ISAPP)",
+        "publisher": "Nature Reviews Gastroenterology & Hepatology",
+        "year": "2014",
+        "url": "https://doi.org/10.1038/nrgastro.2014.66"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "IBS: irritable bowel syndrome",
+        "href": "/health/diseases/ibs"
+      },
+      {
+        "label": "Bloating",
+        "href": "/health/diseases/bloating"
+      },
+      {
+        "label": "Constipation",
+        "href": "/health/diseases/constipation"
+      },
+      {
+        "label": "Thali builder",
+        "href": "/health/thali-builder"
+      },
+      {
+        "label": "Millet swap",
+        "href": "/health/millet-swap"
+      }
+    ],
+    "headings": [
+      "First, a few words that get mixed up",
+      "What the science actually shows",
+      "The Indian fermented foods, one by one",
+      "How to tell if a fermented food still has live microbes",
+      "Making fermented foods safely at home",
+      "Fibre: what your gut bacteria actually eat",
+      "Antibiotics, illness and your gut",
+      "Probiotic supplements: when they might help",
+      "What fermented foods can't do",
+      "Myths about fermented foods and gut health",
+      "A two-week gut-friendly plan",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Is homemade curd better than packaged curd?",
+        "a": "Both can contain live cultures. Homemade curd varies from batch to batch; packaged products vary by brand and may list specific strains. Choose plain, unsweetened curd, and make homemade curd with good hygiene."
+      },
+      {
+        "q": "Does cooking kill the benefits of fermented batter?",
+        "a": "Cooking kills most live microbes, but fermentation has already changed the food, making it easier to digest and potentially improving mineral absorption. So idli and dosa are still a healthy choice, just not a source of live probiotics."
+      },
+      {
+        "q": "Should I take a probiotic supplement every day?",
+        "a": "Most healthy people don't need one if they eat a varied diet with fermented foods and plenty of fibre. Some specific strains help in specific situations; ask your doctor if you have a particular problem in mind."
+      },
+      {
+        "q": "Can people with lactose intolerance eat curd?",
+        "a": "Many people who struggle with milk tolerate curd better, because the bacteria break down some of the lactose. Start with small amounts and see how you feel. If symptoms are severe, talk to your doctor."
+      },
+      {
+        "q": "How do I know if my homemade fermented food has gone bad?",
+        "a": "A pleasant sour smell is normal. Throw it out if you see fuzzy mould, pink or black spots, a slimy texture or a foul smell, or if it has been left out too long in hot weather."
+      }
+    ],
+    "words": 2533,
     "ads": 3
   },
   {
@@ -747,6 +860,130 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2596,
+    "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "ultra-processed-food-india-labels",
+    "title": "Ultra-Processed Food in India: How to Read Labels, Spot Hidden Sugar and Cut Back Without Giving Up Taste",
+    "hindiTitle": "भारत में अल्ट्रा-प्रोसेस्ड फ़ूड: लेबल कैसे पढ़ें, छिपी चीनी कैसे पहचानें, और स्वाद छोड़े बिना कैसे कम करें",
+    "description": "India's ultra-processed food sales grew 13.37% a year in 2011–2021. What UPF means, how to read an Indian label in 30 seconds, and easy swaps that stick.",
+    "category": "Nutrition",
+    "tags": [
+      "ultra-processed food",
+      "food labels",
+      "hidden sugar",
+      "HFSS",
+      "FSSAI",
+      "packaged food",
+      "NOVA"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/ultra-processed-food-india-labels/hero.svg",
+    "heroAlt": "Illustration of a food label, a magnifying check mark and a plate, standing for reading packaged food labels and choosing whole foods",
+    "sources": [
+      {
+        "title": "The growth of ultra-processed foods in India (WHO–ICRIER report, presentation)",
+        "publisher": "ICRIER / World Health Organization",
+        "year": "2023",
+        "url": "https://www.icrier.org/pdf/PPT_WHO-report-release_Aug17_2023.pdf"
+      },
+      {
+        "title": "Ultra-processed food exposure and adverse health outcomes — umbrella review of epidemiological meta-analyses",
+        "publisher": "BMJ",
+        "year": "2024",
+        "url": "https://doi.org/10.1136/bmj-2023-077310"
+      },
+      {
+        "title": "Ultra-processed diets cause excess calorie intake and weight gain — an inpatient randomized controlled trial",
+        "publisher": "Cell Metabolism",
+        "year": "2019",
+        "url": "https://doi.org/10.1016/j.cmet.2019.05.008"
+      },
+      {
+        "title": "Guideline on sugars intake for adults and children",
+        "publisher": "World Health Organization",
+        "year": "2015",
+        "url": "https://www.who.int/publications/i/item/9789241549028"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      },
+      {
+        "title": "Food Safety and Standards (Labelling and Display) Regulations",
+        "publisher": "Food Safety and Standards Authority of India",
+        "year": "2020",
+        "url": "https://www.fssai.gov.in/"
+      }
+    ],
+    "related": [
+      {
+        "label": "Barcode scanner for food labels",
+        "href": "/health/barcode-scanner"
+      },
+      {
+        "label": "Indian food guide for metabolic health",
+        "href": "/health/blog/indian-food-guide-metabolic-health"
+      },
+      {
+        "label": "Thali builder",
+        "href": "/health/thali-builder"
+      },
+      {
+        "label": "Obesity",
+        "href": "/health/diseases/obesity"
+      },
+      {
+        "label": "Indian Diabetes Risk Score (IDRS)",
+        "href": "/health/india-risk"
+      }
+    ],
+    "headings": [
+      "The trend in one number",
+      "What \"ultra-processed\" actually means",
+      "Why it matters for health",
+      "How to read an Indian food label in 30 seconds",
+      "Swaps that don't feel like punishment",
+      "Eating out, office canteens and 11 pm deliveries",
+      "Children and ultra-processed food",
+      "People with diabetes, high blood pressure or heart disease",
+      "Myths about packaged food",
+      "A four-week plan to cut back",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Are all packaged foods ultra-processed?",
+        "a": "No. Plain curd, paneer, frozen vegetables, oats, plain atta, dals and canned chana are packaged but minimally processed. Ultra-processed foods are industrial formulations with many ingredients and additives, like most chips, biscuits, sugary drinks and instant noodles."
+      },
+      {
+        "q": "How much sugar is too much on a label?",
+        "a": "As a yardstick, the UK traffic-light scheme calls more than 22.5 g of total sugars per 100 g \"high\" and 5 g or less \"low\". The WHO recommends keeping free sugars below 10% of daily energy, ideally below 5%. If sugar or several sugar names appear near the top of the ingredient list, treat the product as occasional."
+      },
+      {
+        "q": "Is jaggery or honey healthier than sugar in packaged foods?",
+        "a": "They are still added sugars. Jaggery has small amounts of minerals, but in packaged foods it adds sugar just like white sugar does. Count them as sugar when reading labels."
+      },
+      {
+        "q": "Do I need to stop eating packaged food completely?",
+        "a": "No. The goal is to make home-cooked and minimally processed food the base of your diet, and keep ultra-processed foods as occasional treats rather than daily staples."
+      },
+      {
+        "q": "Are \"protein\" bars and snacks healthy?",
+        "a": "Some are reasonable, but many are ultra-processed, with added sugars, sugar alcohols and refined starches. Read the label, and remember that dal, curd, paneer, eggs and chana are protein-rich whole foods."
+      }
+    ],
+    "words": 2515,
     "ads": 3
   },
   {
@@ -1211,6 +1448,111 @@ export const POSTS: PostMeta[] = [
   },
   {
     "lang": "hi",
+    "slug": "indian-fermented-foods-gut-health",
+    "title": "Gut Health with Indian Fermented Foods: Curd, Idli-Dosa Batter and Kanji, Evidence vs Hype",
+    "hindiTitle": "भारतीय ख़मीर वाले खाने और पेट की सेहत: दही, इडली-डोसा का घोल और कांजी, सबूत बनाम बढ़ा-चढ़ाकर दावे",
+    "description": "ख़मीर वाला खाना पेट के लिए क्या कर सकता है और क्या नहीं, किन भारतीय चीज़ों में जीवित सूक्ष्मजीव होते हैं, इन्हें सुरक्षित कैसे बनाएँ, और कब डॉक्टर ज़रूरी है।",
+    "category": "पोषण",
+    "tags": [
+      "पेट की सेहत",
+      "ख़मीर वाला खाना",
+      "प्रोबायोटिक",
+      "दही",
+      "इडली",
+      "कांजी"
+    ],
+    "readingTime": 10,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/indian-fermented-foods-gut-health/hero.svg",
+    "heroAlt": "दही की कटोरी, पत्ती और ख़मीर उठते जार का चित्र: पारंपरिक भारतीय ख़मीर वाला खाना और पेट की सेहत",
+    "sources": [
+      {
+        "title": "Gut-microbiota-targeted diets modulate human immune status",
+        "publisher": "Cell",
+        "year": "2021",
+        "url": "https://doi.org/10.1016/j.cell.2021.06.019"
+      },
+      {
+        "title": "ISAPP consensus statement on fermented foods",
+        "publisher": "Nature Reviews Gastroenterology & Hepatology",
+        "year": "2021",
+        "url": "https://doi.org/10.1038/s41575-020-00390-5"
+      },
+      {
+        "title": "Expert consensus on the scope and appropriate use of the term probiotic (ISAPP)",
+        "publisher": "Nature Reviews Gastroenterology & Hepatology",
+        "year": "2014",
+        "url": "https://doi.org/10.1038/nrgastro.2014.66"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "IBS (अंग्रेज़ी)",
+        "href": "/health/diseases/ibs"
+      },
+      {
+        "label": "पेट फूलना (अंग्रेज़ी)",
+        "href": "/health/diseases/bloating"
+      },
+      {
+        "label": "क़ब्ज़ (अंग्रेज़ी)",
+        "href": "/health/diseases/constipation"
+      },
+      {
+        "label": "मिलेट स्वैप (अंग्रेज़ी)",
+        "href": "/health/millet-swap"
+      }
+    ],
+    "headings": [
+      "पहले कुछ शब्द जो अक्सर मिल जाते हैं",
+      "विज्ञान असल में क्या कहता है",
+      "भारतीय फ़र्मेंटेड खाने, एक-एक करके",
+      "कैसे पता करें कि फ़र्मेंटेड खाने में जीवित सूक्ष्मजीव बचे हैं",
+      "घर पर सुरक्षित फ़र्मेंटेशन",
+      "फ़ाइबर: आँतों के बैक्टीरिया का असली खाना",
+      "प्रोबायोटिक सप्लीमेंट और फ़र्मेंटेड खाने की सीमाएँ",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "घर का दही बेहतर है या पैकेट वाला?",
+        "a": "दोनों में जीवित कल्चर हो सकते हैं। घर का दही हर बार अलग होता है; पैकेट वाला ब्रांड के हिसाब से, और कुछ पर ख़ास स्ट्रेन लिखे होते हैं। सादा, बिना चीनी का दही चुनें और घर पर साफ़-सफ़ाई से जमाएँ।"
+      },
+      {
+        "q": "क्या पकाने से फ़र्मेंटेड घोल का फ़ायदा ख़त्म हो जाता है?",
+        "a": "पकाने से ज़्यादातर जीवित सूक्ष्मजीव मरते हैं, पर फ़र्मेंटेशन खाने को पहले ही बदल चुका होता है, जिससे वह पचाने में आसान होता है और खनिजों का अवशोषण बेहतर हो सकता है। इसलिए इडली-डोसा अब भी सेहतमंद हैं।"
+      },
+      {
+        "q": "क्या रोज़ प्रोबायोटिक सप्लीमेंट लेना चाहिए?",
+        "a": "ज़्यादातर स्वस्थ लोगों को नहीं, अगर वे फ़र्मेंटेड खाने और भरपूर फ़ाइबर के साथ विविध आहार लेते हैं। कुछ ख़ास स्ट्रेन ख़ास हालात में मदद करते हैं; कोई ख़ास समस्या हो तो डॉक्टर से पूछें।"
+      },
+      {
+        "q": "क्या लैक्टोज़ इनटॉलरेंस वाले दही खा सकते हैं?",
+        "a": "दूध से दिक़्क़त वाले कई लोग दही बेहतर पचा लेते हैं, क्योंकि बैक्टीरिया लैक्टोज़ का कुछ हिस्सा तोड़ देते हैं। थोड़ी मात्रा से शुरू करें। लक्षण गंभीर हों तो डॉक्टर से बात करें।"
+      },
+      {
+        "q": "कैसे पता चले कि घर का फ़र्मेंटेड खाना ख़राब हो गया?",
+        "a": "हल्की खट्टी महक सामान्य है। फफूँद, गुलाबी या काले धब्बे, चिपचिपापन, बदबू हो, या गर्मी में बहुत देर बाहर रहा हो, तो फेंक दें।"
+      }
+    ],
+    "words": 2070,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
     "slug": "muscle-after-40-sarcopenia-india",
     "title": "Muscle After 40: Sarcopenia, Protein in Indian Diets, and a Strength Plan That Works",
     "hindiTitle": "40 के बाद मांसपेशियाँ: सार्कोपीनिया, भारतीय खाने में प्रोटीन, और ताक़त बढ़ाने की कारगर योजना",
@@ -1440,5 +1782,121 @@ export const POSTS: PostMeta[] = [
     ],
     "words": 2162,
     "ads": 2
+  },
+  {
+    "lang": "hi",
+    "slug": "ultra-processed-food-india-labels",
+    "title": "Ultra-Processed Food in India: How to Read Labels, Spot Hidden Sugar and Cut Back Without Giving Up Taste",
+    "hindiTitle": "भारत में अल्ट्रा-प्रोसेस्ड फ़ूड: लेबल कैसे पढ़ें, छिपी चीनी कैसे पहचानें, और स्वाद छोड़े बिना कैसे कम करें",
+    "description": "2011–2021 में भारत में अल्ट्रा-प्रोसेस्ड फ़ूड की बिक्री हर साल 13.37% बढ़ी। UPF क्या है, 30 सेकंड में लेबल कैसे पढ़ें, और टिकने वाले आसान बदलाव।",
+    "category": "पोषण",
+    "tags": [
+      "अल्ट्रा-प्रोसेस्ड फ़ूड",
+      "फ़ूड लेबल",
+      "छिपी चीनी",
+      "HFSS",
+      "FSSAI",
+      "पैकेट वाला खाना"
+    ],
+    "readingTime": 10,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/ultra-processed-food-india-labels/hero.svg",
+    "heroAlt": "फ़ूड लेबल, सही का निशान और थाली का चित्र: पैकेट वाले खाने का लेबल पढ़ना और साबुत खाना चुनना",
+    "sources": [
+      {
+        "title": "The growth of ultra-processed foods in India (WHO–ICRIER report, presentation)",
+        "publisher": "ICRIER / World Health Organization",
+        "year": "2023",
+        "url": "https://www.icrier.org/pdf/PPT_WHO-report-release_Aug17_2023.pdf"
+      },
+      {
+        "title": "Ultra-processed food exposure and adverse health outcomes — umbrella review",
+        "publisher": "BMJ",
+        "year": "2024",
+        "url": "https://doi.org/10.1136/bmj-2023-077310"
+      },
+      {
+        "title": "Ultra-processed diets cause excess calorie intake and weight gain — inpatient randomized controlled trial",
+        "publisher": "Cell Metabolism",
+        "year": "2019",
+        "url": "https://doi.org/10.1016/j.cmet.2019.05.008"
+      },
+      {
+        "title": "Guideline on sugars intake for adults and children",
+        "publisher": "World Health Organization",
+        "year": "2015",
+        "url": "https://www.who.int/publications/i/item/9789241549028"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      },
+      {
+        "title": "Food Safety and Standards (Labelling and Display) Regulations",
+        "publisher": "Food Safety and Standards Authority of India",
+        "year": "2020",
+        "url": "https://www.fssai.gov.in/"
+      }
+    ],
+    "related": [
+      {
+        "label": "फ़ूड लेबल के लिए बारकोड स्कैनर (अंग्रेज़ी)",
+        "href": "/health/barcode-scanner"
+      },
+      {
+        "label": "मेटाबॉलिक सेहत के लिए भारतीय खाना (अंग्रेज़ी)",
+        "href": "/health/blog/indian-food-guide-metabolic-health"
+      },
+      {
+        "label": "थाली बिल्डर (अंग्रेज़ी)",
+        "href": "/health/thali-builder"
+      },
+      {
+        "label": "मोटापा (अंग्रेज़ी)",
+        "href": "/health/diseases/obesity"
+      }
+    ],
+    "headings": [
+      "एक नंबर में रुझान",
+      "\"अल्ट्रा-प्रोसेस्ड\" का असल मतलब",
+      "सेहत के लिए यह क्यों मायने रखता है",
+      "30 सेकंड में भारतीय फ़ूड लेबल कैसे पढ़ें",
+      "ऐसे बदलाव जो सज़ा न लगें",
+      "बच्चे और बीमारियों वाले लोग",
+      "पैकेट वाले खाने के मिथक",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या हर पैकेट वाला खाना अल्ट्रा-प्रोसेस्ड है?",
+        "a": "नहीं। सादा दही, पनीर, फ़्रोज़न सब्ज़ियाँ, ओट्स, सादा आटा, दालें और डिब्बाबंद चना पैकेट में हैं पर कम प्रोसेस्ड हैं। अल्ट्रा-प्रोसेस्ड वे औद्योगिक फ़ॉर्मूले हैं जिनमें बहुत सी सामग्री और एडिटिव हों, जैसे ज़्यादातर चिप्स, बिस्कुट, मीठे पेय और इंस्टेंट नूडल्स।"
+      },
+      {
+        "q": "लेबल पर कितनी चीनी ज़्यादा है?",
+        "a": "पैमाने के तौर पर, ब्रिटेन की ट्रैफ़िक-लाइट प्रणाली प्रति 100 ग्राम 22.5 ग्राम से ज़्यादा चीनी को \"ज़्यादा\" और 5 ग्राम या कम को \"कम\" मानती है। WHO मुफ़्त शर्करा को रोज़ की ऊर्जा के 10% से कम, हो सके तो 5% से कम रखने को कहता है।"
+      },
+      {
+        "q": "क्या पैकेट वाले खाने में गुड़ या शहद चीनी से बेहतर है?",
+        "a": "ये भी ऐडेड शुगर ही हैं। गुड़ में थोड़े खनिज होते हैं, पर पैकेट वाले खाने में यह सफ़ेद चीनी की तरह ही चीनी जोड़ता है। लेबल पढ़ते समय इन्हें चीनी ही गिनें।"
+      },
+      {
+        "q": "क्या पैकेट वाला खाना पूरी तरह छोड़ना होगा?",
+        "a": "नहीं। मक़सद घर का बना और कम प्रोसेस वाला खाना आहार का आधार बनाना है, और अल्ट्रा-प्रोसेस्ड को रोज़ की चीज़ की बजाय कभी-कभार की ट्रीट रखना है।"
+      },
+      {
+        "q": "क्या \"प्रोटीन\" बार और स्नैक्स हेल्दी हैं?",
+        "a": "कुछ ठीक हैं, पर कई अल्ट्रा-प्रोसेस्ड हैं, जिनमें ऐडेड शुगर, शुगर अल्कोहल और रिफ़ाइंड स्टार्च होते हैं। लेबल पढ़ें, और याद रखें कि दाल, दही, पनीर, अंडे और चना प्रोटीन से भरपूर साबुत खाने हैं।"
+      }
+    ],
+    "words": 2129,
+    "ads": 3
   }
 ];

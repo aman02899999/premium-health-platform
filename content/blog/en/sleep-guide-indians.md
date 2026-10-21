@@ -186,7 +186,7 @@ Teenagers' body clocks naturally shift later, which collides with early school s
 | "Loud snoring is a sign of deep sleep." | Loud snoring with pauses or gasping can be sleep apnoea, which breaks sleep and harms the heart. |
 | "A drink helps me sleep." | Alcohol makes you drowsy but disrupts sleep later in the night and worsens snoring and apnoea. |
 | "I'll catch up on sleep at the weekend." | Lie-ins shift your body clock and make Monday harder. A fixed wake-up time works better. |
-| "Sleeping pills are the cure for insomnia." | CBT-I is the recommended first treatment for chronic insomnia. Pills are short-term tools under a doctor's care. |
+| "Sleeping pills are the answer to insomnia." | CBT-I is the recommended first treatment for chronic insomnia. Pills are short-term tools under a doctor's care. |
 :::
 
 ## Common questions

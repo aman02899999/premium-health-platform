@@ -159,6 +159,58 @@ const RENDER = { hero, cards, bars, bands };
 
 // Theme: [primary, secondary, accent]
 export const SPECS = {
+  "ultra-processed-food-india-labels": {
+    theme: ["#7c2d12", "#c2410c", "#fde047"],
+    hero: { kicker: "Nutrition · food labels", title: "Ultra-processed food in India: read the label, swap the habit", icons: ["label", "check", "plate", "cup"] },
+    "inline-1": {
+      type: "cards",
+      title: "The 30-second label check",
+      subtitle: "Turn the pack around. The ingredient list and per-100 g table tell the real story.",
+      items: [
+        { icon: "alert", head: "Ignore the front", text: "Healthy, multigrain, natural, baked not fried: these are marketing words", tone: "bad" },
+        { icon: "label", head: "Read the first three ingredients", text: "Sugar, maida or oil among them means the food is built on them" },
+        { icon: "drop", head: "Count the names for sugar", text: "Invert syrup, liquid glucose, maltodextrin, dextrose, malt extract… two or more is a warning" },
+        { icon: "scale", head: "Check per 100 g", text: "UK yardstick: over 22.5 g sugar, 1.5 g salt or 5 g saturated fat is high" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Swap the daily habits first",
+      subtitle: "Keep packaged treats for occasions; change what you eat every day.",
+      items: [
+        { icon: "cup", head: "Sugary drinks", text: "Water, unsweetened buttermilk, nimbu pani with little or no sugar", tone: "good" },
+        { icon: "bowl", head: "Cream biscuits with chai", text: "Roasted chana, peanuts, nuts, fruit or a besan chilla", tone: "good" },
+        { icon: "leaf", head: "Chips and namkeen", text: "Roasted makhana, sprouts chaat, homemade murmura bhel", tone: "good" },
+        { icon: "plate", head: "Instant noodles", text: "Vegetable poha, upma, dalia, khichdi or egg bhurji with roti", tone: "good" },
+      ],
+    },
+  },
+  "indian-fermented-foods-gut-health": {
+    theme: ["#78350f", "#b45309", "#a3e635"],
+    hero: { kicker: "Nutrition · gut health", title: "Indian fermented foods: what the evidence really says", icons: ["bowl", "leaf", "drop", "check"] },
+    "inline-1": {
+      type: "cards",
+      title: "Indian fermented foods at a glance",
+      subtitle: "Fermented doesn't always mean live microbes, and live microbes don't always mean probiotic.",
+      items: [
+        { icon: "bowl", head: "Curd and buttermilk", text: "Live cultures when fresh; also protein, calcium and B12", tone: "good" },
+        { icon: "plate", head: "Idli, dosa, dhokla", text: "Fermented, then cooked: few live microbes, but easier to digest", tone: "good" },
+        { icon: "drop", head: "Kanji", text: "May contain live microbes; little research; salty, so small glasses" },
+        { icon: "alert", head: "Pickles", text: "Often high in salt. A spoonful for flavour, not a health food", tone: "bad" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Feed the bacteria you already have",
+      subtitle: "Fibre is food for gut bacteria. Variety across the week matters as much as amount.",
+      items: [
+        { icon: "bowl", head: "A pulse every day", text: "Dal, chana, rajma, lobia or moong in at least one meal" },
+        { icon: "leaf", head: "One more vegetable", text: "Add an extra vegetable to lunch and dinner; keep skins where you can" },
+        { icon: "plate", head: "Whole grains and millets", text: "Whole-wheat or mixed atta; millets instead of white rice a few times a week" },
+        { icon: "sun", head: "Whole fruit, some seeds", text: "Fruit over juice; a little soaked chia, flax or sabja now and then" },
+      ],
+    },
+  },
   "muscle-after-40-sarcopenia-india": {
     theme: ["#14532d", "#15803d", "#facc15"],
     hero: { kicker: "Fitness & healthy ageing", title: "Muscle after 40: test it, feed it, train it", icons: ["dumbbell", "walk", "plate", "clock"] },

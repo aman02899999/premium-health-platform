@@ -85,7 +85,9 @@ function check(lang, file, data, body) {
   const n = words(body);
   if (lang === "en" && (n < 2500 || n > 3800)) errors.push(`${n} words (English: 2,500–3,500)`);
   if (lang === "hi" && n < 1500) errors.push(`${n} words (Hindi: 1,500+)`);
-  if (/\b(cures?|guaranteed)\b/i.test(body.replace(/\bno (?:proven )?cure\b|not a cure|doesn't cure|does not cure|cure claims?|no cure|never (?:a )?cure|isn't a cure|cure-all|cure for/gi, ""))) errors.push("contains a cure/guarantee claim");
+  // A claim, not a denial: "don't cure", "isn't a cure", "no proven cure" and "doesn't mean … cure" are fine.
+  const claims = body.replace(/(?:\b(?:not|no|never|without|nor)\b|n't)(?:\s+[\w'-]+){0,6}?\s+(?:cures?|cured|guaranteed?)\b/gi, "").replace(/\bcure-all\b/gi, "");
+  if (/\b(cures?|cured|guaranteed?)\b/i.test(claims)) errors.push(`contains a cure/guarantee claim: "${claims.match(/.{0,40}\b(?:cures?|cured|guaranteed?)\b.{0,20}/i)?.[0]}"`);
   return { errors, words: n, ads };
 }
 
