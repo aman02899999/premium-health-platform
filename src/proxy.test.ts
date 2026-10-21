@@ -57,4 +57,16 @@ describe("role gate in the proxy", () => {
     const r = await proxy(new NextRequest("https://www.royalfitnesclub.in/api/admin/chats", { method: "POST", headers: { origin: "https://evil.example" } }));
     expect(r.status).toBe(403);
   });
+
+  it("blocks cross-site writes to public forms and payments, but not webhooks, same-site posts or reads", async () => {
+    const post = (path: string, origin?: string) => proxy(new NextRequest(`https://www.royalfitnesclub.in${path}`, { method: "POST", headers: origin ? { origin } : {} }));
+    for (const p of ["/api/leads", "/api/membership/order", "/api/pay/AbCdEfGh12345678", "/api/reviews", "/api/unsubscribe"]) expect([p, (await post(p, "https://evil.example")).status]).toEqual([p, 403]);
+    expect((await post("/api/leads", "https://www.royalfitnesclub.in")).status).toBe(200);
+    // Server-to-server: no Origin, or a provider's own origin on its webhook.
+    expect((await post("/api/leads")).status).toBe(200);
+    expect((await post("/api/webhooks/razorpay", "https://api.razorpay.com")).status).toBe(200);
+    expect((await post("/api/cron/daily", "https://vercel.com")).status).toBe(200);
+    const read = await proxy(new NextRequest("https://www.royalfitnesclub.in/api/feeds/products", { headers: { origin: "https://evil.example" } }));
+    expect(read.status).toBe(200);
+  });
 });

@@ -111,6 +111,8 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
       </div>
 
       {/* Mobile drawer: slides in from the right, scrolls on short screens, CTA pinned at the bottom. */}
+      {/* The closed drawer is only "invisible", which Next still counts as on screen, so its links
+          don't prefetch: otherwise every page load on a phone fetched every page in the menu. */}
       <div className={`fixed inset-0 z-10 xl:hidden ${open ? "visible" : "invisible"}`} aria-hidden={!open}>
         <button
           type="button"
@@ -142,7 +144,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                 const active = isActive(item.href);
                 return (
                   <li key={item.href}>
-                    <Link
+                    <Link prefetch={false}
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
@@ -163,14 +165,14 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <ul className="mt-2 space-y-2">
               {supabaseConfigured && (
                 <li>
-                  <Link href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                  <Link prefetch={false} href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
                     <UserRound className="h-5 w-5 shrink-0" /> My account
                   </Link>
                 </li>
               )}
               {supabaseConfigured && (
                 <li>
-                  <Link href="/account/plans" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                  <Link prefetch={false} href="/account/plans" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
                     <Salad className="h-5 w-5 shrink-0" /> My diet &amp; workout plans
                   </Link>
                 </li>
@@ -181,7 +183,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                 </a>
               </li>
               <li>
-                <Link href="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3 py-3 text-[15px] font-semibold text-amber-300 hover:bg-amber-500/10">
+                <Link prefetch={false} href="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3 py-3 text-[15px] font-semibold text-amber-300 hover:bg-amber-500/10">
                   <ShoppingBag className="h-5 w-5 shrink-0" /> Royal Supplements Store
                 </Link>
               </li>
@@ -189,7 +191,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
           </nav>
 
           <div className="grid grid-cols-[1fr_auto] gap-2 border-t border-white/10 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <Link href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold">
+            <Link prefetch={false} href="/contact#trial" onClick={() => setOpen(false)} className="btn-brand flex items-center justify-center rounded-full px-5 py-3 text-sm font-bold">
               Book Free Trial
             </Link>
             <a href={phoneHref} aria-label="Call the gym" className="flex h-11 w-11 items-center justify-center self-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand">

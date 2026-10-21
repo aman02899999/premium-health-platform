@@ -44,7 +44,8 @@ export default async function JoinPage({ searchParams }: { searchParams: Promise
       <PageHero eyebrow="Join online" title="Start" highlight="today" intro="Pick your plan, pay securely, and show your confirmation at the front desk." />
       <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
         {razorpayConfigured() ? (
-          <Suspense>
+          // The form streams in after the page; holding its space stops the footer jumping under the visitor.
+          <Suspense fallback={<div aria-hidden className="glass min-h-[90rem] animate-pulse rounded-3xl sm:min-h-[58rem]" />}>
             <JoinCheckout plans={plans} gymName={b.name} whatsapp={b.whatsapp} prefill={prefill} />
           </Suspense>
         ) : (
