@@ -59,7 +59,7 @@ export default async function ContactPage() {
             </ul>
           </div>
           <div className="flex flex-wrap gap-3 pt-2">
-            <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-3 font-bold text-white">
+            <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-3 font-bold text-[#0b141a]">
               <WhatsAppIcon className="h-5 w-5" /> WhatsApp
             </a>
             <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white hover:border-brand">

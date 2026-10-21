@@ -16,7 +16,7 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
   return pageMeta(c, {
-    title: `${c.business.name} FAQ — Gym in Sector 93 Noida: Fees, Timings, Trainers`,
+    title: "FAQ — Gym in Sector 93 Noida: Fees, Timings, Trainers",
     description: `Straight answers about ${c.business.name}, Sector 93 Noida: membership fees and current offer, timings, personal training, weight loss, women's training and how to choose a gym.`,
     path: "/faq",
   });

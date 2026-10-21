@@ -54,7 +54,7 @@ export const DEFAULT_CONTENT: SiteContent = {
   stats: [
     { value: 2019, suffix: "", label: "Serving Noida since" },
     { value: 4.7, suffix: "★", label: "Average rating" },
-    { value: 303, suffix: "+", label: "Member reviews" },
+    { value: 303, suffix: "+", label: "Justdial ratings" },
     { value: 2, suffix: " batches", label: "Morning & evening, Mon–Sat" },
   ],
   programs: [

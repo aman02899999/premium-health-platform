@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
-import { ADSENSE_SRC } from "@/lib/adsense";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 import { MetaPixel } from "@/components/ui/MetaPixel";
@@ -62,8 +62,9 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang="en-IN" className={`${inter.variable} ${oswald.variable}`} style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
       <head>
-        {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
-        <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
+        {/* No ads on the gym, membership and store pages: Google could show other gyms next to our
+            plans. AdSense stays on /health; this tag (no script, no ads) keeps the site verified. */}
+        <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
       </head>
       <body className="noise min-h-screen">
         {children}

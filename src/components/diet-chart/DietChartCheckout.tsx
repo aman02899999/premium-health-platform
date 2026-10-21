@@ -107,7 +107,7 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
           {f.email ? ` and by email to ${f.email}` : ""} within {turnaround}.
         </p>
         <p className="rounded-xl bg-white/5 px-4 py-3 font-mono text-sm text-white/80">Payment ID: {done.paymentId}</p>
-        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-[#0b141a]">
           Message us on WhatsApp
         </a>
       </div>

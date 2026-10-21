@@ -17,7 +17,7 @@ export function Footer({ content }: { content: SiteContent }) {
           <p className="mt-5 text-sm leading-relaxed text-white/60">{b.description}</p>
           <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
             <Star className="h-4 w-4 fill-brand text-brand" />
-            <strong>{b.rating.value}</strong> / 5 · {b.rating.count}+ reviews
+            <strong>{b.rating.value}</strong> / 5 · {b.rating.count}+ ratings on {b.rating.source}
           </div>
           <div className="mt-5 flex gap-3">
             <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
@@ -77,19 +77,19 @@ export function Footer({ content }: { content: SiteContent }) {
                     <span className="text-white/85">{h.label || h.days}:</span> {formatTime(h.open)} – {formatTime(h.close)}
                   </li>
                 ))}
-                <li className="text-xs text-white/45">{hoursDays(b.hours)}</li>
+                <li className="text-xs text-white/60">{hoursDays(b.hours)}</li>
               </ul>
             </div>
           </address>
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/45 sm:flex-row sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-white/60 sm:flex-row sm:px-6">
           <div className="text-center sm:text-left">
             <p>
               © {new Date().getFullYear()} {b.name}, {b.address.locality}, {b.address.city}. All rights reserved.
             </p>
-            <p className="mt-1 text-white/35">
+            <p className="mt-1 text-white/55">
               {LEGAL.name} · {LEGAL.entity} · Udyam {LEGAL.udyam} · FSSAI Reg. No. {LEGAL.fssai}
             </p>
           </div>
