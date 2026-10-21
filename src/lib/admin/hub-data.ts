@@ -2,6 +2,7 @@ import "server-only";
 import { pool } from "@/health/db";
 import { addDays, todayIST } from "@/lib/growth/dates";
 import { fillDays, type Counters, type DayRow } from "./hub";
+import { callListCount } from "@/lib/growth/call-list";
 
 // Live numbers for the Command Center and the Analytics page. Every query stands alone and a
 // missing table reads as zero, so one unapplied migration never blanks the whole dashboard.
@@ -38,7 +39,7 @@ const IST_DAY = (col: string) => `to_char(${col} at time zone 'Asia/Kolkata', 'Y
 
 export async function hubCounters(now = new Date()): Promise<Counters> {
   const today = todayIST(now);
-  const [chatsWaiting, leadsToday, leadsUncontacted, trialsToday, activeMembers, expiring7, plansToReview, pending, failed7, revenueToday, revenue30, sent, delivered, read, clicked, shopToShip, reviewsPending] = await Promise.all([
+  const [chatsWaiting, leadsToday, leadsUncontacted, trialsToday, activeMembers, expiring7, plansToReview, pending, failed7, revenueToday, revenue30, sent, delivered, read, clicked, shopToShip, reviewsPending, callList] = await Promise.all([
     // Conversations whose newest message is the customer's: theirs is later than anything we sent.
     one(`with last_in as (select from_id as peer, max(created_at) as at from public.social_inbox where channel = 'whatsapp' and kind = 'message' and created_at > now() - interval '7 days' group by 1),
           last_out as (select to_id as peer, max(created_at) as at from public.chat_replies where channel = 'whatsapp' and ok group by 1)
@@ -59,6 +60,7 @@ export async function hubCounters(now = new Date()): Promise<Counters> {
     one(`select count(*) as n from public.message_outbox where dedupe_key like 'campaign:%' and status = 'sent' and sent_at > now() - interval '7 days' and clicks > 0`),
     one(`select count(*) as n from public.shop_orders where status = 'paid' and fulfilment in ('new', 'packed')`),
     one(`select count(*) as n from public.reviews where status = 'pending'`),
+    callListCount(now),
   ]);
   return {
     chatsWaiting,
@@ -75,6 +77,7 @@ export async function hubCounters(now = new Date()): Promise<Counters> {
     campaign7: { sent, delivered, read, clicked },
     shopToShip,
     reviewsPending,
+    callList,
   };
 }
 

@@ -42,4 +42,16 @@ describe("admin morning email", () => {
     expect(d.body).toContain("• Comeback: 3 paid within 14 days, ₹4,500");
     expect(adminDigest("2026-10-20", { ...base, campaigns: { sent: 0, held: 0, results: [] } }, "a@b.c", "u").body).not.toContain("CAMPAIGNS");
   });
+
+  it("puts the call list near the top, names and reasons only, and counts it as needing you", () => {
+    const base = { leads: [], payments: [], plansToReview: [], clientUpdates: 0, unanswered: [], expiringMembers: [], failedMessages: 0 };
+    const list = Array.from({ length: 12 }, (_, i) => ({ name: `Person ${i + 1}`, why: "Replied to “Diwali offer”: “price?”" }));
+    const d = adminDigest("2026-10-21", { ...base, callList: list }, "a@b.c", "u");
+    expect(d.body).toContain("CALL TODAY (12)\n• Person 1: Replied to “Diwali offer”: “price?”");
+    expect(d.body).toContain("• …and 2 more\n• Numbers and one-tap outcomes: Admin → Call list");
+    expect(d.body).not.toContain("Person 11:");
+    expect(d.body.indexOf("CALL TODAY")).toBeLessThan(d.body.indexOf("PAYMENTS"));
+    expect(d.subject).toContain("1 need you");
+    expect(adminDigest("2026-10-21", { ...base, callList: [] }, "a@b.c", "u").body).not.toContain("CALL TODAY");
+  });
 });

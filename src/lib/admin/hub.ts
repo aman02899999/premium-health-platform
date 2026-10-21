@@ -24,6 +24,8 @@ export type Counters = {
   campaign7: { sent: number; delivered: number; read: number; clicked: number };
   shopToShip: number;
   reviewsPending: number;
+  /** People who replied to an offer or clicked its link and are waiting for a call. */
+  callList: number;
 };
 
 export type CounterKey = Exclude<keyof Counters, "campaign7">;
@@ -49,7 +51,9 @@ export const HUB_SECTIONS: Section[] = [
     title: "Start here",
     tiles: [
       { id: "chats", title: "Live Chat", hint: "WhatsApp inbox, quick replies, templates", href: "/admin/chats", icon: "MessageCircle", keywords: "whatsapp inbox reply conversation team inbox", badge: { key: "chatsWaiting", alert: true } },
-      { id: "ai", title: "AI agent", hint: "Answers WhatsApp questions, drafts replies, hands off to a coach", href: "/admin/ai-agent", icon: "Bot", keywords: "ai agent chatbot bot claude auto reply assistant answer questions draft knowledge" },
+      // AI agent (/admin/ai-agent) is hidden for now; put its tile back here to show it again:
+      // { id: "ai", title: "AI agent", hint: "Answers WhatsApp questions, drafts replies, hands off to a coach", href: "/admin/ai-agent", icon: "Bot", keywords: "ai agent chatbot bot claude auto reply assistant answer questions draft knowledge" },
+      { id: "calls", title: "Call list", hint: "Replied to an offer or clicked it: call them today", href: "/admin/growth?tab=today#calls", icon: "Phone", keywords: "call list hot prospects warm leads replied clicked offer campaign follow up phone", badge: { key: "callList", alert: true } },
       { id: "broadcast", title: "Broadcast", hint: "Send an offer to a segment, WhatsApp + email", href: "/admin/audience", icon: "Megaphone", keywords: "campaign bulk send blast promotion offer", badge: { key: "pending" } },
       { id: "ads", title: "Ads Manager", hint: "Ad links, spend, cost per lead, return on spend", href: "/admin/ads", icon: "TrendingUp", keywords: "ads advertising facebook instagram meta google campaign spend roi roas cpl click to whatsapp audience" },
       { id: "today", title: "Today's tasks", hint: "Who to call, renewals, trials, follow-ups", href: "/admin/growth?tab=today", icon: "ListChecks", keywords: "todo calls renewals dashboard", badge: { key: "trialsToday" } },
@@ -139,6 +143,7 @@ export function attention(c: Counters): { text: string; href: string; tone: "red
   const out: { text: string; href: string; tone: "red" | "amber" }[] = [];
   const s = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   if (c.chatsWaiting) out.push({ text: `${s(c.chatsWaiting, "WhatsApp chat is", "WhatsApp chats are")} waiting for a reply`, href: "/admin/chats", tone: "red" });
+  if (c.callList) out.push({ text: `${s(c.callList, "person replied to an offer or clicked it: call them", "people replied to an offer or clicked it: call them")}`, href: "/admin/growth?tab=today#calls", tone: "red" });
   if (c.leadsUncontacted) out.push({ text: `${s(c.leadsUncontacted, "lead hasn't", "leads haven't")} been called yet`, href: "/admin/growth?tab=leads", tone: "red" });
   if (c.trialsToday) out.push({ text: `${s(c.trialsToday, "free trial", "free trials")} booked today`, href: "/admin/growth?tab=today", tone: "amber" });
   if (c.plansToReview) out.push({ text: `${s(c.plansToReview, "paid diet plan needs", "paid diet plans need")} the coach`, href: "/admin/growth?tab=diet", tone: "red" });

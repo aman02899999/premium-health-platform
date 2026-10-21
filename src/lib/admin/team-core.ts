@@ -5,7 +5,7 @@ export type Role = "owner" | "manager" | "agent";
 export const ROLES: { id: Role; label: string; hint: string }[] = [
   { id: "owner", label: "Owner", hint: "Everything, including adding and removing team members" },
   { id: "manager", label: "Manager", hint: "Everything except the team page" },
-  { id: "agent", label: "Desk agent", hint: "WhatsApp chats, contacts, leads, members, today's tasks, QR codes" },
+  { id: "agent", label: "Desk agent", hint: "WhatsApp chats, contacts, leads, members, today's tasks and call list, QR codes" },
 ];
 export const isRole = (r: unknown): r is Role => ROLES.some((x) => x.id === r);
 
@@ -23,6 +23,7 @@ const AGENT_AREAS = [
   "/api/admin/growth",
   "/api/admin/members",
   "/api/admin/leads",
+  "/api/admin/call-list",
   "/admin/qr",
   "/api/admin/qr",
   "/api/admin/me",

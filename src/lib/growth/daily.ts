@@ -7,6 +7,7 @@ import { funnelBySource, nurtureLeads, openLeads, uncontactedLeads } from "./lea
 import { uncontactedAlert } from "./lead-alerts";
 import { nurtureDrafts, type NurtureBiz } from "./nurture";
 import { lapsedMembers, membersNearExpiry } from "./members";
+import { callList } from "./call-list";
 import { MARKETING_KINDS, dueMessages, type Biz } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 import { coachPostEmail, dailyPost } from "./daily-posts";
@@ -250,6 +251,7 @@ async function digestData(today: string): Promise<DigestData> {
     unanswered: unanswered.map((u) => ({ channel: u.channel, name: u.from_name, text: u.body })),
     expiringMembers: expiring.map((m) => ({ name: m.name, expiresOn: m.expires_on })),
     failedMessages: failed[0]?.n ?? 0,
+    callList: (await callList().catch(() => [])).map((p) => ({ name: p.name, why: p.why })),
     campaigns: {
       sent: campaignSent[0]?.n ?? 0,
       held: held[0]?.n ?? 0,

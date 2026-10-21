@@ -3,7 +3,7 @@ import { HUB_SECTIONS, analyticsRange, attention, badgeText, change, fillDays, f
 
 const zero: Counters = {
   chatsWaiting: 0, leadsToday: 0, leadsUncontacted: 0, trialsToday: 0, activeMembers: 0, expiring7: 0, plansToReview: 0,
-  pending: 0, failed7: 0, revenueToday: 0, revenue30: 0, campaign7: { sent: 0, delivered: 0, read: 0, clicked: 0 }, shopToShip: 0, reviewsPending: 0,
+  pending: 0, failed7: 0, revenueToday: 0, revenue30: 0, campaign7: { sent: 0, delivered: 0, read: 0, clicked: 0 }, shopToShip: 0, reviewsPending: 0, callList: 0,
 };
 
 describe("command center tiles", () => {

@@ -19,6 +19,8 @@ export type DigestData = {
   unanswered: { channel: string; name: string; text: string }[];
   expiringMembers: { name: string; expiresOn: string }[];
   failedMessages: number;
+  /** People who replied to an offer or clicked its link and haven't been called: name and what they did (numbers stay in the admin). */
+  callList?: { name: string; why: string }[];
   /** Campaign activity: messages sent in the last 24 hours, WhatsApp promotions waiting for the daily cap, and campaigns that led to payments. */
   campaigns?: {
     sent: number;
@@ -38,7 +40,8 @@ export function adminDigest(date: string, d: DigestData, to: string, adminUrl: s
   const todays = trials.filter((t) => istParts(t.at).date === date);
   const unmarked = trials.filter((t) => istParts(t.at).date < date);
   const uncontacted = d.uncontacted ?? 0;
-  const needs = d.plansToReview.length + d.unanswered.length + d.failedMessages + unmarked.length + (uncontacted ? 1 : 0);
+  const calls = d.callList ?? [];
+  const needs = d.plansToReview.length + d.unanswered.length + d.failedMessages + unmarked.length + (uncontacted ? 1 : 0) + (calls.length ? 1 : 0);
   const subject = `${date}: ${d.payments.length ? `${inr(revenue)} from ${d.payments.length} payment${d.payments.length === 1 ? "" : "s"}` : "no payments"} · ${d.leads.length} new lead${d.leads.length === 1 ? "" : "s"}${needs ? ` · ${needs} need you` : ""}`;
   const body = [
     `Your last 24 hours at a glance.`,
@@ -49,6 +52,13 @@ export function adminDigest(date: string, d: DigestData, to: string, adminUrl: s
       ...(uncontacted ? [`${uncontacted} lead${uncontacted === 1 ? " has" : "s have"} had no call or message yet (Leads → New)`] : []),
       ...unmarked.map((t) => `Did ${t.name} come for the trial on ${formatTrial(t.at)}? Mark Came or No-show in Leads`),
     ], "Nothing: the automation handled everything."),
+    calls.length
+      ? section(
+          `CALL TODAY (${calls.length})`,
+          [...calls.slice(0, 10).map((c) => `${c.name || "Someone"}: ${c.why}`), ...(calls.length > 10 ? [`…and ${calls.length - 10} more`] : []), `Numbers and one-tap outcomes: Admin → Call list`],
+          "",
+        )
+      : "",
     todays.length ? section(`TRIALS TODAY (${todays.length})`, todays.map((t) => `${formatTrial(t.at).split(", ").pop()}: ${t.name}`), "") : "",
     section(`PAYMENTS (${inr(revenue)})`, d.payments.map((p) => `${p.kind}: ${p.name}, ${p.what}, ${inr(p.rupees)}`), "None today."),
     section(`NEW LEADS (${d.leads.length})`, d.leads.slice(0, 20).map((l) => `${l.name} (${l.source})`), "None today."),
