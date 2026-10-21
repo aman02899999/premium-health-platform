@@ -161,15 +161,25 @@ function trialReply(c: ReplyCtx): string {
   ].join("\n");
 }
 
+// A refund or cancellation of a gym membership (not a diet plan, eBook or supplement order).
+const REFUND_ASK = /\b(refund|refunds|refunded|money\s*back|paise?\s*wapas|wapas|cancel|cancell?ed|cancell?ation)\b/i;
+const GYM = /\b(membership|gym|joining|join|fees?|admission)\b/i;
+const OTHER_PRODUCT = /\b(diet|chart|e-?book|book|pdf|supplements?|protein|whey|creatine|order|shipping|delivery)\b/i;
+export const isMembershipRefund = (text: string) => REFUND_ASK.test(text) && GYM.test(text) && !OTHER_PRODUCT.test(text);
+
 /** A refund, cancellation, payment problem or complaint: no prices, no offer, straight to a person. */
 function supportReply(c: ReplyCtx): string {
   const hi = firstName(c.name);
   return [
     `Hi${hi ? ` ${hi}` : ""}, thank you for telling us. 🙏`,
+    // The published policy, said once and calmly; the coach handles the rest.
+    isMembershipRefund(c.text ?? "") ? `Gym membership fees are non-refundable (policy: ${c.siteUrl}/refund-policy). Duplicate or failed payments are always refunded in full.` : null,
     `This needs a person, so *Coach Aman* will reply to you here personally as soon as possible.`,
     `\n📞 Need it sooner? Call or WhatsApp: ${c.business.phone}`,
     `If it's about a payment, please send the payment ID or a screenshot so we can check it quickly.`,
-  ].join("\n");
+  ]
+    .filter((l) => l !== null)
+    .join("\n");
 }
 
 function menuReply(c: ReplyCtx): string {

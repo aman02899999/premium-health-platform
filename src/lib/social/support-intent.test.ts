@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
 import { applyOffer } from "@/lib/offers";
-import { buildReply, detectIntent, shouldReply } from "./auto-reply";
+import { buildReply, detectIntent, isMembershipRefund, shouldReply } from "./auto-reply";
 import { flowAction, flowReply } from "./wa-flow";
 
 const ctx = { business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, "2026-10-21"), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Verma" };
@@ -47,5 +47,18 @@ describe("refunds, cancellations and complaints go to a person", () => {
   it("is never answered in a public comment", () => {
     expect(shouldReply("support", "comment", false)).toBe(false);
     expect(shouldReply("support", "message", true)).toBe(true);
+  });
+
+  it("states the membership policy only for a gym membership refund or cancellation", () => {
+    const policy = "Gym membership fees are non-refundable (policy: https://www.royalfitnesclub.in/refund-policy)";
+    for (const text of ["I want a refund for my membership", "gym fees wapas chahiye", "cancel my gym membership please"]) {
+      expect([text, isMembershipRefund(text)]).toEqual([text, true]);
+      expect(buildReply("support", { ...ctx, text })).toContain(policy);
+    }
+    // Diet plans, eBooks and supplement orders keep their own policies; complaints aren't refund asks.
+    for (const text of ["refund for my diet plan", "cancel my protein order", "ebook refund", "the trainer was rude at the gym", "payment failed for membership"]) {
+      expect([text, isMembershipRefund(text)]).toEqual([text, false]);
+      expect(buildReply("support", { ...ctx, text })).not.toContain("non-refundable");
+    }
   });
 });

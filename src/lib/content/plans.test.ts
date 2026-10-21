@@ -70,6 +70,7 @@ describe("planFaqs", () => {
     const faqs = planFaqs(DEFAULT_CONTENT.business);
     expect(faqs.map((f) => f.id)).toEqual(["plan-usage", "plan-cancel", "plan-freeze", "plan-transfer"]);
     expect(faqs[0].a).toContain("5:30 AM");
-    expect(faqs[1].a).toContain("7 days");
+    expect(faqs[1].a).toContain("non-refundable, whether you join at the gym or book online");
+    expect(faqs[1].a).not.toContain("7 days");
   });
 });

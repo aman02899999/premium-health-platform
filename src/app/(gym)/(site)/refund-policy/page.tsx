@@ -17,7 +17,7 @@ export default async function RefundPolicyPage() {
     <>
       <PageHero eyebrow="Legal" title="Refund &" highlight="cancellation" />
       <section className="prose-royal mx-auto max-w-3xl px-4 pb-10 sm:px-6">
-        <p>Last updated: 1 October 2026. This policy covers payments made on this website to {b.name}.</p>
+        <p>Last updated: 21 October 2026. This policy covers payments made on this website to {b.name}.</p>
 
         <h2>Premium Library eBooks (PDF)</h2>
         <ul>
@@ -29,9 +29,10 @@ export default async function RefundPolicyPage() {
 
         <h2>Gym memberships</h2>
         <ul>
-          <li>A membership paid online can be cancelled for a full refund until it is activated at the front desk (your first visit), within 7 days of payment.</li>
-          <li>Once activated, membership fees are not refundable, and memberships can&apos;t be transferred to another person. For medical reasons or relocation, talk to us — we&apos;ll consider pausing your plan.</li>
+          <li>Gym membership fees are non-refundable, whether you join at the gym or book online. Please ask us any questions before you pay.</li>
+          <li>Memberships can&apos;t be transferred to another person. For medical reasons or relocation, talk to us — we&apos;ll consider pausing your plan.</li>
           <li>Duplicate or failed payments are refunded in full.</li>
+          <li>Memberships bought before 21 October 2026 follow the policy shown when they were bought.</li>
         </ul>
 
         <h2>How to ask for a refund</h2>
