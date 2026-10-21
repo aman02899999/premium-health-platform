@@ -159,6 +159,31 @@ const RENDER = { hero, cards, bars, bands };
 
 // Theme: [primary, secondary, accent]
 export const SPECS = {
+  "work-stress-burnout-india": {
+    theme: ["#312e81", "#6d28d9", "#5eead4"],
+    hero: { kicker: "Mental wellness · work", title: "Work stress and burnout: the signs and the way out", icons: ["brain", "clock", "phone", "walk"] },
+    "inline-1": {
+      type: "cards",
+      title: "Stress, burnout or depression?",
+      subtitle: "They overlap. If symptoms spill into all of life, or you feel hopeless, get help.",
+      items: [
+        { icon: "clock", head: "Stress: 'too much'", text: "Urgency, tension, racing thoughts. Usually eases when pressure passes or after rest" },
+        { icon: "brain", head: "Burnout: 'not enough'", text: "Drained, detached, cynical about work, doing worse despite trying. A weekend doesn't fix it" },
+        { icon: "alert", head: "Depression: all of life", text: "Low mood or lost interest most days for 2+ weeks, with sleep, appetite or self-worth changes", tone: "bad" },
+        { icon: "phone", head: "Get help now", text: "Thoughts of self-harm: Tele-MANAS 14416 or 112, and tell someone you trust", tone: "bad" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Warning signs of burnout",
+      subtitle: "Look for patterns over weeks, not one bad day.",
+      items: [
+        { icon: "moon", head: "Body", text: "Exhaustion sleep doesn't fix, headaches, stomach upsets, poor sleep, more caffeine or alcohol" },
+        { icon: "brain", head: "Mind", text: "Sunday-night dread, cynicism, numbness, poor concentration, more mistakes" },
+        { icon: "family", head: "Behaviour", text: "Withdrawing from people, procrastinating then working late, dropping exercise and hobbies" },
+      ],
+    },
+  },
   "ultra-processed-food-india-labels": {
     theme: ["#7c2d12", "#c2410c", "#fde047"],
     hero: { kicker: "Nutrition · food labels", title: "Ultra-processed food in India: read the label, swap the habit", icons: ["label", "check", "plate", "cup"] },

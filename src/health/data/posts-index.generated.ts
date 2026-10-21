@@ -987,6 +987,124 @@ export const POSTS: PostMeta[] = [
     "ads": 3
   },
   {
+    "lang": "en",
+    "slug": "work-stress-burnout-india",
+    "title": "Work Stress and Burnout in India: The Signs, What Helps, and When to Get Help",
+    "hindiTitle": "भारत में काम का तनाव और बर्नआउट: संकेत, क्या मदद करता है, और कब मदद लें",
+    "description": "How burnout differs from ordinary stress and depression, signs to watch, self-help that works, and when to reach Tele-MANAS (14416) or a professional.",
+    "category": "Mental Wellness",
+    "tags": [
+      "burnout",
+      "work stress",
+      "mental health",
+      "Tele-MANAS",
+      "anxiety",
+      "depression",
+      "self-care"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/work-stress-burnout-india/hero.svg",
+    "heroAlt": "Illustration of a brain, a clock, a phone and a walking figure, standing for work stress, recovery time and getting help",
+    "sources": [
+      {
+        "title": "Burn-out an \\\"occupational phenomenon\\\": International Classification of Diseases",
+        "publisher": "World Health Organization",
+        "year": "2019",
+        "url": "https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases"
+      },
+      {
+        "title": "National Mental Health Survey of India 2015–16, Summary",
+        "publisher": "NIMHANS / Ministry of Health and Family Welfare",
+        "year": "2016",
+        "url": "https://mohfw.gov.in/sites/default/files/National%20Mental%20Health%20Survey%2C%202015-16%20-%20Summary%20Report_0.pdf"
+      },
+      {
+        "title": "Tele-MANAS (Tele Mental Health Assistance and Networking Across States)",
+        "publisher": "Ministry of Health and Family Welfare",
+        "year": "2022",
+        "url": "https://telemanas.mohfw.gov.in/"
+      },
+      {
+        "title": "WHO guidelines on mental health at work",
+        "publisher": "World Health Organization",
+        "year": "2022",
+        "url": "https://www.who.int/publications/i/item/9789240053052"
+      },
+      {
+        "title": "Effect of exercise for depression — systematic review and network meta-analysis of randomised controlled trials",
+        "publisher": "BMJ",
+        "year": "2024",
+        "url": "https://doi.org/10.1136/bmj-2023-075847"
+      }
+    ],
+    "related": [
+      {
+        "label": "Mental wellness hub",
+        "href": "/health/mental-wellness"
+      },
+      {
+        "label": "Stress",
+        "href": "/health/diseases/stress"
+      },
+      {
+        "label": "Anxiety",
+        "href": "/health/diseases/anxiety"
+      },
+      {
+        "label": "Depression",
+        "href": "/health/diseases/depression"
+      },
+      {
+        "label": "Sleep for Indians",
+        "href": "/health/blog/sleep-guide-indians"
+      }
+    ],
+    "headings": [
+      "What burnout is, and what it isn't",
+      "How common is this in India?",
+      "The warning signs",
+      "A step-by-step path out",
+      "When and where to get professional help",
+      "Pressures that look different in different jobs",
+      "Helping a colleague or family member",
+      "For managers: what you can do this week",
+      "Myths about stress and burnout",
+      "A two-week reset plan",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Is burnout a medical diagnosis?",
+        "a": "The WHO classifies burn-out as an occupational phenomenon in ICD-11, not a medical condition. It describes a work-related syndrome. Doctors still take it seriously and will check for depression, anxiety or physical problems that can look similar."
+      },
+      {
+        "q": "How do I know if it's burnout or depression?",
+        "a": "Burnout is tied mainly to work; depression affects your whole life, with low mood or loss of interest most of the day for two weeks or more. They often overlap. If you're unsure, or your symptoms affect daily life, see a doctor or psychologist."
+      },
+      {
+        "q": "Can exercise really help with stress and low mood?",
+        "a": "Yes. A large review of trials found that walking, jogging, yoga and strength training all reduced depressive symptoms. Exercise also improves sleep and energy. It works best alongside other support, not as a substitute for treatment when it's needed."
+      },
+      {
+        "q": "Is Tele-MANAS free and confidential?",
+        "a": "Tele-MANAS is a free government tele-mental health service available 24×7 on 14416 or 1-800-891-4416, in many Indian languages. Counsellors can talk you through what you're facing and connect you to further care."
+      },
+      {
+        "q": "Should I quit my job?",
+        "a": "Sometimes changing jobs is the right choice, but it's a big decision best made when you're not at your lowest. First try changes at work, recovery habits and professional support; then decide with a clearer head."
+      }
+    ],
+    "words": 2559,
+    "ads": 3
+  },
+  {
     "lang": "hi",
     "slug": "air-pollution-aqi-action-plan",
     "title": "Air Pollution and Your Body: An AQI Action Plan for Indian Families",
@@ -1897,6 +2015,116 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2129,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "work-stress-burnout-india",
+    "title": "Work Stress and Burnout in India: The Signs, What Helps, and When to Get Help",
+    "hindiTitle": "भारत में काम का तनाव और बर्नआउट: संकेत, क्या मदद करता है, और कब मदद लें",
+    "description": "बर्नआउट आम तनाव और डिप्रेशन से कैसे अलग है, कौन-से संकेत देखें, कौन-सी आत्म-सहायता काम करती है, और कब टेली-मानस (14416) या विशेषज्ञ से संपर्क करें।",
+    "category": "मानसिक सेहत",
+    "tags": [
+      "बर्नआउट",
+      "काम का तनाव",
+      "मानसिक स्वास्थ्य",
+      "टेली-मानस",
+      "चिंता",
+      "डिप्रेशन"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-21",
+    "lastReviewed": "2026-10-21",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/work-stress-burnout-india/hero.svg",
+    "heroAlt": "दिमाग़, घड़ी, फ़ोन और चलते व्यक्ति का चित्र: काम का तनाव, आराम का समय और मदद लेना",
+    "sources": [
+      {
+        "title": "Burn-out an \\\"occupational phenomenon\\\": International Classification of Diseases",
+        "publisher": "World Health Organization",
+        "year": "2019",
+        "url": "https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases"
+      },
+      {
+        "title": "National Mental Health Survey of India 2015–16, Summary",
+        "publisher": "NIMHANS / Ministry of Health and Family Welfare",
+        "year": "2016",
+        "url": "https://mohfw.gov.in/sites/default/files/National%20Mental%20Health%20Survey%2C%202015-16%20-%20Summary%20Report_0.pdf"
+      },
+      {
+        "title": "Tele-MANAS",
+        "publisher": "Ministry of Health and Family Welfare",
+        "year": "2022",
+        "url": "https://telemanas.mohfw.gov.in/"
+      },
+      {
+        "title": "WHO guidelines on mental health at work",
+        "publisher": "World Health Organization",
+        "year": "2022",
+        "url": "https://www.who.int/publications/i/item/9789240053052"
+      },
+      {
+        "title": "Effect of exercise for depression — systematic review and network meta-analysis",
+        "publisher": "BMJ",
+        "year": "2024",
+        "url": "https://doi.org/10.1136/bmj-2023-075847"
+      }
+    ],
+    "related": [
+      {
+        "label": "मेंटल वेलनेस हब (अंग्रेज़ी)",
+        "href": "/health/mental-wellness"
+      },
+      {
+        "label": "तनाव (अंग्रेज़ी)",
+        "href": "/health/diseases/stress"
+      },
+      {
+        "label": "चिंता (अंग्रेज़ी)",
+        "href": "/health/diseases/anxiety"
+      },
+      {
+        "label": "डिप्रेशन (अंग्रेज़ी)",
+        "href": "/health/diseases/depression"
+      }
+    ],
+    "headings": [
+      "बर्नआउट क्या है, और क्या नहीं",
+      "भारत में यह कितना आम है",
+      "चेतावनी के संकेत",
+      "बाहर निकलने का रास्ता, क़दम दर क़दम",
+      "अलग-अलग कामों में अलग दबाव",
+      "कब और कहाँ विशेषज्ञ की मदद लें",
+      "तनाव और बर्नआउट के मिथक",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या बर्नआउट एक बीमारी का निदान है?",
+        "a": "WHO ICD-11 में बर्न-आउट को काम से जुड़ी स्थिति मानता है, बीमारी नहीं। फिर भी डॉक्टर इसे गंभीरता से लेते हैं और डिप्रेशन, चिंता या मिलती-जुलती शारीरिक समस्याओं की जाँच करते हैं।"
+      },
+      {
+        "q": "कैसे जानूँ कि यह बर्नआउट है या डिप्रेशन?",
+        "a": "बर्नआउट मुख्य रूप से काम से जुड़ा है; डिप्रेशन पूरी ज़िंदगी पर असर डालता है, दो हफ़्ते या ज़्यादा, ज़्यादातर दिन उदासी या रुचि ख़त्म होने के साथ। दोनों अक्सर मिल जाते हैं। पक्का न हो, या रोज़मर्रा पर असर हो, तो डॉक्टर या साइकोलॉजिस्ट से मिलें।"
+      },
+      {
+        "q": "क्या कसरत सच में तनाव और उदासी में मदद करती है?",
+        "a": "हाँ। ट्रायल्स की एक बड़ी समीक्षा में सैर, जॉगिंग, योग और ताक़त की कसरत, सबने डिप्रेशन के लक्षण घटाए। कसरत नींद और ऊर्जा भी सुधारती है। यह दूसरी मदद के साथ सबसे अच्छा काम करती है, ज़रूरत हो तो इलाज की जगह नहीं।"
+      },
+      {
+        "q": "क्या टेली-मानस मुफ़्त है?",
+        "a": "टेली-मानस सरकार की मुफ़्त टेली-मेंटल हेल्थ सेवा है, 14416 या 1-800-891-4416 पर 24×7, कई भारतीय भाषाओं में। काउंसलर आपकी बात सुनकर आगे के इलाज से जोड़ सकते हैं।"
+      },
+      {
+        "q": "क्या मुझे नौकरी छोड़ देनी चाहिए?",
+        "a": "कभी-कभी नौकरी बदलना सही होता है, पर यह बड़ा फ़ैसला सबसे बुरे दौर में न लें। पहले काम पर बदलाव, आराम की आदतें और विशेषज्ञ की मदद आज़माएँ; फिर साफ़ दिमाग़ से तय करें।"
+      }
+    ],
+    "words": 2251,
     "ads": 3
   }
 ];
