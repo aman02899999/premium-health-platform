@@ -109,6 +109,21 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(leads).toEqual([{ phone: "9876543210", source: "whatsapp-campaign", interest: "membership", follow_ups: false }]);
   });
 
+  it("a chat opened from a printed QR is answered and credited to that QR; START PROMOTIONS records consent", async () => {
+    await pool.query("truncate public.qr_codes, public.qr_scans, public.marketing_contacts, public.whatsapp_optouts cascade");
+    await pool.query(`insert into public.qr_codes (code, label, kind, target) values ('TestQr12', 'Reception', 'bot', 'https://wa.me/919266840289')`);
+    expect(await social.handleInbound(wa("40", "Hi! I saw your QR code. Please share the membership offer. (ref TestQr12)"))).toBe("replied");
+    expect(await social.handleInbound(wa("41", "Hi (ref NotACode)", "919811113333", "Amit"))).toBe("replied");
+    const leads = (await pool.query("select phone, source from public.leads order by phone")).rows;
+    expect(leads).toEqual([
+      { phone: "9811113333", source: "whatsapp-inbound" },
+      { phone: "9876543210", source: "qr:TestQr12" },
+    ]);
+    expect(await social.handleInbound(wa("42", "START PROMOTIONS", "919822224444", "Sonia"))).toBe("replied");
+    const consent = (await pool.query("select channel, address, name, source, unsubscribed_at is null as active from public.marketing_contacts")).rows;
+    expect(consent).toEqual([{ channel: "whatsapp", address: "919822224444", name: "Sonia", source: "whatsapp: start promotions", active: true }]);
+  });
+
   it("an existing member who messages is not added as a lead, and a foreign number never is", async () => {
     await pool.query(
       `insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values ('Asha Rao', '9123456780', 'Monthly', current_date, current_date + 30, 'RFC-ASHA-2345')`,

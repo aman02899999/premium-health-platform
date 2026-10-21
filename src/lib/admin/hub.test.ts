@@ -15,7 +15,7 @@ describe("command center tiles", () => {
 
   it("every admin area is reachable from the hub", () => {
     const hrefs = HUB_SECTIONS.flatMap((s) => s.tiles.map((t) => t.href.split(/[?#]/)[0]));
-    for (const p of ["/admin/chats", "/admin/audience", "/admin/contacts", "/admin/growth", "/admin/reviews", "/admin/shop", "/admin/diet-pro", "/admin/website", "/admin/analytics"]) expect(hrefs).toContain(p);
+    for (const p of ["/admin/chats", "/admin/audience", "/admin/contacts", "/admin/qr", "/admin/growth", "/admin/reviews", "/admin/shop", "/admin/diet-pro", "/admin/website", "/admin/analytics"]) expect(hrefs).toContain(p);
   });
 
   it("search matches title, hint, keywords; every word must match", () => {
