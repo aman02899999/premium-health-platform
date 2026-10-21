@@ -58,7 +58,8 @@ export const HUB_SECTIONS: Section[] = [
     title: "Grow",
     tiles: [
       { id: "campaigns", title: "Campaigns", hint: "Delivered, read, clicked, replied, revenue", href: "/admin/audience", icon: "Send", keywords: "broadcast results funnel delivered read clicks roi" },
-      { id: "contacts", title: "Contacts & segments", hint: "Import lists, segments, Meta ads audience export", href: "/admin/audience#contacts", icon: "Contact", keywords: "import audience list segment tags csv ads custom audience" },
+      { id: "contacts", title: "Contacts", hint: "Everyone in one list: tags, lists, attributes", href: "/admin/contacts", icon: "Contact", keywords: "people crm audience list tags attributes segment export csv customer" },
+      { id: "import", title: "Import & segments", hint: "Upload lists, segment sizes, Meta ads audience export", href: "/admin/audience#contacts", icon: "Upload", keywords: "import upload excel csv sheet segment ads custom audience" },
       { id: "leads", title: "Leads", hint: "Enquiries, trial bookings, follow-ups", href: "/admin/growth?tab=leads", icon: "UserPlus", keywords: "enquiry prospect trial crm", badge: { key: "leadsUncontacted", alert: true } },
       { id: "members", title: "Members", hint: "Add, renew, import the desk sheet", href: "/admin/growth?tab=members", icon: "Users", keywords: "membership renew expiry desk import", badge: { key: "expiring7" } },
       { id: "automations", title: "Automations", hint: "Scheduled messages: renewals, nurture, receipts", href: "/admin/growth?tab=messages", icon: "Workflow", keywords: "outbox sequence drip scheduled auto reminder", badge: { key: "failed7", alert: true } },

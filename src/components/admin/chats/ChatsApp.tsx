@@ -418,6 +418,12 @@ export function ChatsApp() {
   const [active, setActive] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("all");
   const [q, setQ] = useState("");
+  useEffect(() => {
+    // From Contacts: /admin/chats?peer=919812345678 opens that conversation.
+    const p = new URLSearchParams(window.location.search).get("peer");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
+    if (p && /^\d{8,20}$/.test(p)) setActive(p);
+  }, []);
 
   const load = useCallback(async () => {
     try {
