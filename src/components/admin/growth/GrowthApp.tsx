@@ -11,6 +11,7 @@ import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-
 import type { SocialStatus } from "@/lib/social/automation";
 import type { KitText } from "@/lib/social/app-kit";
 import { Social } from "./Social";
+import { CallList } from "./CallList";
 
 type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string; trialAt?: string | null; showedUp?: boolean | null };
@@ -252,6 +253,8 @@ function Today({ data, stats, go, act }: { data: Data; stats: Stats; go: (t: Tab
       </div>
 
       {data.system && <SystemCard system={data.system} />}
+
+      <CallList />
 
       {data.unapplied.length > 0 && (
         <div className="rounded-2xl bg-red-500/10 p-4 text-sm ring-1 ring-red-400/30">
