@@ -10,6 +10,7 @@ import {
   HelpCircle,
   Image as ImageIcon,
   Inbox,
+  LayoutGrid,
   Loader2,
   LogOut,
   MessageSquareQuote,
@@ -78,6 +79,14 @@ export function AdminApp({ storage }: { storage: string }) {
   const [status, setStatus] = useState<{ kind: "ok" | "err" | "busy"; msg: string } | null>(null);
 
   useEffect(() => {
+    // Deep links from the Command Center: /admin/website?tab=payments
+    const t = new URLSearchParams(window.location.search).get("tab");
+    const found = TABS.find((x) => x.id === t);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
+    if (found) setTab(found.id);
+  }, []);
+
+  useEffect(() => {
     fetch("/api/admin/content")
       .then((r) => (r.status === 401 ? (location.href = "/admin/login") : r.json()))
       .then((j) => {
@@ -134,8 +143,11 @@ export function AdminApp({ storage }: { storage: string }) {
     <div className="min-h-screen bg-ink">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-ink/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center gap-2 px-3 py-3 sm:gap-3 sm:px-4">
+          <a href="/admin" aria-label="Back to Command Center" className="shrink-0 rounded-lg p-1.5 text-white/70 hover:bg-white/10">
+            <LayoutGrid className="h-5 w-5" />
+          </a>
           <span className="font-display min-w-0 truncate text-lg text-white">
-            Admin<span className="hidden text-brand sm:inline"> · {content.business.name}</span>
+            Website<span className="hidden text-brand sm:inline"> · {content.business.name}</span>
           </span>
           <span className="hidden rounded-full bg-white/5 px-2 py-0.5 text-[11px] text-white/45 sm:inline">storage: {storage}</span>
           <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">

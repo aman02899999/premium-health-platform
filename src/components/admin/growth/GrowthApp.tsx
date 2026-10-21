@@ -60,6 +60,10 @@ export function GrowthApp({ plans, gymName, postBiz }: { plans: { name: string; 
     // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time read of the URL after hydration
     if (found) setTab(found);
   }, []);
+  useEffect(() => {
+    // Anchors (/admin/growth?tab=today#system) exist only once the data has loaded.
+    if (data && location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ block: "start" });
+  }, [data]);
   const [flash, setFlash] = useState("");
   const [busy, setBusy] = useState(false);
 
@@ -204,7 +208,7 @@ function SystemCard({ system }: { system: NonNullable<Data["system"]> }) {
   const fresh = r && r.ok && system.recent;
   const missing = system.setup.filter((x) => !x.on);
   return (
-    <div className="rounded-2xl bg-white/[.04] p-4 text-sm ring-1 ring-white/10">
+    <div id="system" className="scroll-mt-20 rounded-2xl bg-white/[.04] p-4 text-sm ring-1 ring-white/10">
       <p className={`flex items-center gap-2 font-semibold ${fresh ? "text-emerald-200" : "text-amber-200"}`}>
         {fresh ? <Check className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
         {r ? `Daily automation last ran ${when(r.at)} (${r.source === "cron" ? "by the schedule" : "by you"})${r.ok ? "" : " and FAILED"}` : "The daily automation hasn't run yet"}
