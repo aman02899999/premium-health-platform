@@ -21,6 +21,8 @@ export type Draft = {
   params: string[];
   /** Same key = same message; the outbox refuses a second copy. */
   dedupeKey: string;
+  /** A tracked link in the message: /r/<code> counts the click and redirects to url. */
+  link?: { code: string; url: string };
 };
 
 export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request" | "trial-booked" | "trial-today" | "trial-missed" | "trial-join" | "trial-join-last";

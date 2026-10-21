@@ -152,7 +152,8 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
   const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));
   const [optedOut, recent] = await Promise.all([
     c.channel === "whatsapp"
-      ? pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1)`, [addresses])
+      ? // Opted out, or a number WhatsApp says can't receive messages: nobody pays for those.
+        pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)`, [addresses])
       : pool.query<{ a: string }>(`select address as a from public.marketing_contacts where channel = 'email' and unsubscribed_at is not null and address = any($1)`, [addresses]),
     pool.query<{ a: string }>(
       `select distinct lower(to_address) as a from public.message_outbox
@@ -212,7 +213,14 @@ export async function stopRepeating(id: string): Promise<void> {
   await pool.query(`update public.campaigns set active = false, next_run = null where id = $1`, [id]);
 }
 
-export type CampaignRow = { id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; nextRun: string | null; active: boolean; buyers: number; revenue: number };
+export type CampaignRow = {
+  id: string; createdAt: string; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number;
+  sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; nextRun: string | null; active: boolean; buyers: number; revenue: number;
+  /** After sending: what the provider and the tracked link reported. */
+  delivered: number; read: number; clicked: number; replied: number; undelivered: number;
+  /** Most common reasons messages didn't arrive, with counts. */
+  reasons: { reason: string; n: number }[];
+};
 
 /**
  * Campaigns with delivery counts and results: people who received a campaign message and then
@@ -221,7 +229,7 @@ export type CampaignRow = { id: string; createdAt: string; name: string; segment
  * after two campaigns counts for both, so treat it as "influenced", not exact attribution.
  */
 export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
-  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; next_run_s: string | null; active: boolean; buyers: number; revenue_paise: string }>(
+  const { rows } = await pool.query<{ id: string; created_at: Date; name: string; segment: string; channel: string; offer: string; audience: number; queued: number; skipped: number; sent: number; failed: number; pending: number; cancelled: number; repeat: Repeat; next_run_s: string | null; active: boolean; buyers: number; revenue_paise: string; delivered: number; read: number; clicked: number; replied: number; undelivered: number; reasons: { reason: string; n: number }[] | null }>(
     `with paid as (
        select 'm' || id as oid, right(regexp_replace(phone, '\\D', '', 'g'), 10) as p, lower(email) as e, amount_paise - refunded_paise as net, paid_at from public.membership_orders where status = 'paid' and paid_at is not null
        union all
@@ -232,12 +240,30 @@ export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
        select 'b' || id, right(regexp_replace(phone, '\\D', '', 'g'), 10), lower(email), amount_paise - refunded_paise, paid_at from public.book_orders where status = 'paid' and paid_at is not null
      )
      select c.*, to_char(c.next_run, 'YYYY-MM-DD') as next_run_s, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled,
+            coalesce(o.delivered, 0)::int as delivered, coalesce(o.read, 0)::int as read, coalesce(o.clicked, 0)::int as clicked, coalesce(o.undelivered, 0)::int as undelivered,
+            coalesce(rp.replied, 0)::int as replied, fr.reasons,
             coalesce(v.buyers, 0)::int as buyers, coalesce(v.revenue, 0)::text as revenue_paise
        from public.campaigns c
        left join lateral (
          select count(*) filter (where status = 'sent') as sent, count(*) filter (where status = 'failed') as failed,
-                count(*) filter (where status = 'pending') as pending, count(*) filter (where status = 'cancelled') as cancelled
+                count(*) filter (where status = 'pending') as pending, count(*) filter (where status = 'cancelled') as cancelled,
+                count(*) filter (where status = 'sent' and delivered_at is not null) as delivered,
+                count(*) filter (where status = 'sent' and read_at is not null) as read,
+                count(*) filter (where status = 'sent' and clicks > 0) as clicked,
+                count(*) filter (where status = 'sent' and delivery in ('failed', 'bounced')) as undelivered
            from public.message_outbox where dedupe_key like 'campaign:' || c.id || ':%') o on true
+       left join lateral (
+         -- A WhatsApp message from the person within 7 days of the campaign message.
+         select count(distinct m.to_address) as replied
+           from public.message_outbox m
+           join public.social_inbox i on i.channel = 'whatsapp' and i.kind = 'message' and i.from_id = m.to_address
+                and i.created_at between m.sent_at and m.sent_at + interval '7 days'
+          where m.dedupe_key like 'campaign:' || c.id || ':%' and m.status = 'sent' and m.channel = 'whatsapp') rp on true
+       left join lateral (
+         select jsonb_agg(jsonb_build_object('reason', r.reason, 'n', r.n) order by r.n desc) as reasons
+           from (select coalesce(nullif(fail_reason, ''), nullif(fail_code, ''), 'Unknown') as reason, count(*)::int as n
+                   from public.message_outbox where dedupe_key like 'campaign:' || c.id || ':%' and status = 'sent' and delivery in ('failed', 'bounced')
+                  group by 1 order by 2 desc limit 3) r) fr on true
        left join lateral (
          select count(distinct m.k) as buyers, sum(m.net) as revenue
            from (select distinct on (paid.oid) paid.oid, paid.net, r.k
@@ -247,7 +273,7 @@ export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
       order by c.created_at desc limit $1`,
     [limit],
   );
-  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled, repeat: r.repeat, nextRun: r.next_run_s, active: r.active, buyers: r.buyers, revenue: Math.round(Number(r.revenue_paise) / 100) }));
+  return rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), name: r.name, segment: r.segment, channel: r.channel, offer: r.offer, audience: r.audience, queued: r.queued, skipped: r.skipped, sent: r.sent, failed: r.failed, pending: r.pending, cancelled: r.cancelled, repeat: r.repeat, nextRun: r.next_run_s, active: r.active, buyers: r.buyers, revenue: Math.round(Number(r.revenue_paise) / 100), delivered: r.delivered, read: r.read, clicked: r.clicked, replied: r.replied, undelivered: r.undelivered, reasons: r.reasons ?? [] }));
 }
 
 /** Sends the next batch of pending messages (campaigns and everything else waiting in the outbox). */

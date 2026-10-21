@@ -13,6 +13,16 @@ type Preview = { committed: boolean; columns: Record<string, string>; plan: { ad
 const card = "rounded-2xl border border-white/10 bg-white/[0.03] p-4";
 const input = "w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-white/35 focus:border-emerald-400/60 focus:outline-none";
 const btn = "inline-flex items-center justify-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold disabled:opacity-40";
+/** "142 · 71%": a count with its share of the messages sent. */
+function rate(n: number, of: number) {
+  if (!of) return <span className="text-white/40">—</span>;
+  return (
+    <span className="tabular-nums">
+      {n} <span className="text-xs text-white/45">· {Math.round((n / of) * 100)}%</span>
+    </span>
+  );
+}
+
 const when = (iso: string) => new Date(iso).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
 
 async function call<T>(url: string, init?: RequestInit): Promise<T> {
@@ -369,12 +379,17 @@ export function AudienceApp() {
                 <p className="mt-2 text-sm text-white/50">No campaigns yet.</p>
               ) : (
                 <div className="mt-3 overflow-x-auto">
-                  <table className="w-full min-w-[760px] text-left text-sm">
+                  <table className="w-full min-w-[1080px] text-left text-sm">
                     <thead className="text-xs uppercase text-white/50">
                       <tr>
                         <th className="py-2">Campaign</th>
                         <th>Channel</th>
                         <th>Sent</th>
+                        <th title="Reached the phone or inbox">Delivered</th>
+                        <th title="WhatsApp: blue ticks. Email: opened (approximate: some mail apps hide opens)">Read</th>
+                        <th title="Opened the link in the message (people only, not link previews)">Clicked</th>
+                        <th title="WhatsApp: wrote back within 7 days">Replied</th>
+                        <th title="Sent but didn't arrive: number not on WhatsApp, bounced email, or Meta limits">Not delivered</th>
                         <th>Waiting</th>
                         <th>Failed</th>
                         <th>Skipped</th>
@@ -393,6 +408,13 @@ export function AudienceApp() {
                           </td>
                           <td>{c.channel === "whatsapp" ? "WhatsApp" : "Email"}</td>
                           <td className="text-emerald-300">{c.sent}</td>
+                          <td>{rate(c.delivered, c.sent)}</td>
+                          <td>{rate(c.read, c.sent)}</td>
+                          <td>{rate(c.clicked, c.sent)}</td>
+                          <td>{c.channel === "whatsapp" ? rate(c.replied, c.sent) : <span className="text-white/40">—</span>}</td>
+                          <td className={c.undelivered ? "text-amber-300" : ""} title={c.reasons.map((r) => `${r.n} × ${r.reason}`).join("\n") || undefined}>
+                            {rate(c.undelivered, c.sent)}
+                          </td>
                           <td>{c.pending}</td>
                           <td className={c.failed ? "text-red-300" : ""}>{c.failed}</td>
                           <td className="text-white/50">{c.skipped + c.cancelled}</td>

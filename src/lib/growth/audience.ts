@@ -4,6 +4,7 @@
 import { mapHeader, parsePhone, MAX_ROWS } from "./member-import";
 import type { Draft } from "./messages";
 import { liveChatUrl } from "@/lib/site";
+import { linkCode, trackedUrl } from "./tracking-core";
 
 export type Contact = { row: number; name: string; phone: string | null; email: string | null };
 export type ContactError = { row: number; message: string };
@@ -92,10 +93,16 @@ export type CampaignInput = { id: string; name: string; channel: "whatsapp" | "e
 
 /** One message per recipient, deduped per campaign so a re-run never sends twice. */
 export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: string; siteUrl: string; coach: string; phone?: string }): Draft | null {
-  const url = campaignUrl(biz.siteUrl, c.link, c.name, c.channel);
+  const target = campaignUrl(biz.siteUrl, c.link, c.name, c.channel);
   const hi = first(r.name);
+  // Every person gets their own short link, so a click shows who opened the offer.
+  const tracked = (dedupeKey: string) => {
+    const code = linkCode(dedupeKey);
+    return { url: trackedUrl(biz.siteUrl, code), link: { code, url: target } };
+  };
   if (c.channel === "whatsapp") {
     if (!r.phone) return null;
+    const { url, link } = tracked(`campaign:${c.id}:91${r.phone}`);
     // The template sends from the API number; the offer text names the line a person answers.
     const offer = biz.phone ? `${offerText(c.offer).replace(/[.\s]+$/, "")}. Call or WhatsApp ${biz.phone}` : offerText(c.offer);
     const params = [hi || "there", biz.name, offer, url];
@@ -108,9 +115,11 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
       template: "rfc_offer_broadcast_v1",
       params,
       dedupeKey: `campaign:${c.id}:91${r.phone}`,
+      link,
     };
   }
   if (!r.email) return null;
+  const { url, link } = tracked(`campaign:${c.id}:${r.email.toLowerCase()}`);
   return {
     channel: "email",
     to: r.email.toLowerCase(),
@@ -123,6 +132,7 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
     template: "",
     params: [],
     dedupeKey: `campaign:${c.id}:${r.email.toLowerCase()}`,
+    link,
   };
 }
 
