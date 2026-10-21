@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, Bot, Check, CircleAlert, Clock, Info, Pause, Play, RefreshCw, Search, Send, X, Zap } from "lucide-react";
+import { ArrowLeft, Bot, Check, CircleAlert, Clock, Info, Loader2, Pause, Play, RefreshCw, Search, Send, Sparkles, X, Zap } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { initials } from "@/lib/admin/team-core";
 import type { ChatMessage, ChatSummary } from "@/lib/social/chat";
@@ -22,7 +22,7 @@ const day = (iso: string) => {
 };
 const shortWhen = (iso: string) => (day(iso) === "Today" ? time(iso) : day(iso));
 const pretty = (peer: string) => (peer.length === 12 && peer.startsWith("91") ? `+91 ${peer.slice(2, 7)} ${peer.slice(7)}` : `+${peer}`);
-const byLabel = (by: string) => (by === "auto-reply" ? "Auto-reply" : by === "scheduled" ? "Scheduled message" : by.split("@")[0]);
+const byLabel = (by: string) => (by === "auto-reply" ? "Auto-reply" : by === "ai-agent" ? "AI agent" : by === "scheduled" ? "Scheduled message" : by.split("@")[0]);
 
 async function getJson<T>(url: string): Promise<T> {
   const res = await fetch(url, { cache: "no-store" });
@@ -79,6 +79,7 @@ type ThreadData = {
   templates: { kind: string; label: string; marketing: boolean; preview: string }[];
   payments?: { id: string; url: string; purpose: string; rupees: number; state: "open" | "paid" | "cancelled" | "expired"; createdAt: string; paymentId: string | null }[];
   purposes?: string[];
+  aiDraft?: boolean;
 };
 
 const PAY_TONE = { open: "bg-sky-500/20 text-sky-100", paid: "bg-emerald-500/20 text-emerald-100", cancelled: "bg-white/10 text-white/50", expired: "bg-white/10 text-white/50" } as const;
@@ -403,6 +404,26 @@ function Thread({ peer, fallbackName, onBack, onSent, assign }: { peer: string; 
     }
   }
   const sendText = () => text.trim() && send({ action: "text", text });
+  const [drafting, setDrafting] = useState(false);
+  const [draftNote, setDraftNote] = useState("");
+  // The AI writes a reply to the customer's latest message into the box; the desk checks it and sends.
+  async function aiDraft() {
+    if (drafting) return;
+    setDrafting(true);
+    setError("");
+    setDraftNote("");
+    try {
+      const res = await fetch(`/api/admin/chats/${peer}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "ai-draft" }) });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(j.error || "Couldn't write a draft.");
+      setText(j.draft);
+      setDraftNote(j.handoff ? `AI draft. The AI thinks a person should handle this: ${j.reason || "check it"}.` : "AI draft: check it, edit if needed, then send.");
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setDrafting(false);
+    }
+  }
 
   const name = data?.name || fallbackName;
   const open = data?.window.open ?? false;
@@ -467,6 +488,16 @@ function Thread({ peer, fallbackName, onBack, onSent, assign }: { peer: string; 
           <div className="border-t border-white/10">
             {data && (
               <div className="flex gap-1.5 overflow-x-auto px-2 pt-2" aria-label="Quick replies">
+                {data.aiDraft && (
+                  <button
+                    disabled={sending || drafting}
+                    onClick={aiDraft}
+                    title="Write a reply to their latest message with the AI agent. Nothing is sent until you press send."
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1 text-xs font-semibold text-violet-100 hover:bg-violet-500/25 disabled:opacity-40"
+                  >
+                    {drafting ? <Loader2 className="h-3 w-3 animate-spin" /> : <Sparkles className="h-3 w-3" />} {drafting ? "Writing…" : "AI draft"}
+                  </button>
+                )}
                 {data.quickReplies.map((q) => (
                   <button
                     key={q.id}
@@ -479,6 +510,7 @@ function Thread({ peer, fallbackName, onBack, onSent, assign }: { peer: string; 
                 ))}
               </div>
             )}
+            {draftNote && text && <p className="px-3 pt-2 text-xs text-violet-200">{draftNote}</p>}
             <div className="flex items-end gap-2 p-2">
               <textarea
                 value={text}

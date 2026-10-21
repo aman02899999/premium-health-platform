@@ -9,12 +9,12 @@ describe("who may open what", () => {
   it("managers open everything except the team", () => {
     expect(allowed("manager", "/admin/team")).toBe(false);
     expect(allowed("manager", "/api/admin/team")).toBe(false);
-    for (const p of ["/admin/shop", "/api/admin/audience", "/admin/ads", "/admin/website"]) expect(allowed("manager", p)).toBe(true);
+    for (const p of ["/admin/shop", "/api/admin/audience", "/admin/ads", "/admin/website", "/admin/ai-agent"]) expect(allowed("manager", p)).toBe(true);
   });
   it("agents get the desk's work only", () => {
     for (const p of ["/admin", "/admin/", "/admin/chats", "/api/admin/chats/919811111111", "/admin/contacts", "/api/admin/contacts", "/admin/growth", "/api/admin/growth/diet-order", "/admin/qr", "/api/admin/me", "/admin/login", "/api/admin/logout"])
       expect([p, allowed("agent", p)]).toEqual([p, true]);
-    for (const p of ["/admin/team", "/admin/shop", "/api/admin/shop/orders", "/admin/audience", "/api/admin/audience", "/admin/ads", "/admin/website", "/api/admin/content", "/api/admin/payments", "/admin/analytics", "/api/admin/whatsapp-templates"])
+    for (const p of ["/admin/team", "/admin/shop", "/api/admin/shop/orders", "/admin/audience", "/api/admin/audience", "/admin/ads", "/admin/website", "/api/admin/content", "/api/admin/payments", "/admin/analytics", "/api/admin/whatsapp-templates", "/admin/ai-agent", "/api/admin/ai-agent"])
       expect([p, allowed("agent", p)]).toEqual([p, false]);
   });
   it("prefixes match whole path segments only", () => {
