@@ -20,6 +20,8 @@ import { HealthProductRecommendations } from "@/health/components/monetization/H
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 import { DIGITAL_PRODUCTS } from "@/health/lib/monetization/config";
 import { uncropped } from "@/lib/uncropped";
+import { PostArticle, postMetadata } from "@/health/components/posts/PostArticle";
+import { findPost, postBlocks, translation } from "@/health/lib/posts";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -33,6 +35,8 @@ export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const post = findPost("en", slug);
+  if (post) return postMetadata(post, translation(post));
   const a = getEnrichedArticle(slug);
   if (!a) return { title: "Article not found", robots: { index: false, follow: true } };
   const url = `${SITE.url}/health/blog/${slug}`;
@@ -66,6 +70,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  // Long-form posts (content/blog/en) have their own layout.
+  const post = findPost("en", slug);
+  if (post) return <PostArticle post={post} blocks={postBlocks("en", slug)} other={translation(post)} related={post.related.map((r) => ({ href: r.href, label: r.label }))} />;
   const a = getEnrichedArticle(slug);
   if (!a) notFound();
   const all = getAllEnrichedArticles();

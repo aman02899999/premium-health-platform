@@ -1,5 +1,5 @@
 import type { Article } from "@/health/types";
-import { ARTICLES } from "./editorial";
+import { ARTICLES, PILLAR_SLUGS } from "./editorial";
 
 export type BlogEnrichment = {
   heroImage: string;
@@ -802,7 +802,8 @@ export type EnrichedArticle = Article & {
 export function getEnrichedArticle(slug: string): EnrichedArticle | undefined {
   const base = ARTICLES.find((a) => a.slug === slug);
   const en = BLOG_ENRICHMENT[slug];
-  if (!base || !en) return base as EnrichedArticle | undefined;
+  // Long-form posts carry their own hero image and SEO text.
+  if (!base || !en || PILLAR_SLUGS.has(slug)) return base as EnrichedArticle | undefined;
   return {
     ...base,
     heroImage: en.heroImage,

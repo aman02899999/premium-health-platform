@@ -1,18 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Suspense } from "react";
 import "./globals.css";
 import { SITE } from "@/health/lib/site";
-import { Providers, Header, Footer, MobileBottomNav } from "@/health/components/layout";
-import { AuthProvider } from "@/health/components/auth/AuthContext";
-import { BackToTop } from "@/health/components/engagement";
-import { LiveTicker } from "@/health/components/live";
-import { Analytics } from "@/health/components/marketing/Analytics";
-import { ExitIntent, StickyCTA } from "@/health/components/marketing/ExitIntent";
-import { NewsletterPopup } from "@/health/components/marketing/NewsletterPopup";
-import { ADSENSE_SRC } from "@/lib/adsense";
+import { HealthShell } from "@/health/components/HealthShell";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { organizationJsonLd, websiteJsonLd } from "@/health/lib/seo";
-import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -57,6 +49,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: { icon: ["/health/logo.svg", { url: "/health/icon-192.png", type: "image/png" }, { url: "/health/icon-512.png", type: "image/png" }], apple: "/health/apple-icon.png" },
+  other: { "google-adsense-account": ADSENSE_CLIENT },
   verification: {
     // Add real verification tokens via env when available.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
@@ -66,8 +59,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
-        <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font -- root layout of the /health site, fonts are global to it */}
@@ -79,26 +70,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }} />
       </head>
-      <body className="min-h-screen bg-[#fdfbf6] text-stone-900 antialiased dark:bg-stone-950 dark:text-stone-100">
-        <AuthProvider>
-          <Providers>
-            <Suspense fallback={null}>
-              <Analytics />
-            </Suspense>
-            <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-emerald-700 focus:px-4 focus:py-2 focus:text-white">Skip to content</a>
-            <LiveTicker />
-            <Header />
-            <main id="main" className="min-h-[60vh]">{children}</main>
-            <Footer />
-            <MobileBottomNav />
-            <BackToTop />
-            <ExitIntent />
-            <StickyCTA />
-            <NewsletterPopup />
-          </Providers>
-        </AuthProvider>
-        <VercelAnalytics />
-      </body>
+      <HealthShell>{children}</HealthShell>
     </html>
   );
 }

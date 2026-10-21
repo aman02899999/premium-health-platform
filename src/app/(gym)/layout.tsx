@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
-import { ADSENSE_SRC } from "@/lib/adsense";
+import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 import { MetaPixel } from "@/components/ui/MetaPixel";
@@ -49,6 +49,9 @@ export async function generateMetadata(): Promise<Metadata> {
     manifest: "/manifest.webmanifest",
     verification: { google: c.seo.googleVerification || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined },
     other: {
+      // AdSense site ownership, no ad script: gym pages never show ads (Google could put other gyms
+      // next to our plans). The script loads only in the /blog, /health and /hi layouts.
+      "google-adsense-account": ADSENSE_CLIENT,
       "geo.region": "IN-UP",
       "geo.placename": `${c.business.address.locality}, ${c.business.address.city}`,
       "geo.position": `${c.business.geo.lat};${c.business.geo.lng}`,
@@ -61,10 +64,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const c = await getContent();
   return (
     <html lang="en-IN" className={`${inter.variable} ${oswald.variable}`} style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
-      <head>
-        {/* Google AdSense — a plain <script> (not next/script, whose data-nscript attribute AdSense rejects) */}
-        <script async src={ADSENSE_SRC} crossOrigin="anonymous" />
-      </head>
       <body className="noise min-h-screen">
         {children}
         <VercelAnalytics />
