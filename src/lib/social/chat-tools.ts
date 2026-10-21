@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/site";
 import { todayIST } from "@/lib/growth/dates";
 import { LEAD_STATUSES, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { optedOutOfPromotions, setPromotionsOptOut } from "@/lib/growth/optouts";
-import { sendWhatsAppTemplate } from "@/lib/growth/providers";
+import { sendKind } from "@/lib/growth/wa-templates";
 import { recordReply, type SendOutcome } from "./chat";
 import { chatWindow, peerId } from "./chat-window";
 import { indianMobile } from "./inbound";
@@ -138,7 +138,7 @@ export async function sendManualTemplate(peer: string, kind: string, by: string)
   const t = manualTemplates(contact, { name: biz.name, phone: biz.phone, siteUrl: SITE_URL }).find((x) => x.kind === kind);
   if (!t) return { ok: false, error: "That template doesn't fit this customer", status: 400 };
   if (t.marketing && contact.optedOut) return { ok: false, error: "This customer tapped Stop promotions: only utility messages are allowed.", status: 409 };
-  const res = await sendWhatsAppTemplate(contact.peer, t.name, t.params);
+  const res = await sendKind(contact.peer, t.kind, t.name, t.params);
   await recordReply({ to: contact.peer, body: `📨 Template ${t.name}\n${t.preview}`, by, ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
   return res.ok ? { ok: true } : { ok: false, error: res.error, status: 502 };
 }

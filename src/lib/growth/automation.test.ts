@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DIET_PLANS, dietPlan } from "./config";
 import { intakeToProfile, parseDietOrder } from "./diet-intake";
-import { emailHtml, emailText, splitCta } from "./email-html";
+import { bannerFor, emailHtml, emailText, splitCta } from "./email-html";
 import { nurtureDrafts, steps, type NurtureBiz, type NurtureLead } from "./nurture";
 import { DEFAULT_PROFILE } from "@/lib/diet-pro/defaults";
 import { dietPlanEmail, dietPlanWhatsApp, dietReceivedEmail } from "./messages";
@@ -76,7 +76,7 @@ describe("email layout", () => {
     expect(splitCta(body).cta).toEqual({ label: "Start my plan", url: "https://example.in/diet-chart?plan=3m" });
     const html = emailHtml(body, { brand: "Royal Fitness Club", footer: "Footer", unsubscribeUrl: "https://example.in/api/unsubscribe?e=x&t=y" });
     expect(html).toContain("&lt;b&gt;Priya&lt;/b&gt;");
-    expect(html).toContain("<li");
+    expect(html).toContain("&#10003;"); // the • lines become a ticked list
     expect(html).toContain('href="https://example.in/diet-chart?plan=3m"');
     expect(html).toContain("Unsubscribe");
     expect(emailText(body, "Footer")).toContain("Start my plan: https://example.in/diet-chart?plan=3m");
@@ -84,12 +84,38 @@ describe("email layout", () => {
 });
 
 describe("personal layout (order, plan and booking emails)", () => {
-  it("is a plain letter: no banner, background, button or unsubscribe, the link written out", () => {
-    const body = "Hi <b>Priya</b>,\n\nYour plan is attached.\n[[CTA:Message your coach|https://wa.me/918851830081]]";
-    const html = emailHtml(body, { brand: "Royal Fitness Club", footer: "Royal Fitness Club, Noida", style: "personal" });
+  it("is branded and has a button, but no promotions: no meme, quick links or unsubscribe", () => {
+    const body = "Hi <b>Priya</b>,\n\nYour plan is attached.\n[[MEME:Top|Bottom]]\n[[CTA:Message your coach|https://wa.me/918851830081]]";
+    const html = emailHtml(body, { brand: "Royal Fitness Club", footer: "Royal Fitness Club, Noida", style: "personal", siteUrl: "https://x.in", kind: "diet-plan-email", links: { site: "https://x.in", join: "https://x.in/membership" } });
     expect(html).toContain("&lt;b&gt;Priya&lt;/b&gt;");
-    expect(html).toContain('Message your coach: <a href="https://wa.me/918851830081"');
-    expect(html).not.toMatch(/background:#04466d|border-radius:999px|Unsubscribe|role="presentation"/);
+    expect(html).toContain('href="https://wa.me/918851830081"');
+    expect(html).toContain("https://x.in/brand/logo-mark.png");
+    expect(html).toContain("https://x.in/brand/banners/diet.jpg");
+    expect(html).toContain("Top"); // memes show here too; quick links and unsubscribe don't
+    expect(html).not.toMatch(/Unsubscribe|Join online/);
+  });
+});
+
+describe("email markup", () => {
+  it("finds a button anywhere in the body, not only on the last line", () => {
+    const body = "Hi,\n\n[[CTA:Finish my order|https://x.in/pay]]\n\nCoach Aman\nRoyal Fitness Club";
+    expect(splitCta(body)).toEqual({ text: "Hi,\n\nCoach Aman\nRoyal Fitness Club", cta: { label: "Finish my order", url: "https://x.in/pay" } });
+    const html = emailHtml(body, { brand: "Royal Fitness Club", footer: "f" });
+    expect(html).toContain('href="https://x.in/pay"');
+    expect(html).not.toContain("[[");
+    expect(emailText(body, "f")).toContain("Finish my order: https://x.in/pay\n\nCoach Aman");
+  });
+  it("renders meme cards in offers but not in coach alerts", () => {
+    const body = "Hi\n[[MEME:Me: I'll start Monday|Also me 😐]]";
+    expect(emailHtml(body, { brand: "B", footer: "f", style: "newsletter" })).toContain("Also me 😐");
+    expect(emailHtml(body, { brand: "B", footer: "f", style: "internal" })).not.toContain("Also me");
+    expect(emailText(body, "f")).toContain("Me: I'll start Monday\nAlso me 😐");
+  });
+  it("picks the banner from the email kind, or the body's [[HERO]]", () => {
+    expect(bannerFor("nurture-campaign")).toBe("offer");
+    expect(bannerFor("trial-booked-email")).toBe("trial");
+    expect(bannerFor("admin-digest")).toBeNull();
+    expect(emailHtml("Hi\n[[HERO:welcome]]", { brand: "B", footer: "f", siteUrl: "https://x.in", style: "newsletter" })).toContain("/brand/banners/welcome.jpg");
   });
 });
 

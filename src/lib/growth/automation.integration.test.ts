@@ -154,7 +154,7 @@ describe.skipIf(!url)("sales automation on a real database", () => {
       await delivery.sendDietPlan(order.id);
       await outbox.dispatch(20);
       const byTo = sent.map((s) => s.body as { to: string[]; subject: string; attachments?: { filename: string; content: string }[]; headers?: Record<string, string>; html: string });
-      const nurture = byTo.find((b) => b.subject.includes("personal diet plan works"))!;
+      const nurture = byTo.find((b) => b.subject.includes("personal diet plan, explained"))!;
       expect(nurture.headers?.["List-Unsubscribe"]).toMatch(/\/api\/unsubscribe\?e=priya%40example\.com&t=/);
       expect(nurture.html).toContain("Start my plan");
       const planMail = byTo.find((b) => b.attachments?.length)!;

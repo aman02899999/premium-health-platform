@@ -18,11 +18,15 @@ const RESEND_API = () => (process.env.RESEND_API_URL || "https://api.resend.com"
 /** A document shown above the template text (the template must have a DOCUMENT header). */
 export type DocumentHeader = { link: string; filename: string };
 
-/** Sends an approved template message (business-initiated messages must use templates). */
-export async function sendWhatsAppTemplate(to: string, template: string, params: string[], doc?: DocumentHeader): Promise<SendResult> {
+/**
+ * Sends an approved template message (business-initiated messages must use templates).
+ * doc: the file for a DOCUMENT header; image: the picture URL for an IMAGE header.
+ */
+export async function sendWhatsAppTemplate(to: string, template: string, params: string[], doc?: DocumentHeader, image?: string): Promise<SendResult> {
   if (!whatsappConfigured()) return { ok: false, error: "WhatsApp API not configured", retry: false };
   const components: unknown[] = [];
   if (doc) components.push({ type: "header", parameters: [{ type: "document", document: { link: doc.link, filename: doc.filename } }] });
+  else if (image) components.push({ type: "header", parameters: [{ type: "image", image: { link: image } }] });
   if (params.length) components.push({ type: "body", parameters: params.map((text) => ({ type: "text", text })) });
   try {
     const res = await fetch(`${WA_API()}/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`, {
@@ -40,10 +44,11 @@ export async function sendWhatsAppTemplate(to: string, template: string, params:
       }),
       signal: AbortSignal.timeout(10_000),
     });
-    const json = (await res.json().catch(() => ({}))) as { messages?: { id: string }[]; error?: { message?: string } };
+    const json = (await res.json().catch(() => ({}))) as { messages?: { id: string }[]; error?: { message?: string; code?: number } };
     if (res.ok && json.messages?.[0]?.id) return { ok: true, id: json.messages[0].id };
     // 4xx = our request is wrong (template not approved, bad number): retrying won't help.
-    return { ok: false, error: (json.error?.message || `HTTP ${res.status}`).slice(0, 300), retry: res.status >= 500 || res.status === 429 };
+    const code = json.error?.code ? `(#${json.error.code}) ` : "";
+    return { ok: false, error: `${code}${json.error?.message || `HTTP ${res.status}`}`.slice(0, 300), retry: res.status >= 500 || res.status === 429 };
   } catch (err) {
     return { ok: false, error: (err as Error).message.slice(0, 300), retry: true };
   }
@@ -82,3 +87,6 @@ export async function sendEmail(to: string, subject: string, text: string, extra
     return { ok: false, error: (err as Error).message.slice(0, 300), retry: true };
   }
 }
+
+/** Meta's answer for a template that doesn't exist (yet) or isn't approved in this language. */
+export const templateMissing = (error: string) => /#132001|template name does not exist|does not exist in the translation/i.test(error);

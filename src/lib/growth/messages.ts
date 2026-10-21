@@ -29,6 +29,19 @@ export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lea
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
+/** Banner images in public/brand/banners, shown as the template's IMAGE header and on top of emails. */
+export type TemplateBanner = "offer" | "welcome" | "renewal" | "trial" | "comeback" | "diet" | "referral" | "thanks";
+
+export type TemplateDef = {
+  name: string;
+  category: TemplateCategory;
+  text: string;
+  /** IMAGE header: the banner sent above the text. */
+  header?: TemplateBanner;
+  /** The approved template this one replaces: used (text only) until Meta approves the new one. */
+  legacy?: string;
+};
+
 /** The quick-reply button on every Marketing template; tapping it opts the number out of promotions. */
 export const STOP_PROMOTIONS = "Stop promotions";
 
@@ -37,35 +50,38 @@ export const STOP_PROMOTIONS = "Stop promotions";
  * English). {{n}} are the params in order. Utility templates must stay about the customer's own
  * membership or request: promotional wording gets them re-categorised as Marketing by Meta.
  * Marketing templates carry the "Stop promotions" button and are never sent to numbers that tapped it.
+ * Every template also carries a "Call a coach" button (the number a person answers) and, for v3, the
+ * brand banner as an IMAGE header. Params are unchanged from the legacy versions, so a row queued for
+ * the old template sends with the new one as soon as Meta approves it.
  */
-export const TEMPLATES: Record<MessageKind, { name: string; category: TemplateCategory; text: string }> = {
-  "renew-7": { name: "rfc_renewal_7d", category: "UTILITY", text: "Hi {{1}}, your {{2}} membership at {{3}} ends on {{4}}. Renew in one tap to keep your spot: {{5}}" },
-  "renew-1": { name: "rfc_renewal_1d", category: "UTILITY", text: "Hi {{1}}, a reminder that your {{2}} membership at {{3}} ends on {{4}}. Renew now so your training isn't interrupted: {{5}}" },
-  "expired-3": { name: "rfc_membership_expired_v2", category: "UTILITY", text: "Hi {{1}}, your {{2}} membership at {{3}} ended on {{4}}. To renew the same plan, use your renewal link: {{5}}" },
-  welcome: { name: "rfc_welcome_v2", category: "UTILITY", text: "Welcome to {{3}}, {{1}}! Your {{2}} membership is active until {{4}}. Your member code is {{5}}. Keep it for renewals and referrals." },
-  "lead-0": { name: "rfc_trial_thanks", category: "UTILITY", text: "Hi {{1}}, thanks for contacting {{2}}! Your free trial session is ready. Reply with a time that suits you, or call {{3}}." },
-  "lead-2": { name: "rfc_trial_reminder_v2", category: "UTILITY", text: "Hi {{1}}, this is {{2}} about your free trial request. Your session isn't booked yet. Reply with a day and time that suits you and we'll confirm it." },
-  "lead-5": { name: "rfc_trial_last_v2", category: "UTILITY", text: "Hi {{1}}, we're closing your free trial request at {{2}} this week. To book it, reply with a day and time. Plan details for your reference: {{3}}" },
+export const TEMPLATES: Record<MessageKind, TemplateDef> = {
+  "renew-7": { name: "rfc_renewal_7d_v3", legacy: "rfc_renewal_7d", header: "renewal", category: "UTILITY", text: "⏰ *Membership reminder*\n\nHi {{1}}, your *{{2}}* membership at {{3}} ends on *{{4}}*.\n\nRenew in one tap to keep your spot and your progress:\n👉 {{5}}" },
+  "renew-1": { name: "rfc_renewal_1d_v3", legacy: "rfc_renewal_1d", header: "renewal", category: "UTILITY", text: "⚠️ *Your membership ends tomorrow*\n\nHi {{1}}, your *{{2}}* membership at {{3}} ends on *{{4}}*.\n\nRenew now so your training isn't interrupted:\n👉 {{5}}" },
+  "expired-3": { name: "rfc_membership_expired_v3", legacy: "rfc_membership_expired_v2", header: "renewal", category: "UTILITY", text: "Hi {{1}}, your *{{2}}* membership at {{3}} ended on *{{4}}*.\n\nTo renew the same plan, use your personal renewal link:\n👉 {{5}}" },
+  welcome: { name: "rfc_welcome_v3", legacy: "rfc_welcome_v2", header: "welcome", category: "UTILITY", text: "👑 *Welcome to {{3}}, {{1}}!*\n\nYour *{{2}}* membership is active until *{{4}}*.\n\n🎟️ Your member code: *{{5}}*\nKeep it for renewals and referrals." },
+  "lead-0": { name: "rfc_trial_thanks_v3", legacy: "rfc_trial_thanks", header: "trial", category: "UTILITY", text: "Hi {{1}}, thanks for contacting *{{2}}*! 🙌\n\nYour *free trial session* is ready: one workout with a trainer, no payment needed.\n\nReply with a time that suits you, or call {{3}}." },
+  "lead-2": { name: "rfc_trial_reminder_v3", legacy: "rfc_trial_reminder_v2", header: "trial", category: "UTILITY", text: "Hi {{1}}, this is *{{2}}* about your free trial request. ⏳\n\nYour session isn't booked yet. Reply with a day and time that suits you and we'll confirm it." },
+  "lead-5": { name: "rfc_trial_last_v3", legacy: "rfc_trial_last_v2", header: "trial", category: "UTILITY", text: "Hi {{1}}, we're closing your free trial request at *{{2}}* this week.\n\nTo book it, reply with a day and time.\n📋 Plan details for your reference: {{3}}" },
   // A visitor who picked a trial time on the website: confirmation, the morning of, and a new time if the desk marked them absent.
-  "trial-booked": { name: "rfc_trial_booked_v1", category: "UTILITY", text: "Hi {{1}}, your free trial at {{2}} is booked for {{3}}. Directions: {{4}}. To change the time, reply to this message." },
-  "trial-today": { name: "rfc_trial_today_v1", category: "UTILITY", text: "Hi {{1}}, see you today at {{2}} for your free trial at {{3}}. Bring sports shoes and a water bottle. Can't make it? Reply here and we'll move it." },
-  "trial-missed": { name: "rfc_trial_missed_v1", category: "UTILITY", text: "Hi {{1}}, we missed you at your free trial at {{2}}. Your trial is still open. Pick a new time here: {{3}}" },
+  "trial-booked": { name: "rfc_trial_booked_v3", legacy: "rfc_trial_booked_v1", header: "trial", category: "UTILITY", text: "✅ *Free trial booked*\n\nHi {{1}}, your free trial at *{{2}}* is booked for *{{3}}*.\n\n📍 Directions: {{4}}\n\nTo change the time, reply to this message." },
+  "trial-today": { name: "rfc_trial_today_v3", legacy: "rfc_trial_today_v1", header: "trial", category: "UTILITY", text: "🔥 *Today's the day, {{1}}!*\n\nSee you at *{{2}}* for your free trial at {{3}}.\n\n👟 Bring sports shoes and a water bottle. Can't make it? Reply here and we'll move it." },
+  "trial-missed": { name: "rfc_trial_missed_v3", legacy: "rfc_trial_missed_v1", header: "trial", category: "UTILITY", text: "Hi {{1}}, we missed you at your free trial at *{{2}}*. 😕\n\nYour trial is still open. Pick a new time here:\n👉 {{3}}" },
   // After the desk marks that they came: the plans the next day, and a last word a few days later.
-  "trial-join": { name: "rfc_trial_join_v1", category: "MARKETING", text: "Hi {{1}}, thanks for training with us at {{2}}! To keep going with a trainer by your side, choose your plan here: {{3}}" },
-  "trial-join-last": { name: "rfc_trial_join_last_v1", category: "MARKETING", text: "Hi {{1}}, the first week decides whether a new habit sticks. Your spot at {{2}} is ready. Plans and online joining: {{3}}" },
-  "trial-offer": { name: "rfc_trial_offer_v2", category: "MARKETING", text: "Hi {{1}}, your free trial session at {{2}} is still available: one workout with a trainer, no payment needed. Book it here: {{3}}" },
-  comeback: { name: "rfc_comeback_offer_v2", category: "MARKETING", text: "Hi {{1}}, it's been a month since your {{3}} plan at {{2}} ended. Your spot is still here. Restart whenever you're ready: {{4}}" },
-  "diet-received": { name: "rfc_diet_order_received", category: "UTILITY", text: "Hi {{1}}, we've received your payment for a personal diet chart from {{2}}. Your coach will prepare it and send it on WhatsApp within {{3}}." },
+  "trial-join": { name: "rfc_trial_join_v3", legacy: "rfc_trial_join_v1", header: "offer", category: "MARKETING", text: "💪 *That was a strong start, {{1}}!*\n\nThanks for training with us at {{2}}. Keep going with a trainer by your side and start building your dream physique.\n\n🏆 Choose your plan here: {{3}}" },
+  "trial-join-last": { name: "rfc_trial_join_last_v3", legacy: "rfc_trial_join_last_v1", header: "offer", category: "MARKETING", text: "Hi {{1}}, the first week decides whether a new habit sticks. 🔥\n\nYour spot at *{{2}}* is ready. Don't let Monday become \"next Monday\" 😉\n\n👉 Plans and online joining: {{3}}" },
+  "trial-offer": { name: "rfc_trial_offer_v3", legacy: "rfc_trial_offer_v2", header: "trial", category: "MARKETING", text: "🎟️ *Your FREE workout is still waiting, {{1}}!*\n\nYour free trial session at {{2}} is still available: one workout with a trainer, no payment needed.\n\n👉 Book it here: {{3}}" },
+  comeback: { name: "rfc_comeback_offer_v3", legacy: "rfc_comeback_offer_v2", header: "comeback", category: "MARKETING", text: "👀 *The gym misses you, {{1}}!*\n\nIt's been a month since your {{3}} plan at {{2}} ended. Your dumbbells have been asking about you, and your spot is still here.\n\n💪 Restart whenever you're ready: {{4}}" },
+  "diet-received": { name: "rfc_diet_order_received_v3", legacy: "rfc_diet_order_received", header: "diet", category: "UTILITY", text: "✅ *Payment received*\n\nHi {{1}}, we've received your payment for a personal diet chart from *{{2}}*.\n\nYour coach will prepare it and send it on WhatsApp within *{{3}}*." },
   // Template with a DOCUMENT header (the plan PDF); the body follows.
   "diet-plan-ready": { name: "rfc_diet_plan_ready", category: "UTILITY", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
   // An admin campaign to members, ex-members and imported contacts (Audience page).
-  "offer-broadcast": { name: "rfc_offer_broadcast_v1", category: "MARKETING", text: "Hi {{1}}, {{2}} has something for you: {{3}}. See details here: {{4}}" },
+  "offer-broadcast": { name: "rfc_offer_broadcast_v3", legacy: "rfc_offer_broadcast_v1", header: "offer", category: "MARKETING", text: "🔥 *WOW, {{1}}! Offer unlocked* 🔥\n\n{{2}} has something special for you:\n\n🎁 {{3}}\n\nGrab it before it's gone and start building your dream physique 💪\n\n👉 See details: {{4}}" },
   // After a customer's WhatsApp call ends (at most once a week per number).
-  "call-followup": { name: "rfc_call_followup_v1", category: "MARKETING", text: "Hi {{1}}, thanks for calling {{2}}! If we missed anything on the call, reply here. Plans, timings and free trial booking: {{3}}" },
+  "call-followup": { name: "rfc_call_followup_v3", legacy: "rfc_call_followup_v1", header: "welcome", category: "MARKETING", text: "Hi {{1}}, thanks for calling *{{2}}*! 📞\n\nIf we missed anything on the call, reply here.\n\n👉 Plans, timings and free trial booking: {{3}}" },
   // Once per person: a member about a month in, or a diet client a week after their plan arrived.
   // Everyone in those windows is asked (Google forbids asking only happy customers), nothing is offered for it.
-  "review-request": { name: "rfc_review_request_v1", category: "MARKETING", text: "Hi {{1}}, thank you for choosing {{2}}! If you have a minute, an honest Google review helps other people in Noida find us: {{3}}" },
-  "referral-bonus": { name: "rfc_referral_bonus_v2", category: "MARKETING", text: "Hi {{1}}, {{2}} joined {{3}} with your code! {{4}} bonus days have been added — your membership now runs until {{5}}." },
+  "review-request": { name: "rfc_review_request_v3", legacy: "rfc_review_request_v1", header: "thanks", category: "MARKETING", text: "🙏 *Thank you for choosing {{2}}, {{1}}!*\n\nIf you have a minute, an honest Google review helps other people in Noida find us. Good or bad, we read every one.\n\n⭐ {{3}}" },
+  "referral-bonus": { name: "rfc_referral_bonus_v3", legacy: "rfc_referral_bonus_v2", header: "referral", category: "MARKETING", text: "🎁 *Bonus days unlocked, {{1}}!*\n\n{{2}} joined {{3}} with your code. *{{4}} bonus days* have been added: your membership now runs until *{{5}}*.\n\nGains are better together 💪" },
 };
 
 /** Outbox kinds sent with a Marketing template: these respect "Stop promotions". */

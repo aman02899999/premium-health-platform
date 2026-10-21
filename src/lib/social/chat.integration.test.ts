@@ -122,7 +122,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
       expect(rows).toHaveLength(1);
       expect(rows[0].to_address).toBe("coach@example.com");
       expect(rows[0].subject).toBe("💬 WhatsApp from Pratibha");
-      expect(rows[0].body).toContain('"Kal subah trial le sakta hu?"');
+      expect(rows[0].body).toContain("“Kal subah trial le sakta hu?”");
       expect(rows[0].body).toContain("/admin/chats");
     } finally {
       delete process.env.COACH_EMAIL;
@@ -151,7 +151,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     ]);
     sent.length = 0;
     await dispatch(5);
-    expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_renewal_7d"]);
+    expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_renewal_7d_v3"]); // queued under the old name, sent with the current one
     const { rows } = await pool.query(`select kind, status, last_error from public.message_outbox where to_address = $1 order by kind`, [PEER]);
     expect(rows).toEqual([
       { kind: "comeback", status: "cancelled", last_error: "Opted out of promotions" },
@@ -175,7 +175,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
       expect(await handleCall(call("c1"))).toBe("duplicate");
       expect(await handleCall(call("c2", "connect"))).toBe("logged");
       expect(await handleCall(call("c2"))).toBe("queued");
-      expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_call_followup_v1"]);
+      expect(sent.map((s) => (s.template as { name: string }).name)).toEqual(["rfc_call_followup_v3"]);
       expect(await handleCall(call("c3"))).toBe("limited"); // a second call the same week
       await pool.query(`update public.message_outbox set created_at = now() - interval '8 days' where kind = 'call-followup'`);
       await pool.query(`insert into public.whatsapp_optouts (phone) values ($1)`, [PEER]);
@@ -277,7 +277,7 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     expect(await tools.sendQuickReply(PEER, "trial7", "coach@x.in")).toMatchObject({ ok: false, status: 409 });
     sent.length = 0;
     expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toEqual({ ok: true });
-    expect(sent[0]).toMatchObject({ type: "template", template: { name: "rfc_call_followup_v1" } });
+    expect(sent[0]).toMatchObject({ type: "template", template: { name: "rfc_call_followup_v3" } });
     await tools.setOptOut(PEER, true);
     expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toMatchObject({ ok: false });
     const [summary] = await chat.listChats();

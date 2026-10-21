@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { CTA_RE } from "./nurture";
+import { splitCta } from "./email-html";
 import { isSunday, weeklyNewsletter, weeklyPicks } from "./newsletter";
 
 const lib = Array.from({ length: 15 }, (_, i) => ({ slug: `a${i}`, title: `Article ${i}`, excerpt: `Excerpt ${i} `.repeat(30) }));
@@ -28,7 +28,7 @@ describe("weekly newsletter", () => {
     expect(d.subject).toMatch(/^Indian Health Weekly: Article \d+$/);
     expect(d.body.match(/\/health\/blog\/a\d+\?utm_source=newsletter&utm_medium=email&utm_campaign=weekly-2026-10-18/g)).toHaveLength(3);
     expect(d.body).toContain("not medical advice");
-    expect(CTA_RE.test(d.body)).toBe(true);
+    expect(splitCta(d.body).cta).not.toBeNull();
     expect(d.body.length).toBeLessThanOrEqual(2000); // message_outbox.body limit
   });
 });
