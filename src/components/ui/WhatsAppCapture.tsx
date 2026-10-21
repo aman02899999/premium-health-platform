@@ -143,7 +143,7 @@ export function WhatsAppCapture({ whatsapp }: { whatsapp: string }) {
         </div>
 
         {error && <p className="mt-3 text-sm text-red-300">{error}</p>}
-        <button type="submit" disabled={busy} className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[#25d366] py-3.5 font-bold text-white disabled:opacity-60">
+        <button type="submit" disabled={busy} className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[#25d366] py-3.5 font-bold text-[#0b141a] disabled:opacity-60">
           {busy ? <Loader2 className="h-5 w-5 animate-spin" /> : <MessageCircle className="h-5 w-5" />} Continue to WhatsApp
         </button>
         <button

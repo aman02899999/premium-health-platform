@@ -58,7 +58,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
           <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2 text-sm">
             <Printer className="h-4 w-4" /> Print
           </button>
-          <a href={`https://wa.me/?text=${encodeURIComponent(planToText(plan, gymName))}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-xl bg-[#25d366] px-4 py-2 text-sm font-bold text-white">
+          <a href={`https://wa.me/?text=${encodeURIComponent(planToText(plan, gymName))}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-xl bg-[#25d366] px-4 py-2 text-sm font-bold text-[#0b141a]">
             <WhatsAppIcon className="h-4 w-4" /> Share
           </a>
           {saved && (

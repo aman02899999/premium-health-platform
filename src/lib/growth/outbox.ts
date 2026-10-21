@@ -2,10 +2,11 @@ import "server-only";
 import { pool } from "@/health/db";
 import { SITE_URL } from "@/lib/site";
 import { getContent } from "@/lib/content/store";
-import { emailHtml, emailText } from "./email-html";
+import { emailHtml, emailText, type EmailLinks } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
 import { MARKETING_KINDS, isMarketingKind, type Draft } from "./messages";
-import { emailConfigured, sendEmail, sendWhatsAppTemplate, whatsappConfigured, type SendResult } from "./providers";
+import { emailConfigured, sendEmail, whatsappConfigured, type SendResult } from "./providers";
+import { sendKind } from "./wa-templates";
 import { getFile, signedUrl } from "./storage";
 
 // public.message_outbox: every automated message is recorded here before it is sent.
@@ -67,13 +68,31 @@ export async function cancelPending(kindPrefix: string, refId: string): Promise<
 
 type Pending = { id: string; channel: "whatsapp" | "email"; to_address: string; to_name: string; kind: string; body: string; template: string | null; params: string[]; attempts: number; subject: string | null; attachment: string | null };
 
-/** The email footer: the number people call or WhatsApp to talk to a person (the Business app line). */
-async function emailFooter(): Promise<string> {
-  const phone = await getContent()
-    .then((c) => c.business?.phone ?? "")
-    .catch(() => "");
-  return `Royal Fitness Club · Gejha, Sector 93, Noida${phone ? ` · Call / WhatsApp ${phone}` : ""}`;
+/** What every email shows around the body: the footer line, quick links and the published rating. */
+async function emailContext(): Promise<{ footer: string; links: EmailLinks; trust: string }> {
+  const b = await getContent()
+    .then((c) => c.business)
+    .catch(() => undefined);
+  const phone = b?.phone ?? "";
+  // The number a person answers (calls and manual chats); the API number only sends templates.
+  const talk = phone.replace(/\D/g, "").replace(/^(\d{10})$/, "91$1");
+  return {
+    footer: `Royal Fitness Club · Gejha, Sector 93, Noida${phone ? ` · Call / WhatsApp ${phone}` : ""}`,
+    links: {
+      site: SITE_URL,
+      join: `${SITE_URL}/membership`,
+      trial: `${SITE_URL}/contact#trial`,
+      whatsapp: talk ? `https://wa.me/${talk}` : undefined,
+      directions: b?.googleMapsUrl || `${SITE_URL}/contact`,
+      instagram: b?.instagram ? `https://www.instagram.com/${b.instagram.replace(/^@/, "")}/` : undefined,
+    },
+    trust: b?.rating?.count ? `★ ${b.rating.value} · ${b.rating.count}+ ratings on ${b.rating.source} · Trainers on the floor · Secure online payments` : "",
+  };
 }
+
+/** Coach and admin alerts get the compact layout; customer mail the full one. */
+const INTERNAL_KIND = /^(chat-alert|admin-|coach-|review-pending)/;
+
 const fileName = (p: string) => p.split("/").pop() || "plan.pdf";
 
 async function sendOne(m: Pending): Promise<SendResult> {
@@ -85,16 +104,25 @@ async function sendOne(m: Pending): Promise<SendResult> {
       if (!link) return { ok: false, error: "No public link for the attachment (storage not configured)", retry: false };
       doc = { link, filename: fileName(m.attachment) };
     }
-    return sendWhatsAppTemplate(m.to_address, m.template ?? "", m.params, doc);
+    return sendKind(m.to_address, m.kind, m.template ?? "", m.params, doc);
   }
   // Marketing emails carry an unsubscribe link and the one-click List-Unsubscribe headers.
   const marketing = m.kind.startsWith("nurture-");
   const unsub = marketing ? unsubscribeUrl(m.to_address) : undefined;
   const attachments = m.attachment ? [{ filename: fileName(m.attachment), content: (await getFile(m.attachment)).toString("base64") }] : undefined;
-  const FOOTER = await emailFooter();
+  const ctx = await emailContext();
+  const FOOTER = ctx.footer;
   return sendEmail(m.to_address, m.subject || "Royal Fitness Club", emailText(m.body, `${FOOTER}${unsub ? `\nUnsubscribe: ${unsub}` : ""}`), {
-    // Order, plan and booking emails are written as a plain letter so Gmail keeps them in Primary.
-    html: emailHtml(m.body, { brand: "Royal Fitness Club", footer: `${FOOTER} · ${SITE_URL.replace(/^https?:\/\//, "")}`, unsubscribeUrl: unsub, style: marketing ? "newsletter" : "personal" }),
+    html: emailHtml(m.body, {
+      brand: "Royal Fitness Club",
+      footer: `${FOOTER} · ${SITE_URL.replace(/^https?:\/\//, "")}`,
+      unsubscribeUrl: unsub,
+      style: marketing ? "newsletter" : INTERNAL_KIND.test(m.kind) ? "internal" : "personal",
+      siteUrl: SITE_URL,
+      kind: m.kind,
+      links: ctx.links,
+      trust: ctx.trust,
+    }),
     attachments,
     headers: unsub ? { "List-Unsubscribe": `<${unsub}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" } : undefined,
     replyTo: process.env.EMAIL_REPLY_TO || undefined,

@@ -17,7 +17,7 @@ export function Logo({ name, compact = false, textClassName = "" }: { name: stri
     <span className="flex items-center gap-2.5">
       <BrandMark className="h-11" />
       <span className={`leading-none ${textClassName}`}>
-        <span className="font-display block text-xl tracking-wider text-white">{first}</span>
+        <span className="font-display block text-xl tracking-wider text-white">{first}</span>{" "}
         {!compact && <span className="block text-[10px] font-semibold uppercase tracking-[0.35em] text-brand">{rest.join(" ")}</span>}
       </span>
     </span>

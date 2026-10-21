@@ -83,10 +83,10 @@ describe("scheduled messages", () => {
     expect(a.dedupeKey).toBe(b.dedupeKey);
     expect(renewed.dedupeKey).not.toBe(a.dedupeKey);
     expect(a.to).toBe("919876543210");
-    expect(a.body).toBe("Hi Aman, your Monthly membership at Royal Fitness Club ends on 15 Oct 2026. Renew in one tap to keep your spot: https://example.in/join?renew=tok");
+    expect(a.body).toBe("⏰ *Membership reminder*\n\nHi Aman, your *Monthly* membership at Royal Fitness Club ends on *15 Oct 2026*.\n\nRenew in one tap to keep your spot and your progress:\n👉 https://example.in/join?renew=tok");
     expect(a.params).toHaveLength(5);
     // The last-day reminder names the date, so it reads right on either day of its window.
-    expect(renewalMessage("renew-1", member("2026-10-15"), biz).body).toContain("ends on 15 Oct 2026");
+    expect(renewalMessage("renew-1", member("2026-10-15"), biz).body).toContain("ends on *15 Oct 2026*");
   });
   it("lead follow-ups on day 0, 2 and 5 while the lead is open", () => {
     const at = "2026-10-08T04:00:00Z";
@@ -157,18 +157,23 @@ describe("WhatsApp template bodies submitted to Meta", () => {
   });
 });
 
-describe("WhatsApp template set (v2)", () => {
-  it("sends the _v2 names, with as many params as the template has variables", () => {
+describe("WhatsApp template set (v3)", () => {
+  it("sends the _v3 names with the legacy name to fall back on, and as many params as the template has variables", () => {
     const vars = (text: string) => new Set(text.match(/\{\{\d+\}\}/g)).size;
     const m = { ...member("2026-10-15"), renewToken: "tok" };
     const at = "2026-10-08T04:00:00Z";
     const drafts = [...dueMessages("2026-11-14", [m], [], biz), ...dueMessages("2026-10-22", [], [lead(at)], biz), ...dueMessages("2026-10-18", [m], [], biz), ...dueMessages("2026-10-13", [], [lead(at)], biz)];
-    expect(drafts.map((d) => d.template)).toEqual(["rfc_comeback_offer_v2", "rfc_trial_offer_v2", "rfc_membership_expired_v2", "rfc_trial_last_v2"]);
+    expect(drafts.map((d) => d.template)).toEqual(["rfc_comeback_offer_v3", "rfc_trial_offer_v3", "rfc_membership_expired_v3", "rfc_trial_last_v3"]);
     for (const d of drafts) expect(d.params, d.template).toHaveLength(vars(TEMPLATES[d.kind as keyof typeof TEMPLATES].text));
-    expect(drafts[0].body).toBe("Hi Aman, it's been a month since your Monthly plan at Royal Fitness Club ended. Your spot is still here. Restart whenever you're ready: https://example.in/join?renew=tok");
+    expect(drafts[0].body).toContain("It's been a month since your Monthly plan at Royal Fitness Club ended.");
+    expect(drafts[0].body).toContain("Restart whenever you're ready: https://example.in/join?renew=tok");
     expect(drafts[1].params[2]).toBe("https://example.in/contact#trial");
-    expect(TEMPLATES.welcome.name).toBe("rfc_welcome_v2");
-    expect(TEMPLATES["lead-2"].name).toBe("rfc_trial_reminder_v2");
+    expect(TEMPLATES.welcome).toMatchObject({ name: "rfc_welcome_v3", legacy: "rfc_welcome_v2", header: "welcome" });
+    expect(TEMPLATES["lead-2"]).toMatchObject({ name: "rfc_trial_reminder_v3", legacy: "rfc_trial_reminder_v2" });
+    // The plan PDF is the header there, so that one keeps its document template.
+    expect(TEMPLATES["diet-plan-ready"].header).toBeUndefined();
+    // A v3 template keeps the legacy one's variables, so queued rows can send with either.
+    for (const t of Object.values(TEMPLATES)) expect(t.text.length, t.name).toBeLessThan(1024);
   });
   it("promotions are Marketing; reminders about the customer's own membership stay Utility", () => {
     expect(["referral-bonus", "trial-offer", "comeback"].every(isMarketingKind)).toBe(true);

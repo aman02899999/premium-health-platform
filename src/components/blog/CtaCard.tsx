@@ -18,7 +18,7 @@ export function CtaCard({ whatsapp, phone }: { whatsapp: string; phone: string }
         <Link href="/contact#trial" className="btn-brand rounded-full px-6 py-3 font-bold no-underline">
           Book Free Trial
         </Link>
-        <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-3 font-bold text-white no-underline">
+        <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-3 font-bold text-[#0b141a] no-underline">
           <WhatsAppIcon className="h-5 w-5" /> WhatsApp
         </a>
         <a href={phone} className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white no-underline">

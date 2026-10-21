@@ -129,9 +129,10 @@ export function PostCard({ post, index = 0 }: { post: BlogPost; index?: number }
   );
 }
 
-export function RatingBadge({ value, count, source, href }: { value: number; count: number; source: string; href: string }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="glass inline-flex items-center gap-3 rounded-full py-2 pl-2 pr-5 hover:ring-1 hover:ring-brand/50">
+/** The published rating, named for where it comes from. It links only when the link shows that same rating. */
+export function RatingBadge({ value, count, source, href }: { value: number; count: number; source: string; href?: string }) {
+  const body = (
+    <>
       <span className="flex h-9 items-center rounded-full bg-brand px-3 font-bold text-white">{value}</span>
       <span className="flex flex-col leading-tight">
         <span className="flex">
@@ -140,9 +141,17 @@ export function RatingBadge({ value, count, source, href }: { value: number; cou
           ))}
         </span>
         <span className="text-xs text-white/70">
-          {count}+ reviews on {source}
+          {count}+ ratings on {source}
         </span>
       </span>
+    </>
+  );
+  const cls = "glass inline-flex items-center gap-3 rounded-full py-2 pl-2 pr-5";
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={`${cls} hover:ring-1 hover:ring-brand/50`}>
+      {body}
     </a>
+  ) : (
+    <span className={cls}>{body}</span>
   );
 }

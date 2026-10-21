@@ -24,7 +24,7 @@ describe("campaign messages", () => {
   const c = { id: "c1", name: "Diwali Comeback!", channel: "whatsapp" as const, offer: "3 months gym\n+ diet plan for ₹4,000", link: "membership" as const, subject: "" };
   it("WhatsApp: the approved template with one-line params and a tagged link, once per person", () => {
     const d = campaignDraft(c, { name: "Rahul Verma", phone: "9876543210", email: null }, biz)!;
-    expect(d).toMatchObject({ channel: "whatsapp", to: "919876543210", kind: "offer-broadcast", template: "rfc_offer_broadcast_v1", dedupeKey: "campaign:c1:919876543210" });
+    expect(d).toMatchObject({ channel: "whatsapp", to: "919876543210", kind: "offer-broadcast", template: "rfc_offer_broadcast_v3", dedupeKey: "campaign:c1:919876543210" });
     // The link in the message is the person's tracked link; it redirects to the tagged page.
     expect(d.params.slice(0, 3)).toEqual(["Rahul", "Royal Fitness Club", "3 months gym + diet plan for ₹4,000"]);
     expect(d.params[3]).toMatch(/^https:\/\/x\.in\/r\/[0-9A-Za-z]{9}$/);
@@ -45,7 +45,7 @@ describe("campaign messages", () => {
     const live = { ...biz, phone: "+91 88518 30081" };
     const w = campaignDraft(c, { name: "Rahul Verma", phone: "9876543210", email: null }, live)!;
     expect(w.params[2]).toBe("3 months gym + diet plan for ₹4,000. Call or WhatsApp +91 88518 30081");
-    expect(w.body).toContain("Call or WhatsApp +91 88518 30081. See details here:");
+    expect(w.body).toContain("Call or WhatsApp +91 88518 30081\n\nGrab it before it's gone");
     const e = campaignDraft({ ...c, channel: "email" }, { name: "Neha", phone: null, email: "neha@x.in" }, live)!;
     expect(e.body).toContain("Prefer to talk? Call or WhatsApp +91 88518 30081: https://wa.me/918851830081?text=");
   });

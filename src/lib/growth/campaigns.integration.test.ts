@@ -83,7 +83,7 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     const r = await cm.createCampaign(req, "coach@x.in", TODAY);
     expect(r).toMatchObject({ ok: true, audience: 3, queued: 1, skipped: { optedOut: 1, recent: 1, missing: 0 } });
     await cm.sendBatch(50);
-    expect(sent).toEqual([{ to: "919000000021", template: "rfc_offer_broadcast_v1" }]);
+    expect(sent).toEqual([{ to: "919000000021", template: "rfc_offer_broadcast_v3" }]);
     const [row] = await cm.listCampaigns();
     expect(row).toMatchObject({ name: "Diwali comeback", sent: 1, pending: 0, skipped: 2 });
 

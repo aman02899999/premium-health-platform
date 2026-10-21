@@ -2,7 +2,7 @@
 // name, mobile, email), the segments, the messages a campaign sends, and the customer list for
 // Meta ads. The database side is in campaigns.ts.
 import { mapHeader, parsePhone, MAX_ROWS } from "./member-import";
-import type { Draft } from "./messages";
+import { TEMPLATES, type Draft } from "./messages";
 import { liveChatUrl } from "@/lib/site";
 import { linkCode, trackedUrl } from "./tracking-core";
 
@@ -91,6 +91,16 @@ const first = (name: string) => name.trim().split(/\s+/)[0] || "";
 
 export type CampaignInput = { id: string; name: string; channel: "whatsapp" | "email"; offer: string; link: LinkId; subject: string };
 
+/** Meme cards for offer emails, in our own words; one per campaign so a whole send matches. */
+export const CAMPAIGN_MEMES: [string, string][] = [
+  ["Me: I'll start from Monday", "Also me, 6 Mondays later 😐"],
+  ["Me before the offer: \"too expensive\"", "Me after the offer: no excuses left 😎"],
+  ["Buying a gym membership in January", "Buying it at offer price today 😎"],
+  ["Nobody:", "Me after week 1: checking my biceps in every mirror"],
+  ["Rest day?", "Coach: it's leg day 🦵"],
+];
+const memeIndex = (id: string) => [...id].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) >>> 0, 7) % CAMPAIGN_MEMES.length;
+
 /** One message per recipient, deduped per campaign so a re-run never sends twice. */
 export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: string; siteUrl: string; coach: string; phone?: string }): Draft | null {
   const target = campaignUrl(biz.siteUrl, c.link, c.name, c.channel);
@@ -111,8 +121,8 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
       to: `91${r.phone}`,
       toName: r.name,
       kind: "offer-broadcast",
-      body: `Hi ${params[0]}, ${biz.name} has something for you: ${params[2]}. See details here: ${url}`,
-      template: "rfc_offer_broadcast_v1",
+      body: TEMPLATES["offer-broadcast"].text.replace(/\{\{(\d)\}\}/g, (_, n) => params[Number(n) - 1] ?? ""),
+      template: TEMPLATES["offer-broadcast"].name,
       params,
       dedupeKey: `campaign:${c.id}:91${r.phone}`,
       link,
@@ -127,8 +137,17 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
     // "nurture-" emails carry the unsubscribe link and headers, and stop after an unsubscribe.
     kind: "nurture-campaign",
     subject: (c.subject.trim() || c.name).slice(0, 120),
-    // The CTA has to be the last line: that's where the email builder turns it into a button.
-    body: `Hi${hi ? ` ${hi}` : ""},\n\n${c.offer.trim()}${biz.phone ? `\n\nPrefer to talk? Call or WhatsApp ${biz.phone}: ${liveChatUrl(biz.phone, `Hi, I'd like the offer: ${c.name}`)}` : ""}\n\n— ${biz.coach}, ${biz.name}\n[[CTA:${LINKS[c.link].label}|${url}]]`,
+    // The button goes right under the offer, so it shows without scrolling on a phone.
+    body: [
+      `Hi${hi ? ` ${hi}` : ""},`,
+      `🔥 WOW, this one is for you. ${biz.name} just unlocked something special:`,
+      c.offer.trim(),
+      `[[CTA:${LINKS[c.link].label}|${url}]]`,
+      `[[MEME:${CAMPAIGN_MEMES[memeIndex(c.id)][0]}|${CAMPAIGN_MEMES[memeIndex(c.id)][1]}]]`,
+      `Your dream physique won't build itself, but a coach by your side makes it a lot easier. Grab it before it's gone.`,
+      ...(biz.phone ? [`Prefer to talk? Call or WhatsApp ${biz.phone}: ${liveChatUrl(biz.phone, `Hi, I'd like the offer: ${c.name}`)}`] : []),
+      `— ${biz.coach}, ${biz.name}`,
+    ].join("\n\n"),
     template: "",
     params: [],
     dedupeKey: `campaign:${c.id}:${r.email.toLowerCase()}`,

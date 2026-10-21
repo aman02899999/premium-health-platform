@@ -41,7 +41,7 @@ export function PersonalTraining({ business }: { business: Business }) {
             ))}
           </ul>
           <div className="mt-6 grid grid-cols-2 gap-2">
-            <a href={whatsappHref(business, `Hi ${business.name}, I'd like to know about ${p.name} personal training.`)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-full bg-[#25d366] py-3 text-sm font-bold text-white">
+            <a href={whatsappHref(business, `Hi ${business.name}, I'd like to know about ${p.name} personal training.`)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 rounded-full bg-[#25d366] py-3 text-sm font-bold text-[#0b141a]">
               <WhatsAppIcon className="h-4 w-4" /> WhatsApp
             </a>
             <a href={telHref(business.phone)} className="flex items-center justify-center gap-2 rounded-full border border-white/20 py-3 text-sm font-bold text-white">

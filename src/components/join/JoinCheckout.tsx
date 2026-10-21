@@ -124,7 +124,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
         )}
         <p className="rounded-xl bg-white/5 px-4 py-3 font-mono text-sm text-white/80">Payment ID: {receipt.paymentId}</p>
         <p className="text-sm text-white/55">Show this screen at the front desk, or send it to us on WhatsApp so we can get your first session ready.</p>
-        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+        <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-[#0b141a]">
           Send confirmation on WhatsApp
         </a>
       </div>

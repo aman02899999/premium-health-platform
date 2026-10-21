@@ -12,7 +12,7 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
   return pageMeta(c, {
-    title: `About ${c.business.name} — Gym in Gejha, Sector 93 Noida`,
+    title: "About Us — Gym in Gejha, Sector 93 Noida",
     description: `${c.business.name} has served Gejha and Sector 93, Noida since ${c.business.foundedYear}. Meet the team and see what makes our gym different.`,
     path: "/about",
   });
@@ -43,7 +43,7 @@ export default async function AboutPage() {
           {[
             { v: years, s: "+", l: "Years serving Noida" },
             { v: b.rating.value, s: "★", l: "Average rating" },
-            { v: b.rating.count, s: "+", l: "Reviews" },
+            { v: b.rating.count, s: "+", l: `Ratings on ${b.rating.source}` },
             { v: c.programs.length, s: "", l: "Programs" },
           ].map((x) => (
             <div key={x.l} className="glass brand-border rounded-3xl p-6 text-center">

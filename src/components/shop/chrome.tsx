@@ -33,7 +33,7 @@ export function ShopHeader({ storeName, announcement, categories }: { storeName:
           <button type="button" onClick={() => setOpen(true)} className="rounded-lg p-2 text-white/80 lg:hidden" aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </button>
-          <Link href="/shop" className="flex items-center gap-2" aria-label={`${storeName} home`}>
+          <Link href="/shop" className="flex items-center gap-2" aria-label={storeName}>
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-300 to-amber-600 text-black shadow-lg shadow-amber-500/30">
               <Crown className="h-5 w-5" />
             </span>

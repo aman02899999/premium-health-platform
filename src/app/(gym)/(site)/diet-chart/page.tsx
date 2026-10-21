@@ -63,7 +63,7 @@ export default async function DietChartPage({ searchParams }: { searchParams: Pr
         ) : (
           <div className="glass brand-border space-y-4 rounded-3xl p-8 text-center">
             <p className="text-white/80">Online ordering is being set up. Message us on WhatsApp to order your personal diet chart.</p>
-            <a href={whatsappHref(b, `Hi ${b.name}, I'd like a personal diet chart.`)} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+            <a href={whatsappHref(b, `Hi ${b.name}, I'd like a personal diet chart.`)} target="_blank" rel="noopener noreferrer" className="inline-flex rounded-full bg-[#25d366] px-6 py-3 font-bold text-[#0b141a]">
               WhatsApp us
             </a>
           </div>

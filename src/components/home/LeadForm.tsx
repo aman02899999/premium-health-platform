@@ -76,7 +76,7 @@ export function LeadForm({ whatsapp, gymName, source = "website", hours = [], ad
               <a href={calendarLink(booked, gymName, address)} target="_blank" rel="noopener noreferrer" className="btn-brand inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold">
                 <CalendarPlus className="h-5 w-5" /> Add to calendar
               </a>
-              <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+              <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-[#0b141a]">
                 <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
               </a>
             </div>
@@ -85,7 +85,7 @@ export function LeadForm({ whatsapp, gymName, source = "website", hours = [], ad
           <>
             <h3 className="font-display mt-5 text-3xl text-white">You&apos;re booked in!</h3>
             <p className="mt-3 text-white/70">We&apos;ll call you shortly to fix your trial time. Want it faster? Send the same details on WhatsApp.</p>
-            <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-white">
+            <a href={waLink} target="_blank" rel="noopener noreferrer" data-no-capture className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#25d366] px-6 py-3 font-bold text-[#0b141a]">
               <WhatsAppIcon className="h-5 w-5" /> Confirm on WhatsApp
             </a>
           </>

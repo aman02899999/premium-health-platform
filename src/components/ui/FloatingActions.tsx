@@ -32,7 +32,7 @@ export function FloatingActions({ whatsapp, phone }: { whatsapp: string; phone: 
           <a href={phone} className="flex items-center justify-center gap-1.5 rounded-2xl bg-white/[.06] text-sm font-bold text-white ring-1 ring-white/10 active:scale-[.97]">
             <Phone className="h-4.5 w-4.5" /> Call
           </a>
-          <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 rounded-2xl bg-[#25d366] text-sm font-bold text-white active:scale-[.97]">
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 rounded-2xl bg-[#25d366] text-sm font-bold text-[#0b141a] active:scale-[.97]">
             <WhatsAppIcon className="h-5 w-5" /> WhatsApp
           </a>
           <Link href="/contact#trial" className="btn-brand flex items-center justify-center gap-1.5 rounded-2xl text-sm font-bold active:scale-[.97]">
@@ -56,7 +56,7 @@ export function FloatingActions({ whatsapp, phone }: { whatsapp: string; phone: 
           href={whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="pulse-ring flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-white shadow-xl transition-transform hover:scale-110"
+          className="pulse-ring flex h-14 w-14 items-center justify-center rounded-full bg-[#25d366] text-[#0b141a] shadow-xl transition-transform hover:scale-110"
           aria-label="Chat on WhatsApp"
         >
           <WhatsAppIcon className="h-7 w-7" />
