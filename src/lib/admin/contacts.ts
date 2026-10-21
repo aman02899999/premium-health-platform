@@ -23,6 +23,7 @@ const PEOPLE = `
     union all select o.phone, o.email, o.name, o.paid_at, 'customer', null, null from public.diet_orders o where o.status = 'paid'
     union all select o.phone, o.email, o.name, o.paid_at, 'customer', null, null from public.shop_orders o where o.status = 'paid'
     union all select o.phone, o.email, o.name, o.paid_at, 'customer', null, null from public.book_orders o where o.status = 'paid'
+    union all select o.phone, o.email, o.name, o.paid_at, 'customer', null, null from public.payment_requests o where o.status = 'paid'
   ),
   norm as (
     select case when d ~ '^(91|0)?[6-9][0-9]{9}$' then right(d, 10) end as phone,

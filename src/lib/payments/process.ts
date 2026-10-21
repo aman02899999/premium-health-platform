@@ -5,6 +5,7 @@ import { afterDietPaid, afterMembershipPaid } from "@/lib/growth/hooks";
 import { markDietFailed } from "@/lib/growth/diet-orders";
 import { afterShopPaid } from "@/lib/shop/paid";
 import { markShopFailed } from "@/lib/shop/store";
+import { markRequestPaid } from "./requests";
 import { claimEvent, findOrder, finishEvent, recordDispute, recordRefund, type Outcome } from "./ledger";
 import { captureProblem, isDoublePayment, type OrderKind, type RazorpayEvent } from "./webhook-event";
 
@@ -31,6 +32,9 @@ export async function applyCapturedPayment(razorpayOrderId: string, paymentId: s
       break;
     case "shop":
       await afterShopPaid(razorpayOrderId, paymentId);
+      break;
+    case "request":
+      await markRequestPaid(razorpayOrderId, paymentId);
       break;
   }
   return order.kind;

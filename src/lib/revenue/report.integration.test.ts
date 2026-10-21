@@ -20,7 +20,7 @@ describe.skipIf(!url)("revenue report", () => {
     store = await import("@/lib/attribution-store");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.leads, public.membership_orders, public.diet_orders, public.shop_orders, public.book_orders cascade");
+    await pool.query("truncate public.leads, public.membership_orders, public.diet_orders, public.shop_orders, public.book_orders, public.payment_requests cascade");
   });
   afterAll(async () => {
     await pool.end();

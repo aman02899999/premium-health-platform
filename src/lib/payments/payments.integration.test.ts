@@ -30,7 +30,7 @@ describe.skipIf(!url)("Razorpay payments on a real database", () => {
   });
   beforeEach(async () => {
     await pool.query(
-      "truncate public.payment_events, public.referral_rewards, public.message_outbox, public.members, public.membership_orders, public.book_orders, public.diet_orders, public.shop_orders, public.shop_products cascade",
+      "truncate public.payment_events, public.referral_rewards, public.message_outbox, public.members, public.membership_orders, public.book_orders, public.payment_requests, public.diet_orders, public.shop_orders, public.shop_products cascade",
     );
   });
   afterEach(() => {

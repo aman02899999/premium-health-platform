@@ -13,7 +13,7 @@ export type DigestData = {
   uncontacted?: number;
   /** Mondays: the last 30 days, enquiry to member, by source. */
   funnel?: FunnelRow[];
-  payments: { kind: "Membership" | "Diet plan" | "Supplements" | "Book"; name: string; rupees: number; what: string }[];
+  payments: { kind: "Membership" | "Diet plan" | "Supplements" | "Book" | "Payment link"; name: string; rupees: number; what: string }[];
   plansToReview: { name: string; plan: string }[];
   clientUpdates: number;
   unanswered: { channel: string; name: string; text: string }[];

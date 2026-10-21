@@ -249,6 +249,8 @@ export async function listCampaigns(limit = 50): Promise<CampaignRow[]> {
        select 's' || id, phone, lower(email), total * 100 - refunded_paise, paid_at from public.shop_orders where status = 'paid' and paid_at is not null
        union all
        select 'b' || id, right(regexp_replace(phone, '\\D', '', 'g'), 10), lower(email), amount_paise - refunded_paise, paid_at from public.book_orders where status = 'paid' and paid_at is not null
+       union all
+       select 'r' || id, phone, lower(email), amount_paise - refunded_paise, paid_at from public.payment_requests where status = 'paid' and paid_at is not null
      )
      select c.*, to_char(c.next_run, 'YYYY-MM-DD') as next_run_s, coalesce(o.sent, 0)::int as sent, coalesce(o.failed, 0)::int as failed, coalesce(o.pending, 0)::int as pending, coalesce(o.cancelled, 0)::int as cancelled,
             coalesce(o.delivered, 0)::int as delivered, coalesce(o.read, 0)::int as read, coalesce(o.clicked, 0)::int as clicked, coalesce(o.undelivered, 0)::int as undelivered,

@@ -8,7 +8,7 @@ import { addDays, daysBetween, isIsoDate } from "@/lib/growth/dates";
 
 export type Period = { from: string; to: string }; // ISO dates (IST), inclusive
 
-export type LineRevenue = { line: "membership" | "diet" | "shop" | "library"; label: string; orders: number; grossPaise: number; refundedPaise: number; netPaise: number };
+export type LineRevenue = { line: "membership" | "diet" | "shop" | "library" | "request"; label: string; orders: number; grossPaise: number; refundedPaise: number; netPaise: number };
 export type ChannelRow = { key: string; leads: number; orders: number; netPaise: number };
 
 export type RevenueReport = {
@@ -25,14 +25,15 @@ export type RevenueReport = {
   unavailable: string[];
 };
 
-const LABELS: Record<LineRevenue["line"], string> = { membership: "Memberships", diet: "Diet plans", shop: "Supplement store", library: "Book library" };
+const LABELS: Record<LineRevenue["line"], string> = { membership: "Memberships", diet: "Diet plans", shop: "Supplement store", library: "Book library", request: "WhatsApp payment links" };
 
 // Every paid order in one shape. Store totals are whole rupees; phones normalised to 10 digits.
 const ORDERS = `
   select 'membership' as line, id, status, amount_paise::bigint as amount, refunded_paise::bigint as refunded, created_at, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10) as phone, attribution from public.membership_orders
   union all select 'diet', id, status, amount_paise, refunded_paise, created_at, paid_at, phone, attribution from public.diet_orders
   union all select 'shop', id, status, total::bigint * 100, refunded_paise, created_at, paid_at, phone, attribution from public.shop_orders
-  union all select 'library', id, status, amount_paise, refunded_paise, created_at, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10), attribution from public.book_orders`;
+  union all select 'library', id, status, amount_paise, refunded_paise, created_at, paid_at, right(regexp_replace(phone, '\\D', '', 'g'), 10), attribution from public.book_orders
+  union all select 'request', id, status, amount_paise, refunded_paise, created_at, paid_at, phone, attribution from public.payment_requests`;
 
 /** `col` falls on one of the period's IST calendar days ($1 = from, $2 = to). */
 const within = (col: string) => `${col} >= ($1::date - interval '5 hours 30 minutes') and ${col} < ($2::date + interval '1 day' - interval '5 hours 30 minutes')`;

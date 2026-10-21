@@ -2,8 +2,8 @@ import "server-only";
 import { pool } from "@/health/db";
 import type { KnownOrder, OrderKind, RazorpayEvent } from "./webhook-event";
 
-// Cross-table payment bookkeeping for the four Razorpay order tables (membership, library,
-// diet chart, supplement store) and the payment_events log. Server-only tables.
+// Cross-table payment bookkeeping for the Razorpay order tables (membership, library, diet
+// chart, supplement store, payment requests) and the payment_events log. Server-only tables.
 
 const ORDER_TABLES: { kind: OrderKind; table: string; amount: string }[] = [
   { kind: "membership", table: "public.membership_orders", amount: "amount_paise" },
@@ -11,6 +11,8 @@ const ORDER_TABLES: { kind: OrderKind; table: string; amount: string }[] = [
   { kind: "diet", table: "public.diet_orders", amount: "amount_paise" },
   // Store totals are whole rupees.
   { kind: "shop", table: "public.shop_orders", amount: "total * 100" },
+  // Payment requests sent from a WhatsApp chat (/pay/<token>).
+  { kind: "request", table: "public.payment_requests", amount: "amount_paise" },
 ];
 
 /** The internal order for a Razorpay order id, with the amount we asked Razorpay to collect. */
@@ -86,7 +88,7 @@ export async function ordersToReconcile(now = new Date(), opts: { minAgeMinutes?
   const sql = ORDER_TABLES.map(
     (t) =>
       `select '${t.kind}'::text as kind, razorpay_order_id, (${t.amount})::bigint as amount, created_at from ${t.table}
-        where status <> 'paid' and created_at between $1::timestamptz - make_interval(hours => $3) and $1::timestamptz - make_interval(mins => $2)`,
+        where status <> 'paid' and razorpay_order_id is not null and created_at between $1::timestamptz - make_interval(hours => $3) and $1::timestamptz - make_interval(mins => $2)`,
   ).join(" union all ");
   const { rows } = await pool.query<{ kind: OrderKind; razorpay_order_id: string; amount: string }>(`${sql} order by created_at desc limit $4`, [
     now.toISOString(),

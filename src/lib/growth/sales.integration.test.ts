@@ -21,7 +21,7 @@ describe.skipIf(!url)("sales automation in the daily run", () => {
     daily = await import("./daily");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.message_outbox, public.diet_orders, public.book_orders, public.shop_orders, public.shop_products, public.marketing_contacts, public.social_posts cascade");
+    await pool.query("truncate public.message_outbox, public.diet_orders, public.book_orders, public.payment_requests, public.shop_orders, public.shop_products, public.marketing_contacts, public.social_posts cascade");
   });
   afterAll(async () => {
     await pool.end();

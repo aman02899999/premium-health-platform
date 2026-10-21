@@ -6,12 +6,14 @@ import { SITE_URL } from "@/lib/site";
 import { chatThread, sendChatReply, type SendOutcome } from "@/lib/social/chat";
 import { QUICK_REPLIES, manualTemplates } from "@/lib/social/chat-actions";
 import { assignChat } from "@/lib/admin/team";
+import { cancelRequest, createRequest, requestsFor } from "@/lib/payments/requests";
+import { PURPOSES, requestMessage } from "@/lib/payments/requests-core";
 import { peerId } from "@/lib/social/chat-window";
 import { contactInfo, pauseBot, saveNotes, sendManualTemplate, sendQuickReply, setLeadStatus, setOptOut } from "@/lib/social/chat-tools";
 
 // One WhatsApp conversation for the coach.
 // GET: the messages, who the customer is, one-tap replies and the templates that fit them.
-// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out | assign.
+// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out | assign | pay-link | pay-cancel.
 export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ peer: string }> };
@@ -27,6 +29,9 @@ export async function GET(_req: Request, { params }: Params) {
       contact,
       quickReplies: QUICK_REPLIES.map(({ id, label }) => ({ id, label })),
       templates: manualTemplates(contact, { name: biz.name, phone: biz.phone, siteUrl: SITE_URL }).map(({ kind, label, marketing, preview }) => ({ kind, label, marketing, preview })),
+      // Payment requests for this number (empty before the migration is applied).
+      payments: await requestsFor(peer).catch(() => []),
+      purposes: PURPOSES,
     });
   } catch (err) {
     console.error("[chats] thread:", (err as Error).message);
@@ -44,6 +49,21 @@ export async function POST(req: Request, { params }: Params) {
   const peer = (await params).peer;
   const by = (await adminIdentity()) || "admin";
   const str = (k: string) => (typeof b[k] === "string" ? (b[k] as string) : "");
+  // A payment link: made first, then sent in the chat. The link is returned either way, so the
+  // desk can copy it if WhatsApp's 24-hour window is closed.
+  if (b.action === "pay-link") {
+    try {
+      const contact = await contactInfo(peer);
+      const r = await createRequest({ purpose: b.purpose, amount: b.amount, peer, name: contact.name }, by);
+      if (!r.ok) return NextResponse.json({ error: r.error }, { status: 400 });
+      const biz = (await getContent()).business;
+      const sent = await sendChatReply(peer, requestMessage({ purpose: r.request.purpose, rupees: r.request.rupees, url: r.request.url, gym: biz.name }), by);
+      return NextResponse.json({ ok: true, url: r.request.url, sent: sent.ok, sendError: sent.ok ? null : sent.error });
+    } catch (err) {
+      console.error("[chats] pay-link:", (err as Error).message);
+      return NextResponse.json({ error: "Couldn't create the payment link. Is the latest database migration applied?" }, { status: 500 });
+    }
+  }
   let res: SendOutcome;
   try {
     switch (b.action ?? "text") {
@@ -75,6 +95,9 @@ export async function POST(req: Request, { params }: Params) {
         res = err ? { ok: false, error: err, status: 400 } : { ok: true };
         break;
       }
+      case "pay-cancel":
+        res = (await cancelRequest(str("id"))) ? { ok: true } : { ok: false, error: "That link is already paid or cancelled.", status: 400 };
+        break;
       case "opt-out":
         await setOptOut(peer, b.optedOut === true);
         res = { ok: true };

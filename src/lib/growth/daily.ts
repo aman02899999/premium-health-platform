@@ -209,7 +209,7 @@ async function abandonedShopOrders(window: string, unsubscribed: string, reminde
 async function digestData(today: string): Promise<DigestData> {
   const q = async <T,>(sql: string, params: unknown[] = []): Promise<T[]> => (await pool.query(sql, params).catch(() => ({ rows: [] as T[] }))).rows as T[];
   const since = "now() - interval '24 hours'";
-  const [leads, uncontacted, trials, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows] = await Promise.all([
+  const [leads, uncontacted, trials, members, diets, shop, books, review, updates, unanswered, expiring, failed, campaignSent, held, campaignRows, links] = await Promise.all([
     q<{ name: string; source: string }>(`select name, source from public.leads where created_at > ${since} order by created_at desc limit 50`),
     q<{ n: number }>(`select count(*)::int as n from public.leads where status = 'new' and follow_ups and created_at between now() - interval '3 days' and now() - interval '2 hours'`),
     // Trials today, and past trials (last 3 days) nobody has marked as came / didn't come.
@@ -231,6 +231,7 @@ async function digestData(today: string): Promise<DigestData> {
     q<{ n: number }>(`select count(*)::int as n from public.message_outbox where dedupe_key like 'campaign:%' and status = 'sent' and sent_at > ${since}`),
     q<{ n: number }>(`select count(*)::int as n from public.message_outbox where status = 'pending' and channel = 'whatsapp' and kind = any($1)`, [MARKETING_KINDS]),
     listCampaigns(20).catch(() => []),
+    q<{ name: string; purpose: string; amount_paise: number }>(`select name, purpose, amount_paise from public.payment_requests where status = 'paid' and paid_at > ${since}`),
   ]);
   return {
     leads: leads.map((l) => ({ name: l.name, source: l.source })),
@@ -242,6 +243,7 @@ async function digestData(today: string): Promise<DigestData> {
       ...diets.map((d) => ({ kind: "Diet plan" as const, name: d.name, what: dietPlan(d.plan).name, rupees: d.amount_paise / 100 })),
       ...shop.map((o) => ({ kind: "Supplements" as const, name: o.name, what: `order ${o.number}`, rupees: Number(o.total) })),
       ...books.map((b) => ({ kind: "Book" as const, name: b.name, what: b.title, rupees: b.amount_paise / 100 })),
+      ...links.map((l) => ({ kind: "Payment link" as const, name: l.name || "WhatsApp customer", what: l.purpose, rupees: l.amount_paise / 100 })),
     ],
     plansToReview: review.map((r) => ({ name: r.name, plan: dietPlan(r.plan).name })),
     clientUpdates: updates[0]?.n ?? 0,
