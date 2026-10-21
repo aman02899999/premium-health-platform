@@ -75,6 +75,18 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     expect(summary).toMatchObject({ peer: PEER, name: "Pratibha", lastFromThem: true, lastBody: "📷 Photo" });
   });
 
+  it("a refund request gets a hand-off, not prices, and the bot steps back for the coach", async () => {
+    expect(await social.handleInbound(wa("r1", "I want a refund for my membership"))).toBe("replied");
+    const { rows } = await pool.query<{ body: string; sent_by: string }>(`select body, sent_by from public.chat_replies order by created_at`);
+    expect(rows).toHaveLength(1);
+    expect(rows[0].sent_by).toBe("auto-reply");
+    expect(rows[0].body).toContain("Coach Aman* will reply to you here personally");
+    expect(rows[0].body).not.toContain("₹");
+    expect((await pool.query(`select bot_paused_until > now() as paused from public.chat_contacts where peer = $1`, [PEER])).rows[0].paused).toBe(true);
+    // While paused, even a keyword gets no automatic reply.
+    expect(await social.handleInbound(wa("r2", "price"))).toBe("logged");
+  });
+
   it("the coach replies inside the 24-hour window, and is stopped outside it", async () => {
     await social.handleInbound(wa("5", "ok thanks"));
     sent.length = 0;

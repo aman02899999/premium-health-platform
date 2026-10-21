@@ -108,7 +108,7 @@ export function planFaqs(b: Business): Faq[] {
     {
       id: "plan-cancel",
       q: "Can I cancel and get a refund?",
-      a: "A membership paid online can be cancelled for a full refund until it is activated at the front desk (your first visit), within 7 days of payment. Once activated, membership fees are not refundable. Duplicate or failed payments are always refunded in full.",
+      a: "Gym membership fees are non-refundable, whether you join at the gym or book online, so please ask us anything before you pay. Duplicate or failed payments are always refunded in full.",
     },
     {
       id: "plan-freeze",

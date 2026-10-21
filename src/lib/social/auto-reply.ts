@@ -7,11 +7,16 @@ import type { Business } from "@/lib/content/types";
 import { formatTime } from "@/lib/site";
 import { CONDITION_LABEL, GOAL_TITLE, dietProfile, type DietProfile } from "./diet-profile";
 
-export type Intent = "price" | "diet" | "trial" | "visit" | "hello" | "other";
+export type Intent = "support" | "price" | "diet" | "trial" | "visit" | "hello" | "other";
 
-// Checked in this order: "diet plan kitne ka" is a diet question, "free trial fees" a price
-// question, and "weight loss membership" a membership one.
+// Checked in this order: a refund, cancellation or complaint is for a person even when it
+// mentions the membership or a plan; "diet plan kitne ka" is a diet question, "free trial fees" a
+// price question, and "weight loss membership" a membership one.
 const RULES: [Exclude<Intent, "hello" | "other">, RegExp][] = [
+  [
+    "support",
+    /\b(refund|refunds|refunded|money\s*back|paise?\s*wapas|wapas\s*(karo|kar\s*do|chahiye)|cancel|cancell?ed|cancell?ation|complaint|complain|shikayat|not\s*working|deducted|payment\s*(failed|fail|issue|problem|stuck)|charged\s*twice|double\s*(charge|payment)|freeze|transfer\s*(my|membership)|pause\s*(my|membership)|rude|bad\s*(experience|service)|not\s*happy|unhappy|disappointed|fraud|cheat(ed)?)\b/i,
+  ],
   ["diet", /\b(diet|chart|meal|nutrition)\b/i],
   ["price", /\b(price|prices|pricing|fee|fees|charges?|rate|rates|cost|kitn[aei]|kitne|paise|membership|plan|plans|package|offer|join|joining)\b/i],
   ["trial", /\b(trial|demo|free\s*session|try)\b/i],
@@ -156,6 +161,27 @@ function trialReply(c: ReplyCtx): string {
   ].join("\n");
 }
 
+// A refund or cancellation of a gym membership (not a diet plan, eBook or supplement order).
+const REFUND_ASK = /\b(refund|refunds|refunded|money\s*back|paise?\s*wapas|wapas|cancel|cancell?ed|cancell?ation)\b/i;
+const GYM = /\b(membership|gym|joining|join|fees?|admission)\b/i;
+const OTHER_PRODUCT = /\b(diet|chart|e-?book|book|pdf|supplements?|protein|whey|creatine|order|shipping|delivery)\b/i;
+export const isMembershipRefund = (text: string) => REFUND_ASK.test(text) && GYM.test(text) && !OTHER_PRODUCT.test(text);
+
+/** A refund, cancellation, payment problem or complaint: no prices, no offer, straight to a person. */
+function supportReply(c: ReplyCtx): string {
+  const hi = firstName(c.name);
+  return [
+    `Hi${hi ? ` ${hi}` : ""}, thank you for telling us. 🙏`,
+    // The published policy, said once and calmly; the coach handles the rest.
+    isMembershipRefund(c.text ?? "") ? `Gym membership fees are non-refundable (policy: ${c.siteUrl}/refund-policy). Duplicate or failed payments are always refunded in full.` : null,
+    `This needs a person, so *Coach Aman* will reply to you here personally as soon as possible.`,
+    `\n📞 Need it sooner? Call or WhatsApp: ${c.business.phone}`,
+    `If it's about a payment, please send the payment ID or a screenshot so we can check it quickly.`,
+  ]
+    .filter((l) => l !== null)
+    .join("\n");
+}
+
 function menuReply(c: ReplyCtx): string {
   const hi = firstName(c.name);
   return [
@@ -172,6 +198,8 @@ function menuReply(c: ReplyCtx): string {
 /** The reply text for an intent, in WhatsApp formatting (*bold*). */
 export function buildReply(intent: Intent, c: ReplyCtx): string {
   switch (intent) {
+    case "support":
+      return supportReply(c);
     case "price":
       return priceReply(c);
     case "diet":
@@ -195,6 +223,7 @@ export const forInstagram = (text: string) => text.replace(/\*([^*\n]+)\*/g, "$1
  * keywords ("Comment PRICE"), never for ordinary comments.
  */
 export function shouldReply(intent: Intent, kind: "message" | "comment", hadRecentMessage: boolean): boolean {
-  if (kind === "comment") return isKeyword(intent);
+  // A complaint or refund in a public comment is for a person to answer, not the bot.
+  if (kind === "comment") return isKeyword(intent) && intent !== "support";
   return isKeyword(intent) || !hadRecentMessage;
 }

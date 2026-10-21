@@ -224,7 +224,8 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
         </p>
       )}
       <p className="text-xs text-white/45">
-        UPI, cards, net banking and wallets accepted. By paying you agree to our <Link href="/terms" className="underline">terms</Link>. Questions about changes or refunds? Contact us before your start date.
+        UPI, cards, net banking and wallets accepted. By paying you agree to our <Link href="/terms" className="underline">terms</Link>. Membership fees are{" "}
+        <Link href="/refund-policy" className="underline">non-refundable</Link>, so ask us anything before you pay.
       </p>
     </form>
   );

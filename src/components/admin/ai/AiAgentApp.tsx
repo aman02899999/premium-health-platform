@@ -34,7 +34,7 @@ const usd = (n: number) => `$${n.toFixed(n > 0 && n < 1 ? 3 : 2)}`;
 const masked = (p: string | null) => (p ? `+${p.slice(0, -10)} ${p.slice(-10, -7)}•••${p.slice(-3)}` : "");
 const SOURCE = { auto: "Answered on WhatsApp", draft: "Draft in Live chat", test: "Test" } as const;
 
-const EXAMPLES = ["Is there parking for bikes?", "Kya ladies ke liye alag timing hai?", "Do you have a steam bath?", "The trainer was rude to me yesterday", "Can I join if I have a knee injury?"];
+const EXAMPLES = ["Is there parking for bikes?", "Kya ladies ke liye alag timing hai?", "Do you have a steam bath?", "Do you sell gift cards?", "Can I join if I have a knee injury?"];
 
 /** AI agent: what it may answer, how it's set up, a playground to try it, and everything it wrote. */
 export function AiAgentApp() {
