@@ -8,6 +8,7 @@ import { DIET_PLANS } from "@/lib/fitness/diet-plans";
 import { BOOKS } from "@/lib/library/catalog";
 import { getCatalog } from "@/lib/shop/server";
 import { listPosts as listShopPosts } from "@/lib/shop/store";
+import healthSitemap from "./(health)/health/sitemap";
 
 export const revalidate = 3600;
 
@@ -68,5 +69,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly" as const,
       images: p.cover ? [absoluteUrl(p.cover)] : undefined,
     })),
+    // The health site (/health/**, Hindi /hi/health/**): also served alone at /health/sitemap.xml.
+    ...healthSitemap().filter((e) => e.url !== absoluteUrl("/")),
   ];
 }

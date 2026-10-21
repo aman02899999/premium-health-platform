@@ -1,6 +1,35 @@
 import type { Article, Product } from "@/health/types";
+import { POSTS } from "./posts-index.generated";
 
-export const ARTICLES: Article[] = [
+/** Long-form posts from content/blog/en, in the same shape as the hand-written guides. */
+const PILLARS: Article[] = POSTS.filter((p) => p.lang === "en").map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  subtitle: p.description,
+  category: p.category,
+  tags: p.tags,
+  excerpt: p.description,
+  body: p.headings.map((heading) => ({ heading, paragraphs: [] })),
+  keyTakeaways: p.takeaways,
+  faqs: p.faqs,
+  references: p.sources.map((s) => ({ title: s.title, source: s.publisher, url: s.url || undefined })),
+  author: p.author,
+  reviewer: p.reviewedBy,
+  publishedAt: p.publishedAt,
+  updatedAt: p.lastReviewed,
+  readMinutes: p.readingTime,
+  featured: true,
+  imagePrompt: "",
+  // Listings use next/image, which only optimises raster images: use the PNG export of the hero.
+  heroImage: p.heroImage.replace(/\.svg$/, ".png"),
+  heroImageAlt: p.heroAlt,
+  seoTitle: p.title,
+  seoDescription: p.description,
+  keywords: p.tags,
+}));
+export const PILLAR_SLUGS = new Set(PILLARS.map((p) => p.slug));
+
+const GUIDES: Article[] = [
   {
     slug: "complete-indian-guide-type-2-diabetes", title: "The Complete Indian Guide to Type 2 Diabetes", subtitle: "Sugar control with roti-sabzi, millets, walking and modern medicines — without fear or myths.", category: "Disease Education", tags: ["diabetes", "HbA1c", "diet", "metformin"], excerpt: "India's diabetes playbook: diagnosis, diet plates, exercise, medicines, Ayurveda add-ons and complication screening in one cornerstone guide.", body: [
       { heading: "Why India gets diabetes earlier", paragraphs: ["Indians develop diabetes a decade earlier and at lower BMI than Western populations, driven by higher visceral fat, refined-carb loads, low protein and inactivity. The good news: the same factors respond powerfully to lifestyle change.", "Think of diabetes as a management opportunity, not a verdict. Early intensive control prevents most complications."] },
@@ -99,6 +128,9 @@ export const ARTICLES: Article[] = [
     ], keyTakeaways: ["Target 1.2-1.6g/kg protein vegetarian — dal 9g, soya 52g, paneer 18g, sprouts 7g", "Build high protein thali: half veg + quarter millet + quarter dal/paneer/soya + curd", "Track via nutrition-tracker + protein calc + thali-builder + premium PDF + affiliate whey/soya"], faqs: [{ q: "How to get 100g protein vegetarian?", a: "Example: breakfast 2 moong cheela + paneer 15g, lunch dal 2 katori 18g + curd 6g + roti 6g, snack sprouts 14g + peanuts 7g, dinner soya 20g + curd 6g + millet 3g = ~95g. Track via /nutrition-tracker." }, { q: "Is whey safe?", a: "Whey concentrate safe for most, 25g/scoop — food first, supplements fill gaps only. Avoid if kidney disease without nephrology advice. Check Informed-Choice testing." }], references: [{ title: "ICMR-NIN Protein Requirements", source: "ICMR-NIN" }], author: "BHG Editorial Team", reviewer: "Medical review pending — placeholder", publishedAt: "2026-08-25", updatedAt: "2026-09-03", readMinutes: 11, trending: true, imagePrompt: "Ultra-HD editorial food photography of high protein vegetarian Indian thali with dal, paneer, soya, sprouts, premium aesthetic."
   },
 ];
+
+// A long-form post replaces the short guide with the same slug (same URL, no duplicate page).
+export const ARTICLES: Article[] = [...PILLARS, ...GUIDES.filter((a) => !PILLAR_SLUGS.has(a.slug))];
 
 export const ARTICLE_MAP = new Map(ARTICLES.map((a) => [a.slug, a]));
 export function getArticle(slug: string) { return ARTICLE_MAP.get(slug); }

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
+import { PremiumAwareAd } from "@/health/components/ads/PremiumAwareAd";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, ChevronRight, Clock } from "lucide-react";
 import { getContent } from "@/lib/content/store";
-import { parseMarkdown, readingMinutes, toc } from "@/lib/markdown";
+import { adBreaks, parseMarkdown, readingMinutes, toc, type Block } from "@/lib/markdown";
 import { articleJsonLd, breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { absoluteUrl, categorySlug, publishedPosts, telHref, whatsappHref } from "@/lib/site";
 import { Markdown } from "@/components/blog/Markdown";
@@ -112,7 +114,13 @@ export default async function PostPage({ params }: Props) {
 
         <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_260px]">
           <div className="min-w-0">
-            <Markdown blocks={blocks} cta={{ whatsapp: whatsappHref(c.business), phone: telHref(c.business.phone) }} />
+            {/* In-article ads: after the intro, mid-post and before the FAQ (hidden for premium members). */}
+            {splitAt(blocks, adBreaks(blocks)).map((part, i) => (
+              <Fragment key={i}>
+                {i > 0 && <PremiumAwareAd />}
+                <Markdown blocks={part} cta={{ whatsapp: whatsappHref(c.business), phone: telHref(c.business.phone) }} />
+              </Fragment>
+            ))}
             {post.tags.length > 0 && (
               <div className="mt-10 flex flex-wrap gap-2">
                 {post.tags.map((t) => (
@@ -146,4 +154,16 @@ export default async function PostPage({ params }: Props) {
       )}
     </>
   );
+}
+
+/** The blocks cut at the given indexes (each index starts a new part). */
+function splitAt(blocks: Block[], at: number[]): Block[][] {
+  const out: Block[][] = [];
+  let from = 0;
+  for (const i of at) {
+    out.push(blocks.slice(from, i));
+    from = i;
+  }
+  out.push(blocks.slice(from));
+  return out;
 }

@@ -7,7 +7,11 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prebuild": "node scripts/build-posts.mjs && node scripts/check-ads.mjs",
+    "check:ads": "node scripts/check-ads.mjs",
+    "check:posts": "node scripts/build-posts.mjs --check",
+    "posts": "node scripts/build-posts.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.131.0",
@@ -20,6 +24,7 @@
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
     "lucide-react": "^1.41.0",
+    "mermaid": "11.17.2",
     "next": "^16.4.2",
     "pg": "8.20.0",
     "qrcode": "^1.5.4",

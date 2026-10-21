@@ -18,7 +18,27 @@ export type Block =
   | { t: "hr" }
   | { t: "calculator"; key: string }
   | { t: "quiz"; question: string; options: string[]; answer: number; explanation: string }
-  | { t: "cta" };
+  | { t: "cta" }
+  // Long-form health posts (content/blog/**). Boxes hold their own blocks; ads are only ever top-level.
+  | { t: "mermaid"; code: string; caption: string; steps: string[] }
+  | { t: "box"; kind: BoxKind; title: string; blocks: Block[] }
+  | { t: "faq"; items: { q: string; a: Block[] }[] }
+  | { t: "ad" };
+
+export type BoxKind = "answer" | "takeaways" | "tip" | "warning" | "mythfact" | "note";
+const BOX_KINDS: BoxKind[] = ["answer", "takeaways", "tip", "warning", "mythfact", "note"];
+
+/** The readable steps of a Mermaid flowchart: its node labels in order, for the text version. */
+export function mermaidSteps(code: string): string[] {
+  const out: string[] = [];
+  const re = /\b[A-Za-z][\w]*\s*(?:\[\[|\[\(|\(\[|\(\(|\[|\(|\{\{|\{|>)\s*"?([^"\]\)\}]+?)"?\s*(?:\]\]|\)\]|\]\)|\)\)|\]|\)|\}\}|\})/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(code))) {
+    const label = m[1].replace(/<br\s*\/?>/gi, " ").trim();
+    if (label && !out.includes(label)) out.push(label);
+  }
+  return out;
+}
 
 export function headingId(text: string): string {
   return text
@@ -82,11 +102,51 @@ export function parseMarkdown(src: string): Block[] {
       continue;
     }
 
+    // ```mermaid … ``` (first line may be "%% caption: …")
+    if (/^```\s*mermaid\s*$/.test(trimmed)) {
+      const buf: string[] = [];
+      i++;
+      while (i < lines.length && !/^```\s*$/.test(lines[i].trim())) buf.push(lines[i++]);
+      i++;
+      const cap = buf[0]?.trim().match(/^%%\s*caption:\s*(.*)$/i);
+      const code = (cap ? buf.slice(1) : buf).join("\n").trim();
+      blocks.push({ t: "mermaid", code, caption: cap?.[1].trim() ?? "", steps: mermaidSteps(code) });
+      continue;
+    }
+
+    // :::kind Optional title … ::: (boxes) and :::faq with "### Question" items.
+    const box = trimmed.match(/^:::\s*(\w+)\s*(.*)$/);
+    if (box && box[1] !== "") {
+      const buf: string[] = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== ":::") buf.push(lines[i++]);
+      i++;
+      const kind = box[1].toLowerCase();
+      if (kind === "faq") {
+        const items: { q: string; a: Block[] }[] = [];
+        let cur: { q: string; body: string[] } | null = null;
+        for (const l of buf) {
+          const q = l.trim().match(/^###\s+(.*)$/);
+          if (q) {
+            if (cur) items.push({ q: cur.q, a: parseMarkdown(cur.body.join("\n")).filter((b) => b.t !== "ad") });
+            cur = { q: q[1].trim(), body: [] };
+          } else cur?.body.push(l);
+        }
+        if (cur) items.push({ q: cur.q, a: parseMarkdown(cur.body.join("\n")).filter((b) => b.t !== "ad") });
+        blocks.push({ t: "faq", items });
+      } else if ((BOX_KINDS as string[]).includes(kind)) {
+        // No ads inside boxes, tables or warnings.
+        blocks.push({ t: "box", kind: kind as BoxKind, title: box[2].trim(), blocks: parseMarkdown(buf.join("\n")).filter((b) => b.t !== "ad") });
+      }
+      continue;
+    }
+
     const short = trimmed.match(/^\[\[(\w[\w-]*)(?::(.*))?\]\]$/);
     if (short) {
       const [, name, arg = ""] = short;
       if (name === "calculator") blocks.push({ t: "calculator", key: arg.trim() });
       else if (name === "cta") blocks.push({ t: "cta" });
+      else if (name === "ad") blocks.push({ t: "ad" });
       else if (name === "quiz") {
         const parts = arg.split("|").map((s) => s.trim());
         const question = parts.shift() ?? "";
@@ -154,7 +214,7 @@ export function parseMarkdown(src: string): Block[] {
     while (
       i < lines.length &&
       lines[i].trim() &&
-      !/^(#{2,3}\s|>|\||[-*]\s|\d+\.\s|\[\[|!\[)/.test(lines[i].trim())
+      !/^(#{2,3}\s|>|\||[-*]\s|\d+\.\s|\[\[|!\[|:::|```)/.test(lines[i].trim())
     ) {
       buf.push(lines[i++].trim());
     }
@@ -182,4 +242,16 @@ export function plainText(src: string): string {
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/**
+ * Where in-article ads go in a post with no [[ad]] markers: after the intro (before the first
+ * h2), at the middle h2, and before the FAQ. At most 3, never two in a row, never in a short post.
+ */
+export function adBreaks(blocks: Block[]): number[] {
+  const h2 = blocks.flatMap((b, i) => (b.t === "h2" ? [i] : []));
+  if (h2.length < 3) return [];
+  const faq = h2.find((i) => /faq|frequently|questions|सवाल/i.test((blocks[i] as { text: string }).text));
+  const picks = [h2[0], h2[Math.floor(h2.length / 2)], faq].filter((i): i is number => i !== undefined && i > 0);
+  return [...new Set(picks)].sort((a, b) => a - b).filter((i, k, a) => k === 0 || i - a[k - 1] > 2).slice(0, 3);
 }

@@ -8,6 +8,8 @@ import { LAB_TESTS, SYMPTOMS } from "@/health/data/clinical";
 import { ARTICLES, PRODUCTS, AYURVEDA_TOPICS } from "@/health/data/editorial";
 import { BLOG_CATEGORIES } from "@/health/data/blog-enrichment";
 import { getSeedNews } from "@/health/data/news";
+import { POSTS } from "@/health/data/posts-index.generated";
+import { postPath } from "@/health/lib/post-types";
 import { DIGITAL_PRODUCTS, BUSINESS_LISTINGS } from "@/health/lib/monetization/config";
 
 const STATIC_ROUTES = [
@@ -21,10 +23,10 @@ const STATIC_ROUTES = [
   "/health/herb-interaction", "/health/barcode-scanner", "/health/child-growth", "/health/health-qa",
   "/health/live-advisory", "/health/dosha-meals", "/health/fasting-planner", "/health/hinglish-search",
   "/health/nutrition-tracker", "/health/workout-builder", "/health/food-database", "/health/health-search",
-  "/health/drug-lookup", "/health/exercises", "/health/login", "/health/register", "/health/profile",
+  "/health/drug-lookup", "/health/exercises",
   // Marketing / earning — pro
   "/health/premium", "/health/deals", "/health/lead", "/health/referral",
-  "/health/blog/search", "/health/blog/author",
+  "/health/blog/search", "/health/blog/author", "/health/blog/guides",
   // Monetization pages (order and purchase help pages are robots-disallowed, so not listed)
   "/health/store",
   "/health/providers",
@@ -66,7 +68,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   push("/health/nutrition", FOODS.map((f) => f.slug), 0.7, "monthly");
   push("/health/lab-tests", LAB_TESTS.map((l) => l.slug), 0.7, "monthly");
   push("/health/symptoms", SYMPTOMS.map((s) => s.slug), 0.7, "monthly");
-  push("/health/blog", ARTICLES.map((a) => a.slug), 0.9, "weekly");
+  // Guides and long-form posts, dated by their last update; posts list their Hindi version too.
+  for (const a of ARTICLES) {
+    const hi = POSTS.find((p) => p.lang === "hi" && p.slug === a.slug);
+    const en = `${SITE.url}/health/blog/${a.slug}`;
+    entries.push({
+      url: en,
+      lastModified: a.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      ...(hi ? { alternates: { languages: { "en-IN": en, "hi-IN": `${SITE.url}${postPath("hi", a.slug)}` } } } : {}),
+    });
+  }
+  for (const p of POSTS.filter((x) => x.lang === "hi")) {
+    entries.push({ url: `${SITE.url}${postPath("hi", p.slug)}`, lastModified: p.lastReviewed, changeFrequency: "weekly", priority: 0.85, alternates: { languages: { "hi-IN": `${SITE.url}${postPath("hi", p.slug)}`, "en-IN": `${SITE.url}${postPath("en", p.slug)}` } } });
+  }
+  if (POSTS.some((x) => x.lang === "hi")) entries.push({ url: `${SITE.url}/hi/health/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 });
   push("/health/products", PRODUCTS.map((p) => p.slug), 0.6, "monthly");
   push("/health/ayurveda", AYURVEDA_TOPICS.map((a) => a.slug), 0.7, "monthly");
   // Monetization — store, affiliate, providers

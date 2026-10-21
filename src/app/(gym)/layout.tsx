@@ -49,6 +49,9 @@ export async function generateMetadata(): Promise<Metadata> {
     manifest: "/manifest.webmanifest",
     verification: { google: c.seo.googleVerification || process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined },
     other: {
+      // AdSense site ownership, no ad script: gym pages never show ads (Google could put other gyms
+      // next to our plans). The script loads only in the /blog, /health and /hi layouts.
+      "google-adsense-account": ADSENSE_CLIENT,
       "geo.region": "IN-UP",
       "geo.placename": `${c.business.address.locality}, ${c.business.address.city}`,
       "geo.position": `${c.business.geo.lat};${c.business.geo.lng}`,
@@ -61,11 +64,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const c = await getContent();
   return (
     <html lang="en-IN" className={`${inter.variable} ${oswald.variable}`} style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
-      <head>
-        {/* No ads on the gym, membership and store pages: Google could show other gyms next to our
-            plans. AdSense stays on /health; this tag (no script, no ads) keeps the site verified. */}
-        <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
-      </head>
       <body className="noise min-h-screen">
         {children}
         <VercelAnalytics />

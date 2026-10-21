@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="496" viewBox="0 0 640 496" role="img">
+<rect width="640" height="496" rx="24" fill="#ffffff"/><rect width="640" height="10" fill="#7f1d1d"/><rect x="0" y="10" width="640" height="4" fill="#fbbf24"/>
+<text x="28" y="62" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="30" font-weight="900" fill="#0f172a" text-anchor="start">Anaemia in India (NFHS-5, 2019–21)</text>
+<text x="28" y="102" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="500" fill="#475569" text-anchor="start">Share of each group with anaemia</text>
+<text x="28" y="164" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f172a" text-anchor="start">Children 6–59 months</text>
+<rect x="28" y="169" width="474" height="30" rx="15" fill="#f1f5f9"/>
+<rect x="28" y="169" width="318.054" height="30" rx="15" fill="#fbbf24"/>
+<text x="514" y="192" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="start">67.1%</text><text x="28" y="235" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f172a" text-anchor="start">Adolescent girls 15–19</text>
+<rect x="28" y="240" width="474" height="30" rx="15" fill="#f1f5f9"/>
+<rect x="28" y="240" width="280.13399999999996" height="30" rx="15" fill="#7f1d1d"/>
+<text x="514" y="263" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="start">59.1%</text><text x="28" y="306" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f172a" text-anchor="start">Women 15–49</text>
+<rect x="28" y="311" width="474" height="30" rx="15" fill="#f1f5f9"/>
+<rect x="28" y="311" width="270.17999999999995" height="30" rx="15" fill="#7f1d1d"/>
+<text x="514" y="334" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="start">57%</text><text x="28" y="377" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700" fill="#0f172a" text-anchor="start">Men 15–49</text>
+<rect x="28" y="382" width="474" height="30" rx="15" fill="#f1f5f9"/>
+<rect x="28" y="382" width="118.5" height="30" rx="15" fill="#7f1d1d"/>
+<text x="514" y="405" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="800" fill="#0f172a" text-anchor="start">25%</text><text x="28" y="444" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="500" fill="#64748b" text-anchor="start">Source: National Family Health Survey (NFHS-5) 2019–21, India fact</text><text x="28" y="464.25" font-family="Inter, 'Noto Sans Devanagari', 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="500" fill="#64748b" text-anchor="start">sheet, Ministry of Health and Family Welfare.</text>
+</svg>
