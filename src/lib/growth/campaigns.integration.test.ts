@@ -151,6 +151,52 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     }
   });
 
+  it("the daily run waits out yesterday's batch leaving the 24-hour window, instead of skipping a day", async () => {
+    const outbox = await import("./outbox");
+    const q = (kind: string, to: string, key: string, status: string, sentAgoSecs: number | null) =>
+      pool.query(
+        `insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, status, sent_at, created_at)
+         values ('whatsapp', $1, $2, 'x', 'tpl', $3, $4, case when $5::int is null then null else now() - make_interval(secs => $5::int) end, now() - interval '2 days')`,
+        [to, kind, key, status, sentAgoSecs],
+      );
+    process.env.WHATSAPP_MARKETING_DAILY_CAP = "2";
+    try {
+      // Yesterday's two promotions, sent 24 hours minus 2 seconds ago: the cap is full for 2 more seconds.
+      await q("offer-broadcast", "919000000081", "y1", "sent", 86400 - 2);
+      await q("offer-broadcast", "919000000082", "y2", "sent", 86400 - 2);
+      await q("offer-broadcast", "919000000083", "t1", "pending", null);
+      await q("offer-broadcast", "919000000084", "t2", "pending", null);
+      // Without waiting (any other caller), nothing goes.
+      expect(await outbox.dispatch(10)).toMatchObject({ sent: 0, marketingHeld: true });
+      // The daily run waits ~2.5 s, then sends today's two, and never more than the cap in 24 hours.
+      const r = await outbox.dispatch(10, Date.now() + 15_000, { waitForCap: true });
+      expect(r).toMatchObject({ sent: 2, failed: 0 });
+      expect(r.waitedMs).toBeGreaterThan(1000);
+      expect(sent.map((x) => x.to)).toEqual(["919000000083", "919000000084"]);
+      const { rows } = await pool.query<{ n: number }>(`select count(*)::int as n from public.message_outbox where status = 'sent' and sent_at > now() - interval '24 hours'`);
+      expect(rows[0].n).toBe(2);
+    } finally {
+      delete process.env.WHATSAPP_MARKETING_DAILY_CAP;
+    }
+  }, 30_000);
+
+  it("the daily run doesn't wait when the cap frees up only after its deadline", async () => {
+    const outbox = await import("./outbox");
+    await pool.query(
+      `insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, status, sent_at) values
+        ('whatsapp', '919000000091', 'offer-broadcast', 'x', 'tpl', 'z1', 'sent', now() - interval '1 hour'),
+        ('whatsapp', '919000000092', 'offer-broadcast', 'x', 'tpl', 'z2', 'pending', null)`,
+    );
+    process.env.WHATSAPP_MARKETING_DAILY_CAP = "1";
+    try {
+      const t = Date.now();
+      expect(await outbox.dispatch(10, Date.now() + 3_000, { waitForCap: true })).toMatchObject({ sent: 0, marketingHeld: true });
+      expect(Date.now() - t).toBeLessThan(1500);
+    } finally {
+      delete process.env.WHATSAPP_MARKETING_DAILY_CAP;
+    }
+  });
+
   it("an imported contact who later goes on the member list leaves the imported segment", async () => {
     const sheet = toContacts(readCsv("Name,Mobile\nOld One,9000000061\nStill Contact,9000000062\n"));
     if (typeof sheet === "string") throw new Error(sheet);
