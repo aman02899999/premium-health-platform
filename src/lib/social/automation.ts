@@ -35,6 +35,8 @@ import { chatAlertEmail } from "./chat-window";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
 import { promotionsRequest } from "@/lib/growth/messages";
 import { setPromotionsOptOut } from "@/lib/growth/optouts";
+import { qrLeadSource } from "@/lib/admin/qr";
+import { refFromText } from "@/lib/admin/qr-core";
 import { botPaused } from "./chat-tools";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
@@ -64,7 +66,8 @@ async function ensureLead(m: Inbound, intent: Intent, afterOffer = false): Promi
     interest: LEAD_INTEREST[intent] ?? (afterOffer ? "membership" : ""),
     goal: "",
     message: m.text.slice(0, 600),
-    source: afterOffer ? "whatsapp-campaign" : "whatsapp-inbound",
+    // A chat opened from a printed QR carries "(ref <code>)" in its pre-typed text.
+    source: afterOffer ? "whatsapp-campaign" : ((await qrLeadSource(refFromText(m.text))) ?? "whatsapp-inbound"),
     marketing: false,
   });
 }
@@ -81,7 +84,7 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
   // "Stop promotions" (the button on Marketing templates) or "Start promotions": record it and confirm.
   const promo = m.channel === "whatsapp" && m.kind === "message" ? promotionsRequest(m.text) : null;
   if (promo) {
-    await setPromotionsOptOut(m.from, promo === "stop");
+    await setPromotionsOptOut(m.from, promo === "stop", m.fromName);
     if (!whatsappReplyConfigured()) return "logged";
     const text =
       promo === "stop"

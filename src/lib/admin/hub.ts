@@ -63,6 +63,7 @@ export const HUB_SECTIONS: Section[] = [
       { id: "leads", title: "Leads", hint: "Enquiries, trial bookings, follow-ups", href: "/admin/growth?tab=leads", icon: "UserPlus", keywords: "enquiry prospect trial crm", badge: { key: "leadsUncontacted", alert: true } },
       { id: "members", title: "Members", hint: "Add, renew, import the desk sheet", href: "/admin/growth?tab=members", icon: "Users", keywords: "membership renew expiry desk import", badge: { key: "expiring7" } },
       { id: "automations", title: "Automations", hint: "Scheduled messages: renewals, nurture, receipts", href: "/admin/growth?tab=messages", icon: "Workflow", keywords: "outbox sequence drip scheduled auto reminder", badge: { key: "failed7", alert: true } },
+      { id: "qr", title: "QR codes & opt-ins", hint: "Posters that open WhatsApp, scans, consent", href: "/admin/qr", icon: "QrCode", keywords: "qr poster scan print opt-in optin consent subscribe opt-out stop promotions review" },
       { id: "templates", title: "WhatsApp templates", hint: "Meta approval status, submit missing ones", href: "/api/admin/whatsapp-templates", icon: "FileCheck2", keywords: "template meta approval utility marketing" },
       { id: "referrals", title: "Referrals", hint: "Member codes and bonus days", href: "/admin/growth?tab=referrals", icon: "Gift", keywords: "refer friend reward code" },
       { id: "marketing", title: "Content calendar", hint: "Today's post, captions, hashtags", href: "/admin/growth?tab=marketing", icon: "CalendarDays", keywords: "calendar caption hashtag content plan" },
