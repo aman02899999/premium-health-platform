@@ -36,8 +36,8 @@ describe.skipIf(!url)("command center numbers on a real database", () => {
       ('a', now() - interval '2 hours', 'whatsapp', 'message', '919800000001', 'fees?'),
       ('b', now() - interval '1 hour', 'whatsapp', 'message', '919800000002', 'hi')`);
     await pool.query(`insert into public.chat_replies (to_id, body, ok, created_at) values ('919800000001', 'Fees are…', true, now() - interval '90 minutes')`);
-    // A lead "today" (India time), and a real one from 2 days ago nobody has called (that rule runs on the clock).
-    await pool.query(`insert into public.leads (name, phone, created_at, status) values ('Asha', '9800000003', $1, 'new'), ('Ravi', '9800000004', now() - interval '2 days', 'new')`, [
+    // A lead "today" (India time) the desk already called, and a real one from 2 days ago nobody has (that rule runs on the clock).
+    await pool.query(`insert into public.leads (name, phone, created_at, status) values ('Asha', '9800000003', $1, 'contacted'), ('Ravi', '9800000004', now() - interval '2 days', 'new')`, [
       new Date("2026-10-21T03:00:00Z"), // 08:30 IST "today"
     ]);
     await pool.query(`insert into public.members (name, phone, plan_name, start_on, expires_on, referral_code) values

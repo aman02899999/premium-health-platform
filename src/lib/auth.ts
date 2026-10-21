@@ -80,6 +80,17 @@ export async function isAdmin(): Promise<boolean> {
   return verifySessionToken(store.get(ADMIN_COOKIE)?.value);
 }
 
+/**
+ * The signed-in admin's role (owner / manager / agent); null when not an admin. With the
+ * local-development password there is one person, so they are the owner.
+ */
+export async function adminRole(): Promise<import("./admin/team-core").Role | null> {
+  if (!(await isAdmin())) return null;
+  if (!supabaseConfigured) return "owner";
+  const { roleOf } = await import("./admin/team");
+  return (await roleOf((await currentUser())?.email ?? null).catch(() => null)) ?? "owner";
+}
+
 /** Who made an admin change, for the audit column. */
 export async function adminIdentity(): Promise<string> {
   return (await currentUser())?.email ?? "admin (password)";

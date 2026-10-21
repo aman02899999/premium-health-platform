@@ -27,6 +27,7 @@ import {
   Salad,
   Search,
   Send,
+  ShieldCheck,
   ShoppingBag,
   Star,
   TrendingUp,
@@ -36,7 +37,8 @@ import {
   Workflow,
   type LucideIcon,
 } from "lucide-react";
-import { attention, badgeText, filterSections, inr, pctOf, type Counters } from "@/lib/admin/hub";
+import { attention, badgeText, filterSections, inr, pctOf, sectionsFor, type Counters } from "@/lib/admin/hub";
+import { ROLES, allowed, type Role } from "@/lib/admin/team-core";
 
 const ICONS: Record<string, LucideIcon> = {
   Activity,
@@ -62,6 +64,7 @@ const ICONS: Record<string, LucideIcon> = {
   Salad,
   Search,
   Send,
+  ShieldCheck,
   ShoppingBag,
   Star,
   TrendingUp,
@@ -90,11 +93,11 @@ function Kpi({ label, value, sub, href }: { label: string; value: string; sub?: 
   );
 }
 
-export function CommandCenter({ name, counters }: { name: string; counters: Counters | null }) {
+export function CommandCenter({ name, counters, role = "owner", denied = false }: { name: string; counters: Counters | null; role?: Role; denied?: boolean }) {
   const [query, setQuery] = useState("");
   const input = useRef<HTMLInputElement>(null);
-  const sections = useMemo(() => filterSections(query), [query]);
-  const todo = counters ? attention(counters) : [];
+  const sections = useMemo(() => filterSections(query, sectionsFor(role)), [query, role]);
+  const todo = counters ? attention(counters).filter((t) => allowed(role, t.href.split(/[?#]/)[0])) : [];
   const c7 = counters?.campaign7;
 
   useEffect(() => {
@@ -139,6 +142,7 @@ export function CommandCenter({ name, counters }: { name: string; counters: Coun
       </header>
 
       <main className="mx-auto max-w-7xl space-y-8 px-4 py-6">
+        {denied && <p className="rounded-xl bg-amber-400/10 px-4 py-3 text-sm text-amber-100">That page isn&apos;t part of your role ({ROLES.find((r) => r.id === role)?.label}). Ask an owner if you need it.</p>}
         <label className="flex items-center gap-3 rounded-2xl bg-white/[.05] px-4 py-3 ring-1 ring-white/10 focus-within:ring-brand/60">
           <Search className="h-5 w-5 shrink-0 text-white/45" />
           <input
