@@ -64,6 +64,8 @@ function check(lang, file, data, body) {
   for (const k of REQUIRED) if (data[k] === undefined || data[k] === "" || (Array.isArray(data[k]) && !data[k].length)) errors.push(`missing ${k}`);
   if ((data.related ?? []).length < 3) errors.push("needs 3–5 related internal links (related:)");
   if (data.slug && `${data.slug}.md` !== path.basename(file)) errors.push(`slug "${data.slug}" doesn't match the file name`);
+  // Category pages build their URL from the name (lowercase, spaces to hyphens).
+  if (lang === "en" && /[&'’/]/.test(String(data.category ?? ""))) errors.push(`category "${data.category}" can't contain &, apostrophes or slashes (it becomes a URL)`);
   if (String(data.description ?? "").length > 160) errors.push(`description is ${String(data.description).length} chars (max 160)`);
   if (data.reviewStatus !== "pending-medical-review" && data.reviewStatus !== "medically-reviewed") errors.push(`reviewStatus must be pending-medical-review`);
   if (data.reviewStatus === "medically-reviewed" && /pending/i.test(String(data.reviewedBy))) errors.push("marked reviewed but reviewedBy is a placeholder");

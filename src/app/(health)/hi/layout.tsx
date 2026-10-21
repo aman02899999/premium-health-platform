@@ -30,10 +30,7 @@ export default function HindiRootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="hi" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font -- root layout of the Hindi health pages */}
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:opsz,wght@14..32,400..800&family=Noto+Sans+Devanagari:wght@400..800&display=swap" rel="stylesheet" />
+        <link rel="preload" href="/health/fonts/fraunces-latin-opsz-wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <HealthShell skipLabel="मुख्य सामग्री पर जाएँ">
         <div style={{ fontFamily: "'Noto Sans Devanagari', Inter, sans-serif" }}>{children}</div>

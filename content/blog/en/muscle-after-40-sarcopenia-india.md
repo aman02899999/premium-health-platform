@@ -2,7 +2,7 @@
 title: "Muscle After 40: Sarcopenia, Protein in Indian Diets, and a Strength Plan That Works"
 hindiTitle: "40 के बाद मांसपेशियाँ: सार्कोपीनिया, भारतीय खाने में प्रोटीन, और ताक़त बढ़ाने की कारगर योजना"
 slug: muscle-after-40-sarcopenia-india
-category: Fitness & Healthy Ageing
+category: Fitness and Healthy Ageing
 tags: [sarcopenia, muscle loss, strength training, protein, healthy ageing, grip strength]
 description: Muscle quietly declines with age, and it decides how well you age. Simple self-checks, how much protein Indian meals give, and a 12-week strength plan.
 readingTime: 15

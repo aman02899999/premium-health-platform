@@ -2,7 +2,7 @@
 title: "Sleep for Indians: Screens, Chai, Shift Work and the Red Flags of Sleep Apnoea"
 hindiTitle: "भारतीयों के लिए नींद: स्क्रीन, चाय, शिफ़्ट वर्क और स्लीप एप्निया के ख़तरे के संकेत"
 slug: sleep-guide-indians
-category: Sleep & Mind
+category: Sleep and Mind
 tags: [sleep, insomnia, caffeine, chai, screens, shift work, sleep apnoea]
 description: Why so many Indians sleep badly, how late chai and screens steal sleep, a playbook for night-shift workers, and the snoring signs that need a doctor.
 readingTime: 14

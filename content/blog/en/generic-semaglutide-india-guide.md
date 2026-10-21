@@ -2,7 +2,7 @@
 title: Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle
 hindiTitle: भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ
 slug: generic-semaglutide-india-guide
-category: Weight & Metabolism
+category: Weight and Metabolism
 tags: [semaglutide, GLP-1, weight loss, obesity, diabetes, muscle]
 description: Generic semaglutide arrived in India in March 2026. Who it suits, reported prices, side effects, and how to protect muscle while losing weight.
 readingTime: 15

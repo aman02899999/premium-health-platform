@@ -121,7 +121,7 @@ export const POSTS: PostMeta[] = [
     "title": "Anaemia in India: Why Iron Tablets Often Fail, and What Actually Works",
     "hindiTitle": "भारत में एनीमिया: आयरन की गोलियाँ अक्सर काम क्यों नहीं करतीं, और असल में क्या करें",
     "description": "Over half of Indian women and two in three young children are anaemic (NFHS-5). Seven reasons iron tablets fail, the right tests, and what works.",
-    "category": "Women's & Family Health",
+    "category": "Women and Family Health",
     "tags": [
       "anaemia",
       "iron deficiency",
@@ -250,7 +250,7 @@ export const POSTS: PostMeta[] = [
     "title": "Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle",
     "hindiTitle": "भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ",
     "description": "Generic semaglutide arrived in India in March 2026. Who it suits, reported prices, side effects, and how to protect muscle while losing weight.",
-    "category": "Weight & Metabolism",
+    "category": "Weight and Metabolism",
     "tags": [
       "semaglutide",
       "GLP-1",
@@ -622,7 +622,7 @@ export const POSTS: PostMeta[] = [
     "title": "Muscle After 40: Sarcopenia, Protein in Indian Diets, and a Strength Plan That Works",
     "hindiTitle": "40 के बाद मांसपेशियाँ: सार्कोपीनिया, भारतीय खाने में प्रोटीन, और ताक़त बढ़ाने की कारगर योजना",
     "description": "Muscle quietly declines with age, and it decides how well you age. Simple self-checks, how much protein Indian meals give, and a 12-week strength plan.",
-    "category": "Fitness & Healthy Ageing",
+    "category": "Fitness and Healthy Ageing",
     "tags": [
       "sarcopenia",
       "muscle loss",
@@ -744,7 +744,7 @@ export const POSTS: PostMeta[] = [
     "title": "Sleep for Indians: Screens, Chai, Shift Work and the Red Flags of Sleep Apnoea",
     "hindiTitle": "भारतीयों के लिए नींद: स्क्रीन, चाय, शिफ़्ट वर्क और स्लीप एप्निया के ख़तरे के संकेत",
     "description": "Why so many Indians sleep badly, how late chai and screens steal sleep, a playbook for night-shift workers, and the snoring signs that need a doctor.",
-    "category": "Sleep & Mind",
+    "category": "Sleep and Mind",
     "tags": [
       "sleep",
       "insomnia",

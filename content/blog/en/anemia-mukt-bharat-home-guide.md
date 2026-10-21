@@ -2,7 +2,7 @@
 title: "Anaemia in India: Why Iron Tablets Often Fail, and What Actually Works"
 hindiTitle: "भारत में एनीमिया: आयरन की गोलियाँ अक्सर काम क्यों नहीं करतीं, और असल में क्या करें"
 slug: anemia-mukt-bharat-home-guide
-category: Women's & Family Health
+category: Women and Family Health
 tags: [anaemia, iron deficiency, ferritin, B12, periods, NFHS-5, Anemia Mukt Bharat]
 description: Over half of Indian women and two in three young children are anaemic (NFHS-5). Seven reasons iron tablets fail, the right tests, and what works.
 readingTime: 15

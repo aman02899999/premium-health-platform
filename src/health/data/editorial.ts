@@ -20,7 +20,8 @@ const PILLARS: Article[] = POSTS.filter((p) => p.lang === "en").map((p) => ({
   readMinutes: p.readingTime,
   featured: true,
   imagePrompt: "",
-  heroImage: p.heroImage,
+  // Listings use next/image, which only optimises raster images: use the PNG export of the hero.
+  heroImage: p.heroImage.replace(/\.svg$/, ".png"),
   heroImageAlt: p.heroAlt,
   seoTitle: p.title,
   seoDescription: p.description,

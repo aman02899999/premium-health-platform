@@ -44,7 +44,7 @@ const BOX: Record<BoxKind, { cls: string; icon: typeof Info; label: { en: string
   note: { cls: "border-stone-300 bg-stone-50 dark:border-stone-700 dark:bg-stone-900", icon: Info, label: { en: "Note", hi: "ध्यान दें" } },
 };
 
-function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads?: { n: number } }) {
+function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads?: ReadonlySet<number> }) {
   return (
     <>
       {blocks.map((b, i) => {
@@ -153,9 +153,7 @@ function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads
               </div>
             );
           case "ad":
-            if (!ads || ads.n >= MAX_ADS) return null;
-            ads.n++;
-            return <PremiumAwareAd key={i} />;
+            return ads?.has(i) ? <PremiumAwareAd key={i} /> : null;
           default:
             return null;
         }
@@ -167,7 +165,7 @@ function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads
 export function PostBody({ blocks, lang }: { blocks: Block[]; lang: "en" | "hi" }) {
   return (
     <div className="post-body">
-      <Blocks blocks={blocks} lang={lang} ads={{ n: 0 }} />
+      <Blocks blocks={blocks} lang={lang} ads={new Set(blocks.flatMap((b, i) => (b.t === "ad" ? [i] : [])).slice(0, MAX_ADS))} />
     </div>
   );
 }
