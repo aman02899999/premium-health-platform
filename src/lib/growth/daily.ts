@@ -251,6 +251,11 @@ async function digestData(today: string): Promise<DigestData> {
       sent: campaignSent[0]?.n ?? 0,
       held: held[0]?.n ?? 0,
       results: campaignRows.filter((c) => c.buyers > 0).slice(0, 5).map((c) => ({ name: c.name, buyers: c.buyers, revenue: c.revenue })),
+      // Campaigns still sending, or sent in the last 14 days: how far the messages got.
+      funnel: campaignRows
+        .filter((c) => c.sent > 0 && (c.pending > 0 || Date.now() - Date.parse(c.createdAt) < 14 * 86_400_000))
+        .slice(0, 5)
+        .map((c) => ({ name: c.name, sent: c.sent, delivered: c.delivered, read: c.read, clicked: c.clicked, replied: c.replied, undelivered: c.undelivered, topReason: c.reasons[0]?.reason ?? null })),
     },
   };
 }

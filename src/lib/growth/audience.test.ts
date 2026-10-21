@@ -25,16 +25,20 @@ describe("campaign messages", () => {
   it("WhatsApp: the approved template with one-line params and a tagged link, once per person", () => {
     const d = campaignDraft(c, { name: "Rahul Verma", phone: "9876543210", email: null }, biz)!;
     expect(d).toMatchObject({ channel: "whatsapp", to: "919876543210", kind: "offer-broadcast", template: "rfc_offer_broadcast_v1", dedupeKey: "campaign:c1:919876543210" });
-    expect(d.params).toEqual(["Rahul", "Royal Fitness Club", "3 months gym + diet plan for ₹4,000", "https://x.in/membership?utm_source=whatsapp&utm_medium=campaign&utm_campaign=diwali-comeback"]);
+    // The link in the message is the person's tracked link; it redirects to the tagged page.
+    expect(d.params.slice(0, 3)).toEqual(["Rahul", "Royal Fitness Club", "3 months gym + diet plan for ₹4,000"]);
+    expect(d.params[3]).toMatch(/^https:\/\/x\.in\/r\/[0-9A-Za-z]{9}$/);
+    expect(d.link).toEqual({ code: d.params[3].split("/r/")[1], url: "https://x.in/membership?utm_source=whatsapp&utm_medium=campaign&utm_campaign=diwali-comeback" });
     expect(campaignDraft(c, { name: "No Phone", phone: null, email: "a@b.in" }, biz)).toBeNull();
   });
   it("email: a marketing email with the CTA and the unsubscribe handling of nurture emails", () => {
     const d = campaignDraft({ ...c, channel: "email", subject: "Come back this Diwali", link: "trial" }, { name: "Neha", phone: null, email: "Neha@X.in" }, biz)!;
     expect(d).toMatchObject({ channel: "email", to: "neha@x.in", kind: "nurture-campaign", subject: "Come back this Diwali", dedupeKey: "campaign:c1:neha@x.in" });
-    expect(d.body).toContain("[[CTA:Start the ₹49 trial|https://x.in/diet-chart?plan=trial&utm_source=email&utm_medium=campaign&utm_campaign=diwali-comeback#order]]");
+    expect(d.body).toContain(`[[CTA:Start the ₹49 trial|https://x.in/r/${d.link!.code}]]`);
+    expect(d.link!.url).toBe("https://x.in/diet-chart?plan=trial&utm_source=email&utm_medium=campaign&utm_campaign=diwali-comeback#order");
     // The button only renders when the CTA is the last line.
     const html = emailHtml(d.body, { brand: "Royal Fitness Club", footer: "f", style: "newsletter" });
-    expect(html).toContain('href="https://x.in/diet-chart?plan=trial&amp;utm_source=email&amp;utm_medium=campaign&amp;utm_campaign=diwali-comeback#order"');
+    expect(html).toContain(`href="https://x.in/r/${d.link!.code}"`);
     expect(html).not.toContain("[[CTA");
   });
   it("names the number a person answers, in WhatsApp offers and emails", () => {

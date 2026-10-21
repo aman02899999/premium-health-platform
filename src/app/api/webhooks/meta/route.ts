@@ -4,11 +4,13 @@ import { handleInbound } from "@/lib/social/automation";
 import { handleCall } from "@/lib/social/calls";
 import { parseCalls, parseWebhook, type MetaWebhook } from "@/lib/social/inbound";
 import { verifyMetaSignature } from "@/lib/social/meta";
+import { parseStatuses } from "@/lib/growth/tracking-core";
+import { recordWhatsAppStatus } from "@/lib/growth/tracking";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
-// Meta webhooks for WhatsApp (fields "messages" and "calls") and Instagram (fields "messages" and "comments").
+// Meta webhooks for WhatsApp (fields "messages", including delivery/read statuses, and "calls") and Instagram (fields "messages" and "comments").
 // Callback URL: https://<your-site>/api/webhooks/meta, verify token: META_VERIFY_TOKEN.
 
 /** Meta's one-time check when the callback URL is saved. */
@@ -34,9 +36,13 @@ export async function POST(req: Request) {
   }
   const items = parseWebhook(body);
   const calls = parseCalls(body);
+  const statuses = parseStatuses(body);
   // Answer Meta at once (it retries slow webhooks); replies go out after the response.
-  if ((items.length || calls.length) && isDbConfigured) {
+  if ((items.length || calls.length || statuses.length) && isDbConfigured) {
     after(async () => {
+      for (const st of statuses) {
+        await recordWhatsAppStatus(st).catch((err) => console.error("[meta webhook] status", st.status, (err as Error).message));
+      }
       for (const m of items) {
         await handleInbound(m).catch((err) => console.error("[meta webhook]", m.channel, (err as Error).message));
       }

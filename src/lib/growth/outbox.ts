@@ -35,9 +35,9 @@ export async function enqueue(drafts: Draft[]): Promise<number> {
   let added = 0;
   for (const d of drafts) {
     const { rowCount } = await pool.query(
-      `insert into public.message_outbox (channel, to_address, to_name, kind, body, template, params, dedupe_key, subject, attachment)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) on conflict (dedupe_key) do nothing`,
-      [d.channel, d.to, d.toName.slice(0, 80), d.kind, d.body.slice(0, 6000), d.template, JSON.stringify(d.params), d.dedupeKey, d.subject?.slice(0, 200) ?? null, d.attachment ?? null],
+      `insert into public.message_outbox (channel, to_address, to_name, kind, body, template, params, dedupe_key, subject, attachment, link_code, link_url)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) on conflict (dedupe_key) do nothing`,
+      [d.channel, d.to, d.toName.slice(0, 80), d.kind, d.body.slice(0, 6000), d.template, JSON.stringify(d.params), d.dedupeKey, d.subject?.slice(0, 200) ?? null, d.attachment ?? null, d.link?.code ?? null, d.link?.url.slice(0, 1000) ?? null],
     );
     added += rowCount ?? 0;
   }
@@ -163,16 +163,25 @@ export async function dispatch(max = 100, deadline = Infinity): Promise<{ sent: 
       }
       // Promotions never go to a number that tapped "Stop promotions".
       if (m.channel === "whatsapp" && isMarketingKind(m.kind)) {
-        const { rowCount } = await client.query(`select 1 from public.whatsapp_optouts where phone = $1`, [m.to_address]);
-        if (rowCount) {
-          await client.query(`update public.message_outbox set status = 'cancelled', last_error = 'Opted out of promotions' where id = $1`, [m.id]);
+        const { rows: stop } = await client.query<{ why: string }>(
+          `select 'Opted out of promotions' as why from public.whatsapp_optouts where phone = $1
+           union all select 'WhatsApp says this number can''t receive messages' from public.whatsapp_unreachable where phone = $1 limit 1`,
+          [m.to_address],
+        );
+        if (stop[0]) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = $2 where id = $1`, [m.id, stop[0].why]);
           await client.query("commit");
           continue;
         }
       }
       const r = await sendOne(m).catch((err: Error): SendResult => ({ ok: false, error: err.message.slice(0, 300), retry: true }));
       if (r.ok) {
-        await client.query(`update public.message_outbox set status = 'sent', sent_at = now(), sent_by = $2, attempts = attempts + 1, last_error = null where id = $1`, [m.id, m.channel === "whatsapp" ? "whatsapp-api" : "email-api"]);
+        // The provider's message id matches later delivery, read and click reports to this row.
+        await client.query(`update public.message_outbox set status = 'sent', sent_at = now(), sent_by = $2, attempts = attempts + 1, last_error = null, provider_id = $3 where id = $1`, [
+          m.id,
+          m.channel === "whatsapp" ? "whatsapp-api" : "email-api",
+          r.id.slice(0, 200) || null,
+        ]);
         sent++;
         if (m.channel === "whatsapp" && isMarketingKind(m.kind)) marketingLeft--;
         if (m.channel === "email" && m.kind.startsWith("nurture-")) emailLeft--;
