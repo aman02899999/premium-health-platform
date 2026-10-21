@@ -30,7 +30,7 @@ import {
 } from "./meta";
 import { renderReel } from "./reel";
 import { TRIAL_OFFER_MARK, flowAction, flowReply, logText, toInteractive, type FlowAction } from "./wa-flow";
-import { recordReply } from "./chat";
+import { chatThread, recordReply } from "./chat";
 import { chatAlertEmail } from "./chat-window";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
 import { promotionsRequest } from "@/lib/growth/messages";
@@ -39,7 +39,9 @@ import { qrLeadSource } from "@/lib/admin/qr";
 import { refFromText } from "@/lib/admin/qr-core";
 import { adLeadSource } from "@/lib/admin/ads";
 import { adRefFromText } from "@/lib/admin/ads-core";
-import { botPaused } from "./chat-tools";
+import { COACH_PAUSE_HOURS, botPaused, pauseBot } from "./chat-tools";
+import { aiConfigured, answersToday, draftAnswer, getAgentSettings, logRun } from "@/lib/ai/agent";
+import { worthAnswering } from "@/lib/ai/agent-core";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -125,6 +127,12 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
     [m.channel, m.from, m.id],
   );
   const canSend = m.channel === "whatsapp" ? whatsappReplyConfigured() : m.channel === "facebook" ? facebookConfigured() : instagramConfigured();
+  // A typed question the keyword bot has no answer for (it would send the menu, or nothing mid-chat):
+  // the AI agent answers it when it's switched on. If it can't, the usual rules below apply.
+  if (flow && !flow.tapped && flow.action === "menu" && intent === "other" && !m.media && worthAnswering(m.text) && autoReplyOn() && canSend) {
+    const ai = await aiReply(m).catch((err: Error) => (console.error("[ai-agent] reply:", err.message), "skipped" as const));
+    if (ai !== "skipped") return ai;
+  }
   if (!autoReplyOn() || !canSend || (!flow?.tapped && !shouldReply(intent, m.kind, rows[0].n > 0))) return "logged";
   // The coach paused the bot for this customer (or is chatting with them right now).
   if (flow && (await botPaused(m.from))) return "logged";
@@ -137,6 +145,32 @@ export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied"
       ? await sendFacebookMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^fbc:/, "") } : { id: m.from }, text)
       : await sendInstagramMessage(m.kind === "comment" ? { comment_id: m.id.replace(/^igc:/, "") } : { id: m.from }, text);
   await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
+  return res.ok ? "replied" : "failed";
+}
+
+/**
+ * The AI agent's answer to one WhatsApp question. "skipped" when it is off, over today's cap or
+ * couldn't answer, so the caller falls back to the keyword rules. A hand-off pauses the bot for
+ * this customer so a coach can take over (the coach is already emailed about every message).
+ */
+async function aiReply(m: Inbound): Promise<"replied" | "failed" | "logged" | "skipped"> {
+  if (!aiConfigured()) return "skipped";
+  const settings = await getAgentSettings();
+  if (settings.mode !== "auto") return "skipped";
+  if (await botPaused(m.from)) return "logged";
+  if ((await answersToday()) >= settings.dailyCap) return "skipped";
+  const thread = await chatThread(m.from, 40);
+  const history = thread.messages.filter((x) => x.id !== `in:${m.id}`).map((x) => ({ fromThem: x.fromThem, body: x.body, by: x.by }));
+  const r = await draftAnswer({ question: m.text, history, name: m.fromName, settings });
+  if (!r.ok) {
+    await logRun({ source: "auto", peer: m.from, inboxId: m.id, question: m.text, result: r });
+    return "skipped";
+  }
+  const res = await sendWhatsAppText(m.from, r.answer.reply);
+  await recordReply({ to: m.from, body: r.answer.reply, by: "ai-agent", ok: res.ok, error: res.ok ? null : res.error, externalId: res.ok ? res.id : null });
+  await pool.query(`update public.social_inbox set replied = $2, reply_error = $3 where id = $1`, [m.id, res.ok, res.ok ? null : res.error.slice(0, 300)]);
+  await logRun({ source: "auto", peer: m.from, inboxId: m.id, question: m.text, result: r, sent: res.ok });
+  if (res.ok && r.answer.handoff) await pauseBot(m.from, new Date(Date.now() + COACH_PAUSE_HOURS * 3_600_000), false);
   return res.ok ? "replied" : "failed";
 }
 

@@ -9,11 +9,12 @@ import { assignChat } from "@/lib/admin/team";
 import { cancelRequest, createRequest, requestsFor } from "@/lib/payments/requests";
 import { PURPOSES, requestMessage } from "@/lib/payments/requests-core";
 import { peerId } from "@/lib/social/chat-window";
+import { aiConfigured, draftAnswer, getAgentSettings, logRun } from "@/lib/ai/agent";
 import { contactInfo, pauseBot, saveNotes, sendManualTemplate, sendQuickReply, setLeadStatus, setOptOut } from "@/lib/social/chat-tools";
 
 // One WhatsApp conversation for the coach.
 // GET: the messages, who the customer is, one-tap replies and the templates that fit them.
-// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out | assign | pay-link | pay-cancel.
+// POST { action, ... }: text | quick | template | pause | notes | lead-status | opt-out | assign | pay-link | pay-cancel | ai-draft.
 export const dynamic = "force-dynamic";
 
 type Params = { params: Promise<{ peer: string }> };
@@ -32,6 +33,8 @@ export async function GET(_req: Request, { params }: Params) {
       // Payment requests for this number (empty before the migration is applied).
       payments: await requestsFor(peer).catch(() => []),
       purposes: PURPOSES,
+      // Whether the ✨ AI draft button shows.
+      aiDraft: aiConfigured() && (await getAgentSettings()).mode !== "off",
     });
   } catch (err) {
     console.error("[chats] thread:", (err as Error).message);
@@ -62,6 +65,23 @@ export async function POST(req: Request, { params }: Params) {
     } catch (err) {
       console.error("[chats] pay-link:", (err as Error).message);
       return NextResponse.json({ error: "Couldn't create the payment link. Is the latest database migration applied?" }, { status: 500 });
+    }
+  }
+  // An AI-written reply to the customer's latest message, for the desk to edit and send. Nothing is sent.
+  if (b.action === "ai-draft") {
+    try {
+      const settings = await getAgentSettings();
+      if (!aiConfigured() || settings.mode === "off") return NextResponse.json({ error: "The AI agent is off. Turn it on in Admin → AI agent." }, { status: 409 });
+      const thread = await chatThread(peer, 40);
+      const lastIn = [...thread.messages].reverse().find((m) => m.fromThem && m.body.trim());
+      if (!lastIn) return NextResponse.json({ error: "There's no customer message to answer yet." }, { status: 400 });
+      const history = thread.messages.slice(0, thread.messages.indexOf(lastIn)).map((m) => ({ fromThem: m.fromThem, body: m.body, by: m.by }));
+      const r = await draftAnswer({ question: lastIn.body, history, name: thread.name, settings });
+      await logRun({ source: "draft", peer: peerId(peer), question: lastIn.body, result: r, by });
+      return r.ok ? NextResponse.json({ ok: true, draft: r.answer.reply, handoff: r.answer.handoff, reason: r.answer.reason }) : NextResponse.json({ error: r.error }, { status: 502 });
+    } catch (err) {
+      console.error("[chats] ai-draft:", (err as Error).message);
+      return NextResponse.json({ error: "Couldn't write a draft. Is the latest database migration applied?" }, { status: 500 });
     }
   }
   let res: SendOutcome;
