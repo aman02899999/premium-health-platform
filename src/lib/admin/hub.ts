@@ -49,7 +49,8 @@ export const HUB_SECTIONS: Section[] = [
     title: "Start here",
     tiles: [
       { id: "chats", title: "Live Chat", hint: "WhatsApp inbox, quick replies, templates", href: "/admin/chats", icon: "MessageCircle", keywords: "whatsapp inbox reply conversation team inbox", badge: { key: "chatsWaiting", alert: true } },
-      { id: "ai", title: "AI agent", hint: "Answers WhatsApp questions, drafts replies, hands off to a coach", href: "/admin/ai-agent", icon: "Bot", keywords: "ai agent chatbot bot claude auto reply assistant answer questions draft knowledge" },
+      // AI agent (/admin/ai-agent) is hidden for now; put its tile back here to show it again:
+      // { id: "ai", title: "AI agent", hint: "Answers WhatsApp questions, drafts replies, hands off to a coach", href: "/admin/ai-agent", icon: "Bot", keywords: "ai agent chatbot bot claude auto reply assistant answer questions draft knowledge" },
       { id: "broadcast", title: "Broadcast", hint: "Send an offer to a segment, WhatsApp + email", href: "/admin/audience", icon: "Megaphone", keywords: "campaign bulk send blast promotion offer", badge: { key: "pending" } },
       { id: "ads", title: "Ads Manager", hint: "Ad links, spend, cost per lead, return on spend", href: "/admin/ads", icon: "TrendingUp", keywords: "ads advertising facebook instagram meta google campaign spend roi roas cpl click to whatsapp audience" },
       { id: "today", title: "Today's tasks", hint: "Who to call, renewals, trials, follow-ups", href: "/admin/growth?tab=today", icon: "ListChecks", keywords: "todo calls renewals dashboard", badge: { key: "trialsToday" } },
