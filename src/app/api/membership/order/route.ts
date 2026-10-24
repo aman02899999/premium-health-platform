@@ -32,8 +32,9 @@ export async function POST(req: Request) {
   if (rateLimited(ip)) return NextResponse.json({ error: "Too many attempts — please WhatsApp us instead." }, { status: 429 });
 
   const couple = body.couple === true;
-  // Price on the server from today's plans (festive offer included), never from the browser.
-  const quote = quoteMembership(applyOffer((await getContent()).plans, todayIST()), typeof body.planId === "string" ? body.planId : "", couple);
+  // Price on the server from today's plans (the admin's current offer included), never from the browser.
+  const content = await getContent();
+  const quote = quoteMembership(applyOffer(content.plans, todayIST(), content.offers), typeof body.planId === "string" ? body.planId : "", couple);
   if (!quote) return NextResponse.json({ error: "That plan isn't available online. Please pick another plan." }, { status: 400 });
   const form = parseCheckoutForm(body, couple);
   if (typeof form === "string") return NextResponse.json({ error: form }, { status: 400 });

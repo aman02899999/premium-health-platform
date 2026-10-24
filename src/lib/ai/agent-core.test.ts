@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { MAX_KNOWLEDGE, buildKnowledge, cleanSettings, conversationPrompt, costUsd, parseAnswer, systemPrompt, withLiveLine, worthAnswering } from "./agent-core";
 
 describe("settings", () => {
@@ -21,7 +21,7 @@ describe("what is worth an AI answer", () => {
 });
 
 describe("knowledge", () => {
-  const plans = applyOffer(DEFAULT_CONTENT.plans, "2026-10-21");
+  const plans = applyOffer(DEFAULT_CONTENT.plans, "2026-10-21", OFFERS);
   const k = buildKnowledge(DEFAULT_CONTENT, plans, "https://www.royalfitnesclub.in", "Bike parking is free.");
   it("carries today's prices, timings, diet plans, FAQs and the desk's notes", () => {
     const paid = plans.find((p) => p.price > 0)!;

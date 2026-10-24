@@ -24,8 +24,8 @@ export function countdownLabel(today: string, endsOn: string) {
 }
 
 export function igLanding(c: SiteContent, today: string): IgLanding {
-  const offer = activeOffer(today);
-  const plans = applyOffer(c.plans, today).filter((p) => p.price > 0);
+  const offer = activeOffer(today, c.offers);
+  const plans = applyOffer(c.plans, today, c.offers).filter((p) => p.price > 0);
   if (!offer) {
     return { badge: "FREE TRIAL", countdown: "", deal: "Train free for a day · No payment needed", plans: plans.sort((a, b) => a.price - b.price), endsOn: null };
   }

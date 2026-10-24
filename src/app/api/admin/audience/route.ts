@@ -35,7 +35,7 @@ export async function GET(req: Request) {
       });
     }
     const [segments, campaigns, imported, content] = await Promise.all([segmentCounts(today), listCampaigns(), importedCount(), getContent()]);
-    return NextResponse.json({ segments, campaigns, imported, playbook: playbook(applyOffer(content.plans, today), planMonths), links: Object.entries(LINKS).map(([id, l]) => ({ id, label: l.label, whatsapp: l.whatsapp })) });
+    return NextResponse.json({ segments, campaigns, imported, playbook: playbook(applyOffer(content.plans, today, content.offers), planMonths), links: Object.entries(LINKS).map(([id, l]) => ({ id, label: l.label, whatsapp: l.whatsapp })) });
   } catch (err) {
     console.error("[audience]", (err as Error).message);
     return NextResponse.json({ error: "Couldn't load the audience. Is the latest database migration applied?" }, { status: 500 });

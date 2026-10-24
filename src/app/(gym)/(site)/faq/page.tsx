@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function FaqPage() {
   const c = await getContent();
-  const f = aiFacts(c, applyOffer(c.plans, todayIST()), SITE_URL);
+  const f = aiFacts(c, applyOffer(c.plans, todayIST(), c.offers), SITE_URL);
   // The site's own FAQs follow, minus any that the answers above already cover.
   const extra = c.faqs.filter((x) => !["fees", "timings", "location"].includes(x.id));
   return (

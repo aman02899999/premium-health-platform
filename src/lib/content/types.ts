@@ -1,6 +1,8 @@
 // Everything the admin panel can edit lives in one SiteContent document.
 // Pages read it server-side; the admin saves it back as a whole.
 
+import type { Offer } from "../offers";
+
 export type Business = {
   name: string;
   shortName: string;
@@ -148,6 +150,8 @@ export type SiteContent = {
   seo: Seo;
   theme: Theme;
   announcement: string;
+  /** Time-boxed membership offers (admin → Offers). Empty list = no offers. See lib/offers.ts. */
+  offers: Offer[];
 };
 
 export type Lead = {

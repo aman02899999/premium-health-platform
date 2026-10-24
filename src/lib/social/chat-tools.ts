@@ -118,7 +118,7 @@ export async function sendQuickReply(peer: string, quick: string, by: string): P
   if (!(await windowOpen(id))) return { ok: false, error: "The 24-hour window is closed: send a template instead.", status: 409 };
   const c = await getContent();
   const name = (await contactInfo(id)).name;
-  const steps = q.build({ business: c.business, plans: applyOffer(c.plans, todayIST()), siteUrl: SITE_URL, name, text: "" });
+  const steps = q.build({ business: c.business, plans: applyOffer(c.plans, todayIST(), c.offers), siteUrl: SITE_URL, name, text: "" });
   for (const step of steps) {
     const interactive = toInteractive(step);
     let res = interactive ? await sendWhatsAppInteractive(id, interactive) : await sendWhatsAppText(id, step.body);

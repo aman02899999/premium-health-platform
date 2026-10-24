@@ -20,7 +20,7 @@ export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
-  const from = Math.min(...applyOffer(c.plans, todayIST()).map((p) => p.price));
+  const from = Math.min(...applyOffer(c.plans, todayIST(), c.offers).map((p) => p.price));
   return pageMeta(c, {
     title: "Gym Membership Fees in Sector 93 Noida — Single & Couple Plans",
     description: `${c.business.name} gym membership from ${formatINR(from)}/month. Single and couple plans for 1, 3, 6, 12 and 15 months with trainer guidance and diet charts.`,
@@ -30,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function MembershipPage() {
   const c = await getContent();
-  const plans = applyOffer(c.plans, todayIST());
+  const plans = applyOffer(c.plans, todayIST(), c.offers);
   const policy = planFaqs(c.business);
   const faqs = c.faqs.filter((f) => ["couple", "trial", "diet", "beginner", "timings"].includes(f.id));
   return (

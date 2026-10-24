@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function JoinPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const c = await getContent();
   const b = c.business;
-  const plans = applyOffer(c.plans, todayIST()).filter((p) => p.price > 0);
+  const plans = applyOffer(c.plans, todayIST(), c.offers).filter((p) => p.price > 0);
   const sp = await searchParams;
   const one = (k: string) => (typeof sp[k] === "string" ? (sp[k] as string) : "");
   // /join?renew=<token> comes from a renewal reminder; /join?ref=<code> from a member's share link.

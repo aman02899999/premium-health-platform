@@ -90,7 +90,7 @@ export function localBusinessJsonLd(c: SiteContent) {
       name,
       value: true,
     })),
-    makesOffer: applyOffer(c.plans, todayIST()).flatMap((p) => [
+    makesOffer: applyOffer(c.plans, todayIST(), c.offers).flatMap((p) => [
       { "@type": "Offer", name: `${p.name} membership (${p.duration})`, price: p.price, priceCurrency: "INR", ...(p.offer ? { priceValidUntil: p.offer.endsOn } : {}) },
       ...(p.couplePrice ? [{ "@type": "Offer", name: `${p.name} couple membership (${p.offer?.standardDuration ?? p.duration})`, price: p.couplePrice, priceCurrency: "INR" }] : []),
     ]),

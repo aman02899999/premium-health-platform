@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "./defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { basePlan, perMonth, planFaqs, planFeatures, planMonths, planSummary, savingPct } from "./plans";
 
 const plans = DEFAULT_CONTENT.plans;
@@ -18,7 +18,7 @@ describe("planFeatures", () => {
   });
 
   it("keeps a running offer's perks on the offer plan only", () => {
-    const offered = applyOffer(plans, "2026-11-01");
+    const offered = applyOffer(plans, "2026-11-01", OFFERS);
     const { has } = planFeatures(offered);
     expect(has("yearly", "Free customised diet plan")).toBe(true);
     expect(has("fifteen-months", "Free customised diet plan")).toBe(false);
@@ -43,7 +43,7 @@ describe("plan maths", () => {
   });
 
   it("measures offer plans against the standard monthly rate", () => {
-    const offered = applyOffer(plans, "2026-11-01");
+    const offered = applyOffer(plans, "2026-11-01", OFFERS);
     const base = basePlan(offered)!;
     const monthly = offered.find((p) => p.id === "monthly")!;
     expect(savingPct(monthly, base)).toBe(0);

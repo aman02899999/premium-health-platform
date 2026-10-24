@@ -45,7 +45,7 @@ import { worthAnswering } from "@/lib/ai/agent-core";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
-  return { business: c.business, plans: applyOffer(c.plans, todayIST()), siteUrl: SITE_URL, name, text };
+  return { business: c.business, plans: applyOffer(c.plans, todayIST(), c.offers), siteUrl: SITE_URL, name, text };
 }
 
 /** The plan preview sent with a diet reply on WhatsApp (public/samples). */
