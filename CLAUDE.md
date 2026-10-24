@@ -133,6 +133,7 @@ task, check which skill applies and invoke it. Don't work from memory when a ski
 | Decisions worth remembering | `documentation-and-adrs` (write ADRs in `docs/adr/`) |
 | Long sessions, degraded output | `context-engineering` |
 | SEO and AI search (ChatGPT, Gemini, Perplexity, AI Overviews) | `geo-audit` (full audit), `geo-technical`, `geo-schema`, `geo-content`, `geo-citability`, `geo-crawlers`, `geo-llmstxt`, `geo-platform-optimizer`, `geo-brand-mentions`; agents `geo-*`; `geo-report` / `geo-compare` for monthly progress |
+| Marketing: offers, landing-page CRO, WhatsApp/email campaigns, social, ads, referrals, retention, tracking | Marketing skills (`copywriting`, `cro`, `offers`, `sms`, `emails`, `social`, `ads`, `referrals`, `churn-prevention`, `conversion-tracking`, …; list in `.claude/skills/MARKETING-SKILLS.md`). They read `.agents/product-marketing.md` first; its house rules win |
 | **Every piece of customer-facing text** (site copy, emails, WhatsApp, posts, PR descriptions) | `humanizer`: plain, warm, Hinglish where the site already uses it, no AI tells |
 
 ## 6. The rebuild program
