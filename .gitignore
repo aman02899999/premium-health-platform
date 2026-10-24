@@ -35,3 +35,5 @@ yarn-error.log*
 
 # superpowers skill workspaces (brainstorm server, SDD briefs)
 /.superpowers/
+# Added by code-review-graph
+.code-review-graph/
