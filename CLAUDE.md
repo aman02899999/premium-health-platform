@@ -122,6 +122,7 @@ task, check which skill applies and invoke it. Don't work from memory when a ski
 | Several independent tasks | `dispatching-parallel-agents`, `using-git-worktrees` |
 | Quality bar | `constraint-driven-development` (keep `CONSTRAINTS.md` current), `.claude/references/definition-of-done.md` |
 | Security, auth, payments, webhooks, personal data | `security-and-hardening`, agent `security-auditor`, `.claude/references/security-checklist.md` |
+| Full security audit of the codebase (Phase 5) | `security-audit` (see `.claude/skills/SECURITY-AUDIT.md`) |
 | Speed and Core Web Vitals | `performance-optimization`, agent `web-performance-auditor`, `.claude/references/performance-checklist.md` |
 | Accessibility | `.claude/references/accessibility-checklist.md` (WCAG 2.1 AA) |
 | Browser checks | `browser-testing-with-devtools` (or Playwright with `/opt/pw-browsers` Chromium) |
