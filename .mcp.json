@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "apify": {
+      "type": "http",
+      "url": "https://mcp.apify.com",
+      "headers": {
+        "Authorization": "Bearer ${APIFY_TOKEN}"
+      }
+    },
     "code-review-graph": {
       "command": "uvx",
       "args": [
