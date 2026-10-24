@@ -33,15 +33,20 @@ Speed Insights is off, so INP is not measured.
 
 ## Money paths (Phase 1)
 
+Updated 24 Oct 2026 by Phase 1. Full write-up: `docs/phase1/2026-10-24/PHASE1_REPORT.md`. Every
+path was driven end to end against a local copy of the site, a throwaway database and a fake
+Razorpay (`scripts/e2e/payments.mjs`, 53 of 53 checks pass). Nothing was charged or refunded.
+
 | Feature | Status | Evidence |
 |---|---|---|
-| Membership: `/membership`, `/join` | Unknown | [Certain] Both load with 200 on all widths. Festive prices show (₹1,500 / ₹4,000 / ₹7,000 / ₹14,000). Server-side pricing and signature checks were confirmed in code on 19 Oct (`docs/ENGINEERING_AUDIT.md`). The full order → pay → webhook → receipt path has not been run in Razorpay test mode |
-| Payment links `/pay/[token]` | Unknown | Token pages, not in the sitemap. Phase 1 |
-| Supplement store and checkout `/shop` | Weak | [Certain] Vercel logged "catalogue load failed: password authentication failed for user postgres" 10 times from 12 to 19 Oct on `/shop`, plus DB connection timeouts on 18 and 24 Oct. No alert fired [Likely]. All 36 shop pages fail colour contrast |
-| Library books `/library` | Unknown | [Certain] All 61 pages load and all 61 fail colour contrast. One "ratings unavailable" DB error on 18 Oct. Purchase and download not tested |
-| Diet plans `/diet-plans`, `/diet-chart` | Unknown | [Certain] Pages load. Order path not tested |
-| Razorpay webhook and refunds | Unknown | [Certain] Signature check uses a constant-time compare (code review). `RAZORPAY_WEBHOOK_SECRET` is set in production (name only). Replay and duplicate handling not tested live |
-| Daily payment reconciliation | Works (runs) | [Certain] `system_status.daily-run` ok at 02:28 UTC on 24 Oct. Whether it caught real mismatches is Phase 1 |
+| Membership: `/membership`, `/join` | Works (code), never used live | [Certain] Order at the server's festive price, forged signature refused, verify, webhook, duplicate, refund, closed tab, wrong amount and failed-then-paid all pass. Admin Payments lists the order. Receipt is the WhatsApp welcome only. `membership_orders` has 0 rows in production: nobody has paid online yet |
+| Payment links `/pay/[token]` | Works (code) | [Certain] Verify, webhook, duplicate, refund pass. Receipt is a WhatsApp text in the chat. 1 link created in production, unpaid |
+| Supplement store and checkout `/shop` | Works (code), never used live | [Certain] Order, verify, webhook, duplicate, refund pass; stock taken once across verify + webhook + replay; admin Store lists it. 0 shop orders in production. The 12–19 Oct DB errors: see "Preview database URL" below |
+| Library books `/library` | Fixed in Phase 1 | [Certain] Verify, webhook, duplicate, refund pass; full refund ends access. Buyers got **no receipt and no emailed download link** (only the browser page). Now they get an email with the link, once per order, from verify or webhook |
+| Diet plans `/diet-chart` | Works | [Certain] Order, verify, receipt (WhatsApp + email), webhook, duplicate, refund pass. Production: 7 orders, 3 paid and delivered (18 and 24 Oct) |
+| Razorpay webhook (live) | **Broken** | [Certain] `payment_events` has 0 rows ever, although 2 payments were captured on 24 Oct after the table existed. Razorpay isn't delivering to the site, or the secret differs. [Likely] the webhook was set up in Test mode and keys moved to new ones on 18 Oct. Owner action in the Razorpay dashboard. Until fixed, refunds and chargebacks are never recorded |
+| Daily payment reconciliation | Works | [Certain] DB test of a missed capture passes; production run on 24 Oct checked 1 order, no errors |
+| Preview database URL | **Broken** (owner decision) | [Certain] Supabase's pooler logged 401 failed logins in 24 h, each burst in the same minute as a preview build, then blocked those IPs. Preview `/shop` shows "The store is being updated"; production `/shop` is fine. [Likely] this also caused the 12–19 Oct `/shop` errors via build machines shared with production builds |
 
 ## Messaging (Phase 2)
 

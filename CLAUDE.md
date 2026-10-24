@@ -206,6 +206,10 @@ phase until the previous one is merged or the owner says to.
 
 ## 7. Known open items (update as they close)
 
+- [ ] Razorpay webhook not reaching the site: `payment_events` is empty (24 Oct). Owner checks
+  Razorpay → Live mode → Webhooks. Refunds and chargebacks aren't recorded until it works.
+- [ ] Preview `DATABASE_URL` has a wrong password: every preview build fails ~25 logins and trips
+  the Supabase pooler's IP block. Owner decides: clear it, or set the current pooler string.
 - [ ] WhatsApp marketing broadcasts fail with Meta error **131042** (payment method). 600 failed
   21–24 Oct; 1,576 still pending. The owner must fix billing in WhatsApp Manager, then decide
   whether to pause and whether to resend.
