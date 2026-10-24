@@ -4,7 +4,7 @@ import { intakeToProfile, parseDietOrder } from "./diet-intake";
 import { bannerFor, emailHtml, emailText, splitCta } from "./email-html";
 import { nurtureDrafts, steps, type NurtureBiz, type NurtureLead } from "./nurture";
 import { DEFAULT_PROFILE } from "@/lib/diet-pro/defaults";
-import { dietPlanEmail, dietPlanWhatsApp, dietReceivedEmail } from "./messages";
+import { bookAccessEmail, dietPlanEmail, dietPlanWhatsApp, dietReceivedEmail } from "./messages";
 
 const biz: NurtureBiz = { name: "Royal Fitness Club", phone: "+91 88518 30081", whatsapp: "918851830081", siteUrl: "https://example.in", coach: "Coach Aman Sharma", membershipFrom: 2000 };
 const lead = (interest: NurtureLead["interest"], createdAt = "2026-10-08T06:00:00Z"): NurtureLead => ({ id: `id-${interest}`, name: "Priya Verma", email: "Priya@Example.com", interest, createdAt });
@@ -132,5 +132,20 @@ describe("plan delivery messages", () => {
     // A new file (coach edits) is a new message; the same file is never sent twice.
     expect(dietPlanEmail(o, "x", "orders/o1/b.pdf", { ...b, coach: "c" }).dedupeKey).not.toBe(em.dedupeKey);
     expect(dietReceivedEmail(o, "3-Month Transformation", "48 hours", b).body).toContain("48 hours");
+  });
+});
+
+describe("library receipt", () => {
+  const b = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://example.in" };
+  const order = { id: "b1", name: "Priya Verma", email: "Priya@Example.com", title: "Complete Library", amountPaise: 49900, accessToken: "tok_abcdefghijklmnopqrstuv", razorpayPaymentId: "pay_123" };
+  it("emails the download link and payment id once per order", () => {
+    const em = bookAccessEmail(order, b, { days: 365, downloads: 5 });
+    expect(em).toMatchObject({ channel: "email", to: "priya@example.com", kind: "book-access-email", dedupeKey: "book-access-email:b1" });
+    expect(em.subject).toContain("Complete Library");
+    expect(em.body).toContain("https://example.in/library/access/tok_abcdefghijklmnopqrstuv");
+    expect(em.body).toContain("pay_123");
+    expect(em.body).toContain("₹499");
+    expect(em.body).toContain("https://example.in/library/recover");
+    expect(em.body).toContain("5 times");
   });
 });

@@ -160,6 +160,17 @@ describe.skipIf(!url)("Razorpay payments on a real database", () => {
     expect(await library.orderByToken("tok_abcdefghijklmnopqrstuv")).toBeNull();
   });
 
+  it("a library payment emails the download link once, from the webhook or the browser", async () => {
+    await book("order_B2");
+    await proc.handleRazorpayEvent(captured("order_B2", "pay_20", 49900), noDefer);
+    await proc.handleRazorpayEvent(captured("order_B2", "pay_20", 49900, "evt_pay_20_retry"), noDefer);
+    await library.afterBookPaid("order_B2", "pay_20"); // the buyer's browser reaches verify too
+    const { rows } = await pool.query("select to_address, kind, body from public.message_outbox where kind = 'book-access-email'");
+    expect(rows).toHaveLength(1);
+    expect(rows[0].to_address).toBe("a@example.com");
+    expect(rows[0].body).toContain("/library/access/tok_abcdefghijklmnopqrstuv");
+  });
+
   it("a chargeback marks the order disputed", async () => {
     await membership("order_M6");
     await proc.handleRazorpayEvent(captured("order_M6", "pay_11", 200000), noDefer);

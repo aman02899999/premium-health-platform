@@ -1,6 +1,6 @@
 import "server-only";
 import { markFailed, markPaid } from "./orders";
-import { markBookFailed, markBookPaid } from "@/lib/library/orders";
+import { afterBookPaid, markBookFailed } from "@/lib/library/orders";
 import { afterDietPaid, afterMembershipPaid } from "@/lib/growth/hooks";
 import { markDietFailed } from "@/lib/growth/diet-orders";
 import { afterShopPaid } from "@/lib/shop/paid";
@@ -25,7 +25,7 @@ export async function applyCapturedPayment(razorpayOrderId: string, paymentId: s
       if (await markPaid(razorpayOrderId, paymentId)) await afterMembershipPaid(razorpayOrderId);
       break;
     case "library":
-      await markBookPaid(razorpayOrderId, paymentId);
+      await afterBookPaid(razorpayOrderId, paymentId);
       break;
     case "diet":
       await afterDietPaid(razorpayOrderId, paymentId, defer);

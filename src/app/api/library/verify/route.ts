@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyPaymentSignature } from "@/lib/payments/razorpay";
-import { markBookPaid } from "@/lib/library/orders";
+import { afterBookPaid } from "@/lib/library/orders";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "We couldn't verify this payment. If money was deducted, WhatsApp us with your payment ID." }, { status: 400 });
   }
   try {
-    const order = await markBookPaid(orderId, paymentId);
+    const order = await afterBookPaid(orderId, paymentId);
     if (!order) return NextResponse.json({ error: "Order not found." }, { status: 404 });
     return NextResponse.json({ ok: true, paymentId, accessUrl: `/library/access/${order.accessToken}` });
   } catch (err) {
