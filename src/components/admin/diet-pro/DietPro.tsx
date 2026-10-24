@@ -774,7 +774,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
                 {days.map((d, i) => {
                   const dv = deviation(d, T);
                   return (
-                    <button key={i} type="button" onClick={() => setDay(i)} className={`rounded-xl px-3 py-2 text-xs font-bold ring-1 transition ${day === i ? "bg-brand text-white ring-brand" : "bg-white/5 text-white/60 ring-white/10 hover:text-white"}`}>
+                    <button key={i} type="button" onClick={() => setDay(i)} className={`rounded-xl px-3 py-2 text-xs font-bold ring-1 transition ${day === i ? "bg-brand-strong text-white ring-brand" : "bg-white/5 text-white/60 ring-white/10 hover:text-white"}`}>
                       Day {d.day}
                       <span className={`ml-1.5 text-[10px] ${Math.abs(dv.kcal) <= 5 ? "text-emerald-300" : "text-amber-300"} ${day === i ? "!text-white/80" : ""}`}>{dv.kcal > 0 ? "+" : ""}{dv.kcal}%</span>
                     </button>

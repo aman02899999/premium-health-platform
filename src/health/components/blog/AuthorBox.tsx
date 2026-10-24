@@ -10,9 +10,9 @@ export function AuthorBox({ author, role, reviewer }: { author: string; role?: s
           {author.charAt(0)}
         </div>
         <div>
-          <p className="flex items-center gap-2 text-sm font-bold"><User className="h-4 w-4 text-emerald-600" /> {author}</p>
+          <p className="flex items-center gap-2 text-sm font-bold"><User className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> {author}</p>
           <p className="text-xs text-stone-500">{role || "Editorial Team · Evidence-reviewed health writers"}</p>
-          {isRealReviewer(reviewer) && <p className="flex items-center gap-1 text-xs text-stone-500"><ShieldCheck className="h-3 w-3 text-emerald-600" /> Reviewed by {reviewer}</p>}
+          {isRealReviewer(reviewer) && <p className="flex items-center gap-1 text-xs text-stone-500"><ShieldCheck className="h-3 w-3 text-emerald-700 dark:text-emerald-600" /> Reviewed by {reviewer}</p>}
         </div>
       </div>
       <div className="mt-3 flex gap-2 text-xs">

@@ -22,7 +22,7 @@ export function DietChart({ days, day, setDay, p }: { days: PlannedDay[]; day: n
     <div className="grid gap-4">
       <div className="flex flex-wrap items-center gap-1.5">
         {days.map((x, i) => (
-          <button key={i} type="button" onClick={() => setDay(i)} className={`rounded-xl px-3 py-2 text-xs font-bold ring-1 transition ${day === i ? "bg-brand text-white ring-brand" : "bg-white/5 text-white/60 ring-white/10 hover:text-white"}`}>
+          <button key={i} type="button" onClick={() => setDay(i)} className={`rounded-xl px-3 py-2 text-xs font-bold ring-1 transition ${day === i ? "bg-brand-strong text-white ring-brand" : "bg-white/5 text-white/60 ring-white/10 hover:text-white"}`}>
             Day {x.day}
           </button>
         ))}

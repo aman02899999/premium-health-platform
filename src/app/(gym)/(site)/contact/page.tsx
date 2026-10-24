@@ -95,7 +95,7 @@ export default async function ContactPage() {
             href={b.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 font-bold text-white"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-brand-strong px-6 py-3 font-bold text-white"
           >
             <Navigation className="h-4 w-4" /> Get directions
           </a>

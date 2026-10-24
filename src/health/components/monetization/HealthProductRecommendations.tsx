@@ -113,7 +113,7 @@ export function HealthProductRecommendations({ condition, category, tags = [], l
           <AffiliateProductCard key={p.id} product={p} page={page} />
         ))}
       </div>
-      <p className="mt-3 text-[10px] text-stone-400">Affiliate link — we may earn a commission at no additional cost to you. Products that may help with monitoring, education, or lifestyle management — not treatment.</p>
+      <p className="mt-3 text-[10px] text-stone-500 dark:text-stone-400">Affiliate link — we may earn a commission at no additional cost to you. Products that may help with monitoring, education, or lifestyle management — not treatment.</p>
     </div>
   );
 }

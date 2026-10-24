@@ -48,16 +48,16 @@ export function BarcodeScanner() {
                 <div className="rounded-xl bg-white p-2 dark:bg-stone-900"><p className="font-bold">{result.data[0].nutrients?.sugar ?? "—"}g sugar</p><p>NutriScore {result.data[0].metadata?.nutriScore ?? "—"}</p></div>
                 <div className="rounded-xl bg-white p-2 dark:bg-stone-900"><p className="font-bold">{result.data[0].metadata?.novaGroup ? `NOVA ${result.data[0].metadata.novaGroup}` : "—"}</p><p>processing</p></div>
               </div>
-              <p className="mt-2 text-[11px] text-stone-400">Source: {result.data[0].source} · License: {result.data[0].license ?? "—"} · Provenance preserved</p>
+              <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Source: {result.data[0].source} · License: {result.data[0].license ?? "—"} · Provenance preserved</p>
             </>
           ) : (
             <p className="text-sm text-stone-600">No product for {code} in OFF cache. Try another 890… code or search by name at /food-database.</p>
           )}
-          <p className="mt-2 text-[11px] text-stone-400">Cache {result.cached ? "hit" : "miss"} · {result.durationMs}ms · Disclaimer: packaged data may be inaccurate, check label.</p>
+          <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Cache {result.cached ? "hit" : "miss"} · {result.durationMs}ms · Disclaimer: packaged data may be inaccurate, check label.</p>
         </div>
       )}
 
-      <p className="mt-3 text-[11px] text-stone-400">India insight: Many 890… products not in OFF — we fallback to USDA search by name. Future: add FSSAI label OCR.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">India insight: Many 890… products not in OFF — we fallback to USDA search by name. Future: add FSSAI label OCR.</p>
     </div>
   );
 }

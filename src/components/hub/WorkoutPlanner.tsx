@@ -14,7 +14,7 @@ function Choice<T extends string | number>({ label, value, options, onChange }: 
       <legend className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/55">{label}</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
-          <button key={String(o.v)} type="button" onClick={() => onChange(o.v)} aria-pressed={value === o.v} className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
+          <button key={String(o.v)} type="button" onClick={() => onChange(o.v)} aria-pressed={value === o.v} className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand-strong text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
             {o.l}
           </button>
         ))}

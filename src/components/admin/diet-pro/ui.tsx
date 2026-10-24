@@ -102,7 +102,7 @@ export function Choice<T extends string | number>({ label, value, onChange, opti
             role="radio"
             aria-checked={value === o.value}
             onClick={() => onChange(o.value)}
-            className={`min-h-8 flex-1 rounded-lg px-2.5 text-xs font-bold transition ${value === o.value ? "bg-brand text-white shadow-[0_6px_18px_-6px_rgba(232,57,75,0.8)]" : "text-white/55 hover:text-white"}`}
+            className={`min-h-8 flex-1 rounded-lg px-2.5 text-xs font-bold transition ${value === o.value ? "bg-brand-strong text-white shadow-[0_6px_18px_-6px_rgba(232,57,75,0.8)]" : "text-white/55 hover:text-white"}`}
           >
             {o.label}
           </button>

@@ -60,7 +60,7 @@ export default async function PremiumPage() {
                 "A Day-7 review with your coach",
                 "Built around your health conditions and food preference",
               ].map((f) => (
-                <li key={f} className="flex items-start gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> {f}</li>
+                <li key={f} className="flex items-start gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" /> {f}</li>
               ))}
             </ul>
             <Link href={`/diet-chart?plan=trial&${utm("trial_card")}#order`} className="mt-4 inline-flex rounded-xl bg-stone-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-stone-800 dark:bg-amber-500 dark:text-stone-900">
@@ -105,7 +105,7 @@ export default async function PremiumPage() {
 
         <aside className="space-y-4">
           <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 dark:border-emerald-800 dark:bg-emerald-950/30">
-            <h3 className="flex items-center gap-2 text-sm font-bold"><ShieldCheck className="h-4 w-4 text-emerald-600" /> Our promise</h3>
+            <h3 className="flex items-center gap-2 text-sm font-bold"><ShieldCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Our promise</h3>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-stone-700 dark:text-stone-300">
               <li>Every calculator and guide on this site stays free</li>
               <li>Your plan is made by a person, not copied from a template</li>

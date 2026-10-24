@@ -40,7 +40,7 @@ export function RelatedArticles({ currentSlug, category, tags, limit = 4 }: { cu
               <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover" sizes="64px" />
             </div>
             <div>
-              <p className="text-[10px] font-bold uppercase text-amber-600">{a.category}</p>
+              <p className="text-[10px] font-bold uppercase text-amber-700 dark:text-amber-600">{a.category}</p>
               <p className="line-clamp-2 text-sm font-bold group-hover:text-emerald-700">{a.title}</p>
               <p className="mt-0.5 text-[11px] text-stone-500">{a.readMinutes} min · {a.excerpt.slice(0, 60)}…</p>
             </div>

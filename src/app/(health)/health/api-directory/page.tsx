@@ -135,9 +135,9 @@ export default async function ApiDirectoryPage({ searchParams }: { searchParams:
 
       <SectionHeading eyebrow="Catalogue" title={`${filtered.length} APIs`} desc={`Showing ${visible.length} of ${filtered.length} — page ${page} of ${totalPages}. Auth and HTTPS flags are as listed upstream; always re-check terms before production use.`} />
 
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
+      <div role="region" aria-label="Table" tabIndex={0} className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
         <table className="w-full min-w-[46rem] border-collapse text-left text-sm">
-          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600 dark:bg-stone-800 dark:text-stone-400">
             <tr>
               <th className="px-4 py-3">API</th>
               <th className="px-4 py-3">Category</th>
@@ -173,7 +173,7 @@ export default async function ApiDirectoryPage({ searchParams }: { searchParams:
                       INTEGRATED{entry.apiPath ? ` · /api/v1/${entry.apiPath}` : ""}
                     </span>
                   ) : (
-                    <span className="text-stone-400">Not yet</span>
+                    <span className="text-stone-500 dark:text-stone-400">Not yet</span>
                   )}
                 </td>
               </tr>

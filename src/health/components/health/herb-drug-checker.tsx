@@ -35,7 +35,7 @@ export function HerbDrugChecker() {
       <p className="mt-1 text-[11px] text-stone-500">Educational, not diagnostic. India-relevant Ayurveda + allopathy combos. Always disclose herbs to clinician/pharmacist. Sources cited.</p>
 
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
-        <select value={herb} onChange={(e) => setHerb(e.target.value)} className="rounded-xl border px-3 py-2 text-sm">
+        <select aria-label="Herb" value={herb} onChange={(e) => setHerb(e.target.value)} className="rounded-xl border px-3 py-2 text-sm">
           <option value="ashwagandha">Ashwagandha</option>
           <option value="guggul">Guggul</option>
           <option value="turmeric">Turmeric / Curcumin</option>
@@ -43,7 +43,7 @@ export function HerbDrugChecker() {
           <option value="giloy">Giloy / Guduchi</option>
           <option value="licorice">Licorice / Mulethi</option>
         </select>
-        <select value={drug} onChange={(e) => setDrug(e.target.value)} className="rounded-xl border px-3 py-2 text-sm">
+        <select aria-label="Medicine type" value={drug} onChange={(e) => setDrug(e.target.value)} className="rounded-xl border px-3 py-2 text-sm">
           <option value="sedative">Sedatives / Sleep meds</option>
           <option value="anticoagulant">Blood thinners (warfarin, aspirin)</option>
           <option value="statin">Statins / Cholesterol</option>
@@ -68,7 +68,7 @@ export function HerbDrugChecker() {
         )}
       </div>
 
-      <p className="mt-3 text-[11px] text-stone-400">Disclaimer: Traditional use ≠ proven efficacy. Herb-drug data often limited to case reports/preclinical. Do NOT stop prescribed medicines for herbs. Discuss with clinician, especially pregnancy, liver/kidney disease, surgery.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Disclaimer: Traditional use ≠ proven efficacy. Herb-drug data often limited to case reports/preclinical. Do NOT stop prescribed medicines for herbs. Discuss with clinician, especially pregnancy, liver/kidney disease, surgery.</p>
     </div>
   );
 }

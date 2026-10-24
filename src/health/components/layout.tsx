@@ -143,7 +143,7 @@ function AuthMenu() {
           <div className="rounded-xl bg-stone-50 p-3 dark:bg-stone-800">
             <p className="text-sm font-bold">{user.name} {isPremium && <span className="ml-1 rounded-full bg-amber-500 px-2 py-0.5 text-[10px] text-white">PREMIUM</span>}</p>
             <p className="text-xs text-stone-500">{user.email}</p>
-            <p className="mt-1 text-[11px] text-stone-400">{user.provider === "google" ? "Google" : "Email"} · {user.role}</p>
+            <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">{user.provider === "google" ? "Google" : "Email"} · {user.role}</p>
           </div>
           <Link href="/health/profile" className="mt-1 flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><User className="h-4 w-4" /> Profile</Link>
           <Link href="/health/premium" className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium hover:bg-stone-100 dark:hover:bg-stone-800"><Crown className="h-4 w-4 text-amber-500" /> Premium Plans</Link>

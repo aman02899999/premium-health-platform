@@ -15,7 +15,7 @@ export function PremiumCTA({ compact }: { compact?: boolean }) {
   if (isPremium) {
     return (
       <div className="rounded-2xl border border-amber-300 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-700 dark:from-amber-950/40">
-        <p className="flex items-center gap-2 text-sm font-bold"><Crown className="h-4 w-4 text-amber-600" /> Premium Active</p>
+        <p className="flex items-center gap-2 text-sm font-bold"><Crown className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Premium Active</p>
         <p className="mt-1 text-xs text-stone-600 dark:text-stone-300">Thanks, {user?.name}! You have ad-free + meal plans + priority Q&A.</p>
       </div>
     );
@@ -58,17 +58,17 @@ export function EarningStats() {
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <p className="text-xs font-bold uppercase text-stone-500">Affiliate clicks (this browser)</p>
         <p className="mt-1 text-2xl font-black" id="aff-clicks">—</p>
-        <p className="text-[11px] text-stone-400">Tracked via localStorage + gtag</p>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400">Tracked via localStorage + gtag</p>
       </div>
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <p className="text-xs font-bold uppercase text-stone-500">Premium Users</p>
         <p className="mt-1 text-2xl font-black">0</p>
-        <p className="text-[11px] text-stone-400">Premium not launched — no payments taken</p>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400">Premium not launched — no payments taken</p>
       </div>
       <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <p className="text-xs font-bold uppercase text-stone-500">Ad &amp; affiliate revenue</p>
         <p className="mt-1 text-2xl font-black">—</p>
-        <p className="text-[11px] text-stone-400">See your AdSense and Amazon Associates dashboards</p>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400">See your AdSense and Amazon Associates dashboards</p>
       </div>
     </div>
   );

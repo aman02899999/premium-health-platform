@@ -66,7 +66,7 @@ export default async function ExercisesPage({ searchParams }: { searchParams: Pr
                 <h3 className="font-bold">{ex.name}</h3>
                 <p className="mt-1 text-xs text-stone-500">{ex.category} · {ex.muscles?.join(", ") || "—"} · {ex.equipment?.join(", ") || "No equipment"}</p>
                 {ex.description && <p className="mt-2 line-clamp-3 text-[13px] text-stone-600 dark:text-stone-300">{ex.description.slice(0, 200)}</p>}
-                <p className="mt-2 text-[11px] text-stone-400">ID: {ex.id} · wger.de</p>
+                <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">ID: {ex.id} · wger.de</p>
               </div>
             )) ?? <p className="text-sm text-stone-500">No exercises found — try a different term</p>}
           </div>

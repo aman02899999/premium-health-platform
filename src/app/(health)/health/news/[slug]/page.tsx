@@ -87,7 +87,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
             {sec.paragraphs?.map((p, j) => <p key={j} className="mt-2.5 text-[15px] leading-[1.8] text-stone-700 dark:text-stone-200">{p}</p>)}
             {sec.bullets && (
               <ul className={sec.paragraphs?.length ? "mt-3 space-y-1.5" : ""}>
-                {sec.bullets.map((b, k) => <li key={k} className="flex gap-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{b}</li>)}
+                {sec.bullets.map((b, k) => <li key={k} className="flex gap-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{b}</li>)}
               </ul>
             )}
           </section>
@@ -96,7 +96,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <KeyTakeaway points={item.keyTakeaways} />
 
         <section className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-          <h2 className="font-display flex items-center gap-2 text-xl font-bold"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Source & fact-check note</h2>
+          <h2 className="font-display flex items-center gap-2 text-xl font-bold"><ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-600" /> Source & fact-check note</h2>
           <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-300">{item.factCheckNote}</p>
           <p className="mt-2 flex flex-wrap items-center gap-2 text-sm">
             <Globe2 className="h-4 w-4 text-sky-600" /> <span className="font-semibold">{item.sourceName}</span>
@@ -127,7 +127,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
           <div className="mt-3 grid gap-3 sm:grid-cols-3">
             {fallback.map((n) => (
               <Link key={n.slug} href={`/health/news/${n.slug}`} className="rounded-2xl border border-stone-100 p-4 hover:border-emerald-300 dark:border-stone-800">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{n.category}</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{n.category}</p>
                 <p className="mt-1 text-sm font-bold leading-snug">{n.title}</p>
                 <p className="mt-1 text-[11px] text-stone-500">{formatDate(n.publishedAt)}</p>
               </Link>

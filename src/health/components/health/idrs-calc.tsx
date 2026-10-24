@@ -56,7 +56,7 @@ export function IDRScalc() {
         <p className="text-sm font-bold">IDRS: {score} — {risk} risk</p>
         <p className="mt-1 text-[12px]">{risk === "Low" ? "Low: maintain lifestyle, yearly check." : risk === "Moderate" ? "Moderate: 30 min walk + HbA1c." : "High: See clinician, HbA1c + fasting."}</p>
       </div>
-      <p className="mt-2 text-[11px] text-stone-400">Source: Mohan V et al., JAPI 2005, CURES. &lt;30 low, 30-50 moderate, ≥60 high.</p>
+      <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Source: Mohan V et al., JAPI 2005, CURES. &lt;30 low, 30-50 moderate, ≥60 high.</p>
     </div>
   );
 }

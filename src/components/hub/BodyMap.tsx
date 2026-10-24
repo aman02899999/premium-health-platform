@@ -31,7 +31,7 @@ export function BodyMap({ selected, onSelect }: { selected: Muscle | "all"; onSe
     <div className="flex flex-col items-center">
       <div className="mb-3 flex rounded-full border border-line p-1 text-xs">
         {(["front", "back"] as const).map((s) => (
-          <button key={s} type="button" onClick={() => setSide(s)} className={`rounded-full px-4 py-1.5 font-semibold capitalize ${side === s ? "bg-brand text-white" : "text-white/70"}`}>
+          <button key={s} type="button" onClick={() => setSide(s)} className={`rounded-full px-4 py-1.5 font-semibold capitalize ${side === s ? "bg-brand-strong text-white" : "text-white/70"}`}>
             {s}
           </button>
         ))}

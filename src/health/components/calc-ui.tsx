@@ -23,7 +23,7 @@ export function NumField({ label, value, onChange, min, max, step = 1, unit, hin
   const invalid = text.trim() === "" || !Number.isFinite(n) || n < min || n > max;
   return (
     <label htmlFor={id} className="block">
-      <span className="mb-1 flex justify-between text-xs font-semibold text-stone-600 dark:text-stone-300">{label}{unit && <span className="font-normal text-stone-400">{unit}</span>}</span>
+      <span className="mb-1 flex justify-between text-xs font-semibold text-stone-600 dark:text-stone-300">{label}{unit && <span className="font-normal text-stone-500 dark:text-stone-400">{unit}</span>}</span>
       <input
         id={id}
         type="number"
@@ -45,7 +45,7 @@ export function NumField({ label, value, onChange, min, max, step = 1, unit, hin
         }}
         className={cn("h-11 w-full rounded-xl border bg-stone-50 px-3 text-base outline-none transition focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:bg-stone-800", invalid ? "border-amber-400" : "border-stone-200 dark:border-stone-700")}
       />
-      {invalid ? <span className="mt-1 block text-[11px] text-amber-700 dark:text-amber-300">Enter {min}–{max}{unit ? ` ${unit}` : ""}</span> : hint ? <span className="mt-1 block text-[11px] text-stone-400">{hint}</span> : null}
+      {invalid ? <span className="mt-1 block text-[11px] text-amber-700 dark:text-amber-300">Enter {min}–{max}{unit ? ` ${unit}` : ""}</span> : hint ? <span className="mt-1 block text-[11px] text-stone-500 dark:text-stone-400">{hint}</span> : null}
     </label>
   );
 }
@@ -56,7 +56,7 @@ export function DateField({ label, value, onChange, max, min, hint }: { label: s
     <label htmlFor={id} className="block">
       <span className="mb-1 block text-xs font-semibold text-stone-600 dark:text-stone-300">{label}</span>
       <input id={id} type="date" value={value} max={max} min={min} onChange={(e) => onChange(e.target.value)} className="h-11 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 text-base outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-stone-700 dark:bg-stone-800" />
-      {hint && <span className="mt-1 block text-[11px] text-stone-400">{hint}</span>}
+      {hint && <span className="mt-1 block text-[11px] text-stone-500 dark:text-stone-400">{hint}</span>}
     </label>
   );
 }

@@ -64,7 +64,7 @@ export default function DeveloperDocsPage() {
 
       <SectionHeading id="authentication" eyebrow="Step 1" title="Authentication" desc="One key, sent in a header. Create keys in the dashboard — they are stored hashed, so the plaintext is shown exactly once at creation." />
       <div className="mt-4 space-y-3">
-        <pre className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`# preferred
+        <pre tabIndex={0} className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`# preferred
 curl -H "x-api-key: $API_KEY" ${SITE.url}/health/api/v1/plans
 
 # also accepted
@@ -76,7 +76,7 @@ curl -H "Authorization: Bearer $API_KEY" ${SITE.url}/health/api/v1/literature/se
 
       <SectionHeading id="envelope" eyebrow="Step 2" title="Response envelope" desc="Success and failure share one predictable shape, so you write one parser." />
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        <pre className="overflow-x-auto rounded-2xl border border-stone-200 bg-white p-5 text-xs leading-relaxed dark:border-stone-700 dark:bg-stone-900"><code>{`HTTP/1.1 200 OK
+        <pre tabIndex={0} className="overflow-x-auto rounded-2xl border border-stone-200 bg-white p-5 text-xs leading-relaxed dark:border-stone-700 dark:bg-stone-900"><code>{`HTTP/1.1 200 OK
 x-plan: free
 x-ratelimit-limit-day: 1000
 x-ratelimit-remaining-day: 999
@@ -87,7 +87,7 @@ x-ratelimit-reset: 2026-09-14T00:00:00.000Z
   "meta": { "plan": "free", "quota": { … } },
   "data": { "results": [ … ], "total": 128 }
 }`}</code></pre>
-        <pre className="overflow-x-auto rounded-2xl border border-stone-200 bg-white p-5 text-xs leading-relaxed dark:border-stone-700 dark:bg-stone-900"><code>{`HTTP/1.1 429 Too Many Requests
+        <pre tabIndex={0} className="overflow-x-auto rounded-2xl border border-stone-200 bg-white p-5 text-xs leading-relaxed dark:border-stone-700 dark:bg-stone-900"><code>{`HTTP/1.1 429 Too Many Requests
 retry-after: 3600
 
 {
@@ -102,9 +102,9 @@ retry-after: 3600
       </div>
 
       <SectionHeading id="quotas" eyebrow="Step 3" title="Quotas & rate limits" desc="Two limits per key, both echoed in headers: a daily allowance and a per-minute burst limit. Quotas reset at UTC midnight." />
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
+      <div role="region" aria-label="Table" tabIndex={0} className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
         <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
-          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600 dark:bg-stone-800 dark:text-stone-400">
             <tr><th className="px-4 py-3">Plan</th><th className="px-4 py-3">Per day</th><th className="px-4 py-3">Per minute</th><th className="px-4 py-3">Bulk export</th><th className="px-4 py-3">Attribution</th></tr>
           </thead>
           <tbody className="divide-y divide-stone-200 dark:divide-stone-700">
@@ -141,9 +141,9 @@ retry-after: 3600
         desc="Self-serve plans are settled through the payment provider abstraction. These endpoints use your account cookie, never an API key — a key can read data, it cannot move money."
       />
       <div className="mt-4 space-y-4">
-        <div className="overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
+        <div role="region" aria-label="Table" tabIndex={0} className="overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
           <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
-            <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+            <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600 dark:bg-stone-800 dark:text-stone-400">
               <tr><th className="px-4 py-3">Endpoint</th><th className="px-4 py-3">Purpose</th><th className="px-4 py-3">Notes</th></tr>
             </thead>
             <tbody className="divide-y divide-stone-200 dark:divide-stone-700">
@@ -179,9 +179,9 @@ retry-after: 3600
       </div>
 
       <SectionHeading id="errors" eyebrow="Reference" title="Error codes" desc="Codes are stable — branch on them rather than on the message text." />
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
+      <div role="region" aria-label="Table" tabIndex={0} className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
         <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
-          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600 dark:bg-stone-800 dark:text-stone-400">
             <tr><th className="px-4 py-3">Code</th><th className="px-4 py-3">HTTP</th><th className="px-4 py-3">When</th><th className="px-4 py-3">What to do</th></tr>
           </thead>
           <tbody className="divide-y divide-stone-200 dark:divide-stone-700">
@@ -211,7 +211,7 @@ retry-after: 3600
 
             {endpoint.params.length > 0 && (
               <table className="mt-3 w-full border-collapse text-left text-xs">
-                <thead className="text-[10px] uppercase tracking-wider text-stone-400">
+                <thead className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-stone-400">
                   <tr><th className="py-1 pr-3">Param</th><th className="py-1 pr-3">Type</th><th className="py-1 pr-3">Required</th><th className="py-1">Description</th></tr>
                 </thead>
                 <tbody>
@@ -220,7 +220,7 @@ retry-after: 3600
                       <td className="py-1.5 pr-3"><code className="font-bold">{param.name}</code></td>
                       <td className="py-1.5 pr-3 text-stone-500">{param.type}</td>
                       <td className="py-1.5 pr-3">{param.required ? "Yes" : "No"}</td>
-                      <td className="py-1.5 text-stone-600 dark:text-stone-300">{param.description}{param.example ? <span className="text-stone-400"> e.g. {param.example}</span> : null}</td>
+                      <td className="py-1.5 text-stone-600 dark:text-stone-300">{param.description}{param.example ? <span className="text-stone-500 dark:text-stone-400"> e.g. {param.example}</span> : null}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -234,7 +234,7 @@ retry-after: 3600
             )}
 
             {endpoint.sample ? (
-              <pre className="mt-3 overflow-x-auto rounded-xl bg-stone-900 p-4 text-[11px] leading-relaxed text-stone-100"><code>{JSON.stringify(endpoint.sample, null, 2)}</code></pre>
+              <pre tabIndex={0} className="mt-3 overflow-x-auto rounded-xl bg-stone-900 p-4 text-[11px] leading-relaxed text-stone-100"><code>{JSON.stringify(endpoint.sample, null, 2)}</code></pre>
             ) : null}
           </article>
         ))}
@@ -242,7 +242,7 @@ retry-after: 3600
 
       <SectionHeading id="examples" eyebrow="Recipes" title="Client examples" desc="Copy-paste starting points with retry-and-backoff handled." />
       <div className="mt-4 space-y-4">
-        <pre className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`// JavaScript — handles 429 with Retry-After
+        <pre tabIndex={0} className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`// JavaScript — handles 429 with Retry-After
 async function bhg(path, params = {}) {
   const url = new URL("${SITE.url}/health" + path);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
@@ -260,7 +260,7 @@ async function bhg(path, params = {}) {
   }
   throw new Error("Rate limited after retries");
 }`}</code></pre>
-        <pre className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`# Python
+        <pre tabIndex={0} className="overflow-x-auto rounded-2xl bg-stone-900 p-5 text-xs leading-relaxed text-stone-100"><code>{`# Python
 import os, requests
 
 def bhg(path, **params):

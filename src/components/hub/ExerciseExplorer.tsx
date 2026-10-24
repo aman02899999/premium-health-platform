@@ -32,7 +32,7 @@ export function ExerciseExplorer() {
       <div>
         <div className="mb-4 flex flex-wrap gap-2">
           {[{ id: "all" as const, label: "All muscles" }, ...MUSCLES].map((m) => (
-            <button key={m.id} type="button" onClick={() => setMuscle(m.id)} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold ${muscle === m.id ? "bg-brand text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
+            <button key={m.id} type="button" onClick={() => setMuscle(m.id)} className={`rounded-full px-3.5 py-1.5 text-sm font-semibold ${muscle === m.id ? "bg-brand-strong text-white" : "border border-white/15 text-white/70 hover:text-white"}`}>
               {m.label}
             </button>
           ))}

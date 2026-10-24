@@ -44,7 +44,7 @@ export function WorldBankIndia() {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="flex items-center justify-between">
-        <p className="flex items-center gap-2 text-sm font-bold"><Globe className="h-4 w-4 text-emerald-600" /> Live India health indicators — World Bank Open Data</p>
+        <p className="flex items-center gap-2 text-sm font-bold"><Globe className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Live India health indicators — World Bank Open Data</p>
         {data.live ? <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-bold text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">LIVE</span> : <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-bold text-amber-800">Fallback</span>}
       </div>
 
@@ -60,12 +60,12 @@ export function WorldBankIndia() {
             <p className="text-[11px] font-bold uppercase tracking-wider text-stone-500">{ind.label}</p>
             <p className="mt-1 text-2xl font-black tabular-nums">{formatWBValue(ind)}</p>
             <p className="text-[12px] text-stone-500">{ind.unit} {ind.year ? `· ${ind.year}` : ""}</p>
-            <p className="mt-1 text-[10px] text-stone-400">{ind.code}</p>
+            <p className="mt-1 text-[10px] text-stone-500 dark:text-stone-400">{ind.code}</p>
           </div>
         ))}
       </div>
 
-      <p className="mt-4 text-[11px] text-stone-400">
+      <p className="mt-4 text-[11px] text-stone-500 dark:text-stone-400">
         Source: {data.source} · Fetched {new Date(data.fetchedAt).toLocaleDateString("en-IN")} · CC BY 4.0 · Updates daily.
       </p>
     </div>

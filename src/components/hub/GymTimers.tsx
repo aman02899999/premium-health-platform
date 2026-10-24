@@ -108,7 +108,7 @@ function RestTimer() {
       </div>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
         {[30, 60, 90, 120, 180].map((s) => (
-          <button key={s} type="button" onClick={() => start(s)} className={`rounded-xl px-4 py-2 text-sm font-bold ${secs === s ? "bg-brand text-white" : "border border-white/15 text-white/75"}`}>
+          <button key={s} type="button" onClick={() => start(s)} className={`rounded-xl px-4 py-2 text-sm font-bold ${secs === s ? "bg-brand-strong text-white" : "border border-white/15 text-white/75"}`}>
             {s < 60 ? `${s}s` : `${s / 60}${s % 60 ? ".5" : ""} min`}
           </button>
         ))}
@@ -198,7 +198,7 @@ export function GymTimers() {
     <div className="glass brand-border mx-auto max-w-2xl rounded-3xl p-6 sm:p-10">
       <div role="tablist" className="mb-8 flex flex-wrap justify-center gap-2">
         {MODES.map((m) => (
-          <button key={m.id} type="button" role="tab" aria-selected={mode === m.id} onClick={() => setMode(m.id)} className={`rounded-full px-4 py-2 text-sm font-bold ${mode === m.id ? "bg-brand text-white" : "border border-white/15 text-white/70"}`}>
+          <button key={m.id} type="button" role="tab" aria-selected={mode === m.id} onClick={() => setMode(m.id)} className={`rounded-full px-4 py-2 text-sm font-bold ${mode === m.id ? "bg-brand-strong text-white" : "border border-white/15 text-white/70"}`}>
             {m.label}
           </button>
         ))}

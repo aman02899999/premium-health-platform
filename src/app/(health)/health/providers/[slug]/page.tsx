@@ -61,7 +61,7 @@ export default async function ProviderSlugPage({ params }: Props) {
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
             <h2 className="font-bold">About — {listing.providerType}</h2>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">{listing.description} Location: {listing.location}. Tier: {listing.tier}. This is a demo listing — in production, verify credentials via admin dashboard /admin/earning.</p>
-            <p className="mt-3 text-[11px] text-stone-400">Clearly separate Featured from Recommended based on clinical evidence. Do not fabricate provider credentials. Demo content clearly marked.</p>
+            <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Clearly separate Featured from Recommended based on clinical evidence. Do not fabricate provider credentials. Demo content clearly marked.</p>
           </div>
           <LeadForm config={leadForm} page={`/health/providers/${slug}`} />
         </div>

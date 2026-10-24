@@ -177,7 +177,7 @@ export default async function BookPage({ params }: Props) {
             <BookOpenText className="h-6 w-6 text-brand" /> Read the introduction
           </h2>
           <div className="mt-5 rounded-3xl bg-[#f6f0e4] p-6 text-[#2a241c] shadow-inner sm:p-10">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#8a6a35]">Chapter 1</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#73582b]">Chapter 1</p>
             <h3 className="font-display mt-1 text-2xl text-[#1d1a16]">{excerpt.chapter}</h3>
             <div className="mt-4 space-y-3 font-serif text-[15px] leading-relaxed">
               {excerpt.blocks.map(([kind, text], i) =>

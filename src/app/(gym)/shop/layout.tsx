@@ -159,7 +159,7 @@ export default async function ShopLayout({
               {s.gstin && <p>GSTIN {s.gstin}</p>}
             </div>
           </div>
-          <p className="border-t border-white/10 px-4 py-5 text-center text-xs text-white/40">
+          <p className="border-t border-white/10 px-4 py-5 text-center text-xs text-white/60">
             © {new Date().getFullYear()} {s.storeName}. Food supplements are not
             medicines and are not meant to diagnose, treat or prevent any
             disease. ·{" "}

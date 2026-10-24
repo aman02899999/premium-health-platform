@@ -86,7 +86,7 @@ function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads
             );
           case "table":
             return (
-              <div key={i} className="my-6 overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
+              <div key={i} role="region" aria-label="Table" tabIndex={0} className="my-6 overflow-x-auto rounded-xl border border-stone-200 dark:border-stone-700">
                 <table className="w-full min-w-[480px] text-left text-sm">
                   <thead className="bg-stone-100 dark:bg-stone-800">
                     <tr>
@@ -142,7 +142,7 @@ function Blocks({ blocks, lang, ads }: { blocks: Block[]; lang: "en" | "hi"; ads
                 {b.items.map((f, j) => (
                   <details key={j} className="group p-5" open={j === 0}>
                     <summary className="cursor-pointer list-none text-lg font-bold text-stone-900 marker:hidden dark:text-white">
-                      <span className="mr-2 text-emerald-600 group-open:rotate-90">›</span>
+                      <span className="mr-2 text-emerald-700 dark:text-emerald-600 group-open:rotate-90">›</span>
                       {f.q}
                     </summary>
                     <div className="[&>*:last-child]:mb-0">

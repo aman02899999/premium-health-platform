@@ -69,7 +69,7 @@ export function LeadForm({ config, page = "/" }: { config: LeadFormConfig; page?
       </div>
       {error && <p className="mt-3 rounded-xl bg-rose-50 p-2 text-xs text-rose-700">{error}</p>}
       <button disabled={busy} className="mt-4 rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-bold text-white hover:bg-emerald-800 disabled:opacity-60">{busy ? "Submitting…" : config.ctaText}</button>
-      <p className="mt-2 text-[11px] text-stone-400">Spam protection + rate limiting applied. We collect only necessary info, protect customer data, never store raw card info.</p>
+      <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Spam protection + rate limiting applied. We collect only necessary info, protect customer data, never store raw card info.</p>
     </form>
   );
 }

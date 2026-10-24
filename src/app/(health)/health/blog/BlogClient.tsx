@@ -31,7 +31,7 @@ function ArticleCard({ a, large }: { a: EnrichedArticle; large?: boolean }) {
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-amber-600">
+        <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">
           <Clock className="h-3 w-3" /> {a.readMinutes} min read · {a.body.length} sections · {a.faqs.length} FAQs
         </p>
         <h3 className={cn("font-display mt-1.5 leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-300", large ? "text-xl font-black md:text-2xl" : "text-lg font-bold")}>{a.title}</h3>
@@ -85,7 +85,7 @@ export default function BlogClient({ articles }: { articles: EnrichedArticle[] }
                     : "border-stone-200 bg-white text-stone-600 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300"
                 )}
               >
-                {c}<span className={cn("rounded-full px-1.5 text-[11px]", tab === c ? "bg-white/20" : "bg-stone-100 text-stone-500 dark:bg-stone-800")}>{count}</span>
+                {c}<span className={cn("rounded-full px-1.5 text-[11px]", tab === c ? "bg-black/25" : "bg-stone-100 text-stone-600 dark:bg-stone-800")}>{count}</span>
               </button>
             );
           })}
@@ -93,7 +93,7 @@ export default function BlogClient({ articles }: { articles: EnrichedArticle[] }
       </div>
       <div className="mt-3 flex flex-col gap-2 sm:flex-row">
         <label className="flex flex-1 items-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-2.5 dark:border-stone-700 dark:bg-stone-900">
-          <Search className="h-4 w-4 text-stone-400" />
+          <Search className="h-4 w-4 text-stone-500 dark:text-stone-400" />
           <span className="sr-only">Search articles</span>
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search guides: diabetes, thyroid, millets, yoga…" className="w-full bg-transparent text-sm outline-none" />
         </label>
@@ -136,7 +136,7 @@ export default function BlogClient({ articles }: { articles: EnrichedArticle[] }
       )}
 
       <div className="mt-8 grid gap-4 rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-        <p className="flex items-center gap-2 text-sm font-bold"><BookOpen className="h-4 w-4 text-emerald-600" /> Browse by topic</p>
+        <p className="flex items-center gap-2 text-sm font-bold"><BookOpen className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Browse by topic</p>
         <div className="flex flex-wrap gap-2">
           {BLOG_CATEGORIES.map((c) => (
             <button key={c} onClick={() => { setTab(c); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="rounded-full bg-stone-100 px-3.5 py-1.5 text-[13px] font-semibold hover:bg-emerald-100 dark:bg-stone-800 dark:hover:bg-emerald-950">

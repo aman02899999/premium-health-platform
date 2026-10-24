@@ -506,7 +506,7 @@ export default function DeveloperDashboard() {
                         Revoke
                       </button>
                     ) : (
-                      <span className="text-stone-400">Revoked — create a new key to restore access.</span>
+                      <span className="text-stone-500 dark:text-stone-400">Revoked — create a new key to restore access.</span>
                     )}
                     <Link href="/health/developers/docs" className="rounded-xl border border-stone-300 px-3 py-1.5 font-bold dark:border-stone-600">Endpoint reference</Link>
                   </div>

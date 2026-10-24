@@ -29,7 +29,7 @@ export function HealthAd({ hidden = false, className = "" }: { hidden?: boolean;
   if (hidden) return null;
   return (
     <aside aria-label="Advertisement" className={`my-8 ${className}`}>
-      <p className="mb-1 text-center text-[10px] uppercase tracking-widest text-stone-400">Advertisement</p>
+      <p className="mb-1 text-center text-[10px] uppercase tracking-widest text-stone-500">Advertisement</p>
       <div style={{ minHeight: 250 }}>
         <ins
           className="adsbygoogle"

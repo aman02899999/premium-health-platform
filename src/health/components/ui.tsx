@@ -40,7 +40,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
 export function SectionHeading({ eyebrow, title, desc, id }: { eyebrow?: string; title: string; desc?: string; id?: string }) {
   return (
     <div id={id} className="mb-5 scroll-mt-28">
-      {eyebrow && <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">{eyebrow}</p>}
+      {eyebrow && <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-400">{eyebrow}</p>}
       <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-stone-50 md:text-3xl">{title}</h2>
       {desc && <p className="mt-1.5 max-w-3xl text-[15px] leading-relaxed text-stone-600 dark:text-stone-300">{desc}</p>}
     </div>
@@ -54,7 +54,7 @@ export function KeyTakeaway({ points }: { points: string[] }) {
       <p className="mb-3 flex items-center gap-2 text-sm font-bold text-emerald-800 dark:text-emerald-200"><Sparkles className="h-4 w-4" /> Key Takeaways</p>
       <ul className="space-y-2">
         {points.map((p, i) => (
-          <li key={i} className="flex gap-2 text-sm leading-relaxed text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />{p}</li>
+          <li key={i} className="flex gap-2 text-sm leading-relaxed text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{p}</li>
         ))}
       </ul>
     </aside>
@@ -80,7 +80,7 @@ export function EmergencyBox({ signs }: { signs: string[] }) {
   return (
     <aside className="rounded-2xl border-2 border-red-300 bg-red-50 p-5 dark:border-red-800 dark:bg-red-950/50" role="alert" aria-label="Emergency warning signs">
       <p className="mb-1 flex items-center gap-2 text-sm font-bold text-red-700 dark:text-red-300"><Siren className="h-4 w-4" /> Seek urgent medical care if…</p>
-      <p className="mb-3 text-xs text-red-600/80 dark:text-red-400/80">Do not try home treatment for emergencies. Call emergency services or go to the nearest hospital.</p>
+      <p className="mb-3 text-xs text-red-700 dark:text-red-400/80">Do not try home treatment for emergencies. Call emergency services or go to the nearest hospital.</p>
       <ul className="grid gap-2 sm:grid-cols-2">
         {signs.map((s, i) => (
           <li key={i} className="flex gap-2 rounded-xl bg-white/70 p-2.5 text-[13px] font-medium leading-snug text-red-900 dark:bg-red-900/30 dark:text-red-100"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />{s}</li>
@@ -93,7 +93,7 @@ export function EmergencyBox({ signs }: { signs: string[] }) {
 export function SafetyNote({ text }: { text: string }) {
   return (
     <div className="flex gap-2.5 rounded-xl border border-amber-200 bg-amber-50 p-3.5 text-[13px] leading-relaxed text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">
-      <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" /><p>{text}</p>
+      <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-600" /><p>{text}</p>
     </div>
   );
 }
@@ -109,7 +109,7 @@ export function InfoNote({ text }: { text: string }) {
 export function DisclaimerBar({ compact }: { compact?: boolean }) {
   return (
     <div className={cn("rounded-2xl border border-stone-200 bg-stone-50 dark:border-stone-700 dark:bg-stone-900", compact ? "p-3" : "p-4")}>
-      <p className="flex gap-2 text-xs leading-relaxed text-stone-600 dark:text-stone-300"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />{SITE.disclaimer}</p>
+      <p className="flex gap-2 text-xs leading-relaxed text-stone-600 dark:text-stone-300"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{SITE.disclaimer}</p>
     </div>
   );
 }

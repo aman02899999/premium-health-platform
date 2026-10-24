@@ -65,7 +65,7 @@ export function Markdown({ blocks, cta }: { blocks: Block[]; cta: { whatsapp: st
             return <blockquote key={i}>{renderInline(b.c)}</blockquote>;
           case "table":
             return (
-              <div key={i} className="my-6 overflow-x-auto rounded-2xl ring-1 ring-white/10">
+              <div key={i} role="region" aria-label="Table" tabIndex={0} className="my-6 overflow-x-auto rounded-2xl ring-1 ring-white/10">
                 <table>
                   <thead className="bg-black/30">
                     <tr>

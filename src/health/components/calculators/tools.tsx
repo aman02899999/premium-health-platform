@@ -143,7 +143,7 @@ export function DueDateTool() {
                   const done = daysBetween(m.end, today) > 0;
                   const now = !done && daysBetween(m.start, today) >= 0;
                   return (
-                    <li key={m.title} className={cn("rounded-2xl border p-3", now ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/40" : "border-stone-200 dark:border-stone-700", done && "opacity-60")}>
+                    <li key={m.title} className={cn("rounded-2xl border p-3", now ? "border-emerald-300 bg-emerald-50 dark:border-emerald-800 dark:bg-emerald-950/40" : "border-stone-200 dark:border-stone-700", done && "bg-stone-50 dark:bg-stone-900/40")}>
                       <p className="flex flex-wrap items-baseline justify-between gap-x-3 text-sm font-bold">{m.title}<span className="text-xs font-semibold text-stone-500">{fmtDate(m.start, false)} – {fmtDate(m.end, false)}{now ? " · now" : done ? " · passed" : ""}</span></p>
                       <p className="mt-0.5 text-xs text-stone-600 dark:text-stone-300">{m.note}</p>
                     </li>
@@ -301,7 +301,7 @@ export function BodyFatTool() {
             <NumField label="Waist" unit="cm" value={waist} onChange={setWaist} min={40} max={200} step={0.5} hint={sex === "male" ? "At the navel" : "Narrowest point"} />
             {sex === "female" && <NumField label="Hip" unit="cm" value={hip} onChange={setHip} min={50} max={200} step={0.5} hint="Widest point" />}
           </div>
-          <p className="text-[11px] text-stone-400">Measure with a soft tape, relaxed, after breathing out. Take each twice and use the average.</p>
+          <p className="text-[11px] text-stone-500 dark:text-stone-400">Measure with a soft tape, relaxed, after breathing out. Take each twice and use the average.</p>
         </div>
       </Panel>
       <div className="space-y-4" aria-live="polite">
@@ -317,7 +317,7 @@ export function BodyFatTool() {
             <Panel title="Where you sit">
               <div className="grid grid-cols-5 gap-1 text-center text-[11px] font-semibold">
                 {(sex === "male" ? [["Essential", "2–5%"], ["Athletes", "6–13%"], ["Fitness", "14–17%"], ["Average", "18–24%"], ["Obese", "25%+"]] : [["Essential", "10–13%"], ["Athletes", "14–20%"], ["Fitness", "21–24%"], ["Average", "25–31%"], ["Obese", "32%+"]]).map(([l, r]) => (
-                  <div key={l} className={cn("rounded-xl p-2", cat!.label.startsWith(l) || (l === "Obese" && cat!.label.startsWith("Obese")) ? "bg-emerald-600 text-white" : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300")}>{l}<br /><span className="font-normal">{r}</span></div>
+                  <div key={l} className={cn("rounded-xl p-2", cat!.label.startsWith(l) || (l === "Obese" && cat!.label.startsWith("Obese")) ? "bg-emerald-700 text-white" : "bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300")}>{l}<br /><span className="font-normal">{r}</span></div>
                 ))}
               </div>
               <p className="mt-4 text-sm">Waist-to-height ratio: <strong>{whtr.toFixed(2)}</strong> — {whtr < 0.5 ? "under 0.5, a healthy sign." : "0.5 or above, linked to higher diabetes and heart risk even at a normal BMI."}</p>

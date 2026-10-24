@@ -158,9 +158,9 @@ export default async function HomePage() {
       {/* Trust strip */}
       <div className="border-y border-stone-200/70 bg-white/80 backdrop-blur dark:border-stone-800 dark:bg-stone-950/80">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-3 text-[12px] font-semibold text-stone-600 dark:text-stone-300">
-          <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-600" /> No cure claims, ever</span>
-          <span className="flex items-center gap-1.5"><BookOpen className="h-4 w-4 text-emerald-600" /> Guideline-referenced</span>
-          <span className="flex items-center gap-1.5"><FlaskConical className="h-4 w-4 text-emerald-600" /> Every guide cites its sources</span>
+          <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> No cure claims, ever</span>
+          <span className="flex items-center gap-1.5"><BookOpen className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Guideline-referenced</span>
+          <span className="flex items-center gap-1.5"><FlaskConical className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Every guide cites its sources</span>
           <span className="flex items-center gap-1.5"><Crown className="h-4 w-4 text-amber-500" /> Premium: ad-free + meal plans</span>
         </div>
       </div>
@@ -193,7 +193,7 @@ export default async function HomePage() {
                     <span className="absolute left-3 top-3 rounded-full bg-emerald-700/90 px-2.5 py-1 text-[10px] font-bold uppercase text-white">Latest</span>
                   </div>
                   <div className="p-4">
-                    <p className="text-[11px] font-bold uppercase text-amber-600">{a.category} · {a.readMinutes} min · {new Date(a.updatedAt).toLocaleDateString("en-IN")}</p>
+                    <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{a.category} · {a.readMinutes} min · {new Date(a.updatedAt).toLocaleDateString("en-IN")}</p>
                     <h3 className="mt-1 font-bold leading-snug group-hover:text-emerald-700">{a.title}</h3>
                   </div>
                 </Link>
@@ -277,7 +277,7 @@ export default async function HomePage() {
                     <Image src={a.heroImage} alt={a.heroImageAlt} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" loading="lazy" />
                   </div>
                   <div className="p-5">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-amber-600">{a.category} · {a.readMinutes} min</p>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{a.category} · {a.readMinutes} min</p>
                     <h3 className="font-display mt-1 text-lg font-bold leading-snug">{a.title}</h3>
                     <p className="mt-1.5 line-clamp-2 text-sm text-stone-600 dark:text-stone-300">{a.excerpt}</p>
                   </div>
@@ -297,7 +297,7 @@ export default async function HomePage() {
             <PremiumCTA />
             <AffiliateProducts limit={3} />
             <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-              <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-600" /> Latest</h3>
+              <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Latest</h3>
               <div className="mt-2 space-y-1 text-xs">
                 {latest.map((a) => (
                   <Link key={a.slug} href={`/health/blog/${a.slug}`} className="block truncate hover:text-emerald-700">· {a.title}</Link>
@@ -326,12 +326,12 @@ export default async function HomePage() {
               <h3 className="text-sm font-bold">Featured Health Guides — Premium Library</h3>
               <div className="grid gap-3">
                 <Link href="/library/53-exercise-for-type-2-diabetes" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-amber-600">{`Premium Library · ${bookBySlug("53-exercise-for-type-2-diabetes")?.pages ?? 59} pages · ₹${bookBySlug("53-exercise-for-type-2-diabetes")?.price ?? ""}`}</p>
+                  <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{`Premium Library · ${bookBySlug("53-exercise-for-type-2-diabetes")?.pages ?? 59} pages · ₹${bookBySlug("53-exercise-for-type-2-diabetes")?.price ?? ""}`}</p>
                   <p className="mt-1 text-sm font-bold">Exercise for Type 2 Diabetes</p>
                   <p className="mt-1 text-xs text-stone-500">Safe exercise for blood-sugar control — to use alongside your doctor&apos;s care.</p>
                 </Link>
                 <Link href="/library/03-fat-loss-blueprint" className="rounded-2xl border border-stone-200 bg-white p-4 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">{`Premium Library · ${bookBySlug("03-fat-loss-blueprint")?.pages ?? 60} pages · ₹${bookBySlug("03-fat-loss-blueprint")?.price ?? ""}`}</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-600">{`Premium Library · ${bookBySlug("03-fat-loss-blueprint")?.pages ?? 60} pages · ₹${bookBySlug("03-fat-loss-blueprint")?.price ?? ""}`}</p>
                   <p className="mt-1 text-sm font-bold">The Fat-Loss Blueprint</p>
                   <p className="mt-1 text-xs text-stone-500">Fat loss with Indian food, family meals and busy jobs — no crash diets.</p>
                 </Link>

@@ -42,7 +42,7 @@ export function PlanGrid({ plans, note, payOnline = false }: { plans: OfferPlan[
                 role="radio"
                 aria-checked={mode === o.v}
                 onClick={() => setMode(o.v)}
-                className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold transition-all ${mode === o.v ? "bg-brand text-white shadow-lg" : "text-white/70 hover:text-white"}`}
+                className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold transition-all ${mode === o.v ? "bg-brand-strong text-white shadow-lg" : "text-white/70 hover:text-white"}`}
               >
                 <o.icon className="h-4 w-4" /> {o.l}
               </button>

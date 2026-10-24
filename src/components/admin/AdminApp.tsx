@@ -210,7 +210,7 @@ export function AdminApp({ storage }: { storage: string }) {
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
-              className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium ${tab === t.id ? "bg-brand text-white" : "text-white/70 hover:bg-white/5"}`}
+              className={`flex shrink-0 items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium ${tab === t.id ? "bg-brand-strong text-white" : "text-white/70 hover:bg-white/5"}`}
             >
               <t.icon className="h-4 w-4" /> {t.label}
             </button>

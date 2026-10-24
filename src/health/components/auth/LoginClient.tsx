@@ -38,7 +38,7 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
   if (loading) {
     return (
       <div className="flex justify-center rounded-3xl border border-stone-200 bg-white p-10 dark:border-stone-700 dark:bg-stone-900">
-        <Loader2 className="h-5 w-5 animate-spin text-emerald-600" />
+        <Loader2 className="h-5 w-5 animate-spin text-emerald-700 dark:text-emerald-600" />
       </div>
     );
   }
@@ -56,9 +56,9 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
     <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       {/* The register page has its own heading, so the box's title is a sub-heading there. */}
       {embedded ? (
-        <h2 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Sign in</h2>
+        <h2 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-600" /> Sign in</h2>
       ) : (
-        <h1 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-600" /> Sign in</h1>
+        <h1 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-600" /> Sign in</h1>
       )}
       <p className="mt-1 text-xs text-stone-500">One account for Premium Health Platform and Royal Fitness Club.</p>
 
@@ -81,7 +81,7 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
         <GoogleIcon /> Continue with Google
       </button>
 
-      <div className="my-4 flex items-center gap-2 text-[11px] text-stone-400">
+      <div className="my-4 flex items-center gap-2 text-[11px] text-stone-500 dark:text-stone-400">
         <span className="h-px flex-1 bg-stone-200 dark:bg-stone-700" /> OR <span className="h-px flex-1 bg-stone-200 dark:bg-stone-700" />
       </div>
 
@@ -93,7 +93,7 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
         <form onSubmit={handleEmail} className="space-y-3">
           <label className="block text-xs font-bold" htmlFor="login-email">Email</label>
           <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 dark:border-stone-700 dark:bg-stone-800">
-            <Mail className="h-4 w-4 text-stone-400" />
+            <Mail className="h-4 w-4 text-stone-500 dark:text-stone-400" />
             <input id="login-email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" required autoComplete="email" placeholder="you@example.com" className="w-full bg-transparent text-sm outline-none" />
           </div>
           <button type="submit" disabled={busy || !email || !available} className="flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white hover:bg-emerald-600 disabled:opacity-50">
@@ -104,7 +104,7 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
 
       {error && <p className="mt-3 text-xs font-semibold text-red-600" role="alert">{error}</p>}
 
-      <p className="mt-4 text-[11px] text-stone-400">By continuing you agree to the Terms and Privacy Policy. We only receive your name, email and profile photo from Google.</p>
+      <p className="mt-4 text-[11px] text-stone-500 dark:text-stone-400">By continuing you agree to the Terms and Privacy Policy. We only receive your name, email and profile photo from Google.</p>
     </div>
   );
 }

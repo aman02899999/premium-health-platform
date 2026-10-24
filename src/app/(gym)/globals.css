@@ -9,6 +9,8 @@
   --color-line: #1d3a57;
   --color-brand: var(--brand, #e8394b);
   --color-brand-soft: #ff9aa4;
+  /* Filled brand buttons with small white text: the brand darkened just enough for 4.5:1 contrast. */
+  --color-brand-strong: color-mix(in oklab, var(--color-brand) 84%, black);
   --color-navy: var(--navy, #04466d);
   --color-sky: #7cc0ee;
   --color-ember: #e8394b;

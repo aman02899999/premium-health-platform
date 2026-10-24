@@ -39,7 +39,7 @@ export function LiveTicker() {
 
 /* ---------------- AQI colour ---------------- */
 function aqiColor(aqi: number | null): string {
-  if (aqi == null) return "bg-stone-300";
+  if (aqi == null) return "bg-stone-500";
   if (aqi <= 50) return "bg-emerald-500";
   if (aqi <= 100) return "bg-lime-500";
   if (aqi <= 150) return "bg-amber-500";
@@ -49,7 +49,7 @@ function aqiColor(aqi: number | null): string {
 }
 
 function uvColor(uv: number | null): string {
-  if (uv == null) return "bg-stone-300";
+  if (uv == null) return "bg-stone-500";
   if (uv <= 2) return "bg-emerald-500";
   if (uv <= 5) return "bg-amber-400";
   if (uv <= 7) return "bg-orange-500";
@@ -120,7 +120,7 @@ export function IndiaPulseDashboard({ initial }: { initial?: IndiaPulse }) {
                   <span className="flex items-center gap-1"><Thermometer className="h-3.5 w-3.5 text-orange-500" />{c.tempC ?? "–"}°C</span>
                   <span className="flex items-center gap-1"><Droplets className="h-3.5 w-3.5 text-sky-500" />{c.humidity ?? "–"}%</span>
                   <span className="flex items-center gap-1"><CloudSun className="h-3.5 w-3.5 text-amber-500" />{weatherLabel(c.weatherCode)}</span>
-                  <span className="flex items-center gap-1"><Sun className="h-3.5 w-3.5 text-amber-600" />{c.uvIndex ?? "–"} ({uvLabel(c.uvIndex)})</span>
+                  <span className="flex items-center gap-1"><Sun className="h-3.5 w-3.5 text-amber-700 dark:text-amber-600" />{c.uvIndex ?? "–"} ({uvLabel(c.uvIndex)})</span>
                 </div>
                 <div className="mt-1.5 flex flex-wrap gap-2 text-[11px] text-stone-500">
                   <span className="flex items-center gap-1"><Sunrise className="h-3 w-3 text-amber-500" />{c.sunrise ?? "–"}</span>
@@ -193,7 +193,7 @@ export function DrugLookup() {
               ) : <p className="mt-2 text-stone-500">No boxed warnings in label summary — read the full leaflet and ask your doctor.</p>}
             </>
           ) : <p className="text-stone-500">No FDA label found for “{q}”. Try the generic name (e.g. amlodipine).</p>}
-          <p className="mt-2 text-[11px] text-stone-400">Educational only — never start/stop a medicine without your doctor. <Link href="/health/medicines" className="text-sky-700 underline">Our medicine guides →</Link></p>
+          <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Educational only — never start/stop a medicine without your doctor. <Link href="/health/medicines" className="text-sky-700 underline">Our medicine guides →</Link></p>
         </div>
       )}
     </div>
@@ -221,7 +221,7 @@ export function FoodLookup() {
   useEffect(() => { run("parle hide and seek"); }, []);
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-700 dark:bg-stone-900">
-      <p className="flex items-center gap-2 text-sm font-bold"><Leaf className="h-4 w-4 text-emerald-600" /> Packaged-food truth check <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">Open Food Facts</span></p>
+      <p className="flex items-center gap-2 text-sm font-bold"><Leaf className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Packaged-food truth check <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">Open Food Facts</span></p>
       <form className="mt-3 flex gap-2" onSubmit={(e) => { e.preventDefault(); run(q); }}>
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try a biscuit, namkeen, juice…" aria-label="Food product" className="h-10 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 text-sm outline-none focus:border-emerald-400 dark:border-stone-700 dark:bg-stone-800" />
         <button className="h-10 shrink-0 rounded-xl bg-emerald-700 px-4 text-xs font-bold text-white hover:bg-emerald-600">{loading ? "…" : "Scan"}</button>
@@ -247,7 +247,7 @@ export function FoodLookup() {
         </div>
       )}
       {miss && <p className="mt-3 text-[13px] text-stone-500">Product not found — try another spelling or a bigger brand.</p>}
-      <p className="mt-2 text-[11px] text-stone-400">Live label data, not our opinion. <Link href="/health/nutrition" className="text-emerald-700 underline">Nutrition guides →</Link></p>
+      <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Live label data, not our opinion. <Link href="/health/nutrition" className="text-emerald-700 underline">Nutrition guides →</Link></p>
     </div>
   );
 }

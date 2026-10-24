@@ -41,7 +41,7 @@ export function LeadGenForm({ type = "lab", title, description }: { type?: "lab"
   if (done) {
     return (
       <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-center dark:border-emerald-800 dark:bg-emerald-950/30">
-        <CheckCircle className="mx-auto h-8 w-8 text-emerald-600" />
+        <CheckCircle className="mx-auto h-8 w-8 text-emerald-700 dark:text-emerald-600" />
         <p className="mt-2 text-sm font-bold">{done}</p>
       </div>
     );
@@ -53,16 +53,16 @@ export function LeadGenForm({ type = "lab", title, description }: { type?: "lab"
       <p className="mt-1 text-[11px] text-stone-500">{description || `Tell us what you need and we\u2019ll call you back.`}</p>
       <form onSubmit={submit} className="mt-3 space-y-3">
         <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 dark:border-stone-700 dark:bg-stone-800">
-          <User className="h-4 w-4 text-stone-400" />
+          <User className="h-4 w-4 text-stone-500 dark:text-stone-400" />
           <input value={name} onChange={(e) => setName(e.target.value)} required placeholder="Full name" className="w-full bg-transparent text-sm outline-none" />
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 dark:border-stone-700 dark:bg-stone-800">
-            <Mail className="h-4 w-4 text-stone-400" />
+            <Mail className="h-4 w-4 text-stone-500 dark:text-stone-400" />
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email (optional)" className="w-full bg-transparent text-sm outline-none" />
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2.5 dark:border-stone-700 dark:bg-stone-800">
-            <Phone className="h-4 w-4 text-stone-400" />
+            <Phone className="h-4 w-4 text-stone-500 dark:text-stone-400" />
             <input value={phone} onChange={(e) => setPhone(e.target.value)} required type="tel" inputMode="numeric" placeholder="Mobile number (10 digits)" className="w-full bg-transparent text-sm outline-none" />
           </div>
         </div>
@@ -71,7 +71,7 @@ export function LeadGenForm({ type = "lab", title, description }: { type?: "lab"
         <button disabled={loading} type="submit" className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-bold text-white hover:bg-emerald-600 disabled:opacity-50">
           <Send className="h-4 w-4" /> {loading ? "Submitting…" : `Book ${type} — Free Callback`}
         </button>
-        <p className="text-[11px] text-stone-400">By submitting you agree to be contacted about this request.</p>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400">By submitting you agree to be contacted about this request.</p>
       </form>
     </div>
   );

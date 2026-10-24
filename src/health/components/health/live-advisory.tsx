@@ -66,7 +66,7 @@ export function LiveHealthAdvisory() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><AlertTriangle className="h-4 w-4 text-amber-600" /> Live Health Advisory — Unique India (Open-Meteo + Seasonal)</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><AlertTriangle className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Live Health Advisory — Unique India (Open-Meteo + Seasonal)</h3>
       <p className="mt-1 text-[11px] text-stone-500">Live season {pulse.season} from Open-Meteo, city UV, sunrise/sunset — combined with India public health calendar. Educational.</p>
 
       <div className="mt-4 space-y-2">

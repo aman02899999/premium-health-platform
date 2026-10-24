@@ -11,7 +11,7 @@ export function PlanMatrix({ plans }: { plans: OfferPlan[] }) {
   const row = "border-b border-white/5";
   const cell = "px-4 py-3 text-center";
   return (
-    <div className="glass brand-border overflow-x-auto rounded-3xl">
+    <div role="region" aria-label="Plan comparison table" tabIndex={0} className="glass brand-border overflow-x-auto rounded-3xl">
       <table className="w-full min-w-[640px] text-sm">
         <caption className="sr-only">Membership plans compared</caption>
         <thead>

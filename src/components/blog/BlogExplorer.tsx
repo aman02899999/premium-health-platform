@@ -37,7 +37,7 @@ export function BlogExplorer({ posts, categories }: { posts: BlogPost[]; categor
               role="tab"
               aria-selected={cat === c}
               onClick={() => setCat(c)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${cat === c ? "bg-brand text-white" : "border border-white/15 text-white/70 hover:text-white"}`}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${cat === c ? "bg-brand-strong text-white" : "border border-white/15 text-white/70 hover:text-white"}`}
             >
               {c}
             </button>

@@ -50,7 +50,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
         )}
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-wider text-stone-400">{p.category} · Demo product</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">{p.category} · Demo product</p>
           <h1 className="font-display mt-1 text-2xl font-black md:text-3xl">{p.name}</h1>
           <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-300">{p.description}</p>
           <p className="mt-3 text-xs text-stone-500">{p.ratingPlaceholder} · Merchant: {p.merchant}</p>
@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
           <h2 className="font-bold">Benefits</h2>
-          <ul className="mt-2 space-y-1.5 text-sm">{p.benefits.map((b, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />{b}</li>)}</ul>
+          <ul className="mt-2 space-y-1.5 text-sm">{p.benefits.map((b, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{b}</li>)}</ul>
         </section>
         <section className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
           <h2 className="font-bold">Limitations</h2>

@@ -40,7 +40,7 @@ export default async function BlogSearchPage({ searchParams }: { searchParams: P
                     <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover group-hover:scale-105 transition" sizes="(max-width: 768px) 100vw, 33vw" />
                   </div>
                   <div className="p-4">
-                    <p className="text-[11px] font-bold uppercase text-amber-600">{a.category}</p>
+                    <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{a.category}</p>
                     <h3 className="mt-1 font-bold group-hover:text-emerald-700">{a.title}</h3>
                   </div>
                 </Link>

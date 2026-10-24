@@ -99,7 +99,7 @@ export default async function StoreSlugPage({ params }: Props) {
               <p className="mt-1 text-xs text-stone-300">PaymentProvider abstraction: mock + razorpay. Server-side verification required. Env: RAZORPAY_KEY_ID, SECRET, WEBHOOK_SECRET, PAYMENT_PROVIDER. Never expose secrets to frontend.</p>
               <div className="mt-3 flex gap-2">
                 <BuyButton productId={product.id} price={product.price} page={`/health/store/${product.slug}`} />
-                <span className="text-[11px] text-stone-400">Demo — no real payment. Prod: Razorpay integration.</span>
+                <span className="text-[11px] text-stone-500 dark:text-stone-400">Demo — no real payment. Prod: Razorpay integration.</span>
               </div>
             </div>
           </div>

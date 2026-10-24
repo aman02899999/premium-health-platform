@@ -36,7 +36,7 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: t.title, description: t.excerpt, slug: `/health/ayurveda/${slug}`, category: t.category })) }} />
 
       <div className="hero-pattern mt-3 rounded-3xl border border-emerald-100 p-6 md:p-8 dark:border-stone-700">
-        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-600"><Sparkles className="h-4 w-4" /> {t.category}</p>
+        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-600"><Sparkles className="h-4 w-4" /> {t.category}</p>
         <h1 className="font-display mt-2 text-3xl font-black md:text-4xl">{t.title}</h1>
         <p className="mt-2 text-stone-600 dark:text-stone-300">{t.subtitle}</p>
         <div className="mt-3"><ShareButtons title={t.title} path={`/health/ayurveda/${slug}`} /></div>
@@ -48,7 +48,7 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
         <section className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
           <p className="text-stone-700 dark:text-stone-200">{t.body}</p>
           <h2 className="font-display mt-5 text-lg font-bold">Key points</h2>
-          <ul className="mt-2 space-y-1.5">{t.keyPoints.map((k, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{k}</li>)}</ul>
+          <ul className="mt-2 space-y-1.5">{t.keyPoints.map((k, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{k}</li>)}</ul>
         </section>
 
         {/* Monetization Middle */}
@@ -59,7 +59,7 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {DIGITAL_PRODUCTS.filter((p) => p.tags?.some((t) => t.toLowerCase().includes("ayurveda")) || p.category === "Health Guides").slice(0, 2).map((p) => (
               <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-                <p className="text-[11px] font-bold uppercase text-amber-600">{p.category} · {p.pages} pages</p>
+                <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{p.category} · {p.pages} pages</p>
                 <p className="mt-1 text-sm font-bold">{p.title}</p>
                 <Link href={`/health/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">{p.ctaText}</Link>
               </div>

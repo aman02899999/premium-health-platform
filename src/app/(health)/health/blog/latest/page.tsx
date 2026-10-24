@@ -58,7 +58,7 @@ export default function LatestPage() {
                   <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover group-hover:scale-105 transition" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-4">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">{new Date(a.updatedAt).toLocaleDateString("en-IN")} · {a.readMinutes} min · {a.category}</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-600">{new Date(a.updatedAt).toLocaleDateString("en-IN")} · {a.readMinutes} min · {a.category}</p>
                   <h3 className="mt-1 font-bold leading-snug group-hover:text-emerald-700">{a.title}</h3>
                   <p className="mt-1 line-clamp-2 text-xs text-stone-600 dark:text-stone-300">{a.excerpt}</p>
                 </div>

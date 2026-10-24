@@ -32,7 +32,7 @@ const Sec = ({ title, children }: { title: string; children: React.ReactNode }) 
 );
 
 const List = ({ items }: { items: string[] }) => (
-  <ul className="space-y-1.5">{items.map((i, x) => <li key={x} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" /><span>{i}</span></li>)}</ul>
+  <ul className="space-y-1.5">{items.map((i, x) => <li key={x} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" /><span>{i}</span></li>)}</ul>
 );
 
 export default async function HerbPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -86,7 +86,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
 
         <Sec title="Safety, side effects & interactions">
           <div className="grid gap-4 sm:grid-cols-2">
-            <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><ShieldAlert className="h-4 w-4 text-amber-600" /> Safety</p><List items={h.safety} /></div>
+            <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><ShieldAlert className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Safety</p><List items={h.safety} /></div>
             <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><AlertTriangle className="h-4 w-4 text-rose-500" /> Side effects</p><List items={h.sideEffects} /></div>
           </div>
           <p className="mb-1.5 mt-3 text-sm font-bold">Drug interactions</p>

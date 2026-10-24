@@ -116,7 +116,7 @@ export function WhatsAppCapture({ whatsapp }: { whatsapp: string }) {
             <span className="text-sm text-white/70">I&apos;m interested in</span>
             <div className="mt-1 grid grid-cols-2 gap-2">
               {OPTIONS.map(([v, l]) => (
-                <button key={v} type="button" aria-pressed={f.interest === v} onClick={() => setF({ ...f, interest: v })} className={`rounded-xl px-3 py-2.5 text-sm font-semibold ring-1 ${f.interest === v ? "bg-brand text-white ring-brand" : "bg-white/[.03] text-white/70 ring-white/10"}`}>
+                <button key={v} type="button" aria-pressed={f.interest === v} onClick={() => setF({ ...f, interest: v })} className={`rounded-xl px-3 py-2.5 text-sm font-semibold ring-1 ${f.interest === v ? "bg-brand-strong text-white ring-brand" : "bg-white/[.03] text-white/70 ring-white/10"}`}>
                   {l}
                 </button>
               ))}

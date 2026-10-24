@@ -13,9 +13,9 @@ import { NumField } from "@/health/components/calc-ui";
 function Card({ title, desc, source, children }: { title: string; desc: string; source?: string; children: React.ReactNode }) {
   return (
     <div className="rounded-2xl border border-stone-200 bg-white p-5 shadow-sm dark:border-stone-700 dark:bg-stone-900">
-      <p className="flex items-center gap-2 text-sm font-bold text-stone-900 dark:text-stone-100"><Calculator className="h-4 w-4 text-emerald-600" />{title}</p>
+      <p className="flex items-center gap-2 text-sm font-bold text-stone-900 dark:text-stone-100"><Calculator className="h-4 w-4 text-emerald-700 dark:text-emerald-600" />{title}</p>
       <p className="mb-1 mt-1 text-xs text-stone-500 dark:text-stone-400">{desc}</p>
-      {source && <p className="mb-3 text-[11px] italic text-stone-400">Formula: {source}</p>}
+      {source && <p className="mb-3 text-[11px] italic text-stone-500 dark:text-stone-400">Formula: {source}</p>}
       {!source && <div className="mb-3" />}
       {children}
     </div>
@@ -190,7 +190,7 @@ export function HeartRiskEdu() {
       <div className="grid grid-cols-1 gap-2 text-sm">
         {[["smoke", "Smoke or use tobacco in any form?"], ["bp", "BP ≥140/90 or on BP medicines?"], ["sugar", "Diabetes or HbA1c ≥6.5%?"], ["chol", "LDL ≥130 or on statin?"], ["family", "Heart attack in family (M<55 / F<65)?"]].map(([k, label]) => (
           <button key={k} onClick={() => setF({ ...f, [k]: !(f as Record<string, boolean>)[k] })} aria-pressed={(f as Record<string, boolean>)[k]} className={cn("flex items-center justify-between rounded-xl border p-2.5 text-left text-[13px] font-medium", (f as Record<string, boolean>)[k] ? "border-amber-300 bg-amber-50 dark:bg-amber-950/40" : "border-stone-200 dark:border-stone-700")}>
-            {label}<span className={cn("rounded-md px-2 py-0.5 text-xs font-bold", (f as Record<string, boolean>)[k] ? "bg-amber-500 text-white" : "bg-stone-100 text-stone-500 dark:bg-stone-800")}>{(f as Record<string, boolean>)[k] ? "Yes" : "No"}</span>
+            {label}<span className={cn("rounded-md px-2 py-0.5 text-xs font-bold", (f as Record<string, boolean>)[k] ? "bg-amber-700 text-white" : "bg-stone-100 text-stone-600 dark:bg-stone-800")}>{(f as Record<string, boolean>)[k] ? "Yes" : "No"}</span>
           </button>
         ))}
       </div>
@@ -287,8 +287,8 @@ export function SymptomChecker() {
         )}
         <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-stone-700 dark:text-stone-200">
           <li className="flex gap-2"><Info className="mt-0.5 h-4 w-4 shrink-0 text-sky-600" /> <span><strong>Pattern:</strong> {symptom} for {duration}, {severity.split(" — ")[0].toLowerCase()}, {age.toLowerCase()}{extra.length ? ` with ${extra.join(", ").toLowerCase()}` : ""}.</span></li>
-          <li className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> <span><strong>Questions to consider:</strong> fever trend and hydration? recent travel, new medicines or missed doses? BP/sugar comorbidity? pregnancy possibility?</span></li>
-          <li className="flex gap-2"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" /> <span><strong>Urgency:</strong> {urgency}</span></li>
+          <li className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" /> <span><strong>Questions to consider:</strong> fever trend and hydration? recent travel, new medicines or missed doses? BP/sugar comorbidity? pregnancy possibility?</span></li>
+          <li className="flex gap-2"><AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-700 dark:text-amber-600" /> <span><strong>Urgency:</strong> {urgency}</span></li>
         </ul>
         <p className="mt-3 rounded-xl bg-white/70 p-3 text-xs leading-relaxed text-stone-600 dark:bg-stone-900/60 dark:text-stone-300">This tool does <strong>not</strong> diagnose. It lists categories to discuss with a doctor. Explore: <Link href="/health/symptoms/fever" className="text-emerald-700 underline">fever</Link> · <Link href="/health/symptoms/chest-pain" className="text-emerald-700 underline">chest pain</Link> · <Link href="/health/symptoms/breathlessness" className="text-emerald-700 underline">breathlessness</Link> · <Link href="/health/symptoms/burning-urination" className="text-emerald-700 underline">burning urination</Link></p>
       </div>

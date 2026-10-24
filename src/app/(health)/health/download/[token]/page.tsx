@@ -45,7 +45,7 @@ export default async function DownloadTokenPage({ params }: Props) {
           <Link href="/health/my-purchases" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">My Purchases →</Link>
           <Link href="/health/orders" className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold">Orders →</Link>
         </div>
-        <p className="mt-4 text-[11px] text-stone-400">Do NOT expose private PDF file URLs publicly. Use expiring/signed download URLs. Payment confirmation must be server-side verified. Never store raw card info.</p>
+        <p className="mt-4 text-[11px] text-stone-500 dark:text-stone-400">Do NOT expose private PDF file URLs publicly. Use expiring/signed download URLs. Payment confirmation must be server-side verified. Never store raw card info.</p>
       </div>
 
       <div className="mt-8 space-y-4"><AdSlot slot="Download footer" /><DisclaimerBar compact /></div>

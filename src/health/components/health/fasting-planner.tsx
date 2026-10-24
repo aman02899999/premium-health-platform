@@ -44,7 +44,7 @@ export function FastingPlanner() {
         </div>
       </div>
 
-      <p className="mt-2 text-[11px] text-stone-400">Disclaimer: Traditional fasting practices — evidence mixed. If on insulin, sulfonylureas, BP meds, blood thinners, or have kidney/heart disease — discuss with clinician before fasting.</p>
+      <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Disclaimer: Traditional fasting practices — evidence mixed. If on insulin, sulfonylureas, BP meds, blood thinners, or have kidney/heart disease — discuss with clinician before fasting.</p>
     </div>
   );
 }

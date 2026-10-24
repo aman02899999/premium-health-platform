@@ -50,7 +50,7 @@ export function BlogCategoryGrid() {
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {cats.map((c) => (
         <Link key={c.slug} href={`/health/blog/category/${c.slug}`} className="rounded-2xl border border-stone-200 bg-white p-5 hover:border-emerald-300 dark:border-stone-700 dark:bg-stone-900">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-600">{c.count} guides</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{c.count} guides</p>
           <h3 className="mt-1 font-bold">{c.name}</h3>
           {c.latest && <p className="mt-1 text-xs text-stone-500">Latest: {c.latest.title.slice(0, 60)}…</p>}
           <p className="mt-2 text-xs font-bold text-emerald-700">Explore →</p>

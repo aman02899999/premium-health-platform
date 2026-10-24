@@ -61,7 +61,7 @@ function Bullets({ items, icon }: { items: string[]; icon?: React.ReactNode }) {
   return (
     <ul className="space-y-2">
       {items.map((it, i) => (
-        <li key={i} className="flex gap-2.5">{icon || <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />}<span>{it}</span></li>
+        <li key={i} className="flex gap-2.5">{icon || <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />}<span>{it}</span></li>
       ))}
     </ul>
   );
@@ -232,7 +232,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {DIGITAL_PRODUCTS.filter((p) => p.active).slice(0, 2).map((p) => (
                   <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-                    <p className="text-[11px] font-bold uppercase text-amber-600">{p.category} · {p.pages} pages · {p.fileSize}</p>
+                    <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{p.category} · {p.pages} pages · {p.fileSize}</p>
                     <p className="mt-1 text-sm font-bold">{p.title}</p>
                     <p className="mt-1 text-xs text-stone-500">{p.description.slice(0, 80)}… Educational, not medical promise.</p>
                     <Link href={`/health/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">{p.ctaText}</Link>
@@ -260,7 +260,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {DIGITAL_PRODUCTS.filter((p) => p.category === "Diet Plans").slice(0, 2).map((p) => (
                 <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">{p.category} · {p.pages} pages</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-600">{p.category} · {p.pages} pages</p>
                   <p className="mt-1 text-sm font-bold">{p.title}</p>
                   <Link href={`/health/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">{p.ctaText}</Link>
                 </div>

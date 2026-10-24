@@ -112,7 +112,7 @@ export default async function HomePage() {
         <div className="marquee flex w-max gap-10 whitespace-nowrap">
           {Array.from({ length: 2 }).flatMap((_, k) =>
             ["Strength", "Fat Loss", "Personal Training", "Cardio", "Bodybuilding", "Women's Fitness", "Diet Plans", "Transformation"].map((w) => (
-              <span key={`${k}-${w}`} className="font-display flex items-center gap-10 text-3xl text-white/15">
+              <span key={`${k}-${w}`} className="font-display flex items-center gap-10 text-3xl text-white/40">
                 {w} <span className="text-brand">✦</span>
               </span>
             )),
@@ -274,7 +274,7 @@ export default async function HomePage() {
           </Reveal>
         )}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <Link href="/reviews" className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-white hover:bg-brand/90">
+          <Link href="/reviews" className="inline-flex items-center gap-2 rounded-full bg-brand-strong px-6 py-3 font-semibold text-white hover:bg-brand">
             <BadgeCheck className="h-4 w-4" /> Verified member reviews
           </Link>
           <a href={b.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-brand/50 px-6 py-3 font-semibold text-brand hover:bg-brand hover:text-white">
