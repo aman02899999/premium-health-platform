@@ -82,7 +82,7 @@ export function LiveResearchSection({ diseaseName, diseaseSlug }: { diseaseName:
                 <p className="mt-1 text-[12px] text-stone-500">
                   {a.journal} {a.pubDate ? `· ${a.pubDate}` : ""} {a.authors.length ? `· ${a.authors.join(", ")}` : ""}
                 </p>
-                <p className="mt-1 text-[11px] text-stone-400">PMID: {a.pmid}</p>
+                <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">PMID: {a.pmid}</p>
               </li>
             ))}
           </ul>
@@ -94,7 +94,7 @@ export function LiveResearchSection({ diseaseName, diseaseSlug }: { diseaseName:
             </a>
           </p>
         )}
-        <p className="mt-3 text-[11px] text-stone-400">Source: NCBI E-utilities (free, no key). Updates every 6 hours.</p>
+        <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Source: NCBI E-utilities (free, no key). Updates every 6 hours.</p>
       </div>
 
       {/* ClinicalTrials */}
@@ -133,10 +133,10 @@ export function LiveResearchSection({ diseaseName, diseaseSlug }: { diseaseName:
             </a>
           </p>
         )}
-        <p className="mt-3 text-[11px] text-stone-400">Source: ClinicalTrials.gov API v2 (free, no key). Updates every 6 hours.</p>
+        <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Source: ClinicalTrials.gov API v2 (free, no key). Updates every 6 hours.</p>
       </div>
 
-      <p className="text-center text-[11px] text-stone-400">
+      <p className="text-center text-[11px] text-stone-500 dark:text-stone-400">
         Live research is educational — always discuss studies/trials with your clinician. We never recruit or recommend specific trials.
       </p>
     </div>

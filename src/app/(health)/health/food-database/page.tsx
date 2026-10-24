@@ -54,7 +54,7 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90"><strong>Open Food Facts</strong> (ODbL, free keyless, barcode) + <strong>USDA FoodData Central</strong> (public domain) + India GI protein fibre.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/health/food-database">
           <input name="q" defaultValue={query} placeholder="Try apple, maggi, atta, milk…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
-          <select name="provider" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
+          <select name="provider" aria-label="Data source" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
             <option value="openfoodfacts">Open Food Facts</option>
             <option value="usda">USDA (requires key)</option>
           </select>

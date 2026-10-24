@@ -52,7 +52,7 @@ export default function SolutionsClient() {
         <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">Pick a condition — see the modern, Ayurvedic, nutrition, lifestyle and testing path side by side, plus emergency red flags.</p>
         <div className="mt-4 flex flex-col gap-2 md:flex-row">
           <label className="flex flex-1 items-center gap-2 rounded-2xl border border-stone-200 bg-white px-4 py-2.5 dark:border-stone-700 dark:bg-stone-900">
-            <Search className="h-4 w-4 text-stone-400" />
+            <Search className="h-4 w-4 text-stone-500 dark:text-stone-400" />
             <span className="sr-only">Search conditions</span>
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search diabetes, thyroid, migraine, UTI…" className="w-full bg-transparent text-sm outline-none" />
           </label>
@@ -70,12 +70,12 @@ export default function SolutionsClient() {
               <div key={s.condition} className="overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
                 <button onClick={() => setOpen(isOpen ? null : s.condition)} aria-expanded={isOpen} className="flex w-full items-center justify-between gap-3 p-4 text-left">
                   <span>
-                    <span className="block text-[11px] font-bold uppercase tracking-wider text-amber-600">{s.category}</span>
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{s.category}</span>
                     <span className="block text-[15px] font-bold">{s.condition}</span>
                   </span>
                   <span className="flex shrink-0 items-center gap-2">
                     <Link href={s.href} onClick={(e) => e.stopPropagation()} className="hidden rounded-xl bg-emerald-700 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-600 sm:block">Full guide <ArrowRight className="inline h-3 w-3" /></Link>
-                    <span className={cn("flex h-8 w-8 items-center justify-center rounded-full border transition", isOpen ? "rotate-45 border-emerald-400 bg-emerald-50 text-emerald-700" : "text-stone-400")}>＋</span>
+                    <span className={cn("flex h-8 w-8 items-center justify-center rounded-full border transition", isOpen ? "rotate-45 border-emerald-400 bg-emerald-50 text-emerald-700" : "text-stone-500 dark:text-stone-400")}>＋</span>
                   </span>
                 </button>
                 {isOpen && (
@@ -88,7 +88,7 @@ export default function SolutionsClient() {
                       ["Tests to discuss", s.tests, "bg-violet-50 text-violet-900 border-violet-200 dark:bg-violet-950/40 dark:text-violet-100"],
                     ].map(([t, v, cls]) => (
                       <div key={t as string} className={cn("rounded-2xl border p-3", cls as string)}>
-                        <p className="text-[11px] font-bold uppercase tracking-wider opacity-70">{t}</p>
+                        <p className="text-[11px] font-bold uppercase tracking-wider">{t}</p>
                         <p className="mt-1 text-[13px] leading-relaxed">{v}</p>
                       </div>
                     ))}
@@ -113,7 +113,7 @@ export default function SolutionsClient() {
           <h2 className="font-display text-2xl font-black">How approaches compare</h2>
           <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">The safest path usually combines all three columns — with every practitioner informed.</p>
         </div>
-        <div className="overflow-x-auto">
+        <div role="region" aria-label="Comparison table" tabIndex={0} className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-left text-[13px]">
             <thead>
               <tr className="bg-stone-50 text-xs uppercase tracking-wider text-stone-500 dark:bg-stone-800/60">

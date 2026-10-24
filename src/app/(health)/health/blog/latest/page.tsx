@@ -14,7 +14,7 @@ import { HealthProductRecommendations } from "@/health/components/monetization/H
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
 const seoTitle = "Latest Health Articles | Premium Health";
-const seoDescription = "Latest health guides updated weekly — diabetes, thyroid, PCOS, nutrition, Ayurveda — fresh content for Google freshness signal.";
+const seoDescription = "Latest health guides updated weekly — diabetes, thyroid, PCOS, nutrition, Ayurveda — newest first.";
 const url = "/health/blog/latest";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Latest — Health Articles")}&category=${encodeURIComponent("Blog Freshness")}&type=Blog`;
@@ -36,7 +36,7 @@ export default function LatestPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Blog", item: "/health/blog" }, { name: "Latest", item: "/health/blog/latest" }]}
         faqs={[
-          { q: "How often is blog updated?", a: "Weekly — latest page sorted by updatedAt, Google freshness signal, 12 guides, 30+ FAQs, 50+ sections, real photography, citations PubMed/ICMR/FSSAI." },
+          { q: "How often is blog updated?", a: "New and updated guides appear here first, newest at the top. Every guide cites its sources, such as PubMed, ICMR and FSSAI." },
           ]}
         howTo={{ name: "How to use latest articles", steps: ["Visit /blog/latest for fresh guides sorted by updated date", "Read article + FAQs + references + related + trending", "Subscribe newsletter + push + WhatsApp for weekly digest", "Share via referral — viral loop 7d free + Rs50 credit"] }}
       />
@@ -44,9 +44,9 @@ export default function LatestPage() {
       <ItemListJsonLd items={articles.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}`, image: a.heroImage }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Freshness Signal</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Latest articlesness — {articles.length} Guides Weekly</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">{articles.length} guides sorted by updated date — Google loves fresh content. Updated weekly.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Just updated</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Latest guides</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">{articles.length} guides, most recently updated first.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -58,7 +58,7 @@ export default function LatestPage() {
                   <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover group-hover:scale-105 transition" sizes="(max-width: 768px) 100vw, 33vw" />
                 </div>
                 <div className="p-4">
-                  <p className="text-[11px] font-bold uppercase text-emerald-600">{new Date(a.updatedAt).toLocaleDateString("en-IN")} · {a.readMinutes} min · {a.category}</p>
+                  <p className="text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-600">{new Date(a.updatedAt).toLocaleDateString("en-IN")} · {a.readMinutes} min · {a.category}</p>
                   <h3 className="mt-1 font-bold leading-snug group-hover:text-emerald-700">{a.title}</h3>
                   <p className="mt-1 line-clamp-2 text-xs text-stone-600 dark:text-stone-300">{a.excerpt}</p>
                 </div>

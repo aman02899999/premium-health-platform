@@ -40,7 +40,7 @@ export default function AyurvedaPage() {
         howTo={{ name: "How to explore Ayurveda", steps: ["Read dosha basics, dinacharya daily routine, ritucharya seasonal", "Check pathya-apathya nutrition + panchakarma education + safety", "Use dosha-meals + ritucharya planner + herb-drug checker tools", "Consult qualified Vaidya + doctor for integration"] }}
       />
       <div className="hero-pattern mt-3 rounded-3xl border border-emerald-100 p-6 md:p-8 dark:border-stone-700">
-        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-600"><Sparkles className="h-4 w-4" /> Traditional wellness, responsibly presented</p>
+        <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-600"><Sparkles className="h-4 w-4" /> Traditional wellness, responsibly presented</p>
         <h1 className="font-display mt-2 text-3xl font-black md:text-4xl">Ayurveda Portal — Dosha, Dinacharya, Ritucharya</h1>
         <p className="mt-2 max-w-2xl text-sm text-stone-600 dark:text-stone-300">Ayurveda offers time-tested lifestyle wisdom — routine, seasonal eating, herbs and mind practices. We present traditional concepts clearly <em>as traditional concepts</em>, separate from modern clinical evidence, so you can integrate safely.</p>
         <div className="mt-4 flex flex-wrap gap-2">

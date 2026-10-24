@@ -13,7 +13,7 @@ function Card({ a }: { a: EnrichedArticle }) {
         <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover group-hover:scale-105 transition" sizes="80px" />
       </div>
       <div className="min-w-0">
-        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{a.category} · {a.readMinutes} min</p>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{a.category} · {a.readMinutes} min</p>
         <h4 className="line-clamp-2 text-sm font-bold leading-snug group-hover:text-emerald-700">{a.title}</h4>
         <p className="mt-0.5 flex items-center gap-1 text-[11px] text-stone-500"><Clock className="h-3 w-3" /> {new Date(a.updatedAt).toLocaleDateString("en-IN")} · {a.body.length} sections</p>
       </div>
@@ -25,8 +25,8 @@ export function LatestArticles({ limit = 6 }: { limit?: number }) {
   const articles = getAllEnrichedArticles().sort((a, b) => +new Date(b.updatedAt) - +new Date(a.updatedAt)).slice(0, limit);
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-600" /> Latest articles</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Updated weekly — fresh content for Google freshness signal.</p>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Latest articles</h3>
+      <p className="mt-1 text-[11px] text-stone-500">New and updated guides.</p>
       <div className="mt-3 grid gap-2">{articles.map((a) => <Card key={a.slug} a={a} />)}</div>
       <Link href="/health/blog/latest" className="mt-3 inline-block text-xs font-bold text-emerald-700 underline">View latest →</Link>
     </div>
@@ -40,7 +40,7 @@ export function TrendingArticles({ limit = 6 }: { limit?: number }) {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="flex items-center gap-2 text-sm font-bold"><TrendingUp className="h-4 w-4 text-rose-600" /> Trending — Most Read</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Popular this week — internal linking + social proof.</p>
+      <p className="mt-1 text-[11px] text-stone-500">Most read this week.</p>
       <div className="mt-3 grid gap-2">{list.map((a) => <Card key={a.slug} a={a} />)}</div>
       <Link href="/health/blog/trending" className="mt-3 inline-block text-xs font-bold text-emerald-700 underline">View trending →</Link>
     </div>
@@ -51,7 +51,7 @@ export function FeaturedArticles({ limit = 3 }: { limit?: number }) {
   const articles = getAllEnrichedArticles().filter((a) => a.featured).slice(0, limit);
   return (
     <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 dark:border-amber-800 dark:from-amber-950/40">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Star className="h-4 w-4 text-amber-600" /> Featured Cornerstone Guides</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Star className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Featured Cornerstone Guides</h3>
       <div className="mt-3 grid gap-2">{articles.map((a) => <Card key={a.slug} a={a} />)}</div>
     </div>
   );

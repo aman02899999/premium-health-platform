@@ -8,6 +8,7 @@ import { getLab } from "@/health/data/clinical";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, LikeButton } from "@/health/components/ui";
 import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { NOT_REVIEWED } from "@/health/lib/review";
 
 export function generateStaticParams() { return MEDICINES.map((m) => ({ slug: m.slug })); }
 
@@ -57,7 +58,7 @@ export default async function MedicinePage({ params }: { params: Promise<{ slug:
         <h1 className="font-display mt-3 text-3xl font-black md:text-4xl">{m.genericName}</h1>
         <p className="mt-1 text-sm text-sky-200/80">Brand examples (illustrative): {m.brandExamples.join(" · ")}</p>
         <p className="mt-3 max-w-3xl leading-relaxed text-sky-50/90">{m.short}</p>
-        <p className="mt-2 text-xs text-sky-200/70">Updated: {formatDate(m.updatedAt)} · Review: pending — placeholder <LikeButton id={slug} /></p>
+        <p className="mt-2 text-xs text-sky-200/70">Updated: {formatDate(m.updatedAt)} · {NOT_REVIEWED} <LikeButton id={slug} /></p>
         <div className="mt-2"><ShareButtons title={m.genericName} path={`/health/medicines/${slug}`} /></div>
       </div>
 

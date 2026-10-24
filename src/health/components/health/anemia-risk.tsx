@@ -29,7 +29,7 @@ export function AnemiaRisk() {
         <p className="text-sm font-bold">Risk: {risk} (score {score}/11)</p>
         <p className="mt-1 text-[12px]">{risk === "High" ? "High: Get CBC, ferritin, B12, stool occult if indicated. Eat iron-rich + vitamin C, avoid tea with meals." : risk === "Moderate" ? "Moderate: Improve diet (millets, green leafy, sprouts, egg), vitamin C with meals, re-check." : "Low: Maintain iron-rich diet, yearly hemoglobin if at risk."}</p>
       </div>
-      <p className="mt-2 text-[11px] text-stone-400">Indian context: tea/coffee with meals, vegetarian diet, heavy periods, worm infestation are common contributors. Do not self-medicate iron without labs — excess iron harmful.</p>
+      <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">Indian context: tea/coffee with meals, vegetarian diet, heavy periods, worm infestation are common contributors. Do not self-medicate iron without labs — excess iron harmful.</p>
     </div>
   );
 }

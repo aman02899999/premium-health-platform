@@ -18,7 +18,7 @@ export function StoreGrid({ products }: { products: StoreProduct[] }) {
   const shown = useMemo(() => (cat === "All" ? products : products.filter((p) => p.category === cat)), [products, cat]);
   const blurb = STORE_CATEGORIES.find((c) => c.name === cat)?.blurb;
   const chip = (c: string) =>
-    `whitespace-nowrap rounded-full border px-4 py-2 text-sm transition ${cat === c ? "border-brand bg-brand text-white" : "border-white/15 text-white/70 hover:border-white/40"}`;
+    `whitespace-nowrap rounded-full border px-4 py-2 text-sm transition ${cat === c ? "border-brand bg-brand-strong text-white" : "border-white/15 text-white/70 hover:border-white/40"}`;
 
   return (
     <div>

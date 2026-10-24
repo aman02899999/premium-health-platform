@@ -7,6 +7,7 @@ import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, EvidenceBadge, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, DoctorBox, LikeButton } from "@/health/components/ui";
 import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { NOT_REVIEWED } from "@/health/lib/review";
 
 export function generateStaticParams() { return HERBS.map((h) => ({ slug: h.slug })); }
 
@@ -31,7 +32,7 @@ const Sec = ({ title, children }: { title: string; children: React.ReactNode }) 
 );
 
 const List = ({ items }: { items: string[] }) => (
-  <ul className="space-y-1.5">{items.map((i, x) => <li key={x} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" /><span>{i}</span></li>)}</ul>
+  <ul className="space-y-1.5">{items.map((i, x) => <li key={x} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" /><span>{i}</span></li>)}</ul>
 );
 
 export default async function HerbPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -56,7 +57,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
         <p className="mt-1 text-stone-600 dark:text-stone-300"><em>{h.botanicalName}</em> · {h.hindiName}{h.sanskritName ? ` · Sanskrit: ${h.sanskritName}` : ""}</p>
         <p className="mt-1 text-sm text-stone-500">Also: {h.otherNames.join(", ")}</p>
         <p className="mt-3 max-w-3xl leading-relaxed text-stone-700 dark:text-stone-200">{h.short}</p>
-        <p className="mt-2 text-xs text-stone-500">Updated: {formatDate(h.updatedAt)} · Medically reviewed by: Review pending — placeholder <LikeButton id={slug} /></p>
+        <p className="mt-2 text-xs text-stone-500">Updated: {formatDate(h.updatedAt)} · {NOT_REVIEWED} <LikeButton id={slug} /></p>
         <div className="mt-2"><ShareButtons title={h.name} path={`/health/herbs/${slug}`} /></div>
       </div>
 
@@ -85,7 +86,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
 
         <Sec title="Safety, side effects & interactions">
           <div className="grid gap-4 sm:grid-cols-2">
-            <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><ShieldAlert className="h-4 w-4 text-amber-600" /> Safety</p><List items={h.safety} /></div>
+            <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><ShieldAlert className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Safety</p><List items={h.safety} /></div>
             <div><p className="mb-1.5 flex items-center gap-1 text-sm font-bold"><AlertTriangle className="h-4 w-4 text-rose-500" /> Side effects</p><List items={h.sideEffects} /></div>
           </div>
           <p className="mb-1.5 mt-3 text-sm font-bold">Drug interactions</p>

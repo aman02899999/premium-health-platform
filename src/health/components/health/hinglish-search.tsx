@@ -65,7 +65,7 @@ export function HinglishSearch() {
         </div>
       )}
 
-      <p className="mt-3 text-[11px] text-stone-400">Future: full transliteration + Indic NLP. Current: alias map + English normalization. Covers diabetes, BP, thyroid, herbs, millets.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Future: full transliteration + Indic NLP. Current: alias map + English normalization. Covers diabetes, BP, thyroid, herbs, millets.</p>
     </div>
   );
 }

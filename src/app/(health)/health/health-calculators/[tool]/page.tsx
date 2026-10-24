@@ -59,7 +59,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ too
       <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
         <div className="space-y-6">
           <section className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-            <h2 className="font-display flex items-center gap-2 text-xl font-bold"><BookOpenCheck className="h-5 w-5 text-emerald-600" />How it&apos;s calculated</h2>
+            <h2 className="font-display flex items-center gap-2 text-xl font-bold"><BookOpenCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-600" />How it&apos;s calculated</h2>
             <ul className="mt-3 space-y-2 text-[15px] leading-relaxed text-stone-700 dark:text-stone-200">
               {c.method.map((m) => <li key={m} className="flex gap-2"><span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />{m}</li>)}
             </ul>

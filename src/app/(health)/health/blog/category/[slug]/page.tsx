@@ -78,9 +78,9 @@ export default async function CategorySlugPage({ params }: Props) {
       <CollectionJsonLd title={`${cat} Guides`} description={`All ${cat} articles`} slug={`/health/blog/category/${slug}`} items={filtered.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}` }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">{filtered.length} guides · SEO optimized · CollectionPage + ItemList + Breadcrumb JSON-LD · OG /api/og · Earning Platform</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">{filtered.length} guides</p>
         <h1 className="font-display mt-2 text-3xl font-black">{cat} — {filtered.length} guides</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides with FAQs, references, real photos — latest & trending, internal linking, JSON-LD, breadcrumbs, OG /api/og, canonical+hreflang, affiliate + premium CTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides, each with FAQs and cited references.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -95,7 +95,7 @@ export default async function CategorySlugPage({ params }: Props) {
                     <Image src={a.heroImage} alt={a.heroImageAlt} fill className="object-cover group-hover:scale-105 transition" sizes="(max-width: 768px) 100vw, 50vw" />
                   </div>
                   <div className="p-4">
-                    <p className="text-[11px] font-bold uppercase text-amber-600">{a.category} · {a.readMinutes} min · {new Date(a.updatedAt).toLocaleDateString("en-IN")}</p>
+                    <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{a.category} · {a.readMinutes} min · {new Date(a.updatedAt).toLocaleDateString("en-IN")}</p>
                     <h3 className="mt-1 font-bold leading-snug group-hover:text-emerald-700">{a.title}</h3>
                     <p className="mt-1 line-clamp-2 text-xs text-stone-600 dark:text-stone-300">{a.excerpt}</p>
                   </div>

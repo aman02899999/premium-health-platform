@@ -56,7 +56,7 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
         <p className="mt-2 max-w-2xl text-sm text-blue-100/90"><strong>openFDA</strong> (labels, warnings), <strong>RxNorm</strong> (generic/brand), <strong>PubChem</strong> (chemical). All free keyless, server-side.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/health/drug-lookup">
           <input name="q" defaultValue={query} placeholder="Try metformin, atorvastatin, amlodipine…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-sky-200/60 focus:border-amber-300 focus:outline-none" />
-          <select name="provider" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
+          <select name="provider" aria-label="Data source" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
             <option value="openfda">openFDA</option>
             <option value="rxnorm">RxNorm</option>
             <option value="pubchem">PubChem</option>
@@ -75,7 +75,7 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
                 {d.brandNames && d.brandNames.length > 0 && <p className="mt-1 text-xs text-stone-500">Brands: {d.brandNames.join(", ")}</p>}
                 {d.formula && <p className="mt-1 text-xs text-stone-500">Formula: {d.formula}</p>}
                 {d.warnings && d.warnings.length > 0 && <p className="mt-2 text-[12px] text-amber-800 dark:text-amber-200">Warning: {d.warnings[0].slice(0, 200)}</p>}
-                <p className="mt-2 text-[11px] text-stone-400">ID: {d.id}</p>
+                <p className="mt-2 text-[11px] text-stone-500 dark:text-stone-400">ID: {d.id}</p>
               </div>
             )) ?? <p className="text-sm text-stone-500">No drugs found — check /api/health/drugs?q={query}</p>}
           </div>

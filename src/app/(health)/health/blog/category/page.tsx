@@ -28,7 +28,7 @@ export default function BlogCategoryPage() {
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Blog", item: "/health/blog" }, { name: "Categories", item: "/health/blog/category" }]}
         faqs={[
           { q: "How many blog categories?", a: "13 categories: Disease Education, Nutrition, Ayurveda, Yoga, Women's Health, Men's Health, Child Health, Mental Wellness, Lab Tests, Symptoms, Homeopathy, Products, Health Tips — each with its own page." },
-          { q: "How is blog SEO optimized?", a: "Each category page has CollectionPage JSON-LD, Breadcrumb, FAQ, ItemList, canonical+hreflang, OG /api/og, internal linking latest/trending/related — reduces bounce, increases dwell." },
+          { q: "How are the guides organised?", a: "Each topic has its own page listing every guide on it, newest first, with links to related guides." },
         ]}
         howTo={{ name: "How to browse blog categories", steps: ["Pick category: e.g., Nutrition, Ayurveda, Yoga", "View articles filtered by category + trending + latest", "Read article + related internal links + affiliate + premium CTA", "Subscribe newsletter for weekly category digest"] }}
       />

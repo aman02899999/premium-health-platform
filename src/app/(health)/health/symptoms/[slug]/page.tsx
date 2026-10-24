@@ -59,7 +59,7 @@ export default async function SymptomPage({ params }: { params: Promise<{ slug: 
         </Sec>
         <div className="grid gap-4 sm:grid-cols-2">
           <Sec title="Questions to consider"><ul className="space-y-1.5">{s.questions.map((q, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-sky-600" />{q}</li>)}</ul></Sec>
-          <Sec title="Care guidance"><ul className="space-y-1.5">{s.careGuidance.map((q, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{q}</li>)}</ul></Sec>
+          <Sec title="Care guidance"><ul className="space-y-1.5">{s.careGuidance.map((q, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{q}</li>)}</ul></Sec>
         </div>
         <AdSlot slot="In-content" />
         <DoctorBox title="When to seek medical care" points={["Symptoms persist beyond expected duration or keep recurring", "You need repeated self-medication to stay comfortable", "You have diabetes, heart, kidney disease or are pregnant", "Any emergency sign above appears"]} />

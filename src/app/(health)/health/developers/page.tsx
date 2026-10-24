@@ -95,12 +95,12 @@ export default function DevelopersPage() {
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         <div className="rounded-2xl border border-stone-200 bg-stone-900 p-5 text-stone-100 dark:border-stone-700">
           <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">curl</p>
-          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`curl -s "${SITE.url}/health/api/v1/literature/search?q=millet%20glycemic" \\
+          <pre tabIndex={0} className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`curl -s "${SITE.url}/health/api/v1/literature/search?q=millet%20glycemic" \\
   -H "x-api-key: $API_KEY"`}</code></pre>
         </div>
         <div className="rounded-2xl border border-stone-200 bg-stone-900 p-5 text-stone-100 dark:border-stone-700">
           <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">response</p>
-          <pre className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`{
+          <pre tabIndex={0} className="mt-2 overflow-x-auto text-xs leading-relaxed"><code>{`{
   "ok": true,
   "meta": {
     "plan": "free",
@@ -118,9 +118,9 @@ export default function DevelopersPage() {
         desc="All data endpoints share the same auth, envelope, quota model and caching behaviour. Full parameters, samples and source licences are in the docs."
       />
 
-      <div className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
+      <div role="region" aria-label="Table" tabIndex={0} className="mt-4 overflow-x-auto rounded-2xl border border-stone-200 dark:border-stone-700">
         <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
-          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-500 dark:bg-stone-800 dark:text-stone-400">
+          <thead className="bg-stone-100 text-[11px] uppercase tracking-wider text-stone-600 dark:bg-stone-800 dark:text-stone-400">
             <tr>
               <th className="px-4 py-3">Endpoint</th>
               <th className="px-4 py-3">What it returns</th>
@@ -142,7 +142,7 @@ export default function DevelopersPage() {
                       {endpoint.source.name}
                     </a>
                   ) : (
-                    <span className="text-stone-400">Premium Health Platform</span>
+                    <span className="text-stone-500 dark:text-stone-400">Premium Health Platform</span>
                   )}
                 </td>
                 <td className="px-4 py-3 text-xs text-stone-500 dark:text-stone-400">{endpoint.source?.license ?? "Own data"}</td>
@@ -162,9 +162,9 @@ export default function DevelopersPage() {
             <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">{plan.tagline}</p>
             <ul className="mt-3 flex-1 space-y-1.5 text-xs">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex gap-1.5"><span className="text-emerald-600">✓</span><span>{feature}</span></li>
+                <li key={feature} className="flex gap-1.5"><span className="text-emerald-700 dark:text-emerald-600">✓</span><span>{feature}</span></li>
               ))}
-              <li className="flex gap-1.5"><span className="text-emerald-600">✓</span><span>{plan.support}</span></li>
+              <li className="flex gap-1.5"><span className="text-emerald-700 dark:text-emerald-600">✓</span><span>{plan.support}</span></li>
             </ul>
             <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">SLA: {plan.sla}</p>
             <Link

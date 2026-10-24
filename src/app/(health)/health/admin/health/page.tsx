@@ -92,7 +92,7 @@ export default async function HealthAdminPage() {
           ) : (
             <p className="mt-2 text-sm text-stone-500">Unable to fetch provider health — try /api/health/providers?health=true directly.</p>
           )}
-          <p className="mt-3 text-[11px] text-stone-400">Source: /api/health/providers + /api/health/status</p>
+          <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Source: /api/health/providers + /api/health/status</p>
         </div>
 
         <div className="space-y-4">
@@ -140,7 +140,7 @@ ENABLE_INDIAN_MEDICINE=false (LICENSE_REVIEW)
 ENABLE_WORLDBANK=true
 ENABLE_OPENMETEO=true`}
         </pre>
-        <p className="mt-3 text-[11px] text-stone-400">Never commit .env. All secrets server-side. Frontend never exposes keys.</p>
+        <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Never commit .env. All secrets server-side. Frontend never exposes keys.</p>
       </div>
 
       <div className="mt-6 rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-100">

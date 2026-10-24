@@ -666,7 +666,7 @@ export function ChatsApp() {
                     {c.botPaused && <Pause className="h-3 w-3 shrink-0 text-amber-300" aria-label="Bot paused" />}
                     {c.assignedTo && (
                       <span
-                        className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[9px] font-bold ${c.assignedTo === me ? "bg-brand text-white" : "bg-white/15 text-white/80"}`}
+                        className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[9px] font-bold ${c.assignedTo === me ? "bg-brand-strong text-white" : "bg-white/15 text-white/80"}`}
                         title={`Assigned to ${team.find((m) => m.email === c.assignedTo)?.name || c.assignedTo}`}
                       >
                         {initials(team.find((m) => m.email === c.assignedTo)?.name ?? "", c.assignedTo)}

@@ -8,8 +8,8 @@ import { AdBanner } from "@/health/components/monetization/AdComponents";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 
-const seoTitle = "Newsletter — Free + Sponsored Slots | Premium Health";
-const seoDescription = "Indian Health Weekly — free newsletter + sponsored slots, sponsor banner, recommendation — track subscribers, campaign, clicks, unsubscribe, sponsor CTR.";
+const seoTitle = "Free Weekly Health Newsletter | Indian Health Weekly";
+const seoDescription = "Indian Health Weekly: one free, useful health email every Sunday on diabetes, thyroid, heart health, Ayurveda and nutrition. Unsubscribe any time.";
 const url = "/health/newsletter";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Newsletter — Health Weekly")}&category=${encodeURIComponent("Newsletter")}&type=tool`;
@@ -36,9 +36,9 @@ export default function NewsletterPage() {
         howTo={{ name: "How to subscribe", steps: ["Enter your email in the form", "Tick the consent box", "Confirm", "Get the newsletter every week — unsubscribe any time"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Newsletter Monetization — Free + Sponsored</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Newsletter — Indian Health Weekly — Free + Sponsored Slots</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">One useful health email every Sunday — diabetes, thyroid, heart, Ayurveda, nutrition. Free + sponsored slots (banner + recommendation) clearly labeled Sponsored. Track subscribers, campaign, clicks, unsubscribe, sponsor CTR. Never sell email addresses.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Free weekly newsletter</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Indian Health Weekly newsletter</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">One useful health email every Sunday — diabetes, thyroid, heart, Ayurveda, nutrition. It is free. Any sponsored item is clearly marked Sponsored. Unsubscribe any time, and we never sell email addresses.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

@@ -58,7 +58,7 @@ export function WorkoutBuilder() {
               <li key={`${we.exerciseId}-${i}`} className="rounded-xl border border-stone-100 p-3 dark:border-stone-800">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold">{i + 1}. {we.name}</span>
-                  <button onClick={() => setWorkout((prev) => prev.filter((_, idx) => idx !== i))} className="text-rose-500"><Trash2 className="h-4 w-4" /></button>
+                  <button type="button" aria-label="Remove exercise" onClick={() => setWorkout((prev) => prev.filter((_, idx) => idx !== i))} className="text-rose-500"><Trash2 className="h-4 w-4" /></button>
                 </div>
                 <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
                   <label>Sets <input type="number" value={we.sets} onChange={(e) => { const v = Number(e.target.value); setWorkout((prev) => prev.map((x, idx) => idx === i ? { ...x, sets: v } : x)); }} className="mt-1 w-full rounded border px-2 py-1" /></label>

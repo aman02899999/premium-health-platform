@@ -22,6 +22,7 @@ import { DIGITAL_PRODUCTS } from "@/health/lib/monetization/config";
 import { uncropped } from "@/lib/uncropped";
 import { PostArticle, postMetadata } from "@/health/components/posts/PostArticle";
 import { findPost, postBlocks, translation } from "@/health/lib/posts";
+import { reviewLine } from "@/health/lib/review";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -120,7 +121,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
       <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_340px]">
         {/* Main column */}
         <article className="min-w-0 max-w-4xl">
-          <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-600">
+          <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-600">
             <span className="flex items-center gap-1.5"><BookOpen className="h-4 w-4" /> {a.category}</span>
             <span className="flex items-center gap-1 text-stone-500"><Clock className="h-3 w-3" />{a.readMinutes} min read</span>
             <span className="flex items-center gap-1 text-stone-500"><CalendarDays className="h-3 w-3" />{a.body.length} sections · {a.faqs.length} FAQs</span>
@@ -130,8 +131,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
 
           {/* Author / review bar */}
           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-stone-200 bg-white p-3.5 text-xs text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300">
-            <span className="flex items-center gap-1.5"><User className="h-3.5 w-3.5 text-emerald-600" /> By <strong>{a.author}</strong></span>
-            <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Medically reviewed by: <strong>{a.reviewer}</strong></span>
+            <span className="flex items-center gap-1.5"><User className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-600" /> By <strong>{a.author}</strong></span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-600" /> {reviewLine(a.reviewer)}</span>
             <span className="flex items-center gap-1.5"><RefreshCw className="h-3.5 w-3.5" /> Updated {formatDate(a.updatedAt)} · Published {formatDate(a.publishedAt)}</span>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -183,7 +184,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                         <div className="mt-3 grid gap-3 sm:grid-cols-2">
                           {DIGITAL_PRODUCTS.filter((p) => p.active).slice(0, 2).map((p) => (
                             <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-                              <p className="text-[11px] font-bold uppercase text-amber-600">{p.category} · {p.pages} pages</p>
+                              <p className="text-[11px] font-bold uppercase text-amber-700 dark:text-amber-600">{p.category} · {p.pages} pages</p>
                               <p className="mt-1 text-sm font-bold">{p.title}</p>
                               <Link href={`/health/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900">{p.ctaText}</Link>
                             </div>
@@ -237,13 +238,13 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           <nav className="mt-5 grid gap-3 sm:grid-cols-2" aria-label="More guides">
             {prev ? (
               <Link href={`/health/blog/${prev.slug}`} className="group rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-                <span className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-stone-400"><ChevronLeft className="h-3 w-3" /> Previous guide</span>
+                <span className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400"><ChevronLeft className="h-3 w-3" /> Previous guide</span>
                 <span className="mt-1 block text-sm font-bold leading-snug group-hover:text-emerald-700">{prev.title}</span>
               </Link>
             ) : <span />}
             {next && (
               <Link href={`/health/blog/${next.slug}`} className="group rounded-2xl border border-stone-200 bg-white p-4 text-right dark:border-stone-700 dark:bg-stone-900">
-                <span className="flex items-center justify-end gap-1 text-[11px] font-bold uppercase tracking-wider text-stone-400">Next guide <ChevronRight className="h-3 w-3" /></span>
+                <span className="flex items-center justify-end gap-1 text-[11px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">Next guide <ChevronRight className="h-3 w-3" /></span>
                 <span className="mt-1 block text-sm font-bold leading-snug group-hover:text-emerald-700">{next.title}</span>
               </Link>
             )}
@@ -273,7 +274,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
                   <Image src={r.heroImage} alt="" fill sizes="80px" className="object-cover" loading="lazy" />
                 </span>
                 <span>
-                  <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-600">{r.category}</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{r.category}</span>
                   <span className="line-clamp-2 text-[13px] font-bold leading-snug">{r.title}</span>
                 </span>
               </Link>

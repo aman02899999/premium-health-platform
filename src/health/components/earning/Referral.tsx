@@ -42,19 +42,19 @@ export function ReferralSystem() {
 
   return (
     <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 dark:border-amber-800 dark:from-amber-950/30">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-600" /> Invite a friend</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Gift className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Invite a friend</h3>
       <p className="mt-1 text-[11px] text-stone-600 dark:text-stone-300">Know someone who would find these tools useful? Add their email and we&apos;ll keep a record of your invite.</p>
 
       {done ? (
         <div className="mt-3 rounded-2xl bg-white p-4 text-center dark:bg-stone-900">
-          <CheckCircle className="mx-auto h-6 w-6 text-emerald-600" />
+          <CheckCircle className="mx-auto h-6 w-6 text-emerald-700 dark:text-emerald-600" />
           <p className="mt-1 text-sm font-bold">{done.status === "already-invited" ? `You've already invited ${done.referred}.` : `Invite recorded for ${done.referred}.`}</p>
           <p className="mt-1 text-xs text-stone-500">Share this page with them: {`${SITE.url}/health/register?utm_source=referral&utm_medium=user`}</p>
         </div>
       ) : (
         <form onSubmit={submit} className="mt-3 flex gap-2">
           <input value={referredEmail} onChange={(e) => setReferredEmail(e.target.value)} type="email" required placeholder="Friend's email" className="flex-1 rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm dark:border-amber-800 dark:bg-stone-900" />
-          <button disabled={loading} type="submit" className="flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-500 disabled:opacity-50">
+          <button disabled={loading} type="submit" className="flex items-center gap-2 rounded-xl bg-amber-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-600 disabled:opacity-50">
             <Share2 className="h-4 w-4" /> {loading ? "…" : "Refer"}
           </button>
         </form>

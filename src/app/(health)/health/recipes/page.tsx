@@ -47,7 +47,7 @@ export default function RecipesPage() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {recipes.map((r, i) => (
               <Link key={i} href={r.href} className="card-3d rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-                <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-amber-600"><Clock className="h-3 w-3" /> 15–25 min · {r.food} · Recipe</p>
+                <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600"><Clock className="h-3 w-3" /> 15–25 min · {r.food} · Recipe</p>
                 <h3 className="font-display mt-1 text-lg font-bold">{r.name}</h3>
                 <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{r.desc}</p>
                 <span className="mt-2 inline-block text-[13px] font-bold text-emerald-700">View food guide →</span>

@@ -12,7 +12,7 @@ export function LibraryGrid({ books, categories, ratings }: { books: Book[]; cat
   const [cat, setCat] = useState<string>("All");
   const shown = useMemo(() => (cat === "All" ? books : books.filter((b) => b.category === cat)), [books, cat]);
   const chip = (c: string) =>
-    `rounded-full border px-4 py-2 text-sm transition ${cat === c ? "border-brand bg-brand text-white" : "border-white/15 text-white/70 hover:border-white/40"}`;
+    `rounded-full border px-4 py-2 text-sm transition ${cat === c ? "border-brand bg-brand-strong text-white" : "border-white/15 text-white/70 hover:border-white/40"}`;
   return (
     <div>
       <div className="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter by section">

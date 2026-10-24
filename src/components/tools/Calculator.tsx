@@ -96,7 +96,7 @@ function Toggle<T extends string>({ value, onChange, options, label }: { value: 
           role="radio"
           aria-checked={value === o.v}
           onClick={() => onChange(o.v)}
-          className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand text-white" : "text-white/70 hover:text-white"}`}
+          className={`flex-1 rounded-full px-4 py-2 text-sm font-semibold transition-all ${value === o.v ? "bg-brand-strong text-white" : "text-white/70 hover:text-white"}`}
         >
           {o.l}
         </button>

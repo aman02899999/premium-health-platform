@@ -54,7 +54,8 @@ export default async function PriceSheetPage() {
           </div>
         </header>
 
-        <table className="mt-5 w-full border-collapse text-[12px]">
+        <div role="region" aria-label="Membership prices" tabIndex={0} className="mt-5 overflow-x-auto print:overflow-visible">
+        <table className="w-full border-collapse text-[12px]">
           <thead>
             <tr className="bg-[#04466d] text-white">
               <th className="border border-[#04466d] px-2 py-2 text-left">Plan</th>
@@ -94,6 +95,7 @@ export default async function PriceSheetPage() {
             ))}
           </tbody>
         </table>
+        </div>
         {offerEnds && <p className="mt-2 text-[11px] text-neutral-600">Offer prices are valid until {offerEnds}; standard prices apply after that. Couple prices are standard prices.</p>}
         {c.planNote && <p className="mt-1 text-[11px] text-neutral-600">{c.planNote}</p>}
 

@@ -48,7 +48,7 @@ export function ThaliBuilder() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Salad className="h-4 w-4 text-emerald-600" /> Indian Thali Builder — Unique</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Salad className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Indian Thali Builder — Unique</h3>
       <p className="mt-1 text-[11px] text-stone-500">Build balanced Indian thali: half veg, quarter grain (millet preferred), quarter dal/protein + curd. Educational only.</p>
 
       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -63,9 +63,9 @@ export function ThaliBuilder() {
             <div>
               <p className="text-sm font-semibold">{item.name}</p>
               <p className="text-[11px] text-stone-500">{item.portion} · {item.calories} kcal · {item.protein}g protein · {item.fibre}g fibre</p>
-              <p className="text-[10px] text-stone-400">{item.notes}</p>
+              <p className="text-[10px] text-stone-500 dark:text-stone-400">{item.notes}</p>
             </div>
-            <button onClick={() => setThali((prev) => [...prev, item])} className="rounded-full bg-emerald-100 p-1.5 text-emerald-700"><Plus className="h-4 w-4" /></button>
+            <button type="button" aria-label={`Add ${item.name} to thali`} onClick={() => setThali((prev) => [...prev, item])} className="rounded-full bg-emerald-100 p-1.5 text-emerald-700"><Plus className="h-4 w-4" /></button>
           </div>
         ))}
       </div>
@@ -75,7 +75,7 @@ export function ThaliBuilder() {
         <div className="mt-2 flex flex-wrap gap-1.5">
           {thali.map((it, idx) => (
             <span key={`${it.id}-${idx}`} className="flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-xs font-medium shadow-sm dark:bg-stone-900">
-              {it.name} <button onClick={() => setThali((prev) => prev.filter((_, i) => i !== idx))} className="text-rose-500"><Trash2 className="h-3 w-3" /></button>
+              {it.name} <button type="button" aria-label={`Remove ${it.name}`} onClick={() => setThali((prev) => prev.filter((_, i) => i !== idx))} className="text-rose-500"><Trash2 className="h-3 w-3" /></button>
             </span>
           ))}
         </div>

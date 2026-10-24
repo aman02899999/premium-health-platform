@@ -62,11 +62,11 @@ export default function NutritionPage() {
           <div className="mt-6"><AdInArticle placement="article_middle" page="/health/nutrition" /></div>
 
           <h2 className="font-display mt-10 text-2xl font-bold">Diet plans — templates + Premium Guides</h2>
-          <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">General templates — not personalised prescriptions. <Link href="/health/diet" className="font-bold text-emerald-700 underline">Open diet centre →</Link> + <Link href="/health/thali-builder" className="font-bold text-emerald-700 underline">thali builder →</Link> + <Link href="/health/store" className="font-bold text-amber-600 underline">Premium store →</Link></p>
+          <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">General templates — not personalised prescriptions. <Link href="/health/diet" className="font-bold text-emerald-700 underline">Open diet centre →</Link> + <Link href="/health/thali-builder" className="font-bold text-emerald-700 underline">thali builder →</Link> + <Link href="/health/store" className="font-bold text-amber-700 dark:text-amber-600 underline">Premium store →</Link></p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {DIET_PLANS.slice(0, 4).map((d) => (
               <Link key={d.slug} href="/health/diet" className="card-3d rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-amber-600">{d.audience}</p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{d.audience}</p>
                 <h3 className="mt-1 font-bold">{d.title}</h3>
                 <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{d.short}</p>
               </Link>

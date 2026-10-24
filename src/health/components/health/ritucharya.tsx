@@ -36,7 +36,7 @@ export function RitucharyaPlanner() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><CloudSun className="h-4 w-4 text-amber-600" /> Ritucharya — Seasonal Planner (Unique India)</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><CloudSun className="h-4 w-4 text-amber-700 dark:text-amber-600" /> Ritucharya — Seasonal Planner (Unique India)</h3>
       <p className="mt-1 text-[11px] text-stone-500">Live season from Open-Meteo pulse + classical Ayurveda Ritucharya — traditional framework + modern safety, educational only.</p>
 
       <div className="mt-3 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:from-stone-800 dark:to-stone-800">
@@ -60,7 +60,7 @@ export function RitucharyaPlanner() {
         </div>
       </div>
 
-      <p className="mt-3 text-[11px] text-stone-400">Traditional Ayurvedic seasonal wisdom — not a substitute for medical advice. Adapt for diabetes, kidney, heart disease with clinician.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Traditional Ayurvedic seasonal wisdom — not a substitute for medical advice. Adapt for diabetes, kidney, heart disease with clinician.</p>
     </div>
   );
 }

@@ -32,7 +32,7 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       )}
-      <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{product.category} · {product.merchant}</p>
+      <p className="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">{product.category} · {product.merchant}</p>
       {product.brand && (
         <p className="mt-1 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-300">
           <BadgeCheck className="h-3 w-3" /> Trusted brand · {product.brand}
@@ -48,7 +48,7 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
         {product.price > 0 ? (
           <>
             <span className="text-sm font-black text-emerald-700">₹{product.price.toLocaleString("en-IN")}</span>
-            {product.originalPrice && <span className="text-xs line-through text-stone-400">₹{product.originalPrice.toLocaleString("en-IN")}</span>}
+            {product.originalPrice && <span className="text-xs line-through text-stone-500 dark:text-stone-400">₹{product.originalPrice.toLocaleString("en-IN")}</span>}
           </>
         ) : (
           <span className="text-xs font-semibold text-stone-500">Check today&apos;s price on {product.merchant}</span>
@@ -70,7 +70,7 @@ export function AffiliateProductCard({ product, page = "/" }: { product: Affilia
           )}
         </p>
       )}
-      <p className="mt-2 text-[10px] text-stone-400">{product.disclosure}</p>
+      <p className="mt-2 text-[10px] text-stone-500 dark:text-stone-400">{product.disclosure}</p>
     </div>
   );
 }
@@ -88,18 +88,18 @@ export function DigitalProductCard({ product, page = "/" }: { product: DigitalPr
         className="mb-3 aspect-[4/3] w-full"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
-      <p className="text-[10px] font-bold uppercase tracking-wider text-amber-600">{product.category} · {product.format} · {product.pages ? `${product.pages} pages` : ""} {product.fileSize ? `· ${product.fileSize}` : ""}</p>
+      <p className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{product.category} · {product.format} · {product.pages ? `${product.pages} pages` : ""} {product.fileSize ? `· ${product.fileSize}` : ""}</p>
       <h3 className="mt-1 font-bold leading-snug">{product.title}</h3>
       <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{product.description}</p>
       <div className="mt-2 flex items-center gap-2">
         <span className="text-sm font-black text-emerald-700">₹{product.price}</span>
-        {product.originalPrice && <span className="text-xs line-through text-stone-400">₹{product.originalPrice}</span>}
+        {product.originalPrice && <span className="text-xs line-through text-stone-500 dark:text-stone-400">₹{product.originalPrice}</span>}
       </div>
       <div className="mt-3 flex gap-2">
         <Link href={`/health/store/${product.slug}`} className="rounded-xl border border-stone-200 px-4 py-2 text-xs font-bold hover:bg-stone-50 dark:border-stone-700">View Details</Link>
         <Link href={`/health/store/${product.slug}`} className="rounded-xl bg-amber-500 px-4 py-2 text-xs font-bold text-stone-900 hover:bg-amber-400">{product.ctaText}</Link>
       </div>
-      <p className="mt-2 text-[10px] text-stone-400">Educational resource — not a medical diagnosis. Discuss with qualified professional.</p>
+      <p className="mt-2 text-[10px] text-stone-500 dark:text-stone-400">Educational resource — not a medical diagnosis. Discuss with qualified professional.</p>
     </div>
   );
 }
@@ -145,7 +145,7 @@ export function CouponCard({ coupon, page = "/" }: { coupon: Coupon; page?: stri
         <div className="flex min-w-0 items-start gap-3">
           <ProductImage image={coupon.image} alt={coupon.title} className="h-16 w-16 shrink-0 rounded-xl" sizes="64px" />
           <div className="min-w-0">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">{coupon.merchant} · {coupon.category} {isExpired ? "· Expired" : ""}</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">{coupon.merchant} · {coupon.category} {isExpired ? "· Expired" : ""}</p>
             <h3 className="mt-1 font-bold">{coupon.title}</h3>
             <p className="mt-1 text-[13px] text-stone-600 dark:text-stone-300">{coupon.description}</p>
           </div>
@@ -163,7 +163,7 @@ export function CouponCard({ coupon, page = "/" }: { coupon: Coupon; page?: stri
       ) : (
         <span className="mt-3 inline-block rounded-xl bg-stone-200 px-4 py-2 text-xs font-bold text-stone-500">Expired — automatically hidden from active deals</span>
       )}
-      <p className="mt-2 text-[10px] text-stone-400">Affiliate link — we may earn commission at no extra cost to you. Never display expired offers as active — auto-filtered.</p>
+      <p className="mt-2 text-[10px] text-stone-500 dark:text-stone-400">Affiliate link — we may earn commission at no extra cost to you. Never display expired offers as active — auto-filtered.</p>
     </div>
   );
 }

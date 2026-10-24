@@ -70,7 +70,7 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
           <div className="mt-4"><NutrientDonut title={`${f.name}: why it fits Indian plates (illustrative)`} source="Editorial; precise values in table above" data={[{ name: "Fibre + protein value", value: 55 }, { name: "Micronutrients", value: 30 }, { name: "Energy density", value: 15 }]} /></div>
         </Sec>
         <div className="grid gap-4 sm:grid-cols-2">
-          <Sec title="Potential benefits"><ul className="space-y-1.5">{f.benefits.map((b, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-600" />{b}</li>)}</ul></Sec>
+          <Sec title="Potential benefits"><ul className="space-y-1.5">{f.benefits.map((b, i) => <li key={i} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />{b}</li>)}</ul></Sec>
           <Sec title="Limitations"><ul className="space-y-1.5">{f.limitations.map((b, i) => <li key={i} className="flex gap-2"><span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-amber-500" />{b}</li>)}</ul></Sec>
         </div>
         <Sec title="Serving, cooking & caution">
@@ -89,7 +89,7 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
           <div className="mt-3 grid gap-3 sm:grid-cols-2">
             {DIGITAL_PRODUCTS.filter((p) => p.category === "Diet Plans" || p.category === "Health Guides" || p.tags?.some((t) => t.toLowerCase().includes("nutrition"))).slice(0, 2).map((p) => (
               <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-                <p className="text-[11px] font-bold uppercase text-emerald-600">{p.category} · {p.pages} pages</p>
+                <p className="text-[11px] font-bold uppercase text-emerald-700 dark:text-emerald-600">{p.category} · {p.pages} pages</p>
                 <p className="mt-1 text-sm font-bold">{p.title}</p>
                 <Link href={`/health/store/${p.slug}`} className="mt-2 inline-block rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white">{p.ctaText}</Link>
               </div>
@@ -104,7 +104,7 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
           <div className="grid gap-2 sm:grid-cols-2">
             {f.recipes.map((r) => (
               <div key={r.name} className="rounded-2xl bg-stone-50 p-4 dark:bg-stone-800/60">
-                <p className="flex items-center gap-1.5 font-bold"><ChefHat className="h-4 w-4 text-amber-600" />{r.name}</p>
+                <p className="flex items-center gap-1.5 font-bold"><ChefHat className="h-4 w-4 text-amber-700 dark:text-amber-600" />{r.name}</p>
                 <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{r.desc}</p>
               </div>
             ))}

@@ -162,7 +162,7 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
             Sex
             <div role="radiogroup" aria-label="Sex" className="mt-1 flex gap-2">
               {(["male", "female"] as const).map((s) => (
-                <button key={s} type="button" role="radio" aria-checked={f.sex === s} onClick={() => set("sex", s)} className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold capitalize ring-1 ${f.sex === s ? "bg-brand text-white ring-brand" : "bg-white/[.03] text-white/70 ring-white/10"}`}>
+                <button key={s} type="button" role="radio" aria-checked={f.sex === s} onClick={() => set("sex", s)} className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold capitalize ring-1 ${f.sex === s ? "bg-brand-strong text-white ring-brand" : "bg-white/[.03] text-white/70 ring-white/10"}`}>
                   {s}
                 </button>
               ))}

@@ -46,13 +46,13 @@ export default function DietPage() {
           <div className="grid gap-5 lg:grid-cols-2">
             {DIET_PLANS.map((d) => (
               <article key={d.slug} id={d.slug} className="scroll-mt-28 rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-amber-600">{d.audience}</p>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-600">{d.audience}</p>
                 <h2 className="font-display mt-1 text-2xl font-bold">{d.title}</h2>
                 <p className="mt-1 text-sm text-stone-600 dark:text-stone-300">{d.short}</p>
                 <div className="mt-3 rounded-2xl bg-emerald-50 p-3 dark:bg-emerald-950/40">
                   <p className="text-xs font-bold text-emerald-800 dark:text-emerald-200">Principles</p>
                   <ul className="mt-1.5 grid gap-1 sm:grid-cols-2">
-                    {d.principles.map((p) => <li key={p} className="flex gap-1.5 text-xs text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />{p}</li>)}
+                    {d.principles.map((p) => <li key={p} className="flex gap-1.5 text-xs text-stone-700 dark:text-stone-200"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700 dark:text-emerald-600" />{p}</li>)}
                   </ul>
                 </div>
                 <div className="mt-3 grid gap-3 text-[13px] sm:grid-cols-2">

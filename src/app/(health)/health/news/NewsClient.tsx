@@ -59,7 +59,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
       <div className="hero-pattern mt-3 overflow-hidden rounded-3xl border border-emerald-100 p-6 md:p-8 dark:border-stone-700">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-600">
+            <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-700 dark:text-amber-600">
               <Radio className="h-4 w-4 animate-pulse" /> {SITE.name} Newsroom · Updated daily at 06:30 IST
             </p>
             <h1 className="font-display mt-2 text-3xl font-black md:text-[2.6rem]">Health News & Daily Briefings</h1>
@@ -117,7 +117,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
                   <span className={cn("rounded-full px-2.5 py-1", KIND_META[top.kind].cls)}>{KIND_META[top.kind].label}</span>
                   <span className="rounded-full bg-stone-100 px-2.5 py-1 text-stone-600 dark:bg-stone-800 dark:text-stone-300">{top.category}</span>
-                  <span className="flex items-center gap-1 text-stone-400"><Clock className="h-3 w-3" />{top.evergreen || top.kind === "briefing" ? "Evergreen guide" : <RelTime iso={top.publishedAt} />}</span>
+                  <span className="flex items-center gap-1 text-stone-500 dark:text-stone-400"><Clock className="h-3 w-3" />{top.evergreen || top.kind === "briefing" ? "Evergreen guide" : <RelTime iso={top.publishedAt} />}</span>
                 </div>
                 <h2 className="font-display mt-3 text-2xl font-black leading-tight md:text-3xl">
                   <Link href={`/health/news/${top.slug}`} className="hover:text-emerald-700 dark:hover:text-emerald-300">{top.title}</Link>
@@ -125,7 +125,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 <p className="mt-2 leading-relaxed text-stone-600 dark:text-stone-300">{top.summary}</p>
                 {top.keyTakeaways.length > 0 && (
                   <ul className="mt-3 grid gap-1.5 sm:grid-cols-3">
-                    {top.keyTakeaways.map((k) => <li key={k} className="flex gap-1.5 text-[13px] text-stone-600 dark:text-stone-300"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600" />{k}</li>)}
+                    {top.keyTakeaways.map((k) => <li key={k} className="flex gap-1.5 text-[13px] text-stone-600 dark:text-stone-300"><CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-700 dark:text-emerald-600" />{k}</li>)}
                   </ul>
                 )}
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
@@ -140,7 +140,7 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
                 <article key={n.slug} className="card-3d flex flex-col rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
                   <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider">
                     <span className={cn("rounded-full px-2 py-0.5", KIND_META[n.kind].cls)}>{KIND_META[n.kind].label}</span>
-                    <span className="text-stone-400">{n.category}</span>
+                    <span className="text-stone-500 dark:text-stone-400">{n.category}</span>
                   </div>
                   <h3 className="font-display mt-2 text-lg font-bold leading-snug">
                     <Link href={`/health/news/${n.slug}`} className="hover:text-emerald-700 dark:hover:text-emerald-300">{n.title}</Link>
@@ -164,9 +164,9 @@ export default function NewsClient({ items, todayKey, initialCat = "All" }: { it
             <div className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
               <p className="text-xs font-bold uppercase tracking-wider text-stone-500">How we report</p>
               <ul className="mt-2 space-y-2 text-[13px] text-stone-600 dark:text-stone-300">
-                <li className="flex gap-2"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />Evergreen public-health guidance, not invented events or fake statistics.</li>
+                <li className="flex gap-2"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />Evergreen public-health guidance, not invented events or fake statistics.</li>
                 <li className="flex gap-2"><Globe2 className="mt-0.5 h-4 w-4 shrink-0 text-sky-600" />Every item names its source type so you can verify it.</li>
-                <li className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />Medical review is required before publication of sensitive items.</li>
+                <li className="flex gap-2"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-700 dark:text-emerald-600" />Medical review is required before publication of sensitive items.</li>
               </ul>
             </div>
             <div className="rounded-2xl bg-gradient-to-br from-emerald-800 to-teal-800 p-4 text-white">

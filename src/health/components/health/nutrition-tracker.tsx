@@ -61,7 +61,7 @@ export function NutritionTracker() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Apple className="h-4 w-4 text-emerald-600" /> Nutrition Tracker (local)</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Apple className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Nutrition Tracker (local)</h3>
       <p className="mt-1 text-[11px] text-stone-500">Search foods via Open Food Facts (free) + USDA (key) — logs stored locally, not medical advice.</p>
 
       <form className="mt-3 flex gap-2" onSubmit={(e) => { e.preventDefault(); search(query); }}>
@@ -87,7 +87,7 @@ export function NutritionTracker() {
             {logs.map((l) => (
               <li key={l.id} className="flex items-center justify-between rounded-xl border border-stone-100 p-2 text-sm dark:border-stone-800">
                 <span>{l.name} — {l.quantity}g — {((l.calories * l.quantity) / 100).toFixed(0)} kcal</span>
-                <button onClick={() => setLogs((prev) => prev.filter((x) => x.id !== l.id))} className="text-rose-500"><Trash2 className="h-4 w-4" /></button>
+                <button type="button" aria-label="Remove entry" onClick={() => setLogs((prev) => prev.filter((x) => x.id !== l.id))} className="text-rose-500"><Trash2 className="h-4 w-4" /></button>
               </li>
             ))}
           </ul>

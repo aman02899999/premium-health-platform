@@ -68,7 +68,7 @@ export function NewsStrip({ items: preloaded }: { items?: NewsItem[] }) {
                 <p className={cn("inline-block rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider", n.kind === "advisory" ? "bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100" : "bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-100")}>{n.category}</p>
                 <h3 className="mt-2 text-[15px] font-bold leading-snug text-stone-900 dark:text-stone-100">{n.title}</h3>
                 <p className="mt-1 line-clamp-2 text-[13px] text-stone-600 dark:text-stone-300">{n.summary}</p>
-                <p className="mt-2 flex items-center gap-1 text-[11px] text-stone-400"><Clock className="h-3 w-3" />{formatDate(n.publishedAt)}</p>
+                <p className="mt-2 flex items-center gap-1 text-[11px] text-stone-500 dark:text-stone-400"><Clock className="h-3 w-3" />{formatDate(n.publishedAt)}</p>
               </Link>
             </li>
           ))}

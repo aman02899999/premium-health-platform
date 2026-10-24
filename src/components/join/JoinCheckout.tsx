@@ -164,7 +164,7 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
                 role="radio"
                 aria-checked={isCouple === o.v}
                 onClick={() => setCouple(o.v)}
-                className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold ${isCouple === o.v ? "bg-brand text-white" : "text-white/70"}`}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold ${isCouple === o.v ? "bg-brand-strong text-white" : "text-white/70"}`}
               >
                 <o.icon className="h-4 w-4" /> {o.l}
               </button>

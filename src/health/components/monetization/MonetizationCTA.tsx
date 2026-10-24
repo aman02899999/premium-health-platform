@@ -157,12 +157,6 @@ export function MonetizationCTA({ pageType = "general", page = "/", customCTAs }
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="text-sm font-bold">{headline}</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Auto-selects relevant actions based on page category — {pageType}. Privacy-conscious tracking, no aggressive medical marketing.</p>
-      {ready && experiment ? (
-        <p className="mt-1 text-[10px] font-mono text-stone-400">
-          A/B experiment {experiment.id} · variant {variant} · order: {order}
-        </p>
-      ) : null}
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {ctas.map((cta) => (
           <Link key={cta.label} href={cta.href} onClick={() => handleClick(cta.label, cta.href)} className="flex items-center gap-2 rounded-xl border border-stone-200 px-4 py-3 text-sm font-semibold hover:border-emerald-300 hover:bg-emerald-50 dark:border-stone-700 dark:hover:bg-stone-800">
