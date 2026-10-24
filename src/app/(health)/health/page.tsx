@@ -184,7 +184,7 @@ export default async function HomePage() {
         {/* LATEST + TRENDING */}
         <section className="grid gap-4 lg:grid-cols-3" aria-labelledby="latest-trending">
           <div className="lg:col-span-2 space-y-4">
-            <SectionHeading eyebrow="Latest" title="Latest Articles — Fresh Content" desc="Updated weekly — Google freshness signal, reduces bounce, increases dwell." id="latest-trending" />
+            <SectionHeading eyebrow="Latest" title="Latest Articles — Fresh Content" desc="New and updated guides." id="latest-trending" />
             <div className="grid gap-4 sm:grid-cols-2">
               {latest.map((a) => (
                 <Link key={a.slug} href={`/health/blog/${a.slug}`} className="group overflow-hidden rounded-2xl border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-900">
@@ -232,7 +232,7 @@ export default async function HomePage() {
         <section aria-labelledby="unique-india" className="rounded-3xl bg-gradient-to-br from-amber-900 via-emerald-900 to-stone-900 p-6 text-white md:p-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Made for India — 15 tools</p>
           <h2 className="font-display mt-2 text-2xl font-black md:text-3xl" id="unique-india">Thali Builder, Millet Swap, IDRS, Herb-Drug Checker — Only Here</h2>
-          <p className="mt-2 max-w-3xl text-sm text-emerald-100/80">India-first: thali builder, millet swap engine, IDRS diabetes score, anemia screening, yoga timer, Ritucharya seasonal + live weather, herb-drug checker, barcode 890, child growth, health Q&A RAG, live advisory, dosha meals, fasting planner, Hinglish search — all, premium monetized.</p>
+          <p className="mt-2 max-w-3xl text-sm text-emerald-100/80">India-first: thali builder, millet swap engine, IDRS diabetes score, anemia screening, yoga timer, Ritucharya seasonal + live weather, herb-drug checker, barcode lookup, child growth, health Q&A, live advisories, dosha meals, fasting planner and Hinglish search.</p>
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 text-sm">
             {[
               { label: "Thali Builder", href: "/health/thali-builder" },

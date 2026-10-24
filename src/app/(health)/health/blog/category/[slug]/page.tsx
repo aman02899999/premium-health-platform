@@ -78,9 +78,9 @@ export default async function CategorySlugPage({ params }: Props) {
       <CollectionJsonLd title={`${cat} Guides`} description={`All ${cat} articles`} slug={`/health/blog/category/${slug}`} items={filtered.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}` }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">{filtered.length} guides · SEO optimized · CollectionPage + ItemList + Breadcrumb JSON-LD · OG /api/og · Earning Platform</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">{filtered.length} guides</p>
         <h1 className="font-display mt-2 text-3xl font-black">{cat} — {filtered.length} guides</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides with FAQs, references, real photos — latest & trending, internal linking, JSON-LD, breadcrumbs, OG /api/og, canonical+hreflang, affiliate + premium CTA.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Evidence-informed, India-specific {cat.toLowerCase()} guides, each with FAQs and cited references.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

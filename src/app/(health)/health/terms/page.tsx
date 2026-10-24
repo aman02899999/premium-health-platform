@@ -43,7 +43,7 @@ export default function TermsPage() {
             <p><strong>Acceptable use:</strong> Do not misuse calculators or symptom tools as diagnostic devices, scrape content en masse, or submit unlawful content via forms. Calculators + symptom tools run client-side, estimates only.</p>
             <p><strong>Intellectual property:</strong> Text, design and illustrations are owned by the publication unless attributed. You may share links freely; reproduction needs permission. Brand config in src/lib/site.ts.</p>
             <p><strong>Liability:</strong> To the maximum extent permitted by law, we are not liable for decisions made without professional advice. Nothing here creates a doctor-patient relationship. See /disclaimer.</p>
-            <p><strong>Changes:</strong> We may update terms as features (sign-in, premium, ads, affiliates, lead gen, WhatsApp, push) launch; material changes will be noted here. Check /about for live data stack + earning platform.</p>
+            <p><strong>Changes:</strong> We may update these terms when we add or change features. Material changes will be noted on this page.</p>
           </div>
         </div>
         <div className="space-y-4">

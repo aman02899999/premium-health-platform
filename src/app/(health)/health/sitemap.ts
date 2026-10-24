@@ -100,7 +100,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .filter((s): s is string => Boolean(s));
   push("/health/news", newsSlugs, 0.7, "daily");
 
-  // Blog categories — SEO optimized
+  // Blog categories
   for (const cat of BLOG_CATEGORIES) {
     entries.push({
       url: `${SITE.url}/health/blog/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, "-"))}`,

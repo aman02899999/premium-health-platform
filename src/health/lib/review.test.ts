@@ -23,6 +23,7 @@ const LEAKS: [string, RegExp][] = [
   ["sandbox note", /Sandbox preview/i],
   ["template note", /Auto-selects relevant actions|Never hide emergency info behind paywall/i],
   ["earning note", /"Earning:|high-ticket India|free monetized|zero marginal cost|Affiliate 8% avg/i],
+  ["marketing note", /SEO optimized|Social proof \+ FOMO|freshness signal|internal linking \+ social proof|premium monetized|sponsor CTR|avg commission|Newsletter Monetization|Earning Platform/i],
 ];
 
 function files(dir: string): string[] {

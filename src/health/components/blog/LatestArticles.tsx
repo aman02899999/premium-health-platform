@@ -26,7 +26,7 @@ export function LatestArticles({ limit = 6 }: { limit?: number }) {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="flex items-center gap-2 text-sm font-bold"><Clock className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Latest articles</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Updated weekly — fresh content for Google freshness signal.</p>
+      <p className="mt-1 text-[11px] text-stone-500">New and updated guides.</p>
       <div className="mt-3 grid gap-2">{articles.map((a) => <Card key={a.slug} a={a} />)}</div>
       <Link href="/health/blog/latest" className="mt-3 inline-block text-xs font-bold text-emerald-700 underline">View latest →</Link>
     </div>
@@ -40,7 +40,7 @@ export function TrendingArticles({ limit = 6 }: { limit?: number }) {
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="flex items-center gap-2 text-sm font-bold"><TrendingUp className="h-4 w-4 text-rose-600" /> Trending — Most Read</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Popular this week — internal linking + social proof.</p>
+      <p className="mt-1 text-[11px] text-stone-500">Most read this week.</p>
       <div className="mt-3 grid gap-2">{list.map((a) => <Card key={a.slug} a={a} />)}</div>
       <Link href="/health/blog/trending" className="mt-3 inline-block text-xs font-bold text-emerald-700 underline">View trending →</Link>
     </div>

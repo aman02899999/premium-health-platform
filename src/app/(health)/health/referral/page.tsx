@@ -5,7 +5,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 
 export const metadata: Metadata = {
   title: "Refer & Earn",
-  description: "Refer friend → both get 7 days premium free, referrer Rs 50 credit.",
+  description: "Invite a friend and you both get 7 days of premium free.",
   alternates: { canonical: "/health/referral" },
 };
 
@@ -15,7 +15,7 @@ export default function ReferralPage() {
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Refer & Earn" }]} />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-orange-700 p-6 text-white md:p-8">
         <h1 className="font-display text-3xl font-black">Refer & Earn — Viral Loop</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Invite a friend — you both get 7 days premium free, referrer Rs 50 credit after conversion.</p>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Invite a friend and you both get 7 days of premium free.</p>
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2"><ReferralSystem /></div>
