@@ -35,3 +35,6 @@ yarn-error.log*
 
 # superpowers skill workspaces (brainstorm server, SDD briefs)
 /.superpowers/
+
+# GEO-SEO skill python env
+/.venv-geo/
