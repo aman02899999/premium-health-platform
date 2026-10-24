@@ -289,7 +289,7 @@ export function OffersEditor({ offers, plans, onChange }: { offers: Offer[]; pla
             },
           ])
         }
-        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white"
+        className="inline-flex items-center gap-2 rounded-lg bg-brand-strong px-4 py-2 text-sm font-bold text-white"
       >
         <Plus className="h-4 w-4" aria-hidden /> Add an offer
       </button>
