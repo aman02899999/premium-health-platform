@@ -138,6 +138,9 @@ const nextConfig: NextConfig = {
       ["/womens-health", "/health-hub"],
       ["/mental-wellness", "/timers"],
       ["/solutions", "/health-hub"],
+      // Hindi lives at /hi/health/blog; /hi and /hi/health had no page and returned 404.
+      ["/hi", "/hi/health/blog"],
+      ["/hi/health", "/hi/health/blog"],
     ];
     // Retired affiliate URLs on the health site → their product pages.
     const legacyAffiliateProductSlugs = [
