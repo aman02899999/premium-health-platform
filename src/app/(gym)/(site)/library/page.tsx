@@ -14,8 +14,8 @@ import { AddToCart } from "@/components/library/AddToCart";
 import { BundleCard } from "@/components/library/BundleCard";
 import { LibraryGrid } from "@/components/library/LibraryGrid";
 
-// Re-render every 10 minutes so newly approved reviews show up.
-export const revalidate = 600;
+// Hourly safety net; approving a review in admin refreshes these pages at once (revalidatePath).
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

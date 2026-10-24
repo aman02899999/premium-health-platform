@@ -16,7 +16,7 @@ import { PostCard } from "@/components/home/Blocks";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { SmartImage } from "@/components/ui/SmartImage";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug: string }> };
 

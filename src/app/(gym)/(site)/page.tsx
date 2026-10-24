@@ -26,7 +26,7 @@ import { isDbConfigured } from "@/health/db";
 import { approvedReviews } from "@/lib/reviews/store";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 const FACILITIES = [
   { icon: Snowflake, title: "Fully Air-Conditioned", text: "Train hard even in peak Noida summer." },

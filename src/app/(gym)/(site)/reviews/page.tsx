@@ -11,7 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ReviewCard, Stars } from "@/components/reviews/ReviewCard";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

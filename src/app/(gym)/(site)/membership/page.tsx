@@ -16,7 +16,7 @@ import { PlanMatrix, PlanSummaries } from "@/components/membership/PlanCompare";
 import { planFaqs } from "@/lib/content/plans";
 
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

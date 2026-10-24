@@ -6,7 +6,7 @@ import { BlogExplorer } from "@/components/blog/BlogExplorer";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
