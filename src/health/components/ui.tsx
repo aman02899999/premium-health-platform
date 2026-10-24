@@ -10,6 +10,7 @@ import {
 import { EVIDENCE_META, type EvidenceLevel } from "@/health/lib/evidence";
 import { SITE } from "@/health/lib/site";
 import { cn } from "@/health/lib/format";
+import { copyText } from "@/health/lib/clipboard";
 
 // ---------- Evidence badge ----------
 export function EvidenceBadge({ level, className }: { level: EvidenceLevel; className?: string }) {
@@ -148,7 +149,7 @@ export function ShareButtons({ title, path }: { title: string; path: string }) {
       {links.map((l) => (
         <a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer" aria-label={`Share on ${l.label}`} className="flex h-8 w-8 items-center justify-center rounded-full border border-stone-200 text-stone-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 dark:border-stone-700 dark:text-stone-300">{l.icon}</a>
       ))}
-      <button onClick={() => { navigator.clipboard?.writeText(url); setCopied(true); setTimeout(() => setCopied(false), 1500); }} className="flex h-8 items-center gap-1.5 rounded-full border border-stone-200 px-3 text-xs font-medium text-stone-600 hover:border-emerald-300 hover:bg-emerald-50 dark:border-stone-700 dark:text-stone-300" aria-label="Copy link">
+      <button type="button" onClick={async () => { if ((await copyText(url)) === "copied") { setCopied(true); setTimeout(() => setCopied(false), 1500); } }} className="flex h-8 items-center gap-1.5 rounded-full border border-stone-200 px-3 text-xs font-medium text-stone-600 hover:border-emerald-300 hover:bg-emerald-50 dark:border-stone-700 dark:text-stone-300" aria-label="Copy link">
         <Copy className="h-3.5 w-3.5" />{copied ? "Copied!" : "Copy link"}
       </button>
     </div>

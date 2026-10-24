@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, Link2, Share2 } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { copyText } from "@/health/lib/clipboard";
 
 export function ShareButtons({ url, title }: { url: string; title: string }) {
   const [copied, setCopied] = useState(false);
@@ -16,12 +17,9 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
     } else copy();
   };
   const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(url);
+    if ((await copyText(url)) === "copied") {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* clipboard blocked */
     }
   };
   const btn = "flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-brand hover:text-brand";
