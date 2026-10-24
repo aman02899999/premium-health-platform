@@ -31,7 +31,7 @@ async function readDb(slug?: string): Promise<NewsItem[]> {
           relatedLabs: Array.isArray(b.relatedLabs) ? b.relatedLabs : [],
           relatedHerbs: Array.isArray(b.relatedHerbs) ? b.relatedHerbs : [],
           author: r.author || "BHG Newsroom",
-          reviewer: r.reviewer || "Medical review pending — placeholder",
+          reviewer: r.reviewer || "Pending medical review",
           factCheckNote: typeof b.factCheckNote === "string" ? b.factCheckNote : "Editorial item published by the BHG newsroom.",
           imagePrompt: typeof b.imagePrompt === "string" ? b.imagePrompt : "Premium editorial health news illustration, ultra-HD.",
         };

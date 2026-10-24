@@ -51,7 +51,7 @@ export async function POST(request: Request) {
       kind: (v.kind as NewsItem["kind"]) || "briefing",
       status,
       author: (v.author as string) || "BHG Newsroom",
-      reviewer: (v.reviewer as string) || "Medical review pending — placeholder",
+      reviewer: (v.reviewer as string) || "Pending medical review",
       sourceName: (v.sourceName as string) || "BHG Newsroom",
       sourceUrl: (v.sourceUrl as string) || "https://www.mohfw.gov.in/",
       body: v.body,

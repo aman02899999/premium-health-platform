@@ -7,6 +7,7 @@ import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, EvidenceBadge, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, DoctorBox, LikeButton } from "@/health/components/ui";
 import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { NOT_REVIEWED } from "@/health/lib/review";
 
 export function generateStaticParams() { return HERBS.map((h) => ({ slug: h.slug })); }
 
@@ -56,7 +57,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
         <p className="mt-1 text-stone-600 dark:text-stone-300"><em>{h.botanicalName}</em> · {h.hindiName}{h.sanskritName ? ` · Sanskrit: ${h.sanskritName}` : ""}</p>
         <p className="mt-1 text-sm text-stone-500">Also: {h.otherNames.join(", ")}</p>
         <p className="mt-3 max-w-3xl leading-relaxed text-stone-700 dark:text-stone-200">{h.short}</p>
-        <p className="mt-2 text-xs text-stone-500">Updated: {formatDate(h.updatedAt)} · Medically reviewed by: Review pending — placeholder <LikeButton id={slug} /></p>
+        <p className="mt-2 text-xs text-stone-500">Updated: {formatDate(h.updatedAt)} · {NOT_REVIEWED} <LikeButton id={slug} /></p>
         <div className="mt-2"><ShareButtons title={h.name} path={`/health/herbs/${slug}`} /></div>
       </div>
 

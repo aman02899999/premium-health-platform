@@ -22,6 +22,7 @@ import { DIGITAL_PRODUCTS } from "@/health/lib/monetization/config";
 import { uncropped } from "@/lib/uncropped";
 import { PostArticle, postMetadata } from "@/health/components/posts/PostArticle";
 import { findPost, postBlocks, translation } from "@/health/lib/posts";
+import { reviewLine } from "@/health/lib/review";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -131,7 +132,7 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
           {/* Author / review bar */}
           <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-stone-200 bg-white p-3.5 text-xs text-stone-600 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300">
             <span className="flex items-center gap-1.5"><User className="h-3.5 w-3.5 text-emerald-600" /> By <strong>{a.author}</strong></span>
-            <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Medically reviewed by: <strong>{a.reviewer}</strong></span>
+            <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> {reviewLine(a.reviewer)}</span>
             <span className="flex items-center gap-1.5"><RefreshCw className="h-3.5 w-3.5" /> Updated {formatDate(a.updatedAt)} · Published {formatDate(a.publishedAt)}</span>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">

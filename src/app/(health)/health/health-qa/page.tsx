@@ -27,7 +27,7 @@ export default function Page() {
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Health Q&A" }]} />
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Health Q&A", item: "/health/health-qa" }]}
-        faqs={[{"q":"Are answers medically reviewed?","a":"Answers use PubMed/ICMR/FSSAI citations + AI draft + placeholder review tag. Always consult doctor. Premium gets priority Q&A with citations."},{"q":"Can I ask in Hinglish?","a":"Yes — health-qa supports Hinglish + English + Hindi. Try hinglish-search for better Hinglish understanding."}]}
+        faqs={[{"q":"Are answers medically reviewed?","a":"Not yet. Answers are general education with PubMed, ICMR and FSSAI citations, and a doctor has not reviewed them. Always ask your own doctor about your health."},{"q":"Can I ask in Hinglish?","a":"Yes — health-qa supports Hinglish + English + Hindi. Try hinglish-search for better Hinglish understanding."}]}
         howTo={{ name: "How to ask health question", steps: ["Type question in English/Hinglish/Hindi — e.g., diabetes millet","View evidence answer with PubMed/ICMR citations + disclaimer","Ask follow-up, save Q&A in premium","For personal advice, book dietitian via lead form"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">

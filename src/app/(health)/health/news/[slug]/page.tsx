@@ -11,6 +11,7 @@ import {
 } from "@/health/components/ui";
 import { articleJsonLd, breadcrumbJsonLd } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { reviewLine } from "@/health/lib/review";
 
 // Statically rendered + revalidated so the daily edition stays fresh while
 // unknown slugs return a real 404 status.
@@ -63,7 +64,7 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <p className="mt-3 text-[17px] leading-relaxed text-stone-600 dark:text-stone-300">{item.summary}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500">
           <span>By <strong>{item.author}</strong></span>
-          {/review pending|placeholder|not medically reviewed/i.test(item.reviewer) ? <span>Not yet medically reviewed</span> : <span>Medically reviewed by: <strong>{item.reviewer}</strong></span>}
+          <span>{reviewLine(item.reviewer)}</span>
           <LikeButton id={item.slug} />
           <Link href="/health/news" className="flex items-center gap-1 font-bold text-emerald-700 underline"><ArrowLeft className="h-3 w-3" />All news</Link>
         </div>

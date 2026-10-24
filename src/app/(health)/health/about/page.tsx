@@ -29,7 +29,7 @@ export default function AboutPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "About", item: "/health/about" }]}
         faqs={[
-          { q: "Who writes Premium Health Platform articles?", a: "Editorial Team — evidence-reviewed health writers + medical review pending placeholder, citations PubMed/ICMR/FSSAI, author + reviewer + published/updated dates." },
+          { q: "Who writes Premium Health Platform articles?", a: "The Royal Fitness Club editorial team writes them, with citations to PubMed, ICMR and FSSAI and published and updated dates. Pages that a doctor has not reviewed yet say so." },
           { q: "How is evidence graded?", a: "Strong, moderate, limited, mixed, insufficient — EvidenceBadge component. Every intervention labelled by evidence strength, safety, interactions, responsible language." },
         ]}
         howTo={{ name: "How Premium Health Platform creates content", steps: ["Draft with PubMed/ICMR/FSSAI citations + Indian context", "Editorial review for clarity + responsible language", "Medical review for safety + interactions + red flags", "Publish with author, reviewer and update dates"] }}
@@ -66,18 +66,18 @@ export default function AboutPage() {
 
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
               <h2 className="font-display text-xl font-bold">Content workflow</h2>
-              <p className="mt-2">Draft → Editorial review → Medical review → Publish. Medically sensitive pages require approval before publication and carry author, reviewer, published and updated dates. Current reviewer slots show Medical review pending — placeholder until legitimate reviewers are assigned; we do not invent credentials.</p>
+              <p className="mt-2">Draft → Editorial review → Medical review → Publish. Medically sensitive pages require approval before publication and carry author, reviewer, published and updated dates. Until a doctor has reviewed a page, it says &ldquo;Not yet medically reviewed&rdquo;. We do not invent reviewers or credentials.</p>
             </section>
 
             <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-              <h2 className="font-display text-xl font-bold">How we sustain</h2>
+              <h2 className="font-display text-xl font-bold">How this site is funded</h2>
               <ul className="mt-2 list-disc pl-5 text-sm">
                 <li>Premium coaching by Royal Fitness Club: personal diet and workout plans from a certified nutritionist; all tools stay free</li>
-                <li>Affiliate 8% avg — glucometer, BP monitor, millet, yoga mat, protein</li>
-                <li>AdSense optimized slots — premium ad-free, free monetized, no CLS</li>
-                <li>Lead gen — lab tests, dietitian, insurance — high-ticket India</li>
-                <li>Digital products — thali PDFs, fasting calendars — zero marginal cost</li>
+                <li>Ads from Google AdSense on articles. Premium members see none</li>
+                <li>Some product links are affiliate links: we may earn a small commission, at no extra cost to you. See our <Link href="/health/disclaimer" className="font-bold text-emerald-700 underline">disclaimer</Link></li>
+                <li>Paid downloads such as meal-plan PDFs</li>
               </ul>
+              <p className="mt-2 text-sm">Money never decides what an article says.</p>
             </section>
           </div>
           <p className="mt-6 text-sm">Questions? <Link href="/health/contact" className="font-bold text-emerald-700 underline">Contact us</Link> · <Link href="/health/disclaimer" className="font-bold text-emerald-700 underline">Disclaimer</Link> · <Link href="/health/privacy" className="font-bold text-emerald-700 underline">Privacy</Link></p>

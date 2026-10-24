@@ -22,6 +22,7 @@ import { HealthProductRecommendations } from "@/health/components/monetization/H
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 import { AdInArticle, AdRectangle, AdBanner } from "@/health/components/monetization/AdComponents";
 import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/health/lib/monetization/config";
+import { NOT_REVIEWED } from "@/health/lib/review";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -104,7 +105,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
         <p className="mt-3 max-w-3xl text-[16px] leading-relaxed text-stone-600 dark:text-stone-300">{detail.definition}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
           <span>By <strong>Editorial Team</strong></span>
-          <span>Medically reviewed by: <strong>Review pending — placeholder</strong></span>
+          <span>{NOT_REVIEWED}</span>
           <span>Updated: {formatDate(detail.updatedAt)}</span>
           <LikeButton id={slug} />
         </div>
@@ -227,7 +228,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             </div>
             <div className="rounded-3xl border border-amber-200 bg-white p-5 dark:border-amber-800 dark:bg-stone-900">
               <h3 className="font-bold">Premium Guide — After Educational Section — Educational Resource</h3>
-              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300\">Free: basic explanation, symptoms, risk factors, general prevention, basic nutrition. Premium: downloadable PDF, detailed educational information, checklist, questions to ask doctor, lifestyle worksheet, food checklist, monitoring checklist, references. Never hide emergency info behind paywall.</p>
+              <p className="mt-1 text-sm text-stone-600 dark:text-stone-300\">Free: basic explanation, symptoms, risk factors, general prevention, basic nutrition. Premium: downloadable PDF, detailed educational information, checklist, questions to ask doctor, lifestyle worksheet, food checklist, monitoring checklist, references.</p>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {DIGITAL_PRODUCTS.filter((p) => p.active).slice(0, 2).map((p) => (
                   <div key={p.id} className="rounded-xl border border-stone-200 p-3 dark:border-stone-700">
@@ -293,7 +294,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
           <div id="doctor" className="scroll-mt-28\"><DoctorBox points={detail.whenToSeeDoctor} /></div>
 
           <Section id="research" icon={<BookOpen className="h-4 w-4" />} title="Live research & clinical trials">
-            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300\">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback. Sandbox preview blocks external APIs, so this shows fallback there and goes live automatically on real deployment.</p>
+            <p className="mb-3 text-[13px] text-stone-600 dark:text-stone-300\">Latest peer-reviewed studies from PubMed (NCBI E-utilities) and registered trials from ClinicalTrials.gov — free, keyless, server-side, cached 6h, with graceful fallback.</p>
             <LiveResearchSection diseaseName={detail.name} diseaseSlug={slug} />
           </Section>
 

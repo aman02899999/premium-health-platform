@@ -50,7 +50,7 @@ export function WorldBankIndia() {
 
       {!data.live && (
         <p className="mt-3 rounded-xl bg-amber-50 p-3 text-[13px] text-amber-900 dark:bg-amber-950/40 dark:text-amber-100">
-          Sandbox preview can&apos;t reach api.worldbank.org, so values show “—” here. On any real deployment this section loads live automatically.
+          World Bank data couldn&apos;t be loaded just now, so values show “—”. Please check again later.
         </p>
       )}
 
