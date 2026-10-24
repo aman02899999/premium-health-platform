@@ -30,4 +30,9 @@ describe("AI-facing facts", () => {
     expect(t).toContain("- [Membership plans and prices](https://x.in/membership)");
     expect(t).toContain("### Are there any discounts at Royal Fitness Club?");
   });
+
+  it("llms.txt names both numbers: calls/personal chat and the website's WhatsApp", () => {
+    const t = llmsTxt(c, plans, "https://x.in");
+    expect(t).toContain("- Contact: call or WhatsApp +91 88518 30081 to reach a person. Instant answers on WhatsApp: https://wa.me/919266840289");
+  });
 });
