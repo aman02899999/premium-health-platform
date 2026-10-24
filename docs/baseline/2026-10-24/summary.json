@@ -1,0 +1,334 @@
+{
+ "pages": 545,
+ "loads": 2180,
+ "non200": [],
+ "errors": 0,
+ "errorSamples": [],
+ "overflowPages": 6,
+ "overflow": {
+  "https://www.royalfitnesclub.in/health/barcode-scanner": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4850",
+    "span.flex.items-center r=702",
+    "span.h-1.5.w-1.5 r=378",
+    "span.flex.items-center r=1059",
+    "span.h-1.5.w-1.5 r=740"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/blog/search": {
+   "widths": [
+    360,
+    390
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4888",
+    "span.flex.items-center r=378",
+    "span.flex.items-center r=740",
+    "span.h-1.5.w-1.5 r=416",
+    "span.flex.items-center r=1097"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/developers/docs": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4875",
+    "span.flex.items-center r=365",
+    "span.flex.items-center r=727",
+    "span.h-1.5.w-1.5 r=403",
+    "span.flex.items-center r=1084"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/health-qa": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4939",
+    "span.flex.items-center r=378",
+    "span.flex.items-center r=740",
+    "span.h-1.5.w-1.5 r=416",
+    "span.flex.items-center r=1091"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/hinglish-search": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4920",
+    "span.flex.items-center r=720",
+    "span.h-1.5.w-1.5 r=397",
+    "span.flex.items-center r=1071",
+    "span.h-1.5.w-1.5 r=758"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/referral": {
+   "widths": [
+    360,
+    390
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4924",
+    "span.flex.items-center r=362",
+    "span.flex.items-center r=724",
+    "span.h-1.5.w-1.5 r=400",
+    "span.flex.items-center r=1075"
+   ]
+  }
+ },
+ "consoleErrorPages": 360,
+ "consoleErrTop": [
+  [
+   "Failed to load resource: net::ERR_FAILED",
+   357
+  ],
+  [
+   "Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+   22
+  ]
+ ],
+ "pageErrorPages": 0,
+ "pageErr": [],
+ "failedReqTop": [
+  [
+   "https://www.royalfitnesclub.in/health/search",
+   352
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/news",
+   166
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop",
+   93
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/cart",
+   68
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/products",
+   64
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/combos",
+   63
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/blog",
+   57
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/account",
+   55
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/c/protein",
+   43
+  ],
+  [
+   "https://www.royalfitnesclub.in/diet-chart",
+   32
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/c/pre-workout",
+   31
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/c/amino-acids",
+   28
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/c/multivitamins-tablets",
+   24
+  ],
+  [
+   "https://images.pexels.com/photos/*/pexels-photo-*.jpeg",
+   13
+  ],
+  [
+   "https://images.pexels.com/photos/8818723/pexels-photo-8818723.jpeg",
+   12
+  ],
+  [
+   "https://images.pexels.com/photos/5966153/pexels-photo-5966153.jpeg",
+   8
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/p/blackkwolf-citrulline-malate",
+   5
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/p/blackkwolf-cla",
+   4
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/p/blackkwolf-advanced-multivitamin",
+   4
+  ],
+  [
+   "https://www.royalfitnesclub.in/shop/p/blackkwolf-ashwagandha",
+   4
+  ]
+ ],
+ "axeSeriousCriticalNodes": 2565,
+ "axePagesWithSC": 370,
+ "axeIds": [
+  [
+   "color-contrast (serious)",
+   365
+  ],
+  [
+   "scrollable-region-focusable (serious)",
+   27
+  ],
+  [
+   "select-name (critical)",
+   4
+  ],
+  [
+   "button-name (critical)",
+   1
+  ]
+ ],
+ "lcpOverMobile": 40,
+ "lcpWorst": [
+  [
+   "https://www.royalfitnesclub.in/health/diseases/back-pain",
+   [
+    1808,
+    4256
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/nutrition/moong-whole-green-gram",
+   [
+    4244,
+    1688
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/peptic-ulcer",
+   [
+    1660,
+    4136
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/exercises",
+   [
+    3904,
+    3764
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/urinary-frequency",
+   [
+    3868,
+    1336
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/high-blood-pressure",
+   [
+    1492,
+    3860
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/high-triglycerides",
+   [
+    1756,
+    3848
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health",
+   [
+    2700,
+    3844
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/asthma",
+   [
+    1392,
+    3756
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/allergic-rhinitis",
+   [
+    1832,
+    3728
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/osteoarthritis",
+   [
+    1760,
+    3716
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/home-workout-vs-gym-which-is-better",
+   [
+    3668,
+    2148
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/osteoporosis",
+   [
+    1728,
+    3476
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/depression",
+   [
+    1904,
+    3452
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/diseases/kidney-health",
+   [
+    3356,
+    1736
+   ]
+  ]
+ ],
+ "clsOverMobile": 3,
+ "clsWorst": [
+  [
+   "https://www.royalfitnesclub.in/health/blog/category/heart-health",
+   [
+    0.002,
+    0.114
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/ayurveda/panchakarma-education",
+   [
+    0.002,
+    0.107
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/blog/category/disease-education",
+   [
+    0.106,
+    0.002
+   ]
+  ]
+ ],
+ "adsOutsideAllowed": [],
+ "internalLinks": 937,
+ "linksNotInSitemap": 393
+}
