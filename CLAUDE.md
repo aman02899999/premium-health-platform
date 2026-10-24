@@ -124,6 +124,7 @@ task, check which skill applies and invoke it. Don't work from memory when a ski
 | Security, auth, payments, webhooks, personal data | `security-and-hardening`, agent `security-auditor`, `.claude/references/security-checklist.md` |
 | Speed and Core Web Vitals | `performance-optimization`, agent `web-performance-auditor`, `.claude/references/performance-checklist.md` |
 | Accessibility | `.claude/references/accessibility-checklist.md` (WCAG 2.1 AA) |
+| A brand-new standalone page design, or a design audit you name | `hallmark` (`/hallmark audit <path>`); notes in `.claude/skills/HALLMARK.md` |
 | Browser checks | `browser-testing-with-devtools` (or Playwright with `/opt/pw-browsers` Chromium) |
 | Logging, alerts, "is it working in production?" | `observability-and-instrumentation`, `.claude/references/observability-checklist.md` |
 | Deploying | `shipping-and-launch`, `ci-cd-and-automation` |
