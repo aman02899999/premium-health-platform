@@ -1,6 +1,6 @@
 import "server-only";
 import { pool } from "@/health/db";
-import { failureEffect, outranks, type Delivery, type EmailEvent, type WaStatus } from "./tracking-core";
+import { failureEffect, outranks, suppressesEmail, type Delivery, type EmailEvent, type WaStatus } from "./tracking-core";
 
 type Hit = { id: string; delivery: Delivery | null; kind: string; to_address: string };
 
@@ -58,7 +58,7 @@ export async function recordWhatsAppStatus(s: WaStatus): Promise<"unmatched" | "
   return next;
 }
 
-/** Records one Resend event against the email it belongs to. A complaint also unsubscribes. */
+/** Records one Resend event against the email it belongs to. A complaint or hard bounce also suppresses the address. */
 export async function recordEmailEvent(e: EmailEvent): Promise<"unmatched" | EmailEvent["type"]> {
   const { rows } = await pool.query<Hit>(`select id, delivery, kind, to_address from public.message_outbox where provider_id = $1 limit 1`, [e.emailId]);
   const m = rows[0];
@@ -83,6 +83,14 @@ export async function recordEmailEvent(e: EmailEvent): Promise<"unmatched" | Ema
     );
   if (e.type === "complained" || e.type === "bounced")
     await pool.query(`update public.marketing_contacts set unsubscribed_at = coalesce(unsubscribed_at, now()) where channel = 'email' and address = lower($1)`, [m.to_address]);
+  // Imported contacts have no marketing_contacts row, so the update above misses them: the
+  // suppression list covers every address, and the outbox checks it before each marketing email.
+  if (suppressesEmail(e))
+    await pool.query(`insert into public.email_suppressions (address, reason, detail) values (lower($1), $2, $3) on conflict (address) do nothing`, [
+      m.to_address,
+      e.type === "complained" ? "complained" : "bounced",
+      (e.reason ?? "").slice(0, 300),
+    ]);
   return e.type;
 }
 

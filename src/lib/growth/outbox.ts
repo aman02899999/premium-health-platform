@@ -6,6 +6,7 @@ import { emailHtml, emailText, type EmailLinks } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
 import { MARKETING_KINDS, isMarketingKind, type Draft } from "./messages";
 import { emailConfigured, sendEmail, whatsappConfigured, type SendResult } from "./providers";
+import { BILLING_FAILURE_CODE, waBillingGate, type BillingGate } from "./tracking-core";
 import { sendKind } from "./wa-templates";
 import { getFile, signedUrl } from "./storage";
 
@@ -155,12 +156,29 @@ export const emailMarketingDailyCap = () => {
   return Number.isFinite(n) && n >= 0 ? Math.floor(n) : 70;
 };
 
+/** Where promotions stand against Meta's billing failures (see waBillingGate). */
+async function billingGate(): Promise<BillingGate> {
+  const { rows } = await pool.query<{ failed: Date | null; delivered: Date | null }>(
+    `select max(failed_at) filter (where fail_code = $2) as failed, max(delivered_at) as delivered
+       from public.message_outbox where channel = 'whatsapp' and kind = any($1) and sent_at > now() - interval '30 days'`,
+    [MARKETING_KINDS, BILLING_FAILURE_CODE],
+  );
+  return waBillingGate(rows[0]?.failed ?? null, rows[0]?.delivered ?? null);
+}
+
+/** Meta reports failures a few seconds after the send, so the gate is re-read every few promotions. */
+const BILLING_RECHECK_EVERY = 5;
+
 /**
  * Sends pending messages. Receipts, plans and reminders always go first; WhatsApp promotions and
  * marketing emails wait behind them and stop for the day at their caps (they stay pending for the next run).
  * `deadline` (epoch ms) stops the loop in time for the caller's function limit.
  */
-export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCap?: boolean } = {}): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean; waitedMs?: number }> {
+export async function dispatch(
+  max = 100,
+  deadline = Infinity,
+  opts: { waitForCap?: boolean } = {},
+): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean; waitedMs?: number; whatsappBilling?: BillingGate["mode"] }> {
   const channels = [whatsappConfigured() && "whatsapp", emailConfigured() && "email"].filter(Boolean) as string[];
   if (!channels.length) return { sent: 0, failed: 0, skipped: true };
   let sent = 0;
@@ -168,6 +186,10 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
   let waitedMs = 0;
   let marketingLeft = 0;
   let emailLeft = 0;
+  // Promotions this run may still send under the billing gate (Infinity when Meta billing is fine).
+  let billing = await billingGate();
+  let billingLeft = billing.allow;
+  let promosSinceCheck = 0;
   /** Promotions sent in the last 24 hours, and when the oldest of each falls out of that window. */
   const refreshCaps = async () => {
     const { rows } = await pool.query<{ wa: number; email: number; wa_free: Date | null; email_free: Date | null }>(
@@ -177,7 +199,7 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
          from public.message_outbox where status = 'sent' and sent_at > now() - interval '24 hours'`,
       [MARKETING_KINDS],
     );
-    marketingLeft = Math.max(0, marketingDailyCap() - (rows[0]?.wa ?? 0));
+    marketingLeft = Math.max(0, Math.min(marketingDailyCap() - (rows[0]?.wa ?? 0), billingLeft));
     emailLeft = Math.max(0, emailMarketingDailyCap() - (rows[0]?.email ?? 0));
     return { waFree: rows[0]?.wa_free ?? null, emailFree: rows[0]?.email_free ?? null };
   };
@@ -195,7 +217,8 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
          from public.message_outbox where status = 'pending' and attempts < 3 and channel = any($2)`,
       [MARKETING_KINDS, channels],
     );
-    const waWaiting = !!pending.rows[0]?.wa;
+    // Promotions held by a Meta billing failure won't free up by waiting.
+    const waWaiting = !!pending.rows[0]?.wa && billingLeft > 0;
     const emailWaiting = !!pending.rows[0]?.email;
     // Room opened up (time passed) for something that is waiting: go and send it.
     if ((waWaiting && marketingLeft > 0) || (emailWaiting && emailLeft > 0)) return true;
@@ -242,6 +265,15 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
           continue;
         }
       }
+      // Marketing email never goes to an address that hard-bounced or marked us as spam.
+      if (m.channel === "email" && m.kind.startsWith("nurture-")) {
+        const { rowCount } = await client.query(`select 1 from public.email_suppressions where address = lower($1)`, [m.to_address]);
+        if (rowCount) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = 'Email address bounced or complained: no more marketing' where id = $1`, [m.id]);
+          await client.query("commit");
+          continue;
+        }
+      }
       const r = await sendOne(m).catch((err: Error): SendResult => ({ ok: false, error: err.message.slice(0, 300), retry: true }));
       if (r.ok) {
         // The provider's message id matches later delivery, read and click reports to this row.
@@ -251,7 +283,19 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
           r.id.slice(0, 200) || null,
         ]);
         sent++;
-        if (m.channel === "whatsapp" && isMarketingKind(m.kind)) marketingLeft--;
+        if (m.channel === "whatsapp" && isMarketingKind(m.kind)) {
+          marketingLeft--;
+          billingLeft--;
+          if (++promosSinceCheck >= BILLING_RECHECK_EVERY && billing.mode === "open") {
+            promosSinceCheck = 0;
+            const now = await billingGate();
+            // A billing failure just came back: stop promotions for this run.
+            if (now.mode !== "open") {
+              billing = now;
+              billingLeft = marketingLeft = 0;
+            }
+          }
+        }
         if (m.channel === "email" && m.kind.startsWith("nurture-")) emailLeft--;
       } else {
         await client.query(`update public.message_outbox set attempts = attempts + 1, last_error = $2, status = case when $3 then 'pending' else 'failed' end where id = $1`, [m.id, r.error, r.retry && m.attempts + 1 < 3]);
@@ -265,5 +309,6 @@ export async function dispatch(max = 100, deadline = Infinity, opts: { waitForCa
       client.release();
     }
   }
-  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 || emailLeft <= 0, ...(waitedMs ? { waitedMs } : {}) };
+  if (billing.mode !== "open") console.warn(`[outbox] WhatsApp promotions ${billing.mode === "hold" ? "held" : "probing"}: Meta reports a billing failure (${BILLING_FAILURE_CODE})`);
+  return { sent, failed, skipped: false, marketingHeld: marketingLeft <= 0 || emailLeft <= 0, ...(waitedMs ? { waitedMs } : {}), whatsappBilling: billing.mode };
 }

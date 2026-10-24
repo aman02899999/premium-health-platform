@@ -103,7 +103,8 @@ const fromRow = (r: LeadRow): Lead => ({ id: r.id, createdAt: r.created_at, name
 
 export async function saveLead(input: Omit<Lead, "id" | "createdAt">): Promise<void> {
   if (supabaseConfigured) {
-    // Visitors can insert but not read leads, so don't ask for the row back.
+    // Only reached without a server database connection (local setups): production inserts leads
+    // through the server pool, and the public insert policy was removed on 24 Oct 2026.
     const { error } = await createPublicClient().from("leads").insert(input);
     if (error) throw new Error(error.message);
     return;

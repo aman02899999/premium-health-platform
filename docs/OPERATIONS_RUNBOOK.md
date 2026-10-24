@@ -44,6 +44,15 @@ buyers can't open their books until the migration runs.
 - **Double payment flagged:** refund the newer payment in Razorpay. The refund webhook records it.
 - **Chargeback flagged:** respond in Razorpay with the order details. Membership days and stock are not changed automatically.
 - **Refund recorded on a membership or store order:** shorten the membership or restock by hand if that's what was agreed with the customer. The site doesn't guess.
+- **WhatsApp promotions stopped going out:** check Vercel logs for `[outbox] WhatsApp promotions held` or `probing`. That means Meta returned error 131042 (it couldn't charge the payment method) on a promotion in the last day. Fix the payment method in WhatsApp Manager → Billing. Nothing else needs doing: each daily run sends a 5-message probe, and the first one Meta delivers reopens the full daily cap. Utility messages (receipts, plans, reminders) are never held.
+- **Email bounce rate is high:** `select reason, count(*) from public.email_suppressions group by 1;` shows how many addresses were blocked. Hard bounces and spam complaints are added by the Resend webhook automatically; marketing email to them is cancelled at send time. Receipts and plans still go.
+
+## Messaging hardening (migration `20261024120000_messaging_hardening.sql`)
+
+Run it in Supabase → SQL editor **before** the code deploys. Without the `email_suppressions` table the outbox
+stops at the first marketing email and nothing after it in that run is sent (receipts included). The migration
+adds the table, fills it from bounces already recorded (43 addresses on 24 Oct), and drops the public
+"anyone can submit a lead" policy. Safe to run twice.
 
 ## Rollback
 

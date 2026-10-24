@@ -5,7 +5,7 @@ import { business, nurtureBusiness } from "./daily";
 import { markDietPaid } from "./diet-orders";
 import { applyPaidOrder, type Member } from "./members";
 import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, trialBookedEmail, trialMessage, welcomeMessage } from "./messages";
-import { getLead, latestLeadByPhone } from "./leads";
+import { getLead, latestLeadByPhone, leadsFromNumberToday } from "./leads";
 import { newLeadAlert } from "./lead-alerts";
 import { nurtureDrafts } from "./nurture";
 import { daysBetween, todayIST } from "./dates";
@@ -96,6 +96,9 @@ export async function afterDietPaid(razorpayOrderId: string, paymentId: string, 
   return true;
 }
 
+/** Automatic messages one number can trigger through the forms in 24 hours. */
+const LEAD_MESSAGES_PER_NUMBER_PER_DAY = 2;
+
 /**
  * Straight after a lead is saved: the WhatsApp thank-you (trial leads from forms) and the first
  * marketing email (anyone who opted in). Pass the lead id when known, else the latest by phone.
@@ -108,7 +111,11 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
     if (lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name, lead.trialAt);
     const drafts = [];
     const biz = await business();
-    if (lead.trialAt) {
+    // The form messages whatever number is typed in. Past two enquiries a day from one number,
+    // the desk still gets the lead but the number gets no more automatic messages.
+    const quiet = (await leadsFromNumberToday(lead.phone)) > LEAD_MESSAGES_PER_NUMBER_PER_DAY;
+    if (quiet) console.warn("[growth] lead saved without automatic messages: too many enquiries from one number today");
+    else if (lead.trialAt) {
       // A picked time: confirm it (WhatsApp, and email when given) instead of asking them to choose one.
       const d = trialMessage("trial-booked", { ...lead, trialAt: lead.trialAt }, biz);
       if (d) drafts.push(d);
