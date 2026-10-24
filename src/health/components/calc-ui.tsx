@@ -67,7 +67,7 @@ export function Segmented<T extends string>({ label, value, onChange, options }:
       <span className="mb-1 block text-xs font-semibold text-stone-600 dark:text-stone-300">{label}</span>
       <div role="radiogroup" aria-label={label} className="flex flex-wrap gap-1 rounded-xl bg-stone-100 p-1 dark:bg-stone-800">
         {options.map((o) => (
-          <button key={o.value} type="button" role="radio" aria-checked={value === o.value} onClick={() => onChange(o.value)} className={cn("min-h-9 flex-1 rounded-lg px-3 text-sm font-semibold transition", value === o.value ? "bg-white text-emerald-800 shadow-sm dark:bg-stone-900 dark:text-emerald-300" : "text-stone-500 hover:text-stone-800 dark:text-stone-400")}>{o.label}</button>
+          <button key={o.value} type="button" role="radio" aria-checked={value === o.value} onClick={() => onChange(o.value)} className={cn("min-h-9 flex-1 rounded-lg px-3 text-sm font-semibold transition", value === o.value ? "bg-white text-emerald-800 shadow-sm dark:bg-stone-900 dark:text-emerald-300" : "text-stone-600 hover:text-stone-800 dark:text-stone-400")}>{o.label}</button>
         ))}
       </div>
     </div>

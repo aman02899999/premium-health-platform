@@ -116,7 +116,7 @@ export default async function PremiumPage() {
           <div className="rounded-3xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
             <h3 className="flex items-center gap-2 text-sm font-bold"><Sparkles className="h-4 w-4 text-amber-500" /> Not sure which plan?</h3>
             <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">Message {coach} on WhatsApp with your goal and we&apos;ll suggest the right one.</p>
-            <a href={`https://wa.me/${wa}?text=${encodeURIComponent("Hi, I'm on the health site. Which diet plan suits me?")}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex rounded-xl bg-emerald-600 px-4 py-2 text-sm font-bold text-white">Ask on WhatsApp</a>
+            <a href={`https://wa.me/${wa}?text=${encodeURIComponent("Hi, I'm on the health site. Which diet plan suits me?")}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex rounded-xl bg-emerald-700 px-4 py-2 text-sm font-bold text-white">Ask on WhatsApp</a>
           </div>
         </aside>
       </div>

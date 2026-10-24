@@ -368,7 +368,7 @@ export default async function HomePage() {
                   <p className="mt-1 text-sm font-bold">Dietitians, Nutritionists, Fitness, Yoga, Clinics — Free/Featured/Premium</p>
                   <p className="mt-1 text-xs text-stone-500">Clearly separate Featured from Recommended based on clinical evidence.</p>
                 </Link>
-                <Link href="/health/newsletter" className="text-xs font-bold text-emerald-700 underline">Newsletter + Sponsored Slots →</Link>
+                <Link href="/health/newsletter" className="text-xs font-bold text-emerald-700 underline">Get the free weekly newsletter →</Link>
               </div>
             </div>
           </div>

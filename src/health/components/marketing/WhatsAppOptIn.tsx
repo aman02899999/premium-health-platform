@@ -52,7 +52,7 @@ export function WhatsAppOptIn({ compact = false }: { compact?: boolean }) {
           <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-500 dark:text-stone-400" />
           <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 99999 99999" className="h-10 w-full rounded-xl border border-stone-200 bg-stone-50 pl-9 pr-3 text-sm dark:border-stone-700 dark:bg-stone-800" required />
         </div>
-        <button disabled={loading} className="h-10 rounded-xl bg-emerald-600 px-4 text-xs font-bold text-white hover:bg-emerald-500 disabled:opacity-50">{loading ? "..." : "Join"}</button>
+        <button disabled={loading} className="h-10 rounded-xl bg-emerald-700 px-4 text-xs font-bold text-white hover:bg-emerald-600 disabled:opacity-50">{loading ? "..." : "Join"}</button>
       </form>
       {error && <p className="mt-2 text-xs text-rose-600">{error}</p>}
       <p className="mt-2 text-[10px] text-stone-500 dark:text-stone-400">By joining you agree to receive health tips on WhatsApp. No spam; opt out any time.</p>

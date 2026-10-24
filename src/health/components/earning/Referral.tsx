@@ -54,7 +54,7 @@ export function ReferralSystem() {
       ) : (
         <form onSubmit={submit} className="mt-3 flex gap-2">
           <input value={referredEmail} onChange={(e) => setReferredEmail(e.target.value)} type="email" required placeholder="Friend's email" className="flex-1 rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm dark:border-amber-800 dark:bg-stone-900" />
-          <button disabled={loading} type="submit" className="flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-500 disabled:opacity-50">
+          <button disabled={loading} type="submit" className="flex items-center gap-2 rounded-xl bg-amber-700 px-4 py-2.5 text-sm font-bold text-white hover:bg-amber-600 disabled:opacity-50">
             <Share2 className="h-4 w-4" /> {loading ? "…" : "Refer"}
           </button>
         </form>

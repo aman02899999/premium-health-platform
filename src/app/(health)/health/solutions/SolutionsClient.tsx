@@ -88,7 +88,7 @@ export default function SolutionsClient() {
                       ["Tests to discuss", s.tests, "bg-violet-50 text-violet-900 border-violet-200 dark:bg-violet-950/40 dark:text-violet-100"],
                     ].map(([t, v, cls]) => (
                       <div key={t as string} className={cn("rounded-2xl border p-3", cls as string)}>
-                        <p className="text-[11px] font-bold uppercase tracking-wider opacity-70">{t}</p>
+                        <p className="text-[11px] font-bold uppercase tracking-wider">{t}</p>
                         <p className="mt-1 text-[13px] leading-relaxed">{v}</p>
                       </div>
                     ))}

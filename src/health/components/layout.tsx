@@ -253,7 +253,7 @@ export function MobileBottomNav() {
           const active = pathname === it.href;
           return (
             <li key={it.label}>
-              <Link href={it.href} className={cn("flex flex-col items-center gap-0.5 py-2 text-[10px] font-semibold", active ? "text-emerald-700 dark:text-emerald-300" : "text-stone-500 dark:text-stone-400")}>{it.icon}{it.label}</Link>
+              <Link href={it.href} className={cn("flex flex-col items-center gap-0.5 py-2 text-[10px] font-semibold", active ? "text-emerald-700 dark:text-emerald-300" : "text-stone-600 dark:text-stone-400")}>{it.icon}{it.label}</Link>
             </li>
           );
         })}
