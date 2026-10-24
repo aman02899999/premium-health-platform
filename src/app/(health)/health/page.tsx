@@ -15,6 +15,7 @@ import { AnimatedCounter, HealthTipOfDay } from "@/health/components/engagement"
 import { RiskBarChart, NutrientDonut, PlateVisual } from "@/health/components/charts";
 import { NewsStrip } from "@/health/components/news-strip";
 import { IndiaPulseDashboard, DrugLookup, FoodLookup, LiveBadge } from "@/health/components/live";
+import { getIndiaPulse } from "@/health/lib/realtime";
 import { PILLARS } from "@/health/data/solutions";
 import { DISEASES } from "@/health/data/diseases-index";
 import { HERBS } from "@/health/data/herbs";
@@ -30,6 +31,10 @@ import { LatestArticles, TrendingArticles } from "@/health/components/blog/Lates
 import { BlogCategoryGrid } from "@/health/components/blog/BlogCategories";
 
 const FEATURED_PRODUCTS = AFFILIATE_PRODUCTS.filter((p) => p.active && p.featured).sort((a, b) => b.priority - a.priority).slice(0, 4);
+
+// The live pulse is rendered here, not fetched after load: the loaded dashboard is about three
+// times taller than any placeholder on a phone, and swapping it in shifted the whole page (CLS 0.66).
+export const revalidate = 600;
 
 export const metadata: Metadata = {
   title: `${SITE.name} — Understand Your Health. Make Better Decisions. | India-first health guides`,
@@ -69,7 +74,8 @@ const FAQS = [
   { q: "Is it free? How is the site funded?", a: "Core guides are free. The site is funded by clearly marked affiliate links and ads, and later by an optional ad-free Premium plan — none of which ever changes what a guide says." },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const pulse = await getIndiaPulse();
   const popularDiseases = DISEASES.filter((d) => d.pillar).slice(0, 6);
   const herbs = HERBS.slice(0, 4);
   const meds = MEDICINES.slice(0, 4);
@@ -163,7 +169,7 @@ export default function HomePage() {
         {/* LIVE PULSE */}
         <section aria-labelledby="live-pulse">
           <SectionHeading eyebrow="Real-time · updates every 10 minutes" title="🇮🇳 Live India Health Pulse" desc="Real air quality, weather and outbreak data streaming now — not screenshots. Plan walks, travel and clinic visits around it." id="live-pulse" />
-          <IndiaPulseDashboard />
+          <IndiaPulseDashboard initial={pulse} />
         </section>
 
         {/* BLOG CATEGORIES */}
