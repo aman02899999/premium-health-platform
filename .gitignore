@@ -32,3 +32,6 @@ yarn-error.log*
 # local CMS storage (file mode)
 /.data/
 
+
+# superpowers skill workspaces (brainstorm server, SDD briefs)
+/.superpowers/
