@@ -34,7 +34,7 @@ const FEATURED_PRODUCTS = AFFILIATE_PRODUCTS.filter((p) => p.active && p.feature
 
 // The live pulse is rendered here, not fetched after load: the loaded dashboard is about three
 // times taller than any placeholder on a phone, and swapping it in shifted the whole page (CLS 0.66).
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: `${SITE.name} — Understand Your Health. Make Better Decisions. | India-first health guides`,

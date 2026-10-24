@@ -12,7 +12,7 @@ import { FaqList, PostCard } from "@/components/home/Blocks";
 import { CtaCard } from "@/components/blog/CtaCard";
 import { Icon } from "@/components/Icon";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return CALCULATORS.map((c) => ({ slug: c.slug }));

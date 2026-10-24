@@ -7,7 +7,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { CtaCard } from "@/components/blog/CtaCard";
 import { telHref, whatsappHref } from "@/lib/site";
 
-export const revalidate = 300;
+export const revalidate = 3600;
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

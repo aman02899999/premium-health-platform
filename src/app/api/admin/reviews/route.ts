@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { adminReviews, decideReview } from "@/lib/reviews/store";
@@ -24,5 +25,10 @@ export async function POST(req: Request) {
   const decision = b?.decision === "approved" || b?.decision === "rejected" ? b.decision : null;
   if (!id || !decision) return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   const ok = await decideReview(id, decision, (await adminIdentity()) ?? "admin");
+  // The home and reviews pages are cached for an hour: show the decision now, not at the next refresh.
+  if (ok) {
+    revalidatePath("/");
+    revalidatePath("/reviews");
+  }
   return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: "Review not found" }, { status: 404 });
 }

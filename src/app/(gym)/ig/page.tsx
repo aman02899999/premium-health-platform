@@ -11,7 +11,7 @@ import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 // The link in the Instagram bio. Instagram opens it in its in-app browser as a sheet over the
 // profile, showing only the top of the page at first, so the offer and the WhatsApp button sit
 // in that first screen; everything below is for people who pull the sheet up.
-export const revalidate = 300;
+export const revalidate = 3600;
 
 // Instagram's in-app browser tints its address bar with the page's theme colour, so the sheet
 // opens in the offer's gold rather than the site's navy.
