@@ -124,6 +124,7 @@ task, check which skill applies and invoke it. Don't work from memory when a ski
 | Security, auth, payments, webhooks, personal data | `security-and-hardening`, agent `security-auditor`, `.claude/references/security-checklist.md` |
 | Full security audit of the codebase (Phase 5) | `security-audit` (see `.claude/skills/SECURITY-AUDIT.md`) |
 | Speed and Core Web Vitals | `performance-optimization`, agent `web-performance-auditor`, `.claude/references/performance-checklist.md` |
+| Visual design: critique, polish, layout, type, UX copy of a real page | `impeccable` (`/impeccable critique <page>`, then `audit` or `polish`); `ui-ux-pro-max` for palette/font/style lookup |
 | Accessibility | `.claude/references/accessibility-checklist.md` (WCAG 2.1 AA) |
 | Browser checks | `browser-testing-with-devtools` (or Playwright with `/opt/pw-browsers` Chromium) |
 | Logging, alerts, "is it working in production?" | `observability-and-instrumentation`, `.claude/references/observability-checklist.md` |
