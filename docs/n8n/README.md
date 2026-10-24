@@ -13,7 +13,7 @@ credential it asks for, then switch it on.
 
 | File | What it does | Needs |
 | --- | --- | --- |
-| `site-down-alert.json` | Opens royalfitnesclub.in every 5 minutes and sends one Telegram message when it goes down (no answer or a 5xx) and one when it is back. | A Telegram bot (free, from @BotFather) and `TELEGRAM_CHAT_ID` set in n8n's environment. |
+| `site-down-alert.json` | Opens royalfitnesclub.in every 5 minutes and sends one Telegram message when it goes down (no answer or a 5xx) and one when it is back. | A Telegram bot (free, from @BotFather). Paste your chat ID into the "Send on Telegram" node in place of `PASTE_YOUR_CHAT_ID`. |
 
 ## Free templates that were checked and left out
 
