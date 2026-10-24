@@ -32,7 +32,7 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     cm = await import("./campaigns");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.leads, public.members cascade");
+    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -101,6 +101,14 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     expect(r).toMatchObject({ ok: true, audience: 3, queued: 1, skipped: { optedOut: 1, missing: 1 } });
     const { rows } = await pool.query(`select to_address, kind, subject from public.message_outbox where dedupe_key like 'campaign:%'`);
     expect(rows).toEqual([{ to_address: "yes@x.in", kind: "nurture-campaign", subject: "Your diet, made for you" }]);
+  });
+
+  it("an email campaign skips addresses that hard-bounced or complained", async () => {
+    await member("Mail Me", "9000000034", "2026-12-31", "ok@x.in");
+    await member("Dead Box", "9000000035", "2026-12-31", "Dead@X.in");
+    await pool.query(`insert into public.email_suppressions (address, reason) values ('dead@x.in', 'bounced')`);
+    const r = await cm.createCampaign({ name: "Upgrade", segment: "current", channel: "email", offer: "Add a personal diet plan for ₹999", link: "plans", subject: "Your diet" }, "coach", TODAY);
+    expect(r).toMatchObject({ ok: true, audience: 2, queued: 1, skipped: { optedOut: 1 } });
   });
 
   it("a monthly campaign runs again with the daily job for whoever is eligible then, until it is stopped", async () => {

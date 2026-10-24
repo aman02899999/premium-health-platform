@@ -43,6 +43,16 @@ export async function latestLeadByPhone(phone: string): Promise<PipelineLead | n
   return rows[0] ? fromRow(rows[0]) : null;
 }
 
+/** Enquiries with the same 10-digit mobile in the last 24 hours, this one included. */
+export async function leadsFromNumberToday(phone: string): Promise<number> {
+  const { rows } = await pool.query<{ n: number }>(
+    `select count(*)::int as n from public.leads
+      where right(regexp_replace(phone, '\\D', '', 'g'), 10) = right(regexp_replace($1, '\\D', '', 'g'), 10) and created_at > now() - interval '24 hours'`,
+    [phone],
+  );
+  return rows[0]?.n ?? 0;
+}
+
 /**
  * trialAt: a new trial time (null clears it); a new time also clears the attendance mark.
  * showedUp: the desk's mark. "Came" moves an open lead to status "trial"; "didn't come" keeps it open.
@@ -90,6 +100,7 @@ export async function nurtureLeads(today: string): Promise<NurtureLead[]> {
         and l.status in ('new', 'contacted')
         and l.created_at >= ($1::date - interval '5 hours 30 minutes')
         and not exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.address = lower(l.email) and c.unsubscribed_at is not null)
+        and not exists (select 1 from public.email_suppressions s where s.address = lower(l.email))
         and not exists (select 1 from public.diet_orders o where o.status = 'paid' and (o.phone = right(regexp_replace(l.phone, '\\D', '', 'g'), 10) or lower(o.email) = lower(l.email)))
         and not (l.interest <> 'diet' and exists (select 1 from public.members m where m.phone = right(regexp_replace(l.phone, '\\D', '', 'g'), 10)))
       order by lower(l.email), l.interest, l.created_at desc`,

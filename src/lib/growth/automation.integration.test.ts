@@ -71,6 +71,17 @@ describe.skipIf(!url)("sales automation on a real database", () => {
     expect((await pool.query(`select follow_ups from public.leads where id = $1`, [id])).rows[0].follow_ups).toBe(false);
   });
 
+  it("someone typing the same number into the form again and again gets the automatic messages only twice a day", async () => {
+    for (let i = 0; i < 4; i++) {
+      const id = await leads.insertLead({ name: "Target", phone: "+91 98765 00009", email: null, interest: "membership", goal: "", message: "", source: "website", marketing: false });
+      await hooks.afterLeadSaved("+91 98765 00009", id);
+    }
+    const wa = await rows("channel = 'whatsapp'");
+    expect(wa.map((x) => x.kind)).toEqual(["lead-0", "lead-0"]);
+    // Every enquiry is still saved for the desk.
+    expect((await pool.query(`select count(*)::int as n from public.leads where phone = '+91 98765 00009'`)).rows[0].n).toBe(4);
+  });
+
   it("unsubscribing cancels pending emails and stops the sequence; buyers stop getting it too", async () => {
     const id = await leads.insertLead({ name: "Priya Verma", phone: "9876543210", email: "priya@example.com", interest: "diet", goal: "", message: "", source: "whatsapp-diet", marketing: true });
     await hooks.afterLeadSaved("9876543210", id);

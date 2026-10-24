@@ -1,6 +1,10 @@
 import "server-only";
 import { randomBytes } from "crypto";
 import { pool } from "@/health/db";
+import { getContent } from "@/lib/content/store";
+import { SITE_URL } from "@/lib/site";
+import { bookAccessEmail } from "@/lib/growth/messages";
+import { dispatch, enqueue } from "@/lib/growth/outbox";
 import { ACCESS_DAYS, DOWNLOADS_PER_BOOK, type BuyerForm, type LibraryQuote } from "./pricing";
 
 // public.book_orders is server-only (RLS on, no policies): reached through the
@@ -80,6 +84,24 @@ export async function markBookPaid(razorpayOrderId: string, paymentId: string): 
     [razorpayOrderId, paymentId],
   );
   return rows[0] ? fromRow(rows[0]) : null;
+}
+
+/**
+ * Marks the order paid and emails the buyer their download link (once per order, however many
+ * times the browser's verify step, the webhook and reconciliation reach it). A failed email is
+ * logged, never thrown: the payment is recorded and "Recover my books" still works.
+ */
+export async function afterBookPaid(razorpayOrderId: string, paymentId: string): Promise<BookOrder | null> {
+  const order = await markBookPaid(razorpayOrderId, paymentId);
+  if (!order) return null;
+  try {
+    const b = (await getContent()).business;
+    await enqueue([bookAccessEmail(order, { name: b.name, phone: b.phone, siteUrl: SITE_URL }, { days: ACCESS_DAYS, downloads: DOWNLOADS_PER_BOOK })]);
+    await dispatch(5);
+  } catch (err) {
+    console.error("[library] receipt email failed:", (err as Error).message);
+  }
+  return order;
 }
 
 export async function markBookFailed(razorpayOrderId: string): Promise<boolean> {

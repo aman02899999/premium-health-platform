@@ -113,7 +113,7 @@ export function llmsTxt(c: SiteContent, plans: OfferPlan[], siteUrl: string): st
     `- Membership: ${f.plans}`,
     ...(f.offer ? [`- Current offer: ${f.offer}`] : []),
     `- Rating: ${b.rating.value} from ${b.rating.count}+ ratings on ${b.rating.source}`,
-    `- Contact: call or WhatsApp ${b.phone}`,
+    `- Contact: call or WhatsApp ${b.phone} to reach a person. Instant answers on WhatsApp: https://wa.me/${b.whatsapp.replace(/\D/g, "")}`,
     ``,
     `## Key pages`,
     `- [Membership plans and prices](${siteUrl}/membership): every plan, comparison and FAQ`,

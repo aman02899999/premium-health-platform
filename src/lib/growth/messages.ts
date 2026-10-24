@@ -234,6 +234,26 @@ export const dietReceivedEmail = (o: { id: string; name: string; email: string }
   dedupeKey: `diet-received-email:${o.id}`,
 });
 
+/**
+ * Email: the receipt for a library purchase, with the download link. Sent whether the browser's
+ * verify step or the webhook records the payment first, so a buyer who closed the tab still gets it.
+ */
+export const bookAccessEmail = (
+  o: { id: string; name: string; email: string; title: string; amountPaise: number; accessToken: string; razorpayPaymentId: string | null },
+  biz: Biz,
+  limits: { days: number; downloads: number },
+): Draft => ({
+  channel: "email",
+  to: o.email.toLowerCase(),
+  toName: o.name,
+  kind: "book-access-email",
+  subject: `Your download link: ${o.title}`,
+  body: `Hi ${first(o.name)},\n\nThank you for buying ${o.title} from ${biz.name}. We've received your payment of ₹${(o.amountPaise / 100).toLocaleString("en-IN")}${o.razorpayPaymentId ? ` (payment ID ${o.razorpayPaymentId})` : ""}.\n\nDownload your books here:\n${biz.siteUrl}/library/access/${o.accessToken}\n\nYou can download each book ${limits.downloads} times, and the link works for ${limits.days} days. Keep this email so you can find the link again.\n\nIf you lose it, go to ${biz.siteUrl}/library/recover and enter this email address and your payment ID.\n\nQuestions? Call or WhatsApp us on ${biz.phone}.`,
+  template: "",
+  params: [],
+  dedupeKey: `book-access-email:${o.id}`,
+});
+
 /** WhatsApp: the Google review request, at most once per number ever. */
 export const reviewRequestMessage = (p: { name: string; phone: string }, biz: Biz, reviewUrl: string): Draft =>
   draft("review-request", wa(p.phone), p.name, [first(p.name), biz.name, reviewUrl], `review-request:${wa(p.phone)}`);
@@ -268,8 +288,15 @@ export function dueMessages(today: string, members: (MemberLike & { renewToken: 
     else if (left <= -3 && left >= -10) out.push(renewalMessage("expired-3", m, biz));
     else if (left <= -30 && left >= -37) out.push(comebackMessage(m, biz));
   }
+  // One person, one set of reminders: when a number was entered more than once (or by someone
+  // spamming a stranger's number into the form), only its newest enquiry is followed up.
+  const newest = new Map<string, LeadLike>();
   for (const l of leads) {
-    if (!l.followUps) continue;
+    const key = mobile10(l.phone) ?? l.phone;
+    const seen = newest.get(key);
+    if (l.followUps && (!seen || l.createdAt > seen.createdAt)) newest.set(key, l);
+  }
+  for (const l of newest.values()) {
     // A booked trial replaces the "please book" reminders with ones about the visit itself.
     if (l.trialAt) {
       const d = trialDue({ ...l, trialAt: l.trialAt }, today, biz);

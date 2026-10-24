@@ -50,9 +50,26 @@ export function failureEffect(code: string | null): "unreachable" | "opted-out" 
   return null;
 }
 
+/**
+ * 131042: Meta could not charge the business's payment method, so it drops paid (marketing)
+ * conversations. The send call still succeeds and the failure only arrives later as a status, so
+ * the outbox would keep "sending" promotions into a dead account. While the newest billing failure
+ * on a promotion is less than a day old (and no promotion was delivered after it), promotions hold.
+ * After that, each run sends a small probe; the first delivered promotion reopens the full cap.
+ */
+export const BILLING_FAILURE_CODE = "131042";
+export const BILLING_PROBE_SIZE = 5;
+export type BillingGate = { mode: "open" | "probe" | "hold"; allow: number };
+
+export function waBillingGate(lastFailure: Date | null, lastDelivered: Date | null, now = new Date()): BillingGate {
+  if (!lastFailure || (lastDelivered && lastDelivered > lastFailure)) return { mode: "open", allow: Infinity };
+  if (now.getTime() - lastFailure.getTime() < 24 * 3600_000) return { mode: "hold", allow: 0 };
+  return { mode: "probe", allow: BILLING_PROBE_SIZE };
+}
+
 // ── Email (Resend webhooks, signed by Svix) ─────────────────────────────────────────────
 
-export type EmailEvent = { emailId: string; type: "delivered" | "bounced" | "complained" | "opened" | "clicked"; at: Date; link: string | null; reason: string | null };
+export type EmailEvent = { emailId: string; type: "delivered" | "bounced" | "complained" | "opened" | "clicked"; at: Date; link: string | null; reason: string | null; bounceType?: string | null };
 
 const RESEND_TYPES: Record<string, EmailEvent["type"]> = {
   "email.delivered": "delivered",
@@ -63,11 +80,23 @@ const RESEND_TYPES: Record<string, EmailEvent["type"]> = {
 };
 
 export function parseResendEvent(body: unknown): EmailEvent | null {
-  const b = body as { type?: string; created_at?: string; data?: { email_id?: string; click?: { link?: string }; bounce?: { message?: string } } };
+  const b = body as { type?: string; created_at?: string; data?: { email_id?: string; click?: { link?: string }; bounce?: { message?: string; type?: string } } };
   const type = RESEND_TYPES[b?.type ?? ""];
   if (!type || !b.data?.email_id) return null;
   const at = new Date(b.created_at ?? "");
-  return { emailId: b.data.email_id.slice(0, 200), type, at: Number.isNaN(at.getTime()) ? new Date() : at, link: b.data.click?.link?.slice(0, 1000) ?? null, reason: b.data.bounce?.message?.slice(0, 300) ?? null };
+  return { emailId: b.data.email_id.slice(0, 200), type, at: Number.isNaN(at.getTime()) ? new Date() : at, link: b.data.click?.link?.slice(0, 1000) ?? null, reason: b.data.bounce?.message?.slice(0, 300) ?? null, bounceType: b.data.bounce?.type?.slice(0, 40) ?? null };
+}
+
+/**
+ * Whether an email event means "never email this address again": a spam complaint, or a hard
+ * (permanent) bounce. A full inbox or an "undetermined" bounce may clear, so those don't count.
+ * Older events without a bounce type fall back on Resend's wording.
+ */
+export function suppressesEmail(e: Pick<EmailEvent, "type" | "reason" | "bounceType">): boolean {
+  if (e.type === "complained") return true;
+  if (e.type !== "bounced") return false;
+  if (e.bounceType) return e.bounceType.toLowerCase() === "permanent";
+  return /hard bounce/i.test(e.reason ?? "");
 }
 
 /** Svix signature check (Resend webhooks): "v1,<base64 HMAC-SHA256 of id.timestamp.body>". */
