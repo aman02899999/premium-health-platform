@@ -22,15 +22,15 @@ need no paid API, with the reason each one is not here:
 
 - **Website leads to Google Sheets with Telegram alert and auto-reply**: the site already saves
   leads and emails the coach about each one (`leads.ts`, `lead-alerts.ts`).
-- **Automatic payment reminders from Google Sheets**: renewal reminders already go out on WhatsApp and email from the
-  daily run, using the members table.
+- **Automatic payment reminders from Google Sheets**: renewal reminders already go out on WhatsApp and email from
+  the daily run, using the members table.
 - **ClientFlow Lite (client onboarding)**: the site already handles new sign-ups (`welcome.ts`).
 - **Capture WhatsApp leads / escalating WhatsApp reminders (WAHA)**: these drive WhatsApp Web
   through an unofficial server, which breaks WhatsApp's terms and can get the gym's number banned.
   The site uses the official Meta Cloud API instead.
 - **VoiceAgent Lite call logger**: needs a phone-AI provider to post calls to it; the gym has none.
-- Anything under `devops/` except the uptime alert runs shell commands on the server and must
-  never be imported.
+- `devops/disk-space-watchdog`, `docker-compose-controller` and `linux-update-via-webhook` run
+  shell commands on the n8n server and must never be imported.
 
 `site-down-alert.json` is adapted from the template's `devops/uptime-ping-alert.json` by
 Enes Cingoz, licensed CC BY 4.0. It was translated from Italian and pointed at the gym's site.
