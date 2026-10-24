@@ -268,8 +268,15 @@ export function dueMessages(today: string, members: (MemberLike & { renewToken: 
     else if (left <= -3 && left >= -10) out.push(renewalMessage("expired-3", m, biz));
     else if (left <= -30 && left >= -37) out.push(comebackMessage(m, biz));
   }
+  // One person, one set of reminders: when a number was entered more than once (or by someone
+  // spamming a stranger's number into the form), only its newest enquiry is followed up.
+  const newest = new Map<string, LeadLike>();
   for (const l of leads) {
-    if (!l.followUps) continue;
+    const key = mobile10(l.phone) ?? l.phone;
+    const seen = newest.get(key);
+    if (l.followUps && (!seen || l.createdAt > seen.createdAt)) newest.set(key, l);
+  }
+  for (const l of newest.values()) {
     // A booked trial replaces the "please book" reminders with ones about the visit itself.
     if (l.trialAt) {
       const d = trialDue({ ...l, trialAt: l.trialAt }, today, biz);

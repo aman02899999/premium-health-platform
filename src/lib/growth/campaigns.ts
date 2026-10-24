@@ -12,7 +12,7 @@ import { dispatch, enqueue } from "./outbox";
 // Audience and campaigns on the database: imported contacts, who is in each segment, and queuing a
 // campaign through the outbox. Guard rails, all enforced here rather than trusted to the page:
 //   - WhatsApp promotions skip numbers that tapped "Stop promotions";
-//   - emails skip addresses that unsubscribed, and carry an unsubscribe link;
+//   - emails skip addresses that unsubscribed, hard-bounced or complained, and carry an unsubscribe link;
 //   - nobody gets more than one promotion a week, across all campaigns and automations;
 //   - each person gets a campaign once, however often it is queued.
 
@@ -165,7 +165,13 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
     c.channel === "whatsapp"
       ? // Opted out, or a number WhatsApp says can't receive messages: nobody pays for those.
         pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)`, [addresses])
-      : pool.query<{ a: string }>(`select address as a from public.marketing_contacts where channel = 'email' and unsubscribed_at is not null and address = any($1)`, [addresses]),
+      : // Unsubscribed, or an address that hard-bounced or complained (stored lower-case).
+        pool.query<{ a: string }>(
+          `select a.a from unnest($1::text[]) as a(a)
+            where exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.unsubscribed_at is not null and c.address = lower(a.a))
+               or exists (select 1 from public.email_suppressions s where s.address = lower(a.a))`,
+          [addresses],
+        ),
     pool.query<{ a: string }>(
       `select distinct lower(to_address) as a from public.message_outbox
         where to_address = any($1) and status in ('pending', 'sent') and created_at > now() - make_interval(days => $2)

@@ -187,3 +187,16 @@ describe("WhatsApp template set (v3)", () => {
     expect(promotionsRequest("Need a diet plan")).toBeNull();
   });
 });
+
+describe("lead reminders for a number entered more than once", () => {
+  it("only the newest enquiry from a number gets the daily reminders", () => {
+    const leads = [
+      lead("2026-10-06T05:00:00Z", { id: "a", phone: "+91 98765 43210" }),
+      lead("2026-10-07T05:00:00Z", { id: "b", phone: "9876543210" }),
+      lead("2026-10-07T06:00:00Z", { id: "c", phone: "98765-43210" }),
+      lead("2026-10-07T05:00:00Z", { id: "d", phone: "9811122233" }),
+    ];
+    const drafts = dueMessages("2026-10-09", [], leads, biz);
+    expect(drafts.map((d) => d.dedupeKey).sort()).toEqual(["lead-2:c", "lead-2:d"]);
+  });
+});
