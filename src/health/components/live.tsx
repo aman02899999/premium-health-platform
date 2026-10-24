@@ -58,22 +58,25 @@ function uvColor(uv: number | null): string {
 }
 
 /* ---------------- India Health Pulse dashboard ---------------- */
-export function IndiaPulseDashboard() {
-  const [pulse, setPulse] = useState<IndiaPulse | null>(null);
+export function IndiaPulseDashboard({ initial }: { initial?: IndiaPulse }) {
+  const [pulse, setPulse] = useState<IndiaPulse | null>(initial ?? null);
   const [error, setError] = useState(false);
   const [now, setNow] = useState("");
 
   useEffect(() => {
-    fetch("/health/api/realtime/pulse")
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then(setPulse)
-      .catch(() => setError(true));
+    // Rendered on the server; fetch only when that render had no live data (an upstream outage
+    // at build time). The cards keep the same size either way, so the refresh doesn't shift the page.
+    if (!initial?.cities.some((c) => c.live))
+      fetch("/health/api/realtime/pulse")
+        .then((r) => (r.ok ? r.json() : Promise.reject()))
+        .then(setPulse)
+        .catch(() => { if (!initial) setError(true); });
     const tick = () =>
       setNow(new Intl.DateTimeFormat("en-IN", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", second: "2-digit", hour12: true }).format(new Date()));
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [initial]);
 
   if (error)
     return (
