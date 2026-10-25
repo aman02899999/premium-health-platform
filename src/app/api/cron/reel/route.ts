@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { cronAuthorized } from "@/lib/cron-auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runLeadEscalation } from "@/lib/growth/daily";
 import { recordDailyRun } from "@/lib/growth/system-status";
@@ -11,10 +12,7 @@ export const maxDuration = 300;
 // Vercel Cron (vercel.json) calls this in the evening, at peak time on Instagram and Facebook in
 // India, and once more later as a retry: a channel already posted is skipped, a failed one retried.
 export async function GET(req: Request) {
-  const secret = process.env.CRON_SECRET;
-  if (secret ? req.headers.get("authorization") !== `Bearer ${secret}` : process.env.NODE_ENV === "production") {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!cronAuthorized(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   // Evening check for leads nobody has called yet; it never holds up the Reel.
   const leads = await runLeadEscalation().catch((err: Error) => (console.error("[cron] lead escalation:", err.message), { waiting: 0, queued: 0 }));

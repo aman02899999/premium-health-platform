@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allowed, initials, normEmail, teamChangeError, type Member } from "./team-core";
+import { allowed, initials, normEmail, roleGate, teamChangeError, type Member } from "./team-core";
 import { HUB_SECTIONS, sectionsFor } from "./hub";
 
 describe("who may open what", () => {
@@ -50,5 +50,27 @@ describe("team changes", () => {
     expect(initials("Ritu Sharma", "r@x.in")).toBe("RS");
     expect(initials("", "desk.team@x.in")).toBe("DT");
     expect(initials("Ritu (front desk)", "r@x.in")).toBe("RF");
+  });
+});
+
+describe("roleGate (the proxy's decision for admin requests)", () => {
+  it("lets each role through only where it may go", () => {
+    expect(roleGate("/api/admin/payments", { role: "manager" }, false)).toBe("allow");
+    expect(roleGate("/api/admin/payments", { role: "agent" }, false)).toBe("deny");
+    expect(roleGate("/api/admin/team", { role: "manager" }, false)).toBe("deny");
+    expect(roleGate("/admin/chats", { role: "agent" }, false)).toBe("allow");
+  });
+
+  it("leaves non-admins to the route, which refuses them", () => {
+    expect(roleGate("/api/admin/payments", null, false)).toBe("allow");
+  });
+
+  it("fails closed on admin APIs when the role can't be read, but keeps sign-in, sign-out and pages working", () => {
+    expect(roleGate("/api/admin/payments", null, true)).toBe("unavailable");
+    expect(roleGate("/api/admin/team", null, true)).toBe("unavailable");
+    expect(roleGate("/api/admin/login", null, true)).toBe("allow");
+    expect(roleGate("/api/admin/logout", null, true)).toBe("allow");
+    // Pages only show what the admin APIs return, so they can still load.
+    expect(roleGate("/admin/payments", null, true)).toBe("allow");
   });
 });

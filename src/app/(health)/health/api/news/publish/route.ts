@@ -4,14 +4,13 @@ import { db } from "@/health/db";
 import { newsItems } from "@/health/db/schema";
 import { NEWS_CATEGORIES, getTodayBriefing, istDateKey } from "@/health/data/news";
 import type { NewsItem } from "@/health/types";
+import { tokenMatches } from "@/lib/cron-auth";
 
 export const dynamic = "force-dynamic";
 
-/** Optional protection: set NEWS_ADMIN_TOKEN and send "x-news-token" to lock writes. */
+/** Writes need NEWS_ADMIN_TOKEN, sent as "x-news-token". Without the variable nobody can write. */
 function authorised(request: Request) {
-  const token = process.env.NEWS_ADMIN_TOKEN;
-  if (!token) return true;
-  return request.headers.get("x-news-token") === token;
+  return tokenMatches(request.headers.get("x-news-token"), process.env.NEWS_ADMIN_TOKEN);
 }
 
 function validate(payload: unknown): { ok: true; value: Record<string, unknown> } | { ok: false; error: string } {
@@ -24,6 +23,9 @@ function validate(payload: unknown): { ok: true; value: Record<string, unknown> 
   const banned = /cure[sd]?\b|guaranteed|100%|miracle|replaces? (your )?(doctor|medicine)|stop (your )?medicin/i;
   if (banned.test(String(v.title)) || banned.test(String(v.summary))) {
     return { ok: false, error: "Headline and summary must not contain cure, guarantee or medication-stop claims (editorial safety policy)" };
+  }
+  if (v.sourceUrl !== undefined && !(typeof v.sourceUrl === "string" && /^https:\/\/[^\s]+$/i.test(v.sourceUrl))) {
+    return { ok: false, error: "sourceUrl must be an https:// link" };
   }
   return { ok: true, value: v };
 }
@@ -66,7 +68,8 @@ export async function POST(request: Request) {
     await db.insert(newsItems).values({ slug, ...payload });
     return NextResponse.json({ ok: true, slug, action: "created" }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Database write failed", detail: String(error) }, { status: 500 });
+    console.error("[news publish] write failed:", String(error));
+    return NextResponse.json({ error: "Database write failed" }, { status: 500 });
   }
 }
 
@@ -95,6 +98,7 @@ export async function PUT(request: Request) {
     });
     return NextResponse.json({ ok: true, slug: briefing.slug, action: "published", edition: todayKey }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error: "Daily publish failed", detail: String(error) }, { status: 500 });
+    console.error("[news publish] daily publish failed:", String(error));
+    return NextResponse.json({ error: "Daily publish failed" }, { status: 500 });
   }
 }

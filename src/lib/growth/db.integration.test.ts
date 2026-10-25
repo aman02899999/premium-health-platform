@@ -150,6 +150,23 @@ describe.skipIf(!url)("growth automation on a real database", () => {
     expect(all.map((x) => [x.kind, x.to, x.status])).toEqual([["lead-0", "919811199988", "pending"]]);
   });
 
+  it("the forms can't be used to spam a stranger: messages stop past two enquiries per email or number, or 40 a day", async () => {
+    // One email, three different numbers: the third enquiry gets no thank-you.
+    for (const [i, phone] of ["98111 10001", "98111 10002", "98111 10003"].entries()) {
+      const id = await leads.insertLead({ name: `Spam ${i}`, phone, email: "victim@example.com", interest: "", goal: "", message: "", source: "home", marketing: false });
+      await hooks.afterLeadSaved(phone, id);
+    }
+    expect((await outbox.listOutbox()).map((x) => x.to).sort()).toEqual(["919811110001", "919811110002"]);
+    expect(await leads.leadVolumeToday("98111 10003", "VICTIM@example.com")).toEqual({ number: 1, email: 3, all: 3 });
+    // Site-wide: once more than 40 enquiries came in today, a new number gets nothing either.
+    await pool.query(`insert into public.leads (name, phone) select 'Bulk ' || g, '9822' || lpad(g::text, 6, '0') from generate_series(1, 40) g`);
+    const id = await leads.insertLead({ name: "Late Lead", phone: "98111 20002", email: null, interest: "", goal: "", message: "", source: "home", marketing: false });
+    await hooks.afterLeadSaved("98111 20002", id);
+    expect((await outbox.listOutbox()).map((x) => x.to)).not.toContain("919811120002");
+    expect(hooks.leadMessagesPaused({ number: 1, email: 0, all: 40 })).toBe(false);
+    expect(hooks.leadMessagesPaused({ number: 3, email: 0, all: 3 })).toBe(true);
+  });
+
   it("a booked trial is confirmed instead of 'pick a time', and the desk's marks drive the follow-ups", async () => {
     const at = "2026-10-21T12:30:00.000Z"; // 6:00 PM India time
     const id = await leads.insertLead({ name: "Neha Test", phone: "98111 77766", email: null, interest: "", goal: "", message: "", source: "home", marketing: false, trialAt: at });

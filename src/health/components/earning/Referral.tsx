@@ -31,7 +31,8 @@ export function ReferralSystem() {
       if (!res.ok) throw new Error(data.error || "Failed");
       setDone(data.referral);
       if (typeof window !== "undefined" && (window as any).gtag) {
-        (window as any).gtag("event", "referral", { referrer: user.email, referred: referredEmail });
+        // Never send who invited whom: email addresses must not reach Google Analytics.
+        (window as any).gtag("event", "referral", { method: "email_invite" });
       }
     } catch (err: any) {
       setError(err.message);

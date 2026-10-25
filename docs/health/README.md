@@ -64,7 +64,7 @@ npx drizzle-kit push         # after starting a cluster on 127.0.0.1:5432
 | Variable | Required | Description |
 |---|---|---|
 | `DATABASE_URL` | no | PostgreSQL connection string for Drizzle ORM |
-| `NEWS_ADMIN_TOKEN` | no | Locks `POST/PUT /api/news/publish` behind the `x-news-token` header |
+| `NEWS_ADMIN_TOKEN` | yes, to publish | `POST/PUT /api/news/publish` need it in the `x-news-token` header; without it the endpoint refuses every write |
 | `NEXT_PUBLIC_SITE_URL` | no | Canonical URL for SEO/OG/RSS (defaults to `https://bharathealthguide.in`) |
 | `ENABLE_WGER` | no | Enable wger fitness (default true, no key) |
 | `ENABLE_OPENFOODFACTS` | no | Enable Open Food Facts (default true) |

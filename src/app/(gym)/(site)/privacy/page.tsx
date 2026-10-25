@@ -21,7 +21,13 @@ export default async function PrivacyPage() {
           <li>If you sign in with Google: your name, email address and profile photo from your Google account.</li>
           <li>If you sign in and use the Health Hub: the workout plan, food log and progress check-ins you choose to save.</li>
           <li>If you buy from the Premium Library or pay for a membership online: your name, email and mobile number, and the order and payment IDs. Card, UPI and bank details go directly to Razorpay, our payment processor — we never see or store them.</li>
+          <li>If you order from the Royal Supplements Store: your delivery address, city, state, pincode and any note you add, so we can deliver it.</li>
+          <li>
+            If you buy a diet plan: your age, sex, height, weight and body measurements, goal, food preferences, health conditions, allergies and any
+            medicines you list. Only our coach uses these, to write your plan. We never use them for ads and never share them.
+          </li>
           <li>If you review a book: your rating, review text, the name you choose to show, and your city and country.</li>
+          <li>Your WhatsApp messages to our business number, so we can reply and keep a record of the chat.</li>
           <li>Standard server logs (IP address, browser type) needed to run the site securely.</li>
         </ul>
         <p>
@@ -40,12 +46,20 @@ export default async function PrivacyPage() {
         <p>
           Accounts and saved data are stored with our database provider, Supabase. Each member can only access their own data. You can delete your
           synced data at any time from <a href="/account">My account</a>. The website is hosted on Vercel, emails are sent through Resend, WhatsApp
-          messages through Meta&apos;s WhatsApp Business platform, and online payments are handled by Razorpay. These providers process data only to
+          messages through Meta&apos;s WhatsApp Business platform, automated WhatsApp replies are written with an AI service, and online payments are
+          handled by Razorpay. These providers process data only to
           provide their service to us.
         </p>
         <h2>How we use it</h2>
         <ul>
-          <li>To reply to your enquiry and schedule your free trial.</li>
+          <li>
+            To reply to your enquiry and schedule your free trial. When you send the trial form we send you one WhatsApp message (and an email if you
+            gave one) to confirm it, and a few follow-ups over the next weeks. Reply STOP to end them.
+          </li>
+          <li>
+            Messages to our WhatsApp business number may first get a reply from our automated assistant. It uses an AI service to write the reply
+            from your message and our gym details, and hands you to a person when needed. For a person straight away, call or WhatsApp {c.business.phone}.
+          </li>
           <li>To run your account, membership or order: payment receipts, plan delivery, book downloads and membership renewal reminders.</li>
           <li>
             To send a short series of welcome and fitness-tip emails after you sign up, and occasional offers or our weekly newsletter if you opted in.
@@ -90,7 +104,7 @@ export default async function PrivacyPage() {
           {c.business.name}, {c.business.address.street}, {c.business.address.locality}, {c.business.address.city} {c.business.address.postalCode}.
           Email <a href={`mailto:${c.business.email}`}>{c.business.email}</a>.
         </p>
-        <p>Last updated: 17 October 2026.</p>
+        <p>Last updated: 25 October 2026.</p>
       </section>
     </>
   );
