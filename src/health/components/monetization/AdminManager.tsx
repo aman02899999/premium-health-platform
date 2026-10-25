@@ -136,10 +136,10 @@ export function AdminMonetizationManager() {
 
             {tab === "leads" && data?.leads && (
               <div className="space-y-2">
-                {data.leads.length === 0 ? <p className="text-xs text-stone-500">No leads yet — submit via /consultation lead forms.</p> : data.leads.map((l: any) => (
+                {data.leads.length === 0 ? <p className="text-xs text-stone-500">No leads yet. They also appear in Admin → Leads.</p> : data.leads.map((l: any) => (
                   <div key={l.id} className="flex justify-between rounded-xl border border-stone-200 p-3 text-xs dark:border-stone-700">
-                    <span>{l.name} — {l.email} — {l.service} — {l.page}</span>
-                    <span className="text-stone-500">{new Date(l.timestamp).toLocaleDateString("en-IN")}</span>
+                    <span>{l.name} — {l.phone}{l.email ? ` — ${l.email}` : ""} — {l.goal}</span>
+                    <span className="text-stone-500">{new Date(l.createdAt).toLocaleDateString("en-IN")}</span>
                   </div>
                 ))}
                 <p className="text-[11px] text-stone-500">View/export leads subject to privacy — minimal data, consent, timestamp, rate limiting 5/min, spam protection.</p>
