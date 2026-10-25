@@ -1,0 +1,36 @@
+# Uptime check from outside Vercel and outside the owner's laptop. Every hour it opens the
+# home page, /health and /api/status. /api/status runs the site's own watchdog, which emails the
+# owner about any problem it finds (once per problem per day). If a page doesn't answer, or the
+# site can't reach its database, this run fails and GitHub emails the repository owner, so a
+# site that is completely down (and can't send its own email) still raises an alarm. Smaller
+# problems (a missed cron, failed messages) don't fail the run: the site's own email covers them.
+# No secrets needed. GitHub may start scheduled runs a few minutes late.
+name: Uptime
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check the site
+        env:
+          SITE: https://www.royalfitnesclub.in
+        run: |
+          fail=0
+          for path in / /health; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 --retry 2 --retry-delay 20 --retry-all-errors "$SITE$path" || echo 000)
+            echo "$path -> HTTP $code"
+            if [ "$code" != "200" ]; then echo "::error::$SITE$path answered HTTP $code"; fail=1; fi
+          done
+          body=$(curl -s --max-time 60 -w '\n%{http_code}' "$SITE/api/status" || printf '\n000')
+          code=$(echo "$body" | tail -n1)
+          echo "/api/status -> HTTP $code: $(echo "$body" | head -n -1)"
+          if [ "$code" != "200" ]; then echo "::error::The site is up but broken (HTTP $code): $(echo "$body" | head -n -1)"; fail=1; fi
+          exit $fail

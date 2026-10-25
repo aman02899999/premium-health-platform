@@ -177,7 +177,8 @@ const BILLING_RECHECK_EVERY = 5;
 export async function dispatch(
   max = 100,
   deadline = Infinity,
-  opts: { waitForCap?: boolean } = {},
+  /** onlyKeys: send just these rows (the watchdog's alerts), never anything else that is waiting. */
+  opts: { waitForCap?: boolean; onlyKeys?: string[] } = {},
 ): Promise<{ sent: number; failed: number; skipped: boolean; marketingHeld?: boolean; waitedMs?: number; whatsappBilling?: BillingGate["mode"] }> {
   const channels = [whatsappConfigured() && "whatsapp", emailConfigured() && "email"].filter(Boolean) as string[];
   if (!channels.length) return { sent: 0, failed: 0, skipped: true };
@@ -242,8 +243,9 @@ export async function dispatch(
           where status = 'pending' and channel = any($1) and attempts < 3
             and ($3 or not (channel = 'whatsapp' and kind = any($2)))
             and ($4 or not (channel = 'email' and kind like 'nurture-%'))
+            and ($5::text[] is null or dedupe_key = any($5))
           order by ((channel = 'whatsapp' and kind = any($2)) or (channel = 'email' and kind like 'nurture-%')), created_at limit 1 for update skip locked`,
-        [channels, MARKETING_KINDS, marketingLeft > 0, emailLeft > 0],
+        [channels, MARKETING_KINDS, marketingLeft > 0, emailLeft > 0, opts.onlyKeys ?? null],
       );
       const m = rows[0];
       if (!m) {

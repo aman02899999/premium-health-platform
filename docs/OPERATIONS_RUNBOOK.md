@@ -9,6 +9,7 @@
 | `RAZORPAY_WEBHOOK_SECRET` | Server only | Webhook signature. Without it every webhook is refused (401) and the log says so |
 | `POSTGRES_URL` or `DATABASE_URL` | Server only | All order tables |
 | `CRON_SECRET` | Server only | `/api/cron/daily` (which now also reconciles payments) and `/api/cron/reel`; without it they refuse to run in production |
+| `ALERT_EMAIL`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Server only, optional | Where `/api/status` sends alerts (see Alerts below). Without them alerts go to `COACH_EMAIL` only |
 | `RAZORPAY_API_URL` | Tests only | Points Razorpay calls at a local stand-in. Leave unset in every Vercel environment |
 
 Use `rzp_test_` keys on Preview and Development, live keys only on Production.
@@ -46,6 +47,22 @@ buyers can't open their books until the migration runs.
 - **Refund recorded on a membership or store order:** shorten the membership or restock by hand if that's what was agreed with the customer. The site doesn't guess.
 - **WhatsApp promotions stopped going out:** check Vercel logs for `[outbox] WhatsApp promotions held` or `probing`. That means Meta returned error 131042 (it couldn't charge the payment method) on a promotion in the last day. Fix the payment method in WhatsApp Manager → Billing. Nothing else needs doing: each daily run sends a 5-message probe, and the first one Meta delivers reopens the full daily cap. Utility messages (receipts, plans, reminders) are never held.
 - **Email bounce rate is high:** `select reason, count(*) from public.email_suppressions group by 1;` shows how many addresses were blocked. Hard bounces and spam complaints are added by the Resend webhook automatically; marketing email to them is cancelled at send time. Receipts and plans still go.
+
+## Alerts: when the site breaks (Phase 8)
+
+Nothing here depends on the owner's laptop. Three layers:
+
+1. **The site's watchdog, `/api/status`** (`src/lib/observability/`). Each call checks: the database answers; the morning run, the evening Reel run and the /health live sync each ran in the last 26 hours and didn't fail; the nightly payment check found no mismatch and no payment the webhook missed; Razorpay's webhook has delivered something if there were online payments in the last 14 days, and none of the last day's deliveries were refused; WhatsApp failures stayed under 20 or half of what was sent (with Meta's error named, e.g. 131042 = payment method); Meta still reports delivery statuses; email send failures and bounces stayed low. Each problem is emailed to `ALERT_EMAIL` (or `COACH_EMAIL`) **once per problem per India day** through the outbox (`kind = 'admin-alert'`), and only those alert rows are sent, never queued customer messages. With `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` set, the same alert also goes to Telegram (the only alert that still works when the database is down).
+2. **The uptime workflow, `.github/workflows/uptime.yml`**, runs on GitHub every hour at :07. It opens `/`, `/health` and `/api/status`; that call is what runs the watchdog above every hour. It fails only when a page doesn't answer 200 or the database is down (`/api/status` answers 503), and GitHub then emails the repository owner. Smaller problems answer 200 with `"ok": false`, so the owner isn't emailed every hour for something the site already reported. Run it by hand from GitHub → Actions → Uptime → Run workflow.
+3. **Vercel Cron at 03:00 UTC** calls `/api/status` as a second trigger, in case GitHub's schedule is late or off.
+
+The morning digest also carries a **SITE HEALTH** line (all clear, or each problem with its fix), right after "Needs you".
+
+Public answer: `{"ok": false, "failing": ["razorpay-webhook-silent"]}` (keys only). With `Authorization: Bearer $CRON_SECRET` the answer also has each problem's detail. Repeated public calls within 5 minutes reuse the last answer.
+
+Optional variables: `ALERT_EMAIL` (where alerts go; defaults to `COACH_EMAIL`), `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
+
+Not covered: Vercel runtime errors on individual pages (Hobby keeps logs for 1 hour), and a broken Resend account when Telegram isn't set (the alert email can't go out; the digest can't either).
 
 ## Messaging hardening (migration `20261024120000_messaging_hardening.sql`)
 

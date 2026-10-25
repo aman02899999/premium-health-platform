@@ -17,6 +17,17 @@ export async function recordDailyRun(source: DailyRun["source"], ok: boolean, re
     .catch((err: Error) => console.error("[system-status] record:", err.message));
 }
 
+/** Any other background-job record (e.g. the payment reconciler's last result, for the watchdog). */
+export async function recordStatus(key: string, value: Record<string, unknown>): Promise<void> {
+  await pool
+    .query(
+      `insert into public.system_status (key, value, updated_at) values ($1, $2, now())
+       on conflict (key) do update set value = excluded.value, updated_at = now()`,
+      [key, JSON.stringify(value).slice(0, 7000)],
+    )
+    .catch((err: Error) => console.error("[system-status] record:", err.message));
+}
+
 export async function lastDailyRun(): Promise<DailyRun | null> {
   const { rows } = await pool.query<{ value: DailyRun }>(`select value from public.system_status where key = 'daily-run'`).catch(() => ({ rows: [] as { value: DailyRun }[] }));
   return rows[0]?.value ?? null;
