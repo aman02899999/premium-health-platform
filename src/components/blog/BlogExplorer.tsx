@@ -52,7 +52,7 @@ export function BlogExplorer({ posts, categories }: { posts: BlogPost[]; categor
       {filtered.length ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p, i) => (
-            <PostCard key={p.slug} post={p} index={i % 3} />
+            <PostCard key={p.slug} post={p} index={i % 3} priority={i === 0} />
           ))}
         </div>
       ) : (

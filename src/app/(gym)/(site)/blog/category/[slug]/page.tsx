@@ -45,7 +45,7 @@ export default async function CategoryPage({ params }: Props) {
       <PageHero eyebrow="Category" title={name} />
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
         {posts.map((p, i) => (
-          <PostCard key={p.slug} post={p} index={i % 3} />
+          <PostCard key={p.slug} post={p} index={i % 3} priority={i === 0} />
         ))}
       </section>
     </>

@@ -1,0 +1,46 @@
+[
+ {
+  "page": "/gallery",
+  "n": 3,
+  "ttfb": 10,
+  "fcp": 1656,
+  "lcp": 4816,
+  "cls": 0,
+  "tbt": 327,
+  "kb": 1282,
+  "jsKb": 252
+ },
+ {
+  "page": "/blog",
+  "n": 3,
+  "ttfb": 9,
+  "fcp": 1640,
+  "lcp": 3152,
+  "cls": 0,
+  "tbt": 328,
+  "kb": 623,
+  "jsKb": 270
+ },
+ {
+  "page": "/hi/health/blog",
+  "n": 3,
+  "ttfb": 14,
+  "fcp": 1576,
+  "lcp": 2620,
+  "cls": 0.105,
+  "tbt": 368,
+  "kb": 826,
+  "jsKb": 427
+ },
+ {
+  "page": "/health/blog/guides",
+  "n": 3,
+  "ttfb": 12,
+  "fcp": 1496,
+  "lcp": 2588,
+  "cls": 0.001,
+  "tbt": 288,
+  "kb": 707,
+  "jsKb": 423
+ }
+]

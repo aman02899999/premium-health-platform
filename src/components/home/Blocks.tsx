@@ -19,7 +19,7 @@ export function ProgramGrid({ programs }: { programs: Program[] }) {
             <article id={p.id} className="glass brand-border flex h-full scroll-mt-32 flex-col overflow-hidden rounded-3xl">
               {p.image && (
                 <div className="h-44 overflow-hidden">
-                  <SmartImage src={p.image} alt={p.title} className="transition-transform duration-700 group-hover:scale-110" />
+                  <SmartImage src={p.image} alt={p.title} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-110" />
                 </div>
               )}
               <div className="flex flex-1 flex-col p-7">
@@ -58,7 +58,7 @@ export function TrainerGrid({ trainers }: { trainers: Trainer[] }) {
           <TiltCard className="rounded-3xl">
             <article className="glass brand-border overflow-hidden rounded-3xl">
               <div className="aspect-[4/5] overflow-hidden">
-                <SmartImage src={t.image} alt={`${t.name}, ${t.role}`} icon="UserCheck" label={t.name} />
+                <SmartImage src={t.image} alt={`${t.name}, ${t.role}`} icon="UserCheck" label={t.name} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" />
               </div>
               <div className="p-6">
                 <h3 className="font-display text-2xl text-white">{t.name}</h3>
@@ -101,13 +101,14 @@ export function FaqList({ faqs }: { faqs: Faq[] }) {
   );
 }
 
-export function PostCard({ post, index = 0 }: { post: BlogPost; index?: number }) {
+/** `priority` loads the cover first: set it on the first card of a list, whose photo is often the page's largest paint. */
+export function PostCard({ post, index = 0, priority = false }: { post: BlogPost; index?: number; priority?: boolean }) {
   return (
     <Reveal delay={index * 70} className="h-full">
       <TiltCard className="group h-full rounded-3xl" max={6}>
         <article className="glass flex h-full flex-col overflow-hidden rounded-3xl">
           <Link href={`/blog/${post.slug}`} className="block aspect-[16/9] overflow-hidden" tabIndex={-1} aria-hidden>
-            <SmartImage src={post.cover} alt={post.title} fit="contain" icon="Activity" label={post.category} className="transition-transform duration-700 group-hover:scale-105" />
+            <SmartImage src={post.cover} alt={post.title} fit="contain" icon="Activity" label={post.category} sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" priority={priority} className="transition-transform duration-700 group-hover:scale-105" />
           </Link>
           <div className="flex flex-1 flex-col p-6">
             <p className="text-xs font-semibold uppercase tracking-widest text-brand">

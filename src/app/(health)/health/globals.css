@@ -20,7 +20,10 @@
   src: url("/health/fonts/noto-sans-devanagari-wght.woff2") format("woff2");
   font-weight: 400 800;
   font-style: normal;
-  font-display: swap;
+  /* optional, not swap: on a slow first visit the 120 KB file lands after first paint, and swapping
+     it in then re-wrapped the Hindi pages (CLS 0.105). Phones already have a Devanagari system font;
+     this one is used once it's cached. */
+  font-display: optional;
   unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
 }
 
