@@ -7,12 +7,12 @@ import { API_PLANS, formatQuota, monthlyPriceLabel } from "@/health/lib/saas/pla
 import { PUBLIC_APIS } from "@/health/data/public-apis";
 
 export const metadata: Metadata = {
-  title: "Developer API — India Health Data for Your App | Premium Health",
+  title: "Developer API — India Health Data for Your App | Bharat Health Guide",
   description:
     "One authenticated API over open, licence-clean health data: foods and nutrition, exercises, clinical trials, medical literature, air quality and country indicators. Free tier, transparent quotas, OpenAPI spec.",
   alternates: { canonical: "/health/developers" },
   openGraph: {
-    title: "Premium Health Platform Data API",
+    title: "Bharat Health Guide Data API",
     description: "Health, nutrition and research data from open sources, behind one API with a free tier.",
     type: "website",
     url: `${SITE.url}/health/developers`,
@@ -55,10 +55,10 @@ export default function DevelopersPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebAPI",
-            name: "Premium Health Platform Data API",
+            name: "Bharat Health Guide Data API",
             description: "India-focused health, nutrition and research data from open sources.",
             documentation: `${SITE.url}/health/developers/docs`,
-            provider: { "@type": "Organization", name: "Premium Health Platform", url: `${SITE.url}/health` },
+            provider: { "@type": "Organization", name: "Bharat Health Guide", url: `${SITE.url}/health` },
             termsOfService: `${SITE.url}/health/terms`,
           }),
         }}
@@ -142,7 +142,7 @@ export default function DevelopersPage() {
                       {endpoint.source.name}
                     </a>
                   ) : (
-                    <span className="text-stone-500 dark:text-stone-400">Premium Health Platform</span>
+                    <span className="text-stone-500 dark:text-stone-400">Bharat Health Guide</span>
                   )}
                 </td>
                 <td className="px-4 py-3 text-xs text-stone-500 dark:text-stone-400">{endpoint.source?.license ?? "Own data"}</td>

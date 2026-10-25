@@ -32,7 +32,7 @@ export default async function AyurvedaTopicPage({ params }: { params: Promise<{ 
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Ayurveda", href: "/health/ayurveda" }, { label: t.title }]} />
+      <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Ayurveda", href: "/health/ayurveda" }, { label: t.title }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: t.title, description: t.excerpt, slug: `/health/ayurveda/${slug}`, category: t.category })) }} />
 
       <div className="hero-pattern mt-3 rounded-3xl border border-emerald-100 p-6 md:p-8 dark:border-stone-700">

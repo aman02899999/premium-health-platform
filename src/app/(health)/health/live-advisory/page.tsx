@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Live Health Advisory — India Weather + Air | Premium Health";
+const seoTitle = "Live Health Advisory — India Weather + Air | Bharat Health Guide";
 const seoDescription = "Live advisory: weather, AQI, UV + health tips — asthma, diabetes, elderly. Open-Meteo + India-specific. Unique, premium + affiliate.";
 const url = "/health/live-advisory";
 const absoluteUrl = `${SITE.url}${url}`;

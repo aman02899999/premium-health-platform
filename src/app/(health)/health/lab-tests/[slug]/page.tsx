@@ -42,7 +42,7 @@ export default async function LabPage({ params }: { params: Promise<{ slug: stri
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Lab Tests", href: "/health/lab-tests" }, { label: l.shortName || l.name }]} />
+      <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Lab Tests", href: "/health/lab-tests" }, { label: l.shortName || l.name }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: l.name, description: l.short, slug: `/health/lab-tests/${slug}`, category: "Lab Test" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(l.faqs)) }} />
 

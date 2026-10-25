@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Men's Health — Heart, Prostate, Testosterone, Fitness | Premium Health";
+const seoTitle = "Men's Health — Heart, Prostate, Testosterone, Fitness | Bharat Health Guide";
 const seoDescription = "Indian men's health hub: early heart risk, belly fat, prostate, testosterone and healthy aging with practical plans..";
 const url = "/health/mens-health";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { applyOffer } from "./offers";
 import { todayIST } from "./growth/dates";
 import type { BlogPost, SiteContent } from "./content/types";
-import { AREAS_SERVED, SITE_URL, absoluteUrl } from "./site";
+import { AREAS_SERVED, SITE_URL, absoluteUrl, instagramHref } from "./site";
 
 // Day-name expansion for opening hours like "Monday – Friday".
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -78,7 +78,7 @@ export function localBusinessJsonLd(c: SiteContent) {
     })),
     // No aggregateRating: Google treats a business rating copied from Maps onto its own site as
     // self-serving review markup (no stars shown, manual-action risk). The real stars live on Maps.
-    sameAs: [`https://www.instagram.com/${b.instagram}/`, b.googleMapsUrl].filter(Boolean),
+    sameAs: businessProfiles(b),
     slogan: b.tagline,
     // What the gym is known for and who coaches there: assistants quote these when asked
     // "who are the trainers" or "does it do personal training".
@@ -97,18 +97,31 @@ export function localBusinessJsonLd(c: SiteContent) {
   };
 }
 
+/** Every public profile of the gym: Instagram, Google Maps and whichever others the admin filled in. */
+export function businessProfiles(b: SiteContent["business"]): string[] {
+  const urls = [b.instagram ? instagramHref(b.instagram) : "", b.googleMapsUrl, b.justdialUrl, b.facebookUrl, b.youtubeUrl];
+  return [...new Set(urls.map((u) => (u ?? "").trim()).filter((u) => /^https:\/\//.test(u)))];
+}
+
+// A role field holding a whole bio ("@goldgymcertified … certified Trainer Former …") is not a job title.
+const isJobTitle = (role: string) => role.length <= 40 && !role.includes("@");
+
 /** A coach, with only the credentials the admin entered (never invented). */
 export function personJsonLd(t: SiteContent["trainers"][number]) {
   const creds = (t.credentials ?? []).map((x) => x.trim()).filter(Boolean);
+  const role = t.role.trim();
+  const title = isJobTitle(role) ? role : /trainer/i.test(role) ? "Trainer" : "Coach";
+  const description = t.bio || (isJobTitle(role) ? "" : role);
   return {
     "@type": "Person",
+    ...(/founder/i.test(role) ? { "@id": `${SITE_URL}/#founder` } : {}),
     name: t.name,
-    jobTitle: t.role,
-    ...(t.bio ? { description: t.bio } : {}),
+    jobTitle: title,
+    ...(description ? { description } : {}),
     ...(t.image ? { image: /^https?:\/\//.test(t.image) ? t.image : absoluteUrl(t.image) } : {}),
     ...(t.specialties.length ? { knowsAbout: t.specialties } : {}),
     ...(creds.length ? { hasCredential: creds.map((name) => ({ "@type": "EducationalOccupationalCredential", name })) } : {}),
-    ...(t.instagram ? { sameAs: [`https://www.instagram.com/${t.instagram.replace(/^@/, "")}/`] } : {}),
+    ...(t.instagram ? { sameAs: [instagramHref(t.instagram)] } : {}),
     worksFor: { "@id": `${SITE_URL}/#gym` },
   };
 }

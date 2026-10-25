@@ -46,7 +46,7 @@ export default async function MedicinePage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Medicines", href: "/health/medicines" }, { label: m.genericName }]} />
+      <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Medicines", href: "/health/medicines" }, { label: m.genericName }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: m.genericName, description: m.short, slug: `/health/medicines/${slug}`, category: "Medicine" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(m.faqs)) }} />
 

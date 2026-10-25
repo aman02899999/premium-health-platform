@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cat = slugToCategory(slug);
   if (!cat) return { title: "Category not found" };
-  const title = seoTitle(`${cat} — Health Guides | Premium Health`).slice(0, 60);
+  const title = seoTitle(`${cat} — Health Guides | Bharat Health Guide`).slice(0, 60);
   const desc = seoDescription(`Evidence-informed ${cat} guides for Indian families: ${cat} diet, lifestyle, medicines, Ayurveda — with FAQs, references, real photos. Latest & trending.`).slice(0, 155);
   const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent(`${cat} — Guides`)}&category=${encodeURIComponent(cat)}&type=Blog`;
   return {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: { card: "summary_large_image", title, description: desc, images: [ogImage] },
-    keywords: [cat, `${cat} India`, `${cat} guide`, "health blog", "Premium Health Platform", "latest", "trending"],
+    keywords: [cat, `${cat} India`, `${cat} guide`, "health blog", "Bharat Health Guide", "latest", "trending"],
   };
 }
 

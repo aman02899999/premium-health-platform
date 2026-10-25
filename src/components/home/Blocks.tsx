@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check, Star } from "lucide-react";
 import type { BlogPost, Faq, Program, Trainer } from "@/lib/content/types";
-import { instagramHref } from "@/lib/site";
+import { instagramHandle, instagramHref } from "@/lib/site";
 import { readingMinutes } from "@/lib/markdown";
 import { Icon } from "@/components/Icon";
 import { Reveal } from "@/components/ui/Reveal";
@@ -73,7 +73,7 @@ export function TrainerGrid({ trainers }: { trainers: Trainer[] }) {
                 </div>
                 {t.instagram && (
                   <a href={instagramHref(t.instagram)} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 py-1.5 text-sm text-white/70 hover:text-brand">
-                    <InstagramIcon className="h-4 w-4" /> @{t.instagram}
+                    <InstagramIcon className="h-4 w-4" /> @{instagramHandle(t.instagram)}
                   </a>
                 )}
               </div>

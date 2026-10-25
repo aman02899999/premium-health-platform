@@ -30,7 +30,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Type 2 Diabetes in India: Complete Guide to Sugar Control, Diet, Medicines & Screening (2026)",
     seoDescription: "India's evidence-based type 2 diabetes playbook: HbA1c targets, Indian diabetes plate with millets, post-meal walks, metformin to insulin, Ayurveda add-ons, and annual eye-kidney-foot screening.",
     keywords: ["type 2 diabetes India", "HbA1c target", "Indian diabetes diet", "millets diabetes", "metformin", "diabetes screening", "post-meal walk"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "HbA1c targets and monitoring rhythm",
@@ -95,7 +95,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "High Blood Pressure in India: Home Monitoring, 5 g Salt Plan & Medicines (2026)",
     seoDescription: "Control hypertension below 130/80: correct home BP technique, Indian low-salt DASH eating, amlodipine/losartan explained, and when high BP is an emergency.",
     keywords: ["high blood pressure India", "home BP monitoring", "low salt diet", "DASH diet India", "amlodipine", "hypertension emergency"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "How to measure BP correctly at home",
@@ -150,7 +150,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Thyroid Health (India): TSH Testing, Levothyroxine Timing, Diet & Myths (2026)",
     seoDescription: "Hypothyroidism explained for Indians: TSH + FT4 interpretation, the 30-minute levothyroxine rule, biotin interference, pregnancy targets, and nutrition that actually helps.",
     keywords: ["thyroid India", "TSH test", "hypothyroidism", "levothyroxine timing", "Hashimoto", "thyroid diet myths"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Reading your thyroid report: TSH, FT4, anti-TPO",
@@ -204,7 +204,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Indian Heart-Healthy Diet: DASH-Thali Plan, Oils, Nuts & LDL Targets (2026)",
     seoDescription: "Protect your heart without giving up tadka: oil rotation, 30 g nuts, 30 g fibre, millet swaps, salt limits and LDL targets with cardiologist-approved Indian meals.",
     keywords: ["heart healthy diet India", "DASH diet Indian", "LDL cholesterol diet", "mustard oil vs groundnut", "nuts heart", "low salt Indian food"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "LDL targets: one number does not fit all",
@@ -258,7 +258,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Ayurvedic Herbs Guide: 20 Herbs with Evidence Grades, Safety & Interactions (2026)",
     seoDescription: "Ashwagandha to triphala with honest evidence ratings: traditional uses, trial signals, drug interactions, pregnancy warnings and how to buy tested AYUSH-licensed products.",
     keywords: ["ayurvedic herbs evidence", "ashwagandha safety", "turmeric curcumin", "herb drug interactions", "AYUSH licensed products", "giloy liver"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "How to read an herb label like a pharmacist",
@@ -312,7 +312,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Indian Metabolic Health Diet: 6 Food Swaps for Sugar, Triglycerides & Liver (2026)",
     seoDescription: "Move HbA1c, triglycerides and liver fat with Indian food swaps: millet rotation, protein breakfasts, fibre targets, oil budgets and a weekly shopping list.",
     keywords: ["metabolic health diet India", "millets vs rice", "triglycerides diet", "fatty liver diet", "Indian diet HbA1c", "fibre protein plate"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Carbohydrate quality: GI, portion and pairing",
@@ -366,7 +366,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "PCOS in Indian Women: Rotterdam Diagnosis, Lifestyle-First Care & Fertility (2026)",
     seoDescription: "Periods, acne, hair fall, weight and fertility in PCOS: how diagnosis really works, strength-first lifestyle, metformin and hormonal options, and fertility pathways.",
     keywords: ["PCOS India", "PCOS diagnosis Rotterdam", "PCOS diet", "PCOS fertility", "irregular periods", "metformin PCOS"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Diagnosis done right: Rotterdam plus exclusions",
@@ -420,7 +420,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Fatty Liver (MASLD): Stages, FIB-4, Diet & 7–10% Reversal Plan (2026)",
     seoDescription: "Most early fatty liver is reversible: FIB-4 staging, zero-alcohol rule, Mediterranean-Indian plates, statin safety and the gradual weight-loss target that heals liver fat.",
     keywords: ["fatty liver reversal", "MASLD diet", "FIB-4 score", "NAFLD India", "liver fat weight loss", "statins fatty liver"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Staging without fear: ultrasound, enzymes and FIB-4",
@@ -474,7 +474,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Sleep Apnea in India: Snoring Red Flags, Home Sleep Study & CPAP Guide (2026)",
     seoDescription: "Loud snoring with daytime sleepiness? Learn STOP-Bang screening, home vs lab sleep studies, CPAP adaptation, weight and alcohol levers, and driving safety.",
     keywords: ["sleep apnea India", "snoring treatment", "home sleep study", "CPAP", "STOP-Bang", "daytime sleepiness"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "STOP-Bang: the 2-minute self-screen",
@@ -528,7 +528,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Anemia in India: CBC + Ferritin + B12 Workup, Iron Absorption & Treatment (2026)",
     seoDescription: "Fatigue, pallor, hair fall? Type your anemia first — iron vs B12 vs thalassemia trait — then fix absorption (vitamin C timing), heavy periods and the 3-month refill rule.",
     keywords: ["anemia India", "iron deficiency", "ferritin test", "vitamin B12 deficiency", "heavy periods anemia", "iron tablets absorption"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "The three-test workup: CBC, ferritin, B12",
@@ -582,7 +582,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Yoga for Blood Sugar: 20-Min Beginner Plan with Safety Modifications (2026)",
     seoDescription: "A practical morning yoga flow for diabetes — warm-up, standing sequence, breathing — plus post-meal walks, knee/heart/pregnancy modifications and what to track.",
     keywords: ["yoga diabetes", "yoga blood sugar", "surya namaskar diabetes", "pranayama", "post-meal walk", "yoga beginners India"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Why yoga helps sugar: three mechanisms",
@@ -636,7 +636,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Vitamin D Deficiency in India: Testing, 60K Correction & Maintenance (2026)",
     seoDescription: "Why most urban Indians are deficient despite tropical sun — 25-OH testing, weekly 60,000 IU courses, D3 vs D2, calcium pairing and safe sun exposure.",
     keywords: ["vitamin D deficiency India", "vitamin D test", "D3 60K", "cholecalciferol dose", "vitamin D sun exposure", "calcium vitamin D"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "Testing: 25-OH vitamin D, done right",
@@ -690,7 +690,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Millets for Diabetes India: Low-GI Swap Guide Foxtail Little Barnyard Kodo (2026)",
     seoDescription: "Replace white rice with low-GI millets: foxtail GI 50.8, little 52, barnyard 50 — diabetic-friendly, fibre-rich, 50:50 start, thali-builder + millet-swap + tracking.",
     keywords: ["millets diabetes India", "low GI millets", "foxtail millet GI", "little millet", "barnyard millet", "millet swap"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "GI, fibre, protein — why millets win",
@@ -727,7 +727,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "Intermittent Fasting India: 16:8, Navratri, Ekadashi Safe Guide (2026)",
     seoDescription: "Intermittent fasting 16:8 + Navratri + Ekadashi — who should avoid, hydration, breaking fast, diabetes safety, fasting planner + premium + WhatsApp.",
     keywords: ["intermittent fasting India", "Navratri fasting", "Ekadashi", "16:8 fasting", "fasting diabetes", "fasting planner"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "16:8 vs 12:12 — what suits Indians",
@@ -761,7 +761,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     seoTitle: "High Protein Vegetarian India: Dal Soya Paneer Sprouts 1.2-1.6g/kg Guide (2026)",
     seoDescription: "Hit protein 1.2-1.6g/kg vegetarian: dal 9g, soya 52g, paneer 18g, sprouts 7g, curd, whey 25g — Indian thali + tracking + premium + affiliate.",
     keywords: ["high protein vegetarian India", "soya chunks protein", "dal protein", "paneer protein", "vegetarian protein 1.2g/kg", "protein thali"],
-    authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
+    authorRole: "Bharat Health Guide Editorial Team · Evidence-reviewed health writers",
     extraBody: [
       {
         heading: "How to hit 100g protein vegetarian — sample day",

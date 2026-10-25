@@ -44,7 +44,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Herbs", href: "/health/herbs" }, { label: h.name }]} />
+      <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Herbs", href: "/health/herbs" }, { label: h.name }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: h.name, description: h.short, slug: `/health/herbs/${slug}`, category: "Herb" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(h.faqs)) }} />
 

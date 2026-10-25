@@ -17,6 +17,11 @@ export type Business = {
   googleMapsUrl: string;
   googleReviewUrl: string;
   mapEmbedUrl: string;
+  // Public profiles that name the gym. They go into the structured data (sameAs) so search
+  // engines and AI assistants can tie them to this site; leave blank if there isn't one.
+  justdialUrl?: string;
+  facebookUrl?: string;
+  youtubeUrl?: string;
   address: {
     street: string;
     locality: string;

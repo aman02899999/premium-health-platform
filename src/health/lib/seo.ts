@@ -5,6 +5,25 @@ export function absoluteUrl(path = "/health") {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+/**
+ * The publisher of every /health page. It is run by the gym, and saying so (parentOrganization →
+ * the gym's LocalBusiness node) lets search engines and AI assistants tie the health guides to
+ * Royal Fitness Club instead of treating them as an unknown, anonymous publisher.
+ */
+export const HEALTH_ORG_ID = `${SITE.url}/health#organization`;
+const GYM = { "@type": "HealthClub", "@id": `${SITE.url}/#gym`, name: "Royal Fitness Club", url: SITE.url };
+
+export function healthPublisher() {
+  return {
+    "@type": "Organization",
+    "@id": HEALTH_ORG_ID,
+    name: SITE.name,
+    url: `${SITE.url}/health`,
+    logo: { "@type": "ImageObject", url: absoluteUrl("/health/logo.svg") },
+    parentOrganization: GYM,
+  };
+}
+
 export function articleJsonLd(input: {
   title: string;
   description: string;
@@ -21,15 +40,11 @@ export function articleJsonLd(input: {
     description: input.description,
     url: absoluteUrl(input.slug),
     inLanguage: "en-IN",
-    datePublished: input.datePublished || "2026-01-15",
-    dateModified: input.dateModified || "2026-08-20",
+    // Only real dates: these pages used to claim fixed 2026-01-15 / 2026-08-20 dates they never had.
+    ...(input.datePublished ? { datePublished: input.datePublished } : {}),
+    ...(input.dateModified ? { dateModified: input.dateModified } : {}),
     about: input.category || "Health",
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: `${SITE.url}/health`,
-      logo: { "@type": "ImageObject", url: absoluteUrl("/health/logo.svg") },
-    },
+    publisher: healthPublisher(),
     medicalAudience: { "@type": "PeopleAudience", audienceType: "Patient" },
   };
 }
@@ -59,14 +74,30 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   };
 }
 
+/** BreadcrumbList from visible crumbs; the current page (no link) is listed without a URL, which Google allows. */
+export function breadcrumbItemsJsonLd(items: { label: string; href?: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.label,
+      ...(it.href ? { item: absoluteUrl(it.href) } : {}),
+    })),
+  };
+}
+
 export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE.url}/health#website`,
     name: SITE.name,
     url: `${SITE.url}/health`,
     description: SITE.tagline,
     inLanguage: "en-IN",
+    publisher: { "@id": HEALTH_ORG_ID },
     potentialAction: {
       "@type": "SearchAction",
       target: `${SITE.url}/health/search?q={search_term_string}`,
@@ -78,11 +109,9 @@ export function websiteJsonLd() {
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE.name,
-    url: `${SITE.url}/health`,
+    ...healthPublisher(),
     slogan: SITE.tagline,
-    logo: absoluteUrl("/health/logo.svg"),
+    telephone: SITE.contactPhone,
     sameAs: ["https://www.instagram.com/royalfitness93_/"],
   };
 }
@@ -110,13 +139,8 @@ export function blogPostingJsonLd(input: {
     inLanguage: "en-IN",
     datePublished: input.datePublished,
     dateModified: input.dateModified,
-    author: { "@type": "Organization", name: input.author, url: absoluteUrl("/") },
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      url: `${SITE.url}/health`,
-      logo: { "@type": "ImageObject", url: absoluteUrl("/health/logo.svg") },
-    },
+    author: { "@type": "Organization", name: input.author, url: absoluteUrl("/health/blog/author"), parentOrganization: { "@id": HEALTH_ORG_ID } },
+    publisher: healthPublisher(),
     articleSection: input.category,
     keywords: input.tags.join(", "),
     timeRequired: `PT${input.readMinutes}M`,

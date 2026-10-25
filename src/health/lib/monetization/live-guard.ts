@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 /**
- * The Premium Health Platform has no real payment integration yet: its provider layer
+ * The Bharat Health Guide has no real payment integration yet: its provider layer
  * creates mock orders and simulates verification. On the live site every health payment
  * endpoint must therefore refuse, so nobody can be charged for — or unlock — anything
  * through a simulated flow. (Royal Fitness Club's Razorpay checkout is separate and real.)
@@ -14,7 +14,7 @@ export function paymentsUnavailable() {
       ok: false,
       error: {
         code: "online_payments_unavailable",
-        message: "Online payment isn't available on Premium Health Platform yet. Message us on WhatsApp (+91 88518 30081) and we'll help.",
+        message: "Online payment isn't available on Bharat Health Guide yet. Message us on WhatsApp (+91 88518 30081) and we'll help.",
         status: 503,
       },
     },

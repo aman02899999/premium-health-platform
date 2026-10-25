@@ -77,7 +77,7 @@ function hero({ theme, kicker, title, icons }) {
 ${lines([kicker.toUpperCase()], 84, 97, 17, "#111827", 800)}
 ${lines(t, 64, 190, 54, "#ffffff", 900, 1.12)}
 <rect x="64" y="${190 + t.length * 60 + 4}" width="120" height="8" rx="4" fill="${accent}"/>
-${lines(["Premium Health Platform · royalfitnesclub.in/health"], 64, 580, 20, "#ffffff", 600)}
+${lines(["Bharat Health Guide · royalfitnesclub.in/health"], 64, 580, 20, "#ffffff", 600)}
 ${ic}
 </svg>`;
 }

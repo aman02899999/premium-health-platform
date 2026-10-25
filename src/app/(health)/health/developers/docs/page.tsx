@@ -6,9 +6,9 @@ import { API_ENDPOINTS } from "@/health/lib/saas/endpoints";
 import { API_PLANS, formatQuota } from "@/health/lib/saas/plans";
 
 export const metadata: Metadata = {
-  title: "API Reference — Auth, Quotas, Endpoints & Errors | Premium Health Developers",
+  title: "API Reference — Auth, Quotas, Endpoints & Errors | Bharat Health Guide Developers",
   description:
-    "Complete reference for the Premium Health Platform Data API: authentication, response envelope, rate-limit headers, error codes, every endpoint with parameters and source licences, plus curl, JavaScript and Python examples.",
+    "Complete reference for the Bharat Health Guide Data API: authentication, response envelope, rate-limit headers, error codes, every endpoint with parameters and source licences, plus curl, JavaScript and Python examples.",
   alternates: { canonical: "/health/developers/docs" },
 };
 
@@ -285,7 +285,7 @@ print(bhg("/health/api/v1/nutrition/fruit", name="mango"))`}</code></pre>
         <p className="mt-1">
           Each endpoint lists its upstream source and licence. You must attribute the upstream provider in your own UI where their licence requires it — for example &quot;Air quality data by{" "}
           <a href="https://open-meteo.com" className="font-bold text-emerald-700 hover:underline dark:text-emerald-400" target="_blank" rel="noopener noreferrer nofollow">Open-Meteo</a> (CC BY 4.0)&quot;.
-          Plans that require attribution to Premium Health Platform echo the required string in <code>meta.attribution</code> on every response.
+          Plans that require attribution to Bharat Health Guide echo the required string in <code>meta.attribution</code> on every response.
         </p>
         <p className="mt-2">
           This API serves public reference data only. It is informational, not medical advice, and must not be used as the sole basis for diagnosis or treatment. See our{" "}

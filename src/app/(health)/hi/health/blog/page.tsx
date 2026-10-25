@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/site";
 import { postsIn } from "@/health/lib/posts";
 import { PostIndex } from "@/health/components/posts/PostIndex";
+import { postPath } from "@/health/lib/post-types";
+import { breadcrumbJsonLd, HEALTH_ORG_ID } from "@/health/lib/seo";
 
 export const metadata: Metadata = {
   title: "हिंदी में स्वास्थ्य गाइड: गहराई से, स्रोतों सहित",
@@ -11,8 +13,24 @@ export const metadata: Metadata = {
 
 export default function HindiBlogIndex() {
   const posts = postsIn("hi");
+  const jsonld = [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "हिंदी में स्वास्थ्य गाइड",
+      url: absoluteUrl("/hi/health/blog"),
+      inLanguage: "hi-IN",
+      publisher: { "@id": HEALTH_ORG_ID },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: posts.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.title, url: absoluteUrl(postPath("hi", p.slug)) })),
+      },
+    },
+    breadcrumbJsonLd([{ name: "होम", path: "/health" }, { name: "हिंदी गाइड", path: "/hi/health/blog" }]),
+  ];
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonld).replace(/</g, "\\u003c") }} />
       <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-700">हेल्थ ब्लॉग · हिंदी</p>
       <h1 className="font-display mt-2 text-3xl font-black md:text-4xl">हिंदी में स्वास्थ्य गाइड</h1>
       <p className="mt-3 max-w-2xl text-stone-600">हर गाइड भारतीय हालात को ध्यान में रखकर लिखी गई है, आधिकारिक स्रोतों के साथ। यह सामान्य जानकारी है, डॉक्टर की सलाह नहीं।</p>

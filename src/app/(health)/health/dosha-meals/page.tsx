@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Dosha Meals — Ayurveda Vata Pitta Kapha | Premium Health";
+const seoTitle = "Dosha Meals — Ayurveda Vata Pitta Kapha | Bharat Health Guide";
 const seoDescription = "Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India.";
 const url = "/health/dosha-meals";
 const absoluteUrl = `${SITE.url}${url}`;

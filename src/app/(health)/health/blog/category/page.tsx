@@ -6,7 +6,7 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 import { collectionPageJsonLd } from "@/health/lib/seo";
 
-const seoTitle = "Blog Categories — Disease, Nutrition, Ayurveda | Premium Health";
+const seoTitle = "Blog Categories — Disease, Nutrition, Ayurveda | Bharat Health Guide";
 const seoDescription = "Browse health guides by category: Disease Education, Nutrition, Ayurveda, Yoga, Women's Health, with latest and trending guides.";
 const url = "/health/blog/category";
 const absoluteUrl = `${SITE.url}${url}`;
