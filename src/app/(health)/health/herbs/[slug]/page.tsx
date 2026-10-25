@@ -5,7 +5,7 @@ import { Leaf, ShieldAlert, FlaskConical, AlertTriangle, BookOpen, CheckCircle2 
 import { HERBS, getHerb } from "@/health/data/herbs";
 import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, EvidenceBadge, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, DoctorBox, LikeButton } from "@/health/components/ui";
-import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 import { NOT_REVIEWED } from "@/health/lib/review";
 
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const h = getHerb(slug);
   if (!h) return { title: "Herb not found" };
-  return { title: `${h.name} — Uses, Evidence, Safety & Interactions`, description: h.short, alternates: { canonical: `/health/herbs/${slug}` } };
+  return { title: `${h.name} — Uses, Evidence, Safety & Interactions`, description: entityDescription(h.short, "Uses, what the evidence shows, safety and medicine interactions."), alternates: { canonical: `/health/herbs/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
@@ -45,7 +45,7 @@ export default async function HerbPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Herbs", href: "/health/herbs" }, { label: h.name }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: h.name, description: h.short, slug: `/health/herbs/${slug}`, category: "Herb" })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: h.name, description: entityDescription(h.short, "Uses, what the evidence shows, safety and medicine interactions."), slug: `/health/herbs/${slug}`, category: "Herb" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(h.faqs)) }} />
 
       <div className="mt-3 overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-lime-50 via-emerald-50 to-teal-50 p-6 md:p-8 dark:border-stone-700 dark:from-stone-900 dark:to-emerald-950/30">

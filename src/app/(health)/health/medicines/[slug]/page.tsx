@@ -6,7 +6,7 @@ import { MEDICINES, getMedicine } from "@/health/data/medicines";
 import { getDisease } from "@/health/data/diseases-index";
 import { getLab } from "@/health/data/clinical";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, LikeButton } from "@/health/components/ui";
-import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 import { NOT_REVIEWED } from "@/health/lib/review";
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const m = getMedicine(slug);
   if (!m) return { title: "Medicine not found" };
-  return { title: `${m.genericName} — Uses, Side Effects, Warnings & Monitoring`, description: m.short, alternates: { canonical: `/health/medicines/${slug}` } };
+  return { title: `${m.genericName} — Uses, Side Effects, Warnings & Monitoring`, description: entityDescription(m.short, "Uses, side effects, warnings and monitoring. Take it only as your doctor advises."), alternates: { canonical: `/health/medicines/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
@@ -47,7 +47,7 @@ export default async function MedicinePage({ params }: { params: Promise<{ slug:
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Medicines", href: "/health/medicines" }, { label: m.genericName }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: m.genericName, description: m.short, slug: `/health/medicines/${slug}`, category: "Medicine" })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: m.genericName, description: entityDescription(m.short, "Uses, side effects, warnings and monitoring. Take it only as your doctor advises."), slug: `/health/medicines/${slug}`, category: "Medicine" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(m.faqs)) }} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-slate-900 to-sky-900 p-6 text-white md:p-8">

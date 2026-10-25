@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Millet Swap Engine — Replace White Rice with Low-GI Millets | Bharat Health Guide";
+const seoTitle = "Millet Swap Engine — Replace White Rice with Low-GI Millets";
 const seoDescription = "Swap white rice/wheat with Indian millets: foxtail GI 50.8, little millet GI 52, barnyard GI 50 — lower GI, more fibre, diabetic-friendly..";
 const url = "/health/millet-swap";
 const absoluteUrl = `${SITE.url}${url}`;

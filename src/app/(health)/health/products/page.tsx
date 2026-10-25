@@ -10,7 +10,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Trusted Health Products on Amazon | Bharat Health Guide";
+const seoTitle = "Trusted Health Products on Amazon";
 const seoDescription = "Trusted-brand health products on Amazon India — BP monitors, glucometers, healthy foods and fitness gear — with tips to buy from genuine sellers.";
 const url = "/health/products";
 const absoluteUrl = `${SITE.url}${url}`;

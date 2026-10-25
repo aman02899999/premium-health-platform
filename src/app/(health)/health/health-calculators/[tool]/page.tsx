@@ -45,7 +45,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ too
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Calculators", href: "/health/health-calculators" }, { label: c.name }]} />
-      <UniquePageSEO breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Calculators", item: "/health/health-calculators" }, { name: c.name, item: path }]} faqs={c.faqs} howTo={{ name: `How to use the ${c.name}`, steps: c.howTo }} />
+      <UniquePageSEO breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Calculators", item: "/health/health-calculators" }, { name: c.name, item: path }]} faqs={c.faqs} faqsVisible />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(app) }} />
 
       <header className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 via-teal-800 to-stone-900 p-6 text-white md:p-8">

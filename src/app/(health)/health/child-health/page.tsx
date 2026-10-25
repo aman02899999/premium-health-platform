@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Child Health — Growth, Nutrition, Vaccines India | Bharat Health Guide";
+const seoTitle = "Child Health — Growth, Nutrition, Vaccines India";
 const seoDescription = "Parent-friendly primers on growth, anemia, vitamin D, fever care and when children need urgent evaluation. Extra safety, weight-based dosing warning..";
 const url = "/health/child-health";
 const absoluteUrl = `${SITE.url}${url}`;

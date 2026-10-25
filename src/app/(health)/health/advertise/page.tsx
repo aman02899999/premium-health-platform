@@ -9,7 +9,7 @@ import { LeadForm } from "@/health/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/health/lib/monetization/config";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 
-const seoTitle = "Advertise — Ad Slots, Sponsored Content | Bharat Health Guide";
+const seoTitle = "Advertise — Ad Slots, Sponsored Content";
 const seoDescription = "Advertise with us: ad slots homepage_top, disease_middle, article_bottom, products_sidebar, sponsored content, newsletter — clearly labeled Advertisement/Sponsored.";
 const url = "/health/advertise";
 const absoluteUrl = `${SITE.url}${url}`;

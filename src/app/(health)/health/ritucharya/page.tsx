@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Ritucharya — Ayurvedic Seasonal Planner | Live Weather | Bharat Health Guide";
+const seoTitle = "Ritucharya — Ayurvedic Seasonal Planner | Live Weather";
 const seoDescription = "Ayurvedic Ritucharya + live weather pulse: diet, lifestyle per season — Vata Pitta Kapha pathya/apathya.";
 const url = "/health/ritucharya";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -204,20 +204,6 @@ export function collectionPageJsonLd(input: { title: string; description: string
   };
 }
 
-export function howToJsonLd(input: { name: string; description: string; steps: { name: string; text: string }[] }) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: input.name,
-    description: input.description,
-    step: input.steps.map((s, i) => ({
-      "@type": "HowToStep",
-      position: i + 1,
-      name: s.name,
-      text: s.text,
-    })),
-  };
-}
 
 export function readingTime(text: string) {
   const words = text.split(/\s+/).filter(Boolean).length;
@@ -228,16 +214,34 @@ export function canonical(path: string) {
   return absoluteUrl(path);
 }
 
-// SEO meta helpers — for pro optimization
-export function seoTitle(title: string, includeBrand = true) {
-  const suffix = ` | ${SITE.name}`;
-  const full = includeBrand ? `${title}${suffix}` : title;
-  return full.length > 60 ? `${title.slice(0, 55)}...${suffix}` : full;
+/**
+ * A page title for metadata.title. The /health layout's title template already appends
+ * " | Bharat Health Guide", so this never adds the brand itself (it used to, which printed the
+ * brand twice). Long titles are cut at a word boundary so title + brand stays near 60 characters.
+ */
+export function seoTitle(title: string, max = 60 - ` | ${SITE.name}`.length) {
+  const t = title.trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max + 1);
+  return cut.slice(0, cut.lastIndexOf(" ") > 0 ? cut.lastIndexOf(" ") : max).replace(/[\s—–|:,-]+$/, "");
 }
 
+/** A meta description of at most `max` characters, cut at a word boundary. */
 export function seoDescription(desc: string, max = 155) {
-  if (desc.length <= max) return desc;
-  return desc.slice(0, max - 3).trim() + "...";
+  const d = desc.trim().replace(/\s+/g, " ");
+  if (d.length <= max) return d;
+  const cut = d.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" ") > 0 ? cut.lastIndexOf(" ") : max - 1).replace(/[\s,;:—–-]+$/, "")}…`;
+}
+
+/**
+ * Reference pages (diseases, herbs, tests…) use a one-line summary as their description, often
+ * 40–70 characters: too short for Google to show a useful snippet. Short ones get a plain line
+ * about what the page covers; long ones are left alone apart from the length cap.
+ */
+export function entityDescription(short: string, covers: string) {
+  const s = short.trim();
+  return seoDescription(s.length >= 110 ? s : `${s.replace(/\.?$/, ".")} ${covers}`);
 }
 
 export function openGraphImage(title: string) {

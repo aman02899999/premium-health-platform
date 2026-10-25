@@ -15,7 +15,7 @@ import {
   ShareButtons, AdSlot, DisclaimerBar, LikeButton, Newsletter,
 } from "@/health/components/ui";
 import { EvidenceStack } from "@/health/components/charts";
-import { articleJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, breadcrumbJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 import { LiveResearchSection } from "@/health/components/research";
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
@@ -40,9 +40,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!d) return { title: "Disease not found" };
   return {
     title: `${d.name} — Symptoms, Causes, Tests, Treatment & Diet`,
-    description: d.short,
+    description: entityDescription(d.short, "Symptoms, causes, tests, treatment options and diet, explained for Indian families."),
     alternates: { canonical: `/health/diseases/${slug}` },
-    openGraph: { title: `${d.name} | Bharat Health Guide`, description: d.short, type: "article" },
+    openGraph: { title: `${d.name}`, description: entityDescription(d.short, "Symptoms, causes, tests, treatment options and diet, explained for Indian families."), type: "article" },
   };
 }
 

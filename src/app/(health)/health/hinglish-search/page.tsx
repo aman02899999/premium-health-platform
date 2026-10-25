@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Hinglish Health Search — Hindi + English Mix | Bharat Health Guide";
+const seoTitle = "Hinglish Health Search — Hindi + English Mix";
 const seoDescription = "Search health in Hinglish: 'madhumeh ke lakshan' — understands Hindi + English mix..";
 const url = "/health/hinglish-search";
 const absoluteUrl = `${SITE.url}${url}`;

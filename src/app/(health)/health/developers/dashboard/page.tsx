@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/health/components/ui";
 import DeveloperDashboard from "@/health/components/developers/DeveloperDashboard";
 
 export const metadata: Metadata = {
-  title: "Developer Dashboard — API Keys & Usage | Bharat Health Guide",
+  title: "Developer Dashboard — API Keys & Usage",
   description:
     "Create, label and revoke API keys and watch quota consumption by key and endpoint. Keys are stored hashed and shown once at creation.",
   alternates: { canonical: "/health/developers/dashboard" },

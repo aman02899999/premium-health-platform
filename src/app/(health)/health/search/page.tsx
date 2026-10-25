@@ -3,7 +3,7 @@ import SearchClient from "./SearchClient";
 import { EXAMPLE_SEARCHES } from "@/health/lib/site";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Search — Diseases, Herbs, Foods, Yoga | Bharat Health Guide";
+const seoTitle = "Search — Diseases, Herbs, Foods, Yoga";
 const seoDescription = "Global health search across diseases, symptoms, medicines, herbs, nutrition, lab tests and articles with autocomplete..";
 const url = "/health/search";
 const absoluteUrl = `${SITE.url}${url}`;

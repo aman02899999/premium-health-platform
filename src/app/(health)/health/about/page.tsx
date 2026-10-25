@@ -8,7 +8,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 
-const seoTitle = "About — Editorial Policy, Evidence & Medical Review | Bharat Health Guide";
+const seoTitle = "About — Editorial Policy, Evidence & Medical Review";
 const seoDescription = "Who we are, how we write, how we grade evidence, and our medical-review workflow for trustworthy Indian health publication. Live World Bank India indicators.";
 const url = "/health/about";
 const absoluteUrl = `${SITE.url}${url}`;

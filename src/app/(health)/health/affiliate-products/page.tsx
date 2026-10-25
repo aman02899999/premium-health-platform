@@ -8,7 +8,7 @@ import { AdBanner } from "@/health/components/monetization/AdComponents";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 
-const seoTitle = "Affiliate Products — Modular Engine | Bharat Health Guide";
+const seoTitle = "Affiliate Products — Modular Engine";
 const seoDescription = "Central affiliate product engine: diabetes, BP, heart, weight, yoga, nutrition — modular config, tracking impressions/clicks/CTR, disclosure, no fabricated ratings.";
 const url = "/health/affiliate-products";
 const absoluteUrl = `${SITE.url}${url}`;

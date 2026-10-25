@@ -5,7 +5,7 @@ import { FlaskConical, CheckCircle2 } from "lucide-react";
 import { LAB_TESTS, getLab } from "@/health/data/clinical";
 import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, InfoNote, LikeButton } from "@/health/components/ui";
-import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 
 export function generateStaticParams() { return LAB_TESTS.map((l) => ({ slug: l.slug })); }
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const l = getLab(slug);
   if (!l) return { title: "Lab test not found" };
-  return { title: `${l.name} — Normal Range, Preparation & Meaning`, description: l.short, alternates: { canonical: `/health/lab-tests/${slug}` } };
+  return { title: `${l.name} — Normal Range, Preparation & Meaning`, description: entityDescription(l.short, "Normal range, how to prepare and what your result can mean."), alternates: { canonical: `/health/lab-tests/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
@@ -43,7 +43,7 @@ export default async function LabPage({ params }: { params: Promise<{ slug: stri
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Lab Tests", href: "/health/lab-tests" }, { label: l.shortName || l.name }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: l.name, description: l.short, slug: `/health/lab-tests/${slug}`, category: "Lab Test" })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: l.name, description: entityDescription(l.short, "Normal range, how to prepare and what your result can mean."), slug: `/health/lab-tests/${slug}`, category: "Lab Test" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(l.faqs)) }} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-cyan-900 to-emerald-900 p-6 text-white md:p-8">

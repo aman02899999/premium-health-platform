@@ -5,7 +5,7 @@ import { Activity, CheckCircle2 } from "lucide-react";
 import { SYMPTOMS, getSymptom } from "@/health/data/clinical";
 import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, EmergencyBox, DoctorBox } from "@/health/components/ui";
-import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 
 export function generateStaticParams() { return SYMPTOMS.map((s) => ({ slug: s.slug })); }
 
@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const s = getSymptom(slug);
   if (!s) return { title: "Symptom not found" };
-  return { title: `${s.name} — Possible Causes, Questions & When to Seek Care`, description: s.short, alternates: { canonical: `/health/symptoms/${slug}` } };
+  return { title: `${s.name} — Possible Causes, Questions & When to Seek Care`, description: entityDescription(s.short, "Common causes, warning signs and when to see a doctor."), alternates: { canonical: `/health/symptoms/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
@@ -38,7 +38,7 @@ export default async function SymptomPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Symptoms", href: "/health/symptoms" }, { label: s.name }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: s.name, description: s.short, slug: `/health/symptoms/${slug}`, category: "Symptom" })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: s.name, description: entityDescription(s.short, "Common causes, warning signs and when to see a doctor."), slug: `/health/symptoms/${slug}`, category: "Symptom" })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(s.faqs)) }} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-red-900 p-6 text-white md:p-8">

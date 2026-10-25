@@ -3,7 +3,7 @@ import HerbsClient from "./HerbsClient";
 import { HERBS } from "@/health/data/herbs";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Herbs Directory — Ashwagandha, Giloy, Turmeric | Bharat Health Guide";
+const seoTitle = "Herbs Directory — Ashwagandha, Giloy, Turmeric";
 const seoDescription = "Ayurvedic herbs: ashwagandha, giloy, turmeric, shatavari — evidence, uses, safety, interactions..";
 const url = "/health/herbs";
 const absoluteUrl = `${SITE.url}${url}`;

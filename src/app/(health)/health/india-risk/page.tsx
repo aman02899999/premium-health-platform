@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "India Risk — IDRS Diabetes + Anemia Score | Unique India | Bharat Health Guide";
+const seoTitle = "India Risk — IDRS Diabetes + Anemia Score | Unique India";
 const seoDescription = "India-specific risk: IDRS diabetes score CURES validated + anemia screening — tea/coffee, veg, periods..";
 const url = "/health/india-risk";
 const absoluteUrl = `${SITE.url}${url}`;

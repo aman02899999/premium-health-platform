@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   keywords: ["Indian health blog", "diabetes guide India", "thyroid guide", "PCOS guide", "Ayurveda blog", "nutrition India", "health articles", "latest health articles", "trending health"],
   alternates: { canonical: "/health/blog", languages: { "en-IN": `${SITE.url}/health/blog`, "en": `${SITE.url}/health/blog`, "x-default": `${SITE.url}/health/blog` } },
   openGraph: {
-    title: "Health Blog | Bharat Health Guide",
+    title: "Health Blog",
     description: "In-depth, India-specific health guides with photos, FAQs and guideline references. Categories, latest, trending.",
     type: "website",
     url: `${SITE.url}/health/blog`,

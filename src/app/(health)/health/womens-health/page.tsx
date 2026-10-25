@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Women's Health — PCOS, Periods, Pregnancy, Thyroid | Bharat Health Guide";
+const seoTitle = "Women's Health — PCOS, Periods, Pregnancy, Thyroid";
 const seoDescription = "Indian women's health hub: menstrual health, PCOS, thyroid, anemia, pregnancy nutrition and menopause with responsible guidance..";
 const url = "/health/womens-health";
 const absoluteUrl = `${SITE.url}${url}`;

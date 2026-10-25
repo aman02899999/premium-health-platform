@@ -9,7 +9,7 @@ import { getActiveCoupons } from "@/health/lib/monetization/config";
 import { CouponCard } from "@/health/components/monetization/ProductCards";
 import { AdBanner } from "@/health/components/monetization/AdComponents";
 
-const seoTitle = "Health Product Picks — Glucometer, BP Monitor & More | Bharat Health Guide";
+const seoTitle = "Health Product Picks — Glucometer, BP Monitor & More";
 const seoDescription = "Hand-picked health products on Amazon India — glucometers, BP monitors, scales and everyday nutrition. Live prices; clearly marked affiliate links.";
 const url = "/health/deals";
 const absoluteUrl = `${SITE.url}${url}`;

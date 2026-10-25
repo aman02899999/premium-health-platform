@@ -1,3 +1,4 @@
+import { seoDescription } from "@/health/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,8 +33,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!book) return {};
   const c = await getContent();
   return pageMeta(c, {
-    title: `${book.title} — ${book.subtitle}`,
-    description: `${book.label}: ${book.benefits.join(". ")}. ${book.pages}-page premium PDF, Vol. ${book.volume} of the Royal Fitness Club Premium Library.`,
+    // The layout adds " | Royal Fitness Club"; the subtitle goes in only while the title still fits
+    // in a search result, and the description is kept to what Google shows (about 155 characters).
+    title: `${book.title} — ${book.subtitle}`.length <= 40 ? `${book.title} — ${book.subtitle}` : book.title,
+    description: seoDescription(`${book.pages}-page PDF guide, Vol. ${book.volume} of the Royal Fitness Club Premium Library. ${book.label}: ${book.benefits.join(". ")}.`),
     path: `/library/${book.slug}`,
     image: coverSrc(book.volume),
   });

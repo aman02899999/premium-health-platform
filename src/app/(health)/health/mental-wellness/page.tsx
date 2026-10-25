@@ -9,7 +9,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Mental Wellness — Anxiety, Depression, Sleep India | Bharat Health Guide";
+const seoTitle = "Mental Wellness — Anxiety, Depression, Sleep India";
 const seoDescription = "Compassionate, stigma-free explainers on anxiety, depression, stress and insomnia with self-care and when to seek professional help. Helplines.";
 const url = "/health/mental-wellness";
 const absoluteUrl = `${SITE.url}${url}`;
