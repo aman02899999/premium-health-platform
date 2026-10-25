@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/health/lib/site";
 import { DISEASES } from "@/health/data/diseases-index";
+import { diseaseIndexable } from "@/health/lib/content-quality";
 import { HERBS } from "@/health/data/herbs";
 import { MEDICINES } from "@/health/data/medicines";
 import { FOODS } from "@/health/data/nutrition";
@@ -68,7 +69,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   };
 
-  push("/health/diseases", DISEASES.map((d) => d.slug), 0.85, "weekly");
+  // Template-only disease pages are noindex until rewritten, so they are not listed.
+  push("/health/diseases", DISEASES.map((d) => d.slug).filter(diseaseIndexable), 0.85, "weekly");
   push("/health/herbs", HERBS.map((h) => h.slug), 0.75, "monthly");
   push("/health/medicines", MEDICINES.map((m) => m.slug), 0.75, "monthly");
   push("/health/nutrition", FOODS.map((f) => f.slug), 0.7, "monthly");
