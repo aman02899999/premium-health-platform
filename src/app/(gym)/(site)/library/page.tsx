@@ -88,7 +88,7 @@ export default async function LibraryPage() {
         </div>
       </section>
 
-      <section id="combos" className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <section id="combos" className="cv-auto mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <h2 className="font-display mb-2 text-3xl text-white">Combo offers</h2>
         <p className="mb-8 text-white/60">Hand-picked sets for one goal — about 40% less than buying the same books one by one.</p>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -100,7 +100,7 @@ export default async function LibraryPage() {
         </ul>
       </section>
 
-      <section id="collections" className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <section id="collections" className="cv-auto mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <h2 className="font-display mb-2 text-3xl text-white">Complete collections</h2>
         <p className="mb-8 text-white/60">Every book in a section — about half the single-book price.</p>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -112,7 +112,7 @@ export default async function LibraryPage() {
         </ul>
       </section>
 
-      <section id="books" className="mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6">
+      <section id="books" className="cv-auto mx-auto max-w-6xl px-4 pb-20 pt-10 sm:px-6">
         <h2 className="font-display mb-2 text-3xl text-white">Or choose single books</h2>
         <p className="mb-2 text-white/60">Every volume is a premium, watermarked PDF with worksheets, trackers and practical plans.</p>
         <p className="mb-8 text-sm font-semibold text-emerald-300">

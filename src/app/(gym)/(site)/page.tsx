@@ -124,13 +124,13 @@ export default async function HomePage() {
       </div>
 
       {/* ---------- PROGRAMS ---------- */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+      <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="What we offer" title="Programs built for" highlight="real results" intro="Whether it's your first day in a gym or your next competition prep, there's a plan for you." />
         <ProgramGrid programs={c.programs} />
       </section>
 
       {/* ---------- WHY US ---------- */}
-      <section className="relative overflow-hidden py-24">
+      <section className="cv-auto relative overflow-hidden py-24">
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/10 blur-[140px]" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2">
           <div>
@@ -188,13 +188,13 @@ export default async function HomePage() {
       </section>
 
       {/* ---------- MEMBERSHIP ---------- */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+      <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Pick your" highlight="royal plan" intro="Simple pricing, no hidden charges. Longer plans save you more." />
         <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
 
       {/* ---------- GALLERY ---------- */}
-      <section className="overflow-hidden py-24">
+      <section className="cv-auto overflow-hidden py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading eyebrow="Inside the club" title="Take a" highlight="3D tour" intro="Swipe, drag or tap to explore. Tap the centre photo to view it full screen." />
           <Gallery3D items={c.gallery} />
@@ -202,7 +202,7 @@ export default async function HomePage() {
       </section>
 
       {/* ---------- HEALTH HUB ---------- */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+      <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading
           eyebrow="Free health & fitness hub"
           title="Train smarter,"
@@ -231,14 +231,14 @@ export default async function HomePage() {
 
       {/* ---------- TRAINERS ---------- */}
       {c.trainers.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+        <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
           <SectionHeading eyebrow="The team" title="Coached by" highlight="the best" />
           <TrainerGrid trainers={c.trainers} />
         </section>
       )}
 
       {/* ---------- TESTIMONIALS ---------- */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+      <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Member love" title="Rated" highlight={`${b.rating.value}★ on ${b.rating.source || "Google"} (${b.rating.count}+ ratings)`} />
         {reviews.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -291,7 +291,7 @@ export default async function HomePage() {
 
       {/* ---------- BLOG ---------- */}
       {posts.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+        <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
           <SectionHeading eyebrow="From the blog" title="Train" highlight="smarter" intro="Workout plans, Indian diet guides and fitness science — written by our coaches." />
           <div className="grid gap-6 md:grid-cols-3">
             {posts.map((p, i) => (
@@ -307,13 +307,13 @@ export default async function HomePage() {
       )}
 
       {/* ---------- FAQ ---------- */}
-      <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
+      <section className="cv-auto mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="FAQ" title="Questions," highlight="answered" />
         <FaqList faqs={faqs} />
       </section>
 
       {/* ---------- TRIAL CTA ---------- */}
-      <section id="trial" className="mx-auto max-w-7xl scroll-mt-28 px-4 py-24 sm:px-6">
+      <section id="trial" className="cv-auto mx-auto max-w-7xl scroll-mt-28 px-4 py-24 sm:px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading center={false} eyebrow="Free trial" title="Your first workout is" highlight="on the house" intro="Leave your number and we'll call to fix a time that suits you. Or skip the form and WhatsApp us directly." />

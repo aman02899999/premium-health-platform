@@ -139,6 +139,13 @@ body {
   transform: translateZ(40px);
 }
 
+/* Below-the-fold sections: the browser skips their style, layout and paint until they come near the
+   screen. `auto` in the intrinsic size remembers the real height once a section has rendered. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 /* Scroll reveal */
 /* Scroll-driven reveal: no JS, never hides content before first paint. */
 @supports (animation-timeline: view()) {
