@@ -375,7 +375,7 @@ export const POSTS: PostMeta[] = [
         "a": "Both contain semaglutide. The tablet is taken daily with strict rules about timing and water, while the injection is weekly. Which suits you depends on your conditions, routine and budget, and is a decision for you and your doctor."
       }
     ],
-    "words": 2599,
+    "words": 2598,
     "ads": 3
   },
   {
@@ -1443,7 +1443,7 @@ export const POSTS: PostMeta[] = [
         "a": "दोनों में सेमाग्लूटाइड है। गोली रोज़ सख़्त नियमों (ख़ाली पेट, थोड़ा पानी, समय) के साथ ली जाती है, इंजेक्शन हफ़्ते में एक बार। आपके लिए क्या सही है, यह आपकी बीमारी, दिनचर्या और बजट देखकर डॉक्टर के साथ तय करें।"
       }
     ],
-    "words": 2113,
+    "words": 2112,
     "ads": 3
   },
   {

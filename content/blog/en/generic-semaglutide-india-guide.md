@@ -67,7 +67,7 @@ Semaglutide is not recommended during pregnancy or breastfeeding, and doctors us
 
 ## What the trials actually showed
 
-The biggest weight-loss trial, STEP 1, gave adults with obesity (without diabetes) a weekly 2.4 mg injection for 68 weeks along with lifestyle advice. Average weight loss was about 14.9% of body weight, compared with about 2.4% in the placebo group ([NEJM, 2021](https://www.nejm.org/doi/full/10.1056/NEJMoa2032183)). That is a large effect by any standard: for someone weighing 90 kg, it means losing around 13 kg on average.
+The biggest weight-loss trial, STEP 1, gave adults with obesity (without diabetes) a weekly semaglutide injection for 68 weeks along with lifestyle advice. Average weight loss was about 14.9% of body weight, compared with about 2.4% in the placebo group ([NEJM, 2021](https://www.nejm.org/doi/full/10.1056/NEJMoa2032183)). That is a large effect by any standard: for someone weighing 90 kg, it means losing around 13 kg on average.
 
 Averages hide a wide spread. Some people lost much more, and some lost very little. People with diabetes usually lose less weight on the same medicine than people without diabetes.
 
