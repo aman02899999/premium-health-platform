@@ -14,7 +14,7 @@ import {
   Breadcrumbs, KeyTakeaway, DoctorBox, EmergencyBox, FaqAccordion,
   ShareButtons, AdSlot, DisclaimerBar, LikeButton, Newsletter,
 } from "@/health/components/ui";
-import { EvidenceStack, RiskBarChart } from "@/health/components/charts";
+import { EvidenceStack } from "@/health/components/charts";
 import { articleJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 import { LiveResearchSection } from "@/health/components/research";
@@ -156,7 +156,6 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             <Bullets items={detail.causes} />
             <p className="mb-2 mt-4 text-sm font-bold">Risk factors</p>
             <div className="flex flex-wrap gap-1.5">{detail.riskFactors.map((r) => <span key={r} className="rounded-full bg-amber-50 px-3 py-1.5 text-[13px] font-medium text-amber-900 dark:bg-amber-950/50 dark:text-amber-100">{r}</span>)}</div>
-            <div className="mt-4"><RiskBarChart title="Which risk factors matter most? (educational pattern)" source="Editorial synthesis — illustrative, not trial data" data={detail.riskFactors.slice(0, 5).map((r, i) => ({ name: r.length > 18 ? r.slice(0, 18) + "…" : r, value: 90 - i * 14 }))} /></div>
           </Section>
 
           <Section id="types" icon={<BookOpen className="h-4 w-4" />} title="Types & patterns">

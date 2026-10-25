@@ -634,7 +634,7 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
     inlineImage: PX(37692641),
     inlineImageAlt: "Woman basking in sunlight amidst vibrant green foliage",
     seoTitle: "Vitamin D Deficiency in India: Testing, 60K Correction & Maintenance (2026)",
-    seoDescription: "Why most urban Indians are deficient despite tropical sun — 25-OH testing, weekly 60,000 IU courses, D3 vs D2, calcium pairing and safe sun exposure.",
+    seoDescription: "Why most urban Indians are deficient despite tropical sun — 25-OH testing, how doctors correct a low level, D3 vs D2, calcium pairing and safe sun exposure.",
     keywords: ["vitamin D deficiency India", "vitamin D test", "D3 60K", "cholecalciferol dose", "vitamin D sun exposure", "calcium vitamin D"],
     authorRole: "BHG Editorial Team · Evidence-reviewed health writers",
     extraBody: [
@@ -649,8 +649,8 @@ export const BLOG_ENRICHMENT: Record<string, BlogEnrichment> = {
       {
         heading: "Correction: the 60K protocol and maintenance",
         paragraphs: [
-          "Standard Indian correction is cholecalciferol (D3) 60,000 IU once weekly for 8–12 weeks with a fat-containing meal or milk — D is fat-soluble and absorbs poorly on an empty stomach. Severe deficiency or malabsorption sometimes needs longer courses under supervision.",
-          "After correction, maintain with 1,000–2,000 IU daily or 60,000 IU monthly (not weekly forever — indiscriminate mega-dosing causes hypercalcemia with thirst, stones and confusion). Recheck yearly.",
+          "If your test is low, your doctor will choose the vitamin D3 (cholecalciferol) dose and how long to take it, based on your level, weight, kidneys and other medicines. Take it with a meal that has some fat, like milk or curd: vitamin D is fat-soluble and absorbs poorly on an empty stomach. Severe deficiency or poor absorption may need a longer, supervised course.",
+          "After the level is corrected, ask your doctor whether you need a maintenance dose, and recheck as advised. Do not keep taking high-dose sachets or capsules on your own: too much vitamin D raises blood calcium, which can cause thirst, kidney stones and confusion.",
         ],
       },
       {
