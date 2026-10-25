@@ -1,48 +1,24 @@
-"use client";
+import { LazyChart, type ChartDatum } from "./LazyChart";
 
-import {
-  Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart,
-  ResponsiveContainer, Tooltip, XAxis, YAxis,
-} from "recharts";
-
-const COLORS = ["#0b5c3f", "#e8930c", "#0e7490", "#65a30d", "#b45309", "#0d9488"];
-
-export function RiskBarChart({ data, title, source }: { data: { name: string; value: number }[]; title: string; source: string }) {
+// Server-rendered frames; the recharts drawing inside loads lazily (see LazyChart).
+export function RiskBarChart({ data, title, source }: { data: ChartDatum[]; title: string; source: string }) {
   return (
     <figure className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <figcaption className="mb-1 text-sm font-bold text-stone-900 dark:text-stone-100">{title}</figcaption>
       <div className="h-56" role="img" aria-label={`${title}. Data: ${data.map((d) => `${d.name} ${d.value}`).join(", ")}`}>
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} layout="vertical" margin={{ left: 8, right: 16 }}>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.3} />
-            <XAxis type="number" tick={{ fontSize: 11 }} />
-            <YAxis type="category" dataKey="name" width={110} tick={{ fontSize: 11 }} />
-            <Tooltip />
-            <Bar dataKey="value" radius={[0, 8, 8, 0]}>
-              {data.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+        <LazyChart kind="bars" data={data} />
       </div>
       <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">Illustrative educational pattern. Source: {source}</p>
     </figure>
   );
 }
 
-export function NutrientDonut({ data, title, source }: { data: { name: string; value: number }[]; title: string; source: string }) {
+export function NutrientDonut({ data, title, source }: { data: ChartDatum[]; title: string; source: string }) {
   return (
     <figure className="rounded-2xl border border-stone-200 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <figcaption className="mb-1 text-sm font-bold text-stone-900 dark:text-stone-100">{title}</figcaption>
       <div className="h-56" role="img" aria-label={`${title}. Data: ${data.map((d) => `${d.name} ${d.value}`).join(", ")}`}>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie data={data} dataKey="value" nameKey="name" outerRadius={80} label={{ fontSize: 11 }}>
-              {data.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
-            </Pie>
-            <Tooltip />
-            <Legend wrapperStyle={{ fontSize: 12 }} />
-          </PieChart>
-        </ResponsiveContainer>
+        <LazyChart kind="donut" data={data} />
       </div>
       <p className="mt-1 text-[11px] text-stone-500 dark:text-stone-400">Approximate values. Source: {source}</p>
     </figure>

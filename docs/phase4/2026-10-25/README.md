@@ -41,3 +41,21 @@ pages after the image fix, with a first Hindi attempt (preloading the Devanagari
 
 - Total Blocking Time is 600–900 ms on `/`, `/library`, `/health` and disease pages. It doesn't
   break LCP/CLS, but it is the risk for INP (responsiveness), which can only be measured with field data.
+
+## Slice 2: blocked main thread on health pages (25 Oct, later)
+
+`prof.js` (CPU profile per script during load) showed recharts (~300 KB, chunk `1__k-r_…`) costing
+~0.5 s of main-thread time on every disease page, though its only chart sits far down the page.
+Charts now load through `src/health/components/LazyChart.tsx` when they come within 300 px of the screen.
+
+Same machine, local production build, 5 loads each (`perf3.js`, `RUNS=5`):
+
+| Page | Total Blocking Time before → after | JS before → after |
+|---|---|---|
+| `/health/diseases/asthma` | 1,096 → 545 ms | 558 → 437 KB |
+| `/health/diseases/type-2-diabetes` | 1,174 → 683 ms | 558 → 437 KB |
+| `/health/nutrition/oats` | 922 → 804 ms | the chart is on screen at load, so it still loads |
+| `/health` | 900 → 871 ms | unchanged (no chart at load) |
+
+LCP and CLS unchanged. Still open: `/` and `/health` spend ~0.8 s on React start-up, layout and paint,
+with no single library to cut.
