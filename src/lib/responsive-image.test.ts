@@ -11,9 +11,13 @@ describe("responsiveImage", () => {
     expect(r.src).toMatch(/^\/_next\/image\?url=/);
   });
 
-  it("resizes Pexels photos too, since they are an allowed remote host", () => {
-    const r = responsiveImage("https://images.pexels.com/photos/1/pexels-photo-1.jpeg?auto=compress&w=1200", "100vw");
-    expect(r.srcSet).toContain("url=https%3A%2F%2Fimages.pexels.com");
+  it("asks Pexels' own CDN for smaller widths instead of using our optimizer", () => {
+    const r = responsiveImage("https://images.pexels.com/photos/1/pexels-photo-1.jpeg?auto=compress&cs=tinysrgb&w=1200", "100vw");
+    expect(r.src).toBe("https://images.pexels.com/photos/1/pexels-photo-1.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    expect(r.srcSet).toBe(
+      [400, 640, 828, 1200].map((w) => `https://images.pexels.com/photos/1/pexels-photo-1.jpeg?auto=compress&cs=tinysrgb&w=${w} ${w}w`).join(", "),
+    );
+    expect(r.srcSet).not.toContain("_next/image");
   });
 
   it("leaves admin uploads, query-string paths and unknown hosts untouched", () => {
