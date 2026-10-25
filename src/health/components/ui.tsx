@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { EVIDENCE_META, type EvidenceLevel } from "@/health/lib/evidence";
 import { SITE } from "@/health/lib/site";
+import { breadcrumbItemsJsonLd } from "@/health/lib/seo";
 import { cn } from "@/health/lib/format";
 import { copyText } from "@/health/lib/clipboard";
 
@@ -24,9 +25,11 @@ export function EvidenceBadge({ level, className }: { level: EvidenceLevel; clas
 }
 
 // ---------- Breadcrumbs ----------
-export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
+/** `schema` also emits BreadcrumbList markup; leave it off on pages that already print their own. */
+export function Breadcrumbs({ items, schema = false }: { items: { label: string; href?: string }[]; schema?: boolean }) {
   return (
     <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1 text-[13px] text-stone-500 dark:text-stone-400">
+      {schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbItemsJsonLd(items)).replace(/</g, "\\u003c") }} />}
       {items.map((it, i) => (
         <span key={i} className="flex items-center gap-1">
           {i > 0 && <ChevronRight className="h-3.5 w-3.5 opacity-50" />}

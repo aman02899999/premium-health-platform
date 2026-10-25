@@ -4,7 +4,7 @@ import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { SITE } from "@/health/lib/site";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 
-const seoTitle = "Privacy Policy | Premium Health";
+const seoTitle = "Privacy Policy | Bharat Health Guide";
 const seoDescription = "Privacy policy: data collection, cookies, analytics, affiliate, newsletter, WhatsApp and push notifications, and how to opt out or ask for deletion.";
 const url = "/health/privacy";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -25,10 +25,10 @@ export default function PrivacyPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Privacy", item: "/health/privacy" }]}
         faqs={[
-          { q: "What data does Premium Health Platform collect?", a: "Email for newsletter/premium, phone for WhatsApp opt-in, UTM + gtag analytics, affiliate clicks, push-notification subscription — no medical data sold, and we collect as little as we can." },
+          { q: "What data does Bharat Health Guide collect?", a: "Email for newsletter/premium, phone for WhatsApp opt-in, UTM + gtag analytics, affiliate clicks, push-notification subscription — no medical data sold, and we collect as little as we can." },
           { q: "How to opt-out?", a: "Newsletter unsubscribe link, WhatsApp STOP, push unsubscribe in browser, cookies via banner, affiliate via disclosure. Use /health/contact for data deletion." },
         ]}
-        howTo={{ name: "How Premium Health Platform protects privacy", steps: ["Collect minimal data: email, phone (consent), UTM, gtag, affiliate clicks", "Store securely, never sell it", "Allow opt-out: newsletter, WhatsApp, push, cookies", "Contact /contact for deletion + /privacy for full policy"] }}
+        howTo={{ name: "How Bharat Health Guide protects privacy", steps: ["Collect minimal data: email, phone (consent), UTM, gtag, affiliate clicks", "Store securely, never sell it", "Allow opt-out: newsletter, WhatsApp, push, cookies", "Contact /contact for deletion + /privacy for full policy"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-800 to-stone-700 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-stone-200">Privacy</p>

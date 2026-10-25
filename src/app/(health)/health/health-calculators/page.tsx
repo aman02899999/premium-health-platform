@@ -9,7 +9,7 @@ import { SITE } from "@/health/lib/site";
 import { CALCULATOR_PAGES } from "@/health/data/calculator-pages";
 import { BmiCalc, CalorieCalc, ProteinCalc, WaterCalc, WaistHeightCalc, DiabetesRiskQuiz, HeartRiskEdu, IdealWeight } from "@/health/components/tools";
 
-const seoTitle = "Health Calculators — BMI, Calories, Protein, Diabetes Risk | Premium Health";
+const seoTitle = "Health Calculators — BMI, Calories, Protein, Diabetes Risk | Bharat Health Guide";
 const seoDescription = "Free Indian health calculators: pregnancy due date, ovulation, BMI (Asian cut-offs), calories & macros, body fat, protein, water and diabetes risk.";
 const url = "/health/health-calculators";
 const absoluteUrl = `${SITE.url}${url}`;

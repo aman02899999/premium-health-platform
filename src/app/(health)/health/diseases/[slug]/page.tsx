@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${d.name} — Symptoms, Causes, Tests, Treatment & Diet`,
     description: d.short,
     alternates: { canonical: `/health/diseases/${slug}` },
-    openGraph: { title: `${d.name} | Premium Health Platform`, description: d.short, type: "article" },
+    openGraph: { title: `${d.name} | Bharat Health Guide`, description: d.short, type: "article" },
   };
 }
 

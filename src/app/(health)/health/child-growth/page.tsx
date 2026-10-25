@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Child Growth Tracker — WHO India Percentiles | Premium Health";
+const seoTitle = "Child Growth Tracker — WHO India Percentiles | Bharat Health Guide";
 const seoDescription = "Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts.";
 const url = "/health/child-growth";
 const absoluteUrl = `${SITE.url}${url}`;

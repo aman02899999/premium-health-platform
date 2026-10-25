@@ -53,8 +53,8 @@ function useTilt<T extends HTMLElement>() {
 }
 
 /**
- * Three floating 3D doors: Royal Fitness Club (this site), the Premium Health
- * Platform and the supplement store. `onGym` lets the homepage overlay simply close instead of navigating.
+ * Three floating 3D doors: Royal Fitness Club (this site), the Bharat Health
+ * Guide and the supplement store. `onGym` lets the homepage overlay simply close instead of navigating.
  */
 /** `overlay` renders the title as an h2: the overlay sits on top of the home page, which has its own h1. */
 export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () => void; gymName: string; overlay?: boolean }) {
@@ -123,7 +123,7 @@ export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () =>
           onClick={() => remember("health")}
           className="portal-card portal-card-health group"
           style={{ ["--delay" as string]: "140ms" }}
-          aria-label="Premium Health Platform"
+          aria-label="Bharat Health Guide"
         >
           <span className="portal-card-inner">
             <span className="portal-layer portal-z-40 flex items-center gap-3">
@@ -133,7 +133,7 @@ export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () =>
               <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-white/80">Health knowledge</span>
             </span>
             <span className="portal-layer portal-z-80 font-display mt-3 block text-[1.9rem] leading-[0.95] text-white sm:mt-8 sm:text-5xl md:text-[2.1rem] lg:text-5xl xl:text-[2.75rem]">
-              Premium Health<br />Platform
+              Bharat Health<br />Guide
             </span>
             <span className="portal-layer portal-z-40 mt-4 hidden max-w-xs text-sm text-white/75 sm:block md:hidden lg:block">Diseases, foods, Indian diet plans, Ayurveda, calculators and evidence-based guides.</span>
             <span className="portal-layer portal-z-20 mt-6 hidden flex-wrap gap-2 sm:flex md:hidden xl:flex text-[11px] font-semibold text-white/80">

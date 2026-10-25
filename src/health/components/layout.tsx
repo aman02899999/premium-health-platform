@@ -292,7 +292,10 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-stone-200 pt-6 text-xs text-stone-500 md:flex-row dark:border-stone-800 dark:text-stone-400">
-          <p>© 2026 {SITE.name}. All rights reserved. Made for Indian families.</p>
+          <p>
+            © 2026 {SITE.name}, run by <Link href="/about" className="hover:underline">{SITE.operator.name}</Link>, {SITE.operator.address} ·{" "}
+            <a href={`tel:${SITE.operator.phone.replace(/[^\d+]/g, "")}`} className="hover:underline">{SITE.operator.phone}</a>
+          </p>
           <p className="flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link href="/health/privacy" className="inline-block py-1.5 hover:underline">Privacy</Link>
             <Link href="/health/terms" className="inline-block py-1.5 hover:underline">Terms</Link>

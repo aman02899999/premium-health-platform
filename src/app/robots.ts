@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/site";
 
-// One robots.txt for both sites: Royal Fitness Club (/) and Premium Health Platform (/health).
+// One robots.txt for both sites: Royal Fitness Club (/) and Bharat Health Guide (/health).
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

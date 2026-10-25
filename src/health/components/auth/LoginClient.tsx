@@ -60,7 +60,7 @@ export function LoginClient({ embedded = false }: { embedded?: boolean } = {}) {
       ) : (
         <h1 className="flex items-center gap-2 text-xl font-black"><ShieldCheck className="h-5 w-5 text-emerald-700 dark:text-emerald-600" /> Sign in</h1>
       )}
-      <p className="mt-1 text-xs text-stone-500">One account for Premium Health Platform and Royal Fitness Club.</p>
+      <p className="mt-1 text-xs text-stone-500">One account for Bharat Health Guide and Royal Fitness Club.</p>
 
       {!available && (
         <p className="mt-4 rounded-xl bg-amber-50 p-3 text-xs text-amber-900 dark:bg-amber-950/40 dark:text-amber-200">

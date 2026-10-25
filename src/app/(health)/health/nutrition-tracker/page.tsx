@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Nutrition Tracker — Indian Foods Calories | Premium Health";
+const seoTitle = "Nutrition Tracker — Indian Foods Calories | Bharat Health Guide";
 const seoDescription = "Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.";
 const url = "/health/nutrition-tracker";
 const absoluteUrl = `${SITE.url}${url}`;

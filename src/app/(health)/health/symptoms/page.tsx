@@ -10,7 +10,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Symptoms Checker — Chest Pain, Fatigue, Headache | Premium Health";
+const seoTitle = "Symptoms Checker — Chest Pain, Fatigue, Headache | Bharat Health Guide";
 const seoDescription = "Symptoms guide: chest pain, fatigue, headache — when to worry, red flags, what to track. Educational, not diagnosis..";
 const url = "/health/symptoms";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -42,15 +42,21 @@ const STATIC_ROUTES = [
   "/health/api-directory",
 ];
 
+// lastmod only where a real date exists. Stamping every URL with the time of the request told
+// search engines that 300+ pages changed on every crawl, so they learn to ignore the signal.
+// Listing pages take the date of their newest guide; reference pages without a date get none.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const dates = [...ARTICLES.map((a) => a.updatedAt), ...POSTS.map((p) => p.lastReviewed)].filter(Boolean).sort();
+  const newest = dates[dates.length - 1];
+  const newestHi = POSTS.filter((p) => p.lang === "hi").map((p) => p.lastReviewed).sort().pop();
   const entries: MetadataRoute.Sitemap = STATIC_ROUTES.map((r) => {
     const url = r === "" ? `${SITE.url}/health` : `${SITE.url}${r}`;
     const isRoot = r === "";
+    const isBlog = r === "" || r.startsWith("/health/blog");
     const isHigh = ["/health/diseases", "/health/blog", "/health/news", "/health/solutions", "/health/thali-builder", "/health/millet-swap", "/health/health-qa", "/health/health-search"].includes(r);
     return {
       url,
-      lastModified: now,
+      ...(isBlog && newest ? { lastModified: newest } : {}),
       changeFrequency: isRoot ? "daily" : isHigh ? "daily" : "weekly",
       priority: isRoot ? 1 : isHigh ? 0.9 : 0.7,
     } as MetadataRoute.Sitemap[0];
@@ -58,7 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const push = (base: string, slugs: string[], priority = 0.8, freq: "daily" | "weekly" | "monthly" = "monthly") => {
     for (const s of slugs) {
-      entries.push({ url: `${SITE.url}${base}/${s}`, lastModified: now, changeFrequency: freq, priority });
+      entries.push({ url: `${SITE.url}${base}/${s}`, changeFrequency: freq, priority });
     }
   };
 
@@ -83,7 +89,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const p of POSTS.filter((x) => x.lang === "hi")) {
     entries.push({ url: `${SITE.url}${postPath("hi", p.slug)}`, lastModified: p.lastReviewed, changeFrequency: "weekly", priority: 0.85, alternates: { languages: { "hi-IN": `${SITE.url}${postPath("hi", p.slug)}`, "en-IN": `${SITE.url}${postPath("en", p.slug)}` } } });
   }
-  if (POSTS.some((x) => x.lang === "hi")) entries.push({ url: `${SITE.url}/hi/health/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.8 });
+  if (POSTS.some((x) => x.lang === "hi")) entries.push({ url: `${SITE.url}/hi/health/blog`, ...(newestHi ? { lastModified: newestHi } : {}), changeFrequency: "weekly", priority: 0.8 });
   push("/health/products", PRODUCTS.map((p) => p.slug), 0.6, "monthly");
   push("/health/ayurveda", AYURVEDA_TOPICS.map((a) => a.slug), 0.7, "monthly");
   // Monetization — store, affiliate, providers
@@ -104,7 +110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const cat of BLOG_CATEGORIES) {
     entries.push({
       url: `${SITE.url}/health/blog/category/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, "-"))}`,
-      lastModified: now,
+      ...(newest ? { lastModified: newest } : {}),
       changeFrequency: "weekly",
       priority: 0.8,
     });
@@ -112,9 +118,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Blog latest/trending filters (for SEO discovery)
   entries.push(
-    { url: `${SITE.url}/health/blog/latest`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
-    { url: `${SITE.url}/health/blog/trending`, lastModified: now, changeFrequency: "daily", priority: 0.85 },
-    { url: `${SITE.url}/health/blog/category`, lastModified: now, changeFrequency: "weekly", priority: 0.8 }
+    { url: `${SITE.url}/health/blog/latest`, ...(newest ? { lastModified: newest } : {}), changeFrequency: "daily", priority: 0.85 },
+    { url: `${SITE.url}/health/blog/trending`, ...(newest ? { lastModified: newest } : {}), changeFrequency: "daily", priority: 0.85 },
+    { url: `${SITE.url}/health/blog/category`, ...(newest ? { lastModified: newest } : {}), changeFrequency: "weekly", priority: 0.8 }
   );
 
   // Duplicate <loc> entries are an SEO defect — emit each URL exactly once.

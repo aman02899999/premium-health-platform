@@ -8,7 +8,7 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 import { wgerProvider } from "@/health/services/health/providers/wger/provider";
 
-const seoTitle = "Exercises — Yoga + Home Workout India | wger | Premium Health";
+const seoTitle = "Exercises — Yoga + Home Workout India | wger | Bharat Health Guide";
 const seoDescription = "Exercises: yoga, pranayama, home workout — India heat friendly, no equipment + 400+ wger free keyless.";
 const url = "/health/exercises";
 const absoluteUrl = `${SITE.url}${url}`;

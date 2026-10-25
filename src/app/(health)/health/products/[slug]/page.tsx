@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-6">
-      <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Products", href: "/health/products" }, { label: p.name }]} />
+      <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Products", href: "/health/products" }, { label: p.name }]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: p.name, description: p.short, slug: `/health/products/${slug}`, category: p.category })) }} />
 
       <div className="mt-3 grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 md:grid-cols-2 dark:border-stone-700 dark:bg-stone-900">

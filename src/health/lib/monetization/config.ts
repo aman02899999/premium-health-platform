@@ -109,7 +109,7 @@ const az = (p: AmazonInput): AffiliateProduct => {
   };
 };
 
-// Premium Health Platform only — affiliate products are never shown on the Royal Fitness Club site.
+// Bharat Health Guide only — affiliate products are never shown on the Royal Fitness Club site.
 export const AFFILIATE_PRODUCTS: AffiliateProduct[] = [
   // ---- Monitoring devices ----
   az({ brand: "Omron", title: "Omron HEM-7120 Upper-Arm BP Monitor", search: "Omron HEM-7120 blood pressure monitor", category: "Blood Pressure", tags: ["bp", "hypertension", "heart", "monitoring"], featured: true, priority: 100, why: "Upper-arm monitors give more reliable home readings than wrist models. Check the cuff fits your arm." }),

@@ -7,8 +7,8 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
   return {
-    title: "Choose: Gym or Premium Health Platform",
-    description: `Enter ${c.business.name} (gym in Sector 93, Noida) or the Premium Health Platform — one Google account for both.`,
+    title: "Choose: Gym or Bharat Health Guide",
+    description: `Enter ${c.business.name} (gym in Sector 93, Noida) or the Bharat Health Guide — one Google account for both.`,
     alternates: { canonical: "/portal" },
   };
 }

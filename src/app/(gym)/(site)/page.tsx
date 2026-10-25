@@ -19,6 +19,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { PortalOverlay } from "@/components/portal/PortalOverlay";
 import { applyOffer } from "@/lib/offers";
+import { faqsWithOffer } from "@/lib/content/ai-facts";
 import { todayIST } from "@/lib/growth/dates";
 
 import { PORTAL_BOOT } from "@/lib/portal";
@@ -44,13 +45,15 @@ export default async function HomePage() {
   const wa = whatsappHref(b);
   // Verified reviews from members and plan clients (see /reviews); the admin's own testimonials otherwise.
   const reviews = isDbConfigured ? (await approvedReviews(3).catch(() => [])) : [];
+  const plans = applyOffer(c.plans, todayIST(), c.offers);
+  const faqs = faqsWithOffer(c.faqs, plans);
 
   return (
     <>
       {/* First-visit chooser: decided before paint so returning visitors never see a flash. */}
       <script dangerouslySetInnerHTML={{ __html: PORTAL_BOOT }} />
       <PortalOverlay gymName={b.name} />
-      <JsonLd data={faqJsonLd(c.faqs)} />
+      <JsonLd data={faqJsonLd(faqs)} />
 
       {/* ---------- HERO ---------- */}
       <section className="relative isolate min-h-[100svh] overflow-hidden">
@@ -187,7 +190,7 @@ export default async function HomePage() {
       {/* ---------- MEMBERSHIP ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Pick your" highlight="royal plan" intro="Simple pricing, no hidden charges. Longer plans save you more." />
-        <PlanGrid plans={applyOffer(c.plans, todayIST(), c.offers)} note={c.planNote} payOnline={razorpayConfigured()} />
+        <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
 
       {/* ---------- GALLERY ---------- */}
@@ -275,7 +278,7 @@ export default async function HomePage() {
         )}
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Link href="/reviews" className="inline-flex items-center gap-2 rounded-full bg-brand-strong px-6 py-3 font-semibold text-white hover:bg-brand">
-            <BadgeCheck className="h-4 w-4" /> Verified member reviews
+            <BadgeCheck className="h-4 w-4" /> Reviews from members
           </Link>
           <a href={b.googleReviewUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-brand/50 px-6 py-3 font-semibold text-brand hover:bg-brand hover:text-white">
             <Star className="h-4 w-4" /> Read & write Google reviews
@@ -306,7 +309,7 @@ export default async function HomePage() {
       {/* ---------- FAQ ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="FAQ" title="Questions," highlight="answered" />
-        <FaqList faqs={c.faqs} />
+        <FaqList faqs={faqs} />
       </section>
 
       {/* ---------- TRIAL CTA ---------- */}

@@ -6,7 +6,7 @@ import { LeadForm } from "@/health/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/health/lib/monetization/config";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 
-const seoTitle = "Partner With Us — Clinics, Dietitians | Premium Health";
+const seoTitle = "Partner With Us — Clinics, Dietitians | Bharat Health Guide";
 const seoDescription = "Partner with us: clinics, dietitians, nutritionists, fitness coaches, diagnostic centers, wellness businesses — lead gen, business directory, sponsorship.";
 const url = "/health/partner-with-us";
 const absoluteUrl = `${SITE.url}${url}`;

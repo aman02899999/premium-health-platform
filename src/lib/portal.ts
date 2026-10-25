@@ -1,6 +1,6 @@
 // The two-site chooser ("portal") shown on a visitor's first homepage visit and at /portal.
 
-/** Premium Health Platform is part of this app, served under /health (same domain, same login). */
+/** Bharat Health Guide is part of this app, served under /health (same domain, same login). */
 export const healthHref = "/health";
 
 export const PORTAL_KEY = "rfc-portal";

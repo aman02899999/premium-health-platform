@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Barcode Scanner — Food Label Analyzer India | Premium Health";
+const seoTitle = "Barcode Scanner — Food Label Analyzer India | Bharat Health Guide";
 const seoDescription = "Scan barcode or enter ingredients: sugar, trans-fat, sodium alerts — FSSAI India focused.";
 const url = "/health/barcode-scanner";
 const absoluteUrl = `${SITE.url}${url}`;

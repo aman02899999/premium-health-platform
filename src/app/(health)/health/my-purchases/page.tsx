@@ -5,7 +5,7 @@ import { SITE } from "@/health/lib/site";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import Link from "next/link";
 
-const seoTitle = "My Purchases — Downloads, Reports | Premium Health";
+const seoTitle = "My Purchases — Downloads, Reports | Bharat Health Guide";
 const seoDescription = "Your health guides and diet plans: how to download your PDF, how long the link lasts, and how to get a new link.";
 const url = "/health/my-purchases";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Health Q&A — Evidence-Based Answers India | Premium Health";
+const seoTitle = "Health Q&A — Evidence-Based Answers India | Bharat Health Guide";
 const seoDescription = "Ask health questions — evidence-based answers with citations: PubMed, ICMR, FSSAI.";
 const url = "/health/health-qa";
 const absoluteUrl = `${SITE.url}${url}`;

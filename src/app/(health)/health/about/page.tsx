@@ -8,7 +8,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 
-const seoTitle = "About — Editorial Policy, Evidence & Medical Review | Premium Health";
+const seoTitle = "About — Editorial Policy, Evidence & Medical Review | Bharat Health Guide";
 const seoDescription = "Who we are, how we write, how we grade evidence, and our medical-review workflow for trustworthy Indian health publication. Live World Bank India indicators.";
 const url = "/health/about";
 const absoluteUrl = `${SITE.url}${url}`;
@@ -29,10 +29,10 @@ export default function AboutPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "About", item: "/health/about" }]}
         faqs={[
-          { q: "Who writes Premium Health Platform articles?", a: "The Royal Fitness Club editorial team writes them, with citations to PubMed, ICMR and FSSAI and published and updated dates. Pages that a doctor has not reviewed yet say so." },
+          { q: "Who writes Bharat Health Guide articles?", a: "The Royal Fitness Club editorial team writes them, with citations to PubMed, ICMR and FSSAI and published and updated dates. Pages that a doctor has not reviewed yet say so." },
           { q: "How is evidence graded?", a: "Strong, moderate, limited, mixed, insufficient — EvidenceBadge component. Every intervention labelled by evidence strength, safety, interactions, responsible language." },
         ]}
-        howTo={{ name: "How Premium Health Platform creates content", steps: ["Draft with PubMed/ICMR/FSSAI citations + Indian context", "Editorial review for clarity + responsible language", "Medical review for safety + interactions + red flags", "Publish with author, reviewer and update dates"] }}
+        howTo={{ name: "How Bharat Health Guide creates content", steps: ["Draft with PubMed/ICMR/FSSAI citations + Indian context", "Editorial review for clarity + responsible language", "Medical review for safety + interactions + red flags", "Publish with author, reviewer and update dates"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-800 to-emerald-900 p-6 text-white md:p-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">About</p>

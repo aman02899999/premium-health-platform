@@ -242,6 +242,9 @@ export function AdminApp({ storage }: { storage: string }) {
                     { key: "googleMapsUrl", label: "Google Maps link", wide: true },
                     { key: "googleReviewUrl", label: "Google review link", wide: true, help: "Google Business Profile → Ask for reviews → copy the link. Setting it switches on automatic review requests (WhatsApp + email, once per person)." },
                     { key: "mapEmbedUrl", label: "Map embed URL", wide: true, help: "Google Maps → Share → Embed a map → copy the src URL" },
+                    { key: "justdialUrl", label: "Justdial listing link", wide: true, help: "Open your Justdial page and copy the link. The site's rating line links here, so the 4.7 rating has a visible source." },
+                    { key: "facebookUrl", label: "Facebook page link", wide: true, help: "Optional. Tells Google and AI assistants this page belongs to the gym." },
+                    { key: "youtubeUrl", label: "YouTube channel link", wide: true, help: "Optional. Same as above." },
                     { key: "priceRange", label: "Price range (₹, ₹₹, ₹₹₹)" },
                   ]}
                 />

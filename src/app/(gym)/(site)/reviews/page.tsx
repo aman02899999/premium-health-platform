@@ -16,7 +16,7 @@ export const revalidate = 3600;
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
   return pageMeta(c, {
-    title: "Member Reviews — Gym in Sector 93 Noida",
+    title: "Reviews — Gym in Sector 93 Noida",
     description: `Verified reviews from ${c.business.name} members and diet-plan clients. Every review is checked against a real membership or plan.`,
     path: "/reviews",
   });

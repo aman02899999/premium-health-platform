@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Yoga — Asanas, Pranayama, Meditation India | Premium Health";
+const seoTitle = "Yoga — Asanas, Pranayama, Meditation India | Bharat Health Guide";
 const seoDescription = "Beginner yoga sequences, walking plans and strength basics with safety modifications for knees, heart, pregnancy and seniors..";
 const url = "/health/yoga";
 const absoluteUrl = `${SITE.url}${url}`;
