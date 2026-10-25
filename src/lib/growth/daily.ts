@@ -23,6 +23,8 @@ import { addDays, daysBetween } from "./dates";
 import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
 import { listCampaigns, runRecurringCampaigns } from "./campaigns";
 import { dueReviewRequests } from "./reviews";
+import { evaluate, healthLines } from "@/lib/observability/checks";
+import { snapshot } from "@/lib/observability/watchdog";
 
 export async function business(): Promise<Biz> {
   const b = (await getContent()).business;
@@ -251,6 +253,7 @@ async function digestData(today: string): Promise<DigestData> {
     unanswered: unanswered.map((u) => ({ channel: u.channel, name: u.from_name, text: u.body })),
     expiringMembers: expiring.map((m) => ({ name: m.name, expiresOn: m.expires_on })),
     failedMessages: failed[0]?.n ?? 0,
+    health: await snapshot().then((s) => healthLines(evaluate(s)), () => undefined),
     callList: (await callList().catch(() => [])).map((p) => ({ name: p.name, why: p.why })),
     campaigns: {
       sent: campaignSent[0]?.n ?? 0,

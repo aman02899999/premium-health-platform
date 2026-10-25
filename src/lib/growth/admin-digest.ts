@@ -22,6 +22,8 @@ export type DigestData = {
   /** People who replied to an offer or clicked its link and haven't been called: name and what they did (numbers stay in the admin). */
   callList?: { name: string; why: string }[];
   /** Campaign activity: messages sent in the last 24 hours, WhatsApp promotions waiting for the daily cap, and campaigns that led to payments. */
+  /** The watchdog's view of the site (schedules, payments, messages): one line per problem, or an all-clear. */
+  health?: string[];
   campaigns?: {
     sent: number;
     held: number;
@@ -52,6 +54,8 @@ export function adminDigest(date: string, d: DigestData, to: string, adminUrl: s
       ...(uncontacted ? [`${uncontacted} lead${uncontacted === 1 ? " has" : "s have"} had no call or message yet (Leads → New)`] : []),
       ...unmarked.map((t) => `Did ${t.name} come for the trial on ${formatTrial(t.at)}? Mark Came or No-show in Leads`),
     ], "Nothing: the automation handled everything."),
+    // Right after what needs a person, so it is never cut off by the length limit.
+    d.health?.length ? section("SITE HEALTH", d.health, "") : "",
     calls.length
       ? section(
           `CALL TODAY (${calls.length})`,

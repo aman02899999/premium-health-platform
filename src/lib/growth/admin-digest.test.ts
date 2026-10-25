@@ -54,4 +54,12 @@ describe("admin morning email", () => {
     expect(d.subject).toContain("1 need you");
     expect(adminDigest("2026-10-21", { ...base, callList: [] }, "a@b.c", "u").body).not.toContain("CALL TODAY");
   });
+
+  it("carries the watchdog's site-health line right after what needs a person", () => {
+    const data = { leads: [], payments: [], plansToReview: [], clientUpdates: 0, unanswered: [], expiringMembers: [], failedMessages: 0 };
+    const d = adminDigest("2026-10-25", { ...data, health: ["Razorpay's webhook isn't reaching the site. Razorpay → Live mode → Webhooks."] }, "a@b.c", "u");
+    expect(d.body).toContain("SITE HEALTH\n• Razorpay's webhook isn't reaching the site.");
+    expect(d.body.indexOf("SITE HEALTH")).toBeLessThan(d.body.indexOf("PAYMENTS"));
+    expect(adminDigest("2026-10-25", data, "a@b.c", "u").body).not.toContain("SITE HEALTH");
+  });
 });
