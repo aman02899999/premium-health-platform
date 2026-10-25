@@ -17,7 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = publishedPosts(c);
   const shop = await getCatalog();
   const shopPosts = shop.offline ? [] : await listShopPosts().catch(() => []);
-  const latest = posts[0]?.updated || posts[0]?.published || new Date().toISOString();
+  // lastmod only where it is true: the home page and blog change when a post goes up; other
+  // pages have no tracked edit date, so they get none rather than a made-up one.
+  const latest = posts[0]?.updated || posts[0]?.published;
+  const datedByPosts = new Set(["/", "/blog"]);
   const pages: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1, "weekly"],
     ["/membership", 0.9, "monthly"],
@@ -50,7 +53,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/delivery-policy", 0.2, "yearly"],
   ];
   return [
-    ...pages.map(([path, priority, changeFrequency]) => ({ url: absoluteUrl(path), lastModified: latest, priority, changeFrequency })),
+    ...pages.map(([path, priority, changeFrequency]) => ({ url: absoluteUrl(path), ...(latest && datedByPosts.has(path) ? { lastModified: latest } : {}), priority, changeFrequency })),
     ...EXERCISES.map((e) => ({ url: absoluteUrl(`/exercises/${e.slug}`), priority: 0.6, changeFrequency: "yearly" as const })),
     ...BOOKS.map((b) => ({ url: absoluteUrl(`/library/${b.slug}`), priority: 0.6, changeFrequency: "monthly" as const })),
     ...DIET_PLANS.map((p) => ({ url: absoluteUrl(`/diet-plans/${p.slug}`), priority: 0.7, changeFrequency: "monthly" as const })),

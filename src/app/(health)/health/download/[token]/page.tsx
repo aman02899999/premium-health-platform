@@ -7,7 +7,7 @@ import Link from "next/link";
 type Props = { params: Promise<{ token: string }> };
 
 export const metadata: Metadata = {
-  title: "Download — Secure Token | Premium Health",
+  title: "Download — Secure Token | Bharat Health Guide",
   description: "Secure download via expiring token — 72h expiry, 3 download limit, private PDF URLs never public, server-side verification.",
   robots: { index: false, follow: false },
 };

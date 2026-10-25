@@ -5,8 +5,8 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 
-const seoTitle = "Affiliate Disclosure — How We Earn | Premium Health";
-const seoDescription = "How affiliate links work on Premium Health Platform: clearly labelled, around 8% commission, never influencing evidence ratings or editorial content.";
+const seoTitle = "Affiliate Disclosure — How We Earn | Bharat Health Guide";
+const seoDescription = "How affiliate links work on Bharat Health Guide: clearly labelled, around 8% commission, never influencing evidence ratings or editorial content.";
 const url = "/health/affiliate-disclosure";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Affiliate Disclosure — BHG")}&category=${encodeURIComponent("Affiliate")}&type=tool`;

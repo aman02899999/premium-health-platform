@@ -17,7 +17,12 @@ export function Footer({ content }: { content: SiteContent }) {
           <p className="mt-5 text-sm leading-relaxed text-white/60">{b.description}</p>
           <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
             <Star className="h-4 w-4 fill-brand text-brand" />
-            <strong>{b.rating.value}</strong> / 5 · {b.rating.count}+ ratings on {b.rating.source}
+            <strong>{b.rating.value}</strong> / 5 · {b.rating.count}+ ratings on{" "}
+            {b.justdialUrl && /justdial/i.test(b.rating.source) ? (
+              <a href={b.justdialUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-white/30 underline-offset-2 hover:text-brand">{b.rating.source}</a>
+            ) : (
+              b.rating.source
+            )}
           </div>
           <div className="mt-5 flex gap-3">
             <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">

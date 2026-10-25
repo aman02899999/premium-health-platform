@@ -6,7 +6,7 @@ import type { Block } from "@/lib/markdown";
 import { toc } from "@/lib/markdown";
 import { SITE } from "@/health/lib/site";
 import { absoluteUrl } from "@/lib/site";
-import { breadcrumbJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { HEALTH_ORG_ID, breadcrumbJsonLd, faqJsonLd, healthPublisher } from "@/health/lib/seo";
 import { postPath, type PostLang, type PostMeta } from "@/health/lib/post-types";
 import { PostBody } from "./PostBody";
 
@@ -97,8 +97,8 @@ export function PostArticle({ post, blocks, other, related }: { post: PostMeta; 
     image: [absoluteUrl(post.heroImage.replace(/\.svg$/, ".png"))],
     datePublished: post.publishedAt,
     dateModified: post.lastReviewed,
-    author: { "@type": "Organization", name: post.author, url: absoluteUrl("/health/about") },
-    publisher: { "@type": "Organization", name: SITE.name, logo: { "@type": "ImageObject", url: absoluteUrl("/health/icon-512.png") } },
+    author: { "@type": "Organization", name: post.author, url: absoluteUrl("/health/blog/author"), parentOrganization: { "@id": HEALTH_ORG_ID } },
+    publisher: healthPublisher(),
     mainEntityOfPage: absoluteUrl(path),
     articleSection: post.category,
     keywords: post.tags.join(", "),

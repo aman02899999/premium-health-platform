@@ -86,7 +86,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <a href={phoneHref} className="hidden h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 hover:border-brand hover:text-brand sm:flex" aria-label="Call the gym">
               <Phone className="h-4 w-4" />
             </a>
-            <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Premium Health Platform" aria-label="Premium Health Platform">
+            <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Bharat Health Guide" aria-label="Bharat Health Guide">
               <HeartPulse className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Health</span>
             </a>
             <Link href="/shop" className="hidden h-10 items-center gap-1.5 rounded-full border border-amber-400/40 px-3 text-xs font-bold text-amber-300 hover:border-amber-300 hover:text-amber-200 xl:flex" title="Royal Supplements Store" aria-label="Royal Supplements Store">
@@ -179,7 +179,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
               )}
               <li>
                 <a href={healthHref} onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-emerald-400/25 bg-emerald-500/5 px-3 py-3 text-[15px] font-semibold text-emerald-300 hover:bg-emerald-500/10">
-                  <HeartPulse className="h-5 w-5 shrink-0" /> Premium Health Platform
+                  <HeartPulse className="h-5 w-5 shrink-0" /> Bharat Health Guide
                 </a>
               </li>
               <li>

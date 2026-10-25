@@ -1,6 +1,6 @@
 export const SITE = {
-  name: "Premium Health Platform",
-  shortName: "PHP",
+  name: "Bharat Health Guide",
+  shortName: "BHG",
   tagline: "Indian Health Knowledge — Modern Medicine, Ayurveda, Nutrition & Traditional Wellness",
   heroTitle: "Understand Your Health. Make Better Decisions.",
   heroSubtitle:
@@ -12,6 +12,13 @@ export const SITE = {
   // Public contact address; set NEXT_PUBLIC_CONTACT_EMAIL. Without it the contact page shows the gym phone only.
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   contactPhone: "+91 88518 30081",
+  // Who runs the health guides. Mirrors the gym's business details (a test keeps them equal), so
+  // the name, address and phone read the same on every page, as Google Business Profile expects.
+  operator: {
+    name: "Royal Fitness Club",
+    address: "Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida, Uttar Pradesh 201304",
+    phone: "+91 88518 30081",
+  },
   disclaimer:
     "This website provides general educational information and is not a substitute for professional medical diagnosis, treatment or emergency care. Always consult a qualified healthcare professional.",
   affiliateDisclosure:

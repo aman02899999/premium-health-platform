@@ -13,7 +13,7 @@ import { AdBanner, AdRectangle } from "@/health/components/monetization/AdCompon
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
-const seoTitle = "Trending Health Articles — Most Read This Week | Premium Health";
+const seoTitle = "Trending Health Articles — Most Read This Week | Bharat Health Guide";
 const seoDescription = "Trending health guides — most read this week: diabetes, thyroid, PCOS, nutrition, Ayurveda — socia.";
 const url = "/health/blog/trending";
 const absoluteUrl = `${SITE.url}${url}`;

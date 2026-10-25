@@ -12,18 +12,36 @@ const date = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("e
 
 export type AiFacts = { place: string; hours: string; plans: string; offer: string | null; faqs: Faq[] };
 
+/** "Festive Offer until 31 December 2026: Monthly 1 month + 5 bonus days for ₹1,500, …", or null when no offer runs. */
+export function offerText(plans: OfferPlan[]): string | null {
+  const paid = plans.filter((p) => p.price > 0 && p.offer);
+  const o = paid[0]?.offer;
+  return o ? `${o.title} until ${date(o.endsOn)}: ${paid.map((p) => `${p.name} ${p.offer!.gets} for ${formatINR(p.price)}`).join(", ")}` : null;
+}
+
+/**
+ * The admin's FAQs with today's offer added to the fees answer. Without it the FAQ markup quoted
+ * standard prices while the Offer markup and llms.txt quoted the offer, and an assistant could
+ * repeat either one.
+ */
+export function faqsWithOffer(faqs: Faq[], plans: OfferPlan[]): Faq[] {
+  const offer = offerText(plans);
+  if (!offer) return faqs;
+  return faqs.map((f) => (f.id === "fees" && !f.a.includes(offer) ? { ...f, a: `${f.a.trim()} Right now: ${offer}.` } : f));
+}
+
 export function aiFacts(c: SiteContent, plans: OfferPlan[], siteUrl: string): AiFacts {
   const b = c.business;
   const a = b.address;
-  const place = `${a.street}, ${a.locality}, ${a.city} ${a.postalCode}`;
+  const place = `${a.street}, ${a.locality}, ${a.city}, ${a.region} ${a.postalCode}`;
   const hours = b.hours.map((h) => `${h.label.toLowerCase()} ${formatTime(h.open)}–${formatTime(h.close)} (${h.days})`).join(" and ");
   const paid = plans.filter((p) => p.price > 0);
   const planText = paid.map((p) => `${p.name} ${formatINR(p.price)} (${p.offer?.gets ?? p.duration})`).join("; ");
-  const o = paid.find((p) => p.offer)?.offer;
-  const offer = o ? `${o.title} until ${date(o.endsOn)}: ${paid.filter((p) => p.offer).map((p) => `${p.name} ${p.offer!.gets} for ${formatINR(p.price)}`).join(", ")}` : null;
+  const offer = offerText(plans);
   const couple = paid.find((p) => p.couplePrice > 0);
   const programs = c.programs.map((p) => p.title);
   const coach = c.trainers[0];
+  const reviewsUrl = b.googleReviewUrl || b.googleMapsUrl;
   const near = list([...AREAS_SERVED]);
   const openDays = new Set(b.hours.flatMap((h) => expandDays(h.days)));
   const closed = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].filter((d) => !openDays.has(d));
@@ -80,7 +98,7 @@ export function aiFacts(c: SiteContent, plans: OfferPlan[], siteUrl: string): Ai
     {
       id: "ai-reviews",
       q: `What do members say about ${b.name}?`,
-      a: `${b.name} has an average of ${b.rating.value} stars from ${b.rating.count}+ ratings on ${b.rating.source}. Verified reviews: ${siteUrl}/reviews${b.googleMapsUrl ? `, and on Google Maps: ${b.googleMapsUrl}` : ""}.`,
+      a: `${b.name} has an average of ${b.rating.value} stars from ${b.rating.count}+ ratings on ${b.rating.source}${b.justdialUrl ? ` (${b.justdialUrl})` : ""}.${reviewsUrl ? ` Read and write reviews on Google: ${reviewsUrl}` : ""}`,
     },
     {
       id: "ai-women",
@@ -121,9 +139,20 @@ export function llmsTxt(c: SiteContent, plans: OfferPlan[], siteUrl: string): st
     `- [Programs](${siteUrl}/programs): ${c.programs.map((p) => p.title).join(", ")}`,
     `- [Why Royal Fitness](${siteUrl}/why-royal-fitness): trainers, facility, safety`,
     `- [Questions and answers](${siteUrl}/faq)`,
-    `- [Reviews](${siteUrl}/reviews)`,
+    `- [Share a review](${siteUrl}/reviews): members and diet-plan clients can leave a review here`,
     `- [Personal diet charts](${siteUrl}/diet-chart)`,
     `- [Contact and free trial](${siteUrl}/contact)`,
+    ``,
+    `## Bharat Health Guide (${siteUrl}/health)`,
+    ``,
+    `Free, India-focused health education run by ${b.name}: conditions, tests, food, herbs and calculators, in English and Hindi. It is general information, not medical advice. The long-form guides list their sources and say on the page when a doctor's review is still pending.`,
+    ``,
+    `- [Health home](${siteUrl}/health)`,
+    `- [In-depth guides](${siteUrl}/health/blog/guides)`,
+    `- [Guides in Hindi](${siteUrl}/hi/health/blog)`,
+    `- [Conditions A to Z](${siteUrl}/health/diseases)`,
+    `- [Health calculators](${siteUrl}/health/health-calculators)`,
+    `- [Who writes the guides and how they are reviewed](${siteUrl}/health/blog/author)`,
     ``,
     `## Questions and answers`,
     ...f.faqs.flatMap((q) => [``, `### ${q.q}`, q.a]),

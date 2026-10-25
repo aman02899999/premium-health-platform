@@ -9,7 +9,7 @@ import { openFDAProvider } from "@/health/services/health/providers/openfda/prov
 import { rxNormProvider } from "@/health/services/health/providers/rxnorm/provider";
 import { pubChemProvider } from "@/health/services/health/providers/pubchem/provider";
 
-const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem | Premium Health";
+const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem | Bharat Health Guide";
 const seoDescription = "Lookup allopathy medicines: dose, side effects, interactions — India brands, educational. openFDA + RxNorm + PubChem free keyless. Unique, premium + affiliate.";
 const url = "/health/drug-lookup";
 const absoluteUrl = `${SITE.url}${url}`;

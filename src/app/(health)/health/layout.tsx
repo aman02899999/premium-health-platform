@@ -50,9 +50,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   icons: { icon: ["/health/logo.svg", { url: "/health/icon-192.png", type: "image/png" }, { url: "/health/icon-512.png", type: "image/png" }], apple: "/health/apple-icon.png" },
   other: { "google-adsense-account": ADSENSE_CLIENT },
-  verification: {
-    // Add real verification tokens via env when available.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-  },
+  // Same Search Console token as the gym site (one domain), when it is set.
+  verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

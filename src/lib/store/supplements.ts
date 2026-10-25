@@ -1,5 +1,5 @@
 // Royal Fitness Club supplement store — Amazon affiliate picks, kept separate from the
-// Premium Health Platform's products. Rules: well-known brands only, no fat burners,
+// Bharat Health Guide's products. Rules: well-known brands only, no fat burners,
 // testosterone boosters or high-stimulant pre-workouts, no typed-in prices or ratings
 // (Amazon shows the live price), and every link carries our store ID.
 

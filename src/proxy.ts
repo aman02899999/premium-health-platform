@@ -74,7 +74,7 @@ export const config = {
     "/api/:path*",
     // Royal Supplements store: customer sign-in for orders and checkout prefill
     "/shop/account", "/shop/checkout",
-    // Premium Health Platform (/health)
+    // Bharat Health Guide (/health)
     "/health/admin/:path*", "/health/profile", "/health/earn",
     // Every /health API: the origin check for writes; the session refresh only for auth, premium,
     // API keys and billing (SESSION_API).

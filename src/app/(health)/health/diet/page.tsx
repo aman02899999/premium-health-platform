@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Diet Centre — Diabetes, PCOS, Heart, Weight Loss | Premium Health";
+const seoTitle = "Diet Centre — Diabetes, PCOS, Heart, Weight Loss | Bharat Health Guide";
 const seoDescription = "Diet plans: diabetes, PCOS, heart, weight loss, thyroid — Indian thali, millet, protein. Templates, not prescriptions..";
 const url = "/health/diet";
 const absoluteUrl = `${SITE.url}${url}`;

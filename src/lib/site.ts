@@ -55,7 +55,17 @@ export const liveDigits = (phone: string) => {
 /** Click-to-chat on the live number, with a first message already typed. */
 export const liveChatUrl = (phone: string, text: string) => `https://wa.me/${liveDigits(phone)}?text=${encodeURIComponent(text)}`;
 
-export const instagramHref = (handle: string) => `https://www.instagram.com/${handle.replace(/^@/, "")}/`;
+/**
+ * The bare handle from whatever the admin typed: "name", "@name" or a pasted profile link
+ * ("https://www.instagram.com/name?igsh=…"). Pasted links used to end up doubled in hrefs.
+ */
+export function instagramHandle(value: string) {
+  const v = value.trim();
+  const fromUrl = v.match(/instagram\.com\/([A-Za-z0-9._]+)/i)?.[1];
+  return (fromUrl ?? v).replace(/^@/, "").replace(/[/?#].*$/, "");
+}
+
+export const instagramHref = (handle: string) => `https://www.instagram.com/${instagramHandle(handle)}/`;
 
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 

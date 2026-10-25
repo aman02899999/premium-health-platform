@@ -12,7 +12,7 @@ import { AdBanner, AdInArticle, AdRectangle } from "@/health/components/monetiza
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
-const seoTitle = "Nutrition — Indian Foods GI Protein Fibre | Premium Health";
+const seoTitle = "Nutrition — Indian Foods GI Protein Fibre | Bharat Health Guide";
 const seoDescription = "Indian nutrition education: food profiles, nutrients, servings, cooking methods, cautions and diet plans for diabetes, heart, PCOS..";
 const url = "/health/nutrition";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/health/components/ui";
 
 export const metadata: Metadata = {
   title: "Sign in",
-  description: "Sign in with Google or an email link — one account for Premium Health Platform and Royal Fitness Club.",
+  description: "Sign in with Google or an email link — one account for Bharat Health Guide and Royal Fitness Club.",
   robots: { index: false, follow: false },
 };
 

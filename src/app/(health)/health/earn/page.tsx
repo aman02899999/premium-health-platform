@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
   title: "Earn — How BHG Monetizes | Affiliate, Premium, Ads, Leads",
-  description: "How Premium Health Platform earns: premium ₹199/mo, affiliate 8%, AdSense, lab leads, digital products.",
+  description: "How Bharat Health Guide earns: premium ₹199/mo, affiliate 8%, AdSense, lab leads, digital products.",
   alternates: { canonical: "/health/earn" },
 };
 

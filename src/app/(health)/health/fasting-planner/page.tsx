@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Fasting Planner — Navratri Ekadashi Intermittent | Premium Health";
+const seoTitle = "Fasting Planner — Navratri Ekadashi Intermittent | Bharat Health Guide";
 const seoDescription = "Plan fasting: Navratri, Ekadashi, intermittent 16:8 — safe, India-specific.";
 const url = "/health/fasting-planner";
 const absoluteUrl = `${SITE.url}${url}`;

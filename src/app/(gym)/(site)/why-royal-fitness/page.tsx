@@ -221,7 +221,7 @@ export default async function WhyPage() {
 
       <section className="mx-auto max-w-4xl px-4 py-12 text-center sm:px-6">
         <Link href="/reviews" className="inline-flex items-center gap-2 text-sm font-semibold text-brand">
-          <Star className="h-4 w-4" /> Read verified member reviews
+          <Star className="h-4 w-4" /> Read and share reviews
         </Link>
       </section>
 

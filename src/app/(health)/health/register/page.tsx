@@ -4,7 +4,7 @@ import { LoginClient } from "@/health/components/auth/LoginClient";
 import { Breadcrumbs } from "@/health/components/ui";
 
 export const metadata: Metadata = {
-  title: "Register — Join Premium Health Platform",
+  title: "Register — Join Bharat Health Guide",
   description: "Create an account with Google or an email link.",
   robots: { index: false, follow: false },
 };

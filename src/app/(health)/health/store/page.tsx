@@ -12,7 +12,7 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { BOOKS } from "@/lib/library/catalog";
 import { COMPLETE_LIBRARY_PRICE } from "@/lib/library/pricing";
 
-const seoTitle = "Health Store — Products We Recommend | Premium Health";
+const seoTitle = "Health Store — Products We Recommend | Bharat Health Guide";
 const seoDescription = "Hand-picked health products for Indian families, sold by trusted sellers, plus our own PDF guides and personal diet plans.";
 const url = "/health/store";
 const absoluteUrl = `${SITE.url}${url}`;
