@@ -42,6 +42,19 @@ export function allowed(role: Role, pathname: string): boolean {
   return path === "/admin" || AGENT_AREAS.some((p) => under(path, p));
 }
 
+/**
+ * The proxy's decision for an admin request, given the signed-in person's admins row (null: not an
+ * admin) and whether reading it failed. When the role can't be read, admin APIs refuse rather
+ * than guess (a manager or agent must not reach owner-only data during a database blip); sign-in,
+ * sign-out and pages carry on, since pages only show what the APIs return.
+ */
+export function roleGate(pathname: string, me: { role: string } | null, lookupFailed: boolean): "allow" | "deny" | "unavailable" {
+  const path = pathname.replace(/\/+$/, "") || "/";
+  if (lookupFailed) return under(path, "/api/admin") && !under(path, "/api/admin/login") && !under(path, "/api/admin/logout") ? "unavailable" : "allow";
+  if (!me || !isRole(me.role)) return "allow";
+  return allowed(me.role, path) ? "allow" : "deny";
+}
+
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 export const normEmail = (v: unknown): string | null => {
   if (typeof v !== "string") return null;

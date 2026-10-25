@@ -43,14 +43,16 @@ export async function latestLeadByPhone(phone: string): Promise<PipelineLead | n
   return rows[0] ? fromRow(rows[0]) : null;
 }
 
-/** Enquiries with the same 10-digit mobile in the last 24 hours, this one included. */
-export async function leadsFromNumberToday(phone: string): Promise<number> {
-  const { rows } = await pool.query<{ n: number }>(
-    `select count(*)::int as n from public.leads
-      where right(regexp_replace(phone, '\\D', '', 'g'), 10) = right(regexp_replace($1, '\\D', '', 'g'), 10) and created_at > now() - interval '24 hours'`,
-    [phone],
+/** Leads in the last 24 hours: from this number, with this email, and from everyone. */
+export async function leadVolumeToday(phone: string, email: string | null): Promise<{ number: number; email: number; all: number }> {
+  const { rows } = await pool.query<{ number: number; email: number; all: number }>(
+    `select count(*) filter (where right(regexp_replace(phone, '\\D', '', 'g'), 10) = right(regexp_replace($1, '\\D', '', 'g'), 10))::int as number,
+            count(*) filter (where $2::text is not null and lower(email) = lower($2::text))::int as email,
+            count(*)::int as all
+       from public.leads where created_at > now() - interval '24 hours'`,
+    [phone, email],
   );
-  return rows[0]?.n ?? 0;
+  return rows[0] ?? { number: 0, email: 0, all: 0 };
 }
 
 /**

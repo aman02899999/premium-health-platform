@@ -6,9 +6,12 @@ export const dynamic = "force-dynamic";
 // In-memory store for demo — in production use DB with migrations, privacy controls, rate limiting
 const LEADS: any[] = [];
 const RATE_LIMIT: Record<string, { count: number; resetAt: number }> = {};
+const MAX_KEPT = 200;
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
+  // Forget expired entries now and then, so the table of IPs can't grow without limit either.
+  if (Object.keys(RATE_LIMIT).length > 5000) for (const k of Object.keys(RATE_LIMIT)) if (RATE_LIMIT[k].resetAt < now) delete RATE_LIMIT[k];
   const entry = RATE_LIMIT[ip];
   if (!entry || now > entry.resetAt) {
     RATE_LIMIT[ip] = { count: 1, resetAt: now + 60 * 1000 }; // 1 min window
@@ -67,6 +70,8 @@ export async function POST(req: NextRequest) {
     };
 
     LEADS.push(lead);
+    // Bounded, so unauthenticated posts can't grow memory without limit.
+    if (LEADS.length > MAX_KEPT) LEADS.splice(0, LEADS.length - MAX_KEPT);
 
     // In production: send email, store in DB, trigger CRM, etc.
 

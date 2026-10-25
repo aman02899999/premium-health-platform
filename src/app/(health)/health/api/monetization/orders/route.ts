@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/health/lib/monetization/config";
 import { getPaymentProvider, generateDownloadToken } from "@/health/lib/monetization/payment";
 import { isAdmin } from "@/lib/auth";
+import { healthPaymentsLive, paymentsUnavailable } from "@/health/lib/monetization/live-guard";
 
 export const dynamic = "force-dynamic";
 
 const ORDERS: any[] = [];
+const MAX_KEPT = 200;
 
 export async function GET(req: NextRequest) {
   if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
@@ -15,6 +17,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+  // Mock orders only: on the live site nobody can start a simulated purchase.
+  if (!healthPaymentsLive()) return paymentsUnavailable();
   try {
     const body = await req.json();
     const { productId, productType, email, page, utm } = body;
@@ -57,9 +61,12 @@ export async function POST(req: NextRequest) {
     };
 
     ORDERS.push(order);
+    // In-memory demo list: keep it bounded so it can't grow without limit.
+    if (ORDERS.length > MAX_KEPT) ORDERS.splice(0, ORDERS.length - MAX_KEPT);
 
     return NextResponse.json({ ok: true, order, checkoutUrl: paymentOrder.checkoutUrl });
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e.message || "Failed to create order" }, { status: 500 });
+    console.error("[health orders] create failed:", e?.message);
+    return NextResponse.json({ ok: false, error: "Failed to create order" }, { status: 500 });
   }
 }

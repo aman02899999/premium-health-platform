@@ -22,7 +22,7 @@ export function BuyButton({ productId, price, page }: { productId: string; price
         // fallback to mock checkout
         window.location.href = `/health/api/monetization/checkout/mock?orderId=${data.order.id}`;
       } else {
-        alert(JSON.stringify(data));
+        alert(data?.error?.message || data?.error || "Online payment isn't available yet. Please WhatsApp us.");
       }
     } catch (e) {
       alert("Failed to create order");

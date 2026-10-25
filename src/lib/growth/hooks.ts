@@ -5,7 +5,7 @@ import { business, nurtureBusiness } from "./daily";
 import { markDietPaid } from "./diet-orders";
 import { applyPaidOrder, type Member } from "./members";
 import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, trialBookedEmail, trialMessage, welcomeMessage } from "./messages";
-import { getLead, latestLeadByPhone, leadsFromNumberToday } from "./leads";
+import { getLead, latestLeadByPhone, leadVolumeToday } from "./leads";
 import { newLeadAlert } from "./lead-alerts";
 import { nurtureDrafts } from "./nurture";
 import { daysBetween, todayIST } from "./dates";
@@ -96,8 +96,15 @@ export async function afterDietPaid(razorpayOrderId: string, paymentId: string, 
   return true;
 }
 
-/** Automatic messages one number can trigger through the forms in 24 hours. */
-const LEAD_MESSAGES_PER_NUMBER_PER_DAY = 2;
+/**
+ * The forms message whatever number and email are typed in, so someone could use them to spam
+ * strangers. Automatic messages stop for 24 hours past two enquiries from one number or one
+ * email, and past 40 enquiries site-wide (the busiest day so far had 3). The desk still gets
+ * every lead.
+ */
+export const LEAD_MESSAGE_LIMITS = { perNumber: 2, perEmail: 2, perDay: 40 };
+export const leadMessagesPaused = (v: { number: number; email: number; all: number }) =>
+  v.number > LEAD_MESSAGE_LIMITS.perNumber || v.email > LEAD_MESSAGE_LIMITS.perEmail || v.all > LEAD_MESSAGE_LIMITS.perDay;
 
 /**
  * Straight after a lead is saved: the WhatsApp thank-you (trial leads from forms) and the first
@@ -108,14 +115,16 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
     const lead = leadId ? await getLead(leadId) : await latestLeadByPhone(phone);
     if (!lead) return;
     // Free-trial form (home / contact page) with an email: the trial confirmation email sequence.
-    if (lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name, lead.trialAt);
+    // See LEAD_MESSAGE_LIMITS: past them the desk still gets the lead, but no automatic WhatsApp
+    // or email goes to the number or address typed in.
+    const quiet = leadMessagesPaused(await leadVolumeToday(lead.phone, lead.email ?? null));
+    if (quiet) console.warn("[growth] lead saved without automatic messages: enquiry limit reached for today");
+    if (!quiet && lead.email && (lead.source === "home" || lead.source === "contact")) await trackTrialBooked(lead.email, lead.name, lead.trialAt);
     const drafts = [];
     const biz = await business();
-    // The form messages whatever number is typed in. Past two enquiries a day from one number,
-    // the desk still gets the lead but the number gets no more automatic messages.
-    const quiet = (await leadsFromNumberToday(lead.phone)) > LEAD_MESSAGES_PER_NUMBER_PER_DAY;
-    if (quiet) console.warn("[growth] lead saved without automatic messages: too many enquiries from one number today");
-    else if (lead.trialAt) {
+    if (quiet) {
+      // Nothing to the visitor; the coach alert below still goes out.
+    } else if (lead.trialAt) {
       // A picked time: confirm it (WhatsApp, and email when given) instead of asking them to choose one.
       const d = trialMessage("trial-booked", { ...lead, trialAt: lead.trialAt }, biz);
       if (d) drafts.push(d);
@@ -127,7 +136,7 @@ export async function afterLeadSaved(phone: string, leadId?: string): Promise<vo
     // Speed to lead: the coach gets the details and a one-tap WhatsApp reply straight away.
     const coach = process.env.COACH_EMAIL;
     if (coach && lead.followUps) drafts.push(newLeadAlert(lead, coach, biz.name, `${biz.siteUrl}/admin/growth`));
-    if (leadId) {
+    if (leadId && !quiet) {
       const full = lead as Awaited<ReturnType<typeof getLead>>;
       if (full?.email && full.marketing && (full.interest === "diet" || full.interest === "pt" || full.interest === "membership"))
         drafts.push(...nurtureDrafts(todayIST(), [{ id: full.id, name: full.name, email: full.email, interest: full.interest, createdAt: full.createdAt }], await nurtureBusiness()));
