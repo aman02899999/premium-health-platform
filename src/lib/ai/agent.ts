@@ -77,7 +77,7 @@ export async function draftAnswer(q: { question: string; history?: ChatTurn[]; n
   if (!aiConfigured() && call === callClaude) return { ok: false, error: "The AI agent needs ANTHROPIC_API_KEY in Vercel." };
   const settings = q.settings ?? (await getAgentSettings());
   const c = await getContent();
-  const knowledge = buildKnowledge(c, applyOffer(c.plans, todayIST()), SITE_URL, settings.knowledge);
+  const knowledge = buildKnowledge(c, applyOffer(c.plans, todayIST(), c.offers), SITE_URL, settings.knowledge);
   try {
     const r = await call({ model: settings.model, system: systemPrompt(c.business.name, c.business.phone), knowledge, prompt: conversationPrompt(q.history ?? [], q.question, q.name ?? "") });
     const parsed = r.refused ? null : parseAnswer(r.text);

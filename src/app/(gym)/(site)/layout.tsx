@@ -18,7 +18,7 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         Skip to content
       </a>
       <JsonLd data={[localBusinessJsonLd(c), websiteJsonLd(c)]} />
-      <Header name={c.business.name} phoneHref={telHref(c.business.phone)} announcement={activeOffer(todayIST())?.banner ?? c.announcement} />
+      <Header name={c.business.name} phoneHref={telHref(c.business.phone)} announcement={activeOffer(todayIST(), c.offers)?.banner || c.announcement} />
       <main id="main">{children}</main>
       <Footer content={c} />
       <FloatingActions whatsapp={whatsappHref(c.business)} phone={telHref(c.business.phone)} />

@@ -187,7 +187,7 @@ export default async function HomePage() {
       {/* ---------- MEMBERSHIP ---------- */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Pick your" highlight="royal plan" intro="Simple pricing, no hidden charges. Longer plans save you more." />
-        <PlanGrid plans={applyOffer(c.plans, todayIST())} note={c.planNote} payOnline={razorpayConfigured()} />
+        <PlanGrid plans={applyOffer(c.plans, todayIST(), c.offers)} note={c.planNote} payOnline={razorpayConfigured()} />
       </section>
 
       {/* ---------- GALLERY ---------- */}

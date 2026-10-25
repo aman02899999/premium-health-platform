@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { businessAppKit } from "./app-kit";
 
 describe("WhatsApp Business app kit", () => {
   const b = DEFAULT_CONTENT.business;
-  const offerPlans = applyOffer(DEFAULT_CONTENT.plans, "2026-10-20");
-  const plainPlans = applyOffer(DEFAULT_CONTENT.plans, "2027-02-01");
+  const offerPlans = applyOffer(DEFAULT_CONTENT.plans, "2026-10-20", OFFERS);
+  const plainPlans = applyOffer(DEFAULT_CONTENT.plans, "2027-02-01", OFFERS);
 
   it("builds greeting, away and quick replies from the plans as sold today", () => {
     const kit = businessAppKit(b, offerPlans, "https://example.in");

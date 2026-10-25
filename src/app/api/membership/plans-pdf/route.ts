@@ -8,7 +8,7 @@ export const revalidate = 300;
 export async function GET() {
   const c = await getContent();
   const today = todayIST();
-  const pdf = await plansPdf(c, applyOffer(c.plans, today), today);
+  const pdf = await plansPdf(c, applyOffer(c.plans, today, c.offers), today);
   return new Response(new Uint8Array(pdf), {
     headers: {
       "content-type": "application/pdf",

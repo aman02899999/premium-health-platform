@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "./defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { aiFacts, llmsTxt } from "./ai-facts";
 
 describe("AI-facing facts", () => {
   const c = DEFAULT_CONTENT;
-  const plans = applyOffer(c.plans, "2026-10-20");
+  const plans = applyOffer(c.plans, "2026-10-20", OFFERS);
 
   it("answers with today's prices, real timings and the offer end date", () => {
     const f = aiFacts(c, plans, "https://x.in");
@@ -19,7 +19,7 @@ describe("AI-facing facts", () => {
   });
 
   it("drops the offer once it has ended", () => {
-    const f = aiFacts(c, applyOffer(c.plans, "2027-02-01"), "https://x.in");
+    const f = aiFacts(c, applyOffer(c.plans, "2027-02-01", OFFERS), "https://x.in");
     expect(f.offer).toBeNull();
     expect(f.faqs.map((q) => q.a).join(" ")).not.toMatch(/Festive/);
   });

@@ -1,14 +1,14 @@
 import { createHmac } from "node:crypto";
 import { describe, expect, it, vi } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { buildReply, detectIntent, forInstagram, shouldReply, type ReplyCtx } from "./auto-reply";
 import { indianMobile, parseCalls, parseWebhook, wantsCallFollowUp } from "./inbound";
 import { chatWindow, peerId, windowLabel } from "./chat-window";
 
 vi.mock("server-only", () => ({}));
 
-const ctx = (today: string): ReplyCtx => ({ business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, today), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Kumar" });
+const ctx = (today: string): ReplyCtx => ({ business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, today, OFFERS), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Kumar" });
 
 describe("detectIntent", () => {
   it.each([

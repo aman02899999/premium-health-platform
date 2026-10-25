@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "@/lib/content/defaults";
-import { applyOffer } from "@/lib/offers";
+import { applyOffer, OFFERS } from "@/lib/offers";
 import { buildReply, detectIntent, isMembershipRefund, shouldReply } from "./auto-reply";
 import { flowAction, flowReply } from "./wa-flow";
 
-const ctx = { business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, "2026-10-21"), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Verma" };
+const ctx = { business: DEFAULT_CONTENT.business, plans: applyOffer(DEFAULT_CONTENT.plans, "2026-10-21", OFFERS), siteUrl: "https://www.royalfitnesclub.in", name: "Rahul Verma" };
 
 describe("refunds, cancellations and complaints go to a person", () => {
   it.each([

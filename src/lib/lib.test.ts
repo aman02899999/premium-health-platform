@@ -83,6 +83,17 @@ describe("content validation", () => {
     expect(validateContent(bad).ok).toBe(false);
     expect(validateContent({ ...DEFAULT_CONTENT, plans: "x" }).ok).toBe(false);
   });
+
+  it("refuses to save an offer price with a missing zero, and says which one", () => {
+    const [festive] = DEFAULT_CONTENT.offers;
+    const typo = { ...festive, plans: { ...festive.plans, monthly: { ...festive.plans.monthly, price: 150 } } };
+    const r = validateContent({ ...DEFAULT_CONTENT, offers: [typo] });
+    expect(r.ok).toBe(false);
+    expect(!r.ok && r.error).toMatch(/Festive Offer.*Monthly.*₹150/);
+    // Content saved before offers moved to the admin has no "offers" key; the built-in offer is used.
+    const { offers: _omit, ...older } = DEFAULT_CONTENT;
+    expect(validateContent(older).ok).toBe(true);
+  });
 });
 
 describe("fitness hub", async () => {

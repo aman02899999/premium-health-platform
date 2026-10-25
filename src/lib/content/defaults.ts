@@ -2,6 +2,7 @@ import type { SiteContent } from "./types";
 import { DEFAULT_POSTS } from "./default-posts";
 import { HINGLISH_POSTS } from "./hinglish-posts";
 import { LOCAL_POSTS } from "./local-posts";
+import { OFFERS } from "../offers";
 
 // Seed content used until the admin saves their own. Facts about the gym come
 // from its public listings (Google Business Profile, Justdial, Instagram).
@@ -253,5 +254,6 @@ export const DEFAULT_CONTENT: SiteContent = {
     googleVerification: "",
   },
   theme: { primary: "#e8394b", secondary: "#04466d" },
+  offers: OFFERS,
   announcement: "Couple membership: train together from ₹3,000/month for two · Free trial for new members",
 };

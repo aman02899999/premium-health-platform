@@ -46,7 +46,7 @@ export async function GET() {
       funnelBySource(30).catch(() => []),
     ]);
     const [lastRun, content] = await Promise.all([lastDailyRun(), getContent()]);
-    const appKit = businessAppKit(content.business, applyOffer(content.plans, todayIST()), SITE_URL);
+    const appKit = businessAppKit(content.business, applyOffer(content.plans, todayIST(), content.offers), SITE_URL);
     return NextResponse.json({
       today: todayIST(),
       siteUrl: SITE_URL,

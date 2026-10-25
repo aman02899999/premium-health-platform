@@ -1,4 +1,5 @@
-import type { SiteContent } from "./types";
+import type { Plan, SiteContent } from "./types";
+import { validateOffers } from "../offers";
 
 // Structural check for content posted by the admin panel. It does not try to
 // be a full schema — it rejects payloads that would crash rendering.
@@ -14,6 +15,10 @@ export function validateContent(input: unknown): { ok: true; content: SiteConten
   }
   for (const key of ARRAY_KEYS) {
     if (!Array.isArray(c[key])) return { ok: false, error: `"${key}" must be a list` };
+  }
+  if (c.offers !== undefined) {
+    const { errors } = validateOffers(c.offers, c.plans as Plan[]);
+    if (errors.length) return { ok: false, error: errors.join(" · ") };
   }
   if (c.caseStudies !== undefined && !Array.isArray(c.caseStudies)) return { ok: false, error: '"caseStudies" must be a list' };
   const posts = c.posts as { slug?: unknown; title?: unknown }[];

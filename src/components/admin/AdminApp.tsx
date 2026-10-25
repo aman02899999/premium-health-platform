@@ -28,6 +28,7 @@ import {
   Star,
   TrendingUp,
   ShoppingBag,
+  BadgePercent,
 } from "lucide-react";
 import type { BlogPost, Lead, SiteContent } from "@/lib/content/types";
 import { slugify } from "@/lib/content/validate";
@@ -37,6 +38,7 @@ import { CALCULATORS } from "@/lib/calculators";
 import { Markdown } from "@/components/blog/Markdown";
 import { ListEditor, ObjectEditor, type Field } from "./fields";
 import { LibraryAdmin } from "./LibraryAdmin";
+import { OffersEditor } from "./OffersEditor";
 import { DEFAULT_POSTS } from "@/lib/content/default-posts";
 import { LOCAL_POSTS } from "@/lib/content/local-posts";
 
@@ -49,6 +51,7 @@ const TABS = [
   { id: "home", label: "Home & Hero", icon: Home },
   { id: "programs", label: "Programs", icon: Dumbbell },
   { id: "plans", label: "Membership", icon: Tag },
+  { id: "offers", label: "Offers", icon: BadgePercent },
   { id: "trainers", label: "Trainers", icon: Users },
   { id: "gallery", label: "Gallery", icon: ImageIcon },
   { id: "testimonials", label: "Testimonials", icon: MessageSquareQuote },
@@ -373,6 +376,12 @@ export function AdminApp({ storage }: { storage: string }) {
                 <textarea className="field" rows={3} value={content.planNote} onChange={(e) => set("planNote", e.target.value)} />
               </Card>
             </>
+          )}
+
+          {tab === "offers" && (
+            <Card title="Offers" help="Time-limited prices for membership plans. What you set here is what the site shows and what online payments charge.">
+              <OffersEditor offers={content.offers} plans={content.plans} onChange={(v) => set("offers", v)} />
+            </Card>
           )}
 
           {tab === "trainers" && (

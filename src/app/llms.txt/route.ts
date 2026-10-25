@@ -9,7 +9,7 @@ export const revalidate = 3600;
 
 export async function GET() {
   const c = await getContent();
-  return new Response(llmsTxt(c, applyOffer(c.plans, todayIST()), SITE_URL), {
+  return new Response(llmsTxt(c, applyOffer(c.plans, todayIST(), c.offers), SITE_URL), {
     headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "public, max-age=3600" },
   });
 }

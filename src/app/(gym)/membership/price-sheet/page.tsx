@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PriceSheetPage() {
   const c = await getContent();
   const today = todayIST();
-  const plans = applyOffer(c.plans, today);
+  const plans = applyOffer(c.plans, today, c.offers);
   const { features, has } = planFeatures(plans);
   const base = basePlan(plans);
   const b = c.business;
