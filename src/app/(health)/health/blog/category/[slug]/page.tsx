@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cat = slugToCategory(slug);
   if (!cat) return { title: "Category not found" };
-  const title = seoTitle(`${cat} — Health Guides | Bharat Health Guide`).slice(0, 60);
-  const desc = seoDescription(`Evidence-informed ${cat} guides for Indian families: ${cat} diet, lifestyle, medicines, Ayurveda — with FAQs, references, real photos. Latest & trending.`).slice(0, 155);
+  const title = seoTitle(`${cat} Guides`);
+  const desc = seoDescription(`Evidence-informed ${cat} guides for Indian families: ${cat} diet, lifestyle, medicines, Ayurveda — with FAQs, references, real photos. Latest & trending.`);
   const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent(`${cat} — Guides`)}&category=${encodeURIComponent(cat)}&type=Blog`;
   return {
     title,

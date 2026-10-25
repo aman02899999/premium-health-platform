@@ -3,7 +3,7 @@ import { Breadcrumbs, EmergencyBox, AdSlot, DisclaimerBar } from "@/health/compo
 import { SITE } from "@/health/lib/site";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 
-const seoTitle = "Medical Disclaimer — Educational Only | Bharat Health Guide";
+const seoTitle = "Medical Disclaimer — Educational Only";
 const seoDescription = "Bharat Health Guide is educational information only — not diagnosis, treatment or emergency care. Read full disclaimer, emergency guidance, medicines, herbs safety.";
 const url = "/health/disclaimer";
 const absoluteUrl = `${SITE.url}${url}`;

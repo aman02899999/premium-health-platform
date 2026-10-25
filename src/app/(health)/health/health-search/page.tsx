@@ -6,7 +6,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Health Search — Diseases Herbs Foods | Unified India | Bharat Health Guide";
+const seoTitle = "Health Search — Diseases Herbs Foods | Unified India";
 const seoDescription = "Search all: diseases, herbs, medicines, nutrition, yoga — India-first. One query categorized: diseases, food, exercises, Ayurveda, PubMed, trials..";
 const url = "/health/health-search";
 const absoluteUrl = `${SITE.url}${url}`;

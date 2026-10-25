@@ -4,7 +4,7 @@ import { Breadcrumbs, AdSlot, DisclaimerBar, Newsletter } from "@/health/compone
 import { SITE } from "@/health/lib/site";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 
-const seoTitle = "Solutions — Diabetes, Thyroid, PCOS, Heart | Bharat Health Guide";
+const seoTitle = "Solutions — Diabetes, Thyroid, PCOS, Heart";
 const seoDescription = "Health solutions: diabetes, thyroid, PCOS, heart, fatty liver — diet, exercise, medicines, Ayurveda..";
 const url = "/health/solutions";
 const absoluteUrl = `${SITE.url}${url}`;

@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Workout Builder — India Home Gym No Equipment | Bharat Health Guide";
+const seoTitle = "Workout Builder — India Home Gym No Equipment";
 const seoDescription = "Build home workout: no equipment, India heat + space friendly — beginner to advanced.";
 const url = "/health/workout-builder";
 const absoluteUrl = `${SITE.url}${url}`;

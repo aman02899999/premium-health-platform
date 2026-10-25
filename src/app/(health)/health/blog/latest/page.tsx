@@ -13,7 +13,7 @@ import { AdBanner, AdRectangle } from "@/health/components/monetization/AdCompon
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
-const seoTitle = "Latest Health Articles | Bharat Health Guide";
+const seoTitle = "Latest Health Articles";
 const seoDescription = "Latest health guides updated weekly — diabetes, thyroid, PCOS, nutrition, Ayurveda — newest first.";
 const url = "/health/blog/latest";
 const absoluteUrl = `${SITE.url}${url}`;

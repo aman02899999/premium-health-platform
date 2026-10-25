@@ -8,7 +8,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Lab Tests — HbA1c, Thyroid, Lipid, CBC | India Guide | Bharat Health Guide";
+const seoTitle = "Lab Tests — HbA1c, Thyroid, Lipid, CBC | India Guide";
 const seoDescription = "Lab tests guide: HbA1c, TSH, lipid, CBC, creatinine, vitamin D, B12 — when to test, cost INR, fasting, India labs..";
 const url = "/health/lab-tests";
 const absoluteUrl = `${SITE.url}${url}`;

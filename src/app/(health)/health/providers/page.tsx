@@ -9,7 +9,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { LeadForm } from "@/health/components/monetization/LeadForm";
 import { LEAD_FORMS } from "@/health/lib/monetization/config";
 
-const seoTitle = "Providers — Dietitians, Yoga, Clinics | Bharat Health Guide";
+const seoTitle = "Providers — Dietitians, Yoga, Clinics";
 const seoDescription = "Business directory: Dietitians, Nutritionists, Fitness coaches, Yoga instructors, Clinics, Diagnostic centers, Wellness — Free/Featured/Premium listings, verified.";
 const url = "/health/providers";
 const absoluteUrl = `${SITE.url}${url}`;

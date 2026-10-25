@@ -4,7 +4,7 @@ import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { SITE } from "@/health/lib/site";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 
-const seoTitle = "Privacy Policy | Bharat Health Guide";
+const seoTitle = "Privacy Policy";
 const seoDescription = "Privacy policy: data collection, cookies, analytics, affiliate, newsletter, WhatsApp and push notifications, and how to opt out or ask for deletion.";
 const url = "/health/privacy";
 const absoluteUrl = `${SITE.url}${url}`;

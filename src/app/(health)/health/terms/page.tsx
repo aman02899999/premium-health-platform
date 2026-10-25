@@ -3,7 +3,7 @@ import { Breadcrumbs, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { SITE } from "@/health/lib/site";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 
-const seoTitle = "Terms of Service | Bharat Health Guide";
+const seoTitle = "Terms of Service";
 const seoDescription = "Terms: educational only, not medical advice, no personalised doses, disclaimer, liability, India jurisdiction..";
 const url = "/health/terms";
 const absoluteUrl = `${SITE.url}${url}`;

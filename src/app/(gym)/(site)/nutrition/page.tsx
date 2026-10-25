@@ -4,7 +4,8 @@ import { getContent } from "@/lib/content/store";
 import { FOODS } from "@/lib/fitness/foods";
 import { breadcrumbJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 import { NutritionTracker } from "@/components/hub/NutritionTracker";
-import { PageHero } from "@/components/ui/Section";
+import { PageHero, SectionHeading } from "@/components/ui/Section";
+import { FaqList } from "@/components/home/Blocks";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,8 +20,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function NutritionPage() {
   const top = [...FOODS].filter((f) => f.diet === "veg").sort((a, b) => b.protein - a.protein).slice(0, 5);
   const faqs = [
-    { q: "Which Indian vegetarian foods are highest in protein?", a: `Per typical serving: ${top.map((f) => `${f.name} (${f.protein} g per ${f.serving})`).join(", ")}.` },
-    { q: "How much protein is in one roti?", a: "A medium whole-wheat roti has about 3.5 g of protein and 110 kcal." },
+    { id: "veg-protein", q: "Which Indian vegetarian foods are highest in protein?", a: `Per typical serving: ${top.map((f) => `${f.name} (${f.protein} g per ${f.serving})`).join(", ")}.` },
+    { id: "roti-protein", q: "How much protein is in one roti?", a: "A medium whole-wheat roti has about 3.5 g of protein and 110 kcal." },
   ];
   return (
     <>
@@ -39,6 +40,11 @@ export default function NutritionPage() {
           </Link>
           .
         </p>
+      </section>
+      {/* Shown on the page because the FAQ markup above may only describe visible questions. */}
+      <section className="mx-auto max-w-3xl px-4 pb-16 sm:px-6">
+        <SectionHeading eyebrow="FAQ" title="Protein," highlight="answered" />
+        <FaqList faqs={faqs} />
       </section>
     </>
   );

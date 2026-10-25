@@ -10,7 +10,7 @@ import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts
 import { WhatsAppOptIn } from "@/health/components/marketing/WhatsAppOptIn";
 
 export const metadata: Metadata = {
-  title: seoTitle("Thali Builder — Balanced Indian Thali | Unique India"),
+  title: seoTitle("Thali Builder: Balanced Indian Plate"),
   description: seoDescription("Build balanced Indian thali: half veg, quarter millet grain, quarter dal/protein + curd — unique India-first feature. Salad first, protein second, grain last — lowers sugar spikes."),
   alternates: { canonical: "/health/thali-builder", languages: { "en-IN": absoluteUrl("/health/thali-builder"), "en": absoluteUrl("/health/thali-builder"), "x-default": absoluteUrl("/health/thali-builder") } },
   openGraph: {

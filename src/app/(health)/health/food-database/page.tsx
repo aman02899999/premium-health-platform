@@ -8,7 +8,7 @@ import { SITE } from "@/health/lib/site";
 import { openFoodFactsProvider } from "@/health/services/health/providers/openfoodfacts/provider";
 import { usdaProvider } from "@/health/services/health/providers/usda/provider";
 
-const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA | Bharat Health Guide";
+const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA";
 const seoDescription = "Search Indian foods: GI, protein, fibre, FSSAI — roti, dal, millet + Open Food Facts barcode + USDA..";
 const url = "/health/food-database";
 const absoluteUrl = `${SITE.url}${url}`;

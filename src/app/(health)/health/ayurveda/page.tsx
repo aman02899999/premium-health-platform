@@ -13,7 +13,7 @@ import { AdBanner, AdInArticle, AdRectangle } from "@/health/components/monetiza
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
-const seoTitle = "Ayurveda — Dosha, Dinacharya, Ritucharya | Bharat Health Guide";
+const seoTitle = "Ayurveda — Dosha, Dinacharya, Ritucharya";
 const seoDescription = "Dosha, dinacharya, ritucharya, nutrition, panchakarma education and herb safety — traditional wisdom distinguished from clinical evidence..";
 const url = "/health/ayurveda";
 const absoluteUrl = `${SITE.url}${url}`;

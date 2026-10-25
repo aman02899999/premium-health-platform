@@ -6,7 +6,7 @@ import { SITE } from "@/health/lib/site";
 
 export const revalidate = 3600;
 
-const seoTitle = "Health News — India Medical Briefings | Bharat Health Guide";
+const seoTitle = "Health News — India Medical Briefings";
 const seoDescription = "Synced daily from official sources: WHO outbreak reports, US FDA recalls of Indian-made medicines and new Indian research from PubMed — plus evergreen health guides.";
 const url = "/health/news";
 const absoluteUrl = `${SITE.url}${url}`;

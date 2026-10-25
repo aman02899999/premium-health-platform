@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar | Bharat Health Guide";
+const seoTitle = "Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar";
 const seoDescription = "Traditional Indian yoga timer: pranayama 4-2-4, Surya Namaskar rounds, meditation — guided breathing, hold, exhale.";
 const url = "/health/yoga-timer";
 const absoluteUrl = `${SITE.url}${url}`;

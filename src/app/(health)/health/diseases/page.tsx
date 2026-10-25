@@ -3,7 +3,7 @@ import DiseasesClient from "./DiseasesClient";
 import { DISEASES, DISEASE_SYSTEMS, DISEASE_CATEGORIES } from "@/health/data/diseases-index";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Disease Directory — 120+ Conditions India | Bharat Health Guide";
+const seoTitle = "Disease Directory — 120+ Conditions India";
 const seoDescription = "Searchable Indian disease database: 120+ conditions — symptoms, causes, tests, modern treatment, Ayurveda, herbs, nutrition..";
 const url = "/health/diseases";
 const absoluteUrl = `${SITE.url}${url}`;

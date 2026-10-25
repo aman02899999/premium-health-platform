@@ -9,7 +9,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Recipes — Millet, Diabetes, Heart Healthy India | Bharat Health Guide";
+const seoTitle = "Recipes — Millet, Diabetes, Heart Healthy India";
 const seoDescription = "Healthy Indian recipes: moong khichdi, millet pulao, raita, sprouts chaat — simple, budget-friendly, diabetes, heart & weight friendly..";
 const url = "/health/recipes";
 const absoluteUrl = `${SITE.url}${url}`;

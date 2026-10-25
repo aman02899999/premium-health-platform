@@ -7,7 +7,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
-const seoTitle = "Herb-Drug Interaction Checker — Ayurveda Safety | Bharat Health Guide";
+const seoTitle = "Herb-Drug Interaction Checker — Ayurveda Safety";
 const seoDescription = "Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety checker.";
 const url = "/health/herb-interaction";
 const absoluteUrl = `${SITE.url}${url}`;

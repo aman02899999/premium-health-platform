@@ -8,7 +8,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { AdBanner } from "@/health/components/monetization/AdComponents";
 
-const seoTitle = "Consultation — Diet, Fitness, Wellness | Bharat Health Guide";
+const seoTitle = "Consultation — Diet, Fitness, Wellness";
 const seoDescription = "Lead generation: diet consultation, fitness, wellness, health package, clinic inquiry, corporate wellness — minimal data, consent, rate limiting, spam protection.";
 const url = "/health/consultation";
 const absoluteUrl = `${SITE.url}${url}`;

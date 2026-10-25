@@ -6,7 +6,7 @@ import { FOODS, getFood } from "@/health/data/nutrition";
 import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, LikeButton, Newsletter } from "@/health/components/ui";
 import { NutrientDonut } from "@/health/components/charts";
-import { articleJsonLd, faqJsonLd } from "@/health/lib/seo";
+import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
 import { AdBanner, AdInArticle, AdRectangle } from "@/health/components/monetization/AdComponents";
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const f = getFood(slug);
   if (!f) return { title: "Food not found" };
-  return { title: `${f.name} — Nutrients, Benefits, Servings & Recipes`, description: f.short, alternates: { canonical: `/health/nutrition/${slug}` } };
+  return { title: `${f.name} — Nutrients, Benefits, Servings & Recipes`, description: entityDescription(f.short, "Nutrients, benefits, serving sizes and simple Indian recipes."), alternates: { canonical: `/health/nutrition/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
@@ -44,7 +44,7 @@ export default async function FoodPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <Breadcrumbs schema items={[{ label: "Home", href: "/health" }, { label: "Nutrition", href: "/health/nutrition" }, { label: f.name }]} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: f.name, description: f.short, slug: `/health/nutrition/${slug}`, category: f.category })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd({ title: f.name, description: entityDescription(f.short, "Nutrients, benefits, serving sizes and simple Indian recipes."), slug: `/health/nutrition/${slug}`, category: f.category })) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(f.faqs)) }} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-50 via-orange-50 to-emerald-50 p-6 md:p-8 dark:border dark:border-stone-700 dark:from-stone-900 dark:to-stone-900">
