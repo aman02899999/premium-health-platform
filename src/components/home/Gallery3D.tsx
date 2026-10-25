@@ -96,7 +96,11 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
                 filter: d === 0 ? "none" : "brightness(.55) saturate(.8)",
               }}
             >
-              <SmartImage src={item.image} alt={item.title} label={item.title} icon="Dumbbell" />
+              {/* Cards more than two places away are invisible: skip their photo until they come near,
+                  so the first card's photo isn't competing with nine others on a phone connection. */}
+              {!hidden && (
+                <SmartImage src={item.image} alt={item.title} label={item.title} icon="Dumbbell" sizes="(min-width: 640px) 320px, 260px" priority={i === 0} />
+              )}
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-5 text-left">
                 <span className="font-display block text-xl text-white">{item.title}</span>
                 <span className="text-sm text-white/70">{item.caption}</span>
@@ -131,7 +135,7 @@ export function Gallery3D({ items }: { items: GalleryItem[] }) {
           </button>
           <figure className="max-h-full w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
             <div className="aspect-[4/3] overflow-hidden rounded-2xl">
-              <SmartImage src={items[lightbox].image} alt={items[lightbox].title} label={items[lightbox].title} icon="Dumbbell" priority />
+              <SmartImage src={items[lightbox].image} alt={items[lightbox].title} label={items[lightbox].title} icon="Dumbbell" sizes="(min-width: 896px) 896px, 100vw" priority />
             </div>
             <figcaption className="mt-4 flex items-center justify-between gap-4">
               <span>

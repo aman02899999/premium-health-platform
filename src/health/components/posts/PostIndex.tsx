@@ -41,10 +41,10 @@ export function PostIndex({ posts, lang, otherHref }: { posts: PostMeta[]; lang:
         <p className="mt-8 text-stone-600">{t.none}</p>
       ) : (
         <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {shown.map((p) => (
+          {shown.map((p, i) => (
             <li key={p.slug}>
               <Link href={postPath(p.lang, p.slug)} className="group block h-full overflow-hidden rounded-2xl border border-stone-200 bg-white transition hover:-translate-y-0.5 hover:shadow-lg dark:border-stone-700 dark:bg-stone-900">
-                <Image src={p.heroImage} alt={p.heroAlt} width={600} height={315} unoptimized={p.heroImage.endsWith(".svg")} loading="lazy" className="h-auto w-full" />
+                <Image src={p.heroImage} alt={p.heroAlt} width={600} height={315} unoptimized={p.heroImage.endsWith(".svg")} loading={i === 0 ? "eager" : "lazy"} fetchPriority={i === 0 ? "high" : "auto"} className="h-auto w-full" />
                 <div className="p-4">
                   <p className="text-[11px] font-bold uppercase tracking-wider text-emerald-700">{p.category}</p>
                   <h2 className="font-display mt-1 text-lg font-black leading-snug text-stone-900 group-hover:text-emerald-800 dark:text-white">{lang === "hi" ? p.hindiTitle : p.title}</h2>

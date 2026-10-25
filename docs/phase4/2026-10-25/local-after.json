@@ -1,0 +1,57 @@
+[
+ {
+  "page": "/hi/health/blog",
+  "n": 3,
+  "ttfb": 14,
+  "fcp": 1604,
+  "lcp": 1604,
+  "cls": 0.001,
+  "tbt": 395,
+  "kb": 827,
+  "jsKb": 427
+ },
+ {
+  "page": "/health/blog/guides",
+  "n": 3,
+  "ttfb": 10,
+  "fcp": 1488,
+  "lcp": 1488,
+  "cls": 0.001,
+  "tbt": 423,
+  "kb": 708,
+  "jsKb": 423
+ },
+ {
+  "page": "/hi/health/blog/dengue-ghar-par-dekhbhal",
+  "n": 3,
+  "ttfb": 8,
+  "fcp": 1232,
+  "lcp": 1232,
+  "cls": 0,
+  "tbt": 194,
+  "kb": 442,
+  "jsKb": 263
+ },
+ {
+  "page": "/gallery",
+  "n": 3,
+  "ttfb": 18,
+  "fcp": 1652,
+  "lcp": 1652,
+  "cls": 0,
+  "tbt": 370,
+  "kb": 613,
+  "jsKb": 253
+ },
+ {
+  "page": "/blog",
+  "n": 3,
+  "ttfb": 10,
+  "fcp": 1700,
+  "lcp": 1700,
+  "cls": 0,
+  "tbt": 429,
+  "kb": 536,
+  "jsKb": 271
+ }
+]

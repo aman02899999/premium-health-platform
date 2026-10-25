@@ -49,7 +49,7 @@ export default async function GalleryPage() {
           <Reveal key={g.id} delay={(i % 3) * 80}>
             <TiltCard className="group rounded-3xl" max={12}>
               <figure className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-1 ring-white/10">
-                <SmartImage src={g.image} alt={g.title} label={g.title} icon="Dumbbell" className="transition-transform duration-700 group-hover:scale-110" />
+                <SmartImage src={g.image} alt={g.title} label={g.title} icon="Dumbbell" sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="transition-transform duration-700 group-hover:scale-110" />
                 <figcaption className="pop-3d absolute inset-x-4 bottom-4 rounded-2xl bg-black/60 p-4 backdrop-blur">
                   <span className="font-display block text-lg text-white">{g.title}</span>
                   <span className="text-sm text-white/65">{g.caption}</span>

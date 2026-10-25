@@ -81,7 +81,7 @@ export default async function WhyPage() {
               return (
                 <article key={t.id} className="glass brand-border flex flex-col gap-5 overflow-hidden rounded-3xl p-5 sm:flex-row">
                   <div className="aspect-[4/5] w-full shrink-0 overflow-hidden rounded-2xl sm:w-36">
-                    <SmartImage src={t.image} alt={`${t.name}, ${t.role}`} icon="UserCheck" label={t.name} />
+                    <SmartImage src={t.image} alt={`${t.name}, ${t.role}`} icon="UserCheck" label={t.name} sizes="(min-width: 640px) 144px, 100vw" />
                   </div>
                   <div>
                     <h3 className="font-display text-2xl text-white">{t.name}</h3>
@@ -126,7 +126,7 @@ export default async function WhyPage() {
               {photos.map((g) => (
                 <figure key={g.id} className="overflow-hidden rounded-2xl">
                   <div className="aspect-[4/5]">
-                    <SmartImage src={g.image} alt={g.caption || g.title} />
+                    <SmartImage src={g.image} alt={g.caption || g.title} sizes="(min-width: 1152px) 360px, (min-width: 640px) 33vw, 50vw" />
                   </div>
                 </figure>
               ))}
@@ -179,7 +179,7 @@ export default async function WhyPage() {
                         ["After", s.afterImage],
                       ].map(([label, src]) => (
                         <figure key={label} className="relative aspect-[3/4]">
-                          <SmartImage src={src} alt={`${s.name} ${label.toLowerCase()}`} label={label} />
+                          <SmartImage src={src} alt={`${s.name} ${label.toLowerCase()}`} label={label} sizes="(min-width: 1024px) 180px, 50vw" />
                           <figcaption className="absolute left-2 top-2 rounded-full bg-black/60 px-2 py-0.5 text-[11px] font-semibold text-white">{label}</figcaption>
                         </figure>
                       ))}
