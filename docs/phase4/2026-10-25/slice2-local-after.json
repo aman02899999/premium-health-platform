@@ -1,0 +1,46 @@
+[
+ {
+  "page": "/health/diseases/asthma",
+  "n": 5,
+  "ttfb": 15,
+  "fcp": 1784,
+  "lcp": 1784,
+  "cls": 0.001,
+  "tbt": 545,
+  "kb": 671,
+  "jsKb": 437
+ },
+ {
+  "page": "/health",
+  "n": 5,
+  "ttfb": 12,
+  "fcp": 1936,
+  "lcp": 2304,
+  "cls": 0.001,
+  "tbt": 871,
+  "kb": 723,
+  "jsKb": 445
+ },
+ {
+  "page": "/health/diseases/type-2-diabetes",
+  "n": 5,
+  "ttfb": 13,
+  "fcp": 1936,
+  "lcp": 1936,
+  "cls": 0.001,
+  "tbt": 683,
+  "kb": 678,
+  "jsKb": 437
+ },
+ {
+  "page": "/health/nutrition/oats",
+  "n": 5,
+  "ttfb": 11,
+  "fcp": 1684,
+  "lcp": 1684,
+  "cls": 0.001,
+  "tbt": 804,
+  "kb": 772,
+  "jsKb": 548
+ }
+]
