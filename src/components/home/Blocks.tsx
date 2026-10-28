@@ -134,7 +134,7 @@ export function PostCard({ post, index = 0, priority = false }: { post: BlogPost
 export function RatingBadge({ value, count, source, href }: { value: number; count: number; source: string; href?: string }) {
   const body = (
     <>
-      <span className="flex h-9 items-center rounded-full bg-brand px-3 font-bold text-white">{value}</span>
+      <span className="flex h-9 items-center rounded-full bg-brand-strong px-3 font-bold text-white">{value}</span>
       <span className="flex flex-col leading-tight">
         <span className="flex">
           {Array.from({ length: 5 }).map((_, i) => (
