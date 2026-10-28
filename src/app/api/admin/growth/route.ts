@@ -104,10 +104,12 @@ export async function POST(req: Request) {
           showedUp: b.showedUp as boolean | null | undefined,
         });
         return NextResponse.json({ ok: true });
-      case "message":
+      case "message": {
         if (!isUuid(b.id) || !["sent", "cancelled", "pending"].includes(b.status as string)) break;
-        await markOutbox(b.id, b.status as "sent" | "cancelled" | "pending", by);
-        return NextResponse.json({ ok: true });
+        // A message to a no-consent list never goes back in the queue (see markOutbox).
+        const refused = await markOutbox(b.id, b.status as "sent" | "cancelled" | "pending", by);
+        return refused ? NextResponse.json({ error: refused }, { status: 409 }) : NextResponse.json({ ok: true });
+      }
       case "diet-stage":
         if (!isUuid(b.id) || !["new", "draft_ready", "in_progress", "sent", "refunded"].includes(b.stage as string)) break;
         await setDietStage(b.id, b.stage as "new" | "draft_ready" | "in_progress" | "sent" | "refunded");

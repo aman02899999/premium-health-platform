@@ -3,7 +3,7 @@ import { pool } from "@/health/db";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
 import { addDays, addMonths } from "./dates";
-import { segmentTag, tagSegment } from "@/lib/admin/contacts-core";
+import { segmentTag, tagSegment, type ContactKind } from "@/lib/admin/contacts-core";
 import { allContacts, contactFacets } from "@/lib/admin/contacts";
 import { LINKS, NO_CONSENT_ERROR, campaignDraft, canMarketTo, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
 import { TEMPLATES } from "./messages";
@@ -69,6 +69,9 @@ export async function importContacts(contacts: Contact[], opts: { tag: string; s
   return plan;
 }
 
+/** Contact kinds that come with a reason to message someone: members, enquiries, buyers, opt-ins. */
+const CONSENT_KINDS: readonly ContactKind[] = ["member", "ex-member", "lead", "customer", "subscriber"];
+
 const ten = (phone: string | null) => {
   const d = (phone ?? "").replace(/\D/g, "");
   const t = d.length === 12 && d.startsWith("91") ? d.slice(2) : d.slice(-10);
@@ -77,12 +80,13 @@ const ten = (phone: string | null) => {
 
 /** Everyone in a segment, each person once (by mobile, else by email). */
 export async function recipients(segment: SegmentId | string, today: string): Promise<Recipient[]> {
-  // A list from Contacts: everyone with that tag (already one row per person), minus people we
-  // only know from an imported sheet.
+  // A list from Contacts: everyone with that tag (already one row per person) who has a record of
+  // agreeing to hear from the gym. Someone known only from an imported sheet, or from the sheet and
+  // a WhatsApp chat, is left out, the same as in the built-in segments.
   const tag = segmentTag(segment);
   if (tag)
     return (await allContacts({ tag }, 20000, today))
-      .filter((c) => c.kinds.some((k) => k !== "imported"))
+      .filter((c) => c.kinds.some((k) => CONSENT_KINDS.includes(k)))
       .map((c) => ({ name: c.name, phone: c.phone, email: c.email }));
   const m = (where: string, params: unknown[]) => pool.query<{ name: string; phone: string; email: string | null }>(`select name, phone, email from public.members where ${where}`, params).then((r) => r.rows);
   const parts: Recipient[][] = [];
