@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
 import type { PostBiz } from "@/lib/growth/daily-posts";
-import type { CardPost } from "@/lib/growth/month-plan";
+import { cardNote, type CardPost } from "@/lib/growth/month-plan";
 import { loadLogo } from "@/lib/og";
 import { SITE_URL } from "@/lib/site";
 import { galleryDataUrl } from "./cover";
@@ -117,7 +117,7 @@ function CardView({ post, biz, logo, photo }: { post: CardPost; biz: PostBiz; lo
 
         <div style={{ display: "flex", justifyContent: "center", textAlign: "center", marginTop: 14, fontSize: 25, fontWeight: 800, color: "#fff" }}>{glyphs(card.footer)}</div>
         <div style={{ display: "flex", justifyContent: "center", textAlign: "center", marginTop: 6, fontSize: 16, color: "rgba(255,255,255,.55)" }}>
-          {glyphs([card.source ? `Source: ${card.source}` : "", card.medical ? "General information, not medical advice." : ""].filter(Boolean).join(" · ") || post.card.goal === "diet" ? "A general guide. Portions depend on your body and goal." : "A starting point: adjust to your level, or ask a coach.")}
+          {glyphs(cardNote(card))}
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 16, borderRadius: 22, background: `linear-gradient(90deg, ${RED}, #b3192b)`, padding: "16px 24px" }}>

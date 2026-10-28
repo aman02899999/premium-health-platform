@@ -62,6 +62,13 @@ const trial = DIET_PLANS.find((p) => p.trial)!;
 const prettyDate = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-IN", { day: "numeric", month: "short", timeZone: "UTC" });
 
 /** UTM-tagged link so a sale can be traced to the exact post. */
+/** The small line under the card's lesson: its source and medical note, or a fitting general note. */
+export function cardNote(card: Card): string {
+  const facts = [card.source ? `Source: ${card.source}` : "", card.medical ? "General information, not medical advice." : ""].filter(Boolean).join(" · ");
+  if (facts) return facts;
+  return card.goal === "diet" ? "A general guide. Portions depend on your body and goal." : "A starting point: adjust to your level, or ask a coach.";
+}
+
 export function monthLink(siteUrl: string, path: string, channel: "instagram" | "facebook", date: string, slot: string): string {
   const url = new URL(path, siteUrl.replace(/\/$/, "") + "/");
   url.searchParams.set("utm_source", channel);

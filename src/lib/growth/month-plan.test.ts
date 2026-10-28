@@ -5,7 +5,7 @@ import { FESTIVE_2026 } from "@/lib/offers";
 import { addDays } from "./dates";
 import { dailyPost } from "./daily-posts";
 import { CARDS } from "./month-plan-cards";
-import { GALLERY, MONTH_DAYS, MONTH_START, cardPost, monthDay, reelPhoto, secondReelPost } from "./month-plan";
+import { GALLERY, MONTH_DAYS, MONTH_START, cardNote, cardPost, monthDay, reelPhoto, secondReelPost } from "./month-plan";
 
 const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma", membershipFrom: 1500, address: "Main Road, Gejha Village, Sector 93, Noida 201304" };
 const days = Array.from({ length: MONTH_DAYS }, (_, i) => addDays(MONTH_START, i));
@@ -50,6 +50,15 @@ describe("month plan", () => {
 
   it("numbers that are health facts name a source", () => {
     for (const c of CARDS.filter((c) => /SCIENCE|HEALTH CHECK/.test(c.series))) expect(c.source, c.id).toBeTruthy();
+  });
+
+  it("the card's small print shows its source and medical note, and never a food note on a training card", () => {
+    for (const c of CARDS) {
+      const note = cardNote(c);
+      if (c.source) expect(note, c.id).toContain(`Source: ${c.source}`);
+      if (c.medical) expect(note, c.id).toContain("not medical advice");
+      if (c.goal !== "diet") expect(note, c.id).not.toMatch(/portions/i);
+    }
   });
 
   it("calls to action: the festive offer while it runs, the diet trial, and the calls number", () => {
