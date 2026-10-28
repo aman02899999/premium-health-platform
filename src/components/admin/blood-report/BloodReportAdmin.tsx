@@ -231,6 +231,7 @@ function MarkerEditor({ m, act }: { m: AdminMarker; act: (b: unknown, done: stri
   const [critLow, setCritLow] = useState(m.critical?.low?.toString() ?? "");
   const [critHigh, setCritHigh] = useState(m.critical?.high?.toString() ?? "");
   const [sources, setSources] = useState(m.sources.map((s) => `${s.url} | ${s.title}`).join("\n"));
+  const [initial] = useState({ ranges, sources, critLow, critHigh });
   const [low, setLow] = useState(m.low?.meaning ?? "");
   const [high, setHigh] = useState(m.high?.meaning ?? "");
 
@@ -251,6 +252,13 @@ function MarkerEditor({ m, act }: { m: AdminMarker; act: (b: unknown, done: stri
     };
     if (m.low && low !== m.low.meaning) data.low = { ...m.low, meaning: low };
     if (m.high && high !== m.high.meaning) data.high = { ...m.high, meaning: high };
+    // Send only what changed, so later fixes to the library defaults still reach untouched fields.
+    const before: Record<string, unknown> = { name: m.name, aliases: m.aliases, about: m.about };
+    for (const k of Object.keys(before)) if (JSON.stringify(before[k]) === JSON.stringify(data[k])) delete data[k];
+    if (ranges === initial.ranges) delete data.ranges;
+    if (sources === initial.sources) delete data.sources;
+    if (critLow === initial.critLow && critHigh === initial.critHigh) delete data.critical;
+    if (!Object.keys(data).length) return;
     void act({ action: "marker", id: m.id, data }, `${name} saved.`);
   }
 
