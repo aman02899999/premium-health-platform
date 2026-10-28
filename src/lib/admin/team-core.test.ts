@@ -11,6 +11,12 @@ describe("who may open what", () => {
     expect(allowed("manager", "/api/admin/team")).toBe(false);
     for (const p of ["/admin/shop", "/api/admin/audience", "/admin/ads", "/admin/website", "/admin/ai-agent"]) expect(allowed("manager", p)).toBe(true);
   });
+  it("only owners open members' saved blood reports; managers run the rest of the analyser", () => {
+    expect(allowed("owner", "/api/admin/blood-report/reports")).toBe(true);
+    expect(allowed("manager", "/api/admin/blood-report/reports")).toBe(false);
+    expect(allowed("manager", "/api/admin/blood-report")).toBe(true);
+    expect(allowed("agent", "/admin/blood-report")).toBe(false);
+  });
   it("agents get the desk's work only", () => {
     for (const p of ["/admin", "/admin/", "/admin/chats", "/api/admin/chats/919811111111", "/admin/contacts", "/api/admin/contacts", "/admin/growth", "/api/admin/growth/diet-order", "/admin/qr", "/api/admin/me", "/admin/login", "/api/admin/logout"])
       expect([p, allowed("agent", p)]).toEqual([p, true]);

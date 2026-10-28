@@ -34,6 +34,28 @@ export default async function PrivacyPage() {
           Our calculators run entirely in your browser — the numbers you enter are never sent to us. If you use the Health Hub without signing in, your
           data stays only in your browser.
         </p>
+        <h2 id="health-data">Blood report analyser (health data)</h2>
+        <p>
+          Members and diet-plan clients we switch it on for can type in the results from a blood test to get a plain-language explanation. Blood
+          test results are sensitive personal data, so we handle them more strictly than anything else on this site:
+        </p>
+        <ul>
+          <li>We only process your results after you tick the consent box, and only to show you the explanation. It is education, not a diagnosis.</li>
+          <li>
+            By default nothing is stored: we analyse the numbers and forget them. If you choose &ldquo;Keep this report in my account&rdquo;, we save
+            the values, your age and sex encrypted, and only you can see them on your account page.
+          </li>
+          <li>Saved reports are hidden after 12 months, and you can delete one or all of them at any time from the analyser page. Deleting removes them from our database.</li>
+          <li>
+            Our staff do not look at your reports. Only the owner can open them, only when you ask us to (for example for a review call), and every
+            such look is recorded with the reason.
+          </li>
+          <li>Your results are never used for advertising, never sent to Meta, Google or any analytics tool, and never used to message you.</li>
+        </ul>
+        <p>
+          To withdraw your consent or ask us about your health data, delete your reports on the analyser page or contact us using the details below.
+          This follows India&apos;s Digital Personal Data Protection Act, 2023.
+        </p>
         <h2>Google user data</h2>
         <p>
           When you choose &ldquo;Continue with Google&rdquo;, we receive only your name, email address and profile photo from your Google account. We

@@ -10,7 +10,8 @@ export const ROLES: { id: Role; label: string; hint: string }[] = [
 export const isRole = (r: unknown): r is Role => ROLES.some((x) => x.id === r);
 
 // Areas by path prefix. Order doesn't matter: the longest matching prefix decides.
-const OWNER_ONLY = ["/admin/team", "/api/admin/team"];
+// Members' saved blood reports are health data: only an owner may open them.
+const OWNER_ONLY = ["/admin/team", "/api/admin/team", "/api/admin/blood-report/reports"];
 const AGENT_AREAS = [
   "/admin/login",
   "/api/admin/login",

@@ -76,6 +76,7 @@ export const HUB_SECTIONS: Section[] = [
       { id: "marketing", title: "Content calendar", hint: "Today's post, captions, hashtags", href: "/admin/growth?tab=marketing", icon: "CalendarDays", keywords: "calendar caption hashtag content plan" },
       { id: "analytics", title: "Analytics", hint: "Leads, messages, revenue, by day", href: "/admin/analytics", icon: "BarChart3", keywords: "insights report stats chart performance", badge: { key: "revenue30", format: "inr" } },
       { id: "reviews", title: "Reviews", hint: "Approve reviews, Google review requests", href: "/admin/reviews", icon: "Star", keywords: "rating google testimonial", badge: { key: "reviewsPending", alert: true } },
+      { id: "blood-report", title: "Blood report analyser", hint: "Switch it on for members, edit tests and ranges", href: "/admin/blood-report", icon: "Activity", keywords: "blood test lab report analyser analyzer cbc lft thyroid sugar hba1c premium members health ranges" },
     ],
   },
   {
