@@ -305,7 +305,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
 
           <Section id="references" icon={<BookOpen className="h-4 w-4" />} title="References">
             <ol className="list-decimal space-y-1 pl-5 text-sm text-stone-600 dark:text-stone-300">
-              {detail.references.map((r, i) => <li key={i}>{r.title} — <em>{r.source}</em>{r.year ? ` (${r.year})` : ""}</li>)}
+              {detail.references.map((r, i) => <li key={i}>{r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer">{r.title}</a> : r.title} — <em>{r.source}</em>{r.year ? ` (${r.year})` : ""}</li>)}
             </ol>
             <p className="mt-2 text-xs text-stone-500\">We cite guidelines and reviews, never fabricated studies. Specific trial citations are added during medical review.</p>
           </Section>
