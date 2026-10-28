@@ -167,13 +167,13 @@ export default async function HomePage() {
 
       <div className="mx-auto max-w-7xl space-y-16 px-4 py-12">
         {/* LIVE PULSE */}
-        <section aria-labelledby="live-pulse">
+        <section aria-labelledby="live-pulse" className="cv-auto">
           <SectionHeading eyebrow="Real-time · updates every 10 minutes" title="🇮🇳 Live India Health Pulse" desc="Real air quality, weather and outbreak data streaming now — not screenshots. Plan walks, travel and clinic visits around it." id="live-pulse" />
           <IndiaPulseDashboard initial={pulse} />
         </section>
 
         {/* BLOG CATEGORIES */}
-        <section aria-labelledby="blog-categories">
+        <section aria-labelledby="blog-categories" className="cv-auto">
           <div className="mb-5 flex items-end justify-between gap-4">
             <SectionHeading eyebrow="Categories" title="Browse by category" desc="Diabetes, thyroid, PCOS, heart, nutrition, Ayurveda and more — each category collects its latest and most-read guides." id="blog-categories" />
             <Link href="/health/blog/category" className="hidden shrink-0 items-center gap-1 rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700 sm:flex">All categories <ArrowRight className="h-4 w-4" /></Link>
@@ -182,7 +182,7 @@ export default async function HomePage() {
         </section>
 
         {/* LATEST + TRENDING */}
-        <section className="grid gap-4 lg:grid-cols-3" aria-labelledby="latest-trending">
+        <section className="cv-auto grid gap-4 lg:grid-cols-3" aria-labelledby="latest-trending">
           <div className="lg:col-span-2 space-y-4">
             <SectionHeading eyebrow="Latest" title="Latest Articles — Fresh Content" desc="New and updated guides." id="latest-trending" />
             <div className="grid gap-4 sm:grid-cols-2">
@@ -223,7 +223,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="cv-auto grid gap-4 lg:grid-cols-3">
           <div className="lg:col-span-2"><NewsStrip /></div>
           <HealthTipOfDay />
         </div>
