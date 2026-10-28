@@ -207,7 +207,7 @@ export default async function HomePage() {
         </section>
 
         {/* SOLUTIONS */}
-        <section aria-labelledby="solutions">
+        <section aria-labelledby="solutions" className="cv-auto">
           <div className="mb-5 flex items-end justify-between gap-4">
             <SectionHeading eyebrow="New · every medical solution" title="One condition, every solution path" desc="Modern, Ayurveda, herbs, nutrition, yoga, mind, tests — compared side by side for 24 conditions." id="solutions" />
             <Link href="/health/solutions" className="hidden shrink-0 items-center gap-1 rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white hover:bg-stone-700 sm:flex">Open finder <ArrowRight className="h-4 w-4" /></Link>
@@ -229,7 +229,7 @@ export default async function HomePage() {
         </div>
 
         {/* UNIQUE INDIA */}
-        <section aria-labelledby="unique-india" className="rounded-3xl bg-gradient-to-br from-amber-900 via-emerald-900 to-stone-900 p-6 text-white md:p-8">
+        <section aria-labelledby="unique-india" className="cv-auto rounded-3xl bg-gradient-to-br from-amber-900 via-emerald-900 to-stone-900 p-6 text-white md:p-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-300">Made for India — 15 tools</p>
           <h2 className="font-display mt-2 text-2xl font-black md:text-3xl" id="unique-india">Thali Builder, Millet Swap, IDRS, Herb-Drug Checker — Only Here</h2>
           <p className="mt-2 max-w-3xl text-sm text-emerald-100/80">India-first: thali builder, millet swap engine, IDRS diabetes score, anemia screening, yoga timer, Ritucharya seasonal + live weather, herb-drug checker, barcode lookup, child growth, health Q&A, live advisories, dosha meals, fasting planner and Hinglish search.</p>
@@ -251,7 +251,7 @@ export default async function HomePage() {
         </section>
 
         {/* DISEASES */}
-        <section aria-labelledby="popular-diseases">
+        <section aria-labelledby="popular-diseases" className="cv-auto">
           <div className="mb-5 flex items-end justify-between gap-4">
             <SectionHeading eyebrow="Disease directory" title="Popular disease guides" desc="Each guide: symptoms, tests, medicines, Ayurveda, herbs, diet, yoga and red flags." id="popular-diseases" />
             <Link href="/health/diseases" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All 120+ <ArrowRight className="h-4 w-4" /></Link>
@@ -264,7 +264,7 @@ export default async function HomePage() {
         </section>
 
         {/* Featured guides */}
-        <section aria-labelledby="featured" className="grid gap-6 lg:grid-cols-3">
+        <section aria-labelledby="featured" className="cv-auto grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="mb-5 flex items-end justify-between gap-4">
               <SectionHeading eyebrow="Cornerstone guides" title="Featured long-form guides" desc="Deep, structured reads on the conditions Indian families ask about most." id="featured" />
@@ -309,7 +309,7 @@ export default async function HomePage() {
         </section>
 
         {/* Products, store, deals, calculators, premium resources */}
-        <section aria-labelledby="products">
+        <section aria-labelledby="products" className="cv-auto">
           <div className="mb-5 flex items-end justify-between gap-4">
             <SectionHeading eyebrow="Affiliate disclosure applies" title="Popular health products, store & deals" desc="Monitors, foods and yoga gear — never with false medical claims. Plus our digital guides, calculators and premium resources." id="products" />
             <Link href="/health/deals" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All deals <ArrowRight className="h-4 w-4" /></Link>
@@ -375,7 +375,7 @@ export default async function HomePage() {
         </section>
 
         {/* FAQ */}
-        <section aria-labelledby="faq">
+        <section aria-labelledby="faq" className="cv-auto">
           <SectionHeading eyebrow="Good to know" title="Questions, answered honestly" desc="How this site works and what it will never do." id="faq" />
           <div className="grid gap-3 md:grid-cols-2">
             {FAQS.map((f) => (

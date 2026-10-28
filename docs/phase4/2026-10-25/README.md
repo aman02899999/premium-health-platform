@@ -59,3 +59,31 @@ Same machine, local production build, 5 loads each (`perf3.js`, `RUNS=5`):
 
 LCP and CLS unchanged. Still open: `/` and `/health` spend ~0.8 s on React start-up, layout and paint,
 with no single library to cut.
+
+## Slice 3: slow taps on the home page, `/health` and the library (25 Oct, later)
+
+`trace2.js` (long tasks during load, by cause) showed no single heavy library on these pages. The
+phone spends its time styling and laying out the whole page (1,600+ elements on the home page) in
+two ~450 ms blocks, then starting React. Most of that work is for sections far below the screen.
+
+Below-the-fold sections now carry a `cv-auto` class (`content-visibility: auto`, defined in both
+`globals.css` files), so the browser skips their layout and paint until they come near the screen.
+The hero and first screen are untouched. Checked by `src/lib/content-visibility.test.ts`.
+
+Same machine, local production build, 5 loads each (`perf3.js`, `RUNS=5`):
+
+| Page | Total Blocking Time before → after | LCP before → after | CLS |
+|---|---|---|---|
+| `/` | 604 → 370 ms | 2.02 → 1.81 s | 0 → 0 |
+| `/health` | 721 → 446 ms | 2.31 → 2.17 s | 0.001 → 0.001 |
+| `/library` | 746 → 370 ms | 2.04 → 1.66 s | 0 → 0 |
+
+Behaviour checks (390 px and 1280 px, `anchor.js` compares the page with and without `cv-auto`):
+the links that point into these pages (`/library#combos` from sales emails, `/library#complete`)
+land in the same place as before. Typing a bare section id that nothing links to can land
+differently on desktop (`/library#books` stops ~0.8 screen early, `/health#faq` now scrolls where it
+didn't before); on phones every tested id lands as before. Scrolling the whole page shifts layout by at most 0.006; scroll
+animations all play; no horizontal overflow; no page errors. Full-page screenshots show blank
+areas for off-screen sections, which is how `content-visibility` works; normal scrolling shows them.
+
+Found, not fixed here: `/health/news` links to `/#newsletter`, but the home page has no such section.

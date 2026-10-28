@@ -29,6 +29,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Below-the-fold sections: the browser skips their style, layout and paint until they come near the
+   screen. `auto` in the intrinsic size remembers the real height once a section has rendered. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 :root {
   --brand-green: #0b5c3f;
   --brand-green-deep: #073f2c;
