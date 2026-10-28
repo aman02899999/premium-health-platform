@@ -1,5 +1,6 @@
 import type { DiseaseDetail, DiseaseSummary } from "@/health/types";
 import { DISEASE_MAP } from "./diseases-index";
+import { DISEASE_REWRITES } from "./diseases-rewrites";
 
 type PillarOverride = Partial<DiseaseDetail>;
 
@@ -429,6 +430,8 @@ const PILLARS: Record<string, PillarOverride> = {
 export function getDiseaseDetail(slug: string): DiseaseDetail | undefined {
   const s = DISEASE_MAP.get(slug);
   if (!s) return undefined;
+  const rewrite = DISEASE_REWRITES[slug];
+  if (rewrite) return { ...s, ...rewrite };
   const base = genericDetail(s);
   const over = PILLARS[slug];
   if (!over) {

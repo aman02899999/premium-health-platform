@@ -1,0 +1,86 @@
+{
+ "method": "live production /health; HTML served through the same route either unchanged (before) or with cv-auto added to the 4 blocks (after); 5 loads per run",
+ "before": [
+  {
+   "page": "/health",
+   "n": 5,
+   "ttfb": 174,
+   "fcp": 1708,
+   "lcp": 2200,
+   "cls": 0.002,
+   "tbt": 717,
+   "kb": 992,
+   "jsKb": 412
+  },
+  {
+   "page": "/health",
+   "n": 5,
+   "ttfb": 189,
+   "fcp": 1680,
+   "lcp": 2432,
+   "cls": 0.002,
+   "tbt": 673,
+   "kb": 990,
+   "jsKb": 412
+  }
+ ],
+ "after": [
+  {
+   "page": "/health",
+   "n": 5,
+   "ttfb": 155,
+   "fcp": 1540,
+   "lcp": 2116,
+   "cls": 0.002,
+   "tbt": 482,
+   "kb": 1000,
+   "jsKb": 420
+  },
+  {
+   "page": "/health",
+   "n": 5,
+   "ttfb": 149,
+   "fcp": 1572,
+   "lcp": 2100,
+   "cls": 0.002,
+   "tbt": 510,
+   "kb": 1000,
+   "jsKb": 420
+  }
+ ],
+ "live_after_132": [
+  {
+   "page": "/",
+   "n": 5,
+   "ttfb": 135,
+   "fcp": 1712,
+   "lcp": 1836,
+   "cls": 0,
+   "tbt": 529,
+   "kb": 530,
+   "jsKb": 259
+  },
+  {
+   "page": "/health",
+   "n": 5,
+   "ttfb": 116,
+   "fcp": 1704,
+   "lcp": 2220,
+   "cls": 0.002,
+   "tbt": 720,
+   "kb": 630,
+   "jsKb": 393
+  },
+  {
+   "page": "/library",
+   "n": 5,
+   "ttfb": 146,
+   "fcp": 1712,
+   "lcp": 1712,
+   "cls": 0,
+   "tbt": 420,
+   "kb": 526,
+   "jsKb": 292
+  }
+ ]
+}
