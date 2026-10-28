@@ -46,6 +46,9 @@ export async function POST(req: Request) {
 
   const supabase = await createClient();
   const { error } = await supabase.storage.from(LIBRARY_BUCKET).upload(bookPath(slug), bytes, { contentType: "application/pdf", upsert: true });
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) {
+    console.error("[library] upload failed:", error.message);
+    return NextResponse.json({ error: "Upload failed. Please try again." }, { status: 500 });
+  }
   return NextResponse.json({ ok: true, slug });
 }

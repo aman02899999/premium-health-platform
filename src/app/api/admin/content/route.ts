@@ -22,7 +22,7 @@ export async function PUT(req: Request) {
   } catch (err) {
     console.error("[admin] save failed:", err);
     return NextResponse.json(
-      { error: `Could not save: ${(err as Error).message}` },
+      { error: "Couldn't save. Nothing was changed; please try again." },
       { status: 500 },
     );
   }

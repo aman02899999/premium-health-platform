@@ -13,7 +13,8 @@ export async function GET() {
   try {
     return NextResponse.json({ foods: await listFoods() });
   } catch (e) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+    console.error("[diet-pro foods]", (e as Error).message);
+    return NextResponse.json({ error: "Couldn't reach cloud storage. Please try again." }, { status: 500 });
   }
 }
 
@@ -26,7 +27,8 @@ export async function POST(req: Request) {
     await saveFood(body, await adminIdentity());
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+    console.error("[diet-pro foods]", (e as Error).message);
+    return NextResponse.json({ error: "Couldn't reach cloud storage. Please try again." }, { status: 500 });
   }
 }
 
@@ -39,6 +41,7 @@ export async function DELETE(req: Request) {
     await deleteFood(id);
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+    console.error("[diet-pro foods]", (e as Error).message);
+    return NextResponse.json({ error: "Couldn't reach cloud storage. Please try again." }, { status: 500 });
   }
 }

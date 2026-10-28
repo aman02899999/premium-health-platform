@@ -93,6 +93,9 @@ describe.skipIf(!url)("blood report store on a real database", () => {
     await store.countUsage(false);
     await store.countUsage(true);
     await store.grantAccess(["a@x.in"], "owner");
+    // An expired grant isn't someone with access.
+    await store.grantAccess(["old@x.in"], "owner", "", "2020-01-31");
     expect(await store.usage(30)).toEqual({ analyses: 2, saved: 1, savedNow: 0, people: 1 });
+    expect((await store.accessList()).map((a) => [a.email, a.active])).toEqual([["a@x.in", true], ["old@x.in", false]]);
   });
 });
