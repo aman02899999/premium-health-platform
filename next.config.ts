@@ -6,6 +6,7 @@ const REEL_FILES = [
   "./src/lib/social/reel-audio/*.mp3",
   "./public/brand/logo-mark.png",
   "./public/library/covers/*.webp",
+  "./public/gallery/*.webp",
   "./node_modules/ffmpeg-static/ffmpeg",
 ];
 
@@ -22,6 +23,8 @@ const nextConfig: NextConfig = {
     // Reels: fonts and covers for the frames, the ffmpeg binary and any music track.
     "/api/admin/social/reel/[file]": REEL_FILES,
     "/api/cron/reel": REEL_FILES,
+    "/api/cron/social": REEL_FILES,
+    "/api/social/card/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png", "./public/gallery/*.webp"],
     "/api/admin/growth": REEL_FILES,
   },
   // Its binary is found on disk by path, so it must not be bundled.
