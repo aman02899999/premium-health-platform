@@ -55,11 +55,20 @@ export const SEGMENTS: { id: SegmentId; label: string; hint: string }[] = [
   { id: "expiring", label: "Expiring in 30 days", hint: "Renewal and upgrade offers" },
   { id: "ex-recent", label: "Left in the last 3 months", hint: "Most likely to come back" },
   { id: "ex-old", label: "Left over 3 months ago", hint: "Win-back offers" },
-  { id: "imported", label: "Imported contacts", hint: "Old members and lists you uploaded" },
+  { id: "imported", label: "Imported contacts", hint: "Old lists you uploaded. No consent, so no campaigns or ads" },
   { id: "leads", label: "Leads who didn't join", hint: "Enquired but never paid" },
-  { id: "everyone", label: "Everyone", hint: "All of the above, each person once" },
+  { id: "everyone", label: "Everyone", hint: "Members, ex-members and leads, each person once (not imported contacts)" },
 ];
 export const isSegment = (s: unknown): s is SegmentId => SEGMENTS.some((x) => x.id === s);
+
+/**
+ * Segments that never get promotions (campaigns or Meta ad lists). Imported contacts came from an
+ * old sheet with no record that anyone agreed to messages, so on 28 Oct 2026 the owner decided they
+ * are not marketed to. They stay visible in Contacts and on the call list.
+ */
+export const NO_CONSENT_SEGMENTS: readonly SegmentId[] = ["imported"];
+export const canMarketTo = (segment: string): boolean => !NO_CONSENT_SEGMENTS.includes(segment as SegmentId);
+export const NO_CONSENT_ERROR = "Imported contacts can't get promotions: there's no record they agreed to messages. Pick members, ex-members or leads.";
 
 export type Recipient = { name: string; phone: string | null; email: string | null };
 

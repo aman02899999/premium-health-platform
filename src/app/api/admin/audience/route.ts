@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
-import { LINKS, metaAudienceCsv, playbook, toContacts } from "@/lib/growth/audience";
+import { LINKS, NO_CONSENT_ERROR, canMarketTo, metaAudienceCsv, playbook, toContacts } from "@/lib/growth/audience";
 import { getContent } from "@/lib/content/store";
 import { applyOffer } from "@/lib/offers";
 import { planMonths } from "@/lib/content/plans";
@@ -30,6 +30,8 @@ export async function GET(req: Request) {
   try {
     if (exp) {
       if (!isAudience(exp)) return NextResponse.json({ error: "Unknown segment" }, { status: 400 });
+      // A Meta ads list is a promotion too: Meta's customer-list terms need the same consent.
+      if (!canMarketTo(exp)) return NextResponse.json({ error: NO_CONSENT_ERROR }, { status: 403 });
       return new Response(metaAudienceCsv(await recipients(exp, today)), {
         headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="royal-fitness-${exp.replace(/[^a-z0-9-]+/g, "-")}-${today}.csv"`, "cache-control": "no-store" },
       });

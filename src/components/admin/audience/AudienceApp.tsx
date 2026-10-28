@@ -4,7 +4,7 @@ import { ArrowLeft, Download, Mail, Megaphone, MessageCircle, RefreshCw, Send, U
 import { useCallback, useEffect, useState } from "react";
 import type { CampaignRow } from "@/lib/growth/campaigns";
 
-type Segment = { id: string; label: string; hint: string; total: number; whatsapp: number; email: number };
+type Segment = { id: string; label: string; hint: string; total: number; whatsapp: number; email: number; marketable: boolean };
 type Preset = { id: string; name: string; segment: string; channel: "whatsapp" | "email"; link: string; repeat: string; offer: string; subject: string; why: string };
 type Data = { segments: Segment[]; campaigns: CampaignRow[]; imported: { total: number; tags: { tag: string; n: number }[] }; playbook: Preset[]; links: { id: string; label: string; whatsapp: boolean }[] };
 type MemberPlan = { add: number; update: number; unchanged: number; remindSoon: number; active: number; expiring: number; lapsedRecent: number; lapsedOld: number };
@@ -128,7 +128,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
   const seg = data.segments.find((s) => s.id === segment);
-  const reach = seg ? (channel === "whatsapp" ? seg.whatsapp : seg.email) : 0;
+  const reach = seg?.marketable ? (channel === "whatsapp" ? seg.whatsapp : seg.email) : 0;
   const linkLabel = data.links.find((l) => l.id === link)?.label ?? "";
   async function queue() {
     setBusy(true);
@@ -192,8 +192,8 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
           <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Campaign name, e.g. Diwali comeback" maxLength={80} className={input} />
           <select value={segment} onChange={(e) => setSegment(e.target.value)} className={input}>
             {data.segments.map((s) => (
-              <option key={s.id} value={s.id} className="bg-[#111]">
-                {s.label} ({s.total})
+              <option key={s.id} value={s.id} disabled={!s.marketable} className="bg-[#111]">
+                {s.label} ({s.total}){s.marketable ? "" : ": no consent"}
               </option>
             ))}
           </select>
@@ -259,6 +259,7 @@ function Composer({ data, segment, setSegment, onDone }: { data: Data; segment: 
               .
             </p>
           )}
+          {seg && !seg.marketable && <p className="rounded-xl bg-amber-500/10 p-3 text-xs text-amber-100">{seg.label} can&apos;t get promotions: there&apos;s no record they agreed to messages. Pick members, ex-members or leads.</p>}
           <label className="flex items-start gap-2 text-xs text-white/70">
             <input type="checkbox" checked={agree} onChange={(e) => setAgree(e.target.checked)} className="mt-0.5 h-4 w-4 accent-emerald-500" />
             These people are my members, ex-members or enquiries, and every message lets them opt out.
@@ -354,7 +355,8 @@ export function AudienceApp() {
                   </p>
                   <div className="mt-3 flex gap-2">
                     <button
-                      disabled={!s.total}
+                      disabled={!s.total || !s.marketable}
+                      title={s.marketable ? undefined : "No record these people agreed to messages, so no campaigns"}
                       onClick={() => {
                         setSegment(s.id);
                         document.getElementById("composer")?.scrollIntoView({ behavior: "smooth" });
@@ -363,7 +365,7 @@ export function AudienceApp() {
                     >
                       <Megaphone className="h-3.5 w-3.5" /> Campaign
                     </button>
-                    <a href={s.total ? `/api/admin/audience?export=${s.id}` : undefined} title="Customer list for a Meta Ads custom audience" className={`${btn} bg-white/10 px-2 text-xs ${s.total ? "" : "pointer-events-none opacity-40"}`}>
+                    <a href={s.total && s.marketable ? `/api/admin/audience?export=${s.id}` : undefined} title="Customer list for a Meta Ads custom audience" className={`${btn} bg-white/10 px-2 text-xs ${s.total && s.marketable ? "" : "pointer-events-none opacity-40"}`}>
                       <Download className="h-3.5 w-3.5" /> Meta ads
                     </a>
                   </div>

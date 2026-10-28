@@ -63,9 +63,27 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await pool.query(`insert into public.leads (name, phone, source, status) values ('Lead', '90000 00016', 'website', 'new'), ('Joined Lead', '9000000011', 'website', 'new')`);
     const counts = Object.fromEntries((await cm.segmentCounts(TODAY)).map((s) => [s.id, s.total]));
     // "Same As Old Ex" is on the member list, so only the member segments count them.
-    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 1, leads: 1, everyone: 6 });
+    // "Everyone" leaves out imported contacts: they have no record of consent.
+    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 1, leads: 1, everyone: 5 });
     const everyone = await cm.recipients("everyone", TODAY);
-    expect(everyone.map((r) => r.phone).sort()).toEqual(["9000000011", "9000000012", "9000000013", "9000000014", "9000000015", "9000000016"]);
+    expect(everyone.map((r) => r.phone).sort()).toEqual(["9000000011", "9000000012", "9000000013", "9000000014", "9000000016"]);
+    const blocked = (await cm.segmentCounts(TODAY)).filter((s) => !s.marketable).map((s) => s.id);
+    expect(blocked).toEqual(["imported"]);
+  });
+
+  it("imported contacts can't get a campaign: refused on create, and a saved one never queues", async () => {
+    await pool.query(`insert into public.audience_contacts (name, phone, email) values ('Imported', '9000000071', 'imp@x.in')`);
+    const req = { name: "Comeback", segment: "imported", channel: "whatsapp", offer: "3 months for ₹4,000 till 31 Oct", link: "membership" };
+    expect(cm.validateCampaign(req)).toMatch(/no record they agreed/);
+    expect(await cm.createCampaign(req, "admin", TODAY)).toMatchObject({ ok: false });
+    expect((await pool.query("select count(*)::int as n from public.campaigns")).rows[0].n).toBe(0);
+    // A repeating campaign saved before the rule: the daily job runs it but queues nothing.
+    await pool.query(
+      `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject, repeat, next_run) values ('admin', 'Old', 'imported', 'email', 'Come back this Diwali', 'membership', 'Hi', 'weekly', $1)`,
+      [TODAY],
+    );
+    expect(await cm.runRecurringCampaigns(TODAY)).toEqual({ runs: 1, queued: 0 });
+    expect((await pool.query("select count(*)::int as n from public.message_outbox")).rows[0].n).toBe(0);
   });
 
   it("a WhatsApp campaign skips opted-out people and anyone promoted this week, never sends twice, and sends in batches", async () => {
