@@ -97,13 +97,24 @@ export async function recipients(segment: SegmentId | string, today: string): Pr
     parts.push(
       (await pool.query<Recipient>(`select a.name, a.phone, a.email from public.audience_contacts a where a.phone is null or not exists (select 1 from public.members m where m.phone = a.phone) order by a.created_at`)).rows,
     );
+  // Enquired but never paid: not on the member list, and no paid order of any kind (a diet plan,
+  // the store, books, a membership or a payment link), matched by mobile or email.
   if (want("leads"))
     parts.push(
       (
         await pool.query<Recipient>(
-          `select l.name, l.phone, l.email from public.leads l
+          `with paid as (
+             select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10) as p, lower(email) as e from public.membership_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.diet_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.shop_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.book_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.payment_requests where status = 'paid'
+           )
+           select l.name, l.phone, l.email from public.leads l
             where l.status in ('new', 'contacted', 'trial', 'lost')
               and not exists (select 1 from public.members mm where mm.phone = right(regexp_replace(l.phone, '\\D', '', 'g'), 10))
+              and not exists (select 1 from paid where paid.p = right(regexp_replace(l.phone, '\\D', '', 'g'), 10) and paid.p <> '')
+              and not exists (select 1 from paid where l.email is not null and paid.e = lower(l.email))
             order by l.created_at desc`,
         )
       ).rows,
