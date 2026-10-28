@@ -265,6 +265,76 @@ describe.skipIf(!url)("social automation on a real database", () => {
     }
   });
 
+  it("month plan: the morning card posts once per channel inside the plan, and nothing outside it", async () => {
+    const before = await social.runMonthPost("am", new Date("2026-10-31T02:30:00Z"), biz);
+    expect(before).toEqual({ instagram: "not-scheduled", facebook: "not-scheduled" });
+    expect(calls).toHaveLength(0);
+
+    const now = new Date("2026-11-01T02:30:00Z"); // 8 am in India, day 1
+    expect(await social.runMonthPost("am", now, biz)).toEqual({ instagram: "published", facebook: "published" });
+    const igMedia = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(igMedia).toHaveLength(1);
+    expect(igMedia[0].body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/card/2026-11-01-am.jpg" });
+    expect(String(igMedia[0].body!.caption)).toContain("link in bio");
+    const fbPhoto = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
+    expect(fbPhoto.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/card/2026-11-01-am.jpg" });
+    expect(String(fbPhoto.body!.caption ?? fbPhoto.body!.message)).toContain("utm_campaign=month-plan");
+
+    // The evening retry run finds it done; the afternoon card is its own slot.
+    expect(await social.runMonthPost("am", new Date("2026-11-01T16:10:00Z"), biz)).toEqual({ instagram: "already-posted", facebook: "already-posted" });
+    expect(await social.runMonthPost("pm", new Date("2026-11-01T10:30:00Z"), biz)).toEqual({ instagram: "published", facebook: "published" });
+    const rows = (await pool.query("select channel, status from public.social_posts order by channel")).rows;
+    expect(rows).toEqual([
+      { channel: "facebook-am", status: "published" },
+      { channel: "facebook-pm", status: "published" },
+      { channel: "instagram-am", status: "published" },
+      { channel: "instagram-pm", status: "published" },
+    ]);
+  });
+
+  it("month plan: SOCIAL_MONTH_PLAN=off stops every extra post", async () => {
+    process.env.SOCIAL_MONTH_PLAN = "off";
+    try {
+      expect(await social.runMonthPost("am", new Date("2026-11-01T02:30:00Z"), biz)).toEqual({ instagram: "not-scheduled", facebook: "not-scheduled" });
+      expect((await social.runSecondReel(new Date("2026-11-01T06:30:00Z"), biz, fakeDeps2([]))).reel).toBe("not-scheduled");
+      expect(calls).toHaveLength(0);
+    } finally {
+      delete process.env.SOCIAL_MONTH_PLAN;
+    }
+  });
+
+  const fakeDeps2 = (log: string[], renderFails = false) => ({
+    render: async (post: { date: string; title: string }, seed: number, photo: string | null) => {
+      log.push(`render ${post.date} ${photo}`);
+      if (renderFails) throw new Error("ffmpeg exited 1: out of memory");
+      return Buffer.from("mp4");
+    },
+    upload: async (path: string, _d: Buffer, type: string) => (log.push(`upload ${path} ${type}`), `https://store.test/storage/v1/object/public/social-media/${path}`),
+    remove: async (path: string) => void log.push(`remove ${path}`),
+  });
+
+  it("month plan: the second Reel renders with a gallery photo, posts once, and a failed render is retried", async () => {
+    const log: string[] = [];
+    const failed = await social.runSecondReel(new Date("2026-11-01T06:30:00Z"), biz, fakeDeps2(log, true));
+    expect(failed.reel).toBe("failed: ffmpeg exited 1: out of memory");
+    expect(failed.instagram).toMatch(/^failed: No video/);
+    expect(calls.filter((c) => c.url.endsWith("/17841400000/media"))).toHaveLength(0);
+
+    const retry = await social.runSecondReel(new Date("2026-11-01T16:10:00Z"), biz, fakeDeps2(log));
+    expect(retry).toEqual({ reel: "rendered", instagram: "published", facebook: "published" });
+    expect(log.at(-3)).toMatch(/^render 2026-11-01 aman-sharma-[a-z-]+\.webp$/);
+    expect(log.slice(-2)).toEqual(["upload reels/2026-11-01-2.mp4 video/mp4", "remove reels/2026-10-02-2.mp4"]);
+    const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media[0].body).toMatchObject({ media_type: "REELS", video_url: "https://store.test/storage/v1/object/public/social-media/reels/2026-11-01-2.mp4" });
+
+    expect((await social.runSecondReel(new Date("2026-11-01T16:30:00Z"), biz, fakeDeps2([]))).reel).toBe("already-posted");
+    const rows = (await pool.query("select channel, status from public.social_posts order by channel")).rows;
+    expect(rows).toEqual([
+      { channel: "facebook-reel2", status: "published" },
+      { channel: "instagram-reel2", status: "published" },
+    ]);
+  });
+
   it("the morning Story keeps the Instagram token fresh", async () => {
     const out = await social.runInstagramStory(new Date("2026-10-12T02:15:00Z"));
     expect(out).toEqual({ story: "published", token: "refreshed" });

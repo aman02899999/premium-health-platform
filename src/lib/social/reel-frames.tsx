@@ -125,7 +125,9 @@ function Body({ scene, cover }: { scene: Scene; cover: string | null }) {
   }
 }
 
-function Frame({ scene, index, biz, logo, cover }: { scene: Scene; index: number; biz: PostBiz; logo: string; cover: string | null }) {
+function Frame({ scene, index, biz, logo, cover, photo }: { scene: Scene; index: number; biz: PostBiz; logo: string; cover: string | null; photo: string | null }) {
+  // The coach's photo fills the opening and closing screens, darkened so the words stay readable.
+  const withPhoto = photo && (scene.kind === "hook" || scene.kind === "cta");
   // The glow moves a little from scene to scene so cuts feel alive without distracting.
   const glow = [
     [82, 10],
@@ -141,12 +143,18 @@ function Frame({ scene, index, biz, logo, cover }: { scene: Scene; index: number
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        position: "relative",
         padding: "150px 90px 0",
         color: "#fff",
         fontFamily: "Inter",
         background: `radial-gradient(circle at ${glow[0]}% ${glow[1]}%, rgba(232,57,75,.55), transparent 42%), radial-gradient(circle at ${100 - glow[0]}% 88%, rgba(4,70,109,.95), transparent 55%), linear-gradient(170deg,#06111c,#0a1a2a)`,
       }}
     >
+      {withPhoto && (
+        // eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only
+        <img src={photo} alt="" width={W} height={H} style={{ position: "absolute", top: 0, left: 0, width: W, height: H, objectFit: "cover" }} />
+      )}
+      {withPhoto && <div style={{ position: "absolute", top: 0, left: 0, width: W, height: H, display: "flex", background: "linear-gradient(180deg, rgba(5,8,13,.55) 0%, rgba(5,8,13,.72) 45%, rgba(5,8,13,.92) 100%)" }} />}
       <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
         {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain img only */}
         <img src={logo} alt="" width={132} height={60} style={{ background: "#fff", borderRadius: 14, padding: 8 }} />
@@ -167,13 +175,13 @@ function Frame({ scene, index, biz, logo, cover }: { scene: Scene; index: number
 }
 
 /** The scenes as PNG frames, in order. */
-export async function reelFrames(scenes: Scene[], biz: PostBiz): Promise<Buffer[]> {
+export async function reelFrames(scenes: Scene[], biz: PostBiz, photo: string | null = null): Promise<Buffer[]> {
   const { logo, fonts } = await assets();
   const productCover = scenes.find((s) => s.kind === "product")?.cover ?? null;
   const cover = productCover ? await coverDataUrl(productCover, 540) : null;
   return Promise.all(
     scenes.map(async (scene, index) => {
-      const res = new ImageResponse(<Frame scene={scene} index={index} biz={biz} logo={logo} cover={cover} />, { width: W, height: H, fonts });
+      const res = new ImageResponse(<Frame scene={scene} index={index} biz={biz} logo={logo} cover={cover} photo={photo} />, { width: W, height: H, fonts });
       return Buffer.from(await res.arrayBuffer());
     }),
   );
