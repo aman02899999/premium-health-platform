@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isDbConfigured } from "@/health/db";
-import { isAdmin } from "@/health/lib/auth/server";
+import { isManager } from "@/lib/auth";
 import { todayIST } from "@/lib/growth/dates";
 import { healthAudience, parsePeriod, revenueReport } from "@/lib/revenue/report";
 
@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
  * GET /health/api/earn/stats?from=YYYY-MM-DD&to=YYYY-MM-DD (default: last 30 days, IST)
  */
 export async function GET(req: Request) {
-  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store" } });
+  if (!(await isManager())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store" } });
   if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Database not configured" }, { status: 503 });
   const q = new URL(req.url).searchParams;
   const period = parsePeriod(q.get("from"), q.get("to"), todayIST());

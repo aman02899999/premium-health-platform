@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { adminIdentity, isAdmin } from "@/lib/auth";
+import { adminIdentity, adminRole } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { analyse } from "@/lib/lab/analyse";
 import { adminViewReports, liveMarkers } from "@/lib/lab/store";
@@ -9,7 +9,10 @@ import { adminViewReports, liveMarkers } from "@/lib/lab/store";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
-  if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const role = await adminRole();
+  if (!role) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Health data: owners only, checked here as well as in the proxy.
+  if (role !== "owner") return NextResponse.json({ error: "Only an owner can open members' reports." }, { status: 403 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   const b = (await req.json().catch(() => null)) as { email?: unknown; reason?: unknown } | null;
   const email = typeof b?.email === "string" ? b.email.trim().toLowerCase() : "";

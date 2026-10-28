@@ -3,7 +3,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vites
 import { NextRequest } from "next/server";
 
 vi.mock("server-only", () => ({}));
-vi.mock("@/lib/auth", () => ({ isAdmin: async () => true }));
+vi.mock("@/lib/auth", () => ({ isAdmin: async () => true, isManager: async () => true }));
 
 const url = process.env.TEST_DATABASE_URL;
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { allowed, initials, normEmail, roleGate, teamChangeError, type Member } from "./team-core";
+import { allowed, growthActionAllowed, initials, normEmail, roleGate, teamChangeError, type Member } from "./team-core";
 import { HUB_SECTIONS, sectionsFor } from "./hub";
 
 describe("who may open what", () => {
@@ -18,10 +18,22 @@ describe("who may open what", () => {
     expect(allowed("agent", "/admin/blood-report")).toBe(false);
   });
   it("agents get the desk's work only", () => {
-    for (const p of ["/admin", "/admin/", "/admin/chats", "/api/admin/chats/919811111111", "/admin/contacts", "/api/admin/contacts", "/admin/growth", "/api/admin/growth/diet-order", "/admin/qr", "/api/admin/me", "/admin/login", "/api/admin/logout"])
+    for (const p of ["/admin", "/admin/", "/admin/chats", "/api/admin/chats/919811111111", "/admin/contacts", "/api/admin/contacts", "/admin/growth", "/api/admin/growth", "/admin/qr", "/api/admin/me", "/admin/login", "/api/admin/logout"])
       expect([p, allowed("agent", p)]).toEqual([p, true]);
     for (const p of ["/admin/team", "/admin/shop", "/api/admin/shop/orders", "/admin/audience", "/api/admin/audience", "/admin/ads", "/admin/website", "/api/admin/content", "/api/admin/payments", "/admin/analytics", "/api/admin/whatsapp-templates", "/admin/ai-agent", "/api/admin/ai-agent"])
       expect([p, allowed("agent", p)]).toEqual([p, false]);
+  });
+  it("agents can't send diet plans or upload member lists", () => {
+    for (const p of ["/api/admin/growth/diet-plan", "/api/admin/growth/diet-order", "/api/admin/members/import"]) expect([p, allowed("agent", p)]).toEqual([p, false]);
+    expect(allowed("manager", "/api/admin/growth/diet-plan")).toBe(true);
+    expect(allowed("manager", "/api/admin/members/import")).toBe(true);
+  });
+  it("in Growth, agents save members, update leads and send today's messages; the rest is for managers", () => {
+    for (const a of ["save-member", "lead", "message"]) expect(growthActionAllowed("agent", a)).toBe(true);
+    for (const a of ["run-daily", "post-reel", "delete-member", "diet-send", "diet-regenerate", "diet-stage", "client-access", "version-reject", "apply-order"]) {
+      expect([a, growthActionAllowed("agent", a)]).toEqual([a, false]);
+      expect(growthActionAllowed("manager", a)).toBe(true);
+    }
   });
   it("prefixes match whole path segments only", () => {
     expect(allowed("agent", "/admin/chatsabc")).toBe(false);
