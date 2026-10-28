@@ -275,7 +275,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
     const igMedia = calls.filter((c) => c.url.endsWith("/17841400000/media"));
     expect(igMedia).toHaveLength(1);
     expect(igMedia[0].body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/card/2026-11-01-am.jpg" });
-    expect(String(igMedia[0].body!.caption)).toContain("Link in bio");
+    expect(String(igMedia[0].body!.caption)).toContain("link in bio");
     const fbPhoto = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
     expect(fbPhoto.body).toMatchObject({ url: "https://www.royalfitnesclub.in/api/social/card/2026-11-01-am.jpg" });
     expect(String(fbPhoto.body!.caption ?? fbPhoto.body!.message)).toContain("utm_campaign=month-plan");

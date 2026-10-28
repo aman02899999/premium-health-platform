@@ -6,6 +6,7 @@ import { activeOffer, type Offer } from "@/lib/offers";
 import { DIET_PLANS } from "./config";
 import { addDays, daysBetween } from "./dates";
 import { dailyPost, type DailyPost, type PostBiz } from "./daily-posts";
+import { keywordsFor, socialCaption } from "./captions";
 import { CARDS, type Card } from "./month-plan-cards";
 
 /** First day of the plan (India time) and how long it runs. Outside these dates nothing extra posts. */
@@ -80,10 +81,18 @@ export function cardCta(card: Card, date: string, biz: PostBiz, offers: Offer[])
   return { headline: "Book your free trial session", sub: `Call or WhatsApp ${phone}`, path: "/membership" };
 }
 
-function rowsText(card: Card): string {
-  if (card.sections.length === 1) return card.sections[0].rows.map(([a, b]) => `▪️ ${a}: ${b}`).join("\n");
-  return card.sections.map((s) => `▪️ ${s.head ? `${s.head}: ` : ""}${s.rows.map(([a, b]) => `${a} ${b}`).join(", ")}`).join("\n");
+/** The card's table as caption lines. */
+function rowsText(card: Card): string[] {
+  if (card.sections.length === 1) return card.sections[0].rows.map(([a, b]) => `${a}: ${b}`);
+  return card.sections.map((s) => `${s.head ? `${s.head}: ` : ""}${s.rows.map(([a, b]) => `${a} ${b}`).join(", ")}`);
 }
+
+/** Hashtags by what the card sells, on top of the card's own topic tags. */
+const GOAL_TAGS: Record<Card["goal"], string[]> = {
+  join: ["GymMotivation", "FitnessJourney", "WorkoutTips"],
+  diet: ["DietPlan", "HealthyEating", "IndianFood"],
+  pt: ["PersonalTrainer", "WorkoutTips", "StrengthTraining"],
+};
 
 /** The feed post for a date and slot, or null outside the plan. */
 export function cardPost(date: string, slot: FeedSlot, biz: PostBiz, offers: Offer[]): CardPost | null {
@@ -93,18 +102,23 @@ export function cardPost(date: string, slot: FeedSlot, biz: PostBiz, offers: Off
   const card = CARDS[i % CARDS.length];
   const cta = cardCta(card, date, biz, offers);
   const links = { instagram: monthLink(biz.siteUrl, cta.path, "instagram", date, slot), facebook: monthLink(biz.siteUrl, cta.path, "facebook", date, slot) };
-  const head = `${card.title.join(" ")}: ${card.subtitle}`;
-  const body = [
-    rowsText(card),
-    card.caption,
-    card.source ? `📚 Source: ${card.source}` : "",
-    card.medical ? MEDICAL_NOTE : "",
-  ]
-    .filter(Boolean)
-    .join("\n\n");
-  const sign = [`— ${biz.coach}, ${biz.name}`, `📞 Call or WhatsApp ${biz.phone}`, biz.address ? `📍 ${biz.address}` : ""].filter(Boolean).join("\n");
-  const tags = ["RoyalFitnessClub", "CoachAman", ...card.tags, "NoidaGym", "Sector93Noida"].map((t) => `#${t}`).join(" ");
-  const ctaLine = `${cta.headline}. ${cta.sub}.`;
+  const caption = (channel: "instagram" | "facebook") =>
+    socialCaption(
+      {
+        hook: `${card.title.join(" ")}: ${card.subtitle}`,
+        description: card.caption,
+        points: rowsText(card),
+        takeaway: card.footer,
+        source: card.source,
+        medicalNote: card.medical ? MEDICAL_NOTE : undefined,
+        cta: `${cta.headline}. ${cta.sub}.`,
+        link: links.facebook,
+        keywords: keywordsFor(card.series),
+        tags: [...card.tags, ...GOAL_TAGS[card.goal]],
+      },
+      biz,
+      channel,
+    );
   return {
     date,
     slot,
@@ -115,8 +129,8 @@ export function cardPost(date: string, slot: FeedSlot, biz: PostBiz, offers: Off
     links,
     theme: `${card.title.join(" ")}`.slice(0, 80),
     // Instagram captions can't hold links: the bio link (/ig) carries them.
-    instagram: `${head}\n\n${body}\n\n👉 ${ctaLine} Link in bio.\n💾 Save this for your next workout.\n\n${sign}\n\n${tags}`,
-    facebook: `${head}\n\n${body}\n\n👉 ${ctaLine}\n${links.facebook}\n\n${sign}\n\n${tags}`,
+    instagram: caption("instagram"),
+    facebook: caption("facebook"),
   };
 }
 

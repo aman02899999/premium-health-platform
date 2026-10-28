@@ -64,7 +64,7 @@ describe("month plan", () => {
     const after = cardPost(join.date, join.slot, biz, [{ ...FESTIVE_2026, endsOn: addDays(join.date, -1) }])!;
     expect(after.cta.headline).toMatch(/free trial session/i);
     for (const p of all) {
-      expect(p.instagram).toContain("Link in bio");
+      expect(p.instagram).toContain("link in bio");
       expect(p.instagram).not.toMatch(/https?:\/\//); // links don't work in Instagram captions
       expect(p.instagram).toContain("88518 30081");
       expect(p.instagram).not.toContain("92668"); // the bot number never goes in posts
@@ -87,6 +87,32 @@ describe("month plan", () => {
       expect(evening.has(r.title), d).toBe(false);
       expect(r.date).toBe(d);
       expect(r.facebook).not.toMatch(/daily-\d{4}-\d{2}-\d{2}(?!-reel2)/);
+    }
+  });
+
+  it("every daily caption (both cards and both Reels) has a description, CTA, keywords and 10–15 hashtags", () => {
+    const captions = days.flatMap((d) => {
+      const r2 = secondReelPost(d, biz)!;
+      const evening = dailyPost(d, biz);
+      const cards = all.filter((p) => p.date === d);
+      return [...cards, r2, evening].flatMap((p) => [
+        { id: `${d} ${p.theme} ig`, text: p.instagram, ig: true },
+        { id: `${d} ${p.theme} fb`, text: p.facebook, ig: false },
+      ]);
+    });
+    expect(captions).toHaveLength(MONTH_DAYS * 8);
+    for (const c of captions) {
+      const tags = (c.text.match(/(?:^|\s)#\w+/g) ?? []).map((t) => t.trim()); // not the "#order" in links
+      expect(tags.length, c.id).toBeGreaterThanOrEqual(10);
+      expect(tags.length, c.id).toBeLessThanOrEqual(15);
+      expect(new Set(tags.map((t) => t.toLowerCase())).size, c.id).toBe(tags.length);
+      expect(c.text, c.id).toMatch(/^.+\n\n.{30,}/); // hook, then a real description
+      expect(c.text, c.id).toMatch(/👉 .{10,}/);
+      expect(c.text, c.id).toMatch(/🔎 .*Gym in Sector 93 Noida/);
+      expect(c.text, c.id).toContain("88518 30081");
+      expect(c.text.length, c.id).toBeLessThanOrEqual(2200);
+      if (c.ig) expect(c.text, c.id).toContain("link in bio");
+      else expect(c.text, c.id).toMatch(/🔗 https:\/\/www\.royalfitnesclub\.in\/.*utm_source=facebook/);
     }
   });
 });

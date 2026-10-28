@@ -4,6 +4,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { addDays } from "@/lib/growth/dates";
+import { dailyPost } from "@/lib/growth/daily-posts";
 import { cardPost, secondReelPost, reelPhoto, MONTH_START } from "@/lib/growth/month-plan";
 import { OFFERS } from "@/lib/offers";
 import { renderCard } from "@/lib/social/card-image";
@@ -30,6 +31,7 @@ async function main() {
       await writeFile(join(out, `${date}-${slot}.instagram.txt`), p.instagram);
       console.log(date, slot, p.card.id, p.instagram.length, "chars");
     }
+    await writeFile(join(out, `${date}-reel1-evening.instagram.txt`), dailyPost(date, biz).instagram);
     const r = secondReelPost(date, biz);
     if (r) {
       await writeFile(join(out, `${date}-reel2.instagram.txt`), r.instagram);
