@@ -4,7 +4,9 @@ import { getContent } from "@/lib/content/store";
 import { HUB } from "@/lib/hub";
 import { faqJsonLd } from "@/lib/seo";
 import { formatTime, hoursDays, fullAddress, publishedPosts, telHref, whatsappHref } from "@/lib/site";
-import { Hero3DLoader } from "@/components/home/Hero3DLoader";
+import { HeroOfferCard } from "@/components/home/HeroOfferCard";
+import { SmartImage } from "@/components/ui/SmartImage";
+import { heroOffer } from "@/lib/hero-offer";
 import { PlanGrid } from "@/components/home/PlanGrid";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { Gallery3D } from "@/components/home/Gallery3D";
@@ -29,6 +31,8 @@ import { ReviewCard } from "@/components/reviews/ReviewCard";
 
 export const revalidate = 3600;
 
+const DEFAULT_HERO_IMAGE = "/gallery/aman-sharma-royal-fitness-gym.webp";
+
 const FACILITIES = [
   { icon: Snowflake, title: "Fully Air-Conditioned", text: "Train hard even in peak Noida summer." },
   { icon: BadgeCheck, title: "Certified Trainers", text: "Qualified coaches correcting form on the floor." },
@@ -47,6 +51,10 @@ export default async function HomePage() {
   const reviews = isDbConfigured ? (await approvedReviews(3).catch(() => [])) : [];
   const plans = applyOffer(c.plans, todayIST(), c.offers);
   const faqs = faqsWithOffer(c.faqs, plans);
+  const offer = heroOffer(plans);
+  // The admin's hero photo if one is set (Admin → Home → Hero), else the founder at the rack.
+  const heroImage = c.hero.image || DEFAULT_HERO_IMAGE;
+  const founder = c.trainers.find((t) => /founder/i.test(t.role))?.name ?? "Aman Sharma";
 
   return (
     <>
@@ -56,15 +64,17 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd(faqs)} />
 
       {/* ---------- HERO ---------- */}
+      {/* Spotlight hero: the founder on the real gym floor, plus one CSS-3D offer card. No WebGL here,
+          so phones paint the photo straight away (the old three.js dumbbell is no longer loaded on home). */}
       <section className="relative isolate min-h-[100svh] overflow-hidden">
-        <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_70%_40%,rgba(4,70,109,.55),transparent_55%),radial-gradient(ellipse_at_10%_90%,rgba(232,57,75,.18),transparent_50%)]" />
-        <div className="grid-floor absolute inset-x-0 bottom-0 -z-10 h-1/2 origin-bottom [transform:perspective(600px)_rotateX(62deg)]" />
-        <div className="absolute inset-0 -z-10">
-          <Hero3DLoader />
+        <div className="absolute inset-x-0 top-0 -z-20 h-[62svh] lg:inset-y-0 lg:left-auto lg:h-auto lg:w-[58%]">
+          <SmartImage src={heroImage} alt={`${founder}, founder and head coach, training at ${b.name}`} priority sizes="(min-width: 1024px) 58vw, 100vw" className="object-[center_25%]" />
         </div>
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/80 to-transparent lg:bg-gradient-to-r lg:via-ink/40" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(0deg,var(--color-ink)_38%,rgba(6,17,28,.55)_62%,rgba(6,17,28,.15)_100%)] lg:bg-[linear-gradient(90deg,var(--color-ink)_0%,var(--color-ink)_40%,rgba(6,17,28,.7)_56%,rgba(6,17,28,.1)_80%,rgba(6,17,28,.35)_100%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 hidden h-56 bg-gradient-to-t from-ink to-transparent lg:block" />
+        <span aria-hidden className="hero-93 pointer-events-none absolute -z-10 hidden select-none lg:block">93</span>
 
-        <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-16 pt-40 sm:px-6 lg:justify-center lg:pb-24">
+        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-4 pb-16 pt-[44svh] sm:px-6 lg:justify-center lg:pb-24 lg:pt-40">
           <div className="max-w-2xl">
             <Reveal>
               <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand/40 bg-black/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-brand backdrop-blur">
@@ -93,6 +103,8 @@ export default async function HomePage() {
               <RatingBadge value={b.rating.value} count={b.rating.count} source={b.rating.source} href={/google/i.test(b.rating.source) ? b.googleMapsUrl : undefined} />
             </Reveal>
           </div>
+          {offer && <HeroOfferCard offer={offer} />}
+          <p className="pointer-events-none absolute right-6 top-36 hidden text-sm text-white/80 lg:block">{founder}, founder &amp; head coach</p>
         </div>
       </section>
 

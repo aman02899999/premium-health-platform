@@ -317,6 +317,7 @@ export function AdminApp({ storage }: { storage: string }) {
                     { key: "subtitle", label: "Subtitle", type: "textarea" },
                     { key: "primaryCta", label: "Main button text" },
                     { key: "secondaryCta", label: "Second button text" },
+                    { key: "image", label: "Hero photo (optional — the founder photo shows when empty)", type: "image" },
                   ]}
                 />
               </Card>
