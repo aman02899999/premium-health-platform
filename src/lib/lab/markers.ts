@@ -7,7 +7,7 @@
 // report range is used, and with neither the status is "unknown".
 //
 // Education only (YMYL rule): no diagnosis, no medicine names or doses, Ayurveda as support.
-import { CITED } from "./cited";
+import { CITED, type Cited } from "./cited";
 import type { Advice, Marker, PanelId } from "./types";
 
 export const PANELS: { id: PanelId; name: string; hint: string }[] = [
@@ -220,7 +220,10 @@ const INFLAM_HIGH: Advice = {
 };
 
 type Def = Omit<Marker, "ranges" | "sources"> & Partial<Pick<Marker, "ranges" | "sources">>;
-const m = (d: Def): Marker => ({ ranges: [], sources: [], ...d, ...CITED[d.id] });
+const m = (d: Def): Marker => {
+  const c: Cited | undefined = CITED[d.id];
+  return { ...d, ranges: c?.ranges ?? d.ranges ?? [], bands: c?.bands ?? d.bands, sources: c?.sources ?? d.sources ?? [] };
+};
 
 const CELLS = [
   { unit: "/ul", factor: 0.001 },
