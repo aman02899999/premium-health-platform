@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DISEASES } from "@/health/data/diseases-index";
 import { getDiseaseDetail } from "@/health/data/diseases-detail";
+import { DISEASE_REWRITES } from "@/health/data/diseases-rewrites";
 import sitemap from "@/app/(health)/health/sitemap";
 import { generateMetadata } from "@/app/(health)/health/diseases/[slug]/page";
 import { INDEXED_DISEASES, diseaseIndexable } from "./content-quality";
@@ -28,4 +29,35 @@ describe("disease pages built from the shared template stay out of search", () =
     for (const d of DISEASES) expect(getDiseaseDetail(d.slug)).toBeDefined();
     expect(DISEASES.filter((d) => !diseaseIndexable(d.slug)).length).toBe(DISEASES.length - INDEXED_DISEASES.size);
   });
+});
+
+describe("rewritten disease pages", () => {
+  const strings = (v: unknown): string[] =>
+    typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(strings) : v && typeof v === "object" ? Object.values(v).flatMap(strings) : [];
+  const fields = (slug: string) => {
+    const d = getDiseaseDetail(slug)!;
+    const { references, relatedDiseases, relatedMedicines, relatedHerbs, relatedLabs, imagePrompt, updatedAt, ...text } = d;
+    void references; void relatedDiseases; void relatedMedicines; void relatedHerbs; void relatedLabs; void imagePrompt; void updatedAt;
+    // Short values (name, age group, labels) are shared summary data, not prose.
+    return { d, text: strings(text).filter((s) => s.length >= 40).map((s) => s.replaceAll(d.name, "X")) };
+  };
+  const template = new Set(fields("migraine").text);
+
+  for (const slug of Object.keys(DISEASE_REWRITES)) {
+    it(`${slug} is indexed, cited and uses no template text`, async () => {
+      expect(diseaseIndexable(slug)).toBe(true);
+      expect((await meta(slug)).robots).toBeUndefined();
+      const { d, text } = fields(slug);
+      expect(d.references.length).toBeGreaterThanOrEqual(3);
+      for (const r of d.references) expect(r.url).toMatch(/^https:\/\//);
+      expect(text.filter((s) => template.has(s))).toEqual([]);
+      const links = [...d.relatedDiseases.map((s) => DISEASES.some((x) => x.slug === s))];
+      expect(links.every(Boolean)).toBe(true);
+    });
+
+    it(`${slug} gives no medicine doses`, () => {
+      const { text } = fields(slug);
+      expect(text.filter((s) => /\b\d+(\.\d+)?\s?(mg|mcg|µg|IU)\b/i.test(s))).toEqual([]);
+    });
+  }
 });
