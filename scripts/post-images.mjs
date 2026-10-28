@@ -407,6 +407,89 @@ export const SPECS = {
       ],
     },
   },
+  "vitamin-b12-vegetarian-india": {
+    theme: ["#1e3a8a", "#2563eb", "#facc15"],
+    hero: { kicker: "Nutrition · vegetarian India", title: "Vitamin B12 for Indian vegetarians: signs, tests and sources", icons: ["cup", "bowl", "drop", "brain"] },
+    "inline-1": {
+      type: "cards",
+      title: "Why B12 runs low in so many Indians",
+      subtitle: "Two or more of these together is a reason to ask your doctor about a test.",
+      items: [
+        { icon: "leaf", head: "Vegetarian, little dairy", text: "Plants have no reliable B12; milk, curd and paneer are the main sources", tone: "bad" },
+        { icon: "pill", head: "Years of metformin", text: "Long-term use is linked with lower B12; don't stop it, get checked", tone: "bad" },
+        { icon: "pill", head: "Years of acid tablets", text: "PPIs and H2 blockers for two years or more", tone: "bad" },
+        { icon: "family", head: "Over 60", text: "The stomach releases less B12 from food with age", tone: "bad" },
+        { icon: "alert", head: "Stomach or gut problems", text: "Past surgery, coeliac, Crohn's or pernicious anaemia", tone: "bad" },
+        { icon: "baby", head: "Pregnancy on a low-B12 diet", text: "Tell your obstetrician what you eat; test as advised", tone: "bad" },
+      ],
+    },
+    "inline-2": {
+      type: "bands",
+      title: "Reading a total B12 result",
+      subtitle: "Bands from the UK NICE guideline (NG239, 2024). Your lab's own cut-offs and your symptoms come first.",
+      items: [
+        { range: "Below 180", name: "Low", color: "#dc2626", dark: true, text: "Deficiency confirmed. Your doctor looks for the cause and decides treatment." },
+        { range: "180–350", name: "Grey zone", color: "#facc15", text: "Could be low or fine. With symptoms, a second test such as MMA or active B12 helps." },
+        { range: "Above 350", name: "Unlikely", color: "#16a34a", dark: true, text: "Deficiency unlikely. Look for other causes of symptoms." },
+      ],
+      note: "Units: ng/L (same as pg/mL). Source: NICE NG239, Vitamin B12 deficiency in over 16s, 2024. Pregnancy uses a different test.",
+    },
+  },
+  "cholesterol-report-explained": {
+    theme: ["#7c2d12", "#c2410c", "#fde047"],
+    hero: { kicker: "Heart health · lab report", title: "Your lipid profile explained: LDL, HDL, triglycerides and targets", icons: ["heart", "drop", "plate", "check"] },
+    "inline-1": {
+      type: "cards",
+      title: "What each line on your report means",
+      subtitle: "Read the report as a whole. LDL is the main target; your goal depends on your risk.",
+      items: [
+        { icon: "alert", head: "LDL cholesterol", text: "Builds plaque in arteries. Main treatment target: lower is better", tone: "bad" },
+        { icon: "heart", head: "HDL cholesterol", text: "Better higher. Low with belly fat and inactivity", tone: "good" },
+        { icon: "cup", head: "Triglycerides", text: "Rise with sugar, refined carbs and alcohol. Very high is urgent" },
+        { icon: "drop", head: "Non-HDL", text: "Total minus HDL: every particle that can block arteries" },
+        { icon: "family", head: "Lp(a)", text: "Mostly genetic. Worth testing once, especially with early heart disease in the family" },
+      ],
+    },
+    "inline-2": {
+      type: "bands",
+      title: "LDL goals by heart risk",
+      subtitle: "Your doctor decides your risk group from age, BP, sugar, smoking, kidneys and family history.",
+      items: [
+        { range: "Below 55", name: "Very high risk", color: "#7f1d1d", dark: true, text: "Past heart attack, stroke or stent; diabetes with organ damage. Also a 50% cut." },
+        { range: "Below 70", name: "High risk", color: "#dc2626", dark: true, text: "Long-standing diabetes or one very high risk factor. Also a 50% cut." },
+        { range: "Below 100", name: "Moderate risk", color: "#f97316", text: "For example, younger people with recent diabetes and no other risk factors." },
+        { range: "Below 116", name: "Low risk", color: "#16a34a", dark: true, text: "Young, no diabetes, low overall risk." },
+      ],
+      note: "LDL in mg/dL. Source: 2019 ESC/EAS Guidelines for the management of dyslipidaemias.",
+    },
+  },
+  "gout-uric-acid-india": {
+    theme: ["#4c1d95", "#7c3aed", "#fcd34d"],
+    hero: { kicker: "Metabolism · joints", title: "High uric acid and gout: diet, triggers and treatment", icons: ["drop", "bowl", "pill", "walk"] },
+    "inline-1": {
+      type: "cards",
+      title: "High uric acid is not the same as gout",
+      subtitle: "Most people with a high number never get gout. Gout means crystals causing joint attacks.",
+      items: [
+        { icon: "drop", head: "High uric acid, no symptoms", text: "Common on health checks. Usually not treated with medicine; check weight, BP, sugar, kidneys" },
+        { icon: "alert", head: "Gout flare", text: "Sudden severe pain, swelling, redness and heat, often in the big toe", tone: "bad" },
+        { icon: "clock", head: "Settles, then returns", text: "Flares ease in one to two weeks and can come back months later", tone: "bad" },
+        { icon: "pill", head: "Frequent flares or lumps", text: "Long-term uric acid lowering medicine, adjusted by a doctor to a target", tone: "good" },
+      ],
+    },
+    "inline-2": {
+      type: "cards",
+      title: "Gout and food: what to limit, what's fine",
+      subtitle: "Alcohol, sugary drinks and big meat or seafood meals matter more than dal.",
+      items: [
+        { icon: "cup", head: "Limit: alcohol", text: "Especially beer, spirits and binge drinking", tone: "bad" },
+        { icon: "cup", head: "Limit: sugary drinks", text: "Cold drinks, packaged juices, sweet lassi", tone: "bad" },
+        { icon: "plate", head: "Limit: big meat and seafood meals", text: "Mutton, organ meat and seafood, especially at parties", tone: "bad" },
+        { icon: "bowl", head: "Fine for most: dal and vegetables", text: "Plant purines weren't linked with more gout in a large study", tone: "good" },
+        { icon: "drop", head: "Helps: water and low-fat dairy", text: "Water through the day; milk and curd were linked with less gout", tone: "good" },
+      ],
+    },
+  },
 };
 
 export function render(slug) {

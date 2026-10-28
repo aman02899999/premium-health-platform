@@ -246,6 +246,124 @@ export const POSTS: PostMeta[] = [
   },
   {
     "lang": "en",
+    "slug": "cholesterol-report-explained",
+    "title": "Your Lipid Profile Explained: LDL, HDL, Triglycerides and Targets",
+    "hindiTitle": "लिपिड प्रोफ़ाइल समझें: LDL, HDL, ट्राइग्लिसराइड और लक्ष्य",
+    "description": "What each number on your lipid profile means, the Indian pattern of high triglycerides and low HDL, LDL targets by risk, and what food can and can't do.",
+    "category": "Heart Health",
+    "tags": [
+      "cholesterol",
+      "lipid profile",
+      "LDL",
+      "HDL",
+      "triglycerides",
+      "Lp(a)",
+      "heart health",
+      "blood test"
+    ],
+    "readingTime": 13,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/cholesterol-report-explained/hero.svg",
+    "heroAlt": "Illustration of a heart, a blood drop, a plate and a check mark, standing for reading a lipid profile and acting on it",
+    "sources": [
+      {
+        "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias",
+        "publisher": "European Heart Journal",
+        "year": "2020",
+        "url": "https://doi.org/10.1093/eurheartj/ehz455"
+      },
+      {
+        "title": "Fasting is not routinely required for determination of a lipid profile (EAS and EFLM joint consensus)",
+        "publisher": "European Heart Journal",
+        "year": "2016",
+        "url": "https://doi.org/10.1093/eurheartj/ehw152"
+      },
+      {
+        "title": "Metabolic non-communicable disease health report of India (ICMR-INDIAB-17)",
+        "publisher": "Lancet Diabetes and Endocrinology",
+        "year": "2023",
+        "url": "https://doi.org/10.1016/S2213-8587(23)00119-5"
+      },
+      {
+        "title": "Lipid Association of India expert consensus statement on management of dyslipidemia in Indians 2016, part 1",
+        "publisher": "Journal of Clinical and Preventive Cardiology",
+        "year": "2016",
+        "url": "https://doi.org/10.4103/2250-3528.186492"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "Lipid profile test",
+        "href": "/health/lab-tests/lipid-profile"
+      },
+      {
+        "label": "High cholesterol",
+        "href": "/health/diseases/high-cholesterol"
+      },
+      {
+        "label": "High triglycerides",
+        "href": "/health/diseases/high-triglycerides"
+      },
+      {
+        "label": "Heart attacks under 40 in India",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "Fatty liver guide",
+        "href": "/health/blog/fatty-liver-reversal-guide"
+      }
+    ],
+    "headings": [
+      "Why this report matters for Indians",
+      "The numbers, one by one",
+      "The Indian pattern: high triglycerides, low HDL",
+      "LDL targets depend on your risk",
+      "A worked example",
+      "Before the test: fasting and timing",
+      "Acting on your report",
+      "Special situations",
+      "Myths about cholesterol",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "What is a normal LDL cholesterol level?",
+        "a": "There isn't one normal number for everyone. Guidelines set LDL goals by heart risk: below 116 mg/dL for low risk, below 100 for moderate, below 70 for high and below 55 for very high risk. Your doctor decides your group."
+      },
+      {
+        "q": "Do I need to fast for a lipid profile?",
+        "a": "Usually not. A European expert consensus found non-fasting samples are fine for most people. Your doctor may ask for a fasting test if your triglycerides were very high before. Follow your lab's instructions."
+      },
+      {
+        "q": "Can diet alone lower cholesterol?",
+        "a": "Diet and exercise can lower LDL modestly and triglycerides a lot. For people at high or very high risk, or with genetically high LDL, medicine is usually needed as well, as advised by a doctor."
+      },
+      {
+        "q": "How often should I check my lipid profile?",
+        "a": "It depends on your risk and treatment. After starting or changing treatment, doctors often recheck within a few weeks to three months, then regularly. Healthy adults with normal results can test less often, as their doctor advises."
+      },
+      {
+        "q": "What does high triglycerides with low HDL mean?",
+        "a": "It is a common Indian pattern linked with belly fat, insulin resistance, sugar and refined carbs, alcohol and inactivity. It raises heart risk even when LDL looks borderline, and often improves well with lifestyle changes."
+      }
+    ],
+    "words": 2561,
+    "ads": 3
+  },
+  {
+    "lang": "en",
     "slug": "generic-semaglutide-india-guide",
     "title": "Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle",
     "hindiTitle": "भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ",
@@ -377,6 +495,124 @@ export const POSTS: PostMeta[] = [
     ],
     "words": 2598,
     "ads": 3
+  },
+  {
+    "lang": "en",
+    "slug": "gout-uric-acid-india",
+    "title": "High Uric Acid and Gout: Diet, Triggers and Treatment",
+    "hindiTitle": "यूरिक एसिड और गठिया: खान-पान, ट्रिगर और इलाज",
+    "description": "What a high uric acid report means, why most people never get gout, what really triggers a flare, the dal and tomato myths, and how gout is treated long term.",
+    "category": "Weight and Metabolism",
+    "tags": [
+      "uric acid",
+      "gout",
+      "hyperuricaemia",
+      "joint pain",
+      "diet",
+      "dal",
+      "kidney stones"
+    ],
+    "readingTime": 13,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/gout-uric-acid-india/hero.svg",
+    "heroAlt": "Illustration of a blood drop, a bowl of dal, a tablet and a walking figure, standing for uric acid, diet, treatment and staying active",
+    "sources": [
+      {
+        "title": "2020 American College of Rheumatology guideline for the management of gout",
+        "publisher": "Arthritis Care and Research",
+        "year": "2020",
+        "url": "https://doi.org/10.1002/acr.24180"
+      },
+      {
+        "title": "2016 updated EULAR evidence-based recommendations for the management of gout",
+        "publisher": "Annals of the Rheumatic Diseases",
+        "year": "2017",
+        "url": "https://doi.org/10.1136/annrheumdis-2016-209707"
+      },
+      {
+        "title": "Purine-rich foods, dairy and protein intake, and the risk of gout in men",
+        "publisher": "New England Journal of Medicine",
+        "year": "2004",
+        "url": "https://doi.org/10.1056/NEJMoa035700"
+      },
+      {
+        "title": "Soft drinks, fructose consumption, and the risk of gout in men (prospective cohort study)",
+        "publisher": "BMJ",
+        "year": "2008",
+        "url": "https://doi.org/10.1136/bmj.39449.819271.BE"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "Uric acid blood test",
+        "href": "/health/lab-tests/uric-acid"
+      },
+      {
+        "label": "Gout",
+        "href": "/health/diseases/gout"
+      },
+      {
+        "label": "Kidney stones",
+        "href": "/health/diseases/kidney-stones"
+      },
+      {
+        "label": "Fatty liver guide",
+        "href": "/health/blog/fatty-liver-reversal-guide"
+      },
+      {
+        "label": "High blood pressure guide",
+        "href": "/health/blog/indian-guide-blood-pressure"
+      }
+    ],
+    "headings": [
+      "Uric acid vs gout: not the same thing",
+      "What a gout flare feels like",
+      "What really triggers flares",
+      "The diet myths: dal, tomatoes and paneer",
+      "A gout-friendly Indian day of eating",
+      "Gout in women and older adults",
+      "Long-term treatment",
+      "Gout, kidneys and the heart",
+      "Exercise with gout",
+      "Myths about uric acid and gout",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "What is a normal uric acid level?",
+        "a": "Labs often give a range up to about 7 mg/dL for men and somewhat lower for women. For people on gout treatment, guidelines aim for below 6 mg/dL. A high number without symptoms usually isn't treated with medicine, but it is a reason to check weight, blood pressure, sugar and kidneys."
+      },
+      {
+        "q": "Can I eat dal if I have high uric acid?",
+        "a": "For most people, yes. A large study found purine-rich vegetables were not linked with more gout, while meat and seafood were. If a particular dal or vegetable seems to trigger your flares, cut back on that one rather than all of them."
+      },
+      {
+        "q": "Which drinks are bad for gout?",
+        "a": "Alcohol, especially beer and spirits, and sugar-sweetened drinks are the main ones. Packaged juices with added sugar are best limited. Water is the best drink; low-fat milk is fine."
+      },
+      {
+        "q": "How long do I need to take uric acid medicine?",
+        "a": "Usually long term. Guidelines aim to keep uric acid below 6 mg/dL so crystals dissolve and don't re-form. Your doctor decides the dose and checks it with blood tests. Don't stop it on your own."
+      },
+      {
+        "q": "Does exercise make gout worse?",
+        "a": "Regular exercise between flares helps, because it improves weight, blood pressure and sugar. Rest during a flare, drink enough water, and avoid dehydration and crash diets around training."
+      }
+    ],
+    "words": 2527,
+    "ads": 2
   },
   {
     "lang": "en",
@@ -988,6 +1224,135 @@ export const POSTS: PostMeta[] = [
   },
   {
     "lang": "en",
+    "slug": "vitamin-b12-vegetarian-india",
+    "title": "Vitamin B12 for Indian Vegetarians: Signs, Tests and Sources",
+    "hindiTitle": "भारतीय शाकाहारियों के लिए विटामिन B12: संकेत, जाँच और स्रोत",
+    "description": "Why so many Indian vegetarians run low on B12, the signs people miss, how to read your B12 report, food sources that help and when a doctor should step in.",
+    "category": "Nutrition",
+    "tags": [
+      "vitamin B12",
+      "vegetarian",
+      "deficiency",
+      "anaemia",
+      "tingling",
+      "metformin",
+      "blood test"
+    ],
+    "readingTime": 13,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/vitamin-b12-vegetarian-india/hero.svg",
+    "heroAlt": "Illustration of a cup of milk, a bowl of curd, a blood drop and a brain, standing for B12 food sources, blood tests and nerve health",
+    "sources": [
+      {
+        "title": "Vitamin B12 fact sheet for health professionals",
+        "publisher": "NIH Office of Dietary Supplements",
+        "year": "2024",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"
+      },
+      {
+        "title": "Hyperhomocysteinemia and elevated methylmalonic acid indicate a high prevalence of cobalamin deficiency in Asian Indians",
+        "publisher": "American Journal of Clinical Nutrition",
+        "year": "2001",
+        "url": "https://doi.org/10.1093/ajcn/74.2.233"
+      },
+      {
+        "title": "Vitamin B12 deficiency in over 16s, diagnosis and management (NG239)",
+        "publisher": "National Institute for Health and Care Excellence (NICE)",
+        "year": "2024",
+        "url": "https://www.nice.org.uk/guidance/ng239"
+      },
+      {
+        "title": "Long-term metformin use and vitamin B12 deficiency in the Diabetes Prevention Program Outcomes Study",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism",
+        "year": "2016",
+        "url": "https://doi.org/10.1210/jc.2015-3754"
+      },
+      {
+        "title": "Proton pump inhibitor and histamine 2 receptor antagonist use and vitamin B12 deficiency",
+        "publisher": "JAMA",
+        "year": "2013",
+        "url": "https://doi.org/10.1001/jama.2013.280490"
+      },
+      {
+        "title": "Vitamin B12 and folate concentrations during pregnancy and insulin resistance in the offspring (Pune Maternal Nutrition Study)",
+        "publisher": "Diabetologia",
+        "year": "2008",
+        "url": "https://doi.org/10.1007/s00125-007-0793-y"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "Vitamin B12 deficiency",
+        "href": "/health/diseases/vitamin-b12-deficiency"
+      },
+      {
+        "label": "Vitamin B12 blood test",
+        "href": "/health/lab-tests/vitamin-b12"
+      },
+      {
+        "label": "Anaemia in India home guide",
+        "href": "/health/blog/anemia-mukt-bharat-home-guide"
+      },
+      {
+        "label": "High-protein vegetarian guide",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "Metformin",
+        "href": "/health/medicines/metformin"
+      }
+    ],
+    "headings": [
+      "What vitamin B12 does, and why vegetarians are at risk",
+      "The signs people miss",
+      "Who should get tested",
+      "How to read your B12 report",
+      "A step-by-step plan",
+      "B12 foods that fit an Indian vegetarian kitchen",
+      "Special groups",
+      "B12, exercise and energy",
+      "Myths about vitamin B12",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "What is a normal vitamin B12 level?",
+        "a": "Labs use slightly different ranges. The UK's NICE guideline treats total B12 below 180 ng/L as deficiency, 180 to 350 ng/L as uncertain, and above 350 ng/L as unlikely to be deficient. Your doctor will read your result with your symptoms and blood count."
+      },
+      {
+        "q": "Can vegetarians get enough B12 from food?",
+        "a": "Many can, if they eat milk products every day, and eggs if they eat them. People who eat little dairy, vegans, older adults and people on certain medicines often need fortified foods or a supplement, as advised by a doctor."
+      },
+      {
+        "q": "Does metformin cause B12 deficiency?",
+        "a": "Long-term metformin use is linked with lower B12 levels in some people. That isn't a reason to stop metformin. Ask your doctor about checking B12 from time to time, especially if you have tingling or numbness."
+      },
+      {
+        "q": "How long does it take to recover from B12 deficiency?",
+        "a": "It depends on how low it was and for how long. Blood counts often start improving within weeks of treatment. Nerve symptoms take longer, and long-standing nerve damage may not fully recover, which is why early testing matters."
+      },
+      {
+        "q": "Should I take a B12 supplement without testing?",
+        "a": "It's better to test first. A supplement before testing can hide the problem on a later report, and the right form and dose depend on the cause. Take B12 only as advised by your doctor."
+      }
+    ],
+    "words": 2603,
+    "ads": 3
+  },
+  {
+    "lang": "en",
     "slug": "work-stress-burnout-india",
     "title": "Work Stress and Burnout in India: The Signs, What Helps, and When to Get Help",
     "hindiTitle": "भारत में काम का तनाव और बर्नआउट: संकेत, क्या मदद करता है, और कब मदद लें",
@@ -1327,6 +1692,119 @@ export const POSTS: PostMeta[] = [
   },
   {
     "lang": "hi",
+    "slug": "cholesterol-report-explained",
+    "title": "Your Lipid Profile Explained: LDL, HDL, Triglycerides and Targets",
+    "hindiTitle": "लिपिड प्रोफ़ाइल समझें: LDL, HDL, ट्राइग्लिसराइड और लक्ष्य",
+    "description": "लिपिड प्रोफ़ाइल का हर नंबर क्या कहता है, भारतीयों में ज़्यादा ट्राइग्लिसराइड और कम HDL का पैटर्न, जोखिम के हिसाब से LDL लक्ष्य, और खाना क्या कर सकता है।",
+    "category": "दिल की सेहत",
+    "tags": [
+      "कोलेस्ट्रॉल",
+      "लिपिड प्रोफ़ाइल",
+      "LDL",
+      "HDL",
+      "ट्राइग्लिसराइड",
+      "Lp(a)",
+      "दिल",
+      "ब्लड टेस्ट"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/cholesterol-report-explained/hero.svg",
+    "heroAlt": "दिल, ख़ून की बूँद, थाली और सही का निशान: लिपिड प्रोफ़ाइल पढ़ना और उस पर काम करना",
+    "sources": [
+      {
+        "title": "2019 ESC/EAS Guidelines for the management of dyslipidaemias",
+        "publisher": "European Heart Journal",
+        "year": "2020",
+        "url": "https://doi.org/10.1093/eurheartj/ehz455"
+      },
+      {
+        "title": "Fasting is not routinely required for determination of a lipid profile (EAS and EFLM joint consensus)",
+        "publisher": "European Heart Journal",
+        "year": "2016",
+        "url": "https://doi.org/10.1093/eurheartj/ehw152"
+      },
+      {
+        "title": "Metabolic non-communicable disease health report of India (ICMR-INDIAB-17)",
+        "publisher": "Lancet Diabetes and Endocrinology",
+        "year": "2023",
+        "url": "https://doi.org/10.1016/S2213-8587(23)00119-5"
+      },
+      {
+        "title": "Lipid Association of India expert consensus statement on management of dyslipidemia in Indians 2016, part 1",
+        "publisher": "Journal of Clinical and Preventive Cardiology",
+        "year": "2016",
+        "url": "https://doi.org/10.4103/2250-3528.186492"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "लिपिड प्रोफ़ाइल टेस्ट (अंग्रेज़ी)",
+        "href": "/health/lab-tests/lipid-profile"
+      },
+      {
+        "label": "हाई कोलेस्ट्रॉल (अंग्रेज़ी)",
+        "href": "/health/diseases/high-cholesterol"
+      },
+      {
+        "label": "हाई ट्राइग्लिसराइड (अंग्रेज़ी)",
+        "href": "/health/diseases/high-triglycerides"
+      },
+      {
+        "label": "40 से कम उम्र में हार्ट अटैक",
+        "href": "/hi/health/blog/heart-attack-under-40-india"
+      }
+    ],
+    "headings": [
+      "भारतीयों के लिए यह रिपोर्ट क्यों अहम है",
+      "हर नंबर का मतलब",
+      "भारतीय पैटर्न: ज़्यादा ट्राइग्लिसराइड, कम HDL",
+      "LDL का लक्ष्य आपके जोखिम पर निर्भर है",
+      "टेस्ट से पहले: ख़ाली पेट और समय",
+      "रिपोर्ट पर क्या करें",
+      "ख़ास हालात",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "नॉर्मल LDL कितना होना चाहिए?",
+        "a": "सबके लिए एक नंबर नहीं है। गाइडलाइन जोखिम के हिसाब से लक्ष्य रखती है: कम जोखिम में 116 mg/dL से कम, मध्यम में 100 से कम, ज़्यादा में 70 से कम और बहुत ज़्यादा में 55 से कम। आपका समूह डॉक्टर तय करेंगे।"
+      },
+      {
+        "q": "क्या लिपिड प्रोफ़ाइल के लिए ख़ाली पेट रहना ज़रूरी है?",
+        "a": "आमतौर पर नहीं। यूरोपीय विशेषज्ञों ने पाया कि ज़्यादातर लोगों के लिए बिना ख़ाली पेट का सैंपल ठीक है। पहले ट्राइग्लिसराइड बहुत ज़्यादा थे तो डॉक्टर ख़ाली पेट टेस्ट कह सकते हैं। अपनी लैब के निर्देश मानें।"
+      },
+      {
+        "q": "क्या सिर्फ़ खाने से कोलेस्ट्रॉल घट सकता है?",
+        "a": "खाना और कसरत LDL थोड़ा और ट्राइग्लिसराइड काफ़ी घटा सकते हैं। ज़्यादा जोखिम वालों या जेनेटिक रूप से ज़्यादा LDL वालों को आमतौर पर डॉक्टर की सलाह से दवा भी चाहिए।"
+      },
+      {
+        "q": "लिपिड प्रोफ़ाइल कितनी बार कराएँ?",
+        "a": "यह जोखिम और इलाज पर निर्भर है। दवा शुरू करने या बदलने के बाद डॉक्टर अक्सर कुछ हफ़्तों से तीन महीने में दोबारा जाँच कराते हैं, फिर नियमित। सामान्य रिपोर्ट वाले स्वस्थ लोग कम बार, डॉक्टर की सलाह से।"
+      },
+      {
+        "q": "ज़्यादा ट्राइग्लिसराइड और कम HDL का क्या मतलब है?",
+        "a": "यह भारतीयों में आम पैटर्न है जो पेट की चर्बी, इंसुलिन रेज़िस्टेंस, चीनी, रिफ़ाइंड कार्ब, शराब और कम चलने-फिरने से जुड़ा है। LDL बॉर्डरलाइन दिखे तब भी यह दिल का जोखिम बढ़ाता है, और जीवनशैली बदलने से अक्सर अच्छा सुधरता है।"
+      }
+    ],
+    "words": 2138,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
     "slug": "generic-semaglutide-india-guide",
     "title": "Generic Semaglutide in India (2026): Who It Suits, What It Costs, and How to Keep Your Muscle",
     "hindiTitle": "भारत में जेनेरिक सेमाग्लूटाइड (2026): किसके लिए सही, कितना ख़र्च, और मांसपेशियाँ कैसे बचाएँ",
@@ -1445,6 +1923,117 @@ export const POSTS: PostMeta[] = [
     ],
     "words": 2112,
     "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "gout-uric-acid-india",
+    "title": "High Uric Acid and Gout: Diet, Triggers and Treatment",
+    "hindiTitle": "यूरिक एसिड और गठिया: खान-पान, ट्रिगर और इलाज",
+    "description": "ज़्यादा यूरिक एसिड की रिपोर्ट का मतलब, ज़्यादातर लोगों को गाउट क्यों नहीं होता, अटैक असल में किससे होता है, दाल-टमाटर के मिथक, और लंबा इलाज।",
+    "category": "वज़न और मेटाबॉलिज़्म",
+    "tags": [
+      "यूरिक एसिड",
+      "गाउट",
+      "गठिया",
+      "जोड़ों का दर्द",
+      "खान-पान",
+      "दाल",
+      "पथरी"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/gout-uric-acid-india/hero.svg",
+    "heroAlt": "ख़ून की बूँद, दाल की कटोरी, गोली और चलता हुआ व्यक्ति: यूरिक एसिड, खान-पान, इलाज और सक्रिय रहना",
+    "sources": [
+      {
+        "title": "2020 American College of Rheumatology guideline for the management of gout",
+        "publisher": "Arthritis Care and Research",
+        "year": "2020",
+        "url": "https://doi.org/10.1002/acr.24180"
+      },
+      {
+        "title": "2016 updated EULAR evidence-based recommendations for the management of gout",
+        "publisher": "Annals of the Rheumatic Diseases",
+        "year": "2017",
+        "url": "https://doi.org/10.1136/annrheumdis-2016-209707"
+      },
+      {
+        "title": "Purine-rich foods, dairy and protein intake, and the risk of gout in men",
+        "publisher": "New England Journal of Medicine",
+        "year": "2004",
+        "url": "https://doi.org/10.1056/NEJMoa035700"
+      },
+      {
+        "title": "Soft drinks, fructose consumption, and the risk of gout in men (prospective cohort study)",
+        "publisher": "BMJ",
+        "year": "2008",
+        "url": "https://doi.org/10.1136/bmj.39449.819271.BE"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "यूरिक एसिड ब्लड टेस्ट (अंग्रेज़ी)",
+        "href": "/health/lab-tests/uric-acid"
+      },
+      {
+        "label": "गाउट (अंग्रेज़ी)",
+        "href": "/health/diseases/gout"
+      },
+      {
+        "label": "किडनी की पथरी (अंग्रेज़ी)",
+        "href": "/health/diseases/kidney-stones"
+      },
+      {
+        "label": "फ़ैटी लिवर गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/fatty-liver-reversal-guide"
+      }
+    ],
+    "headings": [
+      "यूरिक एसिड और गाउट एक चीज़ नहीं",
+      "गाउट का अटैक कैसा होता है",
+      "अटैक असल में किससे होते हैं",
+      "खाने के मिथक: दाल, टमाटर और पनीर",
+      "लंबा इलाज",
+      "गाउट, किडनी और दिल",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "यूरिक एसिड का नॉर्मल लेवल क्या है?",
+        "a": "लैब अक्सर पुरुषों में लगभग 7 mg/dL तक और महिलाओं में थोड़ा कम की रेंज देती हैं। गाउट के इलाज में गाइडलाइन 6 mg/dL से नीचे का लक्ष्य रखती हैं। बिना लक्षण के ज़्यादा नंबर का आमतौर पर दवा से इलाज नहीं होता, पर यह वज़न, BP, शुगर और किडनी देखने की वजह है।"
+      },
+      {
+        "q": "क्या ज़्यादा यूरिक एसिड में दाल खा सकते हैं?",
+        "a": "ज़्यादातर लोग खा सकते हैं। एक बड़े अध्ययन में प्यूरीन वाली सब्ज़ियाँ ज़्यादा गाउट से नहीं जुड़ीं, जबकि मांस और सी-फ़ूड जुड़े। कोई ख़ास दाल या सब्ज़ी अटैक लाती लगे, तो सिर्फ़ उसे कम करें।"
+      },
+      {
+        "q": "गाउट में कौन से पेय नुकसानदायक हैं?",
+        "a": "शराब, ख़ासकर बीयर और स्पिरिट, और चीनी वाले पेय मुख्य हैं। चीनी मिले पैकेट जूस भी कम करें। पानी सबसे अच्छा है; कम फ़ैट वाला दूध ठीक है।"
+      },
+      {
+        "q": "यूरिक एसिड की दवा कितने समय लेनी होगी?",
+        "a": "आमतौर पर लंबे समय तक। गाइडलाइन यूरिक एसिड 6 mg/dL से नीचे रखने का लक्ष्य रखती हैं ताकि क्रिस्टल घुलें और दोबारा न बनें। डोज़ डॉक्टर तय करते हैं और ब्लड टेस्ट से जाँचते हैं। अपने आप बंद न करें।"
+      },
+      {
+        "q": "क्या कसरत से गाउट बढ़ता है?",
+        "a": "अटैक के बीच नियमित कसरत मदद करती है, क्योंकि यह वज़न, BP और शुगर सुधारती है। अटैक में आराम करें, पानी पूरा पिएँ, और ट्रेनिंग के आसपास पानी की कमी और क्रैश डाइट से बचें।"
+      }
+    ],
+    "words": 2099,
+    "ads": 2
   },
   {
     "lang": "hi",
@@ -2015,6 +2604,131 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2129,
+    "ads": 3
+  },
+  {
+    "lang": "hi",
+    "slug": "vitamin-b12-vegetarian-india",
+    "title": "Vitamin B12 for Indian Vegetarians: Signs, Tests and Sources",
+    "hindiTitle": "भारतीय शाकाहारियों के लिए विटामिन B12: संकेत, जाँच और स्रोत",
+    "description": "इतने भारतीय शाकाहारियों में B12 कम क्यों होता है, किन संकेतों को लोग अनदेखा करते हैं, B12 रिपोर्ट कैसे पढ़ें, और कब डॉक्टर ज़रूरी है।",
+    "category": "पोषण",
+    "tags": [
+      "विटामिन B12",
+      "शाकाहार",
+      "कमी",
+      "एनीमिया",
+      "झुनझुनी",
+      "मेटफ़ॉर्मिन",
+      "ब्लड टेस्ट"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-10-28",
+    "lastReviewed": "2026-10-28",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/vitamin-b12-vegetarian-india/hero.svg",
+    "heroAlt": "दूध का कप, दही की कटोरी, ख़ून की बूँद और दिमाग़: B12 के स्रोत, ब्लड टेस्ट और नसों की सेहत",
+    "sources": [
+      {
+        "title": "Vitamin B12 fact sheet for health professionals",
+        "publisher": "NIH Office of Dietary Supplements",
+        "year": "2024",
+        "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"
+      },
+      {
+        "title": "Hyperhomocysteinemia and elevated methylmalonic acid indicate a high prevalence of cobalamin deficiency in Asian Indians",
+        "publisher": "American Journal of Clinical Nutrition",
+        "year": "2001",
+        "url": "https://doi.org/10.1093/ajcn/74.2.233"
+      },
+      {
+        "title": "Vitamin B12 deficiency in over 16s, diagnosis and management (NG239)",
+        "publisher": "NICE",
+        "year": "2024",
+        "url": "https://www.nice.org.uk/guidance/ng239"
+      },
+      {
+        "title": "Long-term metformin use and vitamin B12 deficiency in the Diabetes Prevention Program Outcomes Study",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism",
+        "year": "2016",
+        "url": "https://doi.org/10.1210/jc.2015-3754"
+      },
+      {
+        "title": "Proton pump inhibitor and histamine 2 receptor antagonist use and vitamin B12 deficiency",
+        "publisher": "JAMA",
+        "year": "2013",
+        "url": "https://doi.org/10.1001/jama.2013.280490"
+      },
+      {
+        "title": "Vitamin B12 and folate concentrations during pregnancy and insulin resistance in the offspring (Pune Maternal Nutrition Study)",
+        "publisher": "Diabetologia",
+        "year": "2008",
+        "url": "https://doi.org/10.1007/s00125-007-0793-y"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/pdfjs/locale/DGI24thJune2024fin.pdf"
+      }
+    ],
+    "related": [
+      {
+        "label": "विटामिन B12 की कमी (अंग्रेज़ी)",
+        "href": "/health/diseases/vitamin-b12-deficiency"
+      },
+      {
+        "label": "विटामिन B12 ब्लड टेस्ट (अंग्रेज़ी)",
+        "href": "/health/lab-tests/vitamin-b12"
+      },
+      {
+        "label": "एनीमिया गाइड",
+        "href": "/hi/health/blog/anemia-mukt-bharat-home-guide"
+      },
+      {
+        "label": "मेटफ़ॉर्मिन (अंग्रेज़ी)",
+        "href": "/health/medicines/metformin"
+      }
+    ],
+    "headings": [
+      "B12 क्या करता है, और शाकाहारियों को ख़तरा क्यों",
+      "वे संकेत जिन्हें लोग अनदेखा करते हैं",
+      "किसे जाँच करानी चाहिए",
+      "अपनी B12 रिपोर्ट कैसे पढ़ें",
+      "क़दम-दर-क़दम योजना",
+      "भारतीय शाकाहारी रसोई में B12",
+      "ख़ास लोग",
+      "B12, कसरत और ऊर्जा",
+      "मिथक और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "विटामिन B12 का नॉर्मल लेवल क्या है?",
+        "a": "लैब की रेंज थोड़ी अलग होती है। ब्रिटेन की NICE गाइडलाइन 180 ng/L से कम को कमी, 180 से 350 को अनिश्चित और 350 से ऊपर को कमी की कम संभावना मानती है। डॉक्टर नतीजा आपके लक्षणों और ब्लड काउंट के साथ पढ़ेंगे।"
+      },
+      {
+        "q": "क्या शाकाहारी खाने से पूरा B12 पा सकते हैं?",
+        "a": "बहुत से लोग पा सकते हैं, अगर रोज़ दूध-दही लें और अंडा खाते हों तो अंडा भी। कम दूध लेने वाले, वीगन, बुज़ुर्ग और कुछ दवाएँ लेने वालों को अक्सर फ़ोर्टिफ़ाइड खाना या डॉक्टर की सलाह से सप्लीमेंट चाहिए।"
+      },
+      {
+        "q": "क्या मेटफ़ॉर्मिन से B12 कम होता है?",
+        "a": "लंबे समय तक मेटफ़ॉर्मिन लेना कुछ लोगों में कम B12 से जुड़ा है। यह मेटफ़ॉर्मिन छोड़ने की वजह नहीं है। डॉक्टर से समय-समय पर B12 जाँच के बारे में पूछें, ख़ासकर झुनझुनी हो तो।"
+      },
+      {
+        "q": "B12 की कमी ठीक होने में कितना समय लगता है?",
+        "a": "यह इस पर निर्भर है कि कमी कितनी और कितने समय से थी। ब्लड काउंट अक्सर इलाज के कुछ हफ़्तों में सुधरने लगता है। नसों के लक्षणों में ज़्यादा समय लगता है, और पुरानी क्षति पूरी ठीक न भी हो, इसलिए जल्दी जाँच ज़रूरी है।"
+      },
+      {
+        "q": "क्या बिना जाँच B12 की गोली ले लूँ?",
+        "a": "पहले जाँच बेहतर है। पहले गोली लेने से बाद की रिपोर्ट में दिक़्क़त छिप सकती है, और सही प्रकार और डोज़ वजह पर निर्भर है। B12 सिर्फ़ डॉक्टर की सलाह से लें।"
+      }
+    ],
+    "words": 2489,
     "ads": 3
   },
   {
