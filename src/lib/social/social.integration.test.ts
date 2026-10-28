@@ -152,6 +152,26 @@ describe.skipIf(!url)("social automation on a real database", () => {
     expect(text).not.toContain("*");
   });
 
+  it("an Instagram DM the bot leaves unanswered emails the coach; one the bot answers doesn't", async () => {
+    process.env.COACH_EMAIL = "coach@example.com";
+    try {
+      const ig = (id: string, text: string) => ({ id: `igm:${id}`, channel: "instagram" as const, kind: "message" as const, from: "1420948870177609", fromName: "fit_priya", text });
+      expect(await social.handleInbound(ig("m1", "hi"))).toBe("replied");
+      expect(await social.handleInbound(ig("m2", "can I bring a friend tomorrow evening?"))).toBe("logged");
+      // An Instagram comment is public and stays in the notification bell, not the coach's inbox.
+      await social.handleInbound({ id: "igc:c9", channel: "instagram", kind: "comment", from: "779", fromName: "someone", text: "nice physique 🔥" });
+      const { rows } = await pool.query(`select to_address, subject, body from public.message_outbox where kind = 'chat-alert'`);
+      expect(rows).toHaveLength(1);
+      expect(rows[0].to_address).toBe("coach@example.com");
+      expect(rows[0].subject).toBe("💬 Instagram DM from fit_priya");
+      expect(rows[0].body).toContain("can I bring a friend tomorrow evening?");
+      expect(rows[0].body).toContain("https://www.instagram.com/direct/inbox/");
+      expect(rows[0].body).not.toContain("+1420948870177609");
+    } finally {
+      delete process.env.COACH_EMAIL;
+    }
+  });
+
   it("Facebook: a 'PRICE' comment gets a private reply; the day's post goes on the Page once", async () => {
     await social.handleInbound({ id: "fbc:c9", channel: "facebook", kind: "comment", from: "u2", fromName: "Ravi K", text: "PRICE" });
     const fb = calls.filter((c) => c.url.endsWith("/PAGE1/messages"));

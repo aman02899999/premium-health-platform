@@ -23,23 +23,34 @@ export function windowLabel(w: WindowState, now = new Date()): string {
 /** WhatsApp ids are digits with the country code: "+91 98765-43210" → "919876543210". */
 export const peerId = (raw: string) => raw.replace(/\D/g, "").slice(0, 20);
 
+/** Where the coach answers a DM the site can't answer from Chats. */
+const DM_INBOX = { instagram: "https://www.instagram.com/direct/inbox/", facebook: "https://business.facebook.com/latest/inbox/all" } as const;
+
 /**
  * Email to the coach when a customer writes on WhatsApp: the phone app is gone once the number
- * runs on the API, so this is the "ping". One per conversation per 30 minutes (the dedupe key).
+ * runs on the API, so this is the "ping". Instagram and Facebook DMs the bot didn't answer get
+ * one too, pointing at the app's inbox. One per conversation per 30 minutes (the dedupe key).
  */
-export function chatAlertEmail(m: { peer: string; name: string; text: string }, to: string, chatsUrl: string, now = new Date()) {
+export function chatAlertEmail(m: { peer: string; name: string; text: string; channel?: "whatsapp" | "instagram" | "facebook" }, to: string, chatsUrl: string, now = new Date()) {
   const slot = Math.floor(now.getTime() / (30 * 60 * 1000));
-  const who = m.name || `+${m.peer}`;
+  const channel = m.channel ?? "whatsapp";
   const preview = m.text.trim() || "sent a photo, voice note or file";
+  const base = { channel: "email" as const, to, toName: "Coach", kind: "chat-alert", template: "", params: [] as string[] };
+  if (channel !== "whatsapp") {
+    const app = channel === "instagram" ? "Instagram" : "Facebook";
+    const who = m.name || "Someone";
+    return {
+      ...base,
+      subject: `💬 ${app} DM from ${who}`.slice(0, 200),
+      body: `💬 ${who} wrote on ${app}:\n\n“${preview.slice(0, 600)}”\n\nThe bot didn't answer this one. Reply in the ${app} inbox within 24 hours, while ${app} still lets you message back.\n[[CTA:Open ${app} inbox|${DM_INBOX[channel]}]]`,
+      dedupeKey: `chat-alert:${channel}:${m.peer}:${slot}`,
+    };
+  }
+  const who = m.name || `+${m.peer}`;
   return {
-    channel: "email" as const,
-    to,
-    toName: "Coach",
-    kind: "chat-alert",
+    ...base,
     subject: `💬 WhatsApp from ${who}`.slice(0, 200),
     body: `💬 ${who} (+${m.peer}) wrote on WhatsApp:\n\n“${preview.slice(0, 600)}”\n\nReply within 24 hours, while the chat window is open: after that WhatsApp allows only approved templates.\n[[CTA:Reply in Chats|${chatsUrl}]]`,
-    template: "",
-    params: [] as string[],
     dedupeKey: `chat-alert:${m.peer}:${slot}`,
   };
 }

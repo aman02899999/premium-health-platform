@@ -80,6 +80,20 @@ async function ensureLead(m: Inbound, intent: Intent, afterOffer = false): Promi
 
 /** Records one inbound message or comment and answers it if the rules say so. Duplicates are ignored. */
 export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied" | "logged" | "failed"> {
+  const res = await recordAndAnswer(m);
+  // An Instagram or Facebook DM the bot didn't answer needs a person, and they don't show in the
+  // admin Chats (WhatsApp only): email the coach, who answers in the app. Comments stay in the bell.
+  if ((res === "logged" || res === "failed") && m.channel !== "whatsapp" && m.kind === "message") {
+    const coach = process.env.COACH_EMAIL;
+    if (coach)
+      await enqueue([chatAlertEmail({ peer: m.from, name: m.fromName, text: m.text, channel: m.channel }, coach, `${SITE_URL}/admin/chats`)])
+        .then((n) => (n ? dispatch(3) : null))
+        .catch((err: Error) => console.error("[social] DM alert:", err.message));
+  }
+  return res;
+}
+
+async function recordAndAnswer(m: Inbound): Promise<"duplicate" | "replied" | "logged" | "failed"> {
   const intent = detectIntent(m.text);
   const ins = await pool.query(
     `insert into public.social_inbox (id, channel, kind, from_id, from_name, body, intent, media_type, media_id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict (id) do nothing`,
