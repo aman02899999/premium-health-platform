@@ -88,6 +88,12 @@ export default async function PrivacyPage() {
           <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">how Google uses data from sites that use its services</a>.
         </p>
         <p>
+          We use Google Analytics to count visits and see which links bring people to the site (for example our Google profile, posts and
+          Instagram). It sets Google cookies and records the pages you view, the link you came from and your rough location, never your name,
+          email or phone number. Account and admin pages are not tracked. You can block it with the{" "}
+          <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.
+        </p>
+        <p>
           We use the Meta Pixel and Meta&apos;s Conversions API to measure our Facebook and Instagram ads: when you view a page, send a trial or
           enquiry form, or complete a purchase, Meta is told that this happened. Your email and mobile number are sent only as one-way hashes,
           never in readable form, and we never share payment details. Meta may use its cookies to show you our ads on its apps. You can control

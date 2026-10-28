@@ -7,6 +7,7 @@ import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 import { MetaPixel } from "@/components/ui/MetaPixel";
+import { GoogleAnalytics } from "@/components/ui/GoogleAnalytics";
 import { AttributionTracker } from "@/components/ui/AttributionTracker";
 
 // Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
@@ -67,6 +68,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <body className="noise min-h-screen">
         {children}
         <VercelAnalytics />
+        <GoogleAnalytics />
         <MetaPixel />
         <AttributionTracker />
       </body>
