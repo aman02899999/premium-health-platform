@@ -17,6 +17,7 @@ import {
 import { EvidenceStack } from "@/health/components/charts";
 import { articleJsonLd, faqJsonLd, breadcrumbJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { diseaseIndexable } from "@/health/lib/content-quality";
 import { LiveResearchSection } from "@/health/components/research";
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const d = getDisease(slug);
   if (!d) return { title: "Disease not found" };
   return {
+    ...(diseaseIndexable(slug) ? {} : { robots: { index: false, follow: true } }),
     title: `${d.name} — Symptoms, Causes, Tests, Treatment & Diet`,
     description: entityDescription(d.short, "Symptoms, causes, tests, treatment options and diet, explained for Indian families."),
     alternates: { canonical: `/health/diseases/${slug}` },
