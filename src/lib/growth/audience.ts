@@ -56,7 +56,7 @@ export const SEGMENTS: { id: SegmentId; label: string; hint: string }[] = [
   { id: "ex-recent", label: "Left in the last 3 months", hint: "Most likely to come back" },
   { id: "ex-old", label: "Left over 3 months ago", hint: "Win-back offers" },
   { id: "imported", label: "Imported contacts", hint: "Old lists you uploaded. No consent, so no campaigns or ads" },
-  { id: "leads", label: "Leads who didn't join", hint: "Enquired but never paid" },
+  { id: "leads", label: "Leads who didn't join", hint: "Enquired but never paid for anything" },
   { id: "everyone", label: "Everyone", hint: "Members, ex-members and leads, each person once (not imported contacts)" },
 ];
 export const isSegment = (s: unknown): s is SegmentId => SEGMENTS.some((x) => x.id === s);

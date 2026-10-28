@@ -32,7 +32,7 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     cm = await import("./campaigns");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members cascade");
+    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members, public.diet_orders, public.payment_requests cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -84,6 +84,23 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     );
     expect(await cm.runRecurringCampaigns(TODAY)).toEqual({ runs: 1, queued: 0 });
     expect((await pool.query("select count(*)::int as n from public.message_outbox")).rows[0].n).toBe(0);
+  });
+
+  it("'Leads who didn't join' leaves out leads who already paid for something (diet plan, payment link)", async () => {
+    await pool.query(
+      `insert into public.leads (name, phone, email, source, status) values
+         ('Still Thinking', '9000000081', null, 'website', 'new'),
+         ('Diet Buyer', '+91 90000 00082', null, 'whatsapp-diet', 'new'),
+         ('Paid By Link', '9000000083', 'link@x.in', 'website', 'contacted'),
+         ('Unpaid Order', '9000000084', null, 'website', 'new')`,
+    );
+    await pool.query(
+      `insert into public.diet_orders (razorpay_order_id, amount_paise, name, phone, email, intake, consent_at, plan, status, paid_at) values
+         ('o1', 49900, 'Diet Buyer', '9000000082', null, '{}', now(), 'trial', 'paid', now()),
+         ('o2', 49900, 'Unpaid Order', '9000000084', null, '{}', now(), 'trial', 'created', null)`,
+    );
+    await pool.query(`insert into public.payment_requests (token, name, phone, email, purpose, amount_paise, status, paid_at, expires_at) values ('tokPaidByLink01', 'Paid By Link', null, 'LINK@x.in', 'PT', 100000, 'paid', now(), now() + interval '7 days')`);
+    expect((await cm.recipients("leads", TODAY)).map((r) => r.name).sort()).toEqual(["Still Thinking", "Unpaid Order"]);
   });
 
   it("a WhatsApp campaign skips opted-out people and anyone promoted this week, never sends twice, and sends in batches", async () => {
