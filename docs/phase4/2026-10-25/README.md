@@ -87,3 +87,18 @@ animations all play; no horizontal overflow; no page errors. Full-page screensho
 areas for off-screen sections, which is how `content-visibility` works; normal scrolling shows them.
 
 Found, not fixed here: `/health/news` links to `/#newsletter`, but the home page has no such section.
+
+## Slice 4: `/health` on the live site (28 Oct)
+
+After slice 3 went live, production `/health` still blocked taps for ~0.73 s, though the local
+build showed 0.45 s. Locally the live India pulse has no data. In production, the three blocks right
+under the hero (live pulse, categories, latest articles, ~700 elements) fill with real data and were
+still laid out during load. On a phone they are two screens down, so they now get `cv-auto` too, as
+does the news/tip row. `content-visibility.test.ts` checks that every `/health` section below the
+hero has it.
+
+Measured on production with real data (`perf3i.js`): the live HTML is served through the same
+route either unchanged or with `cv-auto` added to those four blocks, two runs of 5 loads each.
+Total Blocking Time 717 / 673 ms → 482 / 510 ms; LCP and CLS unchanged
+(`slice4-live-health.json`; page weight there counts the HTML uncompressed, so ignore it).
+Desktop scroll CLS: the 0.089 footer shift that main already had on desktop is gone with the change; 390 px stays 0.001.
