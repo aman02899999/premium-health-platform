@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 import { addDays, addMonths } from "./dates";
 import { segmentTag, tagSegment } from "@/lib/admin/contacts-core";
 import { allContacts, contactFacets } from "@/lib/admin/contacts";
-import { LINKS, campaignDraft, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
+import { LINKS, NO_CONSENT_ERROR, campaignDraft, canMarketTo, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
 import { TEMPLATES } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 
@@ -14,7 +14,9 @@ import { dispatch, enqueue } from "./outbox";
 //   - WhatsApp promotions skip numbers that tapped "Stop promotions";
 //   - emails skip addresses that unsubscribed, hard-bounced or complained, and carry an unsubscribe link;
 //   - nobody gets more than one promotion a week, across all campaigns and automations;
-//   - each person gets a campaign once, however often it is queued.
+//   - each person gets a campaign once, however often it is queued;
+//   - imported contacts (no record of consent) never get one: not as a segment, not inside
+//     "Everyone", and not through a Contacts list unless they are also a member, lead or customer.
 
 export const PROMO_GAP_DAYS = 7;
 const MARKETING_KINDS = Object.entries(TEMPLATES)
@@ -75,9 +77,13 @@ const ten = (phone: string | null) => {
 
 /** Everyone in a segment, each person once (by mobile, else by email). */
 export async function recipients(segment: SegmentId | string, today: string): Promise<Recipient[]> {
-  // A list from Contacts: everyone with that tag (already one row per person).
+  // A list from Contacts: everyone with that tag (already one row per person), minus people we
+  // only know from an imported sheet.
   const tag = segmentTag(segment);
-  if (tag) return (await allContacts({ tag }, 20000, today)).map((c) => ({ name: c.name, phone: c.phone, email: c.email }));
+  if (tag)
+    return (await allContacts({ tag }, 20000, today))
+      .filter((c) => c.kinds.some((k) => k !== "imported"))
+      .map((c) => ({ name: c.name, phone: c.phone, email: c.email }));
   const m = (where: string, params: unknown[]) => pool.query<{ name: string; phone: string; email: string | null }>(`select name, phone, email from public.members where ${where}`, params).then((r) => r.rows);
   const parts: Recipient[][] = [];
   const want = (s: SegmentId) => segment === s || segment === "everyone";
@@ -86,7 +92,8 @@ export async function recipients(segment: SegmentId | string, today: string): Pr
   if (want("ex-recent")) parts.push(await m(`expires_on < $1 and expires_on >= $2`, [today, addDays(today, -90)]));
   if (want("ex-old")) parts.push(await m(`expires_on < $1`, [addDays(today, -90)]));
   // Someone imported as a contact and later added to the member list belongs to the member segments.
-  if (want("imported"))
+  // Not part of "everyone": imported contacts can't get promotions (see NO_CONSENT_SEGMENTS).
+  if (segment === "imported")
     parts.push(
       (await pool.query<Recipient>(`select a.name, a.phone, a.email from public.audience_contacts a where a.phone is null or not exists (select 1 from public.members m where m.phone = a.phone) order by a.created_at`)).rows,
     );
@@ -116,14 +123,14 @@ export async function recipients(segment: SegmentId | string, today: string): Pr
 /** Is this something a campaign can be sent to: a built-in segment or a Contacts list ("tag:vip"). */
 export const isAudience = (s: unknown): s is string => isSegment(s) || segmentTag(s) !== null;
 
-export async function segmentCounts(today: string): Promise<{ id: string; label: string; hint: string; total: number; whatsapp: number; email: number }[]> {
+export async function segmentCounts(today: string): Promise<{ id: string; label: string; hint: string; total: number; whatsapp: number; email: number; marketable: boolean }[]> {
   // Lists from Contacts follow the built-in segments (the 12 biggest, so the page stays short).
   const tags = (await contactFacets(today).catch(() => ({ tags: [] as { tag: string; n: number }[] }))).tags.slice(0, 12);
   const all = [...SEGMENTS, ...tags.map((t) => ({ id: tagSegment(t.tag), label: `List: ${t.tag}`, hint: "Tagged in Contacts" }))];
   return Promise.all(
     all.map(async (s) => {
       const r = await recipients(s.id, today);
-      return { ...s, total: r.length, whatsapp: r.filter((x) => x.phone).length, email: r.filter((x) => x.email).length };
+      return { ...s, total: r.length, whatsapp: r.filter((x) => x.phone).length, email: r.filter((x) => x.email).length, marketable: canMarketTo(s.id) };
     }),
   );
 }
@@ -135,6 +142,7 @@ export type CampaignResult = { ok: true; id: string; audience: number; queued: n
 export function validateCampaign(b: CampaignRequest): string | null {
   if (!b.name?.trim() || b.name.trim().length > 80) return "Give the campaign a name (up to 80 characters).";
   if (!isAudience(b.segment)) return "Pick who to send it to.";
+  if (!canMarketTo(b.segment)) return NO_CONSENT_ERROR;
   if (b.channel !== "whatsapp" && b.channel !== "email") return "Pick WhatsApp or email.";
   if (!isLink(b.link)) return "Pick where the button goes.";
   if (b.channel === "whatsapp" && !LINKS[b.link].whatsapp) return "WhatsApp messages can't link to the supplement shop (WhatsApp commerce policy). Use email for shop offers.";
@@ -158,6 +166,8 @@ type RunCounts = { audience: number; queued: number; skipped: { optedOut: number
 async function queueRun(c: Stored, run: string | null, today: string): Promise<RunCounts> {
   // Never send a WhatsApp campaign that links to the supplement shop (also blocked on create).
   if (c.channel === "whatsapp" && !(isLink(c.link) && LINKS[c.link].whatsapp)) return { audience: 0, queued: 0, skipped: { optedOut: 0, recent: 0, missing: 0 } };
+  // Never to a no-consent segment, even for a campaign saved before the rule (also blocked on create).
+  if (!canMarketTo(c.segment)) return { audience: 0, queued: 0, skipped: { optedOut: 0, recent: 0, missing: 0 } };
   const all = await recipients(c.segment, today);
   const reachable = all.filter((r) => (c.channel === "whatsapp" ? r.phone : r.email));
   const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));
