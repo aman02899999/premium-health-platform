@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CheckCircle2, Loader2, LogOut, Mail } from "lucide-react";
-import { getBrowserClient, signInWithEmail, signInWithGoogle } from "@/lib/supabase/browser";
+import { getBrowserClient, signInWithEmail, signInWithGoogle, verifyEmailCode } from "@/lib/supabase/browser";
 
 export function GoogleIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -50,12 +50,53 @@ export function EmailSignIn({ next }: { next: string }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "busy" | "sent">("idle");
   const [error, setError] = useState("");
+  const [code, setCode] = useState("");
+  const [checking, setChecking] = useState(false);
 
   if (state === "sent") {
+    // The code works where the link can't: the email opened on another phone, or inside an app
+    // whose browser doesn't share this one's sign-in (the link must open where it was asked for).
     return (
-      <p className="flex items-start gap-2 rounded-2xl bg-sky/10 p-4 text-left text-sm text-white/85">
-        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sky" /> Check {email} — we sent you a sign-in link.
-      </p>
+      <form
+        className="space-y-3 rounded-2xl bg-sky/10 p-4 text-left text-sm text-white/85"
+        onSubmit={async (e) => {
+          e.preventDefault();
+          setChecking(true);
+          setError("");
+          const err = await verifyEmailCode(email, code);
+          if (err) {
+            setError("That code didn't work. Check the latest email, or tap the link in it.");
+            setChecking(false);
+          } else window.location.href = next;
+        }}
+      >
+        <p className="flex items-start gap-2">
+          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-sky" /> Check {email} and tap the sign-in link. If the email also shows a 6-digit code, you can type it here instead.
+        </p>
+        <div className="flex gap-2">
+          <label htmlFor="signin-code" className="sr-only">
+            6-digit code
+          </label>
+          <input
+            id="signin-code"
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            maxLength={6}
+            value={code}
+            onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
+            placeholder="123456"
+            className="w-full min-w-0 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 tracking-[0.4em] text-white outline-none placeholder:text-white/35 focus:border-sky"
+          />
+          <button type="submit" disabled={checking || code.length !== 6} className="btn-brand shrink-0 rounded-full px-5 font-bold disabled:opacity-50">
+            {checking ? <Loader2 className="h-4 w-4 animate-spin" /> : "Sign in"}
+          </button>
+        </div>
+        {error && (
+          <p role="alert" className="text-sm text-red-200">
+            {error}
+          </p>
+        )}
+      </form>
     );
   }
   return (

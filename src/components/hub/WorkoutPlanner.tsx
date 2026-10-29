@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Printer, RotateCcw, Save } from "lucide-react";
+import { Check, Printer, RotateCcw, Save } from "lucide-react";
 import { GOALS, generatePlan, planToText, type PlanDay, type PlanGoal, type Setting } from "@/lib/fitness/planner";
 import type { Level } from "@/lib/fitness/exercises";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
@@ -30,11 +30,16 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
   const [setting, setSetting] = useState<Setting>("gym");
   const [saved, setSaved] = useStored<PlanDay[] | null>("rfc-plan", null);
   const [edits, setEdits] = useState<PlanDay[] | null>(null);
+  // Coming back to the page shows the plan you saved, until you pick new options.
+  const [picked, setPicked] = useState(false);
+  const [justSaved, setJustSaved] = useState(false);
 
   const generated = useMemo(() => generatePlan({ goal, days, level, setting }), [goal, days, level, setting]);
-  const plan = edits ?? generated;
+  const plan = edits ?? (!picked && saved?.length ? saved : generated);
   const change = (fn: () => void) => {
     setEdits(null);
+    setPicked(true);
+    setJustSaved(false);
     fn();
   };
   const updateItem = (d: number, i: number, key: "sets" | "reps" | "rest", value: string) => {
@@ -42,6 +47,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
       di !== d ? day : { ...day, items: day.items.map((it, ii) => (ii !== i ? it : { ...it, [key]: key === "reps" ? value : Number(value) || 0 })) },
     );
     setEdits(next);
+    setJustSaved(false);
   };
 
   return (
@@ -52,8 +58,15 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
         <Choice label="Experience" value={level} onChange={(v) => change(() => setLevel(v))} options={[{ v: "beginner", l: "Beginner" }, { v: "intermediate", l: "Intermediate" }, { v: "advanced", l: "Advanced" }]} />
         <Choice label="Where" value={setting} onChange={(v) => change(() => setSetting(v))} options={[{ v: "gym", l: "Gym" }, { v: "home", l: "Home (dumbbells)" }]} />
         <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
-          <button type="button" onClick={() => setSaved(plan)} className="btn-brand inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold">
-            <Save className="h-4 w-4" /> Save
+          <button
+            type="button"
+            onClick={() => {
+              setSaved(plan);
+              setJustSaved(true);
+            }}
+            className="btn-brand inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold"
+          >
+            {justSaved ? <Check className="h-4 w-4" /> : <Save className="h-4 w-4" />} {justSaved ? "Saved" : "Save"}
           </button>
           <button type="button" onClick={() => window.print()} className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2 text-sm">
             <Printer className="h-4 w-4" /> Print
@@ -62,7 +75,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
             <WhatsAppIcon className="h-4 w-4" /> Share
           </a>
           {saved && (
-            <button type="button" onClick={() => setEdits(saved)} className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2 text-sm">
+            <button type="button" onClick={() => { setEdits(saved); setJustSaved(false); }} className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2 text-sm">
               <RotateCcw className="h-4 w-4" /> Load saved
             </button>
           )}
@@ -70,6 +83,7 @@ export function WorkoutPlanner({ gymName }: { gymName: string }) {
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
+        {plan === saved && <p className="text-sm text-sky md:col-span-2 print:hidden">Showing your saved plan. Pick any option on the left to build a new one.</p>}
         {plan.map((day, d) => (
           <section key={day.title} className="glass rounded-3xl p-5 print:break-inside-avoid print:border print:border-black print:text-black">
             <h3 className="font-display text-xl text-white print:text-black">{day.title}</h3>
