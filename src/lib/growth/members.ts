@@ -219,10 +219,6 @@ export async function importMembers(candidates: Candidate[], today: string, comm
   return plan;
 }
 
-export async function deleteMember(id: string): Promise<void> {
-  await pool.query(`delete from public.members where id = $1`, [id]);
-}
-
 export type Applied = {
   member: Member;
   isNew: boolean;

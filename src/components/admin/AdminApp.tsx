@@ -855,12 +855,12 @@ function Leads() {
                         type="button"
                         className="text-xs text-red-300/70 hover:text-red-300"
                         onClick={async () => {
-                          if (!confirm("Delete this enquiry?")) return;
+                          if (!confirm("Archive this enquiry? It leaves this list and gets no more messages, but is kept and can be restored.")) return;
                           await fetch(`/api/admin/leads?id=${encodeURIComponent(l.id)}`, { method: "DELETE" });
                           load();
                         }}
                       >
-                        Delete
+                        Archive
                       </button>
                     </td>
                   </tr>

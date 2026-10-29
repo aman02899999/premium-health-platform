@@ -1,6 +1,7 @@
 import { after, NextResponse } from "next/server";
 import { adminIdentity, adminRole, isAdmin } from "@/lib/auth";
 import { growthActionAllowed } from "@/lib/admin/team-core";
+import { archiveMember } from "@/lib/admin/archive";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
@@ -8,7 +9,7 @@ import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-d
 import { LEAD_STATUSES, funnelBySource, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { toInstant } from "@/lib/growth/trials";
 import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
-import { deleteMember, listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
+import { listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
 import { listOutbox, markOutbox } from "@/lib/growth/outbox";
 import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
 import { storageConfigured } from "@/lib/growth/storage";
@@ -89,9 +90,9 @@ export async function POST(req: Request) {
         after(() => afterDeskMemberSaved(before, member));
         return NextResponse.json({ ok: true, member });
       }
-      case "delete-member":
+      case "delete-member": // archived, not erased: see src/lib/admin/archive.ts
         if (!isUuid(b.id)) break;
-        await deleteMember(b.id);
+        await archiveMember(b.id, await adminIdentity());
         return NextResponse.json({ ok: true });
       case "lead":
         if (!isUuid(b.id)) break;

@@ -702,7 +702,7 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
                       <button type="button" onClick={() => setEdit({ id: m.id, name: m.name, phone: m.phone, email: m.email ?? "", planName: m.planName, startOn: m.startOn, expiresOn: m.expiresOn, notes: m.notes, reminders: m.reminders })} className="rounded-lg border border-white/15 px-2 py-1">
                         Edit
                       </button>
-                      <button type="button" aria-label="Delete member" onClick={() => confirm(`Delete ${m.name}? This also removes their referral history.`) && act({ action: "delete-member", id: m.id }, "Deleted")} className="rounded-lg px-1.5 py-1 text-white/40 hover:text-red-300">
+                      <button type="button" aria-label="Archive member" title="Archive" onClick={() => confirm(`Archive ${m.name}? They leave the member list and get no more messages. Their record and referral history are kept and can be restored.`) && act({ action: "delete-member", id: m.id }, "Archived")} className="rounded-lg px-1.5 py-1 text-white/40 hover:text-red-300">
                         <X className="h-3.5 w-3.5" />
                       </button>
                     </div>
