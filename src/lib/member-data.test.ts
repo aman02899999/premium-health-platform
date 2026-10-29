@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addCheckIn, foodCount, foodLogFor, localBelongsTo, mergeCheckIns } from "./member-data";
+import { addCheckIn, foodCount, foodLogFor, localBelongsTo, mergeCheckIns, shortDate } from "./member-data";
 
 describe("localBelongsTo", () => {
   it("lets signed-out data go to whoever signs in, and nobody else's", () => {
@@ -44,5 +44,13 @@ describe("check-ins", () => {
     const cloud = [{ date: "2026-10-20", weight: 80, waist: 90 }];
     const local = [{ date: "2026-10-20", weight: 99, waist: 99 }, { date: "2026-10-27", weight: 79, waist: 89 }];
     expect(mergeCheckIns(cloud, local)).toEqual([cloud[0], local[1]]);
+  });
+});
+
+describe("shortDate", () => {
+  it("formats without shifting the day", () => {
+    expect(shortDate("2026-10-01", "2026-10-29")).toBe("1 Oct");
+    expect(shortDate("2025-12-31", "2026-10-29")).toBe("31 Dec 2025");
+    expect(shortDate("junk", "2026-10-29")).toBe("junk");
   });
 });
