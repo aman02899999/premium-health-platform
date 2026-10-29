@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
+import { Smartphone } from "lucide-react";
 import { AccountClient } from "@/components/auth/AccountClient";
 import { PageHero } from "@/components/ui/Section";
 
@@ -16,6 +18,9 @@ export default function AccountPage() {
         <Suspense>
           <AccountClient />
         </Suspense>
+        <Link prefetch={false} href="/app" className="mt-6 flex items-center justify-center gap-2 text-sm font-semibold text-sky hover:text-brand">
+          <Smartphone className="h-4 w-4" /> Get the Royal Fitness app on your phone
+        </Link>
       </section>
     </>
   );

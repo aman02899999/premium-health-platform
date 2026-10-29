@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, Salad, ShoppingBag, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
+import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, Salad, ShoppingBag, Smartphone, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
 import { healthHref } from "@/lib/portal";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -163,6 +163,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
             <p className="mt-5 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/40">More from us</p>
             <ul className="mt-2 space-y-2">
+              <li>
+                <Link prefetch={false} href="/app" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                  <Smartphone className="h-5 w-5 shrink-0" /> Get the app
+                </Link>
+              </li>
               {supabaseConfigured && (
                 <li>
                   <Link prefetch={false} href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
