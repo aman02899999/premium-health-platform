@@ -847,3 +847,238 @@ html[data-portal="show"] body {
     bottom: -1.5rem;
   }
 }
+
+/* ---------- Site looks (admin → Brand colours → Site look) ----------
+   "classic" uses the rules above unchanged. "royal" (logo red and navy, premium), "gold" (Royal Black & Gold)
+   and "mono" (Monochrome Luxe) re-point the palette tokens and the headline face here. Error states (ember, red-*) stay red on
+   purpose: they carry meaning, not brand. */
+/* Royal red & navy: the logo's two colours, deepened. Red text is lifted (#f2505f, 4.9:1 on cards) and solid
+   red fills use the exact logo red (#be1b2c, 6.2:1 with white text). */
+html[data-look="royal"] {
+  --color-ink: #060b14;
+  --color-coal: #0a1220;
+  --color-steel: #111d31;
+  --color-line: #22324d;
+  --color-brand: #f2505f;
+  --color-brand-soft: #ff9aa4;
+  --color-brand-strong: #be1b2c;
+  --color-navy: #04466d;
+  --color-sky: #9cc3e6;
+  --font-display: var(--font-cinzel), "Cinzel", "Trajan Pro", Georgia, serif;
+}
+html[data-look="royal"] body {
+  color: #e6edf5;
+  background:
+    radial-gradient(ellipse 80% 50% at 85% -10%, rgba(4, 70, 109, 0.35), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(190, 27, 44, 0.12), transparent 60%),
+    var(--color-ink);
+  background-attachment: fixed;
+}
+html[data-look="royal"] .font-display {
+  letter-spacing: 0;
+}
+/* Solid red fills use the logo red so their white text passes AA. */
+html[data-look="royal"] .bg-brand,
+html[data-look="royal"] [class~="hover:bg-brand"]:hover {
+  background-color: var(--color-brand-strong);
+}
+html[data-look="royal"] .text-brand-gradient {
+  background-image: linear-gradient(100deg, #ffffff 0%, #cfe3f5 35%, #f2505f 70%, #ffffff 100%);
+}
+html[data-look="royal"] .btn-brand {
+  background: linear-gradient(135deg, #d32a3c, #be1b2c 50%, #8e1220);
+  color: #fff;
+  box-shadow: 0 12px 32px -12px rgba(190, 27, 44, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+html[data-look="royal"] .btn-brand:hover {
+  box-shadow: 0 18px 42px -12px rgba(190, 27, 44, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+html[data-look="royal"] .brand-border::before {
+  background: linear-gradient(140deg, rgba(156, 195, 230, 0.75), rgba(4, 70, 109, 0.3) 40%, rgba(190, 27, 44, 0.2) 60%, rgba(242, 80, 95, 0.75));
+}
+html[data-look="royal"] .field {
+  background: #08111e;
+}
+html[data-look="royal"] .offer-pass {
+  background: linear-gradient(145deg, rgba(4, 70, 109, 0.55), rgba(6, 11, 20, 0.95) 60%, rgba(142, 18, 32, 0.35));
+  border-color: rgba(156, 195, 230, 0.3);
+}
+html[data-look="royal"] .announce-bar {
+  background-image: linear-gradient(90deg, #04263d, #8e1220 50%, #04263d);
+}
+
+html[data-look="gold"] {
+  --color-ink: #0b0a08;
+  --color-coal: #15120e;
+  --color-steel: #221d16;
+  --color-line: #3a3122;
+  --color-brand: #d4a84b;
+  --color-brand-soft: #ecd08a;
+  /* Gold fills carry black text (9:1), so the "strong" fill no longer needs darkening. */
+  --color-brand-strong: #d4a84b;
+  --color-navy: #2a2213;
+  --color-sky: #c9b98f;
+  --font-display: var(--font-cinzel), "Cinzel", "Trajan Pro", Georgia, serif;
+}
+html[data-look="mono"] {
+  --color-ink: #0c0c0b;
+  --color-coal: #141413;
+  --color-steel: #1e1d1b;
+  --color-line: #34322e;
+  --color-brand: #e9e4da;
+  --color-brand-soft: #f3f0ea;
+  --color-brand-strong: #e9e4da;
+  --color-navy: #262421;
+  --color-sky: #a39d92;
+  --font-display: var(--font-bodoni), "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+}
+html[data-look="gold"] body {
+  color: #f4ead2;
+}
+html[data-look="mono"] body {
+  color: #ece8e1;
+}
+html:is([data-look="gold"], [data-look="mono"]) ::selection {
+  color: #0b0a08;
+}
+/* Cinzel is all capitals by design and wide: drop the extra tracking so headlines fit a phone. */
+html[data-look="gold"] .font-display {
+  letter-spacing: 0;
+}
+html[data-look="mono"] .font-display {
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+/* Solid light fills (gold, bone, brass): dark text, including white-text children (icons follow currentColor). */
+html:is([data-look="gold"], [data-look="mono"]) :is(.bg-brand, .bg-brand-strong, .bg-sky),
+html:is([data-look="gold"], [data-look="mono"]) :is([class~="hover:bg-brand"], [class~="hover:bg-brand-strong"], [class~="hover:bg-sky"]):hover {
+  color: #0b0a08;
+}
+html:is([data-look="gold"], [data-look="mono"]) :is(.bg-brand, .bg-brand-strong, .bg-sky) :is(.text-white, .text-ink) {
+  color: inherit;
+}
+
+/* Royal Black & Gold details */
+html[data-look="gold"] .text-brand-gradient {
+  background-image: linear-gradient(100deg, #f4ead2 0%, #ecd08a 30%, #d4a84b 60%, #f4ead2 100%);
+}
+html[data-look="gold"] .btn-brand {
+  background: linear-gradient(135deg, #ecd08a, #d4a84b 55%, #b8862f);
+  color: #0b0a08;
+  box-shadow: 0 10px 30px -12px rgba(212, 168, 75, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+html[data-look="gold"] .btn-brand:hover {
+  box-shadow: 0 16px 40px -12px rgba(212, 168, 75, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+html[data-look="gold"] .brand-border::before {
+  background: linear-gradient(140deg, rgba(236, 208, 138, 0.8), rgba(212, 168, 75, 0.15) 45%, rgba(184, 134, 47, 0.1) 60%, rgba(212, 168, 75, 0.7));
+}
+html[data-look="gold"] .grid-floor {
+  background-image:
+    linear-gradient(rgba(212, 168, 75, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 168, 75, 0.07) 1px, transparent 1px);
+}
+html[data-look="gold"] .tilt-glare {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(236, 208, 138, 0.18), transparent 55%);
+}
+html[data-look="gold"] .prose-royal blockquote {
+  background: rgba(212, 168, 75, 0.08);
+  color: #efe3c4;
+}
+html[data-look="gold"] .prose-royal code {
+  background: #221d16;
+}
+html[data-look="gold"] .field {
+  background: #120f0b;
+}
+html[data-look="gold"] .field:focus {
+  box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.22);
+}
+html[data-look="gold"] .field::placeholder {
+  color: #8f8468;
+}
+html[data-look="gold"] .offer-pass {
+  background: linear-gradient(145deg, rgba(42, 34, 19, 0.95), rgba(11, 10, 8, 0.95));
+  border-color: rgba(212, 168, 75, 0.35);
+}
+html[data-look="gold"] .offer-pass:hover,
+html[data-look="gold"] .offer-pass:focus-visible {
+  border-color: rgba(212, 168, 75, 0.7);
+}
+html[data-look="gold"] .hero-93 {
+  -webkit-text-stroke: 1.5px rgba(212, 168, 75, 0.12);
+}
+html[data-look="gold"] .portal-card-gym .portal-card-inner {
+  background: linear-gradient(145deg, #3a2e17 0%, #1a150d 50%, #0b0a08 100%);
+}
+html[data-look="gold"] :is(.portal-card-gym:hover, .portal-card-gym:focus-visible) .portal-card-inner {
+  box-shadow: 0 50px 100px -30px rgba(212, 168, 75, 0.5), 0 0 0 2px rgba(212, 168, 75, 0.7) inset;
+}
+
+/* Monochrome Luxe details */
+html[data-look="mono"] .text-brand-gradient {
+  background-image: linear-gradient(100deg, #f3f0ea 0%, #ffffff 30%, #c9c3b8 60%, #e9e4da 100%);
+}
+html[data-look="mono"] .btn-brand {
+  background: #e9e4da;
+  color: #0c0c0b;
+  box-shadow: 0 10px 30px -14px rgba(233, 228, 218, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+html[data-look="mono"] .btn-brand:hover {
+  background: #f3f0ea;
+  box-shadow: 0 16px 40px -16px rgba(233, 228, 218, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+html[data-look="mono"] .brand-border::before {
+  background: linear-gradient(140deg, rgba(243, 240, 234, 0.7), rgba(163, 157, 146, 0.15) 45%, rgba(163, 157, 146, 0.1) 60%, rgba(233, 228, 218, 0.55));
+}
+html[data-look="mono"] .grid-floor {
+  background-image:
+    linear-gradient(rgba(233, 228, 218, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 228, 218, 0.06) 1px, transparent 1px);
+}
+html[data-look="mono"] .tilt-glare {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(243, 240, 234, 0.16), transparent 55%);
+}
+html[data-look="mono"] .prose-royal blockquote {
+  background: rgba(233, 228, 218, 0.05);
+  color: #e3ded5;
+}
+html[data-look="mono"] .prose-royal code {
+  background: #1e1d1b;
+}
+html[data-look="mono"] .field {
+  background: #121211;
+}
+html[data-look="mono"] .field:focus {
+  box-shadow: 0 0 0 3px rgba(233, 228, 218, 0.18);
+}
+html[data-look="mono"] .field::placeholder {
+  color: #8a857c;
+}
+html[data-look="mono"] .offer-pass {
+  background: linear-gradient(145deg, rgba(38, 36, 33, 0.95), rgba(12, 12, 11, 0.95));
+  border-color: rgba(233, 228, 218, 0.22);
+}
+html[data-look="mono"] .offer-pass:hover,
+html[data-look="mono"] .offer-pass:focus-visible {
+  border-color: rgba(233, 228, 218, 0.5);
+}
+html[data-look="mono"] .hero-93 {
+  -webkit-text-stroke: 1.5px rgba(233, 228, 218, 0.1);
+}
+html[data-look="mono"] .portal-card-gym .portal-card-inner {
+  background: linear-gradient(145deg, #3a3733 0%, #1e1d1b 50%, #0c0c0b 100%);
+}
+html[data-look="mono"] :is(.portal-card-gym:hover, .portal-card-gym:focus-visible) .portal-card-inner {
+  box-shadow: 0 50px 100px -30px rgba(233, 228, 218, 0.35), 0 0 0 2px rgba(233, 228, 218, 0.6) inset;
+}
+
+/* Top announcement strip (Header): the classic look's red middle stop is hard-coded there. */
+html[data-look="gold"] .announce-bar {
+  background-image: linear-gradient(90deg, #2a2213, #5a4520 50%, #2a2213);
+  color: #f4ead2;
+}
+html[data-look="mono"] .announce-bar {
+  background-image: linear-gradient(90deg, #1e1d1b, #3a3733 50%, #1e1d1b);
+  color: #f3f0ea;
+}

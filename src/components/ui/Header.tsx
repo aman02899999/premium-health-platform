@@ -53,7 +53,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
     <header className="fixed inset-x-0 top-0 z-50">
       {announcement && (
         <div
-          className={`overflow-hidden bg-gradient-to-r from-navy via-[#be1b2c] to-navy text-center text-xs font-semibold text-white transition-all duration-300 ${
+          className={`announce-bar overflow-hidden bg-gradient-to-r from-navy via-[#be1b2c] to-navy text-center text-xs font-semibold text-white transition-all duration-300 ${
             scrolled ? "max-h-0 py-0" : "max-h-10 py-2"
           }`}
         >
