@@ -9,8 +9,10 @@ const digits = (phone: string) => phone.replace(/\D/g, "").slice(0, 20);
 /**
  * Records the choice. "Start promotions" is also the consent record (marketing_contacts, with
  * the time), so the Opt-ins page can show who asked for offers and when; "stop" closes it.
+ * byAdmin: the change was made by hand in Chats, so the record says who made it, never that the
+ * customer typed START PROMOTIONS, and it doesn't count as a register member's agreement.
  */
-export async function setPromotionsOptOut(phone: string, optOut: boolean, name = ""): Promise<void> {
+export async function setPromotionsOptOut(phone: string, optOut: boolean, name = "", byAdmin?: string): Promise<void> {
   const p = digits(phone);
   if (!/^\d{8,20}$/.test(p)) return;
   if (optOut) {
@@ -19,12 +21,12 @@ export async function setPromotionsOptOut(phone: string, optOut: boolean, name =
   } else {
     await pool.query(`delete from public.whatsapp_optouts where phone = $1`, [p]);
     await pool.query(
-      `insert into public.marketing_contacts (channel, address, name, source, consent_at) values ('whatsapp', $1, $2, 'whatsapp: start promotions', now())
-       on conflict (channel, address) do update set unsubscribed_at = null, consent_at = now(), name = coalesce(marketing_contacts.name, excluded.name)`,
-      [p, name.trim().slice(0, 100) || null],
+      `insert into public.marketing_contacts (channel, address, name, source, consent_at) values ('whatsapp', $1, $2, $3, now())
+       on conflict (channel, address) do update set unsubscribed_at = null, consent_at = now(), source = excluded.source, name = coalesce(marketing_contacts.name, excluded.name)`,
+      [p, name.trim().slice(0, 100) || null, byAdmin ? `admin: ${byAdmin}`.slice(0, 100) : "whatsapp: start promotions"],
     );
     // A member from the register who asks for offers has now agreed to them.
-    await pool.query(`update public.members set offers_ok = true, updated_at = now() where not offers_ok and '91' || phone = $1`, [p]);
+    if (!byAdmin) await pool.query(`update public.members set offers_ok = true, updated_at = now() where not offers_ok and '91' || phone = $1`, [p]);
   }
 }
 

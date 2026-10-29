@@ -278,8 +278,12 @@ describe.skipIf(!url)("admin WhatsApp chat", () => {
     sent.length = 0;
     expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toEqual({ ok: true });
     expect(sent[0]).toMatchObject({ type: "template", template: { name: "rfc_call_followup_v3" } });
-    await tools.setOptOut(PEER, true);
+    await tools.setOptOut(PEER, true, "coach@x.in");
     expect(await tools.sendManualTemplate(PEER, "call-followup", "coach@x.in")).toMatchObject({ ok: false });
+    // Turning promotions back on by hand is recorded as the desk's change, not as the customer's reply.
+    await tools.setOptOut(PEER, false, "coach@x.in");
+    const { rows: consent } = await pool.query(`select source from public.marketing_contacts where channel = 'whatsapp' and address = $1`, [PEER]);
+    expect(consent[0].source).toBe("admin: coach@x.in");
     const [summary] = await chat.listChats();
     expect(summary).toMatchObject({ tag: "lead", botPaused: false });
   });

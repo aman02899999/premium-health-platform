@@ -197,7 +197,12 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     expect(rows.map((r) => [r.dedupe_key, r.status])).toEqual([["comeback:r1", "cancelled"], ["renew-7:r1", "sent"], ["review:r1", "cancelled"]]);
     expect(rows[0].last_error).toMatch(/register/);
 
-    // "Start promotions" on WhatsApp is their agreement.
+    // Chats doesn't offer them a promotion template either (win-back), only membership messages.
+    const tools = await import("@/lib/social/chat-tools");
+    expect(await tools.sendManualTemplate("919000000103", "comeback", "admin")).toMatchObject({ ok: false, status: 400 });
+    // The desk switching promotions on in Chats isn't their agreement; "Start promotions" on WhatsApp is.
+    await tools.setOptOut("919000000102", false, "desk@x.in");
+    expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(false);
     await setPromotionsOptOut("919000000102", false, "Register One");
     expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(true);
   });

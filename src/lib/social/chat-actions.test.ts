@@ -17,4 +17,9 @@ describe("templates for a closed window", () => {
     expect(manualTemplates({ ...base, optedOut: true }, biz)).toEqual([]);
     expect(manualTemplates({ ...base, optedOut: true, member: { planName: "Monthly", expiresOn: "2026-11-01", active: true, renewToken: "t" } }, biz).map((t) => t.kind)).toEqual(["renew-7"]);
   });
+  it("leaves promotions out for a register member who hasn't agreed to offers", () => {
+    const m = { planName: "Monthly", expiresOn: "2026-11-01", active: true, renewToken: "t", offersOk: false };
+    expect(manualTemplates({ ...base, member: m }, biz).map((t) => t.kind)).toEqual(["renew-7"]);
+    expect(manualTemplates({ ...base, member: { ...m, active: false } }, biz)).toEqual([]);
+  });
 });
