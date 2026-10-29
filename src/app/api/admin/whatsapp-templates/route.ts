@@ -38,6 +38,7 @@ const SAMPLES: Record<MessageKind, string[]> = {
   "call-followup": ["Rahul", "Royal Fitness Club", "https://www.royalfitnesclub.in/membership"],
   "referral-bonus": ["Rahul", "Priya", "Royal Fitness Club", "7", "30 Nov 2026"],
   "diet-plan-ready": ["Rahul", "fat-loss diet plan", "Royal Fitness Club"],
+  "diet-trial-review": ["Rahul", "Royal Fitness Club", "Coach Aman Sharma", "+91 88518 30081"],
   "review-request": ["Rahul", "Royal Fitness Club", "https://g.page/r/royal-fitness-club/review"],
 };
 

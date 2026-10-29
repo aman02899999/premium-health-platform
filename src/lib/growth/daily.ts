@@ -23,6 +23,7 @@ import { addDays, daysBetween } from "./dates";
 import { trackMemberLapsed, trackMembershipExpiring } from "./resend-events";
 import { listCampaigns, runRecurringCampaigns } from "./campaigns";
 import { dueReviewRequests } from "./reviews";
+import { dueTrialReviews } from "./trial-review";
 import { evaluate, healthLines } from "@/lib/observability/checks";
 import { snapshot } from "@/lib/observability/watchdog";
 
@@ -112,6 +113,8 @@ export async function runDaily(now = new Date()) {
   const site = (await getContent()).business;
   const reviews = await dueReviewRequests(today, biz, site.googleReviewUrl, site.googleMapsUrl).catch((err: Error) => (console.error("[daily] reviews:", err.message), []));
   drafts.push(...reviews);
+  // 7-day trial buyers: the Day-7 review reminder their plan promises (day 6–7 after it went out).
+  drafts.push(...(await dueTrialReviews(today, biz, nb.coach).catch((err: Error) => (console.error("[daily] trial reviews:", err.message), []))));
   const queued = await enqueue(drafts);
   // Recurring admin campaigns that are due today (they queue through the same outbox).
   const campaigns = await runRecurringCampaigns(today).catch((err) => (console.error("[daily] campaigns:", (err as Error).message), { runs: 0, queued: 0 }));

@@ -35,13 +35,35 @@ type WaMessage = {
   location?: { latitude?: number; longitude?: number; name?: string };
 };
 type WaValue = { contacts?: { wa_id?: string; profile?: { name?: string } }[]; messages?: WaMessage[] };
-type IgMessaging = { sender?: { id?: string }; message?: { mid?: string; text?: string; is_echo?: boolean } };
+type IgMessage = { mid?: string; text?: string; is_echo?: boolean; attachments?: { type?: string }[]; reply_to?: { story?: unknown } };
+type IgMessaging = { sender?: { id?: string }; message?: IgMessage };
 type FbFeed = { item?: string; verb?: string; comment_id?: string; message?: string; from?: { id?: string; name?: string } };
 type IgComment = { id?: string; text?: string; from?: { id?: string; username?: string } };
 type Entry = { id?: string; changes?: { field?: string; value?: unknown }[]; messaging?: IgMessaging[] };
 export type MetaWebhook = { object?: string; entry?: Entry[] };
 
 const clean = (s: unknown, max: number) => (typeof s === "string" ? s.replace(/\s+/g, " ").trim().slice(0, max) : "");
+
+const ATTACHMENT_TEXT: Record<string, string> = {
+  image: "📷 Sent a photo",
+  video: "🎥 Sent a video",
+  audio: "🎤 Sent a voice note",
+  file: "📎 Sent a file",
+  share: "🔗 Shared a post or reel",
+  ig_reel: "🔗 Shared a post or reel",
+  reel: "🔗 Shared a post or reel",
+  ig_post: "🔗 Shared a post or reel",
+  story_mention: "📣 Mentioned you in their story",
+};
+
+/** An Instagram or Messenger DM's text; a photo, share or story reply with no words says what it was. */
+function dmText(m: IgMessage): string {
+  const text = clean(m.text, 1000);
+  if (text) return text;
+  const type = m.attachments?.[0]?.type;
+  if (type) return ATTACHMENT_TEXT[type] ?? "📎 Sent an attachment";
+  return m.reply_to?.story ? "💬 Replied to your story" : "";
+}
 
 export function parseWebhook(body: MetaWebhook): Inbound[] {
   const out: Inbound[] = [];
@@ -76,7 +98,7 @@ export function parseWebhook(body: MetaWebhook): Inbound[] {
       // Facebook Page: Messenger messages, and new comments on the Page's posts.
       for (const m of entry.messaging ?? []) {
         if (!m.message?.mid || !m.sender?.id || m.message.is_echo || m.sender.id === entry.id) continue;
-        out.push({ id: `fb:${m.message.mid}`, channel: "facebook", kind: "message", from: m.sender.id, fromName: "", text: clean(m.message.text, 1000) });
+        out.push({ id: `fb:${m.message.mid}`, channel: "facebook", kind: "message", from: m.sender.id, fromName: "", text: dmText(m.message) });
       }
       for (const change of entry.changes ?? []) {
         if (change.field !== "feed") continue;
@@ -88,7 +110,7 @@ export function parseWebhook(body: MetaWebhook): Inbound[] {
       for (const m of entry.messaging ?? []) {
         // Our own replies come back as echoes; never answer ourselves.
         if (!m.message?.mid || !m.sender?.id || m.message.is_echo || m.sender.id === entry.id) continue;
-        out.push({ id: `ig:${m.message.mid}`, channel: "instagram", kind: "message", from: m.sender.id, fromName: "", text: clean(m.message.text, 1000) });
+        out.push({ id: `ig:${m.message.mid}`, channel: "instagram", kind: "message", from: m.sender.id, fromName: "", text: dmText(m.message) });
       }
       for (const change of entry.changes ?? []) {
         if (change.field !== "comments") continue;
