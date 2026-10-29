@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
 import { getContent } from "@/lib/content/store";
+import { lookOf } from "@/lib/content/look";
 import { ADSENSE_CLIENT } from "@/lib/adsense";
 import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
@@ -12,7 +13,12 @@ import { AttributionTracker } from "@/components/ui/AttributionTracker";
 
 // Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
 const inter = localFont({ src: "./fonts/inter-latin-wght-normal.woff2", weight: "100 900", variable: "--font-inter", display: "swap" });
-const oswald = localFont({ src: "./fonts/oswald-latin-wght-normal.woff2", weight: "200 700", variable: "--font-oswald", display: "swap" });
+const oswald = localFont({ src: "./fonts/oswald-latin-wght-normal.woff2", weight: "200 700", variable: "--font-oswald", display: "swap", preload: false });
+// Headline faces: only the default look's face (Cinzel) is preloaded, so phones download one display font, not three.
+// Monochrome Luxe headline face (SIL OFL, from @fontsource-variable/bodoni-moda 5.3.0).
+const bodoni = localFont({ src: "./fonts/bodoni-moda-latin-wght-normal.woff2", weight: "400 900", variable: "--font-bodoni", display: "swap", preload: false });
+// Royal Black & Gold headline face (SIL OFL, from @fontsource-variable/cinzel 5.3.0).
+const cinzel = localFont({ src: "./fonts/cinzel-latin-wght-normal.woff2", weight: "400 900", variable: "--font-cinzel", display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#06111c",
@@ -63,8 +69,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const c = await getContent();
+  const look = lookOf(c.theme);
   return (
-    <html lang="en-IN" className={`${inter.variable} ${oswald.variable}`} style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
+    <html
+      lang="en-IN"
+      data-look={look}
+      className={`${inter.variable} ${{ mono: bodoni, gold: cinzel, classic: oswald }[look].variable}`}
+      style={{ "--brand": c.theme.primary, "--navy": c.theme.secondary } as React.CSSProperties}>
       <body className="noise min-h-screen">
         {children}
         <VercelAnalytics />

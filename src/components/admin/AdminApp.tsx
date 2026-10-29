@@ -518,6 +518,18 @@ export function AdminApp({ storage }: { storage: string }) {
                   fields={[
                     { key: "primary", label: "Primary (logo red)", type: "color" },
                     { key: "secondary", label: "Secondary (logo navy)", type: "color" },
+                    {
+                      key: "look",
+                      label: "Site look",
+                      type: "select",
+                      wide: true,
+                      options: [
+                        { value: "gold", label: "Royal Black & Gold" },
+                        { value: "mono", label: "Monochrome Luxe" },
+                        { value: "classic", label: "Classic red & navy (uses the two colours above)" },
+                      ],
+                      help: "Changes the whole gym site at once. The health portal keeps its own design.",
+                    },
                   ]}
                 />
               </Card>

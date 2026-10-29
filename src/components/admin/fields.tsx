@@ -5,8 +5,8 @@ import { useRef, useState } from "react";
 import { ChevronDown, ChevronUp, ImagePlus, Loader2, Plus, Trash2 } from "lucide-react";
 import { ICONS } from "@/components/Icon";
 
-export type FieldType = "text" | "textarea" | "number" | "image" | "lines" | "bool" | "color" | "icon" | "date";
-export type Field = { key: string; label: string; type?: FieldType; help?: string; wide?: boolean };
+export type FieldType = "text" | "textarea" | "number" | "image" | "lines" | "bool" | "color" | "icon" | "date" | "select";
+export type Field = { key: string; label: string; type?: FieldType; help?: string; wide?: boolean; options?: { value: string; label: string }[] };
 
 type Obj = Record<string, unknown>;
 
@@ -102,6 +102,16 @@ function FieldInput({ field, value, onChange }: { field: Field; value: unknown; 
         <select className="field text-sm" value={String(value ?? "")} onChange={(e) => onChange(e.target.value)}>
           {Object.keys(ICONS).map((k) => (
             <option key={k}>{k}</option>
+          ))}
+        </select>
+      );
+    case "select":
+      return (
+        <select className="field text-sm" value={String(value ?? "")} onChange={(e) => onChange(e.target.value)}>
+          {(field.options ?? []).map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
           ))}
         </select>
       );

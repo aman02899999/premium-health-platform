@@ -137,7 +137,12 @@ export type Seo = {
 };
 
 // primary = logo red (buttons, highlights), secondary = logo navy (surfaces).
-export type Theme = { primary: string; secondary: string };
+export type Theme = {
+  primary: string;
+  secondary: string;
+  /** Gym-site palette: "gold" (Royal Black & Gold), "mono" (Monochrome Luxe) or "classic" (red and navy, uses the colours above). */
+  look?: "classic" | "mono" | "gold";
+};
 
 export type SiteContent = {
   business: Business;
