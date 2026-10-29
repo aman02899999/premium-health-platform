@@ -20,7 +20,7 @@ export default async function BloodReportPage() {
   if (viewer?.allowed) {
     markers = (await liveMarkers().catch(() => []))
       .filter((m) => !m.hidden)
-      .map((m) => ({ id: m.id, name: m.name, panel: m.panel, unit: m.unit, units: [m.unit, ...(m.altUnits ?? []).map((u) => u.unit)] }));
+      .map((m) => ({ id: m.id, name: m.name, aliases: m.aliases, panel: m.panel, unit: m.unit, units: [m.unit, ...(m.altUnits ?? []).map((u) => u.unit)] }));
   }
 
   return (
@@ -29,7 +29,7 @@ export default async function BloodReportPage() {
         eyebrow="Members"
         title="Blood report"
         highlight="analyser"
-        intro="Type in the numbers from your blood report and see, in plain words, what each one means, what's in range, and what you can do about it with food and lifestyle."
+        intro="Upload your lab's PDF or type in the numbers from your blood report, and see, in plain words, what each one means, what's in range, and what you can do about it with food and lifestyle."
       />
       <section className="mx-auto max-w-4xl px-4 pb-16 sm:px-6">
         {!viewer ? (
