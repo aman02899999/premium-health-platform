@@ -96,6 +96,18 @@ export function planSummary(p: Priced, plans: Priced[]): string {
   return s.slice(0, 5).join(" ");
 }
 
+/** One short line on who a plan suits, from its length alone (shown on the plan list). */
+export function planBestFor(p: Plan): string {
+  const months = planMonths(p.duration);
+  return months <= 1 ? "Try the gym first" : months <= 3 ? "First fat-loss or strength block" : months <= 6 ? "See real change in shape" : "Best value for the year";
+}
+
+/** What a plan adds, split from "Everything in X": { parent: "Quarterly", adds: ["Personalised workout plan", …] }. */
+export function planIncludes(p: Plan): { parent: string | null; adds: string[] } {
+  const parent = p.perks.map((x) => x.trim().match(INHERIT)?.[1]?.trim()).find(Boolean) ?? null;
+  return { parent, adds: p.perks.map((x) => x.trim()).filter((x) => x && !INHERIT.test(x)) };
+}
+
 /** Plan questions answered from the published Refund & Cancellation Policy, plus opening hours. */
 export function planFaqs(b: Business): Faq[] {
   const hours = b.hours.map((h) => `${h.label.toLowerCase()} ${formatTime(h.open)}–${formatTime(h.close)} (${h.days})`).join(" and ");
