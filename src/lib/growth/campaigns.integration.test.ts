@@ -32,7 +32,7 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     cm = await import("./campaigns");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members, public.diet_orders, public.payment_requests cascade");
+    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members, public.diet_orders, public.payment_requests, public.social_inbox, public.contact_tags cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -84,6 +84,40 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     );
     expect(await cm.runRecurringCampaigns(TODAY)).toEqual({ runs: 1, queued: 0 });
     expect((await pool.query("select count(*)::int as n from public.message_outbox")).rows[0].n).toBe(0);
+  });
+
+  it("an old message to imported contacts can't be moved back to 'To send', and the sender never sends one", async () => {
+    const outbox = await import("./outbox");
+    // The 19 Oct campaign to the imported sheet, made before the rule, its messages paused.
+    const { rows } = await pool.query<{ id: string }>(
+      `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject) values ('admin', 'Old offer', 'imported', 'whatsapp', 'Diwali offer', 'membership', '') returning id`,
+    );
+    const cid = rows[0].id;
+    const add = (to: string, key: string, status: string) =>
+      pool.query<{ id: string }>(`insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, status) values ('whatsapp', $1, 'offer-broadcast', 'x', 'tpl', $2, $3) returning id`, [to, key, status]);
+    const paused = (await add("919000000091", `campaign:${cid}:919000000091`, "cancelled")).rows[0].id;
+    // One that slipped back to pending some other way (by hand in the database, or before this fix).
+    await add("919000000092", `campaign:${cid}:919000000092`, "pending");
+    // A member's renewal reminder in the same queue is not affected.
+    const reminder = (await add("919000000093", "renew-7:m1", "cancelled")).rows[0].id;
+
+    expect(await outbox.markOutbox(paused, "pending", "admin")).toMatch(/no record they agreed/);
+    expect((await pool.query(`select status from public.message_outbox where id = $1`, [paused])).rows[0].status).toBe("cancelled");
+    expect(await outbox.markOutbox(reminder, "pending", "admin")).toBeNull();
+
+    const r = await outbox.dispatch(10);
+    expect(sent.map((x) => x.to)).toEqual(["919000000093"]);
+    expect(r).toMatchObject({ sent: 1 });
+    const { rows: left } = await pool.query(`select status, last_error from public.message_outbox where to_address = '919000000092'`);
+    expect(left[0]).toMatchObject({ status: "cancelled", last_error: expect.stringMatching(/no record they agreed/) });
+  });
+
+  it("a Contacts list leaves out people known only from the imported sheet and a WhatsApp chat", async () => {
+    await pool.query(`insert into public.audience_contacts (name, phone, email) values ('Sheet And Chat', '9000000095', null), ('Sheet And Lead', '9000000096', null)`);
+    await pool.query(`insert into public.social_inbox (id, channel, kind, from_id, from_name, body) values ('wamid.t95', 'whatsapp', 'message', '919000000095', 'Sheet And Chat', 'hi')`);
+    await pool.query(`insert into public.leads (name, phone, source) values ('Sheet And Lead', '9000000096', 'website')`);
+    await pool.query(`insert into public.contact_tags (contact_key, tag, created_by) values ('9000000095', 'vip', 'admin'), ('9000000096', 'vip', 'admin')`);
+    expect((await cm.recipients("tag:vip", TODAY)).map((r) => r.phone)).toEqual(["9000000096"]);
   });
 
   it("'Leads who didn't join' leaves out leads who already paid for something (diet plan, payment link)", async () => {
