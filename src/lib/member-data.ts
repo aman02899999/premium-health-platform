@@ -48,3 +48,12 @@ export function addCheckIn(list: CheckIn[], entry: CheckIn): CheckIn[] {
 export function mergeCheckIns(cloud: CheckIn[], local: CheckIn[]): CheckIn[] {
   return local.reduce((acc, e) => (acc.some((x) => x.date === e.date) ? acc : addCheckIn(acc, e)), [...cloud].sort((a, b) => a.date.localeCompare(b.date)));
 }
+
+/** "2026-10-29" → "29 Oct" (adds the year when it isn't the current one). Never shifts the day. */
+export function shortDate(iso: string, today = new Date().toISOString().slice(0, 10)) {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return iso;
+  const date = new Date(Date.UTC(y, m - 1, d));
+  const sameYear = iso.slice(0, 4) === today.slice(0, 4);
+  return date.toLocaleDateString("en-IN", { day: "numeric", month: "short", ...(sameYear ? {} : { year: "numeric" }), timeZone: "UTC" });
+}

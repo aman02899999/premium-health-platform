@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
 import { todayIST } from "@/lib/growth/dates";
-import { addCheckIn, mergeCheckIns, type CheckIn as Entry } from "@/lib/member-data";
+import { addCheckIn, mergeCheckIns, shortDate, type CheckIn as Entry } from "@/lib/member-data";
 import { useStored } from "./useStored";
 
 function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weight" | "waist"; color: string; unit: string }) {
@@ -24,7 +24,7 @@ function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weig
         <span className="font-semibold capitalize text-white">{field}</span>
         <span className={`text-sm font-bold ${change <= 0 ? "text-emerald-300" : "text-amber-300"}`}>
           {change > 0 ? "+" : ""}
-          {change.toFixed(1)} {unit} since {pts[0].date}
+          {change.toFixed(1)} {unit} since {shortDate(pts[0].date)}
         </span>
       </figcaption>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label={`${field} trend from ${vals[0]} to ${vals[vals.length - 1]} ${unit}`}>
@@ -46,7 +46,7 @@ function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weig
         <path d={d} stroke={color} strokeWidth="3" fill="none" strokeLinejoin="round" />
         {pts.map((p, i) => (
           <circle key={p.date} cx={x(i)} cy={y(p[field])} r="4" fill={color}>
-            <title>{`${p.date}: ${p[field]} ${unit}`}</title>
+            <title>{`${shortDate(p.date)}: ${p[field]} ${unit}`}</title>
           </circle>
         ))}
       </svg>
@@ -57,6 +57,7 @@ function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weig
 export function ProgressTracker() {
   const [entries, setEntries] = useStored<Entry[]>("rfc-progress", [], mergeCheckIns);
   const [form, setForm] = useState({ date: todayIST(), weight: "", waist: "" });
+  const [justSaved, setJustSaved] = useState<string | null>(null);
 
   const add = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,6 +65,8 @@ export function ProgressTracker() {
     if (!entry.weight && !entry.waist) return;
     setEntries((list) => addCheckIn(list, entry));
     setForm({ ...form, weight: "", waist: "" });
+    setJustSaved(entry.date);
+    setTimeout(() => setJustSaved((d) => (d === entry.date ? null : d)), 1500);
   };
 
   const csv = () => {
@@ -90,7 +93,7 @@ export function ProgressTracker() {
           <input type="number" step="0.5" inputMode="decimal" value={form.waist} onChange={(e) => setForm({ ...form, waist: e.target.value })} className="field mt-1" placeholder="e.g. 88" />
         </label>
         <button type="submit" className="btn-brand w-full rounded-full py-3 font-bold">
-          Save check-in
+          {justSaved ? "Saved" : "Save check-in"}
         </button>
         <p className="text-xs text-white/45">Weigh in the morning after the washroom, before eating. Saved on this device, and to your account when you&apos;re signed in.</p>
       </form>
@@ -111,12 +114,12 @@ export function ProgressTracker() {
             </div>
             <ul className="divide-y divide-white/5 text-sm">
               {[...entries].reverse().map((e) => (
-                <li key={e.date} className="flex items-center justify-between py-2">
-                  <span className="text-white/70">{e.date}</span>
+                <li key={e.date} className={`flex items-center justify-between rounded-lg py-2 ${justSaved === e.date ? "log-pop" : ""}`}>
+                  <span className="text-white/70">{shortDate(e.date)}</span>
                   <span className="text-white">
                     {e.weight ? `${e.weight} kg` : "—"} · {e.waist ? `${e.waist} cm` : "—"}
                   </span>
-                  <button type="button" onClick={() => setEntries((l) => l.filter((x) => x.date !== e.date))} className="text-red-300/70" aria-label={`Delete ${e.date}`}>
+                  <button type="button" onClick={() => setEntries((l) => l.filter((x) => x.date !== e.date))} className="text-red-300/70" aria-label={`Delete ${shortDate(e.date)} check-in`}>
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </li>
