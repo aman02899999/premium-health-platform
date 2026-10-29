@@ -1,0 +1,49 @@
+// The Android app is a Trusted Web Activity: a full-screen Chrome window on the website, so it
+// has the same login, data, payments and features as royalfitnesclub.in and updates with every
+// website deploy. Only the icon, name and version live here.
+plugins {
+    id "com.android.application"
+}
+
+def keystoreFile = System.getenv("ANDROID_KEYSTORE_FILE")
+
+android {
+    namespace "in.royalfitnesclub.app"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "in.royalfitnesclub.app"
+        minSdk 23
+        targetSdk 35
+        // CI passes the run number so every build can install over the previous one.
+        versionCode((System.getenv("APP_VERSION_CODE") ?: "1") as int)
+        versionName System.getenv("APP_VERSION_NAME") ?: "1.0"
+    }
+
+    signingConfigs {
+        release {
+            if (keystoreFile) {
+                storeFile file(keystoreFile)
+                storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                keyAlias System.getenv("ANDROID_KEY_ALIAS")
+                keyPassword System.getenv("ANDROID_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (keystoreFile) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation "com.google.androidbrowserhelper:androidbrowserhelper:2.5.0"
+}

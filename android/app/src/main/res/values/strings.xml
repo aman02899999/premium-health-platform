@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Royal Fitness</string>
+    <string name="launch_url">https://www.royalfitnesclub.in/account?utm_source=android_app</string>
+    <!-- Must match /.well-known/assetlinks.json on the site, which lists this app's signing key. -->
+    <string name="asset_statements" translatable="false">[{\"relation\": [\"delegate_permission/common.handle_all_urls\"], \"target\": {\"namespace\": \"web\", \"site\": \"https://www.royalfitnesclub.in\"}}]</string>
+</resources>
