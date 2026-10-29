@@ -253,7 +253,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     ogImage: "",
     googleVerification: "",
   },
-  theme: { primary: "#e8394b", secondary: "#04466d", look: "gold" },
+  theme: { primary: "#e8394b", secondary: "#04466d", look: "royal" },
   offers: OFFERS,
   announcement: "Couple membership: train together from ₹3,000/month for two · Free trial for new members",
 };

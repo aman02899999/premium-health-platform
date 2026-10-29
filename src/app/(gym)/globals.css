@@ -849,9 +849,64 @@ html[data-portal="show"] body {
 }
 
 /* ---------- Site looks (admin → Brand colours → Site look) ----------
-   "classic" uses the rules above unchanged. "gold" (Royal Black & Gold) and "mono" (Monochrome Luxe)
-   re-point the palette tokens and the headline face here. Error states (ember, red-*) stay red on
+   "classic" uses the rules above unchanged. "royal" (logo red and navy, premium), "gold" (Royal Black & Gold)
+   and "mono" (Monochrome Luxe) re-point the palette tokens and the headline face here. Error states (ember, red-*) stay red on
    purpose: they carry meaning, not brand. */
+/* Royal red & navy: the logo's two colours, deepened. Red text is lifted (#f2505f, 4.9:1 on cards) and solid
+   red fills use the exact logo red (#be1b2c, 6.2:1 with white text). */
+html[data-look="royal"] {
+  --color-ink: #060b14;
+  --color-coal: #0a1220;
+  --color-steel: #111d31;
+  --color-line: #22324d;
+  --color-brand: #f2505f;
+  --color-brand-soft: #ff9aa4;
+  --color-brand-strong: #be1b2c;
+  --color-navy: #04466d;
+  --color-sky: #9cc3e6;
+  --font-display: var(--font-cinzel), "Cinzel", "Trajan Pro", Georgia, serif;
+}
+html[data-look="royal"] body {
+  color: #e6edf5;
+  background:
+    radial-gradient(ellipse 80% 50% at 85% -10%, rgba(4, 70, 109, 0.35), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(190, 27, 44, 0.12), transparent 60%),
+    var(--color-ink);
+  background-attachment: fixed;
+}
+html[data-look="royal"] .font-display {
+  letter-spacing: 0;
+}
+/* Solid red fills use the logo red so their white text passes AA. */
+html[data-look="royal"] .bg-brand,
+html[data-look="royal"] [class~="hover:bg-brand"]:hover {
+  background-color: var(--color-brand-strong);
+}
+html[data-look="royal"] .text-brand-gradient {
+  background-image: linear-gradient(100deg, #ffffff 0%, #cfe3f5 35%, #f2505f 70%, #ffffff 100%);
+}
+html[data-look="royal"] .btn-brand {
+  background: linear-gradient(135deg, #d32a3c, #be1b2c 50%, #8e1220);
+  color: #fff;
+  box-shadow: 0 12px 32px -12px rgba(190, 27, 44, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+html[data-look="royal"] .btn-brand:hover {
+  box-shadow: 0 18px 42px -12px rgba(190, 27, 44, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+html[data-look="royal"] .brand-border::before {
+  background: linear-gradient(140deg, rgba(156, 195, 230, 0.75), rgba(4, 70, 109, 0.3) 40%, rgba(190, 27, 44, 0.2) 60%, rgba(242, 80, 95, 0.75));
+}
+html[data-look="royal"] .field {
+  background: #08111e;
+}
+html[data-look="royal"] .offer-pass {
+  background: linear-gradient(145deg, rgba(4, 70, 109, 0.55), rgba(6, 11, 20, 0.95) 60%, rgba(142, 18, 32, 0.35));
+  border-color: rgba(156, 195, 230, 0.3);
+}
+html[data-look="royal"] .announce-bar {
+  background-image: linear-gradient(90deg, #04263d, #8e1220 50%, #04263d);
+}
+
 html[data-look="gold"] {
   --color-ink: #0b0a08;
   --color-coal: #15120e;

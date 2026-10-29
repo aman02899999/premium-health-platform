@@ -140,8 +140,11 @@ export type Seo = {
 export type Theme = {
   primary: string;
   secondary: string;
-  /** Gym-site palette: "gold" (Royal Black & Gold), "mono" (Monochrome Luxe) or "classic" (red and navy, uses the colours above). */
-  look?: "classic" | "mono" | "gold";
+  /**
+   * Gym-site palette: "royal" (premium logo red and navy), "gold" (Royal Black & Gold), "mono" (Monochrome Luxe)
+   * or "classic" (the original red and navy, uses the colours above).
+   */
+  look?: "royal" | "classic" | "mono" | "gold";
 };
 
 export type SiteContent = {

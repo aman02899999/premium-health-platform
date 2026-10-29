@@ -524,6 +524,7 @@ export function AdminApp({ storage }: { storage: string }) {
                       type: "select",
                       wide: true,
                       options: [
+                        { value: "royal", label: "Royal red & navy (logo colours, premium)" },
                         { value: "gold", label: "Royal Black & Gold" },
                         { value: "mono", label: "Monochrome Luxe" },
                         { value: "classic", label: "Classic red & navy (uses the two colours above)" },
