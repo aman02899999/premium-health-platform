@@ -1,5 +1,6 @@
 import "server-only";
 import { pool } from "@/health/db";
+import { todayIST } from "@/lib/growth/dates";
 import { KEY_VERSION, labKey, open, seal } from "./crypto";
 import { MARKERS } from "./markers";
 import { applyOverrides, type MarkerOverride } from "./overrides";
@@ -8,7 +9,8 @@ import type { Marker, Person, ResultInput } from "./types";
 // Blood report analyser: everything that touches the database. Health values are sealed with
 // LAB_DATA_KEY before they are written; without the key nothing is saved.
 
-const today = () => new Date().toISOString().slice(0, 10);
+// Access ends at midnight in India, not in UTC.
+const today = () => todayIST();
 
 // ───────── Access ─────────
 
@@ -26,7 +28,7 @@ export type AccessRow = { email: string; grantedAt: string; grantedBy: string; e
 export async function accessList(): Promise<AccessRow[]> {
   const { rows } = await pool.query<{ email: string; granted_at: Date; granted_by: string; expires_on: string | null; note: string; active: boolean; name: string | null; kind: string | null }>(
     `select a.email, a.granted_at, a.granted_by, to_char(a.expires_on, 'YYYY-MM-DD') as expires_on, a.note,
-       (a.revoked_at is null and (a.expires_on is null or a.expires_on >= current_date)) as active, p.name, p.kind
+       (a.revoked_at is null and (a.expires_on is null or a.expires_on >= $1::date)) as active, p.name, p.kind
      from public.lab_access a
      left join lateral (
        select name, 'member' as kind from public.members where lower(email) = a.email
@@ -34,6 +36,7 @@ export async function accessList(): Promise<AccessRow[]> {
        limit 1
      ) p on true
      order by active desc, a.granted_at desc limit 1000`,
+    [today()],
   );
   return rows.map((r) => ({ email: r.email, grantedAt: r.granted_at.toISOString(), grantedBy: r.granted_by, expiresOn: r.expires_on, note: r.note, active: r.active, name: r.name ?? "", kind: r.kind ?? "" }));
 }
@@ -45,7 +48,7 @@ export async function eligiblePeople(): Promise<Eligible[]> {
   const { rows } = await pool.query<Eligible>(
     `with people as (
        (select distinct on (lower(email)) lower(email) as email, name, 'member' as kind, to_char(expires_on, 'YYYY-MM-DD') as until
-         from public.members where email is not null and email like '%@%' and expires_on >= current_date
+         from public.members where email is not null and email like '%@%' and expires_on >= $1::date
          order by lower(email), expires_on desc)
        union all
        (select distinct on (lower(email)) lower(email), name, 'diet client', null
@@ -55,6 +58,7 @@ export async function eligiblePeople(): Promise<Eligible[]> {
      select distinct on (email) email, name, kind, until from people
      where email not in (select email from public.lab_access where revoked_at is null)
      order by email, (kind = 'member') desc limit 1000`,
+    [today()],
   );
   return rows;
 }
@@ -176,11 +180,11 @@ export async function countUsage(saved: boolean): Promise<void> {
 
 export async function usage(days = 30): Promise<{ analyses: number; saved: number; savedNow: number; people: number }> {
   const { rows } = await pool.query<{ analyses: string; saved: string; saved_now: string; people: string }>(
-    `select coalesce((select sum(analyses) from public.lab_usage_daily where day > current_date - $1::int), 0) as analyses,
-            coalesce((select sum(saved) from public.lab_usage_daily where day > current_date - $1::int), 0) as saved,
+    `select coalesce((select sum(analyses) from public.lab_usage_daily where day > $2::date - $1::int), 0) as analyses,
+            coalesce((select sum(saved) from public.lab_usage_daily where day > $2::date - $1::int), 0) as saved,
             (select count(*) from public.lab_reports where expires_at > now()) as saved_now,
-            (select count(*) from public.lab_access where revoked_at is null) as people`,
-    [days],
+            (select count(*) from public.lab_access where revoked_at is null and (expires_on is null or expires_on >= $2::date)) as people`,
+    [days, today()],
   );
   const r = rows[0];
   return { analyses: Number(r.analyses), saved: Number(r.saved), savedNow: Number(r.saved_now), people: Number(r.people) };
