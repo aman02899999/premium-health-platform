@@ -23,6 +23,8 @@ export async function setPromotionsOptOut(phone: string, optOut: boolean, name =
        on conflict (channel, address) do update set unsubscribed_at = null, consent_at = now(), name = coalesce(marketing_contacts.name, excluded.name)`,
       [p, name.trim().slice(0, 100) || null],
     );
+    // A member from the register who asks for offers has now agreed to them.
+    await pool.query(`update public.members set offers_ok = true, updated_at = now() where not offers_ok and '91' || phone = $1`, [p]);
   }
 }
 

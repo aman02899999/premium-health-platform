@@ -55,6 +55,9 @@ export async function listOutbox(status: OutboxItem["status"] | "all" = "all", l
   return rows.map(fromRow);
 }
 
+/** Why a promotion to a member from an uploaded register is not sent (they haven't agreed to offers yet). */
+const NO_OFFERS_YET = `'Member from the register: renewal reminders only until they agree to offers'`;
+
 /** A message from a campaign to a segment with no record of consent (the imported sheet). $X = NO_CONSENT_SEGMENTS. */
 const NO_CONSENT_CAMPAIGN = (key: string, param: string) =>
   `(${key} like 'campaign:%' and exists (select 1 from public.campaigns c where c.id::text = split_part(${key}, ':', 2) and c.segment = any(${param})))`;
@@ -280,7 +283,8 @@ export async function dispatch(
       if (m.channel === "whatsapp" && isMarketingKind(m.kind)) {
         const { rows: stop } = await client.query<{ why: string }>(
           `select 'Opted out of promotions' as why from public.whatsapp_optouts where phone = $1
-           union all select 'WhatsApp says this number can''t receive messages' from public.whatsapp_unreachable where phone = $1 limit 1`,
+           union all select 'WhatsApp says this number can''t receive messages' from public.whatsapp_unreachable where phone = $1
+           union all select ${NO_OFFERS_YET} from public.members where not offers_ok and '91' || phone = $1 limit 1`,
           [m.to_address],
         );
         if (stop[0]) {
@@ -291,9 +295,13 @@ export async function dispatch(
       }
       // Marketing email never goes to an address that hard-bounced or marked us as spam.
       if (m.channel === "email" && m.kind.startsWith("nurture-")) {
-        const { rowCount } = await client.query(`select 1 from public.email_suppressions where address = lower($1)`, [m.to_address]);
-        if (rowCount) {
-          await client.query(`update public.message_outbox set status = 'cancelled', last_error = 'Email address bounced or complained: no more marketing' where id = $1`, [m.id]);
+        const { rows: stop } = await client.query<{ why: string }>(
+          `select 'Email address bounced or complained: no more marketing' as why from public.email_suppressions where address = lower($1)
+           union all select ${NO_OFFERS_YET} from public.members where not offers_ok and lower(email) = lower($1) limit 1`,
+          [m.to_address],
+        );
+        if (stop[0]) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = $2 where id = $1`, [m.id, stop[0].why]);
           await client.query("commit");
           continue;
         }
