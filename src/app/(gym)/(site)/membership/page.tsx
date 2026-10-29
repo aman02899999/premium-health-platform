@@ -36,26 +36,44 @@ export default async function MembershipPage() {
   return (
     <>
       <JsonLd data={[breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Membership", path: "/membership" }]), faqJsonLd([...policy, ...faqs])]} />
-      <PageHero eyebrow="Membership" title="Invest in" highlight="yourself" intro="Transparent single and couple pricing, and a free trial before you commit." />
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+      <PageHero eyebrow="Membership" title="Pick your" highlight="plan" intro="Every plan and price in one list. Not sure yet? Your first session is free." />
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <h2 className="sr-only">Membership plans and prices</h2>
         <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
-      </section>
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <SectionHeading eyebrow="Compare" title="Every plan," highlight="side by side" intro="Prices, cost per month and what each plan includes." />
-        <PlanMatrix plans={plans} />
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/membership/price-sheet" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white hover:border-brand">
-            <Printer className="h-4 w-4" /> Printable price sheet
+          <Link href="/contact#trial" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white hover:border-brand">
+            Book a free trial first
           </Link>
-          <a href="/api/membership/plans-pdf" className="btn-brand inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
-            <FileDown className="h-4 w-4" /> Download plans &amp; terms (PDF)
+          <a href="/api/membership/plans-pdf" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white hover:border-brand">
+            <FileDown className="h-4 w-4" /> Plans &amp; terms (PDF)
           </a>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        <SectionHeading eyebrow="In plain words" title="Which plan" highlight="fits you" />
-        <PlanSummaries plans={plans} />
+      {/* The detail stays one tap away instead of filling five more screens on a phone. */}
+      <section className="mx-auto max-w-5xl space-y-3 px-4 pb-12 sm:px-6">
+        <details className="glass group rounded-2xl px-5 py-4 open:ring-1 open:ring-brand/40">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-white [&::-webkit-details-marker]:hidden">
+            Compare every plan side by side
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-brand/50 text-brand transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="mt-4">
+            <PlanMatrix plans={plans} />
+            <p className="mt-4 text-center text-sm">
+              <Link href="/membership/price-sheet" className="inline-flex items-center gap-2 text-white/70 underline hover:text-brand">
+                <Printer className="h-4 w-4" /> Printable price sheet
+              </Link>
+            </p>
+          </div>
+        </details>
+        <details className="glass group rounded-2xl px-5 py-4 open:ring-1 open:ring-brand/40">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-white [&::-webkit-details-marker]:hidden">
+            Which plan fits me? (in plain words)
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-brand/50 text-brand transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="mt-4">
+            <PlanSummaries plans={plans} />
+          </div>
+        </details>
       </section>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <SectionHeading eyebrow="Plan rules" title="Usage, cancellation" highlight="& freeze" intro={<>The short version of our <Link href="/refund-policy" className="underline hover:text-brand">Refund &amp; Cancellation Policy</Link>.</>} />
