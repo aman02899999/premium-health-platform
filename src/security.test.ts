@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
 
 vi.mock("server-only", () => ({}));
-vi.mock("@/lib/auth", () => ({ isAdmin: async () => false }));
+vi.mock("@/lib/auth", () => ({ isAdmin: async () => false, isManager: async () => false }));
 
 describe("security", () => {
   it("refuses admin and account writes from another site", async () => {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { adminIdentity, isAdmin } from "@/lib/auth";
+import { adminIdentity, isAdmin, isManager } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
 import { contactsCsv, normAttr, normTag } from "@/lib/admin/contacts-core";
@@ -30,6 +30,8 @@ export async function GET(req: Request) {
       return d ? NextResponse.json(d) : NextResponse.json({ error: "Not found" }, { status: 404 });
     }
     if (p.get("export")) {
+      // Everyone's mobile and email in one file: owners and managers only.
+      if (!(await isManager())) return NextResponse.json({ error: "Your role doesn't include exports. Ask an owner." }, { status: 403 });
       const rows = await allContacts(filterOf(p), 20000, today);
       return new Response(contactsCsv(rows), {
         headers: { "content-type": "text/csv; charset=utf-8", "content-disposition": `attachment; filename="royal-fitness-contacts-${today}.csv"`, "cache-control": "no-store" },

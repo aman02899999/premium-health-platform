@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { syncAll, syncFoods, syncExercises, syncDrugs, syncHerbs, syncMedicalLiterature, syncClinicalTrials, listJobs, getSyncCapabilities, clearCacheForProvider } from "@/health/services/health/sync";
-import { isAdmin } from "@/lib/auth";
+import { isManager } from "@/lib/auth";
 import { cronAuthorized } from "@/lib/cron-auth";
 
 // Starting or clearing sync jobs costs third-party API quota: the admin or the cron only.
 async function adminOrCron(req: Request) {
-  return cronAuthorized(req, process.env, { allowUnsetInDev: false }) || (await isAdmin());
+  return cronAuthorized(req, process.env, { allowUnsetInDev: false }) || (await isManager());
 }
 
 export const revalidate = 0;

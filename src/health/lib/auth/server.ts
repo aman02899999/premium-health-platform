@@ -5,6 +5,7 @@ import { db, isDbConfigured } from "@/health/db";
 import { premiumSubscriptions } from "@/health/db/monetization-schema";
 import { supabaseConfigured } from "@/health/lib/supabase/config";
 import { createClient } from "@/health/lib/supabase/server";
+import { isManager } from "@/lib/auth";
 import type { AuthUser } from "./index";
 
 // Server-side identity for the health platform. The session is the Supabase
@@ -72,7 +73,8 @@ export async function premiumFor(email: string): Promise<PremiumState> {
  * render in parallel, so a layout-only check can still stream the page's HTML).
  */
 export async function requireAdmin(next: string): Promise<void> {
-  if (await isAdmin()) return;
+  // Revenue and site data: owners and managers, not desk agents.
+  if ((await isAdmin()) && (!supabaseConfigured || (await isManager()))) return;
   if (!(await currentUser())) redirect(`/health/login?next=${encodeURIComponent(next)}`);
   notFound();
 }

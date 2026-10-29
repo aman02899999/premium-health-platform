@@ -22,7 +22,6 @@ const AGENT_AREAS = [
   "/api/admin/contacts",
   "/admin/growth",
   "/api/admin/growth",
-  "/api/admin/members",
   "/api/admin/leads",
   "/api/admin/call-list",
   "/api/admin/notifications",
@@ -30,6 +29,18 @@ const AGENT_AREAS = [
   "/api/admin/qr",
   "/api/admin/me",
 ];
+
+// Inside an agent area, but not desk work: a diet plan goes to a paying client from Diet Pro, which
+// agents can't open. (Member list uploads, /api/admin/members, are left out of the areas above.)
+const AGENT_DENIED = ["/api/admin/growth/diet-plan", "/api/admin/growth/diet-order"];
+
+/**
+ * Growth actions a desk agent may take: save a member, update a lead, and send or skip today's
+ * messages. Running the daily job, posting the Reel, deleting members and anything touching a paid
+ * client's diet plan or a payment need a manager or owner.
+ */
+const DESK_GROWTH_ACTIONS = ["save-member", "lead", "message"];
+export const growthActionAllowed = (role: Role, action: string): boolean => role !== "agent" || DESK_GROWTH_ACTIONS.includes(action);
 
 const under = (path: string, prefix: string) => path === prefix || path.startsWith(`${prefix}/`);
 
@@ -40,6 +51,7 @@ export function allowed(role: Role, pathname: string): boolean {
   if (OWNER_ONLY.some((p) => under(path, p))) return role === "owner";
   if (role !== "agent") return true;
   // Agents: the Command Center home, and their areas.
+  if (AGENT_DENIED.some((p) => under(path, p))) return false;
   return path === "/admin" || AGENT_AREAS.some((p) => under(path, p));
 }
 

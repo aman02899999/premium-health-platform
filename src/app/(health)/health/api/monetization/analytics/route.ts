@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdmin } from "@/lib/auth";
+import { isManager } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 const EVENTS: any[] = [];
 
 export async function GET(req: NextRequest) {
-  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  if (!(await isManager())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const { searchParams } = new URL(req.url);
   const limit = Math.min(parseInt(searchParams.get("limit") || "100", 10), 500);
   const type = searchParams.get("type");

@@ -1,5 +1,6 @@
 import { after, NextResponse } from "next/server";
-import { adminIdentity, isAdmin } from "@/lib/auth";
+import { adminIdentity, adminRole, isAdmin } from "@/lib/auth";
+import { growthActionAllowed } from "@/lib/admin/team-core";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
@@ -74,6 +75,8 @@ export async function POST(req: Request) {
   if (!isDbConfigured) return OFFLINE();
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b || typeof b.action !== "string") return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  const role = await adminRole();
+  if (!role || !growthActionAllowed(role, b.action)) return NextResponse.json({ error: "Your role doesn't include this. Ask an owner." }, { status: 403 });
   const by = await adminIdentity();
   try {
     switch (b.action) {
