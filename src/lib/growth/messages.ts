@@ -25,7 +25,7 @@ export type Draft = {
   link?: { code: string; url: string };
 };
 
-export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "call-followup" | "offer-broadcast" | "review-request" | "trial-booked" | "trial-today" | "trial-missed" | "trial-join" | "trial-join-last";
+export type MessageKind = "renew-7" | "renew-1" | "expired-3" | "welcome" | "lead-0" | "lead-2" | "lead-5" | "trial-offer" | "comeback" | "diet-received" | "referral-bonus" | "diet-plan-ready" | "diet-trial-review" | "call-followup" | "offer-broadcast" | "review-request" | "trial-booked" | "trial-today" | "trial-missed" | "trial-join" | "trial-join-last";
 
 export type TemplateCategory = "UTILITY" | "MARKETING";
 
@@ -75,6 +75,8 @@ export const TEMPLATES: Record<MessageKind, TemplateDef> = {
   // Template with a DOCUMENT header (the plan PDF); the body follows.
   "diet-plan-ready": { name: "rfc_diet_plan_ready", category: "UTILITY", text: "Hi {{1}}, your {{2}} from {{3}} is ready — the PDF is attached above. Follow it from tomorrow, and reply here with any question." },
   // An admin campaign to members, ex-members and imported contacts (Audience page).
+  // Day 6 of a 7-day trial: the buyer sends their tracker for the Day-7 review the plan promises.
+  "diet-trial-review": { name: "rfc_diet_trial_review_v1", header: "diet", category: "UTILITY", text: "📋 *Your Day-7 review*\n\nHi {{1}}, your 7-day trial plan from *{{2}}* is nearly done.\n\nFor your review, send {{3}} your filled tracker, today's waist measurement and one photo on WhatsApp at {{4}}." },
   "offer-broadcast": { name: "rfc_offer_broadcast_v3", legacy: "rfc_offer_broadcast_v1", header: "offer", category: "MARKETING", text: "🔥 *WOW, {{1}}! Offer unlocked* 🔥\n\n{{2}} has something special for you:\n\n🎁 {{3}}\n\nGrab it before it's gone and start building your dream physique 💪\n\n👉 See details: {{4}}" },
   // After a customer's WhatsApp call ends (at most once a week per number).
   "call-followup": { name: "rfc_call_followup_v3", legacy: "rfc_call_followup_v1", header: "welcome", category: "MARKETING", text: "Hi {{1}}, thanks for calling *{{2}}*! 📞\n\nIf we missed anything on the call, reply here.\n\n👉 Plans, timings and free trial booking: {{3}}" },
@@ -200,6 +202,23 @@ export const callFollowUpMessage = (c: { id: string; from: string; fromName: str
 
 export const dietReceivedMessage = (o: { id: string; name: string; phone: string }, biz: Biz, turnaround: string): Draft =>
   draft("diet-received", wa(o.phone), o.name, [first(o.name), biz.name, turnaround], `diet-received:${o.id}`);
+
+/** WhatsApp: the Day-7 review reminder for a 7-day trial, once per order. */
+export const dietTrialReviewMessage = (o: { id: string; name: string; phone: string }, biz: Biz, coach: string): Draft =>
+  draft("diet-trial-review", wa(o.phone), o.name, [first(o.name), biz.name, coach, biz.phone], `diet-trial-review:${o.id}`);
+
+/** Email: the same reminder (about their own plan, so sent without a marketing opt-in). */
+export const dietTrialReviewEmail = (o: { id: string; name: string; email: string }, biz: Biz, coach: string): Draft => ({
+  channel: "email",
+  to: o.email.toLowerCase(),
+  toName: o.name,
+  kind: "diet-trial-review-email",
+  subject: `Your Day-7 review, ${first(o.name)}`,
+  body: `Hi ${first(o.name)},\n\nYour 7-day trial plan from ${biz.name} is nearly done, so it's time for the Day-7 review that came with it.\n\nSend ${coach} three things on WhatsApp at ${biz.phone}:\n• your filled 7-day tracker (it is in your plan PDF)\n• today's waist measurement\n• one photo\n\nWe'll go through your week together and tell you what to change next.\n\n— ${coach}, ${biz.name}\n[[CTA:Send it on WhatsApp|https://wa.me/${biz.phone.replace(/\D/g, "")}]]`,
+  template: "",
+  params: [],
+  dedupeKey: `diet-trial-review-email:${o.id}`,
+});
 
 /** WhatsApp: the plan PDF as a document, sent once per plan file. */
 export const dietPlanWhatsApp = (o: { id: string; name: string; phone: string }, planName: string, file: string, biz: Biz): Draft => ({
