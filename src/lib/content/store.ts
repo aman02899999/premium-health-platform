@@ -129,13 +129,8 @@ export async function listLeads(): Promise<Lead[]> {
   }
 }
 
-export async function deleteLead(id: string): Promise<void> {
-  if (supabaseConfigured) {
-    const supabase = await createClient();
-    const { error } = await supabase.from("leads").delete().eq("id", id);
-    if (error) throw new Error(error.message);
-    return;
-  }
+/** Local dev without Supabase only; with Supabase, enquiries are archived (src/lib/admin/archive.ts). */
+export async function deleteLocalLead(id: string): Promise<void> {
   const leads = (await listLeads()).filter((l) => l.id !== id);
   await fs.writeFile(path.join(DATA_DIR, "leads.json"), JSON.stringify(leads, null, 2));
 }
