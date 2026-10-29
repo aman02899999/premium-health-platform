@@ -249,7 +249,7 @@ function slotFor(date: string): Slot {
   const weekday = ((d % 7) + 7) % 7;
   const week = Math.floor(d / 7);
   if (weekday === OFFER_DAY) return { kind: "offer", idea: IDEAS[((week % IDEAS.length) + IDEAS.length) % IDEAS.length] };
-  if (weekday === SHOP_DAY) return { kind: "shop", item: feedSaleItem(week), n: week };
+  if (weekday === SHOP_DAY) return { kind: "shop", item: feedSaleItem(week, date), n: week };
   const i = ((d % CALENDAR_DAYS) + CALENDAR_DAYS) % CALENDAR_DAYS;
   return { kind: "tip", tip: ORDERED[tipDaysBefore(i) % ORDERED.length] };
 }

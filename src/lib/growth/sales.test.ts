@@ -45,7 +45,7 @@ describe("sales catalogue", () => {
     expect(seen.size).toBe(SALE_ITEMS.length);
     expect(storyItem("2026-10-16")).toEqual(storyItem("2026-10-16"));
     // The weekly feed post and that day's story are never the same product.
-    for (let w = 0; w < 20; w++) expect(feedSaleItem(w).id).not.toBe(storyItem(day("2026-10-18", w * 7)).id);
+    for (let w = 0; w < 60; w++) expect(feedSaleItem(w, day("2026-10-18", w * 7)).id).not.toBe(storyItem(day("2026-10-18", w * 7)).id);
   });
 
   it("writes a filmable Reel with the price", () => {
