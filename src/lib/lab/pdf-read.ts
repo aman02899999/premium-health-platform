@@ -114,7 +114,15 @@ export function readReport(lines: string[][], markers: ReadMarker[]): ReadReport
     // A unit the test is never given in ("RBC 0-2 /hpf" in a urine section) means it's a different test.
     // A match on the abbreviation alone also needs the unit to agree.
     const fits = marker && (unit ? marker.units.some((u) => unitKey(u) === unitKey(unit)) : !found?.loose);
-    if (marker && !fits) continue;
+    if (marker && !fits) {
+      // Lal PathLabs prints absolute counts under the same name ("Neutrophils … thou/mm3").
+      const twin = unit ? findMarker(index, `Absolute ${name}`) : null;
+      if (twin && !seen.has(twin.id) && twin.units.some((u) => unitKey(u) === unitKey(unit))) {
+        seen.add(twin.id);
+        results.push({ markerId: twin.id, printed: name, value: cells[at].replace(/\s+/g, "").replace(/^[<>]/, ""), unit, range });
+      }
+      continue;
+    }
     if (!marker) {
       // Looks like a result line (name, number, unit or range) for a test we don't cover yet.
       if ((unit || range) && /^[a-z]/i.test(name) && !/\||:\s*$|^(?:less|more|greater|up ?to)\b/i.test(name) && name.length <= 60 && skipped.length < 40) skipped.push(name);
