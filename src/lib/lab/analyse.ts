@@ -7,7 +7,20 @@
 import { buildIndex, findMarker, normaliseName, type MarkerIndex } from "./match";
 import type { AnalysedResult, Analysis, Marker, Person, RefRange, ResultInput, Status } from "./types";
 
-const unitKey = (u: string) => u.toLowerCase().replace(/[µμ]/g, "u").replace(/\s+/g, "").replace(/cumm|mm3|cmm/g, "ul");
+/** Spellings of the same unit compare equal: "gm/dL" = "g/dL", "10³/µL" = "10^3/cumm", "µm³" = "fL". */
+export const unitKey = (u: string) =>
+  u
+    .toLowerCase()
+    .replace(/[µμ]/g, "u")
+    .replace(/\s+/g, "")
+    .replace(/³/g, "3")
+    .replace(/²/g, "2")
+    .replace(/^(?:um3|cumicrons?|cubicmicrons?)$/, "fl")
+    .replace(/^gm(?=\/|%)/, "g")
+    .replace(/mcg/g, "ug")
+    .replace(/10\^?3/g, "10^3")
+    .replace(/10\^?6/g, "10^6")
+    .replace(/cumm|mm3|cmm/g, "ul");
 
 /** The value in the marker's own unit, or null when the unit is one we don't know for it. */
 export function toMarkerUnit(m: Marker, value: number, unit?: string): number | null {

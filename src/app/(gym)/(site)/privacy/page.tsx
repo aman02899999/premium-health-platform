@@ -36,11 +36,16 @@ export default async function PrivacyPage() {
         </p>
         <h2 id="health-data">Blood report analyser (health data)</h2>
         <p>
-          Members and diet-plan clients we switch it on for can type in the results from a blood test to get a plain-language explanation. Blood
+          Members and diet-plan clients we switch it on for can type in the results from a blood test, or upload the PDF report from their lab, to get a plain-language explanation. Blood
           test results are sensitive personal data, so we handle them more strictly than anything else on this site:
         </p>
         <ul>
           <li>We only process your results after you tick the consent box, and only to show you the explanation. It is education, not a diagnosis.</li>
+          <li>
+            If you upload a PDF, it is read inside your own browser. The file is never sent to us or stored. Only the test values the page finds
+            (which you check and can change first) are sent for the explanation, exactly as if you had typed them. The page also reads your age and
+            sex from the report to fill in the form; we don&apos;t take your name, phone number or any other details from it.
+          </li>
           <li>
             By default nothing is stored: we analyse the numbers and forget them. If you choose &ldquo;Keep this report in my account&rdquo;, we save
             the values, your age and sex encrypted, and only you can see them on your account page.

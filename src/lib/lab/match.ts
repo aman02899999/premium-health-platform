@@ -23,7 +23,8 @@ export function normaliseName(raw: string): string {
  * comes before the stripped name so "Haemoglobin (Hb A1c)" finds HbA1c, not haemoglobin.
  */
 function variants(raw: string): string[] {
-  const out = [raw];
+  // A bracket a PDF line cut off ("ESR (Modified") is dropped, so the name before it still matches.
+  const out = [raw, ...(/\([^)]*$/.test(raw) ? [raw.replace(/\([^)]*$/, " ")] : [])];
   const inner = [...raw.matchAll(/\(([^)]*)\)/g)].map((m) => m[1]);
   if (inner.length) {
     out.push(...inner);
@@ -32,10 +33,12 @@ function variants(raw: string): string[] {
   return out.map(normaliseName).filter(Boolean);
 }
 
-export type MarkerIndex = Map<string, Marker>;
+/** What the index needs from a marker: the browser builds one from the names alone. */
+export type Named = Pick<Marker, "id" | "name" | "aliases" | "hidden">;
+export type MarkerIndex<T extends Named = Marker> = Map<string, T>;
 
-export function buildIndex(markers: Marker[]): MarkerIndex {
-  const index: MarkerIndex = new Map();
+export function buildIndex<T extends Named>(markers: T[]): MarkerIndex<T> {
+  const index: MarkerIndex<T> = new Map();
   for (const m of markers) {
     if (m.hidden) continue;
     for (const name of [m.name, m.id, ...m.aliases]) {
@@ -45,7 +48,7 @@ export function buildIndex(markers: Marker[]): MarkerIndex {
   return index;
 }
 
-export function findMarker(index: MarkerIndex, printed: string): Marker | null {
+export function findMarker<T extends Named>(index: MarkerIndex<T>, printed: string): T | null {
   for (const key of variants(printed)) {
     const hit = index.get(key);
     if (hit) return hit;

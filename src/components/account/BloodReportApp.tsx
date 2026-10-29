@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, ArrowDown, ArrowUp, BookOpen, Check, ChevronDown, ExternalLink, HelpCircle, Leaf, Loader2, Plus, Stethoscope, Trash2, X } from "lucide-react";
+import { AlertTriangle, ArrowDown, ArrowUp, BookOpen, Check, ChevronDown, ExternalLink, FileText, HelpCircle, Leaf, Loader2, Plus, Stethoscope, Trash2, X } from "lucide-react";
+import { unitKey } from "@/lib/lab/analyse";
+import { readReport, toLines } from "@/lib/lab/pdf-read";
 import { parseRangeText } from "@/lib/lab/range-text";
 import type { AnalysedResult, Analysis, PanelId, Person, Status } from "@/lib/lab/types";
 
-export type PickerMarker = { id: string; name: string; panel: PanelId; unit: string; units: string[] };
+export type PickerMarker = { id: string; name: string; aliases: string[]; panel: PanelId; unit: string; units: string[] };
 type Panel = { id: PanelId; name: string; hint: string };
 type Row = { key: string; name: string; value: string; unit: string; range: string; fixed: boolean };
 type Saved = { id: string; createdAt: string; expiresAt: string; label: string; person: Person; analysis: Analysis };
@@ -35,6 +37,8 @@ export function BloodReportApp({ email, panels, markers, saving }: { email: stri
   const [error, setError] = useState("");
   const [result, setResult] = useState<{ analysis: Analysis; person: Person } | null>(null);
   const [saved, setSaved] = useState<Saved[] | null>(null);
+  const [reading, setReading] = useState(false);
+  const [pdfNote, setPdfNote] = useState<{ file: string; count: number; skipped: string[] } | null>(null);
 
   const byName = useMemo(() => new Map(markers.map((m) => [m.name, m])), [markers]);
 
@@ -60,6 +64,47 @@ export function BloodReportApp({ email, panels, markers, saving }: { email: stri
     setChosen([...chosen, id]);
     const have = new Set(rows.map((r) => r.name));
     setRows([...rows, ...markers.filter((m) => m.panel === id && !have.has(m.name)).map((m) => blank({ name: m.name, unit: m.unit, fixed: true }))]);
+  }
+
+  // Reads the PDF on this device and fills the form with what it finds, for the member to check.
+  async function readPdf(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setError("");
+    setPdfNote(null);
+    setReading(true);
+    try {
+      const { pdfItems, PdfProblem } = await import("@/lib/lab/pdf-text");
+      let pages;
+      try {
+        pages = await pdfItems(file);
+      } catch (err) {
+        return setError(err instanceof PdfProblem ? err.message : "We couldn't open this PDF. Type the values in below instead.");
+      }
+      if (!pages.some((p) => p.length)) return setError("This PDF is a scan or a photo, so there's no text in it we can read. Ask your lab for the digital PDF, or type the values in below.");
+      const report = readReport(toLines(pages), markers);
+      if (!report.results.length) return setError("We couldn't find any tests we know in this PDF. Type the values in below, and tell us at the gym which lab it's from so we can add it.");
+
+      const byId = new Map(markers.map((m) => [m.id, m]));
+      const next = [...rows];
+      for (const r of report.results) {
+        const m = byId.get(r.markerId);
+        if (!m) continue;
+        const unit = m.units.find((u) => unitKey(u) === unitKey(r.unit)) ?? (r.unit || m.unit);
+        const at = next.findIndex((x) => x.name === m.name);
+        const row = { name: m.name, value: r.value.replace(/[^\d.,]/g, ""), unit, range: r.range.slice(0, 30), fixed: true };
+        if (at >= 0) next[at] = { ...next[at], ...row };
+        else next.push(blank(row));
+      }
+      setRows(next);
+      setChosen([...new Set([...chosen, ...report.results.flatMap((r) => byId.get(r.markerId)?.panel ?? [])])]);
+      if (!sex && report.person.sex) setSex(report.person.sex);
+      if (!age && report.person.age && report.person.age >= 18) setAge(String(report.person.age));
+      setPdfNote({ file: file.name, count: report.results.length, skipped: report.skipped });
+    } finally {
+      setReading(false);
+    }
   }
 
   const update = (key: string, patch: Partial<Row>) => setRows(rows.map((r) => (r.key === key ? { ...r, ...patch } : r)));
@@ -98,6 +143,30 @@ export function BloodReportApp({ email, panels, markers, saving }: { email: stri
       <Disclaimer />
 
       <form onSubmit={submit} className="glass brand-border space-y-6 rounded-3xl p-5 sm:p-7">
+        <div className="rounded-2xl bg-black/20 p-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <label className={`btn-brand inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold focus-within:ring-2 focus-within:ring-white ${reading ? "pointer-events-none opacity-60" : ""}`}>
+              {reading ? <Loader2 className="h-4 w-4 animate-spin" /> : <FileText className="h-4 w-4" />}
+              {reading ? "Reading your report…" : "Upload your report PDF"}
+              <input type="file" accept="application/pdf,.pdf" onChange={readPdf} disabled={reading} className="sr-only" />
+            </label>
+            <p className="text-xs text-white/50">Read on this device. The PDF itself is never uploaded or stored.</p>
+          </div>
+          {pdfNote && (
+            <div role="status" className="mt-3 space-y-1 text-sm text-white/75 [overflow-wrap:anywhere]">
+              <p>
+                We read <strong className="text-white">{pdfNote.count} tests</strong> from {pdfNote.file}. Please check each value against your report before you press &ldquo;Explain my report&rdquo;.
+              </p>
+              {pdfNote.skipped.length > 0 && (
+                <details className="text-xs text-white/50">
+                  <summary className="cursor-pointer">{pdfNote.skipped.length} other lines we don&apos;t cover yet</summary>
+                  <p className="mt-1">{pdfNote.skipped.join(", ")}. You can add any of these with &ldquo;Add another test&rdquo;, but we&apos;ll only compare them against the range on your report.</p>
+                </details>
+              )}
+            </div>
+          )}
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2">
           <fieldset>
             <legend className="text-sm font-semibold text-white/80">Sex</legend>
@@ -148,7 +217,7 @@ export function BloodReportApp({ email, panels, markers, saving }: { email: stri
                   <input aria-label={`${r.name || "Test"} value`} inputMode="decimal" value={r.value} onChange={(e) => update(r.key, { value: e.target.value.replace(/[^\d.,]/g, "").slice(0, 12) })} className={field} placeholder="Value" />
                   {m ? (
                     <select aria-label={`${r.name} unit`} value={r.unit} onChange={(e) => update(r.key, { unit: e.target.value })} className={field}>
-                      {m.units.map((u) => (
+                      {(m.units.some((u) => u === r.unit) || !r.unit ? m.units : [...m.units, r.unit]).map((u) => (
                         <option key={u} value={u}>
                           {u}
                         </option>

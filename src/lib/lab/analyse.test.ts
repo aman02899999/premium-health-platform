@@ -78,6 +78,14 @@ describe("units", () => {
     expect(toMarkerUnit(byId("hemoglobin"), 135, "g/L")).toBe(13.5);
   });
 
+  it("treats other spellings of the same unit as that unit", () => {
+    expect(toMarkerUnit(byId("mchc"), 33.3, "gm/dL")).toBe(33.3);
+    expect(toMarkerUnit(byId("mpv"), 9, "µm³")).toBe(9);
+    expect(toMarkerUnit(byId("wbc"), 9.4, "10³/μL")).toBe(9.4);
+    expect(toMarkerUnit(byId("iron"), 87, "mcg/dL")).toBe(87);
+    expect(toMarkerUnit(byId("mchc"), 33.3, "mg/dL")).toBeNull();
+  });
+
   it("returns null for a unit it doesn't know, rather than guessing", () => {
     expect(toMarkerUnit(byId("hemoglobin"), 13, "mmol/L")).toBeNull();
   });
