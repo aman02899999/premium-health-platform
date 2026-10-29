@@ -73,7 +73,7 @@ export function SaveBar({ busy, onSave, onCancel, onDelete, saveLabel = "Save" }
       )}
       {onDelete && (
         <button type="button" disabled={busy} onClick={onDelete} className="ml-auto rounded-xl border border-red-400/40 px-4 py-2.5 text-sm text-red-200 hover:bg-red-500/10">
-          Delete
+          Remove
         </button>
       )}
     </div>

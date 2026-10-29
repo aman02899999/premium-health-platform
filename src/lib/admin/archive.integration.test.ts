@@ -17,7 +17,7 @@ describe.skipIf(!url)("archive on a real database", () => {
     archive = await import("./archive");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox cascade");
+    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox, public.shop_categories, public.shop_posts cascade");
   });
   afterAll(async () => {
     await pool.end();
@@ -94,5 +94,18 @@ describe.skipIf(!url)("archive on a real database", () => {
   it("an unknown id archives nothing", async () => {
     expect(await archive.archiveMember("00000000-0000-0000-0000-000000000000", "owner@x.in")).toBe(false);
     expect((await pool.query(`select 1 from public.archived_records`)).rowCount).toBe(0);
+  });
+  it("removing a shop category or blog post keeps it in the archive", async () => {
+    const shop = await import("@/lib/shop/store");
+    const { rows: [cat] } = await pool.query(`insert into public.shop_categories (slug, name) values ('whey', 'Whey protein') returning id`);
+    const { rows: [post] } = await pool.query(`insert into public.shop_posts (slug, title, body) values ('creatine-guide', 'Creatine guide', 'text') returning id`);
+    expect(await shop.deleteCategory(cat.id, "owner@x.in")).toBeNull();
+    expect(await shop.deletePost(post.id, "owner@x.in")).toBeNull();
+    expect((await pool.query(`select 1 from public.shop_categories union all select 1 from public.shop_posts`)).rowCount).toBe(0);
+    const { rows } = await pool.query(`select kind, data->>'slug' as slug, archived_by from public.archived_records order by kind`);
+    expect(rows).toEqual([
+      { kind: "shop-category", slug: "whey", archived_by: "owner@x.in" },
+      { kind: "shop-post", slug: "creatine-guide", archived_by: "owner@x.in" },
+    ]);
   });
 });

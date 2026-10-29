@@ -35,6 +35,9 @@ export async function prepareDietPlan(orderId: string): Promise<{ path: string; 
 }
 
 /** A plan the coach edited in Diet Pro and uploaded; replaces the automatic draft. */
+/** Messages this module throws on purpose, safe to show the admin. Anything else is logged, not shown. */
+export const PLAN_ERRORS = ["Order not found", "That file is not a PDF", "No plan has been generated for this order yet"];
+
 export async function storeCoachPlan(orderId: string, pdf: Buffer, filename: string): Promise<string> {
   const order = await getDietOrder(orderId);
   if (!order) throw new Error("Order not found");

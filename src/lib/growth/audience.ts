@@ -170,7 +170,11 @@ export function campaignDraft(c: CampaignInput, r: Recipient, biz: { name: strin
  * lookalike audience of people like them.
  */
 export function metaAudienceCsv(recipients: Recipient[]): string {
-  const cell = (v: string) => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
+  // A name typed on the website could start a spreadsheet formula: neutralised like the Contacts export.
+  const cell = (raw: string) => {
+    const v = /^[=+\-@\t\r]/.test(raw) ? `'${raw}` : raw;
+    return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
+  };
   const rows = recipients
     .filter((r) => r.phone || r.email)
     .map((r) => {
