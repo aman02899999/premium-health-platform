@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { SITE, EXAMPLE_SEARCHES } from "@/health/lib/site";
 import { bookBySlug } from "@/lib/library/pricing";
+import { BOOKS } from "@/lib/library/catalog";
 import { IMG } from "@/health/lib/images";
 import { SearchBar } from "@/health/components/layout";
 import { SectionHeading, TopicCard, Newsletter, AdSlot, EvidenceBadge, DisclaimerBar } from "@/health/components/ui";
@@ -335,7 +336,7 @@ export default async function HomePage() {
                   <p className="mt-1 text-sm font-bold">The Fat-Loss Blueprint</p>
                   <p className="mt-1 text-xs text-stone-500">Fat loss with Indian food, family meals and busy jobs — no crash diets.</p>
                 </Link>
-                <Link href="/library" className="text-xs font-bold text-emerald-700 underline">Explore the Premium Library — 60 books →</Link>
+                <Link href="/library" className="text-xs font-bold text-emerald-700 underline">Explore the Premium Library — {BOOKS.length} books →</Link>
               </div>
             </div>
 

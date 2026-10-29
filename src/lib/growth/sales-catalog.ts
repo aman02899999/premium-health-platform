@@ -107,8 +107,18 @@ const pick = (n: number) => SALE_ITEMS[((n % SALE_ITEMS.length) + SALE_ITEMS.len
 
 /** The Instagram Story item for a date: one item a day through the whole catalogue. */
 export const storyItem = (date: string) => pick(dayNumber(date));
-/** The item for the n-th feed sale post: offset half a cycle so the feed and the story differ. */
-export const feedSaleItem = (n: number) => pick(n + Math.floor(SALE_ITEMS.length / 2));
+/**
+ * The item for the n-th feed sale post, offset half a cycle from the story rotation. The offset alone
+ * can still land on the story's item for some weeks, so when the post's date is known, step past it.
+ */
+export const feedSaleItem = (n: number, date?: string) => {
+  const base = n + Math.floor(SALE_ITEMS.length / 2);
+  if (!date) return pick(base);
+  // Jump a quarter cycle (outside the run of neighbouring weeks' items), then nudge if still clashing.
+  const story = storyItem(date).id;
+  for (const step of [0, Math.floor(SALE_ITEMS.length / 4), Math.floor(SALE_ITEMS.length / 4) + 1]) if (pick(base + step).id !== story) return pick(base + step);
+  return pick(base);
+};
 
 // ---------- Copy ----------
 

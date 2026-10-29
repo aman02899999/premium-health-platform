@@ -7,10 +7,10 @@ import { parseReviewForm } from "./review-form";
 import { COMPLETE_LIBRARY_ID, COMPLETE_LIBRARY_PRICE, bookBySlug, libraryListPrice, parseBuyerForm, phoneDigits, priceTable, quoteCart, quoteLibrary } from "./pricing";
 
 describe("library catalogue", () => {
-  it("has 60 unique volumes with valid data", () => {
-    expect(BOOKS).toHaveLength(60);
-    expect(new Set(BOOKS.map((b) => b.slug)).size).toBe(60);
-    expect(new Set(BOOKS.map((b) => b.volume)).size).toBe(60);
+  it("has 65 unique volumes with valid data", () => {
+    expect(BOOKS).toHaveLength(65);
+    expect(new Set(BOOKS.map((b) => b.slug)).size).toBe(65);
+    expect(new Set(BOOKS.map((b) => b.volume)).size).toBe(65);
     for (const b of BOOKS) {
       expect(b.slug).toMatch(/^\d{2}-[a-z0-9-]+$/);
       expect(b.price).toBeGreaterThan(0);
