@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import { Minus, Plus, Search, Trash2 } from "lucide-react";
 import { CATEGORY_LABEL, FOODS, foodById, totals, type Diet, type FoodCategory, type Portion } from "@/lib/fitness/foods";
+import { todayIST } from "@/lib/growth/dates";
+import { foodLogFor, type FoodDay } from "@/lib/member-data";
 import { useStored } from "./useStored";
 
 const DIET_BADGE: Record<Diet, string> = { veg: "bg-emerald-500", egg: "bg-amber-400", nonveg: "bg-red-500" };
@@ -26,7 +28,11 @@ function Ring({ value, target, label, unit, color }: { value: number; target: nu
 }
 
 export function NutritionTracker() {
-  const [log, setLog] = useStored<Portion[]>("rfc-food-log", []);
+  // One day's list: a new day (India time) starts empty instead of adding to yesterday's.
+  const [saved, setSaved] = useStored<FoodDay | Portion[] | null>("rfc-food-log", null);
+  const today = todayIST();
+  const log = foodLogFor(saved, today).items;
+  const setLog = (fn: (items: Portion[]) => Portion[]) => setSaved((s) => ({ date: today, items: fn(foodLogFor(s, today).items) }));
   const [target, setTarget] = useStored("rfc-food-target", { kcal: 2000, protein: 100 });
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<FoodCategory | "all">("all");
@@ -163,11 +169,11 @@ export function NutritionTracker() {
           })}
         </ul>
         {log.length > 0 && (
-          <button type="button" onClick={() => setLog([])} className="mt-4 text-xs text-white/50 underline">
+          <button type="button" onClick={() => setLog(() => [])} className="mt-4 text-xs text-white/50 underline">
             Clear day
           </button>
         )}
-        <p className="mt-4 text-[11px] text-white/40">Saved only in this browser.</p>
+        <p className="mt-4 text-[11px] text-white/40">Starts fresh each day. Saved on this device, and to your account when you&apos;re signed in.</p>
       </aside>
     </div>
   );

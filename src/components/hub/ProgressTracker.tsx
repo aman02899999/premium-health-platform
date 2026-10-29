@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
+import { todayIST } from "@/lib/growth/dates";
+import { addCheckIn, mergeCheckIns, type CheckIn as Entry } from "@/lib/member-data";
 import { useStored } from "./useStored";
-
-type Entry = { date: string; weight: number; waist: number };
 
 function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weight" | "waist"; color: string; unit: string }) {
   const pts = entries.filter((e) => e[field] > 0);
@@ -55,14 +55,14 @@ function Chart({ entries, field, color, unit }: { entries: Entry[]; field: "weig
 }
 
 export function ProgressTracker() {
-  const [entries, setEntries] = useStored<Entry[]>("rfc-progress", []);
-  const [form, setForm] = useState({ date: new Date().toISOString().slice(0, 10), weight: "", waist: "" });
+  const [entries, setEntries] = useStored<Entry[]>("rfc-progress", [], mergeCheckIns);
+  const [form, setForm] = useState({ date: todayIST(), weight: "", waist: "" });
 
   const add = (e: React.FormEvent) => {
     e.preventDefault();
     const entry = { date: form.date, weight: Number(form.weight) || 0, waist: Number(form.waist) || 0 };
     if (!entry.weight && !entry.waist) return;
-    setEntries((list) => [...list.filter((x) => x.date !== entry.date), entry].sort((a, b) => a.date.localeCompare(b.date)));
+    setEntries((list) => addCheckIn(list, entry));
     setForm({ ...form, weight: "", waist: "" });
   };
 

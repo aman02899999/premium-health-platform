@@ -8,6 +8,7 @@ import type { User } from "@supabase/supabase-js";
 import { ChevronRight, Droplet, Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { SignInOptions, SignOutButton } from "./AuthButtons";
+import { foodCount } from "@/lib/member-data";
 
 const ITEMS = [
   { key: "rfc-plan", label: "Saved workout plan", href: "/workout-planner", icon: Dumbbell },
@@ -18,9 +19,12 @@ const ITEMS = [
 type Row = { key: string; value: unknown; updated_at: string };
 
 function describe(key: string, value: unknown) {
+  if (key === "rfc-food-log") {
+    const n = foodCount(value);
+    return `${n} food${n === 1 ? "" : "s"} logged`;
+  }
   if (!Array.isArray(value)) return "Saved";
   if (key === "rfc-plan") return `${value.length}-day plan`;
-  if (key === "rfc-food-log") return `${value.length} food${value.length === 1 ? "" : "s"} logged`;
   return `${value.length} check-in${value.length === 1 ? "" : "s"}`;
 }
 
