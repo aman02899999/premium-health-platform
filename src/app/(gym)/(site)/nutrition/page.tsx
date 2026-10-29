@@ -7,6 +7,7 @@ import { NutritionTracker } from "@/components/hub/NutritionTracker";
 import { PageHero, SectionHeading } from "@/components/ui/Section";
 import { FaqList } from "@/components/home/Blocks";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { NextStep } from "@/components/app/NextStep";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -29,6 +30,7 @@ export default function NutritionPage() {
       <PageHero eyebrow="Indian food tracker" title="Know what's" highlight="on your plate" intro="Search common Indian foods, sort by protein, and log your meals to hit your daily targets." />
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <NutritionTracker />
+        <NextStep kind="food" />
         <p className="mt-8 text-center text-sm text-white/60">
           Not sure what your targets are? Use the{" "}
           <Link href="/tools/macro-calculator" className="text-brand underline">
