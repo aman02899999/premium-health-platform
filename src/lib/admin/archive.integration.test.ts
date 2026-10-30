@@ -17,7 +17,7 @@ describe.skipIf(!url)("archive on a real database", () => {
     archive = await import("./archive");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox, public.shop_categories, public.shop_posts cascade");
+    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox, public.shop_categories, public.shop_posts, public.diet_clients cascade");
   });
   afterAll(async () => {
     await pool.end();
@@ -107,5 +107,15 @@ describe.skipIf(!url)("archive on a real database", () => {
       { kind: "shop-category", slug: "whey", archived_by: "owner@x.in" },
       { kind: "shop-post", slug: "creatine-guide", archived_by: "owner@x.in" },
     ]);
+  });
+
+  it("removing a Diet Pro client keeps their record in the archive", async () => {
+    const { rows: [c] } = await pool.query(
+      `insert into public.diet_clients (name, profile, consent_at, consent_by) values ('Riya', '{"weight":62}', now(), 'coach@x.in') returning id`,
+    );
+    expect(await archive.archiveDietClient(c.id, "owner@x.in")).toBe(true);
+    expect((await pool.query(`select 1 from public.diet_clients`)).rowCount).toBe(0);
+    const { rows } = await pool.query(`select kind, data->>'name' as name, data->'profile'->>'weight' as weight, archived_by from public.archived_records`);
+    expect(rows).toEqual([{ kind: "diet-client", name: "Riya", weight: "62", archived_by: "owner@x.in" }]);
   });
 });

@@ -7,7 +7,7 @@ import { pool } from "@/health/db";
 
 type Person = "member" | "lead";
 type ShopItem = "shop-product" | "shop-category" | "shop-combo" | "shop-post";
-type Kind = Person | ShopItem;
+type Kind = Person | ShopItem | "diet-client";
 
 const LINKS: Partial<Record<Kind, string>> = {
   member: `jsonb_build_object(
@@ -23,6 +23,7 @@ const TABLE: Record<Kind, string> = {
   "shop-category": "public.shop_categories",
   "shop-combo": "public.shop_combos",
   "shop-post": "public.shop_posts",
+  "diet-client": "public.diet_clients",
 };
 const isPerson = (k: Kind): k is Person => k === "member" || k === "lead";
 
@@ -63,3 +64,6 @@ export const archiveLead = (id: string, by: string) => archive("lead", id, by);
 
 /** Shop items (product, category, combo, blog post): kept in the archive, gone from the store. */
 export const archiveShopItem = (kind: "product" | "category" | "combo" | "post", id: string, by: string) => archive(`shop-${kind}`, id, by);
+
+/** Diet Pro client: their profile, plan and log are kept in the archive (owner decision, 30 Oct). */
+export const archiveDietClient = (id: string, by: string) => archive("diet-client", id, by);

@@ -1,5 +1,6 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import { archiveDietClient } from "@/lib/admin/archive";
 import type { FoodItem } from "./types";
 
 // Diet Pro cloud storage. Uses the signed-in admin's own Supabase session, so the
@@ -75,10 +76,10 @@ export async function saveClient(input: Omit<ClientRecord, "id" | "updatedAt"> &
   return fromRow(data as Row);
 }
 
-export async function deleteClient(id: string): Promise<void> {
-  const supabase = await createClient();
-  const { error } = await supabase.from("diet_clients").delete().eq("id", id);
-  if (error) throw new Error(error.message);
+/** Removes the client from Diet Pro but keeps their record in archived_records (never erased).
+ *  This runs on the server pool, not the admin session: the route checks isAdmin() first. */
+export async function deleteClient(id: string, by: string): Promise<void> {
+  await archiveDietClient(id, by);
 }
 
 export async function listFoods(): Promise<FoodItem[]> {

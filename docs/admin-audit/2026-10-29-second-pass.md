@@ -28,7 +28,7 @@ re-checked their fixes and they're still in place.
 | A1 | High | The Chats "Promotions" switch records the desk's change as the customer's own START PROMOTIONS consent | `setOptOut()` → `setPromotionsOptOut(…, false)` writes source `whatsapp: start promotions`; available to desk agents | PR #159: recorded as `admin: <email>`; doesn't count as a register member's agreement |
 | A2 | Medium | Chats can send a marketing template (win-back, call follow-up) to a register member who hasn't agreed to offers | `sendManualTemplate()` sends directly, not through the outbox guard; checked opt-outs only | PR #159: those templates aren't offered for them |
 | A3 | Medium | Shop delete (product, category, combo, post) is a hard delete | `delete from public.shop_*` | PR: archive to `archived_records` first (same as #148); buttons say Remove |
-| A3b | Owner decision | Diet Pro "delete client" erases the client's health profile | `diet_clients … .delete()` | Not changed: a client asking to be forgotten has a right to erasure, so archiving health data needs your call. Decide: keep erasing (and log who/when), or archive |
+| A3b | Medium (owner chose archive, 30 Oct) | Diet Pro "delete client" erases the client's health profile | `diet_clients … .delete()` | PR: Remove moves the client to `archived_records` (kind `diet-client`), like members |
 | A4 | Low | Uploading a library book PDF replaces the old file with no copy kept | `upload(…, { upsert: true })` | PR: copy the old file to `archive/` before replacing |
 | A5 | Low | The Meta ads customer list CSV can carry a spreadsheet formula from a name typed on the website | `metaAudienceCsv()` quotes commas only; the Contacts export already neutralises `= + - @` | PR: same neutralising as Contacts |
 | A6 | Low | Two Diet Pro plan routes still show raw storage error text | `growth/diet-plan` POST and Growth `diet-send` return `err.message` (storage HTTP text) | PR: log it, show a plain message (the known messages stay) |
@@ -50,4 +50,4 @@ re-checked their fixes and they're still in place.
 1. A1, A2: added to PR #159 (consent area, same change).
 2. A3, A4: data safety PR (one migration widens `archived_records.kind`).
 3. A5, A6: small fixes PR.
-4. A3b and A7: wait for the owner.
+4. A3b: owner chose archive (30 Oct), in the data safety PR. A7: waits for the owner.
