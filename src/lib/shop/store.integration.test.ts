@@ -13,7 +13,7 @@ describe.skipIf(!url)("supplement store on a real database", () => {
     s = await import("./store");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.shop_orders, public.shop_combos, public.shop_products, public.shop_posts, public.shop_categories, public.shop_settings");
+    await pool.query("truncate public.shop_stock_moves, public.shop_barcodes, public.shop_orders, public.shop_combos, public.shop_products, public.shop_posts, public.shop_categories, public.shop_settings");
     vi.resetModules();
     s = await import("./store"); // fresh "seeded" flag
   });

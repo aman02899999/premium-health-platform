@@ -24,6 +24,7 @@ export type ShopData = {
   settings: ShopSettings;
   categories: Category[];
   products: Priced[];
+  barcodes: { code: string; productId: string; variant: string }[];
   combos: PricedCombo[];
   posts: Post[];
   orders: Order[];
