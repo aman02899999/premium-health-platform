@@ -188,13 +188,18 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
   const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));
   const [optedOut, recent] = await Promise.all([
     c.channel === "whatsapp"
-      ? // Opted out, or a number WhatsApp says can't receive messages: nobody pays for those.
-        pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)`, [addresses])
-      : // Unsubscribed, or an address that hard-bounced or complained (stored lower-case).
+      ? // Opted out, a number WhatsApp says can't receive messages, or a register member who hasn't agreed to offers.
+        pool.query<{ a: string }>(
+          `select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)
+           union select '91' || phone from public.members where not offers_ok and '91' || phone = any($1)`,
+          [addresses],
+        )
+      : // Unsubscribed, hard-bounced or complained (stored lower-case), or a register member without offers.
         pool.query<{ a: string }>(
           `select a.a from unnest($1::text[]) as a(a)
             where exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.unsubscribed_at is not null and c.address = lower(a.a))
-               or exists (select 1 from public.email_suppressions s where s.address = lower(a.a))`,
+               or exists (select 1 from public.email_suppressions s where s.address = lower(a.a))
+               or exists (select 1 from public.members m where not m.offers_ok and lower(m.email) = lower(a.a))`,
           [addresses],
         ),
     pool.query<{ a: string }>(

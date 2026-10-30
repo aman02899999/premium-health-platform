@@ -119,7 +119,7 @@ export async function POST(req: Request, { params }: Params) {
         res = (await cancelRequest(str("id"))) ? { ok: true } : { ok: false, error: "That link is already paid or cancelled.", status: 400 };
         break;
       case "opt-out":
-        await setOptOut(peer, b.optedOut === true);
+        await setOptOut(peer, b.optedOut === true, by);
         res = { ok: true };
         break;
       default:

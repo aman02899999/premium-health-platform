@@ -21,6 +21,8 @@ export type Member = {
   referralCode: string;
   renewToken: string;
   reminders: boolean;
+  /** False for people added from an uploaded register: renewal reminders only, no offers, until they agree. */
+  offersOk: boolean;
   notes: string;
 };
 
@@ -37,12 +39,13 @@ type Row = {
   referral_code: string;
   renew_token: string;
   reminders: boolean;
+  offers_ok: boolean;
   notes: string;
 };
 
 // Dates as text so node-postgres doesn't turn them into midnight Date objects.
 const COLUMNS = `id, created_at, name, phone, email, plan_name, to_char(start_on, 'YYYY-MM-DD') as start_on,
-  to_char(expires_on, 'YYYY-MM-DD') as expires_on, source, referral_code, renew_token, reminders, notes`;
+  to_char(expires_on, 'YYYY-MM-DD') as expires_on, source, referral_code, renew_token, reminders, offers_ok, notes`;
 
 const fromRow = (r: Row): Member => ({
   id: r.id,
@@ -57,6 +60,7 @@ const fromRow = (r: Row): Member => ({
   referralCode: r.referral_code,
   renewToken: r.renew_token,
   reminders: r.reminders,
+  offersOk: r.offers_ok,
   notes: r.notes,
 });
 
@@ -71,10 +75,10 @@ export async function membersNearExpiry(today: string): Promise<Member[]> {
   return rows.map(fromRow);
 }
 
-/** Members with an email whose membership ended 30 to 37 days ago and wasn't renewed: the win-back window. */
+/** Members with an email whose membership ended 30 to 37 days ago and wasn't renewed: the win-back window (an offer, so only members who agreed to offers). */
 export async function lapsedMembers(today: string): Promise<Member[]> {
   const { rows } = await pool.query<Row>(
-    `select ${COLUMNS} from public.members where reminders and email is not null and expires_on between $1::date and $2::date`,
+    `select ${COLUMNS} from public.members where reminders and offers_ok and email is not null and expires_on between $1::date and $2::date`,
     [addDays(today, -37), addDays(today, -30)],
   );
   return rows.map(fromRow);
@@ -106,14 +110,14 @@ export async function memberByCode(code: string): Promise<Member | null> {
  * Inserts with a fresh referral code, retrying on the (unlikely) code collision. Inside a
  * transaction a failed statement aborts everything, so each try runs under a savepoint.
  */
-export async function insertMember(db: PoolClient | typeof pool, m: { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: Member["source"]; notes?: string }, inTxn = false): Promise<Member> {
+export async function insertMember(db: PoolClient | typeof pool, m: { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: Member["source"]; notes?: string; offersOk?: boolean }, inTxn = false): Promise<Member> {
   for (let attempt = 0; attempt < 5; attempt++) {
     if (inTxn) await db.query("savepoint member_insert");
     try {
       const { rows } = await db.query<Row>(
-        `insert into public.members (name, phone, email, plan_name, start_on, expires_on, source, referral_code, notes)
-         values ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning ${COLUMNS}`,
-        [m.name, m.phone, m.email, m.planName, m.startOn, m.expiresOn, m.source, makeReferralCode(m.name), m.notes ?? ""],
+        `insert into public.members (name, phone, email, plan_name, start_on, expires_on, source, referral_code, notes, offers_ok)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning ${COLUMNS}`,
+        [m.name, m.phone, m.email, m.planName, m.startOn, m.expiresOn, m.source, makeReferralCode(m.name), m.notes ?? "", m.offersOk ?? true],
       );
       if (inTxn) await db.query("release savepoint member_insert");
       return fromRow(rows[0]);
@@ -127,14 +131,15 @@ export async function insertMember(db: PoolClient | typeof pool, m: { name: stri
   throw new Error("Could not create a unique referral code");
 }
 
-export type DeskInput = { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; notes: string; reminders: boolean };
+/** offersOk: the "Agreed to get offers" tick; left out, a new member gets offers and an edit keeps what was there. */
+export type DeskInput = { name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; notes: string; reminders: boolean; offersOk?: boolean };
 
 /** Validates a member typed in by the admin. Returns an error message or the clean input. */
 export function parseDeskInput(b: Record<string, unknown>): DeskInput | string {
   const s = (v: unknown, max: number) => (typeof v === "string" ? v.trim().replace(/\s+/g, " ").slice(0, max) : "");
   const digits = s(b.phone, 20).replace(/\D/g, "");
   const phone = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
-  const out = { name: s(b.name, 80), phone, email: s(b.email, 120) || null, planName: s(b.planName, 80), startOn: s(b.startOn, 10), expiresOn: s(b.expiresOn, 10), notes: typeof b.notes === "string" ? b.notes.slice(0, 1000) : "", reminders: b.reminders !== false };
+  const out = { name: s(b.name, 80), phone, email: s(b.email, 120) || null, planName: s(b.planName, 80), startOn: s(b.startOn, 10), expiresOn: s(b.expiresOn, 10), notes: typeof b.notes === "string" ? b.notes.slice(0, 1000) : "", reminders: b.reminders !== false, offersOk: typeof b.offersOk === "boolean" ? b.offersOk : undefined };
   if (out.name.length < 2) return "Enter the member's name.";
   if (!/^[6-9]\d{9}$/.test(out.phone)) return "Enter a valid 10-digit Indian mobile number.";
   if (out.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.email)) return "Enter a valid email or leave it blank.";
@@ -148,9 +153,9 @@ export function parseDeskInput(b: Record<string, unknown>): DeskInput | string {
 export async function saveDeskMember(input: DeskInput, id?: string): Promise<Member> {
   if (id) {
     const { rows } = await pool.query<Row>(
-      `update public.members set name = $2, phone = $3, email = $4, plan_name = $5, start_on = $6, expires_on = $7, notes = $8, reminders = $9, updated_at = now()
+      `update public.members set name = $2, phone = $3, email = $4, plan_name = $5, start_on = $6, expires_on = $7, notes = $8, reminders = $9, offers_ok = coalesce($10, offers_ok), updated_at = now()
         where id = $1 returning ${COLUMNS}`,
-      [id, input.name, input.phone, input.email, input.planName, input.startOn, input.expiresOn, input.notes, input.reminders],
+      [id, input.name, input.phone, input.email, input.planName, input.startOn, input.expiresOn, input.notes, input.reminders, input.offersOk ?? null],
     );
     if (!rows[0]) throw new Error("Member not found");
     return fromRow(rows[0]);
@@ -202,7 +207,9 @@ export async function importMembers(candidates: Candidate[], today: string, comm
   const client = await pool.connect();
   try {
     await client.query("begin");
-    for (const c of plan.add) await insertMember(client, { ...c, source: "desk" }, true);
+    // People from an uploaded register have no record of agreeing to offers (owner's decision, 29 Oct 2026):
+    // renewal reminders only until they agree (the tick in Growth, or "Start promotions" on WhatsApp).
+    for (const c of plan.add) await insertMember(client, { ...c, source: "desk", offersOk: false }, true);
     for (const c of plan.update) {
       await client.query(
         `update public.members set plan_name = $2, start_on = least(start_on, $3::date), expires_on = $4, email = coalesce(email, $5), updated_at = now() where phone = $1`,

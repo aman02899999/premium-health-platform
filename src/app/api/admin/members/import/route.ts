@@ -17,7 +17,7 @@ const MAX_BYTES = 3 * 1024 * 1024;
  */
 export async function POST(req: Request) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  // A list upload adds people who then get renewal reminders and offers: owners and managers only.
+  // A list upload adds people who then get renewal reminders (offers only once they agree): owners and managers only.
   if (!(await isManager())) return NextResponse.json({ error: "Your role doesn't include uploading lists. Ask an owner." }, { status: 403 });
   if (!isDbConfigured) return NextResponse.json({ error: "The database connection isn't configured." }, { status: 503 });
   const form = await req.formData().catch(() => null);

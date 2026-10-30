@@ -161,6 +161,52 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     expect(again).toMatchObject({ ok: true, queued: 0, skipped: { recent: 2, optedOut: 1 } });
   });
 
+  it("members from an uploaded register get renewal reminders but no offers, until they agree", async () => {
+    const { importMembers } = await import("./members");
+    const outbox = await import("./outbox");
+    const { setPromotionsOptOut } = await import("./optouts");
+    await member("Desk Member", "9000000101", "2026-09-05", "desk@x.in");
+    const reg = (name: string, phone: string, email: string | null) => ({ row: 2, name, phone, email, planName: "Monthly", startOn: "2026-08-01", expiresOn: "2026-09-01", notes: "" });
+    await importMembers([reg("Register One", "9000000102", "one@x.in"), reg("Register Two", "9000000103", null)], TODAY, true);
+    const flags = (await pool.query(`select phone, offers_ok from public.members order by phone`)).rows;
+    expect(flags).toEqual([{ phone: "9000000101", offers_ok: true }, { phone: "9000000102", offers_ok: false }, { phone: "9000000103", offers_ok: false }]);
+
+    // A campaign counts them in the segment but queues nothing for them (WhatsApp and email).
+    const wa = await cm.createCampaign({ name: "Comeback", segment: "ex-recent", channel: "whatsapp", offer: "3 months for ₹4,000", link: "membership" }, "admin", TODAY);
+    expect(wa).toMatchObject({ ok: true, audience: 3, queued: 1, skipped: { optedOut: 2 } });
+    const mail = await cm.createCampaign({ name: "Comeback mail", segment: "ex-recent", channel: "email", offer: "3 months for ₹4,000", link: "membership", subject: "Come back" }, "admin", TODAY);
+    expect(mail).toMatchObject({ ok: true, queued: 1, skipped: { optedOut: 1 } });
+
+    // Any other promotion that reaches the queue is cancelled; their renewal reminder still goes.
+    await pool.query(
+      `insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, subject) values
+         ('whatsapp', '919000000102', 'comeback', 'x', 'tpl', 'comeback:r1', null),
+         ('whatsapp', '919000000102', 'renew-7', 'x', 'tpl', 'renew-7:r1', null),
+         ('email', 'one@x.in', 'nurture-review', 'x', null, 'review:r1', 'Review')`,
+    );
+    process.env.RESEND_API_KEY = "re_test";
+    process.env.EMAIL_FROM = "Gym <hi@x.in>";
+    try {
+      await outbox.dispatch(20);
+    } finally {
+      delete process.env.RESEND_API_KEY;
+      delete process.env.EMAIL_FROM;
+    }
+    expect(sent.map((x) => x.to).sort()).toEqual(["919000000101", "919000000102"]);
+    const { rows } = await pool.query(`select dedupe_key, status, last_error from public.message_outbox where dedupe_key in ('comeback:r1', 'renew-7:r1', 'review:r1') order by dedupe_key`);
+    expect(rows.map((r) => [r.dedupe_key, r.status])).toEqual([["comeback:r1", "cancelled"], ["renew-7:r1", "sent"], ["review:r1", "cancelled"]]);
+    expect(rows[0].last_error).toMatch(/register/);
+
+    // Chats doesn't offer them a promotion template either (win-back), only membership messages.
+    const tools = await import("@/lib/social/chat-tools");
+    expect(await tools.sendManualTemplate("919000000103", "comeback", "admin")).toMatchObject({ ok: false, status: 400 });
+    // The desk switching promotions on in Chats isn't their agreement; "Start promotions" on WhatsApp is.
+    await tools.setOptOut("919000000102", false, "desk@x.in");
+    expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(false);
+    await setPromotionsOptOut("919000000102", false, "Register One");
+    expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(true);
+  });
+
   it("an email campaign skips unsubscribed addresses", async () => {
     await member("Mail Me", "9000000031", "2026-12-31", "yes@x.in");
     await member("No Mail", "9000000032", "2026-12-31", "no@x.in");

@@ -14,7 +14,7 @@ import { Social } from "./Social";
 import { CallList } from "./CallList";
 import { NotificationBell } from "@/components/admin/NotificationBell";
 
-type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; notes: string };
+type Member = { id: string; name: string; phone: string; email: string | null; planName: string; startOn: string; expiresOn: string; source: "online" | "desk"; referralCode: string; renewToken: string; reminders: boolean; offersOk: boolean; notes: string };
 type Lead = { id: string; createdAt: string; name: string; phone: string; goal: string; message: string; source: string; status: LeadStatus; contactedAt: string | null; notes: string; followUps: boolean; email?: string | null; interest?: string; trialAt?: string | null; showedUp?: boolean | null };
 type LeadStatus = "new" | "contacted" | "trial" | "joined" | "lost";
 type Msg = { id: string; createdAt: string; channel: string; to: string; toName: string; kind: string; body: string; status: "pending" | "sent" | "failed" | "cancelled"; attempts: number; lastError: string | null; sentAt: string | null; sentBy: string | null };
@@ -457,6 +457,9 @@ function ImportMembers({ reload }: { reload: () => Promise<void> }) {
             {result && c && (
               <div className="space-y-4">
                 <p className="text-xs text-white/60">
+                  New members from a list get renewal reminders only, no offers, until they agree (tick &quot;Agreed to get offers&quot; on the member, or they reply START PROMOTIONS on WhatsApp).
+                </p>
+                <p className="text-xs text-white/60">
                   Columns found:{" "}
                   {Object.entries(result.columns)
                     .map(([k, v]) => `${FIELD_LABEL[k] ?? k} ← "${v}"`)
@@ -543,7 +546,7 @@ function ImportMembers({ reload }: { reload: () => Promise<void> }) {
   );
 }
 
-const emptyMember = (today: string) => ({ id: "", name: "", phone: "", email: "", planName: "", startOn: today, expiresOn: addDays(today, 29), notes: "", reminders: true });
+const emptyMember = (today: string) => ({ id: "", name: "", phone: "", email: "", planName: "", startOn: today, expiresOn: addDays(today, 29), notes: "", reminders: true, offersOk: true });
 
 function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { name: string; duration: string }[]; act: Act; gymName: string; reload: () => Promise<void> }) {
   const [q, setQ] = useState("");
@@ -646,6 +649,9 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
           <label className="flex items-center gap-2 text-xs text-white/70">
             <input type="checkbox" checked={edit.reminders} onChange={(e) => setEdit({ ...edit, reminders: e.target.checked })} /> Send renewal reminders
           </label>
+          <label className="flex items-center gap-2 text-xs text-white/70" title="Tick only if they agreed to get offers and updates. Untick: renewal reminders only.">
+            <input type="checkbox" checked={edit.offersOk} onChange={(e) => setEdit({ ...edit, offersOk: e.target.checked })} /> Agreed to get offers
+          </label>
           <div className="flex items-end gap-2">
             <button type="submit" className="inline-flex items-center gap-1 rounded-lg bg-brand px-3 py-2 text-xs font-bold">
               <Check className="h-3.5 w-3.5" /> Save
@@ -680,6 +686,7 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
                     <span className="block text-xs text-white/45">
                       {m.phone} · {m.source === "online" ? "paid online" : "desk"}
                       {!m.reminders && " · reminders off"}
+                      {m.reminders && !m.offersOk && " · reminders only, no offers"}
                     </span>
                   </td>
                   <td className="py-2 text-white/75">{m.planName}</td>
@@ -699,7 +706,7 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
                       <button type="button" onClick={() => copy(share, "Share link")} className="rounded-lg border border-white/15 px-2 py-1">
                         Share link
                       </button>
-                      <button type="button" onClick={() => setEdit({ id: m.id, name: m.name, phone: m.phone, email: m.email ?? "", planName: m.planName, startOn: m.startOn, expiresOn: m.expiresOn, notes: m.notes, reminders: m.reminders })} className="rounded-lg border border-white/15 px-2 py-1">
+                      <button type="button" onClick={() => setEdit({ id: m.id, name: m.name, phone: m.phone, email: m.email ?? "", planName: m.planName, startOn: m.startOn, expiresOn: m.expiresOn, notes: m.notes, reminders: m.reminders, offersOk: m.offersOk })} className="rounded-lg border border-white/15 px-2 py-1">
                         Edit
                       </button>
                       <button type="button" aria-label="Archive member" title="Archive" onClick={() => confirm(`Archive ${m.name}? They leave the member list and get no more messages. Their record and referral history are kept and can be restored.`) && act({ action: "delete-member", id: m.id }, "Archived")} className="rounded-lg px-1.5 py-1 text-white/40 hover:text-red-300">
