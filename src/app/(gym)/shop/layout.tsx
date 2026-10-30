@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Crown, ShieldCheck, Truck, BadgeCheck } from "lucide-react";
-import { getCatalog } from "@/lib/shop/server";
-import { LEGAL, SITE_URL } from "@/lib/site";
+import { isAdmin } from "@/lib/auth";
+import { getContent } from "@/lib/content/store";
+import { getCatalog, shopOpen } from "@/lib/shop/server";
+import { LEGAL, SITE_URL, whatsappHref } from "@/lib/site";
 import { fssaiLabel } from "@/lib/shop/format";
 import { CartProvider } from "@/components/shop/cart";
 import { ShopBottomNav, ShopHeader } from "@/components/shop/chrome";
 import { CartToast } from "@/components/shop/ui";
+import { StoreComingSoon } from "@/components/store/StoreComingSoon";
 
 // Rendered per request from the tagged data cache (see lib/shop/server.ts): prices and stock are
 // never a build or ISR snapshot, and admin changes show on the very next page view.
@@ -16,6 +19,10 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { settings: s } = await getCatalog();
+  if (!(await shopOpen())) {
+    // Switched off: keep every /shop page out of Google until the store opens.
+    return { title: { absolute: `Coming soon | ${s.storeName}` }, robots: { index: false, follow: false } };
+  }
   return {
     title: { default: s.seoTitle, template: `%s | ${s.storeName}` },
     description: s.seoDescription,
@@ -42,6 +49,19 @@ export default async function ShopLayout({
   children: ReactNode;
 }) {
   const { settings: s, categories } = await getCatalog();
+  const open = await shopOpen();
+  // Customers get "Coming soon" while the store is switched off; signed-in admins still see the
+  // whole store (with a notice) so it can be finished and checked before opening.
+  if (!open && !(await isAdmin())) {
+    const c = await getContent();
+    return (
+      <div className="shop-theme min-h-[100svh]">
+        <main id="main">
+          <StoreComingSoon standalone whatsapp={whatsappHref(c.business, `Hi ${c.business.name}, which supplements should I take for my goal?`)} />
+        </main>
+      </div>
+    );
+  }
   return (
     <CartProvider>
       <div className="shop-theme">
@@ -51,6 +71,11 @@ export default async function ShopLayout({
         >
           Skip to content
         </a>
+        {!open && (
+          <p className="bg-amber-400 px-4 py-2 text-center text-sm font-bold text-black">
+            Admin preview: customers see &ldquo;Coming soon&rdquo; and can&apos;t order. Switch the store on in Admin → Supplements store → Settings.
+          </p>
+        )}
         <ShopHeader
           storeName={s.storeName}
           announcement={s.announcement}

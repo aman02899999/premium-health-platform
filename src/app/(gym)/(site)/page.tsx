@@ -21,6 +21,7 @@ import { TiltCard } from "@/components/ui/TiltCard";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { PortalOverlay } from "@/components/portal/PortalOverlay";
+import { shopOpen } from "@/lib/shop/server";
 import { applyOffer } from "@/lib/offers";
 import { faqsWithOffer } from "@/lib/content/ai-facts";
 import { todayIST } from "@/lib/growth/dates";
@@ -44,7 +45,7 @@ const FACILITIES = [
 ];
 
 export default async function HomePage() {
-  const c = await getContent();
+  const [c, storeOpen] = await Promise.all([getContent(), shopOpen()]);
   const b = c.business;
   const posts = publishedPosts(c).slice(0, 3);
   const wa = whatsappHref(b);
@@ -61,7 +62,7 @@ export default async function HomePage() {
     <>
       {/* First-visit chooser: decided before paint so returning visitors never see a flash. */}
       <script dangerouslySetInnerHTML={{ __html: PORTAL_BOOT }} />
-      <PortalOverlay gymName={b.name} />
+      <PortalOverlay gymName={b.name} storeOpen={storeOpen} />
       <JsonLd data={faqJsonLd(faqs)} />
 
       {/* ---------- HERO ---------- */}

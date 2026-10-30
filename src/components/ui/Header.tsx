@@ -23,8 +23,10 @@ const NAV_ICONS: Record<string, LucideIcon> = {
   "/contact": Phone,
 };
 
-export function Header({ name, phoneHref, announcement }: { name: string; phoneHref: string; announcement: string }) {
+/** `storeOpen` false (the admin switch) hides every supplement-store link. */
+export function Header({ name, phoneHref, announcement, storeOpen }: { name: string; phoneHref: string; announcement: string; storeOpen: boolean }) {
   const pathname = usePathname();
+  const nav = storeOpen ? NAV : NAV.filter((item) => item.href !== "/store");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -68,7 +70,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <Logo name={name} textClassName="xl:hidden min-[106.25rem]:block" />
           </Link>
           <ul className="hidden items-center gap-0.5 xl:flex min-[106.25rem]:gap-1">
-            {NAV.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -89,9 +91,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Bharat Health Guide" aria-label="Bharat Health Guide">
               <HeartPulse className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Health</span>
             </a>
+            {storeOpen && (
             <Link href="/shop" className="hidden h-10 items-center gap-1.5 rounded-full border border-amber-400/40 px-3 text-xs font-bold text-amber-300 hover:border-amber-300 hover:text-amber-200 xl:flex" title="Royal Supplements Store" aria-label="Royal Supplements Store">
               <ShoppingBag className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Shop</span>
             </Link>
+            )}
             <AccountMenu />
             <Link href="/contact#trial" className="btn-brand hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
               Free Trial
@@ -139,7 +143,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
           <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-3" aria-label="Mobile">
             <ul className="space-y-0.5">
-              {NAV.map((item) => {
+              {nav.map((item) => {
                 const Icon = NAV_ICONS[item.href] ?? ChevronRight;
                 const active = isActive(item.href);
                 return (
@@ -187,11 +191,13 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                   <HeartPulse className="h-5 w-5 shrink-0" /> Bharat Health Guide
                 </a>
               </li>
+              {storeOpen && (
               <li>
                 <Link prefetch={false} href="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3 py-3 text-[15px] font-semibold text-amber-300 hover:bg-amber-500/10">
                   <ShoppingBag className="h-5 w-5 shrink-0" /> Royal Supplements Store
                 </Link>
               </li>
+              )}
             </ul>
           </nav>
 

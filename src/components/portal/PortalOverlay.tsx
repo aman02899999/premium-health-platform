@@ -10,7 +10,7 @@ import { PortalScene } from "./PortalScene";
  * PORTAL_BOOT (html[data-portal="show"]); the homepage stays rendered underneath
  * so crawlers and "skip" users get the full gym page.
  */
-export function PortalOverlay({ gymName }: { gymName: string }) {
+export function PortalOverlay({ gymName, storeOpen }: { gymName: string; storeOpen: boolean }) {
   const [closing, setClosing] = useState(false);
 
   const close = useCallback(() => {
@@ -36,7 +36,7 @@ export function PortalOverlay({ gymName }: { gymName: string }) {
       <button type="button" onClick={close} className="absolute right-4 top-4 z-20 flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-2 text-xs font-semibold text-white/80 backdrop-blur hover:text-white" aria-label="Skip and stay on the gym website">
         Skip <X className="h-4 w-4" />
       </button>
-      <PortalScene gymName={gymName} onGym={close} overlay />
+      <PortalScene gymName={gymName} onGym={close} overlay storeOpen={storeOpen} />
     </div>
   );
 }

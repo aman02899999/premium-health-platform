@@ -2,6 +2,7 @@ import "server-only";
 import { pool } from "@/health/db";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
+import { shopOpen } from "@/lib/shop/server";
 import { addDays, addMonths } from "./dates";
 import { segmentTag, tagSegment, type ContactKind } from "@/lib/admin/contacts-core";
 import { allContacts, contactFacets } from "@/lib/admin/contacts";
@@ -154,6 +155,8 @@ export type Repeat = "none" | "weekly" | "monthly";
 export type CampaignRequest = { name: string; segment: string; channel: string; offer: string; link: string; subject?: string; repeat?: string };
 export type CampaignResult = { ok: true; id: string; audience: number; queued: number; skipped: { optedOut: number; recent: number; missing: number } } | { ok: false; error: string };
 
+export const SHOP_CLOSED_ERROR = "The supplement store is switched off (Coming soon), so a campaign can't link to it. Switch it on in Admin → Supplements store → Settings first.";
+
 export function validateCampaign(b: CampaignRequest): string | null {
   if (!b.name?.trim() || b.name.trim().length > 80) return "Give the campaign a name (up to 80 characters).";
   if (!isAudience(b.segment)) return "Pick who to send it to.";
@@ -227,6 +230,7 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
 export async function createCampaign(b: CampaignRequest, by: string, today: string): Promise<CampaignResult> {
   const invalid = validateCampaign(b);
   if (invalid) return { ok: false, error: invalid };
+  if (b.link === "shop" && !(await shopOpen())) return { ok: false, error: SHOP_CLOSED_ERROR };
   const channel = b.channel as "whatsapp" | "email";
   const repeat = (b.repeat ?? "none") as Repeat;
   const offer = channel === "whatsapp" ? offerText(b.offer) : b.offer.trim().slice(0, 1000);
@@ -247,7 +251,10 @@ export async function runRecurringCampaigns(today: string): Promise<{ runs: numb
     [today],
   );
   let queued = 0;
+  const storeOpen = await shopOpen();
   for (const c of rows) {
+    // A repeating shop campaign waits (next_run unchanged) while the store is switched off.
+    if (c.link === "shop" && !storeOpen) continue;
     const r = await queueRun(c, today, today);
     queued += r.queued;
     await pool.query(`update public.campaigns set next_run = $2, queued = queued + $3 where id = $1`, [c.id, nextRun(c.repeat, today), r.queued]);

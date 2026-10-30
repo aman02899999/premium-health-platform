@@ -8,7 +8,8 @@ import { MEDICAL_NOTE, feedSaleItem, priceLine, saleCta, saleHook, type SaleItem
 import type { Draft } from "./messages";
 import { keywordsFor, socialCaption, tipIntro, type CaptionInput } from "./captions";
 
-export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string; address?: string };
+/** `shopOpen`: the supplement store's admin switch; supplement tips link to it only while it's on. */
+export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string; address?: string; shopOpen?: boolean };
 export type Channel = "whatsapp" | "instagram" | "google" | "facebook";
 export type DailyPost = {
   date: string;
@@ -264,6 +265,8 @@ const TIP_CTA: Record<Category, { path: string; cta: (b: PostBiz) => string }> =
   Recovery: { path: "/membership", cta: (b) => `Train with a coach who plans this for you: ${b.phone}` },
   Supplements: { path: "/shop", cta: () => "Genuine supplements, explained honestly: Royal Supplements Store" },
 };
+/** Supplement tips while the store is switched off ("Coming soon"): send people to the coach instead. */
+const SUPPLEMENTS_CLOSED_CTA = { path: "/contact", cta: (b: PostBiz) => `Not sure which supplement you need? Ask ${b.coach} before you buy: ${b.phone}` };
 const MEDICAL = new Set<Category>(["Health & diet", "Women's health"]);
 
 /** The post for an IST date ("YYYY-MM-DD"). The same date always gives the same post. */
@@ -278,8 +281,9 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
   if (slot.kind === "tip") {
     const t = slot.tip;
     ({ theme, category } = t);
-    ({ path } = TIP_CTA[t.category]);
-    cta = TIP_CTA[t.category].cta(biz);
+    const tipCta = t.category === "Supplements" && !biz.shopOpen ? SUPPLEMENTS_CLOSED_CTA : TIP_CTA[t.category];
+    ({ path } = tipCta);
+    cta = tipCta.cta(biz);
     hook = t.hook;
     points = [...t.points];
     takeaway = t.takeaway;

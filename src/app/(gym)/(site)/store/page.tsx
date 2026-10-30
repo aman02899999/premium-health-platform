@@ -7,9 +7,12 @@ import { whatsappHref } from "@/lib/site";
 import { STORE_PRODUCTS } from "@/lib/store/supplements";
 import { PageHero } from "@/components/ui/Section";
 import { StoreGrid } from "@/components/store/StoreGrid";
+import { StoreComingSoon } from "@/components/store/StoreComingSoon";
+import { shopOpen } from "@/lib/shop/server";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
+  if (!(await shopOpen())) return { ...pageMeta(c, { title: "Supplement Store — Coming Soon", description: `The ${c.business.name} supplement store is coming soon.`, path: "/store" }), robots: { index: false, follow: false } };
   return pageMeta(c, {
     title: "Supplement Store — Whey, Creatine & Gym Gear Picked by Our Coaches",
     description: `Whey protein, creatine, peanut butter and gym gear recommended by the coaches at ${c.business.name}. Genuine brands, live prices on Amazon, no steroids or banned substances.`,
@@ -26,6 +29,8 @@ const PROMISES = [
 
 export default async function StorePage() {
   const c = await getContent();
+  // Switched off with the main store (Admin → Supplements store → Settings): one switch for both.
+  if (!(await shopOpen())) return <StoreComingSoon whatsapp={whatsappHref(c.business, `Hi ${c.business.name}, which supplements should I take for my goal?`)} />;
   const picks = STORE_PRODUCTS.filter((p) => p.pick).length;
   return (
     <>

@@ -4,7 +4,7 @@ import { isDbConfigured } from "@/health/db";
 import { emailConfigured } from "@/lib/growth/providers";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { suggestCombo } from "@/lib/shop/pricing";
-import { expireShop } from "@/lib/shop/server";
+import { expireShop, expireStoreLinks } from "@/lib/shop/server";
 import {
   deleteCategory, deleteCombo, deletePost, deleteProduct, listOrders, listPosts, loadCatalog, saveCategory, saveCombo, savePost, saveProduct, saveSettings, updateOrder,
 } from "@/lib/shop/store";
@@ -102,6 +102,7 @@ export async function POST(req: Request) {
         const s = parseSettings(b);
         if (typeof s === "string") return bad(s);
         await saveSettings(s);
+        expireStoreLinks();
         return done();
       }
       case "delete": {
