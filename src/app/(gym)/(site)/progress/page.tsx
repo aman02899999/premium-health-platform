@@ -4,6 +4,7 @@ import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { ProgressTracker } from "@/components/hub/ProgressTracker";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { NextStep } from "@/components/app/NextStep";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -21,6 +22,7 @@ export default function ProgressPage() {
       <PageHero eyebrow="Progress tracker" title="See your" highlight="transformation" intro="Log weekly check-ins and watch the trend. Waist often drops even when the scale doesn't." />
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <ProgressTracker />
+        <NextStep kind="progress" />
       </section>
     </>
   );
