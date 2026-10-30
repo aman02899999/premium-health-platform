@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isAdmin } from "@/lib/auth";
+import { adminIdentity, isAdmin, isManager } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { emailConfigured } from "@/lib/growth/providers";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
@@ -11,6 +11,8 @@ import {
 import { parseCategory, parseCombo, parsePost, parseProduct, parseSettings } from "@/lib/shop/validate";
 import { parseScan } from "@/lib/shop/scan-code";
 import { STOCK_REASONS, applyCount, changeStock, findBarcode, linkBarcode, listBarcodes, listStockMoves, type StockReason } from "@/lib/shop/scanner";
+import { cancelCounterSale, createCounterSale, listCounterSales } from "@/lib/shop/counter-sales";
+import { PAYMENTS, type BillLineInput, type Payment } from "@/lib/shop/counter";
 import { openFoodFactsProvider } from "@/health/services/health/providers/openfoodfacts/provider";
 import { todayIST } from "@/lib/growth/dates";
 import type { Fulfilment } from "@/lib/shop/types";
@@ -26,12 +28,13 @@ export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return OFFLINE();
   try {
-    const [cat, posts, orders, barcodes] = await Promise.all([
+    const [cat, posts, orders, barcodes, counterSales] = await Promise.all([
       loadCatalog(false),
       listPosts(false),
       listOrders({ limit: 1000 }),
       // Before the barcode migration runs, the rest of the store admin keeps working.
       listBarcodes().catch(() => []),
+      listCounterSales(100).catch(() => []),
     ]);
     const paid = orders.filter((o) => o.status === "paid");
     const today = todayIST();
@@ -57,6 +60,7 @@ export async function GET() {
       categories: cat.categories,
       products: cat.products,
       barcodes,
+      counterSales,
       combos: cat.combos,
       posts,
       orders,
@@ -131,6 +135,35 @@ export async function POST(req: Request) {
         if (counts.some((c) => !isUuid(c?.productId))) return bad("Invalid count");
         const r = await applyCount(counts.map((c) => ({ productId: c.productId as string, qty: Number(c.qty) })), typeof b.note === "string" ? b.note : "");
         return typeof r === "string" ? bad(r) : done(r);
+      }
+      case "sale": {
+        const lines = Array.isArray(b.lines) ? (b.lines as Record<string, unknown>[]) : [];
+        if (lines.some((l) => !isUuid(l?.productId))) return bad("Invalid item");
+        if (!PAYMENTS.some((p) => p.id === b.payment)) return bad("Pick how the customer paid.");
+        const phone = typeof b.customerPhone === "string" ? b.customerPhone.replace(/\D/g, "").slice(-10) : "";
+        if (phone && !/^[6-9]\d{9}$/.test(phone)) return bad("Enter a 10-digit mobile number, or leave it empty.");
+        const sale = await createCounterSale({
+          lines: lines.map((l) => ({
+            productId: l.productId as string,
+            qty: Number(l.qty),
+            unitPrice: l.unitPrice === null || l.unitPrice === undefined || l.unitPrice === "" ? null : Number(l.unitPrice),
+            variant: typeof l.variant === "string" ? l.variant : "",
+            code: typeof l.code === "string" ? l.code : "",
+          })) satisfies BillLineInput[],
+          billDiscount: Number(b.billDiscount ?? 0),
+          payment: b.payment as Payment,
+          customerName: typeof b.customerName === "string" ? b.customerName : "",
+          customerPhone: phone,
+          note: typeof b.note === "string" ? b.note : "",
+          madeBy: await adminIdentity(),
+        });
+        return typeof sale === "string" ? bad(sale) : done({ sale });
+      }
+      case "cancel-sale": {
+        if (!(await isManager())) return NextResponse.json({ error: "Only the owner or a manager can cancel a bill." }, { status: 403 });
+        if (!isUuid(b.id)) return bad("Invalid id");
+        const sale = await cancelCounterSale(b.id, typeof b.reason === "string" ? b.reason : "");
+        return typeof sale === "string" ? bad(sale) : done({ sale });
       }
       case "moves": {
         if (b.productId !== undefined && !isUuid(b.productId)) return bad("Invalid id");
