@@ -17,7 +17,7 @@ describe.skipIf(!url)("archive on a real database", () => {
     archive = await import("./archive");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox, public.shop_categories, public.shop_posts, public.diet_clients cascade");
+    await pool.query("truncate public.archived_records, public.members, public.membership_orders, public.referral_rewards, public.leads, public.social_inbox, public.message_outbox, public.shop_categories, public.shop_posts, public.diet_clients, public.shop_products, public.shop_barcodes cascade");
   });
   afterAll(async () => {
     await pool.end();
@@ -117,5 +117,14 @@ describe.skipIf(!url)("archive on a real database", () => {
     expect((await pool.query(`select 1 from public.diet_clients`)).rowCount).toBe(0);
     const { rows } = await pool.query(`select kind, data->>'name' as name, data->'profile'->>'weight' as weight, archived_by from public.archived_records`);
     expect(rows).toEqual([{ kind: "diet-client", name: "Riya", weight: "62", archived_by: "owner@x.in" }]);
+  });
+
+  it("removing a product keeps its barcodes in the archive", async () => {
+    const shop = await import("@/lib/shop/store");
+    const { rows: [p] } = await pool.query(`insert into public.shop_products (slug, name, list_price) values ('whey-1kg', 'Whey 1 kg', 2999) returning id`);
+    await pool.query(`insert into public.shop_barcodes (code, product_id, variant) values ('8901234567890', $1, 'Chocolate')`, [p.id]);
+    expect(await shop.deleteProduct(p.id, "owner@x.in")).toBeNull();
+    const { rows } = await pool.query(`select data->>'name' as name, links->'barcodes'->0->>'code' as code, links->'barcodes'->0->>'variant' as variant from public.archived_records where kind = 'shop-product'`);
+    expect(rows).toEqual([{ name: "Whey 1 kg", code: "8901234567890", variant: "Chocolate" }]);
   });
 });

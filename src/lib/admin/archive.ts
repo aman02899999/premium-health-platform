@@ -15,6 +15,10 @@ const LINKS: Partial<Record<Kind, string>> = {
     'membership_orders', coalesce((select jsonb_agg(o.id) from public.membership_orders o where o.member_id = $1), '[]'::jsonb))`,
   lead: `jsonb_build_object(
     'social_inbox', coalesce((select jsonb_agg(s.id) from public.social_inbox s where s.lead_id = $1), '[]'::jsonb))`,
+  // Barcodes go with the product (on delete cascade), so they are kept here; stock history stays
+  // in shop_stock_moves with the product's name.
+  "shop-product": `jsonb_build_object(
+    'barcodes', coalesce((select jsonb_agg(to_jsonb(b)) from public.shop_barcodes b where b.product_id = $1), '[]'::jsonb))`,
 };
 const TABLE: Record<Kind, string> = {
   member: "public.members",
