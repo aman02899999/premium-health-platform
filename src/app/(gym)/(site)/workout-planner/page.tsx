@@ -4,6 +4,7 @@ import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { WorkoutPlanner } from "@/components/hub/WorkoutPlanner";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { NextStep } from "@/components/app/NextStep";
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();
@@ -22,6 +23,7 @@ export default async function PlannerPage() {
       <PageHero eyebrow="Workout planner" title="Your plan," highlight="in seconds" intro="Choose your goal, days and experience. Tweak sets and reps, then save, print or share it." />
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <WorkoutPlanner gymName={c.business.name} />
+        <NextStep kind="workout" />
       </section>
     </>
   );

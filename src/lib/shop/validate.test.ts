@@ -31,6 +31,14 @@ describe("admin input", () => {
     expect(parseSettings({ ...DEFAULT_SETTINGS, fssaiLicence: "1234 5678 9012 34", gstin: "09abcde1234f1z5" })).toMatchObject({ fssaiLicence: "12345678901234", gstin: "09ABCDE1234F1Z5" });
     expect(parseSettings({ ...DEFAULT_SETTINGS, shippingFee: "x" })).toMatch(/whole rupees/);
   });
+  it("settings: the store stays closed unless the admin switch is explicitly on", () => {
+    expect(DEFAULT_SETTINGS.storeOpen).toBe(false);
+    expect(parseSettings({ ...DEFAULT_SETTINGS, storeOpen: true })).toMatchObject({ storeOpen: true });
+    expect(parseSettings({ ...DEFAULT_SETTINGS, storeOpen: false })).toMatchObject({ storeOpen: false });
+    expect(parseSettings({ ...DEFAULT_SETTINGS, storeOpen: "true" })).toMatchObject({ storeOpen: false });
+    const { storeOpen: _omit, ...rest } = DEFAULT_SETTINGS;
+    expect(parseSettings(rest)).toMatchObject({ storeOpen: false });
+  });
 });
 
 describe("checkout input", () => {

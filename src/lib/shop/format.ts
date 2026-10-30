@@ -7,3 +7,6 @@ export const fitTitle = (base: string, storeName: string): string | { absolute: 
 
 /** "FSSAI Reg. No." or "FSSAI Lic. No.": a registration must never be shown as a licence. */
 export const fssaiLabel = (type: "registration" | "licence") => (type === "licence" ? "FSSAI Lic. No." : "FSSAI Reg. No.");
+
+/** What the order and price APIs answer while the store is switched off in the admin. */
+export const STORE_CLOSED = "The Royal Supplements Store is coming soon. Orders aren't open yet — WhatsApp us if you need help with supplements.";

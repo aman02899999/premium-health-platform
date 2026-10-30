@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CONTENT } from "./defaults";
 import { applyOffer, OFFERS } from "@/lib/offers";
-import { basePlan, perMonth, planFaqs, planFeatures, planMonths, planSummary, savingPct } from "./plans";
+import { basePlan, perMonth, planBestFor, planFaqs, planFeatures, planIncludes, planMonths, planSummary, savingPct } from "./plans";
 
 const plans = DEFAULT_CONTENT.plans;
 
@@ -72,5 +72,27 @@ describe("planFaqs", () => {
     expect(faqs[0].a).toContain("5:30 AM");
     expect(faqs[1].a).toContain("non-refundable, whether you join at the gym or book online");
     expect(faqs[1].a).not.toContain("7 days");
+  });
+});
+
+describe("planIncludes", () => {
+  it("splits the inherited plan from the perks a plan adds", () => {
+    const quarterly = plans.find((p) => p.id === "quarterly")!;
+    expect(planIncludes(quarterly)).toEqual({ parent: "Monthly", adds: ["Basic diet guidance", "Progress check-ins"] });
+  });
+
+  it("has no parent for the entry plan", () => {
+    const monthly = plans.find((p) => p.id === "monthly")!;
+    expect(planIncludes(monthly).parent).toBeNull();
+    expect(planIncludes(monthly).adds).toContain("Full gym floor access");
+  });
+});
+
+describe("planBestFor", () => {
+  it("describes plans by length, counting offer bonus months", () => {
+    expect(planBestFor({ ...plans[0], duration: "1 month + 5 days" })).toBe("Try the gym first");
+    expect(planBestFor({ ...plans[0], duration: "3 months" })).toBe("First fat-loss or strength block");
+    expect(planBestFor({ ...plans[0], duration: "6 months + 20 days" })).toBe("See real change in shape");
+    expect(planBestFor({ ...plans[0], duration: "12 months + 2 months" })).toBe("Best value for the year");
   });
 });

@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
-import { ChevronRight, Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
+import { ChevronRight, Droplet, Dumbbell, Loader2, Salad, Trash2, Trophy } from "lucide-react";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { SignInOptions, SignOutButton } from "./AuthButtons";
+import { foodCount } from "@/lib/member-data";
 
 const ITEMS = [
   { key: "rfc-plan", label: "Saved workout plan", href: "/workout-planner", icon: Dumbbell },
@@ -18,9 +19,12 @@ const ITEMS = [
 type Row = { key: string; value: unknown; updated_at: string };
 
 function describe(key: string, value: unknown) {
+  if (key === "rfc-food-log") {
+    const n = foodCount(value);
+    return `${n} food${n === 1 ? "" : "s"} logged`;
+  }
   if (!Array.isArray(value)) return "Saved";
   if (key === "rfc-plan") return `${value.length}-day plan`;
-  if (key === "rfc-food-log") return `${value.length} food${value.length === 1 ? "" : "s"} logged`;
   return `${value.length} check-in${value.length === 1 ? "" : "s"}`;
 }
 
@@ -88,6 +92,17 @@ export function AccountClient() {
         <span className="flex-1">
           <span className="block font-display text-xl text-white">My diet &amp; workout plans</span>
           <span className="text-sm text-white/60">Download your plans and ask for your next update</span>
+        </span>
+        <ChevronRight className="h-5 w-5 text-white/40" />
+      </Link>
+
+      <Link href="/account/blood-report" className="glass brand-border flex items-center gap-4 rounded-3xl p-5 hover:ring-1 hover:ring-brand/60">
+        <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/20">
+          <Droplet className="h-6 w-6 text-brand" />
+        </span>
+        <span className="flex-1">
+          <span className="block font-display text-xl text-white">Blood report analyser</span>
+          <span className="text-sm text-white/60">For members: what each number on your blood test means, in plain words</span>
         </span>
         <ChevronRight className="h-5 w-5 text-white/40" />
       </Link>

@@ -16,3 +16,20 @@ export async function coverDataUrl(publicPath: string | null, width = 480): Prom
     return null;
   }
 }
+
+/**
+ * A coach photo from public/gallery, cropped to width × height (attention-based, so the person
+ * stays in frame), as a JPEG data URL for Satori. Null when the file is missing or not listed.
+ */
+export async function galleryDataUrl(file: string, width: number, height: number): Promise<string | null> {
+  if (!/^[a-z0-9-]+\.webp$/.test(file)) return null;
+  try {
+    const jpg = await sharp(await readFile(join(process.cwd(), "public/gallery", file)))
+      .resize({ width, height, fit: "cover", position: sharp.strategy.attention })
+      .jpeg({ quality: 82 })
+      .toBuffer();
+    return `data:image/jpeg;base64,${jpg.toString("base64")}`;
+  } catch {
+    return null;
+  }
+}

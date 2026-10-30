@@ -6,8 +6,10 @@ import { DIET_PLANS, REFERRER_BONUS_DAYS } from "./config";
 import { TIPS, type Category, type Tip } from "./content-library";
 import { MEDICAL_NOTE, feedSaleItem, priceLine, saleCta, saleHook, type SaleItem } from "./sales-catalog";
 import type { Draft } from "./messages";
+import { keywordsFor, socialCaption, tipIntro, type CaptionInput } from "./captions";
 
-export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string; address?: string };
+/** `shopOpen`: the supplement store's admin switch; supplement tips link to it only while it's on. */
+export type PostBiz = { name: string; phone: string; siteUrl: string; coach: string; membershipFrom?: number; area?: string; address?: string; shopOpen?: boolean };
 export type Channel = "whatsapp" | "instagram" | "google" | "facebook";
 export type DailyPost = {
   date: string;
@@ -248,7 +250,7 @@ function slotFor(date: string): Slot {
   const weekday = ((d % 7) + 7) % 7;
   const week = Math.floor(d / 7);
   if (weekday === OFFER_DAY) return { kind: "offer", idea: IDEAS[((week % IDEAS.length) + IDEAS.length) % IDEAS.length] };
-  if (weekday === SHOP_DAY) return { kind: "shop", item: feedSaleItem(week), n: week };
+  if (weekday === SHOP_DAY) return { kind: "shop", item: feedSaleItem(week, date), n: week };
   const i = ((d % CALENDAR_DAYS) + CALENDAR_DAYS) % CALENDAR_DAYS;
   return { kind: "tip", tip: ORDERED[tipDaysBefore(i) % ORDERED.length] };
 }
@@ -263,6 +265,8 @@ const TIP_CTA: Record<Category, { path: string; cta: (b: PostBiz) => string }> =
   Recovery: { path: "/membership", cta: (b) => `Train with a coach who plans this for you: ${b.phone}` },
   Supplements: { path: "/shop", cta: () => "Genuine supplements, explained honestly: Royal Supplements Store" },
 };
+/** Supplement tips while the store is switched off ("Coming soon"): send people to the coach instead. */
+const SUPPLEMENTS_CLOSED_CTA = { path: "/contact", cta: (b: PostBiz) => `Not sure which supplement you need? Ask ${b.coach} before you buy: ${b.phone}` };
 const MEDICAL = new Set<Category>(["Health & diet", "Women's health"]);
 
 /** The post for an IST date ("YYYY-MM-DD"). The same date always gives the same post. */
@@ -271,13 +275,15 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
   const sign = [`— ${biz.coach}, ${biz.name}`, biz.address ? `📍 ${biz.address}` : "", `📞 ${biz.phone}`].filter(Boolean).join("\n");
   let theme: string, path: string, visual: string, hook: string, cta: string, tagList: string[], points: string[], takeaway: string, category: DailyPost["category"];
   let bodyText: string;
+  let social: Omit<CaptionInput, "hook" | "cta" | "link" | "keywords" | "tags">;
   let cover: string | null = null;
   let medical = false;
   if (slot.kind === "tip") {
     const t = slot.tip;
     ({ theme, category } = t);
-    ({ path } = TIP_CTA[t.category]);
-    cta = TIP_CTA[t.category].cta(biz);
+    const tipCta = t.category === "Supplements" && !biz.shopOpen ? SUPPLEMENTS_CLOSED_CTA : TIP_CTA[t.category];
+    ({ path } = tipCta);
+    cta = tipCta.cta(biz);
     hook = t.hook;
     points = [...t.points];
     takeaway = t.takeaway;
@@ -285,6 +291,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     medical = MEDICAL.has(t.category);
     visual = "Auto-generated tip card (1080×1350) with the three points.";
     bodyText = `${points.map((p) => `✅ ${p}`).join("\n")}\n\n💡 ${takeaway}${MEDICAL.has(t.category) ? "\n\nGeneral information, not medical advice. Keep taking the medicines your doctor prescribed." : ""}`;
+    social = { description: tipIntro(t.category), points, takeaway, medicalNote: medical ? "General information, not medical advice. Keep taking the medicines your doctor prescribed." : undefined };
   } else if (slot.kind === "shop") {
     const it = slot.item;
     theme = it.title;
@@ -299,6 +306,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     cover = it.cover;
     medical = it.medical;
     bodyText = `${it.title}: ${it.subtitle}\n\n${points.map((p) => `✅ ${p}`).join("\n")}\n\n💰 ${takeaway}${it.medical ? `\n\n${MEDICAL_NOTE}` : ""}`;
+    social = { description: `${it.title}: ${it.subtitle}`, points, takeaway: `Price: ${takeaway}`, medicalNote: it.medical ? MEDICAL_NOTE : undefined };
   } else {
     const idea = slot.idea;
     const built = idea.build(biz);
@@ -310,6 +318,7 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     takeaway = "";
     category = "Offer";
     bodyText = built.body;
+    social = { description: built.body };
   }
   const links = {
     whatsapp: trackedLink(biz.siteUrl, path, "whatsapp", date),
@@ -317,16 +326,17 @@ export function dailyPost(date: string, biz: PostBiz): DailyPost {
     google: trackedLink(biz.siteUrl, path, "google", date),
     facebook: trackedLink(biz.siteUrl, path, "facebook", date),
   };
-  const tags = ["RoyalFitnessClub", "CoachAman", ...tagList, "NoidaFitness"].map((t) => `#${t}`).join(" ");
+  // Instagram and Facebook: the shared caption format (description, CTA, keywords, hashtags).
+  const caption = (channel: "instagram" | "facebook") => socialCaption({ ...social, hook, cta, link: links.facebook, keywords: keywordsFor(category), tags: tagList }, biz, channel);
   return {
     date,
     theme,
     title: hook,
     whatsapp: `*${hook}*\n\n${bodyText}\n\n👉 ${cta}\n${links.whatsapp}\n\n${sign}`,
-    // Instagram captions can't hold clickable links: point to the bio link instead.
-    instagram: `${hook}\n\n${bodyText}\n\n${cta} — link in bio.\n\n${sign}\n\n${tags}`,
+    // Instagram captions can't hold clickable links: they point to the bio link instead.
+    instagram: caption("instagram"),
     google: `${hook} ${slot.kind === "tip" ? `${points.join(" ")} ${takeaway}` : bodyText} ${cta}. ${links.google}`,
-    facebook: `${hook}\n\n${bodyText}\n\n👉 ${cta}: ${links.facebook}\n\n${sign}\n\n${tags}`,
+    facebook: caption("facebook"),
     path,
     links,
     visual,

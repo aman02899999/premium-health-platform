@@ -5,8 +5,10 @@ import { applyOffer } from "@/lib/offers";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "@/lib/growth/dates";
 import { insertLead } from "@/lib/growth/leads";
-import { dailyPost, type PostBiz } from "@/lib/growth/daily-posts";
+import { dailyPost, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import { storyItem } from "@/lib/growth/sales-catalog";
+import { cardPost, monthDay, reelPhoto, secondReelPost, type FeedSlot } from "@/lib/growth/month-plan";
+import { daysBetween } from "@/lib/growth/dates";
 import { buildReply, detectIntent, forInstagram, shouldReply, type Intent, type ReplyCtx } from "./auto-reply";
 import { indianMobile, type Inbound } from "./inbound";
 import { addDays } from "@/lib/growth/dates";
@@ -28,7 +30,7 @@ import {
   sendWhatsAppText,
   whatsappReplyConfigured,
 } from "./meta";
-import { renderReel } from "./reel";
+import { renderReel, renderReelPost } from "./reel";
 import { TRIAL_OFFER_MARK, flowAction, flowReply, logText, toInteractive, type FlowAction } from "./wa-flow";
 import { chatThread, recordReply } from "./chat";
 import { chatAlertEmail } from "./chat-window";
@@ -78,6 +80,20 @@ async function ensureLead(m: Inbound, intent: Intent, afterOffer = false): Promi
 
 /** Records one inbound message or comment and answers it if the rules say so. Duplicates are ignored. */
 export async function handleInbound(m: Inbound): Promise<"duplicate" | "replied" | "logged" | "failed"> {
+  const res = await recordAndAnswer(m);
+  // An Instagram or Facebook DM the bot didn't answer needs a person, and they don't show in the
+  // admin Chats (WhatsApp only): email the coach, who answers in the app. Comments stay in the bell.
+  if ((res === "logged" || res === "failed") && m.channel !== "whatsapp" && m.kind === "message") {
+    const coach = process.env.COACH_EMAIL;
+    if (coach)
+      await enqueue([chatAlertEmail({ peer: m.from, name: m.fromName, text: m.text, channel: m.channel }, coach, `${SITE_URL}/admin/chats`)])
+        .then((n) => (n ? dispatch(3) : null))
+        .catch((err: Error) => console.error("[social] DM alert:", err.message));
+  }
+  return res;
+}
+
+async function recordAndAnswer(m: Inbound): Promise<"duplicate" | "replied" | "logged" | "failed"> {
   const intent = detectIntent(m.text);
   const ins = await pool.query(
     `insert into public.social_inbox (id, channel, kind, from_id, from_name, body, intent, media_type, media_id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9) on conflict (id) do nothing`,
@@ -230,7 +246,8 @@ export const postImageUrl = (date: string) => `${SITE_URL}/api/social/post-image
 export const storyImageUrl = (date: string) => `${SITE_URL}/api/social/story-image/${date}.jpg`;
 
 /** Claims today's post for a channel (or a failed one to retry); null when it's already done. */
-async function claimPost(channel: "instagram" | "facebook" | "instagram-story", date: string, theme: string): Promise<string | null> {
+type PostChannel = "instagram" | "facebook" | "instagram-story" | `${"instagram" | "facebook"}-${FeedSlot | "reel2"}`;
+async function claimPost(channel: PostChannel, date: string, theme: string): Promise<string | null> {
   const { rows } = await pool.query<{ id: string }>(
     `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
      on conflict (channel, post_date) do update set status = 'pending', error = null, created_at = now()
@@ -324,6 +341,89 @@ export async function runReels(now = new Date(), biz: PostBiz, deps: ReelDeps = 
   const [instagram, facebook] = await Promise.all([
     publish(igId, ig, (u) => publishInstagramReel(u, post.instagram), () => publishInstagramPhoto(postImageUrl(today), post.instagram), "instagram"),
     publish(fbId, fb, (u) => publishFacebookReel(u, post.facebook), () => publishFacebookPhoto(postImageUrl(today), post.facebook), "facebook"),
+  ]);
+  return { reel, instagram, facebook };
+}
+
+/** The month plan's extra posts can be switched off without a deploy: SOCIAL_MONTH_PLAN=off. */
+export const monthPlanOn = () => process.env.SOCIAL_MONTH_PLAN !== "off";
+export const cardImageUrl = (date: string, slot: FeedSlot) => `${SITE_URL}/api/social/card/${date}-${slot}.jpg`;
+
+type ChannelResult = "off" | "already-posted" | "published" | `failed: ${string}`;
+
+/**
+ * One of the month plan's cheat-sheet posts (morning "am" or afternoon "pm") on Instagram and the
+ * Facebook Page. Only inside the plan's dates. Safe to run again: done channels are skipped, failed
+ * ones retried.
+ */
+export async function runMonthPost(slot: FeedSlot, now = new Date(), biz: PostBiz): Promise<{ instagram: ChannelResult | "not-scheduled"; facebook: ChannelResult | "not-scheduled" }> {
+  const today = todayIST(now);
+  if (!monthPlanOn() || monthDay(today) === null) return { instagram: "not-scheduled", facebook: "not-scheduled" };
+  const post = cardPost(today, slot, biz, (await getContent()).offers ?? []);
+  if (!post) return { instagram: "not-scheduled", facebook: "not-scheduled" };
+  const image = cardImageUrl(today, slot);
+  const one = async (on: boolean, channel: PostChannel, send: () => ReturnType<typeof publishInstagramPhoto>): Promise<ChannelResult> => {
+    if (!on) return "off";
+    const id = await claimPost(channel, today, post.theme);
+    if (!id) return "already-posted";
+    const res = await send();
+    await recordPost(id, res);
+    if (!res.ok) console.error(`[month-plan] ${channel} failed:`, res.error);
+    return res.ok ? "published" : `failed: ${res.error.slice(0, 160)}`;
+  };
+  const [instagram, facebook] = await Promise.all([
+    one(instagramConfigured(), `instagram-${slot}`, () => publishInstagramPhoto(image, post.instagram)),
+    one(facebookConfigured(), `facebook-${slot}`, () => publishFacebookPhoto(image, post.facebook)),
+  ]);
+  return { instagram, facebook };
+}
+
+type SecondReelDeps = {
+  render: (post: DailyPost, seed: number, photo: string | null, biz: PostBiz) => Promise<Buffer>;
+  upload: ReelDeps["upload"];
+  remove: ReelDeps["remove"];
+};
+const SECOND_REEL_DEPS: SecondReelDeps = { render: renderReelPost, upload: putPublicMedia, remove: removePublicMedia };
+
+/**
+ * The month plan's second Reel of the day (a different tip, the coach's photo on the opening and
+ * closing screens, another music track). No photo fallback: a failed one is retried by the next run.
+ */
+export async function runSecondReel(now = new Date(), biz: PostBiz, deps: SecondReelDeps = SECOND_REEL_DEPS): Promise<{ reel: string; instagram: ChannelResult | "not-scheduled"; facebook: ChannelResult | "not-scheduled" }> {
+  const today = todayIST(now);
+  const post = monthPlanOn() ? secondReelPost(today, biz) : null;
+  if (!post) return { reel: "not-scheduled", instagram: "not-scheduled", facebook: "not-scheduled" };
+  const ig = instagramConfigured();
+  const fb = facebookConfigured();
+  const igId = ig ? await claimPost("instagram-reel2", today, post.theme) : null;
+  const fbId = fb ? await claimPost("facebook-reel2", today, post.theme) : null;
+  const skip = (on: boolean): ChannelResult => (on ? "already-posted" : "off");
+  if (!igId && !fbId) return { reel: ig || fb ? "already-posted" : "off", instagram: skip(ig), facebook: skip(fb) };
+
+  let videoUrl: string | null = null;
+  let reel = "rendered";
+  if (!mediaStorageConfigured() && deps === SECOND_REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
+  else {
+    try {
+      // A different seed from the evening Reel, so the two Reels of a day get different tracks.
+      const seed = daysBetween("2026-01-01", today) + 1;
+      videoUrl = await deps.upload(`reels/${today}-2.mp4`, await deps.render(post, seed, reelPhoto(today), biz), "video/mp4");
+      await deps.remove(`reels/${addDays(today, -30)}-2.mp4`).catch(() => {});
+    } catch (err) {
+      reel = `failed: ${(err as Error).message.slice(0, 200)}`;
+      console.error("[month-plan] reel render/upload failed:", (err as Error).message);
+    }
+  }
+  const one = async (id: string | null, on: boolean, send: (url: string) => ReturnType<typeof publishInstagramReel>): Promise<ChannelResult> => {
+    if (!on) return "off";
+    if (!id) return "already-posted";
+    const res: Awaited<ReturnType<typeof publishInstagramReel>> = videoUrl ? await send(videoUrl) : { ok: false, error: `No video (${reel})`, retry: true };
+    await recordPost(id, res);
+    return res.ok ? "published" : `failed: ${res.error.slice(0, 160)}`;
+  };
+  const [instagram, facebook] = await Promise.all([
+    one(igId, ig, (u) => publishInstagramReel(u, post.instagram)),
+    one(fbId, fb, (u) => publishFacebookReel(u, post.facebook)),
   ]);
   return { reel, instagram, facebook };
 }

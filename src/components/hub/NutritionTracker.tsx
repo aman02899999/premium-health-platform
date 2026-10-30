@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Minus, Plus, Search, Trash2 } from "lucide-react";
+import { Check, Minus, Plus, Search, Trash2 } from "lucide-react";
 import { CATEGORY_LABEL, FOODS, foodById, totals, type Diet, type FoodCategory, type Portion } from "@/lib/fitness/foods";
+import { todayIST } from "@/lib/growth/dates";
+import { foodLogFor, type FoodDay } from "@/lib/member-data";
 import { useStored } from "./useStored";
 
 const DIET_BADGE: Record<Diet, string> = { veg: "bg-emerald-500", egg: "bg-amber-400", nonveg: "bg-red-500" };
@@ -26,7 +28,11 @@ function Ring({ value, target, label, unit, color }: { value: number; target: nu
 }
 
 export function NutritionTracker() {
-  const [log, setLog] = useStored<Portion[]>("rfc-food-log", []);
+  // One day's list: a new day (India time) starts empty instead of adding to yesterday's.
+  const [saved, setSaved] = useStored<FoodDay | Portion[] | null>("rfc-food-log", null);
+  const today = todayIST();
+  const log = foodLogFor(saved, today).items;
+  const setLog = (fn: (items: Portion[]) => Portion[]) => setSaved((s) => ({ date: today, items: fn(foodLogFor(s, today).items) }));
   const [target, setTarget] = useStored("rfc-food-target", { kcal: 2000, protein: 100 });
   const [q, setQ] = useState("");
   const [cat, setCat] = useState<FoodCategory | "all">("all");
@@ -40,8 +46,12 @@ export function NutritionTracker() {
     );
   }, [q, cat, sort]);
 
-  const add = (id: string) =>
+  const [added, setAdded] = useState<string | null>(null);
+  const add = (id: string) => {
     setLog((l) => (l.some((p) => p.id === id) ? l.map((p) => (p.id === id ? { ...p, qty: p.qty + 1 } : p)) : [...l, { id, qty: 1 }]));
+    setAdded(id);
+    setTimeout(() => setAdded((a) => (a === id ? null : a)), 1200);
+  };
   const bump = (id: string, d: number) => setLog((l) => l.map((p) => (p.id === id ? { ...p, qty: Math.max(0.5, p.qty + d) } : p)));
 
   return (
@@ -67,7 +77,29 @@ export function NutritionTracker() {
             <option value="name">A–Z</option>
           </select>
         </div>
-        <div className="glass overflow-x-auto rounded-3xl">
+        {/* Phones: one readable row per food instead of a seven-column table. */}
+        <ul className="glass divide-y divide-white/5 rounded-3xl sm:hidden">
+          {foods.map((f) => (
+            <li key={f.id} className="flex items-center gap-3 px-4 py-3">
+              <span className={`h-2.5 w-2.5 shrink-0 rounded-sm ${DIET_BADGE[f.diet]}`} title={f.diet} />
+              <span className="min-w-0 flex-1">
+                <span className="block font-medium text-white">{f.name}</span>
+                <span className="block text-xs text-white/55">
+                  {f.serving} · {f.kcal} kcal · <b className="font-semibold text-brand">{f.protein}g protein</b>
+                </span>
+              </span>
+              <button
+                type="button"
+                onClick={() => add(f.id)}
+                className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${added === f.id ? "bg-emerald-500 text-ink" : "bg-brand/15 text-brand active:bg-brand active:text-white"}`}
+                aria-label={`Add ${f.name}`}
+              >
+                {added === f.id ? <Check className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className="glass hidden overflow-x-auto rounded-3xl sm:block">
           <table className="w-full text-sm">
             <thead className="text-left text-[11px] uppercase tracking-wider text-brand">
               <tr>
@@ -95,8 +127,8 @@ export function NutritionTracker() {
                   <td className="px-2 text-right text-white/70">{f.carbs}g</td>
                   <td className="px-2 text-right text-white/70">{f.fat}g</td>
                   <td className="px-4 text-right">
-                    <button type="button" onClick={() => add(f.id)} className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand/15 text-brand hover:bg-brand hover:text-white" aria-label={`Add ${f.name}`}>
-                      <Plus className="h-4 w-4" />
+                    <button type="button" onClick={() => add(f.id)} className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${added === f.id ? "bg-emerald-500 text-ink" : "bg-brand/15 text-brand hover:bg-brand hover:text-white"}`} aria-label={`Add ${f.name}`}>
+                      {added === f.id ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                     </button>
                   </td>
                 </tr>
@@ -107,7 +139,7 @@ export function NutritionTracker() {
         <p className="mt-3 text-xs text-white/45">Approximate values for typical home recipes (IFCT/USDA based). Green = veg, yellow = egg, red = non-veg.</p>
       </div>
 
-      <aside className="glass brand-border h-fit rounded-3xl p-6 lg:sticky lg:top-28">
+      <aside className="glass brand-border order-first h-fit rounded-3xl p-6 lg:sticky lg:top-28 lg:order-last">
         <h2 className="font-display text-2xl text-white">Today&apos;s log</h2>
         <div className="mt-5 grid grid-cols-2 gap-2">
           <Ring value={t.kcal} target={target.kcal} label="Calories" unit="" color="#e8394b" />
@@ -136,12 +168,12 @@ export function NutritionTracker() {
           </label>
         </div>
         <ul className="mt-5 max-h-72 space-y-2 overflow-y-auto">
-          {log.length === 0 && <li className="text-sm text-white/50">Tap + on any food to log it.</li>}
+          {log.length === 0 && <li className="text-sm text-white/60">Nothing logged yet today. Tap + on any food to add it.</li>}
           {log.map((p) => {
             const food = foodById(p.id);
             if (!food) return null;
             return (
-              <li key={p.id} className="flex items-center gap-2 rounded-xl bg-black/30 px-3 py-2 text-sm">
+              <li key={p.id} className={`flex items-center gap-2 rounded-xl bg-black/30 px-3 py-2 text-sm ${added === p.id ? "log-pop" : ""}`}>
                 <span className="flex-1 text-white">
                   {food.name}
                   <span className="block text-xs text-white/45">
@@ -163,11 +195,11 @@ export function NutritionTracker() {
           })}
         </ul>
         {log.length > 0 && (
-          <button type="button" onClick={() => setLog([])} className="mt-4 text-xs text-white/50 underline">
+          <button type="button" onClick={() => setLog(() => [])} className="mt-4 text-xs text-white/50 underline">
             Clear day
           </button>
         )}
-        <p className="mt-4 text-[11px] text-white/40">Saved only in this browser.</p>
+        <p className="mt-4 text-[11px] text-white/40">Starts fresh each day. Saved on this device, and to your account when you&apos;re signed in.</p>
       </aside>
     </div>
   );

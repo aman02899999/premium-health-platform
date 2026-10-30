@@ -57,7 +57,8 @@ function useTilt<T extends HTMLElement>() {
  * Guide and the supplement store. `onGym` lets the homepage overlay simply close instead of navigating.
  */
 /** `overlay` renders the title as an h2: the overlay sits on top of the home page, which has its own h1. */
-export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () => void; gymName: string; overlay?: boolean }) {
+/** `storeOpen` false (the admin switch) leaves the supplement store's card out. */
+export function PortalScene({ onGym, gymName, overlay = false, storeOpen }: { onGym?: () => void; gymName: string; overlay?: boolean; storeOpen: boolean }) {
   const Title = overlay ? "h2" : "h1";
   const gymRef = useTilt<HTMLAnchorElement>();
   const healthRef = useTilt<HTMLAnchorElement>();
@@ -72,13 +73,13 @@ export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () =>
       <div className="portal-orbit portal-orbit-b pointer-events-none" aria-hidden />
 
       <header className="portal-rise relative z-10 text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky">One account · three worlds</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky">One account · {storeOpen ? "three" : "two"} worlds</p>
         <Title className="font-display mt-2 text-[2rem] leading-none text-white sm:mt-3 sm:text-6xl">
           Where do you want <span className="text-brand-gradient">to go?</span>
         </Title>
       </header>
 
-      <div className="portal-cards relative z-10 mt-5 grid w-full max-w-5xl gap-3 sm:mt-14 sm:gap-6 md:grid-cols-3 md:gap-5 xl:max-w-7xl xl:gap-8">
+      <div className={`portal-cards relative z-10 mt-5 grid w-full max-w-5xl gap-3 sm:mt-14 sm:gap-6 md:gap-5 xl:gap-8 ${storeOpen ? "md:grid-cols-3 xl:max-w-7xl" : "md:grid-cols-2"}`}>
         <Link
           ref={gymRef}
           href="/"
@@ -149,6 +150,7 @@ export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () =>
           <span className="portal-glare" aria-hidden />
         </a>
 
+        {storeOpen && (
         <Link
           ref={shopRef}
           href="/shop"
@@ -180,6 +182,7 @@ export function PortalScene({ onGym, gymName, overlay = false }: { onGym?: () =>
           </span>
           <span className="portal-glare" aria-hidden />
         </Link>
+        )}
       </div>
 
       <p className="portal-rise relative z-10 mt-5 flex sm:mt-10 items-center gap-2 text-center text-xs text-white/55" style={{ animationDelay: "400ms" }}>

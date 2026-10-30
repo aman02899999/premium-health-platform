@@ -11,6 +11,6 @@ export const metadata: Metadata = { title: "Growth & renewals · Admin", robots:
 export default async function GrowthPage() {
   if (!(await isAdmin())) redirect("/admin/login");
   const [c, nb] = await Promise.all([getContent(), nurtureBusiness()]);
-  const postBiz = { name: nb.name, phone: nb.phone, siteUrl: nb.siteUrl, coach: nb.coach, membershipFrom: nb.membershipFrom, address: nb.address };
+  const postBiz = { name: nb.name, phone: nb.phone, siteUrl: nb.siteUrl, coach: nb.coach, membershipFrom: nb.membershipFrom, address: nb.address, shopOpen: nb.shopOpen };
   return <GrowthApp plans={c.plans.filter((p) => p.price > 0).map((p) => ({ name: p.name, duration: p.duration }))} gymName={c.business.name} postBiz={postBiz} />;
 }

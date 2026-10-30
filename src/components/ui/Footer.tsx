@@ -6,8 +6,10 @@ import { FOOTER_LINKS, LEGAL, formatTime, hoursDays, fullAddress, instagramHref,
 import { InstagramIcon, WhatsAppIcon } from "./BrandIcons";
 import { FullLogo } from "./Logo";
 
-export function Footer({ content }: { content: SiteContent }) {
+/** `storeOpen` false (the admin switch) drops the supplement store's link. */
+export function Footer({ content, storeOpen }: { content: SiteContent; storeOpen: boolean }) {
   const b = content.business;
+  const links = storeOpen ? FOOTER_LINKS : FOOTER_LINKS.filter((n) => n.href !== "/store");
   return (
     <footer className="relative mt-24 border-t border-white/10 bg-coal">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent" />
@@ -40,7 +42,7 @@ export function Footer({ content }: { content: SiteContent }) {
         <div>
           <h2 className="font-display mb-4 text-lg text-white">Explore</h2>
           <ul className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-sm text-white/65 lg:grid-cols-1">
-            {FOOTER_LINKS.map((n) => (
+            {links.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="inline-block py-1 hover:text-brand">
                   {n.label}

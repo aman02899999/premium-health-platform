@@ -29,7 +29,7 @@ export const LEGAL = {
   fssai: "22726926001404",
 } as const;
 
-export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }, { href: "/why-royal-fitness", label: "Why Royal Fitness" }, { href: "/reviews", label: "Reviews" }, { href: "/faq", label: "FAQ" }] as const;
+export const FOOTER_LINKS = [...NAV, { href: "/about", label: "About" }, { href: "/why-royal-fitness", label: "Why Royal Fitness" }, { href: "/reviews", label: "Reviews" }, { href: "/faq", label: "FAQ" }, { href: "/app", label: "Get the app" }] as const;
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 

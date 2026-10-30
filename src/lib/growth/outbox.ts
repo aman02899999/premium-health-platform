@@ -5,6 +5,7 @@ import { getContent } from "@/lib/content/store";
 import { emailHtml, emailText, type EmailLinks } from "./email-html";
 import { unsubscribeUrl } from "./marketing";
 import { MARKETING_KINDS, isMarketingKind, type Draft } from "./messages";
+import { NO_CONSENT_SEGMENTS } from "./audience";
 import { emailConfigured, sendEmail, whatsappConfigured, type SendResult } from "./providers";
 import { BILLING_FAILURE_CODE, waBillingGate, type BillingGate } from "./tracking-core";
 import { sendKind } from "./wa-templates";
@@ -54,12 +55,27 @@ export async function listOutbox(status: OutboxItem["status"] | "all" = "all", l
   return rows.map(fromRow);
 }
 
-/** The admin sent it by hand (click-to-chat) or decided not to send it. */
-export async function markOutbox(id: string, status: "sent" | "cancelled" | "pending", by: string): Promise<void> {
-  await pool.query(
-    `update public.message_outbox set status = $2, sent_at = case when $2 = 'sent' then now() else null end, sent_by = case when $2 = 'sent' then $3 else null end where id = $1`,
-    [id, status, by.slice(0, 200)],
+/** Why a promotion to a member from an uploaded register is not sent (they haven't agreed to offers yet). */
+const NO_OFFERS_YET = `'Member from the register: renewal reminders only until they agree to offers'`;
+
+/** A message from a campaign to a segment with no record of consent (the imported sheet). $X = NO_CONSENT_SEGMENTS. */
+const NO_CONSENT_CAMPAIGN = (key: string, param: string) =>
+  `(${key} like 'campaign:%' and exists (select 1 from public.campaigns c where c.id::text = split_part(${key}, ':', 2) and c.segment = any(${param})))`;
+export const NO_CONSENT_RESEND = "This offer went to imported contacts, and there's no record they agreed to messages, so it can't be sent again.";
+
+/**
+ * The admin sent it by hand (click-to-chat), decided not to send it, or moved it back to "To send".
+ * Returns why it wasn't changed: a message to a no-consent list never goes back in the queue.
+ */
+export async function markOutbox(id: string, status: "sent" | "cancelled" | "pending", by: string): Promise<string | null> {
+  const { rowCount } = await pool.query(
+    `update public.message_outbox o set status = $2, sent_at = case when $2 = 'sent' then now() else null end, sent_by = case when $2 = 'sent' then $3 else null end
+      where o.id = $1 and not ($2 = 'pending' and ${NO_CONSENT_CAMPAIGN("o.dedupe_key", "$4")})`,
+    [id, status, by.slice(0, 200), NO_CONSENT_SEGMENTS],
   );
+  if (rowCount) return null;
+  const { rowCount: exists } = await pool.query(`select 1 from public.message_outbox where id = $1`, [id]);
+  return exists ? NO_CONSENT_RESEND : "That message is gone. Refresh the page.";
 }
 
 /** Cancels pending messages that no longer make sense (lead joined, member renewed). */
@@ -67,7 +83,7 @@ export async function cancelPending(kindPrefix: string, refId: string): Promise<
   await pool.query(`update public.message_outbox set status = 'cancelled' where status = 'pending' and dedupe_key like $1`, [`${kindPrefix}%:${refId}%`]);
 }
 
-type Pending = { id: string; channel: "whatsapp" | "email"; to_address: string; to_name: string; kind: string; body: string; template: string | null; params: string[]; attempts: number; subject: string | null; attachment: string | null };
+type Pending = { id: string; dedupe_key: string; channel: "whatsapp" | "email"; to_address: string; to_name: string; kind: string; body: string; template: string | null; params: string[]; attempts: number; subject: string | null; attachment: string | null };
 
 /** What every email shows around the body: the footer line, quick links and the published rating. */
 async function emailContext(): Promise<{ footer: string; links: EmailLinks; trust: string }> {
@@ -239,7 +255,7 @@ export async function dispatch(
     try {
       await client.query("begin");
       const { rows } = await client.query<Pending>(
-        `select id, channel, to_address, to_name, kind, body, template, params, attempts, subject, attachment from public.message_outbox
+        `select id, dedupe_key, channel, to_address, to_name, kind, body, template, params, attempts, subject, attachment from public.message_outbox
           where status = 'pending' and channel = any($1) and attempts < 3
             and ($3 or not (channel = 'whatsapp' and kind = any($2)))
             and ($4 or not (channel = 'email' and kind like 'nurture-%'))
@@ -254,11 +270,21 @@ export async function dispatch(
         if ((marketingLeft <= 0 || emailLeft <= 0) && (await waitForRoom())) continue;
         break;
       }
+      // Never a campaign message to a list with no record of consent, however it got back in the queue.
+      if (m.dedupe_key.startsWith("campaign:")) {
+        const { rowCount } = await client.query(`select 1 where ${NO_CONSENT_CAMPAIGN("$1::text", "$2")}`, [m.dedupe_key, NO_CONSENT_SEGMENTS]);
+        if (rowCount) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = $2 where id = $1`, [m.id, NO_CONSENT_RESEND]);
+          await client.query("commit");
+          continue;
+        }
+      }
       // Promotions never go to a number that tapped "Stop promotions".
       if (m.channel === "whatsapp" && isMarketingKind(m.kind)) {
         const { rows: stop } = await client.query<{ why: string }>(
           `select 'Opted out of promotions' as why from public.whatsapp_optouts where phone = $1
-           union all select 'WhatsApp says this number can''t receive messages' from public.whatsapp_unreachable where phone = $1 limit 1`,
+           union all select 'WhatsApp says this number can''t receive messages' from public.whatsapp_unreachable where phone = $1
+           union all select ${NO_OFFERS_YET} from public.members where not offers_ok and '91' || phone = $1 limit 1`,
           [m.to_address],
         );
         if (stop[0]) {
@@ -269,9 +295,13 @@ export async function dispatch(
       }
       // Marketing email never goes to an address that hard-bounced or marked us as spam.
       if (m.channel === "email" && m.kind.startsWith("nurture-")) {
-        const { rowCount } = await client.query(`select 1 from public.email_suppressions where address = lower($1)`, [m.to_address]);
-        if (rowCount) {
-          await client.query(`update public.message_outbox set status = 'cancelled', last_error = 'Email address bounced or complained: no more marketing' where id = $1`, [m.id]);
+        const { rows: stop } = await client.query<{ why: string }>(
+          `select 'Email address bounced or complained: no more marketing' as why from public.email_suppressions where address = lower($1)
+           union all select ${NO_OFFERS_YET} from public.members where not offers_ok and lower(email) = lower($1) limit 1`,
+          [m.to_address],
+        );
+        if (stop[0]) {
+          await client.query(`update public.message_outbox set status = 'cancelled', last_error = $2 where id = $1`, [m.id, stop[0].why]);
           await client.query("commit");
           continue;
         }

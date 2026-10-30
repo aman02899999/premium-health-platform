@@ -1,0 +1,89 @@
+# Builds the Royal Fitness Android app and publishes it as a GitHub release, which the website's
+# /app page links to. The app is a Trusted Web Activity: it opens www.royalfitnesclub.in full
+# screen, so members get the same login, data and payments as the website and every website
+# deploy updates the app too. Rebuild only when the icon, name or version changes.
+#
+# Needs four repository secrets (Settings → Secrets and variables → Actions). Keep the same key
+# forever: phones refuse an update signed with a different one.
+#   ANDROID_KEYSTORE_BASE64   the .jks keystore file, base64-encoded
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+name: Android app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["android/**", ".github/workflows/android.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check signing secrets
+        env:
+          KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KS" ] || [ -z "$KS_PASS" ] || [ -z "$ALIAS" ] || [ -z "$KEY_PASS" ]; then
+            echo "::error::Signing secrets are missing. Add ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS and ANDROID_KEY_PASSWORD in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "$KS" | base64 -d > "$RUNNER_TEMP/release.jks"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Build signed APK
+        working-directory: android
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          APP_VERSION_CODE: ${{ github.run_number }}
+          APP_VERSION_NAME: 1.${{ github.run_number }}
+        run: ./gradlew --no-daemon assembleRelease
+
+      - name: Check the signature and record the key fingerprint
+        id: cert
+        run: |
+          APK=android/app/build/outputs/apk/release/app-release.apk
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          "$APKSIGNER" verify "$APK"
+          SHA=$("$APKSIGNER" verify --print-certs "$APK" | sed -n 's/.*SHA-256 digest: //p' | head -1 | sed 's/../&:/g; s/:$//' | tr a-f A-F)
+          cp "$APK" royal-fitness-club.apk
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Android app 1.${{ github.run_number }}"
+            echo "Signing key SHA-256 (goes in ANDROID_CERT_SHA256 / src/lib/app-download.ts):"
+            echo '```'
+            echo "$SHA"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # A new release per build, so older versions stay downloadable. The site links to
+      # releases/latest/download/royal-fitness-club.apk, which always points at the newest one.
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "android-v${{ github.run_number }}" royal-fitness-club.apk \
+            --title "Royal Fitness Android app 1.${{ github.run_number }}" \
+            --notes "Install on Android: open royalfitnesclub.in/app on the phone. Signing key SHA-256: ${{ steps.cert.outputs.sha }}" \
+            --latest

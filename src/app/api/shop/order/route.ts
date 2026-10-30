@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { orderNumber, parseBuyer, parseCart } from "@/lib/shop/checkout";
 import { quoteCart, withHolds } from "@/lib/shop/pricing";
-import { currentCustomer, getCatalog } from "@/lib/shop/server";
+import { STORE_CLOSED } from "@/lib/shop/format";
+import { currentCustomer, getCatalog, shopOpen } from "@/lib/shop/server";
 import { heldStock, insertOrder } from "@/lib/shop/store";
 import { attributeFromRequest } from "@/lib/attribution-store";
 import { createRazorpayOrder, razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
@@ -19,6 +20,8 @@ function rateLimited(ip: string) {
 
 // Step 1: re-price the cart on the server, save the order, open a Razorpay order for that total.
 export async function POST(req: Request) {
+  // While the store is switched off in the admin, nothing can be ordered (no order, no Razorpay order).
+  if (!(await shopOpen())) return NextResponse.json({ error: STORE_CLOSED }, { status: 503 });
   if (!razorpayConfigured()) return NextResponse.json({ error: "Online payment isn't switched on yet — please WhatsApp us to order." }, { status: 503 });
   const body = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!body) return NextResponse.json({ error: "Invalid request" }, { status: 400 });

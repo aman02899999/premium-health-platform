@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAdmin } from "@/lib/auth";
+import { isManager } from "@/lib/auth";
 import { isDbConfigured, pool } from "@/health/db";
 import { saveLead } from "@/lib/content/store";
 import { parseHealthLead } from "@/health/lib/monetization/lead-intake";
@@ -28,7 +28,7 @@ function isRateLimited(ip: string): boolean {
 
 /** The latest /health enquiries, for the health admin's monetization view. */
 export async function GET(req: NextRequest) {
-  if (!(await isAdmin())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  if (!(await isManager())) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   const { searchParams } = new URL(req.url);
   const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20", 10) || 20, 1), 100);
   if (!isDbConfigured) return NextResponse.json({ ok: true, count: 0, leads: [] });

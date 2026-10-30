@@ -40,8 +40,8 @@ export async function contactInfo(peer: string): Promise<Contact> {
         )
       : null,
     phone
-      ? pool.query<{ plan_name: string; expires_on: string; renew_token: string | null }>(
-          `select plan_name, to_char(expires_on, 'YYYY-MM-DD') as expires_on, renew_token::text from public.members where phone = $1 order by expires_on desc limit 1`,
+      ? pool.query<{ plan_name: string; expires_on: string; renew_token: string | null; offers_ok: boolean }>(
+          `select plan_name, to_char(expires_on, 'YYYY-MM-DD') as expires_on, renew_token::text, offers_ok from public.members where phone = $1 order by expires_on desc limit 1`,
           [phone],
         )
       : null,
@@ -65,7 +65,7 @@ export async function contactInfo(peer: string): Promise<Contact> {
     botPausedUntil: s?.bot_paused_until && s.bot_paused_until > new Date() ? s.bot_paused_until.toISOString() : null,
     leadId: l?.id ?? null,
     lead: l ? { status: l.status, interest: l.interest, source: l.source, createdAt: l.created_at.toISOString() } : null,
-    member: m ? { planName: m.plan_name, expiresOn: m.expires_on, active: m.expires_on >= todayIST(), renewToken: m.renew_token } : null,
+    member: m ? { planName: m.plan_name, expiresOn: m.expires_on, active: m.expires_on >= todayIST(), renewToken: m.renew_token, offersOk: m.offers_ok } : null,
     diet: (diet?.rows ?? []).map((d) => ({ plan: d.plan ?? "", status: d.status, rupees: d.amount_paise / 100, at: d.created_at.toISOString() })),
   };
 }
@@ -101,8 +101,9 @@ export async function setLeadStatus(peer: string, status: string): Promise<SendO
   return { ok: true };
 }
 
-export async function setOptOut(peer: string, optedOut: boolean): Promise<void> {
-  await setPromotionsOptOut(peerId(peer), optedOut);
+/** The desk's switch in Chats: recorded as the admin's change, not as the customer's own reply. */
+export async function setOptOut(peer: string, optedOut: boolean, by: string): Promise<void> {
+  await setPromotionsOptOut(peerId(peer), optedOut, "", by);
 }
 
 async function windowOpen(id: string) {

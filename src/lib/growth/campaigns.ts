@@ -2,10 +2,11 @@ import "server-only";
 import { pool } from "@/health/db";
 import { getContent } from "@/lib/content/store";
 import { SITE_URL } from "@/lib/site";
+import { shopOpen } from "@/lib/shop/server";
 import { addDays, addMonths } from "./dates";
-import { segmentTag, tagSegment } from "@/lib/admin/contacts-core";
+import { segmentTag, tagSegment, type ContactKind } from "@/lib/admin/contacts-core";
 import { allContacts, contactFacets } from "@/lib/admin/contacts";
-import { LINKS, campaignDraft, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
+import { LINKS, NO_CONSENT_ERROR, campaignDraft, canMarketTo, isLink, isSegment, offerText, type CampaignInput, type Contact, type LinkId, type Recipient, type SegmentId, SEGMENTS } from "./audience";
 import { TEMPLATES } from "./messages";
 import { dispatch, enqueue } from "./outbox";
 
@@ -14,7 +15,9 @@ import { dispatch, enqueue } from "./outbox";
 //   - WhatsApp promotions skip numbers that tapped "Stop promotions";
 //   - emails skip addresses that unsubscribed, hard-bounced or complained, and carry an unsubscribe link;
 //   - nobody gets more than one promotion a week, across all campaigns and automations;
-//   - each person gets a campaign once, however often it is queued.
+//   - each person gets a campaign once, however often it is queued;
+//   - imported contacts (no record of consent) never get one: not as a segment, not inside
+//     "Everyone", and not through a Contacts list unless they are also a member, lead or customer.
 
 export const PROMO_GAP_DAYS = 7;
 const MARKETING_KINDS = Object.entries(TEMPLATES)
@@ -67,6 +70,9 @@ export async function importContacts(contacts: Contact[], opts: { tag: string; s
   return plan;
 }
 
+/** Contact kinds that come with a reason to message someone: members, enquiries, buyers, opt-ins. */
+const CONSENT_KINDS: readonly ContactKind[] = ["member", "ex-member", "lead", "customer", "subscriber"];
+
 const ten = (phone: string | null) => {
   const d = (phone ?? "").replace(/\D/g, "");
   const t = d.length === 12 && d.startsWith("91") ? d.slice(2) : d.slice(-10);
@@ -75,9 +81,14 @@ const ten = (phone: string | null) => {
 
 /** Everyone in a segment, each person once (by mobile, else by email). */
 export async function recipients(segment: SegmentId | string, today: string): Promise<Recipient[]> {
-  // A list from Contacts: everyone with that tag (already one row per person).
+  // A list from Contacts: everyone with that tag (already one row per person) who has a record of
+  // agreeing to hear from the gym. Someone known only from an imported sheet, or from the sheet and
+  // a WhatsApp chat, is left out, the same as in the built-in segments.
   const tag = segmentTag(segment);
-  if (tag) return (await allContacts({ tag }, 20000, today)).map((c) => ({ name: c.name, phone: c.phone, email: c.email }));
+  if (tag)
+    return (await allContacts({ tag }, 20000, today))
+      .filter((c) => c.kinds.some((k) => CONSENT_KINDS.includes(k)))
+      .map((c) => ({ name: c.name, phone: c.phone, email: c.email }));
   const m = (where: string, params: unknown[]) => pool.query<{ name: string; phone: string; email: string | null }>(`select name, phone, email from public.members where ${where}`, params).then((r) => r.rows);
   const parts: Recipient[][] = [];
   const want = (s: SegmentId) => segment === s || segment === "everyone";
@@ -86,17 +97,29 @@ export async function recipients(segment: SegmentId | string, today: string): Pr
   if (want("ex-recent")) parts.push(await m(`expires_on < $1 and expires_on >= $2`, [today, addDays(today, -90)]));
   if (want("ex-old")) parts.push(await m(`expires_on < $1`, [addDays(today, -90)]));
   // Someone imported as a contact and later added to the member list belongs to the member segments.
-  if (want("imported"))
+  // Not part of "everyone": imported contacts can't get promotions (see NO_CONSENT_SEGMENTS).
+  if (segment === "imported")
     parts.push(
       (await pool.query<Recipient>(`select a.name, a.phone, a.email from public.audience_contacts a where a.phone is null or not exists (select 1 from public.members m where m.phone = a.phone) order by a.created_at`)).rows,
     );
+  // Enquired but never paid: not on the member list, and no paid order of any kind (a diet plan,
+  // the store, books, a membership or a payment link), matched by mobile or email.
   if (want("leads"))
     parts.push(
       (
         await pool.query<Recipient>(
-          `select l.name, l.phone, l.email from public.leads l
+          `with paid as (
+             select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10) as p, lower(email) as e from public.membership_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.diet_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.shop_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.book_orders where status = 'paid'
+             union all select right(regexp_replace(coalesce(phone, ''), '\\D', '', 'g'), 10), lower(email) from public.payment_requests where status = 'paid'
+           )
+           select l.name, l.phone, l.email from public.leads l
             where l.status in ('new', 'contacted', 'trial', 'lost')
               and not exists (select 1 from public.members mm where mm.phone = right(regexp_replace(l.phone, '\\D', '', 'g'), 10))
+              and not exists (select 1 from paid where paid.p = right(regexp_replace(l.phone, '\\D', '', 'g'), 10) and paid.p <> '')
+              and not exists (select 1 from paid where l.email is not null and paid.e = lower(l.email))
             order by l.created_at desc`,
         )
       ).rows,
@@ -116,14 +139,14 @@ export async function recipients(segment: SegmentId | string, today: string): Pr
 /** Is this something a campaign can be sent to: a built-in segment or a Contacts list ("tag:vip"). */
 export const isAudience = (s: unknown): s is string => isSegment(s) || segmentTag(s) !== null;
 
-export async function segmentCounts(today: string): Promise<{ id: string; label: string; hint: string; total: number; whatsapp: number; email: number }[]> {
+export async function segmentCounts(today: string): Promise<{ id: string; label: string; hint: string; total: number; whatsapp: number; email: number; marketable: boolean }[]> {
   // Lists from Contacts follow the built-in segments (the 12 biggest, so the page stays short).
   const tags = (await contactFacets(today).catch(() => ({ tags: [] as { tag: string; n: number }[] }))).tags.slice(0, 12);
   const all = [...SEGMENTS, ...tags.map((t) => ({ id: tagSegment(t.tag), label: `List: ${t.tag}`, hint: "Tagged in Contacts" }))];
   return Promise.all(
     all.map(async (s) => {
       const r = await recipients(s.id, today);
-      return { ...s, total: r.length, whatsapp: r.filter((x) => x.phone).length, email: r.filter((x) => x.email).length };
+      return { ...s, total: r.length, whatsapp: r.filter((x) => x.phone).length, email: r.filter((x) => x.email).length, marketable: canMarketTo(s.id) };
     }),
   );
 }
@@ -132,9 +155,12 @@ export type Repeat = "none" | "weekly" | "monthly";
 export type CampaignRequest = { name: string; segment: string; channel: string; offer: string; link: string; subject?: string; repeat?: string };
 export type CampaignResult = { ok: true; id: string; audience: number; queued: number; skipped: { optedOut: number; recent: number; missing: number } } | { ok: false; error: string };
 
+export const SHOP_CLOSED_ERROR = "The supplement store is switched off (Coming soon), so a campaign can't link to it. Switch it on in Admin → Supplements store → Settings first.";
+
 export function validateCampaign(b: CampaignRequest): string | null {
   if (!b.name?.trim() || b.name.trim().length > 80) return "Give the campaign a name (up to 80 characters).";
   if (!isAudience(b.segment)) return "Pick who to send it to.";
+  if (!canMarketTo(b.segment)) return NO_CONSENT_ERROR;
   if (b.channel !== "whatsapp" && b.channel !== "email") return "Pick WhatsApp or email.";
   if (!isLink(b.link)) return "Pick where the button goes.";
   if (b.channel === "whatsapp" && !LINKS[b.link].whatsapp) return "WhatsApp messages can't link to the supplement shop (WhatsApp commerce policy). Use email for shop offers.";
@@ -158,18 +184,25 @@ type RunCounts = { audience: number; queued: number; skipped: { optedOut: number
 async function queueRun(c: Stored, run: string | null, today: string): Promise<RunCounts> {
   // Never send a WhatsApp campaign that links to the supplement shop (also blocked on create).
   if (c.channel === "whatsapp" && !(isLink(c.link) && LINKS[c.link].whatsapp)) return { audience: 0, queued: 0, skipped: { optedOut: 0, recent: 0, missing: 0 } };
+  // Never to a no-consent segment, even for a campaign saved before the rule (also blocked on create).
+  if (!canMarketTo(c.segment)) return { audience: 0, queued: 0, skipped: { optedOut: 0, recent: 0, missing: 0 } };
   const all = await recipients(c.segment, today);
   const reachable = all.filter((r) => (c.channel === "whatsapp" ? r.phone : r.email));
   const addresses = reachable.map((r) => (c.channel === "whatsapp" ? `91${r.phone}` : r.email!));
   const [optedOut, recent] = await Promise.all([
     c.channel === "whatsapp"
-      ? // Opted out, or a number WhatsApp says can't receive messages: nobody pays for those.
-        pool.query<{ a: string }>(`select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)`, [addresses])
-      : // Unsubscribed, or an address that hard-bounced or complained (stored lower-case).
+      ? // Opted out, a number WhatsApp says can't receive messages, or a register member who hasn't agreed to offers.
+        pool.query<{ a: string }>(
+          `select phone as a from public.whatsapp_optouts where phone = any($1) union select phone from public.whatsapp_unreachable where phone = any($1)
+           union select '91' || phone from public.members where not offers_ok and '91' || phone = any($1)`,
+          [addresses],
+        )
+      : // Unsubscribed, hard-bounced or complained (stored lower-case), or a register member without offers.
         pool.query<{ a: string }>(
           `select a.a from unnest($1::text[]) as a(a)
             where exists (select 1 from public.marketing_contacts c where c.channel = 'email' and c.unsubscribed_at is not null and c.address = lower(a.a))
-               or exists (select 1 from public.email_suppressions s where s.address = lower(a.a))`,
+               or exists (select 1 from public.email_suppressions s where s.address = lower(a.a))
+               or exists (select 1 from public.members m where not m.offers_ok and lower(m.email) = lower(a.a))`,
           [addresses],
         ),
     pool.query<{ a: string }>(
@@ -197,6 +230,7 @@ async function queueRun(c: Stored, run: string | null, today: string): Promise<R
 export async function createCampaign(b: CampaignRequest, by: string, today: string): Promise<CampaignResult> {
   const invalid = validateCampaign(b);
   if (invalid) return { ok: false, error: invalid };
+  if (b.link === "shop" && !(await shopOpen())) return { ok: false, error: SHOP_CLOSED_ERROR };
   const channel = b.channel as "whatsapp" | "email";
   const repeat = (b.repeat ?? "none") as Repeat;
   const offer = channel === "whatsapp" ? offerText(b.offer) : b.offer.trim().slice(0, 1000);
@@ -217,7 +251,10 @@ export async function runRecurringCampaigns(today: string): Promise<{ runs: numb
     [today],
   );
   let queued = 0;
+  const storeOpen = await shopOpen();
   for (const c of rows) {
+    // A repeating shop campaign waits (next_run unchanged) while the store is switched off.
+    if (c.link === "shop" && !storeOpen) continue;
     const r = await queueRun(c, today, today);
     queued += r.queued;
     await pool.query(`update public.campaigns set next_run = $2, queued = queued + $3 where id = $1`, [c.id, nextRun(c.repeat, today), r.queued]);

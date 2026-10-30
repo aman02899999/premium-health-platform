@@ -4,6 +4,16 @@ import { CALENDAR_DAYS, coachPostEmail, dailyPost, IDEA_COUNT, TIP_COUNT, upcomi
 const biz: PostBiz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://example.in", coach: "Coach Aman Sharma", membershipFrom: 2000, address: "Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida 201304" };
 
 describe("daily marketing posts", () => {
+  it("supplement tips link to the store only while it's switched on", () => {
+    const supp = (b: PostBiz) => upcomingPosts("2026-10-16", b, CALENDAR_DAYS).filter((p) => p.category === "Supplements");
+    expect(supp(biz).length).toBeGreaterThan(0);
+    for (const p of supp(biz)) {
+      expect(p.path).toBe("/contact");
+      expect(Object.values(p.links).join(" ")).not.toContain("/shop");
+    }
+    for (const p of supp({ ...biz, shopOpen: true })) expect(p.path).toBe("/shop");
+  });
+
   it("gives the same post for the same day and a different one the next day", () => {
     expect(dailyPost("2026-10-11", biz)).toEqual(dailyPost("2026-10-11", biz));
     expect(dailyPost("2026-10-12", biz).theme).not.toBe(dailyPost("2026-10-11", biz).theme);

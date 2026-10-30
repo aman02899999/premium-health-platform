@@ -11,7 +11,7 @@ export type ContactFacts = {
   name: string;
   optedOut: boolean;
   lead: { status: LeadStatus; interest: string; source: string; createdAt: string } | null;
-  member: { planName: string; expiresOn: string; active: boolean; renewToken: string | null } | null;
+  member: { planName: string; expiresOn: string; active: boolean; renewToken: string | null; offersOk?: boolean } | null;
 };
 
 export type QuickReplyId = "trial7" | "offer" | "plans" | "fees" | "visit" | "gymtrial" | "details";
@@ -31,7 +31,7 @@ export type ManualTemplate = { kind: MessageKind; name: string; label: string; m
 const first = (name: string) => name.trim().split(/\s+/)[0] || "there";
 const fill = (kind: MessageKind, params: string[]) => TEMPLATES[kind].text.replace(/\{\{(\d)\}\}/g, (_, n) => params[Number(n) - 1] ?? "");
 
-/** The templates that fit this customer, most useful first. Promotions are left out after "Stop promotions". */
+/** The templates that fit this customer, most useful first. Promotions are left out after "Stop promotions", and for a register member who hasn't agreed to offers. */
 export function manualTemplates(c: ContactFacts, biz: { name: string; phone: string; siteUrl: string }): ManualTemplate[] {
   const hi = first(c.name);
   const out: Omit<ManualTemplate, "name" | "marketing" | "preview">[] = [];
@@ -43,5 +43,5 @@ export function manualTemplates(c: ContactFacts, biz: { name: string; phone: str
   out.push({ kind: "call-followup", label: "Follow-up: plans & trial", params: [hi, biz.name, `${biz.siteUrl}/membership`] });
   return out
     .map((t) => ({ ...t, name: TEMPLATES[t.kind].name, marketing: TEMPLATES[t.kind].category === "MARKETING", preview: fill(t.kind, t.params) }))
-    .filter((t) => !(t.marketing && c.optedOut));
+    .filter((t) => !(t.marketing && (c.optedOut || m?.offersOk === false)));
 }

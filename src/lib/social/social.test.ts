@@ -125,6 +125,21 @@ describe("parseWebhook", () => {
     ]);
   });
 
+  it("says what a text-less Instagram or Messenger DM was, so the coach alert isn't blank", () => {
+    const dm = (object: "instagram" | "page", message: Record<string, unknown>) =>
+      parseWebhook({ object, entry: [{ id: "OWN", messaging: [{ sender: { id: "555" }, message: { mid: "m", ...message } }] }] as never })[0]?.text;
+    expect(dm("instagram", { attachments: [{ type: "image" }] })).toBe("📷 Sent a photo");
+    expect(dm("instagram", { attachments: [{ type: "audio" }] })).toBe("🎤 Sent a voice note");
+    expect(dm("instagram", { attachments: [{ type: "ig_reel" }] })).toBe("🔗 Shared a post or reel");
+    expect(dm("instagram", { attachments: [{ type: "share" }] })).toBe("🔗 Shared a post or reel");
+    expect(dm("instagram", { attachments: [{ type: "story_mention" }] })).toBe("📣 Mentioned you in their story");
+    expect(dm("instagram", { attachments: [{ type: "something_new" }] })).toBe("📎 Sent an attachment");
+    expect(dm("page", { attachments: [{ type: "video" }] })).toBe("🎥 Sent a video");
+    // Text always wins; a story reply keeps its words.
+    expect(dm("instagram", { text: "kitne ka hai?", reply_to: { story: { id: "s1" } } })).toBe("kitne ka hai?");
+    expect(dm("instagram", { text: "", reply_to: { story: { id: "s1" } } })).toBe("💬 Replied to your story");
+  });
+
   it("reads Facebook Messenger messages and new Page comments, never the Page's own", () => {
     const items = parseWebhook({
       object: "page",

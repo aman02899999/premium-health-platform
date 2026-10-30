@@ -16,3 +16,15 @@ describe("cv-auto utility", () => {
     });
   }
 });
+
+// On a phone everything after the /health hero is at least two screens down. The live pulse,
+// categories and latest-articles blocks hold ~700 elements, so they must be skipped too.
+describe("/health hub sections below the hero", () => {
+  it("all use cv-auto", () => {
+    const src = css("src/app/(health)/health/page.tsx");
+    const body = src.slice(src.indexOf('<div className="mx-auto max-w-7xl space-y-16'));
+    const sections = body.match(/<section[^>]*>/g) ?? [];
+    expect(sections.length).toBeGreaterThan(5);
+    for (const s of sections) expect(s).toContain("cv-auto");
+  });
+});

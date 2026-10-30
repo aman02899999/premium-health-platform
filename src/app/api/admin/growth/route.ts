@@ -1,5 +1,7 @@
 import { after, NextResponse } from "next/server";
-import { adminIdentity, isAdmin } from "@/lib/auth";
+import { adminIdentity, adminRole, isAdmin } from "@/lib/auth";
+import { growthActionAllowed } from "@/lib/admin/team-core";
+import { archiveMember } from "@/lib/admin/archive";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
@@ -7,7 +9,7 @@ import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-d
 import { LEAD_STATUSES, funnelBySource, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { toInstant } from "@/lib/growth/trials";
 import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
-import { deleteMember, listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
+import { listMembers, memberById, listRewards, parseDeskInput, saveDeskMember, unappliedPaidOrders } from "@/lib/growth/members";
 import { listOutbox, markOutbox } from "@/lib/growth/outbox";
 import { emailConfigured, whatsappConfigured } from "@/lib/growth/providers";
 import { storageConfigured } from "@/lib/growth/storage";
@@ -74,6 +76,8 @@ export async function POST(req: Request) {
   if (!isDbConfigured) return OFFLINE();
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b || typeof b.action !== "string") return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+  const role = await adminRole();
+  if (!role || !growthActionAllowed(role, b.action)) return NextResponse.json({ error: "Your role doesn't include this. Ask an owner." }, { status: 403 });
   const by = await adminIdentity();
   try {
     switch (b.action) {
@@ -86,9 +90,9 @@ export async function POST(req: Request) {
         after(() => afterDeskMemberSaved(before, member));
         return NextResponse.json({ ok: true, member });
       }
-      case "delete-member":
+      case "delete-member": // archived, not erased: see src/lib/admin/archive.ts
         if (!isUuid(b.id)) break;
-        await deleteMember(b.id);
+        await archiveMember(b.id, await adminIdentity());
         return NextResponse.json({ ok: true });
       case "lead":
         if (!isUuid(b.id)) break;
@@ -104,10 +108,12 @@ export async function POST(req: Request) {
           showedUp: b.showedUp as boolean | null | undefined,
         });
         return NextResponse.json({ ok: true });
-      case "message":
+      case "message": {
         if (!isUuid(b.id) || !["sent", "cancelled", "pending"].includes(b.status as string)) break;
-        await markOutbox(b.id, b.status as "sent" | "cancelled" | "pending", by);
-        return NextResponse.json({ ok: true });
+        // A message to a no-consent list never goes back in the queue (see markOutbox).
+        const refused = await markOutbox(b.id, b.status as "sent" | "cancelled" | "pending", by);
+        return refused ? NextResponse.json({ error: refused }, { status: 409 }) : NextResponse.json({ ok: true });
+      }
       case "diet-stage":
         if (!isUuid(b.id) || !["new", "draft_ready", "in_progress", "sent", "refunded"].includes(b.stage as string)) break;
         await setDietStage(b.id, b.stage as "new" | "draft_ready" | "in_progress" | "sent" | "refunded");

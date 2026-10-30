@@ -32,7 +32,7 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     cm = await import("./campaigns");
   });
   beforeEach(async () => {
-    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members cascade");
+    await pool.query("truncate public.audience_contacts, public.campaigns, public.message_outbox, public.whatsapp_optouts, public.marketing_contacts, public.email_suppressions, public.leads, public.members, public.diet_orders, public.payment_requests, public.social_inbox, public.contact_tags cascade");
     sent.length = 0;
   });
   afterAll(async () => {
@@ -63,9 +63,78 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     await pool.query(`insert into public.leads (name, phone, source, status) values ('Lead', '90000 00016', 'website', 'new'), ('Joined Lead', '9000000011', 'website', 'new')`);
     const counts = Object.fromEntries((await cm.segmentCounts(TODAY)).map((s) => [s.id, s.total]));
     // "Same As Old Ex" is on the member list, so only the member segments count them.
-    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 1, leads: 1, everyone: 6 });
+    // "Everyone" leaves out imported contacts: they have no record of consent.
+    expect(counts).toEqual({ current: 2, expiring: 1, "ex-recent": 1, "ex-old": 1, imported: 1, leads: 1, everyone: 5 });
     const everyone = await cm.recipients("everyone", TODAY);
-    expect(everyone.map((r) => r.phone).sort()).toEqual(["9000000011", "9000000012", "9000000013", "9000000014", "9000000015", "9000000016"]);
+    expect(everyone.map((r) => r.phone).sort()).toEqual(["9000000011", "9000000012", "9000000013", "9000000014", "9000000016"]);
+    const blocked = (await cm.segmentCounts(TODAY)).filter((s) => !s.marketable).map((s) => s.id);
+    expect(blocked).toEqual(["imported"]);
+  });
+
+  it("imported contacts can't get a campaign: refused on create, and a saved one never queues", async () => {
+    await pool.query(`insert into public.audience_contacts (name, phone, email) values ('Imported', '9000000071', 'imp@x.in')`);
+    const req = { name: "Comeback", segment: "imported", channel: "whatsapp", offer: "3 months for ₹4,000 till 31 Oct", link: "membership" };
+    expect(cm.validateCampaign(req)).toMatch(/no record they agreed/);
+    expect(await cm.createCampaign(req, "admin", TODAY)).toMatchObject({ ok: false });
+    expect((await pool.query("select count(*)::int as n from public.campaigns")).rows[0].n).toBe(0);
+    // A repeating campaign saved before the rule: the daily job runs it but queues nothing.
+    await pool.query(
+      `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject, repeat, next_run) values ('admin', 'Old', 'imported', 'email', 'Come back this Diwali', 'membership', 'Hi', 'weekly', $1)`,
+      [TODAY],
+    );
+    expect(await cm.runRecurringCampaigns(TODAY)).toEqual({ runs: 1, queued: 0 });
+    expect((await pool.query("select count(*)::int as n from public.message_outbox")).rows[0].n).toBe(0);
+  });
+
+  it("an old message to imported contacts can't be moved back to 'To send', and the sender never sends one", async () => {
+    const outbox = await import("./outbox");
+    // The 19 Oct campaign to the imported sheet, made before the rule, its messages paused.
+    const { rows } = await pool.query<{ id: string }>(
+      `insert into public.campaigns (created_by, name, segment, channel, offer, link, subject) values ('admin', 'Old offer', 'imported', 'whatsapp', 'Diwali offer', 'membership', '') returning id`,
+    );
+    const cid = rows[0].id;
+    const add = (to: string, key: string, status: string) =>
+      pool.query<{ id: string }>(`insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, status) values ('whatsapp', $1, 'offer-broadcast', 'x', 'tpl', $2, $3) returning id`, [to, key, status]);
+    const paused = (await add("919000000091", `campaign:${cid}:919000000091`, "cancelled")).rows[0].id;
+    // One that slipped back to pending some other way (by hand in the database, or before this fix).
+    await add("919000000092", `campaign:${cid}:919000000092`, "pending");
+    // A member's renewal reminder in the same queue is not affected.
+    const reminder = (await add("919000000093", "renew-7:m1", "cancelled")).rows[0].id;
+
+    expect(await outbox.markOutbox(paused, "pending", "admin")).toMatch(/no record they agreed/);
+    expect((await pool.query(`select status from public.message_outbox where id = $1`, [paused])).rows[0].status).toBe("cancelled");
+    expect(await outbox.markOutbox(reminder, "pending", "admin")).toBeNull();
+
+    const r = await outbox.dispatch(10);
+    expect(sent.map((x) => x.to)).toEqual(["919000000093"]);
+    expect(r).toMatchObject({ sent: 1 });
+    const { rows: left } = await pool.query(`select status, last_error from public.message_outbox where to_address = '919000000092'`);
+    expect(left[0]).toMatchObject({ status: "cancelled", last_error: expect.stringMatching(/no record they agreed/) });
+  });
+
+  it("a Contacts list leaves out people known only from the imported sheet and a WhatsApp chat", async () => {
+    await pool.query(`insert into public.audience_contacts (name, phone, email) values ('Sheet And Chat', '9000000095', null), ('Sheet And Lead', '9000000096', null)`);
+    await pool.query(`insert into public.social_inbox (id, channel, kind, from_id, from_name, body) values ('wamid.t95', 'whatsapp', 'message', '919000000095', 'Sheet And Chat', 'hi')`);
+    await pool.query(`insert into public.leads (name, phone, source) values ('Sheet And Lead', '9000000096', 'website')`);
+    await pool.query(`insert into public.contact_tags (contact_key, tag, created_by) values ('9000000095', 'vip', 'admin'), ('9000000096', 'vip', 'admin')`);
+    expect((await cm.recipients("tag:vip", TODAY)).map((r) => r.phone)).toEqual(["9000000096"]);
+  });
+
+  it("'Leads who didn't join' leaves out leads who already paid for something (diet plan, payment link)", async () => {
+    await pool.query(
+      `insert into public.leads (name, phone, email, source, status) values
+         ('Still Thinking', '9000000081', null, 'website', 'new'),
+         ('Diet Buyer', '+91 90000 00082', null, 'whatsapp-diet', 'new'),
+         ('Paid By Link', '9000000083', 'link@x.in', 'website', 'contacted'),
+         ('Unpaid Order', '9000000084', null, 'website', 'new')`,
+    );
+    await pool.query(
+      `insert into public.diet_orders (razorpay_order_id, amount_paise, name, phone, email, intake, consent_at, plan, status, paid_at) values
+         ('o1', 49900, 'Diet Buyer', '9000000082', null, '{}', now(), 'trial', 'paid', now()),
+         ('o2', 49900, 'Unpaid Order', '9000000084', null, '{}', now(), 'trial', 'created', null)`,
+    );
+    await pool.query(`insert into public.payment_requests (token, name, phone, email, purpose, amount_paise, status, paid_at, expires_at) values ('tokPaidByLink01', 'Paid By Link', null, 'LINK@x.in', 'PT', 100000, 'paid', now(), now() + interval '7 days')`);
+    expect((await cm.recipients("leads", TODAY)).map((r) => r.name).sort()).toEqual(["Still Thinking", "Unpaid Order"]);
   });
 
   it("a WhatsApp campaign skips opted-out people and anyone promoted this week, never sends twice, and sends in batches", async () => {
@@ -90,6 +159,52 @@ describe.skipIf(!url)("audience and campaigns on a real database", () => {
     // A second campaign the same week reaches nobody new: A just got one.
     const again = await cm.createCampaign({ ...req, name: "Second" }, "coach@x.in", TODAY);
     expect(again).toMatchObject({ ok: true, queued: 0, skipped: { recent: 2, optedOut: 1 } });
+  });
+
+  it("members from an uploaded register get renewal reminders but no offers, until they agree", async () => {
+    const { importMembers } = await import("./members");
+    const outbox = await import("./outbox");
+    const { setPromotionsOptOut } = await import("./optouts");
+    await member("Desk Member", "9000000101", "2026-09-05", "desk@x.in");
+    const reg = (name: string, phone: string, email: string | null) => ({ row: 2, name, phone, email, planName: "Monthly", startOn: "2026-08-01", expiresOn: "2026-09-01", notes: "" });
+    await importMembers([reg("Register One", "9000000102", "one@x.in"), reg("Register Two", "9000000103", null)], TODAY, true);
+    const flags = (await pool.query(`select phone, offers_ok from public.members order by phone`)).rows;
+    expect(flags).toEqual([{ phone: "9000000101", offers_ok: true }, { phone: "9000000102", offers_ok: false }, { phone: "9000000103", offers_ok: false }]);
+
+    // A campaign counts them in the segment but queues nothing for them (WhatsApp and email).
+    const wa = await cm.createCampaign({ name: "Comeback", segment: "ex-recent", channel: "whatsapp", offer: "3 months for ₹4,000", link: "membership" }, "admin", TODAY);
+    expect(wa).toMatchObject({ ok: true, audience: 3, queued: 1, skipped: { optedOut: 2 } });
+    const mail = await cm.createCampaign({ name: "Comeback mail", segment: "ex-recent", channel: "email", offer: "3 months for ₹4,000", link: "membership", subject: "Come back" }, "admin", TODAY);
+    expect(mail).toMatchObject({ ok: true, queued: 1, skipped: { optedOut: 1 } });
+
+    // Any other promotion that reaches the queue is cancelled; their renewal reminder still goes.
+    await pool.query(
+      `insert into public.message_outbox (channel, to_address, kind, body, template, dedupe_key, subject) values
+         ('whatsapp', '919000000102', 'comeback', 'x', 'tpl', 'comeback:r1', null),
+         ('whatsapp', '919000000102', 'renew-7', 'x', 'tpl', 'renew-7:r1', null),
+         ('email', 'one@x.in', 'nurture-review', 'x', null, 'review:r1', 'Review')`,
+    );
+    process.env.RESEND_API_KEY = "re_test";
+    process.env.EMAIL_FROM = "Gym <hi@x.in>";
+    try {
+      await outbox.dispatch(20);
+    } finally {
+      delete process.env.RESEND_API_KEY;
+      delete process.env.EMAIL_FROM;
+    }
+    expect(sent.map((x) => x.to).sort()).toEqual(["919000000101", "919000000102"]);
+    const { rows } = await pool.query(`select dedupe_key, status, last_error from public.message_outbox where dedupe_key in ('comeback:r1', 'renew-7:r1', 'review:r1') order by dedupe_key`);
+    expect(rows.map((r) => [r.dedupe_key, r.status])).toEqual([["comeback:r1", "cancelled"], ["renew-7:r1", "sent"], ["review:r1", "cancelled"]]);
+    expect(rows[0].last_error).toMatch(/register/);
+
+    // Chats doesn't offer them a promotion template either (win-back), only membership messages.
+    const tools = await import("@/lib/social/chat-tools");
+    expect(await tools.sendManualTemplate("919000000103", "comeback", "admin")).toMatchObject({ ok: false, status: 400 });
+    // The desk switching promotions on in Chats isn't their agreement; "Start promotions" on WhatsApp is.
+    await tools.setOptOut("919000000102", false, "desk@x.in");
+    expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(false);
+    await setPromotionsOptOut("919000000102", false, "Register One");
+    expect((await pool.query(`select offers_ok from public.members where phone = '9000000102'`)).rows[0].offers_ok).toBe(true);
   });
 
   it("an email campaign skips unsubscribed addresses", async () => {

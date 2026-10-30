@@ -88,7 +88,17 @@ export async function adminRole(): Promise<import("./admin/team-core").Role | nu
   if (!(await isAdmin())) return null;
   if (!supabaseConfigured) return "owner";
   const { roleOf } = await import("./admin/team");
-  return (await roleOf((await currentUser())?.email ?? null).catch(() => null)) ?? "owner";
+  // If the role can't be read, fail closed to the smallest role (desk agent), never to owner.
+  return (await roleOf((await currentUser())?.email ?? null).catch(() => null)) ?? "agent";
+}
+
+/**
+ * Owners and managers: revenue, bulk exports and uploads, health admin. Desk agents are turned away
+ * by the route itself, not only by the proxy (which only guards /admin and /api/admin paths).
+ */
+export async function isManager(): Promise<boolean> {
+  const role = await adminRole();
+  return role === "owner" || role === "manager";
 }
 
 /** Who made an admin change, for the audit column. */

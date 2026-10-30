@@ -518,6 +518,19 @@ export function AdminApp({ storage }: { storage: string }) {
                   fields={[
                     { key: "primary", label: "Primary (logo red)", type: "color" },
                     { key: "secondary", label: "Secondary (logo navy)", type: "color" },
+                    {
+                      key: "look",
+                      label: "Site look",
+                      type: "select",
+                      wide: true,
+                      options: [
+                        { value: "royal", label: "Royal red & navy (logo colours, premium)" },
+                        { value: "gold", label: "Royal Black & Gold" },
+                        { value: "mono", label: "Monochrome Luxe" },
+                        { value: "classic", label: "Classic red & navy (uses the two colours above)" },
+                      ],
+                      help: "Changes the whole gym site at once. The health portal keeps its own design.",
+                    },
                   ]}
                 />
               </Card>
@@ -855,12 +868,12 @@ function Leads() {
                         type="button"
                         className="text-xs text-red-300/70 hover:text-red-300"
                         onClick={async () => {
-                          if (!confirm("Delete this enquiry?")) return;
+                          if (!confirm("Archive this enquiry? It leaves this list and gets no more messages, but is kept and can be restored.")) return;
                           await fetch(`/api/admin/leads?id=${encodeURIComponent(l.id)}`, { method: "DELETE" });
                           load();
                         }}
                       >
-                        Delete
+                        Archive
                       </button>
                     </td>
                   </tr>

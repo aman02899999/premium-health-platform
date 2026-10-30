@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { parseCart } from "@/lib/shop/checkout";
 import { quoteCart } from "@/lib/shop/pricing";
-import { getCatalog } from "@/lib/shop/server";
+import { getCatalog, shopOpen } from "@/lib/shop/server";
+import { STORE_CLOSED } from "@/lib/shop/format";
 
 export const dynamic = "force-dynamic";
 
 /** Live prices and stock for the cart page. */
 export async function POST(req: Request) {
+  if (!(await shopOpen())) return NextResponse.json({ error: STORE_CLOSED }, { status: 503 });
   const body = (await req.json().catch(() => null)) as { lines?: unknown } | null;
   const cat = await getCatalog({ fresh: true });
   if (cat.offline) return NextResponse.json({ error: "The store is being updated — please try again in a minute." }, { status: 503 });

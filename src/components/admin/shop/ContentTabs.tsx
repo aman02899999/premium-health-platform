@@ -200,6 +200,16 @@ export function SettingsTab({ data, done }: { data: ShopData; done: Done }) {
   return (
     <div className="space-y-5">
       {!data.channels.email && <p className="rounded-xl bg-amber-400/10 p-3 text-sm text-amber-100">Email sending isn&apos;t connected yet, so order emails won&apos;t go out. Orders still appear in the Orders tab. To turn email on, add RESEND_API_KEY and EMAIL_FROM in Vercel.</p>}
+      <Card>
+        <h2 className="font-display mb-2 text-lg">Show the store to customers</h2>
+        <label className="flex cursor-pointer items-start gap-3">
+          <input type="checkbox" className="mt-1 h-5 w-5 accent-amber-400" checked={s.storeOpen} onChange={(e) => setS((x) => ({ ...x, storeOpen: e.target.checked }))} />
+          <span className="text-sm text-white/75">
+            <span className="block font-semibold text-white">{s.storeOpen ? "Open: customers can browse and order" : "Off: customers see “Coming soon”"}</span>
+            When off, /shop and /store show a Coming soon page, store links are hidden across the site, it&apos;s kept out of Google and no new orders can be placed. You can still see the full store while signed in here. Press Save settings after changing it.
+          </span>
+        </label>
+      </Card>
       {GROUPS.map((g) => (
         <Card key={g.title}>
           <h2 className="font-display mb-4 text-lg">{g.title}</h2>

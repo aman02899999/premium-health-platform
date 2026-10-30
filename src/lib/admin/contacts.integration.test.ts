@@ -91,6 +91,15 @@ describe.skipIf(!url)("contacts on a real database", () => {
     expect(counts.find((s) => s.id === "tag:morning batch")).toMatchObject({ label: "List: morning batch", total: 2, whatsapp: 2 });
   });
 
+  it("a list never reaches people known only from an imported sheet (no consent)", async () => {
+    // Neha is only imported (tagged "old members 2024" on import); Rahul is a member.
+    await ct.addTag(["9844444444", "9811111111"], "diwali", "admin");
+    expect((await cp.recipients("tag:diwali", today)).map((x) => x.phone)).toEqual(["9811111111"]);
+    expect(await cp.recipients("tag:old members 2024", today)).toEqual([]);
+    const counts = await cp.segmentCounts(today);
+    expect(counts.find((s) => s.id === "tag:old members 2024")).toMatchObject({ total: 0, marketable: true });
+  });
+
   it("attributes and the contact panel", async () => {
     expect(await ct.setAttribute("9811111111", "Preferred time", "6 am")).toBe(true);
     expect(await ct.setAttribute("9811111111", "goal", "fat loss")).toBe(true);

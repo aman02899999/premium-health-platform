@@ -10,7 +10,8 @@ export const ROLES: { id: Role; label: string; hint: string }[] = [
 export const isRole = (r: unknown): r is Role => ROLES.some((x) => x.id === r);
 
 // Areas by path prefix. Order doesn't matter: the longest matching prefix decides.
-const OWNER_ONLY = ["/admin/team", "/api/admin/team"];
+// Members' saved blood reports are health data: only an owner may open them.
+const OWNER_ONLY = ["/admin/team", "/api/admin/team", "/api/admin/blood-report/reports"];
 const AGENT_AREAS = [
   "/admin/login",
   "/api/admin/login",
@@ -21,7 +22,6 @@ const AGENT_AREAS = [
   "/api/admin/contacts",
   "/admin/growth",
   "/api/admin/growth",
-  "/api/admin/members",
   "/api/admin/leads",
   "/api/admin/call-list",
   "/api/admin/notifications",
@@ -29,6 +29,18 @@ const AGENT_AREAS = [
   "/api/admin/qr",
   "/api/admin/me",
 ];
+
+// Inside an agent area, but not desk work: a diet plan goes to a paying client from Diet Pro, which
+// agents can't open. (Member list uploads, /api/admin/members, are left out of the areas above.)
+const AGENT_DENIED = ["/api/admin/growth/diet-plan", "/api/admin/growth/diet-order"];
+
+/**
+ * Growth actions a desk agent may take: save a member, update a lead, and send or skip today's
+ * messages. Running the daily job, posting the Reel, deleting members and anything touching a paid
+ * client's diet plan or a payment need a manager or owner.
+ */
+const DESK_GROWTH_ACTIONS = ["save-member", "lead", "message"];
+export const growthActionAllowed = (role: Role, action: string): boolean => role !== "agent" || DESK_GROWTH_ACTIONS.includes(action);
 
 const under = (path: string, prefix: string) => path === prefix || path.startsWith(`${prefix}/`);
 
@@ -39,6 +51,7 @@ export function allowed(role: Role, pathname: string): boolean {
   if (OWNER_ONLY.some((p) => under(path, p))) return role === "owner";
   if (role !== "agent") return true;
   // Agents: the Command Center home, and their areas.
+  if (AGENT_DENIED.some((p) => under(path, p))) return false;
   return path === "/admin" || AGENT_AREAS.some((p) => under(path, p));
 }
 

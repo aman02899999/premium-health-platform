@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, Salad, ShoppingBag, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
+import { BookOpen, Calculator, ChevronRight, CreditCard, Dumbbell, HeartPulse, Home, Images, Menu, Newspaper, Phone, Salad, ShoppingBag, Smartphone, Stethoscope, Store, UserRound, X, type LucideIcon } from "lucide-react";
 import { healthHref } from "@/lib/portal";
 import { NAV } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -23,8 +23,10 @@ const NAV_ICONS: Record<string, LucideIcon> = {
   "/contact": Phone,
 };
 
-export function Header({ name, phoneHref, announcement }: { name: string; phoneHref: string; announcement: string }) {
+/** `storeOpen` false (the admin switch) hides every supplement-store link. */
+export function Header({ name, phoneHref, announcement, storeOpen }: { name: string; phoneHref: string; announcement: string; storeOpen: boolean }) {
   const pathname = usePathname();
+  const nav = storeOpen ? NAV : NAV.filter((item) => item.href !== "/store");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -53,7 +55,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
     <header className="fixed inset-x-0 top-0 z-50">
       {announcement && (
         <div
-          className={`overflow-hidden bg-gradient-to-r from-navy via-[#be1b2c] to-navy text-center text-xs font-semibold text-white transition-all duration-300 ${
+          className={`announce-bar overflow-hidden bg-gradient-to-r from-navy via-[#be1b2c] to-navy text-center text-xs font-semibold text-white transition-all duration-300 ${
             scrolled ? "max-h-0 py-0" : "max-h-10 py-2"
           }`}
         >
@@ -68,7 +70,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <Logo name={name} textClassName="xl:hidden min-[106.25rem]:block" />
           </Link>
           <ul className="hidden items-center gap-0.5 xl:flex min-[106.25rem]:gap-1">
-            {NAV.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -89,9 +91,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
             <a href={healthHref} className="hidden h-10 items-center gap-1.5 rounded-full border border-emerald-400/40 px-3 text-xs font-bold text-emerald-300 hover:border-emerald-300 hover:text-emerald-200 md:flex" title="Bharat Health Guide" aria-label="Bharat Health Guide">
               <HeartPulse className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Health</span>
             </a>
+            {storeOpen && (
             <Link href="/shop" className="hidden h-10 items-center gap-1.5 rounded-full border border-amber-400/40 px-3 text-xs font-bold text-amber-300 hover:border-amber-300 hover:text-amber-200 xl:flex" title="Royal Supplements Store" aria-label="Royal Supplements Store">
               <ShoppingBag className="h-4 w-4" /> <span className="xl:hidden min-[106.25rem]:inline">Shop</span>
             </Link>
+            )}
             <AccountMenu />
             <Link href="/contact#trial" className="btn-brand hidden whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-bold sm:inline-block">
               Free Trial
@@ -139,7 +143,7 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
           <nav className="flex-1 overflow-y-auto overscroll-contain px-3 py-3" aria-label="Mobile">
             <ul className="space-y-0.5">
-              {NAV.map((item) => {
+              {nav.map((item) => {
                 const Icon = NAV_ICONS[item.href] ?? ChevronRight;
                 const active = isActive(item.href);
                 return (
@@ -163,6 +167,11 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
 
             <p className="mt-5 px-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white/40">More from us</p>
             <ul className="mt-2 space-y-2">
+              <li>
+                <Link prefetch={false} href="/app" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
+                  <Smartphone className="h-5 w-5 shrink-0" /> Get the app
+                </Link>
+              </li>
               {supabaseConfigured && (
                 <li>
                   <Link prefetch={false} href="/account" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-semibold text-sky hover:bg-white/5">
@@ -182,11 +191,13 @@ export function Header({ name, phoneHref, announcement }: { name: string; phoneH
                   <HeartPulse className="h-5 w-5 shrink-0" /> Bharat Health Guide
                 </a>
               </li>
+              {storeOpen && (
               <li>
                 <Link prefetch={false} href="/shop" onClick={() => setOpen(false)} className="flex items-center gap-3 rounded-xl border border-amber-400/25 bg-amber-500/5 px-3 py-3 text-[15px] font-semibold text-amber-300 hover:bg-amber-500/10">
                   <ShoppingBag className="h-5 w-5 shrink-0" /> Royal Supplements Store
                 </Link>
               </li>
+              )}
             </ul>
           </nav>
 

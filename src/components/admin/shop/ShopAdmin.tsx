@@ -1,17 +1,19 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, ArrowLeft, BarChart3, BookOpen, ExternalLink, Gift, Layers, Loader2, Package, Search, Settings, ShoppingBag, Truck } from "lucide-react";
+import { AlertTriangle, ArrowLeft, BarChart3, BookOpen, ExternalLink, Gift, Layers, Loader2, Package, ScanLine, Search, Settings, ShoppingBag, Truck } from "lucide-react";
 import { Card, inr, type ShopData } from "./common";
 import { OrdersTab } from "./OrdersTab";
 import { CategoriesTab, ProductsTab } from "./CatalogTabs";
 import { CombosTab } from "./CombosTab";
 import { BlogTab, SettingsTab } from "./ContentTabs";
 import { SeoTab } from "./SeoTab";
+import { ScannerTab } from "./ScannerTab";
 
-type Tab = "dashboard" | "orders" | "products" | "categories" | "combos" | "blog" | "settings" | "seo";
+type Tab = "dashboard" | "scanner" | "orders" | "products" | "categories" | "combos" | "blog" | "settings" | "seo";
 const TABS: { id: Tab; label: string; icon: typeof Package }[] = [
   { id: "dashboard", label: "Dashboard", icon: BarChart3 },
+  { id: "scanner", label: "Scanner & stock", icon: ScanLine },
   { id: "orders", label: "Orders", icon: Truck },
   { id: "products", label: "Products", icon: Package },
   { id: "categories", label: "Categories & sale %", icon: Layers },
@@ -101,6 +103,7 @@ export function ShopAdmin() {
           {data && (
             <>
               {tab === "dashboard" && <Dashboard data={data} go={setTab} />}
+              {tab === "scanner" && <ScannerTab data={data} done={done} />}
               {tab === "orders" && <OrdersTab data={data} done={done} />}
               {tab === "products" && <ProductsTab data={data} done={done} />}
               {tab === "categories" && <CategoriesTab data={data} done={done} />}

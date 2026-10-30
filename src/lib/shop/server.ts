@@ -22,6 +22,11 @@ const cachedCatalog = unstable_cache(
 );
 const cachedPosts = unstable_cache(async (): Promise<Post[]> => listPosts(true), ["shop-posts-v1"], { tags: [SHOP_TAG], revalidate: 300 });
 
+/** After the open/closed switch changes: store links in the gym site's menu, /ig and /store follow it. */
+export function expireStoreLinks() {
+  revalidatePath("/", "layout");
+}
+
 /** Call after any change to the store's data. */
 export function expireShop() {
   revalidateTag(SHOP_TAG, { expire: 0 });
@@ -43,6 +48,15 @@ export async function getCatalog(opts: { fresh?: boolean } = {}): Promise<Catalo
     console.error("[shop] catalogue load failed:", (err as Error).message);
     return { ...emptyCatalog(), offline: true };
   }
+}
+
+/**
+ * Whether customers can see and buy from the supplement store (/shop and /store). Closed when the
+ * admin switch is off, and also when the database can't be read, so a failure never opens it.
+ */
+export async function shopOpen(): Promise<boolean> {
+  const { settings, offline } = await getCatalog();
+  return !offline && settings.storeOpen === true;
 }
 
 /** Published guides, cached like the catalogue. */
