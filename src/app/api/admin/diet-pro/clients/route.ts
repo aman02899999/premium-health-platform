@@ -63,7 +63,7 @@ export async function DELETE(req: Request) {
   const id = new URL(req.url).searchParams.get("id");
   if (!isUuid(id)) return NextResponse.json({ error: "Bad id" }, { status: 400 });
   try {
-    await deleteClient(id);
+    await deleteClient(id, await adminIdentity());
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[diet-pro clients]", (e as Error).message);

@@ -5,7 +5,7 @@ import { archiveMember } from "@/lib/admin/archive";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness, runDaily } from "@/lib/growth/daily";
 import { setDietStage } from "@/lib/growth/diet-orders";
-import { autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
+import { PLAN_ERRORS, autoSendMode, prepareDietPlan, sendDietPlan } from "@/lib/growth/plan-delivery";
 import { LEAD_STATUSES, funnelBySource, listPipeline, updateLead, type LeadStatus } from "@/lib/growth/leads";
 import { toInstant } from "@/lib/growth/trials";
 import { afterDeskMemberSaved, afterMembershipPaid } from "@/lib/growth/hooks";
@@ -122,7 +122,12 @@ export async function POST(req: Request) {
         // Approve & send: the stored plan goes to the client on WhatsApp and email.
         if (!isUuid(b.id)) break;
         const r = await sendDietPlan(b.id).catch((e: Error) => e);
-        if (r instanceof Error) return NextResponse.json({ error: r.message }, { status: 400 });
+        if (r instanceof Error) {
+          // Our own checks are shown as they are; anything else is logged.
+          if (PLAN_ERRORS.includes(r.message)) return NextResponse.json({ error: r.message }, { status: 400 });
+          console.error("[growth] diet-send:", r.message);
+          return NextResponse.json({ error: "Couldn't send the plan. Try again." }, { status: 502 });
+        }
         return NextResponse.json({ ok: true, ...r });
       }
       case "diet-regenerate": {
@@ -140,7 +145,12 @@ export async function POST(req: Request) {
           email: typeof b.email === "string" ? b.email.trim() : undefined,
           unlink: b.unlink === true,
         }).catch((e: Error) => e);
-        if (r instanceof Error) return NextResponse.json({ error: r.message }, { status: 400 });
+        if (r instanceof Error) {
+          // Our own checks are shown as they are; anything else is logged.
+          if (PLAN_ERRORS.includes(r.message)) return NextResponse.json({ error: r.message }, { status: 400 });
+          console.error("[growth] diet-send:", r.message);
+          return NextResponse.json({ error: "Couldn't send the plan. Try again." }, { status: 502 });
+        }
         return NextResponse.json({ ok: true });
       }
       case "version-reject": {

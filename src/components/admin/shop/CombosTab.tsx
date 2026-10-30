@@ -211,10 +211,10 @@ function ComboEditor({ initial, data, close, done }: { initial: Draft; data: Sho
         onDelete={
           c.id
             ? async () => {
-                if (!confirm(`Delete “${c.name}”?`)) return;
+                if (!confirm(`Remove “${c.name}”? It's kept in the archive and can be put back.`)) return;
                 try {
                   await shopPost({ action: "delete", kind: "combo", id: c.id });
-                  await done(`Deleted ${c.name}`);
+                  await done(`Removed ${c.name}`);
                   close();
                 } catch (e) {
                   setErr((e as Error).message);

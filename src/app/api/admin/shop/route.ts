@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { isAdmin } from "@/lib/auth";
+import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { emailConfigured } from "@/lib/growth/providers";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
@@ -159,7 +159,8 @@ export async function POST(req: Request) {
         if (!isUuid(b.id)) return bad("Invalid id");
         const fn = { product: deleteProduct, category: deleteCategory, combo: deleteCombo, post: deletePost }[String(b.kind)];
         if (!fn) return bad("Invalid kind");
-        const refused = await fn(b.id);
+        // Archived, not erased: see src/lib/admin/archive.ts.
+        const refused = await fn(b.id, await adminIdentity());
         return refused ? NextResponse.json({ error: refused }, { status: 409 }) : done();
       }
       case "order": {
