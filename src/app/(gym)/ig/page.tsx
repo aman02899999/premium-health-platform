@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CalendarCheck, Clock, CreditCard, Dumbbell, HeartPulse, MapPin, Phone, Salad, ShoppingBag, Star } from "lucide-react";
+import { shopOpen } from "@/lib/shop/server";
 import { getContent } from "@/lib/content/store";
 import { fullAddress, formatTime, hoursDays, instagramHref, telHref, whatsappHref } from "@/lib/site";
 import { igLanding } from "@/lib/ig-landing";
@@ -29,7 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function InstagramLinksPage() {
-  const c = await getContent();
+  const [c, storeOpen] = await Promise.all([getContent(), shopOpen()]);
   const b = c.business;
   const today = todayIST();
   const l = igLanding(c, today);
@@ -41,7 +42,7 @@ export default async function InstagramLinksPage() {
     { href: "/programs", label: "Programs: fat loss, muscle, women's", icon: Dumbbell },
     { href: "/diet-plans", label: "Indian diet plans", icon: Salad },
     { href: "/health", label: "Free health guides & tools", icon: HeartPulse },
-    { href: "/store", label: "Royal Supplements Store", icon: ShoppingBag },
+    ...(storeOpen ? [{ href: "/store", label: "Royal Supplements Store", icon: ShoppingBag }] : []),
   ];
 
   return (

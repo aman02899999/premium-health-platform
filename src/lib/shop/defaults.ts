@@ -4,6 +4,8 @@ import type { ShopSettings } from "./types";
 export const SHOP_PATH = "/shop";
 
 export const DEFAULT_SETTINGS: ShopSettings = {
+  // Hidden until the owner switches it on in Admin → Supplements store → Settings.
+  storeOpen: false,
   storeName: "Royal Supplements Store",
   tagline: "Genuine supplements, honest prices — from the team at Royal Fitness Club",
   announcement: "MEGA SALE · Protein 50% OFF · Pre-workout, EAA, BCAA & Glutamine 50% OFF · Tablets 30% OFF",

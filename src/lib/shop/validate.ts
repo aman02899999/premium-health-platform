@@ -103,7 +103,7 @@ export function parsePost(b: R): (Omit<Post, "id" | "createdAt" | "updatedAt"> &
 export function parseSettings(b: R): ShopSettings | string {
   const s: ShopSettings = { ...DEFAULT_SETTINGS };
   for (const k of Object.keys(DEFAULT_SETTINGS) as (keyof ShopSettings)[]) {
-    if (k === "shippingFee" || k === "freeShippingOver") continue;
+    if (k === "shippingFee" || k === "freeShippingOver" || k === "storeOpen") continue;
     if (b[k] !== undefined) (s as Record<string, unknown>)[k] = t(b[k], k === "returnPolicy" ? 2000 : k === "heroText" ? 400 : 300);
   }
   const fee = int(b.shippingFee, 0, 5000);
@@ -111,6 +111,7 @@ export function parseSettings(b: R): ShopSettings | string {
   if (fee === null || free === null) return "Delivery charge and free-delivery amount must be whole rupees.";
   s.shippingFee = fee;
   s.freeShippingOver = free;
+  s.storeOpen = b.storeOpen === true;
   if (s.storeName.length < 2) return "Enter the store name.";
   if (s.orderEmail && !s.orderEmail.split(",").every((e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim()))) return "Order email: enter valid email addresses separated by commas.";
   s.whatsapp = s.whatsapp.replace(/\D/g, "");

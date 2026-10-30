@@ -1,6 +1,7 @@
 import "server-only";
 import { getContent } from "@/lib/content/store";
 import { indexNowUrls, submitIndexNow } from "@/lib/indexnow";
+import { shopOpen } from "@/lib/shop/server";
 import { SITE_URL } from "@/lib/site";
 import { todayIST } from "./dates";
 import { funnelBySource, nurtureLeads, openLeads, uncontactedLeads } from "./leads";
@@ -34,7 +35,7 @@ export async function business(): Promise<Biz> {
 
 /** Business details the marketing emails need (WhatsApp link, coach, lowest membership price). */
 export async function nurtureBusiness(): Promise<NurtureBiz> {
-  const c = await getContent();
+  const [c, storeOpen] = await Promise.all([getContent(), shopOpen().catch(() => false)]);
   // "Membership starts at ₹X a month": the one-month plan's price, if there is one.
   const monthly = (c.plans ?? []).find((p) => /^\s*1\s*month/i.test(p.duration) && p.price > 0);
   return {
@@ -44,6 +45,7 @@ export async function nurtureBusiness(): Promise<NurtureBiz> {
     siteUrl: SITE_URL,
     coach: `Coach ${(c.trainers?.[0]?.name || "Aman Sharma").replace(/^coach\s+/i, "")}`,
     membershipFrom: monthly?.price,
+    shopOpen: storeOpen,
     address: [c.business.address?.street, c.business.address?.locality, `${c.business.address?.city ?? ""} ${c.business.address?.postalCode ?? ""}`.trim()].filter(Boolean).join(", "),
   };
 }

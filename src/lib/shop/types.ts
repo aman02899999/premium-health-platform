@@ -74,6 +74,8 @@ export type Post = {
 };
 
 export type ShopSettings = {
+  /** Off = customers see "Coming soon" on /shop and /store, and no new orders can be placed. */
+  storeOpen: boolean;
   storeName: string;
   tagline: string;
   announcement: string;
