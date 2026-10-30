@@ -280,6 +280,8 @@ export async function markShopPaid(razorpayOrderId: string, paymentId: string): 
       }
       // Two shoppers can pay for the last unit at the same time: never go below zero, and flag it for the admin.
       const short: string[] = [];
+      // Names the stock history entries the shop_products trigger writes for this order.
+      await client.query(`select set_config('shop.stock_reason', 'online-order', true), set_config('shop.stock_note', $1, true)`, [o.number]);
       for (const [id, qty] of need) {
         const { rows: pr } = await client.query<{ name: string; stock: number }>(`select name, stock from public.shop_products where id = $1 for update`, [id]);
         if (pr[0] && pr[0].stock < qty) short.push(`${pr[0].name}: needed ${qty}, had ${pr[0].stock}`);

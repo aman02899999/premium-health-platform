@@ -95,6 +95,12 @@ const nextConfig: NextConfig = {
         source: "/admin/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      // The store scanner reads barcodes with the camera: allowed on this one admin page only
+      // (the later rule wins over the site-wide camera=()).
+      {
+        source: "/admin/shop",
+        headers: [{ key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=()" }],
+      },
       // ---- Premium Health Platform (/health) ----
       {
         source: "/health/(logo.svg|og-default.jpg)",

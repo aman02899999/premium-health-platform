@@ -9,6 +9,9 @@ import {
   deleteCategory, deleteCombo, deletePost, deleteProduct, listOrders, listPosts, loadCatalog, saveCategory, saveCombo, savePost, saveProduct, saveSettings, updateOrder,
 } from "@/lib/shop/store";
 import { parseCategory, parseCombo, parsePost, parseProduct, parseSettings } from "@/lib/shop/validate";
+import { parseScan } from "@/lib/shop/scan-code";
+import { STOCK_REASONS, applyCount, changeStock, findBarcode, linkBarcode, listBarcodes, listStockMoves, type StockReason } from "@/lib/shop/scanner";
+import { openFoodFactsProvider } from "@/health/services/health/providers/openfoodfacts/provider";
 import { todayIST } from "@/lib/growth/dates";
 import type { Fulfilment } from "@/lib/shop/types";
 
@@ -23,7 +26,13 @@ export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return OFFLINE();
   try {
-    const [cat, posts, orders] = await Promise.all([loadCatalog(false), listPosts(false), listOrders({ limit: 1000 })]);
+    const [cat, posts, orders, barcodes] = await Promise.all([
+      loadCatalog(false),
+      listPosts(false),
+      listOrders({ limit: 1000 }),
+      // Before the barcode migration runs, the rest of the store admin keeps working.
+      listBarcodes().catch(() => []),
+    ]);
     const paid = orders.filter((o) => o.status === "paid");
     const today = todayIST();
     const dayOf = (iso: string) => todayIST(new Date(iso));
@@ -47,6 +56,7 @@ export async function GET() {
       settings: cat.settings,
       categories: cat.categories,
       products: cat.products,
+      barcodes,
       combos: cat.combos,
       posts,
       orders,
@@ -84,7 +94,47 @@ export async function POST(req: Request) {
     switch (b.action) {
       case "save-product": {
         const p = parseProduct(b);
-        return typeof p === "string" ? bad(p) : done({ product: await saveProduct(p) });
+        if (typeof p === "string") return bad(p);
+        // A product added from the scanner carries the code that was scanned.
+        const scan = typeof b.barcode === "string" && b.barcode ? parseScan(b.barcode) : null;
+        if (scan && !p.id) {
+          const taken = await findBarcode(scan.code);
+          if (taken) return bad("That barcode is already on another product. Scan it again to open that product.");
+        }
+        const product = await saveProduct(p);
+        const refused = scan ? await linkBarcode(scan.code, product.id, typeof b.barcodeVariant === "string" ? b.barcodeVariant : "") : null;
+        return refused ? NextResponse.json({ error: refused }, { status: 409 }) : done({ product });
+      }
+      case "scan": {
+        const scan = parseScan(String(b.code ?? ""));
+        if (!scan) return bad("That code is too short. Scan again or type the numbers under the barcode.");
+        const match = await findBarcode(scan.code);
+        if (match) return NextResponse.json({ ok: true, scan, match });
+        // New code: try the free Open Food Facts database for a name and photo. Supplements are often missing.
+        const found = scan.kind === "qr" ? null : await Promise.race([openFoodFactsProvider.getById(scan.code).catch(() => null), new Promise<null>((r) => setTimeout(() => r(null), 6000))]);
+        const suggestion = found?.name ? { name: found.name, brand: found.brand ?? "", image: found.image ?? "", source: found.provenance?.source_url ?? "" } : null;
+        return NextResponse.json({ ok: true, scan, match: null, suggestion });
+      }
+      case "link-barcode": {
+        const scan = parseScan(String(b.code ?? ""));
+        if (!scan || !isUuid(b.productId)) return bad("Invalid barcode or product");
+        const refused = await linkBarcode(scan.code, b.productId, typeof b.variant === "string" ? b.variant : "", b.move === true);
+        return refused ? NextResponse.json({ error: refused }, { status: 409 }) : done({ code: scan.code });
+      }
+      case "stock": {
+        if (!isUuid(b.productId) || !STOCK_REASONS.includes(b.reason as StockReason)) return bad("Invalid stock change");
+        const r = await changeStock(b.productId, Number(b.qty), b.reason as StockReason, typeof b.note === "string" ? b.note : "");
+        return typeof r === "string" ? bad(r) : done(r);
+      }
+      case "count": {
+        const counts = Array.isArray(b.counts) ? (b.counts as { productId?: unknown; qty?: unknown }[]) : [];
+        if (counts.some((c) => !isUuid(c?.productId))) return bad("Invalid count");
+        const r = await applyCount(counts.map((c) => ({ productId: c.productId as string, qty: Number(c.qty) })), typeof b.note === "string" ? b.note : "");
+        return typeof r === "string" ? bad(r) : done(r);
+      }
+      case "moves": {
+        if (b.productId !== undefined && !isUuid(b.productId)) return bad("Invalid id");
+        return NextResponse.json({ ok: true, moves: await listStockMoves(b.productId as string | undefined, 30) });
       }
       case "save-category": {
         const c = parseCategory(b);

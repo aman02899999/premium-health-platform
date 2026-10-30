@@ -10,9 +10,9 @@ import type { Category, NutritionRow, Product } from "@/lib/shop/types";
 import { Card, Empty, Label, SaveBar, Toggle, inr, shopPost, type ShopData } from "./common";
 
 type Done = (m: string) => Promise<void>;
-type Draft = Omit<Product, "id" | "updatedAt" | "discountPct"> & { id?: string; discountPct: number | "" };
+export type Draft = Omit<Product, "id" | "updatedAt" | "discountPct"> & { id?: string; discountPct: number | "" };
 
-const blank = (categoryId: string | null): Draft => ({
+export const blank = (categoryId: string | null): Draft => ({
   slug: "",
   name: "",
   brand: "Blackkwolf",
@@ -86,6 +86,7 @@ export function ProductsTab({ data, done }: { data: ShopData; done: Done }) {
                   <span className="mt-1 flex flex-wrap gap-1.5 text-[11px]">
                     <span className={p.stock === 0 ? "text-red-300" : p.stock <= 5 ? "text-amber-200" : "text-white/50"}>{p.stock === 0 ? "Sold out" : `${p.stock} in stock`}</span>
                     {!p.active && <span className="rounded bg-white/10 px-1.5 text-white/60">Hidden</span>}
+                    {!data.barcodes.some((b) => b.productId === p.id) && <span className="rounded bg-white/10 px-1.5 text-white/60">No barcode</span>}
                     {p.featured && <span className="rounded bg-amber-400/20 px-1.5 text-amber-200">Featured</span>}
                   </span>
                 </span>
@@ -98,7 +99,8 @@ export function ProductsTab({ data, done }: { data: ShopData; done: Done }) {
   );
 }
 
-function ProductEditor({ initial, data, close, done }: { initial: Draft; data: ShopData; close: () => void; done: Done }) {
+/** `barcode`: the code scanned in the Scanner, saved onto this new product. */
+export function ProductEditor({ initial, data, close, done, barcode }: { initial: Draft; data: ShopData; close: () => void; done: Done; barcode?: { code: string; variant: string } }) {
   const [p, setP] = useState<Draft>(initial);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
@@ -111,7 +113,7 @@ function ProductEditor({ initial, data, close, done }: { initial: Draft; data: S
     setBusy(true);
     setErr("");
     try {
-      await shopPost({ action: "save-product", ...p, slug: p.slug || slugify(p.name) });
+      await shopPost({ action: "save-product", ...p, slug: p.slug || slugify(p.name), ...(barcode && !p.id ? { barcode: barcode.code, barcodeVariant: barcode.variant } : {}) });
       await done(`Saved ${p.name}`);
       close();
     } catch (e) {
@@ -142,6 +144,19 @@ function ProductEditor({ initial, data, close, done }: { initial: Draft; data: S
           </a>
         )}
       </div>
+
+      {barcode && !p.id ? (
+        <p className="mb-4 rounded-xl bg-emerald-400/10 p-3 text-sm text-emerald-100">
+          Barcode <b className="font-mono">{barcode.code}</b> will be saved on this product.
+        </p>
+      ) : (
+        p.id && (
+          <p className="mb-4 text-xs text-white/50">
+            Barcodes:{" "}
+            {data.barcodes.filter((b) => b.productId === p.id).map((b) => `${b.code}${b.variant ? ` (${b.variant})` : ""}`).join(", ") || "none yet. Add one from the Scanner tab."}
+          </p>
+        )
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Label label="Product name" wide>
