@@ -25,6 +25,7 @@ import {
   type Sex,
 } from "@/lib/calculators";
 import { Icon } from "@/components/Icon";
+import { ShareResult } from "./ShareResult";
 
 // ---------- inputs ----------
 
@@ -266,6 +267,7 @@ function TdeeCalc() {
               </div>
             ))}
           </div>
+          <ShareResult input={{ key: "tdee", sex, age, weight: w, height: h, activity: act }} />
         </>
       }
     />
@@ -363,6 +365,7 @@ function OneRmCalc() {
               </tbody>
             </table>
           </div>
+          <ShareResult input={{ key: "one-rep-max", weight: w, reps }} />
         </>
       }
     />
@@ -396,6 +399,7 @@ function MacroCalc() {
           <p className="text-center text-xs text-white/55">
             ≈ {Math.round(m.protein / 18)} servings of 100 g paneer-equivalent protein a day, spread over 4–5 meals.
           </p>
+          <ShareResult input={{ key: "macro", sex, age, weight: w, height: h, activity: act, goal }} />
         </>
       }
     />
@@ -450,17 +454,20 @@ function WaterCalc() {
         </>
       }
       result={
-        <div className="flex items-center gap-6">
-          <div className="relative h-44 w-24 shrink-0 overflow-hidden rounded-b-3xl rounded-t-lg border-2 border-white/25 bg-black/30">
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sky-500 to-sky-300/80 transition-all duration-700" style={{ height: `${fill}%` }} />
+        <>
+          <div className="flex items-center gap-6">
+            <div className="relative h-44 w-24 shrink-0 overflow-hidden rounded-b-3xl rounded-t-lg border-2 border-white/25 bg-black/30">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sky-500 to-sky-300/80 transition-all duration-700" style={{ height: `${fill}%` }} />
+            </div>
+            <div className="flex-1 space-y-3">
+              <Big value={r.litres} unit="L" label="Water per day" />
+              <p className="text-center text-sm text-white/65">
+                ≈ <strong className="text-white">{r.glasses}</strong> glasses of 250 ml
+              </p>
+            </div>
           </div>
-          <div className="flex-1 space-y-3">
-            <Big value={r.litres} unit="L" label="Water per day" />
-            <p className="text-center text-sm text-white/65">
-              ≈ <strong className="text-white">{r.glasses}</strong> glasses of 250 ml
-            </p>
-          </div>
-        </div>
+          <ShareResult input={{ key: "water", weight: w, minutes: mins, hot }} />
+        </>
       }
     />
   );
@@ -495,6 +502,7 @@ function HeartCalc() {
               </li>
             ))}
           </ul>
+          <ShareResult input={{ key: "heart-rate", age, resting: rest }} />
         </>
       }
     />
