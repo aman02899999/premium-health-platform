@@ -13,7 +13,12 @@ export type PanelId =
   | "thyroid"
   | "iron"
   | "vitamins"
-  | "inflammation";
+  | "inflammation"
+  | "hormones"
+  | "heart"
+  | "enzymes"
+  | "clotting"
+  | "immunity";
 
 export type Source = { title: string; publisher: string; url: string; /** ISO date the page was read. */ checked: string };
 

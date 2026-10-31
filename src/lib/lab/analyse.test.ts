@@ -8,8 +8,8 @@ const index = buildIndex(MARKERS);
 const byId = (id: string) => MARKERS.find((m) => m.id === id)!;
 
 describe("marker library", () => {
-  it("has the core panels and at least 60 markers", () => {
-    expect(MARKERS.length).toBeGreaterThanOrEqual(60);
+  it("has every panel and more than 100 markers", () => {
+    expect(MARKERS.length).toBeGreaterThan(100);
     for (const p of PANELS) expect(MARKERS.some((m) => m.panel === p.id)).toBe(true);
   });
 
@@ -57,7 +57,10 @@ describe("name matching", () => {
 
   it("doesn't confuse HbA1c with haemoglobin or BUN ratio with creatinine", () => {
     expect(findMarker(index, "Haemoglobin(Hb A1c)")?.id).not.toBe("hemoglobin");
-    expect(findMarker(index, "BUN/Creatinine Ratio")).toBeNull();
+    expect(findMarker(index, "BUN/Creatinine Ratio")?.id).toBe("bun-creatinine-ratio");
+    expect(findMarker(index, "Insulin C-peptide")?.id).toBe("c-peptide");
+    expect(findMarker(index, "Testosterone, Free")?.id).toBe("testosterone-free");
+    expect(findMarker(index, "Absolute Neutrophils")?.id).toBe("anc");
   });
 
   it("normalises noise words and punctuation", () => {
