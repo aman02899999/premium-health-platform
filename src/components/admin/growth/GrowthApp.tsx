@@ -6,7 +6,8 @@ import { addDays, daysBetween, expiryFor, formatDate, parseDuration } from "@/li
 import { waLink } from "@/lib/growth/messages";
 import { biggestLeak, funnelLines, funnelTotals, pct, sourceName, type FunnelRow } from "@/lib/growth/funnel";
 import type { DietIntake } from "@/lib/growth/diet-intake";
-import { DIET_PLANS } from "@/lib/growth/config";
+import { DIET_PLANS, REFERRER_BONUS_DAYS } from "@/lib/growth/config";
+import { inviteUrl, memberInviteMessage } from "@/lib/growth/invite";
 import { upcomingPosts, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import type { SocialStatus } from "@/lib/social/automation";
 import type { KitText } from "@/lib/social/app-kit";
@@ -678,7 +679,7 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
             {rows.map((m) => {
               const left = daysBetween(t, m.expiresOn);
               const renew = `${data.siteUrl}/join?renew=${m.renewToken}`;
-              const share = `${data.siteUrl}/join?ref=${m.referralCode}`;
+              const share = inviteUrl(data.siteUrl, m.referralCode);
               return (
                 <tr key={m.id} className="border-t border-white/5 align-top">
                   <td className="px-3 py-2">
@@ -706,6 +707,12 @@ function Members({ data, plans, act, gymName, reload }: { data: Data; plans: { n
                       <button type="button" onClick={() => copy(share, "Share link")} className="rounded-lg border border-white/15 px-2 py-1">
                         Share link
                       </button>
+                      {/* Only members who agreed to offers: an invite is promotional. */}
+                      {m.offersOk && left >= 0 && (
+                        <a href={waLink(`91${m.phone}`, memberInviteMessage({ name: m.name, gymName, url: share, days: REFERRER_BONUS_DAYS }))} target="_blank" rel="noopener noreferrer" title="Send this member their bring-a-friend link" className="rounded-lg bg-[#25d366]/20 px-2 py-1 text-emerald-200">
+                          Send invite
+                        </a>
+                      )}
                       <button type="button" onClick={() => setEdit({ id: m.id, name: m.name, phone: m.phone, email: m.email ?? "", planName: m.planName, startOn: m.startOn, expiresOn: m.expiresOn, notes: m.notes, reminders: m.reminders, offersOk: m.offersOk })} className="rounded-lg border border-white/15 px-2 py-1">
                         Edit
                       </button>
