@@ -38,7 +38,7 @@ export default function LatestPage() {
         faqs={[
           { q: "How often is blog updated?", a: "New and updated guides appear here first, newest at the top. Every guide cites its sources, such as PubMed, ICMR and FSSAI." },
           ]}
-        howTo={{ name: "How to use latest articles", steps: ["Visit /blog/latest for fresh guides sorted by updated date", "Read article + FAQs + references + related + trending", "Subscribe newsletter + push + WhatsApp for weekly digest", "Share via referral — viral loop 7d free + Rs50 credit"] }}
+        howTo={{ name: "How to use latest articles", steps: ["Visit /blog/latest for fresh guides sorted by updated date", "Read article + FAQs + references + related + trending", "Subscribe newsletter + push + WhatsApp for weekly digest", "Share a useful guide with family on WhatsApp"] }}
       />
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/health" }, { name: "Blog", path: "/health/blog" }, { name: "Latest", path: "/health/blog/latest" }]} />
       <ItemListJsonLd items={articles.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}`, image: a.heroImage }))} />

@@ -13,8 +13,8 @@ import { AdBanner, AdRectangle } from "@/health/components/monetization/AdCompon
 import { HealthProductRecommendations } from "@/health/components/monetization/HealthProductRecommendations";
 import { MonetizationCTA } from "@/health/components/monetization/MonetizationCTA";
 
-const seoTitle = "Trending Health Articles — Most Read This Week";
-const seoDescription = "Trending health guides — most read this week: diabetes, thyroid, PCOS, nutrition, Ayurveda — socia.";
+const seoTitle = "Trending Health Guides: Editors' Picks";
+const seoDescription = "Health guides our editors picked as most useful right now: diabetes, thyroid, PCOS, nutrition and Ayurveda.";
 const url = "/health/blog/trending";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Trending — Health Articles")}&category=${encodeURIComponent("Blog Trending")}&type=Blog`;
@@ -38,18 +38,18 @@ export default function TrendingPage() {
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Blog", item: "/health/blog" }, { name: "Trending", item: "/health/blog/trending" }]}
         faqs={[
-          { q: "What is trending?", a: "Most read this week — diabetes, thyroid, PCOS, nutrition, Ayurveda." },
-          { q: "How is trending calculated?", a: "Demo: featured + trending flag + pageviews + gtag events + UTM + referral viral loop. Production uses GA4 + /api/earn/stats + /admin/earning dashboard." },
+          { q: "What is trending?", a: "Guides our editors have picked as most useful right now, across diabetes, thyroid, PCOS, nutrition and Ayurveda." },
+          { q: "How is trending calculated?", a: "It is an editor's pick, not a live count. Guides marked as trending are listed with the most recently updated first." },
         ]}
-        howTo={{ name: "How to use trending", steps: ["Open Trending to see this week's most-read guides", "Read a guide, then follow its related and latest links", "Share a guide with family — referrals get 7 days of Premium free", "Subscribe to the newsletter or WhatsApp tips for a weekly digest"] }}
+        howTo={{ name: "How to use trending", steps: ["Open Trending to see the guides our editors picked", "Read a guide, then follow its related and latest links", "Share a useful guide with family on WhatsApp", "Subscribe to the newsletter or WhatsApp tips for a weekly digest"] }}
       />
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/health" }, { name: "Blog", path: "/health/blog" }, { name: "Trending", path: "/health/blog/trending" }]} />
       <ItemListJsonLd items={list.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}`, image: a.heroImage }))} />
 
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-rose-900 to-amber-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Most read</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Trending — Most Read This Week — {list.length} Guides</h1>
-        <p className="mt-2 max-w-2xl text-sm text-rose-100/90">The guides people are reading most this week.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Editors&apos; picks</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Trending: {list.length} guides our editors picked</h1>
+        <p className="mt-2 max-w-2xl text-sm text-rose-100/90">Guides we think are most useful right now. This is an editor&apos;s pick, not a live count of readers.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
