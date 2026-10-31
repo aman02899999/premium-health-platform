@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { evaluate, healthLines, type Snapshot } from "./checks";
+import { evaluate, expectedSocialChannels, healthLines, type Snapshot } from "./checks";
 import { alertDraft, publicStatus } from "./alerts";
 
 const now = new Date("2026-10-25T08:00:00Z");
@@ -14,6 +14,7 @@ const healthy = (): Snapshot => ({
   razorpay: { paidOrders14d: 3, events14d: 3, flagged24h: 0 },
   whatsapp: { sent: 6, withStatus: 6, failed: 0, topFailCode: null },
   email: { sent: 19, bounced: 0, failedToSend: 0 },
+  social: { date: "2026-10-24", missing: [], failed: [] },
 });
 const keys = (s: Snapshot) => evaluate(s, now).map((p) => p.key);
 
@@ -67,6 +68,37 @@ describe("site watchdog rules", () => {
     expect(keys({ ...healthy(), email: { sent: 0, bounced: 0, failedToSend: 12 } })).toEqual(["email-failures"]);
     expect(keys({ ...healthy(), email: { sent: 40, bounced: 10, failedToSend: 0 } })).toEqual(["email-bounces"]);
     expect(keys({ ...healthy(), email: { sent: 100, bounced: 4, failedToSend: 0 } })).toEqual([]);
+  });
+});
+
+describe("social posts watchdog", () => {
+  it("expects the Reel and Story every day, and the month plan's six extra posts only inside the plan", () => {
+    const on = { instagram: true, facebook: true, monthPlan: true };
+    expect(expectedSocialChannels("2026-10-31", on)).toEqual(["instagram", "facebook", "instagram-story"]);
+    expect(expectedSocialChannels("2026-11-01", on)).toEqual([
+      "instagram", "facebook", "instagram-story",
+      "instagram-am", "facebook-am", "instagram-pm", "facebook-pm", "instagram-reel2", "facebook-reel2",
+    ]);
+    expect(expectedSocialChannels("2026-12-01", on)).toHaveLength(3);
+    // SOCIAL_MONTH_PLAN=off, or a channel without a token, isn't expected to post.
+    expect(expectedSocialChannels("2026-11-01", { ...on, monthPlan: false })).toEqual(["instagram", "facebook", "instagram-story"]);
+    expect(expectedSocialChannels("2026-11-01", { instagram: false, facebook: true, monthPlan: true })).toEqual(["facebook", "facebook-am", "facebook-pm", "facebook-reel2"]);
+  });
+
+  it("flags yesterday's posts that failed even after the retries, naming Meta's error", () => {
+    const [p] = evaluate({ ...healthy(), social: { date: "2026-11-01", missing: [], failed: [{ channel: "instagram-am", error: "Error validating access token: Session has expired" }] } }, now);
+    expect(p.key).toBe("social-posts-failed");
+    expect(p.title).toBe("1 Instagram/Facebook post failed on 2026-11-01");
+    expect(p.detail).toContain("instagram-am");
+    expect(p.detail).toContain("Session has expired");
+    expect(p.fix).toContain("token");
+  });
+
+  it("flags posts that never ran (a schedule that didn't fire leaves no record at all)", () => {
+    const [p] = evaluate({ ...healthy(), social: { date: "2026-11-01", missing: ["instagram-reel2", "facebook-reel2"], failed: [] } }, now);
+    expect(p.key).toBe("social-posts-missing");
+    expect(p.title).toBe("2 Instagram/Facebook posts didn't go out on 2026-11-01");
+    expect(p.detail).toContain("instagram-reel2, facebook-reel2");
   });
 });
 

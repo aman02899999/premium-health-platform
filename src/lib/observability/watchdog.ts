@@ -2,9 +2,10 @@ import "server-only";
 import { pool } from "@/health/db";
 import { lastSyncAt } from "@/health/lib/live-sync";
 import { SITE_URL } from "@/lib/site";
-import { todayIST } from "@/lib/growth/dates";
+import { addDays, todayIST } from "@/lib/growth/dates";
+import { facebookConfigured, instagramConfigured } from "@/lib/social/meta";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
-import { evaluate, type JobRun, type Problem, type Snapshot } from "./checks";
+import { evaluate, expectedSocialChannels, type JobRun, type Problem, type Snapshot } from "./checks";
 import { alertDraft, telegramText } from "./alerts";
 
 // Reads what the background jobs, webhooks and messages did recently (counts only, no personal
@@ -37,10 +38,12 @@ export async function snapshot(): Promise<Snapshot> {
     razorpay: { paidOrders14d: 0, events14d: 0, flagged24h: 0 },
     whatsapp: { sent: 0, withStatus: 0, failed: 0, topFailCode: null },
     email: { sent: 0, bounced: 0, failedToSend: 0 },
+    social: { date: "", missing: [], failed: [] },
   };
   if (!db) return empty;
   const paidTables = ["membership_orders", "book_orders", "diet_orders", "shop_orders", "payment_requests"];
-  const [status, sync, paid, events, wa, waCode, em] = await Promise.all([
+  const socialDate = addDays(todayIST(), -1);
+  const [status, sync, paid, events, wa, waCode, em, posts] = await Promise.all([
     pool.query<{ key: string; value: Status & Record<string, unknown> }>(`select key, value from public.system_status where key in ('daily-run', 'reel-run', 'reconcile-run')`).then(
       (r) => r.rows,
       () => [],
@@ -75,6 +78,11 @@ export async function snapshot(): Promise<Snapshot> {
          from public.message_outbox where channel = 'email' and created_at > now() - interval '3 days'`,
       { sent: 0, bounced: 0, failed: 0 },
     ),
+    // Null when the table can't be read, so an unreadable table never reads as "nothing posted".
+    pool.query<{ channel: string; status: string; error: string | null }>(`select channel, status, error from public.social_posts where post_date = $1`, [socialDate]).then(
+      (r) => r.rows,
+      (err: Error) => (console.error("[watchdog] query failed:", err.message), null),
+    ),
   ]);
   const get = (k: string) => status.find((s) => s.key === k)?.value ?? null;
   const run = (k: string): JobRun => {
@@ -91,6 +99,17 @@ export async function snapshot(): Promise<Snapshot> {
     razorpay: { paidOrders14d: paid.n, events14d: events.total, flagged24h: events.flagged },
     whatsapp: { sent: wa.sent, withStatus: wa.with_status, failed: wa.failed, topFailCode: waCode.code },
     email: { sent: em.sent, bounced: em.bounced, failedToSend: em.failed },
+    social: posts ? socialDay(socialDate, posts) : empty.social,
+  };
+}
+
+/** One day's posts against what should have gone out. A row still 'pending' the next morning died half way. */
+function socialDay(date: string, rows: { channel: string; status: string; error: string | null }[]): Snapshot["social"] {
+  const expected = expectedSocialChannels(date, { instagram: instagramConfigured(), facebook: facebookConfigured(), monthPlan: process.env.SOCIAL_MONTH_PLAN !== "off" });
+  return {
+    date,
+    missing: expected.filter((c) => !rows.some((r) => r.channel === c)),
+    failed: rows.filter((r) => r.status !== "published").map((r) => ({ channel: r.channel, error: r.error ?? `still ${r.status}` })),
   };
 }
 
