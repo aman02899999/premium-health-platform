@@ -9,6 +9,7 @@ import { dispatch, enqueue } from "./outbox";
 import { renderOrderPlan } from "./plan-render";
 import { putFile } from "./storage";
 import { markPathSent, upsertDraft } from "./client-plans";
+import { pushToMember } from "@/lib/push/send";
 
 // After payment: build the client's plan, keep it as a draft, and send it once approved.
 //
@@ -61,6 +62,12 @@ export async function sendDietPlan(orderId: string): Promise<{ queued: number }>
   // The client's dashboard shows a plan once it has been sent to them.
   await markPathSent(order.id, order.planPath);
   await dispatch(5);
+  // Free app notification too, if the client turned them on (best effort: WhatsApp and email carry the plan).
+  if (order.email) {
+    await pushToMember(order.email, { title: "Your diet plan is ready", body: `Your ${name} is in My plans. Tap to open it.`, url: "/account/plans", tag: `plan-${order.id}` }).catch((err) =>
+      console.error("[push] plan notice failed:", (err as Error).message),
+    );
+  }
   return { queued };
 }
 
