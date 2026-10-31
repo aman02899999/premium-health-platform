@@ -8,6 +8,9 @@ import type { OfferPlan } from "@/lib/offers";
 import { formatINR } from "@/lib/site";
 import { planMonths } from "@/components/home/PlanGrid";
 import { trackPixel } from "@/lib/meta-pixel";
+import { REFERRER_BONUS_DAYS } from "@/lib/growth/config";
+import { inviteForMember, inviteUrl } from "@/lib/growth/invite";
+import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 
 export type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
@@ -115,11 +118,22 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
           {receipt.validUntil && ` It's valid until ${receipt.validUntil}.`}
         </p>
         {receipt.referralCode && (
-          <div className="rounded-2xl bg-brand/10 p-4 text-sm text-white/80 ring-1 ring-brand/30">
+          <div className="space-y-3 rounded-2xl bg-brand/10 p-4 text-sm text-white/80 ring-1 ring-brand/30">
             <p>
               Your referral code: <b className="font-mono text-white">{receipt.referralCode}</b>
             </p>
-            <p className="mt-1 text-white/60">Share it with friends. When a friend joins with it, you both get bonus days on your membership.</p>
+            <p className="text-white/60">
+              Invite a friend: when they join online with your link, you both get {REFERRER_BONUS_DAYS} extra days on your membership.
+            </p>
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(inviteForMember({ gymName, url: inviteUrl(window.location.origin, receipt.referralCode), days: REFERRER_BONUS_DAYS }))}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-no-capture
+              className="inline-flex items-center gap-2 rounded-full bg-[#25d366] px-5 py-2.5 font-bold text-[#0b141a]"
+            >
+              <WhatsAppIcon className="h-4 w-4" /> Invite a friend on WhatsApp
+            </a>
           </div>
         )}
         <p className="rounded-xl bg-white/5 px-4 py-3 font-mono text-sm text-white/80">Payment ID: {receipt.paymentId}</p>
