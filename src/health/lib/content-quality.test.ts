@@ -57,7 +57,8 @@ describe("rewritten disease pages", () => {
 
     it(`${slug} gives no medicine doses`, () => {
       const { text } = fields(slug);
-      expect(text.filter((s) => /\b\d+(\.\d+)?\s?(mg|mcg|µg|IU)\b/i.test(s))).toEqual([]);
+      // Lab units such as mg/dL are test results, not doses.
+      expect(text.filter((s) => /\b\d+(\.\d+)?\s?(mg|mcg|µg|IU)\b(?!\/dL)/i.test(s))).toEqual([]);
     });
   }
 });
