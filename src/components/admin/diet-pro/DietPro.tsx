@@ -267,7 +267,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
     setDay(0);
   }
   async function deleteClient(c: SavedClient) {
-    if (!confirm(`Permanently delete ${c.name}${c.local ? " from this device" : " and all their data"}?`)) return;
+    if (!confirm(c.local ? `Permanently delete ${c.name} from this device?` : `Remove ${c.name} from Diet Pro? Their record is kept in the archive and can be put back.`)) return;
     if (c.local) saveLocal(localClients.filter((x) => x.id !== c.id));
     else {
       try {
@@ -581,7 +581,7 @@ export default function DietPro({ business, coach, coachProfile }: { business: P
                     {c.local && mode === "cloud" && <span className="ml-1.5 rounded bg-amber-400/20 px-1 text-[9px] font-bold uppercase text-amber-200">this device</span>}
                     <span className="block text-[10px] text-white/40">{new Date(c.savedAt).toLocaleString("en-IN")}</span>
                   </button>
-                  <button type="button" onClick={() => deleteClient(c)} aria-label={`Delete ${c.name}`} className="text-white/40 hover:text-rose-300">
+                  <button type="button" onClick={() => deleteClient(c)} aria-label={`Remove ${c.name}`} className="text-white/40 hover:text-rose-300">
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
                 </li>

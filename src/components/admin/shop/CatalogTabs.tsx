@@ -37,9 +37,9 @@ export const blank = (categoryId: string | null): Draft => ({
 });
 
 async function remove(kind: string, id: string, name: string, done: Done) {
-  if (!confirm(`Delete “${name}”? This can't be undone.`)) return false;
+  if (!confirm(`Remove “${name}” from the store? It's kept in the archive and can be put back.`)) return false;
   await shopPost({ action: "delete", kind, id });
-  await done(`Deleted ${name}`);
+  await done(`Removed ${name}`);
   return true;
 }
 

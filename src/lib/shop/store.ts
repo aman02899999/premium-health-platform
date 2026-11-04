@@ -1,6 +1,7 @@
 import "server-only";
 import type { PoolClient } from "pg";
 import { pool } from "@/health/db";
+import { archiveShopItem } from "@/lib/admin/archive";
 import { DEFAULT_CATEGORIES, DEFAULT_SETTINGS } from "./defaults";
 import { DEFAULT_POSTS } from "./default-posts";
 import { priceCombo, priceProduct, type Priced, type PricedCombo } from "./pricing";
@@ -82,10 +83,10 @@ export async function saveCategory(c: Omit<Category, "id"> & { id?: string }): P
 }
 
 /** Refuses (returns a message) while products use it: they would silently lose the category discount. */
-export async function deleteCategory(id: string): Promise<string | null> {
+export async function deleteCategory(id: string, by: string): Promise<string | null> {
   const { rows } = await pool.query<{ n: number }>(`select count(*)::int as n from public.shop_products where category_id = $1`, [id]);
   if (rows[0].n > 0) return `${rows[0].n} product(s) are in this category. Move them to another category first, or hide the category instead.`;
-  await pool.query(`delete from public.shop_categories where id = $1`, [id]);
+  await archiveShopItem("category", id, by);
   return null;
 }
 
@@ -119,10 +120,10 @@ export async function saveProduct(p: ProductInput): Promise<Product> {
 }
 
 /** Refuses (returns a message) while a combo contains it; past orders keep their own snapshot. */
-export async function deleteProduct(id: string): Promise<string | null> {
+export async function deleteProduct(id: string, by: string): Promise<string | null> {
   const { rows } = await pool.query<{ name: string }>(`select name from public.shop_combos where items @> $1::jsonb`, [JSON.stringify([{ productId: id }])]);
   if (rows.length) return `It's in ${rows.map((r) => `“${r.name}”`).join(", ")}. Remove it from those combos first, or untick “Show on store” to hide it.`;
-  await pool.query(`delete from public.shop_products where id = $1`, [id]);
+  await archiveShopItem("product", id, by);
   return null;
 }
 
@@ -145,8 +146,8 @@ export async function saveCombo(c: Omit<Combo, "id" | "updatedAt"> & { id?: stri
   return comboFrom(rows[0]);
 }
 
-export async function deleteCombo(id: string): Promise<string | null> {
-  await pool.query(`delete from public.shop_combos where id = $1`, [id]);
+export async function deleteCombo(id: string, by: string): Promise<string | null> {
+  await archiveShopItem("combo", id, by);
   return null;
 }
 
@@ -200,8 +201,8 @@ export async function savePost(p: Omit<Post, "id" | "createdAt" | "updatedAt"> &
   return postFrom(rows[0]);
 }
 
-export async function deletePost(id: string): Promise<string | null> {
-  await pool.query(`delete from public.shop_posts where id = $1`, [id]);
+export async function deletePost(id: string, by: string): Promise<string | null> {
+  await archiveShopItem("post", id, by);
   return null;
 }
 

@@ -45,7 +45,18 @@ export async function POST(req: Request) {
   if (bytes.subarray(0, 5).toString() !== "%PDF-") return NextResponse.json({ error: `${file.name} isn't a PDF` }, { status: 400 });
 
   const supabase = await createClient();
-  const { error } = await supabase.storage.from(LIBRARY_BUCKET).upload(bookPath(slug), bytes, { contentType: "application/pdf", upsert: true });
+  const bucket = supabase.storage.from(LIBRARY_BUCKET);
+  // Replacing a book keeps the old file: it's copied to archive/ first (never overwritten unseen).
+  const { data: existing } = await bucket.list("books", { search: `${slug}.pdf`, limit: 5 });
+  if (existing?.some((f) => f.name === `${slug}.pdf`)) {
+    const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const { error: copyError } = await bucket.copy(bookPath(slug), `archive/${slug}-${stamp}.pdf`);
+    if (copyError) {
+      console.error("[library] archive copy failed:", copyError.message);
+      return NextResponse.json({ error: "Couldn't keep a copy of the current file, so nothing was replaced. Try again." }, { status: 500 });
+    }
+  }
+  const { error } = await bucket.upload(bookPath(slug), bytes, { contentType: "application/pdf", upsert: true });
   if (error) {
     console.error("[library] upload failed:", error.message);
     return NextResponse.json({ error: "Upload failed. Please try again." }, { status: 500 });
