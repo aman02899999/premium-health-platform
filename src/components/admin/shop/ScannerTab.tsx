@@ -2,11 +2,12 @@
 
 /* eslint-disable @next/next/no-img-element -- admin previews of arbitrary image URLs */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AlertTriangle, Camera, ClipboardList, Link2, Loader2, Minus, PackagePlus, Pencil, Plus, ScanLine } from "lucide-react";
+import { AlertTriangle, Camera, ClipboardList, Link2, Loader2, Minus, PackagePlus, Pencil, Plus, Receipt, ScanLine, Search } from "lucide-react";
 import { parseScan, type Scan } from "@/lib/shop/scan-code";
 import type { Priced } from "@/lib/shop/pricing";
 import { CameraScanner } from "./CameraScanner";
 import { ProductEditor, blank, type Draft } from "./CatalogTabs";
+import { CART_KEY, SalePanel, addToCart, type CartLine } from "./CounterSale";
 import { Card, Label, inr, shopPost, when, type ShopData } from "./common";
 
 type Done = (m: string) => Promise<void>;
@@ -31,9 +32,15 @@ const REASON_LABEL: Record<string, string> = {
 const COUNT_KEY = "rfc-shop-count";
 const toDraft = (p: Priced): Draft => ({ ...p, discountPct: p.discountPct ?? "", sku: p.sku ?? "", seoTitle: p.seoTitle ?? "", seoDescription: p.seoDescription ?? "" });
 
-/** Scan a pack to open it, add it, or count the shelf. Works with the camera, a handheld scanner or typing. */
+const NO_SCAN: Scan = { code: "", kind: "qr", checksumOk: true };
+type Mode = "sale" | "look" | "count";
+
+/**
+ * Scan a pack to bill it, open it, add it, or count the shelf. Works with the camera, a handheld
+ * scanner or typing, and every mode can also find a product by name (for packs not linked yet).
+ */
 export function ScannerTab({ data, done }: { data: ShopData; done: Done }) {
-  const [mode, setMode] = useState<"look" | "count">("look");
+  const [mode, setMode] = useState<Mode>("sale");
   const [camera, setCamera] = useState(false);
   const [typed, setTyped] = useState("");
   const [busy, setBusy] = useState(false);
@@ -60,12 +67,40 @@ export function ScannerTab({ data, done }: { data: ShopData; done: Done }) {
     } catch {}
   }, [counted]);
 
+  // Counter sale cart, also kept on this device until the bill is made.
+  const [cart, setCart] = useState<CartLine[]>([]);
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(CART_KEY) ?? "[]");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- restore an unfinished sale once
+      if (Array.isArray(saved)) setCart(saved);
+    } catch {}
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    } catch {}
+  }, [cart]);
+
+  /** A product picked by name instead of scanned. */
+  const pick = (p: Priced) => {
+    setErr("");
+    if (mode === "sale") setCart((c) => addToCart(c, p.id));
+    else if (mode === "count") setCounted((c) => ({ ...c, [p.id]: (c[p.id] ?? 0) + 1 }));
+    else setResult({ kind: "found", scan: NO_SCAN, product: p, variant: "" });
+  };
+
   const handle = useCallback(
     async (raw: string) => {
       setErr("");
       const scan = parseScan(raw);
       if (!scan) return setErr("That code is too short. Scan again or type the numbers under the barcode.");
       const known = byCode.get(scan.code);
+      if (mode === "sale") {
+        if (known && byId.has(known.productId)) setCart((c) => addToCart(c, known.productId, known.variant, scan.code));
+        else setErr(`Barcode ${scan.code} isn't on any product yet. Find the product by name below, or link the barcode in “Scan a product”.`);
+        return;
+      }
       if (mode === "count") {
         if (known && byId.has(known.productId)) setCounted((c) => ({ ...c, [known.productId]: (c[known.productId] ?? 0) + 1 }));
         else setUnknown((u) => (u.includes(scan.code) ? u : [scan.code, ...u]));
@@ -96,6 +131,7 @@ export function ScannerTab({ data, done }: { data: ShopData; done: Done }) {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-2" role="tablist" aria-label="Scanner mode">
         {[
+          { id: "sale" as const, label: `Counter sale${cart.length ? ` (${cart.reduce((n, l) => n + l.qty, 0)})` : ""}`, icon: Receipt },
           { id: "look" as const, label: "Scan a product", icon: ScanLine },
           { id: "count" as const, label: "Shelf count", icon: ClipboardList },
         ].map((m) => (
@@ -147,6 +183,7 @@ export function ScannerTab({ data, done }: { data: ShopData; done: Done }) {
           </button>
         </form>
         <p className="mt-2 text-xs text-white/45">A USB or Bluetooth barcode scanner works too: click the box and scan.</p>
+        <FindByName products={data.products} onPick={pick} label={mode === "sale" ? "Add to bill" : mode === "count" ? "Count 1" : "Open"} />
         {camera && (
           <div className="mt-3">
             <CameraScanner onCode={(c) => void handle(c)} onClose={() => setCamera(false)} />
@@ -193,7 +230,48 @@ export function ScannerTab({ data, done }: { data: ShopData; done: Done }) {
         </Card>
       )}
 
+      {mode === "sale" && <SalePanel data={data} cart={cart} setCart={setCart} done={done} />}
       {mode === "count" && <CountPanel data={data} counted={counted} setCounted={setCounted} unknown={unknown} clearUnknown={() => setUnknown([])} done={done} />}
+    </div>
+  );
+}
+
+/** Finds a product by name, brand or size: for packs whose barcode isn't linked yet, or loose items. */
+function FindByName({ products, onPick, label }: { products: Priced[]; onPick: (p: Priced) => void; label: string }) {
+  const [q, setQ] = useState("");
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const hits = words.length ? products.filter((p) => words.every((w) => `${p.name} ${p.brand} ${p.size} ${p.sku ?? ""}`.toLowerCase().includes(w))).slice(0, 6) : [];
+  return (
+    <div className="mt-3">
+      <label className="flex items-center gap-2 rounded-xl border border-white/10 px-3">
+        <Search className="h-4 w-4 shrink-0 text-white/40" />
+        <input className="w-full bg-transparent py-2.5 text-sm outline-none" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Or find by name: whey, eaa, zma…" aria-label="Find product by name" />
+      </label>
+      {words.length > 0 && (
+        <ul className="mt-2 divide-y divide-white/5 rounded-xl border border-white/10">
+          {hits.length === 0 && <li className="p-3 text-sm text-white/45">No product matches.</li>}
+          {hits.map((p) => (
+            <li key={p.id}>
+              <button
+                type="button"
+                onClick={() => {
+                  onPick(p);
+                  setQ("");
+                }}
+                className="flex w-full items-center gap-3 p-3 text-left text-sm hover:bg-white/5"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate">{p.name}</span>
+                  <span className="text-xs text-white/45">
+                    {inr(p.salePrice)} · {p.stock} in stock{!p.active && " · hidden"}
+                  </span>
+                </span>
+                <span className="shrink-0 rounded-lg bg-amber-400/15 px-2.5 py-1 text-xs font-semibold text-amber-200">{label}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
-import { ShieldCheck } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { pageMeta } from "@/lib/seo";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { whatsappHref } from "@/lib/site";
 import { PageHero } from "@/components/ui/Section";
 import { JoinCheckout, type JoinPrefill } from "@/components/join/JoinCheckout";
-import { memberByRenewToken } from "@/lib/growth/members";
+import { memberByCode, memberByRenewToken } from "@/lib/growth/members";
 import { formatDate } from "@/lib/growth/dates";
-import { looksLikeReferralCode } from "@/lib/growth/config";
+import { REFERRED_BONUS_DAYS, looksLikeReferralCode } from "@/lib/growth/config";
+import { inviteBanner } from "@/lib/growth/invite";
+import { Gift, ShieldCheck } from "lucide-react";
 import { applyOffer } from "@/lib/offers";
 import { todayIST } from "@/lib/growth/dates";
 
@@ -39,10 +40,23 @@ export default async function JoinPage({ searchParams }: { searchParams: Promise
   const renewing = one("renew") ? await memberByRenewToken(one("renew")).catch(() => null) : null;
   if (renewing) prefill = { name: renewing.name, phone: renewing.phone, email: renewing.email ?? "", renewal: { planName: renewing.planName, expiresOn: formatDate(renewing.expiresOn) } };
   else if (looksLikeReferralCode(one("ref"))) prefill = { referredBy: one("ref").toUpperCase() };
+  // A real member's code gets a welcome naming them (first name only); an unknown code is still
+  // prefilled, since the reward check happens at payment.
+  const inviter = !renewing && prefill?.referredBy ? await memberByCode(prefill.referredBy).catch((err: Error) => (console.error("[join] referral lookup:", err.message), null)) : null;
+  const banner = inviter ? inviteBanner(inviter.name, REFERRED_BONUS_DAYS) : null;
   return (
     <>
       <PageHero eyebrow="Join online" title="Start" highlight="today" intro="Pick your plan, pay securely, and show your confirmation at the front desk." />
       <section className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+        {banner && (
+          <div className="mb-6 flex items-start gap-3 rounded-2xl bg-brand/10 p-4 ring-1 ring-brand/30">
+            <Gift className="mt-0.5 h-5 w-5 shrink-0 text-brand" aria-hidden />
+            <div>
+              <p className="font-bold text-white">{banner.title}</p>
+              <p className="mt-1 text-sm text-white/75">{banner.body}</p>
+            </div>
+          </div>
+        )}
         {razorpayConfigured() ? (
           // The form streams in after the page; holding its space stops the footer jumping under the visitor.
           <Suspense fallback={<div aria-hidden className="glass min-h-[90rem] animate-pulse rounded-3xl sm:min-h-[58rem]" />}>

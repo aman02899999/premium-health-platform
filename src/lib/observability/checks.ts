@@ -2,6 +2,7 @@
 // recently, which problems need the owner. Pure, so every rule is tested without a database.
 // Keys are stable (they name the alert and dedupe it to one a day); titles and fixes are written
 // for the owner, who is not technical.
+import { monthDay } from "@/lib/growth/month-plan";
 
 export type JobRun = { at: string; ok: boolean; summary?: string } | null;
 
@@ -32,7 +33,21 @@ export type Snapshot = {
     topFailCode: string | null;
   };
   email: { sent: number; bounced: number; failedToSend: number };
+  /**
+   * Yesterday's (India time) Instagram and Facebook posts, read the morning after so the evening
+   * retries have had their go. A run that "succeeded" can still have failed on a channel (an
+   * expired token answers per channel), and a schedule that never fired leaves no row at all.
+   */
+  social: { date: string; missing: string[]; failed: { channel: string; error: string }[] };
 };
+
+/** The social_posts channels a day should have: the evening Reel and morning Story, plus the month plan's six. */
+export function expectedSocialChannels(date: string, on: { instagram: boolean; facebook: boolean; monthPlan: boolean }): string[] {
+  const nets = (["instagram", "facebook"] as const).filter((n) => on[n]);
+  const daily = [...nets, ...(on.instagram ? ["instagram-story"] : [])];
+  if (!on.monthPlan || monthDay(date) === null) return daily;
+  return [...daily, ...["am", "pm", "reel2"].flatMap((slot) => nets.map((n) => `${n}-${slot}`))];
+}
 
 export type Problem = { key: string; title: string; detail: string; fix: string };
 
@@ -142,6 +157,24 @@ export function evaluate(s: Snapshot, now = new Date()): Problem[] {
       title: `${em.bounced} of ${em.sent} emails bounced`,
       detail: "Above 10%, inboxes start treating the gym's emails as spam.",
       fix: "Don't send campaigns to old lists until they're cleaned; bounced addresses are already stopped automatically.",
+    });
+
+  // Instagram and Facebook: a token that expired fails every post while the job still "runs".
+  const so = s.social;
+  const plural = (n: number, one: string, many: string) => `${n} Instagram/Facebook ${n === 1 ? one : many}`;
+  if (so.failed.length)
+    out.push({
+      key: "social-posts-failed",
+      title: `${plural(so.failed.length, "post failed", "posts failed")} on ${so.date}`,
+      detail: so.failed.slice(0, 4).map((f) => `${f.channel}: ${f.error.slice(0, 140)}`).join("; "),
+      fix: "Admin → Growth shows each post's error. If it mentions the access token or session, make a new token in Meta and replace INSTAGRAM_ACCESS_TOKEN or FACEBOOK_PAGE_TOKEN in Vercel (never send it in chat).",
+    });
+  if (so.missing.length)
+    out.push({
+      key: "social-posts-missing",
+      title: `${plural(so.missing.length, "post didn't go out", "posts didn't go out")} on ${so.date}`,
+      detail: `No record at all for: ${so.missing.join(", ")}. The schedule didn't run, or stopped before it got there.`,
+      fix: "Check Vercel → Cron Jobs for /api/cron/reel, /api/cron/social and /api/cron/daily.",
     });
   return out;
 }

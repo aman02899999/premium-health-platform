@@ -50,7 +50,20 @@ describe("reading results from a report", () => {
     expect(r.ast.value).toBe("56.4");
     // The abbreviation alone isn't enough without a unit that fits the test.
     expect(read([["TSH Receptor Antibody", "1.2"]]).results).toEqual([]);
-    expect(read([["RDW SD", "44.5", "F/L", "38.5 - 45.5"]]).results).toEqual([]);
+    expect(read([["MCV Index", "12", "ratio", "0 - 20"]]).results).toEqual([]);
+    expect(byId([["RDW SD", "44.5", "F/L", "38.5 - 45.5"]])["rdw-sd"].value).toBe("44.5");
+  });
+
+  it("reads an absolute count printed under the percentage's name by its unit", () => {
+    const r = byId([["Neutrophils", "52.10", "%", "40.00 - 80.00"], ["Neutrophils", "2.29", "thou/mm3", "2.00 - 7.00"], ["Eosinophils", "0.30", "thou/mm3", "0.02 - 0.50"]]);
+    expect(r.neutrophils.value).toBe("52.10");
+    expect(r.anc).toMatchObject({ value: "2.29", range: "2.00 - 7.00" });
+    expect(r.aec.value).toBe("0.30");
+  });
+
+  it("reads hormone and advanced tests", () => {
+    const r = byId([["Testosterone, Total", "512", "ng/dL", "249 - 836"], ["Prolactin", "14.2", "ng/mL", "4.0 - 15.2"], ["Lipoprotein (a)", "42", "mg/dL", "<30"], ["CPK", "1450", "U/L", "39 - 308"], ["PT (Patient)", "12.8", "sec", "11 - 13.5"]]);
+    expect(Object.keys(r).sort()).toEqual(["ck", "lpa", "prolactin", "pt", "testosterone-total"]);
   });
 
   it("never reads urine tests, absolute counts or other units as the blood test", () => {
@@ -85,7 +98,7 @@ describe("reading results from a report", () => {
   });
 
   it("lists result lines for tests we don't cover yet, so the member can type them in", () => {
-    expect(read([["Testosterone, Total", "512", "ng/dL", "249 - 836"], ["Absolute Neutrophil Count", "7", "10^3/µL", "1.5 - 8"]]).skipped).toEqual(["Testosterone, Total", "Absolute Neutrophil Count"]);
+    expect(read([["Vitamin A", "512", "ng/mL", "200 - 800"], ["HOMA-IR", "2.1", "0 - 2.5"]]).skipped).toEqual(["Vitamin A", "HOMA-IR"]);
   });
 });
 

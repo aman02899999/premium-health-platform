@@ -4,6 +4,9 @@ import type { ReactNode } from "react";
 import { Loader2 } from "lucide-react";
 import type { Priced, PricedCombo } from "@/lib/shop/pricing";
 import type { Category, Order, Post, ShopSettings } from "@/lib/shop/types";
+import type { CounterSale } from "@/lib/shop/counter-sales";
+
+export type { CounterSale };
 
 export type Stats = {
   revenueTotal: number;
@@ -25,6 +28,7 @@ export type ShopData = {
   categories: Category[];
   products: Priced[];
   barcodes: { code: string; productId: string; variant: string }[];
+  counterSales: CounterSale[];
   combos: PricedCombo[];
   posts: Post[];
   orders: Order[];

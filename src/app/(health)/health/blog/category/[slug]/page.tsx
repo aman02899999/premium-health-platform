@@ -72,7 +72,7 @@ export default async function CategorySlugPage({ params }: Props) {
           { q: `What is ${cat}?`, a: `${cat} guides for Indian families — evidence-informed, India-specific, with FAQs, references, real photos, diet, lifestyle, medicines, Ayurveda.` },
           { q: `How many ${cat} guides?`, a: `${filtered.length} guides in ${cat} — sorted by updated date, latest + trending + related internal linking, CollectionPage + ItemList + Breadcrumb JSON-LD, OG /api/og, canonical+hreflang.` },
         ]}
-        howTo={{ name: `How to browse ${cat} guides`, steps: [`Visit /blog/category/${slug} for all ${cat} guides`, `Read guide + FAQs + references + related + trending + latest`, `Subscribe newsletter + push + WhatsApp for weekly ${cat} digest`, `Share via referral — viral loop 7d free + Rs50 credit`] }}
+        howTo={{ name: `How to browse ${cat} guides`, steps: [`Visit /blog/category/${slug} for all ${cat} guides`, `Read guide + FAQs + references + related + trending + latest`, `Subscribe newsletter + push + WhatsApp for weekly ${cat} digest`, `Share a useful guide with family on WhatsApp`] }}
       />
       <BreadcrumbJsonLd items={[{ name: "Home", path: "/health" }, { name: "Blog", path: "/health/blog" }, { name: "Categories", path: "/health/blog/category" }, { name: cat, path: `/health/blog/category/${slug}` }]} />
       <CollectionJsonLd title={`${cat} Guides`} description={`All ${cat} articles`} slug={`/health/blog/category/${slug}`} items={filtered.map((a) => ({ name: a.title, path: `/health/blog/${a.slug}` }))} />

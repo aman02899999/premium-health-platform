@@ -92,6 +92,11 @@ export default async function PrivacyPage() {
             To send a short series of welcome and fitness-tip emails after you sign up, and occasional offers or our weekly newsletter if you opted in.
             Every such email has an unsubscribe link. To stop WhatsApp messages, message us on WhatsApp and we will turn them off.
           </li>
+          <li>
+            App notifications, only if you turn them on in <a href="/account">My account</a>. We keep your browser&apos;s notification address and
+            keys, linked to your sign-in email, and use them to tell you when your plan is ready. The notification itself is delivered free by your
+            browser&apos;s own service (Google, Apple, Mozilla or Microsoft). Turn them off in My account or in your phone&apos;s settings at any time.
+          </li>
           <li>To keep the site secure and fix problems.</li>
         </ul>
         <p>We never sell your data or share it with third parties for their own marketing.</p>

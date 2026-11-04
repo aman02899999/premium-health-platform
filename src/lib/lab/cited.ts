@@ -8,7 +8,9 @@
 import type { Band, RefRange, Source } from "./types";
 
 const CHECKED = "2026-10-28";
+const CHECKED_29 = "2026-10-29";
 const ency = (id: string, title: string): Source => ({ title, publisher: "MedlinePlus, U.S. National Library of Medicine", url: `https://medlineplus.gov/ency/article/${id}.htm`, checked: CHECKED });
+const ency29 = (id: string, title: string): Source => ({ ...ency(id, title), checked: CHECKED_29 });
 const labTest = (slug: string, title: string): Source => ({ title, publisher: "MedlinePlus, U.S. National Library of Medicine", url: `https://medlineplus.gov/lab-tests/${slug}/`, checked: CHECKED });
 
 const ADULT = 18;
@@ -130,4 +132,67 @@ export const CITED: Record<string, Cited> = {
   "vitamin-b12": { ranges: [{ low: 299, high: 1054 }], sources: [ency("003705", "Vitamin B12 level")] },
   // "Many experts recommend a level from 30 to 80 ng/mL."
   "vitamin-d": { ranges: [{ low: 30, high: 80 }], sources: [ency("003569", "25-hydroxy vitamin D test")] },
+  folate: { ranges: [{ low: 2.7, high: 17 }], sources: [ency29("003686", "Folic acid test")] },
+
+  // CBC extras
+  reticulocytes: { ranges: [{ low: 0.77, high: 2.26, ageMin: ADULT }], sources: [ency29("003637", "Reticulocyte count")] },
+
+  // Electrolytes
+  "calcium-ionized": { ranges: [{ low: 4.8, high: 5.6, ageMin: ADULT }], sources: [ency29("003486", "Calcium, ionized")] },
+
+  // Hormones. Women's ranges for oestrogen, progesterone, LH and FSH depend on the cycle day and
+  // menopause, which we don't ask, so only the men's ranges are used and women see their lab's.
+  "testosterone-total": {
+    // "Male age 17 to 50 years: 249 to 836 ng/dL; over 50: 193 to 740. Female 17 to 50: 8.4 to 48.1; over 50: 2.9 to 40.1."
+    ranges: [
+      { sex: "male", low: 249, high: 836, ageMin: ADULT, ageMax: 50 },
+      { sex: "male", low: 193, high: 740, ageMin: 51 },
+      { sex: "female", low: 8.4, high: 48.1, ageMin: ADULT, ageMax: 50 },
+      { sex: "female", low: 2.9, high: 40.1, ageMin: 51 },
+    ],
+    sources: [ency29("003707", "Testosterone")],
+  },
+  estradiol: { ranges: [{ sex: "male", low: 10, high: 50, ageMin: ADULT }], sources: [ency29("003711", "Estradiol blood test")] },
+  progesterone: { ranges: [{ sex: "male", high: 1, ageMin: ADULT }], sources: [ency29("003714", "Serum progesterone")] },
+  lh: { ranges: [{ sex: "male", low: 1.8, high: 8.6, ageMin: ADULT }], sources: [ency29("003708", "Luteinizing hormone (LH) blood test")] },
+  fsh: { ranges: [{ sex: "male", low: 1.5, high: 12.4, ageMin: ADULT }], sources: [ency29("003710", "Follicle-stimulating hormone (FSH) blood test")] },
+  // "Men: less than 20 ng/mL. Nonpregnant women: less than 25 ng/mL."
+  prolactin: { ranges: [{ sex: "male", high: 20, ageMin: ADULT }, { sex: "female", high: 25, ageMin: ADULT }], sources: [ency29("003718", "Prolactin blood test")] },
+  "dhea-s": {
+    ranges: [
+      { sex: "female", low: 45, high: 320, ageMin: 18, ageMax: 29 },
+      { sex: "female", low: 40, high: 325, ageMin: 30, ageMax: 39 },
+      { sex: "female", low: 25, high: 220, ageMin: 40, ageMax: 49 },
+      { sex: "female", low: 15, high: 170, ageMin: 50, ageMax: 59 },
+      { sex: "female", high: 145, ageMin: 60 },
+      { sex: "male", low: 110, high: 510, ageMin: 18, ageMax: 29 },
+      { sex: "male", low: 110, high: 370, ageMin: 30, ageMax: 39 },
+      { sex: "male", low: 45, high: 345, ageMin: 40, ageMax: 49 },
+      { sex: "male", low: 25, high: 240, ageMin: 50, ageMax: 59 },
+      { sex: "male", high: 204, ageMin: 60 },
+    ],
+    sources: [ency29("003717", "DHEA-sulfate test")],
+  },
+  pth: { ranges: [{ low: 10, high: 65 }], sources: [ency29("003690", "Parathyroid hormone (PTH) blood test")] },
+  "c-peptide": { ranges: [{ low: 0.3, high: 3.3 }], sources: [ency29("003701", "Insulin C-peptide test")] },
+
+  // Heart risk
+  "apo-b": { ranges: [{ low: 50, high: 150 }], sources: [ency29("003502", "Apolipoprotein B")] },
+  lpa: { ranges: [{ high: 30 }], sources: [ency29("007262", "Lipoprotein-a")] },
+
+  // Pancreas and muscle enzymes
+  amylase: { ranges: [{ low: 40, high: 140 }], sources: [ency29("003464", "Amylase, blood")] },
+  lipase: { ranges: [{ high: 160 }], sources: [ency29("003465", "Lipase test")] },
+  ldh: { ranges: [{ low: 125, high: 220 }], sources: [ency29("003471", "Lactate dehydrogenase test")] },
+
+  // Clotting: the ranges for people not on blood thinners.
+  pt: { ranges: [{ low: 11, high: 13.5 }], sources: [ency29("003652", "Prothrombin time (PT)")] },
+  inr: { ranges: [{ low: 0.8, high: 1.1 }], sources: [ency29("003652", "Prothrombin time (PT)")] },
+  aptt: { ranges: [{ low: 25, high: 35 }], sources: [ency29("003653", "Partial thromboplastin time (PTT)")] },
+  fibrinogen: { ranges: [{ low: 200, high: 400 }], sources: [ency29("003650", "Fibrinogen blood test")] },
+
+  // Joints, infection, prostate
+  "rheumatoid-factor": { ranges: [{ high: 15 }], sources: [ency29("003548", "Rheumatoid factor (RF)")] },
+  // "A normal PSA level is considered to be up to 4.0 ng/mL ... below 2.5 for men in their 50s or younger."
+  psa: { ranges: [{ sex: "male", high: 2.5, ageMin: ADULT, ageMax: 59 }, { sex: "male", high: 4, ageMin: 60 }], sources: [ency29("003346", "Prostate-specific antigen (PSA) blood test")] },
 };

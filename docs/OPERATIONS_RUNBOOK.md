@@ -10,6 +10,7 @@
 | `POSTGRES_URL` or `DATABASE_URL` | Server only | All order tables |
 | `CRON_SECRET` | Server only | `/api/cron/daily` (which now also reconciles payments) and `/api/cron/reel`; without it they refuse to run in production |
 | `ALERT_EMAIL`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Server only, optional | Where `/api/status` sends alerts (see Alerts below). Without them alerts go to `COACH_EMAIL` only |
+| `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | Server only (the public key reaches the browser through `/api/account/push`) | Free app notifications. Make the pair once with `npx web-push generate-vapid-keys`. Without both, the "App notifications" card in My account stays hidden and nothing is sent. Changing them later turns every member's notifications off until they turn them on again |
 | `RAZORPAY_API_URL` | Tests only | Points Razorpay calls at a local stand-in. Leave unset in every Vercel environment |
 
 Use `rzp_test_` keys on Preview and Development, live keys only on Production.

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isDbConfigured } from "@/health/db";
 import { isAdmin } from "@/health/lib/auth/server";
 import { countPushSubscriptions, savePushSubscription } from "@/health/lib/signups";
+import { parseSubscription } from "@/lib/push/core";
 
 export const dynamic = "force-dynamic";
 
@@ -9,13 +10,14 @@ export const dynamic = "force-dynamic";
 // the prompt is hidden until NEXT_PUBLIC_VAPID_PUBLIC_KEY is set.
 export async function POST(req: NextRequest) {
   const body = (await req.json().catch(() => null)) as { endpoint?: unknown; keys?: { p256dh?: unknown; auth?: unknown }; utm_source?: unknown } | null;
-  const endpoint = typeof body?.endpoint === "string" ? body.endpoint : "";
-  if (!/^https:\/\/.{10,1000}$/.test(endpoint) || typeof body?.keys?.p256dh !== "string" || typeof body.keys.auth !== "string") {
+  // Only the browsers' own push services: the server posts to this address when it sends.
+  const sub = parseSubscription(body);
+  if (typeof sub === "string") {
     return NextResponse.json({ ok: false, error: "A browser push subscription is required" }, { status: 400 });
   }
   if (!isDbConfigured) return NextResponse.json({ ok: false, error: "Unavailable" }, { status: 503 });
   try {
-    await savePushSubscription(endpoint, { p256dh: body.keys.p256dh.slice(0, 200), auth: body.keys.auth.slice(0, 100) }, body.utm_source);
+    await savePushSubscription(sub.endpoint, { p256dh: sub.p256dh, auth: sub.auth }, body?.utm_source);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[push] save failed:", (err as Error).message);

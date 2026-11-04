@@ -43,7 +43,7 @@ export function WhatsAppCapture({ whatsapp }: { whatsapp: string }) {
       const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!a || a.dataset.noCapture !== undefined) return;
       const m = /^https:\/\/(?:wa\.me|api\.whatsapp\.com\/send)\/?(\d+)?/.exec(a.href);
-      if (!m || (m[1] && m[1] !== number)) return; // share links and other numbers pass through
+      if (!m || !m[1] || m[1] !== number) return; // share links (no number) and other numbers pass through
       try {
         const saved = JSON.parse(localStorage.getItem(KEY) || "null") as { at: number } | null;
         if (saved && Date.now() - saved.at < TTL) return;

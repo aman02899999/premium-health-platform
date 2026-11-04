@@ -9,6 +9,7 @@ import { ChevronRight, Droplet, Dumbbell, Loader2, Salad, Trash2, Trophy } from 
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { SignInOptions, SignOutButton } from "./AuthButtons";
 import { foodCount } from "@/lib/member-data";
+import { PushOptIn } from "@/components/account/PushOptIn";
 
 const ITEMS = [
   { key: "rfc-plan", label: "Saved workout plan", href: "/workout-planner", icon: Dumbbell },
@@ -106,6 +107,8 @@ export function AccountClient() {
         </span>
         <ChevronRight className="h-5 w-5 text-white/40" />
       </Link>
+
+      <PushOptIn />
 
       <div className="glass rounded-3xl p-6">
         <h2 className="font-display text-xl text-white">Synced to your account</h2>
