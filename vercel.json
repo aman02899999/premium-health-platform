@@ -37,6 +37,22 @@
       "schedule": "10 16 * * *"
     },
     {
+      "path": "/api/cron/youtube?slot=1",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/youtube?slot=2",
+      "schedule": "30 7 * * *"
+    },
+    {
+      "path": "/api/cron/youtube?slot=3",
+      "schedule": "0 14 * * *"
+    },
+    {
+      "path": "/api/cron/youtube?slot=all",
+      "schedule": "30 17 * * *"
+    },
+    {
       "path": "/api/status",
       "schedule": "0 3 * * *"
     }

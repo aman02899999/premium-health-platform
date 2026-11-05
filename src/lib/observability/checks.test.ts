@@ -120,3 +120,21 @@ describe("alert email", () => {
     expect(publicStatus(problems)).toEqual({ ok: false, failing: ["payments-mismatch"] });
   });
 });
+
+describe("YouTube Shorts watchdog", () => {
+  const yt = { date: "2026-11-06", connected: true, missing: [] as string[], failed: [] as { channel: string; error: string }[], keptPrivate: 0 };
+  it("stays quiet when yesterday's three Shorts went up, or when Shorts aren't set up", () => {
+    expect(keys({ ...healthy(), youtube: yt })).toEqual([]);
+    expect(keys({ ...healthy(), youtube: undefined })).toEqual([]);
+  });
+  it("flags a missing connection, failed and missing Shorts, and Shorts YouTube kept private", () => {
+    expect(keys({ ...healthy(), youtube: { ...yt, connected: false, missing: ["youtube-1", "youtube-2", "youtube-3"] } })).toEqual(["youtube-not-connected"]);
+    const [f] = evaluate({ ...healthy(), youtube: { ...yt, failed: [{ channel: "youtube-2", error: "quotaExceeded: over quota" }] } }, now);
+    expect(f.key).toBe("youtube-failed");
+    expect(f.detail).toContain("quotaExceeded");
+    expect(keys({ ...healthy(), youtube: { ...yt, missing: ["youtube-3"] } })).toEqual(["youtube-missing"]);
+    const [p] = evaluate({ ...healthy(), youtube: { ...yt, keptPrivate: 3 } }, now);
+    expect(p.key).toBe("youtube-private");
+    expect(p.fix).toContain("audit");
+  });
+});

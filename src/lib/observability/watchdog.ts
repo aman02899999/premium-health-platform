@@ -5,7 +5,8 @@ import { SITE_URL } from "@/lib/site";
 import { addDays, todayIST } from "@/lib/growth/dates";
 import { facebookConfigured, instagramConfigured } from "@/lib/social/meta";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
-import { evaluate, expectedSocialChannels, type JobRun, type Problem, type Snapshot } from "./checks";
+import { YOUTUBE_CHANNELS, evaluate, expectedSocialChannels, type JobRun, type Problem, type Snapshot } from "./checks";
+import { youtubeShortsOn } from "@/lib/youtube/client";
 import { alertDraft, telegramText } from "./alerts";
 
 // Reads what the background jobs, webhooks and messages did recently (counts only, no personal
@@ -43,6 +44,9 @@ export async function snapshot(): Promise<Snapshot> {
   if (!db) return empty;
   const paidTables = ["membership_orders", "book_orders", "diet_orders", "shop_orders", "payment_requests"];
   const socialDate = addDays(todayIST(), -1);
+  const ytConnected = youtubeShortsOn()
+    ? await pool.query(`select 1 from public.integration_tokens where name = 'youtube:refresh'`).then((r) => (r.rowCount ?? 0) > 0, () => true)
+    : false;
   const [status, sync, paid, events, wa, waCode, em, posts] = await Promise.all([
     pool.query<{ key: string; value: Status & Record<string, unknown> }>(`select key, value from public.system_status where key in ('daily-run', 'reel-run', 'reconcile-run')`).then(
       (r) => r.rows,
@@ -99,7 +103,20 @@ export async function snapshot(): Promise<Snapshot> {
     razorpay: { paidOrders14d: paid.n, events14d: events.total, flagged24h: events.flagged },
     whatsapp: { sent: wa.sent, withStatus: wa.with_status, failed: wa.failed, topFailCode: waCode.code },
     email: { sent: em.sent, bounced: em.bounced, failedToSend: em.failed },
-    social: posts ? socialDay(socialDate, posts) : empty.social,
+    social: posts ? socialDay(socialDate, posts.filter((r) => !r.channel.startsWith("youtube-"))) : empty.social,
+    youtube: posts && youtubeShortsOn() ? youtubeDay(socialDate, posts, ytConnected) : undefined,
+  };
+}
+
+/** Yesterday's three Shorts. A Short YouTube kept private is uploaded, but flagged in its error column. */
+function youtubeDay(date: string, rows: { channel: string; status: string; error: string | null }[], connected: boolean): NonNullable<Snapshot["youtube"]> {
+  const yt = rows.filter((r) => r.channel.startsWith("youtube-"));
+  return {
+    date,
+    connected,
+    missing: YOUTUBE_CHANNELS.filter((c) => !yt.some((r) => r.channel === c)),
+    failed: yt.filter((r) => r.status !== "published").map((r) => ({ channel: r.channel, error: r.error ?? `still ${r.status}` })),
+    keptPrivate: yt.filter((r) => r.status === "published" && r.error?.startsWith("uploaded as private")).length,
   };
 }
 

@@ -54,6 +54,44 @@ function AppKit({ kit }: { kit: KitText[] }) {
   );
 }
 
+/** YouTube Shorts: three a day once the channel is connected. */
+function YouTube({ yt, siteUrl }: { yt: NonNullable<SocialStatus["youtube"]>; siteUrl: string }) {
+  const [result] = useState(() => (typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("youtube")));
+  return (
+    <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+      <h2 className="text-sm font-bold text-white/80">YouTube Shorts</h2>
+      <p className="mt-1 text-xs text-white/60">Three a day, at about 7:30 am, 1 pm and 7:30 pm, each a different script. {yt.left} scripts left.</p>
+      {result && (
+        <p className={`mt-3 rounded-lg px-3 py-2 text-xs ${result === "connected" ? "bg-emerald-500/15 text-emerald-200" : "bg-amber-500/15 text-amber-100"}`}>
+          {result === "connected" ? "YouTube connected." : result === "cancelled" ? "Connecting was cancelled." : "Connecting didn't work. Try again, and pick the gym's channel."}
+        </p>
+      )}
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <Chip on={yt.configured} label="Google credentials in Vercel" />
+        <Chip on={yt.connected} label={yt.channel ? `Channel: ${yt.channel}` : "Channel connected"} />
+        <Chip on={yt.on} label="Uploads on" />
+        {yt.configured && (
+          <a href="/api/admin/youtube/connect" className="inline-flex items-center gap-1.5 rounded-lg bg-rose-600 px-3 py-2 text-xs font-semibold text-white hover:bg-rose-500">
+            {yt.connected ? "Reconnect YouTube" : "Connect YouTube"}
+          </a>
+        )}
+        <a href="/api/admin/youtube/short/0.mp4" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-white/15 px-3 py-2 text-xs font-semibold text-white/80 hover:text-white">
+          <Clapperboard className="h-3.5 w-3.5" /> Preview a Short
+        </a>
+      </div>
+      {!yt.configured && (
+        <ol className="mt-4 list-decimal space-y-1.5 pl-5 text-sm text-white/70">
+          <li>console.cloud.google.com → new project → enable &quot;YouTube Data API v3&quot;.</li>
+          <li>OAuth consent screen: External, then set it to &quot;In production&quot; (in Testing, Google signs you out every 7 days).</li>
+          <li>Credentials → OAuth client ID → Web application, with the redirect URI <code className="rounded bg-white/10 px-1">{siteUrl}/api/admin/youtube/callback</code>.</li>
+          <li>Vercel: add YOUTUBE_CLIENT_ID and YOUTUBE_CLIENT_SECRET, redeploy, then press Connect YouTube here.</li>
+          <li>Ask Google for the YouTube API audit, or every upload stays private.</li>
+        </ol>
+      )}
+    </section>
+  );
+}
+
 /** Instagram auto-post and the WhatsApp / Instagram auto-replies: what is on, what was posted, what came in. */
 export function Social({ status, siteUrl, appKit, busy = false, onPostReel }: { status: SocialStatus | null; siteUrl: string; appKit?: KitText[]; busy?: boolean; onPostReel?: () => void }) {
   if (!status) return <p className="rounded-2xl border border-amber-400/30 bg-amber-500/10 p-4 text-sm text-amber-100">Apply the latest database migration (social automation) to turn this on.</p>;
@@ -84,6 +122,8 @@ export function Social({ status, siteUrl, appKit, busy = false, onPostReel }: { 
           </ol>
         )}
       </section>
+
+      {status.youtube && <YouTube yt={status.youtube} siteUrl={siteUrl} />}
 
       <section className="grid gap-4 md:grid-cols-[minmax(0,280px)_1fr]">
         <div>

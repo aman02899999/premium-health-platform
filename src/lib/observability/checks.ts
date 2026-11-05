@@ -39,7 +39,14 @@ export type Snapshot = {
    * expired token answers per channel), and a schedule that never fired leaves no row at all.
    */
   social: { date: string; missing: string[]; failed: { channel: string; error: string }[] };
+  /**
+   * Yesterday's YouTube Shorts (kept apart from Instagram/Facebook, whose fixes are different).
+   * Absent when YouTube Shorts aren't set up or are switched off.
+   */
+  youtube?: { date: string; connected: boolean; missing: string[]; failed: { channel: string; error: string }[]; keptPrivate: number };
 };
+
+export const YOUTUBE_CHANNELS = ["youtube-1", "youtube-2", "youtube-3"];
 
 /** The social_posts channels a day should have: the evening Reel and morning Story, plus the month plan's six. */
 export function expectedSocialChannels(date: string, on: { instagram: boolean; facebook: boolean; monthPlan: boolean }): string[] {
@@ -175,6 +182,35 @@ export function evaluate(s: Snapshot, now = new Date()): Problem[] {
       title: `${plural(so.missing.length, "post didn't go out", "posts didn't go out")} on ${so.date}`,
       detail: `No record at all for: ${so.missing.join(", ")}. The schedule didn't run, or stopped before it got there.`,
       fix: "Check Vercel → Cron Jobs for /api/cron/reel, /api/cron/social and /api/cron/daily.",
+    });
+  const yt = s.youtube;
+  if (yt && !yt.connected)
+    out.push({
+      key: "youtube-not-connected",
+      title: "YouTube Shorts are switched on but no channel is connected",
+      detail: "Nothing can upload until the channel is linked.",
+      fix: "Admin → Growth → Instagram & WhatsApp → Connect YouTube, and sign in with the gym's channel.",
+    });
+  if (yt?.connected && yt.failed.length)
+    out.push({
+      key: "youtube-failed",
+      title: `${yt.failed.length} YouTube ${yt.failed.length === 1 ? "Short" : "Shorts"} failed on ${yt.date}`,
+      detail: yt.failed.slice(0, 3).map((f) => `${f.channel}: ${f.error.slice(0, 140)}`).join("; "),
+      fix: "If it says sign-in, connect YouTube again in Admin. If it says quota, it retries tomorrow by itself. Anything else: send this to your developer.",
+    });
+  if (yt?.connected && yt.missing.length)
+    out.push({
+      key: "youtube-missing",
+      title: `${yt.missing.length} YouTube ${yt.missing.length === 1 ? "Short" : "Shorts"} didn't go out on ${yt.date}`,
+      detail: `No record for: ${yt.missing.join(", ")}. Either the schedule didn't run, or every script has been used.`,
+      fix: "Check Vercel → Cron Jobs for /api/cron/youtube. If Admin shows 0 scripts left, ask for the next batch of Shorts.",
+    });
+  if (yt?.connected && yt.keptPrivate > 0)
+    out.push({
+      key: "youtube-private",
+      title: `YouTube kept ${yt.keptPrivate} new ${yt.keptPrivate === 1 ? "Short" : "Shorts"} private`,
+      detail: "Google keeps uploads from a new API project private until the project passes YouTube's audit.",
+      fix: "Finish the YouTube API audit form in Google Cloud. Until then, you can make each Short public by hand in YouTube Studio.",
     });
   return out;
 }
