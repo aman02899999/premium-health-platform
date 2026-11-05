@@ -44,6 +44,7 @@ import { adRefFromText } from "@/lib/admin/ads-core";
 import { COACH_PAUSE_HOURS, botPaused, pauseBot } from "./chat-tools";
 import { aiConfigured, answersToday, draftAnswer, getAgentSettings, logRun } from "@/lib/ai/agent";
 import { worthAnswering } from "@/lib/ai/agent-core";
+import { youtubeStatus, type YoutubeStatus } from "@/lib/youtube/automation";
 
 async function replyCtx(name: string, text: string): Promise<ReplyCtx> {
   const c = await getContent();
@@ -435,18 +436,21 @@ export type SocialStatus = {
   webhook: boolean;
   autoReply: boolean;
   posts: { date: string; channel: string; theme: string; status: string; permalink: string | null; error: string | null }[];
+  /** YouTube Shorts; null when its status can't be read. */
+  youtube?: YoutubeStatus | null;
   inbox: { id: string; createdAt: string; channel: string; kind: string; from: string; name: string; body: string; intent: string; replied: boolean; error: string | null }[];
 };
 
 /** What the admin sees: what is switched on, recent posts and the latest messages. */
 export async function socialStatus(): Promise<SocialStatus> {
-  const [posts, inbox] = await Promise.all([
+  const [posts, inbox, youtube] = await Promise.all([
     pool.query<{ post_date: string; channel: string; theme: string; status: string; permalink: string | null; error: string | null }>(
-      `select post_date::text as post_date, channel, theme, status, permalink, error from public.social_posts order by post_date desc, channel limit 28`,
+      `select post_date::text as post_date, channel, theme, status, permalink, error from public.social_posts order by post_date desc, channel limit 40`,
     ),
     pool.query<{ id: string; created_at: Date; channel: string; kind: string; from_id: string; from_name: string; body: string; intent: string; replied: boolean; reply_error: string | null }>(
       `select id, created_at, channel, kind, from_id, from_name, body, intent, replied, reply_error from public.social_inbox order by created_at desc limit 50`,
     ),
+    youtubeStatus().catch(() => null),
   ]);
   return {
     instagram: instagramConfigured(),
@@ -454,6 +458,7 @@ export async function socialStatus(): Promise<SocialStatus> {
     whatsapp: whatsappReplyConfigured(),
     webhook: Boolean(process.env.META_VERIFY_TOKEN && (process.env.META_APP_SECRET || process.env.INSTAGRAM_APP_SECRET)),
     autoReply: autoReplyOn(),
+    youtube,
     posts: posts.rows.map((r) => ({ date: r.post_date, channel: r.channel, theme: r.theme, status: r.status, permalink: r.permalink, error: r.error })),
     inbox: inbox.rows.map((r) => ({ id: r.id, createdAt: r.created_at.toISOString(), channel: r.channel, kind: r.kind, from: r.from_id, name: r.from_name, body: r.body, intent: r.intent, replied: r.replied, error: r.reply_error })),
   };
