@@ -2,13 +2,14 @@
 // description and tags. Pure, so the timing and every word can be tested without ffmpeg or YouTube.
 import type { PostBiz } from "@/lib/growth/daily-posts";
 import { SHORTS, type Format, type Short } from "./shorts-bank";
+import { EXTRAS, type Extra } from "./shorts-extra";
 
 export const MEDICAL_LINE = "General information, not medical advice.";
 export const DOCTOR_LINE = "If you have a health condition, follow your doctor's advice.";
 /** Seconds two scenes overlap in the transition. Short and snappy. */
 export const FADE = 0.3;
-/** The longest Short we make. YouTube allows 3 minutes, but under a minute gets watched to the end. */
-export const MAX_SECONDS = 58;
+/** The longest Short we make. YouTube counts vertical videos up to 3 minutes as Shorts. */
+export const MAX_SECONDS = 90;
 
 export const KICKER: Record<Format, string> = {
   myth: "MYTH BUSTED",
@@ -28,6 +29,8 @@ export type Scene =
   | { kind: "move"; n: number; of: number; name: string; seconds: number }
   | { kind: "plan"; title: string; items: string[]; foot: string }
   | { kind: "big"; label: string; text: string; sub: string; foot?: string }
+  | { kind: "gym"; lines: string[] }
+  | { kind: "ask"; text: string }
   | { kind: "end"; text: string; note: string | null };
 
 /** A scene plus how it plays: `chunks` caption pieces that pop in one by one, then a hold. */
@@ -35,7 +38,7 @@ export type Timed = { scene: Scene; chunks: string[]; steps: number[] };
 
 const words = (s: string) => s.split(/\s+/).filter(Boolean);
 /** Seconds to read a line twice at a relaxed pace, clamped so nothing crawls. */
-export const readTime = (s: string, min = 2.2, max = 5) => Math.round(Math.min(max, Math.max(min, 1.1 + words(s).length / 3.6)) * 10) / 10;
+export const readTime = (s: string, min = 2.6, max = 6) => Math.round(Math.min(max, Math.max(min, 1.3 + words(s).length / 2.8)) * 10) / 10;
 
 /** Splits a caption into pop-in pieces of one to three words (short words ride with the next). */
 export function chunks(text: string): string[] {
@@ -62,6 +65,8 @@ export function captionOf(scene: Scene): string {
       return scene.name;
     case "plan":
       return scene.items.join(" ");
+    case "gym":
+      return scene.lines.join(" ");
     case "end":
       return scene.text;
     default:
@@ -73,7 +78,7 @@ const POP = 0.18;
 
 /** How long each reveal step shows: quick pops, then the rest of the read time as a hold. */
 export function timing(scene: Scene, seconds: number): Timed {
-  const parts = scene.kind === "plan" ? scene.items : chunks(captionOf(scene));
+  const parts = scene.kind === "plan" ? scene.items : scene.kind === "gym" ? scene.lines : chunks(captionOf(scene));
   // The hook starts with its first words already on screen: no blank first frame on the feed.
   const pops = Math.max(0, parts.length - 1);
   const pop = Math.min(POP, (seconds * 0.5) / Math.max(1, pops));
@@ -126,14 +131,57 @@ function body(s: Short): [Scene, number][] {
   }
 }
 
+/** The gym's facts for the "train with us" screen (the same as the site's own business details). */
+export const GYM_LINES = ["Royal Fitness Club, Sector 93 Noida", "Coach Aman Sharma · since 2019", "Mon–Sat · 5:30–11 AM & 4–10 PM", "Free trial: link in the description"];
+
+/** The one-line takeaway the recap opens with. */
+function keyLine(s: Short): string {
+  switch (s.format) {
+    case "myth":
+    case "fact":
+      return s.fact;
+    case "form":
+      return s.right;
+    case "swap":
+      return `${s.from} ➜ ${s.to}`;
+    case "workout":
+      return `${s.rounds} round${s.rounds > 1 ? "s" : ""}: ${s.moves.filter(([m]) => m !== "Rest").map(([m]) => m.replace(/\s*\(.*\)|, each.*$/g, "")).join(", ")}`;
+    case "mistakes":
+      return s.fix;
+  }
+}
+
+export const extraFor = (s: Short): Extra => {
+  const e = EXTRAS[s.id];
+  if (!e) throw new Error(`No tips written for ${s.id}`);
+  return e;
+};
+
+/** Every Short runs at least this long (the owner's rule), so the holds stretch to reach it. */
+export const MIN_SECONDS = 62;
+const MAX_STRETCH = 1.8;
+
 /** The whole Short, scene by scene with its reveal timing. */
 export function shortScenes(s: Short): Timed[] {
+  const x = extraFor(s);
   const scenes: [Scene, number][] = [
-    [{ kind: "hook", kicker: KICKER[s.format], text: s.hook }, readTime(s.hook, 2.2, 3)],
+    [{ kind: "hook", kicker: KICKER[s.format], text: s.hook }, readTime(s.hook, 2.4, 3.2)],
     ...body(s),
-    [{ kind: "end", text: "Follow for a new tip every day", note: s.medical ? `${MEDICAL_LINE} ${DOCTOR_LINE}` : MEDICAL_LINE }, 3.5],
+    ...x.tips.map((t, i): [Scene, number] => [{ kind: "card", label: `COACH'S TIP ${i + 1} OF 2`, tone: i ? "gold" : "green", text: t }, readTime(t, 3.4)]),
+    [{ kind: "plan", title: "QUICK RECAP", items: [keyLine(s), ...x.tips], foot: "Save this so you don't forget." }, readTime([keyLine(s), ...x.tips].join(" "), 5, 7)],
+    [{ kind: "gym", lines: GYM_LINES }, 6],
+    [{ kind: "ask", text: x.ask }, readTime(x.ask, 4, 5.5)],
+    [{ kind: "end", text: "Follow for a new tip every day", note: s.medical ? `${MEDICAL_LINE} ${DOCTOR_LINE}` : MEDICAL_LINE }, 4],
   ];
-  return scenes.map(([scene, sec]) => timing(scene, sec));
+  let timed = scenes.map(([scene, sec]) => timing(scene, sec));
+  // Too short? Lengthen every hold evenly (never the hook, which has to grab in the first seconds).
+  const total = shortSeconds(timed);
+  if (total < MIN_SECONDS) {
+    const holds = timed.slice(1).reduce((a, t) => a + t.steps.at(-1)!, 0);
+    const k = Math.min(MAX_STRETCH, 1 + (MIN_SECONDS - total) / holds);
+    timed = timed.map((t, i) => (i === 0 ? t : { ...t, steps: [...t.steps.slice(0, -1), Math.round(t.steps.at(-1)! * k * 100) / 100] }));
+  }
+  return timed;
 }
 
 // ---------- Title, description, tags ----------
@@ -173,6 +221,11 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     clean(s.hook),
     "",
     ...summary(s),
+    "",
+    "Coach's tips:",
+    ...extraFor(s).tips.map((t) => `• ${t}`),
+    "",
+    `💬 ${extraFor(s).ask}`,
     "",
     ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : []),
     `${MEDICAL_LINE}${s.medical ? ` ${DOCTOR_LINE}` : ""}`,

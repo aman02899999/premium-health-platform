@@ -137,6 +137,27 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
           <div style={{ display: "flex", fontSize: 36, fontWeight: 800, letterSpacing: 4, color: "rgba(255,255,255,.6)" }}>{scene.sub}</div>
         </div>
       );
+    case "gym":
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <Label text="TRAIN WITH US" color={RED} />
+          <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 120, lineHeight: 1.05, textTransform: "uppercase" }}>Want a coach to guide you?</div>
+          {scene.lines.map((l, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 20, opacity: i < shown ? 1 : 0, fontSize: 46, fontWeight: 800, color: i === 3 ? GOLD : "#fff" }}>
+              <div style={{ display: "flex", width: 16, height: 16, borderRadius: 999, background: i === 3 ? GOLD : GREEN }} />
+              {l}
+            </div>
+          ))}
+        </div>
+      );
+    case "ask":
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+          <Label text="YOUR TURN · COMMENT BELOW" color={GOLD} />
+          <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 200, lineHeight: 1, color: GOLD }}>?</div>
+          <Reveal parts={parts} shown={shown} size={sizeFor(scene.text, [[35, 104], [55, 92]], 80)} />
+        </div>
+      );
     case "end":
       return (
         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
@@ -149,12 +170,12 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
   }
 }
 
-const WATERMARK: Record<string, string> = { red: "DON'T", green: "DO IT", gold: "COACH", plain: "ROYAL", swap: "SWAP", number: "AVOID", move: "MOVE", plan: "PLAN", big: "FACT" };
-const ACCENT: Record<Scene["kind"], string> = { hook: RED, card: GOLD, swap: GREEN, number: RED, move: GREEN, plan: GOLD, big: GREEN, end: RED };
+const WATERMARK: Record<string, string> = { red: "DON'T", green: "DO IT", gold: "COACH", plain: "ROYAL", swap: "SWAP", number: "AVOID", move: "MOVE", plan: "PLAN", big: "FACT", ask: "YOU?" };
+const ACCENT: Record<Scene["kind"], string> = { hook: RED, card: GOLD, swap: GREEN, number: RED, move: GREEN, plan: GOLD, big: GREEN, gym: RED, ask: GOLD, end: RED };
 
 function Frame({ timed, index, shown, biz, logo, photo }: { timed: Timed; index: number; shown: number; biz: PostBiz; logo: string; photo: string | null }) {
   const scene = timed.scene;
-  const withPhoto = photo && (scene.kind === "hook" || scene.kind === "end");
+  const withPhoto = photo && (scene.kind === "hook" || scene.kind === "gym" || scene.kind === "end");
   const accent = scene.kind === "card" ? TONE[scene.tone] : ACCENT[scene.kind];
   const glow = [[85, 12], [15, 18], [80, 30], [20, 10]][index % 4];
   return (

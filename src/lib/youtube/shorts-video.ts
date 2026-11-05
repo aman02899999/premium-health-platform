@@ -1,5 +1,5 @@
 import "server-only";
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawn } from "node:child_process";
@@ -7,15 +7,8 @@ import { ffmpegPath } from "@/lib/social/reel-video";
 import { shortFilterGraph } from "./shorts-graph";
 
 // Frames → MP4 for YouTube Shorts: 1080×1920, 30 fps, H.264 + AAC. The graph itself (punch-in
-// zoom, word pops, transitions, progress bar) is in shorts-graph.ts so it can be tested. Music is
-// the gym's own tracks in src/lib/social/reel-audio (no third-party audio, so no Content ID claims).
-
-const AUDIO_DIR = join(process.cwd(), "src/lib/social/reel-audio");
-
-async function music(seed: number): Promise<string | null> {
-  const files = (await readdir(AUDIO_DIR).catch(() => [] as string[])).filter((f) => f.endsWith(".mp3")).sort();
-  return files.length ? join(AUDIO_DIR, files[seed % files.length]) : null;
-}
+// zoom, word pops, transitions, progress bar) is in shorts-graph.ts so it can be tested. The
+// soundtrack is a WAV made for this Short alone by music.ts (original, so no Content ID claims).
 
 function run(bin: string, args: string[], timeoutMs: number): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -28,13 +21,14 @@ function run(bin: string, args: string[], timeoutMs: number): Promise<void> {
   });
 }
 
-export async function encodeShort(frames: { scene: number; png: Buffer; seconds: number }[], seed = 0): Promise<Buffer> {
+export async function encodeShort(frames: { scene: number; png: Buffer; seconds: number }[], music: Buffer | null): Promise<Buffer> {
   const bin = ffmpegPath();
   if (!bin) throw new Error("ffmpeg is not available");
   const dir = await mkdtemp(join(tmpdir(), "short-"));
   try {
     await Promise.all(frames.map((f, i) => writeFile(join(dir, `f${i}.png`), f.png)));
-    const track = await music(seed);
+    const track = music ? join(dir, "music.wav") : null;
+    if (music && track) await writeFile(track, music);
     const { graph, total } = shortFilterGraph(frames, !!track);
     const out = join(dir, "short.mp4");
     const args = [
@@ -42,7 +36,7 @@ export async function encodeShort(frames: { scene: number; png: Buffer; seconds:
       "-loglevel",
       "error",
       ...frames.flatMap((_, i) => ["-i", join(dir, `f${i}.png`)]),
-      ...(track ? ["-stream_loop", "-1", "-i", track] : ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]),
+      ...(track ? ["-i", track] : ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]),
       "-filter_complex",
       graph,
       "-map",

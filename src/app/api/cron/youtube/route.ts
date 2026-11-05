@@ -6,7 +6,7 @@ import { recordStatus } from "@/lib/growth/system-status";
 import { runShort, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
 
 export const dynamic = "force-dynamic";
-// Rendering a Short takes about 10–15 s and the upload a few more; ?slot=all does all three.
+// Rendering a one-minute Short with its own music takes about 30–60 s; ?slot=all does up to three.
 export const maxDuration = 300;
 
 // vercel.json: ?slot=1 (morning), ?slot=2 (midday), ?slot=3 (evening), and ?slot=all late at night
@@ -22,7 +22,14 @@ export async function GET(req: Request) {
     const biz = await nurtureBusiness();
     const result: Record<string, string> = {};
     // One after another: never two renders at once on one function.
-    for (const s of slots) result[`slot${s}`] = await runShort(s, now, biz);
+    for (const s of slots) {
+      // Leave room inside the 300 s limit: a slot that doesn't fit now is picked up by the next run.
+      if (Date.now() - now.getTime() > 170_000) {
+        result[`slot${s}`] = "deferred";
+        continue;
+      }
+      result[`slot${s}`] = await runShort(s, now, biz);
+    }
     await recordStatus("youtube-run", { at: now.toISOString(), slot: raw, ok: true, result });
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {

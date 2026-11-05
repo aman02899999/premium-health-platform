@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SHORTS } from "./shorts-bank";
+import { EXTRAS } from "./shorts-extra";
 import { FADE, MAX_SECONDS, MEDICAL_LINE, DOCTOR_LINE, captionOf, chunks, nextShort, shortDescription, shortScenes, shortSeconds, shortTags, shortTitle } from "./shorts-core";
 
 const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.example.in", coach: "Coach Aman Sharma", address: "Gejha Village, Sector 93, Noida" };
@@ -18,6 +19,18 @@ describe("shorts bank", () => {
     }
   });
 
+  it("every script has two coach's tips and a comment question, and no tips are orphaned", () => {
+    for (const s of SHORTS) {
+      const x = EXTRAS[s.id];
+      expect(x, s.id).toBeTruthy();
+      expect(x.tips.every((t) => t.length >= 15 && t.length <= 90)).toBe(true);
+      expect(x.ask.endsWith("?") || x.ask.endsWith(".")).toBe(true);
+    }
+    expect(Object.keys(EXTRAS).sort()).toEqual(SHORTS.map((s) => s.id).sort());
+    const all = Object.values(EXTRAS).map((x) => JSON.stringify(x).toLowerCase()).join(" ");
+    expect(all).not.toMatch(/\bcures?\b|guarantee|\bmg\b|tablet|capsule/);
+  });
+
   it("never claims a cure or gives a dose, and every fact Short names its source", () => {
     for (const s of SHORTS) {
       const text = JSON.stringify(s).toLowerCase();
@@ -28,13 +41,13 @@ describe("shorts bank", () => {
 });
 
 describe("short scenes", () => {
-  it("every Short opens on the hook, ends on the follow screen and runs 12–58 seconds", () => {
+  it("every Short opens on the hook, ends on the follow screen and runs at least a minute (the owner's rule) and at most 90 seconds", () => {
     for (const s of SHORTS) {
       const timed = shortScenes(s);
       expect(timed[0].scene).toMatchObject({ kind: "hook", text: s.hook });
       expect(timed.at(-1)!.scene.kind).toBe("end");
       const total = shortSeconds(timed);
-      expect(total, s.id).toBeGreaterThanOrEqual(12);
+      expect(total, s.id).toBeGreaterThanOrEqual(60);
       expect(total, s.id).toBeLessThanOrEqual(MAX_SECONDS);
       for (const t of timed) {
         expect(t.steps.length).toBe(t.chunks.length);
@@ -48,11 +61,20 @@ describe("short scenes", () => {
   it("the pop-in pieces rebuild the caption exactly", () => {
     for (const s of SHORTS)
       for (const t of shortScenes(s)) {
-        if (t.scene.kind === "plan") continue;
+        if (t.scene.kind === "plan" || t.scene.kind === "gym") continue;
         expect(t.chunks.join(" ")).toBe(captionOf(t.scene).split(/\s+/).filter(Boolean).join(" "));
         expect(t.chunks.every((c) => c.split(" ").length <= 3)).toBe(true);
       }
     expect(chunks("Push the floor away")).toEqual(["Push the floor", "away"]);
+  });
+
+  it("after the main idea: two tips, a recap, the gym's real details and a question for the comments", () => {
+    for (const s of SHORTS) {
+      const kinds = shortScenes(s).map((t) => t.scene.kind);
+      expect(kinds.slice(-6)).toEqual(["card", "card", "plan", "gym", "ask", "end"]);
+    }
+    const gym = shortScenes(SHORTS[0]).find((t) => t.scene.kind === "gym")!.scene;
+    expect(gym.kind === "gym" && gym.lines.join(" ")).toMatch(/Sector 93 Noida.*since 2019.*5:30–11 AM & 4–10 PM/);
   });
 
   it("the medical line is on the last screen, with the doctor line for health topics", () => {
@@ -84,6 +106,8 @@ describe("YouTube metadata", () => {
       expect(d).toContain(MEDICAL_LINE);
       if (s.medical) expect(d).toContain(DOCTOR_LINE);
       if (s.format === "fact") expect(d).toContain(s.source.url);
+      for (const t of EXTRAS[s.id].tips) expect(d).toContain(t);
+      expect(d).toContain(EXTRAS[s.id].ask);
       expect(d).toMatch(/#shorts #fitness/);
     }
   });
