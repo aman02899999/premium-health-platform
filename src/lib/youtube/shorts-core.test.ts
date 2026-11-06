@@ -1,15 +1,29 @@
 import { describe, expect, it } from "vitest";
 import { SHORTS } from "./shorts-bank";
 import { EXTRAS } from "./shorts-extra";
-import { FADE, MAX_SECONDS, MEDICAL_LINE, DOCTOR_LINE, captionOf, chunks, nextShort, shortDescription, shortScenes, shortSeconds, shortTags, shortTitle } from "./shorts-core";
+import { FADE, MAX_SECONDS, MEDICAL_LINE, DOCTOR_LINE, SITE_HOST, captionOf, chunks, nextShort, shortDescription, shortScenes, shortSeconds, shortTags, shortTitle } from "./shorts-core";
 
 const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.example.in", coach: "Coach Aman Sharma", address: "Gejha Village, Sector 93, Noida" };
 
 describe("shorts bank", () => {
   it("has enough different scripts for a month of 3 a day, each id unique", () => {
-    expect(SHORTS.length).toBeGreaterThanOrEqual(87);
+    expect(SHORTS.length).toBeGreaterThanOrEqual(117);
     expect(new Set(SHORTS.map((s) => s.id)).size).toBe(SHORTS.length);
     expect(new Set(SHORTS.map((s) => s.hook.toLowerCase())).size).toBe(SHORTS.length);
+  });
+
+  it("opens with viral claims and trends: 15 of each, and every viral claim gets a verdict", () => {
+    expect(SHORTS[0].format).toBe("viral");
+    expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(15);
+    expect(SHORTS.filter((s) => s.format === "trend")).toHaveLength(15);
+    for (const s of SHORTS) if (s.format === "viral") expect(["JHOOTH", "SACH", "DEPENDS"]).toContain(s.verdict);
+  });
+
+  it("is written in Hinglish, not English (common Hindi words in every script)", () => {
+    for (const s of SHORTS) {
+      const text = `${s.hook} ${JSON.stringify(EXTRAS[s.id])} ${JSON.stringify(s)}`.toLowerCase();
+      expect(text, s.id).toMatch(/\b(hai|hain|karo|ka|ki|ke|se|mein|nahi|aur|toh)\b/);
+    }
   });
 
   it("formats take turns, so the three Shorts of a day are never the same kind of video", () => {
@@ -68,11 +82,14 @@ describe("short scenes", () => {
     expect(chunks("Push the floor away")).toEqual(["Push the floor", "away"]);
   });
 
-  it("after the main idea: two tips, a recap, the gym's real details and a question for the comments", () => {
+  it("after the main idea: two tips, a recap, the gym's real details, a question, Like + Subscribe, then the website", () => {
     for (const s of SHORTS) {
       const kinds = shortScenes(s).map((t) => t.scene.kind);
-      expect(kinds.slice(-6)).toEqual(["card", "card", "plan", "gym", "ask", "end"]);
+      expect(kinds.slice(-7)).toEqual(["card", "card", "plan", "gym", "ask", "subscribe", "end"]);
+      const sub = shortScenes(s).at(-2)!.scene;
+      expect(sub.kind === "subscribe" && sub.text).toMatch(/LIKE.*SUBSCRIBE/);
     }
+    expect(SITE_HOST).toBe("royalfitnesclub.in");
     const gym = shortScenes(SHORTS[0]).find((t) => t.scene.kind === "gym")!.scene;
     expect(gym.kind === "gym" && gym.lines.join(" ")).toMatch(/Sector 93 Noida.*since 2019.*5:30–11 AM & 4–10 PM/);
   });
@@ -109,6 +126,7 @@ describe("YouTube metadata", () => {
       for (const t of EXTRAS[s.id].tips) expect(d).toContain(t);
       expect(d).toContain(EXTRAS[s.id].ask);
       expect(d).toMatch(/#shorts #fitness/);
+      expect(d).toMatch(/SUBSCRIBE/);
     }
   });
 

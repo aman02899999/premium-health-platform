@@ -1,22 +1,27 @@
 // One YouTube Short from a script: its scenes (with the word-by-word caption reveal), its title,
 // description and tags. Pure, so the timing and every word can be tested without ffmpeg or YouTube.
 import type { PostBiz } from "@/lib/growth/daily-posts";
-import { SHORTS, type Format, type Short } from "./shorts-bank";
+import { SITE_URL } from "@/lib/site";
+import { SHORTS, type Format, type Short, type Verdict } from "./shorts-bank";
 import { EXTRAS, type Extra } from "./shorts-extra";
 
-export const MEDICAL_LINE = "General information, not medical advice.";
-export const DOCTOR_LINE = "If you have a health condition, follow your doctor's advice.";
+export const MEDICAL_LINE = "Ye general jaankari hai, medical advice nahi.";
+export const DOCTOR_LINE = "Koi health problem hai toh apne doctor ki salah maano.";
+/** The site as people type it, for the closing screen: royalfitnesclub.in */
+export const SITE_HOST = SITE_URL.replace(/^https?:\/\/(www\.)?/, "");
 /** Seconds two scenes overlap in the transition. Short and snappy. */
 export const FADE = 0.3;
 /** The longest Short we make. YouTube counts vertical videos up to 3 minutes as Shorts. */
 export const MAX_SECONDS = 90;
 
 export const KICKER: Record<Format, string> = {
+  viral: "VIRAL CLAIM · SACH YA JHOOTH?",
+  trend: "TRENDING · EXPLAINED",
   myth: "MYTH BUSTED",
   form: "FORM FIX",
   swap: "DESI SWAP",
-  workout: "HOME WORKOUT",
-  mistakes: "3 MISTAKES",
+  workout: "GHAR PE WORKOUT",
+  mistakes: "3 GALTIYAN",
   fact: "QUICK FACT",
 };
 
@@ -29,6 +34,8 @@ export type Scene =
   | { kind: "move"; n: number; of: number; name: string; seconds: number }
   | { kind: "plan"; title: string; items: string[]; foot: string }
   | { kind: "big"; label: string; text: string; sub: string; foot?: string }
+  | { kind: "verdict"; verdict: Verdict; text: string }
+  | { kind: "subscribe"; text: string }
   | { kind: "gym"; lines: string[] }
   | { kind: "ask"; text: string }
   | { kind: "end"; text: string; note: string | null };
@@ -47,7 +54,7 @@ export function chunks(text: string): string[] {
   for (const w of words(text)) {
     cur.push(w);
     const letters = cur.join(" ").length;
-    if (cur.length >= 3 || (letters >= 7 && !/^(a|an|the|of|to|in|on|is|it|and|or|for|at|your|you|my|no|not|be)$/i.test(w))) {
+    if (cur.length >= 3 || (letters >= 7 && !/^(a|an|the|of|to|in|on|is|it|and|or|for|at|your|you|my|no|not|be|hai|ho|ka|ki|ke|ko|se|me|mein|aur|ya|toh|bhi|na|pe|par|jo|ek)$/i.test(w))) {
       out.push(cur.join(" "));
       cur = [];
     }
@@ -92,51 +99,67 @@ export const shortSeconds = (timed: Timed[]) => Math.round((timed.reduce((a, t) 
 
 function body(s: Short): [Scene, number][] {
   switch (s.format) {
+    case "viral":
+      return [
+        [{ kind: "card", label: "VIRAL CLAIM", tone: "plain", text: s.claim, sub: "Reels aur WhatsApp pe ye bahut chal raha hai." }, readTime(s.claim)],
+        [{ kind: "verdict", verdict: s.verdict, text: s.truth }, readTime(s.truth, 3.4)],
+        [{ kind: "card", label: "ASLI BAAT", tone: "gold", text: s.why }, readTime(s.why, 2.8)],
+      ];
+    case "trend":
+      return [
+        [{ kind: "card", label: `${s.trend.toUpperCase()} · KYA HAI?`, tone: "plain", text: s.what }, readTime(s.what)],
+        [{ kind: "card", label: "ACCHI BAAT", tone: "green", text: s.good }, readTime(s.good, 2.8)],
+        [{ kind: "card", label: "DHYAAN RAKHO", tone: "red", text: s.careful }, readTime(s.careful, 3)],
+      ];
     case "myth":
       return [
         [{ kind: "card", label: "MYTH", tone: "red", text: s.myth }, readTime(s.myth)],
-        [{ kind: "card", label: "FACT", tone: "green", text: s.fact }, readTime(s.fact, 2.6)],
-        [{ kind: "card", label: "WHY IT MATTERS", tone: "gold", text: s.why }, readTime(s.why, 2.6)],
+        [{ kind: "card", label: "SACH", tone: "green", text: s.fact }, readTime(s.fact, 2.6)],
+        [{ kind: "card", label: "KYUN ZAROORI HAI", tone: "gold", text: s.why }, readTime(s.why, 2.6)],
       ];
     case "form":
       return [
-        [{ kind: "card", label: `${s.move.toUpperCase()} · DON'T`, tone: "red", text: s.wrong }, readTime(s.wrong)],
-        [{ kind: "card", label: `${s.move.toUpperCase()} · DO`, tone: "green", text: s.right }, readTime(s.right, 2.6)],
-        [{ kind: "card", label: "COACH'S CUE", tone: "gold", text: s.cue, sub: "Say it in your head on every rep." }, readTime(s.cue, 2.6)],
+        [{ kind: "card", label: `${s.move.toUpperCase()} · GALAT`, tone: "red", text: s.wrong }, readTime(s.wrong)],
+        [{ kind: "card", label: `${s.move.toUpperCase()} · SAHI`, tone: "green", text: s.right }, readTime(s.right, 2.6)],
+        [{ kind: "card", label: "COACH'S CUE", tone: "gold", text: s.cue, sub: "Har rep pe mann mein bolo." }, readTime(s.cue, 2.6)],
       ];
     case "swap":
       return [
         [{ kind: "swap", from: s.from, to: s.to }, readTime(`${s.from} ${s.to}`, 4.2, 5.5)],
-        [{ kind: "card", label: "WHY IT WORKS", tone: "gold", text: s.why }, readTime(s.why, 3.4)],
+        [{ kind: "card", label: "KYUN KAAM KARTA HAI", tone: "gold", text: s.why }, readTime(s.why, 3.4)],
       ];
     case "workout": {
-      const plan: Scene = { kind: "plan", title: s.rounds > 1 ? `${s.rounds} ROUNDS` : "1 ROUND", items: s.moves.map(([m, sec]) => `${m} · ${sec}s`), foot: "Save it. Do it tonight." };
+      const plan: Scene = { kind: "plan", title: s.rounds > 1 ? `${s.rounds} ROUNDS` : "1 ROUND", items: s.moves.map(([m, sec]) => `${m} · ${sec}s`), foot: "Save karo. Aaj raat karo." };
       const moves = s.moves.filter(([m]) => m !== "Rest");
       return [
         [plan, readTime(plan.items.join(" "), 3.4, 5.5)],
         ...moves.map(([name, sec], i): [Scene, number] => [{ kind: "move", n: i + 1, of: moves.length, name, seconds: sec }, readTime(name, 2, 2.8)]),
-        [{ kind: "card", label: "COACH'S NOTE", tone: "gold", text: s.note }, readTime(s.note, 2.4)],
+        [{ kind: "card", label: "COACH KI BAAT", tone: "gold", text: s.note }, readTime(s.note, 2.4)],
       ];
     }
     case "mistakes":
       return [
         ...s.items.map((t, i): [Scene, number] => [{ kind: "number", n: i + 1, of: 3, text: t }, readTime(t)]),
-        [{ kind: "card", label: "THE FIX", tone: "green", text: s.fix }, readTime(s.fix, 2.8)],
+        [{ kind: "card", label: "FIX KYA HAI", tone: "green", text: s.fix }, readTime(s.fix, 2.8)],
       ];
     case "fact":
       return [
-        [{ kind: "big", label: "DID YOU KNOW?", text: s.fact, sub: s.topic.toUpperCase() }, readTime(s.fact, 2.8, 3.5)],
-        [{ kind: "card", label: "WHAT IT MEANS", tone: "gold", text: `${s.fact} ${s.detail}`, sub: `Source: ${s.source.name}` }, readTime(`${s.fact} ${s.detail}`, 3.6, 6)],
+        [{ kind: "big", label: "KYA AAP JAANTE HO?", text: s.fact, sub: s.topic.toUpperCase() }, readTime(s.fact, 2.8, 3.5)],
+        [{ kind: "card", label: "MATLAB KYA HUA", tone: "gold", text: `${s.fact} ${s.detail}`, sub: `Source: ${s.source.name}` }, readTime(`${s.fact} ${s.detail}`, 3.6, 6)],
       ];
   }
 }
 
 /** The gym's facts for the "train with us" screen (the same as the site's own business details). */
-export const GYM_LINES = ["Royal Fitness Club, Sector 93 Noida", "Coach Aman Sharma · since 2019", "Mon–Sat · 5:30–11 AM & 4–10 PM", "Free trial: link in the description"];
+export const GYM_LINES = ["Royal Fitness Club, Sector 93 Noida", "Coach Aman Sharma · since 2019", "Mon–Sat · 5:30–11 AM & 4–10 PM", `Free trial: ${SITE_HOST}`];
 
 /** The one-line takeaway the recap opens with. */
 function keyLine(s: Short): string {
   switch (s.format) {
+    case "viral":
+      return `${s.verdict}: ${s.truth}`;
+    case "trend":
+      return s.careful;
     case "myth":
     case "fact":
       return s.fact;
@@ -158,7 +181,7 @@ export const extraFor = (s: Short): Extra => {
 };
 
 /** Every Short runs at least this long (the owner's rule), so the holds stretch to reach it. */
-export const MIN_SECONDS = 62;
+export const MIN_SECONDS = 64;
 const MAX_STRETCH = 1.8;
 
 /** The whole Short, scene by scene with its reveal timing. */
@@ -167,11 +190,12 @@ export function shortScenes(s: Short): Timed[] {
   const scenes: [Scene, number][] = [
     [{ kind: "hook", kicker: KICKER[s.format], text: s.hook }, readTime(s.hook, 2.4, 3.2)],
     ...body(s),
-    ...x.tips.map((t, i): [Scene, number] => [{ kind: "card", label: `COACH'S TIP ${i + 1} OF 2`, tone: i ? "gold" : "green", text: t }, readTime(t, 3.4)]),
-    [{ kind: "plan", title: "QUICK RECAP", items: [keyLine(s), ...x.tips], foot: "Save this so you don't forget." }, readTime([keyLine(s), ...x.tips].join(" "), 5, 7)],
+    ...x.tips.map((t, i): [Scene, number] => [{ kind: "card", label: `COACH KA TIP ${i + 1}/2`, tone: i ? "gold" : "green", text: t }, readTime(t, 3.4)]),
+    [{ kind: "plan", title: "QUICK RECAP", items: [keyLine(s), ...x.tips], foot: "Save kar lo, bhoolna mat." }, readTime([keyLine(s), ...x.tips].join(" "), 5, 7)],
     [{ kind: "gym", lines: GYM_LINES }, 6],
     [{ kind: "ask", text: x.ask }, readTime(x.ask, 4, 5.5)],
-    [{ kind: "end", text: "Follow for a new tip every day", note: s.medical ? `${MEDICAL_LINE} ${DOCTOR_LINE}` : MEDICAL_LINE }, 4],
+    [{ kind: "subscribe", text: "Video kaam ki lagi? LIKE karo aur SUBSCRIBE karo" }, 4],
+    [{ kind: "end", text: "Free trial book karo website pe", note: s.medical ? `${MEDICAL_LINE} ${DOCTOR_LINE}` : MEDICAL_LINE }, 4.5],
   ];
   let timed = scenes.map(([scene, sec]) => timing(scene, sec));
   // Too short? Lengthen every hold evenly (never the hook, which has to grab in the first seconds).
@@ -197,14 +221,18 @@ export function shortTitle(s: Short): string {
 
 function summary(s: Short): string[] {
   switch (s.format) {
+    case "viral":
+      return [`📢 Viral claim: ${s.claim}`, `${s.verdict === "SACH" ? "✅" : s.verdict === "JHOOTH" ? "❌" : "⚖️"} ${s.verdict}: ${s.truth}`, s.why];
+    case "trend":
+      return [`🔥 ${s.trend}: ${s.what}`, `✅ Acchi baat: ${s.good}`, `⚠️ Dhyaan rakho: ${s.careful}`];
     case "myth":
-      return [`❌ Myth: ${s.myth}`, `✅ Fact: ${s.fact}`, s.why];
+      return [`❌ Myth: ${s.myth}`, `✅ Sach: ${s.fact}`, s.why];
     case "form":
-      return [`${s.move}`, `❌ Don't: ${s.wrong}`, `✅ Do: ${s.right}`, `Cue: ${s.cue}`];
+      return [`${s.move}`, `❌ Galat: ${s.wrong}`, `✅ Sahi: ${s.right}`, `Cue: ${s.cue}`];
     case "swap":
       return [`Swap: ${s.from} ➜ ${s.to}`, s.why];
     case "workout":
-      return [`${s.rounds} round${s.rounds > 1 ? "s" : ""}:`, ...s.moves.map(([m, sec]) => `• ${m}: ${sec} seconds`), s.note];
+      return [`${s.rounds} round${s.rounds > 1 ? "s" : ""}:`, ...s.moves.map(([m, sec]) => `• ${m}: ${sec} second`), s.note];
     case "mistakes":
       return [...s.items.map((t, i) => `${i + 1}. ${t}`), `Fix: ${s.fix}`];
     case "fact":
@@ -222,7 +250,7 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     "",
     ...summary(s),
     "",
-    "Coach's tips:",
+    "Coach ke tips:",
     ...extraFor(s).tips.map((t) => `• ${t}`),
     "",
     `💬 ${extraFor(s).ask}`,
@@ -230,9 +258,11 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : []),
     `${MEDICAL_LINE}${s.medical ? ` ${DOCTOR_LINE}` : ""}`,
     "",
-    `Train with ${biz.coach} at ${biz.name}, Sector 93 Noida.`,
-    `Book a free trial: ${link}`,
-    `Call or WhatsApp: ${biz.phone}`,
+    "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo, roz nayi fitness tip ke liye.",
+    "",
+    `${biz.coach} ke saath ${biz.name}, Sector 93 Noida mein train karo.`,
+    `Free trial book karo: ${link}`,
+    `Call ya WhatsApp: ${biz.phone}`,
     ...(biz.address ? [biz.address] : []),
     "",
     ["#shorts", "#fitness", ...s.tags.slice(0, 3).map(hashtag)].join(" "),
@@ -240,7 +270,7 @@ export function shortDescription(s: Short, biz: PostBiz): string {
   return lines.join("\n").replace(/[<>]/g, "").slice(0, 4900);
 }
 
-const BASE_TAGS = ["fitness", "fitness tips", "gym", "Royal Fitness Club", "Noida gym", "Sector 93 Noida", "Coach Aman Sharma", "home workout", "shorts"];
+const BASE_TAGS = ["fitness", "fitness tips", "fitness tips in hindi", "hinglish", "gym", "Royal Fitness Club", "Noida gym", "Sector 93 Noida", "Coach Aman Sharma", "home workout", "shorts"];
 
 /** Tags: the script's own first, then the channel's; YouTube counts at most 500 characters. */
 export function shortTags(s: Short): string[] {
