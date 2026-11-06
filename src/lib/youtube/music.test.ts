@@ -1,12 +1,31 @@
 import { describe, expect, it } from "vitest";
 import { SHORTS } from "./shorts-bank";
-import { SR, musicPlan, planKey, renderMusic, wav } from "./music";
+import { SR, STYLES, musicPlan, planKey, renderMusic, wav } from "./music";
 
 describe("music", () => {
-  it("gives every Short in the bank (and the next 50 added) its own key, progression and scale", () => {
-    const keys = Array.from({ length: Math.max(144, SHORTS.length) }, (_, i) => planKey(musicPlan(i)));
+  it("gives every Short in the bank (and hundreds more) its own style, key, progression and scale", () => {
+    const keys = Array.from({ length: Math.max(432, SHORTS.length) }, (_, i) => planKey(musicPlan(i)));
     expect(new Set(keys).size).toBe(keys.length);
   });
+
+  it("changes the style of music every Short: the three Shorts of a day are three different styles (the owner's rule)", () => {
+    for (let i = 0; i + 2 < SHORTS.length; i++) expect(new Set([0, 1, 2].map((k) => musicPlan(i + k).style)).size).toBe(3);
+    expect(new Set(Array.from({ length: 6 }, (_, i) => musicPlan(i).style))).toEqual(new Set(STYLES));
+  });
+
+  it("renders every style loud enough and unclipped", () => {
+    for (let i = 0; i < STYLES.length; i++) {
+      const a = renderMusic(musicPlan(i), 12);
+      let peak = 0;
+      let energy = 0;
+      for (const v of a) {
+        peak = Math.max(peak, Math.abs(v));
+        energy += v * v;
+      }
+      expect(peak, STYLES[i]).toBeLessThanOrEqual(0.9);
+      expect(Math.sqrt(energy / a.length), STYLES[i]).toBeGreaterThan(0.05);
+    }
+  }, 30_000);
 
   it("is the same track for the same Short every time (a re-upload sounds the same)", () => {
     expect(musicPlan(7)).toEqual(musicPlan(7));

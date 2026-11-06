@@ -166,7 +166,7 @@ function keyLine(s: Short): string {
     case "form":
       return s.right;
     case "swap":
-      return `${s.from} ➜ ${s.to}`;
+      return `${s.from} → ${s.to}`;
     case "workout":
       return `${s.rounds} round${s.rounds > 1 ? "s" : ""}: ${s.moves.filter(([m]) => m !== "Rest").map(([m]) => m.replace(/\s*\(.*\)|, each.*$/g, "")).join(", ")}`;
     case "mistakes":
