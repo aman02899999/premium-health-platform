@@ -312,6 +312,31 @@ describe.skipIf(!url)("social automation on a real database", () => {
     ]);
   });
 
+  it("Diwali (8 Nov): the greeting replaces the morning card and the sales Story; the afternoon card runs as normal", async () => {
+    expect(await social.runMonthPost("am", new Date("2026-11-08T02:30:00Z"), biz)).toEqual({ instagram: "published", facebook: "published" });
+    const ig = calls.find((c) => c.url.endsWith("/17841400000/media"))!;
+    expect(ig.body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/social/diwali-2026-feed.jpg" });
+    expect(String(ig.body!.caption)).toContain("Happy Diwali");
+    expect(String(ig.body!.caption)).not.toMatch(/https?:\/\//);
+    const fb = calls.find((c) => c.url.endsWith("/PAGE1/photos"))!;
+    expect(fb.body).toMatchObject({ url: "https://www.royalfitnesclub.in/social/diwali-2026-feed.jpg" });
+    expect(String(fb.body!.caption ?? fb.body!.message)).toContain("utm_campaign=diwali-2026");
+
+    calls.length = 0;
+    expect(await social.runMonthPost("pm", new Date("2026-11-08T10:30:00Z"), biz)).toEqual({ instagram: "published", facebook: "published" });
+    expect(calls.find((c) => c.url.endsWith("/17841400000/media"))!.body).toMatchObject({ image_url: "https://www.royalfitnesclub.in/api/social/card/2026-11-08-pm.jpg" });
+
+    calls.length = 0;
+    expect((await social.runInstagramStory(new Date("2026-11-08T02:15:00Z"))).story).toBe("published");
+    const story = calls.find((c) => c.url.endsWith("/17841400000/media"))!;
+    expect(story.body).toEqual({ image_url: "https://www.royalfitnesclub.in/social/diwali-2026-story.jpg", media_type: "STORIES" });
+    const themes = (await pool.query("select channel, theme from public.social_posts where channel in ('instagram-am', 'instagram-story') order by channel")).rows;
+    expect(themes).toEqual([
+      { channel: "instagram-am", theme: "Happy Diwali 2026" },
+      { channel: "instagram-story", theme: "Happy Diwali 2026" },
+    ]);
+  });
+
   it("month plan: SOCIAL_MONTH_PLAN=off stops every extra post", async () => {
     process.env.SOCIAL_MONTH_PLAN = "off";
     try {

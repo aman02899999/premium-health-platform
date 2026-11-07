@@ -8,6 +8,7 @@ import { insertLead } from "@/lib/growth/leads";
 import { dailyPost, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import { storyItem } from "@/lib/growth/sales-catalog";
 import { cardPost, monthDay, reelPhoto, secondReelPost, type FeedSlot } from "@/lib/growth/month-plan";
+import { specialFeedPost, specialStory } from "@/lib/growth/special-days";
 import { daysBetween } from "@/lib/growth/dates";
 import { buildReply, detectIntent, forInstagram, shouldReply, type Intent, type ReplyCtx } from "./auto-reply";
 import { indianMobile, type Inbound } from "./inbound";
@@ -277,9 +278,11 @@ export async function runInstagramStory(now = new Date()): Promise<{ story: stri
   // The morning run keeps the long-lived Instagram token fresh (it refreshes at most weekly).
   const token = await refreshInstagramToken(now).catch(() => "failed" as const);
   const today = todayIST(now);
-  const id = await claimPost("instagram-story", today, storyItem(today).title);
+  // A festival day (special-days.ts) swaps the sales Story for its greeting.
+  const special = specialStory(today);
+  const id = await claimPost("instagram-story", today, special?.theme ?? storyItem(today).title);
   if (!id) return { story: "already-posted", token };
-  const res = await publishInstagramStory(storyImageUrl(today));
+  const res = await publishInstagramStory(special ? `${SITE_URL}${special.storyImage}` : storyImageUrl(today));
   await recordPost(id, res);
   if (!res.ok) console.error("[instagram] story failed:", res.error);
   return { story: res.ok ? "published" : `failed: ${res.error}`, token };
@@ -360,9 +363,11 @@ type ChannelResult = "off" | "already-posted" | "published" | `failed: ${string}
 export async function runMonthPost(slot: FeedSlot, now = new Date(), biz: PostBiz): Promise<{ instagram: ChannelResult | "not-scheduled"; facebook: ChannelResult | "not-scheduled" }> {
   const today = todayIST(now);
   if (!monthPlanOn() || monthDay(today) === null) return { instagram: "not-scheduled", facebook: "not-scheduled" };
-  const post = cardPost(today, slot, biz, (await getContent()).offers ?? []);
+  // A festival post (special-days.ts) takes this slot's place: its own image and captions.
+  const special = specialFeedPost(today, slot);
+  const post = special ?? cardPost(today, slot, biz, (await getContent()).offers ?? []);
   if (!post) return { instagram: "not-scheduled", facebook: "not-scheduled" };
-  const image = cardImageUrl(today, slot);
+  const image = special ? `${SITE_URL}${special.feedImage}` : cardImageUrl(today, slot);
   const one = async (on: boolean, channel: PostChannel, send: () => ReturnType<typeof publishInstagramPhoto>): Promise<ChannelResult> => {
     if (!on) return "off";
     const id = await claimPost(channel, today, post.theme);
