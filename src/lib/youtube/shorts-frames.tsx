@@ -4,8 +4,8 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import type { PostBiz } from "@/lib/growth/daily-posts";
 import { loadLogo } from "@/lib/og";
-import { SITE_URL } from "@/lib/site";
-import type { Scene, Timed, Tone } from "./shorts-core";
+import type { Verdict } from "./shorts-bank";
+import { SITE_HOST, type Scene, type Timed, type Tone } from "./shorts-core";
 
 // The Short's frames: one 1080×1920 PNG per caption step, drawn with Satori. Every word of a
 // scene is laid out from the first step (the words still to come are transparent), so the
@@ -20,6 +20,8 @@ const GOLD = "#ffcf5a";
 const RED = "#ff4d5e";
 const GREEN = "#38d39f";
 const TONE: Record<Tone, string> = { red: RED, green: GREEN, gold: GOLD, plain: "#ffffff" };
+const VERDICT: Record<Verdict, string> = { JHOOTH: RED, SACH: GREEN, DEPENDS: GOLD };
+const YT_RED = "#ff0033";
 
 type Font = { name: string; data: Buffer; weight: 500 | 700 | 800; style: "normal" };
 
@@ -88,10 +90,10 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
     case "swap":
       return (
         <div style={{ display: "flex", flexDirection: "column", gap: 34 }}>
-          <Label text="INSTEAD OF" color={RED} />
+          <Label text="ISKE BADLE" color={RED} />
           <div style={{ display: "flex", fontSize: sizeFor(scene.from, [[30, 76], [50, 64]], 56), fontWeight: 800, color: "rgba(255,255,255,.6)", textDecoration: "line-through" }}>{scene.from}</div>
           <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 120, color: GOLD, lineHeight: 1 }}>↓</div>
-          <Label text="TRY THIS" color={GREEN} />
+          <Label text="YE TRY KARO" color={GREEN} />
           <Reveal parts={parts} shown={shown} size={sizeFor(scene.to, [[30, 104], [55, 88], [90, 72]], 64)} />
         </div>
       );
@@ -140,8 +142,8 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
     case "gym":
       return (
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <Label text="TRAIN WITH US" color={RED} />
-          <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 120, lineHeight: 1.05, textTransform: "uppercase" }}>Want a coach to guide you?</div>
+          <Label text="HUMARE SAATH TRAIN KARO" color={RED} />
+          <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 116, lineHeight: 1.05, textTransform: "uppercase" }}>Coach ke saath train karna hai?</div>
           {scene.lines.map((l, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 20, opacity: i < shown ? 1 : 0, fontSize: 46, fontWeight: 800, color: i === 3 ? GOLD : "#fff" }}>
               <div style={{ display: "flex", width: 16, height: 16, borderRadius: 999, background: i === 3 ? GOLD : GREEN }} />
@@ -153,16 +155,41 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
     case "ask":
       return (
         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-          <Label text="YOUR TURN · COMMENT BELOW" color={GOLD} />
+          <Label text="AAPKI BAARI · COMMENT KARO" color={GOLD} />
           <div style={{ display: "flex", fontFamily: "Oswald", fontSize: 200, lineHeight: 1, color: GOLD }}>?</div>
           <Reveal parts={parts} shown={shown} size={sizeFor(scene.text, [[35, 104], [55, 92]], 80)} />
         </div>
       );
-    case "end":
+    case "verdict":
       return (
         <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-          <Reveal parts={parts} shown={shown} size={112} font="Oswald" upper />
-          <div style={{ display: "flex", alignSelf: "flex-start", background: RED, borderRadius: 999, padding: "26px 56px", fontSize: 50, fontWeight: 800 }}>FREE TRIAL · LINK BELOW</div>
+          <Label text="VERDICT" color={GOLD} />
+          <div style={{ display: "flex", alignSelf: "flex-start", border: `12px solid ${VERDICT[scene.verdict]}`, borderRadius: 28, padding: "10px 44px", transform: "rotate(-4deg)", fontFamily: "Oswald", fontSize: 190, lineHeight: 1.05, color: VERDICT[scene.verdict] }}>{scene.verdict}</div>
+          <Reveal parts={parts} shown={shown} size={sizeFor(scene.text, [[40, 100], [70, 88], [100, 78]], 70)} />
+        </div>
+      );
+    case "subscribe":
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
+          <Reveal parts={parts} shown={shown} size={104} font="Oswald" upper />
+          <div style={{ display: "flex", gap: 28 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 18, background: "#fff", color: "#0a0f17", borderRadius: 999, padding: "26px 48px", fontSize: 54, fontWeight: 800 }}>
+              LIKE
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 18, background: YT_RED, borderRadius: 999, padding: "26px 48px", fontSize: 54, fontWeight: 800 }}>
+              <div style={{ display: "flex", width: 0, height: 0, borderTop: "18px solid transparent", borderBottom: "18px solid transparent", borderLeft: "30px solid #fff" }} />
+              SUBSCRIBE
+            </div>
+          </div>
+          <div style={{ display: "flex", fontSize: 40, fontWeight: 800, color: GOLD }}>Roz nayi fitness tip, easy Hinglish mein</div>
+        </div>
+      );
+    case "end":
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 36 }}>
+          <Reveal parts={parts} shown={shown} size={100} font="Oswald" upper />
+          <div style={{ display: "flex", alignSelf: "flex-start", background: RED, borderRadius: 24, padding: "28px 48px", fontFamily: "Oswald", fontSize: 92, lineHeight: 1 }}>{SITE_HOST}</div>
+          <div style={{ display: "flex", fontSize: 40, fontWeight: 800 }}>Link description mein bhi hai</div>
           <div style={{ display: "flex", fontSize: 36, fontWeight: 800, color: GOLD }}>Royal Fitness Club · Sector 93 Noida</div>
           {scene.note && <div style={{ display: "flex", fontSize: 28, fontWeight: 500, color: "rgba(255,255,255,.65)" }}>{scene.note}</div>}
         </div>
@@ -170,8 +197,8 @@ function Body({ scene, parts, shown }: { scene: Scene; parts: string[]; shown: n
   }
 }
 
-const WATERMARK: Record<string, string> = { red: "DON'T", green: "DO IT", gold: "COACH", plain: "ROYAL", swap: "SWAP", number: "AVOID", move: "MOVE", plan: "PLAN", big: "FACT", ask: "YOU?" };
-const ACCENT: Record<Scene["kind"], string> = { hook: RED, card: GOLD, swap: GREEN, number: RED, move: GREEN, plan: GOLD, big: GREEN, gym: RED, ask: GOLD, end: RED };
+const WATERMARK: Record<string, string> = { red: "GALAT", green: "SAHI", gold: "COACH", plain: "VIRAL", swap: "SWAP", number: "AVOID", move: "MOVE", plan: "PLAN", big: "FACT", verdict: "SACH?", ask: "AAP?", subscribe: "LIKE" };
+const ACCENT: Record<Scene["kind"], string> = { hook: RED, card: GOLD, swap: GREEN, number: RED, move: GREEN, plan: GOLD, big: GREEN, verdict: GOLD, gym: RED, ask: GOLD, subscribe: YT_RED, end: RED };
 
 function Frame({ timed, index, shown, biz, logo, photo }: { timed: Timed; index: number; shown: number; biz: PostBiz; logo: string; photo: string | null }) {
   const scene = timed.scene;
@@ -205,7 +232,7 @@ function Frame({ timed, index, shown, biz, logo, photo }: { timed: Timed; index:
         <img src={logo} alt="" width={120} height={54} style={{ background: "#fff", borderRadius: 12, padding: 6 }} />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 28, fontWeight: 800, letterSpacing: 2 }}>ROYAL FITNESS CLUB</div>
-          <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,.65)" }}>{`${biz.coach} · ${SITE_URL.replace(/^https?:\/\/(www\.)?/, "")}`}</div>
+          <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,.65)" }}>{`${biz.coach} · ${SITE_HOST}`}</div>
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", height: 1240 }}>
