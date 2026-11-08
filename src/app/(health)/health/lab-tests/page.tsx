@@ -3,7 +3,8 @@ import { FlaskConical } from "lucide-react";
 import { LAB_TESTS } from "@/health/data/clinical";
 import { Breadcrumbs, TopicCard, InfoNote, AdSlot, DisclaimerBar } from "@/health/components/ui";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
-import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
+import { labPartners } from "@/health/lib/monetization/lab-partners";
+import { LabBookingPartners } from "@/health/components/monetization/LabBookingPartners";
 import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
@@ -30,12 +31,12 @@ export default function LabTestsPage() {
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Lab Tests", item: "/health/lab-tests" }]}
         faqs={[
           { q: "When to test HbA1c?", a: "Every 3-6 months if diabetic, yearly if prediabetes risk. Fasting not needed for HbA1c, but needed for lipid + fasting sugar. Cost INR 300-500." },
-          { q: "What is CBC + ferritin + B12 for anemia?", a: "CBC types anemia, ferritin checks iron stores, B12 checks deficiency — common in veg Indians. See /india-risk anemia + anemia guide blog. Lead gen for lab bookings." },
+          { q: "What is CBC + ferritin + B12 for anemia?", a: "CBC types anemia, ferritin checks iron stores, B12 checks deficiency — common in veg Indians. See /india-risk anemia + anemia guide blog." },
         ]}
-        howTo={{ name: "How to book lab test", steps: ["Search test: e.g., HbA1c, TSH, lipid, CBC", "Check when to test, fasting, cost INR, India labs", "Book via lead form — lab partner contacts, home sample", "Track results, compare trends in premium"] }}
+        howTo={{ name: "How to book lab test", steps: ["Search test: e.g., HbA1c, TSH, lipid, CBC", "Check when to test, fasting, cost INR, India labs", "Book a home sample with an accredited lab", "Track results, compare trends in premium"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-sky-800 to-blue-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Lab Tests — Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Lab tests</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Lab Tests — HbA1c, Thyroid, Lipid, CBC — India Guide</h1>
         <p className="mt-2 max-w-2xl text-sm text-sky-100/90">What each test measures, why doctors order it, how to prepare, what abnormal values can mean — and their limits. Never diagnose from one value alone.</p>
       </div>
@@ -49,7 +50,7 @@ export default function LabTestsPage() {
             ))}
           </div>
           <div className="mt-6 space-y-4">
-            <AffiliateProducts limit={4} title="Lab Test Booking — Affiliate + Lead Gen" />
+            <LabBookingPartners partners={labPartners()} page="/health/lab-tests" />
             <LatestArticles limit={4} />
           </div>
         </div>

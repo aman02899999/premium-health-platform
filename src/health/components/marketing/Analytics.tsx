@@ -138,8 +138,14 @@ export function Analytics() {
 }
 
 // Affiliate click tracking hook
-export function trackAffiliateClick(productSlug: string, merchant?: string) {
+export function trackAffiliateClick(productSlug: string, merchant?: string, page?: string) {
   if (typeof window === "undefined") return;
+  // Count the click on the server too (the admin earning view reads it). sendBeacon survives the
+  // tab switching to the merchant; it never blocks or changes the visitor's click.
+  try {
+    const body = new Blob([JSON.stringify({ productId: productSlug, merchant, page: page ?? location.pathname })], { type: "application/json" });
+    navigator.sendBeacon?.("/health/api/affiliate/click", body);
+  } catch {}
   const utm = (() => {
     try {
       return JSON.parse(localStorage.getItem("bhg-utm") || "{}");
