@@ -7,6 +7,8 @@ import { getDisease } from "@/health/data/diseases-index";
 import { Breadcrumbs, FaqAccordion, ShareButtons, AdSlot, DisclaimerBar, InfoNote, LikeButton } from "@/health/components/ui";
 import { articleJsonLd, faqJsonLd, entityDescription } from "@/health/lib/seo";
 import { formatDate } from "@/health/lib/format";
+import { labPartners } from "@/health/lib/monetization/lab-partners";
+import { LabBookingPartners } from "@/health/components/monetization/LabBookingPartners";
 
 export function generateStaticParams() { return LAB_TESTS.map((l) => ({ slug: l.slug })); }
 
@@ -65,6 +67,7 @@ export default async function LabPage({ params }: { params: Promise<{ slug: stri
           <Sec title="Why doctors order it"><List items={l.whyOrdered} /></Sec>
           <Sec title="Preparation"><List items={l.preparation} /></Sec>
         </div>
+        <LabBookingPartners partners={labPartners()} testName={l.shortName || l.name} page={`/health/lab-tests/${slug}`} />
         <Sec title="Normal range & abnormal meaning">
           <p className="rounded-2xl bg-cyan-50 p-3 text-sm font-medium dark:bg-cyan-950/40">{l.normalRange}</p>
           <div className="mt-3"><List items={l.abnormalMeaning} /></div>
