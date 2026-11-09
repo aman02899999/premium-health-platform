@@ -6,6 +6,12 @@
 export type Extra = { tips: [string, string]; ask: string };
 
 export const EXTRAS: Record<string, Extra> = {
+  "myth-10-days-6kg": { tips: ["Pehle hafte ke drop se khush raho, par umeed mahino ki rakho.", "Weight ke saath kamar ka naap bhi lo, woh fat ka sach batata hai."], ask: "Tumhara sabse tez weight loss kitne din tika?" },
+  "fact-nhs-pace": { tips: ["Har hafte ka average weight note karo, roz ka nahi.", "Protein har meal mein, taaki muscle bachi rahe."], ask: "Is hafte tumhara average upar gaya ya neeche?" },
+  "mis-transformation": { tips: ["Aaj ek photo lo, same jagah, same light. Mahine baad compare karo.", "Hafte mein kuch din weights, saath mein roz ki walk."], ask: "Tumhari journey ka kaunsa mahina chal raha hai?" },
+  "myth-daily-weight": { tips: ["Subah toilet ke baad, khane se pehle, roz same time weigh karo.", "Phone mein 7 din likho aur average nikalo."], ask: "Tum roz weigh karte ho ya hafte mein?" },
+  "swap-scale-photo": { tips: ["Naabhi ke level par measuring tape se kamar naapo.", "Photo hamesha same kapde aur same pose mein."], ask: "Last baar kamar kab naapi thi?" },
+  "mis-supplements-first": { tips: ["Pehle dekho, har meal mein protein hai ya nahi.", "Supplement lena hai toh pehle trainer ya doctor se poocho."], ask: "Tumhare paas abhi kaunsa supplement hai?" },
   "viral-nimbu-pani": { tips: ["Subah nimbu paani piyo, par saath mein protein wala nashta bhi karo.", "Fat loss ke liye roz 30 minute walk aur sahi portion."], ask: "Tum subah kya peete ho? Comment karo." },
   "viral-jeera-water": { tips: ["Paani pasand hai toh piyo, bas usse pet kam hone ki umeed mat rakho.", "Dinner ke baad 15 minute walk, ye zyada kaam karega."], ask: "Tumne kaunsa desi nuskha try kiya hai?" },
   "viral-acv": { tips: ["ACV peena hi hai toh paani mein mila ke, seedha kabhi nahi.", "Wahi paisa dal, paneer aur sabzi par lagao."], ask: "ACV try kiya? Kya hua? Batao." },
