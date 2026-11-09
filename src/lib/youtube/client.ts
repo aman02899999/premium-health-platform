@@ -103,3 +103,16 @@ export async function uploadVideo(token: string, video: Buffer, meta: VideoMeta,
   if (!put.ok || !json?.id) return { ok: false, ...apiError(json, put.status) };
   return { ok: true, id: json.id, privacy: json.status?.privacyStatus ?? meta.privacy, url: `https://youtube.com/shorts/${json.id}` };
 }
+
+const THUMB_URL = "https://www.googleapis.com/upload/youtube/v3/thumbnails/set";
+
+/** Sets a custom thumbnail. YouTube only allows this on a phone-verified channel, so a failure is reported, never fatal. */
+export async function setThumbnail(token: string, videoId: string, jpeg: Buffer, f: Fetch = fetch): Promise<{ ok: true } | { ok: false; error: string }> {
+  const res = await f(`${THUMB_URL}?videoId=${encodeURIComponent(videoId)}`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${token}`, "content-type": "image/jpeg", "content-length": String(jpeg.length) },
+    body: new Uint8Array(jpeg),
+  });
+  if (res.ok) return { ok: true };
+  return { ok: false, error: apiError(await res.json().catch(() => null), res.status).error };
+}

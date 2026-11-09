@@ -2,10 +2,12 @@ import "server-only";
 import { pool } from "@/health/db";
 import type { PostBiz } from "@/lib/growth/daily-posts";
 import { todayIST } from "@/lib/growth/dates";
-import { accessToken, channelTitle, uploadVideo, youtubeConfigured, youtubePrivacy, youtubeShortsOn, type Fetch, type UploadResult, type VideoMeta } from "./client";
+import { accessToken, channelTitle, setThumbnail, uploadVideo, youtubeConfigured, youtubePrivacy, youtubeShortsOn, type Fetch, type UploadResult, type VideoMeta } from "./client";
 import { SHORTS, type Short } from "./shorts-bank";
 import { nextShort, shortDescription, shortTags, shortTitle } from "./shorts-core";
 import { renderShort } from "./shorts";
+import { SITE_URL } from "@/lib/site";
+import { dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
 // retry). Each slot is its own social_posts row (channel youtube-1/2/3, one per day), so a slot
@@ -50,7 +52,7 @@ export async function youtubeStatus(): Promise<YoutubeStatus> {
 
 /** Scripts already on YouTube or being uploaded right now. */
 async function usedScripts(): Promise<string[]> {
-  const { rows } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-%' and status in ('published', 'pending')`);
+  const { rows } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-%' and channel <> 'youtube-long' and status in ('published', 'pending')`);
   return rows.map((r) => r.theme);
 }
 
@@ -119,4 +121,78 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
     return `failed: ${result.error.slice(0, 160)}`;
   }
   return `published ${result.url}${result.privacy !== youtubePrivacy() ? ` (YouTube kept it ${result.privacy})` : ""}`;
+}
+
+// Long videos (16:9, 4–5 minutes) are ready-made MP4s in public/youtube/long/, listed in
+// long-videos.ts. Each goes up once, on or after its date, in its own row (channel youtube-long,
+// at most one a day), so a failed upload is retried by the next cron run and none goes up twice.
+
+const LONG = "youtube-long";
+
+export type LongDeps = {
+  download: (url: string) => Promise<Buffer>;
+  upload: (token: string, video: Buffer, meta: VideoMeta) => Promise<UploadResult>;
+  thumbnail: (token: string, videoId: string, jpeg: Buffer) => Promise<{ ok: true } | { ok: false; error: string }>;
+  access: (refresh: string) => ReturnType<typeof accessToken>;
+};
+
+async function download(url: string): Promise<Buffer> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`download ${url}: HTTP ${res.status}`);
+  return Buffer.from(await res.arrayBuffer());
+}
+const LONG_DEPS: LongDeps = { download, upload: (t, v, m) => uploadVideo(t, v, m), thumbnail: (t, id, j) => setThumbnail(t, id, j), access: (r) => accessToken(r) };
+
+export type LongResult = "off" | "not-connected" | "already-posted" | "none-due" | `published${string}` | `failed: ${string}`;
+
+/** Uploads the long video that is due today, if any. Safe to run again. */
+export async function runLongVideo(now: Date, deps: LongDeps = LONG_DEPS): Promise<LongResult> {
+  if (!youtubeShortsOn()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const today = todayIST(now);
+  const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [LONG, today]);
+  if (mine[0]?.status === "published") return "already-posted";
+  const { rows: used } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel = $1 and status in ('published', 'pending')`, [LONG]);
+  const video = dueLongVideo(today, used.map((r) => r.theme));
+  if (!video) return "none-due";
+  const { rows: claimed } = await pool.query<{ id: string }>(
+    `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
+     on conflict (channel, post_date) do update set status = 'pending', error = null, theme = excluded.theme, created_at = now()
+       where public.social_posts.status = 'failed'
+          or (public.social_posts.status = 'pending' and public.social_posts.created_at < now() - interval '20 minutes')
+     returning id`,
+    [LONG, today, video.id],
+  );
+  const id = claimed[0]?.id;
+  if (!id) return "already-posted";
+
+  const at = await deps.access(refresh);
+  if (!at.ok) {
+    const error = at.revoked ? "YouTube sign-in expired or was removed: connect the channel again in Admin → Growth → Social" : `YouTube sign-in: ${at.error}`;
+    await record(id, { ok: false, error, quota: false });
+    return `failed: ${error}`;
+  }
+  let result: UploadResult;
+  try {
+    const mp4 = await deps.download(`${SITE_URL}${longVideoFile(video)}`);
+    result = await deps.upload(at.token, mp4, { title: video.title, description: longVideoDescription(video), tags: longVideoTags(video), privacy: youtubePrivacy() });
+    if (result.ok) result = { ...result, url: `https://www.youtube.com/watch?v=${result.id}` };
+  } catch (err) {
+    result = { ok: false, error: `Download/upload: ${(err as Error).message}`, quota: false };
+  }
+  await record(id, result);
+  if (!result.ok) {
+    console.error("[youtube] long video failed:", result.error);
+    return `failed: ${result.error.slice(0, 160)}`;
+  }
+  // The thumbnail is a nice-to-have: an unverified channel can't set one, and the video is already up.
+  let thumb = "";
+  try {
+    const t = await deps.thumbnail(at.token, result.id, await deps.download(`${SITE_URL}${longVideoThumb(video)}`));
+    if (!t.ok) thumb = ` (thumbnail not set: ${t.error.slice(0, 80)})`;
+  } catch (err) {
+    thumb = ` (thumbnail not set: ${(err as Error).message.slice(0, 80)})`;
+  }
+  return `published ${result.url}${result.privacy !== youtubePrivacy() ? ` (YouTube kept it ${result.privacy})` : ""}${thumb}`;
 }

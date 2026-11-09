@@ -116,4 +116,68 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
     expect(await yt.runShort(1, now, biz, deps)).toBe("bank-empty");
     expect((await yt.youtubeStatus()).left).toBe(0);
   });
+
+  describe("long videos", () => {
+    const longUploads: VideoMeta[] = [];
+    const downloads: string[] = [];
+    let thumbFails = false;
+    const longDeps: import("./automation").LongDeps = {
+      download: async (u) => {
+        downloads.push(u);
+        return Buffer.from(u);
+      },
+      upload: async (_t, _v, meta) => {
+        longUploads.push(meta);
+        return fail ? { ok: false, error: fail, quota: false } : { ok: true, id: `long${longUploads.length}`, privacy: "public", url: `https://youtube.com/shorts/long${longUploads.length}` };
+      },
+      thumbnail: async () => (thumbFails ? { ok: false, error: "forbidden: channel not verified" } : { ok: true }),
+      access: deps.access,
+    };
+    beforeEach(() => {
+      longUploads.length = 0;
+      downloads.length = 0;
+      thumbFails = false;
+    });
+    // 13:00 IST on 12 Nov 2026: the first two videos are due.
+    const nov12 = new Date("2026-11-12T07:30:00Z");
+
+    it("uploads each due video once, oldest first, at most one a day, with a watch link and the thumbnail", async () => {
+      await connect();
+      expect(await yt.runLongVideo(nov12, longDeps)).toBe("published https://www.youtube.com/watch?v=long1");
+      expect(longUploads[0].title).toMatch(/^10 Fitness Myths/);
+      expect(longUploads[0].description).toContain("Chapters\n0:00 Intro");
+      expect(downloads).toEqual([expect.stringMatching(/\/youtube\/long\/long-fitness-myths-10\.mp4$/), expect.stringMatching(/\/youtube\/long\/long-fitness-myths-10\.jpg$/)]);
+      expect(await yt.runLongVideo(nov12, longDeps)).toBe("already-posted");
+      // The next day the second one goes up; the third isn't due until 16 Nov.
+      expect(await yt.runLongVideo(new Date("2026-11-13T07:30:00Z"), longDeps)).toMatch(/^published/);
+      expect(longUploads[1].title).toMatch(/^8 Desi Diet Myths/);
+      expect(await yt.runLongVideo(new Date("2026-11-14T07:30:00Z"), longDeps)).toBe("none-due");
+      expect((await rows()).map((r) => [r.channel, r.theme, r.status, r.permalink])).toEqual([
+        ["youtube-long", "long-fitness-myths-10", "published", "https://www.youtube.com/watch?v=long1"],
+        ["youtube-long", "long-desi-diet-myths-8", "published", "https://www.youtube.com/watch?v=long2"],
+      ]);
+      // Long videos never count against the Shorts bank.
+      expect((await yt.youtubeStatus()).left).toBe(bank.SHORTS.length);
+    });
+
+    it("waits for its date, retries a failed upload, and reports a thumbnail it couldn't set", async () => {
+      await connect();
+      expect(await yt.runLongVideo(new Date("2026-11-08T07:30:00Z"), longDeps)).toBe("none-due");
+      fail = "uploadLimitExceeded: too many";
+      expect(await yt.runLongVideo(nov12, longDeps)).toMatch(/^failed: uploadLimitExceeded/);
+      fail = null;
+      thumbFails = true;
+      expect(await yt.runLongVideo(nov12, longDeps)).toMatch(/^published .*thumbnail not set: forbidden/);
+      expect(longUploads.map((u) => u.title.slice(0, 15))).toEqual(["10 Fitness Myth", "10 Fitness Myth"]);
+      expect(await rows()).toEqual([expect.objectContaining({ channel: "youtube-long", status: "published", error: null })]);
+    });
+
+    it("does nothing when switched off or not connected", async () => {
+      expect(await yt.runLongVideo(nov12, longDeps)).toBe("not-connected");
+      await connect();
+      process.env.YOUTUBE_SHORTS = "off";
+      expect(await yt.runLongVideo(nov12, longDeps)).toBe("off");
+      expect(longUploads).toHaveLength(0);
+    });
+  });
 });
