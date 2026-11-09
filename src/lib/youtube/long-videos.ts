@@ -170,8 +170,51 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["obesity myths hindi", "weight loss hinglish", "bmi waist", "motapa kaise kam kare"],
   },
+  {
+    id: "long-alcohol-tobacco-myths-8",
+    date: "2026-12-02",
+    title: "Daaru Aur Cigarette Ke 8 Jhooth | WHO Facts Hinglish",
+    intro: "Thodi daaru safe hai? Ek-do peg dil ke liye achhe? Gutkha cigarette se safe? Chhodna namumkin?\nIs video mein daaru aur tobacco ke 8 jhooth, har ek ka sach WHO ke source ke saath. Chhodna chahte ho toh apne doctor se baat karo.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:12", "Myth 1: Thodi daaru safe?"],
+      ["0:37", "Myth 2: Peg dil ke liye achha?"],
+      ["1:08", "Myth 3: Mehngi daaru kam nuksan?"],
+      ["1:36", "Myth 4: Sirf liver kharab?"],
+      ["2:09", "Myth 5: Nuksan sirf budhape mein?"],
+      ["2:38", "Myth 6: Gutkha-khaini safe?"],
+      ["3:08", "Myth 7: Ghar walon pe asar"],
+      ["3:36", "Myth 8: Chhodna namumkin?"],
+      ["4:05", "Recap"],
+      ["4:17", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["WHO Europe, No level of alcohol consumption is safe for our health (2023)", "https://www.who.int/europe/news/item/04-01-2023-no-level-of-alcohol-consumption-is-safe-for-our-health"],
+      ["WHO fact sheet, Alcohol", "https://www.who.int/news-room/fact-sheets/detail/alcohol"],
+      ["WHO fact sheet, Tobacco and nicotine", "https://www.who.int/news-room/fact-sheets/detail/tobacco"],
+    ],
+    tags: ["alcohol myths hindi", "smoking chhodo", "gutkha nuksan", "daaru aur gym"],
+  },
+  {
+    id: "long-anaemia-myths-6",
+    date: "2026-12-06",
+    title: "Khoon Ki Kami (Anaemia) Ke 6 Jhooth | WHO Facts Hinglish",
+    intro: "Anaemia matlab bas thakaan? Heavy periods normal hain? Sirf khane ki kami se hota hai?\nIs video mein khoon ki kami ke 6 jhooth, har ek ka sach WHO ke source ke saath. Test aur ilaaj ka faisla apne doctor ke saath karo.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Myth 1: Bas thodi thakaan?"],
+      ["0:48", "Myth 2: Kam logon ko hota hai?"],
+      ["1:20", "Myth 3: Sirf khane ki kami?"],
+      ["1:58", "Myth 4: Heavy periods normal?"],
+      ["2:31", "Myth 5: Sirf ladkiyon ki problem?"],
+      ["3:03", "Myth 6: Kuch nahi ho sakta?"],
+      ["3:33", "Recap"],
+      ["3:47", "Free trial + subscribe"],
+    ],
+    sources: [["WHO fact sheet, Anaemia", "https://www.who.int/news-room/fact-sheets/detail/anaemia"]],
+    tags: ["anaemia hindi", "khoon ki kami", "women health hinglish", "haemoglobin"],
+  },
 ];
-
 export const longVideoFile = (v: LongVideo) => `/youtube/long/${v.id}.mp4`;
 export const longVideoThumb = (v: LongVideo) => `/youtube/long/${v.id}.jpg`;
 
