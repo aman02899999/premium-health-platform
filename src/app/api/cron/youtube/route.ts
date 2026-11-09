@@ -3,7 +3,7 @@ import { cronAuthorized } from "@/lib/cron-auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness } from "@/lib/growth/daily";
 import { recordStatus } from "@/lib/growth/system-status";
-import { runShort, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
+import { runLongVideo, runShort, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
 
 export const dynamic = "force-dynamic";
 // Rendering a one-minute Short with its own music takes about 30–60 s; ?slot=all does up to three.
@@ -30,6 +30,9 @@ export async function GET(req: Request) {
       }
       result[`slot${s}`] = await runShort(s, now, biz);
     }
+    // The day's long video (if one is due) rides on the midday and late-night runs. It is a ready-made
+    // MP4, so it needs no render, only the upload.
+    if (raw === "2" || raw === "all") result.long = Date.now() - now.getTime() > 200_000 ? "deferred" : await runLongVideo(now);
     await recordStatus("youtube-run", { at: now.toISOString(), slot: raw, ok: true, result });
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {

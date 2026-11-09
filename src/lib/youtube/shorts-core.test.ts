@@ -13,7 +13,9 @@ describe("shorts bank", () => {
   });
 
   it("opens with viral claims and trends: 15 of each, and every viral claim gets a verdict", () => {
-    expect(SHORTS[0].format).toBe("viral");
+    // The six transformation-lesson Shorts (Nov 2026) go first; the woven bank then opens on a viral claim.
+    expect(SHORTS.slice(0, 6).map((s) => s.id)).toEqual(["myth-10-days-6kg", "fact-safe-pace", "mis-transformation", "myth-daily-weight", "swap-scale-photo", "mis-supplements-first"]);
+    expect(SHORTS[6].format).toBe("viral");
     expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(15);
     expect(SHORTS.filter((s) => s.format === "trend")).toHaveLength(15);
     for (const s of SHORTS) if (s.format === "viral") expect(["JHOOTH", "SACH", "DEPENDS"]).toContain(s.verdict);
