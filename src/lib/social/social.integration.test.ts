@@ -380,6 +380,28 @@ describe.skipIf(!url)("social automation on a real database", () => {
     ]);
   });
 
+  it("a ready-made tips Reel (special-days.ts) takes the midday slot: no render, posted from the site's public file", async () => {
+    const log: string[] = [];
+    const out = await social.runSecondReel(new Date("2026-11-10T06:30:00Z"), biz, fakeDeps2(log));
+    expect(out).toEqual({ reel: "ready-made", instagram: "published", facebook: "published" });
+    expect(log).toEqual([]); // nothing rendered, uploaded or removed
+    const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media[0].body).toMatchObject({ media_type: "REELS", video_url: "https://www.royalfitnesclub.in/social/reels/fat-loss-myths.mp4" });
+    expect(String(media[0].body!.caption)).toContain("Chaaron jhooth hain");
+    const rows = (await pool.query("select channel, theme, status from public.social_posts order by channel")).rows;
+    expect(rows).toEqual([
+      { channel: "facebook-reel2", theme: "Fat loss ke 4 jhooth", status: "published" },
+      { channel: "instagram-reel2", theme: "Fat loss ke 4 jhooth", status: "published" },
+    ]);
+    expect((await social.runSecondReel(new Date("2026-11-10T16:10:00Z"), biz, fakeDeps2(log))).reel).toBe("already-posted");
+  });
+
+  it("a myth Story replaces the sales Story on its day", async () => {
+    await social.runInstagramStory(new Date("2026-11-10T02:15:00Z"));
+    const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media[0].body).toMatchObject({ media_type: "STORIES", image_url: "https://www.royalfitnesclub.in/social/myth-01.jpg" });
+  });
+
   it("the morning Story keeps the Instagram token fresh", async () => {
     const out = await social.runInstagramStory(new Date("2026-10-12T02:15:00Z"));
     expect(out).toEqual({ story: "published", token: "refreshed" });
