@@ -8,7 +8,7 @@ import { insertLead } from "@/lib/growth/leads";
 import { dailyPost, type DailyPost, type PostBiz } from "@/lib/growth/daily-posts";
 import { storyItem } from "@/lib/growth/sales-catalog";
 import { cardPost, monthDay, reelPhoto, secondReelPost, type FeedSlot } from "@/lib/growth/month-plan";
-import { specialFeedPost, specialStory } from "@/lib/growth/special-days";
+import { specialFeedPost, specialReel, specialStory } from "@/lib/growth/special-days";
 import { daysBetween } from "@/lib/growth/dates";
 import { buildReply, detectIntent, forInstagram, shouldReply, type Intent, type ReplyCtx } from "./auto-reply";
 import { indianMobile, type Inbound } from "./inbound";
@@ -397,7 +397,9 @@ const SECOND_REEL_DEPS: SecondReelDeps = { render: renderReelPost, upload: putPu
  */
 export async function runSecondReel(now = new Date(), biz: PostBiz, deps: SecondReelDeps = SECOND_REEL_DEPS): Promise<{ reel: string; instagram: ChannelResult | "not-scheduled"; facebook: ChannelResult | "not-scheduled" }> {
   const today = todayIST(now);
-  const post = monthPlanOn() ? secondReelPost(today, biz) : null;
+  // The owner's own ready-made Reel (special-days.ts) takes the midday slot on its day.
+  const special = monthPlanOn() ? specialReel(today) : null;
+  const post = special ?? (monthPlanOn() ? secondReelPost(today, biz) : null);
   if (!post) return { reel: "not-scheduled", instagram: "not-scheduled", facebook: "not-scheduled" };
   const ig = instagramConfigured();
   const fb = facebookConfigured();
@@ -408,12 +410,15 @@ export async function runSecondReel(now = new Date(), biz: PostBiz, deps: Second
 
   let videoUrl: string | null = null;
   let reel = "rendered";
-  if (!mediaStorageConfigured() && deps === SECOND_REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
+  if (special) {
+    videoUrl = `${SITE_URL}${special.video}`;
+    reel = "ready-made";
+  } else if (!mediaStorageConfigured() && deps === SECOND_REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
   else {
     try {
       // A different seed from the evening Reel, so the two Reels of a day get different tracks.
       const seed = daysBetween("2026-01-01", today) + 1;
-      videoUrl = await deps.upload(`reels/${today}-2.mp4`, await deps.render(post, seed, reelPhoto(today), biz), "video/mp4");
+      videoUrl = await deps.upload(`reels/${today}-2.mp4`, await deps.render(post as DailyPost, seed, reelPhoto(today), biz), "video/mp4");
       await deps.remove(`reels/${addDays(today, -30)}-2.mp4`).catch(() => {});
     } catch (err) {
       reel = `failed: ${(err as Error).message.slice(0, 200)}`;
