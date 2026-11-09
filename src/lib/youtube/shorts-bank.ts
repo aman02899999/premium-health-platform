@@ -26,7 +26,7 @@ const WHO_DIET: Source = { name: "WHO, Healthy diet fact sheet", url: "https://w
 const WHO_TRANS: Source = { name: "WHO, Trans fat fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/trans-fat" };
 const NIN: Source = { name: "ICMR-NIN, Dietary Guidelines for Indians (2024)", url: "https://www.nin.res.in/" };
 const CDC_SLEEP: Source = { name: "CDC, About sleep", url: "https://www.cdc.gov/sleep/about/index.html" };
-const NHS_LOSE: Source = { name: "NHS Better Health, Lose weight", url: "https://www.nhs.uk/better-health/lose-weight/" };
+const CDC_LOSE: Source = { name: "CDC, Losing Weight", url: "https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html" };
 
 // Viral claims from reels and WhatsApp forwards, each with a straight verdict.
 const VIRALS: Short[] = [
@@ -176,7 +176,7 @@ const FACTS: Short[] = [
 // first and the woven bank keeps its day-by-day rotation after them.
 const TRANSFORMATION: Short[] = [
   { id: "myth-10-days-6kg", format: "myth", topic: "fast weight loss", hook: "10 din mein 6 kg kam? Pehle ye suno", myth: "10 din mein scale 6 kg gira, matlab 6 kg fat chala gaya.", fact: "Shuru ke din ka bada drop zyada tar paani aur glycogen hota hai, fat nahi.", why: "Kam carbs aur kam namak se body paani chhodti hai. Asli fat dheere jaata hai, aur wahi tikta hai.", tags: ["water weight", "fast weight loss", "weight loss myths"] },
-  { id: "fact-nhs-pace", format: "fact", topic: "safe fat loss pace", hook: "Hafte mein kitna weight kam karna safe hai?", fact: "Hafte mein 0.5 se 1 kg", detail: "ka loss tikau maana jaata hai, NHS ke hisaab se. Isse tez bhaagoge toh muscle aur energy dono jaayenge.", source: NHS_LOSE, tags: ["safe weight loss", "fat loss pace", "weight loss tips"] },
+  { id: "fact-safe-pace", format: "fact", topic: "safe fat loss pace", hook: "Hafte mein kitna weight kam karna safe hai?", fact: "Hafte mein 0.5 se 1 kg", detail: "(1–2 pound) ka loss tikta hai, CDC ke hisaab se. Isse tez bhaagoge toh muscle aur energy dono jaayenge.", source: CDC_LOSE, tags: ["safe weight loss", "fat loss pace", "weight loss tips"] },
   { id: "mis-transformation", format: "mistakes", topic: "body transformation", hook: "Transformation chahiye? Ye 3 galtiyan mat karna", items: ["30 din mein poora result chahna", "Sirf scale dekhna, photo kabhi nahi", "Weights chhod ke sirf cardio"], fix: "Mahine mein ek photo, hafte ka average weight, aur weights hafte mein kuch din. 6 mahine do.", tags: ["body transformation", "fat loss journey", "gym motivation"] },
   { id: "myth-daily-weight", format: "myth", topic: "daily weighing", hook: "Aaj weight badh gaya? Ghabrao mat", myth: "Roz subah ka weight hi asli progress hai.", fact: "Scale roz paani, namak aur khane se upar-neeche hota hai.", why: "Hafte ke saare din ka average nikalo. Average neeche ja raha hai toh tum sahi raaste par ho.", tags: ["weight fluctuation", "daily weigh in", "fat loss progress"] },
   { id: "swap-scale-photo", format: "swap", topic: "tracking progress", hook: "Scale se pareshan? Ye try karo", from: "Roz scale pe khade hoke mood kharab karna", to: "Hafte mein ek baar kamar ka naap aur mahine mein ek photo", why: "Fat ghat-ta hai aur muscle banti hai toh scale chupa reh sakta hai. Naap aur photo sach dikhate hain.", tags: ["progress tracking", "waist measurement", "transformation"] },
