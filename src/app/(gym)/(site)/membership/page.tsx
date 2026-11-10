@@ -16,7 +16,7 @@ import { PlanMatrix, PlanSummaries } from "@/components/membership/PlanCompare";
 import { planFaqs } from "@/lib/content/plans";
 
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

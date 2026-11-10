@@ -7,7 +7,7 @@ import { PostCard } from "@/components/home/Blocks";
 import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 type Props = { params: Promise<{ slug: string }> };
 

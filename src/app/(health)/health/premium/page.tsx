@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/health/components/ui";
 import { DIET_PLANS } from "@/lib/growth/config";
 import { nurtureBusiness } from "@/lib/growth/daily";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export const metadata: Metadata = {
   title: "Premium Coaching by Royal Fitness Club — Personal Diet & Training Plans",

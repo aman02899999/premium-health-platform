@@ -3,7 +3,7 @@ import { getContent } from "@/lib/content/store";
 import { PortalScene } from "@/components/portal/PortalScene";
 import { shopOpen } from "@/lib/shop/server";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

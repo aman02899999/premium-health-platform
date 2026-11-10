@@ -3,7 +3,7 @@ import { resultsPdf } from "@/lib/content/docs-pdf";
 import { publishedStudies } from "@/lib/content/results";
 import { todayIST } from "@/lib/growth/dates";
 
-export const revalidate = 300;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function GET() {
   const c = await getContent();

@@ -10,7 +10,7 @@ import { SmartImage } from "@/components/ui/SmartImage";
 import { CtaCard } from "@/components/blog/CtaCard";
 import { telHref, whatsappHref } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getDrugLive } from "@/health/lib/realtime";
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);

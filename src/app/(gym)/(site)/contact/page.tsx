@@ -8,7 +8,7 @@ import { PageHero } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

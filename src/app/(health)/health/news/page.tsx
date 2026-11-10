@@ -4,7 +4,7 @@ import { getNewsFeed } from "@/health/lib/news";
 import { istDateKey } from "@/health/data/news";
 import { SITE } from "@/health/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 const seoTitle = "Health News — India Medical Briefings";
 const seoDescription = "Synced daily from official sources: WHO outbreak reports, US FDA recalls of Indian-made medicines and new Indian research from PubMed — plus evergreen health guides.";

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { API_PLANS, formatQuota, monthlyPriceLabel } from "@/health/lib/saas/plans";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 /**
  * GET /api/v1/plans — public. Plan catalogue with quotas and prices, so pricing

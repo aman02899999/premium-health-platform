@@ -12,7 +12,7 @@ import { CtaCard } from "@/components/blog/CtaCard";
 import { ProgramFlow } from "@/components/programs/ProgramFlow";
 import { telHref, whatsappHref } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export function generateStaticParams() {
   return DEFAULT_CONTENT.programs.filter((p) => PROGRAM_GUIDES[p.id]).map((p) => ({ id: p.id }));

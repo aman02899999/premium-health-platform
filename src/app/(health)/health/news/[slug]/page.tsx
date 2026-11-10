@@ -15,7 +15,7 @@ import { reviewLine } from "@/health/lib/review";
 
 // Statically rendered + revalidated so the daily edition stays fresh while
 // unknown slugs return a real 404 status.
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export function generateStaticParams() {
   // Pre-render the current rolling window of editions at build time.

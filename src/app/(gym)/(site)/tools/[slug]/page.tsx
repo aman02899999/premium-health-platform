@@ -12,7 +12,7 @@ import { FaqList, PostCard } from "@/components/home/Blocks";
 import { CtaCard } from "@/components/blog/CtaCard";
 import { Icon } from "@/components/Icon";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export function generateStaticParams() {
   return CALCULATORS.map((c) => ({ slug: c.slug }));
