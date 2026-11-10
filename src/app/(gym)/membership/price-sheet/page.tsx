@@ -8,7 +8,7 @@ import { absoluteUrl, formatINR } from "@/lib/site";
 import { basePlan, perMonth, planFaqs, planFeatures, savingPct } from "@/lib/content/plans";
 import { PrintButton } from "@/components/membership/PrintButton";
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

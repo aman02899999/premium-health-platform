@@ -1,7 +1,7 @@
 import { getContent } from "@/lib/content/store";
 import { absoluteUrl, publishedPosts } from "@/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 

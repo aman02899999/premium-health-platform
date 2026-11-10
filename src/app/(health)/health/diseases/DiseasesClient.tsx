@@ -31,8 +31,8 @@ export default function DiseasesClient({ diseases, systems, categories }: { dise
     <div className="mx-auto max-w-7xl px-4 py-8">
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Diseases" }]} />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-900 to-teal-800 p-6 text-white md:p-8">
-        <h1 className="font-display text-3xl font-black md:text-4xl">Disease Directory</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Understand {diseases.length} conditions — symptoms, risk factors, tests, treatment options, Ayurveda views, herbs, nutrition and emergency signs. Filter by system, course or search below.</p>
+        <h1 className="font-display text-3xl font-black md:text-4xl">Disease Guides</h1>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">{diseases.length} in-depth guides with sources: symptoms, causes, tests, treatment, diet and when to see a doctor. We add new guides only after they are written and checked properly.</p>
         <div className="mt-4 flex items-center gap-2 rounded-2xl bg-white p-2 pl-4 dark:bg-stone-900">
           <Search className="h-4 w-4 text-emerald-700" />
           <label htmlFor="disease-q" className="sr-only">Search diseases</label>

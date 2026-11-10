@@ -3,7 +3,8 @@ import { cronAuthorized } from "@/lib/cron-auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness } from "@/lib/growth/daily";
 import { recordStatus } from "@/lib/growth/system-status";
-import { runLongVideo, runShort, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
+import { runLongVideo, runShort, shortsRenderedOnVercel, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
+import { dispatchRunner } from "@/lib/youtube/runner-dispatch";
 
 export const dynamic = "force-dynamic";
 // Rendering a one-minute Short with its own music takes about 30–60 s; ?slot=all does up to three.
@@ -21,8 +22,15 @@ export async function GET(req: Request) {
   try {
     const biz = await nurtureBusiness();
     const result: Record<string, string> = {};
+    // Shorts are rendered by the free GitHub runner unless YOUTUBE_RENDERER=vercel (see automation.ts).
+    // GitHub's own schedule is unreliable, so this (reliable) cron starts the workflow too.
+    if (!shortsRenderedOnVercel()) {
+      const dispatched = await dispatchRunner(raw as string);
+      if (dispatched.startsWith("dispatch-failed")) console.error("[cron] youtube runner dispatch:", dispatched);
+      for (const s of slots) result[`slot${s}`] = dispatched;
+    }
     // One after another: never two renders at once on one function.
-    for (const s of slots) {
+    for (const s of shortsRenderedOnVercel() ? slots : []) {
       // Leave room inside the 300 s limit: a slot that doesn't fit now is picked up by the next run.
       if (Date.now() - now.getTime() > 170_000) {
         result[`slot${s}`] = "deferred";

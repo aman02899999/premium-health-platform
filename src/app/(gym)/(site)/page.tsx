@@ -31,7 +31,7 @@ import { isDbConfigured } from "@/health/db";
 import { approvedReviews } from "@/lib/reviews/store";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 const DEFAULT_HERO_IMAGE = "/gallery/aman-sharma-royal-fitness-gym.webp";
 

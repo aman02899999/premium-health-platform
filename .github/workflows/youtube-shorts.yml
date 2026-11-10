@@ -1,0 +1,56 @@
+# Makes the day's three YouTube Shorts on GitHub's free runner instead of inside Vercel, where
+# rendering used most of the Hobby plan's 4 hours a month of function CPU (Nov 2026).
+# The site still decides which script goes out and records every upload (see
+# src/app/api/youtube/runner/route.ts). The late run retries any slot that failed earlier.
+# Needs one repository secret: CRON_SECRET, the same value as in Vercel.
+# GitHub may start scheduled runs a few minutes late; that's fine for Shorts.
+name: YouTube Shorts
+
+on:
+  schedule:
+    - cron: "0 2 * * *"    # slot 1, 07:30 IST
+    - cron: "30 7 * * *"   # slot 2, 13:00 IST
+    - cron: "0 14 * * *"   # slot 3, 19:30 IST
+    - cron: "30 17 * * *"  # retry anything that failed, 23:00 IST
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: "Slot to run (1, 2, 3 or all)"
+        required: true
+        default: "all"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: youtube-shorts
+  cancel-in-progress: false
+
+jobs:
+  short:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Render and upload
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: https://www.royalfitnesclub.in
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_SLOT: ${{ github.event.inputs.slot }}
+        run: |
+          case "$EVENT:$SCHEDULE" in
+            "schedule:0 2 * * *") slot=1 ;;
+            "schedule:30 7 * * *") slot=2 ;;
+            "schedule:0 14 * * *") slot=3 ;;
+            "schedule:"*) slot=all ;;
+            *) slot="${INPUT_SLOT:-all}" ;;
+          esac
+          echo "Running slot $slot"
+          npx tsx --conditions=react-server scripts/youtube-runner.tsx "$slot"

@@ -1,3 +1,5 @@
+import { isThinContentPath } from "@/health/lib/content-quality";
+
 // Google AdSense for the health and blog sections only. The publisher ID is public by design;
 // it also has to match public/ads.txt. Auto ads are OFF in AdSense: ads appear only where a
 // <HealthAd /> unit is placed, and the script loads only in the sections listed in AD_SECTIONS.
@@ -12,4 +14,7 @@ export const AD_SECTIONS = /^\/(health|blog|hi\/health|hi\/blog)(\/|$)/;
 /** Pages inside those sections that never load it: sign-in, account, checkout, admin and payment pages. */
 export const NO_AD_PAGES = /^\/(hi\/)?health\/(login|register|auth|profile|admin|orders|my-purchases|download|earn|premium|store|products|checkout|pay|lead|referral)(\/|$)/;
 
-export const adsAllowedOn = (path: string) => AD_SECTIONS.test(path) && !NO_AD_PAGES.test(path);
+/** Thin pages (template diseases, short reference pages) are noindex until rewritten. No ad script
+ * there either, so the AdSense review never counts them as pages we monetise. */
+export const adsAllowedOn = (path: string) =>
+  AD_SECTIONS.test(path) && !NO_AD_PAGES.test(path) && !isThinContentPath(path);

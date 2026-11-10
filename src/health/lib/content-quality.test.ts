@@ -4,7 +4,7 @@ import { getDiseaseDetail } from "@/health/data/diseases-detail";
 import { DISEASE_REWRITES } from "@/health/data/diseases-rewrites";
 import sitemap from "@/app/(health)/health/sitemap";
 import { generateMetadata } from "@/app/(health)/health/diseases/[slug]/page";
-import { INDEXED_DISEASES, diseaseIndexable } from "./content-quality";
+import { INDEXED_DISEASES, THIN_SECTIONS, diseaseIndexable, isThinContentPath } from "./content-quality";
 
 const meta = (slug: string) => generateMetadata({ params: Promise.resolve({ slug }) });
 
@@ -60,4 +60,31 @@ describe("rewritten disease pages", () => {
       expect(text.filter((s) => /\b\d+(\.\d+)?\s?(mg|mcg|µg|IU)\b/i.test(s))).toEqual([]);
     });
   }
+});
+
+describe("short reference pages stay out of search and ad-free until expanded", () => {
+  it("noindexes them but keeps links followable", async () => {
+    const { generateMetadata: labMeta } = await import("@/app/(health)/health/lab-tests/[slug]/page");
+    const { generateMetadata: symMeta } = await import("@/app/(health)/health/symptoms/[slug]/page");
+    const { LAB_TESTS } = await import("@/health/data/clinical");
+    const lab = LAB_TESTS[0].slug;
+    expect((await labMeta({ params: Promise.resolve({ slug: lab }) })).robots).toEqual({ index: false, follow: true });
+    expect((await symMeta({ params: Promise.resolve({ slug: "cough" }) })).robots).toEqual({ index: false, follow: true });
+  });
+
+  it("leaves thin sections out of the sitemap but keeps herbs", () => {
+    const urls = sitemap().map((e) => e.url);
+    for (const sec of THIN_SECTIONS) expect(urls.filter((u) => new RegExp(`/health/${sec}/[^/]+$`).test(u)), sec).toEqual([]);
+    expect(urls.some((u) => /\/health\/herbs\/[^/]+$/.test(u))).toBe(true);
+  });
+
+  it("flags thin paths for the ad loader", () => {
+    expect(isThinContentPath("/health/lab-tests/vitamin-d")).toBe(true);
+    expect(isThinContentPath("/health/symptoms/cough/")).toBe(true);
+    expect(isThinContentPath("/health/diseases/asthma")).toBe(true);
+    expect(isThinContentPath("/health/diseases/pcos")).toBe(false);
+    expect(isThinContentPath("/health/herbs/tulsi")).toBe(false);
+    expect(isThinContentPath("/health/lab-tests")).toBe(false);
+    expect(isThinContentPath("/health/blog/anything")).toBe(false);
+  });
 });

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { referenceRobots } from "@/health/lib/content-quality";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FlaskConical, CheckCircle2 } from "lucide-react";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const l = getLab(slug);
   if (!l) return { title: "Lab test not found" };
-  return { title: `${l.name} — Normal Range, Preparation & Meaning`, description: entityDescription(l.short, "Normal range, how to prepare and what your result can mean."), alternates: { canonical: `/health/lab-tests/${slug}` } };
+  return { ...referenceRobots("lab-tests", slug), title: `${l.name} — Normal Range, Preparation & Meaning`, description: entityDescription(l.short, "Normal range, how to prepare and what your result can mean."), alternates: { canonical: `/health/lab-tests/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.

@@ -14,7 +14,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { InstallApp } from "@/components/app/InstallApp";
 import { ShareApp } from "@/components/app/ShareApp";
 
-export const revalidate = 3600;
+export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

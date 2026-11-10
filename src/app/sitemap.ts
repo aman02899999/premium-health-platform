@@ -10,7 +10,7 @@ import { getCatalog, shopOpen } from "@/lib/shop/server";
 import { listPosts as listShopPosts } from "@/lib/shop/store";
 import healthSitemap from "./(health)/health/sitemap";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const c = await getContent();

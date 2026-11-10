@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { API_ENDPOINTS } from "@/health/lib/saas/endpoints";
 import { API_PLANS, monthlyPriceLabel } from "@/health/lib/saas/plans";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 /**
  * GET /api/v1 — the API index. Public: describes the surface (and how to get a
