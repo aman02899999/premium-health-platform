@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { openApiDocument } from "@/health/lib/saas/endpoints";
 import { SITE } from "@/health/lib/site";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 /**
  * GET /api/v1/openapi.json — public OpenAPI 3.1 document.

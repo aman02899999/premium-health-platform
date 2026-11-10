@@ -18,8 +18,8 @@ import { BookTilt } from "@/components/library/BookTilt";
 import { BundleCard } from "@/components/library/BundleCard";
 import { Stars } from "@/components/library/Stars";
 
-// Hourly safety net; approving a review in admin refreshes these pages at once (revalidatePath).
-export const revalidate = 3600;
+// Daily safety net; approving a review in admin refreshes these pages at once (revalidatePath).
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 type Props = { params: Promise<{ slug: string }> };
 

@@ -11,7 +11,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ReviewCard, Stars } from "@/components/reviews/ReviewCard";
 import { ReviewForm } from "@/components/reviews/ReviewForm";
 
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata(): Promise<Metadata> {
   const c = await getContent();

@@ -1,5 +1,6 @@
 import path from "path";
 import type { NextConfig } from "next";
+import { MEDIA_ONLY_BY_URL } from "./src/lib/media-by-url";
 
 const REEL_FILES = [
   "./src/lib/social/fonts/*.ttf",
@@ -30,8 +31,12 @@ const nextConfig: NextConfig = {
   // The long YouTube videos (public/youtube/, ~13 MB each) are served as static files and fetched by
   // URL; a dynamic fs path elsewhere makes the tracer copy all of public/ into functions, which pushed
   // the build past Vercel's function limits. Keep them out of every function.
+  // Vercel Hobby allows at most 12 functions per deployment; oversized functions can't be grouped and
+  // the deploy fails with "No more than 12 Serverless Functions… upgrade to Pro". Every large media
+  // folder below is only ever fetched by URL, so none of it belongs in a function.
+  // src/lib/function-size-guard.test.ts fails if a big file lands outside these folders.
   outputFileTracingExcludes: {
-    "/*": ["./public/youtube/**/*"],
+    "/*": MEDIA_ONLY_BY_URL.map((dir) => `./${dir}/**/*`),
   },
   // Its binary is found on disk by path, so it must not be bundled.
   serverExternalPackages: ["ffmpeg-static"],

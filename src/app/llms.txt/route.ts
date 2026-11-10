@@ -5,7 +5,7 @@ import { llmsTxt } from "@/lib/content/ai-facts";
 import { SITE_URL } from "@/lib/site";
 
 // A plain-text summary for AI assistants and their crawlers (llmstxt.org). Prices follow the plans.
-export const revalidate = 3600;
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function GET() {
   const c = await getContent();
