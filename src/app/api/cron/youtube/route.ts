@@ -3,7 +3,7 @@ import { cronAuthorized } from "@/lib/cron-auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness } from "@/lib/growth/daily";
 import { recordStatus } from "@/lib/growth/system-status";
-import { runLongVideo, runShort, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
+import { runLongVideo, runShort, shortsRenderedOnVercel, YT_SLOTS, type YtSlot } from "@/lib/youtube/automation";
 
 export const dynamic = "force-dynamic";
 // Rendering a one-minute Short with its own music takes about 30–60 s; ?slot=all does up to three.
@@ -23,6 +23,11 @@ export async function GET(req: Request) {
     const result: Record<string, string> = {};
     // One after another: never two renders at once on one function.
     for (const s of slots) {
+      // Shorts are rendered by the free GitHub runner unless YOUTUBE_RENDERER=vercel (see automation.ts).
+      if (!shortsRenderedOnVercel()) {
+        result[`slot${s}`] = "github-runner";
+        continue;
+      }
       // Leave room inside the 300 s limit: a slot that doesn't fit now is picked up by the next run.
       if (Date.now() - now.getTime() > 170_000) {
         result[`slot${s}`] = "deferred";
