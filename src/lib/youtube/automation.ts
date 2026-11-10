@@ -123,6 +123,47 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
   return `published ${result.url}${result.privacy !== youtubePrivacy() ? ` (YouTube kept it ${result.privacy})` : ""}`;
 }
 
+// Rendering a Short takes 30–60 s of full CPU, which used most of Vercel Hobby's 4 h a month of
+// Active CPU (Nov 2026). So by default the free GitHub runner (.github/workflows/youtube-shorts.yml)
+// renders and uploads the Shorts: it asks the site for a job (claimRunnerShort), renders on its own
+// machine, uploads straight to YouTube and reports back (recordRunnerShort). The site keeps the
+// bookkeeping (which script, which slot, published or failed). YOUTUBE_RENDERER=vercel in Vercel
+// brings back rendering inside the cron without a code change.
+export const shortsRenderedOnVercel = (env: Record<string, string | undefined> = process.env) => env.YOUTUBE_RENDERER === "vercel";
+
+export type RunnerJob = { id: string; slot: YtSlot; shortId: string; index: number; biz: PostBiz; token: string; meta: VideoMeta };
+
+/** Picks and claims the next Short for a slot and hands the runner what it needs to render and upload it. */
+export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Pick<ShortDeps, "access"> = DEPS): Promise<RunnerJob | Exclude<ShortResult, `published${string}`>> {
+  if (!youtubeShortsOn()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const today = todayIST(now);
+  const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [`youtube-${slot}`, today]);
+  if (mine[0]?.status === "published") return "already-posted";
+  const short = nextShort(await usedScripts());
+  if (!short) return "bank-empty";
+  const id = await claim(slot, today, short);
+  if (!id) return "already-posted";
+  const at = await deps.access(refresh);
+  if (!at.ok) {
+    const error = at.revoked ? "YouTube sign-in expired or was removed: connect the channel again in Admin → Growth → Social" : `YouTube sign-in: ${at.error}`;
+    await record(id, { ok: false, error, quota: false });
+    return `failed: ${error}`;
+  }
+  const meta: VideoMeta = { title: shortTitle(short), description: shortDescription(short, biz), tags: shortTags(short), privacy: youtubePrivacy() };
+  return { id, slot, shortId: short.id, index: SHORTS.findIndex((s) => s.id === short.id), biz, token: at.token, meta };
+}
+
+/** The runner's report for a claimed slot. Only a row that is still pending can be closed this way. */
+export async function recordRunnerShort(id: string, result: UploadResult): Promise<boolean> {
+  const { rows } = await pool.query<{ id: string }>(`select id from public.social_posts where id = $1 and channel like 'youtube-%' and channel <> 'youtube-long' and status = 'pending'`, [id]);
+  if (!rows[0]) return false;
+  await record(id, result);
+  if (!result.ok) console.error(`[youtube] runner upload failed:`, result.error);
+  return true;
+}
+
 // Long videos (16:9, 4–5 minutes) are ready-made MP4s in public/youtube/long/, listed in
 // long-videos.ts. Each goes up once, on or after its date, in its own row (channel youtube-long,
 // at most one a day), so a failed upload is retried by the next cron run and none goes up twice.

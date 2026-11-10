@@ -117,6 +117,45 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
     expect((await yt.youtubeStatus()).left).toBe(0);
   });
 
+  describe("GitHub runner", () => {
+    it("claims the next script, hands over a token and records the upload", async () => {
+      await connect();
+      const job = await yt.claimRunnerShort(1, now, biz, deps);
+      if (typeof job === "string") throw new Error(job);
+      expect(job).toMatchObject({ slot: 1, shortId: bank.SHORTS[0].id, index: 0, token: "access-1" });
+      expect(job.meta.privacy).toBe("public");
+      expect((await rows())[0]).toMatchObject({ channel: "youtube-1", status: "pending", theme: bank.SHORTS[0].id });
+      expect(await yt.recordRunnerShort(job.id, { ok: true, id: "vidR", privacy: "public", url: "https://youtube.com/shorts/vidR" })).toBe(true);
+      expect((await rows())[0]).toMatchObject({ status: "published", permalink: "https://youtube.com/shorts/vidR" });
+      // A published slot is not claimed again, and a closed row can't be overwritten.
+      expect(await yt.claimRunnerShort(1, now, biz, deps)).toBe("already-posted");
+      expect(await yt.recordRunnerShort(job.id, { ok: false, error: "late", quota: false })).toBe(false);
+      expect((await rows())[0]).toMatchObject({ status: "published" });
+    });
+
+    it("a failed runner upload frees the slot for the retry with the next script", async () => {
+      await connect();
+      const first = await yt.claimRunnerShort(2, now, biz, deps);
+      if (typeof first === "string") throw new Error(first);
+      expect(await yt.recordRunnerShort(first.id, { ok: false, error: "Render/upload: boom", quota: false })).toBe(true);
+      expect((await rows())[0]).toMatchObject({ status: "failed", error: "Render/upload: boom" });
+      const retry = await yt.claimRunnerShort(2, now, biz, deps);
+      expect(typeof retry === "string" ? retry : retry.slot).toBe(2);
+    });
+
+    it("an expired sign-in fails the claim and gives the runner nothing", async () => {
+      await connect();
+      revoked = true;
+      expect(await yt.claimRunnerShort(3, now, biz, deps)).toMatch(/connect the channel again/);
+      expect((await rows())[0]).toMatchObject({ status: "failed" });
+    });
+
+    it("renders on Vercel only when YOUTUBE_RENDERER=vercel", () => {
+      expect(yt.shortsRenderedOnVercel({})).toBe(false);
+      expect(yt.shortsRenderedOnVercel({ YOUTUBE_RENDERER: "vercel" })).toBe(true);
+    });
+  });
+
   describe("long videos", () => {
     const longUploads: VideoMeta[] = [];
     const downloads: string[] = [];
