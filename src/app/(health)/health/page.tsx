@@ -19,6 +19,7 @@ import { IndiaPulseDashboard, DrugLookup, FoodLookup, LiveBadge } from "@/health
 import { getIndiaPulse } from "@/health/lib/realtime";
 import { PILLARS } from "@/health/data/solutions";
 import { DISEASES } from "@/health/data/diseases-index";
+import { diseaseIndexable } from "@/health/lib/content-quality";
 import { HERBS } from "@/health/data/herbs";
 import { MEDICINES } from "@/health/data/medicines";
 import { FOODS } from "@/health/data/nutrition";
@@ -39,7 +40,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: `${SITE.name} — Understand Your Health. Make Better Decisions. | India-first health guides`,
-  description: `${SITE.heroSubtitle} Live AQI, outbreak tracking, 120+ disease guides, thali builder, millet swap, IDRS, herb-drug checker, plus guides on diet, Ayurveda, yoga and fitness.`,
+  description: `${SITE.heroSubtitle} Live AQI, outbreak tracking, in-depth disease guides, thali builder, millet swap, IDRS, herb-drug checker, plus guides on diet, Ayurveda, yoga and fitness.`,
   alternates: { canonical: "/health", languages: { "en-IN": `${SITE.url}/health`, "en": `${SITE.url}/health`, "x-default": `${SITE.url}/health` } },
   openGraph: {
     title: `${SITE.name} — Understand Your Health. Make Better Decisions.`,
@@ -77,7 +78,7 @@ const FAQS = [
 
 export default async function HomePage() {
   const pulse = await getIndiaPulse();
-  const popularDiseases = DISEASES.filter((d) => d.pillar).slice(0, 6);
+  const popularDiseases = DISEASES.filter((d) => diseaseIndexable(d.slug)).slice(0, 6);
   const herbs = HERBS.slice(0, 4);
   const meds = MEDICINES.slice(0, 4);
   const foods = FOODS.slice(0, 4);
@@ -254,8 +255,8 @@ export default async function HomePage() {
         {/* DISEASES */}
         <section aria-labelledby="popular-diseases" className="cv-auto">
           <div className="mb-5 flex items-end justify-between gap-4">
-            <SectionHeading eyebrow="Disease directory" title="Popular disease guides" desc="Each guide: symptoms, tests, medicines, Ayurveda, herbs, diet, yoga and red flags." id="popular-diseases" />
-            <Link href="/health/diseases" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All 120+ <ArrowRight className="h-4 w-4" /></Link>
+            <SectionHeading eyebrow="Disease directory" title="Popular disease guides" desc="Sourced guides: symptoms, tests, treatment, diet and when to see a doctor." id="popular-diseases" />
+            <Link href="/health/diseases" className="hidden shrink-0 items-center gap-1 rounded-xl border px-4 py-2 text-sm font-bold hover:border-emerald-300 sm:flex">All guides <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {popularDiseases.map((d) => (

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/health/lib/site";
 import { DISEASES } from "@/health/data/diseases-index";
-import { diseaseIndexable } from "@/health/lib/content-quality";
+import { diseaseIndexable, referenceIndexable } from "@/health/lib/content-quality";
 import { HERBS } from "@/health/data/herbs";
 import { MEDICINES } from "@/health/data/medicines";
 import { FOODS } from "@/health/data/nutrition";
@@ -71,11 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Template-only disease pages are noindex until rewritten, so they are not listed.
   push("/health/diseases", DISEASES.map((d) => d.slug).filter(diseaseIndexable), 0.85, "weekly");
+  // Short reference pages stay out until expanded (content-quality.ts THIN_SECTIONS).
   push("/health/herbs", HERBS.map((h) => h.slug), 0.75, "monthly");
-  push("/health/medicines", MEDICINES.map((m) => m.slug), 0.75, "monthly");
-  push("/health/nutrition", FOODS.map((f) => f.slug), 0.7, "monthly");
-  push("/health/lab-tests", LAB_TESTS.map((l) => l.slug), 0.7, "monthly");
-  push("/health/symptoms", SYMPTOMS.map((s) => s.slug), 0.7, "monthly");
+  push("/health/medicines", MEDICINES.map((m) => m.slug).filter((x) => referenceIndexable("medicines", x)), 0.75, "monthly");
+  push("/health/nutrition", FOODS.map((f) => f.slug).filter((x) => referenceIndexable("nutrition", x)), 0.7, "monthly");
+  push("/health/lab-tests", LAB_TESTS.map((l) => l.slug).filter((x) => referenceIndexable("lab-tests", x)), 0.7, "monthly");
+  push("/health/symptoms", SYMPTOMS.map((s) => s.slug).filter((x) => referenceIndexable("symptoms", x)), 0.7, "monthly");
   // Guides and long-form posts, dated by their last update; posts list their Hindi version too.
   for (const a of ARTICLES) {
     const hi = POSTS.find((p) => p.lang === "hi" && p.slug === a.slug);
@@ -92,8 +93,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push({ url: `${SITE.url}${postPath("hi", p.slug)}`, lastModified: p.lastReviewed, changeFrequency: "weekly", priority: 0.85, alternates: { languages: { "hi-IN": `${SITE.url}${postPath("hi", p.slug)}`, "en-IN": `${SITE.url}${postPath("en", p.slug)}` } } });
   }
   if (POSTS.some((x) => x.lang === "hi")) entries.push({ url: `${SITE.url}/hi/health/blog`, ...(newestHi ? { lastModified: newestHi } : {}), changeFrequency: "weekly", priority: 0.8 });
-  push("/health/products", PRODUCTS.map((p) => p.slug), 0.6, "monthly");
-  push("/health/ayurveda", AYURVEDA_TOPICS.map((a) => a.slug), 0.7, "monthly");
+  push("/health/products", PRODUCTS.map((p) => p.slug).filter((x) => referenceIndexable("products", x)), 0.6, "monthly");
+  push("/health/ayurveda", AYURVEDA_TOPICS.map((a) => a.slug).filter((x) => referenceIndexable("ayurveda", x)), 0.7, "monthly");
   // Monetization — store, affiliate, providers
   push("/health/store", DIGITAL_PRODUCTS.filter((p) => p.active).map((p) => p.slug), 0.75, "weekly");
   // AUDIT FIX (defect #3): /affiliate-products/{slug} has no route — every one of
