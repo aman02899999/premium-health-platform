@@ -38,4 +38,10 @@ describe("where the ad script may load", () => {
     for (const p of ["/health", "/health/blog/x", "/blog", "/blog/x", "/hi/health/blog/x"]) expect(adsAllowedOn(p), p).toBe(true);
     for (const p of ["/", "/membership", "/programs", "/contact", "/store", "/library/x", "/join", "/admin", "/health/login", "/health/register", "/health/profile", "/health/admin", "/health/orders", "/health/premium", "/health/store", "/healthy"]) expect(adsAllowedOn(p), p).toBe(false);
   });
+
+  it("skips the ad script on template disease pages but keeps it on rewritten ones", async () => {
+    const { adsAllowedOn } = await import("@/lib/adsense");
+    for (const p of ["/health/diseases/asthma", "/health/diseases/migraine/", "/hi/health/diseases/asthma"]) expect(adsAllowedOn(p), p).toBe(false);
+    for (const p of ["/health/diseases", "/health/diseases/type-2-diabetes", "/health/diseases/pcos"]) expect(adsAllowedOn(p), p).toBe(true);
+  });
 });
