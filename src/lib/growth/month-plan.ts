@@ -8,10 +8,20 @@ import { addDays, daysBetween } from "./dates";
 import { dailyPost, type DailyPost, type PostBiz } from "./daily-posts";
 import { keywordsFor, socialCaption } from "./captions";
 import { CARDS, type Card } from "./month-plan-cards";
+import { DECEMBER_CARDS } from "./month-plan-cards-december";
 
-/** First day of the plan (India time) and how long it runs. Outside these dates nothing extra posts. */
-export const MONTH_START = "2026-11-01";
-export const MONTH_DAYS = 30;
+/** One month of cards: two a day from `start` (India time) for `days` days. */
+export type MonthPlan = { start: string; days: number; cards: Card[] };
+
+/** The plans in date order. Outside every plan's dates nothing extra posts. Add a month here. */
+export const PLANS: MonthPlan[] = [
+  { start: "2026-11-01", days: 30, cards: CARDS },
+  { start: "2026-12-01", days: 31, cards: DECEMBER_CARDS },
+];
+
+/** The first plan (November 2026); kept for scripts and tests that render a sample week. */
+export const MONTH_START = PLANS[0].start;
+export const MONTH_DAYS = PLANS[0].days;
 
 export type FeedSlot = "am" | "pm";
 
@@ -34,10 +44,18 @@ export const GALLERY = [
 
 export const MEDICAL_NOTE = "General information, not medical advice. If you have a health condition, follow your doctor's advice.";
 
-/** Day 0–29 of the plan, or null outside it. */
+/** The plan running on a date and the day within it (0 = its first day), or null outside every plan. */
+export function planFor(date: string): { plan: MonthPlan; day: number } | null {
+  for (const plan of PLANS) {
+    const d = daysBetween(plan.start, date);
+    if (d >= 0 && d < plan.days) return { plan, day: d };
+  }
+  return null;
+}
+
+/** Day of the running plan (0 = its first day), or null outside every plan. */
 export function monthDay(date: string): number | null {
-  const d = daysBetween(MONTH_START, date);
-  return d >= 0 && d < MONTH_DAYS ? d : null;
+  return planFor(date)?.day ?? null;
 }
 
 const cardIndex = (day: number, slot: FeedSlot) => day * 2 + (slot === "am" ? 0 : 1);
@@ -103,10 +121,10 @@ const GOAL_TAGS: Record<Card["goal"], string[]> = {
 
 /** The feed post for a date and slot, or null outside the plan. */
 export function cardPost(date: string, slot: FeedSlot, biz: PostBiz, offers: Offer[]): CardPost | null {
-  const day = monthDay(date);
-  if (day === null) return null;
-  const i = cardIndex(day, slot);
-  const card = CARDS[i % CARDS.length];
+  const running = planFor(date);
+  if (!running) return null;
+  const i = cardIndex(running.day, slot);
+  const card = running.plan.cards[i % running.plan.cards.length];
   const cta = cardCta(card, date, biz, offers);
   const links = { instagram: monthLink(biz.siteUrl, cta.path, "instagram", date, slot), facebook: monthLink(biz.siteUrl, cta.path, "facebook", date, slot) };
   const caption = (channel: "instagram" | "facebook") =>

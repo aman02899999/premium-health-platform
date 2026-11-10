@@ -4,25 +4,40 @@ import { describe, expect, it } from "vitest";
 import { FESTIVE_2026 } from "@/lib/offers";
 import { addDays } from "./dates";
 import { dailyPost } from "./daily-posts";
-import { CARDS } from "./month-plan-cards";
-import { GALLERY, MONTH_DAYS, MONTH_START, cardNote, cardPost, monthDay, reelPhoto, secondReelPost } from "./month-plan";
+import { GALLERY, PLANS, cardNote, cardPost, monthDay, reelPhoto, secondReelPost } from "./month-plan";
 
 const biz = { name: "Royal Fitness Club", phone: "+91 88518 30081", siteUrl: "https://www.royalfitnesclub.in", coach: "Coach Aman Sharma", membershipFrom: 1500, address: "Main Road, Gejha Village, Sector 93, Noida 201304" };
-const days = Array.from({ length: MONTH_DAYS }, (_, i) => addDays(MONTH_START, i));
+const FIRST = PLANS[0].start;
+const last = PLANS[PLANS.length - 1];
+const END = addDays(last.start, last.days); // the first day after the last plan
+const CARDS = PLANS.flatMap((p) => p.cards);
+const days = PLANS.flatMap((p) => Array.from({ length: p.days }, (_, i) => addDays(p.start, i)));
 const all = days.flatMap((d) => (["am", "pm"] as const).map((s) => cardPost(d, s, biz, [FESTIVE_2026])!));
 
 describe("month plan", () => {
-  it("runs exactly 30 days: two cards and a second Reel a day, nothing before or after", () => {
-    expect(monthDay(addDays(MONTH_START, -1))).toBeNull();
-    expect(monthDay(addDays(MONTH_START, MONTH_DAYS))).toBeNull();
-    expect(cardPost(addDays(MONTH_START, -1), "am", biz, [])).toBeNull();
-    expect(secondReelPost(addDays(MONTH_START, MONTH_DAYS), biz)).toBeNull();
+  it("runs every day of every plan: two cards and a second Reel a day, nothing before or after", () => {
+    expect(monthDay(addDays(FIRST, -1))).toBeNull();
+    expect(monthDay(END)).toBeNull();
+    expect(cardPost(addDays(FIRST, -1), "am", biz, [])).toBeNull();
+    expect(cardPost(END, "pm", biz, [])).toBeNull();
+    expect(secondReelPost(END, biz)).toBeNull();
     expect(all.every(Boolean)).toBe(true);
     expect(days.every((d) => secondReelPost(d, biz))).toBe(true);
   });
 
-  it("uses every card exactly once over the month", () => {
-    expect(CARDS).toHaveLength(MONTH_DAYS * 2);
+  it("plans follow each other with no gap or overlap", () => {
+    for (let i = 1; i < PLANS.length; i++) expect(PLANS[i].start).toBe(addDays(PLANS[i - 1].start, PLANS[i - 1].days));
+  });
+
+  it("December runs 1–31 Dec 2026 and starts on its own first card", () => {
+    expect(PLANS.map((p) => [p.start, p.days])).toContainEqual(["2026-12-01", 31]);
+    expect(cardPost("2026-12-01", "am", biz, [])!.card.id).toBe("winter-warm-up");
+    expect(cardPost("2026-12-31", "pm", biz, [])!.card.id).toBe("first-week-january");
+    expect(monthDay("2026-12-31")).toBe(30);
+  });
+
+  it("uses every card exactly once, across all months", () => {
+    for (const p of PLANS) expect(p.cards, p.start).toHaveLength(p.days * 2);
     expect(new Set(CARDS.map((c) => c.id)).size).toBe(CARDS.length);
     expect(new Set(all.map((p) => p.card.id)).size).toBe(CARDS.length);
   });
@@ -90,10 +105,18 @@ describe("month plan", () => {
   });
 
   it("the second Reel never repeats the evening Reel's content during the month, and is tagged with today", () => {
-    const evening = new Set(days.map((d) => dailyPost(d, biz).title));
+    for (const p of PLANS) {
+      const month = Array.from({ length: p.days }, (_, i) => addDays(p.start, i));
+      // Shop posts repeat the same product title week to week by design (the evening Reel does
+      // too), so only tips and offers count as repeats.
+      const evening = new Set(month.map((d) => dailyPost(d, biz)).filter((x) => x.category !== "Shop").map((x) => x.title));
+      for (const d of month) {
+        const r = secondReelPost(d, biz)!;
+        if (r.category !== "Shop") expect(evening.has(r.title), d).toBe(false);
+      }
+    }
     for (const d of days) {
       const r = secondReelPost(d, biz)!;
-      expect(evening.has(r.title), d).toBe(false);
       expect(r.date).toBe(d);
       expect(r.facebook).not.toMatch(/daily-\d{4}-\d{2}-\d{2}(?!-reel2)/);
     }
@@ -109,7 +132,7 @@ describe("month plan", () => {
         { id: `${d} ${p.theme} fb`, text: p.facebook, ig: false },
       ]);
     });
-    expect(captions).toHaveLength(MONTH_DAYS * 8);
+    expect(captions).toHaveLength(days.length * 8);
     for (const c of captions) {
       const tags = (c.text.match(/(?:^|\s)#\w+/g) ?? []).map((t) => t.trim()); // not the "#order" in links
       expect(tags.length, c.id).toBeGreaterThanOrEqual(10);
