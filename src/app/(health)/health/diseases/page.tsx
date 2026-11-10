@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import DiseasesClient from "./DiseasesClient";
 import { DISEASES, DISEASE_SYSTEMS, DISEASE_CATEGORIES } from "@/health/data/diseases-index";
 import { SITE } from "@/health/lib/site";
+import { diseaseIndexable } from "@/health/lib/content-quality";
 
-const seoTitle = "Disease Directory — 120+ Conditions India";
-const seoDescription = "Searchable Indian disease database: 120+ conditions — symptoms, causes, tests, modern treatment, Ayurveda, herbs, nutrition..";
+const seoTitle = "Disease Guides — Indian Health Conditions Explained";
+const seoDescription = "In-depth, sourced guides to common Indian health conditions: symptoms, causes, tests, treatment, diet and when to see a doctor.";
 const url = "/health/diseases";
 const absoluteUrl = `${SITE.url}${url}`;
-const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Diseases — 120+ India")}&category=${encodeURIComponent("Diseases")}&type=tool`;
+const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Disease guides")}&category=${encodeURIComponent("Diseases")}&type=tool`;
 
 export const metadata: Metadata = {
   title: seoTitle.slice(0, 60),
@@ -17,6 +18,10 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
 };
 
+// Only the hand-written, sourced guides are listed. Template pages stay reachable by URL and
+// related links (noindex) until each is rewritten; see src/health/lib/content-quality.ts.
+const GUIDES = DISEASES.filter((d) => diseaseIndexable(d.slug));
+
 export default function DiseasesPage() {
-  return <DiseasesClient diseases={DISEASES} systems={DISEASE_SYSTEMS} categories={DISEASE_CATEGORIES} />;
+  return <DiseasesClient diseases={GUIDES} systems={DISEASE_SYSTEMS} categories={DISEASE_CATEGORIES} />;
 }

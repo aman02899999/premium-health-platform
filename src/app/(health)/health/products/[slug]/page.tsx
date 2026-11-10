@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { referenceRobots } from "@/health/lib/content-quality";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ShoppingBag, CheckCircle2, ExternalLink } from "lucide-react";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = getProduct(slug);
   if (!p) return { title: "Product not found" };
-  return { title: `${p.name} — Benefits & Limitations`, description: p.short, alternates: { canonical: `/health/products/${slug}` } };
+  return { ...referenceRobots("products", slug), title: `${p.name} — Benefits & Limitations`, description: p.short, alternates: { canonical: `/health/products/${slug}` } };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {

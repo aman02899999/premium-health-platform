@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { referenceRobots } from "@/health/lib/content-quality";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Salad, CheckCircle2, ChefHat } from "lucide-react";
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const f = getFood(slug);
   if (!f) return { title: "Food not found" };
-  return { title: `${f.name} — Nutrients, Benefits, Servings & Recipes`, description: entityDescription(f.short, "Nutrients, benefits, serving sizes and simple Indian recipes."), alternates: { canonical: `/health/nutrition/${slug}` } };
+  return { ...referenceRobots("nutrition", slug), title: `${f.name} — Nutrients, Benefits, Servings & Recipes`, description: entityDescription(f.short, "Nutrients, benefits, serving sizes and simple Indian recipes."), alternates: { canonical: `/health/nutrition/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.

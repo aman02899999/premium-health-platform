@@ -50,7 +50,7 @@ export const PRIMARY_NAV: NavItem[] = [
   {
     label: "Diseases",
     href: "/health/diseases",
-    description: "Understand 120+ conditions",
+    description: "In-depth condition guides",
     children: [
       { label: "All Diseases", href: "/health/diseases" },
       { label: "Diabetes", href: "/health/diseases/type-2-diabetes" },
