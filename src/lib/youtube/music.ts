@@ -1,15 +1,21 @@
 // An original soundtrack for every Short, made fresh at render time from sine, saw and noise
 // waves (no samples and no third-party audio, so the gym owns every track and YouTube's Content
-// ID has nothing to match). Six styles with their own drums, bass, chords and lead sound: house,
-// lo-fi, trap, a dhol-style desi beat, synthwave and reggaeton. The style takes turns with each
-// Short, so the three Shorts of a day always sound like three different kinds of music, and the
-// key, chord progression, scale and tempo change on top, so no two Shorts share a track.
+// ID has nothing to match). Eight styles with their own drums, bass, chords and lead sound: trance,
+// festival EDM, house, synthwave, trap, a dhol-style desi beat, lo-fi and reggaeton. The owner
+// likes EDM and trance best, so the rotation (ROTATION) leads with the dance styles and leaves the
+// two slow ones out. The style takes turns with each Short, so the three Shorts of a day always
+// sound like three different kinds of music, and the key, chord progression, scale and tempo
+// change on top, so no two Shorts share a track.
 // Pure (no ffmpeg, no files), so it can be tested.
 
 export const SR = 44100;
 
-export const STYLES = ["house", "lofi", "trap", "desi", "synthwave", "reggaeton"] as const;
+export const STYLES = ["trance", "edm", "house", "synthwave", "trap", "desi", "lofi", "reggaeton"] as const;
 export type Style = (typeof STYLES)[number];
+/** The styles Shorts take turns with. Any three in a row are three different styles. */
+export const ROTATION: readonly Style[] = ["trance", "edm", "house", "synthwave", "trap", "desi"];
+/** Four-on-the-floor festival styles: they get the build-up (snare roll + riser) before each drop. */
+const FESTIVAL: readonly Style[] = ["trance", "edm"];
 
 const PROGRESSIONS = [
   [0, 5, 2, 6],
@@ -37,15 +43,17 @@ type Kit = {
   hat: string;
   open: string;
   toms: [string, string];
-  bass: "offbeat" | "sub808" | "eighths" | "long" | "pluck" | "onkick";
+  bass: "offbeat" | "sub808" | "eighths" | "long" | "pluck" | "onkick" | "rolling";
   chords: "saw" | "keys" | "drone" | "none";
-  lead: "supersaw" | "keysmelody" | "bell" | "tumbi" | "square" | "pluck";
+  lead: "supersaw" | "keysmelody" | "bell" | "tumbi" | "square" | "pluck" | "trance" | "anthem";
   leadSteps: string;
   tone: number;
   minor: boolean | null;
 };
 
 const KITS: Record<Style, Kit> = {
+  trance: { bpm: [136, 140], swing: 0, kick: "x...x...x...x...", snare: "................", clap: "....x.......x...", hat: "..x...x...x...x.", open: "..x...x...x...x.", toms: ["", ""], bass: "rolling", chords: "saw", lead: "trance", leadSteps: "xxxxxxxxxxxxxxxx", tone: 8000, minor: true },
+  edm: { bpm: [126, 130], swing: 0, kick: "x...x...x...x...", snare: "................", clap: "....x.......x...", hat: "x.x.x.x.x.x.x.x.", open: "..x...x...x...x.", toms: ["", ""], bass: "offbeat", chords: "saw", lead: "anthem", leadSteps: "x..x..x...x..x..", tone: 7000, minor: null },
   house: { bpm: [122, 128], swing: 0, kick: "x...x...x...x...", snare: "................", clap: "....x.......x...", hat: "x.x.x.x.x.x.x.x.", open: "..x...x...x...x.", toms: ["", ""], bass: "offbeat", chords: "saw", lead: "supersaw", leadSteps: "xxxxxxxxxxxxxxxx", tone: 6500, minor: null },
   lofi: { bpm: [78, 88], swing: 0.18, kick: "x.....x...x.....", snare: "....x.......x...", clap: "................", hat: "x.x.x.x.x.x.x.x.", open: "................", toms: ["", ""], bass: "long", chords: "keys", lead: "keysmelody", leadSteps: "x...x.x...x...x.", tone: 3200, minor: null },
   trap: { bpm: [136, 146], swing: 0, kick: "x......x..x.....", snare: "........x.......", clap: "........x.......", hat: "xxxxxxxxxxxxxxxx", open: "................", toms: ["", ""], bass: "sub808", chords: "none", lead: "bell", leadSteps: "x..x..x...x..x..", tone: 7000, minor: true },
@@ -57,16 +65,13 @@ const KITS: Record<Style, Kit> = {
 export type MusicPlan = { style: Style; root: number; minor: boolean; prog: number[]; bpm: number; arp: number[]; seed: number };
 
 /**
- * The musical recipe for Short number `index`. The style takes turns (index % 6); within a style
- * the key and progression follow on (12 keys × 6 progressions), so the first 432 Shorts all get a
- * different style + key + progression. Tempo and melody pattern are mixed in from the index.
+ * The recipe for track number `variant` in one style: the key and progression follow on from the
+ * variant (12 keys × 6 progressions), tempo and melody pattern are mixed in from `salt`.
  */
-export function musicPlan(index: number): MusicPlan {
-  const i = Math.max(0, Math.floor(index));
-  const style = STYLES[i % STYLES.length];
-  const j = Math.floor(i / STYLES.length);
+export function stylePlan(style: Style, variant: number, salt = variant): MusicPlan {
+  const j = Math.max(0, Math.floor(variant));
   const kit = KITS[style];
-  const mix = (i * 2654435761) >>> 0;
+  const mix = (Math.max(0, Math.floor(salt)) * 2654435761) >>> 0;
   return {
     style,
     root: (j * 7) % 12,
@@ -74,8 +79,18 @@ export function musicPlan(index: number): MusicPlan {
     minor: kit.minor ?? (Math.floor(j / 3) % 2 === 0),
     bpm: kit.bpm[0] + (mix % (kit.bpm[1] - kit.bpm[0] + 1)),
     arp: ARPS[(mix >>> 5) % ARPS.length],
-    seed: i + 1,
+    seed: Math.max(0, Math.floor(salt)) + 1,
   };
+}
+
+/**
+ * The musical recipe for Short number `index`. The style takes turns (index % 6); within a style
+ * the key and progression follow on, so the first 432 Shorts all get a different style + key +
+ * progression.
+ */
+export function musicPlan(index: number): MusicPlan {
+  const i = Math.max(0, Math.floor(index));
+  return stylePlan(ROTATION[i % ROTATION.length], Math.floor(i / ROTATION.length), i);
 }
 
 /** A short, stable label of what makes a track unique (used by the tests). */
@@ -156,12 +171,22 @@ export function renderMusic(p: MusicPlan, seconds: number): Float32Array {
   };
   const at = (t0: number, s: number) => t0 + s * step + (s % 2 === 1 ? kit.swing * step : 0);
   const soft = p.style === "lofi";
+  const festival = FESTIVAL.includes(p.style);
   for (let bi = 0; bi < bars; bi++) {
     const t0 = bi * bar;
     const sec = section(bi);
     const chord = triad(p, p.prog[bi % p.prog.length], 3);
     const rootHz = midiHz(chord[0] - 12);
     const drums = sec !== "intro";
+    // Festival build-up in the bar before a drop: a snare roll that doubles in speed and gets
+    // louder, under a rising noise sweep.
+    if (festival && sec !== "drop" && bi > 0 && section(bi + 1) === "drop") {
+      for (let s = 0; s < 16; s++) {
+        if (s < 8 && s % 2 === 1) continue;
+        put(bus.snare, t0 + s * step, Math.round(0.1 * SR), 0.2 + 0.4 * (s / 15), (t) => (rand() * 2 - 1) * Math.exp(-t * 35) + Math.sin(TAU * 200 * t) * Math.exp(-t * 40) * 0.5);
+      }
+      put(bus.hat, t0, Math.round(bar * SR), 0.22, (t) => (rand() * 2 - 1) * (t / bar) ** 2);
+    }
     for (let s = 0; s < 16; s++) {
       const ts = at(t0, s);
       if (drums && sec !== "break" && hit(kit.kick, s))
@@ -209,6 +234,10 @@ export function renderMusic(p: MusicPlan, seconds: number): Float32Array {
         case "onkick":
           if (drums && hit(kit.kick, s)) put(bus.bass, ts, Math.round(step * 3 * SR), bassGain, (t) => Math.sin(TAU * rootHz * t) * Math.min(1, t / 0.004) * Math.exp(-t / 0.35));
           break;
+        case "rolling":
+          // The trance rolling bass: three 16th notes between every kick.
+          if (s % 4 !== 0) put(bus.bass, ts, Math.round(step * 0.9 * SR), bassGain * 0.85, (t) => (saw(t * rootHz) * 0.7 + sq(t * rootHz) * 0.3) * Math.min(1, t / 0.002) * Math.exp(-t / 0.07));
+          break;
         case "pluck":
           if (s % 4 === 0 || s === 6 || s === 14) put(bus.bass, ts, Math.round(step * 2 * SR), bassGain, (t) => (saw(t * rootHz) * 0.6 + Math.sin(TAU * rootHz * t)) * Math.min(1, t / 0.002) * Math.exp(-t / 0.1));
           break;
@@ -254,6 +283,18 @@ export function renderMusic(p: MusicPlan, seconds: number): Float32Array {
           case "supersaw":
             put(bus.lead, ts, Math.round(step * 0.95 * SR), g, (t) => ((saw(t * f) + saw(t * f * 1.004 + 0.3)) / 2) * Math.min(1, t / 0.002) * Math.exp(-t / 0.07));
             break;
+          case "trance":
+            // A trance pluck: three detuned saws, long enough for the echo to fill the gaps.
+            put(bus.lead, ts, Math.round(step * 1.4 * SR), g * 0.9, (t) => ((saw(t * f) + saw(t * f * 1.006 + 0.3) + saw(t * f * 0.994 + 0.6)) / 3) * Math.min(1, t / 0.002) * Math.exp(-t / 0.11));
+            break;
+          case "anthem":
+            // A festival lead: a wide stack of saws an octave apart, held like a sung hook.
+            put(bus.lead, ts, Math.round(step * 2.8 * SR), g * 0.85, (t) => {
+              let v = 0;
+              for (let d = -2; d <= 2; d++) v += saw(t * f * 2 ** ((d * 11) / 1200) + d * 0.21) + 0.5 * saw(t * f * 2 * 2 ** ((d * 7) / 1200) + d * 0.13);
+              return (v / 7.5) * Math.min(1, t / 0.004) * Math.exp(-t / 0.4);
+            });
+            break;
           case "pluck":
             put(bus.lead, ts, Math.round(step * 1.5 * SR), g, (t) => (sq(t * f) * 0.5 + Math.sin(TAU * f * t) * 0.5) * Math.min(1, t / 0.002) * Math.exp(-t / 0.05));
             break;
@@ -282,7 +323,7 @@ export function renderMusic(p: MusicPlan, seconds: number): Float32Array {
   const snare = biquad(bus.snare, "bp", soft ? 1200 : 1600, 0.9);
   const out = new Float32Array(n * 2);
   const delay = Math.round(beat * 0.75 * SR);
-  const pump = p.style === "house" || p.style === "synthwave";
+  const pump = p.style === "house" || p.style === "synthwave" || festival;
   let peak = 1e-6;
   for (let i = 0; i < n; i++) {
     const t = i / SR;

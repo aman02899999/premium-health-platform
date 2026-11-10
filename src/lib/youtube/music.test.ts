@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SHORTS } from "./shorts-bank";
-import { SR, STYLES, musicPlan, planKey, renderMusic, wav } from "./music";
+import { ROTATION, SR, STYLES, musicPlan, planKey, renderMusic, stylePlan, wav } from "./music";
 
 describe("music", () => {
   it("gives every Short in the bank (and hundreds more) its own style, key, progression and scale", () => {
@@ -10,12 +10,24 @@ describe("music", () => {
 
   it("changes the style of music every Short: the three Shorts of a day are three different styles (the owner's rule)", () => {
     for (let i = 0; i + 2 < SHORTS.length; i++) expect(new Set([0, 1, 2].map((k) => musicPlan(i + k).style)).size).toBe(3);
-    expect(new Set(Array.from({ length: 6 }, (_, i) => musicPlan(i).style))).toEqual(new Set(STYLES));
+    expect(Array.from({ length: 6 }, (_, i) => musicPlan(i).style)).toEqual([...ROTATION]);
+  });
+
+  it("leads with trance and EDM, the owner's favourites, and keeps the slow styles out of the rotation", () => {
+    expect(ROTATION.slice(0, 2)).toEqual(["trance", "edm"]);
+    expect(ROTATION).not.toContain("lofi");
+    expect(ROTATION).not.toContain("reggaeton");
+    expect(new Set(ROTATION).size).toBe(ROTATION.length);
+  });
+
+  it("gives every variant of one style its own key or progression", () => {
+    const keys = Array.from({ length: 72 }, (_, n) => planKey(stylePlan("trance", n)));
+    expect(new Set(keys).size).toBe(72);
   });
 
   it("renders every style loud enough and unclipped", () => {
     for (let i = 0; i < STYLES.length; i++) {
-      const a = renderMusic(musicPlan(i), 12);
+      const a = renderMusic(stylePlan(STYLES[i], i), 12);
       let peak = 0;
       let energy = 0;
       for (const v of a) {
