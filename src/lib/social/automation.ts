@@ -273,10 +273,12 @@ async function recordPost(id: string, res: { ok: true; id: string; permalink?: s
 }
 
 /** The day's sales Story on Instagram (one product from the catalogue), once a day. */
-export async function runInstagramStory(now = new Date()): Promise<{ story: string; token?: string }> {
+// The evening retry (/api/cron/social?slot=all) passes refresh: false; only the morning run refreshes the token.
+// A Story that already went out today is never posted twice (claimPost only takes a failed row).
+export async function runInstagramStory(now = new Date(), opts: { refresh?: boolean } = {}): Promise<{ story: string; token?: string }> {
   if (!instagramConfigured()) return { story: "off" };
   // The morning run keeps the long-lived Instagram token fresh (it refreshes at most weekly).
-  const token = await refreshInstagramToken(now).catch(() => "failed" as const);
+  const token = opts.refresh === false ? undefined : await refreshInstagramToken(now).catch(() => "failed" as const);
   const today = todayIST(now);
   // A festival day (special-days.ts) swaps the sales Story for its greeting.
   const special = specialStory(today);

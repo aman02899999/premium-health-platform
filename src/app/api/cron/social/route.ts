@@ -3,7 +3,7 @@ import { cronAuthorized } from "@/lib/cron-auth";
 import { isDbConfigured } from "@/health/db";
 import { nurtureBusiness } from "@/lib/growth/daily";
 import { recordStatus } from "@/lib/growth/system-status";
-import { runMonthPost, runSecondReel } from "@/lib/social/automation";
+import { runInstagramStory, runMonthPost, runSecondReel } from "@/lib/social/automation";
 
 export const dynamic = "force-dynamic";
 // The second Reel renders (~30 s) and waits for Instagram's processing (up to 2 min).
@@ -27,6 +27,8 @@ export async function GET(req: Request) {
     if (slot === "am" || slot === "all") result.am = await runMonthPost("am", now, biz);
     if (slot === "reel2" || slot === "all") result.reel2 = await runSecondReel(now, biz);
     if (slot === "pm" || slot === "all") result.pm = await runMonthPost("pm", now, biz);
+    // The morning Story (daily cron) gets a second chance if Instagram refused it.
+    if (slot === "all") result.story = (await runInstagramStory(now, { refresh: false }).catch((err: Error) => ({ story: `error: ${err.message}` }))).story;
     await recordStatus("month-plan-run", { at: now.toISOString(), slot, ok: true, result });
     return NextResponse.json({ ok: true, slot, ...result });
   } catch (err) {
