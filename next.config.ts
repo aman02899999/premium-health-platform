@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
     "/api/social/card/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png", "./public/gallery/*.webp"],
     "/api/admin/growth": REEL_FILES,
   },
+  // The long YouTube videos (public/youtube/, ~13 MB each) are served as static files and fetched by
+  // URL; a dynamic fs path elsewhere makes the tracer copy all of public/ into functions, which pushed
+  // the build past Vercel's function limits. Keep them out of every function.
+  outputFileTracingExcludes: {
+    "/*": ["./public/youtube/**/*"],
+  },
   // Its binary is found on disk by path, so it must not be bundled.
   serverExternalPackages: ["ffmpeg-static"],
 
