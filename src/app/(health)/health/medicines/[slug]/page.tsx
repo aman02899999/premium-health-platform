@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { referenceRobots } from "@/health/lib/content-quality";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Pill, ShieldAlert, AlertTriangle, CheckCircle2, BookOpen } from "lucide-react";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const m = getMedicine(slug);
   if (!m) return { title: "Medicine not found" };
-  return { title: `${m.genericName} — Uses, Side Effects, Warnings & Monitoring`, description: entityDescription(m.short, "Uses, side effects, warnings and monitoring. Take it only as your doctor advises."), alternates: { canonical: `/health/medicines/${slug}` } };
+  return { ...referenceRobots("medicines", slug), title: `${m.genericName} — Uses, Side Effects, Warnings & Monitoring`, description: entityDescription(m.short, "Uses, side effects, warnings and monitoring. Take it only as your doctor advises."), alternates: { canonical: `/health/medicines/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
