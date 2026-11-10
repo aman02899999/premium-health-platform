@@ -56,7 +56,8 @@ export const LONG_VIDEOS: LongVideo[] = [
   },
   {
     id: "long-desi-diet-myths-8",
-    date: "2026-11-12",
+    // Pulled forward from 12 Nov at the owner's request (10 Nov): two extra long videos that day.
+    date: "2026-11-10",
     title: "8 Desi Diet Myths Jo Roz Ki Thali Mein Chhupe Hain | WHO Facts",
     intro: "Namak se kuch nahi hota? Juice = fruit? Sugar-free se weight kam? Ghee band karo?\nIs video mein 8 desi diet jhooth, har ek ka sach WHO ke source ke saath, aasaan Hinglish mein.",
     chapters: [
@@ -81,7 +82,8 @@ export const LONG_VIDEOS: LongVideo[] = [
   },
   {
     id: "long-exercise-myths-8",
-    date: "2026-11-16",
+    // Pulled forward from 16 Nov with the one above.
+    date: "2026-11-10",
     title: "8 Exercise Myths Har Umar Ke Log Maante Hain | WHO Guidelines",
     intro: "Thodi exercise bekaar? Bachon ke liye khel time waste? Weights sirf jawan logon ke liye? Walking kaafi hai?\nIs video mein 8 exercise jhooth, har ek ka sach WHO guidelines ke saath, aasaan Hinglish mein.",
     chapters: [

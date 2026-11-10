@@ -50,7 +50,7 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
     revoked = false;
   });
   const connect = () => pool.query(`insert into public.integration_tokens (name, value) values ('youtube:refresh', 'refresh-1')`);
-  const rows = async () => (await pool.query(`select channel, post_date::text as date, theme, status, external_id, permalink, error from public.social_posts order by channel`)).rows;
+  const rows = async () => (await pool.query(`select channel, post_date::text as date, theme, status, external_id, permalink, error from public.social_posts order by channel, post_date`)).rows;
 
   it("does nothing until the channel is connected, or when switched off", async () => {
     expect(await yt.runShort(1, now, biz, deps)).toBe("not-connected");
@@ -177,45 +177,58 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
       downloads.length = 0;
       thumbFails = false;
     });
-    // 13:00 IST on 12 Nov 2026: the first two videos are due.
-    const nov12 = new Date("2026-11-12T07:30:00Z");
+    // 13:00 IST on 9 Nov 2026: only the first video is due. On 10 Nov two more are (same date).
+    const nov9 = new Date("2026-11-09T07:30:00Z");
+    const nov10 = new Date("2026-11-10T07:30:00Z");
 
-    it("uploads each due video once, oldest first, at most one a day, with a watch link and the thumbnail", async () => {
+    it("uploads each due video once, oldest first, one a day unless two share a date, with a watch link and the thumbnail", async () => {
       await connect();
-      expect(await yt.runLongVideo(nov12, longDeps)).toBe("published https://www.youtube.com/watch?v=long1");
+      expect(await yt.runLongVideo(nov9, longDeps)).toBe("published https://www.youtube.com/watch?v=long1");
       expect(longUploads[0].title).toMatch(/^10 Fitness Myths/);
       expect(longUploads[0].description).toContain("Chapters\n0:00 Intro");
       expect(downloads).toEqual([expect.stringMatching(/\/youtube\/long\/long-fitness-myths-10\.mp4$/), expect.stringMatching(/\/youtube\/long\/long-fitness-myths-10\.jpg$/)]);
-      expect(await yt.runLongVideo(nov12, longDeps)).toBe("already-posted");
-      // The next day the second one goes up; the third isn't due until 16 Nov.
-      expect(await yt.runLongVideo(new Date("2026-11-13T07:30:00Z"), longDeps)).toMatch(/^published/);
-      expect(longUploads[1].title).toMatch(/^8 Desi Diet Myths/);
+      expect(await yt.runLongVideo(nov9, longDeps)).toBe("none-due");
+      // 10 Nov: the two videos dated that day both go up in one run, on the day's extra channel too.
+      expect(await yt.runLongVideo(nov10, longDeps)).toBe("published https://www.youtube.com/watch?v=long2; published https://www.youtube.com/watch?v=long3");
+      expect(longUploads.slice(1).map((u) => u.title.slice(0, 15))).toEqual(["8 Desi Diet Myt", "8 Exercise Myth"]);
+      expect(await yt.runLongVideo(nov10, longDeps)).toBe("none-due");
+      // The next one isn't due until 20 Nov.
       expect(await yt.runLongVideo(new Date("2026-11-14T07:30:00Z"), longDeps)).toBe("none-due");
       expect((await rows()).map((r) => [r.channel, r.theme, r.status, r.permalink])).toEqual([
         ["youtube-long", "long-fitness-myths-10", "published", "https://www.youtube.com/watch?v=long1"],
         ["youtube-long", "long-desi-diet-myths-8", "published", "https://www.youtube.com/watch?v=long2"],
+        ["youtube-long-2", "long-exercise-myths-8", "published", "https://www.youtube.com/watch?v=long3"],
       ]);
       // Long videos never count against the Shorts bank.
       expect((await yt.youtubeStatus()).left).toBe(bank.SHORTS.length);
+    });
+
+    it("never puts up more than three long videos on one day", async () => {
+      await connect();
+      for (const ch of ["youtube-long", "youtube-long-2", "youtube-long-3"]) {
+        await pool.query(`insert into public.social_posts (channel, post_date, theme, status) values ($1, '2026-11-10', $2, 'published')`, [ch, `other-${ch}`]);
+      }
+      expect(await yt.runLongVideo(nov10, longDeps)).toBe("already-posted");
+      expect(longUploads).toHaveLength(0);
     });
 
     it("waits for its date, retries a failed upload, and reports a thumbnail it couldn't set", async () => {
       await connect();
       expect(await yt.runLongVideo(new Date("2026-11-08T07:30:00Z"), longDeps)).toBe("none-due");
       fail = "uploadLimitExceeded: too many";
-      expect(await yt.runLongVideo(nov12, longDeps)).toMatch(/^failed: uploadLimitExceeded/);
+      expect(await yt.runLongVideo(nov9, longDeps)).toMatch(/^failed: uploadLimitExceeded/);
       fail = null;
       thumbFails = true;
-      expect(await yt.runLongVideo(nov12, longDeps)).toMatch(/^published .*thumbnail not set: forbidden/);
+      expect(await yt.runLongVideo(nov9, longDeps)).toMatch(/^published .*thumbnail not set: forbidden/);
       expect(longUploads.map((u) => u.title.slice(0, 15))).toEqual(["10 Fitness Myth", "10 Fitness Myth"]);
       expect(await rows()).toEqual([expect.objectContaining({ channel: "youtube-long", status: "published", error: null })]);
     });
 
     it("does nothing when switched off or not connected", async () => {
-      expect(await yt.runLongVideo(nov12, longDeps)).toBe("not-connected");
+      expect(await yt.runLongVideo(nov9, longDeps)).toBe("not-connected");
       await connect();
       process.env.YOUTUBE_SHORTS = "off";
-      expect(await yt.runLongVideo(nov12, longDeps)).toBe("off");
+      expect(await yt.runLongVideo(nov9, longDeps)).toBe("off");
       expect(longUploads).toHaveLength(0);
     });
   });

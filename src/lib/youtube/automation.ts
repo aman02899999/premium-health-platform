@@ -52,7 +52,7 @@ export async function youtubeStatus(): Promise<YoutubeStatus> {
 
 /** Scripts already on YouTube or being uploaded right now. */
 async function usedScripts(): Promise<string[]> {
-  const { rows } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-%' and channel <> 'youtube-long' and status in ('published', 'pending')`);
+  const { rows } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-%' and channel not like 'youtube-long%' and status in ('published', 'pending')`);
   return rows.map((r) => r.theme);
 }
 
@@ -157,7 +157,7 @@ export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, de
 
 /** The runner's report for a claimed slot. Only a row that is still pending can be closed this way. */
 export async function recordRunnerShort(id: string, result: UploadResult): Promise<boolean> {
-  const { rows } = await pool.query<{ id: string }>(`select id from public.social_posts where id = $1 and channel like 'youtube-%' and channel <> 'youtube-long' and status = 'pending'`, [id]);
+  const { rows } = await pool.query<{ id: string }>(`select id from public.social_posts where id = $1 and channel like 'youtube-%' and channel not like 'youtube-long%' and status = 'pending'`, [id]);
   if (!rows[0]) return false;
   await record(id, result);
   if (!result.ok) console.error(`[youtube] runner upload failed:`, result.error);
@@ -165,10 +165,15 @@ export async function recordRunnerShort(id: string, result: UploadResult): Promi
 }
 
 // Long videos (16:9, 4–5 minutes) are ready-made MP4s in public/youtube/long/, listed in
-// long-videos.ts. Each goes up once, on or after its date, in its own row (channel youtube-long,
-// at most one a day), so a failed upload is retried by the next cron run and none goes up twice.
+// long-videos.ts. Each goes up once, on or after its date, in its own row, so a failed upload is
+// retried by the next cron run and none goes up twice. The day's first long video uses channel
+// youtube-long; when more than one is due on a day (two videos given the same date), the extras
+// use youtube-long-2 and youtube-long-3. That caps it at three a day, inside YouTube's upload quota.
 
 const LONG = "youtube-long";
+const LONG_CHANNELS = [LONG, `${LONG}-2`, `${LONG}-3`];
+/** Uploads per cron run: a 12 MB video takes well under a minute, so two fit in the 300 s limit. */
+const LONG_PER_RUN = 2;
 
 export type LongDeps = {
   download: (url: string) => Promise<Buffer>;
@@ -184,28 +189,43 @@ async function download(url: string): Promise<Buffer> {
 }
 const LONG_DEPS: LongDeps = { download, upload: (t, v, m) => uploadVideo(t, v, m), thumbnail: (t, id, j) => setThumbnail(t, id, j), access: (r) => accessToken(r) };
 
-export type LongResult = "off" | "not-connected" | "already-posted" | "none-due" | `published${string}` | `failed: ${string}`;
+type OneLong = "off" | "not-connected" | "already-posted" | "none-due" | `published${string}` | `failed: ${string}`;
+export type LongResult = OneLong | `${OneLong}; ${string}`;
 
-/** Uploads the long video that is due today, if any. Safe to run again. */
+/** Uploads the long videos that are due today (at most two a run, three a day). Safe to run again. */
 export async function runLongVideo(now: Date, deps: LongDeps = LONG_DEPS): Promise<LongResult> {
   if (!youtubeShortsOn()) return "off";
   const refresh = await token(REFRESH_KEY);
   if (!refresh) return "not-connected";
+  const out: OneLong[] = [];
+  for (let n = 0; n < LONG_PER_RUN; n++) {
+    const r = await uploadOneLong(now, refresh, deps);
+    // "none-due" / "already-posted" after an upload in this run just means there is nothing more.
+    if (n > 0 && (r === "none-due" || r === "already-posted")) break;
+    out.push(r);
+    if (!r.startsWith("published")) break;
+  }
+  return out.join("; ") as LongResult;
+}
+
+async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promise<OneLong> {
   const today = todayIST(now);
-  const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [LONG, today]);
-  if (mine[0]?.status === "published") return "already-posted";
-  const { rows: used } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel = $1 and status in ('published', 'pending')`, [LONG]);
+  const { rows: used } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-long%' and status in ('published', 'pending')`);
   const video = dueLongVideo(today, used.map((r) => r.theme));
   if (!video) return "none-due";
-  const { rows: claimed } = await pool.query<{ id: string }>(
-    `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
-     on conflict (channel, post_date) do update set status = 'pending', error = null, theme = excluded.theme, created_at = now()
-       where public.social_posts.status = 'failed'
-          or (public.social_posts.status = 'pending' and public.social_posts.created_at < now() - interval '20 minutes')
-     returning id`,
-    [LONG, today, video.id],
-  );
-  const id = claimed[0]?.id;
+  let id: string | undefined;
+  for (const channel of LONG_CHANNELS) {
+    const { rows: claimed } = await pool.query<{ id: string }>(
+      `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
+       on conflict (channel, post_date) do update set status = 'pending', error = null, theme = excluded.theme, created_at = now()
+         where public.social_posts.status = 'failed'
+            or (public.social_posts.status = 'pending' and public.social_posts.created_at < now() - interval '20 minutes')
+       returning id`,
+      [channel, today, video.id],
+    );
+    id = claimed[0]?.id;
+    if (id) break;
+  }
   if (!id) return "already-posted";
 
   const at = await deps.access(refresh);
