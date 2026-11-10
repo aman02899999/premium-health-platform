@@ -79,7 +79,8 @@ describe("social posts watchdog", () => {
       "instagram", "facebook", "instagram-story",
       "instagram-am", "facebook-am", "instagram-pm", "facebook-pm", "instagram-reel2", "facebook-reel2",
     ]);
-    expect(expectedSocialChannels("2026-12-01", on)).toHaveLength(3);
+    expect(expectedSocialChannels("2026-12-01", on)).toHaveLength(9);
+    expect(expectedSocialChannels("2027-01-01", on)).toHaveLength(3);
     // SOCIAL_MONTH_PLAN=off, or a channel without a token, isn't expected to post.
     expect(expectedSocialChannels("2026-11-01", { ...on, monthPlan: false })).toEqual(["instagram", "facebook", "instagram-story"]);
     expect(expectedSocialChannels("2026-11-01", { instagram: false, facebook: true, monthPlan: true })).toEqual(["facebook", "facebook-am", "facebook-pm", "facebook-reel2"]);
