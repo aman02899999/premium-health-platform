@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { referenceRobots } from "@/health/lib/content-quality";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Sparkles, CheckCircle2 } from "lucide-react";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const t = AYURVEDA_MAP.get(slug);
   if (!t) return { title: "Ayurveda topic not found" };
-  return { title: `${t.title} — Ayurveda Portal`, description: t.excerpt, alternates: { canonical: `/health/ayurveda/${slug}` } };
+  return { ...referenceRobots("ayurveda", slug), title: `${t.title} — Ayurveda Portal`, description: t.excerpt, alternates: { canonical: `/health/ayurveda/${slug}` } };
 }
 
 // The valid slug set is fixed and known at build time — anything else must 404.
