@@ -3,3 +3,4 @@
 # plan's 10 GB deployment storage (Nov 2026), and nothing on the site links to them.
 # Note: with YOUTUBE_RENDERER=vercel, long videos can't upload from Vercel any more (the files aren't there).
 /public/youtube
+/holding-page
