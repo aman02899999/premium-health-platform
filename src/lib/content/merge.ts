@@ -11,6 +11,15 @@ function mergePosts(saved: SiteContent["posts"]): SiteContent["posts"] {
   return [...saved, ...DEFAULT_CONTENT.posts.filter((p) => !slugs.has(p.slug))];
 }
 
+/**
+ * Same for gallery photos, matched by id: photos that ship with a code update show up after an
+ * admin has saved the gallery once. (To hide a built-in photo, keep it and tick "Hidden".)
+ */
+function mergeGallery(saved: SiteContent["gallery"]): SiteContent["gallery"] {
+  const ids = new Set(saved.map((g) => g.id));
+  return [...saved, ...DEFAULT_CONTENT.gallery.filter((g) => !ids.has(g.id))];
+}
+
 /** Saved values win; any section missing from storage falls back to the default. */
 export function mergeContent(saved: Partial<SiteContent> | null | undefined): SiteContent {
   if (!saved || typeof saved !== "object") return DEFAULT_CONTENT;
@@ -21,6 +30,10 @@ export function mergeContent(saved: Partial<SiteContent> | null | undefined): Si
     const def = DEFAULT_CONTENT[key];
     if (key === "posts" && Array.isArray(value)) {
       merged.posts = mergePosts(value as SiteContent["posts"]);
+      continue;
+    }
+    if (key === "gallery" && Array.isArray(value)) {
+      merged.gallery = mergeGallery(value as SiteContent["gallery"]);
       continue;
     }
     merged[key] =

@@ -106,7 +106,14 @@ export type CaseStudy = {
   consent: boolean;
 };
 
-export type GalleryItem = { id: string; title: string; caption: string; image: string };
+export type GalleryItem = {
+  id: string;
+  title: string;
+  caption: string;
+  image: string;
+  /** Kept in the admin list but not shown on the site (built-in photos come back if deleted). */
+  hidden?: boolean;
+};
 
 export type Testimonial = { id: string; name: string; text: string; rating: number; result: string };
 
