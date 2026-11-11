@@ -192,8 +192,8 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
       expect(await yt.runLongVideo(nov10, longDeps)).toBe("published https://www.youtube.com/watch?v=long2; published https://www.youtube.com/watch?v=long3");
       expect(longUploads.slice(1).map((u) => u.title.slice(0, 15))).toEqual(["8 Desi Diet Myt", "8 Exercise Myth"]);
       expect(await yt.runLongVideo(nov10, longDeps)).toBe("none-due");
-      // The next one isn't due until 20 Nov.
-      expect(await yt.runLongVideo(new Date("2026-11-14T07:30:00Z"), longDeps)).toBe("none-due");
+      // The next one isn't due until 12 Nov.
+      expect(await yt.runLongVideo(new Date("2026-11-11T07:30:00Z"), longDeps)).toBe("none-due");
       expect((await rows()).map((r) => [r.channel, r.theme, r.status, r.permalink])).toEqual([
         ["youtube-long", "long-fitness-myths-10", "published", "https://www.youtube.com/watch?v=long1"],
         ["youtube-long", "long-desi-diet-myths-8", "published", "https://www.youtube.com/watch?v=long2"],
