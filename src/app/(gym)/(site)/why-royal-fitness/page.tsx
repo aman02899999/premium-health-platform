@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Award, BadgeCheck, Camera, Clock, FileDown, ShieldCheck, Snowflake, Star, Users } from "lucide-react";
 import { getContent } from "@/lib/content/store";
+import { visibleGallery } from "@/lib/content/gallery";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { caseStudyRows, publishedStudies, resultStats } from "@/lib/content/results";
 import { PageHero, SectionHeading } from "@/components/ui/Section";
@@ -43,7 +44,7 @@ export default async function WhyPage() {
   const stats = resultStats(studies);
   const rows = new Map(caseStudyRows(studies).map((r) => [r.id, r]));
   const credentialed = c.trainers.filter((t) => (t.credentials ?? []).some((x) => x.trim()));
-  const photos = c.gallery.filter((g) => g.image).slice(0, 6);
+  const photos = visibleGallery(c.gallery).slice(0, 6);
   const years = new Date().getFullYear() - b.foundedYear;
 
   return (

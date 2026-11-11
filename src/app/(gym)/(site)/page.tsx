@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Cctv, Clock, DoorOpen, Dumbbell, MapPin, Phone, Salad, Snowflake, Star, Users } from "lucide-react";
 import { getContent } from "@/lib/content/store";
+import { visibleGallery } from "@/lib/content/gallery";
 import { HUB } from "@/lib/hub";
 import { faqJsonLd } from "@/lib/seo";
 import { formatTime, hoursDays, fullAddress, publishedPosts, telHref, whatsappHref } from "@/lib/site";
@@ -207,7 +208,7 @@ export default async function HomePage() {
       <section className="cv-auto overflow-hidden py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <SectionHeading eyebrow="Inside the club" title="Take a" highlight="3D tour" intro="Swipe, drag or tap to explore. Tap the centre photo to view it full screen." />
-          <Gallery3D items={c.gallery} />
+          <Gallery3D items={visibleGallery(c.gallery)} />
         </div>
       </section>
 

@@ -40,6 +40,17 @@ export const GALLERY = [
   "aman-sharma-back-flex.webp",
   "aman-sharma-slow-success.webp",
   "aman-sharma-even-at-my-worst.webp",
+  "rfc-cable-crossover.webp",
+  "rfc-iron-training-flex.webp",
+  "rfc-rack-hang.webp",
+  "rfc-barbell-curl.webp",
+  "rfc-seated-row-selfie.webp",
+  "rfc-cap-and-flag.webp",
+  "rfc-window-light.webp",
+  "rfc-tattoo-chest.webp",
+  "rfc-green-wall-selfie.webp",
+  "rfc-side-pose-rack.webp",
+  "rfc-flannel-biceps.webp",
 ] as const;
 
 export const MEDICAL_NOTE = "General information, not medical advice. If you have a health condition, follow your doctor's advice.";
