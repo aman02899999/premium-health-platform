@@ -1,0 +1,5 @@
+# Long YouTube videos (~170 MB) are uploaded by the GitHub runner straight from the repository
+# checkout (scripts/youtube-runner.tsx). Copying them into every Vercel deployment filled the Hobby
+# plan's 10 GB deployment storage (Nov 2026), and nothing on the site links to them.
+# Note: with YOUTUBE_RENDERER=vercel, long videos can't upload from Vercel any more (the files aren't there).
+/public/youtube

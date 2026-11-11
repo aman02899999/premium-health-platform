@@ -27,6 +27,13 @@ describe("parseRunnerRequest", () => {
     expect(r.ok && r.value.action === "result" && !r.value.result.ok && r.value.result.quota).toBe(false);
   });
 
+  it("accepts the long-video claim and result", () => {
+    expect(parseRunnerRequest({ action: "claim-long" }, SLOTS)).toEqual({ ok: true, value: { action: "claim-long" } });
+    const r = parseRunnerRequest({ action: "result-long", id: ID, result: { ok: false, error: "boom" } }, SLOTS);
+    expect(r).toEqual({ ok: true, value: { action: "result-long", id: ID, result: { ok: false, error: "boom", quota: false } } });
+    expect(parseRunnerRequest({ action: "result-long", id: "nope", result: { ok: false } }, SLOTS).ok).toBe(false);
+  });
+
   it("rejects a bad row id, a missing body and unknown actions", () => {
     expect(parseRunnerRequest({ action: "result", id: "1; drop table", result: { ok: false, error: "e" } }, SLOTS).ok).toBe(false);
     expect(parseRunnerRequest(null, SLOTS).ok).toBe(false);
