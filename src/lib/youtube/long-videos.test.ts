@@ -1,4 +1,4 @@
-import { existsSync, statSync } from "node:fs";
+import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { dueLongVideo, LONG_VIDEOS, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb } from "./long-videos";
@@ -50,5 +50,12 @@ describe("long videos", () => {
     expect(dueLongVideo("2026-11-20", [])?.id).toBe(LONG_VIDEOS[0].id);
     expect(dueLongVideo("2026-11-20", [LONG_VIDEOS[0].id])?.id).toBe(LONG_VIDEOS[1].id);
     expect(dueLongVideo("2026-11-20", LONG_VIDEOS.map((v) => v.id))).toBeNull();
+  });
+});
+
+describe("long video files and Vercel", () => {
+  it("are kept out of Vercel deployments (the GitHub runner reads them from the checkout)", () => {
+    const ignore = readFileSync(join(process.cwd(), ".vercelignore"), "utf8").split("\n").map((l) => l.trim());
+    expect(ignore).toContain("/public/youtube");
   });
 });

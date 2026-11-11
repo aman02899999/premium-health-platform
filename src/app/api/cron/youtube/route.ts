@@ -38,9 +38,10 @@ export async function GET(req: Request) {
       }
       result[`slot${s}`] = await runShort(s, now, biz);
     }
-    // The day's long video (if one is due) rides on the midday and late-night runs. It is a ready-made
-    // MP4, so it needs no render, only the upload.
-    if (raw === "2" || raw === "all") result.long = Date.now() - now.getTime() > 200_000 ? "deferred" : await runLongVideo(now);
+    // The day's long video (if one is due) rides on the midday and late-night runs. The GitHub runner
+    // uploads it from its own checkout (started above); only YOUTUBE_RENDERER=vercel uploads it from here.
+    // Moving the upload off Vercel matters: Vercel paused the site on 11 Nov 2026 for Active CPU.
+    if (shortsRenderedOnVercel() && (raw === "2" || raw === "all")) result.long = Date.now() - now.getTime() > 200_000 ? "deferred" : await runLongVideo(now);
     await recordStatus("youtube-run", { at: now.toISOString(), slot: raw, ok: true, result });
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {

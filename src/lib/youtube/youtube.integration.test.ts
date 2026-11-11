@@ -224,6 +224,27 @@ describe.skipIf(!url)("YouTube Shorts on a real database", () => {
       expect(await rows()).toEqual([expect.objectContaining({ channel: "youtube-long", status: "published", error: null })]);
     });
 
+    it("GitHub runner: claims the due video with its file paths, records a watch link, and frees a failed one", async () => {
+      await connect();
+      const job = await yt.claimRunnerLong(nov9, longDeps);
+      if (typeof job === "string") throw new Error(job);
+      expect(job).toMatchObject({ videoId: "long-fitness-myths-10", file: "/youtube/long/long-fitness-myths-10.mp4", thumb: "/youtube/long/long-fitness-myths-10.jpg", token: "access-1" });
+      expect(job.meta.title).toMatch(/^10 Fitness Myths/);
+      // A claimed row isn't handed out twice while the runner works on it.
+      expect(await yt.claimRunnerLong(nov9, longDeps)).toBe("none-due");
+      expect(await yt.recordRunnerLong(job.id, { ok: false, error: "Read/upload: boom", quota: false })).toBe(true);
+      const retry = await yt.claimRunnerLong(nov9, longDeps);
+      if (typeof retry === "string") throw new Error(retry);
+      expect(await yt.recordRunnerLong(retry.id, { ok: true, id: "vidL", privacy: "public", url: "https://youtube.com/shorts/vidL" })).toBe(true);
+      expect(await rows()).toEqual([expect.objectContaining({ channel: "youtube-long", status: "published", permalink: "https://www.youtube.com/watch?v=vidL" })]);
+      // A late report can't reopen a closed row, and a Shorts row can't be closed as a long video.
+      expect(await yt.recordRunnerLong(retry.id, { ok: false, error: "late", quota: false })).toBe(false);
+      const short = await yt.claimRunnerShort(1, nov9, biz, deps);
+      if (typeof short === "string") throw new Error(short);
+      expect(await yt.recordRunnerLong(short.id, { ok: true, id: "x", privacy: "public", url: "https://youtube.com/x" })).toBe(false);
+      expect(longUploads).toHaveLength(0);
+    });
+
     it("does nothing when switched off or not connected", async () => {
       expect(await yt.runLongVideo(nov9, longDeps)).toBe("not-connected");
       await connect();

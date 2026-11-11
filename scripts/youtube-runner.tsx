@@ -6,7 +6,10 @@
 import { SHORTS } from "@/lib/youtube/shorts-bank";
 import { renderShort } from "@/lib/youtube/shorts";
 import { uploadVideo, type UploadResult } from "@/lib/youtube/client";
-import type { RunnerJob } from "@/lib/youtube/automation";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { setThumbnail } from "@/lib/youtube/client";
+import type { RunnerJob, RunnerLongJob } from "@/lib/youtube/automation";
 
 const SITE = (process.env.SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, "");
 const SECRET = process.env.CRON_SECRET ?? "";
@@ -49,12 +52,48 @@ async function runSlot(slot: number): Promise<boolean> {
   return result.ok;
 }
 
+// The day's long video: a ready-made MP4 in public/youtube/long/, read from this checkout so Vercel
+// never downloads or streams it. Up to two per run (a day can have three).
+async function runLong(): Promise<boolean> {
+  for (let n = 0; n < 2; n++) {
+    const claim = await call({ action: "claim-long" });
+    const job = claim.job as RunnerLongJob | undefined;
+    if (!job) {
+      console.log(`long: ${String(claim.status)}`);
+      return !String(claim.status).startsWith("failed");
+    }
+    let result: UploadResult;
+    try {
+      const mp4 = await readFile(path.join(process.cwd(), "public", job.file));
+      result = await uploadVideo(job.token, mp4, job.meta);
+    } catch (err) {
+      result = { ok: false, error: `Read/upload: ${(err as Error).message}`.slice(0, 300), quota: false };
+    }
+    await call({ action: "result-long", id: job.id, result });
+    if (!result.ok) {
+      console.log(`long ${job.videoId}: failed: ${result.error}`);
+      return false;
+    }
+    console.log(`long ${job.videoId}: published https://www.youtube.com/watch?v=${result.id}`);
+    // A nice-to-have: an unverified channel can't set thumbnails, and the video is already up.
+    try {
+      const t = await setThumbnail(job.token, result.id, await readFile(path.join(process.cwd(), "public", job.thumb)));
+      if (!t.ok) console.log(`long ${job.videoId}: thumbnail not set: ${t.error.slice(0, 120)}`);
+    } catch (err) {
+      console.log(`long ${job.videoId}: thumbnail not set: ${(err as Error).message.slice(0, 120)}`);
+    }
+  }
+  return true;
+}
+
 async function main() {
   if (!SECRET) throw new Error("CRON_SECRET is not set (GitHub → Settings → Secrets and variables → Actions)");
   const arg = process.argv[2] ?? "all";
   const slots = arg === "all" ? [1, 2, 3] : [Number(arg)];
   let ok = true;
   for (const s of slots) ok = (await runSlot(s)) && ok;
+  // Long videos go out with the midday slot, and the late run retries any that failed.
+  if (arg === "2" || arg === "all") ok = (await runLong()) && ok;
   if (!ok) process.exitCode = 1;
 }
 
