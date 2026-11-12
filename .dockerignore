@@ -1,0 +1,14 @@
+.git
+.next
+node_modules
+public/youtube
+holding-page
+android
+docs
+content/import
+*.log
+.env*
+!.env.example
+coverage
+playwright-report
+test-results
