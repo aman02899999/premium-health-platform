@@ -9,6 +9,8 @@ import {
   User, Crown, LogOut,
 } from "lucide-react";
 import { PRIMARY_NAV, SITE, FOOTER_COLUMNS, SEARCH_PLACEHOLDER } from "@/health/lib/site";
+import { YOUTUBE_CHANNEL } from "@/lib/site";
+import { YouTubeIcon } from "@/components/ui/BrandIcons";
 import { searchAll } from "@/health/lib/search-index";
 import { cn } from "@/health/lib/format";
 import { useAuth } from "@/health/components/auth/AuthContext";
@@ -279,6 +281,9 @@ export function Footer() {
               <Link href="/health/premium" className="rounded-xl bg-amber-500 px-3 py-1.5 text-xs font-bold text-stone-900">Personal plan · ₹49 trial</Link>
               <Link href="/health/login" className="rounded-xl border px-3 py-1.5 text-xs font-bold">Login</Link>
             </div>
+            <a href={YOUTUBE_CHANNEL.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 text-[13px] font-semibold text-stone-700 hover:text-red-600 hover:underline dark:text-stone-300">
+              <YouTubeIcon className="h-5 w-5 text-red-600" /> Watch free health &amp; fitness videos on YouTube
+            </a>
           </div>
           {FOOTER_COLUMNS.map((col) => (
             <nav key={col.title} aria-label={col.title}>
