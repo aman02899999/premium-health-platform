@@ -8,13 +8,15 @@ import path from "node:path";
 
 export function parseEnv(text) {
   const out = {};
-  for (const raw of text.split(/\r?\n/)) {
-    const line = raw.trim();
+  // Errors name the line number only: the deploy log is public, so no part of a value may appear.
+  const lines = text.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
     if (!line || line.startsWith("#")) continue;
     const eq = line.indexOf("=");
-    if (eq < 1) throw new Error(`Line without KEY=value: "${line.slice(0, 20)}…"`);
+    if (eq < 1) throw new Error(`APP_ENV line ${i + 1} is not NAME=value (check for a missing "=")`);
     const key = line.slice(0, eq).trim();
-    if (!/^[A-Z][A-Z0-9_]*$/.test(key)) throw new Error(`Bad name: ${key}`);
+    if (!/^[A-Z][A-Z0-9_]*$/.test(key)) throw new Error(`APP_ENV line ${i + 1}: the name must be capital letters, digits and _`);
     let value = line.slice(eq + 1).trim();
     if (value.length >= 2 && ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'")))) value = value.slice(1, -1);
     out[key] = value;
