@@ -4,7 +4,6 @@ import { MEDIA_ONLY_BY_URL } from "./src/lib/media-by-url";
 
 const REEL_FILES = [
   "./src/lib/social/fonts/*.ttf",
-  "./src/lib/social/reel-audio/*.mp3",
   "./public/brand/logo-mark.png",
   "./public/library/covers/*.webp",
   "./public/gallery/*.webp",

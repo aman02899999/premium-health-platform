@@ -1,18 +1,18 @@
 import "server-only";
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { reelMusicPlan, renderMusic, wav } from "@/lib/youtube/music";
 import { FADE } from "./reel-scenes";
 
 // Frames → MP4 with ffmpeg: each scene holds with a slow push-in, scenes cross-fade, a gold
 // progress bar runs along the top. H.264 + AAC, 1080×1920, 30 fps: what Instagram and Facebook
-// Reels ask for. A music track is used when one is shipped in src/lib/social/reel-audio (any
-// .mp3 you have the rights to); otherwise the Reel carries a silent track.
+// Reels ask for. Every Reel gets its own original soundtrack, made at render time by the same
+// synth the YouTube Shorts use (owner's rule, 14 Nov 2026: never the same music twice).
 
 const FPS = 30;
-const AUDIO_DIR = join(process.cwd(), "src/lib/social/reel-audio");
 
 export function ffmpegPath(): string | null {
   const candidates = [process.env.FFMPEG_PATH, join(process.cwd(), "node_modules/ffmpeg-static/ffmpeg")];
@@ -42,9 +42,11 @@ export function filterGraph(seconds: number[], hasMusic: boolean): string {
   return parts.join(";");
 }
 
-async function music(seed: number): Promise<string | null> {
-  const files = (await readdir(AUDIO_DIR).catch(() => [] as string[])).filter((f) => f.endsWith(".mp3")).sort();
-  return files.length ? join(AUDIO_DIR, files[seed % files.length]) : null;
+/** Writes this Reel's own track (a few seconds longer than the video) into `dir`. */
+async function music(seed: number, seconds: number, dir: string): Promise<string> {
+  const path = join(dir, "music.wav");
+  await writeFile(path, wav(renderMusic(reelMusicPlan(seed), Math.ceil(seconds) + 2)));
+  return path;
 }
 
 function run(bin: string, args: string[], timeoutMs: number): Promise<void> {
@@ -66,8 +68,8 @@ export async function encodeReel(frames: Buffer[], seconds: number[], seed = 0):
   const dir = await mkdtemp(join(tmpdir(), "reel-"));
   try {
     await Promise.all(frames.map((f, i) => writeFile(join(dir, `s${i}.png`), f)));
-    const track = await music(seed);
     const total = seconds.reduce((t, s) => t + s, 0) - FADE * (seconds.length - 1);
+    const track = await music(seed, total, dir);
     const out = join(dir, "reel.mp4");
     const args = [
       "-y",

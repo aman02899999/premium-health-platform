@@ -93,6 +93,17 @@ export function musicPlan(index: number): MusicPlan {
   return stylePlan(ROTATION[i % ROTATION.length], Math.floor(i / ROTATION.length), i);
 }
 
+/**
+ * The recipe for an Instagram/Facebook Reel's soundtrack. `seed` is the day number for the evening
+ * Reel and days-since-2026 for the midday one, so consecutive Reels take turns through the dance
+ * styles (the two Reels of one day are always two different styles) and no Reel reuses a Short's
+ * melody: the variant is offset well past where the Shorts are.
+ */
+export function reelMusicPlan(seed: number): MusicPlan {
+  const s = Math.max(0, Math.floor(seed));
+  return stylePlan(ROTATION[s % ROTATION.length], 400 + Math.floor(s / ROTATION.length), s * 31 + 7);
+}
+
 /** A short, stable label of what makes a track unique (used by the tests). */
 export const planKey = (p: MusicPlan) => `${p.style}:${p.root}:${p.minor ? "m" : "M"}:${p.prog.join("")}`;
 
