@@ -1,7 +1,7 @@
 // One YouTube Short from a script: its scenes (with the word-by-word caption reveal), its title,
 // description and tags. Pure, so the timing and every word can be tested without ffmpeg or YouTube.
 import type { PostBiz } from "@/lib/growth/daily-posts";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, YOUTUBE_CHANNEL } from "@/lib/site";
 import { SHORTS, type Format, type Short, type Verdict } from "./shorts-bank";
 import { EXTRAS, type Extra } from "./shorts-extra";
 
@@ -259,6 +259,7 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     `${MEDICAL_LINE}${s.medical ? ` ${DOCTOR_LINE}` : ""}`,
     "",
     "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo, roz nayi fitness tip ke liye.",
+    `🔔 Subscribe: ${YOUTUBE_CHANNEL.subscribe}`,
     "",
     `${biz.coach} ke saath ${biz.name}, Sector 93 Noida mein train karo.`,
     `Free trial book karo: ${link}`,

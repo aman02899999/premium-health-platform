@@ -22,6 +22,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     whatsapp: "919266840289",
     email: "",
     instagram: "royalfitness93_",
+    youtubeUrl: "https://www.youtube.com/@RoyalFitnessTV",
     googleMapsUrl: "https://www.google.com/maps?cid=9789213701935789540",
     googleReviewUrl: "https://www.google.com/maps?cid=9789213701935789540",
     mapEmbedUrl:

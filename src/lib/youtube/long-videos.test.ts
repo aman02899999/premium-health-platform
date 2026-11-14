@@ -30,6 +30,7 @@ describe("long videos", () => {
       expect(d).toContain("88518 30081");
       expect(d).not.toContain("92668");
       expect(d).toMatch(/utm_source=youtube.*#trial/);
+      expect(d).toContain("https://www.youtube.com/@RoyalFitnessTV?sub_confirmation=1");
       expect(`${v.title} ${d}`).not.toMatch(/\bcure|guarantee|\bmg\b|tablet|capsule/i);
       expect(v.sources.length).toBeGreaterThan(0);
       for (const [, url] of v.sources) expect(url).toMatch(/^https:\/\//);

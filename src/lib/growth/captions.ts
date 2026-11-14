@@ -1,3 +1,5 @@
+import { YOUTUBE_CHANNEL } from "@/lib/site";
+
 // One caption format for every automated Instagram and Facebook post (the daily Reel, the
 // month plan's cards and second Reel): a hook, a short description, the key points, the call to
 // action, how to reach the gym, a plain-words keyword line (Instagram search reads captions) and
@@ -60,6 +62,7 @@ export function socialCaption(input: CaptionInput, biz: CaptionBiz, channel: "in
       `👉 ${input.cta}`,
       channel === "instagram" ? "📲 Tap the link in bio to book or buy." : input.link ? `🔗 ${input.link}` : "",
       `📞 Call or WhatsApp ${phone}`,
+      `▶️ Free fitness videos on YouTube: ${YOUTUBE_CHANNEL.short}`,
       "💾 Save this · Share it with your gym buddy",
     ]
       .filter(Boolean)

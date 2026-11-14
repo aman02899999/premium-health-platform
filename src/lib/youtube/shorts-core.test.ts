@@ -129,6 +129,7 @@ describe("YouTube metadata", () => {
       expect(d).toContain(EXTRAS[s.id].ask);
       expect(d).toMatch(/#shorts #fitness/);
       expect(d).toMatch(/SUBSCRIBE/);
+      expect(d).toContain("https://www.youtube.com/@RoyalFitnessTV?sub_confirmation=1");
     }
   });
 
