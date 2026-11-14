@@ -166,7 +166,101 @@ const mythStory = (n: number, date: string, theme: string): SpecialPost => ({
   facebook: "",
 });
 
+// Coach promo posts (thread "Create 3 coach promo posts", 14 Nov 2026). Designed and approved by
+// the owner; years of experience are the owner's own numbers. Prices are the festive offer with the
+// standard price struck through (Annual and Female's Special have no standard discount, so none is
+// claimed). The ₹49 one-month diet plan is the owner's joining offer at the gym.
+const COACHES = `Manish (30+ saal), Prince (10+ saal), Rubi (8+ saal) aur Founder & Head Coach Aman Sharma (15+ saal)`;
+const COACH_OFFER = `👉 Festive prices, sirf 31 Dec 2026 tak:
+• Monthly ₹2,000 ➝ ₹1,500
+• Quarterly ₹5,000 ➝ ₹4,000
+• Half-yearly ₹8,000 ➝ ₹7,000
+• Female's Special ₹7,000 (6 months)
+• Annual ₹14,000 (sirf ₹1,167/month)
+🥗 Join karo aur 1-month customised diet plan lo sirf ₹49 (regular ₹1,999).
+Couple prices standard rehte hain.`;
+const COACH_INFO = `📍 Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida 201304
+🕐 Mon–Sat 5:30–11 AM & 4–10 PM · Sunday closed`;
+const COACH_TAGS =
+  "#RoyalFitnessClub #NoidaGym #GymInNoida #Sector93Noida #NoidaFitness #PersonalTrainer #FitnessCoach #GymOffer #FestiveOffer #WomensFitness #FatLoss #MuscleGain #CoachAman";
+const coachLink = (page: string, c: string) =>
+  `https://www.royalfitnesclub.in/${page}?utm_source=facebook&utm_medium=social&utm_campaign=coach-posts-2026-11&utm_content=${c}`;
+const coachPost = (p: { id: string; date: string; image: "meet" | "offer" | "trial"; theme: string; body: string; ig: string; fb: string }): SpecialPost => ({
+  id: p.id,
+  date: p.date,
+  slot: "pm",
+  feedImage: `/social/coach-${p.image}-feed.jpg`,
+  storyImage: `/social/coach-${p.image}-story.jpg`,
+  theme: p.theme,
+  instagram: `${p.body}\n\n${p.ig}\n📞 Call or WhatsApp 88518 30081\n\n${COACH_INFO}\n\n${COACH_TAGS}`,
+  facebook: `${p.body}\n\n${p.fb}\n📞 Call or WhatsApp 88518 30081\n\n${COACH_INFO}\n\n${COACH_TAGS}`,
+});
+const OFFER_BODY = `Festive Offer chal raha hai, aur 31 Dec 2026 ko khatam ho jayega 🎉
+
+${COACH_OFFER}
+
+Coach Manish, Prince, Rubi aur Aman ke saath shuru karo.`;
+
+const COACH_POSTS: SpecialPost[] = [
+  coachPost({
+    id: "coach-meet",
+    date: "2026-11-18",
+    image: "meet",
+    theme: "Meet the coaches",
+    body: `Royal Fitness Club ke coaches se miliye 💪
+
+${COACHES}.
+
+Strength, fat loss, personal training, cardio, women's fitness aur diet guidance. Jo bhi goal ho, yahan ek coach hai jo form check karega aur roz poochhega: aaj workout hua?
+
+Festive offer ₹1,500 se shuru, 31 Dec tak.`,
+    ig: "👉 Free trial book karo: link in bio",
+    fb: `👉 Free trial book karo: ${coachLink("contact", "meet")}#trial`,
+  }),
+  coachPost({
+    id: "coach-offer",
+    date: "2026-11-21",
+    image: "offer",
+    theme: "Festive offer with the coaches",
+    body: OFFER_BODY,
+    ig: "📲 Link in bio se plan dekho ya join karo",
+    fb: `📲 Plan dekho ya join karo: ${coachLink("membership", "offer")}`,
+  }),
+  coachPost({
+    id: "coach-trial",
+    date: "2026-11-24",
+    image: "trial",
+    theme: "Free trial with a coach",
+    body: `Gym ka pehla din thoda awkward lagta hai. Machine kaunsi, kitna weight, kahan se start karein?
+
+Isliye pehla din akele mat aao. Free trial session book karo. Ek coach aapko gym dikhayega aur pehla workout saath mein karwayega.
+
+Festive offer ₹1,500 se shuru, aur join karne par 1-month diet plan sirf ₹49. 31 Dec tak.`,
+    ig: "👉 Free trial: link in bio",
+    fb: `👉 Free trial book karo: ${coachLink("contact", "trial")}#trial`,
+  }),
+  coachPost({
+    id: "coach-offer-dec",
+    date: "2026-12-05",
+    image: "offer",
+    theme: "Festive offer reminder",
+    body: OFFER_BODY,
+    ig: "📲 Link in bio se plan dekho ya join karo",
+    fb: `📲 Plan dekho ya join karo: ${coachLink("membership", "offer-dec")}`,
+  }),
+  coachPost({
+    id: "coach-offer-end",
+    date: "2026-12-19",
+    image: "offer",
+    theme: "Festive offer ends 31 Dec",
+    body: OFFER_BODY.replace("Festive Offer chal raha hai, aur 31 Dec 2026 ko khatam ho jayega 🎉", "Festive Offer 31 Dec 2026 ko khatam. Uske baad standard prices wapas aa jayenge."),
+    ig: "📲 Link in bio se plan dekho ya join karo",
+    fb: `📲 Plan dekho ya join karo: ${coachLink("membership", "offer-end")}`,
+  }),
+];
+
 export const SPECIAL_POSTS: SpecialPost[] = [
+  ...COACH_POSTS,
   mythStory(1, "2026-11-10", "Myth: pasina = fat burn"),
   mythStory(2, "2026-11-11", "Myth: crunches se pet kam"),
   mythStory(3, "2026-11-13", "Myth: weights se ladkiyan bulky"),

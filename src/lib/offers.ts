@@ -32,13 +32,13 @@ export type Offer = {
 export const FESTIVE_2026: Offer = {
   id: "festive-2026",
   title: "Festive Offer",
-  banner: "Festive Offer — 31 Dec 2026 tak 🎉 Monthly se Annual plans par bonus days + free diet guidance.",
+  banner: "Festive Offer — 31 Dec 2026 tak 🎉 Monthly ₹1,500 se shuru, bonus days + join karne par 1-month diet plan sirf ₹49.",
   startsOn: "2026-10-08",
   endsOn: "2026-12-31",
   plans: {
-    monthly: { price: 1500, bonus: "5 days", gets: "1 month + 5 bonus days", perks: ["Free diet consultation"], showStandard: true },
-    quarterly: { price: 4000, bonus: "10 days", gets: "3 months + 10 bonus days", perks: ["Free diet consultation"], showStandard: true },
-    "half-yearly": { price: 7000, bonus: "20 days", gets: "6 months + 20 bonus days", perks: ["Free diet consultation"], showStandard: true },
+    monthly: { price: 1500, bonus: "5 days", gets: "1 month + 5 bonus days", perks: ["Free diet consultation", "1-month customised diet plan for just ₹49 (regular ₹1,999), when you join"], showStandard: true },
+    quarterly: { price: 4000, bonus: "10 days", gets: "3 months + 10 bonus days", perks: ["Free diet consultation", "1-month customised diet plan for just ₹49 (regular ₹1,999), when you join"], showStandard: true },
+    "half-yearly": { price: 7000, bonus: "20 days", gets: "6 months + 20 bonus days", perks: ["Free diet consultation", "1-month customised diet plan for just ₹49 (regular ₹1,999), when you join"], showStandard: true },
     yearly: { price: 14000, bonus: "2 months", gets: "14 months (12 + 2 FREE) · sirf ₹1,000/month", perks: ["Free customised diet plan"], showStandard: false },
   },
   extraPlans: [
