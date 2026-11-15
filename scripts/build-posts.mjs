@@ -66,6 +66,8 @@ function check(lang, file, data, body) {
   if (data.slug && `${data.slug}.md` !== path.basename(file)) errors.push(`slug "${data.slug}" doesn't match the file name`);
   // Category pages build their URL from the name (lowercase, spaces to hyphens).
   if (lang === "en" && /[&'’/]/.test(String(data.category ?? ""))) errors.push(`category "${data.category}" can't contain &, apostrophes or slashes (it becomes a URL)`);
+  // Blog lists and share previews load the PNG twin of an SVG cover (see src/health/data/editorial.ts).
+  if (/\.svg$/.test(String(data.heroImage ?? "")) && !fs.existsSync(path.join(ROOT, "public", String(data.heroImage).replace(/\.svg$/, ".png")))) errors.push(`cover ${String(data.heroImage).replace(/\.svg$/, ".png")} is missing (lists use the PNG copy of the SVG cover)`);
   if (String(data.description ?? "").length > 160) errors.push(`description is ${String(data.description).length} chars (max 160)`);
   if (data.reviewStatus !== "pending-medical-review" && data.reviewStatus !== "medically-reviewed") errors.push(`reviewStatus must be pending-medical-review`);
   if (data.reviewStatus === "medically-reviewed" && /pending/i.test(String(data.reviewedBy))) errors.push("marked reviewed but reviewedBy is a placeholder");

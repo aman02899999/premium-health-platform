@@ -3,6 +3,7 @@ import { isAdmin } from "@/lib/auth";
 import { STOP_PROMOTIONS, TEMPLATES, templateBody, type MessageKind } from "@/lib/growth/messages";
 import { bannerUrl } from "@/lib/growth/wa-templates";
 import { getContent } from "@/lib/content/store";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // One-time setup page: /api/admin/whatsapp-templates (sign in to /admin first).
 // GET shows which of the site's WhatsApp templates exist in Meta and their review status.
@@ -152,8 +153,7 @@ export async function GET() {
 export async function POST(req: Request) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   // Only the button on this page may submit.
-  const origin = req.headers.get("origin");
-  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   const err = configError();
   if (err) return page([], err);
   const log: string[] = [];

@@ -3,6 +3,7 @@ import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { MAX_CAP, MAX_KNOWLEDGE, MODELS, MODES } from "@/lib/ai/agent-core";
 import { agentStats, aiConfigured, draftAnswer, getAgentSettings, logRun, saveAgentSettings } from "@/lib/ai/agent";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // Admin AI agent (owners and managers; the proxy keeps desk agents out).
 // GET                                       settings, whether the API key is set, today's and 30 days' numbers, recent answers
@@ -25,8 +26,7 @@ export async function GET() {
 export async function POST(req: Request) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
-  const origin = req.headers.get("origin");
-  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b) return NextResponse.json({ error: "Bad request" }, { status: 400 });
   const by = await adminIdentity();

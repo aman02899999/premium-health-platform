@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { adminIdentity, adminRole } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { markSeen, notificationsFor } from "@/lib/admin/notifications";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // The admin bell (everyone on the team; each role sees only what it may open).
 // GET                       the last 3 days, newest first, and how many are new
@@ -23,8 +24,7 @@ export async function GET() {
 export async function POST(req: Request) {
   if (!(await adminRole())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ ok: true });
-  const origin = req.headers.get("origin");
-  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   const b = (await req.json().catch(() => null)) as { action?: string } | null;
   if (b?.action !== "seen") return NextResponse.json({ error: "Unknown action" }, { status: 400 });
   try {
