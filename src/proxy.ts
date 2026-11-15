@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { SUPABASE_KEY, SUPABASE_URL, cookieOptions, supabaseConfigured } from "@/lib/supabase/config";
 import { roleGate } from "@/lib/admin/team-core";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // The APIs that read the signed-in session (the rest only get the origin check below).
 const SESSION_API = /^\/(api\/(admin|account|shop\/order|shop\/my-orders)|health\/api\/(auth|premium|v1\/keys|v1\/billing))(\/|$)/;
@@ -17,8 +18,7 @@ export async function proxy(request: NextRequest) {
   // cookies), and every public form and payment step, so another site can't post into them from a
   // visitor's browser. Webhooks and the scheduler are server-to-server and send no Origin.
   if (request.method !== "GET" && request.method !== "HEAD" && API.test(path) && !SERVER_TO_SERVER.test(path)) {
-    const origin = request.headers.get("origin");
-    if (origin && origin !== request.nextUrl.origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+    if (!isSameOrigin(request)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   }
   // Public APIs don't use the session: nothing more to do here.
   if (API.test(path) && !SESSION_API.test(path)) return NextResponse.next();

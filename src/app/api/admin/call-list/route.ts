@@ -3,6 +3,7 @@ import { adminIdentity, isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { OUTCOMES, isOutcome } from "@/lib/growth/call-list-core";
 import { callList, logCall } from "@/lib/growth/call-list";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // The call list (desk agents too): people who replied to an offer or clicked its link.
 // GET                                         who to call, hottest first
@@ -23,8 +24,7 @@ export async function GET() {
 export async function POST(req: Request) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
-  const origin = req.headers.get("origin");
-  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b || typeof b.contact !== "string" || !isOutcome(b.outcome)) return NextResponse.json({ error: "Pick what happened on the call." }, { status: 400 });
   try {

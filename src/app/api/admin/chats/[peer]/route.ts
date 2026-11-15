@@ -11,6 +11,7 @@ import { PURPOSES, requestMessage } from "@/lib/payments/requests-core";
 import { peerId } from "@/lib/social/chat-window";
 import { aiConfigured, draftAnswer, getAgentSettings, logRun } from "@/lib/ai/agent";
 import { contactInfo, pauseBot, saveNotes, sendManualTemplate, sendQuickReply, setLeadStatus, setOptOut } from "@/lib/social/chat-tools";
+import { isSameOrigin } from "@/lib/same-origin";
 
 // One WhatsApp conversation for the coach.
 // GET: the messages, who the customer is, one-tap replies and the templates that fit them.
@@ -45,8 +46,7 @@ export async function GET(_req: Request, { params }: Params) {
 export async function POST(req: Request, { params }: Params) {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
-  const origin = req.headers.get("origin");
-  if (origin && origin !== new URL(req.url).origin) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
+  if (!isSameOrigin(req)) return NextResponse.json({ error: "Bad origin" }, { status: 403 });
   const b = (await req.json().catch(() => null)) as Record<string, unknown> | null;
   if (!b) return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   const peer = (await params).peer;
