@@ -5,14 +5,34 @@
 // claims the slot and gives a one-hour YouTube token; this machine renders, uploads and reports back.
 import { SHORTS } from "@/lib/youtube/shorts-bank";
 import { renderShort } from "@/lib/youtube/shorts";
-import { uploadVideo, type UploadResult } from "@/lib/youtube/client";
-import { readFile } from "node:fs/promises";
+import { uploadVideo, type UploadResult, type VideoMeta } from "@/lib/youtube/client";
+import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { setThumbnail } from "@/lib/youtube/client";
 import type { RunnerJob, RunnerLongJob } from "@/lib/youtube/automation";
+import { RELEASE_INTRO, noteEntry, packFileName, releaseTag } from "@/lib/rumble/pack";
 
 const SITE = (process.env.SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, "");
 const SECRET = process.env.CRON_SECRET ?? "";
+
+// Every video that goes on YouTube is also kept in rumble-pack/ so the workflow can attach it to
+// this week's Rumble release (see src/lib/rumble/pack.ts). A failure here never fails the run:
+// the YouTube upload already happened.
+const PACK_DIR = path.join(process.cwd(), "rumble-pack");
+async function keepForRumble(video: Buffer, label: string, id: string, meta: VideoMeta, youtubeUrl: string): Promise<void> {
+  try {
+    const now = new Date();
+    const name = packFileName(now, label, id);
+    await mkdir(PACK_DIR, { recursive: true });
+    await writeFile(path.join(PACK_DIR, name), video);
+    await writeFile(path.join(PACK_DIR, "TAG"), releaseTag(now));
+    await writeFile(path.join(PACK_DIR, "INTRO"), RELEASE_INTRO);
+    await appendFile(path.join(PACK_DIR, "notes.md"), noteEntry(name, meta, youtubeUrl) + "\n");
+    console.log(`rumble pack: kept ${name}`);
+  } catch (err) {
+    console.log(`rumble pack: not kept: ${(err as Error).message.slice(0, 120)}`);
+  }
+}
 
 async function call(body: object): Promise<Record<string, unknown>> {
   const res = await fetch(`${SITE}/api/youtube/runner`, {
@@ -43,6 +63,7 @@ async function runSlot(slot: number): Promise<boolean> {
       const video = await renderShort(short, job.index, job.biz);
       console.log(`slot ${slot}: rendered ${short.id} (${(video.length / 1e6).toFixed(1)} MB) in ${Math.round((Date.now() - started) / 1000)} s`);
       result = await uploadVideo(job.token, video, job.meta);
+      if (result.ok) await keepForRumble(video, `short slot${slot}`, short.id, job.meta, result.url);
     } catch (err) {
       result = { ok: false, error: `Render/upload: ${(err as Error).message}`.slice(0, 300), quota: false };
     }
@@ -75,6 +96,7 @@ async function runLong(): Promise<boolean> {
       return false;
     }
     console.log(`long ${job.videoId}: published https://www.youtube.com/watch?v=${result.id}`);
+    await keepForRumble(await readFile(path.join(process.cwd(), "public", job.file)), "long", job.videoId, job.meta, `https://www.youtube.com/watch?v=${result.id}`);
     // A nice-to-have: an unverified channel can't set thumbnails, and the video is already up.
     try {
       const t = await setThumbnail(job.token, result.id, await readFile(path.join(process.cwd(), "public", job.thumb)));

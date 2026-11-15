@@ -40,3 +40,4 @@ yarn-error.log*
 
 # GEO-SEO skill python env
 /.venv-geo/
+rumble-pack/

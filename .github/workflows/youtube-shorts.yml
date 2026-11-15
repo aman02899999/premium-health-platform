@@ -4,6 +4,8 @@
 # src/app/api/youtube/runner/route.ts). The late run retries any slot that failed earlier.
 # Needs one repository secret: CRON_SECRET, the same value as in Vercel.
 # GitHub may start scheduled runs a few minutes late; that's fine for Shorts.
+# Every video that goes on YouTube is also attached to this week's "rumble-YYYY-Www" pre-release,
+# so the owner can put it on Rumble by hand until Rumble gives an upload key (src/lib/rumble/pack.ts).
 name: YouTube Shorts
 
 on:
@@ -20,7 +22,7 @@ on:
         default: "all"
 
 permissions:
-  contents: read
+  contents: write  # only to attach videos to the weekly Rumble release (pre-release, never "latest")
 
 concurrency:
   group: youtube-shorts
@@ -54,3 +56,20 @@ jobs:
           esac
           echo "Running slot $slot"
           npx tsx --conditions=react-server scripts/youtube-runner.tsx "$slot"
+      - name: Add this run's videos to the weekly Rumble pack
+        if: always() && hashFiles('rumble-pack/TAG') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="$(cat rumble-pack/TAG)"
+          if ! gh release view "$tag" >/dev/null 2>&1; then
+            # Pre-release and not latest, so the app download link (releases/latest) keeps pointing at the APK.
+            gh release create "$tag" --title "Rumble pack ${tag#rumble-}" --notes-file rumble-pack/INTRO --prerelease --latest=false --target "$GITHUB_SHA"
+          fi
+          gh release upload "$tag" rumble-pack/*.mp4 --clobber
+          body="$(gh release view "$tag" --json body -q .body)"
+          [ -n "$body" ] || body="$(cat rumble-pack/INTRO)"
+          { printf '%s\n\n' "$body"; cat rumble-pack/notes.md; } > "$RUNNER_TEMP/notes.md"
+          gh release edit "$tag" --notes-file "$RUNNER_TEMP/notes.md"
+          echo "Rumble pack: https://github.com/${GITHUB_REPOSITORY}/releases/tag/$tag"
