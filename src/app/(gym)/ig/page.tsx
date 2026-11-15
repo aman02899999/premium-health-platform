@@ -4,10 +4,10 @@ import Link from "next/link";
 import { ArrowRight, CalendarCheck, Clock, CreditCard, Dumbbell, HeartPulse, MapPin, Phone, Salad, ShoppingBag, Star } from "lucide-react";
 import { shopOpen } from "@/lib/shop/server";
 import { getContent } from "@/lib/content/store";
-import { fullAddress, formatTime, hoursDays, instagramHref, telHref, whatsappHref } from "@/lib/site";
+import { fullAddress, formatTime, hoursDays, instagramHref, telHref, whatsappHref, youtubeHref, YOUTUBE_CHANNEL } from "@/lib/site";
 import { igLanding } from "@/lib/ig-landing";
 import { formatDate, todayIST } from "@/lib/growth/dates";
-import { InstagramIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { InstagramIcon, WhatsAppIcon, YouTubeIcon } from "@/components/ui/BrandIcons";
 
 // The link in the Instagram bio. Instagram opens it in its in-app browser as a sheet over the
 // profile, showing only the top of the page at first, so the offer and the WhatsApp button sit
@@ -156,6 +156,11 @@ export default async function InstagramLinksPage() {
             </li>
           ))}
           <li>
+            <a href={youtubeHref(b)} target="_blank" rel="noopener noreferrer" className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5 font-semibold text-white">
+              <YouTubeIcon className="h-5 w-5 text-[#ff3d3d]" /> <span className="flex-1">Free workout & diet videos on YouTube</span> <ArrowRight className="h-4 w-4 text-white/40" />
+            </a>
+          </li>
+          <li>
             <a href={telHref(b.phone)} className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5 font-semibold text-white">
               <Phone className="h-5 w-5 text-brand" /> <span className="flex-1">Call a coach · {b.phone}</span> <ArrowRight className="h-4 w-4 text-white/40" />
             </a>
@@ -179,6 +184,9 @@ export default async function InstagramLinksPage() {
           </Link>
           <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2">
             <InstagramIcon className="h-3.5 w-3.5" /> @{b.instagram}
+          </a>
+          <a href={youtubeHref(b)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline underline-offset-2">
+            <YouTubeIcon className="h-3.5 w-3.5" /> {YOUTUBE_CHANNEL.name}
           </a>
         </p>
       </footer>

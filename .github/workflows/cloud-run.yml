@@ -1,0 +1,95 @@
+# Builds the site into a container and deploys it to Google Cloud Run, then makes sure the one
+# Cloud Scheduler job (every 5 min -> /api/cron/tick, which runs the vercel.json crons) exists.
+# Moved here in Nov 2026 after Vercel paused the Hobby account. See docs/CLOUD_RUN.md.
+#
+# Repository settings it needs (Settings -> Secrets and variables -> Actions):
+#   secret   GCP_SA_KEY       JSON key of the deploy service account (docs/CLOUD_RUN.md step 3)
+#   secret   APP_ENV          every server setting, one KEY=value per line (step 4)
+#   variable GCP_PROJECT_ID   the Google Cloud project id
+# Until GCP_PROJECT_ID is set, the workflow does nothing, so it is safe to merge early.
+name: Deploy to Cloud Run
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloud-run
+  cancel-in-progress: false
+
+env:
+  REGION: asia-northeast1
+  SERVICE: royal-fitness-site
+  REPO: site
+
+jobs:
+  deploy:
+    if: vars.GCP_PROJECT_ID != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Settings from APP_ENV (names are logged, values never)
+        env:
+          APP_ENV: ${{ secrets.APP_ENV }}
+        run: node scripts/cloud-run-env.mjs "$RUNNER_TEMP/env"
+
+      - name: Enable the Google services (first run only; no-op after)
+        run: gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudscheduler.googleapis.com --project "${{ vars.GCP_PROJECT_ID }}"
+
+      - name: Image repository
+        run: |
+          gcloud artifacts repositories describe "$REPO" --location "$REGION" --project "${{ vars.GCP_PROJECT_ID }}" >/dev/null 2>&1 \
+            || gcloud artifacts repositories create "$REPO" --repository-format docker --location "$REGION" --project "${{ vars.GCP_PROJECT_ID }}"
+          gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
+
+      - name: Build and push
+        run: |
+          IMAGE="$REGION-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/$REPO/$SERVICE:${GITHUB_SHA}"
+          echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+          DOCKER_BUILDKIT=1 docker build --secret id=appenv,src="$RUNNER_TEMP/env/appenv.sh" -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      - name: Deploy
+        run: |
+          gcloud run deploy "$SERVICE" --image "$IMAGE" --region "$REGION" --project "${{ vars.GCP_PROJECT_ID }}" \
+            --allow-unauthenticated --env-vars-file "$RUNNER_TEMP/env/env.yaml" \
+            --memory 1Gi --cpu 1 --concurrency 40 --min-instances 0 --max-instances 3 \
+            --timeout 900 --execution-environment gen2
+          URL=$(gcloud run services describe "$SERVICE" --region "$REGION" --project "${{ vars.GCP_PROJECT_ID }}" --format 'value(status.url)')
+          echo "URL=$URL" >> "$GITHUB_ENV"
+          echo "Live on $URL"
+
+      - name: Scheduler job (every 5 minutes -> /api/cron/tick)
+        run: |
+          SECRET=$(grep '^CRON_SECRET:' "$RUNNER_TEMP/env/env.yaml" | sed 's/^CRON_SECRET: //' | node -e 'process.stdout.write(JSON.parse(require("fs").readFileSync(0,"utf8")))')
+          echo "::add-mask::$SECRET"
+          ARGS=(--location "$REGION" --project "${{ vars.GCP_PROJECT_ID }}" --schedule "*/5 * * * *" --time-zone "Etc/UTC" \
+                --uri "$URL/api/cron/tick" --http-method GET --attempt-deadline 900s \
+                --update-headers "Authorization=Bearer $SECRET")
+          if gcloud scheduler jobs describe cron-tick --location "$REGION" --project "${{ vars.GCP_PROJECT_ID }}" >/dev/null 2>&1; then
+            gcloud scheduler jobs update http cron-tick "${ARGS[@]}"
+          else
+            gcloud scheduler jobs create http cron-tick "${ARGS[@]/--update-headers/--headers}"
+          fi
+
+      - name: Smoke test
+        run: |
+          for p in / /health /membership /gallery; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$URL$p"); echo "$p $code"
+            case "$code" in 2*|3*) ;; *) exit 1 ;; esac
+          done
+
+      - name: Remove local settings files
+        if: always()
+        run: rm -rf "$RUNNER_TEMP/env"

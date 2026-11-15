@@ -2,7 +2,7 @@
 // thumbnail live in public/youtube/long/; the YouTube cron uploads each one once, on or after its
 // date (see runLongVideo in automation.ts). Every fact in a video was checked against the sources
 // listed in its description before it was added here.
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, YOUTUBE_CHANNEL } from "@/lib/site";
 
 export type LongVideo = {
   id: string;
@@ -417,6 +417,9 @@ export function longVideoDescription(v: LongVideo): string {
     "Call / WhatsApp: 88518 30081",
     "Royal Fitness Club, Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida 201304",
     "Mon–Sat 5:30–11 AM & 4–10 PM, Sunday closed",
+    "",
+    "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo. Roz 1-minute ki tips Shorts mein aati hain.",
+    `🔔 Subscribe: ${YOUTUBE_CHANNEL.subscribe}`,
     "",
     "Chapters",
     ...v.chapters.map(([t, label]) => `${t} ${label}`),

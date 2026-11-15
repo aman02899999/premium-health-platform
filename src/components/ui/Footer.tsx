@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Clock, MapPin, Phone, Star } from "lucide-react";
 import type { SiteContent } from "@/lib/content/types";
 import { HUB } from "@/lib/hub";
-import { FOOTER_LINKS, LEGAL, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref } from "@/lib/site";
-import { InstagramIcon, WhatsAppIcon } from "./BrandIcons";
+import { FOOTER_LINKS, LEGAL, formatTime, hoursDays, fullAddress, instagramHref, telHref, whatsappHref, youtubeHref } from "@/lib/site";
+import { InstagramIcon, WhatsAppIcon, YouTubeIcon } from "./BrandIcons";
 import { FullLogo } from "./Logo";
 
 /** `storeOpen` false (the admin switch) drops the supplement store's link. */
@@ -29,6 +29,9 @@ export function Footer({ content, storeOpen }: { content: SiteContent; storeOpen
           <div className="mt-5 flex gap-3">
             <a href={instagramHref(b.instagram)} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
               <InstagramIcon className="h-5 w-5" />
+            </a>
+            <a href={youtubeHref(b)} target="_blank" rel="noopener noreferrer" aria-label="YouTube: Royal Fitness TV" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
+              <YouTubeIcon className="h-5 w-5" />
             </a>
             <a href={whatsappHref(b)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 hover:border-brand hover:text-brand">
               <WhatsAppIcon className="h-5 w-5" />

@@ -1,4 +1,5 @@
 import { SITE } from "./site";
+import { YOUTUBE_CHANNEL } from "@/lib/site";
 
 export function absoluteUrl(path = "/health") {
   const base = SITE.url.replace(/\/$/, "");
@@ -112,7 +113,7 @@ export function organizationJsonLd() {
     ...healthPublisher(),
     slogan: SITE.tagline,
     telephone: SITE.contactPhone,
-    sameAs: ["https://www.instagram.com/royalfitness93_/"],
+    sameAs: ["https://www.instagram.com/royalfitness93_/", YOUTUBE_CHANNEL.url],
   };
 }
 

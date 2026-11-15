@@ -67,6 +67,22 @@ export function instagramHandle(value: string) {
 
 export const instagramHref = (handle: string) => `https://www.instagram.com/${instagramHandle(handle)}/`;
 
+/** The gym's YouTube channel (Shorts and long videos are uploaded to it automatically). */
+export const YOUTUBE_CHANNEL = {
+  name: "Royal Fitness TV",
+  url: "https://www.youtube.com/@RoyalFitnessTV",
+  /** Opens the channel with YouTube's "Subscribe?" prompt. */
+  subscribe: "https://www.youtube.com/@RoyalFitnessTV?sub_confirmation=1",
+  /** Short form for captions, where long links look like spam. */
+  short: "youtube.com/@RoyalFitnessTV",
+} as const;
+
+/** The admin's YouTube link when it really is a YouTube URL, otherwise the channel. */
+export function youtubeHref(b: Pick<Business, "youtubeUrl">) {
+  const v = (b.youtubeUrl ?? "").trim();
+  return /^https:\/\/(www\.|m\.)?youtube\.com\//i.test(v) ? v : YOUTUBE_CHANNEL.url;
+}
+
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 export function formatTime(hhmm: string) {

@@ -73,4 +73,24 @@ describe("special-day posts", () => {
     expect(d.instagram).toContain("Female's Special ₹7,000");
     expect(d.date >= FESTIVE_2026.startsOn && d.date <= FESTIVE_2026.endsOn).toBe(true);
   });
+
+  it("coach posts take the 4 PM card and the Story on their days, and quote the real festive prices", () => {
+    expect(specialFeedPost("2026-11-18", "pm")?.id).toBe("coach-meet");
+    expect(specialFeedPost("2026-11-18", "am")).toBeNull();
+    expect(specialStory("2026-11-21")?.id).toBe("coach-offer");
+    expect(specialFeedPost("2026-11-24", "pm")?.id).toBe("coach-trial");
+    const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+    const offer = SPECIAL_POSTS.find((p) => p.id === "coach-offer")!;
+    for (const [id, o] of Object.entries(FESTIVE_2026.plans)) expect(offer.instagram, id).toContain(inr(o.price));
+    // Struck-through prices must be the real standard prices.
+    for (const [id, std] of [["monthly", 2000], ["quarterly", 5000], ["half-yearly", 8000]] as const) {
+      expect(offer.instagram, id).toContain(`${inr(std)} ➝ ${inr(FESTIVE_2026.plans[id].price)}`);
+    }
+    for (const p of SPECIAL_POSTS.filter((x) => x.id.startsWith("coach-"))) {
+      expect(p.date >= FESTIVE_2026.startsOn && p.date <= FESTIVE_2026.endsOn, p.id).toBe(true);
+      expect(p.instagram, p.id).not.toMatch(/\bbest\b|bonus days/i);
+    }
+    const days = SPECIAL_POSTS.filter((x) => x.feedImage).map((x) => `${x.date}-${x.slot}`);
+    expect(new Set(days).size).toBe(days.length);
+  });
 });

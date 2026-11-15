@@ -7,7 +7,7 @@ import { SHORTS, type Short } from "./shorts-bank";
 import { nextShort, shortDescription, shortTags, shortTitle } from "./shorts-core";
 import { renderShort } from "./shorts";
 import { SITE_URL } from "@/lib/site";
-import { dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb } from "./long-videos";
+import { dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
 // retry). Each slot is its own social_posts row (channel youtube-1/2/3, one per day), so a slot
@@ -208,7 +208,8 @@ export async function runLongVideo(now: Date, deps: LongDeps = LONG_DEPS): Promi
   return out.join("; ") as LongResult;
 }
 
-async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promise<OneLong> {
+/** Claims the next due long video's row and gets a 1-hour token. Shared by the Vercel cron and the runner. */
+async function claimLong(now: Date, refresh: string, access: LongDeps["access"]): Promise<{ id: string; video: LongVideo; token: string } | Exclude<OneLong, `published${string}`>> {
   const today = todayIST(now);
   const { rows: used } = await pool.query<{ theme: string }>(`select theme from public.social_posts where channel like 'youtube-long%' and status in ('published', 'pending')`);
   const video = dueLongVideo(today, used.map((r) => r.theme));
@@ -228,16 +229,47 @@ async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promis
   }
   if (!id) return "already-posted";
 
-  const at = await deps.access(refresh);
+  const at = await access(refresh);
   if (!at.ok) {
     const error = at.revoked ? "YouTube sign-in expired or was removed: connect the channel again in Admin → Growth → Social" : `YouTube sign-in: ${at.error}`;
     await record(id, { ok: false, error, quota: false });
     return `failed: ${error}`;
   }
+  return { id, video, token: at.token };
+}
+
+const longMeta = (video: LongVideo): VideoMeta => ({ title: video.title, description: longVideoDescription(video), tags: longVideoTags(video), privacy: youtubePrivacy() });
+
+export type RunnerLongJob = { id: string; videoId: string; file: string; thumb: string; token: string; meta: VideoMeta };
+
+/** For the GitHub runner: the next due long video, with the paths of its MP4 and thumbnail inside public/. */
+export async function claimRunnerLong(now: Date, deps: Pick<LongDeps, "access"> = LONG_DEPS): Promise<RunnerLongJob | Exclude<OneLong, `published${string}`>> {
+  if (!youtubeShortsOn()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const c = await claimLong(now, refresh, deps.access);
+  if (typeof c === "string") return c;
+  return { id: c.id, videoId: c.video.id, file: longVideoFile(c.video), thumb: longVideoThumb(c.video), token: c.token, meta: longMeta(c.video) };
+}
+
+/** The runner's report for a claimed long video. Only a pending youtube-long* row can be closed. */
+export async function recordRunnerLong(id: string, result: UploadResult): Promise<boolean> {
+  const { rows } = await pool.query<{ id: string }>(`select id from public.social_posts where id = $1 and channel like 'youtube-long%' and status = 'pending'`, [id]);
+  if (!rows[0]) return false;
+  await record(id, result.ok ? { ...result, url: `https://www.youtube.com/watch?v=${result.id}` } : result);
+  if (!result.ok) console.error("[youtube] runner long video failed:", result.error);
+  return true;
+}
+
+async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promise<OneLong> {
+  const c = await claimLong(now, refresh, deps.access);
+  if (typeof c === "string") return c;
+  const { id, video } = c;
+  const at = { token: c.token };
   let result: UploadResult;
   try {
     const mp4 = await deps.download(`${SITE_URL}${longVideoFile(video)}`);
-    result = await deps.upload(at.token, mp4, { title: video.title, description: longVideoDescription(video), tags: longVideoTags(video), privacy: youtubePrivacy() });
+    result = await deps.upload(at.token, mp4, longMeta(video));
     if (result.ok) result = { ...result, url: `https://www.youtube.com/watch?v=${result.id}` };
   } catch (err) {
     result = { ok: false, error: `Download/upload: ${(err as Error).message}`, quota: false };

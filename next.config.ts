@@ -4,7 +4,6 @@ import { MEDIA_ONLY_BY_URL } from "./src/lib/media-by-url";
 
 const REEL_FILES = [
   "./src/lib/social/fonts/*.ttf",
-  "./src/lib/social/reel-audio/*.mp3",
   "./public/brand/logo-mark.png",
   "./public/library/covers/*.webp",
   "./public/gallery/*.webp",
@@ -15,6 +14,9 @@ const nextConfig: NextConfig = {
   // One app, two sites: Royal Fitness Club at / and Premium Health Platform at /health.
   turbopack: { root: path.resolve(__dirname) },
   poweredByHeader: false,
+  // Docker/Cloud Run builds set STANDALONE=1 to get a self-contained server (.next/standalone).
+  // Vercel builds leave it unset and behave exactly as before.
+  ...(process.env.STANDALONE === "1" ? { output: "standalone" as const } : {}),
   compress: true,
   reactStrictMode: true,
   // Read with fs at runtime, so the tracer can't see them: ship them with the route.

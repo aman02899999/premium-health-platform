@@ -3,7 +3,7 @@ import { DEFAULT_CONTENT } from "./content/defaults";
 import { applyOffer, OFFERS } from "./offers";
 import { faqsWithOffer, llmsTxt } from "./content/ai-facts";
 import { businessProfiles, localBusinessJsonLd, personJsonLd } from "./seo";
-import { fullAddress, instagramHandle, instagramHref } from "./site";
+import { YOUTUBE_CHANNEL, fullAddress, instagramHandle, instagramHref, youtubeHref } from "./site";
 import { SITE } from "@/health/lib/site";
 import { articleJsonLd, blogPostingJsonLd, breadcrumbItemsJsonLd, organizationJsonLd } from "@/health/lib/seo";
 import healthSitemap from "@/app/(health)/health/sitemap";
@@ -33,10 +33,23 @@ describe("Gym entity markup", () => {
   });
 
   it("sameAs lists every profile the admin filled in, and nothing blank", () => {
-    expect(businessProfiles(c.business)).toEqual(["https://www.instagram.com/royalfitness93_/", c.business.googleMapsUrl]);
+    expect(businessProfiles(c.business)).toEqual(["https://www.instagram.com/royalfitness93_/", c.business.googleMapsUrl, "https://www.youtube.com/@RoyalFitnessTV"]);
     const b = { ...c.business, justdialUrl: "https://www.justdial.com/Noida/Royal-Fitness-Club", facebookUrl: " ", youtubeUrl: "not a url" };
     expect(localBusinessJsonLd({ ...c, business: b }).sameAs).toContain("https://www.justdial.com/Noida/Royal-Fitness-Club");
     expect(businessProfiles(b)).toHaveLength(3);
+  });
+
+  it("the health portal's publisher names the YouTube channel too", () => {
+    expect(organizationJsonLd().sameAs).toContain("https://www.youtube.com/@RoyalFitnessTV");
+  });
+});
+
+describe("YouTube channel link", () => {
+  it("uses the admin's link when it is a YouTube URL, else the channel", () => {
+    expect(youtubeHref(c.business)).toBe("https://www.youtube.com/@RoyalFitnessTV");
+    expect(youtubeHref({ ...c.business, youtubeUrl: "" })).toBe(YOUTUBE_CHANNEL.url);
+    expect(youtubeHref({ ...c.business, youtubeUrl: "https://evil.example/x" })).toBe(YOUTUBE_CHANNEL.url);
+    expect(youtubeHref({ ...c.business, youtubeUrl: " https://www.youtube.com/@Other " })).toBe("https://www.youtube.com/@Other");
   });
 });
 

@@ -1,8 +1,20 @@
 import { describe, expect, it } from "vitest";
 import { SHORTS } from "./shorts-bank";
-import { ROTATION, SR, STYLES, musicPlan, planKey, renderMusic, stylePlan, wav } from "./music";
+import { ROTATION, SR, STYLES, musicPlan, planKey, reelMusicPlan, renderMusic, stylePlan, wav } from "./music";
 
 describe("music", () => {
+  it("gives every Instagram/Facebook Reel its own track: consecutive Reels and the two Reels of a day differ in style, and no two of a year match", () => {
+    const evening = (d: number) => reelMusicPlan(20454 + d); // day number of 1 Jan 2026 + d
+    const midday = (d: number) => reelMusicPlan(d + 1); // days since 1 Jan 2026 + 1
+    const keys = new Set<string>();
+    for (let d = 0; d < 365; d++) {
+      expect(evening(d).style).not.toBe(midday(d).style);
+      expect(evening(d + 1).style).not.toBe(evening(d).style);
+      for (const p of [evening(d), midday(d)]) keys.add(`${planKey(p)}:${p.bpm}:${p.arp.join("")}:${p.seed}`);
+    }
+    expect(keys.size).toBe(730);
+  });
+
   it("gives every Short in the bank (and hundreds more) its own style, key, progression and scale", () => {
     const keys = Array.from({ length: Math.max(432, SHORTS.length) }, (_, i) => planKey(musicPlan(i)));
     expect(new Set(keys).size).toBe(keys.length);
