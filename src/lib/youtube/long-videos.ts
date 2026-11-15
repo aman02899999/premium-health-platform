@@ -130,37 +130,14 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["namak kitna khaye", "cheeni ke nuksan", "sugar free weight loss", "salt sugar myths hindi"],
   },
-  {
-    id: "long-sleep-myths-7",
-    date: "2026-11-16",
-    title: "Neend Ke 7 Jhooth | 5 Ghante Kaafi? Weight Aur Gains Par Asar | CDC Facts",
-    intro: "5 ghante ki neend kaafi? Weekend pe poori kar lenge? Phone chalate-chalate neend aa jaati hai? Neend ka weight se kya lena?\nIs video mein neend ke 7 jhooth, har ek ka sach CDC aur research ke source ke saath. Neend ki problem lagatar ho toh doctor se milo.",
-    chapters: [
-      ["0:00", "Intro"],
-      ["0:13", "Myth 1: 5 ghante kaafi?"],
-      ["0:44", "Myth 2: Weekend pe poora?"],
-      ["1:14", "Myth 3: Neend aur weight"],
-      ["1:45", "Myth 4: Phone se jaldi neend?"],
-      ["2:22", "Myth 5: Raat ki chai-coffee"],
-      ["2:53", "Myth 6: Exercise ka role"],
-      ["3:24", "Myth 7: Din bhar neend normal?"],
-      ["4:01", "Recap"],
-      ["4:15", "Free trial + subscribe"],
-    ],
-    sources: [
-      ["CDC, About Sleep", "https://www.cdc.gov/sleep/about/index.html"],
-      ["Watson et al., Recommended amount of sleep for a healthy adult, 2015", "https://pubmed.ncbi.nlm.nih.gov/26039963/"],
-      ["Spiegel et al., Ann Intern Med 2004 (sleep and hunger)", "https://pubmed.ncbi.nlm.nih.gov/15583226/"],
-    ],
-    tags: ["neend kitni zaroori", "sleep myths hindi", "neend aur weight loss", "sleep and muscle gain"],
-  },
   // Made 15 Nov 2026 from a topic list the owner sent (a viral "good, better, best" food chart).
   // None of that chart's artwork is used: food photos are CC0 / public domain (credits in
   // public/youtube/long/long-good-better-best-foods-8.credits.json). Its weak claims are corrected
   // on screen in each topic's FACT CHECK card. Facts checked that day against the sources below.
   {
     id: "long-good-better-best-foods-8",
-    date: "2026-11-18",
+    // Owner asked on 15 Nov for it to go up the same day.
+    date: "2026-11-15",
     title: "Kya Khaayein? 8 Problems Ke Good, Better, Best Foods | Viral Chart Fact-Check",
     intro: "Dimaag, aankhein, neend, kabz, paani ki kami, khoon ki kami, immunity aur healthy umar: har problem ke liye GOOD, BETTER aur BEST food.\nInternet ke viral food charts mein kuch galtiyan bhi hain (badaam mein melatonin? red meat hi best? haldi immunity ki dawa?). Har galti ka sach source ke saath, aur har topic mein veg option bhi. Koi bimari hai, pregnancy hai ya dawai chal rahi hai toh diet badalne se pehle apne doctor se baat karo.",
     chapters: [
@@ -197,6 +174,30 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["NCCIH, Turmeric", "https://www.nccih.nih.gov/health/turmeric"],
     ],
     tags: ["kya khaye", "healthy food hindi", "good better best foods", "diet tips hinglish", "food fact check"],
+  },
+  {
+    id: "long-sleep-myths-7",
+    date: "2026-11-16",
+    title: "Neend Ke 7 Jhooth | 5 Ghante Kaafi? Weight Aur Gains Par Asar | CDC Facts",
+    intro: "5 ghante ki neend kaafi? Weekend pe poori kar lenge? Phone chalate-chalate neend aa jaati hai? Neend ka weight se kya lena?\nIs video mein neend ke 7 jhooth, har ek ka sach CDC aur research ke source ke saath. Neend ki problem lagatar ho toh doctor se milo.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:13", "Myth 1: 5 ghante kaafi?"],
+      ["0:44", "Myth 2: Weekend pe poora?"],
+      ["1:14", "Myth 3: Neend aur weight"],
+      ["1:45", "Myth 4: Phone se jaldi neend?"],
+      ["2:22", "Myth 5: Raat ki chai-coffee"],
+      ["2:53", "Myth 6: Exercise ka role"],
+      ["3:24", "Myth 7: Din bhar neend normal?"],
+      ["4:01", "Recap"],
+      ["4:15", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["CDC, About Sleep", "https://www.cdc.gov/sleep/about/index.html"],
+      ["Watson et al., Recommended amount of sleep for a healthy adult, 2015", "https://pubmed.ncbi.nlm.nih.gov/26039963/"],
+      ["Spiegel et al., Ann Intern Med 2004 (sleep and hunger)", "https://pubmed.ncbi.nlm.nih.gov/15583226/"],
+    ],
+    tags: ["neend kitni zaroori", "sleep myths hindi", "neend aur weight loss", "sleep and muscle gain"],
   },
   {
     id: "long-bp-heart-myths-8",
