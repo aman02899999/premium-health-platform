@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { cronAuthorized } from "@/lib/cron-auth";
 import { dueJobs } from "@/lib/cron-schedule";
+import { localGet } from "@/lib/local-get";
 
 export const dynamic = "force-dynamic";
 // The slowest job (a Reel render) takes a few minutes; Cloud Run's request timeout is set to 15 min.
@@ -16,9 +17,10 @@ export async function GET(req: Request) {
   const ran: Record<string, number | string> = {};
   for (const job of dueJobs(now)) {
     try {
-      const res = await fetch(`${origin}${job.path}`, { headers: { authorization: req.headers.get("authorization") ?? "" }, cache: "no-store" });
-      ran[job.path] = res.status;
-      if (!res.ok) console.error(`[tick] ${job.path} answered ${res.status}`);
+      // Not fetch(): it gives up after 5 minutes, which froze long Reel jobs half way (see local-get.ts).
+      const status = await localGet(`${origin}${job.path}`, { authorization: req.headers.get("authorization") ?? "" });
+      ran[job.path] = status;
+      if (status < 200 || status >= 300) console.error(`[tick] ${job.path} answered ${status}`);
     } catch (err) {
       ran[job.path] = `error: ${(err as Error).message.slice(0, 120)}`;
       console.error(`[tick] ${job.path} failed:`, (err as Error).message);
