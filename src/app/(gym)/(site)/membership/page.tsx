@@ -4,6 +4,7 @@ import { breadcrumbJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 import { formatINR } from "@/lib/site";
 import { FaqList } from "@/components/home/Blocks";
 import { PlanGrid } from "@/components/home/PlanGrid";
+import { PlanFinder } from "@/components/home/PlanFinder";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { PageHero, SectionHeading } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -39,6 +40,7 @@ export default async function MembershipPage() {
       <PageHero eyebrow="Membership" title="Pick your" highlight="plan" intro="Every plan and price in one list. Not sure yet? Your first session is free." />
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <h2 className="sr-only">Membership plans and prices</h2>
+        <PlanFinder plans={plans} payOnline={razorpayConfigured()} />
         <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link href="/contact#trial" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white hover:border-brand">
