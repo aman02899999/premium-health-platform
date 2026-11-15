@@ -8,6 +8,7 @@ import { HeroOfferCard } from "@/components/home/HeroOfferCard";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { heroOffer } from "@/lib/hero-offer";
 import { PlanGrid } from "@/components/home/PlanGrid";
+import { PlanFinder } from "@/components/home/PlanFinder";
 import { razorpayConfigured } from "@/lib/payments/razorpay";
 import { Gallery3D } from "@/components/home/Gallery3D";
 import { LeadForm } from "@/components/home/LeadForm";
@@ -128,6 +129,7 @@ export default async function HomePage() {
       {/* Prices come straight after the stats: it's what most visitors came to check. */}
       <section className="cv-auto mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6">
         <SectionHeading eyebrow="Membership" title="Plans &" highlight="prices" intro="Every plan in one list. No hidden charges, and your first session is free." />
+        <PlanFinder plans={plans} payOnline={razorpayConfigured()} />
         <PlanGrid plans={plans} note={c.planNote} payOnline={razorpayConfigured()} />
         <p className="mt-6 text-center">
           <Link href="/membership" className="inline-flex items-center gap-2 py-2 font-semibold text-brand hover:underline">
