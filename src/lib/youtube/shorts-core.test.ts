@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SHORTS } from "./shorts-bank";
+import { MYTH_BUSTERS_AT, SHORTS } from "./shorts-bank";
 import { EXTRAS } from "./shorts-extra";
 import { FADE, MAX_SECONDS, MEDICAL_LINE, DOCTOR_LINE, SITE_HOST, captionOf, chunks, nextShort, shortDescription, shortScenes, shortSeconds, shortTags, shortTitle } from "./shorts-core";
 
@@ -16,9 +16,17 @@ describe("shorts bank", () => {
     // The six transformation-lesson Shorts (Nov 2026) go first; the woven bank then opens on a viral claim.
     expect(SHORTS.slice(0, 6).map((s) => s.id)).toEqual(["myth-10-days-6kg", "fact-safe-pace", "mis-transformation", "myth-daily-weight", "swap-scale-photo", "mis-supplements-first"]);
     expect(SHORTS[6].format).toBe("viral");
-    expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(15);
+    expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(21);
     expect(SHORTS.filter((s) => s.format === "trend")).toHaveLength(15);
     for (const s of SHORTS) if (s.format === "viral") expect(["JHOOTH", "SACH", "DEPENDS"]).toContain(s.verdict);
+  });
+
+  it("puts the 18 myth-buster Shorts (16 Nov) right after the ones already posted, on a day boundary", () => {
+    expect(MYTH_BUSTERS_AT % 3).toBe(0);
+    expect(SHORTS.slice(MYTH_BUSTERS_AT - 3, MYTH_BUSTERS_AT).map((s) => s.id)).toEqual(["trend-zone-2", "form-pushup-hips", "swap-naan-roti"]);
+    expect(SHORTS[MYTH_BUSTERS_AT].id).toBe("viral-microwave");
+    expect(SHORTS[MYTH_BUSTERS_AT + 17].id).toBe("fact-too-much-water");
+    expect(SHORTS[MYTH_BUSTERS_AT + 18].id).toBe("wo-core");
   });
 
   it("is written in Hinglish, not English (common Hindi words in every script)", () => {
