@@ -1,4 +1,4 @@
-// The YouTube Shorts scripts, in easy Hinglish (Roman script, the way people text): 117 Shorts in
+// The YouTube Shorts scripts, in easy Hinglish (Roman script, the way people text): 141 Shorts in
 // eight formats, written and checked by hand rather than generated, so every one is education
 // only (no cure claims, no doses) and every number carries its source. Viral claims and fitness
 // trends get an honest verdict, never hype. The bank is ordered so the formats take turns: the
@@ -183,9 +183,53 @@ const TRANSFORMATION: Short[] = [
   { id: "mis-supplements-first", format: "mistakes", topic: "supplements", hook: "Supplement se pehle ye 3 cheezein check karo", items: ["Khana theek kiye bina whey ka dabba lena", "5 ghante neend aur upar se recovery drink", "Har mahine naya supplement try karna"], fix: "Pehle khana, training aur neend theek karo. Supplement sirf top-up hai.", tags: ["supplements", "whey protein", "gym beginners"] },
 ];
 
+// Myth-buster Shorts (16 Nov 2026): one claim each from the five fact-check long videos of 16–17 Nov,
+// skipping claims the bank already covers. Six days of viral claim, myth and fact, so every day is
+// still three different formats. They go straight after the Shorts already posted (see SHORTS),
+// and every number is from the source checked for the long videos.
+const MEDLINE_WATER: Source = { name: "MedlinePlus, Water in diet", url: "https://medlineplus.gov/ency/article/002471.htm" };
+const MEDLINE_HYPONATREMIA: Source = { name: "MedlinePlus, Hyponatremia", url: "https://medlineplus.gov/ency/article/000394.htm" };
+const NCCIH_ENERGY: Source = { name: "NCCIH, Energy drinks", url: "https://www.nccih.nih.gov/health/energy-drinks" };
+const KILLER_2014: Source = { name: "Killer et al. 2014, coffee and hydration (PLoS One)", url: "https://pubmed.ncbi.nlm.nih.gov/24416202/" };
+const MEERMAN_2014: Source = { name: "Meerman & Brown 2014, where does the fat go? (BMJ)", url: "https://pubmed.ncbi.nlm.nih.gov/25516540/" };
+const KREIDER_2017: Source = { name: "Kreider et al. 2017, ISSN position stand on creatine", url: "https://pubmed.ncbi.nlm.nih.gov/28615996/" };
+const MYTH_BUSTERS: Short[] = [
+  { id: "viral-microwave", format: "viral", topic: "microwave food", hook: "Microwave ka khaana cancer deta hai?", claim: "Microwave mein garam kiya khaana radiation se cancer deta hai.", verdict: "JHOOTH", truth: "Microwave khaane ko radioactive nahi banata. Bas garam karta hai (FDA).", why: "Dhyan bartan ka rakho: sirf microwave-safe label wala bartan use karo.", tags: ["microwave", "cancer myths", "whatsapp forward"] },
+  { id: "myth-cardio-gains", format: "myth", topic: "cardio and muscle", hook: "Cardio karoge toh muscle chali jayegi?", myth: "Cardio kiya toh saari muscle khatam ho jayegi.", fact: "43 studies ke review (2022) mein cardio + weights se muscle size aur strength mein khaas farak nahi dikha.", why: "Weights pehle karo, ya cardio alag time pe. Dil bhi ek muscle hai.", tags: ["cardio muscle loss", "gym myths", "concurrent training"] },
+  { id: "fact-water-total", format: "fact", topic: "daily water", hook: "Roz 8 glass paani zaroori hai?", fact: "Kul paani roz 2.7 se 3.7 litre", detail: "adults ko chahiye (mahila se purush), khaana, daal, doodh, chai sab milake, MedlinePlus ke hisaab se. 8 glass ka koi fixed rule nahi.", source: MEDLINE_WATER, tags: ["8 glass water", "how much water", "hydration"] },
+
+  { id: "viral-msg", format: "viral", topic: "Ajinomoto (MSG)", hook: "Ajinomoto zehar hai kya?", claim: "Ajinomoto (MSG) zehar hai, sar dard karta hai.", verdict: "DEPENDS", truth: "FDA MSG ko safe maanta hai. Kuch log reaction batate hain, par studies mein pakka nahi dikha.", why: "Asli problem fast food ka namak aur tel hai. MSG mein bhi sodium hota hai.", tags: ["ajinomoto", "msg", "chinese food"] },
+  { id: "myth-weekend-workout", format: "myth", topic: "weekend workouts", hook: "Sirf weekend pe workout bekaar hai?", myth: "Roz time nahi hai toh weekend ke workout ka koi fayda nahi.", fact: "63,000+ logon ki study (2017) mein hafte ke 1–2 din exercise karne walon ka risk bhi kaafi kam tha.", why: "Weekend pe karo, aur weekday mein chhoti walk jodo. Kuch nahi se kuch better.", tags: ["weekend workout", "busy schedule", "exercise myths"] },
+  { id: "fact-energy-drink", format: "fact", topic: "energy drinks", hook: "Energy drink healthy hai kya?", fact: "Kuch energy drinks mein 2 cup coffee se zyada caffeine", detail: "hota hai, upar se cheeni bhi bahut, NCCIH ke hisaab se. Bacchon aur teens ke liye theek nahi.", source: NCCIH_ENERGY, tags: ["energy drink", "caffeine", "pre workout"], medical: true },
+
+  { id: "viral-fish-milk", format: "viral", topic: "fish and milk", hook: "Machhli ke baad doodh = safed daag?", claim: "Machhli ke baad doodh piya toh safed daag ho jaate hain.", verdict: "JHOOTH", truth: "Safed daag (vitiligo) mein body rang banane wale cells pe hamla karti hai. Khaane ka combination wajah nahi.", why: "Daag dikhe toh skin doctor ko dikhao, nuskhe nahi. Aur ye chhoot ki bimari nahi hai.", tags: ["vitiligo", "fish and milk", "whatsapp forward"], medical: true },
+  { id: "myth-carbs-cut", format: "myth", topic: "cutting carbs", hook: "Roti-chawal band, fat tez jaayega?", myth: "Carbs band karo, fat sabse fast jaayega.", fact: "Same calories pe 2015 ki study mein fat kam wali diet se carb kam wali diet jitna ya usse zyada fat gaya.", why: "Pehle hafte ka bada drop zyada tar paani hota hai. Jo diet nibha sako, wahi kaam karti hai.", tags: ["low carb", "roti chawal", "fat loss myths"] },
+  { id: "fact-coffee-water", format: "fact", topic: "coffee and water", hook: "Chai-coffee se body mein paani kam hota hai?", fact: "Roz 4 cup coffee pe bhi paani ki kami nahi", detail: "dikhi, 2014 ki study mein (50 log, 3 din, coffee vs paani). Normal chai-coffee bhi paani mein ginti hai.", source: KILLER_2014, tags: ["coffee", "dehydration myth", "chai"] },
+
+  { id: "viral-sugar-cancer", format: "viral", topic: "sugar and cancer", hook: "Cheeni khaane se cancer tez failta hai?", claim: "Cheeni khaoge toh cancer tez failega.", verdict: "JHOOTH", truth: "NCI: cheeni khaane se cancer tez failta hai, aisa koi study nahi dikhati.", why: "Haan, zyada cheeni se weight badhta hai, aur zyada weight kuch cancers ka risk badhata hai.", tags: ["sugar", "cancer myths", "health facts"], medical: true },
+  { id: "myth-multivitamin", format: "myth", topic: "multivitamins", hook: "Multivitamin le li, ab khaana chalega?", myth: "Roz multivitamin le lo, khaana jaisa bhi ho chalega.", fact: "USPSTF (2022): dil ki bimari ya cancer rokne ke liye multivitamin ka saboot nahi mila.", why: "Goli thali ki jagah nahi le sakti. Kami ka shak hai toh test karwao, phir doctor.", tags: ["multivitamin", "supplements", "healthy diet"], medical: true },
+  { id: "fact-fat-breath", format: "fact", topic: "where fat goes", hook: "Fat loss mein fat jaata kahan hai?", fact: "84% fat saans se bahar jaata hai", detail: "CO₂ ban ke, baaki 16% paani ban ke, BMJ 2014 ke hisaab se. Pasina fat ka raasta nahi hai.", source: MEERMAN_2014, tags: ["fat loss science", "where does fat go", "sweat myth"] },
+
+  { id: "viral-deodorant", format: "viral", topic: "deodorant", hook: "Deodorant se breast cancer hota hai?", claim: "Deodorant lagane se breast cancer hota hai.", verdict: "JHOOTH", truth: "NCI: deodorant ya antiperspirant se breast cancer ka koi saboot nahi mila.", why: "Asli zaroori baat: gaanth, discharge ya koi badlav dikhe toh turant doctor ko dikhao.", tags: ["deodorant", "breast cancer myths", "whatsapp forward"], medical: true },
+  { id: "myth-alkaline-water", format: "myth", topic: "alkaline water", hook: "Alkaline water se bimari rukti hai?", myth: "Alkaline water body ka pH badal ke bimari rokta hai.", fact: "Body apna blood pH khud tight control mein rakhti hai. Paani ya khaana use nahi badalta.", why: "2016 ke review mein alkaline diet se cancer rokne ka saboot nahi mila. Saada saaf paani kaafi hai.", tags: ["alkaline water", "ph myth", "water myths"], medical: true },
+  { id: "fact-creatine-kidney", format: "fact", topic: "creatine and kidneys", hook: "Creatine se kidney kharab hoti hai?", fact: "Healthy logon mein kidney nuksaan ka saboot nahi", detail: "normal matra mein creatine se, ISSN 2017 review ke hisaab se. Kidney ki bimari hai toh bina doctor ke bilkul nahi.", source: KREIDER_2017, tags: ["creatine", "kidney", "supplement myths"], medical: true },
+
+  { id: "viral-herbal-cancer", format: "viral", topic: "herbal remedies and cancer", hook: "Ye kadha cancer khatam kar dega?", claim: "Ye jadi-booti ka kadha cancer jad se khatam kar dega.", verdict: "JHOOTH", truth: "NCI: koi herbal product cancer ka ilaaj saabit nahi hua. Kuch toh dawaiyon ke saath reaction karte hain.", why: "Ilaaj doctor ke saath chalao. Kuch bhi extra lena ho toh pehle doctor ko batao.", tags: ["herbal remedies", "cancer myths", "fake health news"], medical: true },
+  { id: "myth-sports-drink", format: "myth", topic: "sports drinks", hook: "Sports drink ke bina workout adhoora?", myth: "Har workout mein sports drink chahiye.", fact: "ACSM: ek ghante tak ke normal workout ke liye saada paani kaafi hai.", why: "Lambi, garmi wali, bahut paseene wali exercise mein electrolytes kaam aate hain. Gym ke ek ghante mein nahi.", tags: ["sports drink", "electrolytes", "workout hydration"] },
+  { id: "fact-too-much-water", format: "fact", topic: "too much water", hook: "Jitna zyada paani, utna achha?", fact: "Bahut zyada paani bhi khatarnaak ho sakta hai", detail: ": kam samay mein bahut paani se blood ka sodium gir jaata hai (hyponatremia), MedlinePlus. Pyaas aur peshaab ka rang dekh ke piyo.", source: MEDLINE_HYPONATREMIA, tags: ["drinking water", "hyponatremia", "water myths"], medical: true },
+];
+
 /**
  * The eight lists woven together, viral first: index 0 is a viral claim, 1 a myth, 2 a trend,
  * 3 a form fix, and so on, so every three in a row are three different formats.
  */
 const LISTS = [VIRALS, MYTHS, TRENDS, FORMS, SWAPS, WORKOUTS, MISTAKES, FACTS];
-export const SHORTS: Short[] = [...TRANSFORMATION, ...Array.from({ length: Math.max(...LISTS.map((l) => l.length)) }, (_, i) => LISTS.map((l) => l[i]).filter((s): s is Short => !!s)).flat()];
+const WOVEN: Short[] = [...TRANSFORMATION, ...Array.from({ length: Math.max(...LISTS.map((l) => l.length)) }, (_, i) => LISTS.map((l) => l[i]).filter((s): s is Short => !!s)).flat()];
+/**
+ * Where the myth-busters go: right after the 27 Shorts that were posted or due by 17 Nov 2026, so
+ * they are next in line, and on a day boundary (a multiple of 3) so the days keep three formats.
+ * Every Short's music comes from its place in the bank, and the places from 27 on had never been
+ * posted, so no new Short repeats a track that went out.
+ */
+export const MYTH_BUSTERS_AT = 27;
+export const SHORTS: Short[] = [...WOVEN.slice(0, MYTH_BUSTERS_AT), ...MYTH_BUSTERS, ...WOVEN.slice(MYTH_BUSTERS_AT)];
