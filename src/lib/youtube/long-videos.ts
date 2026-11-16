@@ -268,6 +268,66 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["bp myths hindi", "heart health hinglish", "high blood pressure", "heart attack signs"],
   },
+  // Myth-buster batch (16 Nov 2026): 6 viral claims with a FAKE / ADHURA SACH verdict, a source on
+  // screen for each, charts where numbers help, coach tip, recap and CTA. Animated renderer, own
+  // EDM/trance track (credits in public/youtube/long/long-supplement-myths-10.credits.json).
+  {
+    id: "long-supplement-myths-10",
+    date: "2026-11-21",
+    title: "Supplement Ke 6 Jhooth: Creatine, Whey, Fat Burner | Fact Check Hinglish",
+    intro: "Creatine kidney kharab karta hai? Creatine se baal jhadte hain? Whey matlab steroid? Fat burner se charbi pighalti hai?\nGym mein sabse zyada suni jaane wali 6 supplement baatein, lab report style mein test ki: har ek ka verdict (FAKE ya ADHURA SACH), research ke saath. Kidney, liver ya koi bimari ho, ya dawai chal rahi ho, toh koi bhi supplement doctor se pooch ke hi lo.",
+    chapters: [
+      ["0:00", "Intro: lab report"],
+      ["0:16", "1. Creatine aur kidney"],
+      ["0:43", "2. Creatine aur baal"],
+      ["1:18", "3. Whey = steroid?"],
+      ["1:51", "4. Zyada protein aur kidney"],
+      ["2:27", "5. Fat burner pills"],
+      ["2:55", "6. Multivitamin vs khaana"],
+      ["3:23", "Recap: 6 verdict"],
+      ["3:36", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["Kreider et al. 2017, ISSN position stand on creatine", "https://pubmed.ncbi.nlm.nih.gov/28615996/"],
+      ["van der Merwe et al. 2009, creatine and DHT in rugby players", "https://pubmed.ncbi.nlm.nih.gov/19741313/"],
+      ["Lak et al. 2025, creatine and hair: randomised trial", "https://pubmed.ncbi.nlm.nih.gov/40265319/"],
+      ["NIDA, Anabolic steroids", "https://nida.nih.gov/research-topics/anabolic-steroids"],
+      ["Devries et al. 2018, protein intake and kidney function (meta-analysis)", "https://pubmed.ncbi.nlm.nih.gov/30383278/"],
+      ["USDA FoodData Central (protein per 100 g)", "https://fdc.nal.usda.gov/"],
+      ["FDA, Questions and answers on dietary supplements", "https://www.fda.gov/food/information-consumers-using-dietary-supplements/questions-and-answers-dietary-supplements"],
+      ["USPSTF 2022, vitamin and mineral supplements (JAMA)", "https://pubmed.ncbi.nlm.nih.gov/35727271/"],
+    ],
+    tags: ["supplement myths hindi", "creatine side effects hindi", "whey protein steroid", "fat burner sach", "fact check hinglish"],
+  },
+  // Myth-buster batch (16 Nov 2026): 6 viral claims with a FAKE / ADHURA SACH verdict, a source on
+  // screen for each, charts where numbers help, coach tip, recap and CTA. Animated renderer, own
+  // EDM/trance track (credits in public/youtube/long/long-weight-loss-hacks-11.credits.json).
+  {
+    id: "long-weight-loss-hacks-11",
+    date: "2026-11-23",
+    title: "Weight Loss Ke 6 Viral Hacks: Jeera Paani, ACV, Detox | Sach Ya Jhooth?",
+    intro: "Subah jeera ya nimbu-shahad paani se charbi pighalti hai? Apple cider vinegar se pet andar? Jitna paseena utni charbi? 3 din ka detox?\nFamily group mein aane wale 6 weight loss forwards ka fact check, research aur charts ke saath. Diabetes, thyroid, pregnancy ya koi dawai chal rahi ho toh diet badalne se pehle doctor se baat karo.",
+    chapters: [
+      ["0:00", "Intro: family group forwards"],
+      ["0:16", "1. Jeera / nimbu-shahad paani"],
+      ["0:52", "2. Apple cider vinegar"],
+      ["1:18", "3. Paseena = charbi?"],
+      ["1:58", "4. Detox juice cleanse"],
+      ["2:26", "5. Carbs band karo"],
+      ["3:02", "6. Breakfast skip"],
+      ["3:28", "Recap: 6 verdict"],
+      ["3:41", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["Dennis et al. 2010, water before meals and weight loss", "https://pubmed.ncbi.nlm.nih.gov/19661958/"],
+      ["Launholt et al. 2020, vinegar and health (review)", "https://pubmed.ncbi.nlm.nih.gov/32170375/"],
+      ["Meerman & Brown 2014, When somebody loses weight, where does the fat go? (BMJ)", "https://pubmed.ncbi.nlm.nih.gov/25516540/"],
+      ["NCCIH, Detoxes and cleanses", "https://www.nccih.nih.gov/health/detoxes-and-cleanses-what-you-need-to-know"],
+      ["Hall et al. 2015, cutting fat vs cutting carbs (Cell Metabolism)", "https://pubmed.ncbi.nlm.nih.gov/26278052/"],
+      ["Sievert et al. 2019, breakfast and weight (BMJ meta-analysis)", "https://pubmed.ncbi.nlm.nih.gov/30700403/"],
+    ],
+    tags: ["weight loss myths hindi", "jeera water weight loss", "apple cider vinegar sach", "detox fact check", "fat loss hinglish"],
+  },
   {
     id: "long-diabetes-myths-7",
     date: "2026-11-24",
@@ -287,6 +347,63 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     sources: [["WHO fact sheet, Diabetes", "https://www.who.int/news-room/fact-sheets/detail/diabetes"]],
     tags: ["diabetes myths hindi", "sugar ki bimari", "type 2 diabetes hinglish", "blood sugar"],
+  },
+  // Myth-buster batch (16 Nov 2026): 6 viral claims with a FAKE / ADHURA SACH verdict, a source on
+  // screen for each, charts where numbers help, coach tip, recap and CTA. Animated renderer, own
+  // EDM/trance track (credits in public/youtube/long/long-whatsapp-forwards-12.credits.json).
+  {
+    id: "long-whatsapp-forwards-12",
+    date: "2026-11-25",
+    title: "WhatsApp Ke 6 Viral Health Forwards: Microwave, Ajinomoto, Cancer | Fact Check",
+    intro: "Microwave ka khaana cancer deta hai? Ajinomoto zehar hai? Machhli ke baad doodh se safed daag? Cheeni se cancer tez failta hai?\nBreaking news style mein 6 viral WhatsApp health forwards ka fact check, FDA, NCI aur MedlinePlus ke saath. Forward karne se pehle source dekho. Cancer ka ilaaj sirf doctor ki salah se; jadi-booti ke bharose ilaaj mat chhodo.",
+    chapters: [
+      ["0:00", "Intro: fact check desk"],
+      ["0:16", "1. Microwave aur cancer"],
+      ["0:42", "2. Ajinomoto (MSG)"],
+      ["1:09", "3. Machhli + doodh = safed daag?"],
+      ["1:43", "4. Cheeni aur cancer"],
+      ["2:10", "5. Deodorant aur breast cancer"],
+      ["2:38", "6. Jadi-booti se cancer khatam?"],
+      ["3:04", "Recap: 6 verdict"],
+      ["3:17", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["FDA, Microwave oven radiation", "https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-oven-radiation"],
+      ["FDA, Questions and answers on monosodium glutamate (MSG)", "https://www.fda.gov/food/food-additives-petitions/questions-and-answers-monosodium-glutamate-msg"],
+      ["MedlinePlus, Vitiligo", "https://medlineplus.gov/ency/article/000831.htm"],
+      ["National Cancer Institute, Common cancer myths and misconceptions", "https://www.cancer.gov/about-cancer/causes-prevention/risk/myths"],
+    ],
+    tags: ["whatsapp forward fact check", "microwave cancer sach", "ajinomoto msg sach", "health myths hindi", "fake news health"],
+  },
+  // Myth-buster batch (16 Nov 2026): 6 viral claims with a FAKE / ADHURA SACH verdict, a source on
+  // screen for each, charts where numbers help, coach tip, recap and CTA. Animated renderer, own
+  // EDM/trance track (credits in public/youtube/long/long-gym-rumours-13.credits.json).
+  {
+    id: "long-gym-rumours-13",
+    date: "2026-11-27",
+    title: "Gym Ke 6 Rumours: Squats, Cardio, Heavy Weights | Myth vs Fact",
+    intro: "Squats ghutne kharab karte hain? Teenagers weights uthayenge toh height rukegi? Cardio se muscle khatam? Sirf heavy weight se muscle?\nScoreboard style mein gym ke 6 rumours ka fact check, sports science research ke saath. Dard, purani chot ya koi bimari ho toh pehle doctor ya physio se baat karo.",
+    chapters: [
+      ["0:00", "Intro: myth vs fact scoreboard"],
+      ["0:16", "1. Squats aur ghutne"],
+      ["0:43", "2. Teenagers aur height"],
+      ["1:09", "3. Cardio vs muscle"],
+      ["1:50", "4. Sirf heavy weight?"],
+      ["2:26", "5. Stretching aur injury"],
+      ["2:53", "6. Weekend workout"],
+      ["3:28", "Recap: 6 verdict"],
+      ["3:41", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["Hartmann et al. 2013, squat depth and knee safety (review)", "https://pubmed.ncbi.nlm.nih.gov/23821469/"],
+      ["Faigenbaum et al. 2009, NSCA youth resistance training position statement", "https://pubmed.ncbi.nlm.nih.gov/19620931/"],
+      ["Schumann et al. 2022, concurrent training (meta-analysis, 43 studies)", "https://pubmed.ncbi.nlm.nih.gov/34757594/"],
+      ["Schoenfeld et al. 2017, low vs high load training (meta-analysis)", "https://pubmed.ncbi.nlm.nih.gov/28834797/"],
+      ["Behm et al. 2016, stretching and performance/injury (review)", "https://pubmed.ncbi.nlm.nih.gov/26642915/"],
+      ["O'Donovan et al. 2017, weekend warrior activity and mortality", "https://pubmed.ncbi.nlm.nih.gov/28097313/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["gym myths hindi", "squats knee pain sach", "cardio muscle loss", "gym rumours", "workout fact check"],
   },
   {
     id: "long-obesity-myths-7",
@@ -310,6 +427,37 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["CDC, Losing Weight", "https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html"],
     ],
     tags: ["obesity myths hindi", "weight loss hinglish", "bmi waist", "motapa kaise kam kare"],
+  },
+  // Myth-buster batch (16 Nov 2026): 6 viral claims with a FAKE / ADHURA SACH verdict, a source on
+  // screen for each, charts where numbers help, coach tip, recap and CTA. Animated renderer, own
+  // EDM/trance track (credits in public/youtube/long/long-water-drink-myths-14.credits.json).
+  {
+    id: "long-water-drink-myths-14",
+    date: "2026-11-29",
+    title: "Paani Aur Drinks Ke 6 Jhooth: 8 Glass, Coffee, Energy Drink | Fact Check",
+    intro: "Har insaan ko theek 8 glass paani? Chai-coffee se paani ki kami? Energy drink healthy? Alkaline water se cancer rukta hai?\nSehat ki adaalat mein paani aur drinks ke 6 daave, har ek ka verdict research ke saath. Kidney ya dil ki bimari ho toh paani kitna peena hai, apne doctor se poochho.",
+    chapters: [
+      ["0:00", "Intro: sehat ki adaalat"],
+      ["0:16", "1. Roz 8 glass paani?"],
+      ["0:52", "2. Chai-coffee aur paani"],
+      ["1:18", "3. Energy drinks"],
+      ["1:58", "4. Alkaline water"],
+      ["2:24", "5. Sports drinks"],
+      ["2:50", "6. Jitna zyada paani utna achha?"],
+      ["3:18", "Recap: 6 verdict"],
+      ["3:31", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["Valtin 2002, Drink at least eight glasses of water a day? Really?", "https://pubmed.ncbi.nlm.nih.gov/12376390/"],
+      ["MedlinePlus, Water in diet", "https://medlineplus.gov/ency/article/002471.htm"],
+      ["Killer et al. 2014, coffee and hydration", "https://pubmed.ncbi.nlm.nih.gov/24416202/"],
+      ["NCCIH, Energy drinks", "https://www.nccih.nih.gov/health/energy-drinks"],
+      ["Fenton & Huang 2016, alkaline diet and cancer (systematic review)", "https://pubmed.ncbi.nlm.nih.gov/27297008/"],
+      ["ACSM 2007, Exercise and fluid replacement", "https://pubmed.ncbi.nlm.nih.gov/17277604/"],
+      ["MedlinePlus, Hyponatremia (low blood sodium)", "https://medlineplus.gov/ency/article/000394.htm"],
+      ["Hew-Butler et al. 2015, exercise-associated hyponatremia consensus", "https://pubmed.ncbi.nlm.nih.gov/26227507/"],
+    ],
+    tags: ["8 glass water myth", "coffee dehydration sach", "energy drink side effects hindi", "alkaline water fact check", "paani kitna piye"],
   },
   {
     id: "long-alcohol-tobacco-myths-8",
