@@ -8,6 +8,8 @@ export function generateStaticParams() {
   return postsIn("hi").map((p) => ({ slug: p.slug }));
 }
 export const dynamicParams = false;
+// Re-render once a day, so a new YouTube video on the topic shows up without a deploy.
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

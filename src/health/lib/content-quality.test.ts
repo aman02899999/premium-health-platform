@@ -1,4 +1,7 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+// The disease page now shows a YouTube box whose loader is server-only.
+vi.mock("server-only", () => ({}));
 import { DISEASES } from "@/health/data/diseases-index";
 import { getDiseaseDetail } from "@/health/data/diseases-detail";
 import { DISEASE_REWRITES } from "@/health/data/diseases-rewrites";

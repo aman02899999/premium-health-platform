@@ -8,6 +8,7 @@ import { SITE } from "@/health/lib/site";
 import { absoluteUrl } from "@/lib/site";
 import { HEALTH_ORG_ID, breadcrumbJsonLd, faqJsonLd, healthPublisher } from "@/health/lib/seo";
 import { postPath, type PostLang, type PostMeta } from "@/health/lib/post-types";
+import { RelatedVideo } from "@/components/youtube/RelatedVideo";
 import { PostBody } from "./PostBody";
 
 const T = {
@@ -156,6 +157,8 @@ export function PostArticle({ post, blocks, other, related }: { post: PostMeta; 
       <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
         <div className="min-w-0 max-w-3xl">
           <PostBody blocks={blocks} lang={lang} />
+
+          <RelatedVideo text={[post.title, post.category, ...post.tags].join(" · ")} lang={lang} className="mt-10" />
 
           <section aria-labelledby="sources" className="mt-12 rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
             <h2 id="sources" className="font-display text-xl font-black text-stone-900 dark:text-white">{t.sources}</h2>

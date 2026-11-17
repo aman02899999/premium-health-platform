@@ -14,6 +14,7 @@ import { ShareButtons } from "@/components/blog/ShareButtons";
 import { Toc } from "@/components/blog/Toc";
 import { PostCard } from "@/components/home/Blocks";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { RelatedVideo } from "@/components/youtube/RelatedVideo";
 import { SmartImage } from "@/components/ui/SmartImage";
 
 export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
@@ -121,6 +122,7 @@ export default async function PostPage({ params }: Props) {
                 <Markdown blocks={part} cta={{ whatsapp: whatsappHref(c.business), phone: telHref(c.business.phone) }} />
               </Fragment>
             ))}
+            <RelatedVideo text={[post.title, post.category, ...post.tags].join(" · ")} tone="dark" className="mt-10" />
             {post.tags.length > 0 && (
               <div className="mt-10 flex flex-wrap gap-2">
                 {post.tags.map((t) => (

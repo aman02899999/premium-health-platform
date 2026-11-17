@@ -23,6 +23,7 @@ import { uncropped } from "@/lib/uncropped";
 import { PostArticle, postMetadata } from "@/health/components/posts/PostArticle";
 import { findPost, postBlocks, translation } from "@/health/lib/posts";
 import { reviewLine } from "@/health/lib/review";
+import { RelatedVideo } from "@/components/youtube/RelatedVideo";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -33,6 +34,8 @@ export function generateStaticParams() {
 // loading.tsx streams the response shell with a 200 before notFound() throws,
 // they were served as soft 404s (HTTP 200 with "not found" content).
 export const dynamicParams = false;
+// Re-render once a day, so a new YouTube video on the topic shows up without a deploy.
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -199,6 +202,8 @@ export default async function BlogArticlePage({ params }: { params: Promise<{ sl
               </div>
             ))}
           </div>
+
+          <RelatedVideo text={[a.title, a.category, ...a.tags, ...keywords].join(" · ")} className="mt-5" />
 
           {a.tags.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-1.5" aria-label="Tags">
