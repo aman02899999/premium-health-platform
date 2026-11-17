@@ -13,7 +13,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ file: s
   if (!(await isAdmin())) return new Response("Unauthorized", { status: 401 });
   const id = (await params).file.replace(/\.mp4$/i, "");
   if (!/^[0-9a-f-]{36}$/i.test(id)) return new Response("Not found", { status: 404 });
-  const { rows } = await pool.query<{ id: string; seq: string; draft: AnswerDraft | null }>(`select id, seq, draft from public.youtube_queue where id = $1`, [id]);
+  const { rows } = await pool.query<{ id: string; seq: string; draft: AnswerDraft | null }>(`select id, seq, draft from public.youtube_queue where id = $1`, [id]).catch(() => ({ rows: [] }));
   const r = rows[0];
   if (!r?.draft) return new Response("Not found (no draft yet)", { status: 404 });
   try {

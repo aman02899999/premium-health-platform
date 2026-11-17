@@ -3,7 +3,8 @@
 // by themselves; a draft that fails a check, or that the AI skipped, waits in Admin for a person.
 // YOUTUBE_QUEUE_AUTO=off sends every draft to Admin for approval instead. Pure, so it is tested
 // without YouTube, the AI or the database.
-import type { Short } from "./shorts-bank";
+import type { Short, Source, Verdict } from "./shorts-bank";
+import { isTrustedSource } from "./trends";
 
 export type QueueKind = "answer" | "trend";
 export type QueueStatus = "draft" | "approved" | "used" | "rejected";
@@ -19,6 +20,9 @@ export type AnswerDraft = {
   topic: string;
   tags: string[];
   medical: boolean;
+  /** Trend fact-checks only: the verdict and the trusted source behind it. */
+  verdict?: Verdict;
+  source?: Source;
 };
 
 // ---------- picking the comment ----------
@@ -56,7 +60,7 @@ const BANNED = /\b(cure[sd]?|ilaaj|guarantee[d]?|guaranteed|pakka result|100%|\d
 const str = (v: unknown, min: number, max: number) => (typeof v === "string" && v.trim().length >= min && v.trim().length <= max ? v.replace(/\s+/g, " ").trim() : null);
 
 /** Cleans a draft from the AI or the Admin form. Returns the reasons when it can't go on a Short. */
-export function checkAnswerDraft(raw: unknown): { ok: true; draft: AnswerDraft } | { ok: false; errors: string[] } {
+export function checkAnswerDraft(raw: unknown, kind: QueueKind = "answer"): { ok: true; draft: AnswerDraft } | { ok: false; errors: string[] } {
   const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
   const errors: string[] = [];
   const need = (k: string, min: number, max: number) => {
@@ -78,12 +82,27 @@ export function checkAnswerDraft(raw: unknown): { ok: true; draft: AnswerDraft }
   const all = [hook, question, answer, why, ask, ...tips].join(" ");
   const banned = BANNED.exec(all);
   if (banned) errors.push(`says "${banned[0]}": no cures, guarantees, doses or quick-fix promises`);
+  let verdict: Verdict | undefined;
+  let source: Source | undefined;
+  if (kind === "trend") {
+    verdict = r.verdict === "SACH" || r.verdict === "JHOOTH" || r.verdict === "DEPENDS" ? r.verdict : undefined;
+    if (!verdict) errors.push("verdict: SACH, JHOOTH or DEPENDS");
+    const s = (r.source && typeof r.source === "object" ? r.source : {}) as Record<string, unknown>;
+    const name = str(s.name, 3, 80);
+    const url = typeof s.url === "string" ? s.url.trim() : "";
+    if (!name || !isTrustedSource(url)) errors.push("source: a WHO, ICMR-NIN, NHS, CDC, NIH or similar page");
+    else source = { name, url };
+  }
   if (errors.length) return { ok: false, errors };
-  return { ok: true, draft: { hook, question, answer, why, tips: [tips[0], tips[1]], ask, topic, tags, medical: r.medical === true } };
+  return { ok: true, draft: { hook, question, answer, why, tips: [tips[0], tips[1]], ask, topic, tags, medical: r.medical === true, ...(verdict ? { verdict } : {}), ...(source ? { source } : {}) } };
 }
 
 /** The queue item as a Short the renderer already knows. Ids start with "q-" so they never clash with the bank. */
 export function answerShort(itemId: string, d: AnswerDraft): Short {
+  if (d.verdict && d.source) {
+    // A trend fact-check plays as a "viral claim" Short: the claim, the verdict, the real reason.
+    return { id: `q-${itemId.slice(0, 8)}`, format: "viral", topic: d.topic, hook: d.hook, tags: d.tags, medical: d.medical, claim: d.question, verdict: d.verdict, truth: d.answer, why: d.why, extra: { tips: d.tips, ask: d.ask }, cite: d.source };
+  }
   return {
     id: `q-${itemId.slice(0, 8)}`,
     format: "answer",

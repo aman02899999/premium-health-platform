@@ -266,7 +266,7 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     "",
     `💬 ${extraFor(s).ask}`,
     "",
-    ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : []),
+    ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : s.cite ? [`Source: ${s.cite.name}, ${s.cite.url}`, ""] : []),
     `${MEDICAL_LINE}${s.medical ? ` ${DOCTOR_LINE}` : ""}`,
     "",
     "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo, roz nayi fitness tip ke liye.",

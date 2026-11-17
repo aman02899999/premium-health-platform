@@ -10,7 +10,7 @@ import { SITE_URL, instagramHref } from "@/lib/site";
 import { getContent } from "@/lib/content/store";
 import { growChannel, type GrowReport, type Links, type Store } from "./engagement";
 import { backfillTags, listChannelVideos, type TagsReport } from "./tags-backfill";
-import { nextApproved, queuedShort, runAnswerJob, type AnswerReport } from "./queue";
+import { nextApproved, queuedShort, runAnswerJob, runTrendJob, type AnswerReport, type TrendReport } from "./queue";
 import { QUEUE_SLOT } from "./queue-core";
 import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
@@ -391,4 +391,10 @@ export async function runCommentAnswers(now: Date, opts: { force?: boolean; dry?
   const at = await accessToken(refresh, f);
   if (!at.ok) return `failed: ${at.error}`;
   return runAnswerJob(at.token, now, opts, f);
+}
+
+/** The daily trend fact-check (same cron as the comment answers). Needs no YouTube sign-in to draft. */
+export async function runTrendShorts(opts: { dry?: boolean } = {}): Promise<string | TrendReport> {
+  if (!youtubeShortsOn()) return "off";
+  return runTrendJob(opts);
 }

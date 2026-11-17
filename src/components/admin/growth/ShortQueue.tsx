@@ -68,6 +68,21 @@ function Item({ item, onDone }: { item: QueueItem; onDone: () => void }) {
           <Field label="Coach tip 1" value={d.tips[0]} onChange={(v) => set("tips", [v, d.tips[1]])} rows={2} max={120} />
           <Field label="Coach tip 2" value={d.tips[1]} onChange={(v) => set("tips", [d.tips[0], v])} rows={2} max={120} />
           <Field label="Tags (comma separated)" value={d.tags.join(", ")} onChange={(v) => set("tags", v.split(",").map((t) => t.trim()).filter(Boolean))} max={160} />
+          {item.kind === "trend" && (
+            <>
+              <label className="block text-xs text-white/60">
+                Verdict
+                <select value={d.verdict ?? ""} onChange={(e) => set("verdict", (e.target.value || undefined) as AnswerDraft["verdict"])} className="field mt-1 text-sm">
+                  <option value="">Choose…</option>
+                  <option value="SACH">SACH (true)</option>
+                  <option value="JHOOTH">JHOOTH (false)</option>
+                  <option value="DEPENDS">DEPENDS</option>
+                </select>
+              </label>
+              <Field label="Source name (WHO, ICMR-NIN, NHS…)" value={d.source?.name ?? ""} onChange={(v) => set("source", { name: v, url: d.source?.url ?? "" })} max={80} />
+              <Field label="Source link (must open)" value={d.source?.url ?? ""} onChange={(v) => set("source", { name: d.source?.name ?? "", url: v })} max={300} />
+            </>
+          )}
           <label className="flex items-center gap-2 text-xs text-white/70">
             <input type="checkbox" checked={d.medical} onChange={(e) => set("medical", e.target.checked)} /> Health condition (adds &quot;ask your doctor&quot;)
           </label>
@@ -124,7 +139,7 @@ export function ShortQueue() {
     <div className="mt-5 border-t border-white/10 pt-4">
       <h3 className="text-sm font-bold text-white/80">Viewer-question and trend Shorts</h3>
       <p className="mt-1 text-xs text-white/60">
-        Every Sunday the site picks the best question from your YouTube comments and writes an answer Short. If it passes every check (no cures, guarantees, doses or quick-fix promises), it posts by itself in the next 1 pm slot and the site replies under the viewer&apos;s comment with the link. Anything held back waits here for you to fix and Approve, or Reject. Set YOUTUBE_QUEUE_AUTO=off to approve every one yourself.
+        Every Sunday the site picks the best question from your YouTube comments and writes an answer Short. Every day it also checks Google Trends for India, and when a fitness or diet trend shows up it writes a fact-check Short with a WHO, ICMR-NIN or NHS-type source. If a Short passes every check (no cures, guarantees, doses or quick-fix promises), it posts by itself in the next 1 pm slot and the site replies under the viewer&apos;s comment with the link. Anything held back waits here for you to fix and Approve, or Reject. Set YOUTUBE_QUEUE_AUTO=off to approve every one yourself.
       </p>
       {error && <p className="mt-2 text-xs text-amber-200">{error}</p>}
       {items && items.length === 0 && <p className="mt-2 text-xs text-white/50">Nothing yet. The first draft comes on Sunday.</p>}

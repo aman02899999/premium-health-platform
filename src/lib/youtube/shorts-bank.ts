@@ -11,7 +11,7 @@ export type Source = { name: string; url: string };
 export type Verdict = "JHOOTH" | "SACH" | "DEPENDS";
 
 /** `extra` carries the coach's tips for Shorts written outside this file (the Admin-approved queue). */
-type Base = { id: string; topic: string; hook: string; tags: string[]; medical?: boolean; extra?: Extra };
+type Base = { id: string; topic: string; hook: string; tags: string[]; medical?: boolean; extra?: Extra; cite?: Source };
 export type Short =
   | (Base & { format: "viral"; claim: string; verdict: Verdict; truth: string; why: string })
   | (Base & { format: "trend"; trend: string; what: string; good: string; careful: string })
