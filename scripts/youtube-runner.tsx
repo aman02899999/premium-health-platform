@@ -9,7 +9,10 @@ import { uploadVideo, type UploadResult, type VideoMeta } from "@/lib/youtube/cl
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { setThumbnail } from "@/lib/youtube/client";
+import { hindiThumbnail } from "@/lib/youtube/hindi-thumb";
 import type { RunnerJob, RunnerLongJob } from "@/lib/youtube/automation";
+import type { RunnerClipJob } from "@/lib/youtube/clips";
+import { renderClip } from "@/lib/youtube/clips-render";
 import { RELEASE_INTRO, noteEntry, packFileName, releaseTag } from "@/lib/rumble/pack";
 
 const SITE = (process.env.SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, "");
@@ -53,7 +56,8 @@ async function runSlot(slot: number): Promise<boolean> {
     // A failed sign-in is recorded by the site; make the run red so GitHub emails the owner.
     return !String(claim.status).startsWith("failed");
   }
-  const short = SHORTS[job.index];
+  // Queue Shorts (a viewer's question, a trend) come with their script; bank Shorts are read from this checkout.
+  const short = job.script ?? SHORTS[job.index];
   let result: UploadResult;
   if (!short || short.id !== job.shortId) {
     result = { ok: false, error: `Runner: script ${job.shortId} not found in this checkout`, quota: false };
@@ -99,13 +103,44 @@ async function runLong(): Promise<boolean> {
     await keepForRumble(await readFile(path.join(process.cwd(), "public", job.file)), "long", job.videoId, job.meta, `https://www.youtube.com/watch?v=${result.id}`);
     // A nice-to-have: an unverified channel can't set thumbnails, and the video is already up.
     try {
-      const t = await setThumbnail(job.token, result.id, await readFile(path.join(process.cwd(), "public", job.thumb)));
+      const jpeg = await readFile(path.join(process.cwd(), "public", job.thumb));
+      // Hindi-first: a Devanagari headline on the thumbnail when the video has one; the plain one if that fails.
+      const thumb = job.hindi ? await hindiThumbnail(jpeg, job.hindi).catch(() => jpeg) : jpeg;
+      const t = await setThumbnail(job.token, result.id, thumb);
       if (!t.ok) console.log(`long ${job.videoId}: thumbnail not set: ${t.error.slice(0, 120)}`);
     } catch (err) {
       console.log(`long ${job.videoId}: thumbnail not set: ${(err as Error).message.slice(0, 120)}`);
     }
   }
   return true;
+}
+
+// The owner's phone clips (Admin → Social): at most one per run, so a big clip never delays the Shorts.
+async function runClip(): Promise<boolean> {
+  const claim = await call({ action: "claim-clip" });
+  const job = claim.job as RunnerClipJob | undefined;
+  if (!job) {
+    console.log(`clip: ${String(claim.status)}`);
+    return !String(claim.status).startsWith("failed");
+  }
+  let result: UploadResult;
+  let uploadedFinal = false;
+  try {
+    const res = await fetch(job.rawUrl);
+    if (!res.ok) throw new Error(`download raw clip: HTTP ${res.status}`);
+    const video = await renderClip(Buffer.from(await res.arrayBuffer()), job.input, job.index);
+    result = await uploadVideo(job.token, video, job.meta);
+    // The finished file goes back to storage so Instagram / Facebook can fetch it later.
+    const put = await fetch(job.finalUpload, { method: "PUT", headers: { "content-type": "video/mp4", "x-upsert": "true" }, body: new Uint8Array(video) }).catch(() => null);
+    uploadedFinal = !!put?.ok;
+    if (!uploadedFinal) console.log(`clip ${job.id.slice(0, 8)}: final file not stored (HTTP ${put?.status ?? "error"}), so no Reel copy`);
+    if (result.ok) await keepForRumble(video, "clip", job.id.slice(0, 8), job.meta, result.url);
+  } catch (err) {
+    result = { ok: false, error: `Clip: ${(err as Error).message}`.slice(0, 300), quota: false };
+  }
+  await call({ action: "result-clip", id: job.id, result, uploadedFinal });
+  console.log(`clip ${job.id.slice(0, 8)}: ${result.ok ? `published ${result.url}` : `failed: ${result.error}`}`);
+  return result.ok;
 }
 
 async function main() {
@@ -116,6 +151,7 @@ async function main() {
   for (const s of slots) ok = (await runSlot(s)) && ok;
   // Long videos go out with the midday slot, and the late run retries any that failed.
   if (arg === "2" || arg === "all") ok = (await runLong()) && ok;
+  ok = (await runClip()) && ok;
   if (!ok) process.exitCode = 1;
 }
 

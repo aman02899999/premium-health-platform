@@ -4,6 +4,8 @@
 // sends back is kept in public.integration_tokens (never in chat, never in the code).
 // `fetch` is passed in, so every call is tested without the network.
 
+import { UPLOAD_LANGUAGE } from "./hindi";
+
 export type Fetch = typeof fetch;
 
 // force-ssl (added 17 Nov 2026) lets the daily tags job edit tags on videos already uploaded.
@@ -84,7 +86,8 @@ function apiError(json: unknown, status: number): { error: string; quota: boolea
 /** Uploads one video in two steps (start a resumable session, then send the bytes). */
 export async function uploadVideo(token: string, video: Buffer, meta: VideoMeta, f: Fetch = fetch): Promise<UploadResult> {
   const body = {
-    snippet: { title: meta.title, description: meta.description, tags: meta.tags, categoryId: "17", defaultLanguage: "en" },
+    // Hinglish videos for a Hindi-searching audience (hindi.ts): YouTube is told they are Hindi.
+    snippet: { title: meta.title, description: meta.description, tags: meta.tags, categoryId: "17", defaultLanguage: UPLOAD_LANGUAGE, defaultAudioLanguage: UPLOAD_LANGUAGE },
     status: { privacyStatus: meta.privacy, selfDeclaredMadeForKids: false, embeddable: true, license: "youtube", containsSyntheticMedia: false },
   };
   const start = await f(UPLOAD_URL, {

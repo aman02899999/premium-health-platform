@@ -4,6 +4,7 @@ import type { PostBiz } from "@/lib/growth/daily-posts";
 import { SITE_URL, YOUTUBE_CHANNEL } from "@/lib/site";
 import { SHORTS, type Format, type Short, type Verdict } from "./shorts-bank";
 import { EXTRAS, type Extra } from "./shorts-extra";
+import { hindiKeyword, withHindi } from "./hindi";
 
 export const MEDICAL_LINE = "Ye general jaankari hai, medical advice nahi.";
 export const DOCTOR_LINE = "Koi health problem hai toh apne doctor ki salah maano.";
@@ -23,6 +24,7 @@ export const KICKER: Record<Format, string> = {
   workout: "GHAR PE WORKOUT",
   mistakes: "3 GALTIYAN",
   fact: "QUICK FACT",
+  answer: "AAPNE POOCHA · JAWAB YAHAN",
 };
 
 export type Tone = "red" | "green" | "gold" | "plain";
@@ -147,6 +149,12 @@ function body(s: Short): [Scene, number][] {
         [{ kind: "big", label: "KYA AAP JAANTE HO?", text: s.fact, sub: s.topic.toUpperCase() }, readTime(s.fact, 2.8, 3.5)],
         [{ kind: "card", label: "MATLAB KYA HUA", tone: "gold", text: `${s.fact} ${s.detail}`, sub: `Source: ${s.source.name}` }, readTime(`${s.fact} ${s.detail}`, 3.6, 6)],
       ];
+    case "answer":
+      return [
+        [{ kind: "card", label: "AAPKA SAWAAL", tone: "plain", text: s.question, sub: "YouTube comment se" }, readTime(s.question, 3)],
+        [{ kind: "card", label: "SEEDHA JAWAB", tone: "green", text: s.answer }, readTime(s.answer, 3.2)],
+        [{ kind: "card", label: "KYUN", tone: "gold", text: s.why }, readTime(s.why, 2.8)],
+      ];
   }
 }
 
@@ -171,11 +179,13 @@ function keyLine(s: Short): string {
       return `${s.rounds} round${s.rounds > 1 ? "s" : ""}: ${s.moves.filter(([m]) => m !== "Rest").map(([m]) => m.replace(/\s*\(.*\)|, each.*$/g, "")).join(", ")}`;
     case "mistakes":
       return s.fix;
+    case "answer":
+      return s.answer;
   }
 }
 
 export const extraFor = (s: Short): Extra => {
-  const e = EXTRAS[s.id];
+  const e = s.extra ?? EXTRAS[s.id];
   if (!e) throw new Error(`No tips written for ${s.id}`);
   return e;
 };
@@ -212,11 +222,12 @@ export function shortScenes(s: Short): Timed[] {
 
 const clean = (s: string) => s.replace(/[<>]/g, "").replace(/\s+/g, " ").trim();
 
-/** Title: the hook, then #Shorts, inside YouTube's 100 characters. */
+/** Title: the hook, the Devanagari search words when they fit, then #Shorts, inside YouTube's 100 characters. */
 export function shortTitle(s: Short): string {
   const tail = " #shorts";
   const hook = clean(s.hook);
-  return (hook.length + tail.length <= 100 ? hook : `${hook.slice(0, 100 - tail.length - 1).trimEnd()}…`) + tail;
+  if (hook.length + tail.length > 100) return `${hook.slice(0, 100 - tail.length - 1).trimEnd()}…${tail}`;
+  return withHindi(hook, hindiKeyword(s), tail);
 }
 
 function summary(s: Short): string[] {
@@ -237,6 +248,8 @@ function summary(s: Short): string[] {
       return [...s.items.map((t, i) => `${i + 1}. ${t}`), `Fix: ${s.fix}`];
     case "fact":
       return [`${s.fact} ${s.detail}`];
+    case "answer":
+      return [`❓ Sawaal: ${s.question}`, `✅ Jawab: ${s.answer}`, s.why];
   }
 }
 
@@ -255,7 +268,7 @@ export function shortDescription(s: Short, biz: PostBiz): string {
     "",
     `💬 ${extraFor(s).ask}`,
     "",
-    ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : []),
+    ...(s.format === "fact" ? [`Source: ${s.source.name}, ${s.source.url}`, ""] : s.cite ? [`Source: ${s.cite.name}, ${s.cite.url}`, ""] : []),
     `${MEDICAL_LINE}${s.medical ? ` ${DOCTOR_LINE}` : ""}`,
     "",
     "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo, roz nayi fitness tip ke liye.",

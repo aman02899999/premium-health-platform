@@ -4,6 +4,7 @@ import { MEDIA_ONLY_BY_URL } from "./src/lib/media-by-url";
 
 const REEL_FILES = [
   "./src/lib/social/fonts/*.ttf",
+  "./src/lib/social/fonts/*.woff",
   "./public/brand/logo-mark.png",
   "./public/library/covers/*.webp",
   "./public/gallery/*.webp",
@@ -29,6 +30,8 @@ const nextConfig: NextConfig = {
     "/api/cron/social": REEL_FILES,
     "/api/social/card/[file]": ["./src/lib/social/fonts/*.ttf", "./public/brand/logo-mark.png", "./public/gallery/*.webp"],
     "/api/admin/growth": REEL_FILES,
+    // Long-video thumbnails get a Devanagari headline (src/lib/youtube/hindi-thumb.ts).
+    "/api/cron/youtube": ["./src/lib/social/fonts/*.woff"],
   },
   // The long YouTube videos (public/youtube/, ~13 MB each) are served as static files and fetched by
   // URL; a dynamic fs path elsewhere makes the tracer copy all of public/ into functions, which pushed

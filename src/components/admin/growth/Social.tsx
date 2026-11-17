@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Check, Clapperboard, Copy, ExternalLink, X } from "lucide-react";
 import type { KitText } from "@/lib/social/app-kit";
 import type { SocialStatus } from "@/lib/social/automation";
+import { ShortQueue } from "./ShortQueue";
+import { ClipUpload } from "./ClipUpload";
 
 const INTENT: Record<string, string> = { price: "Fees", diet: "Diet", trial: "Trial", visit: "Timing / address", shop: "Shop", hello: "Greeting", other: "Other" };
 const when = (iso: string) => new Date(iso).toLocaleString("en-IN", { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
@@ -88,6 +90,8 @@ function YouTube({ yt, siteUrl }: { yt: NonNullable<SocialStatus["youtube"]>; si
           <li>Ask Google for the YouTube API audit, or every upload stays private.</li>
         </ol>
       )}
+      {yt.connected && <ShortQueue />}
+      {yt.connected && <ClipUpload />}
     </section>
   );
 }
