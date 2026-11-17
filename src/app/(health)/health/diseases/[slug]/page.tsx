@@ -24,6 +24,7 @@ import { MonetizationCTA } from "@/health/components/monetization/MonetizationCT
 import { AdInArticle, AdRectangle, AdBanner } from "@/health/components/monetization/AdComponents";
 import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/health/lib/monetization/config";
 import { NOT_REVIEWED } from "@/health/lib/review";
+import { RelatedVideo } from "@/components/youtube/RelatedVideo";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -34,6 +35,8 @@ export function generateStaticParams() {
 // loading.tsx streams the response shell with a 200 before notFound() throws,
 // they were served as soft 404s (HTTP 200 with "not found" content).
 export const dynamicParams = false;
+// Re-render once a day, so a new YouTube video on the topic shows up without a deploy.
+export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -159,6 +162,9 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
             <p className="mb-2 mt-4 text-sm font-bold">Risk factors</p>
             <div className="flex flex-wrap gap-1.5">{detail.riskFactors.map((r) => <span key={r} className="rounded-full bg-amber-50 px-3 py-1.5 text-[13px] font-medium text-amber-900 dark:bg-amber-950/50 dark:text-amber-100">{r}</span>)}</div>
           </Section>
+
+          {/* The disease name alone: the rest of the text mentions related conditions, which would pick the wrong video. */}
+          <RelatedVideo text={detail.name} />
 
           <Section id="types" icon={<BookOpen className="h-4 w-4" />} title="Types & patterns">
             <div className="grid gap-2 sm:grid-cols-2">

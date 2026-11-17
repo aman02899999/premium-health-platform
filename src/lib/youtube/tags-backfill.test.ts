@@ -19,7 +19,7 @@ function fakeYoutube(videos: { id: string; title: string; tags?: string[]; durat
       const page = second ? ids.slice(1) : ids.slice(0, 1);
       return json({ items: page.map((videoId) => ({ contentDetails: { videoId } })), nextPageToken: second || ids.length < 2 ? undefined : "p2" });
     }
-    if (url.includes("/videos?part=snippet,contentDetails")) {
+    if (url.includes("/videos?part=snippet,contentDetails,status")) {
       const want = new URL(url).searchParams.get("id")!.split(",");
       return json({ items: videos.filter((v) => want.includes(v.id)).map((v) => ({ id: v.id, snippet: { title: v.title, description: "d", categoryId: "17", tags: v.tags, defaultLanguage: "en" }, contentDetails: { duration: v.duration ?? "PT1M5S" } })) });
     }

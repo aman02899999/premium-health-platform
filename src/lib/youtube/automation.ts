@@ -6,8 +6,10 @@ import { accessToken, channelTitle, setThumbnail, uploadVideo, youtubeConfigured
 import { SHORTS, type Short } from "./shorts-bank";
 import { nextShort, shortDescription, shortTags, shortTitle } from "./shorts-core";
 import { renderShort } from "./shorts";
-import { SITE_URL } from "@/lib/site";
-import { backfillTags, type TagsReport } from "./tags-backfill";
+import { SITE_URL, instagramHref } from "@/lib/site";
+import { getContent } from "@/lib/content/store";
+import { growChannel, type GrowReport, type Links, type Store } from "./engagement";
+import { backfillTags, listChannelVideos, type TagsReport } from "./tags-backfill";
 import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
@@ -317,4 +319,33 @@ export async function runTagsBackfill(opts: { dry?: boolean } = {}, f: Fetch = f
   };
   const r = await backfillTags(at.token, wanted, opts, f);
   return r.ok ? r.report : `failed: ${r.error}`;
+}
+
+/**
+ * The daily growth job (vercel.json: /api/cron/youtube-grow): topic playlists, one comment per
+ * video and "next video" links on long videos (see engagement.ts). What it did is kept in
+ * public.youtube_actions so nothing is posted twice.
+ */
+export async function runChannelGrowth(opts: { dry?: boolean } = {}, f: Fetch = fetch): Promise<string | GrowReport> {
+  if (!youtubeConfigured()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const at = await accessToken(refresh, f);
+  if (!at.ok) return `failed: ${at.error}`;
+  const listed = await listChannelVideos(at.token, f);
+  if (!listed.ok) return `failed: ${listed.error}`;
+  const { rows } = await pool.query<{ key: string; ref: string }>(`select key, ref from public.youtube_actions`);
+  const store: Store = {
+    done: new Map(rows.map((r) => [r.key, r.ref])),
+    save: async (key, ref) => {
+      await pool.query(`insert into public.youtube_actions (key, ref) values ($1, $2) on conflict (key) do update set ref = excluded.ref`, [key.slice(0, 120), ref.slice(0, 200)]);
+    },
+  };
+  const c = await getContent();
+  const links: Links = {
+    instagram: instagramHref(c.business.instagram || "royalfitness93_"),
+    igPage: `${SITE_URL}/ig?utm_source=youtube&utm_medium=comment&utm_campaign=yt-comment`,
+    phone: (c.business.phone || "88518 30081").replace(/^\+?91[\s-]*/, ""),
+  };
+  return growChannel(at.token, listed.videos, store, links, opts, f);
 }

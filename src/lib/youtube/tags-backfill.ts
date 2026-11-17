@@ -61,7 +61,7 @@ export function needsTags(current: string[] | undefined, wanted: string[]): bool
 }
 
 export type VideoSnippet = { title: string; description?: string; categoryId?: string; tags?: string[]; defaultLanguage?: string; defaultAudioLanguage?: string };
-export type ChannelVideo = { id: string; snippet: VideoSnippet; seconds: number };
+export type ChannelVideo = { id: string; snippet: VideoSnippet; seconds: number; privacy?: string; publishedAt?: string };
 
 type ApiError = { error?: { message?: string; errors?: { reason?: string }[] } };
 const reasonOf = (j: unknown, status: number) => {
@@ -99,10 +99,12 @@ export async function listChannelVideos(token: string, f: Fetch = fetch): Promis
   }
   const videos: ChannelVideo[] = [];
   for (let i = 0; i < ids.length; i += 50) {
-    const r = await getJson(`${API}/videos?part=snippet,contentDetails&id=${ids.slice(i, i + 50).join(",")}`, token, f);
+    const r = await getJson(`${API}/videos?part=snippet,contentDetails,status&id=${ids.slice(i, i + 50).join(",")}`, token, f);
     if (!r.ok) return r;
-    for (const v of (r.json.items as { id: string; snippet: VideoSnippet; contentDetails?: { duration?: string } }[] | undefined) ?? [])
-      videos.push({ id: v.id, snippet: v.snippet, seconds: isoSeconds(v.contentDetails?.duration) });
+    for (const v of (r.json.items as { id: string; snippet: VideoSnippet & { publishedAt?: string }; contentDetails?: { duration?: string }; status?: { privacyStatus?: string } }[] | undefined) ?? []) {
+      const { publishedAt, ...snippet } = v.snippet;
+      videos.push({ id: v.id, snippet, seconds: isoSeconds(v.contentDetails?.duration), privacy: v.status?.privacyStatus, publishedAt });
+    }
   }
   return { ok: true, videos };
 }
