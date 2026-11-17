@@ -187,7 +187,7 @@ export type CalculatorMeta = {
   faqs: { q: string; a: string }[];
 };
 
-export type CalculatorKey = "bmi" | "tdee" | "body-fat" | "one-rep-max" | "macro" | "ideal-weight" | "water" | "heart-rate" | "idrs" | "whtr" | "fasting";
+export type CalculatorKey = "bmi" | "tdee" | "body-fat" | "one-rep-max" | "macro" | "ideal-weight" | "water" | "heart-rate" | "idrs" | "whtr" | "fasting" | "protein" | "diet-score";
 
 export const CALCULATORS: CalculatorMeta[] = [
   {
@@ -314,6 +314,31 @@ export const CALCULATORS: CalculatorMeta[] = [
     faqs: [
       { q: "Can I work out while fasting?", a: "Yes, but most people lift better in the eating window. Training 1–3 hours before your last meal lets you refuel after the session." },
       { q: "Does intermittent fasting burn more fat?", a: "Only if it helps you eat fewer calories overall. It's a scheduling tool, not magic." },
+    ],
+  },
+  {
+    slug: "protein-calculator",
+    key: "protein",
+    title: "Protein Calculator (Indian Foods)",
+    short: "Your real protein need, as a desi plate",
+    description: "How much protein do you really need? Get your daily grams for fat loss or muscle gain, shown as roti, dal, paneer, eggs or chicken you already eat.",
+    icon: "Salad",
+    faqs: [
+      { q: "How much protein do I need a day?", a: "For people who train, about 1.6–2.0 g per kg of body weight a day. The International Society of Sports Nutrition puts the useful range at 1.4–2.0 g/kg (Jäger et al., 2017). Higher in a fat-loss phase helps keep muscle." },
+      { q: "Where do the food numbers come from?", a: "The Indian Food Composition Tables 2017 from ICMR-National Institute of Nutrition, rounded to home portions such as one katori of dal or one roti." },
+      { q: "Is high protein safe if I have kidney disease?", a: "Not without your doctor. If you have kidney disease, diabetes with kidney changes or are pregnant, ask your doctor what protein amount is right for you." },
+    ],
+  },
+  {
+    slug: "desi-diet-score",
+    key: "diet-score",
+    title: "Desi Diet Score",
+    short: "8 quick questions, score out of 100",
+    description: "How healthy is your everyday Indian diet? Answer 8 quick questions about sabzi, protein, chai, fried snacks and dinner time, and get your desi diet score out of 100.",
+    icon: "Trophy",
+    faqs: [
+      { q: "What is the desi diet score based on?", a: "Eight everyday habits taken from the ICMR-NIN Dietary Guidelines for Indians (2024): vegetables, protein at meals, added sugar, fried snacks, whole grains, water, home cooking and an early dinner." },
+      { q: "Is this a medical test?", a: "No. It is a habit check to show you the easiest thing to fix next. If you have diabetes, high BP or another condition, follow your doctor's diet advice." },
     ],
   },
 ];

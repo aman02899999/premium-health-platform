@@ -6,7 +6,7 @@ const q = (s: string) => new URLSearchParams(s);
 
 describe("share cards", () => {
   it("only fitness calculators get a card, never health-risk ones", () => {
-    expect([...SHAREABLE].sort()).toEqual(["heart-rate", "macro", "one-rep-max", "tdee", "water"]);
+    expect([...SHAREABLE].sort()).toEqual(["diet-score", "heart-rate", "macro", "one-rep-max", "protein", "tdee", "water"]);
     for (const k of ["bmi", "body-fat", "idrs", "whtr", "ideal-weight"]) expect(parseCardQuery(q(`k=${k}&w=70`))).toBeNull();
   });
 
