@@ -12,6 +12,8 @@ import { growChannel, type GrowReport, type Links, type Store } from "./engageme
 import { backfillTags, listChannelVideos, type TagsReport } from "./tags-backfill";
 import { nextApproved, queuedShort, runAnswerJob, runTrendJob, type AnswerReport, type TrendReport } from "./queue";
 import { QUEUE_SLOT } from "./queue-core";
+import { LONG_HINDI, longTitleHindiFirst } from "./hindi";
+import { hindiThumbnail } from "./hindi-thumb";
 import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
@@ -264,9 +266,10 @@ async function claimLong(now: Date, refresh: string, access: LongDeps["access"])
   return { id, video, token: at.token };
 }
 
-const longMeta = (video: LongVideo): VideoMeta => ({ title: video.title, description: longVideoDescription(video), tags: longVideoTags(video), privacy: youtubePrivacy() });
+const longMeta = (video: LongVideo): VideoMeta => ({ title: longTitleHindiFirst(video.id, video.title), description: longVideoDescription(video), tags: longVideoTags(video), privacy: youtubePrivacy() });
 
-export type RunnerLongJob = { id: string; videoId: string; file: string; thumb: string; token: string; meta: VideoMeta };
+/** `hindi` is the Devanagari headline the runner adds to the thumbnail (hindi-thumb.ts). */
+export type RunnerLongJob = { id: string; videoId: string; file: string; thumb: string; token: string; meta: VideoMeta; hindi?: string };
 
 /** For the GitHub runner: the next due long video, with the paths of its MP4 and thumbnail inside public/. */
 export async function claimRunnerLong(now: Date, deps: Pick<LongDeps, "access"> = LONG_DEPS): Promise<RunnerLongJob | Exclude<OneLong, `published${string}`>> {
@@ -275,7 +278,8 @@ export async function claimRunnerLong(now: Date, deps: Pick<LongDeps, "access"> 
   if (!refresh) return "not-connected";
   const c = await claimLong(now, refresh, deps.access);
   if (typeof c === "string") return c;
-  return { id: c.id, videoId: c.video.id, file: longVideoFile(c.video), thumb: longVideoThumb(c.video), token: c.token, meta: longMeta(c.video) };
+  const hindi = LONG_HINDI[c.video.id];
+  return { id: c.id, videoId: c.video.id, file: longVideoFile(c.video), thumb: longVideoThumb(c.video), token: c.token, meta: longMeta(c.video), ...(hindi ? { hindi } : {}) };
 }
 
 /** The runner's report for a claimed long video. Only a pending youtube-long* row can be closed. */
@@ -308,7 +312,10 @@ async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promis
   // The thumbnail is a nice-to-have: an unverified channel can't set one, and the video is already up.
   let thumb = "";
   try {
-    const t = await deps.thumbnail(at.token, result.id, await deps.download(`${SITE_URL}${longVideoThumb(video)}`));
+    const jpeg = await deps.download(`${SITE_URL}${longVideoThumb(video)}`);
+    const hindi = LONG_HINDI[video.id];
+    const thumbJpeg = hindi ? await hindiThumbnail(jpeg, hindi).catch(() => jpeg) : jpeg;
+    const t = await deps.thumbnail(at.token, result.id, thumbJpeg);
     if (!t.ok) thumb = ` (thumbnail not set: ${t.error.slice(0, 80)})`;
   } catch (err) {
     thumb = ` (thumbnail not set: ${(err as Error).message.slice(0, 80)})`;

@@ -9,6 +9,7 @@ import { uploadVideo, type UploadResult, type VideoMeta } from "@/lib/youtube/cl
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { setThumbnail } from "@/lib/youtube/client";
+import { hindiThumbnail } from "@/lib/youtube/hindi-thumb";
 import type { RunnerJob, RunnerLongJob } from "@/lib/youtube/automation";
 import { RELEASE_INTRO, noteEntry, packFileName, releaseTag } from "@/lib/rumble/pack";
 
@@ -100,7 +101,10 @@ async function runLong(): Promise<boolean> {
     await keepForRumble(await readFile(path.join(process.cwd(), "public", job.file)), "long", job.videoId, job.meta, `https://www.youtube.com/watch?v=${result.id}`);
     // A nice-to-have: an unverified channel can't set thumbnails, and the video is already up.
     try {
-      const t = await setThumbnail(job.token, result.id, await readFile(path.join(process.cwd(), "public", job.thumb)));
+      const jpeg = await readFile(path.join(process.cwd(), "public", job.thumb));
+      // Hindi-first: a Devanagari headline on the thumbnail when the video has one; the plain one if that fails.
+      const thumb = job.hindi ? await hindiThumbnail(jpeg, job.hindi).catch(() => jpeg) : jpeg;
+      const t = await setThumbnail(job.token, result.id, thumb);
       if (!t.ok) console.log(`long ${job.videoId}: thumbnail not set: ${t.error.slice(0, 120)}`);
     } catch (err) {
       console.log(`long ${job.videoId}: thumbnail not set: ${(err as Error).message.slice(0, 120)}`);
