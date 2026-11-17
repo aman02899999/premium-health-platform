@@ -53,7 +53,8 @@ async function runSlot(slot: number): Promise<boolean> {
     // A failed sign-in is recorded by the site; make the run red so GitHub emails the owner.
     return !String(claim.status).startsWith("failed");
   }
-  const short = SHORTS[job.index];
+  // Queue Shorts (a viewer's question, a trend) come with their script; bank Shorts are read from this checkout.
+  const short = job.script ?? SHORTS[job.index];
   let result: UploadResult;
   if (!short || short.id !== job.shortId) {
     result = { ok: false, error: `Runner: script ${job.shortId} not found in this checkout`, quota: false };

@@ -5,10 +5,13 @@
 // three Shorts a day are always three different kinds of video, which keeps the channel from
 // looking mass-produced. Add new scripts at the end; the next upload takes the next unused one.
 
+import type { Extra } from "./shorts-extra";
+
 export type Source = { name: string; url: string };
 export type Verdict = "JHOOTH" | "SACH" | "DEPENDS";
 
-type Base = { id: string; topic: string; hook: string; tags: string[]; medical?: boolean };
+/** `extra` carries the coach's tips for Shorts written outside this file (the Admin-approved queue). */
+type Base = { id: string; topic: string; hook: string; tags: string[]; medical?: boolean; extra?: Extra };
 export type Short =
   | (Base & { format: "viral"; claim: string; verdict: Verdict; truth: string; why: string })
   | (Base & { format: "trend"; trend: string; what: string; good: string; careful: string })
@@ -17,7 +20,8 @@ export type Short =
   | (Base & { format: "swap"; from: string; to: string; why: string })
   | (Base & { format: "workout"; moves: [string, number][]; rounds: number; note: string })
   | (Base & { format: "mistakes"; items: [string, string, string]; fix: string })
-  | (Base & { format: "fact"; fact: string; detail: string; source: Source });
+  | (Base & { format: "fact"; fact: string; detail: string; source: Source })
+  | (Base & { format: "answer"; question: string; answer: string; why: string });
 
 export type Format = Short["format"];
 

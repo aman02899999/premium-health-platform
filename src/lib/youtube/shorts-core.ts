@@ -23,6 +23,7 @@ export const KICKER: Record<Format, string> = {
   workout: "GHAR PE WORKOUT",
   mistakes: "3 GALTIYAN",
   fact: "QUICK FACT",
+  answer: "AAPNE POOCHA · JAWAB YAHAN",
 };
 
 export type Tone = "red" | "green" | "gold" | "plain";
@@ -147,6 +148,12 @@ function body(s: Short): [Scene, number][] {
         [{ kind: "big", label: "KYA AAP JAANTE HO?", text: s.fact, sub: s.topic.toUpperCase() }, readTime(s.fact, 2.8, 3.5)],
         [{ kind: "card", label: "MATLAB KYA HUA", tone: "gold", text: `${s.fact} ${s.detail}`, sub: `Source: ${s.source.name}` }, readTime(`${s.fact} ${s.detail}`, 3.6, 6)],
       ];
+    case "answer":
+      return [
+        [{ kind: "card", label: "AAPKA SAWAAL", tone: "plain", text: s.question, sub: "YouTube comment se" }, readTime(s.question, 3)],
+        [{ kind: "card", label: "SEEDHA JAWAB", tone: "green", text: s.answer }, readTime(s.answer, 3.2)],
+        [{ kind: "card", label: "KYUN", tone: "gold", text: s.why }, readTime(s.why, 2.8)],
+      ];
   }
 }
 
@@ -171,11 +178,13 @@ function keyLine(s: Short): string {
       return `${s.rounds} round${s.rounds > 1 ? "s" : ""}: ${s.moves.filter(([m]) => m !== "Rest").map(([m]) => m.replace(/\s*\(.*\)|, each.*$/g, "")).join(", ")}`;
     case "mistakes":
       return s.fix;
+    case "answer":
+      return s.answer;
   }
 }
 
 export const extraFor = (s: Short): Extra => {
-  const e = EXTRAS[s.id];
+  const e = s.extra ?? EXTRAS[s.id];
   if (!e) throw new Error(`No tips written for ${s.id}`);
   return e;
 };
@@ -237,6 +246,8 @@ function summary(s: Short): string[] {
       return [...s.items.map((t, i) => `${i + 1}. ${t}`), `Fix: ${s.fix}`];
     case "fact":
       return [`${s.fact} ${s.detail}`];
+    case "answer":
+      return [`❓ Sawaal: ${s.question}`, `✅ Jawab: ${s.answer}`, s.why];
   }
 }
 

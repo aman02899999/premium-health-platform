@@ -10,6 +10,8 @@ import { SITE_URL, instagramHref } from "@/lib/site";
 import { getContent } from "@/lib/content/store";
 import { growChannel, type GrowReport, type Links, type Store } from "./engagement";
 import { backfillTags, listChannelVideos, type TagsReport } from "./tags-backfill";
+import { nextApproved, queuedShort, runAnswerJob, type AnswerReport } from "./queue";
+import { QUEUE_SLOT } from "./queue-core";
 import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
@@ -59,15 +61,33 @@ async function usedScripts(): Promise<string[]> {
   return rows.map((r) => r.theme);
 }
 
+type Picked = { short: Short; index: number; theme: string };
+
+/**
+ * The script for a slot. The midday slot first takes an Admin-approved queue item (a viewer's
+ * question answered, a trend fact-check), at most one a day; everything else comes from the bank.
+ */
+async function pickScript(slot: YtSlot): Promise<Picked | null> {
+  if (slot === QUEUE_SLOT) {
+    const q = await nextApproved().catch((err) => {
+      console.error("[youtube] queue unavailable:", (err as Error).message);
+      return null;
+    });
+    if (q) return q;
+  }
+  const short = nextShort(await usedScripts());
+  return short ? { short, index: SHORTS.findIndex((s) => s.id === short.id), theme: short.id } : null;
+}
+
 /** Claims today's slot (or a failed one to retry) for this script; null when the slot is already done. */
-async function claim(slot: YtSlot, date: string, short: Short): Promise<string | null> {
+async function claim(slot: YtSlot, date: string, theme: string): Promise<string | null> {
   const { rows } = await pool.query<{ id: string }>(
     `insert into public.social_posts (channel, post_date, theme) values ($1, $2, $3)
      on conflict (channel, post_date) do update set status = 'pending', error = null, theme = excluded.theme, created_at = now()
        where public.social_posts.status = 'failed'
           or (public.social_posts.status = 'pending' and public.social_posts.created_at < now() - interval '20 minutes')
      returning id`,
-    [`youtube-${slot}`, date, short.id],
+    [`youtube-${slot}`, date, theme],
   );
   return rows[0]?.id ?? null;
 }
@@ -99,9 +119,10 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
   // A failed row of this slot is retried with whatever script is next (its old one is free again).
   const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [`youtube-${slot}`, today]);
   if (mine[0]?.status === "published") return "already-posted";
-  const short = nextShort(await usedScripts());
-  if (!short) return "bank-empty";
-  const id = await claim(slot, today, short);
+  const pick = await pickScript(slot);
+  if (!pick) return "bank-empty";
+  const { short, index } = pick;
+  const id = await claim(slot, today, pick.theme);
   if (!id) return "already-posted";
 
   const at = await deps.access(refresh);
@@ -112,7 +133,6 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
   }
   let result: UploadResult;
   try {
-    const index = SHORTS.findIndex((s) => s.id === short.id);
     const video = await deps.render(short, index, biz);
     result = await deps.upload(at.token, video, { title: shortTitle(short), description: shortDescription(short, biz), tags: shortTags(short), privacy: youtubePrivacy() });
   } catch (err) {
@@ -134,7 +154,8 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
 // brings back rendering inside the cron without a code change.
 export const shortsRenderedOnVercel = (env: Record<string, string | undefined> = process.env) => env.YOUTUBE_RENDERER === "vercel";
 
-export type RunnerJob = { id: string; slot: YtSlot; shortId: string; index: number; biz: PostBiz; token: string; meta: VideoMeta };
+/** `script` is sent for queue items, which the runner's checkout doesn't have in its bank. */
+export type RunnerJob = { id: string; slot: YtSlot; shortId: string; index: number; biz: PostBiz; token: string; meta: VideoMeta; script?: Short };
 
 /** Picks and claims the next Short for a slot and hands the runner what it needs to render and upload it. */
 export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Pick<ShortDeps, "access"> = DEPS): Promise<RunnerJob | Exclude<ShortResult, `published${string}`>> {
@@ -144,9 +165,10 @@ export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, de
   const today = todayIST(now);
   const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [`youtube-${slot}`, today]);
   if (mine[0]?.status === "published") return "already-posted";
-  const short = nextShort(await usedScripts());
-  if (!short) return "bank-empty";
-  const id = await claim(slot, today, short);
+  const pick = await pickScript(slot);
+  if (!pick) return "bank-empty";
+  const { short, index } = pick;
+  const id = await claim(slot, today, pick.theme);
   if (!id) return "already-posted";
   const at = await deps.access(refresh);
   if (!at.ok) {
@@ -155,7 +177,8 @@ export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, de
     return `failed: ${error}`;
   }
   const meta: VideoMeta = { title: shortTitle(short), description: shortDescription(short, biz), tags: shortTags(short), privacy: youtubePrivacy() };
-  return { id, slot, shortId: short.id, index: SHORTS.findIndex((s) => s.id === short.id), biz, token: at.token, meta };
+  const queued = pick.theme.startsWith("q:");
+  return { id, slot, shortId: short.id, index, biz, token: at.token, meta, ...(queued ? { script: short } : {}) };
 }
 
 /** The runner's report for a claimed slot. Only a row that is still pending can be closed this way. */
@@ -307,6 +330,12 @@ export async function runTagsBackfill(opts: { dry?: boolean } = {}, f: Fetch = f
     `select external_id, theme, channel from public.social_posts where channel like 'youtube-%' and status = 'published' and external_id is not null`,
   );
   const byId = new Map(rows.map((r) => [r.external_id, r]));
+  // Queue Shorts (themes "q:<uuid>") aren't in the bank: load their scripts first.
+  const queued = new Map<string, Short>();
+  for (const r of rows.filter((x) => x.theme.startsWith("q:"))) {
+    const q = await queuedShort(r.theme).catch(() => null);
+    if (q) queued.set(r.theme, q);
+  }
   const wanted = (id: string): string[] | null => {
     const row = byId.get(id);
     if (!row) return null;
@@ -314,7 +343,7 @@ export async function runTagsBackfill(opts: { dry?: boolean } = {}, f: Fetch = f
       const v = LONG_VIDEOS.find((l) => l.id === row.theme);
       return v ? longVideoTags(v) : null;
     }
-    const s = SHORTS.find((x) => x.id === row.theme);
+    const s = queued.get(row.theme) ?? SHORTS.find((x) => x.id === row.theme);
     return s ? shortTags(s) : null;
   };
   const r = await backfillTags(at.token, wanted, opts, f);
@@ -348,4 +377,18 @@ export async function runChannelGrowth(opts: { dry?: boolean } = {}, f: Fetch = 
     phone: (c.business.phone || "88518 30081").replace(/^\+?91[\s-]*/, ""),
   };
   return growChannel(at.token, listed.videos, store, links, opts, f);
+}
+
+/**
+ * The comment-answer job (vercel.json: /api/cron/youtube-answer, daily; it drafts on Sundays):
+ * picks the best viewer question and saves a draft Short for Admin to approve, then replies under
+ * the viewer's comment once the answer is live. See queue.ts.
+ */
+export async function runCommentAnswers(now: Date, opts: { force?: boolean; dry?: boolean } = {}, f: Fetch = fetch): Promise<string | AnswerReport> {
+  if (!youtubeConfigured()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const at = await accessToken(refresh, f);
+  if (!at.ok) return `failed: ${at.error}`;
+  return runAnswerJob(at.token, now, opts, f);
 }
