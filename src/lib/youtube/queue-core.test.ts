@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { answerReply, answerShort, checkAnswerDraft, isAnswerDay, isUsableQuestion, pickQuestion, type Comment } from "./queue-core";
 import { musicPlan, planKey } from "./music";
+
+// The same "own track" test the Reels use: style, key, progression, tempo, pattern and melody seed.
+const track = (i: number) => { const p = musicPlan(i); return `${planKey(p)}:${p.bpm}:${p.arp.join("")}:${p.seed}`; };
 import { SHORTS } from "./shorts-bank";
 import { shortDescription, shortScenes, shortSeconds, shortTags, shortTitle, MIN_SECONDS } from "./shorts-core";
 import { QUEUE_INDEX_BASE } from "./queue-core";
@@ -78,8 +81,8 @@ describe("an answer Short", () => {
   });
 
   it("gets music no bank Short uses", () => {
-    const bank = new Set(SHORTS.map((_, i) => planKey(musicPlan(i))));
-    expect(bank.has(planKey(musicPlan(QUEUE_INDEX_BASE + 1)))).toBe(false);
+    const bank = new Set(SHORTS.map((_, i) => track(i)));
+    expect(bank.has(track(QUEUE_INDEX_BASE + 1))).toBe(false);
   });
 
   it("thanks the viewer with the link", () => {

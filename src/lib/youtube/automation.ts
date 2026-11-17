@@ -14,6 +14,7 @@ import { nextApproved, queuedShort, runAnswerJob, runTrendJob, type AnswerReport
 import { QUEUE_SLOT } from "./queue-core";
 import { LONG_HINDI, longTitleHindiFirst } from "./hindi";
 import { hindiThumbnail } from "./hindi-thumb";
+import { claimClip, recordClip, type RunnerClipJob } from "./clips";
 import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
@@ -405,3 +406,15 @@ export async function runTrendShorts(opts: { dry?: boolean } = {}): Promise<stri
   if (!youtubeShortsOn()) return "off";
   return runTrendJob(opts);
 }
+
+/** For the GitHub runner: the oldest phone clip waiting to be posted (clips.ts), with a 1-hour token. */
+export async function claimRunnerClip(biz: PostBiz, deps: Pick<ShortDeps, "access"> = DEPS): Promise<RunnerClipJob | "off" | "not-connected" | "none" | `failed: ${string}`> {
+  if (!youtubeShortsOn()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const at = await deps.access(refresh);
+  if (!at.ok) return `failed: ${at.revoked ? "YouTube sign-in expired: connect the channel again in Admin" : at.error}`;
+  return (await claimClip(at.token, biz.phone, youtubePrivacy())) ?? "none";
+}
+
+export const recordRunnerClip = (id: string, result: UploadResult, uploadedFinal: boolean) => recordClip(id, result, uploadedFinal);

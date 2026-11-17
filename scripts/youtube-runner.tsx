@@ -11,6 +11,8 @@ import path from "node:path";
 import { setThumbnail } from "@/lib/youtube/client";
 import { hindiThumbnail } from "@/lib/youtube/hindi-thumb";
 import type { RunnerJob, RunnerLongJob } from "@/lib/youtube/automation";
+import type { RunnerClipJob } from "@/lib/youtube/clips";
+import { renderClip } from "@/lib/youtube/clips-render";
 import { RELEASE_INTRO, noteEntry, packFileName, releaseTag } from "@/lib/rumble/pack";
 
 const SITE = (process.env.SITE_URL || "https://www.royalfitnesclub.in").replace(/\/$/, "");
@@ -113,6 +115,34 @@ async function runLong(): Promise<boolean> {
   return true;
 }
 
+// The owner's phone clips (Admin → Social): at most one per run, so a big clip never delays the Shorts.
+async function runClip(): Promise<boolean> {
+  const claim = await call({ action: "claim-clip" });
+  const job = claim.job as RunnerClipJob | undefined;
+  if (!job) {
+    console.log(`clip: ${String(claim.status)}`);
+    return !String(claim.status).startsWith("failed");
+  }
+  let result: UploadResult;
+  let uploadedFinal = false;
+  try {
+    const res = await fetch(job.rawUrl);
+    if (!res.ok) throw new Error(`download raw clip: HTTP ${res.status}`);
+    const video = await renderClip(Buffer.from(await res.arrayBuffer()), job.input, job.index);
+    result = await uploadVideo(job.token, video, job.meta);
+    // The finished file goes back to storage so Instagram / Facebook can fetch it later.
+    const put = await fetch(job.finalUpload, { method: "PUT", headers: { "content-type": "video/mp4", "x-upsert": "true" }, body: new Uint8Array(video) }).catch(() => null);
+    uploadedFinal = !!put?.ok;
+    if (!uploadedFinal) console.log(`clip ${job.id.slice(0, 8)}: final file not stored (HTTP ${put?.status ?? "error"}), so no Reel copy`);
+    if (result.ok) await keepForRumble(video, "clip", job.id.slice(0, 8), job.meta, result.url);
+  } catch (err) {
+    result = { ok: false, error: `Clip: ${(err as Error).message}`.slice(0, 300), quota: false };
+  }
+  await call({ action: "result-clip", id: job.id, result, uploadedFinal });
+  console.log(`clip ${job.id.slice(0, 8)}: ${result.ok ? `published ${result.url}` : `failed: ${result.error}`}`);
+  return result.ok;
+}
+
 async function main() {
   if (!SECRET) throw new Error("CRON_SECRET is not set (GitHub → Settings → Secrets and variables → Actions)");
   const arg = process.argv[2] ?? "all";
@@ -121,6 +151,7 @@ async function main() {
   for (const s of slots) ok = (await runSlot(s)) && ok;
   // Long videos go out with the midday slot, and the late run retries any that failed.
   if (arg === "2" || arg === "all") ok = (await runLong()) && ok;
+  ok = (await runClip()) && ok;
   if (!ok) process.exitCode = 1;
 }
 

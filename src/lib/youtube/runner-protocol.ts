@@ -4,7 +4,9 @@ export type RunnerRequest =
   | { action: "claim"; slot: number }
   | { action: "result"; id: string; result: UploadResult }
   | { action: "claim-long" }
-  | { action: "result-long"; id: string; result: UploadResult };
+  | { action: "result-long"; id: string; result: UploadResult }
+  | { action: "claim-clip" }
+  | { action: "result-clip"; id: string; result: UploadResult; uploadedFinal: boolean };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const str = (v: unknown, max: number) => (typeof v === "string" && v.length > 0 && v.length <= max ? v : null);
@@ -17,6 +19,12 @@ export function parseRunnerRequest(body: unknown, slots: readonly number[]): { o
     return typeof b.slot === "number" && slots.includes(b.slot) ? { ok: true, value: { action: "claim", slot: b.slot } } : { ok: false, error: "Unknown slot" };
   }
   if (b.action === "claim-long") return { ok: true, value: { action: "claim-long" } };
+  if (b.action === "claim-clip") return { ok: true, value: { action: "claim-clip" } };
+  if (b.action === "result-clip") {
+    const inner = parseRunnerRequest({ ...b, action: "result" }, slots);
+    if (!inner.ok || inner.value.action !== "result") return inner.ok ? { ok: false, error: "Bad result" } : inner;
+    return { ok: true, value: { action: "result-clip", id: inner.value.id, result: inner.value.result, uploadedFinal: b.uploadedFinal === true } };
+  }
   if (b.action === "result" || b.action === "result-long") {
     const action = b.action;
     if (typeof b.id !== "string" || !UUID.test(b.id)) return { ok: false, error: "Bad id" };
