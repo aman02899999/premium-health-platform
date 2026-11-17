@@ -37,11 +37,11 @@ describe("switches", () => {
 });
 
 describe("sign-in", () => {
-  it("asks only for upload and read-only access, offline, with consent so a refresh token comes back", () => {
+  it("asks for upload, read-only and edit (for the tags job) access, offline, with consent so a refresh token comes back", () => {
     const u = new URL(authUrl("https://www.example.in/", "st4te"));
     expect(u.origin + u.pathname).toBe("https://accounts.google.com/o/oauth2/v2/auth");
     expect(u.searchParams.get("redirect_uri")).toBe("https://www.example.in/api/admin/youtube/callback");
-    expect(u.searchParams.get("scope")).toBe("https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly");
+    expect(u.searchParams.get("scope")).toBe("https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/youtube.force-ssl");
     expect(u.searchParams.get("access_type")).toBe("offline");
     expect(u.searchParams.get("prompt")).toBe("consent");
     expect(u.searchParams.get("state")).toBe("st4te");

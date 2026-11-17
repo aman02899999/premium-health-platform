@@ -7,7 +7,8 @@ import { SHORTS, type Short } from "./shorts-bank";
 import { nextShort, shortDescription, shortTags, shortTitle } from "./shorts-core";
 import { renderShort } from "./shorts";
 import { SITE_URL } from "@/lib/site";
-import { dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
+import { backfillTags, type TagsReport } from "./tags-backfill";
+import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
 // retry). Each slot is its own social_posts row (channel youtube-1/2/3, one per day), so a slot
@@ -288,4 +289,32 @@ async function uploadOneLong(now: Date, refresh: string, deps: LongDeps): Promis
     thumb = ` (thumbnail not set: ${(err as Error).message.slice(0, 80)})`;
   }
   return `published ${result.url}${result.privacy !== youtubePrivacy() ? ` (YouTube kept it ${result.privacy})` : ""}${thumb}`;
+}
+
+/**
+ * The daily tags job (vercel.json: /api/cron/youtube-tags). Our own videos get the tags from their
+ * script, found through social_posts (external_id -> theme); anything else gets tags from its title.
+ */
+export async function runTagsBackfill(opts: { dry?: boolean } = {}, f: Fetch = fetch): Promise<string | TagsReport> {
+  if (!youtubeConfigured()) return "off";
+  const refresh = await token(REFRESH_KEY);
+  if (!refresh) return "not-connected";
+  const at = await accessToken(refresh, f);
+  if (!at.ok) return `failed: ${at.error}`;
+  const { rows } = await pool.query<{ external_id: string; theme: string; channel: string }>(
+    `select external_id, theme, channel from public.social_posts where channel like 'youtube-%' and status = 'published' and external_id is not null`,
+  );
+  const byId = new Map(rows.map((r) => [r.external_id, r]));
+  const wanted = (id: string): string[] | null => {
+    const row = byId.get(id);
+    if (!row) return null;
+    if (row.channel.startsWith("youtube-long")) {
+      const v = LONG_VIDEOS.find((l) => l.id === row.theme);
+      return v ? longVideoTags(v) : null;
+    }
+    const s = SHORTS.find((x) => x.id === row.theme);
+    return s ? shortTags(s) : null;
+  };
+  const r = await backfillTags(at.token, wanted, opts, f);
+  return r.ok ? r.report : `failed: ${r.error}`;
 }

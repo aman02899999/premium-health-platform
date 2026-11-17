@@ -53,6 +53,10 @@
       "schedule": "30 17 * * *"
     },
     {
+      "path": "/api/cron/youtube-tags",
+      "schedule": "30 18 * * *"
+    },
+    {
       "path": "/api/status",
       "schedule": "0 3 * * *"
     }
