@@ -55,7 +55,7 @@ export async function GET(req: Request) {
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14, marginTop: 20 }}>
             {card.lines.map((l) => (
-              <div key={l} style={{ display: "flex", fontSize: 40, color: "rgba(255,255,255,.85)" }}>
+              <div key={l} style={{ display: "flex", fontSize: l.length > 42 ? 34 : 40, color: "rgba(255,255,255,.85)" }}>
                 {l}
               </div>
             ))}
@@ -65,7 +65,7 @@ export async function GET(req: Request) {
         <div style={{ display: "flex", flexDirection: "column", gap: 18, borderTop: "2px solid rgba(255,255,255,.18)", paddingTop: 40 }}>
           <div style={{ display: "flex", fontSize: 40, fontWeight: 800 }}>Work out yours free</div>
           <div style={{ display: "flex", fontSize: 36, color: "#7cc0ee" }}>{`${SITE_URL.replace(/^https?:\/\/(www\.)?/, "")}/tools`}</div>
-          <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,.5)" }}>An estimate from standard formulas, not medical advice.</div>
+          <div style={{ display: "flex", fontSize: 24, color: "rgba(255,255,255,.5)" }}>{card.note ?? "An estimate from standard formulas, not medical advice."}</div>
         </div>
       </div>
     ),

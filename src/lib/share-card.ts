@@ -3,13 +3,14 @@
 // their own words on a card with the gym's name on it. Pure: the calculator, the image route and
 // the tests share it.
 import { ACTIVITY_LEVELS, heartRateZones, macros, oneRepMax, tdee, waterIntake, type ActivityId, type Goal, type Sex } from "./calculators";
+import { decodeAnswers, dietScore, encodeAnswers, proteinNeed, type Diet, type DietAnswers } from "./desi-tools";
 
 /**
  * Fitness numbers people like to post. Health-risk results (BMI category, body fat, diabetes
  * risk, waist-to-height, ideal weight) never get a card: they are private, and a shared card can
  * shame or worry someone.
  */
-export const SHAREABLE = new Set(["tdee", "macro", "one-rep-max", "water", "heart-rate"] as const);
+export const SHAREABLE = new Set(["tdee", "macro", "one-rep-max", "water", "heart-rate", "protein", "diet-score"] as const);
 export type ShareKey = typeof SHAREABLE extends Set<infer K> ? K : never;
 
 type Body = { sex: Sex; age: number; weight: number; height: number; activity: ActivityId };
@@ -18,9 +19,14 @@ export type CardInput =
   | ({ key: "macro"; goal: Goal } & Body)
   | { key: "one-rep-max"; weight: number; reps: number }
   | { key: "water"; weight: number; minutes: number; hot: boolean }
-  | { key: "heart-rate"; age: number; resting: number };
+  | { key: "heart-rate"; age: number; resting: number }
+  | { key: "protein"; weight: number; goal: Goal; diet: Diet }
+  | { key: "diet-score"; answers: DietAnswers };
 
-export type Card = { headline: string; value: string; unit: string; lines: string[] };
+/** `note` replaces the default small print at the bottom of the image. */
+export type Card = { headline: string; value: string; unit: string; lines: string[]; note?: string };
+
+const GOAL_LABEL: Record<Goal, string> = { lose: "Fat loss", maintain: "Maintain", gain: "Muscle gain" };
 
 const kcal = (n: number) => n.toLocaleString("en-IN");
 
@@ -47,6 +53,27 @@ export function cardFor(i: CardInput): Card {
       const r = heartRateZones(i.age, i.resting);
       const z2 = r.zones[1];
       return { headline: "My fat-burn heart-rate zone", value: `${z2.low}–${z2.high}`, unit: "bpm", lines: [`Zone 2 · max heart rate about ${r.max} bpm`, `Worked out with the ${r.method} method`] };
+    }
+    case "protein": {
+      const r = proteinNeed(i.weight, i.goal, i.diet);
+      const extras = r.plate.slice(4).map((p) => p.text);
+      return {
+        headline: `My real protein need · ${GOAL_LABEL[i.goal]}`,
+        value: String(r.grams),
+        unit: "g a day",
+        lines: ["Roti, 2 katori dal, curd, milk", extras.length ? `+ ${extras.join(" + ")}` : "Plain home food covers it"],
+        note: "Food values: ICMR-NIN Indian Food Composition Tables 2017. Not medical advice.",
+      };
+    }
+    case "diet-score": {
+      const r = dietScore(i.answers);
+      return {
+        headline: "My desi diet score",
+        value: String(r.score),
+        unit: "/ 100",
+        lines: [r.band, ...(r.best ? [`Best habit: ${r.best}`] : []), ...(r.fix ? [`Next fix: ${r.fix}`] : [])],
+        note: "Habits from the ICMR-NIN Dietary Guidelines for Indians 2024. Not medical advice.",
+      };
     }
   }
 }
@@ -78,9 +105,15 @@ export function cardQuery(i: CardInput): string {
     p.set("w", String(i.weight));
     p.set("m", String(i.minutes));
     p.set("hot", i.hot ? "1" : "0");
-  } else {
+  } else if (i.key === "heart-rate") {
     p.set("a", String(i.age));
     p.set("rest", String(i.resting));
+  } else if (i.key === "protein") {
+    p.set("w", String(i.weight));
+    p.set("g", i.goal);
+    p.set("d", i.diet);
+  } else {
+    p.set("ans", encodeAnswers(i.answers));
   }
   return p.toString();
 }
@@ -115,6 +148,19 @@ export function parseCardQuery(p: URLSearchParams): CardInput | null {
     const age = num(p.get("a"), 15, 85);
     const resting = num(p.get("rest"), 40, 100);
     return age === null || resting === null ? null : { key, age, resting };
+  }
+  if (key === "protein") {
+    const weight = num(p.get("w"), 30, 200);
+    const g = p.get("g");
+    const d = p.get("d");
+    if (weight === null || !Number.isInteger(weight)) return null;
+    if (g !== "lose" && g !== "maintain" && g !== "gain") return null;
+    if (d !== "veg" && d !== "egg" && d !== "nonveg") return null;
+    return { key, weight, goal: g, diet: d };
+  }
+  if (key === "diet-score") {
+    const answers = decodeAnswers(p.get("ans"));
+    return answers ? { key, answers } : null;
   }
   return null;
 }

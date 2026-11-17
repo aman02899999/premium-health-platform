@@ -24,6 +24,7 @@ import {
   type Goal,
   type Sex,
 } from "@/lib/calculators";
+import { DIET_QUESTIONS, dietScore, proteinNeed, type Diet, type DietAnswers } from "@/lib/desi-tools";
 import { Icon } from "@/components/Icon";
 import { ShareResult } from "./ShareResult";
 
@@ -639,6 +640,96 @@ function FastingCalc() {
   );
 }
 
+function ProteinCalc() {
+  const [w, setW] = useState(70);
+  const [goal, setGoal] = useState<Goal>("gain");
+  const [diet, setDiet] = useState<Diet>("veg");
+  const r = proteinNeed(w, goal, diet);
+  return (
+    <Layout
+      inputs={
+        <>
+          <Toggle label="Goal" value={goal} onChange={setGoal} options={[{ v: "lose", l: "Lose fat" }, { v: "maintain", l: "Maintain" }, { v: "gain", l: "Build muscle" }]} />
+          <Toggle label="Food" value={diet} onChange={setDiet} options={[{ v: "veg", l: "Veg" }, { v: "egg", l: "Veg + egg" }, { v: "nonveg", l: "Non-veg" }]} />
+          <Slider label="Weight" value={w} onChange={setW} min={30} max={200} unit="kg" />
+        </>
+      }
+      result={
+        <>
+          <Big value={r.grams} unit="g/day" label={`Protein target · ${r.perKg} g per kg`} />
+          <div className="rounded-2xl bg-black/35 p-4 ring-1 ring-white/10">
+            <p className="mb-2 text-xs uppercase tracking-wider text-white/55">One desi day that gets you there</p>
+            <ul className="space-y-1.5 text-sm text-white/85">
+              {r.plate.map((p) => (
+                <li key={p.id} className="flex justify-between gap-3">
+                  <span>{p.text}</span>
+                  <span className="whitespace-nowrap text-white/55">{Math.round(p.protein)} g</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 border-t border-white/10 pt-2 text-sm font-semibold text-white">
+              Total about {r.covered} g{r.short > 0 ? ` (${r.short} g short: add another protein meal)` : ""}
+            </p>
+          </div>
+          <p className="text-center text-xs text-white/55">Food values from the ICMR-NIN Indian Food Composition Tables 2017, rounded. Kidney disease or pregnancy: ask your doctor first.</p>
+          <ShareResult input={{ key: "protein", weight: w, goal, diet }} />
+        </>
+      }
+    />
+  );
+}
+
+function DietScoreCalc() {
+  const [answers, setAnswers] = useState<(0 | 1 | 2 | null)[]>(() => DIET_QUESTIONS.map(() => null));
+  const done = answers.every((a) => a !== null);
+  const r = done ? dietScore(answers as DietAnswers) : null;
+  const set = (i: number, v: 0 | 1 | 2) => setAnswers((a) => a.map((x, j) => (j === i ? v : x)));
+  return (
+    <Layout
+      inputs={
+        <ol className="space-y-4">
+          {DIET_QUESTIONS.map((q, i) => (
+            <li key={q.id}>
+              <p className="mb-2 text-sm text-white/80">
+                {i + 1}. {q.q}
+              </p>
+              <div role="radiogroup" aria-label={q.q} className="grid grid-cols-3 gap-1.5">
+                {q.options.map((o, v) => (
+                  <button
+                    key={o}
+                    type="button"
+                    role="radio"
+                    aria-checked={answers[i] === v}
+                    onClick={() => set(i, v as 0 | 1 | 2)}
+                    className={`rounded-xl border px-2 py-2 text-xs font-semibold leading-tight transition-colors ${answers[i] === v ? "border-brand bg-brand-strong text-white" : "border-line bg-black/30 text-white/70 hover:text-white"}`}
+                  >
+                    {o}
+                  </button>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+      }
+      result={
+        r ? (
+          <>
+            <Big value={r.score} unit="/ 100" label={r.band} />
+            {r.best && <p className="text-center text-sm text-white/85">Best habit: {r.best}</p>}
+            {r.fix && <p className="text-center text-sm text-white/85">Easiest next fix: {r.fix}</p>}
+            <p className="text-center text-xs text-white/55">Habits from the ICMR-NIN Dietary Guidelines for Indians, 2024. A habit check, not a medical test.</p>
+            <ShareResult input={{ key: "diet-score", answers: answers as DietAnswers }} />
+          </>
+        ) : (
+          <p className="py-10 text-center text-sm text-white/65">
+            Answer all 8 questions to see your score ({answers.filter((a) => a !== null).length}/8 done).
+          </p>
+        )
+      }
+    />
+  );
+}
+
 function Layout({ inputs, result }: { inputs: ReactNode; result: ReactNode }) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
@@ -662,6 +753,8 @@ const MAP: Record<CalculatorKey, () => ReactNode> = {
   idrs: IdrsCalc,
   whtr: WhtrCalc,
   fasting: FastingCalc,
+  protein: ProteinCalc,
+  "diet-score": DietScoreCalc,
 };
 
 export function Calculator({ calcKey, embedded = false }: { calcKey: string; embedded?: boolean }) {
