@@ -1,8 +1,8 @@
 // The Short queue: Shorts written outside the hand-checked bank (a viewer's comment question, a
-// trend fact-check, the owner's own phone clip). Every item waits in Admin as a draft and only
-// goes out after the owner taps Approve, because the bank's rule still holds: nothing about
-// health goes on the channel without a person checking it. Pure, so it is tested without
-// YouTube, the AI or the database.
+// trend fact-check). The owner chose (17 Nov 2026) that drafts passing every automatic check post
+// by themselves; a draft that fails a check, or that the AI skipped, waits in Admin for a person.
+// YOUTUBE_QUEUE_AUTO=off sends every draft to Admin for approval instead. Pure, so it is tested
+// without YouTube, the AI or the database.
 import type { Short } from "./shorts-bank";
 
 export type QueueKind = "answer" | "trend";
@@ -100,6 +100,9 @@ export function answerShort(itemId: string, d: AnswerDraft): Short {
 
 /** Music and photo index for a queue item: far past the bank and the Reels, so no tune repeats. */
 export const QUEUE_INDEX_BASE = 6000;
+
+/** Drafts that pass the checks post without a tap, unless YOUTUBE_QUEUE_AUTO=off. */
+export const queueAutoApprove = (env: Record<string, string | undefined> = process.env) => env.YOUTUBE_QUEUE_AUTO !== "off";
 
 /** The queue goes out in the midday slot, at most one a day, so the bank still sets the rhythm. */
 export const QUEUE_SLOT = 2;

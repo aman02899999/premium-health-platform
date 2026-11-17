@@ -122,9 +122,9 @@ export function ShortQueue() {
   }, [apply]);
   return (
     <div className="mt-5 border-t border-white/10 pt-4">
-      <h3 className="text-sm font-bold text-white/80">Shorts waiting for your OK</h3>
+      <h3 className="text-sm font-bold text-white/80">Viewer-question and trend Shorts</h3>
       <p className="mt-1 text-xs text-white/60">
-        Every Sunday the site picks the best question from your YouTube comments and writes an answer Short. Check it, fix anything, then Approve. It posts in the next 1 pm slot, and the site replies under the viewer&apos;s comment with the link. Nothing posts without your OK.
+        Every Sunday the site picks the best question from your YouTube comments and writes an answer Short. If it passes every check (no cures, guarantees, doses or quick-fix promises), it posts by itself in the next 1 pm slot and the site replies under the viewer&apos;s comment with the link. Anything held back waits here for you to fix and Approve, or Reject. Set YOUTUBE_QUEUE_AUTO=off to approve every one yourself.
       </p>
       {error && <p className="mt-2 text-xs text-amber-200">{error}</p>}
       {items && items.length === 0 && <p className="mt-2 text-xs text-white/50">Nothing yet. The first draft comes on Sunday.</p>}

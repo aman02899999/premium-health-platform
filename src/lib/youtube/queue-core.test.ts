@@ -56,7 +56,7 @@ describe("checking a draft", () => {
   it("lists what is missing", () => {
     const r = checkAnswerDraft({ hook: "x" });
     expect(r.ok).toBe(false);
-    if (!r.ok) expect(r.errors.join(" ")).toMatch(/hook.*question/s);
+    if (!r.ok) expect(r.errors.join(" ")).toMatch(/hook[\s\S]*question/);
   });
 });
 
@@ -91,4 +91,10 @@ it("drafts on Sundays in India", () => {
   expect(isAnswerDay(new Date("2026-11-22T04:00:00Z"))).toBe(true); // Sun 09:30 IST
   expect(isAnswerDay(new Date("2026-11-21T19:00:00Z"))).toBe(true); // Sun 00:30 IST
   expect(isAnswerDay(new Date("2026-11-21T10:00:00Z"))).toBe(false);
+});
+
+it("posts clean drafts by itself unless switched off (owner's choice, 17 Nov 2026)", async () => {
+  const { queueAutoApprove } = await import("./queue-core");
+  expect(queueAutoApprove({})).toBe(true);
+  expect(queueAutoApprove({ YOUTUBE_QUEUE_AUTO: "off" })).toBe(false);
 });

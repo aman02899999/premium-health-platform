@@ -4,7 +4,7 @@ import { pool } from "@/health/db";
 import { aiConfigured, getAgentSettings } from "@/lib/ai/agent";
 import type { Fetch } from "./client";
 import type { Short } from "./shorts-bank";
-import { answerReply, answerShort, checkAnswerDraft, isAnswerDay, pickQuestion, QUEUE_INDEX_BASE, type AnswerDraft, type Comment, type QueueKind, type QueueStatus } from "./queue-core";
+import { answerReply, answerShort, checkAnswerDraft, isAnswerDay, pickQuestion, queueAutoApprove, QUEUE_INDEX_BASE, type AnswerDraft, type Comment, type QueueKind, type QueueStatus } from "./queue-core";
 
 const API = "https://www.googleapis.com/youtube/v3";
 
@@ -195,7 +195,7 @@ export async function runAnswerJob(token: string, now: Date, opts: { force?: boo
   // 2. The weekly draft.
   if (!opts.force && !isAnswerDay(now)) return { ...report, note: "not Sunday" };
   const { rows: open } = await pool.query<{ n: string }>(`select count(*) as n from public.youtube_queue where kind = 'answer' and status = 'draft'`);
-  if (Number(open[0]?.n ?? 0) > 0 && !opts.force) return { ...report, note: "last week's draft is still waiting in Admin" };
+  if (Number(open[0]?.n ?? 0) > 0 && !opts.force && !queueAutoApprove()) return { ...report, note: "last week's draft is still waiting in Admin" };
   const listed = await recentComments(token, f);
   if (!listed.ok) return { ...report, errors: [...report.errors, listed.error] };
   const { rows: usedRows } = await pool.query<{ source_ref: string }>(`select source_ref from public.youtube_queue where kind = 'answer'`);
@@ -216,9 +216,12 @@ export async function runAnswerJob(token: string, now: Date, opts: { force?: boo
       else note = `AI draft failed the checks: ${c.errors.join("; ")}`.slice(0, 300);
     }
   }
+  // A clean draft posts by itself (the owner's choice); anything held back waits in Admin.
+  const auto = draft !== null && queueAutoApprove();
   await pool.query(
-    `insert into public.youtube_queue (kind, source_ref, source_text, draft, note) values ('answer', $1, $2, $3, $4) on conflict (kind, source_ref) do nothing`,
-    [pick.id, pick.text.slice(0, 1000), draft ? JSON.stringify(draft) : null, note.slice(0, 500)],
+    `insert into public.youtube_queue (kind, source_ref, source_text, draft, note, status, decided_at, decided_by)
+     values ('answer', $1, $2, $3, $4, $5, case when $6 then now() end, case when $6 then 'auto' end) on conflict (kind, source_ref) do nothing`,
+    [pick.id, pick.text.slice(0, 1000), draft ? JSON.stringify(draft) : null, note.slice(0, 500), auto ? "approved" : "draft", auto],
   );
-  return { ...report, drafted: pick.text.slice(0, 120), note: note || "draft saved: approve it in Admin → Social" };
+  return { ...report, drafted: pick.text.slice(0, 120), note: note || (auto ? "approved automatically: posts in the next midday slot" : "draft saved: approve it in Admin → Social") };
 }
