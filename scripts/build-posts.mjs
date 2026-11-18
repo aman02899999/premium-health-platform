@@ -11,6 +11,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIR = path.join(ROOT, "content/blog");
 const OUT = path.join(ROOT, "src/health/data/posts-index.generated.ts");
 const LANGS = ["en", "hi"];
+// Script ids of the long YouTube videos, for the optional `video:` pin.
+const VIDEO_IDS = new Set([...fs.readFileSync(path.join(ROOT, "src/lib/youtube/long-videos.ts"), "utf8").matchAll(/^\s+id: "([\w-]+)",/gm)].map((m) => m[1]));
 
 /** A small YAML subset: `key: value`, `key: [a, b]`, and `key:` followed by `  - item` lines. */
 export function parseFrontmatter(src) {
@@ -68,6 +70,7 @@ function check(lang, file, data, body) {
   if (lang === "en" && /[&'’/]/.test(String(data.category ?? ""))) errors.push(`category "${data.category}" can't contain &, apostrophes or slashes (it becomes a URL)`);
   // Blog lists and share previews load the PNG twin of an SVG cover (see src/health/data/editorial.ts).
   if (/\.svg$/.test(String(data.heroImage ?? "")) && !fs.existsSync(path.join(ROOT, "public", String(data.heroImage).replace(/\.svg$/, ".png")))) errors.push(`cover ${String(data.heroImage).replace(/\.svg$/, ".png")} is missing (lists use the PNG copy of the SVG cover)`);
+  if (data.video !== undefined && !VIDEO_IDS.has(String(data.video))) errors.push(`video "${data.video}" isn't a long-video id in src/lib/youtube/long-videos.ts`);
   if (String(data.description ?? "").length > 160) errors.push(`description is ${String(data.description).length} chars (max 160)`);
   if (data.reviewStatus !== "pending-medical-review" && data.reviewStatus !== "medically-reviewed") errors.push(`reviewStatus must be pending-medical-review`);
   if (data.reviewStatus === "medically-reviewed" && /pending/i.test(String(data.reviewedBy))) errors.push("marked reviewed but reviewedBy is a placeholder");
@@ -150,6 +153,7 @@ export function buildIndex() {
         faqs: faqItems(body),
         words: n,
         ads,
+        video: data.video ?? null,
       });
     }
   }

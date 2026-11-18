@@ -11,6 +11,7 @@ lastReviewed: 2026-10-21
 author: Royal Fitness Club Health Desk
 reviewedBy: Pending medical review
 reviewStatus: pending-medical-review
+video: long-ozempic-glp1-myths-15-v2
 heroImage: /health/posts/generic-semaglutide-india-guide/hero.svg
 heroAlt: Illustration of a weekly injection pen beside a balanced Indian plate and a dumbbell, showing that medicine, food and strength training work together
 related:

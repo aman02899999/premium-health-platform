@@ -1,13 +1,14 @@
 import "server-only";
 import { isDbConfigured, pool } from "@/health/db";
 import { LONG_VIDEOS } from "./long-videos";
-import { bestVideoFor, videoText } from "./topics";
+import { videoText } from "./topics";
+import { pickSiteVideo, type SiteVideo } from "./site-videos-core";
+
+export type { SiteVideo };
 
 // Long videos that are live on YouTube, for the "watch the video" box on health pages and blog
 // posts. The YouTube id comes from social_posts (written when the upload finished); the title,
 // intro come from the script in long-videos.ts and the thumbnail from YouTube, so the page never calls YouTube.
-
-export type SiteVideo = { youtubeId: string; scriptId: string; title: string; description: string; thumb: string; uploadDate: string; text: string };
 
 /**
  * YouTube's own thumbnail for a video. The thumbnails in public/youtube are not in the Cloud Run
@@ -44,9 +45,7 @@ export function siteVideos(now = Date.now()): Promise<SiteVideo[]> {
   return memo.list;
 }
 
-/** The video that fits a page, or null when none does. */
-export async function videoForPage(pageText: string): Promise<SiteVideo | null> {
-  const list = await siteVideos();
-  const hit = bestVideoFor(pageText, list.map((v) => ({ id: v.youtubeId, text: v.text, date: v.uploadDate })));
-  return hit ? list.find((v) => v.youtubeId === hit.id) ?? null : null;
+/** The video that fits a page, or null when none does. `pin` names a script id from long-videos.ts. */
+export async function videoForPage(pageText: string, pin?: string | null): Promise<SiteVideo | null> {
+  return pickSiteVideo(await siteVideos(), pageText, pin);
 }

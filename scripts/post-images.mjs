@@ -490,6 +490,850 @@ export const SPECS = {
       ],
     },
   },
+  "anabolic-steroids-side-effects-india": {
+    "theme": [
+      "#1c1917",
+      "#57534e",
+      "#f43f5e"
+    ],
+    "hero": {
+      "kicker": "Supplements and gym drugs",
+      "title": "Anabolic steroids: the real cost to heart, liver and hormones",
+      "icons": [
+        "heart",
+        "brain",
+        "pill",
+        "alert"
+      ]
+    },
+    "inline-1": {
+      "type": "cards",
+      "title": "What steroids do across your body",
+      "subtitle": "Harms reported in research and by health services. Many build silently for years.",
+      "items": [
+        {
+          "icon": "heart",
+          "head": "Heart",
+          "text": "Weaker pumping, stiffer relaxation and more artery plaque in long-term users",
+          "tone": "bad"
+        },
+        {
+          "icon": "drop",
+          "head": "Liver and kidneys",
+          "text": "Oral steroids strain the liver: jaundice, and rarely tumours. Kidney damage reported",
+          "tone": "bad"
+        },
+        {
+          "icon": "family",
+          "head": "Hormones and fertility",
+          "text": "Shrunken testicles, low sperm count, and low testosterone that can last years after stopping",
+          "tone": "bad"
+        },
+        {
+          "icon": "mask",
+          "head": "Skin and body",
+          "text": "Severe acne, hair loss, breast tissue in men. Deeper voice and body hair in women",
+          "tone": "bad"
+        },
+        {
+          "icon": "brain",
+          "head": "Mind",
+          "text": "Mood swings, aggression, dependence, and low mood after stopping",
+          "tone": "bad"
+        },
+        {
+          "icon": "alert",
+          "head": "Injections and fakes",
+          "text": "Hepatitis B, C and HIV from shared needles or vials. About a third of black-market samples were fake",
+          "tone": "bad"
+        }
+      ]
+    },
+    "inline-2": {
+      "type": "bars",
+      "title": "Heart pumping strength in weightlifters",
+      "subtitle": "Left ventricular ejection fraction: the share of blood pumped out with each beat",
+      "unit": "%",
+      "max": 70,
+      "items": [
+        {
+          "label": "Never used steroids (54 men)",
+          "value": 63
+        },
+        {
+          "label": "All steroid users (86 men)",
+          "value": 52,
+          "highlight": true
+        },
+        {
+          "label": "Steroid users who had stopped (28 men)",
+          "value": 58
+        },
+        {
+          "label": "Current steroid users (58 men)",
+          "value": 49,
+          "highlight": true
+        }
+      ],
+      "note": "Source: Baggish et al., Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use, Circulation, 2017. Averages; lower means weaker pumping."
+    }
+  },
+  "beginner-gym-guide-india": {
+    "theme": [
+      "#0f172a",
+      "#0369a1",
+      "#f97316"
+    ],
+    "hero": {
+      "kicker": "Fitness · beginners",
+      "title": "Your first month in the gym: a safe beginner's plan",
+      "icons": [
+        "dumbbell",
+        "clock",
+        "walk",
+        "check"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "How much activity WHO advises each week",
+      "subtitle": "Adults 18–64: aerobic minutes per week, plus muscle-strengthening on 2 or more days.",
+      "unit": " min",
+      "max": 300,
+      "items": [
+        {
+          "label": "Moderate activity, minimum (brisk walking, cycling)",
+          "value": 150,
+          "highlight": true
+        },
+        {
+          "label": "Moderate activity, upper target",
+          "value": 300
+        },
+        {
+          "label": "Vigorous activity, minimum (running, fast cycling)",
+          "value": 75,
+          "highlight": true
+        },
+        {
+          "label": "Vigorous activity, upper target",
+          "value": 150
+        }
+      ],
+      "note": "Source: WHO 2020 guidelines on physical activity and sedentary behaviour (Bull et al., British Journal of Sports Medicine, 2020)."
+    },
+    "inline-2": {
+      "type": "cards",
+      "title": "Your 4-week full-body plan",
+      "subtitle": "3 days a week with a rest day between. Alternate Workout A and B. 1–2 minutes rest between sets.",
+      "items": [
+        {
+          "icon": "pen",
+          "head": "Week 1: learn the moves",
+          "text": "2 sets of 10–12, light weight, stop 3–4 reps short of tired"
+        },
+        {
+          "icon": "clock",
+          "head": "Week 2: build the habit",
+          "text": "2 sets of 10–12. Second set easy? Pick the next dumbbell"
+        },
+        {
+          "icon": "dumbbell",
+          "head": "Week 3: add a set",
+          "text": "3 sets of 8–12 on the main lifts, 2 sets on the rest"
+        },
+        {
+          "icon": "check",
+          "head": "Week 4: progress the load",
+          "text": "2 reps over target on the last set? Add a small step (ACSM: 2–10%)",
+          "tone": "good"
+        },
+        {
+          "icon": "alert",
+          "head": "Stop and get checked",
+          "text": "Chest pain, fainting, joint pain, swelling or very dark urine",
+          "tone": "bad"
+        }
+      ]
+    }
+  },
+  "creatine-guide-india": {
+    "theme": [
+      "#0c4a6e",
+      "#0369a1",
+      "#fb923c"
+    ],
+    "hero": {
+      "kicker": "Supplements · evidence check",
+      "title": "Creatine for Indians: kidneys, hair loss and vegetarians",
+      "icons": [
+        "dumbbell",
+        "cup",
+        "check",
+        "leaf"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "How much creatine is in your muscles?",
+      "subtitle": "Total creatine in mmol per kg of dry muscle. Vegetarians start lower, so they may gain more from a supplement.",
+      "unit": "",
+      "max": 170,
+      "items": [
+        {
+          "label": "Vegetarians, low end of range",
+          "value": 90,
+          "highlight": true
+        },
+        {
+          "label": "Vegetarians, high end of range",
+          "value": 110,
+          "highlight": true
+        },
+        {
+          "label": "Average, 70 kg person on a mixed diet",
+          "value": 120
+        },
+        {
+          "label": "Upper storage limit for most people",
+          "value": 160
+        }
+      ],
+      "note": "Source: Kreider et al., International Society of Sports Nutrition position stand on creatine, JISSN 2017."
+    },
+    "inline-2": {
+      "type": "cards",
+      "title": "Ask a doctor before creatine if",
+      "subtitle": "Creatine has a strong safety record in healthy adults. These groups need a doctor's view first.",
+      "items": [
+        {
+          "icon": "drop",
+          "head": "Kidney disease",
+          "text": "Or a past abnormal creatinine or eGFR. Safety studies were mostly in healthy people",
+          "tone": "bad"
+        },
+        {
+          "icon": "baby",
+          "head": "Pregnant or breastfeeding",
+          "text": "Research is still early. Ask your obstetrician",
+          "tone": "bad"
+        },
+        {
+          "icon": "family",
+          "head": "Under 18",
+          "text": "Limited evidence. Food, sleep and coaching come first; involve a parent and doctor",
+          "tone": "bad"
+        },
+        {
+          "icon": "pill",
+          "head": "On regular medicines",
+          "text": "Especially those that affect the kidneys",
+          "tone": "bad"
+        },
+        {
+          "icon": "check",
+          "head": "Healthy adult who trains",
+          "text": "Plain monohydrate, ISSN amounts, tell the lab before kidney tests",
+          "tone": "good"
+        }
+      ]
+    }
+  },
+  "fat-burners-pre-workout-risks-india": {
+    "theme": [
+      "#4a044e",
+      "#a21caf",
+      "#facc15"
+    ],
+    "hero": {
+      "kicker": "Supplements · heart and liver",
+      "title": "Fat burners and pre-workouts: what's inside and what can hurt",
+      "icons": [
+        "alert",
+        "heart",
+        "cup",
+        "walk"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "How much caffeine are you really taking?",
+      "subtitle": "Approximate caffeine per serving, compared with EFSA's safe single amount and daily limit for healthy adults.",
+      "unit": " mg",
+      "max": 400,
+      "items": [
+        {
+          "label": "Cup of black tea (220 ml)",
+          "value": 50
+        },
+        {
+          "label": "Can of cola (355 ml)",
+          "value": 40
+        },
+        {
+          "label": "Espresso (60 ml)",
+          "value": 80
+        },
+        {
+          "label": "Energy drink can (250 ml)",
+          "value": 80
+        },
+        {
+          "label": "Cup of filter coffee (200 ml)",
+          "value": 90
+        },
+        {
+          "label": "Caffeinated drink, 500 ml at FSSAI's 300 mg/L ceiling",
+          "value": 150
+        },
+        {
+          "label": "EFSA safe single amount",
+          "value": 200,
+          "highlight": true
+        },
+        {
+          "label": "EFSA daily limit, healthy adults (not pregnancy)",
+          "value": 400,
+          "highlight": true
+        }
+      ],
+      "note": "Sources: EFSA Scientific Opinion on the safety of caffeine, 2015; FSSAI caffeinated beverage standard (145–300 mg per litre, max 500 ml a day), as reported by BeverageDaily, 2026."
+    },
+    "inline-2": {
+      "type": "cards",
+      "title": "What's in the tub, and why it's a worry",
+      "subtitle": "Read every label. If amounts are hidden in a 'proprietary blend', skip it.",
+      "items": [
+        {
+          "icon": "cup",
+          "head": "Caffeine",
+          "text": "Small training boost. Add every source and stay within EFSA's 200 mg at once, 400 mg a day"
+        },
+        {
+          "icon": "alert",
+          "head": "DMAA, DMHA, octodrine",
+          "text": "FDA-banned DMAA linked to heart risks; look-alikes have unknown safety. Prohibited in sport",
+          "tone": "bad"
+        },
+        {
+          "icon": "heart",
+          "head": "Synephrine (bitter orange)",
+          "text": "Raised blood pressure in a 2022 meta-analysis, with no proven weight loss",
+          "tone": "bad"
+        },
+        {
+          "icon": "pill",
+          "head": "Yohimbine",
+          "text": "Amounts ranged from none to drug-level, and most labels were wrong",
+          "tone": "bad"
+        },
+        {
+          "icon": "leaf",
+          "head": "Green tea extract, Garcinia",
+          "text": "Flagged in liver-injury research. 'Herbal' doesn't mean safe",
+          "tone": "bad"
+        },
+        {
+          "icon": "walk",
+          "head": "What works instead",
+          "text": "Calorie deficit, protein at every meal, lifting and more daily steps",
+          "tone": "good"
+        }
+      ]
+    }
+  },
+  "gym-heart-safety-chest-pain": {
+    "theme": [
+      "#0c4a6e",
+      "#dc2626",
+      "#fde047"
+    ],
+    "hero": {
+      "kicker": "Heart health · gym safety",
+      "title": "Chest pain at the gym isn't gas: warning signs and CPR",
+      "icons": [
+        "heart",
+        "alert",
+        "phone",
+        "dumbbell"
+      ]
+    },
+    "inline-1": {
+      "type": "cards",
+      "title": "Heart warning signs: stop and get help",
+      "subtitle": "From the American Heart Association. If it lasts more than a few minutes, call 112 or 108.",
+      "items": [
+        {
+          "icon": "heart",
+          "head": "Chest pressure or pain",
+          "text": "Squeezing, fullness, heaviness or burning in the centre of the chest",
+          "tone": "bad"
+        },
+        {
+          "icon": "alert",
+          "head": "Pain that spreads",
+          "text": "To one or both arms, the back, neck, jaw or upper stomach",
+          "tone": "bad"
+        },
+        {
+          "icon": "lungs",
+          "head": "Breathlessness",
+          "text": "With or without chest pain, out of proportion to the effort",
+          "tone": "bad"
+        },
+        {
+          "icon": "drop",
+          "head": "Cold sweat or nausea",
+          "text": "Often mistaken for acidity, especially in women",
+          "tone": "bad"
+        },
+        {
+          "icon": "clock",
+          "head": "Racing or irregular heartbeat",
+          "text": "Or feeling lightheaded or unusually tired",
+          "tone": "bad"
+        }
+      ]
+    },
+    "inline-2": {
+      "type": "bars",
+      "title": "When someone collapses during sport",
+      "subtitle": "Sports-related cardiac arrests in the general population, France, 2005 to 2010.",
+      "unit": "%",
+      "max": 100,
+      "items": [
+        {
+          "label": "Arrest was witnessed by someone",
+          "value": 93
+        },
+        {
+          "label": "Bystander started CPR",
+          "value": 30.7,
+          "highlight": true
+        },
+        {
+          "label": "Survived to leave hospital",
+          "value": 15.7,
+          "highlight": true
+        }
+      ],
+      "note": "Source: Marijon et al., Sports-related sudden death in the general population, Circulation, 2011. Bystander CPR and early defibrillation each linked to about 3.7 times higher odds of survival."
+    }
+  },
+  "peptides-bpc-157-gym-injections-truth": {
+    "theme": [
+      "#0c4a6e",
+      "#0e7490",
+      "#fb7185"
+    ],
+    "hero": {
+      "kicker": "Supplements & gym drugs",
+      "title": "Gym peptides: what the evidence really says",
+      "icons": [
+        "alert",
+        "dumbbell",
+        "heart",
+        "plate"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "How BPC-157 has been studied",
+      "subtitle": "Studies included in a 2025 systematic review, by type",
+      "unit": "",
+      "max": 36,
+      "items": [
+        {
+          "label": "All studies included",
+          "value": 36
+        },
+        {
+          "label": "Animal or lab-dish (preclinical) studies",
+          "value": 35
+        },
+        {
+          "label": "Human studies (one record review of 12 knee pain patients, no comparison group)",
+          "value": 1,
+          "highlight": true
+        }
+      ],
+      "note": "Source: Vasireddi et al., Emerging Use of BPC-157 in Orthopaedic Sports Medicine: A Systematic Review, HSS Journal, 2025."
+    },
+    "inline-2": {
+      "type": "cards",
+      "title": "Approved peptide medicines vs research peptides",
+      "subtitle": "Same word, very different products.",
+      "items": [
+        {
+          "icon": "check",
+          "head": "Approved: insulin, GLP-1s, prescribed GH",
+          "text": "Tested in large human trials and approved by regulators such as CDSCO",
+          "tone": "good"
+        },
+        {
+          "icon": "pill",
+          "head": "Approved: made to medicine standards",
+          "text": "Licensed factories check purity, sterility and exact content",
+          "tone": "good"
+        },
+        {
+          "icon": "alert",
+          "head": "Research peptides: BPC-157, TB-500",
+          "text": "Mostly animal data, no human safety record, sold as research use only",
+          "tone": "bad"
+        },
+        {
+          "icon": "label",
+          "head": "Research peptides: unverified vials",
+          "text": "Content, impurities and sterility are not checked by any regulator",
+          "tone": "bad"
+        },
+        {
+          "icon": "dumbbell",
+          "head": "Sport: banned at all times",
+          "text": "WADA lists BPC-157, TB-500, MK-677 and GH-releasing peptides; NADA India tests against this list",
+          "tone": "bad"
+        }
+      ]
+    }
+  },
+  "protein-requirement-calculator-india": {
+    "theme": [
+      "#365314",
+      "#4d7c0f",
+      "#fbbf24"
+    ],
+    "hero": {
+      "kicker": "Fitness · nutrition",
+      "title": "Kitna protein chahiye? Your daily number",
+      "icons": [
+        "bowl",
+        "scale",
+        "dumbbell",
+        "plate"
+      ]
+    },
+    "inline-1": {
+      "type": "cards",
+      "title": "Your daily protein number",
+      "subtitle": "Weight in kg × the g per kg on your line. Kidney disease? Your doctor sets it.",
+      "items": [
+        {
+          "icon": "check",
+          "head": "Healthy adult: 0.83 g/kg",
+          "text": "ICMR-NIN 2020 allowance. About 54 g for 65 kg, 46 g for 55 kg"
+        },
+        {
+          "icon": "bowl",
+          "head": "Mostly cereal diet: about 1 g/kg",
+          "text": "ICMR-NIN footnote for diets low in protein quality"
+        },
+        {
+          "icon": "dumbbell",
+          "head": "Lifting weights: 1.4–2.0 g/kg",
+          "text": "ISSN 2017 range. Muscle gains level off near 1.6 g/kg (Morton 2018)",
+          "tone": "good"
+        },
+        {
+          "icon": "family",
+          "head": "Over 65: 1.0–1.2 g/kg",
+          "text": "PROT-AGE 2013; 1.2 g/kg or more if active"
+        },
+        {
+          "icon": "alert",
+          "head": "Kidney disease: ask your doctor",
+          "text": "KDIGO 2024 patient guide: about 0.8 g/kg or less, set by your nephrologist",
+          "tone": "bad"
+        }
+      ]
+    },
+    "inline-2": {
+      "type": "bars",
+      "title": "Protein in typical Indian servings",
+      "subtitle": "Grams of protein, calculated from IFCT 2017 values. Dal, soya, chana and rice weighed dry; egg boiled.",
+      "unit": " g",
+      "max": 25,
+      "items": [
+        {
+          "label": "Chicken breast, skinless, 100 g raw",
+          "value": 21.8,
+          "highlight": true
+        },
+        {
+          "label": "Paneer, 100 g",
+          "value": 18.9,
+          "highlight": true
+        },
+        {
+          "label": "Boiled egg, 100 g",
+          "value": 13.4
+        },
+        {
+          "label": "Soybean (brown, whole), 30 g dry",
+          "value": 10.7
+        },
+        {
+          "label": "Masoor dal, 30 g dry",
+          "value": 7.3
+        },
+        {
+          "label": "Cow's milk, 200 g",
+          "value": 6.5
+        },
+        {
+          "label": "Whole wheat atta, 60 g",
+          "value": 6.3
+        },
+        {
+          "label": "Raw rice, 60 g",
+          "value": 4.8
+        }
+      ],
+      "note": "Source: Indian Food Composition Tables 2017, ICMR-National Institute of Nutrition. Serving values are per-100 g figures multiplied by the weight shown."
+    }
+  },
+  "sarms-spiked-gym-supplements-india": {
+    "theme": [
+      "#365314",
+      "#4d7c0f",
+      "#fb923c"
+    ],
+    "hero": {
+      "kicker": "Supplements and gym drugs",
+      "title": "SARMs and spiked supplements: the hidden steroid risk",
+      "icons": [
+        "label",
+        "pill",
+        "check",
+        "alert"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "What was inside 44 'SARM' products bought online",
+      "subtitle": "Lab tests using WADA-approved methods, products bought in 2016",
+      "unit": "%",
+      "max": 100,
+      "items": [
+        {
+          "label": "Contained one or more SARMs",
+          "value": 52
+        },
+        {
+          "label": "Contained a different unapproved drug",
+          "value": 39,
+          "highlight": true
+        },
+        {
+          "label": "Contained substances not on the label",
+          "value": 25,
+          "highlight": true
+        },
+        {
+          "label": "Contained no active drug at all",
+          "value": 9,
+          "highlight": true
+        },
+        {
+          "label": "Amount close to what the label claimed",
+          "value": 41
+        }
+      ],
+      "note": "Source: Van Wagoner et al., Chemical Composition and Labeling of Substances Marketed as SARMs and Sold via the Internet, JAMA, 2017. Categories overlap."
+    },
+    "inline-2": {
+      "type": "cards",
+      "title": "Six checks before you buy a gym supplement",
+      "subtitle": "No check makes a product risk-free, but together they cut the odds of hidden drugs.",
+      "items": [
+        {
+          "icon": "bowl",
+          "head": "Food first",
+          "text": "Dal, paneer, curd, eggs, chicken and soya cover most protein needs",
+          "tone": "good"
+        },
+        {
+          "icon": "label",
+          "head": "FSSAI licence and full label",
+          "text": "Licence number, every ingredient, batch number and expiry on the pack",
+          "tone": "good"
+        },
+        {
+          "icon": "check",
+          "head": "Independent batch testing",
+          "text": "Check the batch on the tester's own website, not just a logo",
+          "tone": "good"
+        },
+        {
+          "icon": "scale",
+          "head": "Plain, single ingredients",
+          "text": "Whey or creatine monohydrate, not secret proprietary blends",
+          "tone": "good"
+        },
+        {
+          "icon": "alert",
+          "head": "Skip 'anabolic' promises",
+          "text": "SARM, research chemical, test booster or steroid-like on the label means walk away",
+          "tone": "bad"
+        },
+        {
+          "icon": "phone",
+          "head": "No Instagram or WhatsApp sellers",
+          "text": "Buy from authorised sellers and keep the bill",
+          "tone": "bad"
+        }
+      ]
+    }
+  },
+  "tirzepatide-mounjaro-india-guide": {
+    "theme": [
+      "#365314",
+      "#4d7c0f",
+      "#fb923c"
+    ],
+    "hero": {
+      "kicker": "Weight & metabolism · India",
+      "title": "Tirzepatide (Mounjaro) in India: who it suits and how to keep your muscle",
+      "icons": [
+        "pen",
+        "scale",
+        "dumbbell",
+        "plate"
+      ]
+    },
+    "inline-1": {
+      "type": "bars",
+      "title": "Average weight loss at 72 weeks (SURMOUNT-1)",
+      "subtitle": "Adults with obesity, or overweight plus a related illness, without diabetes. Three strengths of tirzepatide compared with placebo.",
+      "unit": "%",
+      "max": 25,
+      "items": [
+        {
+          "label": "Placebo",
+          "value": 3.1
+        },
+        {
+          "label": "Tirzepatide, lowest strength",
+          "value": 15
+        },
+        {
+          "label": "Tirzepatide, middle strength",
+          "value": 19.5
+        },
+        {
+          "label": "Tirzepatide, highest strength",
+          "value": 20.9,
+          "highlight": true
+        }
+      ],
+      "note": "Source: Jastreboff et al., Tirzepatide Once Weekly for the Treatment of Obesity (SURMOUNT-1), New England Journal of Medicine, 2022. Averages; individual results vary widely."
+    },
+    "inline-2": {
+      "type": "bars",
+      "title": "What happens when you stop (SURMOUNT-4)",
+      "subtitle": "Everyone took tirzepatide for 36 weeks, then half switched to placebo for 52 weeks.",
+      "unit": "%",
+      "max": 25,
+      "items": [
+        {
+          "label": "Weight lost in the first 36 weeks on tirzepatide",
+          "value": 20.9
+        },
+        {
+          "label": "Kept taking tirzepatide: further weight lost over 52 weeks",
+          "value": 5.5
+        },
+        {
+          "label": "Switched to placebo: weight regained over 52 weeks",
+          "value": 14,
+          "highlight": true
+        }
+      ],
+      "note": "Source: Aronne et al., Continued Treatment With Tirzepatide for Maintenance of Weight Reduction (SURMOUNT-4), JAMA, 2024."
+    }
+  },
+  "women-weight-training-guide-india": {
+    "theme": [
+      "#701a75",
+      "#c026d3",
+      "#fde68a"
+    ],
+    "hero": {
+      "kicker": "Fitness · women",
+      "title": "Strength training for women: the real facts",
+      "icons": [
+        "dumbbell",
+        "heart",
+        "baby",
+        "leaf"
+      ]
+    },
+    "inline-1": {
+      "type": "cards",
+      "title": "What strength training does for women",
+      "subtitle": "Two or three full-body sessions a week, built up slowly, at every stage of life.",
+      "items": [
+        {
+          "icon": "dumbbell",
+          "head": "Shape and strength",
+          "text": "Firmer, leaner look and strength for daily loads. Bulky by accident is very unlikely",
+          "tone": "good"
+        },
+        {
+          "icon": "check",
+          "head": "Stronger bones",
+          "text": "Load helps bone density, before and after menopause",
+          "tone": "good"
+        },
+        {
+          "icon": "drop",
+          "head": "Insulin and PCOS",
+          "text": "2023 PCOS guideline: strength work on 2 non-consecutive days a week",
+          "tone": "good"
+        },
+        {
+          "icon": "baby",
+          "head": "Pregnancy and after birth",
+          "text": "Recommended without complications, with changes your doctor agrees",
+          "tone": "good"
+        },
+        {
+          "icon": "family",
+          "head": "Independence later",
+          "text": "Muscle and balance keep you on your feet in your 60s and beyond",
+          "tone": "good"
+        }
+      ]
+    },
+    "inline-2": {
+      "type": "bars",
+      "title": "Low bone density in Indian women after menopause",
+      "subtitle": "Pooled results from Indian studies of postmenopausal women, by site measured.",
+      "unit": "%",
+      "max": 40,
+      "items": [
+        {
+          "label": "Osteoporosis, lumbar spine",
+          "value": 29,
+          "highlight": true
+        },
+        {
+          "label": "Osteoporosis, femoral neck",
+          "value": 29,
+          "highlight": true
+        },
+        {
+          "label": "Osteoporosis, hip region",
+          "value": 6
+        },
+        {
+          "label": "Osteopenia, lumbar spine",
+          "value": 37
+        }
+      ],
+      "note": "Source: Anupama et al., Burden of Osteopenia and Osteoporosis Among Postmenopausal Women in India, Journal of Mid-life Health, 2022. Few studies, varied methods."
+    }
+  },
 };
 
 export function render(slug) {

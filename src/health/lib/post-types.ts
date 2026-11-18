@@ -28,6 +28,8 @@ export type PostMeta = {
   faqs: { q: string; a: string }[];
   words: number;
   ads: number;
+  /** The channel's long video for this post (a script id from src/lib/youtube/long-videos.ts), or null to match by words. */
+  video: string | null;
 };
 
 /** Where a post lives: English under /health/blog, Hindi under /hi/health/blog. */

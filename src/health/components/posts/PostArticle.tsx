@@ -158,7 +158,7 @@ export function PostArticle({ post, blocks, other, related }: { post: PostMeta; 
         <div className="min-w-0 max-w-3xl">
           <PostBody blocks={blocks} lang={lang} />
 
-          <RelatedVideo text={[post.title, post.category, ...post.tags].join(" · ")} lang={lang} className="mt-10" />
+          <RelatedVideo text={[post.title, post.category, ...post.tags].join(" · ")} pin={post.video} lang={lang} className="mt-10" />
 
           <section aria-labelledby="sources" className="mt-12 rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
             <h2 id="sources" className="font-display text-xl font-black text-stone-900 dark:text-white">{t.sources}</h2>
