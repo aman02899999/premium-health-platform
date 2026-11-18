@@ -394,6 +394,39 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["kya khaye", "bp diet hindi", "sugar diet hinglish", "thyroid diet", "pcos diet hindi"],
   },
+  // Made 18 Nov 2026 on the owner's ask ("myth busting video on Ozempic / GLP-1 / weight loss peptide").
+  // No AI presenter (owner chose the no-face version); Hindi narration is a synthetic voice, shown on
+  // screen as "AI voice". Education only: no doses, "doctor se poochho" throughout. Numbers checked
+  // that day against the STEP 1, STEP 1 extension and SURMOUNT-5 abstracts, FDA and MedlinePlus.
+  // Photos CC0 / public domain (credits next to the MP4); CTA photo is the owner's gallery photo.
+  {
+    id: "long-ozempic-glp1-myths-15",
+    date: "2026-11-18",
+    title: "Ozempic, Mounjaro Ka Sach: 8 Myths | GLP-1 Weight Loss Injection",
+    intro: "Ozempic, Wegovy, Mounjaro aur online \"peptide\" injections: 8 popular claims, har ek study ke saath fact check. Weight kitna ghatta hai, band karne par kya hota hai, muscle, side effects, nakli dawa, kaun le sakta hai, aur Mounjaro vs Ozempic.\nYe general jaankari hai, medical advice nahi. Ye prescription dawaiyan hain: khud shuru, band ya dose change mat karo; apne doctor se baat karo. Narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: magic injection?"],
+      ["0:11", "1. Ozempic weight loss ki dawa hai?"],
+      ["0:27", "2. Diet-exercise ki zaroorat nahi?"],
+      ["0:48", "3. Weight hamesha ke liye gaya?"],
+      ["1:00", "4. Sirf fat ghatta hai?"],
+      ["1:11", "5. Online sasta semaglutide / peptide"],
+      ["1:36", "6. Koi side effects nahi?"],
+      ["2:06", "7. Koi bhi le sakta hai?"],
+      ["2:25", "8. Mounjaro aur Ozempic same?"],
+      ["2:58", "Recap: aadatein, protein, strength training"],
+      ["3:09", "Free trial + subscribe"],
+    ],
+    sources: [
+      ["Wilding et al. 2021, STEP 1 trial (NEJM)", "https://pubmed.ncbi.nlm.nih.gov/33567185/"],
+      ["Wilding et al. 2022, weight regain after stopping semaglutide (STEP 1 extension)", "https://pubmed.ncbi.nlm.nih.gov/35441470/"],
+      ["Aronne et al. 2025, tirzepatide vs semaglutide (SURMOUNT-5, NEJM)", "https://pubmed.ncbi.nlm.nih.gov/40353578/"],
+      ["US FDA, Concerns with unapproved GLP-1 drugs used for weight loss", "https://www.fda.gov/drugs/postmarket-drug-safety-information-patients-and-providers/fdas-concerns-unapproved-glp-1-drugs-used-weight-loss"],
+      ["MedlinePlus, Semaglutide injection", "https://medlineplus.gov/druginfo/meds/a618008.html"],
+      ["MedlinePlus, Tirzepatide injection", "https://medlineplus.gov/druginfo/meds/a622044.html"],
+    ],
+    tags: ["ozempic hindi", "mounjaro hindi", "glp 1 weight loss", "semaglutide sach", "weight loss injection fact check"],
+  },
   {
     id: "long-bp-heart-myths-8",
     date: "2026-11-20",
