@@ -1,13 +1,19 @@
 import "server-only";
 import { isDbConfigured, pool } from "@/health/db";
-import { LONG_VIDEOS, longVideoThumb } from "./long-videos";
+import { LONG_VIDEOS } from "./long-videos";
 import { bestVideoFor, videoText } from "./topics";
 
 // Long videos that are live on YouTube, for the "watch the video" box on health pages and blog
 // posts. The YouTube id comes from social_posts (written when the upload finished); the title,
-// intro and thumbnail come from the script in long-videos.ts, so the page never calls YouTube.
+// intro come from the script in long-videos.ts and the thumbnail from YouTube, so the page never calls YouTube.
 
 export type SiteVideo = { youtubeId: string; scriptId: string; title: string; description: string; thumb: string; uploadDate: string; text: string };
+
+/**
+ * YouTube's own thumbnail for a video. The thumbnails in public/youtube are not in the Cloud Run
+ * image (.dockerignore drops that folder to keep it small), so a local path 404s on the live site.
+ */
+export const youtubeThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
 let memo: { at: number; list: Promise<SiteVideo[]> } | null = null;
 const TTL = 60 * 60 * 1000;
@@ -23,7 +29,7 @@ async function load(): Promise<SiteVideo[]> {
     return rows.flatMap((r) => {
       const v = LONG_VIDEOS.find((l) => l.id === r.theme);
       if (!v || !/^[\w-]{6,20}$/.test(r.external_id)) return [];
-      return [{ youtubeId: r.external_id, scriptId: v.id, title: v.title, description: v.intro.replace(/\s*\n\s*/g, " "), thumb: longVideoThumb(v), uploadDate: new Date(r.created_at).toISOString(), text: videoText(v.title, v.tags) }];
+      return [{ youtubeId: r.external_id, scriptId: v.id, title: v.title, description: v.intro.replace(/\s*\n\s*/g, " "), thumb: youtubeThumb(r.external_id), uploadDate: new Date(r.created_at).toISOString(), text: videoText(v.title, v.tags) }];
     });
   } catch (err) {
     // A page must render even when the database is unreachable; it just shows no video.

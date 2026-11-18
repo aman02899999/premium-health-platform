@@ -1,4 +1,4 @@
-import { YOUTUBE_CHANNEL, absoluteUrl } from "@/lib/site";
+import { YOUTUBE_CHANNEL } from "@/lib/site";
 import { siteFeed } from "@/lib/social/site-feed";
 import { SocialVideosClient, type Tone } from "./SocialVideosClient";
 
@@ -18,7 +18,7 @@ export async function SocialVideos({ tone, instagramHandle = "royalfitness93_" }
           position: i + 1,
           name: v.title,
           description: v.description,
-          thumbnailUrl: [absoluteUrl(v.thumb), `https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`],
+          thumbnailUrl: [v.thumb],
           uploadDate: v.uploadDate,
           embedUrl: `https://www.youtube.com/embed/${v.youtubeId}`,
           url: `https://www.youtube.com/watch?v=${v.youtubeId}`,

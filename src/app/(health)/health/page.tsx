@@ -169,6 +169,12 @@ export default async function HomePage() {
       </div>
 
       <div className="mx-auto max-w-7xl space-y-16 px-4 py-12">
+        {/* VIDEOS: YouTube + Instagram, click-to-play so the page stays fast */}
+        <section aria-labelledby="videos" className="cv-auto">
+          <SectionHeading eyebrow="Watch · free videos" title="Health myths, busted on video" desc="Short, sourced videos in easy Hinglish from our YouTube channel and Instagram. Tap any video to watch it here. Education only, not medical advice." id="videos" />
+          <SocialVideos tone="light" />
+        </section>
+
         {/* LIVE PULSE */}
         <section aria-labelledby="live-pulse" className="cv-auto">
           <SectionHeading eyebrow="Real-time · updates every 10 minutes" title="🇮🇳 Live India Health Pulse" desc="Real air quality, weather and outbreak data streaming now — not screenshots. Plan walks, travel and clinic visits around it." id="live-pulse" />
@@ -207,12 +213,6 @@ export default async function HomePage() {
             <LatestArticles limit={4} />
             <TrendingArticles limit={4} />
           </div>
-        </section>
-
-        {/* VIDEOS: YouTube + Instagram, click-to-play so the page stays fast */}
-        <section aria-labelledby="videos" className="cv-auto">
-          <SectionHeading eyebrow="Watch · free videos" title="Health myths, busted on video" desc="Short, sourced videos in easy Hinglish from our YouTube channel and Instagram. Tap any video to watch it here. Education only, not medical advice." id="videos" />
-          <SocialVideos tone="light" />
         </section>
 
         {/* SOLUTIONS */}

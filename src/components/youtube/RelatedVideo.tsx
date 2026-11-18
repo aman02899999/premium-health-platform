@@ -21,7 +21,7 @@ export async function RelatedVideo({ text, tone = "light", lang = "en", classNam
     "@type": "VideoObject",
     name: v.title,
     description: v.description,
-    thumbnailUrl: [absoluteUrl(v.thumb), `https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`],
+    thumbnailUrl: [v.thumb],
     uploadDate: v.uploadDate,
     embedUrl: `https://www.youtube.com/embed/${v.youtubeId}`,
     url: watch,

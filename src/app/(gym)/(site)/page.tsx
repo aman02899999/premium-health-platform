@@ -126,6 +126,13 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ---------- VIDEOS ---------- */}
+      {/* YouTube + Instagram, playable on the page. Pictures until tapped, so the page stays fast. */}
+      <section id="videos" className="cv-auto mx-auto max-w-7xl scroll-mt-28 px-4 py-16 sm:px-6">
+        <SectionHeading eyebrow="Watch & learn" title="Free videos from" highlight="our coaches" intro="Myth busters, diet tips and workouts in easy Hinglish. Tap any video to watch it right here." />
+        <SocialVideos tone="dark" instagramHandle={b.instagram} />
+      </section>
+
       {/* ---------- MEMBERSHIP ---------- */}
       {/* Prices come straight after the stats: it's what most visitors came to check. */}
       <section className="cv-auto mx-auto max-w-7xl px-4 pb-16 pt-20 sm:px-6">
@@ -212,13 +219,6 @@ export default async function HomePage() {
           <SectionHeading eyebrow="Inside the club" title="Take a" highlight="3D tour" intro="Swipe, drag or tap to explore. Tap the centre photo to view it full screen." />
           <Gallery3D items={c.gallery} />
         </div>
-      </section>
-
-      {/* ---------- VIDEOS ---------- */}
-      {/* YouTube + Instagram, playable on the page. Pictures until tapped, so the page stays fast. */}
-      <section id="videos" className="cv-auto mx-auto max-w-7xl scroll-mt-28 px-4 py-16 sm:px-6">
-        <SectionHeading eyebrow="Watch & learn" title="Free videos from" highlight="our coaches" intro="Myth busters, diet tips and workouts in easy Hinglish. Tap any video to watch it right here." />
-        <SocialVideos tone="dark" instagramHandle={b.instagram} />
       </section>
 
       {/* ---------- TESTIMONIALS ---------- */}
