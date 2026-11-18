@@ -31,6 +31,7 @@ import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 import { AffiliateProducts } from "@/health/components/earning/AffiliateProducts";
 import { LatestArticles, TrendingArticles } from "@/health/components/blog/LatestArticles";
 import { BlogCategoryGrid } from "@/health/components/blog/BlogCategories";
+import { SocialVideos } from "@/components/social/SocialVideos";
 
 const FEATURED_PRODUCTS = AFFILIATE_PRODUCTS.filter((p) => p.active && p.featured).sort((a, b) => b.priority - a.priority).slice(0, 4);
 
@@ -206,6 +207,12 @@ export default async function HomePage() {
             <LatestArticles limit={4} />
             <TrendingArticles limit={4} />
           </div>
+        </section>
+
+        {/* VIDEOS: YouTube + Instagram, click-to-play so the page stays fast */}
+        <section aria-labelledby="videos" className="cv-auto">
+          <SectionHeading eyebrow="Watch · free videos" title="Health myths, busted on video" desc="Short, sourced videos in easy Hinglish from our YouTube channel and Instagram. Tap any video to watch it here. Education only, not medical advice." id="videos" />
+          <SocialVideos tone="light" />
         </section>
 
         {/* SOLUTIONS */}
