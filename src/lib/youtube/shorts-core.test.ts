@@ -16,7 +16,7 @@ describe("shorts bank", () => {
     // The six transformation-lesson Shorts (Nov 2026) go first; the woven bank then opens on a viral claim.
     expect(SHORTS.slice(0, 6).map((s) => s.id)).toEqual(["myth-10-days-6kg", "fact-safe-pace", "mis-transformation", "myth-daily-weight", "swap-scale-photo", "mis-supplements-first"]);
     expect(SHORTS[6].format).toBe("viral");
-    expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(21);
+    expect(SHORTS.filter((s) => s.format === "viral")).toHaveLength(26);
     expect(SHORTS.filter((s) => s.format === "trend")).toHaveLength(15);
     for (const s of SHORTS) if (s.format === "viral") expect(["JHOOTH", "SACH", "DEPENDS"]).toContain(s.verdict);
   });
@@ -26,7 +26,9 @@ describe("shorts bank", () => {
     expect(SHORTS.slice(MYTH_BUSTERS_AT - 3, MYTH_BUSTERS_AT).map((s) => s.id)).toEqual(["trend-zone-2", "form-pushup-hips", "swap-naan-roti"]);
     expect(SHORTS[MYTH_BUSTERS_AT].id).toBe("viral-microwave");
     expect(SHORTS[MYTH_BUSTERS_AT + 17].id).toBe("fact-too-much-water");
-    expect(SHORTS[MYTH_BUSTERS_AT + 18].id).toBe("wo-core");
+    expect(SHORTS[MYTH_BUSTERS_AT + 18].id).toBe("viral-wet-hair-cold");
+    expect(SHORTS[MYTH_BUSTERS_AT + 32].id).toBe("fact-waist-limit");
+    expect(SHORTS[MYTH_BUSTERS_AT + 33].id).toBe("wo-core");
   });
 
   it("is written in Hinglish, not English (common Hindi words in every script)", () => {
