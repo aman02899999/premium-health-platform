@@ -223,6 +223,45 @@ const MYTH_BUSTERS: Short[] = [
   { id: "fact-too-much-water", format: "fact", topic: "too much water", hook: "Jitna zyada paani, utna achha?", fact: "Bahut zyada paani bhi khatarnaak ho sakta hai", detail: ": kam samay mein bahut paani se blood ka sodium gir jaata hai (hyponatremia), MedlinePlus. Pyaas aur peshaab ka rang dekh ke piyo.", source: MEDLINE_HYPONATREMIA, tags: ["drinking water", "hyponatremia", "water myths"], medical: true },
 ];
 
+// Third batch (18 Nov 2026), picked from what is trending this season: sardi, hair fall, ghee and
+// oils, walking and belly fat. Each one matches a long myth-buster video and cites its source.
+const MEDLINE_COLD: Source = { name: "MedlinePlus, Common cold", url: "https://medlineplus.gov/ency/article/000678.htm" };
+const MEDLINE_CO: Source = { name: "MedlinePlus, Carbon monoxide poisoning", url: "https://medlineplus.gov/ency/article/002804.htm" };
+const HEMILA_2013: Source = { name: "Hemilä & Chalker 2013, vitamin C and the common cold (Cochrane)", url: "https://pubmed.ncbi.nlm.nih.gov/23440782/" };
+const AAD_SHEDDING: Source = { name: "American Academy of Dermatology, Hair shedding", url: "https://www.aad.org/public/diseases/hair-loss/insider/shedding" };
+const PATEL_2017: Source = { name: "Patel et al. 2017, biotin for hair loss (review)", url: "https://pubmed.ncbi.nlm.nih.gov/28879195/" };
+const LAK_2025: Source = { name: "Lak et al. 2025, creatine and hair loss trial (JISSN)", url: "https://pubmed.ncbi.nlm.nih.gov/40265319/" };
+const FSSAI_RUCO: Source = { name: "FSSAI, Repurpose Used Cooking Oil (RUCO)", url: "https://fssai.gov.in/ruco/" };
+const HOOPER_2020: Source = { name: "Hooper et al. 2020, saturated fat and heart disease (Cochrane)", url: "https://pubmed.ncbi.nlm.nih.gov/32428300/" };
+const USDA_FDC: Source = { name: "USDA FoodData Central (butter oil / ghee)", url: "https://fdc.nal.usda.gov/" };
+const TUDOR_LOCKE_2004: Source = { name: "Tudor-Locke & Bassett 2004, how many steps are enough? (Sports Med)", url: "https://pubmed.ncbi.nlm.nih.gov/14715035/" };
+const PALUCH_2022: Source = { name: "Paluch et al. 2022, daily steps and mortality (Lancet Public Health)", url: "https://pubmed.ncbi.nlm.nih.gov/35247352/" };
+const BUFFEY_2022: Source = { name: "Buffey et al. 2022, light walking breaks and blood sugar (Sports Med)", url: "https://pubmed.ncbi.nlm.nih.gov/35147898/" };
+const VISPUTE_2011: Source = { name: "Vispute et al. 2011, abdominal exercise and belly fat (JSCR)", url: "https://pubmed.ncbi.nlm.nih.gov/21804427/" };
+const WHO_ASIAN_BMI: Source = { name: "WHO Expert Consultation 2004, BMI for Asian populations (Lancet)", url: "https://pubmed.ncbi.nlm.nih.gov/14726171/" };
+const IDF_WAIST: Source = { name: "International Diabetes Federation, waist cut-offs for South Asians", url: "https://idf.org/" };
+const MYTH_BUSTERS_3: Short[] = [
+  { id: "viral-wet-hair-cold", format: "viral", topic: "cold weather and colds", hook: "Geele baal = zukaam pakka?", claim: "Thand mein bahar gaye ya geele baal rahe, toh zukaam pakka.", verdict: "JHOOTH", truth: "Zukaam virus se hota hai, thand se nahi. Sardi mein log band kamron mein paas-paas rehte hain, isliye zyada failta hai.", why: "Haath dhote raho, chheenk pe munh dhako. Baal sukhana bas aaram ke liye.", tags: ["sardi zukaam", "common cold myths", "winter health"], medical: true, cite: MEDLINE_COLD },
+  { id: "myth-vitamin-c-cold", format: "myth", topic: "vitamin C and colds", hook: "Vitamin C ki goli = zukaam nahi?", myth: "Roz vitamin C ki goli lo, zukaam hoga hi nahi.", fact: "Cochrane review (29 trials, 11,306 log): aam logon mein zukaam hona kam nahi hua. Bas bado mein 8% jaldi gaya.", why: "Amla, amrood, santra khao. Goli lene se pehle doctor se poocho.", tags: ["vitamin c", "zukaam", "winter immunity"], medical: true, cite: HEMILA_2013 },
+  { id: "fact-angithi-co", format: "fact", topic: "coal heater in a closed room", hook: "Band kamre mein angithi safe hai?", fact: "Koyla jalne se carbon monoxide banti hai", detail: ", jiski na smell hoti hai na rang. MedlinePlus: zyada tar aise haadse sardi mein hote hain jab heater chalte hain aur khidkiyan band hoti hain.", source: MEDLINE_CO, tags: ["angithi", "carbon monoxide", "winter safety"], medical: true },
+
+  { id: "viral-creatine-bald", format: "viral", topic: "creatine and hair loss", hook: "Creatine se ganjapan hota hai?", claim: "Creatine lene se baal jhadte hain, ganjapan aata hai.", verdict: "JHOOTH", truth: "2025 ke 12 hafte ke trial mein creatine aur placebo walon ke DHT aur baalon mein koi farak nahi mila.", why: "Ye dar 2009 ki ek study se aaya tha, jismein baal naape hi nahi gaye the.", tags: ["creatine hair loss", "creatine", "gym myths"], cite: LAK_2025 },
+  { id: "myth-biotin-hair", format: "myth", topic: "biotin for hair", hook: "Biotin ki goli se baal ghane?", myth: "Biotin ki goli khao, baal ghane ho jayenge.", fact: "2017 review: jin 18 cases mein fayda dikha, sabmein pehle se kami ya bimari thi. Healthy logon mein saboot nahi.", why: "FDA: biotin kuch blood tests ke result galat kar sakta hai. Test se pehle doctor ko batao.", tags: ["biotin", "hair fall", "hair supplements"], medical: true, cite: PATEL_2017 },
+  { id: "fact-hair-shedding", format: "fact", topic: "daily hair fall", hook: "Roz baal girna = ganjapan?", fact: "Roz 50 se 100 baal girna normal hai", detail: ", American Academy of Dermatology ke hisaab se. Bukhar, delivery ya stress ke kuch mahine baad zyada jhadna aksar khud ruk jaata hai.", source: AAD_SHEDDING, tags: ["hair fall", "baal jhadna", "hair shedding"] },
+
+  { id: "viral-reused-oil", format: "viral", topic: "reheated cooking oil", hook: "Baar-baar garam kiya tel chalega?", claim: "Ek hi tel ko baar-baar garam karke talna bilkul theek hai.", verdict: "JHOOTH", truth: "Baar-baar garam karne se tel toot-ta hai. FSSAI: 25% se zyada polar compounds wala tel khaane mein nahi chal sakta.", why: "Dhuan, kaala rang, gaadhapan ya jhaag dikhe toh tel badlo.", tags: ["reused oil", "cooking oil", "pakode"], cite: FSSAI_RUCO },
+  { id: "myth-seed-oils", format: "myth", topic: "refined and seed oils", hook: "Refined oil zehar hai?", myth: "Refined aur seed oils zehar hain, body mein sujan karte hain.", fact: "Cochrane review (15 trials, ~59,000 log): saturated fat ki jagah aise tel lene par bhi dil ka risk kam dikha.", why: "ICMR-NIN: ek hi tel nahi, alag-alag tel badal-badal kar use karo.", tags: ["seed oils", "refined oil", "cooking oil myths"], cite: HOOPER_2020 },
+  { id: "fact-ghee-sat-fat", format: "fact", topic: "ghee and saturated fat", hook: "Ghee jitna, utna fayda?", fact: "100 g ghee mein lagbhag 62 g saturated fat", detail: ", aur 1 bade chammach mein ~115 calories (USDA). WHO: saturated fat din ki calories ke 10% se kam. Thoda theek, katori bhar nahi.", source: USDA_FDC, tags: ["desi ghee", "saturated fat", "ghee benefits"] },
+
+  { id: "viral-10000-steps", format: "viral", topic: "10,000 steps", hook: "10,000 steps science hai?", claim: "10,000 steps ka number research se nikla hai.", verdict: "JHOOTH", truth: "Ye Japan ke ek pedometer 'manpo-kei' (10,000 kadam meter) ke slogan se popular hua.", why: "Lancet 2022: 60+ mein fayda lagbhag 6–8 hazaar steps pe theher gaya. Roz thoda zyada chalo.", tags: ["10000 steps", "walking", "daily steps"], cite: TUDOR_LOCKE_2004 },
+  { id: "myth-walk-after-meal", format: "myth", topic: "walking after meals", hook: "Khaane ke baad chalna nuksaan?", myth: "Khaane ke baad chalo mat, let jao.", fact: "2022 meta-analysis: halki walk se khaane ke baad ka blood sugar kam hua, sirf khade hone se bhi behtar.", why: "Daud nahi, halki tehal. Diabetes ki dawa chal rahi hai toh doctor se routine poocho.", tags: ["walk after meal", "blood sugar", "walking benefits"], medical: true, cite: BUFFEY_2022 },
+  { id: "fact-steps-risk", format: "fact", topic: "how many steps", hook: "Kitne steps kaafi hain?", fact: "~7,800 steps pe maut ka risk 45% kam", detail: ", ~3,500 steps walon ke mukable (Lancet 2022, 47,471 log). 10,000 zaroori nahi, roz 1,000 aur jodo.", source: PALUCH_2022, tags: ["steps per day", "walking", "10000 steps"] },
+
+  { id: "viral-crunch-belly", format: "viral", topic: "crunches for belly fat", hook: "Crunches se flat pet?", claim: "Roz crunches aur sit-ups karo, pet ki charbi chali jayegi.", verdict: "JHOOTH", truth: "2011 study: 6 hafte ab exercises ke baad bhi pet ki charbi aur kamar mein koi farak nahi. Bas muscle strong hui.", why: "Pet alag se nahi ghatta. Walk, weights, khaana aur neend.", tags: ["belly fat", "crunches", "flat stomach"], cite: VISPUTE_2011 },
+  { id: "myth-thin-no-risk", format: "myth", topic: "thin but belly fat", hook: "Patla hoon toh koi khatra nahi?", myth: "Patle logon ko belly fat aur diabetes ka risk nahi hota.", fact: "WHO expert consultation: Asians mein risk BMI 23 se badhta hai, 25 se nahi. Same BMI pe body fat zyada.", why: "Sirf weight nahi, kamar bhi naapo.", tags: ["thin fat", "belly fat", "diabetes risk"], medical: true, cite: WHO_ASIAN_BMI },
+  { id: "fact-waist-limit", format: "fact", topic: "waist size", hook: "Kamar kitni honi chahiye?", fact: "Aadmi 90 cm, aurat 80 cm", detail: " se upar kamar = diabetes aur dil ka risk zyada (South Asians ke liye, IDF). Naabhi ke paas feete se naapo.", source: IDF_WAIST, tags: ["waist size", "belly fat", "kamar"], medical: true },
+];
+
 /**
  * The eight lists woven together, viral first: index 0 is a viral claim, 1 a myth, 2 a trend,
  * 3 a form fix, and so on, so every three in a row are three different formats.
@@ -236,4 +275,5 @@ const WOVEN: Short[] = [...TRANSFORMATION, ...Array.from({ length: Math.max(...L
  * posted, so no new Short repeats a track that went out.
  */
 export const MYTH_BUSTERS_AT = 27;
-export const SHORTS: Short[] = [...WOVEN.slice(0, MYTH_BUSTERS_AT), ...MYTH_BUSTERS, ...WOVEN.slice(MYTH_BUSTERS_AT)];
+/** Third batch (18 Nov): straight after the first myth-buster block, still ahead of any posted place. */
+export const SHORTS: Short[] = [...WOVEN.slice(0, MYTH_BUSTERS_AT), ...MYTH_BUSTERS, ...MYTH_BUSTERS_3, ...WOVEN.slice(MYTH_BUSTERS_AT)];
