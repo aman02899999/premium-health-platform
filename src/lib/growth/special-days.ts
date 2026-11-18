@@ -265,6 +265,9 @@ export const SPECIAL_POSTS: SpecialPost[] = [
   mythStory(2, "2026-11-11", "Myth: crunches se pet kam"),
   mythStory(3, "2026-11-13", "Myth: weights se ladkiyan bulky"),
   mythStory(4, "2026-11-16", "Myth: 10 din mein 6 kg fat"),
+  // YouTube channel promo Story (thread "Create YouTube promo Story image", 18 Nov 2026). Owner's
+  // own text; the QR code opens youtube.com/@RoyalFitnessTV. The API can't add a Link sticker.
+  { id: "youtube-promo-story", date: "2026-11-19", storyImage: "/social/youtube-promo-story.jpg", theme: "Royal Fitness TV ab YouTube par", instagram: "", facebook: "" },
   {
     id: "diwali-2026",
     date: "2026-11-08",
