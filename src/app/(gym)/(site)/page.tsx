@@ -31,6 +31,7 @@ import { PORTAL_BOOT } from "@/lib/portal";
 import { isDbConfigured } from "@/health/db";
 import { approvedReviews } from "@/lib/reviews/store";
 import { ReviewCard } from "@/components/reviews/ReviewCard";
+import { SocialVideos } from "@/components/social/SocialVideos";
 
 export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
@@ -211,6 +212,13 @@ export default async function HomePage() {
           <SectionHeading eyebrow="Inside the club" title="Take a" highlight="3D tour" intro="Swipe, drag or tap to explore. Tap the centre photo to view it full screen." />
           <Gallery3D items={c.gallery} />
         </div>
+      </section>
+
+      {/* ---------- VIDEOS ---------- */}
+      {/* YouTube + Instagram, playable on the page. Pictures until tapped, so the page stays fast. */}
+      <section id="videos" className="cv-auto mx-auto max-w-7xl scroll-mt-28 px-4 py-16 sm:px-6">
+        <SectionHeading eyebrow="Watch & learn" title="Free videos from" highlight="our coaches" intro="Myth busters, diet tips and workouts in easy Hinglish. Tap any video to watch it right here." />
+        <SocialVideos tone="dark" instagramHandle={b.instagram} />
       </section>
 
       {/* ---------- TESTIMONIALS ---------- */}
