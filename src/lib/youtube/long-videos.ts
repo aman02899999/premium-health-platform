@@ -400,7 +400,7 @@ export const LONG_VIDEOS: LongVideo[] = [
   // that day against the STEP 1, STEP 1 extension and SURMOUNT-5 abstracts, FDA and MedlinePlus.
   // Photos CC0 / public domain (credits next to the MP4); CTA photo is the owner's gallery photo.
   {
-    id: "long-ozempic-glp1-myths-15",
+    id: "long-ozempic-glp1-myths-15-v2",
     date: "2026-11-18",
     title: "Ozempic, Mounjaro Ka Sach: 8 Myths | GLP-1 Weight Loss Injection",
     intro: "Ozempic, Wegovy, Mounjaro aur online \"peptide\" injections: 8 popular claims, har ek study ke saath fact check. Weight kitna ghatta hai, band karne par kya hota hai, muscle, side effects, nakli dawa, kaun le sakta hai, aur Mounjaro vs Ozempic.\nYe general jaankari hai, medical advice nahi. Ye prescription dawaiyan hain: khud shuru, band ya dose change mat karo; apne doctor se baat karo. Narration AI voice mein hai.",
@@ -427,11 +427,13 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["ozempic hindi", "mounjaro hindi", "glp 1 weight loss", "semaglutide sach", "weight loss injection fact check"],
   },
+  // 18 Nov 2026: owner deleted the first Ozempic and protein uploads and asked for no voice-over on the
+  // CTA card in every voiced video (music only there). Both re-upload under "-v2" ids.
   // Made 18 Nov 2026: 5 more myth busters (owner: "more like this with free licensed voice over").
   // Narration: Chatterbox multilingual (MIT licence) Hindi, voice G picked by the owner 18 Nov; every line checked by speech-to-text.
   // Every number on screen is from the source listed. Photos CC0/PDM (see each .credits.json).
   {
-    id: "long-protein-myths-16",
+    id: "long-protein-myths-16-v2",
     date: "2026-11-18",
     title: "Protein Ka Sach: 6 Myths | Kidney, 30g Limit, Veg Protein, Powder",
     intro: "Protein se kidney kharab? Jitna zyada protein utni zyada muscle? Ek meal mein sirf 30g? Veg protein bekaar? 6 popular claims, har ek study ke saath fact check.\nYe general jaankari hai, medical advice nahi. Kidney ki bimari ho toh protein apne doctor se pooch kar. Narration AI voice mein hai.",

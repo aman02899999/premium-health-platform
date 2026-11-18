@@ -43,8 +43,8 @@ export function withHindi(title: string, hindi: string | null, suffix = ""): str
 // Long videos from 18 Nov 2026 on: the thumbnail headline and the title words in Devanagari.
 export const LONG_HINDI: Record<string, string> = {
   "long-kya-khaayein-lifestyle-9": "क्या खाएं? बीपी, शुगर, थायरॉइड",
-  "long-ozempic-glp1-myths-15": "ओज़ेम्पिक के 8 झूठ",
-  "long-protein-myths-16": "प्रोटीन के 6 झूठ",
+  "long-ozempic-glp1-myths-15-v2": "ओज़ेम्पिक के 8 झूठ",
+  "long-protein-myths-16-v2": "प्रोटीन के 6 झूठ",
   "long-women-weights-myths-17": "लड़कियाँ और वेट्स: 5 झूठ",
   "long-diet-trend-myths-18": "डाइट ट्रेंड्स के 6 झूठ",
   "long-steroid-myths-19": "स्टेरॉयड के 5 झूठ",
