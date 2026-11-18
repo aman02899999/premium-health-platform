@@ -44,6 +44,11 @@ export function withHindi(title: string, hindi: string | null, suffix = ""): str
 export const LONG_HINDI: Record<string, string> = {
   "long-kya-khaayein-lifestyle-9": "क्या खाएं? बीपी, शुगर, थायरॉइड",
   "long-ozempic-glp1-myths-15": "ओज़ेम्पिक के 8 झूठ",
+  "long-protein-myths-16": "प्रोटीन के 6 झूठ",
+  "long-women-weights-myths-17": "लड़कियाँ और वेट्स: 5 झूठ",
+  "long-diet-trend-myths-18": "डाइट ट्रेंड्स के 6 झूठ",
+  "long-steroid-myths-19": "स्टेरॉयड के 5 झूठ",
+  "long-heart-gym-myths-20": "दिल और जिम: 5 झूठ",
   "long-bp-heart-myths-8": "बीपी और दिल के 8 झूठ",
   "long-diabetes-myths-7": "डायबिटीज़ के 7 झूठ",
   "long-obesity-myths-7": "मोटापे के 7 झूठ",
