@@ -49,6 +49,7 @@ export const LONG_HINDI: Record<string, string> = {
   "long-diet-trend-myths-18": "डाइट ट्रेंड्स के 6 झूठ",
   "long-steroid-myths-19": "स्टेरॉयड के 5 झूठ",
   "long-heart-gym-myths-20": "दिल और जिम: 5 झूठ",
+  "long-apple-a-day-myths-21": "रोज़ एक सेब: 5 झूठ",
   "long-bp-heart-myths-8": "बीपी और दिल के 8 झूठ",
   "long-diabetes-myths-7": "डायबिटीज़ के 7 झूठ",
   "long-obesity-myths-7": "मोटापे के 7 झूठ",
