@@ -145,7 +145,7 @@ export function SocialVideosClient({ tone, long, shorts, instagram, channelUrl, 
                 <iframe key={featured.youtubeId} src={ytEmbed(featured.youtubeId)} title={featured.title} allow={IFRAME_ALLOW} allowFullScreen referrerPolicy="strict-origin-when-cross-origin" className="absolute inset-0 h-full w-full border-0" />
               ) : (
                 <button type="button" onClick={() => setPlaying(true)} aria-label={`Play video: ${featured.title}`} className="group absolute inset-0 h-full w-full cursor-pointer">
-                  <Image src={featured.thumb} alt="" fill loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
+                  <Image src={featured.thumb} alt="" fill unoptimized loading="lazy" sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
                   <PlayBadge />
                 </button>
               )}
@@ -159,7 +159,7 @@ export function SocialVideosClient({ tone, long, shorts, instagram, channelUrl, 
                     <li key={v.youtubeId}>
                       <button type="button" onClick={() => pick(i)} className="group block w-full text-left" aria-label={`Play video: ${v.title}`}>
                         <span className="relative block aspect-video overflow-hidden rounded-xl bg-black">
-                          <Image src={v.thumb} alt="" fill loading="lazy" sizes="(min-width: 1024px) 18vw, 45vw" className="object-cover transition duration-300 group-hover:scale-105" />
+                          <Image src={v.thumb} alt="" fill unoptimized loading="lazy" sizes="(min-width: 1024px) 18vw, 45vw" className="object-cover transition duration-300 group-hover:scale-105" />
                           <PlayBadge small />
                         </span>
                         <span className={`mt-1.5 line-clamp-2 text-xs font-semibold leading-snug ${t.sub}`}>{v.title}</span>
