@@ -31,6 +31,13 @@ describe("special-day posts", () => {
     expect(specialFeedPost("2026-11-10", "pm")).toBeNull();
   });
 
+  it("the YouTube channel promo is the 19 Nov Story only, with no feed post", () => {
+    expect(specialStory("2026-11-19")?.id).toBe("youtube-promo-story");
+    expect(specialStory("2026-11-20")).toBeNull();
+    expect(specialFeedPost("2026-11-19", "am")).toBeNull();
+    expect(specialFeedPost("2026-11-19", "pm")).toBeNull();
+  });
+
   it("tips Reels take the midday Reel on their days only, at most one a day", () => {
     expect(specialReel("2026-11-10")?.id).toBe("reel-fat-loss-myths");
     expect(specialReel("2026-11-17")?.id).toBe("reel-muscle-basics");
