@@ -432,7 +432,7 @@ export const LONG_VIDEOS: LongVideo[] = [
   // Every number on screen is from the source listed. Photos CC0/PDM (see each .credits.json).
   {
     id: "long-protein-myths-16",
-    date: "2026-11-19",
+    date: "2026-11-18",
     title: "Protein Ka Sach: 6 Myths | Kidney, 30g Limit, Veg Protein, Powder",
     intro: "Protein se kidney kharab? Jitna zyada protein utni zyada muscle? Ek meal mein sirf 30g? Veg protein bekaar? 6 popular claims, har ek study ke saath fact check.\nYe general jaankari hai, medical advice nahi. Kidney ki bimari ho toh protein apne doctor se pooch kar. Narration AI voice mein hai.",
     chapters: [
@@ -454,6 +454,28 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["US FDA, Caution: Bodybuilding Products Can Be Risky", "https://www.fda.gov/consumers/consumer-updates/caution-bodybuilding-products-can-be-risky"],
     ],
     tags: ["protein myths hindi", "protein kidney sach", "veg protein muscle", "protein powder zaroori", "kitna protein chahiye"],
+  },
+  {
+    id: "long-women-weights-myths-17",
+    date: "2026-11-19",
+    title: "Ladies Aur Weights: 5 Myths | Bulky, Cardio, Haddiyan, Pregnancy",
+    intro: "Weights uthaogi toh bulky ho jaogi? Ladies ke liye sirf cardio? Umar ke baad weights se haddiyan tootengi? 5 popular claims, studies aur WHO ke saath fact check.\nYe general jaankari hai, medical advice nahi. Pregnancy, chot ya koi bimari ho toh pehle apne doctor se baat karo. Narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: ladies aur weights"],
+      ["0:10", "1. Weights se bulky?"],
+      ["0:26", "2. Sirf cardio kaafi?"],
+      ["0:46", "3. Umar ke baad haddiyan tootengi?"],
+      ["1:09", "4. Pregnancy mein exercise band?"],
+      ["1:29", "5. Crunches se pet ki charbi?"],
+      ["1:46", "Recap + free trial"],
+    ],
+    sources: [
+      ["Handelsman et al. 2018, testosterone in men and women (Endocrine Reviews)", "https://pubmed.ncbi.nlm.nih.gov/30010735/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["Watson et al. 2018, LIFTMOR trial (J Bone Miner Res)", "https://pubmed.ncbi.nlm.nih.gov/28975661/"],
+      ["Vispute et al. 2011, abdominal exercise and abdominal fat (J Strength Cond Res)", "https://pubmed.ncbi.nlm.nih.gov/21804427/"],
+    ],
+    tags: ["women weight training hindi", "ladies gym myths", "bulky myth", "weight training for women", "pregnancy exercise sach"],
   },
   {
     id: "long-bp-heart-myths-8",
@@ -478,28 +500,6 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["WHO fact sheet, Cardiovascular diseases", "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)"],
     ],
     tags: ["bp myths hindi", "heart health hinglish", "high blood pressure", "heart attack signs"],
-  },
-  {
-    id: "long-women-weights-myths-17",
-    date: "2026-11-21",
-    title: "Ladies Aur Weights: 5 Myths | Bulky, Cardio, Haddiyan, Pregnancy",
-    intro: "Weights uthaogi toh bulky ho jaogi? Ladies ke liye sirf cardio? Umar ke baad weights se haddiyan tootengi? 5 popular claims, studies aur WHO ke saath fact check.\nYe general jaankari hai, medical advice nahi. Pregnancy, chot ya koi bimari ho toh pehle apne doctor se baat karo. Narration AI voice mein hai.",
-    chapters: [
-      ["0:00", "Intro: ladies aur weights"],
-      ["0:10", "1. Weights se bulky?"],
-      ["0:26", "2. Sirf cardio kaafi?"],
-      ["0:46", "3. Umar ke baad haddiyan tootengi?"],
-      ["1:09", "4. Pregnancy mein exercise band?"],
-      ["1:29", "5. Crunches se pet ki charbi?"],
-      ["1:46", "Recap + free trial"],
-    ],
-    sources: [
-      ["Handelsman et al. 2018, testosterone in men and women (Endocrine Reviews)", "https://pubmed.ncbi.nlm.nih.gov/30010735/"],
-      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
-      ["Watson et al. 2018, LIFTMOR trial (J Bone Miner Res)", "https://pubmed.ncbi.nlm.nih.gov/28975661/"],
-      ["Vispute et al. 2011, abdominal exercise and abdominal fat (J Strength Cond Res)", "https://pubmed.ncbi.nlm.nih.gov/21804427/"],
-    ],
-    tags: ["women weight training hindi", "ladies gym myths", "bulky myth", "weight training for women", "pregnancy exercise sach"],
   },
   {
     id: "long-diet-trend-myths-18",
