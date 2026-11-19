@@ -66,6 +66,15 @@ export const LONG_HINDI: Record<string, string> = {
   "long-air-pollution-myths-6": "प्रदूषण के 6 झूठ",
   "long-kids-fitness-myths-7": "बच्चों की फिटनेस के 7 झूठ",
   "long-new-year-myths-7": "नए साल के 7 झूठ",
+  "long-cooking-oils-myths-35": "सरसों, घी या रिफ़ाइंड: 6 झूठ",
+  "long-belly-fat-diet-34": "पेट की चर्बी कैसे कम करें",
+  "long-lemon-honey-myths-33": "नींबू-शहद पानी के 5 झूठ",
+  "long-gym-mistakes-32": "जिम की 6 बड़ी गलतियाँ",
+  "long-sugar-swap-myths-31": "गुड़, शहद, स्टीविया: 6 झूठ",
+  "long-desi-supplement-myths-30": "अश्वगंधा, शिलाजीत: 5 झूठ",
+  "long-intermittent-fasting-myths-29": "इंटरमिटेंट फ़ास्टिंग के 5 झूठ",
+  "long-roti-rice-myths-28": "रोटी या चावल: 5 झूठ",
+  "long-egg-yolk-myths-27": "अंडे के 5 झूठ",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */

@@ -23,6 +23,8 @@ describe("long videos", () => {
     for (const v of LONG_VIDEOS) {
       expect(v.title.length).toBeLessThanOrEqual(100);
       expect(v.title).not.toMatch(/[<>]/);
+      // A literal backslash-n (instead of a line break) shows up as "\n" text on YouTube.
+      expect(v.intro, v.id).not.toContain("\\n");
       const d = longVideoDescription(v);
       expect(d.length).toBeLessThan(5000);
       expect(d).not.toMatch(/[<>]/);
