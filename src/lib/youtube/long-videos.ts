@@ -14,9 +14,13 @@ export type LongVideo = {
   chapters: [string, string][];
   sources: [string, string][];
   tags: string[];
+  /** Promo videos (library packs, diet trial): the buy link put at the top of the description, as
+   *  [label, site path]. UTM tags are added. Also swaps the myth-buster base tags for promo ones. */
+  buy?: [string, string];
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
+const PROMO_TAGS = ["hinglish fitness", "noida gym", "royal fitness club", "coach aman sharma", "indian diet plan"];
 const BASE_TAGS = ["fitness myths", "myth buster hindi", "hinglish fitness", "noida gym", "sector 93 noida gym", "royal fitness club", "coach aman sharma"];
 
 const WHO_PA: [string, string] = ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"];
@@ -1173,7 +1177,9 @@ export const longVideoThumb = (v: LongVideo) => `/youtube/long/${v.id}.jpg`;
 
 export function longVideoDescription(v: LongVideo): string {
   const trial = `${SITE_URL}/contact?utm_source=youtube&utm_medium=video&utm_campaign=long-myths&utm_content=${v.id}#trial`;
+  const buy = v.buy ? buyLink(v) : null;
   return [
+    ...(buy ? [`👉 ${v.buy![0]}: ${buy}`, ""] : []),
     v.intro,
     "Coach Aman Sharma, Royal Fitness Club, Sector 93 Noida (since 2019).",
     "",
@@ -1195,7 +1201,16 @@ export function longVideoDescription(v: LongVideo): string {
   ].join("\n");
 }
 
-export const longVideoTags = (v: LongVideo) => [...new Set([...v.tags, ...BASE_TAGS])].slice(0, 15);
+export const longVideoTags = (v: LongVideo) => [...new Set([...v.tags, ...(v.buy ? PROMO_TAGS : BASE_TAGS)])].slice(0, 15);
+
+/** The tracked buy link of a promo video. */
+export function buyLink(v: LongVideo): string | null {
+  if (!v.buy) return null;
+  const [path, hash = ""] = v.buy[1].split("#");
+  const sep = path.includes("?") ? "&" : "?";
+  const campaign = v.id.startsWith("promo-lib") ? "promo-library" : "promo-diet-trial";
+  return `${SITE_URL}${path}${sep}utm_source=youtube&utm_medium=video&utm_campaign=${campaign}&utm_content=${v.id}${hash ? `#${hash}` : ""}`;
+}
 
 /** The first video whose date has come and that isn't on YouTube yet (or being uploaded). */
 export function dueLongVideo(today: string, used: Iterable<string>, list: LongVideo[] = LONG_VIDEOS): LongVideo | null {

@@ -71,3 +71,11 @@ export function priceCart(items: string[], t: PriceTable): CartQuote | null {
   const slugs = hasComplete ? [...t.complete.slugs] : [...new Set([...bundleIds.flatMap((id) => t.bundles[id].slugs), ...bookIds])];
   return { lines, subtotal, discountRate, discount, total, slugs, completeIsCheaper: !hasComplete && total > t.complete.price };
 }
+
+/** The ids in a ?add= value that the catalogue knows (books, bundles, complete library), once each. */
+export function parseAddParam(raw: string | null | undefined, table: PriceTable): string[] {
+  if (!raw) return [];
+  const known = (id: string) => id === table.complete.id || Boolean(table.bundles[id]) || Boolean(table.books[id]);
+  const ids = raw.slice(0, 4000).split(",").map((s) => s.trim()).filter(known);
+  return [...new Set(ids)].slice(0, MAX_CART_ITEMS);
+}

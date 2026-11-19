@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BadgePercent, Crown, Loader2, Lock, ShoppingBag, Trash2 } from "lucide-react";
-import { MULTI_BUY, priceCart, type PriceTable } from "@/lib/library/cart";
+import { MULTI_BUY, parseAddParam, priceCart, type PriceTable } from "@/lib/library/cart";
 import { useCart } from "./useCart";
 import { trackPixel } from "@/lib/meta-pixel";
 
@@ -27,7 +27,17 @@ const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
 /** Cart review + buyer details + Razorpay payment. */
 export function Checkout({ table, online, whatsappBase }: { table: PriceTable; online: boolean; whatsappBase: string }) {
-  const { items, remove, replace, clear } = useCart();
+  const { items, addMany, remove, replace, clear } = useCart();
+  // A pack link from a video (/library/checkout?add=a,b,c) adds those books to the cart, then the
+  // ?add= part is removed so a refresh or a shared URL doesn't add them again.
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const add = parseAddParam(url.searchParams.get("add"), table);
+    if (!url.searchParams.has("add")) return;
+    if (add.length) addMany(add);
+    url.searchParams.delete("add");
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  }, [addMany, table]);
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");

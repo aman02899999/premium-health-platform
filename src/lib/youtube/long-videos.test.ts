@@ -1,7 +1,8 @@
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { dueLongVideo, LONG_VIDEOS, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb } from "./long-videos";
+import { packById } from "@/lib/library/packs";
+import { buyLink, dueLongVideo, LONG_VIDEOS, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 const pub = (p: string) => join(process.cwd(), "public", p);
 const secs = (t: string) => t.split(":").reduce((a, n) => a * 60 + Number(n), 0);
@@ -60,5 +61,25 @@ describe("long video files and Vercel", () => {
   it("are kept out of Vercel deployments (the GitHub runner reads them from the checkout)", () => {
     const ignore = readFileSync(join(process.cwd(), ".vercelignore"), "utf8").split("\n").map((l) => l.trim());
     expect(ignore).toContain("/public/youtube");
+  });
+});
+
+describe("promo long videos", () => {
+  const fake: LongVideo = { id: "promo-lib-test", date: "2026-11-22", title: "t", intro: "i", chapters: [["0:00", "a"]], sources: [["s", "https://x.in"]], tags: ["pdf books"], buy: ["5 books ₹423", "/library/pack/indian-food"] };
+
+  it("puts the tracked buy link first and uses promo tags", () => {
+    const d = longVideoDescription(fake);
+    expect(d.split("\n")[0]).toBe(`👉 5 books ₹423: ${buyLink(fake)}`);
+    expect(buyLink(fake)).toMatch(/\/library\/pack\/indian-food\?utm_source=youtube&utm_medium=video&utm_campaign=promo-library&utm_content=promo-lib-test$/);
+    expect(longVideoTags(fake)).not.toContain("fitness myths");
+    expect(buyLink({ ...fake, id: "promo-diet-x", buy: ["Trial", "/diet-trial"] })).toContain("utm_campaign=promo-diet-trial");
+  });
+
+  it("every promo video links to a real pack or the diet trial", () => {
+    for (const v of LONG_VIDEOS.filter((x) => x.buy)) {
+      const path = v.buy![1];
+      const pack = path.match(/^\/library\/pack\/([a-z0-9-]+)$/);
+      expect(pack ? Boolean(packById(pack[1])) : path === "/diet-trial", v.id).toBe(true);
+    }
   });
 });
