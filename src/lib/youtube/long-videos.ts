@@ -17,6 +17,8 @@ export type LongVideo = {
   /** Promo videos (library packs, diet trial): the buy link put at the top of the description, as
    *  [label, site path]. UTM tags are added. Also swaps the myth-buster base tags for promo ones. */
   buy?: [string, string];
+  /** A vertical cut (YouTube Short) of a promo video: no chapters in its description. */
+  short?: boolean;
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
@@ -1191,9 +1193,7 @@ export function longVideoDescription(v: LongVideo): string {
     "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo. Roz 1-minute ki tips Shorts mein aati hain.",
     `🔔 Subscribe: ${YOUTUBE_CHANNEL.subscribe}`,
     "",
-    "Chapters",
-    ...v.chapters.map(([t, label]) => `${t} ${label}`),
-    "",
+    ...(v.short ? [] : ["Chapters", ...v.chapters.map(([t, label]) => `${t} ${label}`), ""]),
     "Sources",
     ...v.sources.map(([name, url]) => `- ${name}: ${url}`),
     "",
@@ -1208,7 +1208,7 @@ export function buyLink(v: LongVideo): string | null {
   if (!v.buy) return null;
   const [path, hash = ""] = v.buy[1].split("#");
   const sep = path.includes("?") ? "&" : "?";
-  const campaign = v.id.startsWith("promo-lib") ? "promo-library" : "promo-diet-trial";
+  const campaign = path.startsWith("/library") ? "promo-library" : "promo-diet-trial";
   return `${SITE_URL}${path}${sep}utm_source=youtube&utm_medium=video&utm_campaign=${campaign}&utm_content=${v.id}${hash ? `#${hash}` : ""}`;
 }
 

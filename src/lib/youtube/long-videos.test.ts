@@ -42,7 +42,7 @@ describe("long videos", () => {
   });
 
   it("chapters start at 0:00, run in order, are at least 10 s apart and number at least three", () => {
-    for (const v of LONG_VIDEOS) {
+    for (const v of LONG_VIDEOS.filter((x) => !x.short)) {
       expect(v.chapters[0][0]).toBe("0:00");
       expect(v.chapters.length).toBeGreaterThanOrEqual(3);
       for (let i = 1; i < v.chapters.length; i++) expect(secs(v.chapters[i][0]) - secs(v.chapters[i - 1][0])).toBeGreaterThanOrEqual(10);
@@ -73,6 +73,14 @@ describe("promo long videos", () => {
     expect(buyLink(fake)).toMatch(/\/library\/pack\/indian-food\?utm_source=youtube&utm_medium=video&utm_campaign=promo-library&utm_content=promo-lib-test$/);
     expect(longVideoTags(fake)).not.toContain("fitness myths");
     expect(buyLink({ ...fake, id: "promo-diet-x", buy: ["Trial", "/diet-trial"] })).toContain("utm_campaign=promo-diet-trial");
+  });
+
+  it("a Short keeps the buy link and its own tracking, without chapters", () => {
+    const short = { ...fake, id: "short-promo-lib-test", short: true };
+    const d = longVideoDescription(short);
+    expect(d).toContain("utm_campaign=promo-library&utm_content=short-promo-lib-test");
+    expect(d).not.toContain("Chapters");
+    expect(longVideoDescription(fake)).toContain("Chapters");
   });
 
   it("every promo video links to a real pack or the diet trial", () => {
