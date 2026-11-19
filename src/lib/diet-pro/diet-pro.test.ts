@@ -168,3 +168,10 @@ describe("meal solver", () => {
     });
   }
 });
+
+describe("Jain foods", () => {
+  it("never marks onion or garlic (any part of the plant) as Jain", () => {
+    const bad = FOOD_DB.filter((f) => f.jain && /onion|garlic|leek|shallot|chive/i.test(`${f.id} ${f.name}`));
+    expect(bad.map((f) => f.id)).toEqual([]);
+  });
+});
