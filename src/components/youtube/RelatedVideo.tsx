@@ -9,10 +9,11 @@ const COPY = {
 
 /**
  * The channel's long video on this page's subject, as a click-to-play box with VideoObject markup.
- * Renders nothing when no live video fits. `text` is the page's title, tags and keywords.
+ * Renders nothing when no live video fits. `text` is the page's title, tags and keywords; `pin`
+ * names one video (a script id from long-videos.ts) and skips the matching.
  */
-export async function RelatedVideo({ text, tone = "light", lang = "en", className = "" }: { text: string; tone?: "light" | "dark"; lang?: "en" | "hi"; className?: string }) {
-  const v = await videoForPage(text);
+export async function RelatedVideo({ text, pin, tone = "light", lang = "en", className = "" }: { text: string; pin?: string | null; tone?: "light" | "dark"; lang?: "en" | "hi"; className?: string }) {
+  const v = await videoForPage(text, pin);
   if (!v) return null;
   const t = COPY[lang];
   const watch = `https://www.youtube.com/watch?v=${v.youtubeId}`;
