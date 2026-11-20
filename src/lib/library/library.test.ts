@@ -73,6 +73,10 @@ describe("bundles", () => {
     }
   });
 
+  it("always cost clearly less than the complete library", () => {
+    for (const b of BUNDLES) expect(b.price).toBeLessThanOrEqual(Math.floor(COMPLETE_LIBRARY_PRICE * 0.7));
+  });
+
   it("include one collection per section covering every book", () => {
     const sections = BUNDLES.filter((b) => b.kind === "section");
     expect(sections).toHaveLength(CATEGORIES.length);

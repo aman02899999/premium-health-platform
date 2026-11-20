@@ -14,9 +14,15 @@ export type LongVideo = {
   chapters: [string, string][];
   sources: [string, string][];
   tags: string[];
+  /** Promo videos (library packs, diet trial): the buy link put at the top of the description, as
+   *  [label, site path]. UTM tags are added. Also swaps the myth-buster base tags for promo ones. */
+  buy?: [string, string];
+  /** A vertical cut (YouTube Short) of a promo video: no chapters in its description. */
+  short?: boolean;
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
+const PROMO_TAGS = ["hinglish fitness", "noida gym", "royal fitness club", "coach aman sharma", "indian diet plan"];
 const BASE_TAGS = ["fitness myths", "myth buster hindi", "hinglish fitness", "noida gym", "sector 93 noida gym", "royal fitness club", "coach aman sharma"];
 
 const WHO_PA: [string, string] = ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"];
@@ -531,6 +537,33 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["sardi zukaam myths", "vitamin c cold", "winter health tips hindi", "angithi carbon monoxide", "sardi mein exercise"],
   },
   {
+    id: "promo-lib-indian-food",
+    date: "2026-11-21",
+    title: "Desi Khana Se Body Banao: 5 Tips + 5 PDF Books Ka Pack",
+    intro: "Ghar ka khana kaafi hai? Protein kitna? Veg thali mein protein kaise badhaye? 5 kaam ki baatein, aur Indian food ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Tip 1: घर का खाना काफ़ी है"],
+      ["0:35", "Tip 3: Veg thali में protein कम"],
+      ["0:48", "Tip 4: Pre-workout घर से"],
+      ["1:02", "Tip 5: Sunday के 2 घंटे"],
+      ["1:14", "5 PDF books mein kya hai"],
+      ["1:32", "Book 1: Protein Without Confusion"],
+      ["1:44", "Book 2: The Vegetarian Muscle Plan"],
+      ["1:59", "Book 3: Workout-Day Nutrition"],
+      ["2:12", "Book 4: Meal Prep for Busy Professionals"],
+      ["2:23", "Pack price (30% off)"],
+      ["2:36", "Poori library ₹999"],
+      ["3:01", "Link + QR"],
+    ],
+    sources: [
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["indian diet for gym", "desi khana protein", "veg protein indian", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹423", "/library/pack/indian-food"],
+  },
+  {
     id: "long-diet-trend-myths-18",
     date: "2026-11-22",
     title: "16:8, Keto, Detox Ka Sach: 6 Diet Myths | Breakfast, Fruit, Packet Food",
@@ -557,6 +590,32 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["intermittent fasting hindi", "keto diet sach", "detox juice myth", "breakfast weight loss", "diet myths hindi"],
   },
   {
+    id: "promo-diet-trial-how",
+    date: "2026-11-22",
+    title: "₹49 Mein 7 Din Ka Personal Diet Plan: Sample Ke Saath Dekho",
+    intro: "₹49 ke trial mein asal mein kya milta hai? Ek sample plan ke saath: calories aur protein kaise nikalte hain, Day 1 ka page, workout, grocery list aur tracker.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Tip: भूखा रहना ज़रूरी नहीं"],
+      ["0:24", "Step 1: Form भरो"],
+      ["0:35", "Step 2: ₹49 pay करो"],
+      ["0:47", "Step 3: PDF आपके phone पर"],
+      ["1:05", "Sample plan: रोज़ के targets"],
+      ["1:16", "Sample plan: हफ़्ता एक नज़र में"],
+      ["1:39", "Sample plan: Workout plan"],
+      ["1:49", "Sample plan: Grocery list + tracker"],
+      ["2:06", "Tip: साफ़ बात"],
+      ["2:18", "₹49 mein kya milta hai"],
+      ["2:35", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["diet chart hindi", "how diet plan works", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
     id: "long-steroid-myths-19",
     date: "2026-11-23",
     title: "Steroid, SARMs Ka Sach: 5 Myths | Side Effects, 'Natural' Supplements",
@@ -580,6 +639,32 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["steroid side effects hindi", "sarms sach", "steroid myths", "natural vs steroid", "gym supplements fda"],
   },
   {
+    id: "promo-lib-beginner",
+    date: "2026-11-23",
+    title: "Gym Ka Pehla Saal: 5 Tips + Beginners Ki 5 PDF Books",
+    intro: "Gym shuru kiya ya karne wale ho? Likha hua plan, strength pehle, ghar par strength, aur dheere daudna. 5 tips, aur beginners ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Tip 1: लिखा हुआ plan"],
+      ["0:27", "Tip 2: Strength पहले"],
+      ["0:41", "Tip 3: घर पर भी strength"],
+      ["0:55", "Tip 4: रोज़ की ज़िंदगी के लिए"],
+      ["1:08", "Tip 5: धीरे दौड़ो"],
+      ["1:21", "5 PDF books mein kya hai"],
+      ["1:42", "Book 1: The Foundations of Strength"],
+      ["2:03", "Book 2: Functional Fitness for Everyday Life"],
+      ["2:15", "Book 3: Couch to 10K"],
+      ["2:25", "Pack price (30% off)"],
+      ["2:37", "Poori library ₹999"],
+      ["3:02", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["gym beginner hindi", "workout plan beginners", "gym first year", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹416", "/library/pack/beginner"],
+  },
+  {
     id: "long-diabetes-myths-7",
     date: "2026-11-24",
     title: "Diabetes Ke 7 Jhooth Jo Sabse Zyada Chalte Hain | WHO Facts Hinglish",
@@ -598,6 +683,31 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     sources: [["WHO fact sheet, Diabetes", "https://www.who.int/news-room/fact-sheets/detail/diabetes"]],
     tags: ["diabetes myths hindi", "sugar ki bimari", "type 2 diabetes hinglish", "blood sugar"],
+  },
+  {
+    id: "promo-diet-veg-fat-loss",
+    date: "2026-11-24",
+    title: "Veg Fat Loss Diet Plan, Roti-Dal Ke Saath | ₹49 Trial Sample",
+    intro: "Vegetarian ho aur roti-dal chhode bina fat loss chahiye? Ek sample plan ke saath dekho: targets, Day 1 ka khana, grocery list.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:21", "Tip: Veg protein मिलाकर"],
+      ["0:32", "Sample plan: Sample: example person"],
+      ["0:46", "Sample plan: रोज़ के targets"],
+      ["1:01", "Sample plan: Day 1 का page"],
+      ["1:13", "Sample plan: Grocery list"],
+      ["1:30", "Step 0: कैसे मिलेगी"],
+      ["1:40", "Tip: Day-7 review + साफ़ बात"],
+      ["1:52", "₹49 mein kya milta hai"],
+      ["2:08", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["veg diet plan fat loss", "vegetarian weight loss hindi", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-heart-gym-myths-20",
@@ -622,6 +732,33 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["heart attack symptoms hindi", "gym chest pain", "cpr kaise kare", "pre workout caffeine", "no pain no gain myth"],
   },
   {
+    id: "promo-lib-fat-loss",
+    date: "2026-11-25",
+    title: "Fat Loss Jo Tike: 5 Tips + 5 PDF Books Ka Pack",
+    intro: "Scale sab nahi batata, women aur weights, 40 ke baad bhi, smart cardio. 5 tips, aur fat loss ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:15", "Tip 1: Scale सब नहीं बताता"],
+      ["0:28", "Tip 2: Women + weights"],
+      ["0:39", "Tip 3: 40 के बाद भी"],
+      ["0:52", "Tip 4: Mobility ≠ flexibility"],
+      ["1:06", "Tip 5: Smart cardio"],
+      ["1:20", "5 PDF books mein kya hai"],
+      ["1:35", "Book 1: Strong Women"],
+      ["1:47", "Book 2: Strong After Forty"],
+      ["1:58", "Book 3: Mobility & Injury Prevention"],
+      ["2:09", "Book 4: Conditioning Without Burnout"],
+      ["2:35", "Poori library ₹999"],
+      ["3:00", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["fat loss hindi", "weight loss tips hindi", "women weight training", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹444", "/library/pack/fat-loss"],
+  },
+  {
     id: "long-apple-a-day-myths-21",
     date: "2026-11-26",
     title: "An Apple A Day Ka Sach: Doctor Door Rehta Hai? 5 Myths | Real Study Data",
@@ -642,6 +779,31 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
     ],
     tags: ["apple a day keeps the doctor away", "apple khane ke fayde", "apple myth hindi", "fruit health facts", "an apple a day sach"],
+  },
+  {
+    id: "promo-diet-office",
+    date: "2026-11-26",
+    title: "Office Job Walon Ka Diet Plan: 9 To 7, Phir Bhi Fit | ₹49 Trial",
+    intro: "Desk job, traffic, time nahi? Weekend prep, steps, aur sample plan: meal timing, Day 1, aur hafte ka programme.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:12", "Tip: Weekend prep"],
+      ["0:31", "Sample plan: Sample: example person"],
+      ["0:46", "Sample plan: रोज़ के targets"],
+      ["1:00", "Sample plan: Day 1 का page"],
+      ["1:12", "Sample plan: हफ़्ते का programme"],
+      ["1:30", "Step 0: कैसे मिलेगी"],
+      ["1:42", "Tip: Day-7 review + साफ़ बात"],
+      ["1:55", "₹49 mein kya milta hai"],
+      ["2:13", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["office diet plan", "desk job fitness", "daily steps", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-hair-fall-myths-23",
@@ -671,6 +833,31 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["hair fall myths hindi", "biotin for hair", "creatine hair loss", "onion juice for hair", "baal jhadna kaise roke"],
   },
   {
+    id: "promo-lib-muscle",
+    date: "2026-11-27",
+    title: "Muscle Kaise Badhti Hai: 5 Tips + 5 PDF Books Ka Pack",
+    intro: "Tension se growth, big three lifts, bodyweight strength, kettlebell, aur recovery. 5 tips, aur muscle building ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:12", "Tip 1: Tension = growth"],
+      ["0:24", "Tip 2: Big three"],
+      ["0:35", "Tip 3: अपने वज़न से strength"],
+      ["0:46", "Tip 4: एक bell, पूरी body"],
+      ["0:58", "Tip 5: Recovery में growth"],
+      ["1:13", "5 PDF books mein kya hai"],
+      ["1:30", "Book 1: Powerlifting Fundamentals"],
+      ["1:43", "Book 2: Calisthenics Mastery"],
+      ["2:01", "Book 3: The Athlete's Recovery Handbook"],
+      ["2:25", "Poori library ₹999"],
+      ["2:51", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["muscle gain hindi", "strength training hindi", "kettlebell workout", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹423", "/library/pack/muscle"],
+  },
+  {
     id: "long-obesity-myths-7",
     date: "2026-11-28",
     title: "Motape Ke 7 Jhooth Jo Sab Sach Maante Hain | WHO Facts Hinglish",
@@ -692,6 +879,30 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["CDC, Losing Weight", "https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html"],
     ],
     tags: ["obesity myths hindi", "weight loss hinglish", "bmi waist", "motapa kaise kam kare"],
+  },
+  {
+    id: "promo-diet-women-home",
+    date: "2026-11-28",
+    title: "Women Ke Liye Ghar Pe Fat Loss Plan | Diet + Home Workout | ₹49 Trial",
+    intro: "Gym nahi ja sakti? Weights se bulky nahi hoti, aur ghar ka workout har hafte thoda badhna chahiye. Sample plan: Day 1 ka khana aur home workout.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:16", "Tip: हर हफ़्ते थोड़ा ज़्यादा"],
+      ["0:38", "Sample plan: रोज़ के targets"],
+      ["0:53", "Sample plan: Day 1 का page"],
+      ["1:03", "Sample plan: Home workout"],
+      ["1:21", "Step 0: कैसे मिलेगी"],
+      ["1:31", "Tip: Day-7 review + साफ़ बात"],
+      ["1:46", "₹49 mein kya milta hai"],
+      ["2:02", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["women fat loss home", "home workout women hindi", "women weight training", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-ghee-oil-myths-25",
@@ -719,6 +930,59 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["ghee vs refined oil", "seed oils myth", "kaunsa tel best hai", "vanaspati trans fat", "ghee coffee"],
   },
   {
+    id: "promo-lib-smart-nutrition",
+    date: "2026-11-29",
+    title: "Supplement Ya Scam? 5 Tips + Smart Nutrition Ki 5 PDF Books",
+    intro: "Supplement lene se pehle kya sochein, hormones aur khana, lean bulk, gut aur fibre, Ayurveda aur evidence. 5 tips, aur nutrition ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:13", "Tip 1: Supplement से पहले सोचो"],
+      ["0:26", "Tip 2: Hormones और खाना"],
+      ["0:40", "Tip 3: Lean bulk"],
+      ["0:52", "Tip 4: Gut को fibre चाहिए"],
+      ["1:04", "Tip 5: Ayurveda + evidence"],
+      ["1:19", "5 PDF books mein kya hai"],
+      ["1:36", "Book 1: Eating for Hormonal Health"],
+      ["1:50", "Book 2: The Lean Bulk"],
+      ["2:12", "Book 3: Ayurveda Meets Evidence"],
+      ["2:23", "Pack price (30% off)"],
+      ["2:38", "Poori library ₹999"],
+      ["3:03", "Link + QR"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, What you need to know", "https://ods.od.nih.gov/factsheets/WYNTK-Consumer/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplements hindi", "lean bulk diet", "gut health fibre", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹409", "/library/pack/smart-nutrition"],
+  },
+  {
+    id: "promo-diet-egg-muscle",
+    date: "2026-11-30",
+    title: "Duble Ho? Weight Gain Diet Plan, Egg Ke Saath | ₹49 Trial Sample",
+    intro: "Khaate ho phir bhi weight nahi badhta? Chhota surplus, zyada meals, aur sample plan: Day 1 ka khana aur 5 din ka workout.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:12", "Tip: छोटा surplus"],
+      ["0:30", "Sample plan: Sample: example person"],
+      ["0:42", "Sample plan: रोज़ के targets"],
+      ["0:57", "Sample plan: Day 1 का page"],
+      ["1:09", "Sample plan: 5-day workout"],
+      ["1:30", "Step 0: कैसे मिलेगी"],
+      ["1:40", "Tip: Day-7 review + साफ़ बात"],
+      ["1:53", "₹49 mein kya milta hai"],
+      ["2:09", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["weight gain diet hindi", "muscle gain diet egg", "skinny to muscle", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
     id: "long-belly-fat-myths-24",
     date: "2026-12-01",
     title: "Belly Fat Ka Sach: 6 Myths | Crunches, Sweat Belt, Thin-Fat Indian",
@@ -742,6 +1006,33 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["CDC, Losing weight", "https://www.cdc.gov/healthy-weight-growth/losing-weight/index.html"],
     ],
     tags: ["belly fat kaise kam kare", "crunches belly fat myth", "sweat belt", "thin fat indian", "waist size"],
+  },
+  {
+    id: "promo-lib-health",
+    date: "2026-12-01",
+    title: "Sugar, BP, PCOS Mein Exercise: 5 Tips + 5 PDF Books Ka Pack",
+    intro: "Walk aur strength, PCOS sirf cysts nahi, naapo andaaza nahi, 60 ke baad bhi strength. 5 tips, aur health conditions ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:16", "Tip 1: Walk + strength"],
+      ["0:29", "Tip 2: PCOS ≠ सिर्फ़ cysts"],
+      ["0:45", "Tip 3: नापो, अंदाज़ा नहीं"],
+      ["0:59", "Tip 4: 60 के बाद भी strength"],
+      ["1:11", "Tip 5: Booster से पहले habits"],
+      ["1:26", "5 PDF books mein kya hai"],
+      ["1:43", "Book 1: PCOS: Train, Eat, Thrive"],
+      ["1:54", "Book 2: The Healthy Heart Plan"],
+      ["2:06", "Book 3: Strong at Sixty"],
+      ["2:26", "Pack price (30% off)"],
+      ["2:42", "Poori library ₹999"],
+      ["3:08", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["WHO fact sheet, Polycystic ovary syndrome", "https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome"],
+    ],
+    tags: ["diabetes exercise hindi", "pcos workout", "bp exercise hindi", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹493", "/library/pack/health"],
   },
   {
     id: "long-alcohol-tobacco-myths-8",
@@ -769,6 +1060,31 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["alcohol myths hindi", "smoking chhodo", "gutkha nuksan", "daaru aur gym"],
   },
   {
+    id: "promo-diet-south",
+    date: "2026-12-02",
+    title: "South Indian Diet Plan Fat Loss Ke Liye: Idli, Dosa, Curd Rice | ₹49 Trial",
+    intro: "Idli, dosa, curd rice chhodna padega? Nahi. Protein jodo, chawal naapo. Sample plan: Day 1 aur grocery list.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:11", "Tip: Protein जोड़ो"],
+      ["0:28", "Sample plan: Sample: example person"],
+      ["0:40", "Sample plan: रोज़ के targets"],
+      ["0:53", "Sample plan: Day 1 का page"],
+      ["1:04", "Sample plan: Grocery list"],
+      ["1:23", "Step 0: कैसे मिलेगी"],
+      ["1:33", "Tip: Day-7 review + साफ़ बात"],
+      ["1:46", "₹49 mein kya milta hai"],
+      ["2:01", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["south indian diet plan", "south indian weight loss", "ragi diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
     id: "long-walking-myths-26",
     date: "2026-12-03",
     title: "10,000 Steps Zaroori? Walking Ke 6 Myths | Lancet Study, Khaane Ke Baad Walk",
@@ -794,6 +1110,32 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["10000 steps", "walking benefits hindi", "walk after meal", "kitna chalna chahiye", "walking myths"],
   },
   {
+    id: "promo-lib-habits",
+    date: "2026-12-03",
+    title: "Motivation Nahi, System: 5 Tips + Habits Ki 5 PDF Books",
+    intro: "Habit vs decision, intensity nahi continuity, pet ki bhook ya mann ki, goal se system. 5 tips, aur habits ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:13", "Tip 1: Habit vs decision"],
+      ["0:30", "Tip 2: Intensity नहीं, continuity"],
+      ["0:44", "Tip 3: पेट की भूख या मन की?"],
+      ["0:59", "Tip 4: Goal → plan → system"],
+      ["1:13", "Tip 5: Focus = environment"],
+      ["1:26", "5 PDF books mein kya hai"],
+      ["1:42", "Book 1: Discipline Without Burnout"],
+      ["1:53", "Book 2: Emotional Eating"],
+      ["2:15", "Book 3: Focus in a Distracted World"],
+      ["2:26", "Pack price (30% off)"],
+      ["2:41", "Poori library ₹999"],
+      ["3:04", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["habits hindi", "fitness motivation", "emotional eating", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹346", "/library/pack/habits"],
+  },
+  {
     id: "long-egg-yolk-myths-27",
     date: "2026-12-04",
     title: "Egg Yolk Se Heart Attack? Whole Eggs Vs Egg White | 5 Myths Ka Sach",
@@ -815,6 +1157,31 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["Samiullah et al. 2015, Eggshell color in brown-egg laying hens (Poult Sci)", "https://pubmed.ncbi.nlm.nih.gov/26240390/"],
     ],
     tags: ["egg yolk cholesterol", "whole egg vs egg white", "anda khane ke fayde", "egg protein hindi", "raw egg protein", "brown vs white egg"],
+  },
+  {
+    id: "promo-diet-40-bp",
+    date: "2026-12-04",
+    title: "40+ Aur High BP: Diet Plan Kaisa Ho? | ₹49 Trial Sample",
+    intro: "40 ke paar, BP thoda zyada? Namak 5 g se kam (WHO), dawa apne aap band nahi. Sample plan: Day 1 aur medical safety notes.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:12", "Tip: नमक 5 g से कम"],
+      ["0:22", "Tip: दवा + plan साथ"],
+      ["0:44", "Sample plan: रोज़ के targets"],
+      ["0:57", "Sample plan: Day 1 का page"],
+      ["1:07", "Sample plan: Medical & safety notes"],
+      ["1:29", "Step 0: कैसे मिलेगी"],
+      ["1:40", "Tip: Day-7 review + साफ़ बात"],
+      ["1:55", "₹49 mein kya milta hai"],
+      ["2:13", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Sodium reduction", "https://www.who.int/news-room/fact-sheets/detail/sodium-reduction"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["high bp diet hindi", "diet after 40", "low salt diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-roti-rice-myths-28",
@@ -840,6 +1207,33 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["roti vs rice", "chawal khane se mota", "glycemic index hindi", "weight loss diet indian", "carbs at night", "fat loss roti"],
   },
   {
+    id: "promo-lib-yoga",
+    date: "2026-12-05",
+    title: "Yoga Kahan Se Shuru Karein? 5 Tips + Yoga Ki 5 PDF Books",
+    intro: "Stiff ho? Tabhi shuru karo. Surya namaskar, posture, lifters ke liye yoga, pranayama. 5 tips, aur yoga ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:15", "Tip 1: Stiff हो? तभी शुरू करो"],
+      ["0:28", "Tip 2: सूर्य नमस्कार"],
+      ["0:39", "Tip 3: अगला posture सबसे अच्छा"],
+      ["0:50", "Tip 4: Lifters के लिए yoga"],
+      ["1:02", "Tip 5: प्राणायाम"],
+      ["1:14", "5 PDF books mein kya hai"],
+      ["1:31", "Book 1: The Sun Salutation Handbook"],
+      ["1:43", "Book 2: Yoga for Back Pain & Desk Bodies"],
+      ["1:55", "Book 3: Yoga for Lifters"],
+      ["2:18", "Pack price (30% off)"],
+      ["2:30", "Poori library ₹999"],
+      ["2:53", "Link + QR"],
+    ],
+    sources: [
+      ["NCCIH, Yoga: what you need to know", "https://www.nccih.nih.gov/health/yoga-what-you-need-to-know"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["yoga for beginners hindi", "surya namaskar", "pranayama", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹374", "/library/pack/yoga"],
+  },
+  {
     id: "long-anaemia-myths-6",
     date: "2026-12-06",
     title: "Khoon Ki Kami (Anaemia) Ke 6 Jhooth | WHO Facts Hinglish",
@@ -857,6 +1251,29 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     sources: [["WHO fact sheet, Anaemia", "https://www.who.int/news-room/fact-sheets/detail/anaemia"]],
     tags: ["anaemia hindi", "khoon ki kami", "women health hinglish", "haemoglobin"],
+  },
+  {
+    id: "promo-diet-jain",
+    date: "2026-12-06",
+    title: "Jain Diet Plan Protein Ke Saath: Fat Loss + Muscle | ₹49 Trial",
+    intro: "Jain ho? Pyaaz, lehsun aur kand ke bina bhi protein poora ho sakta hai. Sample plan: Day 1 aur hafta ek nazar mein.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:19", "Tip: Recomposition"],
+      ["0:43", "Sample plan: रोज़ के targets"],
+      ["0:56", "Sample plan: Day 1 का page"],
+      ["1:08", "Sample plan: हफ़्ता एक नज़र में"],
+      ["1:23", "Step 0: कैसे मिलेगी"],
+      ["1:33", "Tip: Day-7 review + साफ़ बात"],
+      ["1:46", "₹49 mein kya milta hai"],
+      ["2:05", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["jain diet plan", "jain protein food", "body recomposition", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-intermittent-fasting-myths-29",
@@ -882,6 +1299,33 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["intermittent fasting hindi", "16 8 fasting", "fasting weight loss", "fasting muscle loss", "breakfast skip", "time restricted eating"],
   },
   {
+    id: "promo-lib-calm-sleep",
+    date: "2026-12-07",
+    title: "Neend Nahi Aati? 5 Tips + Calm Aur Sleep Ki 5 PDF Books",
+    intro: "Vichar rokna nahi, lamba exhale, deep rest, anxiety ek alarm hai, 7 se 9 ghante. 5 tips, aur neend aur calm ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:16", "Tip 1: विचार रोकना नहीं"],
+      ["0:28", "Tip 2: लंबा exhale"],
+      ["0:41", "Tip 3: Deep rest ≠ नींद"],
+      ["0:54", "Tip 4: Anxiety alarm है"],
+      ["1:11", "Tip 5: 7–9 घंटे"],
+      ["1:22", "5 PDF books mein kya hai"],
+      ["1:41", "Book 1: Breathwork for Performance"],
+      ["1:52", "Book 2: Yoga Nidra & Deep Rest"],
+      ["2:02", "Book 3: Mindfulness for Anxiety"],
+      ["2:12", "Book 4: The Sleep Reset"],
+      ["2:36", "Poori library ₹999"],
+      ["3:02", "Link + QR"],
+    ],
+    sources: [
+      ["CDC, About sleep", "https://www.cdc.gov/sleep/about/index.html"],
+      ["WHO fact sheet, Mental health", "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response"],
+    ],
+    tags: ["sleep tips hindi", "anxiety breathing", "neend kaise aaye", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹325", "/library/pack/calm-sleep"],
+  },
+  {
     id: "long-desi-supplement-myths-30",
     date: "2026-12-08",
     title: "Ashwagandha, Shilajit, Creatine, Testo Boosters | Supplement Myth Vs Fact",
@@ -904,6 +1348,31 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["Clemesha et al. 2020, Testosterone boosting supplements (World J Mens Health)", "https://pubmed.ncbi.nlm.nih.gov/31385468/"],
     ],
     tags: ["ashwagandha benefits hindi", "shilajit sach", "creatine steroid", "testosterone booster", "supplement myths", "desi supplements gym"],
+  },
+  {
+    id: "promo-diet-bengali-fish",
+    date: "2026-12-08",
+    title: "Machh-Bhaat Ke Saath Fat Loss: Bengali Diet Plan | ₹49 Trial",
+    intro: "Machh-bhaat chhode bina fat loss? Machhli achha protein hai, bhaat katori se naapo. Sample plan: Day 1 aur 12 hafte ka roadmap.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Tip: मछली = protein"],
+      ["0:27", "Sample plan: Sample: example person"],
+      ["0:41", "Sample plan: रोज़ के targets"],
+      ["0:54", "Sample plan: Day 1 का page"],
+      ["1:05", "Sample plan: 12-week roadmap"],
+      ["1:23", "Step 0: कैसे मिलेगी"],
+      ["1:33", "Tip: Day-7 review + साफ़ बात"],
+      ["1:45", "₹49 mein kya milta hai"],
+      ["2:00", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["bengali diet plan", "fish diet weight loss", "east indian diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-sugar-swap-myths-31",
@@ -931,6 +1400,32 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["sugar free myths", "gud vs cheeni", "honey for diabetes", "stevia hindi", "diabetes diet hindi", "jaggery sugar"],
   },
   {
+    id: "promo-lib-mind",
+    date: "2026-12-09",
+    title: "Strong Body, Strong Mind: 5 Tips + Mindset Ki 5 PDF Books",
+    intro: "Mirror se aage, resilience seekhi jaati hai, potential aur interference, aur madad maangna strength hai. 5 tips, aur mindset ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:14", "Tip 1: Mirror से आगे"],
+      ["0:29", "Tip 2: Resilience सीखी जाती है"],
+      ["0:43", "Tip 3: Potential − interference"],
+      ["0:58", "Tip 4: Clients क्यों रुकते हैं"],
+      ["1:12", "Tip 5: मदद माँगना strength है"],
+      ["1:28", "5 PDF books mein kya hai"],
+      ["1:44", "Book 1: The Resilient Mind"],
+      ["2:02", "Book 2: The Coach's Psychology"],
+      ["2:13", "Book 3: Men's Mental Health"],
+      ["2:23", "Pack price (30% off)"],
+      ["2:36", "Poori library ₹999"],
+      ["3:01", "Link + QR"],
+    ],
+    sources: [
+      ["WHO fact sheet, Mental health", "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response"],
+    ],
+    tags: ["fitness mindset", "mental health fitness", "resilience hindi", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹402", "/library/pack/mind"],
+  },
+  {
     id: "long-back-pain-myths-7",
     date: "2026-12-10",
     title: "Kamar Dard Ke 7 Jhooth | Bed Rest, Painkiller, Sciatica | WHO Facts Hinglish",
@@ -949,6 +1444,31 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     sources: [["WHO fact sheet, Low back pain", "https://www.who.int/news-room/fact-sheets/detail/low-back-pain"]],
     tags: ["kamar dard", "back pain hindi", "sciatica hinglish", "lower back pain"],
+  },
+  {
+    id: "promo-diet-after-trial",
+    date: "2026-12-10",
+    title: "₹49 Trial Ke Baad Kya? 7 Din Ka Sach + Full Plan | Sample Ke Saath",
+    intro: "7 din mein body transform nahi hoti. Trial ka asli kaam, crash diet kyon nahi, aur full plan mein kya extra milta hai, sample ke saath.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro"],
+      ["0:21", "Tip: Crash diet नहीं"],
+      ["0:32", "Sample plan: Sample: example person"],
+      ["0:46", "Sample plan: रोज़ के targets"],
+      ["1:00", "Sample plan: Day 1 का page"],
+      ["1:21", "Sample plan: 7-day habit tracker"],
+      ["1:33", "Step 0: कैसे मिलेगी"],
+      ["1:44", "Tip: Day-7 review + साफ़ बात"],
+      ["1:56", "₹49 mein kya milta hai"],
+      ["2:11", "Link + QR"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["diet plan india", "crash diet myth", "personal diet plan", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
     id: "long-gym-mistakes-32",
@@ -976,6 +1496,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["gym mistakes hindi", "muscle gain tips", "squat knees over toes", "warm up kyu zaroori", "training to failure", "workout split"],
   },
   {
+    id: "short-promo-lib-indian-food",
+    date: "2026-12-11",
+    title: "Desi Khana Se Body Banao #shorts",
+    intro: "Ghar ka khana kaafi hai? Protein kitna? Veg thali mein protein kaise badhaye? 5 kaam ki baatein, aur Indian food ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["indian diet for gym", "desi khana protein", "veg protein indian", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹423", "/library/pack/indian-food"],
+    short: true,
+  },
+  {
     id: "long-lemon-honey-myths-33",
     date: "2026-12-12",
     title: "Lemon Honey Warm Water: Morning Fat Loss Drink Myth Vs Reality",
@@ -998,6 +1534,22 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["Sato et al. 2021, Dental erosion caused by food and drinks (Nutrients)", "https://pubmed.ncbi.nlm.nih.gov/34684439/"],
     ],
     tags: ["lemon honey water", "nimbu pani weight loss", "detox drink myth", "warm water metabolism", "fat cutter drink", "morning drink hindi"],
+  },
+  {
+    id: "short-promo-diet-trial-how",
+    date: "2026-12-12",
+    title: "₹49 Mein 7 Din Ka Personal Diet Plan #shorts",
+    intro: "₹49 ke trial mein asal mein kya milta hai? Ek sample plan ke saath: calories aur protein kaise nikalte hain, Day 1 ka page, workout, grocery list aur tracker.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["diet chart hindi", "how diet plan works", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
   },
   {
     id: "long-belly-fat-diet-34",
@@ -1026,6 +1578,21 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["pet ki charbi kaise kam kare", "spot reduction", "belly fat diet indian", "jeera water weight loss", "green tea fat loss", "sleep and fat loss"],
   },
   {
+    id: "short-promo-lib-beginner",
+    date: "2026-12-13",
+    title: "Gym Ka Pehla Saal #shorts",
+    intro: "Gym shuru kiya ya karne wale ho? Likha hua plan, strength pehle, ghar par strength, aur dheere daudna. 5 tips, aur beginners ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["gym beginner hindi", "workout plan beginners", "gym first year", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹416", "/library/pack/beginner"],
+    short: true,
+  },
+  {
     id: "long-knee-pain-myths-7",
     date: "2026-12-14",
     title: "Ghutne Ke Dard Ke 7 Jhooth | Arthritis, Exercise, Weight | WHO Facts Hinglish",
@@ -1044,6 +1611,23 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     sources: [["WHO fact sheet, Osteoarthritis", "https://www.who.int/news-room/fact-sheets/detail/osteoarthritis"]],
     tags: ["ghutne ka dard", "knee pain hindi", "arthritis hinglish", "osteoarthritis"],
+  },
+  {
+    id: "short-promo-diet-veg-fat-loss",
+    date: "2026-12-14",
+    title: "Veg Fat Loss Diet Plan, Roti-Dal Ke Saath #shorts",
+    intro: "Vegetarian ho aur roti-dal chhode bina fat loss chahiye? Ek sample plan ke saath dekho: targets, Day 1 ka khana, grocery list.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["veg diet plan fat loss", "vegetarian weight loss hindi", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
   },
   {
     id: "long-cooking-oils-myths-35",
@@ -1068,6 +1652,54 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["MedlinePlus, Vitamins", "https://medlineplus.gov/ency/article/002399.htm"],
     ],
     tags: ["mustard oil vs ghee", "best cooking oil india", "sarson ka tel", "refined oil myth", "cold pressed oil", "olive oil indian cooking"],
+  },
+  {
+    id: "short-promo-lib-fat-loss",
+    date: "2026-12-15",
+    title: "Fat Loss Jo Tike #shorts",
+    intro: "Scale sab nahi batata, women aur weights, 40 ke baad bhi, smart cardio. 5 tips, aur fat loss ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["fat loss hindi", "weight loss tips hindi", "women weight training", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹444", "/library/pack/fat-loss"],
+    short: true,
+  },
+  {
+    id: "short-promo-diet-office",
+    date: "2026-12-16",
+    title: "Office Job Walon Ka Diet Plan #shorts",
+    intro: "Desk job, traffic, time nahi? Weekend prep, steps, aur sample plan: meal timing, Day 1, aur hafte ka programme.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["office diet plan", "desk job fitness", "daily steps", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-muscle",
+    date: "2026-12-17",
+    title: "Muscle Kaise Badhti Hai #shorts",
+    intro: "Tension se growth, big three lifts, bodyweight strength, kettlebell, aur recovery. 5 tips, aur muscle building ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["muscle gain hindi", "strength training hindi", "kettlebell workout", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹423", "/library/pack/muscle"],
+    short: true,
   },
   {
     id: "long-after-60-myths-7",
@@ -1095,6 +1727,73 @@ export const LONG_VIDEOS: LongVideo[] = [
   },
   // December 2026. Facts checked on 10 Nov 2026 against the pages in each video's sources.
   {
+    id: "short-promo-diet-women-home",
+    date: "2026-12-18",
+    title: "Women Ke Liye Ghar Pe Fat Loss Plan #shorts",
+    intro: "Gym nahi ja sakti? Weights se bulky nahi hoti, aur ghar ka workout har hafte thoda badhna chahiye. Sample plan: Day 1 ka khana aur home workout.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["women fat loss home", "home workout women hindi", "women weight training", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-smart-nutrition",
+    date: "2026-12-19",
+    title: "Supplement Ya Scam? 5 Tips + Smart Nutrition Ki 5 PDF Books #shorts",
+    intro: "Supplement lene se pehle kya sochein, hormones aur khana, lean bulk, gut aur fibre, Ayurveda aur evidence. 5 tips, aur nutrition ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, What you need to know", "https://ods.od.nih.gov/factsheets/WYNTK-Consumer/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplements hindi", "lean bulk diet", "gut health fibre", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹409", "/library/pack/smart-nutrition"],
+    short: true,
+  },
+  {
+    id: "short-promo-diet-egg-muscle",
+    date: "2026-12-20",
+    title: "Duble Ho? Weight Gain Diet Plan, Egg Ke Saath #shorts",
+    intro: "Khaate ho phir bhi weight nahi badhta? Chhota surplus, zyada meals, aur sample plan: Day 1 ka khana aur 5 din ka workout.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["weight gain diet hindi", "muscle gain diet egg", "skinny to muscle", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-health",
+    date: "2026-12-21",
+    title: "Sugar, BP, PCOS Mein Exercise #shorts",
+    intro: "Walk aur strength, PCOS sirf cysts nahi, naapo andaaza nahi, 60 ke baad bhi strength. 5 tips, aur health conditions ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+      ["WHO fact sheet, Polycystic ovary syndrome", "https://www.who.int/news-room/fact-sheets/detail/polycystic-ovary-syndrome"],
+    ],
+    tags: ["diabetes exercise hindi", "pcos workout", "bp exercise hindi", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹493", "/library/pack/health"],
+    short: true,
+  },
+  {
     id: "long-air-pollution-myths-6",
     date: "2026-12-22",
     title: "Pollution Ke 6 Jhooth Jo Har Sardi Sunte Hain | WHO Facts Hinglish",
@@ -1115,6 +1814,71 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
     ],
     tags: ["pollution myths hindi", "smog aur exercise", "aqi noida", "delhi ncr pollution"],
+  },
+  {
+    id: "short-promo-diet-south",
+    date: "2026-12-22",
+    title: "South Indian Diet Plan Fat Loss Ke Liye #shorts",
+    intro: "Idli, dosa, curd rice chhodna padega? Nahi. Protein jodo, chawal naapo. Sample plan: Day 1 aur grocery list.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["south indian diet plan", "south indian weight loss", "ragi diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-habits",
+    date: "2026-12-23",
+    title: "Motivation Nahi, System #shorts",
+    intro: "Habit vs decision, intensity nahi continuity, pet ki bhook ya mann ki, goal se system. 5 tips, aur habits ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["habits hindi", "fitness motivation", "emotional eating", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹346", "/library/pack/habits"],
+    short: true,
+  },
+  {
+    id: "short-promo-diet-40-bp",
+    date: "2026-12-24",
+    title: "40+ Aur High BP #shorts",
+    intro: "40 ke paar, BP thoda zyada? Namak 5 g se kam (WHO), dawa apne aap band nahi. Sample plan: Day 1 aur medical safety notes.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["WHO fact sheet, Sodium reduction", "https://www.who.int/news-room/fact-sheets/detail/sodium-reduction"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["high bp diet hindi", "diet after 40", "low salt diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-yoga",
+    date: "2026-12-25",
+    title: "Yoga Kahan Se Shuru Karein? 5 Tips + Yoga Ki 5 PDF Books #shorts",
+    intro: "Stiff ho? Tabhi shuru karo. Surya namaskar, posture, lifters ke liye yoga, pranayama. 5 tips, aur yoga ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NCCIH, Yoga: what you need to know", "https://www.nccih.nih.gov/health/yoga-what-you-need-to-know"],
+      ["WHO fact sheet, Physical activity", "https://www.who.int/news-room/fact-sheets/detail/physical-activity"],
+    ],
+    tags: ["yoga for beginners hindi", "surya namaskar", "pranayama", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹374", "/library/pack/yoga"],
+    short: true,
   },
   {
     id: "long-kids-fitness-myths-7",
@@ -1139,6 +1903,70 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["WHO, To grow up healthy, children need to sit less and play more (2019)", "https://www.who.int/news/item/24-04-2019-to-grow-up-healthy-children-need-to-sit-less-and-play-more"],
     ],
     tags: ["bachchon ki fitness", "kids screen time hindi", "parenting hinglish", "bachcho ka motapa"],
+  },
+  {
+    id: "short-promo-diet-jain",
+    date: "2026-12-26",
+    title: "Jain Diet Plan Protein Ke Saath #shorts",
+    intro: "Jain ho? Pyaaz, lehsun aur kand ke bina bhi protein poora ho sakta hai. Sample plan: Day 1 aur hafta ek nazar mein.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["jain diet plan", "jain protein food", "body recomposition", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-calm-sleep",
+    date: "2026-12-27",
+    title: "Neend Nahi Aati? 5 Tips + Calm Aur Sleep Ki 5 PDF Books #shorts",
+    intro: "Vichar rokna nahi, lamba exhale, deep rest, anxiety ek alarm hai, 7 se 9 ghante. 5 tips, aur neend aur calm ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["CDC, About sleep", "https://www.cdc.gov/sleep/about/index.html"],
+      ["WHO fact sheet, Mental health", "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response"],
+    ],
+    tags: ["sleep tips hindi", "anxiety breathing", "neend kaise aaye", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹325", "/library/pack/calm-sleep"],
+    short: true,
+  },
+  {
+    id: "short-promo-diet-bengali-fish",
+    date: "2026-12-28",
+    title: "Machh-Bhaat Ke Saath Fat Loss #shorts",
+    intro: "Machh-bhaat chhode bina fat loss? Machhli achha protein hai, bhaat katori se naapo. Sample plan: Day 1 aur 12 hafte ka roadmap.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["bengali diet plan", "fish diet weight loss", "east indian diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-promo-lib-mind",
+    date: "2026-12-29",
+    title: "Strong Body, Strong Mind #shorts",
+    intro: "Mirror se aage, resilience seekhi jaati hai, potential aur interference, aur madad maangna strength hai. 5 tips, aur mindset ki 5 PDF books mein kya milta hai.\nSample tips video mein free hain. Link kholo, paanchon books cart mein pehle se hongi; pay karo aur PDF turant download.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO fact sheet, Mental health", "https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response"],
+    ],
+    tags: ["fitness mindset", "mental health fitness", "resilience hindi", "pdf books hindi", "fitness ebook", "royal supplements library"],
+    buy: ["5 PDF books ₹402", "/library/pack/mind"],
+    short: true,
   },
   {
     id: "long-new-year-myths-7",
@@ -1167,13 +1995,32 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["new year resolution hindi", "gym motivation hinglish", "fitness goals 2027", "weight loss tips hindi"],
   },
+  {
+    id: "short-promo-diet-after-trial",
+    date: "2026-12-30",
+    title: "₹49 Trial Ke Baad Kya? 7 Din Ka Sach + Full Plan #shorts",
+    intro: "7 din mein body transform nahi hoti. Trial ka asli kaam, crash diet kyon nahi, aur full plan mein kya extra milta hai, sample ke saath.\nSample plan ek example person ka hai, kisi customer ka nahi. ₹49 trial: chhota form, payment, 48 ghante mein PDF WhatsApp + email par, Day-7 review. Ek number par ek trial.\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mifflin et al. 1990, resting energy expenditure equation (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/2305711/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+      ["WHO fact sheet, Healthy diet", "https://www.who.int/news-room/fact-sheets/detail/healthy-diet"],
+    ],
+    tags: ["diet plan india", "crash diet myth", "personal diet plan", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
+    buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
 ];
 export const longVideoFile = (v: LongVideo) => `/youtube/long/${v.id}.mp4`;
 export const longVideoThumb = (v: LongVideo) => `/youtube/long/${v.id}.jpg`;
 
 export function longVideoDescription(v: LongVideo): string {
   const trial = `${SITE_URL}/contact?utm_source=youtube&utm_medium=video&utm_campaign=long-myths&utm_content=${v.id}#trial`;
+  const buy = v.buy ? buyLink(v) : null;
   return [
+    ...(buy ? [`👉 ${v.buy![0]}: ${buy}`, ""] : []),
     v.intro,
     "Coach Aman Sharma, Royal Fitness Club, Sector 93 Noida (since 2019).",
     "",
@@ -1185,9 +2032,7 @@ export function longVideoDescription(v: LongVideo): string {
     "👍 Video kaam ki lagi? Like karo aur channel SUBSCRIBE karo. Roz 1-minute ki tips Shorts mein aati hain.",
     `🔔 Subscribe: ${YOUTUBE_CHANNEL.subscribe}`,
     "",
-    "Chapters",
-    ...v.chapters.map(([t, label]) => `${t} ${label}`),
-    "",
+    ...(v.short ? [] : ["Chapters", ...v.chapters.map(([t, label]) => `${t} ${label}`), ""]),
     "Sources",
     ...v.sources.map(([name, url]) => `- ${name}: ${url}`),
     "",
@@ -1195,7 +2040,16 @@ export function longVideoDescription(v: LongVideo): string {
   ].join("\n");
 }
 
-export const longVideoTags = (v: LongVideo) => [...new Set([...v.tags, ...BASE_TAGS])].slice(0, 15);
+export const longVideoTags = (v: LongVideo) => [...new Set([...v.tags, ...(v.buy ? PROMO_TAGS : BASE_TAGS)])].slice(0, 15);
+
+/** The tracked buy link of a promo video. */
+export function buyLink(v: LongVideo): string | null {
+  if (!v.buy) return null;
+  const [path, hash = ""] = v.buy[1].split("#");
+  const sep = path.includes("?") ? "&" : "?";
+  const campaign = path.startsWith("/library") ? "promo-library" : "promo-diet-trial";
+  return `${SITE_URL}${path}${sep}utm_source=youtube&utm_medium=video&utm_campaign=${campaign}&utm_content=${v.id}${hash ? `#${hash}` : ""}`;
+}
 
 /** The first video whose date has come and that isn't on YouTube yet (or being uploaded). */
 export function dueLongVideo(today: string, used: Iterable<string>, list: LongVideo[] = LONG_VIDEOS): LongVideo | null {

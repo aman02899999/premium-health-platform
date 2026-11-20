@@ -1,5 +1,5 @@
 import { BOOKS, type Book } from "./catalog";
-import { BUNDLES } from "./bundles";
+import { BUNDLES, COMPLETE_LIBRARY_PRICE } from "./bundles";
 import { priceCart, type CartQuote, type PriceTable } from "./cart";
 
 // Ways to buy: a single book, a combo/section bundle, a cart of several (multi-book
@@ -7,8 +7,7 @@ import { priceCart, type CartQuote, type PriceTable } from "./cart";
 // catalogue — the browser only sends ids.
 
 export const COMPLETE_LIBRARY_ID = "complete-library";
-/** Complete library price in rupees. */
-export const COMPLETE_LIBRARY_PRICE = 999;
+export { COMPLETE_LIBRARY_PRICE };
 
 export type LibraryQuote = {
   /** Comma-separated cart ids ("complete-library", bundle ids, book slugs). */

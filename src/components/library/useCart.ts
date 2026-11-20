@@ -50,8 +50,9 @@ function subscribe(cb: () => void) {
 export function useCart() {
   const items = useSyncExternalStore(subscribe, read, () => EMPTY);
   const add = useCallback((id: string) => write([...read(), id]), []);
+  const addMany = useCallback((ids: string[]) => write([...read(), ...ids]), []);
   const remove = useCallback((id: string) => write(read().filter((i) => i !== id)), []);
   const replace = useCallback((ids: string[]) => write(ids), []);
   const clear = useCallback(() => write([]), []);
-  return { items, add, remove, replace, clear, has: (id: string) => items.includes(id) };
+  return { items, add, addMany, remove, replace, clear, has: (id: string) => items.includes(id) };
 }
