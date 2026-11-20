@@ -156,8 +156,18 @@ export async function publishInstagramPhoto(imageUrl: string, caption: string): 
  * Publishes a Reel (also shown in the feed). Instagram downloads the MP4 from the public URL and
  * transcodes it, which takes up to a couple of minutes.
  */
-export async function publishInstagramReel(videoUrl: string, caption: string): Promise<SendResult & { permalink?: string }> {
-  return publishInstagramMedia({ media_type: "REELS", video_url: videoUrl, caption: caption.slice(0, 2200), share_to_feed: "true" }, { tries: 30, everyMs: 4000 });
+export async function publishInstagramReel(videoUrl: string, caption: string, opts: { collaborators?: string[] } = {}): Promise<SendResult & { permalink?: string }> {
+  const media = { media_type: "REELS", video_url: videoUrl, caption: caption.slice(0, 2200), share_to_feed: "true" };
+  const wait = { tries: 30, everyMs: 4000 };
+  const collaborators = (opts.collaborators ?? []).map((u) => u.replace(/^@/, "").trim()).filter(Boolean).slice(0, 3);
+  if (!collaborators.length) return publishInstagramMedia(media, wait);
+  // A Collab invite: Instagram sends each account a request, and the Reel shows on their profile
+  // once they accept. If Instagram refuses the invite (private account, wrong username), the Reel
+  // still goes out on our own profile, so the slot isn't lost.
+  const r = await publishInstagramMedia({ ...media, collaborators }, wait);
+  if (r.ok || r.stage !== "create" || r.retry) return r;
+  console.error("[instagram] Collab invite refused, posting without it:", r.error);
+  return publishInstagramMedia(media, wait);
 }
 
 /** Publishes a 9:16 image as a Story (Stories take no caption). */
@@ -165,7 +175,7 @@ export async function publishInstagramStory(imageUrl: string): Promise<SendResul
   return publishInstagramMedia({ image_url: imageUrl, media_type: "STORIES" });
 }
 
-async function publishInstagramMedia(media: Record<string, string>, wait = { tries: 6, everyMs: 2000 }): Promise<SendResult & { permalink?: string }> {
+async function publishInstagramMedia(media: Record<string, string | string[]>, wait = { tries: 6, everyMs: 2000 }): Promise<SendResult & { permalink?: string; stage?: "create" }> {
   const token = await instagramToken();
   if (!token) return { ok: false, error: "Instagram not configured", retry: false };
   const auth = { authorization: `Bearer ${token}`, "content-type": "application/json" };
@@ -173,7 +183,10 @@ async function publishInstagramMedia(media: Record<string, string>, wait = { tri
   if (!user) return { ok: false, error: "Instagram token rejected (check INSTAGRAM_ACCESS_TOKEN)", retry: false };
 
   const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify(media) });
-  if (!created.ok || !created.json.id) return fail(created);
+  if (!created.ok || !created.json.id) {
+    // Marked so a caller can tell "Instagram refused this media" from a later processing failure.
+    return { ...fail(created), stage: "create" };
+  }
   // Instagram downloads and processes the media first: photos within seconds, videos in minutes.
   const what = media.media_type === "REELS" ? "video" : "image";
   for (let i = 0; ; i++) {

@@ -58,6 +58,12 @@ export type SpecialReel = {
   theme: string;
   instagram: string;
   facebook: string;
+  /** Which Reel it replaces: the month plan's midday Reel (default) or the evening Reel. */
+  slot?: "midday" | "evening";
+  /** Instagram usernames invited as Collab partners (max 3); they accept in their app. */
+  collaborators?: string[];
+  /** "promo" Reels sell a plan and carry no health facts, so they need no sources line. */
+  kind?: "tips" | "promo";
 };
 
 // Tips content, November 2026 (thread "Create transformation posts"). No client photos, so it
@@ -77,7 +83,90 @@ const tipsReel = (r: Omit<SpecialReel, "instagram" | "facebook"> & { body: strin
   facebook: `${r.body}\n\n${ctaFb(r.id)}\n\n${SIGN_OFF}\n\n${r.tags}`,
 });
 
+// Coach Rubi promo Reels (thread "Make 2 Rubi promo Reels"), 20 Nov 2026. Owner approved posting
+// and sent Rubi's handle; she gets a Collab invite so the Reel shows on her profile too. Prices from
+// offers.ts (festive offer + Female's Special, until 31 Dec 2026) and DIET_PLANS (₹49 7-Day Trial).
+const RUBI = "__rubi_i_love_u";
+const RUBI_TAGS_GYM = "#RoyalFitnessClub #NoidaGym #GymInNoida #Sector93Noida #WomensFitness #GymForWomen #FemaleTrainer #FitnessCoach #BeginnerWorkout #FatLoss #NoidaFitness #GymOffer";
+const RUBI_TAGS_DIET = "#DietPlan #IndianDiet #DesiDiet #WeightLoss #FatLoss #DietChart #HealthyEating #RoyalFitnessClub #NoidaGym #NoidaFitness";
+const RUBI_GYM_BODY = `Gym ka pehla din thoda awkward lagta hai. Kaunsi machine, kitna weight, shuru kahan se karein?
+
+Coach Rubi (@${RUBI}, 8+ saal ka experience) women aur beginners ko gym floor par safe aur confident start karwati hain. Form check, simple plan, aur har rep par guidance.
+
+👩 Female's Special: ₹7,000 mein 6 months + calorie-based diet plan
+Festive prices, 31 Dec 2026 tak:
+• Monthly ₹2,000 ➝ ₹1,500
+• Quarterly ₹5,000 ➝ ₹4,000
+• Half-yearly ₹8,000 ➝ ₹7,000
+Couple prices standard rehte hain.`;
+const RUBI_ADDRESS = `📍 Main Road, near Gali No. 3, Gejha Village, Sector 93, Noida 201304
+🕐 Mon–Sat 5:30–11 AM & 4–10 PM · Sunday closed`;
+const RUBI_DIET_BODY = `Diet shuru karni hai par samajh nahi aata kya khaayein, kitna khaayein? Coach Rubi (@${RUBI}) ki salah: pehle sirf 7 din try karo.
+
+🥗 7-Day Trial Plan, sirf ₹49
+• Aapke liye bana 7-day diet chart + workouts
+• Desi khana, katori aur roti ke measure mein
+• Veg, egg, non-veg ya Jain
+• Day 7 par review
+PDF WhatsApp aur email par, 48 ghante ke andar. Ek phone number par ek trial.
+Online hai, toh Noida se bahar ho tab bhi chalega.`;
+const RUBI_DIET_NOTE = "Ye 7-day trial hai, join karne wala 1-month plan nahi. General guidance hai, medical advice nahi. Koi health condition hai toh pehle doctor se baat karo.";
+
+const RUBI_REELS: SpecialReel[] = [
+  {
+    id: "reel-coach-rubi-gym",
+    date: "2026-11-20",
+    slot: "midday",
+    kind: "promo",
+    collaborators: [RUBI],
+    video: "/social/reels/coach-rubi-gym.mp4",
+    theme: "Coach Rubi: Female's Special + free trial",
+    instagram: `${RUBI_GYM_BODY}
+
+📲 Free trial book karo: link in bio
+📞 Call or WhatsApp 88518 30081
+${RUBI_ADDRESS}
+
+${RUBI_TAGS_GYM}`,
+    facebook: `${RUBI_GYM_BODY.replace(` (@${RUBI}, 8+`, " (8+")}
+
+📲 Free trial book karo: https://www.royalfitnesclub.in/membership?utm_source=facebook&utm_medium=social&utm_campaign=rubi-reel-nov26
+📞 Call or WhatsApp 88518 30081
+${RUBI_ADDRESS}
+
+${RUBI_TAGS_GYM}`,
+  },
+  {
+    id: "reel-coach-rubi-diet-trial",
+    date: "2026-11-20",
+    slot: "evening",
+    kind: "promo",
+    collaborators: [RUBI],
+    video: "/social/reels/coach-rubi-diet-trial.mp4",
+    theme: "Coach Rubi: ₹49 7-Day Trial Plan",
+    instagram: `${RUBI_DIET_BODY}
+
+👉 Order: royalfitnesclub.in/diet-chart (link in bio)
+💬 WhatsApp 88518 30081
+Noida mein ho? Sector 93 mein gym ka free trial bhi book karo.
+
+${RUBI_DIET_NOTE}
+
+${RUBI_TAGS_DIET}`,
+    facebook: `${RUBI_DIET_BODY.replace(` (@${RUBI})`, "")}
+
+👉 Order: https://www.royalfitnesclub.in/diet-chart?plan=trial&utm_source=facebook&utm_medium=social&utm_campaign=rubi-reel-nov26#order
+💬 WhatsApp 88518 30081
+Noida mein ho? Sector 93 mein gym ka free trial bhi book karo.
+
+${RUBI_DIET_NOTE}
+
+${RUBI_TAGS_DIET}`,
+  },
+];
+
 export const SPECIAL_REELS: SpecialReel[] = [
+  ...RUBI_REELS,
   tipsReel({
     id: "reel-fat-loss-myths",
     date: "2026-11-10",
@@ -307,7 +396,7 @@ export function specialStory(date: string, posts: SpecialPost[] = SPECIAL_POSTS)
   return (posts.find((p) => p.date === date && p.storyImage) as SpecialStoryPost | undefined) ?? null;
 }
 
-/** The owner's own Reel that replaces the midday Reel today, if any. */
-export function specialReel(date: string, reels: SpecialReel[] = SPECIAL_REELS): SpecialReel | null {
-  return reels.find((r) => r.date === date) ?? null;
+/** The owner's own Reel that replaces today's midday (or evening) Reel, if any. */
+export function specialReel(date: string, slot: "midday" | "evening" = "midday", reels: SpecialReel[] = SPECIAL_REELS): SpecialReel | null {
+  return reels.find((r) => r.date === date && (r.slot ?? "midday") === slot) ?? null;
 }
