@@ -18,6 +18,11 @@ export type Bundle = {
   price: number;
 };
 
+/** Complete library price in rupees (re-exported by pricing.ts). */
+export const COMPLETE_LIBRARY_PRICE = 999;
+/** No bundle may cost more than this, so the complete library always stays the better deal. */
+const BUNDLE_CAP = Math.floor(COMPLETE_LIBRARY_PRICE * 0.7);
+
 const COMBO_OFF = 0.4;
 const SECTION_OFF = 0.5;
 
@@ -30,7 +35,7 @@ function make(id: string, kind: Bundle["kind"], name: string, tagline: string, f
   const books = volumes.map((v) => byVolume.get(v)).filter((b): b is Book => Boolean(b));
   if (books.length !== volumes.length) throw new Error(`Bundle ${id} names a missing volume`);
   const listPrice = books.reduce((s, b) => s + b.price, 0);
-  return { id, kind, name, tagline, forWho, volumes, slugs: books.map((b) => b.slug), listPrice, price: offerPrice(listPrice, kind === "combo" ? COMBO_OFF : SECTION_OFF) };
+  return { id, kind, name, tagline, forWho, volumes, slugs: books.map((b) => b.slug), listPrice, price: Math.min(BUNDLE_CAP, offerPrice(listPrice, kind === "combo" ? COMBO_OFF : SECTION_OFF)) };
 }
 
 const COMBOS: Bundle[] = [

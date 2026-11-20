@@ -304,14 +304,19 @@ export async function runReels(now = new Date(), biz: PostBiz, deps: ReelDeps = 
   const fb = facebookConfigured();
   if (!ig && !fb) return { reel: "off", instagram: "off", facebook: "off" };
   const today = todayIST(now);
-  const post = dailyPost(today, biz);
+  // The owner's own ready-made Reel (special-days.ts, slot "evening") takes this slot on its day.
+  const special = monthPlanOn() ? specialReel(today, "evening") : null;
+  const post = special ?? dailyPost(today, biz);
   const igId = ig ? await claimPost("instagram", today, post.theme) : null;
   const fbId = fb ? await claimPost("facebook", today, post.theme) : null;
   if (!igId && !fbId) return { reel: "already-posted", instagram: ig ? "already-posted" : "off", facebook: fb ? "already-posted" : "off" };
 
   let videoUrl: string | null = null;
   let reel = "rendered";
-  if (!mediaStorageConfigured() && deps === REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
+  if (special) {
+    videoUrl = `${SITE_URL}${special.video}`;
+    reel = "ready-made";
+  } else if (!mediaStorageConfigured() && deps === REEL_DEPS) reel = "skipped: Supabase Storage is not configured";
   else {
     try {
       videoUrl = await deps.upload(`reels/${today}.mp4`, await deps.render(today, biz), "video/mp4");
@@ -337,6 +342,12 @@ export async function runReels(now = new Date(), biz: PostBiz, deps: ReelDeps = 
       await recordPost(id, r);
       return "reel";
     }
+    // A ready-made Reel has no matching photo post: record the failure and let the retry run try again.
+    if (special) {
+      const res = r ?? { ok: false as const, error: "No video", retry: true };
+      await recordPost(id, res);
+      return res.ok ? "reel" : `failed: ${res.error.slice(0, 160)}`;
+    }
     if (r && !r.ok) console.error(`[${label}] reel failed, posting the photo instead:`, r.error);
     const p = await asPhoto();
     await recordPost(id, p.ok ? p : { ok: false, error: r && !r.ok ? `Reel: ${r.error} · Photo: ${p.error}` : p.error });
@@ -345,7 +356,7 @@ export async function runReels(now = new Date(), biz: PostBiz, deps: ReelDeps = 
   };
 
   const [instagram, facebook] = await Promise.all([
-    publish(igId, ig, (u) => publishInstagramReel(u, post.instagram), () => publishInstagramPhoto(postImageUrl(today), post.instagram), "instagram"),
+    publish(igId, ig, (u) => publishInstagramReel(u, post.instagram, { collaborators: special?.collaborators }), () => publishInstagramPhoto(postImageUrl(today), post.instagram), "instagram"),
     publish(fbId, fb, (u) => publishFacebookReel(u, post.facebook), () => publishFacebookPhoto(postImageUrl(today), post.facebook), "facebook"),
   ]);
   return { reel, instagram, facebook };
@@ -435,7 +446,7 @@ export async function runSecondReel(now = new Date(), biz: PostBiz, deps: Second
     return res.ok ? "published" : `failed: ${res.error.slice(0, 160)}`;
   };
   const [instagram, facebook] = await Promise.all([
-    one(igId, ig, (u) => publishInstagramReel(u, post.instagram)),
+    one(igId, ig, (u) => publishInstagramReel(u, post.instagram, { collaborators: special?.collaborators })),
     one(fbId, fb, (u) => publishFacebookReel(u, post.facebook)),
   ]);
   return { reel, instagram, facebook };

@@ -42,12 +42,31 @@ describe("special-day posts", () => {
     expect(specialReel("2026-11-10")?.id).toBe("reel-fat-loss-myths");
     expect(specialReel("2026-11-17")?.id).toBe("reel-muscle-basics");
     expect(specialReel("2026-11-11")).toBeNull();
-    const dates = SPECIAL_REELS.map((r) => r.date);
-    expect(new Set(dates).size).toBe(dates.length);
+    const keys = SPECIAL_REELS.map((r) => `${r.date}-${r.slot ?? "midday"}`);
+    expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it("tips Reels follow the health rules: sources, an education note, no cure or guarantee words", () => {
-    for (const r of SPECIAL_REELS) {
+  it("Coach Rubi Reels: gym at midday, diet trial in the evening on 20 Nov, both with a Collab invite to Rubi", () => {
+    const gym = specialReel("2026-11-20", "midday");
+    const diet = specialReel("2026-11-20", "evening");
+    expect(gym?.id).toBe("reel-coach-rubi-gym");
+    expect(diet?.id).toBe("reel-coach-rubi-diet-trial");
+    expect(specialReel("2026-11-21", "evening")).toBeNull();
+    expect(specialReel("2026-11-17", "evening")).toBeNull(); // older tips Reels stay on midday
+    for (const r of [gym!, diet!]) expect(r.collaborators).toEqual(["__rubi_i_love_u"]);
+    // Prices as in offers.ts / DIET_PLANS; the two ₹49 offers stay apart.
+    expect(gym!.instagram).toContain("Female's Special: ₹7,000 mein 6 months");
+    expect(gym!.instagram).toContain("Monthly ₹2,000 ➝ ₹1,500");
+    expect(gym!.instagram).not.toContain("₹49");
+    expect(diet!.instagram).toContain("7-Day Trial Plan, sirf ₹49");
+    expect(diet!.instagram).toContain("1-month plan nahi");
+    expect(diet!.facebook).toContain("/diet-chart?plan=trial&");
+    expect(diet!.facebook).not.toContain("/diet-trial");
+    for (const c of [gym!.facebook, diet!.facebook]) expect(c).not.toContain("@__rubi");
+  });
+
+  it("tips Reels follow the health rules (promo Reels carry no health facts): sources, an education note, no cure or guarantee words", () => {
+    for (const r of SPECIAL_REELS.filter((x) => x.kind !== "promo")) {
       for (const c of [r.instagram, r.facebook]) {
         expect(c, r.id).toMatch(/Sources?:/);
         expect(c, r.id).toContain("medical advice nahi");

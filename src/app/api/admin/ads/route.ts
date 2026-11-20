@@ -5,9 +5,12 @@ import { AD_PAGES, PLATFORMS } from "@/lib/admin/ads-core";
 import { adsSetup, createAd, listAds, updateAd } from "@/lib/admin/ads";
 import { SEGMENTS } from "@/lib/growth/audience";
 import { SITE_URL } from "@/lib/site";
+import { adCreatives } from "@/lib/ads/creatives";
+import { getContent } from "@/lib/content/store";
+import { todayIST } from "@/lib/growth/dates";
 
 // Admin Ads Manager.
-// GET                                              campaigns with results, setup, platforms, pages
+// GET                                              campaigns with results, setup, platforms, pages, ad creatives
 // POST { action: "create", name, platform, landing, startOn?, spend? }
 // POST { action: "update", id, spend?, active?, notes? }
 export const dynamic = "force-dynamic";
@@ -16,7 +19,7 @@ export async function GET() {
   if (!(await isAdmin())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   if (!isDbConfigured) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
   try {
-    return NextResponse.json({ ads: await listAds(), setup: adsSetup(), platforms: PLATFORMS, pages: AD_PAGES, segments: SEGMENTS.map((s) => ({ id: s.id, label: s.label })), siteUrl: SITE_URL });
+    return NextResponse.json({ ads: await listAds(), setup: adsSetup(), platforms: PLATFORMS, pages: AD_PAGES, segments: SEGMENTS.map((s) => ({ id: s.id, label: s.label })), siteUrl: SITE_URL, creatives: adCreatives(await getContent(), todayIST()) });
   } catch (err) {
     console.error("[ads]", (err as Error).message);
     return NextResponse.json({ error: "Couldn't load campaigns. Is the latest database migration applied?" }, { status: 500 });
