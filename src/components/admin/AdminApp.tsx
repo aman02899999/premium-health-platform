@@ -411,7 +411,7 @@ export function AdminApp({ storage }: { storage: string }) {
           )}
 
           {tab === "gallery" && (
-            <Card title="Gallery" help="Upload real photos of your gym from Instagram. Portrait (4:5) photos look best in the 3D carousel.">
+            <Card title="Gallery" help="Upload real photos of your gym from Instagram. Portrait (4:5) photos look best in the 3D carousel. Never upload photos with drug or steroid text on them.">
               <ListEditor
                 items={content.gallery}
                 titleKey="title"
@@ -422,6 +422,7 @@ export function AdminApp({ storage }: { storage: string }) {
                   { key: "image", label: "Photo", type: "image" },
                   { key: "title", label: "Title" },
                   { key: "caption", label: "Caption" },
+                  { key: "hidden", label: "Hidden from site", type: "bool", help: "Built-in photos come back if deleted, so hide them instead." },
                 ]}
               />
             </Card>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getContent } from "@/lib/content/store";
+import { visibleGallery } from "@/lib/content/gallery";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { Gallery3D } from "@/components/home/Gallery3D";
@@ -22,7 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function GalleryPage() {
   const c = await getContent();
-  const withImages = c.gallery.filter((g) => g.image);
+  const photos = visibleGallery(c.gallery);
+  const withImages = photos;
   return (
     <>
       <JsonLd
@@ -42,10 +44,10 @@ export default async function GalleryPage() {
       />
       <PageHero eyebrow="Gallery" title="Step inside" highlight="the club" intro="Drag the carousel or hover the grid — every card reacts in 3D." />
       <section className="mx-auto max-w-7xl overflow-hidden px-4 py-10 sm:px-6">
-        <Gallery3D items={c.gallery} />
+        <Gallery3D items={photos} />
       </section>
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
-        {c.gallery.map((g, i) => (
+        {photos.map((g, i) => (
           <Reveal key={g.id} delay={(i % 3) * 80}>
             <TiltCard className="group rounded-3xl" max={12}>
               <figure className="relative aspect-[4/5] overflow-hidden rounded-3xl ring-1 ring-white/10">
