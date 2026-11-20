@@ -1,0 +1,77 @@
+# One-time content jobs paid from the Google Cloud credit (Gemini on Vertex AI).
+# Runs only when someone presses "Run workflow". Nothing stays running afterwards, and once the
+# credit or trial ends the job simply fails, so there is nothing to remove later.
+#
+# Drafts go to the branch gemini/disease-drafts (never main) for a person to review.
+# Needs: secret GCP_SA_KEY whose service account has the "Vertex AI User" role, variable GCP_PROJECT_ID.
+name: Gemini drafts
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "How many disease pages to draft (1-40)"
+        default: "10"
+      model:
+        description: "Gemini model"
+        default: "gemini-2.5-pro"
+      slugs:
+        description: "Only these slugs, comma-separated (optional)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gemini-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    if: vars.GCP_PROJECT_ID != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Continue on the drafts branch if it exists
+        run: |
+          if git ls-remote --exit-code --heads origin gemini/disease-drafts >/dev/null; then
+            git fetch origin gemini/disease-drafts && git checkout -B gemini/disease-drafts FETCH_HEAD
+          else
+            git checkout -b gemini/disease-drafts
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Write drafts
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          LIMIT: ${{ inputs.limit }}
+          MODEL: ${{ inputs.model }}
+          SLUGS: ${{ inputs.slugs }}
+        run: |
+          export GCP_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::$GCP_ACCESS_TOKEN"
+          npx tsx scripts/gemini/disease-drafts.ts
+
+      - name: Save drafts to the branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add content/drafts/diseases
+          if git diff --cached --quiet; then echo "No new drafts."; exit 0; fi
+          git commit -m "Gemini disease drafts ($(date -u +%F)): pending medical review"
+          git push origin gemini/disease-drafts
+          echo "Review: https://github.com/${{ github.repository }}/compare/main...gemini/disease-drafts" >> "$GITHUB_STEP_SUMMARY"

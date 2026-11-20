@@ -123,6 +123,14 @@ export const QUEUE_INDEX_BASE = 6000;
 /** Drafts that pass the checks post without a tap, unless YOUTUBE_QUEUE_AUTO=off. */
 export const queueAutoApprove = (env: Record<string, string | undefined> = process.env) => env.YOUTUBE_QUEUE_AUTO !== "off";
 
+/**
+ * Gemini is new to these jobs, so its clean drafts still wait for the owner's Approve until
+ * GEMINI_QUEUE_AUTO=on. Claude-written drafts keep the YOUTUBE_QUEUE_AUTO rule above.
+ */
+export const geminiQueueAuto = (env: Record<string, string | undefined> = process.env) => env.GEMINI_QUEUE_AUTO === "on";
+
+export const GEMINI_HOLD = "Written by Gemini: passed the checks, waiting for your Approve (set GEMINI_QUEUE_AUTO=on to post these by itself)";
+
 /** The queue goes out in the midday slot, at most one a day, so the bank still sets the rhythm. */
 export const QUEUE_SLOT = 2;
 

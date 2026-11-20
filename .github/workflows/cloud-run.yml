@@ -45,7 +45,7 @@ jobs:
         run: node scripts/cloud-run-env.mjs "$RUNNER_TEMP/env"
 
       - name: Enable the Google services (first run only; no-op after)
-        run: gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudscheduler.googleapis.com --project "${{ vars.GCP_PROJECT_ID }}"
+        run: gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudscheduler.googleapis.com aiplatform.googleapis.com --project "${{ vars.GCP_PROJECT_ID }}"
 
       - name: Image repository
         run: |

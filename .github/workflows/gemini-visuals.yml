@@ -1,0 +1,66 @@
+# One-time visuals paid from the Google Cloud credit: Imagen stills and Veo clips (silent, 8 s,
+# vertical) for posts, Reels, Shorts and ads. Runs only when someone presses "Run workflow".
+# Files come back as the run's download ("ai-visuals"), kept 90 days. Nothing is stored in
+# Google Cloud and nothing keeps running, so after the trial there is nothing to remove.
+#
+# Needs: secret GCP_SA_KEY whose service account has the "Vertex AI User" role, variable GCP_PROJECT_ID.
+name: Gemini visuals
+
+on:
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: "image or video"
+        type: choice
+        options: [image, video]
+        default: image
+      start:
+        description: "First prompt number (0 = the first)"
+        default: "0"
+      count:
+        description: "How many prompts (images up to 20, videos up to 10)"
+        default: "4"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gemini-visuals
+  cancel-in-progress: false
+
+jobs:
+  visuals:
+    if: vars.GCP_PROJECT_ID != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Make the visuals
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+          KIND: ${{ inputs.kind }}
+          START: ${{ inputs.start }}
+          COUNT: ${{ inputs.count }}
+        run: |
+          export GCP_ACCESS_TOKEN="$(gcloud auth print-access-token)"
+          echo "::add-mask::$GCP_ACCESS_TOKEN"
+          npx tsx scripts/gemini/visuals.ts
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ai-visuals
+          path: out/visuals
+          retention-days: 90
+          if-no-files-found: warn
