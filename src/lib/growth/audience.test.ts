@@ -60,6 +60,7 @@ describe("Meta ads customer list", () => {
     expect(metaAudienceCsv([{ name: "Rahul Kumar Verma", phone: "9876543210", email: "r@x.in" }, { name: 'Sam "Big"', phone: null, email: "s@x.in" }])).toBe(
       'email,phone,fn,ln,country\nr@x.in,919876543210,Rahul,Kumar Verma,in\ns@x.in,,Sam,"""Big""",in\n',
     );
+    expect(metaAudienceCsv([{ name: '=HYPERLINK("x") Kumar', phone: "9876543210", email: null }])).toBe(`email,phone,fn,ln,country\n,919876543210,"'=HYPERLINK(""x"")",Kumar,in\n`);
   });
 });
 

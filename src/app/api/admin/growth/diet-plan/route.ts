@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
 import { isDbConfigured } from "@/health/db";
 import { getDietOrder } from "@/lib/growth/diet-orders";
-import { sendDietPlan, storeCoachPlan } from "@/lib/growth/plan-delivery";
+import { PLAN_ERRORS, sendDietPlan, storeCoachPlan } from "@/lib/growth/plan-delivery";
 import { getFile } from "@/lib/growth/storage";
 import { versionPath } from "@/lib/growth/client-plans";
 
@@ -44,6 +44,10 @@ export async function POST(req: Request) {
     const sent = b.send === true ? await sendDietPlan(b.id) : null;
     return NextResponse.json({ ok: true, path, sent: !!sent });
   } catch (err) {
-    return NextResponse.json({ error: (err as Error).message }, { status: 400 });
+    // Our own checks ("not a PDF", "order not found") are shown as they are; anything else is logged.
+    const msg = (err as Error).message;
+    if (PLAN_ERRORS.includes(msg)) return NextResponse.json({ error: msg }, { status: 400 });
+    console.error("[diet-plan] upload:", msg);
+    return NextResponse.json({ error: "Couldn't save the PDF. Try again." }, { status: 502 });
   }
 }

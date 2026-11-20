@@ -81,10 +81,10 @@ export function BlogTab({ data, done }: { data: ShopData; done: Done }) {
           onDelete={
             edit.id
               ? async () => {
-                  if (!confirm(`Delete “${edit.title}”?`)) return;
+                  if (!confirm(`Remove “${edit.title}”? It's kept in the archive and can be put back.`)) return;
                   try {
                     await shopPost({ action: "delete", kind: "post", id: edit.id });
-                    await done("Article deleted");
+                    await done("Article removed");
                     setEdit(null);
                   } catch (e) {
                     setErr((e as Error).message);
