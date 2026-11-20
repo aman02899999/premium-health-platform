@@ -12,6 +12,9 @@ export const INDEXED_DISEASES: ReadonlySet<string> = new Set([
   "high-blood-pressure",
   "pcos",
   "fatty-liver",
+  "anemia",
+  "prediabetes",
+  "high-cholesterol",
 ]);
 
 export const diseaseIndexable = (slug: string) => INDEXED_DISEASES.has(slug);
