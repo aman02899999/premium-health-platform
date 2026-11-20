@@ -35,9 +35,9 @@ export function verifyMetaSignature(raw: string, header: string | null): boolean
 
 type GraphJson = { id?: string; error?: { message?: string; code?: number }; messages?: { id: string }[] } & Record<string, unknown>;
 
-async function graph(url: string, init: RequestInit = {}): Promise<{ ok: boolean; status: number; json: GraphJson }> {
+async function graph(url: string, init: RequestInit = {}, timeoutMs = 15_000): Promise<{ ok: boolean; status: number; json: GraphJson }> {
   try {
-    const res = await fetch(url, { ...init, signal: AbortSignal.timeout(15_000) });
+    const res = await fetch(url, { ...init, signal: AbortSignal.timeout(timeoutMs) });
     return { ok: res.ok, status: res.status, json: (await res.json().catch(() => ({}))) as GraphJson };
   } catch (err) {
     return { ok: false, status: 0, json: { error: { message: (err as Error).message } } };
@@ -182,7 +182,11 @@ async function publishInstagramMedia(media: Record<string, string | string[]>, w
   const user = await igUserId(token);
   if (!user) return { ok: false, error: "Instagram token rejected (check INSTAGRAM_ACCESS_TOKEN)", retry: false };
 
-  const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify(media) });
+  // A run that timed out may still have gone live on Instagram. Never post the same caption twice.
+  const already = await recentlyPublished(user, token, media.caption);
+  if (already) return already;
+  // Creating a video container and publishing it can take Instagram well over 15 s.
+  const created = await graph(`${IG_API()}/${user}/media`, { method: "POST", headers: auth, body: JSON.stringify(media) }, 60_000);
   if (!created.ok || !created.json.id) {
     // Marked so a caller can tell "Instagram refused this media" from a later processing failure.
     return { ...fail(created), stage: "create" };
@@ -200,10 +204,30 @@ async function publishInstagramMedia(media: Record<string, string | string[]>, w
     }
     await new Promise((r) => setTimeout(r, wait.everyMs));
   }
-  const published = await graph(`${IG_API()}/${user}/media_publish`, { method: "POST", headers: auth, body: JSON.stringify({ creation_id: created.json.id }) });
-  if (!published.ok || !published.json.id) return fail(published);
+  const published = await graph(`${IG_API()}/${user}/media_publish`, { method: "POST", headers: auth, body: JSON.stringify({ creation_id: created.json.id }) }, 60_000);
+  if (!published.ok || !published.json.id) {
+    // No answer in time: Instagram may have published it anyway.
+    if (published.status === 0) {
+      const live = await recentlyPublished(user, token, media.caption);
+      if (live) return live;
+    }
+    return fail(published);
+  }
   const link = await graph(`${IG_API()}/${published.json.id}?fields=permalink`, { headers: { authorization: `Bearer ${token}` } });
   return { ok: true, id: published.json.id, permalink: typeof link.json.permalink === "string" ? link.json.permalink : undefined };
+}
+
+/**
+ * Our own post with exactly this caption from the last 12 hours, if there is one (a Story has no
+ * caption, so it is never matched). Errors count as "not found": the check must never block a post.
+ */
+async function recentlyPublished(user: string, token: string, caption: unknown): Promise<(SendResult & { permalink?: string }) | null> {
+  if (typeof caption !== "string" || !caption.trim()) return null;
+  const r = await graph(`${IG_API()}/${user}/media?fields=id,caption,permalink,timestamp&limit=10`, { headers: { authorization: `Bearer ${token}` } });
+  const items = Array.isArray(r.json.data) ? (r.json.data as { id?: string; caption?: string; permalink?: string; timestamp?: string }[]) : [];
+  const since = Date.now() - 12 * 3_600_000;
+  const hit = items.find((m) => typeof m.id === "string" && m.caption?.trim() === caption.trim() && Date.parse(m.timestamp ?? "") >= since);
+  return hit ? { ok: true, id: hit.id!, permalink: hit.permalink } : null;
 }
 
 /** A DM, or a private reply to a comment (recipient { comment_id }). */
