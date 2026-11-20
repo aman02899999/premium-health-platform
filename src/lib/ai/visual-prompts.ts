@@ -11,7 +11,7 @@ const STYLE = "Photorealistic, natural light, warm tones, shallow depth of field
 
 export const IMAGE_PROMPTS: VisualPrompt[] = [
   { id: "dumbbell-rack", prompt: "A neat rack of black hex dumbbells in a small, clean neighbourhood gym in India, early morning light through a window.", use: "Gym posts, ad backgrounds" },
-  { id: "chalk-hands", prompt: "Close-up of hands rubbing gym chalk next to a barbell, chalk dust in the light.", use: "Strength tips Reels cover" },
+  { id: "chalk-hands", prompt: "Close-up of hands rubbing gym chalk over a loaded barbell in a modern indoor gym with black rubber flooring, chalk dust in the light.", use: "Strength tips Reels cover" },
   { id: "dal-roti-plate", prompt: "Top-down view of a balanced Indian home meal on a steel thali: dal, two rotis, sabzi, salad and curd.", use: "Diet trial, nutrition posts" },
   { id: "paneer-protein", prompt: "Top-down view of grilled paneer cubes, boiled chana and sprouts salad in bowls on a wooden table.", use: "Protein posts" },
   { id: "morning-walk", prompt: "A person in sports shoes walking on a park track at sunrise in an Indian city, seen from behind, trees and joggers far away.", use: "Walking and heart-health posts" },

@@ -81,3 +81,23 @@ describe("pendingSlugs", () => {
     expect(pendingSlugs(all, ["b"]).map((d) => d.slug)).toEqual(["a", "c"]);
   });
 });
+
+describe("checkDraft: warnings vs claims (from the first real Gemini run)", () => {
+  const withLine = (field: string, line: string) => { const raw = good(); raw[field] = [line, "Sleep well.", "Move more.", "Eat simply."]; return checkDraft(raw, known, "2026-11-20"); };
+
+  it("allows a sentence that warns about cure claims", () => {
+    expect(withLine("shouldNotDo", "Avoid supplements or commercial tonics promising a 'guaranteed cure' or rapid reversal.").ok).toBe(true);
+    expect(withLine("shouldNotDo", "Ignore the myth that type 1 diabetes can be permanently cured by diet.").ok).toBe(true);
+  });
+
+  it("still blocks a plain claim", () => {
+    expect(withLine("lifestyle", "Bitter gourd juice cures diabetes in weeks.").ok).toBe(false);
+  });
+
+  it("treats lab targets as results, not doses, but blocks insulin units", () => {
+    expect(withLine("modernTreatment", "Doctors usually target a fasting blood sugar of 95 mg/dL or lower.").ok).toBe(true);
+    expect(withLine("modernTreatment", "Treat a low with 15 grams of fast-acting carbs, then recheck.").ok).toBe(true);
+    expect(withLine("modernTreatment", "Most people start on 10 units of insulin.").ok).toBe(false);
+    expect(withLine("ayurvedaView", "Take 3 g of fenugreek powder daily.").ok).toBe(false);
+  });
+});
