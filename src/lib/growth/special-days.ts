@@ -259,8 +259,88 @@ Festive offer ₹1,500 se shuru, aur join karne par 1-month diet plan sirf ₹49
   }),
 ];
 
+// Banners (thread "Create Diet Trial and gym promo banners", 20 Nov 2026). The owner saw the banners
+// and said "Post it". Each takes the 4 PM card and the morning Story on its day. The trial is the ₹49
+// 7-Day Trial Plan (DIET_PLANS id "trial"), a different thing from the ₹49 one-month plan that comes
+// with joining, so the two captions never mix them. The Instagram bio page doesn't link the trial or
+// the app, so those Instagram captions name the web address in plain text.
+const bannerLink = (path: string, c: string, hash = "") =>
+  `https://www.royalfitnesclub.in${path}${path.includes("?") ? "&" : "?"}utm_source=facebook&utm_medium=social&utm_campaign=banners-2026-11&utm_content=${c}${hash}`;
+const BANNER_TAGS = "#RoyalFitnessClub #NoidaGym #GymInNoida #Sector93Noida #NoidaFitness #CoachAman";
+const bannerPost = (p: { id: string; date: string; image: string; theme: string; body: string; ig: string; fb: string; tags: string }): SpecialPost => ({
+  id: p.id,
+  date: p.date,
+  slot: "pm",
+  feedImage: `/social/banner-${p.image}-feed.jpg`,
+  storyImage: `/social/banner-${p.image}-story.jpg`,
+  theme: p.theme,
+  instagram: `${p.body}\n\n${p.ig}\n📞 Call or WhatsApp 88518 30081\n\n${COACH_INFO}\n\n${p.tags} ${BANNER_TAGS}`,
+  facebook: `${p.body}\n\n${p.fb}\n📞 Call or WhatsApp 88518 30081\n\n${COACH_INFO}\n\n${p.tags} ${BANNER_TAGS}`,
+});
+const BANNER_POSTS: SpecialPost[] = [
+  bannerPost({
+    id: "banner-diet-trial",
+    date: "2026-11-22",
+    image: "diet-trial",
+    theme: "₹49 7-day diet trial",
+    body: `Diet plan lene se pehle try karna hai? 7 din ka trial lo, sirf ₹49 mein 🥗
+
+Aapko milega:
+• Calories aur protein aapki age, height, weight aur goal ke hisaab se
+• 7 din ke Indian meals, katori aur roti ke measure mein
+• Ek workout week, aur Day-7 par coach ke saath review
+
+Veg, egg, non-veg, vegan ya Jain, jo aap khaate ho. PDF WhatsApp aur email par 48 ghante mein aata hai. Ek number par ek trial.
+
+Koi health condition ya medicine chal rahi hai? Plan coach check karta hai, phir bhi doctor se zaroor poochh lein.`,
+    ig: "👉 Trial lo: royalfitnesclub.in/diet-chart (ya post ka QR scan karo)",
+    fb: `👉 Trial lo: ${bannerLink("/diet-chart?plan=trial", "diet-trial", "#order")}`,
+    tags: "#DietPlan #IndianDiet #DietTrial #FatLoss",
+  }),
+  bannerPost({
+    id: "banner-join-online",
+    date: "2026-11-23",
+    image: "join-online",
+    theme: "Royal Fitness online",
+    body: `Royal Fitness ab aapke phone mein bhi 📱
+
+• Membership online join ya renew karo: UPI, card ya net banking
+• Free Royal Fitness app: workout plan, Indian food log, weight aur waist progress
+• Instagram @royalfitness93_ par gym ki updates aur tips
+• YouTube par Royal Fitness TV: diet aur gym myths par seedhi baat, Hindi mein
+
+Kuch samajh na aaye to reception par poochho.`,
+    ig: "👉 Join ya renew: link in bio · Free app: royalfitnesclub.in/app",
+    fb: `👉 Join ya renew: ${bannerLink("/join", "join-online")}\n📲 Free app: ${bannerLink("/app", "join-online-app")}`,
+    tags: "#FitnessApp #JoinOnline",
+  }),
+  bannerPost({
+    id: "banner-gym-festive",
+    date: "2026-11-27",
+    image: "gym-festive",
+    theme: "Festive prices with Coach Aman",
+    body: `Sector 93 mein gym dhoondh rahe ho? Festive prices 31 Dec 2026 tak chalenge 🎉
+
+• Monthly ₹2,000 ➝ ₹1,500 (1 month + 5 bonus days)
+• Quarterly ₹5,000 ➝ ₹4,000 (3 months + 10 bonus days)
+• Half-yearly ₹8,000 ➝ ₹7,000 (6 months + 20 bonus days)
+• Female's Special ₹7,000 (6 months + calorie-based diet plan)
+• Annual ₹14,000 = 14 months (12 + 2 free), ₹1,000/month
+
+Monthly, Quarterly ya Half-yearly join karne par free diet consultation aur 1-month diet plan sirf ₹49 (regular ₹1,999). Couple prices standard rehti hain.
+
+⭐ 4.7 from 303+ ratings on Justdial
+
+Pehle gym dekhna hai? Free trial session book karo.`,
+    ig: "👉 Plans aur free trial: link in bio",
+    fb: `👉 Plans aur free trial: ${bannerLink("/membership", "gym-festive")}`,
+    tags: "#GymOffer #FestiveOffer #WomensFitness",
+  }),
+];
+
 export const SPECIAL_POSTS: SpecialPost[] = [
   ...COACH_POSTS,
+  ...BANNER_POSTS,
   mythStory(1, "2026-11-10", "Myth: pasina = fat burn"),
   mythStory(2, "2026-11-11", "Myth: crunches se pet kam"),
   mythStory(3, "2026-11-13", "Myth: weights se ladkiyan bulky"),

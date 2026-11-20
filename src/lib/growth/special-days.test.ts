@@ -100,4 +100,33 @@ describe("special-day posts", () => {
     const days = SPECIAL_POSTS.filter((x) => x.feedImage).map((x) => `${x.date}-${x.slot}`);
     expect(new Set(days).size).toBe(days.length);
   });
+
+  it("at most one special Story a day, so none is silently dropped", () => {
+    const days = SPECIAL_POSTS.filter((x) => x.storyImage).map((x) => x.date);
+    expect(new Set(days).size).toBe(days.length);
+  });
+
+  it("banner posts take the 4 PM card and the Story on their days, with real prices and the right ₹49 offer", () => {
+    expect(specialFeedPost("2026-11-22", "pm")?.id).toBe("banner-diet-trial");
+    expect(specialStory("2026-11-22")?.id).toBe("banner-diet-trial");
+    expect(specialFeedPost("2026-11-23", "pm")?.id).toBe("banner-join-online");
+    expect(specialStory("2026-11-27")?.id).toBe("banner-gym-festive");
+    expect(specialFeedPost("2026-11-22", "am")).toBeNull();
+    const trial = SPECIAL_POSTS.find((p) => p.id === "banner-diet-trial")!;
+    expect(trial.instagram).toContain("₹49");
+    expect(trial.instagram).toContain("7 din");
+    expect(trial.instagram).not.toMatch(/1-month|₹1,999/); // the joining perk is a different offer
+    expect(trial.facebook).toContain("/diet-chart?plan=trial&utm_source=facebook");
+    const gym = SPECIAL_POSTS.find((p) => p.id === "banner-gym-festive")!;
+    const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+    for (const [id, o] of Object.entries(FESTIVE_2026.plans)) expect(gym.instagram, id).toContain(inr(o.price));
+    for (const [id, std] of [["monthly", 2000], ["quarterly", 5000], ["half-yearly", 8000]] as const) {
+      expect(gym.instagram, id).toContain(`${inr(std)} ➝ ${inr(FESTIVE_2026.plans[id].price)}`);
+    }
+    expect(gym.instagram).toContain("303+ ratings on Justdial");
+    expect(gym.instagram).not.toMatch(/member reviews/i);
+    for (const p of SPECIAL_POSTS.filter((x) => x.id.startsWith("banner-"))) {
+      expect(p.date >= FESTIVE_2026.startsOn && p.date <= FESTIVE_2026.endsOn, p.id).toBe(true);
+    }
+  });
 });
