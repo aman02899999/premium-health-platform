@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { geminiJson, toVertexSchema, vertexConfigured, vertexModel, type Fetch } from "./vertex";
+import { geminiJson, toVertexSchema, vertexConfigured, vertexModels, type Fetch } from "./vertex";
 
 vi.mock("server-only", () => ({}));
 
@@ -40,10 +40,10 @@ describe("vertexConfigured", () => {
   });
 });
 
-describe("vertexModel", () => {
-  it("defaults to the stable Flash model and can be overridden", () => {
-    expect(vertexModel({})).toBe("gemini-2.5-flash");
-    expect(vertexModel({ VERTEX_MODEL: "gemini-3-flash-preview" })).toBe("gemini-3-flash-preview");
+describe("vertexModels", () => {
+  it("tries current models first, and VERTEX_MODEL before them", () => {
+    expect(vertexModels({})[0]).toMatch(/^gemini-3/);
+    expect(vertexModels({ VERTEX_MODEL: "my-model" })[0]).toBe("my-model");
   });
 });
 
@@ -71,7 +71,7 @@ describe("geminiJson", () => {
     for (const m of metadata) expect((m.init?.headers as Record<string, string>)["Metadata-Flavor"]).toBe("Google");
 
     const api = calls.find((c) => c.url.startsWith("https://aiplatform.googleapis.com/"))!;
-    expect(api.url).toBe("https://aiplatform.googleapis.com/v1/projects/royal-test-project/locations/global/publishers/google/models/gemini-2.5-flash:generateContent");
+    expect(api.url).toBe(`https://aiplatform.googleapis.com/v1/projects/royal-test-project/locations/global/publishers/google/models/${vertexModels({})[0]}:generateContent`);
     expect((api.init?.headers as Record<string, string>).authorization).toBe("Bearer tok-1");
     const body = JSON.parse(String(api.init?.body));
     expect(body.systemInstruction.parts[0].text).toBe("sys");
@@ -103,5 +103,33 @@ describe("geminiJson", () => {
     const f: Fetch = async () => { throw new Error("getaddrinfo ENOTFOUND metadata.google.internal"); };
     const r = await geminiJson({ system: "s", prompt: "q", schema: SCHEMA }, f, {});
     expect(r.ok).toBe(false);
+  });
+});
+
+describe("model fallback", () => {
+  it("moves past retired models (404) to the first one that answers", async () => {
+    const { withModelFallback, modelOrder } = await import("./vertex-schema");
+    const tried: string[] = [];
+    const r = await withModelFallback(["old-1", "old-2", "new", "newer"], async (m) => { tried.push(m); return { status: m === "new" ? 200 : 404 }; });
+    expect(r.model).toBe("new");
+    expect(tried).toEqual(["old-1", "old-2", "new"]);
+    expect(modelOrder(" x ", ["a", "x", "b"])).toEqual(["x", "a", "b"]);
+    expect(modelOrder(undefined, ["a"])).toEqual(["a"]);
+  });
+
+  it("geminiJson skips a retired model and remembers the one that works", async () => {
+    const { geminiJson: g } = await import("./vertex");
+    const seen: string[] = [];
+    const f: Fetch = async (input) => {
+      const url = String(input);
+      if (url.endsWith("/project/project-id")) return new Response("p");
+      if (url.endsWith("/token")) return Response.json({ access_token: "t", expires_in: 3599 });
+      seen.push(url.split("/models/")[1]);
+      if (url.includes("/models/gone:")) return new Response(JSON.stringify({ error: { message: "not found" } }), { status: 404 });
+      return Response.json(textAnswer('{"answer":"ok","verdict":"SACH"}'));
+    };
+    const r = await g({ system: "s", prompt: "q", schema: SCHEMA }, f, {}, ["gone", "live"]);
+    expect(r).toEqual({ ok: true, raw: { answer: "ok", verdict: "SACH" } });
+    expect(seen).toEqual(["gone:generateContent", "live:generateContent"]);
   });
 });

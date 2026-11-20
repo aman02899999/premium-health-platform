@@ -13,8 +13,8 @@ on:
         description: "How many disease pages to draft (1-40)"
         default: "10"
       model:
-        description: "Gemini model"
-        default: "gemini-2.5-pro"
+        description: "Gemini model (blank = newest available)"
+        default: ""
       slugs:
         description: "Only these slugs, comma-separated (optional)"
         default: ""
