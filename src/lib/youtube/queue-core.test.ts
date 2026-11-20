@@ -101,3 +101,12 @@ it("posts clean drafts by itself unless switched off (owner's choice, 17 Nov 202
   expect(queueAutoApprove({})).toBe(true);
   expect(queueAutoApprove({ YOUTUBE_QUEUE_AUTO: "off" })).toBe(false);
 });
+
+describe("geminiQueueAuto", () => {
+  it("holds Gemini drafts for the owner unless GEMINI_QUEUE_AUTO=on", async () => {
+    const { geminiQueueAuto } = await import("./queue-core");
+    expect(geminiQueueAuto({})).toBe(false);
+    expect(geminiQueueAuto({ GEMINI_QUEUE_AUTO: "off" })).toBe(false);
+    expect(geminiQueueAuto({ GEMINI_QUEUE_AUTO: "on" })).toBe(true);
+  });
+});
