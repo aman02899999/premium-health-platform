@@ -11,6 +11,7 @@ lastReviewed: 2026-10-21
 author: रॉयल फ़िटनेस क्लब हेल्थ डेस्क
 reviewedBy: डॉक्टर की समीक्षा बाकी
 reviewStatus: pending-medical-review
+video: long-ozempic-glp1-myths-15-v2
 heroImage: /health/posts/generic-semaglutide-india-guide/hero.svg
 heroAlt: हफ़्ते में एक बार लगने वाला इंजेक्शन पेन, संतुलित भारतीय थाली और डम्बल का चित्र: दवा, खाना और ताक़त की कसरत साथ-साथ
 related:

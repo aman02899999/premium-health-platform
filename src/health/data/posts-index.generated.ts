@@ -113,7 +113,159 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2588,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "anabolic-steroids-side-effects-india",
+    "title": "Anabolic Steroids: What They Really Do to Your Heart, Liver, Hormones and Mind",
+    "hindiTitle": "एनाबॉलिक स्टेरॉयड: दिल, लिवर, हॉर्मोन और दिमाग़ पर इनका असली असर",
+    "description": "What anabolic steroids do to your heart, liver, fertility and mood, what Indian law says, and how to get honest help if you have used them.",
+    "category": "Supplements and Gym Drugs",
+    "tags": [
+      "steroid side effects",
+      "steroid side effects hindi",
+      "steroid myths",
+      "natural vs steroid",
+      "sarms sach",
+      "gym health",
+      "hormones"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/anabolic-steroids-side-effects-india/hero.svg",
+    "heroAlt": "Illustration of a heart, a brain, a pill and an alert sign on a dark stone background, showing that steroid use affects the whole body",
+    "sources": [
+      {
+        "title": "Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use",
+        "publisher": "Circulation (Baggish et al.)",
+        "year": "2017",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28533317/"
+      },
+      {
+        "title": "Health consequences of androgenic anabolic steroid use",
+        "publisher": "Journal of Internal Medicine (Horwitz et al.)",
+        "year": "2019",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30460728/"
+      },
+      {
+        "title": "Former abusers of anabolic androgenic steroids exhibit decreased testosterone levels and hypogonadal symptoms years after cessation",
+        "publisher": "PLoS One (Rasmussen et al.)",
+        "year": "2016",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27532478/"
+      },
+      {
+        "title": "Adverse health consequences of performance-enhancing drugs: an Endocrine Society scientific statement",
+        "publisher": "Endocrine Reviews (Pope et al.)",
+        "year": "2014",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24423981/"
+      },
+      {
+        "title": "The global epidemiology of anabolic-androgenic steroid use: a meta-analysis",
+        "publisher": "Annals of Epidemiology (Sagoe et al.)",
+        "year": "2014",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24582699/"
+      },
+      {
+        "title": "Fake anabolic androgenic steroids on the black market: a systematic review and meta-analysis",
+        "publisher": "BMC Public Health (Magnolini et al.)",
+        "year": "2022",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35842594/"
+      },
+      {
+        "title": "Anabolic steroid misuse",
+        "publisher": "NHS",
+        "year": "2024",
+        "url": "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"
+      },
+      {
+        "title": "Testosterone Therapy in Men With Hypogonadism: Endocrine Society Clinical Practice Guideline",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism (Bhasin et al.)",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"
+      },
+      {
+        "title": "India throws up highest doping positivity rate among major countries in WADA's 2024 testing report",
+        "publisher": "Outlook India",
+        "year": "2025",
+        "url": "https://www.outlookindia.com/sports/others/india-highest-doping-positivity-rate-wada-2024-testing-report"
+      },
+      {
+        "title": "Telangana DCA advisory to medical shops on prescription medicine misuse in gyms",
+        "publisher": "Medical Dialogues",
+        "year": "2025",
+        "url": "https://medicaldialogues.in/amp/news/industry/pharma/telangana-issues-advisory-to-retail-wholesale-medical-shops-amid-prescription-medicines-misuse-in-gyms-157521"
+      }
+    ],
+    "related": [
+      {
+        "label": "SARMs and spiked \"natural\" supplements",
+        "href": "/health/blog/sarms-spiked-gym-supplements-india"
+      },
+      {
+        "label": "Heart attacks under 40 in India",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "Gym heart safety and chest pain",
+        "href": "/health/blog/gym-heart-safety-chest-pain"
+      },
+      {
+        "label": "Men's health",
+        "href": "/health/mens-health"
+      },
+      {
+        "label": "Mental wellness",
+        "href": "/health/mental-wellness"
+      }
+    ],
+    "headings": [
+      "What anabolic steroids are, and where they belong",
+      "Your heart: the damage you can't see in the mirror",
+      "Your liver and kidneys",
+      "Your hormones and fertility: the part young men regret",
+      "Skin, hair and appearance",
+      "Your mind: mood, aggression and dependence",
+      "Women and steroids",
+      "Injection risks and fake products",
+      "Dope tests, NADA and the law in India",
+      "Getting off steroids safely",
+      "Myths you will hear in the gym",
+      "What natural training can do",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Is testosterone from a doctor the same as gym steroids?",
+        "a": "It is the same type of hormone, but the purpose and the amount are different. A doctor prescribes it only after confirming a real deficiency with repeated blood tests, aims for normal levels, and monitors you. Gym use pushes levels far above normal without monitoring, which is where most of the harm comes from."
+      },
+      {
+        "q": "I used steroids once, for a few weeks. Am I damaged?",
+        "a": "Not necessarily. Many short-term users recover well. But you can't know without checking. See a doctor, be honest about what you used, and get basic heart, liver, lipid and hormone tests. If anything is off, catching it early helps."
+      },
+      {
+        "q": "Will my testicles go back to normal size?",
+        "a": "Many men see some recovery after stopping, but it can take months, and in one study about a quarter of former users still had low testosterone years later. A doctor can test your hormones and sperm count and tell you where you stand."
+      },
+      {
+        "q": "Are SARMs a safer, legal alternative?",
+        "a": "No. SARMs are experimental drugs not approved for human use, they also suppress your own testosterone, and liver injury has been reported. Our guide on SARMs and spiked supplements explains the evidence."
+      },
+      {
+        "q": "My friend uses steroids and is getting angry and low. What can I do?",
+        "a": "Talk to him calmly when he is not angry, tell him what you have noticed, and encourage him to see a doctor. Don't lecture. If he talks about harming himself or someone else, get help immediately and don't leave him alone."
+      }
+    ],
+    "words": 3019,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
   },
   {
     "lang": "en",
@@ -242,7 +394,167 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2593,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "beginner-gym-guide-india",
+    "title": "Your First Month in the Gym: A Beginner's Plan",
+    "hindiTitle": "जिम का पहला महीना: शुरुआती लोगों के लिए आसान प्लान",
+    "description": "A safe 4-week full-body gym plan for beginners, based on WHO and ACSM guidance: warm-up, form, progress, soreness vs pain, sleep and common gym myths.",
+    "category": "Fitness and Healthy Ageing",
+    "tags": [
+      "gym myths hindi",
+      "workout tips hinglish",
+      "squats knee pain sach",
+      "gym rumours",
+      "exercise myths hindi",
+      "beginner gym plan"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/beginner-gym-guide-india/hero.svg",
+    "heroAlt": "Illustration of a dumbbell, a clock, a walking figure and a check mark, showing a steady, safe first month of training",
+    "sources": [
+      {
+        "title": "WHO 2020 guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/"
+      },
+      {
+        "title": "Physical activity fact sheet",
+        "publisher": "World Health Organization",
+        "year": "2024",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity"
+      },
+      {
+        "title": "ACSM position stand, progression models in resistance training for healthy adults",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2009",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+      },
+      {
+        "title": "ACSM position stand, resistance training prescription for muscle function, hypertrophy and physical performance in healthy adults",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2026",
+        "url": "https://doi.org/10.1249/MSS.0000000000003897"
+      },
+      {
+        "title": "Analysis of the load on the knee joint and vertebral column with changes in squatting depth and weight load",
+        "publisher": "Sports Medicine",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23821469/"
+      },
+      {
+        "title": "Compatibility of concurrent aerobic and strength training for skeletal muscle size and function, an updated systematic review and meta-analysis",
+        "publisher": "Sports Medicine",
+        "year": "2022",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34757594/"
+      },
+      {
+        "title": "Delayed onset muscle soreness, treatment strategies and performance factors",
+        "publisher": "Sports Medicine",
+        "year": "2003",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12617692/"
+      },
+      {
+        "title": "Recommended amount of sleep for a healthy adult, AASM and SRS consensus statement",
+        "publisher": "Sleep",
+        "year": "2015",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/"
+      },
+      {
+        "title": "PAR-Q+ and ePARmed-X+, new risk stratification and physical activity clearance strategy",
+        "publisher": "Canadian Family Physician",
+        "year": "2013",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3596208/"
+      },
+      {
+        "title": "International Society of Sports Nutrition Position Stand, protein and exercise",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/"
+      }
+    ],
+    "related": [
+      {
+        "label": "Workout builder",
+        "href": "/health/workout-builder"
+      },
+      {
+        "label": "Muscle after 40 (sarcopenia)",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "Heart attack under 40 in India",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "How much protein do you need?",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      },
+      {
+        "label": "Weight training for women",
+        "href": "/health/blog/women-weight-training-guide-india"
+      }
+    ],
+    "headings": [
+      "Why the first month matters most",
+      "What the guidelines actually say",
+      "Before you start: do you need medical clearance?",
+      "Choosing a gym and a trainer",
+      "Warm-up and technique basics",
+      "Your 4-week full-body plan",
+      "Progressive overload, explained simply",
+      "Soreness vs pain: how to tell the difference",
+      "Food, rest and sleep",
+      "Gym etiquette nobody tells you",
+      "Gym rumours you will hear in your first month",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "WHO advises 150 to 300 minutes of moderate activity a week plus strength training on 2 or more days.",
+      "Beginners do well with 2 to 3 full-body sessions a week, 8 to 12 reps, adding load in small steps.",
+      "Learn form first, warm up every time, and leave a rep or two in reserve.",
+      "Muscle soreness is common early; sharp, joint or chest pain is a reason to stop.",
+      "Sleep at least 7 hours, eat protein at every meal, and treat supplements as optional."
+    ],
+    "faqs": [
+      {
+        "q": "How many days a week should a beginner go to the gym?",
+        "a": "Two to three days of full-body strength training is the ACSM recommendation for beginners, with a rest day between sessions. Add walking or cycling on other days to reach the WHO aerobic target."
+      },
+      {
+        "q": "How long should each session be?",
+        "a": "For the plan above, a session usually fits within an hour, including the warm-up. A shorter session done regularly beats a long one you skip."
+      },
+      {
+        "q": "Is it normal to feel very sore after the first workout?",
+        "a": "Some soreness a day later is common when you start, especially after squats and lunges. It eases with light movement. Sharp pain, joint pain, swelling or very dark urine are not normal and need checking."
+      },
+      {
+        "q": "Should I do cardio or weights first?",
+        "a": "If your main goal is strength or muscle, do weights first while you are fresh. Research shows cardio does not block muscle growth, but doing both in one session can blunt explosive strength slightly."
+      },
+      {
+        "q": "Do I need a doctor's clearance before joining a gym?",
+        "a": "Most healthy people can start gradually. If you have a heart condition, high blood pressure, chest pain, dizzy spells, a long-term illness or a joint problem, answer the PAR-Q+ questions and check with a doctor first."
+      },
+      {
+        "q": "When will I see results?",
+        "a": "Many beginners feel stronger within the first few weeks as they learn the movements. Visible muscle changes take longer. Consistency over months matters more than any single week."
+      }
+    ],
+    "words": 3068,
+    "ads": 2,
+    "video": "long-gym-rumours-13"
   },
   {
     "lang": "en",
@@ -360,7 +672,304 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2561,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "creatine-guide-india",
+    "title": "Creatine for Indians: Benefits, Safety, Kidneys, Hair Loss and Vegetarians",
+    "hindiTitle": "भारतीयों के लिए क्रिएटिन: फ़ायदे, सुरक्षा, किडनी, बाल झड़ना और शाकाहारी",
+    "description": "What creatine does, what the research says about kidneys, hair loss and water weight, why vegetarians may gain more, and who should ask a doctor first.",
+    "category": "Supplements and Gym Drugs",
+    "tags": [
+      "creatine",
+      "creatine side effects hindi",
+      "supplement myths hindi",
+      "whey protein steroid",
+      "creatine hair loss",
+      "vegetarian gym diet"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/creatine-guide-india/hero.svg",
+    "heroAlt": "Illustration of a dumbbell, a measuring scoop, a glass of water and a kidney check mark, showing that creatine works with training and is safe for healthy kidneys at the amounts studied",
+    "sources": [
+      {
+        "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://doi.org/10.1186/s12970-017-0173-z"
+      },
+      {
+        "title": "Common questions and misconceptions about creatine supplementation: what does the scientific evidence really show?",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2021",
+        "url": "https://doi.org/10.1186/s12970-021-00412-w"
+      },
+      {
+        "title": "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players",
+        "publisher": "Clinical Journal of Sport Medicine",
+        "year": "2009",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19741313/"
+      },
+      {
+        "title": "Citizens protein project: analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      },
+      {
+        "title": "Levels of creatine, organic contaminants and heavy metals in creatine dietary supplements",
+        "publisher": "Food Chemistry",
+        "year": "2011",
+        "url": "https://doi.org/10.1016/j.foodchem.2010.12.028"
+      },
+      {
+        "title": "India's new functional food and supplements rules (FSSAI Health Supplements and Nutraceuticals Regulations, 2016)",
+        "publisher": "NutraIngredients",
+        "year": "2016",
+        "url": "https://www.nutraingredients.com/Article/2016/12/07/India-s-new-functional-food-and-supplements-rules-The-key-requirements-every-firm-needs-to-know/"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      }
+    ],
+    "related": [
+      {
+        "label": "How much protein do you need?",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      },
+      {
+        "label": "Muscle after 40 (sarcopenia)",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "Creatinine and eGFR kidney test",
+        "href": "/health/lab-tests/creatinine"
+      },
+      {
+        "label": "Vitamin B12 for vegetarians",
+        "href": "/health/blog/vitamin-b12-vegetarian-india"
+      },
+      {
+        "label": "Fat burners and pre-workouts: the risks",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      }
+    ],
+    "headings": [
+      "What creatine actually is",
+      "What the evidence says creatine does",
+      "How much: what the ISSN actually says",
+      "The kidney question: what the research shows",
+      "Hair loss and DHT: one study, and what it didn't measure",
+      "Water retention: the 1 to 2 kg on the scale",
+      "Vegetarians: why you may notice more",
+      "Older adults: creatine works best with weights",
+      "Who should ask a doctor first",
+      "Choosing a product in India",
+      "Creatine, whey and steroids are three different things",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "Creatine monohydrate is the best-supported gym supplement for strength and muscle, but only if you train.",
+      "In healthy people, studies at recommended amounts show no kidney damage; tell your doctor before kidney tests.",
+      "The hair-loss fear rests on one small hormone study; no human study has reported hair loss.",
+      "Vegetarians start with lower muscle creatine and may notice more benefit.",
+      "Ask a doctor first if you have kidney disease, are pregnant, are under 18 or take regular medicines.",
+      "Choose plain monohydrate with full FSSAI details and third-party testing."
+    ],
+    "faqs": [
+      {
+        "q": "Is creatine safe for daily use?",
+        "a": "For healthy adults, the ISSN states that both short and long-term use has been safe and well tolerated in the studies it reviewed, at the amounts it describes. Daily use is how it's studied. If you have kidney disease, are pregnant or take regular medicines, ask your doctor first."
+      },
+      {
+        "q": "Do I need a loading phase?",
+        "a": "No. The 2021 review says about 3 to 5 g a day for at least four weeks fills muscle stores to a similar level. Loading only gets you there faster, with more early water weight and a higher chance of stomach upset."
+      },
+      {
+        "q": "Will creatine make me fat?",
+        "a": "No. Studies reviewed in 2021 did not show an increase in fat mass. The early scale gain is water inside muscle. If your waist grows, look at your food, not the creatine."
+      },
+      {
+        "q": "Is creatine good for women?",
+        "a": "Yes, women can use it. Most studies were in men, and some suggest women may gain a little less strength or muscle, but benefits have been reported in women, including older women who also strength train. Pregnant or breastfeeding women should ask their doctor first."
+      },
+      {
+        "q": "Should I stop creatine before a blood test?",
+        "a": "Tell your doctor and the lab you take it, especially before a creatinine or eGFR test. Your doctor may ask you to pause it for a while before a repeat test. Don't stop prescribed medicines on your own."
+      },
+      {
+        "q": "Is creatine okay for a 16-year-old who plays cricket?",
+        "a": "The limited evidence suggests it appears safe in adolescents, but more research is needed. For a teenager, coaching, enough food and sleep do far more. Any decision should involve a parent and a doctor."
+      }
+    ],
+    "words": 3523,
+    "ads": 3,
+    "video": "long-supplement-myths-10"
+  },
+  {
+    "lang": "en",
+    "slug": "fat-burners-pre-workout-risks-india",
+    "title": "Fat Burners and Pre-Workouts: What's Inside, What Works, and What Can Hurt Your Heart",
+    "hindiTitle": "फ़ैट बर्नर और प्री-वर्कआउट: अंदर क्या है, क्या काम करता है, और दिल को क्या नुकसान पहुँचा सकता है",
+    "description": "What fat burners and pre-workouts contain, safe caffeine limits, banned stimulants, liver injury from supplements, and what actually drives fat loss.",
+    "category": "Supplements and Gym Drugs",
+    "tags": [
+      "fat burner sach",
+      "supplement myths hindi",
+      "pre workout caffeine",
+      "energy drink side effects hindi",
+      "DMAA",
+      "weight loss supplements"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/fat-burners-pre-workout-risks-india/hero.svg",
+    "heroAlt": "Illustration of a supplement tub with a warning sign next to a heart, a coffee cup and a walking figure, showing that stimulants carry heart risks while daily movement and food drive fat loss",
+    "sources": [
+      {
+        "title": "Scientific Opinion on the safety of caffeine (topic page and FAQ)",
+        "publisher": "European Food Safety Authority",
+        "year": "2015",
+        "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine"
+      },
+      {
+        "title": "India gives beverage giants 90 days to re-label energy drinks (FSSAI caffeinated beverage rules)",
+        "publisher": "BeverageDaily",
+        "year": "2026",
+        "url": "https://www.beveragedaily.com/Article/2026/08/27/not-enough-time-india-gives-90-day-deadline-to-re-label-energy-drinks/"
+      },
+      {
+        "title": "Four experimental stimulants found in sports and weight loss supplements (octodrine, 1,4-DMAA, 1,3-DMAA, 1,3-DMBA)",
+        "publisher": "Clinical Toxicology",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29115866/"
+      },
+      {
+        "title": "The safety and efficacy of Citrus aurantium (bitter orange) extracts and p-synephrine: a systematic review and meta-analysis",
+        "publisher": "Nutrients",
+        "year": "2022",
+        "url": "https://doi.org/10.3390/nu14194019"
+      },
+      {
+        "title": "Pharmaceutical quantities of yohimbine found in dietary supplements in the USA",
+        "publisher": "Drug Testing and Analysis",
+        "year": "2016",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26391406/"
+      },
+      {
+        "title": "Liver injury from herbals and dietary supplements in the U.S. Drug-Induced Liver Injury Network",
+        "publisher": "Hepatology",
+        "year": "2014",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4293199/"
+      },
+      {
+        "title": "Citizens protein project: analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      },
+      {
+        "title": "A systematic review of dietary supplements and alternative therapies for weight loss",
+        "publisher": "Obesity",
+        "year": "2021",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8231729/"
+      },
+      {
+        "title": "International Society of Sports Nutrition position stand: diets and body composition",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://doi.org/10.1186/s12970-017-0174-y"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      }
+    ],
+    "related": [
+      {
+        "label": "Gym heart safety and chest pain",
+        "href": "/health/blog/gym-heart-safety-chest-pain"
+      },
+      {
+        "label": "Heart attack under 40 in India",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "Creatine for Indians",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "How much protein do you need?",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      },
+      {
+        "label": "BMI calculator",
+        "href": "/health/health-calculators/bmi-calculator"
+      }
+    ],
+    "headings": [
+      "What's actually in the tub",
+      "Caffeine: the main ingredient, and its limits",
+      "Banned stimulants: DMAA, DMHA and their cousins",
+      "Synephrine (bitter orange)",
+      "Yohimbine",
+      "Liver injury: the quiet risk",
+      "Do fat burners work at all?",
+      "What actually moves fat loss",
+      "Heart warning signs in the gym",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "Fat burners and pre-workouts are mostly stimulants; their effect on fat loss is small at best.",
+      "EFSA's limits for healthy adults: 200 mg caffeine at one time, 400 mg a day; less in pregnancy and for teens.",
+      "DMAA and look-alikes such as DMHA and octodrine carry heart risks and are prohibited in sport.",
+      "Synephrine raised blood pressure in a meta-analysis without helping weight loss.",
+      "Supplements are a growing cause of liver injury; Indian products often don't match their labels.",
+      "Fat loss comes from a calorie deficit, protein, lifting and daily movement."
+    ],
+    "faqs": [
+      {
+        "q": "Is black coffee before the gym okay?",
+        "a": "For most healthy adults, a cup of coffee before training is fine and may help a little. Keep your total caffeine within EFSA's limits, and skip it if it makes your heart race, raises your BP or ruins your sleep."
+      },
+      {
+        "q": "Can fat burners damage my liver?",
+        "a": "Some can. US data show supplements caused a rising share of drug-induced liver injury, and ingredients such as green tea extract and Garcinia cambogia appear in liver-injury research. Stop and see a doctor if your eyes turn yellow or your urine goes dark."
+      },
+      {
+        "q": "Are pre-workouts safe for teenagers?",
+        "a": "No. FSSAI labels on caffeinated drinks say they're not recommended for children, and EFSA's limit for children and teens is based on body weight, so a scoop meant for an adult can easily exceed it. Teens need food, water and sleep before practice, not stimulants."
+      },
+      {
+        "q": "What if I already took a supplement with DMAA?",
+        "a": "Stop using it. If you have chest pain, a severe headache, a racing heartbeat or feel faint, get emergency care. If you feel fine, mention it to your doctor and have your blood pressure checked."
+      },
+      {
+        "q": "Do I need anything to lose fat?",
+        "a": "No supplement is required. A steady calorie deficit, protein at every meal, strength training and more daily steps do the work. Sleep and consistency decide whether you keep it off."
+      }
+    ],
+    "words": 2938,
+    "ads": 3,
+    "video": "long-supplement-myths-10"
   },
   {
     "lang": "en",
@@ -494,7 +1103,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2598,
-    "ads": 3
+    "ads": 3,
+    "video": "long-ozempic-glp1-myths-15-v2"
   },
   {
     "lang": "en",
@@ -612,7 +1222,161 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2527,
-    "ads": 2
+    "ads": 2,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "gym-heart-safety-chest-pain",
+    "title": "Chest Pain at the Gym Isn't Gas: Heart Warning Signs, CPR and Safe Training",
+    "hindiTitle": "जिम में सीने का दर्द गैस नहीं हो सकता: दिल के ख़तरे के संकेत, CPR और सुरक्षित ट्रेनिंग",
+    "description": "Chest pain during a workout needs a stop, not an antacid. Heart attack signs, how rare cardiac arrest in exercise is, hands-only CPR, AEDs and safe training.",
+    "category": "Heart Health",
+    "tags": [
+      "gym chest pain",
+      "heart attack symptoms hindi",
+      "cpr kaise kare",
+      "pre workout caffeine",
+      "no pain no gain myth",
+      "sudden cardiac arrest"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/gym-heart-safety-chest-pain/hero.svg",
+    "heroAlt": "Illustration of a heart, a warning sign, a phone and a dumbbell, standing for recognising heart warning signs at the gym and calling for help",
+    "sources": [
+      {
+        "title": "Warning Signs of a Heart Attack",
+        "publisher": "American Heart Association",
+        "year": "2024",
+        "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack"
+      },
+      {
+        "title": "About Cardiac Arrest",
+        "publisher": "American Heart Association",
+        "year": "2026",
+        "url": "https://www.heart.org/en/health-topics/cardiac-arrest/about-cardiac-arrest"
+      },
+      {
+        "title": "CPR is key to survival of sudden cardiac arrest",
+        "publisher": "American Heart Association News",
+        "year": "2018",
+        "url": "https://www.heart.org/en/news/2018/07/12/cpr-is-key-to-survival-of-sudden-cardiac-arrest"
+      },
+      {
+        "title": "Cardiac Arrest during Long-Distance Running Races",
+        "publisher": "New England Journal of Medicine",
+        "year": "2012",
+        "url": "https://doi.org/10.1056/NEJMoa1106468"
+      },
+      {
+        "title": "Sports-related sudden death in the general population",
+        "publisher": "Circulation",
+        "year": "2011",
+        "url": "https://doi.org/10.1161/CIRCULATIONAHA.110.008979"
+      },
+      {
+        "title": "Triggering of sudden death from cardiac causes by vigorous exertion",
+        "publisher": "New England Journal of Medicine",
+        "year": "2000",
+        "url": "https://doi.org/10.1056/NEJM200011093431902"
+      },
+      {
+        "title": "Risk factors for early myocardial infarction in South Asians compared with individuals in other countries (INTERHEART)",
+        "publisher": "JAMA",
+        "year": "2007",
+        "url": "https://doi.org/10.1001/jama.297.3.286"
+      },
+      {
+        "title": "Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use",
+        "publisher": "Circulation",
+        "year": "2017",
+        "url": "https://doi.org/10.1161/CIRCULATIONAHA.116.026945"
+      },
+      {
+        "title": "Updating ACSM's Recommendations for Exercise Preparticipation Health Screening",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2015",
+        "url": "https://doi.org/10.1249/MSS.0000000000000664"
+      },
+      {
+        "title": "PAR-Q+ and ePARmed-X+ pre-participation screening",
+        "publisher": "PAR-Q+ Collaboration",
+        "year": "2025",
+        "url": "https://eparmedx.com/"
+      }
+    ],
+    "related": [
+      {
+        "label": "Heart attacks in Indians under 40",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "Fat burners and pre-workout risks",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "Anabolic steroids side effects",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "Cardiovascular risk explained",
+        "href": "/health/diseases/cardiovascular-risk"
+      },
+      {
+        "label": "Beginner gym guide",
+        "href": "/health/blog/beginner-gym-guide-india"
+      }
+    ],
+    "headings": [
+      "\"Bhai, gas hai, ENO le le\"",
+      "Heart attack and cardiac arrest: two different emergencies",
+      "How common are heart events during exercise?",
+      "Young Indians and heart disease",
+      "Gym habits that strain the heart",
+      "Hands-only CPR: what to do in the first minutes",
+      "Screening: who needs a check before starting",
+      "What every gym should have",
+      "Myths you'll hear on the gym floor",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "Treat chest pain during exercise as a heart warning until proven otherwise: stop, sit, and call 112 or 108 if it doesn't settle.",
+      "Cardiac arrest during exercise is rare, and regular exercise lowers the risk each session carries.",
+      "Hands-only CPR at 100 to 120 pushes a minute, at least 2 inches deep, plus an AED, saves lives.",
+      "Steroids and high-stimulant pre-workouts add real heart risk.",
+      "If you have symptoms, known heart disease or a family history of early sudden death, see a doctor before hard training."
+    ],
+    "faqs": [
+      {
+        "q": "How do I know if chest pain is my heart or just a muscle pull?",
+        "a": "You often can't tell on your own. Pain that gets worse with effort, feels like pressure or heaviness, spreads to the arm, jaw or back, or comes with breathlessness or sweating needs urgent medical attention. Pain that only hurts when you press on one spot or move a certain way is more likely muscular, but get it checked if in doubt."
+      },
+      {
+        "q": "Should I take a tablet if I think I'm having a heart attack?",
+        "a": "Don't take any medicine on your own. Call 112 or 108, describe the symptoms, and follow what the operator or doctor tells you. Some heart medicines are harmful for certain people."
+      },
+      {
+        "q": "Do I need a TMT or ECG before joining a gym?",
+        "a": "Most healthy people don't. If you have symptoms, a known heart, kidney or metabolic condition, or a family history of early heart disease or sudden death, see a doctor first. The doctor decides which tests you need."
+      },
+      {
+        "q": "Is CPR safe to do on someone who might not be in cardiac arrest?",
+        "a": "If the person is unresponsive and not breathing normally, start CPR. The harm from delaying CPR in cardiac arrest is far greater than the risk of doing it. An AED only delivers a shock if it detects a rhythm that needs one."
+      },
+      {
+        "q": "Is pre-workout safe if I'm healthy?",
+        "a": "Many healthy adults use moderate caffeine without problems, but some products pack very high stimulant amounts or undeclared ingredients. If you feel palpitations, chest discomfort or dizziness, stop. People with heart conditions or high blood pressure should ask their doctor first."
+      }
+    ],
+    "words": 3137,
+    "ads": 2,
+    "video": "long-heart-gym-myths-20"
   },
   {
     "lang": "en",
@@ -737,7 +1501,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2515,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "en",
@@ -850,7 +1615,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2533,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "en",
@@ -972,7 +1738,464 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2541,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "peptides-bpc-157-gym-injections-truth",
+    "title": "Gym Peptides (BPC-157, TB-500, MK-677, Growth Hormone Boosters): What the Evidence Really Says",
+    "hindiTitle": "जिम पेप्टाइड्स (BPC-157, TB-500, MK-677, ग्रोथ हॉर्मोन बूस्टर): सबूत असल में क्या कहते हैं",
+    "description": "BPC-157, TB-500 and MK-677 are sold in gyms as healing and growth shots. What the research shows, why they are banned in sport, and the real risks.",
+    "category": "Supplements and Gym Drugs",
+    "tags": [
+      "peptides",
+      "BPC-157",
+      "MK-677",
+      "gym injections",
+      "supplement myths hindi",
+      "fact check hinglish"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/peptides-bpc-157-gym-injections-truth/hero.svg",
+    "heroAlt": "Illustration of an unlabelled vial with a warning sign beside a dumbbell, a heart and a plate of food, showing that gym peptides carry unknown risks while food and training are proven",
+    "sources": [
+      {
+        "title": "Emerging Use of BPC-157 in Orthopaedic Sports Medicine: A Systematic Review",
+        "publisher": "HSS Journal",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12313605/"
+      },
+      {
+        "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+        "publisher": "US Food and Drug Administration",
+        "year": "2026",
+        "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+      },
+      {
+        "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List",
+        "publisher": "Frier Levitt",
+        "year": "2026",
+        "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/"
+      },
+      {
+        "title": "FDA Panel Backs 6 Peptides for Compounding",
+        "publisher": "AJMC",
+        "year": "2026",
+        "url": "https://www.ajmc.com/view/fda-panel-backs-6-peptides-for-compounding"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      },
+      {
+        "title": "Use of Growth Hormone, IGF-I, and Insulin for Anabolic Purpose: Pharmacological Basis, Methods of Detection, and Adverse Effects",
+        "publisher": "Molecular and Cellular Endocrinology",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5723243/"
+      },
+      {
+        "title": "Effects of an Oral Ghrelin Mimetic on Body Composition and Clinical Outcomes in Healthy Older Adults",
+        "publisher": "Annals of Internal Medicine",
+        "year": "2008",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18981485/"
+      },
+      {
+        "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture",
+        "publisher": "Archives of Gerontology and Geriatrics",
+        "year": "2011",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21067829/"
+      },
+      {
+        "title": "Effects of Collagen Supplements on Skin Aging: A Systematic Review and Meta-Analysis of Randomized Controlled Trials",
+        "publisher": "The American Journal of Medicine",
+        "year": "2025",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40324552/"
+      },
+      {
+        "title": "Efficacy and safety of collagen derivatives for osteoarthritis: A trial sequential meta-analysis",
+        "publisher": "Osteoarthritis and Cartilage",
+        "year": "2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38218227/"
+      }
+    ],
+    "related": [
+      {
+        "label": "Anabolic steroids: side effects",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "SARMs and spiked gym supplements",
+        "href": "/health/blog/sarms-spiked-gym-supplements-india"
+      },
+      {
+        "label": "Fat burners and pre-workout risks",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "Creatine guide",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "Protein requirement calculator",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      }
+    ],
+    "headings": [
+      "Why everyone at the gym is suddenly talking about peptides",
+      "What a peptide actually is",
+      "Approved peptide medicines vs \"research peptides\"",
+      "BPC-157: the \"healing peptide\"",
+      "TB-500: a fragment of thymosin beta-4",
+      "Growth hormone and \"GH boosters\"",
+      "MK-677 (ibutamoren): the \"GH pill\" that isn't a peptide",
+      "\"Research use only\" vials: what might be inside",
+      "Collagen peptides: the one \"peptide\" on a supermarket shelf",
+      "Myths you will hear in the changing room",
+      "If you compete, or might one day",
+      "Warning signs after any injection",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "Approved peptide medicines are tested and prescribed. \"Research peptides\" are not.",
+      "BPC-157 evidence is almost all animal studies, and the 2026 US panel vote was non-binding.",
+      "GH misuse and MK-677 can raise blood sugar. Unregulated vials add infection and impurity risks, and all are banned in sport."
+    ],
+    "faqs": [
+      {
+        "q": "Is BPC-157 legal in India?",
+        "a": "We could not find any approval for BPC-157 as a medicine in India or elsewhere. WADA classes it as a substance with no government approval for human therapeutic use. Selling it as \"research use only\" does not make it safe or approved for people. If anyone offers it to you as a treatment, treat that as a red flag."
+      },
+      {
+        "q": "Can BPC-157 or TB-500 heal my tendon injury faster?",
+        "a": "There is no good human evidence that they do. Almost all research is in animals, and the only human study of BPC-157 in a 2025 review was a small record review of 12 knee pain patients with no comparison group. A diagnosis from a doctor and a structured rehab plan from a physiotherapist is the route with evidence behind it."
+      },
+      {
+        "q": "Is MK-677 safer than steroids because it's a pill?",
+        "a": "Taking something by mouth does not make it safe. In a two-year trial in older adults, MK-677 raised fasting blood sugar, lowered insulin sensitivity and increased appetite, and another trial was stopped early over heart failure. It is not an approved medicine and is banned in sport."
+      },
+      {
+        "q": "Are collagen peptides the same as gym peptides?",
+        "a": "No. Collagen peptides are a food supplement you swallow, digested like other protein. Studies suggest a small benefit for arthritis pain, while the skin benefit vanished in independent, high-quality studies. Gym peptides like BPC-157 are unapproved drugs that people inject."
+      },
+      {
+        "q": "Will peptides show up in a dope test?",
+        "a": "They can. WADA bans BPC-157, TB-500, growth hormone, GH-releasing peptides and MK-677 at all times, and NADA India follows the WADA list. Testing methods keep improving, and samples can be stored and retested later."
+      }
+    ],
+    "words": 3546,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
+  },
+  {
+    "lang": "en",
+    "slug": "protein-requirement-calculator-india",
+    "title": "How Much Protein Do You Need? An Indian Guide (With a Simple Calculator)",
+    "hindiTitle": "आपको कितना प्रोटीन चाहिए? भारतीय गाइड (आसान कैलकुलेटर के साथ)",
+    "description": "How much protein you need per kg of body weight, from ICMR-NIN and sports science, with a simple calculation, Indian food values and the kidney question.",
+    "category": "Fitness and Healthy Ageing",
+    "tags": [
+      "kitna protein chahiye",
+      "protein myths hindi",
+      "protein kidney sach",
+      "veg protein muscle",
+      "protein powder zaroori",
+      "protein per day"
+    ],
+    "readingTime": 14,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/protein-requirement-calculator-india/hero.svg",
+    "heroAlt": "Illustration of a bowl of dal, a plate, a dumbbell and a weighing scale, showing that your protein need depends on your body weight and activity",
+    "sources": [
+      {
+        "title": "Nutrient Requirements for Indians 2020, brief note (protein EAR and RDA)",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2020",
+        "url": "https://www.nin.res.in/rdabook/brief_note.pdf"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      },
+      {
+        "title": "ICMR calls for avoiding protein supplements, issues dietary guidelines for Indians",
+        "publisher": "ThePrint",
+        "year": "2024",
+        "url": "https://theprint.in/india/icmr-calls-for-avoiding-protein-supplements-issues-dietary-guidelines-for-indians/2077477/"
+      },
+      {
+        "title": "Indian Food Composition Tables 2017",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2017",
+        "url": "https://nin.res.in/ebooks/IFCT2017.pdf"
+      },
+      {
+        "title": "International Society of Sports Nutrition Position Stand, protein and exercise",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/"
+      },
+      {
+        "title": "Protein supplementation and resistance training-induced gains in muscle mass and strength, a systematic review and meta-analysis",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2018",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5867436/"
+      },
+      {
+        "title": "Evidence-based recommendations for optimal dietary protein intake in older people (PROT-AGE)",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23867520/"
+      },
+      {
+        "title": "Changes in kidney function do not differ between healthy adults consuming higher- compared with lower- or normal-protein diets",
+        "publisher": "Journal of Nutrition",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30383278/"
+      },
+      {
+        "title": "Key takeaways from the KDIGO 2024 CKD guideline for people living with CKD",
+        "publisher": "KDIGO",
+        "year": "2024",
+        "url": "https://kdigo.org/wp-content/uploads/2025/01/Key-Takeaways_KDIGO-2024-CKD-Guideline_People-Living-with-CKD.pdf"
+      },
+      {
+        "title": "Citizens Protein Project, analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      }
+    ],
+    "related": [
+      {
+        "label": "High-protein vegetarian guide",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "Muscle after 40 (sarcopenia)",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "Calorie and macro calculator",
+        "href": "/health/health-calculators/calorie-calculator"
+      },
+      {
+        "label": "Creatine guide for Indians",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "Your first month in the gym",
+        "href": "/health/blog/beginner-gym-guide-india"
+      }
+    ],
+    "headings": [
+      "Why protein gets so much attention in India",
+      "What ICMR-NIN actually recommends",
+      "Needs by age, goal and activity",
+      "Your simple protein calculator",
+      "Protein in common Indian foods",
+      "Spreading protein across your meals",
+      "The kidney question: healthy kidneys vs kidney disease",
+      "Protein powder: useful, never mandatory",
+      "Myths you will hear at the gym and at home",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "ICMR-NIN's allowance for healthy adults is 0.83 g per kg a day, about 1 g per kg on cereal-heavy diets.",
+      "If you lift weights, 1.4 to 2.0 g per kg is the ISSN range, and muscle gains level off around 1.6 g per kg.",
+      "Multiply your weight by the right number, then split it over three or four meals.",
+      "Healthy kidneys handled higher protein in trials; kidney disease needs a doctor's number.",
+      "Protein powder is optional, and Indian testing found many labels overstated the protein."
+    ],
+    "faqs": [
+      {
+        "q": "How much protein do I need per day in India?",
+        "a": "For a healthy adult, ICMR-NIN's allowance is 0.83 g per kg of body weight, about 54 g for a 65 kg man and 46 g for a 55 kg woman. If your diet is mostly cereal, aim nearer 1 g per kg. If you lift weights, 1.4 to 2.0 g per kg is the sports nutrition range."
+      },
+      {
+        "q": "Is 2 g of protein per kg safe?",
+        "a": "For healthy adults with normal kidneys, trials of high-protein diets did not show harm to kidney function, though most were short. Gains in muscle level off around 1.6 g per kg, so going higher rarely helps. If you have diabetes, high blood pressure or kidney problems, check with your doctor first."
+      },
+      {
+        "q": "Can I get enough protein without eggs or meat?",
+        "a": "Yes. Thick dal, chana, rajma, soya, paneer, curd, milk and groundnuts can cover your needs, especially when you eat cereals and pulses together. You may need larger portions than a non-vegetarian."
+      },
+      {
+        "q": "Should I take whey protein to build muscle?",
+        "a": "You don't have to. It is a convenient food if you struggle to reach your target. If you use one, buy from authorised sellers, check the FSSAI labelling, and count it within your daily total. Indian testing in 2024 found many products had less protein than labelled."
+      },
+      {
+        "q": "Do older people need more protein?",
+        "a": "Yes. The PROT-AGE group recommends at least 1.0 to 1.2 g per kg a day for people over 65, and 1.2 g or more if active. Those with severe kidney disease are an exception and need their doctor's advice."
+      }
+    ],
+    "words": 3418,
+    "ads": 2,
+    "video": "long-protein-myths-16-v2"
+  },
+  {
+    "lang": "en",
+    "slug": "sarms-spiked-gym-supplements-india",
+    "title": "SARMs and Spiked 'Natural' Supplements: The Hidden Steroid Risk in Gym Products",
+    "hindiTitle": "SARMs और मिलावटी 'नेचुरल' सप्लीमेंट: जिम प्रोडक्ट में छिपा स्टेरॉयड का ख़तरा",
+    "description": "What SARMs really are, why \"natural\" gym supplements can hide steroids, what FSSAI and WADA say, and how to choose safer products in India.",
+    "category": "Supplements and Gym Drugs",
+    "tags": [
+      "sarms sach",
+      "SARMs side effects",
+      "steroid side effects hindi",
+      "steroid myths",
+      "natural vs steroid",
+      "supplement safety",
+      "FSSAI"
+    ],
+    "readingTime": 13,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/sarms-spiked-gym-supplements-india/hero.svg",
+    "heroAlt": "Illustration of a supplement label, a pill, a magnifying check mark and an alert sign on an olive green background, showing that gym products can hide drugs",
+    "sources": [
+      {
+        "title": "Chemical composition and labeling of substances marketed as selective androgen receptor modulators and sold via the internet",
+        "publisher": "JAMA (Van Wagoner et al.)",
+        "year": "2017",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29183075/"
+      },
+      {
+        "title": "Certain bodybuilding products put consumers at risk for heart attack, stroke, serious liver damage and more",
+        "publisher": "US Food and Drug Administration",
+        "year": "2025",
+        "url": "https://www.fda.gov/drugs/fraudulent-products/certain-bodybuilding-products-put-consumers-risk-heart-attack-stroke-serious-liver-damage-and-more"
+      },
+      {
+        "title": "The safety, pharmacokinetics, and effects of LGD-4033, a nonsteroidal oral SARM, in healthy young men",
+        "publisher": "Journals of Gerontology Series A (Basaria et al.)",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22459616/"
+      },
+      {
+        "title": "Liver injury after selective androgen receptor modulator intake: a case report and review of the literature",
+        "publisher": "Zeitschrift für Gastroenterologie",
+        "year": "2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37871633/"
+      },
+      {
+        "title": "Idiosyncratic drug-induced liver injury related to use of the SARM RAD140: a case report",
+        "publisher": "Journal of Medical Case Reports",
+        "year": "2023",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36978171/"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2026",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      },
+      {
+        "title": "Analysis of non-hormonal nutritional supplements for anabolic-androgenic steroids: results of an international study",
+        "publisher": "International Journal of Sports Medicine (Geyer et al.)",
+        "year": "2004",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14986195/"
+      },
+      {
+        "title": "Unapproved pharmaceutical ingredients included in dietary supplements associated with FDA warnings",
+        "publisher": "JAMA Network Open (Tucker et al.)",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30646238/"
+      },
+      {
+        "title": "Guidance document on food for sportspersons",
+        "publisher": "Food Safety and Standards Authority of India",
+        "year": "2019",
+        "url": "https://www.fssai.gov.in/upload/uploadfiles/files/Guidance_Document_Sportsperson_10_07_2019.pdf"
+      },
+      {
+        "title": "NADA intelligence tip leads to Najafgarh raid, banned steroids seized",
+        "publisher": "Outlook India",
+        "year": "2026",
+        "url": "https://www.outlookindia.com/sports/others/nada-intelligence-and-investigations-unit-tip-najafgarh-raid-update"
+      }
+    ],
+    "related": [
+      {
+        "label": "Anabolic steroids: what they really do",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "Fat burners and pre-workout risks",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "Creatine guide for Indians",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "Ultra-processed food and labels",
+        "href": "/health/blog/ultra-processed-food-india-labels"
+      },
+      {
+        "label": "Men's health",
+        "href": "/health/mens-health"
+      }
+    ],
+    "headings": [
+      "What SARMs are",
+      "Why young men fall for them",
+      "The liver injury reports",
+      "Half the bottles weren't what the label said",
+      "Spiked \"natural\" supplements: the risk most people miss",
+      "What the rules say",
+      "How to pick safer supplements",
+      "What to do if you already took something",
+      "Myths you will hear in the gym",
+      "Common questions",
+      "What a drug-free plan looks like",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Are SARMs legal in India?",
+        "a": "SARMs are not approved as medicines in India or anywhere else, and FSSAI rules don't allow drug-like hormonal substances in foods or supplements. They are also banned under the WADA list that NADA India follows. Treat any product containing them as an unapproved drug."
+      },
+      {
+        "q": "Is ostarine safer than other SARMs?",
+        "a": "There is no good evidence that any SARM is safe for gym use. A serious ostarine-linked liver injury needing months to recover has been reported, and SARMs in general suppress natural testosterone."
+      },
+      {
+        "q": "Can a normal whey protein make me fail a dope test?",
+        "a": "It can happen if the product is contaminated or spiked, though most mainstream proteins are not. If you are tested, choose products with independent batch testing for banned substances and keep the bill and batch number."
+      },
+      {
+        "q": "Are \"testosterone booster\" herbal capsules safe?",
+        "a": "Some herbs are studied for mild effects, but evidence for muscle gain is weak. The bigger concern is hidden ingredients in products that promise steroid-like results. If a capsule promises \"anabolic\" effects, skip it."
+      },
+      {
+        "q": "I took SARMs for a few weeks and feel fine. Should I still get tested?",
+        "a": "Yes. Liver strain and hormone changes don't always cause symptoms early. A doctor can order liver tests, a lipid profile and hormone tests, and tell you if anything needs follow-up."
+      }
+    ],
+    "words": 2877,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
   },
   {
     "lang": "en",
@@ -1096,7 +2319,155 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2596,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "tirzepatide-mounjaro-india-guide",
+    "title": "Tirzepatide (Mounjaro) in India: Who It Suits, Side Effects, and How to Keep Your Muscle",
+    "hindiTitle": "भारत में टिर्ज़ेपाटाइड (Mounjaro): किसके लिए सही, साइड इफ़ेक्ट, और मांसपेशियाँ कैसे बचाएँ",
+    "description": "Mounjaro (tirzepatide) launched in India in March 2025. What the trials show, who it suits, side effects, fakes, and how to protect muscle on it.",
+    "category": "Weight and Metabolism",
+    "tags": [
+      "mounjaro hindi",
+      "ozempic hindi",
+      "glp 1 weight loss",
+      "weight loss injection fact check",
+      "tirzepatide",
+      "obesity"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/tirzepatide-mounjaro-india-guide/hero.svg",
+    "heroAlt": "Illustration of a weekly injection pen next to a weighing scale, a dumbbell and a protein-rich Indian plate, showing that the medicine works best alongside food and strength training",
+    "sources": [
+      {
+        "title": "Tirzepatide Once Weekly for the Treatment of Obesity (SURMOUNT-1)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2022",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2206038"
+      },
+      {
+        "title": "Tirzepatide versus Semaglutide Once Weekly in Patients with Type 2 Diabetes (SURPASS-2)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2021",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2107519"
+      },
+      {
+        "title": "Continued Treatment With Tirzepatide for Maintenance of Weight Reduction (SURMOUNT-4)",
+        "publisher": "JAMA",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10714284/"
+      },
+      {
+        "title": "Tirzepatide as Compared with Semaglutide for the Treatment of Obesity (SURMOUNT-5)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2025",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2416394"
+      },
+      {
+        "title": "Body composition changes during weight reduction with tirzepatide in the SURMOUNT-1 study",
+        "publisher": "Diabetes, Obesity and Metabolism",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11965027/"
+      },
+      {
+        "title": "Zepbound (tirzepatide) prescribing information",
+        "publisher": "US Food and Drug Administration",
+        "year": "2024",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/217806s013lbl.pdf"
+      },
+      {
+        "title": "Nutritional priorities to support GLP-1 therapy for obesity: a joint advisory",
+        "publisher": "Obesity Pillars",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12264624/"
+      },
+      {
+        "title": "Fat-busting drug Mounjaro launched in India, here's how much it will cost",
+        "publisher": "ThePrint",
+        "year": "2025",
+        "url": "https://theprint.in/health/fat-busting-drug-mounjaro-launched-in-india-heres-how-much-it-will-cost/2557079"
+      },
+      {
+        "title": "In battle for Indian anti-obesity market, Eli Lilly's pre-filled pen on one side, Novo Nordisk's on other",
+        "publisher": "ThePrint",
+        "year": "2025",
+        "url": "https://theprint.in/health/in-battle-for-indian-anti-obesity-market-eli-lillys-pre-filled-pen-on-one-side-novo-nordisks-on-other/2671483"
+      },
+      {
+        "title": "Counterfeit Mounjaro seizure in Gurugram raises fresh concerns over fake drugs market",
+        "publisher": "The Week",
+        "year": "2026",
+        "url": "https://www.theweek.in/news/health/2026/04/30/counterfeit-mounjaro-seizure-in-gurugram-raises-fresh-concerns-over-fake-drugs-market.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "Generic semaglutide in India",
+        "href": "/health/blog/generic-semaglutide-india-guide"
+      },
+      {
+        "label": "BMI calculator",
+        "href": "/health/health-calculators/bmi-calculator"
+      },
+      {
+        "label": "Obesity: causes and care",
+        "href": "/health/diseases/obesity"
+      },
+      {
+        "label": "Type 2 diabetes",
+        "href": "/health/diseases/type-2-diabetes"
+      },
+      {
+        "label": "Protein requirement calculator",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      }
+    ],
+    "headings": [
+      "What tirzepatide is, in plain words",
+      "Mounjaro in India: what has happened so far",
+      "Who tirzepatide is meant for",
+      "What the trials actually showed",
+      "Side effects, honestly",
+      "Keeping your muscle: the part that decides how you look and feel",
+      "Fakes from social media: a real risk in NCR",
+      "Myths you will hear",
+      "Questions to take to your doctor",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "Is Mounjaro the same as Ozempic?",
+        "a": "No. Ozempic and Wegovy contain semaglutide, which copies one gut hormone (GLP-1). Mounjaro contains tirzepatide, which copies two (GLP-1 and GIP). In a head-to-head obesity trial, tirzepatide led to more weight loss, but both are prescription medicines with similar stomach side effects and warnings."
+      },
+      {
+        "q": "Can I take Mounjaro without a doctor to lose a few kilos?",
+        "a": "No. It is a prescription medicine for type 2 diabetes and obesity, with real risks such as pancreatitis, gallbladder disease and dehydration. For a few kilos, protein-first meals, strength training and sleep are safer and cheaper. Talk to a doctor if you're unsure where you stand."
+      },
+      {
+        "q": "Will I lose muscle on tirzepatide?",
+        "a": "Some of the weight you lose will be lean mass. In one sub-study it was about a quarter. Eating enough protein and training against resistance at least three times a week helps you keep more of it. Track a lift every month to see whether it's working."
+      },
+      {
+        "q": "What happens if I stop Mounjaro?",
+        "a": "In SURMOUNT-4, people who switched to placebo after 36 weeks regained 14% of their body weight over the next year, while those who continued kept losing. Plan any stop with your doctor and keep your food and exercise habits going."
+      },
+      {
+        "q": "How do I know my Mounjaro pen is genuine?",
+        "a": "Buy only with a prescription from a licensed pharmacy that stores it cold. Check for an intact box, batch number, expiry date and correct spelling. Lilly says genuine tirzepatide in India is sold only as Mounjaro and Yurpeak through authorised channels."
+      }
+    ],
+    "words": 2881,
+    "ads": 3,
+    "video": "long-ozempic-glp1-myths-15-v2"
   },
   {
     "lang": "en",
@@ -1220,7 +2591,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2515,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "en",
@@ -1349,7 +2721,165 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2603,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "en",
+    "slug": "women-weight-training-guide-india",
+    "title": "Weight Training for Women: Bulky Myths, Bones, PCOS, Periods and Pregnancy",
+    "hindiTitle": "महिलाओं के लिए वेट ट्रेनिंग: 'बल्की' होने का डर, हड्डियाँ, PCOS, पीरियड्स और प्रेग्नेंसी",
+    "description": "Will lifting make you bulky? What research says about women, muscle, bone density, PCOS, periods, pregnancy and postpartum, plus a 3-day beginner plan.",
+    "category": "Fitness and Healthy Ageing",
+    "tags": [
+      "weight training for women",
+      "women weight training hindi",
+      "ladies gym myths",
+      "bulky myth",
+      "pregnancy exercise sach",
+      "PCOS exercise"
+    ],
+    "readingTime": 15,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "Royal Fitness Club Health Desk",
+    "reviewedBy": "Pending medical review",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/women-weight-training-guide-india/hero.svg",
+    "heroAlt": "Illustration of a dumbbell, a heart, a baby and a leaf, standing for strength training for women through every stage of life",
+    "sources": [
+      {
+        "title": "Sex Differences in Resistance Training: A Systematic Review and Meta-Analysis",
+        "publisher": "Journal of Strength and Conditioning Research",
+        "year": "2020",
+        "url": "https://doi.org/10.1519/JSC.0000000000003521"
+      },
+      {
+        "title": "High-Intensity Resistance and Impact Training Improves Bone Mineral Density and Physical Function in Postmenopausal Women With Osteopenia and Osteoporosis (LIFTMOR)",
+        "publisher": "Journal of Bone and Mineral Research",
+        "year": "2018",
+        "url": "https://doi.org/10.1002/jbmr.3284"
+      },
+      {
+        "title": "Burden of Osteopenia and Osteoporosis Among Postmenopausal Women in India: A Systematic Review and Meta-Analysis",
+        "publisher": "Journal of Mid-life Health",
+        "year": "2022",
+        "url": "https://doi.org/10.4103/jmh.jmh_207_21"
+      },
+      {
+        "title": "Recommendations From the 2023 International Evidence-based Guideline for the Assessment and Management of Polycystic Ovary Syndrome",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism",
+        "year": "2023",
+        "url": "https://doi.org/10.1210/clinem/dgad463"
+      },
+      {
+        "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
+        "publisher": "Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1007/s40279-020-01319-3"
+      },
+      {
+        "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength performance or adaptations to resistance exercise training",
+        "publisher": "Frontiers in Sports and Active Living",
+        "year": "2023",
+        "url": "https://doi.org/10.3389/fspor.2023.1054542"
+      },
+      {
+        "title": "Physical Activity and Exercise During Pregnancy and the Postpartum Period (Committee Opinion No. 804)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2020",
+        "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period"
+      },
+      {
+        "title": "Exercise During Pregnancy (patient FAQ)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2024",
+        "url": "https://www.acog.org/womens-health/faqs/exercise-during-pregnancy"
+      },
+      {
+        "title": "Exercise After Pregnancy (patient FAQ)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2022",
+        "url": "https://www.acog.org/womens-health/faqs/exercise-after-pregnancy"
+      },
+      {
+        "title": "World Health Organization 2020 guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1136/bjsports-2020-102955"
+      }
+    ],
+    "related": [
+      {
+        "label": "PCOS: symptoms and care",
+        "href": "/health/diseases/pcos"
+      },
+      {
+        "label": "Osteoporosis",
+        "href": "/health/diseases/osteoporosis"
+      },
+      {
+        "label": "Muscle after 40",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "Beginner gym guide",
+        "href": "/health/blog/beginner-gym-guide-india"
+      },
+      {
+        "label": "Women's health hub",
+        "href": "/health/womens-health"
+      }
+    ],
+    "headings": [
+      "Why so many Indian women skip the weights section",
+      "Myth 1: \"Weights will make me bulky\"",
+      "Bones: the reason to start in your 20s and 30s",
+      "PCOS and insulin resistance: exercise is part of treatment",
+      "Periods: should you train by cycle phase?",
+      "Pregnancy: what's safe and what to avoid",
+      "After the baby: coming back step by step",
+      "A 3-day beginner plan for women",
+      "Myths you'll hear in the changing room",
+      "Common questions",
+      "The bottom line"
+    ],
+    "takeaways": [
+      "Women build muscle at a similar relative rate to men, but \"bulky\" by accident is very unlikely.",
+      "Low bone density is common in Indian women after menopause; strength training is one of the best tools to protect bone.",
+      "For PCOS, the 2023 guideline recommends strength training on 2 days a week alongside aerobic activity.",
+      "Evidence for training by cycle phase is weak; listen to your body.",
+      "During a healthy pregnancy and after birth, regular exercise including strength work is recommended, with sensible changes."
+    ],
+    "faqs": [
+      {
+        "q": "Will I lose my \"feminine\" shape if I lift?",
+        "a": "Most women find the opposite. Strength training builds the glutes, shoulders and back, and helps reduce fat around the waist when combined with good food. The very muscular look you see on stage takes years of specialised work and diet."
+      },
+      {
+        "q": "I have PCOS and I'm not overweight. Should I still lift?",
+        "a": "Yes. The 2023 international PCOS guideline recommends physical activity, including muscle-strengthening on 2 days a week, for all women with PCOS, whatever their weight. Insulin resistance can be present in lean women too."
+      },
+      {
+        "q": "Can I start weight training for the first time during pregnancy?",
+        "a": "Many women can start light strength work in pregnancy if their gynaecologist agrees there are no complications. Begin with light weights, short sessions and steady breathing, and avoid lying flat on your back for long or anything with a fall risk."
+      },
+      {
+        "q": "How soon after a caesarean can I lift weights?",
+        "a": "That depends on your recovery, so ask your gynaecologist. Most women start with walking and gentle core and pelvic floor work, and build up to weights over the following weeks once the doctor clears them."
+      },
+      {
+        "q": "Do I need protein powder?",
+        "a": "Not necessarily. Most women can meet their protein needs with dal, curd, paneer, milk, eggs, soya, chana, fish or chicken spread through the day. A powder can be convenient if your meals fall short."
+      },
+      {
+        "q": "I'm over 50. Is it too late to start?",
+        "a": "No. The LIFTMOR women were 65 on average and improved bone density and strength in 8 months. Start with a doctor's check if you have health conditions, and learn under a coach."
+      }
+    ],
+    "words": 3620,
+    "ads": 2,
+    "video": "long-women-weights-myths-17"
   },
   {
     "lang": "en",
@@ -1467,7 +2997,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2559,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "hi",
@@ -1572,7 +3103,158 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2027,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "anabolic-steroids-side-effects-india",
+    "title": "Anabolic Steroids: What They Really Do to Your Heart, Liver, Hormones and Mind",
+    "hindiTitle": "एनाबॉलिक स्टेरॉयड: दिल, लिवर, हॉर्मोन और दिमाग़ पर इनका असली असर",
+    "description": "एनाबॉलिक स्टेरॉयड दिल, लिवर, फ़र्टिलिटी और मूड पर क्या असर डालते हैं, भारत का क़ानून क्या कहता है, और इस्तेमाल किया है तो मदद कैसे लें।",
+    "category": "सप्लीमेंट और जिम ड्रग्स",
+    "tags": [
+      "स्टेरॉयड के साइड इफ़ेक्ट",
+      "steroid side effects hindi",
+      "स्टेरॉयड मिथक",
+      "नेचुरल बनाम स्टेरॉयड",
+      "SARMs सच",
+      "जिम और सेहत"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/anabolic-steroids-side-effects-india/hero.svg",
+    "heroAlt": "गहरे स्लेटी पृष्ठभूमि पर दिल, दिमाग़, गोली और चेतावनी के निशान का चित्र: स्टेरॉयड पूरे शरीर पर असर डालते हैं",
+    "sources": [
+      {
+        "title": "Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use",
+        "publisher": "Circulation (Baggish et al.)",
+        "year": "2017",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28533317/"
+      },
+      {
+        "title": "Health consequences of androgenic anabolic steroid use",
+        "publisher": "Journal of Internal Medicine (Horwitz et al.)",
+        "year": "2019",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30460728/"
+      },
+      {
+        "title": "Former abusers of anabolic androgenic steroids exhibit decreased testosterone levels and hypogonadal symptoms years after cessation",
+        "publisher": "PLoS One (Rasmussen et al.)",
+        "year": "2016",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27532478/"
+      },
+      {
+        "title": "Adverse health consequences of performance-enhancing drugs: an Endocrine Society scientific statement",
+        "publisher": "Endocrine Reviews (Pope et al.)",
+        "year": "2014",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24423981/"
+      },
+      {
+        "title": "The global epidemiology of anabolic-androgenic steroid use: a meta-analysis",
+        "publisher": "Annals of Epidemiology (Sagoe et al.)",
+        "year": "2014",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24582699/"
+      },
+      {
+        "title": "Fake anabolic androgenic steroids on the black market: a systematic review and meta-analysis",
+        "publisher": "BMC Public Health (Magnolini et al.)",
+        "year": "2022",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35842594/"
+      },
+      {
+        "title": "Anabolic steroid misuse",
+        "publisher": "NHS",
+        "year": "2024",
+        "url": "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"
+      },
+      {
+        "title": "Testosterone Therapy in Men With Hypogonadism: Endocrine Society Clinical Practice Guideline",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism (Bhasin et al.)",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29562364/"
+      },
+      {
+        "title": "India throws up highest doping positivity rate among major countries in WADA's 2024 testing report",
+        "publisher": "Outlook India",
+        "year": "2025",
+        "url": "https://www.outlookindia.com/sports/others/india-highest-doping-positivity-rate-wada-2024-testing-report"
+      },
+      {
+        "title": "Telangana DCA advisory to medical shops on prescription medicine misuse in gyms",
+        "publisher": "Medical Dialogues",
+        "year": "2025",
+        "url": "https://medicaldialogues.in/amp/news/industry/pharma/telangana-issues-advisory-to-retail-wholesale-medical-shops-amid-prescription-medicines-misuse-in-gyms-157521"
+      }
+    ],
+    "related": [
+      {
+        "label": "SARMs और मिलावटी \"नेचुरल\" सप्लीमेंट",
+        "href": "/health/blog/sarms-spiked-gym-supplements-india"
+      },
+      {
+        "label": "40 से कम उम्र में हार्ट अटैक (अंग्रेज़ी)",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "जिम में दिल की सुरक्षा (अंग्रेज़ी)",
+        "href": "/health/blog/gym-heart-safety-chest-pain"
+      },
+      {
+        "label": "पुरुषों की सेहत (अंग्रेज़ी)",
+        "href": "/health/mens-health"
+      },
+      {
+        "label": "मानसिक सेहत (अंग्रेज़ी)",
+        "href": "/health/mental-wellness"
+      }
+    ],
+    "headings": [
+      "एनाबॉलिक स्टेरॉयड क्या हैं, और इनकी सही जगह कहाँ है",
+      "दिल: वह नुकसान जो आईने में नहीं दिखता",
+      "लिवर और किडनी",
+      "हॉर्मोन और फ़र्टिलिटी: जिस पर नौजवान बाद में पछताते हैं",
+      "त्वचा, बाल और दिखावट",
+      "दिमाग़: मूड, ग़ुस्सा और लत",
+      "महिलाएँ और स्टेरॉयड",
+      "इंजेक्शन का ख़तरा और नक़ली माल",
+      "डोप टेस्ट, NADA और भारत का क़ानून",
+      "स्टेरॉयड सुरक्षित तरीक़े से छोड़ना",
+      "जिम में सुनी जाने वाली बातें और सच",
+      "नेचुरल ट्रेनिंग से क्या हो सकता है",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या डॉक्टर वाला टेस्टोस्टेरॉन और जिम वाले स्टेरॉयड एक ही हैं?",
+        "a": "हॉर्मोन एक ही तरह का है, पर मक़सद और मात्रा अलग। डॉक्टर बार-बार जाँच से कमी पक्की करके, सामान्य लेवल तक लाने के लिए और निगरानी के साथ देते हैं। जिम में लेवल सामान्य से बहुत ऊपर बिना निगरानी के जाता है, ज़्यादातर नुकसान वहीं से होता है।"
+      },
+      {
+        "q": "मैंने कुछ हफ़्ते लिए थे, क्या मुझे नुकसान हो गया?",
+        "a": "ज़रूरी नहीं। बहुत से कम समय वाले यूज़र अच्छी तरह ठीक हो जाते हैं। पर बिना जाँच के पता नहीं चलेगा। डॉक्टर को सच बताएँ और दिल, लिवर, लिपिड और हॉर्मोन की बुनियादी जाँच करवाएँ।"
+      },
+      {
+        "q": "क्या अंडकोष फिर सामान्य हो जाएँगे?",
+        "a": "छोड़ने के बाद बहुत से पुरुषों में कुछ सुधार होता है, पर महीनों लग सकते हैं, और एक अध्ययन में लगभग एक-चौथाई पुराने यूज़र में सालों बाद भी टेस्टोस्टेरॉन कम था। डॉक्टर हॉर्मोन और स्पर्म की जाँच से सही स्थिति बता सकते हैं।"
+      },
+      {
+        "q": "क्या SARMs सुरक्षित और क़ानूनी विकल्प हैं?",
+        "a": "नहीं। SARMs प्रयोग वाली दवाएँ हैं जिन्हें इंसानों के लिए मंज़ूरी नहीं मिली, ये भी अपना टेस्टोस्टेरॉन दबाती हैं, और लिवर को नुकसान के मामले सामने आए हैं। हमारा SARMs वाला लेख पढ़ें।"
+      },
+      {
+        "q": "मेरा दोस्त स्टेरॉयड लेता है और चिड़चिड़ा व उदास रहने लगा है, क्या करूँ?",
+        "a": "जब वह शांत हो तब आराम से बात करें, जो देखा वह बताएँ, और डॉक्टर के पास जाने को कहें। भाषण न दें। अगर वह ख़ुद को या किसी और को नुकसान की बात करे, तो तुरंत मदद लें और उसे अकेला न छोड़ें।"
+      }
+    ],
+    "words": 2589,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
   },
   {
     "lang": "hi",
@@ -1688,7 +3370,159 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 1885,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "beginner-gym-guide-india",
+    "title": "Your First Month in the Gym: A Beginner's Plan",
+    "hindiTitle": "जिम का पहला महीना: शुरुआती लोगों के लिए आसान प्लान",
+    "description": "शुरुआती लोगों के लिए 4 हफ़्ते का सुरक्षित फ़ुल-बॉडी जिम प्लान, WHO और ACSM के आधार पर: वार्म-अप, फ़ॉर्म, दर्द बनाम अकड़न, नींद और जिम की अफ़वाहें।",
+    "category": "फ़िटनेस और स्वस्थ बुढ़ापा",
+    "tags": [
+      "gym myths hindi",
+      "workout tips hinglish",
+      "squats knee pain sach",
+      "gym rumours",
+      "exercise myths hindi",
+      "जिम प्लान"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/beginner-gym-guide-india/hero.svg",
+    "heroAlt": "डम्बल, घड़ी, चलते इंसान और सही के निशान का चित्र: पहले महीने की धीमी, सुरक्षित ट्रेनिंग",
+    "sources": [
+      {
+        "title": "WHO 2020 guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/"
+      },
+      {
+        "title": "Physical activity fact sheet",
+        "publisher": "World Health Organization",
+        "year": "2024",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/physical-activity"
+      },
+      {
+        "title": "ACSM position stand, progression models in resistance training for healthy adults",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2009",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19204579/"
+      },
+      {
+        "title": "ACSM position stand, resistance training prescription for muscle function, hypertrophy and physical performance in healthy adults",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2026",
+        "url": "https://doi.org/10.1249/MSS.0000000000003897"
+      },
+      {
+        "title": "Analysis of the load on the knee joint and vertebral column with changes in squatting depth and weight load",
+        "publisher": "Sports Medicine",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23821469/"
+      },
+      {
+        "title": "Compatibility of concurrent aerobic and strength training for skeletal muscle size and function, an updated systematic review and meta-analysis",
+        "publisher": "Sports Medicine",
+        "year": "2022",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34757594/"
+      },
+      {
+        "title": "Delayed onset muscle soreness, treatment strategies and performance factors",
+        "publisher": "Sports Medicine",
+        "year": "2003",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12617692/"
+      },
+      {
+        "title": "Recommended amount of sleep for a healthy adult, AASM and SRS consensus statement",
+        "publisher": "Sleep",
+        "year": "2015",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/"
+      },
+      {
+        "title": "PAR-Q+ and ePARmed-X+, new risk stratification and physical activity clearance strategy",
+        "publisher": "Canadian Family Physician",
+        "year": "2013",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3596208/"
+      },
+      {
+        "title": "International Society of Sports Nutrition Position Stand, protein and exercise",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/"
+      }
+    ],
+    "related": [
+      {
+        "label": "वर्कआउट बिल्डर (अंग्रेज़ी)",
+        "href": "/health/workout-builder"
+      },
+      {
+        "label": "40 के बाद मांसपेशियाँ",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "40 से कम उम्र में हार्ट अटैक",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "आपको कितना प्रोटीन चाहिए?",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      }
+    ],
+    "headings": [
+      "पहला महीना सबसे अहम क्यों है",
+      "दिशानिर्देश असल में क्या कहते हैं",
+      "शुरू करने से पहले: क्या डॉक्टर की मंज़ूरी चाहिए?",
+      "जिम और ट्रेनर कैसे चुनें",
+      "वार्म-अप और सही फ़ॉर्म",
+      "आपका 4 हफ़्ते का फ़ुल-बॉडी प्लान",
+      "प्रोग्रेसिव ओवरलोड, आसान भाषा में",
+      "अकड़न बनाम दर्द: फ़र्क़ कैसे पहचानें",
+      "खाना, आराम और नींद",
+      "जिम के तौर-तरीक़े जो कोई नहीं बताता",
+      "पहले महीने में सुनी जाने वाली जिम की अफ़वाहें",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [
+      "WHO: हफ़्ते में 150 से 300 मिनट मध्यम गतिविधि, साथ में 2 या ज़्यादा दिन ताक़त की कसरत।",
+      "शुरुआत में हफ़्ते में 2 से 3 फ़ुल-बॉडी सेशन, 8 से 12 रेप, वज़न छोटे क़दमों में।",
+      "पहले फ़ॉर्म सीखें, हर बार वार्म-अप करें, एक-दो रेप बचाकर रखें।",
+      "शुरू में अकड़न आम है; तेज़, जोड़ या सीने का दर्द रुकने का संकेत है।",
+      "7 घंटे से ज़्यादा नींद, हर खाने में प्रोटीन, सप्लीमेंट ज़रूरी नहीं।"
+    ],
+    "faqs": [
+      {
+        "q": "शुरुआत में हफ़्ते में कितने दिन जिम जाएँ?",
+        "a": "ACSM शुरुआती लोगों के लिए हफ़्ते में 2 से 3 दिन फ़ुल-बॉडी ट्रेनिंग कहता है, बीच में आराम के साथ। बाक़ी दिन WHO के लक्ष्य के लिए टहलें या साइकिल चलाएँ।"
+      },
+      {
+        "q": "पहली ट्रेनिंग के बाद बहुत अकड़न होना सामान्य है?",
+        "a": "शुरू में अगले दिन कुछ अकड़न आम है, ख़ासकर स्क्वॉट और लंज के बाद। हल्की हलचल से कम होती है। तेज़ दर्द, जोड़ का दर्द, सूजन या बहुत गहरा पेशाब सामान्य नहीं।"
+      },
+      {
+        "q": "पहले कार्डियो करें या वेट?",
+        "a": "ताक़त या मसल मुख्य लक्ष्य है तो पहले वेट, जब शरीर ताज़ा हो। कार्डियो मसल नहीं रोकता, पर एक ही सेशन में दोनों करने से विस्फोटक ताक़त थोड़ी कम हो सकती है।"
+      },
+      {
+        "q": "क्या जिम से पहले डॉक्टर की मंज़ूरी चाहिए?",
+        "a": "ज़्यादातर स्वस्थ लोग धीरे-धीरे शुरू कर सकते हैं। दिल की बीमारी, हाई BP, सीने में दर्द, चक्कर, पुरानी बीमारी या जोड़ की तकलीफ़ हो तो PAR-Q+ के सवाल देखें और पहले डॉक्टर से पूछें।"
+      },
+      {
+        "q": "नतीजे कब दिखेंगे?",
+        "a": "बहुत से लोग पहले कुछ हफ़्तों में ही ख़ुद को ज़्यादा ताक़तवर महसूस करते हैं। दिखने वाला बदलाव ज़्यादा समय लेता है। महीनों की निरंतरता किसी एक हफ़्ते से ज़्यादा मायने रखती है।"
+      }
+    ],
+    "words": 2579,
+    "ads": 2,
+    "video": "long-gym-rumours-13"
   },
   {
     "lang": "hi",
@@ -1801,7 +3635,286 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2138,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "creatine-guide-india",
+    "title": "Creatine for Indians: Benefits, Safety, Kidneys, Hair Loss and Vegetarians",
+    "hindiTitle": "भारतीयों के लिए क्रिएटिन: फ़ायदे, सुरक्षा, किडनी, बाल झड़ना और शाकाहारी",
+    "description": "क्रिएटिन क्या करता है, किडनी, बाल झड़ने और पानी के वज़न पर रिसर्च क्या कहती है, शाकाहारियों को ज़्यादा फ़ायदा क्यों, और किसे पहले डॉक्टर से पूछना चाहिए।",
+    "category": "सप्लीमेंट और जिम ड्रग्स",
+    "tags": [
+      "क्रिएटिन",
+      "creatine side effects hindi",
+      "supplement myths hindi",
+      "whey protein steroid",
+      "बाल झड़ना",
+      "शाकाहारी जिम डाइट"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/creatine-guide-india/hero.svg",
+    "heroAlt": "डम्बल, नापने का स्कूप, पानी का गिलास और किडनी पर सही का निशान: क्रिएटिन ट्रेनिंग के साथ काम करता है और रिसर्च वाली मात्रा में स्वस्थ किडनी के लिए सुरक्षित पाया गया है",
+    "sources": [
+      {
+        "title": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation in exercise, sport, and medicine",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://doi.org/10.1186/s12970-017-0173-z"
+      },
+      {
+        "title": "Common questions and misconceptions about creatine supplementation: what does the scientific evidence really show?",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2021",
+        "url": "https://doi.org/10.1186/s12970-021-00412-w"
+      },
+      {
+        "title": "Three weeks of creatine monohydrate supplementation affects dihydrotestosterone to testosterone ratio in college-aged rugby players",
+        "publisher": "Clinical Journal of Sport Medicine",
+        "year": "2009",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19741313/"
+      },
+      {
+        "title": "Citizens protein project: analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      },
+      {
+        "title": "Levels of creatine, organic contaminants and heavy metals in creatine dietary supplements",
+        "publisher": "Food Chemistry",
+        "year": "2011",
+        "url": "https://doi.org/10.1016/j.foodchem.2010.12.028"
+      },
+      {
+        "title": "India's new functional food and supplements rules (FSSAI Health Supplements and Nutraceuticals Regulations, 2016)",
+        "publisher": "NutraIngredients",
+        "year": "2016",
+        "url": "https://www.nutraingredients.com/Article/2016/12/07/India-s-new-functional-food-and-supplements-rules-The-key-requirements-every-firm-needs-to-know/"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      }
+    ],
+    "related": [
+      {
+        "label": "आपको कितना प्रोटीन चाहिए (अंग्रेज़ी)",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      },
+      {
+        "label": "40 के बाद मांसपेशियाँ (अंग्रेज़ी)",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "क्रिएटिनिन और eGFR जाँच (अंग्रेज़ी)",
+        "href": "/health/lab-tests/creatinine"
+      },
+      {
+        "label": "शाकाहारियों के लिए विटामिन B12",
+        "href": "/health/blog/vitamin-b12-vegetarian-india"
+      },
+      {
+        "label": "फ़ैट बर्नर और प्री-वर्कआउट के ख़तरे",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      }
+    ],
+    "headings": [
+      "क्रिएटिन असल में है क्या",
+      "रिसर्च के हिसाब से क्रिएटिन क्या करता है",
+      "कितना लें: ISSN क्या कहता है",
+      "किडनी का सवाल",
+      "बाल झड़ना और DHT: एक स्टडी, जिसने बाल नापे ही नहीं",
+      "पानी का वज़न",
+      "शाकाहारियों को ज़्यादा फ़र्क़ क्यों दिख सकता है",
+      "बड़ी उम्र में: वज़न उठाने के साथ ही असर",
+      "किसे पहले डॉक्टर से पूछना चाहिए",
+      "भारत में प्रोडक्ट कैसे चुनें",
+      "क्रिएटिन, व्हे और स्टेरॉयड: तीन अलग चीज़ें",
+      "आम सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या रोज़ क्रिएटिन लेना सुरक्षित है?",
+        "a": "स्वस्थ वयस्कों में ISSN के अनुसार कम और लंबे समय तक, बताई गई मात्रा पर, यह सुरक्षित और अच्छी तरह सहन होने वाला पाया गया। किडनी की बीमारी, गर्भावस्था या रोज़ की दवाओं में पहले डॉक्टर से पूछें।"
+      },
+      {
+        "q": "क्या लोडिंग ज़रूरी है?",
+        "a": "नहीं। कम से कम चार हफ़्ते रोज़ 3 से 5 ग्राम से भी मांसपेशियाँ लगभग उतनी ही भर जाती हैं। लोडिंग बस जल्दी पहुँचाती है, साथ में ज़्यादा पानी का वज़न।"
+      },
+      {
+        "q": "क्या क्रिएटिन से मोटापा आता है?",
+        "a": "नहीं। 2021 के रिव्यू में शामिल स्टडी में चर्बी नहीं बढ़ी। शुरुआती वज़न पानी है। कमर बढ़े तो खाने पर ध्यान दें।"
+      },
+      {
+        "q": "क्या महिलाएँ क्रिएटिन ले सकती हैं?",
+        "a": "हाँ। ज़्यादातर स्टडी पुरुषों पर हुईं, पर महिलाओं में भी फ़ायदे दिखे, ख़ासकर स्ट्रेंथ ट्रेनिंग के साथ। गर्भावस्था या स्तनपान में पहले डॉक्टर से पूछें।"
+      },
+      {
+        "q": "ब्लड टेस्ट से पहले क्रिएटिन बंद करें?",
+        "a": "डॉक्टर और लैब को बताएँ, ख़ासकर क्रिएटिनिन या eGFR जाँच से पहले। डॉक्टर दोबारा जाँच से पहले कुछ समय रोकने को कह सकते हैं।"
+      }
+    ],
+    "words": 2358,
+    "ads": 3,
+    "video": "long-supplement-myths-10"
+  },
+  {
+    "lang": "hi",
+    "slug": "fat-burners-pre-workout-risks-india",
+    "title": "Fat Burners and Pre-Workouts: What's Inside, What Works, and What Can Hurt Your Heart",
+    "hindiTitle": "फ़ैट बर्नर और प्री-वर्कआउट: अंदर क्या है, क्या काम करता है, और दिल को क्या नुकसान पहुँचा सकता है",
+    "description": "फ़ैट बर्नर और प्री-वर्कआउट में क्या होता है, कैफ़ीन की सुरक्षित सीमा, बैन स्टिमुलेंट, लिवर को नुकसान, और चर्बी असल में कैसे घटती है।",
+    "category": "सप्लीमेंट और जिम ड्रग्स",
+    "tags": [
+      "fat burner sach",
+      "supplement myths hindi",
+      "pre workout caffeine",
+      "energy drink side effects hindi",
+      "फ़ैट बर्नर",
+      "कैफ़ीन"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/fat-burners-pre-workout-risks-india/hero.svg",
+    "heroAlt": "चेतावनी के निशान वाला सप्लीमेंट डिब्बा, दिल, कॉफ़ी का कप और चलता हुआ इंसान: स्टिमुलेंट से दिल को ख़तरा, जबकि खाना और रोज़ की चहलक़दमी से चर्बी घटती है",
+    "sources": [
+      {
+        "title": "Scientific Opinion on the safety of caffeine (topic page and FAQ)",
+        "publisher": "European Food Safety Authority",
+        "year": "2015",
+        "url": "https://www.efsa.europa.eu/en/topics/topic/caffeine"
+      },
+      {
+        "title": "India gives beverage giants 90 days to re-label energy drinks (FSSAI caffeinated beverage rules)",
+        "publisher": "BeverageDaily",
+        "year": "2026",
+        "url": "https://www.beveragedaily.com/Article/2026/08/27/not-enough-time-india-gives-90-day-deadline-to-re-label-energy-drinks/"
+      },
+      {
+        "title": "Four experimental stimulants found in sports and weight loss supplements (octodrine, 1,4-DMAA, 1,3-DMAA, 1,3-DMBA)",
+        "publisher": "Clinical Toxicology",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29115866/"
+      },
+      {
+        "title": "The safety and efficacy of Citrus aurantium (bitter orange) extracts and p-synephrine: a systematic review and meta-analysis",
+        "publisher": "Nutrients",
+        "year": "2022",
+        "url": "https://doi.org/10.3390/nu14194019"
+      },
+      {
+        "title": "Pharmaceutical quantities of yohimbine found in dietary supplements in the USA",
+        "publisher": "Drug Testing and Analysis",
+        "year": "2016",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26391406/"
+      },
+      {
+        "title": "Liver injury from herbals and dietary supplements in the U.S. Drug-Induced Liver Injury Network",
+        "publisher": "Hepatology",
+        "year": "2014",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4293199/"
+      },
+      {
+        "title": "Citizens protein project: analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      },
+      {
+        "title": "A systematic review of dietary supplements and alternative therapies for weight loss",
+        "publisher": "Obesity",
+        "year": "2021",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8231729/"
+      },
+      {
+        "title": "International Society of Sports Nutrition position stand: diets and body composition",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://doi.org/10.1186/s12970-017-0174-y"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      }
+    ],
+    "related": [
+      {
+        "label": "जिम में दिल की सुरक्षा (अंग्रेज़ी)",
+        "href": "/health/blog/gym-heart-safety-chest-pain"
+      },
+      {
+        "label": "40 से कम उम्र में हार्ट अटैक",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "भारतीयों के लिए क्रिएटिन",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "आपको कितना प्रोटीन चाहिए (अंग्रेज़ी)",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      },
+      {
+        "label": "BMI कैलकुलेटर (अंग्रेज़ी)",
+        "href": "/health/health-calculators/bmi-calculator"
+      }
+    ],
+    "headings": [
+      "डिब्बे के अंदर क्या है",
+      "कैफ़ीन: मुख्य सामग्री और उसकी सीमा",
+      "बैन स्टिमुलेंट: DMAA, DMHA और उनके भाई-बंधु",
+      "सिनेफ़्रीन (बिटर ऑरेंज)",
+      "योहिम्बीन",
+      "लिवर: चुपचाप होने वाला नुकसान",
+      "क्या फ़ैट बर्नर काम करते हैं?",
+      "चर्बी असल में कैसे घटती है",
+      "जिम में दिल के ख़तरे के संकेत",
+      "आम सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "जिम से पहले ब्लैक कॉफ़ी ठीक है?",
+        "a": "ज़्यादातर स्वस्थ वयस्कों के लिए एक कप ठीक है और थोड़ी मदद कर सकता है। कुल कैफ़ीन EFSA की सीमा में रखें, और धड़कन तेज़ हो, BP बढ़े या नींद ख़राब हो तो छोड़ दें।"
+      },
+      {
+        "q": "क्या फ़ैट बर्नर से लिवर ख़राब हो सकता है?",
+        "a": "कुछ से हो सकता है। अमेरिका के आँकड़ों में सप्लीमेंट से लिवर नुकसान का हिस्सा बढ़ा, और ग्रीन टी एक्सट्रैक्ट व गार्सीनिया जैसी चीज़ें इस रिसर्च में आती हैं। आँखें पीली हों या पेशाब गहरा हो तो डॉक्टर को दिखाएँ।"
+      },
+      {
+        "q": "क्या किशोरों के लिए प्री-वर्कआउट ठीक है?",
+        "a": "नहीं। FSSAI लेबल कहता है बच्चों के लिए अनुशंसित नहीं, और EFSA की किशोरों वाली सीमा वज़न के हिसाब से है, इसलिए बड़ों का एक स्कूप आसानी से ज़्यादा हो जाता है।"
+      },
+      {
+        "q": "अगर DMAA वाला सप्लीमेंट ले लिया हो?",
+        "a": "बंद करें। सीने में दर्द, तेज़ सिरदर्द, तेज़ धड़कन या चक्कर हो तो इमरजेंसी में जाएँ। ठीक लग रहा हो तो भी डॉक्टर को बताएँ और BP जँचवाएँ।"
+      },
+      {
+        "q": "क्या चर्बी घटाने के लिए कोई सप्लीमेंट ज़रूरी है?",
+        "a": "नहीं। कैलोरी की कमी, हर खाने में प्रोटीन, वज़न उठाना और रोज़ ज़्यादा क़दम काम करते हैं।"
+      }
+    ],
+    "words": 2254,
+    "ads": 3,
+    "video": "long-supplement-myths-10"
   },
   {
     "lang": "hi",
@@ -1922,7 +4035,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2112,
-    "ads": 3
+    "ads": 3,
+    "video": "long-ozempic-glp1-myths-15-v2"
   },
   {
     "lang": "hi",
@@ -2033,7 +4147,151 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2099,
-    "ads": 2
+    "ads": 2,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "gym-heart-safety-chest-pain",
+    "title": "Chest Pain at the Gym Isn't Gas: Heart Warning Signs, CPR and Safe Training",
+    "hindiTitle": "जिम में सीने का दर्द गैस नहीं हो सकता: दिल के ख़तरे के संकेत, CPR और सुरक्षित ट्रेनिंग",
+    "description": "वर्कआउट में सीने का दर्द हो तो रुकें, एंटासिड न लें। हार्ट अटैक के संकेत, कसरत में कार्डियक अरेस्ट कितना दुर्लभ है, CPR, AED और सुरक्षित ट्रेनिंग।",
+    "category": "दिल की सेहत",
+    "tags": [
+      "heart attack symptoms hindi",
+      "gym chest pain",
+      "cpr kaise kare",
+      "pre workout caffeine",
+      "no pain no gain myth",
+      "हार्ट अटैक के लक्षण"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/gym-heart-safety-chest-pain/hero.svg",
+    "heroAlt": "दिल, चेतावनी का निशान, फ़ोन और डम्बल का चित्र: जिम में दिल के ख़तरे के संकेत पहचानना और मदद बुलाना",
+    "sources": [
+      {
+        "title": "Warning Signs of a Heart Attack",
+        "publisher": "American Heart Association",
+        "year": "2024",
+        "url": "https://www.heart.org/en/health-topics/heart-attack/warning-signs-of-a-heart-attack"
+      },
+      {
+        "title": "About Cardiac Arrest",
+        "publisher": "American Heart Association",
+        "year": "2026",
+        "url": "https://www.heart.org/en/health-topics/cardiac-arrest/about-cardiac-arrest"
+      },
+      {
+        "title": "CPR is key to survival of sudden cardiac arrest",
+        "publisher": "American Heart Association News",
+        "year": "2018",
+        "url": "https://www.heart.org/en/news/2018/07/12/cpr-is-key-to-survival-of-sudden-cardiac-arrest"
+      },
+      {
+        "title": "Cardiac Arrest during Long-Distance Running Races",
+        "publisher": "New England Journal of Medicine",
+        "year": "2012",
+        "url": "https://doi.org/10.1056/NEJMoa1106468"
+      },
+      {
+        "title": "Sports-related sudden death in the general population",
+        "publisher": "Circulation",
+        "year": "2011",
+        "url": "https://doi.org/10.1161/CIRCULATIONAHA.110.008979"
+      },
+      {
+        "title": "Triggering of sudden death from cardiac causes by vigorous exertion",
+        "publisher": "New England Journal of Medicine",
+        "year": "2000",
+        "url": "https://doi.org/10.1056/NEJM200011093431902"
+      },
+      {
+        "title": "Risk factors for early myocardial infarction in South Asians compared with individuals in other countries (INTERHEART)",
+        "publisher": "JAMA",
+        "year": "2007",
+        "url": "https://doi.org/10.1001/jama.297.3.286"
+      },
+      {
+        "title": "Cardiovascular Toxicity of Illicit Anabolic-Androgenic Steroid Use",
+        "publisher": "Circulation",
+        "year": "2017",
+        "url": "https://doi.org/10.1161/CIRCULATIONAHA.116.026945"
+      },
+      {
+        "title": "Updating ACSM's Recommendations for Exercise Preparticipation Health Screening",
+        "publisher": "Medicine and Science in Sports and Exercise",
+        "year": "2015",
+        "url": "https://doi.org/10.1249/MSS.0000000000000664"
+      },
+      {
+        "title": "PAR-Q+ and ePARmed-X+ pre-participation screening",
+        "publisher": "PAR-Q+ Collaboration",
+        "year": "2025",
+        "url": "https://eparmedx.com/"
+      }
+    ],
+    "related": [
+      {
+        "label": "40 से कम उम्र में हार्ट अटैक",
+        "href": "/health/blog/heart-attack-under-40-india"
+      },
+      {
+        "label": "फ़ैट बर्नर और प्री-वर्कआउट के ख़तरे",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "एनाबॉलिक स्टेरॉयड के साइड इफ़ेक्ट",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "दिल की बीमारी का ख़तरा (अंग्रेज़ी)",
+        "href": "/health/diseases/cardiovascular-risk"
+      }
+    ],
+    "headings": [
+      "\"भाई, गैस है, ENO ले ले\"",
+      "हार्ट अटैक और कार्डियक अरेस्ट: दो अलग इमरजेंसी",
+      "कसरत में दिल की घटनाएँ कितनी आम हैं?",
+      "जवान भारतीय और दिल की बीमारी",
+      "जिम की वे आदतें जो दिल पर भारी पड़ती हैं",
+      "हैंड्स-ओनली CPR: पहले कुछ मिनट में क्या करें",
+      "जाँच: किसे शुरू करने से पहले डॉक्टर को दिखाना चाहिए",
+      "हर जिम में क्या होना चाहिए",
+      "जिम फ़्लोर पर सुने जाने वाले मिथक",
+      "आम सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "कैसे पता चले कि सीने का दर्द दिल का है या मांसपेशी का?",
+        "a": "अक्सर ख़ुद पता नहीं चलता। मेहनत से बढ़ने वाला, दबाव या भारीपन जैसा, बाँह, जबड़े या पीठ तक फैलने वाला, या साँस फूलने और पसीने के साथ दर्द तुरंत डॉक्टरी जाँच माँगता है। जो दर्द सिर्फ़ एक जगह दबाने या किसी ख़ास हरकत पर हो, वह मांसपेशी का ज़्यादा लगता है, पर शक हो तो जाँच करवाएँ।"
+      },
+      {
+        "q": "हार्ट अटैक लगे तो क्या कोई गोली ले लूँ?",
+        "a": "अपनी मर्ज़ी से कोई दवा न लें। 112 या 108 पर फ़ोन करें, लक्षण बताएँ, और ऑपरेटर या डॉक्टर की बात मानें। दिल की कुछ दवाएँ कुछ लोगों के लिए नुक़सानदेह होती हैं।"
+      },
+      {
+        "q": "क्या जिम जॉइन करने से पहले TMT या ECG ज़रूरी है?",
+        "a": "ज़्यादातर स्वस्थ लोगों के लिए नहीं। लक्षण, दिल, किडनी या मेटाबॉलिक बीमारी, या परिवार में जल्दी दिल की बीमारी या अचानक मौत हो, तो पहले डॉक्टर को दिखाएँ। कौन-सा टेस्ट चाहिए, डॉक्टर तय करेंगे।"
+      },
+      {
+        "q": "अगर इंसान को कार्डियक अरेस्ट न हुआ हो और मैं CPR कर दूँ तो?",
+        "a": "अगर वह जवाब नहीं दे रहा और ठीक से साँस नहीं ले रहा, तो CPR शुरू करें। कार्डियक अरेस्ट में CPR में देरी का नुक़सान कहीं ज़्यादा है। AED तभी झटका देता है जब उसे ऐसी धड़कन मिले जिसमें झटके की ज़रूरत हो।"
+      },
+      {
+        "q": "स्वस्थ हूँ तो क्या प्री-वर्कआउट ठीक है?",
+        "a": "कई स्वस्थ लोग मध्यम कैफ़ीन बिना दिक़्क़त लेते हैं, पर कुछ प्रोडक्ट में बहुत ज़्यादा स्टिमुलेंट या बिना बताए तत्व होते हैं। धड़कन, सीने में तकलीफ़ या चक्कर हो तो बंद करें। दिल की बीमारी या हाई BP हो तो पहले डॉक्टर से पूछें।"
+      }
+    ],
+    "words": 2773,
+    "ads": 1,
+    "video": "long-heart-gym-myths-20"
   },
   {
     "lang": "hi",
@@ -2151,7 +4409,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 1992,
-    "ads": 2
+    "ads": 2,
+    "video": null
   },
   {
     "lang": "hi",
@@ -2256,7 +4515,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2070,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "hi",
@@ -2371,7 +4631,445 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2058,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "peptides-bpc-157-gym-injections-truth",
+    "title": "Gym Peptides (BPC-157, TB-500, MK-677, Growth Hormone Boosters): What the Evidence Really Says",
+    "hindiTitle": "जिम पेप्टाइड्स (BPC-157, TB-500, MK-677, ग्रोथ हॉर्मोन बूस्टर): सबूत असल में क्या कहते हैं",
+    "description": "BPC-157, TB-500 और MK-677 को जिम में \"हीलिंग\" और \"ग्रोथ\" शॉट बताकर बेचा जाता है। रिसर्च क्या कहती है, खेल में ये बैन क्यों हैं, और असली ख़तरे।",
+    "category": "सप्लीमेंट और जिम ड्रग्स",
+    "tags": [
+      "पेप्टाइड्स",
+      "BPC-157",
+      "MK-677",
+      "जिम इंजेक्शन",
+      "supplement myths hindi",
+      "fact check hinglish"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/peptides-bpc-157-gym-injections-truth/hero.svg",
+    "heroAlt": "चेतावनी निशान वाली बिना लेबल की शीशी, डम्बल, दिल और खाने की थाली का चित्र: जिम पेप्टाइड्स के ख़तरे अनजाने हैं, जबकि खाना और ट्रेनिंग आज़माए हुए हैं",
+    "sources": [
+      {
+        "title": "Emerging Use of BPC-157 in Orthopaedic Sports Medicine: A Systematic Review",
+        "publisher": "HSS Journal",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12313605/"
+      },
+      {
+        "title": "Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks",
+        "publisher": "US Food and Drug Administration",
+        "year": "2026",
+        "url": "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+      },
+      {
+        "title": "FDA to Remove 12 Popular Peptides from the Category 2 \"Do Not Compound\" List",
+        "publisher": "Frier Levitt",
+        "year": "2026",
+        "url": "https://www.frierlevitt.com/articles/fda-peptides-do-not-compound-list-update-2026/"
+      },
+      {
+        "title": "FDA Panel Backs 6 Peptides for Compounding",
+        "publisher": "AJMC",
+        "year": "2026",
+        "url": "https://www.ajmc.com/view/fda-panel-backs-6-peptides-for-compounding"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2025",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      },
+      {
+        "title": "Use of Growth Hormone, IGF-I, and Insulin for Anabolic Purpose",
+        "publisher": "Molecular and Cellular Endocrinology",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5723243/"
+      },
+      {
+        "title": "Effects of an Oral Ghrelin Mimetic on Body Composition and Clinical Outcomes in Healthy Older Adults",
+        "publisher": "Annals of Internal Medicine",
+        "year": "2008",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18981485/"
+      },
+      {
+        "title": "MK-0677 (ibutamoren mesylate) for the treatment of patients recovering from hip fracture",
+        "publisher": "Archives of Gerontology and Geriatrics",
+        "year": "2011",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21067829/"
+      },
+      {
+        "title": "Effects of Collagen Supplements on Skin Aging: A Systematic Review and Meta-Analysis",
+        "publisher": "The American Journal of Medicine",
+        "year": "2025",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40324552/"
+      },
+      {
+        "title": "Efficacy and safety of collagen derivatives for osteoarthritis",
+        "publisher": "Osteoarthritis and Cartilage",
+        "year": "2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38218227/"
+      }
+    ],
+    "related": [
+      {
+        "label": "एनाबॉलिक स्टेरॉयड के साइड इफ़ेक्ट",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "SARMs और मिलावटी जिम सप्लीमेंट",
+        "href": "/health/blog/sarms-spiked-gym-supplements-india"
+      },
+      {
+        "label": "फ़ैट बर्नर और प्री-वर्कआउट के ख़तरे",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "क्रिएटिन गाइड",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "प्रोटीन ज़रूरत कैलकुलेटर",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      }
+    ],
+    "headings": [
+      "जिम में अचानक पेप्टाइड की बातें क्यों",
+      "पेप्टाइड होता क्या है",
+      "मंज़ूरशुदा दवाएँ बनाम \"रिसर्च पेप्टाइड\"",
+      "BPC-157: \"हीलिंग पेप्टाइड\"",
+      "TB-500",
+      "ग्रोथ हॉर्मोन और \"GH बूस्टर\"",
+      "MK-677: \"GH की गोली\", जो पेप्टाइड नहीं है",
+      "\"रिसर्च यूज़ ओनली\" शीशी में क्या हो सकता है",
+      "कोलेजन पेप्टाइड: दुकान पर मिलने वाला \"पेप्टाइड\"",
+      "चेंजिंग रूम के मिथक",
+      "अगर आप खेलते हैं",
+      "आम सवाल",
+      "निचोड़"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या भारत में BPC-157 क़ानूनी है?",
+        "a": "हमें भारत या कहीं और BPC-157 की दवा के रूप में कोई मंज़ूरी नहीं मिली। WADA इसे ऐसे पदार्थों में रखती है जिन्हें किसी सरकार ने इंसानी इलाज के लिए मंज़ूर नहीं किया। \"रिसर्च यूज़\" लिखकर बेचने से यह सुरक्षित नहीं हो जाता।"
+      },
+      {
+        "q": "क्या BPC-157 या TB-500 से टेंडन की चोट जल्दी ठीक होगी?",
+        "a": "इसका अच्छा इंसानी सबूत नहीं है। लगभग सारी रिसर्च जानवरों पर है। डॉक्टर की जाँच और फ़िज़ियो का रिहैब प्लान ही सबूत वाला रास्ता है।"
+      },
+      {
+        "q": "MK-677 गोली है, तो क्या स्टेरॉयड से सुरक्षित है?",
+        "a": "मुँह से लेने से कोई चीज़ सुरक्षित नहीं हो जाती। दो साल के ट्रायल में इससे शुगर और भूख बढ़ी, और दूसरा ट्रायल हार्ट फ़ेलियर के संकेत पर रुका। यह मंज़ूर दवा नहीं है और खेल में बैन है।"
+      },
+      {
+        "q": "क्या कोलेजन पेप्टाइड और जिम पेप्टाइड एक ही हैं?",
+        "a": "नहीं। कोलेजन खाने का सप्लीमेंट है जो दूसरे प्रोटीन की तरह पचता है। आर्थराइटिस के दर्द में इससे थोड़ा फ़ायदा दिखा है। BPC-157 जैसे जिम पेप्टाइड बिना मंज़ूरी की दवाएँ हैं जिन्हें इंजेक्ट किया जाता है।"
+      },
+      {
+        "q": "क्या पेप्टाइड डोप टेस्ट में पकड़े जाते हैं?",
+        "a": "पकड़े जा सकते हैं। WADA इन सबको हमेशा बैन करती है, NADA India यही सूची मानती है, और सैंपल रखकर बाद में दोबारा जाँचे जा सकते हैं।"
+      }
+    ],
+    "words": 2724,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
+  },
+  {
+    "lang": "hi",
+    "slug": "protein-requirement-calculator-india",
+    "title": "How Much Protein Do You Need? An Indian Guide (With a Simple Calculator)",
+    "hindiTitle": "आपको कितना प्रोटीन चाहिए? भारतीय गाइड (आसान कैलकुलेटर के साथ)",
+    "description": "रोज़ कितना प्रोटीन चाहिए, ICMR-NIN और स्पोर्ट्स साइंस के हिसाब से। आसान हिसाब, भारतीय खाने में प्रोटीन, और किडनी का सच।",
+    "category": "फ़िटनेस और स्वस्थ बुढ़ापा",
+    "tags": [
+      "kitna protein chahiye",
+      "protein myths hindi",
+      "protein kidney sach",
+      "veg protein muscle",
+      "protein powder zaroori",
+      "प्रोटीन"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/protein-requirement-calculator-india/hero.svg",
+    "heroAlt": "दाल की कटोरी, थाली, डम्बल और वज़न मशीन का चित्र: आपका प्रोटीन आपके वज़न और मेहनत पर निर्भर करता है",
+    "sources": [
+      {
+        "title": "Nutrient Requirements for Indians 2020, brief note (protein EAR and RDA)",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2020",
+        "url": "https://www.nin.res.in/rdabook/brief_note.pdf"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2024",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html"
+      },
+      {
+        "title": "ICMR calls for avoiding protein supplements, issues dietary guidelines for Indians",
+        "publisher": "ThePrint",
+        "year": "2024",
+        "url": "https://theprint.in/india/icmr-calls-for-avoiding-protein-supplements-issues-dietary-guidelines-for-indians/2077477/"
+      },
+      {
+        "title": "Indian Food Composition Tables 2017",
+        "publisher": "ICMR-National Institute of Nutrition",
+        "year": "2017",
+        "url": "https://nin.res.in/ebooks/IFCT2017.pdf"
+      },
+      {
+        "title": "International Society of Sports Nutrition Position Stand, protein and exercise",
+        "publisher": "Journal of the International Society of Sports Nutrition",
+        "year": "2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/"
+      },
+      {
+        "title": "Protein supplementation and resistance training-induced gains in muscle mass and strength, a systematic review and meta-analysis",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2018",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5867436/"
+      },
+      {
+        "title": "Evidence-based recommendations for optimal dietary protein intake in older people (PROT-AGE)",
+        "publisher": "Journal of the American Medical Directors Association",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23867520/"
+      },
+      {
+        "title": "Changes in kidney function do not differ between healthy adults consuming higher- compared with lower- or normal-protein diets",
+        "publisher": "Journal of Nutrition",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30383278/"
+      },
+      {
+        "title": "Key takeaways from the KDIGO 2024 CKD guideline for people living with CKD",
+        "publisher": "KDIGO",
+        "year": "2024",
+        "url": "https://kdigo.org/wp-content/uploads/2025/01/Key-Takeaways_KDIGO-2024-CKD-Guideline_People-Living-with-CKD.pdf"
+      },
+      {
+        "title": "Citizens Protein Project, analysis of popular protein supplements sold in the Indian market",
+        "publisher": "Medicine (Baltimore)",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10994440/"
+      }
+    ],
+    "related": [
+      {
+        "label": "हाई-प्रोटीन शाकाहारी गाइड (अंग्रेज़ी)",
+        "href": "/health/blog/high-protein-vegetarian-india-guide"
+      },
+      {
+        "label": "40 के बाद मांसपेशियाँ",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "कैलोरी और मैक्रो कैलकुलेटर (अंग्रेज़ी)",
+        "href": "/health/health-calculators/calorie-calculator"
+      },
+      {
+        "label": "जिम का पहला महीना",
+        "href": "/health/blog/beginner-gym-guide-india"
+      }
+    ],
+    "headings": [
+      "प्रोटीन को लेकर इतना शोर क्यों",
+      "ICMR-NIN असल में क्या कहता है",
+      "उम्र, लक्ष्य और मेहनत के हिसाब से ज़रूरत",
+      "आपका आसान प्रोटीन कैलकुलेटर",
+      "आम भारतीय खाने में कितना प्रोटीन",
+      "प्रोटीन को खानों में बाँटना",
+      "किडनी का सवाल: स्वस्थ किडनी बनाम किडनी रोग",
+      "प्रोटीन पाउडर: काम का, पर ज़रूरी नहीं",
+      "जिम और घर में सुनी जाने वाली बातें और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [
+      "ICMR-NIN: स्वस्थ वयस्क के लिए 0.83 ग्राम प्रति किलो रोज़, ज़्यादा अनाज वाली डाइट में लगभग 1 ग्राम।",
+      "वेट ट्रेनिंग में 1.4 से 2.0 ग्राम प्रति किलो, और मसल का फ़ायदा लगभग 1.6 पर रुकता है।",
+      "अपने वज़न को सही आँकड़े से गुणा करें और तीन-चार खानों में बाँटें।",
+      "स्वस्थ किडनी ने ट्रायल में ज़्यादा प्रोटीन झेला; किडनी रोग में डॉक्टर का आँकड़ा।",
+      "प्रोटीन पाउडर ज़रूरी नहीं, और भारत की जाँच में कई लेबल ग़लत निकले।"
+    ],
+    "faqs": [
+      {
+        "q": "भारत में रोज़ कितना प्रोटीन चाहिए?",
+        "a": "स्वस्थ वयस्क के लिए ICMR-NIN 0.83 ग्राम प्रति किलो बताता है, यानी 65 किलो के आदमी के लिए लगभग 54 ग्राम और 55 किलो की महिला के लिए लगभग 46 ग्राम। ज़्यादा अनाज वाली डाइट में लगभग 1 ग्राम प्रति किलो रखें। वेट ट्रेनिंग करते हैं तो 1.4 से 2.0 ग्राम प्रति किलो।"
+      },
+      {
+        "q": "क्या 2 ग्राम प्रति किलो सुरक्षित है?",
+        "a": "सामान्य किडनी वाले स्वस्थ लोगों के ट्रायल में नुक़सान नहीं दिखा, हालाँकि ज़्यादातर ट्रायल छोटे थे। मसल का फ़ायदा 1.6 ग्राम के पास रुक जाता है। डायबिटीज़, हाई BP या किडनी की दिक़्क़त हो तो पहले डॉक्टर से पूछें।"
+      },
+      {
+        "q": "क्या अंडे या मांस के बिना पूरा प्रोटीन मिल सकता है?",
+        "a": "हाँ। गाढ़ी दाल, चना, राजमा, सोया, पनीर, दही, दूध और मूँगफली से, ख़ासकर अनाज-दाल साथ खाने पर। हिस्सा थोड़ा बड़ा रखना पड़ सकता है।"
+      },
+      {
+        "q": "क्या मसल बनाने के लिए व्हे प्रोटीन लेना चाहिए?",
+        "a": "ज़रूरी नहीं। लक्ष्य पूरा न हो पाए तो सुविधा के लिए ले सकते हैं। अधिकृत विक्रेता से लें, FSSAI लेबलिंग देखें और इसे दिन के कुल प्रोटीन में गिनें।"
+      },
+      {
+        "q": "क्या बुज़ुर्गों को ज़्यादा प्रोटीन चाहिए?",
+        "a": "हाँ। PROT-AGE समूह 65 से ऊपर वालों के लिए कम से कम 1.0 से 1.2 ग्राम प्रति किलो और सक्रिय लोगों के लिए 1.2 ग्राम या ज़्यादा कहता है। गंभीर किडनी रोग वालों को डॉक्टर की सलाह चाहिए।"
+      }
+    ],
+    "words": 2873,
+    "ads": 2,
+    "video": "long-protein-myths-16-v2"
+  },
+  {
+    "lang": "hi",
+    "slug": "sarms-spiked-gym-supplements-india",
+    "title": "SARMs and Spiked 'Natural' Supplements: The Hidden Steroid Risk in Gym Products",
+    "hindiTitle": "SARMs और मिलावटी 'नेचुरल' सप्लीमेंट: जिम प्रोडक्ट में छिपा स्टेरॉयड का ख़तरा",
+    "description": "SARMs असल में क्या हैं, \"नेचुरल\" जिम सप्लीमेंट में स्टेरॉयड कैसे छिपे मिलते हैं, FSSAI और WADA क्या कहते हैं, और सुरक्षित प्रोडक्ट कैसे चुनें।",
+    "category": "सप्लीमेंट और जिम ड्रग्स",
+    "tags": [
+      "SARMs सच",
+      "sarms sach",
+      "steroid side effects hindi",
+      "स्टेरॉयड मिथक",
+      "नेचुरल बनाम स्टेरॉयड",
+      "सप्लीमेंट सुरक्षा",
+      "FSSAI"
+    ],
+    "readingTime": 10,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/sarms-spiked-gym-supplements-india/hero.svg",
+    "heroAlt": "हरे-जैतूनी पृष्ठभूमि पर सप्लीमेंट लेबल, गोली, सही का निशान और चेतावनी का चित्र: जिम प्रोडक्ट में दवा छिपी हो सकती है",
+    "sources": [
+      {
+        "title": "Chemical composition and labeling of substances marketed as selective androgen receptor modulators and sold via the internet",
+        "publisher": "JAMA (Van Wagoner et al.)",
+        "year": "2017",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29183075/"
+      },
+      {
+        "title": "Certain bodybuilding products put consumers at risk for heart attack, stroke, serious liver damage and more",
+        "publisher": "US Food and Drug Administration",
+        "year": "2025",
+        "url": "https://www.fda.gov/drugs/fraudulent-products/certain-bodybuilding-products-put-consumers-risk-heart-attack-stroke-serious-liver-damage-and-more"
+      },
+      {
+        "title": "The safety, pharmacokinetics, and effects of LGD-4033, a nonsteroidal oral SARM, in healthy young men",
+        "publisher": "Journals of Gerontology Series A (Basaria et al.)",
+        "year": "2013",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22459616/"
+      },
+      {
+        "title": "Liver injury after selective androgen receptor modulator intake: a case report and review of the literature",
+        "publisher": "Zeitschrift für Gastroenterologie",
+        "year": "2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37871633/"
+      },
+      {
+        "title": "Idiosyncratic drug-induced liver injury related to use of the SARM RAD140: a case report",
+        "publisher": "Journal of Medical Case Reports",
+        "year": "2023",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36978171/"
+      },
+      {
+        "title": "World Anti-Doping Code International Standard: Prohibited List 2026",
+        "publisher": "World Anti-Doping Agency",
+        "year": "2026",
+        "url": "https://www.wada-ama.org/en/prohibited-list"
+      },
+      {
+        "title": "Analysis of non-hormonal nutritional supplements for anabolic-androgenic steroids: results of an international study",
+        "publisher": "International Journal of Sports Medicine (Geyer et al.)",
+        "year": "2004",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14986195/"
+      },
+      {
+        "title": "Unapproved pharmaceutical ingredients included in dietary supplements associated with FDA warnings",
+        "publisher": "JAMA Network Open (Tucker et al.)",
+        "year": "2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30646238/"
+      },
+      {
+        "title": "Guidance document on food for sportspersons",
+        "publisher": "Food Safety and Standards Authority of India",
+        "year": "2019",
+        "url": "https://www.fssai.gov.in/upload/uploadfiles/files/Guidance_Document_Sportsperson_10_07_2019.pdf"
+      },
+      {
+        "title": "NADA intelligence tip leads to Najafgarh raid, banned steroids seized",
+        "publisher": "Outlook India",
+        "year": "2026",
+        "url": "https://www.outlookindia.com/sports/others/nada-intelligence-and-investigations-unit-tip-najafgarh-raid-update"
+      }
+    ],
+    "related": [
+      {
+        "label": "एनाबॉलिक स्टेरॉयड का असली असर",
+        "href": "/health/blog/anabolic-steroids-side-effects-india"
+      },
+      {
+        "label": "फ़ैट बर्नर और प्री-वर्कआउट के ख़तरे",
+        "href": "/health/blog/fat-burners-pre-workout-risks-india"
+      },
+      {
+        "label": "क्रिएटिन गाइड",
+        "href": "/health/blog/creatine-guide-india"
+      },
+      {
+        "label": "पुरुषों की सेहत (अंग्रेज़ी)",
+        "href": "/health/mens-health"
+      }
+    ],
+    "headings": [
+      "SARMs क्या हैं",
+      "नौजवान इनके झाँसे में क्यों आते हैं",
+      "लिवर इंजरी के मामले",
+      "आधी बोतलों में वह नहीं था जो लेबल पर लिखा था",
+      "मिलावटी \"नेचुरल\" सप्लीमेंट: वह ख़तरा जिसे लोग भूल जाते हैं",
+      "नियम क्या कहते हैं",
+      "अगर आप पहले ही कुछ ले चुके हैं",
+      "जिम में सुनी जाने वाली बातें और सच",
+      "अक्सर पूछे जाने वाले सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या भारत में SARMs क़ानूनी हैं?",
+        "a": "SARMs भारत में या कहीं और दवा के रूप में मंज़ूर नहीं हैं, और FSSAI नियम खाद्य पदार्थों या सप्लीमेंट में हॉर्मोन जैसी चीज़ों की इजाज़त नहीं देते। NADA इंडिया जो WADA सूची मानती है, उसमें भी ये बैन हैं। इन्हें बिना मंज़ूरी की दवा ही मानें।"
+      },
+      {
+        "q": "क्या ऑस्टारिन बाक़ी SARMs से सुरक्षित है?",
+        "a": "ऐसा कोई अच्छा सबूत नहीं कि जिम के लिए कोई भी SARM सुरक्षित है। ऑस्टारिन से जुड़ा एक गंभीर लिवर इंजरी का केस छपा है जिसमें ठीक होने में महीनों लगे।"
+      },
+      {
+        "q": "क्या आम व्हे प्रोटीन से डोप टेस्ट फ़ेल हो सकता है?",
+        "a": "अगर प्रोडक्ट मिलावटी हो तो हो सकता है, हालाँकि ज़्यादातर जाने-माने प्रोटीन ऐसे नहीं होते। टेस्ट होते हैं तो स्वतंत्र बैच टेस्टिंग वाले प्रोडक्ट लें और बिल व बैच नंबर रखें।"
+      },
+      {
+        "q": "मैंने कुछ हफ़्ते SARMs लिए और ठीक महसूस कर रहा हूँ। क्या फिर भी जाँच करवाऊँ?",
+        "a": "हाँ। लिवर पर ज़ोर और हॉर्मोन के बदलाव शुरुआत में हमेशा लक्षण नहीं देते। डॉक्टर लिवर, लिपिड और हॉर्मोन की जाँच से बता सकते हैं कि आगे देखने की ज़रूरत है या नहीं।"
+      }
+    ],
+    "words": 2142,
+    "ads": 0,
+    "video": "long-steroid-myths-19"
   },
   {
     "lang": "hi",
@@ -2488,7 +5186,154 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2162,
-    "ads": 2
+    "ads": 2,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "tirzepatide-mounjaro-india-guide",
+    "title": "Tirzepatide (Mounjaro) in India: Who It Suits, Side Effects, and How to Keep Your Muscle",
+    "hindiTitle": "भारत में टिर्ज़ेपाटाइड (Mounjaro): किसके लिए सही, साइड इफ़ेक्ट, और मांसपेशियाँ कैसे बचाएँ",
+    "description": "Mounjaro (टिर्ज़ेपाटाइड) मार्च 2025 में भारत आया। ट्रायल क्या कहते हैं, यह किसके लिए है, साइड इफ़ेक्ट, नक़ली दवा, और मांसपेशियाँ कैसे बचाएँ।",
+    "category": "वज़न और मेटाबॉलिज़्म",
+    "tags": [
+      "mounjaro hindi",
+      "ozempic hindi",
+      "glp 1 weight loss",
+      "weight loss injection fact check",
+      "टिर्ज़ेपाटाइड",
+      "मोटापा"
+    ],
+    "readingTime": 11,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/tirzepatide-mounjaro-india-guide/hero.svg",
+    "heroAlt": "हफ़्ते में एक बार लगने वाला इंजेक्शन पेन, वज़न तौलने की मशीन, डम्बल और प्रोटीन वाली भारतीय थाली: दवा खाने और ताक़त की कसरत के साथ ही सबसे अच्छा काम करती है",
+    "sources": [
+      {
+        "title": "Tirzepatide Once Weekly for the Treatment of Obesity (SURMOUNT-1)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2022",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2206038"
+      },
+      {
+        "title": "Tirzepatide versus Semaglutide Once Weekly in Patients with Type 2 Diabetes (SURPASS-2)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2021",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2107519"
+      },
+      {
+        "title": "Continued Treatment With Tirzepatide for Maintenance of Weight Reduction (SURMOUNT-4)",
+        "publisher": "JAMA",
+        "year": "2024",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10714284/"
+      },
+      {
+        "title": "Tirzepatide as Compared with Semaglutide for the Treatment of Obesity (SURMOUNT-5)",
+        "publisher": "New England Journal of Medicine",
+        "year": "2025",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2416394"
+      },
+      {
+        "title": "Body composition changes during weight reduction with tirzepatide in the SURMOUNT-1 study",
+        "publisher": "Diabetes, Obesity and Metabolism",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11965027/"
+      },
+      {
+        "title": "Zepbound (tirzepatide) prescribing information",
+        "publisher": "US Food and Drug Administration",
+        "year": "2024",
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/217806s013lbl.pdf"
+      },
+      {
+        "title": "Nutritional priorities to support GLP-1 therapy for obesity: a joint advisory",
+        "publisher": "Obesity Pillars",
+        "year": "2025",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12264624/"
+      },
+      {
+        "title": "Fat-busting drug Mounjaro launched in India, here's how much it will cost",
+        "publisher": "ThePrint",
+        "year": "2025",
+        "url": "https://theprint.in/health/fat-busting-drug-mounjaro-launched-in-india-heres-how-much-it-will-cost/2557079"
+      },
+      {
+        "title": "In battle for Indian anti-obesity market, Eli Lilly's pre-filled pen on one side, Novo Nordisk's on other",
+        "publisher": "ThePrint",
+        "year": "2025",
+        "url": "https://theprint.in/health/in-battle-for-indian-anti-obesity-market-eli-lillys-pre-filled-pen-on-one-side-novo-nordisks-on-other/2671483"
+      },
+      {
+        "title": "Counterfeit Mounjaro seizure in Gurugram raises fresh concerns over fake drugs market",
+        "publisher": "The Week",
+        "year": "2026",
+        "url": "https://www.theweek.in/news/health/2026/04/30/counterfeit-mounjaro-seizure-in-gurugram-raises-fresh-concerns-over-fake-drugs-market.html"
+      }
+    ],
+    "related": [
+      {
+        "label": "भारत में जेनेरिक सेमाग्लूटाइड",
+        "href": "/health/blog/generic-semaglutide-india-guide"
+      },
+      {
+        "label": "BMI कैलकुलेटर (अंग्रेज़ी)",
+        "href": "/health/health-calculators/bmi-calculator"
+      },
+      {
+        "label": "मोटापा: कारण और देखभाल (अंग्रेज़ी)",
+        "href": "/health/diseases/obesity"
+      },
+      {
+        "label": "टाइप 2 डायबिटीज़ (अंग्रेज़ी)",
+        "href": "/health/diseases/type-2-diabetes"
+      },
+      {
+        "label": "प्रोटीन ज़रूरत कैलकुलेटर",
+        "href": "/health/blog/protein-requirement-calculator-india"
+      }
+    ],
+    "headings": [
+      "टिर्ज़ेपाटाइड क्या है, आसान शब्दों में",
+      "भारत में Mounjaro: अब तक क्या हुआ",
+      "यह दवा किसके लिए है",
+      "ट्रायल ने असल में क्या दिखाया",
+      "साइड इफ़ेक्ट, बिना छिपाए",
+      "मांसपेशियाँ बचाना: सबसे ज़रूरी हिस्सा",
+      "सोशल मीडिया वाली नक़ली दवा: NCR में असली ख़तरा",
+      "सुने-सुनाए मिथक",
+      "आम सवाल",
+      "निचोड़"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या Mounjaro और Ozempic एक ही हैं?",
+        "a": "नहीं। Ozempic और Wegovy में सेमाग्लूटाइड है, जो एक हॉर्मोन (GLP-1) की नक़ल करता है। Mounjaro में टिर्ज़ेपाटाइड है, जो दो (GLP-1 और GIP) की नक़ल करता है। दोनों पर्चे की दवाएँ हैं और साइड इफ़ेक्ट मिलते-जुलते हैं।"
+      },
+      {
+        "q": "क्या दो-चार किलो घटाने के लिए बिना डॉक्टर के ले सकते हैं?",
+        "a": "नहीं। यह डायबिटीज़ और मोटापे की पर्चे वाली दवा है, जिसमें पैंक्रियाटाइटिस, पित्ताशय की बीमारी और पानी की कमी जैसे ख़तरे हैं। कुछ किलो के लिए प्रोटीन वाला खाना, कसरत और नींद ज़्यादा सुरक्षित और सस्ते हैं।"
+      },
+      {
+        "q": "क्या इससे मांसपेशी घटेगी?",
+        "a": "घटे वज़न में कुछ हिस्सा लीन मास होगा; एक स्टडी में लगभग एक-चौथाई। पूरा प्रोटीन और हफ़्ते में कम से कम तीन बार ताक़त की कसरत से ज़्यादा मांसपेशी बचती है।"
+      },
+      {
+        "q": "Mounjaro छोड़ने पर क्या होता है?",
+        "a": "SURMOUNT-4 में 36 हफ़्ते बाद प्लेसिबो पर गए लोगों का अगले साल 14% वज़न लौट आया। दवा छोड़ने की योजना डॉक्टर के साथ बनाएँ और आदतें जारी रखें।"
+      },
+      {
+        "q": "कैसे पता करें कि पेन असली है?",
+        "a": "सिर्फ़ पर्चे के साथ, ठंडे में रखने वाले लाइसेंस वाले केमिस्ट से लें। सही पैकिंग, बैच नंबर, एक्सपायरी और स्पेलिंग देखें। लिली के मुताबिक़ भारत में असली टिर्ज़ेपाटाइड सिर्फ़ Mounjaro और Yurpeak नाम से बिकता है।"
+      }
+    ],
+    "words": 2234,
+    "ads": 2,
+    "video": "long-ozempic-glp1-myths-15-v2"
   },
   {
     "lang": "hi",
@@ -2604,7 +5449,8 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2129,
-    "ads": 3
+    "ads": 3,
+    "video": null
   },
   {
     "lang": "hi",
@@ -2729,7 +5575,155 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2489,
-    "ads": 3
+    "ads": 3,
+    "video": null
+  },
+  {
+    "lang": "hi",
+    "slug": "women-weight-training-guide-india",
+    "title": "Weight Training for Women: Bulky Myths, Bones, PCOS, Periods and Pregnancy",
+    "hindiTitle": "महिलाओं के लिए वेट ट्रेनिंग: 'बल्की' होने का डर, हड्डियाँ, PCOS, पीरियड्स और प्रेग्नेंसी",
+    "description": "क्या वज़न उठाने से लड़कियाँ बल्की हो जाती हैं? मांसपेशी, हड्डियाँ, PCOS, पीरियड्स, प्रेग्नेंसी और डिलीवरी के बाद पर रिसर्च क्या कहती है, और 3 दिन का प्लान।",
+    "category": "फ़िटनेस और स्वस्थ बुढ़ापा",
+    "tags": [
+      "women weight training hindi",
+      "ladies gym myths",
+      "bulky myth",
+      "weight training for women",
+      "pregnancy exercise sach",
+      "महिलाओं के लिए वेट ट्रेनिंग"
+    ],
+    "readingTime": 12,
+    "publishedAt": "2026-11-19",
+    "lastReviewed": "2026-11-19",
+    "author": "रॉयल फ़िटनेस क्लब हेल्थ डेस्क",
+    "reviewedBy": "डॉक्टर की समीक्षा बाकी",
+    "reviewStatus": "pending-medical-review",
+    "heroImage": "/health/posts/women-weight-training-guide-india/hero.svg",
+    "heroAlt": "डम्बल, दिल, बच्चे और पत्ती का चित्र: ज़िंदगी के हर दौर में महिलाओं के लिए ताक़त की कसरत",
+    "sources": [
+      {
+        "title": "Sex Differences in Resistance Training: A Systematic Review and Meta-Analysis",
+        "publisher": "Journal of Strength and Conditioning Research",
+        "year": "2020",
+        "url": "https://doi.org/10.1519/JSC.0000000000003521"
+      },
+      {
+        "title": "High-Intensity Resistance and Impact Training Improves Bone Mineral Density and Physical Function in Postmenopausal Women With Osteopenia and Osteoporosis (LIFTMOR)",
+        "publisher": "Journal of Bone and Mineral Research",
+        "year": "2018",
+        "url": "https://doi.org/10.1002/jbmr.3284"
+      },
+      {
+        "title": "Burden of Osteopenia and Osteoporosis Among Postmenopausal Women in India: A Systematic Review and Meta-Analysis",
+        "publisher": "Journal of Mid-life Health",
+        "year": "2022",
+        "url": "https://doi.org/10.4103/jmh.jmh_207_21"
+      },
+      {
+        "title": "Recommendations From the 2023 International Evidence-based Guideline for the Assessment and Management of Polycystic Ovary Syndrome",
+        "publisher": "Journal of Clinical Endocrinology and Metabolism",
+        "year": "2023",
+        "url": "https://doi.org/10.1210/clinem/dgad463"
+      },
+      {
+        "title": "The Effects of Menstrual Cycle Phase on Exercise Performance in Eumenorrheic Women: A Systematic Review and Meta-Analysis",
+        "publisher": "Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1007/s40279-020-01319-3"
+      },
+      {
+        "title": "Current evidence shows no influence of women's menstrual cycle phase on acute strength performance or adaptations to resistance exercise training",
+        "publisher": "Frontiers in Sports and Active Living",
+        "year": "2023",
+        "url": "https://doi.org/10.3389/fspor.2023.1054542"
+      },
+      {
+        "title": "Physical Activity and Exercise During Pregnancy and the Postpartum Period (Committee Opinion No. 804)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2020",
+        "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2020/04/physical-activity-and-exercise-during-pregnancy-and-the-postpartum-period"
+      },
+      {
+        "title": "Exercise During Pregnancy (patient FAQ)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2024",
+        "url": "https://www.acog.org/womens-health/faqs/exercise-during-pregnancy"
+      },
+      {
+        "title": "Exercise After Pregnancy (patient FAQ)",
+        "publisher": "American College of Obstetricians and Gynecologists",
+        "year": "2022",
+        "url": "https://www.acog.org/womens-health/faqs/exercise-after-pregnancy"
+      },
+      {
+        "title": "World Health Organization 2020 guidelines on physical activity and sedentary behaviour",
+        "publisher": "British Journal of Sports Medicine",
+        "year": "2020",
+        "url": "https://doi.org/10.1136/bjsports-2020-102955"
+      }
+    ],
+    "related": [
+      {
+        "label": "PCOS: लक्षण और देखभाल (अंग्रेज़ी)",
+        "href": "/health/diseases/pcos"
+      },
+      {
+        "label": "ऑस्टियोपोरोसिस (अंग्रेज़ी)",
+        "href": "/health/diseases/osteoporosis"
+      },
+      {
+        "label": "40 के बाद मांसपेशियाँ",
+        "href": "/health/blog/muscle-after-40-sarcopenia-india"
+      },
+      {
+        "label": "जिम शुरू करने की गाइड",
+        "href": "/health/blog/beginner-gym-guide-india"
+      },
+      {
+        "label": "महिला स्वास्थ्य (अंग्रेज़ी)",
+        "href": "/health/womens-health"
+      }
+    ],
+    "headings": [
+      "ज़्यादातर भारतीय महिलाएँ वेट सेक्शन से दूर क्यों रहती हैं",
+      "डर नंबर 1: \"वज़न उठाऊँगी तो बल्की हो जाऊँगी\"",
+      "हड्डियाँ: 20 और 30 की उम्र में शुरू करने की असली वजह",
+      "PCOS और इंसुलिन रेज़िस्टेंस: कसरत इलाज का हिस्सा है",
+      "पीरियड्स: क्या फ़ेज़ के हिसाब से ट्रेनिंग बदलें?",
+      "प्रेग्नेंसी: क्या सुरक्षित है, किससे बचें",
+      "डिलीवरी के बाद: धीरे-धीरे वापसी",
+      "शुरुआत के लिए 3 दिन का प्लान",
+      "चेंजिंग रूम में सुने जाने वाले मिथक",
+      "आम सवाल",
+      "आख़िरी बात"
+    ],
+    "takeaways": [],
+    "faqs": [
+      {
+        "q": "क्या वज़न उठाने से मेरा \"फ़ेमिनिन\" शेप चला जाएगा?",
+        "a": "ज़्यादातर महिलाओं को उल्टा अनुभव होता है। ताक़त की कसरत कूल्हे, कंधे और पीठ को आकार देती है, और अच्छे खाने के साथ कमर की चर्बी घटाने में मदद करती है।"
+      },
+      {
+        "q": "मुझे PCOS है पर वज़न ज़्यादा नहीं। फिर भी वज़न उठाऊँ?",
+        "a": "हाँ। 2023 की गाइडलाइन PCOS वाली हर महिला के लिए, वज़न कुछ भी हो, हफ़्ते में 2 दिन ताक़त की कसरत समेत गतिविधि की सलाह देती है। दुबली महिलाओं में भी इंसुलिन रेज़िस्टेंस हो सकता है।"
+      },
+      {
+        "q": "क्या प्रेग्नेंसी में पहली बार वेट ट्रेनिंग शुरू कर सकती हूँ?",
+        "a": "अगर गायनेकोलॉजिस्ट कहें कि कोई जटिलता नहीं है, तो कई महिलाएँ हल्की ताक़त की कसरत शुरू कर सकती हैं। हल्का वज़न, छोटे सेशन, आराम से साँस, और देर तक पीठ के बल लेटने या गिरने के ख़तरे वाली चीज़ों से बचें।"
+      },
+      {
+        "q": "सिज़ेरियन के कितने दिन बाद वज़न उठा सकती हूँ?",
+        "a": "यह आपकी रिकवरी पर निर्भर है, इसलिए गायनेकोलॉजिस्ट से पूछें। ज़्यादातर महिलाएँ टहलने और हल्की पेट व पेल्विक फ़्लोर की कसरत से शुरू करती हैं, और डॉक्टर की हाँ के बाद धीरे-धीरे वज़न पर आती हैं।"
+      },
+      {
+        "q": "50 के बाद शुरू करना देर तो नहीं?",
+        "a": "नहीं। LIFTMOR की महिलाओं की औसत उम्र 65 थी और 8 महीने में उनकी बोन डेंसिटी और ताक़त बढ़ी। कोई बीमारी हो तो पहले डॉक्टर से जाँच करवाएँ, और कोच के साथ सीखें।"
+      }
+    ],
+    "words": 3077,
+    "ads": 2,
+    "video": "long-women-weights-myths-17"
   },
   {
     "lang": "hi",
@@ -2839,6 +5833,7 @@ export const POSTS: PostMeta[] = [
       }
     ],
     "words": 2251,
-    "ads": 3
+    "ads": 3,
+    "video": null
   }
 ];
