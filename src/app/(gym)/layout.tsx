@@ -9,6 +9,7 @@ import { SITE_URL } from "@/lib/site";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
 import { MetaPixel } from "@/components/ui/MetaPixel";
 import { GoogleAnalytics } from "@/components/ui/GoogleAnalytics";
+import { ContactClickTracker } from "@/components/ui/ContactClickTracker";
 import { AttributionTracker } from "@/components/ui/AttributionTracker";
 
 // Self-hosted variable fonts (SIL OFL), preloaded with a size-matched fallback; builds never need to reach Google Fonts.
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <VercelAnalytics />
         <GoogleAnalytics />
         <MetaPixel />
+        <ContactClickTracker />
         <AttributionTracker />
       </body>
     </html>

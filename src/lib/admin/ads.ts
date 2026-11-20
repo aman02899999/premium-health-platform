@@ -1,6 +1,7 @@
 import "server-only";
 import { pool } from "@/health/db";
 import { todayIST } from "@/lib/growth/dates";
+import { GA_ID, isValidGaId } from "@/lib/ga";
 import { adSlug, adSource, isPlatform, isSlug, parseRupees, AD_PAGES, type Platform } from "./ads-core";
 
 // Every paid order with its attribution (shop totals are whole rupees).
@@ -118,12 +119,27 @@ export async function adLeadSource(slug: string | null): Promise<string | null> 
 
 /** What is and isn't connected, so the page says plainly why a number may be missing. */
 export function adsSetup(): { key: string; label: string; on: boolean; why: string }[] {
+  // The site runs on Google Cloud Run: settings go in the APP_ENV GitHub secret (one NAME=value
+  // per line), then a redeploy. NEXT_PUBLIC_* values are baked in at build time, so they need it.
+  const where = "Add it as a new line in GitHub → the repository → Settings → Secrets and variables → Actions → APP_ENV, then re-run the “Deploy to Cloud Run” workflow.";
   return [
+    {
+      key: "ga4",
+      label: "Google Analytics 4",
+      on: isValidGaId(GA_ID),
+      why: `Counts visits, call and WhatsApp taps by campaign. Set NEXT_PUBLIC_GA_ID=G-… (Google Analytics → Admin → Data streams). ${where}`,
+    },
+    {
+      key: "pixel",
+      label: "Meta Pixel",
+      on: /^\d{5,20}$/.test(process.env.NEXT_PUBLIC_META_PIXEL_ID ?? ""),
+      why: `Lets Meta see page views, call and WhatsApp taps, leads and purchases from your ads. Set NEXT_PUBLIC_META_PIXEL_ID=<the number> (Events Manager → Data sources → your dataset). ${where}`,
+    },
     {
       key: "capi",
       label: "Meta Conversions API",
       on: !!process.env.META_CAPI_TOKEN,
-      why: "Sends leads and purchases to Meta so its ads optimise for real customers. Add META_CAPI_TOKEN (Events Manager → your pixel → Settings → Generate access token) in Vercel.",
+      why: `Sends leads and purchases to Meta from the server, so ad results still count when a browser blocks the pixel. Set META_CAPI_TOKEN (Events Manager → your dataset → Settings → Generate access token). Never paste it in a chat. ${where}`,
     },
   ];
 }
