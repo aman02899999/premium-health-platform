@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { AlertTriangle, ArrowLeft, Check, Copy, Download, Megaphone, Pause, Play, TrendingUp } from "lucide-react";
 import { adLink, adMetrics, adVerdict, whatsappAdText, type Platform } from "@/lib/admin/ads-core";
+import { CREATIVE_SIZES, type Creative, type CreativeSize } from "@/lib/ads/creatives";
 
 type Ad = { id: string; name: string; platform: Platform; slug: string; landing: string; startOn: string; endOn: string | null; spendPaise: number; notes: string; active: boolean; leads: number; orders: number; netPaise: number };
 type Data = {
@@ -12,6 +14,7 @@ type Data = {
   pages: { path: string; label: string }[];
   segments: { id: string; label: string }[];
   siteUrl: string;
+  creatives: Creative[];
 };
 
 const card = "rounded-2xl bg-white/[.04] p-4 ring-1 ring-white/10 sm:p-5";
@@ -40,6 +43,41 @@ function CopyButton({ text, label }: { text: string; label: string }) {
     >
       {done ? <Check className="h-3.5 w-3.5 text-emerald-300" /> : <Copy className="h-3.5 w-3.5" />} {done ? "Copied" : label}
     </button>
+  );
+}
+
+/** Ad images drawn by the site from today's plans and offers. Offer ones vanish after the offer ends. */
+function Creatives({ list }: { list: Creative[] }) {
+  return (
+    <section className={`${card} space-y-4`} aria-labelledby="creatives-h">
+      <div>
+        <h2 id="creatives-h" className="font-display text-lg">Ad creatives (made from today&apos;s prices)</h2>
+        <p className="text-xs text-white/50">
+          Drawn by the website from the plans and offers saved in admin, so they always match what the join page charges. Offer images disappear the day after the offer ends. Download, then upload them in Ads Manager with the
+          text below.
+        </p>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {list.map((c) => (
+          <article key={c.id} className="space-y-2 rounded-xl bg-white/[.03] p-3 ring-1 ring-white/10">
+            <Image unoptimized src={`/api/ads/creative/${c.id}-feed.jpg`} alt={`${c.name} ad preview`} loading="lazy" width={1080} height={1350} className="h-auto w-full rounded-lg" />
+            <h3 className="text-sm font-semibold">{c.name}</h3>
+            <p className="text-xs text-white/50">{c.validUntil ? `True until ${day(c.validUntil)}` : "Evergreen"} · opens {c.landing}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {(Object.keys(CREATIVE_SIZES) as CreativeSize[]).map((s) => (
+                <a key={s} href={`/api/ads/creative/${c.id}-${s}.jpg`} download={`royal-fitness-${c.id}-${s}.jpg`} className="inline-flex items-center gap-1 rounded-lg bg-white/10 px-2.5 py-1.5 text-xs hover:bg-white/15">
+                  <Download className="h-3.5 w-3.5" /> {CREATIVE_SIZES[s].label}
+                </a>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              <CopyButton text={c.primaryText} label="Primary text" />
+              <CopyButton text={c.adHeadline} label="Headline" />
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -180,6 +218,8 @@ export function AdsApp() {
                 </span>
               </p>
             ))}
+
+            {data.creatives?.length ? <Creatives list={data.creatives} /> : null}
 
             <form onSubmit={create} className={`${card} grid gap-3 md:grid-cols-4 md:items-end`}>
               <h2 className="flex items-center gap-2 font-display text-lg md:col-span-4">
