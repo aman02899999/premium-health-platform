@@ -1,0 +1,283 @@
+{
+  "slug": "gestational-diabetes",
+  "name": "Gestational Diabetes",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-20",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Gestational diabetes mellitus (GDM) is high blood sugar that is first discovered during pregnancy. As your baby grows, the placenta produces hormones such as human placental lactogen, estrogen, and progesterone. These hormones help the baby grow, but they also block the action of insulin in your body, a state called insulin resistance. In most women, the pancreas responds by making up to three times more insulin. But when the pancreas cannot keep pace with this demand, sugar builds up in the bloodstream. In India, gestational diabetes is very common, affecting roughly 10% to 14% of pregnant women according to data compiled by the Ministry of Health and Family Welfare (MoHFW) and the Indian Council of Medical Research (ICMR). Most women experience no symptoms at all, which is why universal screening during antenatal check-ups is vital. With the right meal choices, safe daily movement, and medical care, blood sugar can be kept in a safe range, protecting both mother and child from complications.",
+    "quickFacts": [
+      {
+        "label": "When tested in India",
+        "value": "At the first antenatal visit and again between 24 and 28 weeks"
+      },
+      {
+        "label": "DIPSI test diagnosis",
+        "value": "Blood sugar of 140 mg/dL or higher 2 hours after a 75 g glucose drink"
+      },
+      {
+        "label": "Target fasting level",
+        "value": "Under 95 mg/dL on a home glucometer"
+      },
+      {
+        "label": "Target 2-hour post-meal level",
+        "value": "Under 120 mg/dL on a home glucometer"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Roughly 10% to 14% of all pregnancies (MoHFW guidelines)"
+      },
+      {
+        "label": "Future risk",
+        "value": "Up to 50% may develop type 2 diabetes later in life without healthy habits"
+      }
+    ],
+    "causes": [
+      "Placental hormone surge: During the second and third trimesters, hormones like placental lactogen, cortisol, and progesterone cause physiological insulin resistance to ensure the baby receives enough nutrients.",
+      "Pancreatic strain: If your pancreas has limited beta-cell reserve, it cannot produce the extra insulin needed to overcome pregnancy-related insulin resistance.",
+      "Higher ethnic susceptibility: South Asian women have naturally higher body fat percentages and higher baseline insulin resistance, predisposing them to gestational diabetes at younger ages and lower body weights.",
+      "Pre-pregnancy weight: Carrying extra body fat, especially around the waist and abdomen, before conception doubles or triples the risk.",
+      "Polycystic ovary syndrome (PCOS): Women with a history of PCOS already carry baseline insulin resistance, which amplifies during pregnancy.",
+      "Family history: Having a parent or sibling with type 2 diabetes increases your genetic predisposition to high blood sugar.",
+      "Maternal age: Becoming pregnant over the age of 25 to 30 years raises the likelihood of developing gestational diabetes.",
+      "Previous pregnancy history: Delivering a baby weighing more than 4 kg in an earlier delivery or having gestational diabetes previously."
+    ],
+    "types": [
+      {
+        "name": "Diet-Controlled Gestational Diabetes (Class A1)",
+        "desc": "Blood sugar stays within target through medical nutrition therapy, portion control, and regular safe physical activity alone, without needing medicines."
+      },
+      {
+        "name": "Medication-Managed Gestational Diabetes (Class A2)",
+        "desc": "Lifestyle measures are not enough to bring blood sugar into target, requiring insulin injections or doctor-prescribed oral tablets to safeguard the pregnancy."
+      },
+      {
+        "name": "Pre-existing Diabetes in Pregnancy (Overt Diabetes)",
+        "desc": "Type 1 or type 2 diabetes that existed before conception but is diagnosed in the first trimester of pregnancy, requiring intensive care from the start."
+      }
+    ],
+    "diagnosis": [
+      "Universal screening: Because Indian women have a high genetic risk, Indian national guidelines mandate testing for every pregnant woman, not just those with risk factors.",
+      "DIPSI Single-Step Test: Recommended across India by the Ministry of Health and Family Welfare (MoHFW). You drink 75 g of glucose dissolved in water, regardless of when you last ate. A single venous plasma blood test is taken 2 hours later. A reading of 140 mg/dL or higher confirms gestational diabetes.",
+      "Two-Step or Fasting Tests (IADPSG / ADA criteria): Used in many private hospitals. Involves an overnight fast followed by a fasting blood sample, drinking 75 g of glucose, and testing blood at 1 hour and 2 hours. Readings are abnormal if fasting is 92 mg/dL or above, 1-hour is 180 mg/dL or above, or 2-hour is 153 mg/dL or above.",
+      "Testing timeline: Screening is carried out at your first antenatal visit. If normal, it is repeated between weeks 24 and 28 when insulin resistance peaks."
+    ],
+    "investigations": [
+      {
+        "test": "Oral Glucose Tolerance Test (DIPSI or IADPSG method)",
+        "purpose": "Confirms the diagnosis of gestational diabetes using a 75 g oral glucose load"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks baseline morning blood sugar after an overnight fast",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c (Glycated Hemoglobin)",
+        "purpose": "Reflects your average blood sugar over the preceding 2 to 3 months and helps rule out pre-existing diabetes",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Urine Routine and Microscopy",
+        "purpose": "Screens for urinary tract infections, protein leaks, or ketones in urine",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Evaluates thyroid function, as hypothyroidism frequently coexists with metabolic changes in pregnancy",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia and checks overall blood cell counts",
+        "slug": "cbc"
+      },
+      {
+        "test": "Obstetric Ultrasound Scans",
+        "purpose": "Monitors fetal growth, baby's abdominal circumference, and amniotic fluid volume (AFI)"
+      }
+    ],
+    "modernTreatment": [
+      "Self-Monitoring of Blood Glucose (SMBG): Testing at home using a finger-prick glucometer 4 times daily (fasting upon waking, and either 1 or 2 hours after breakfast, lunch, and dinner) is the core of modern management.",
+      "Medical Nutrition Therapy (MNT): A clinical dietitian helps plan balanced meals that satisfy fetal growth while avoiding blood sugar spikes.",
+      "Physical activity: Taking a brisk 15-minute walk after every major meal allows muscles to draw sugar out of the bloodstream without needing extra insulin.",
+      "Insulin therapy: If blood sugars remain above target (fasting over 95 mg/dL or 2 hours post-meal over 120 mg/dL) after 1 to 2 weeks of diet and exercise, insulin injections are started. Insulin does not cross the placenta and is the safest, most effective gold standard.",
+      "Oral medications: In specific situations where a mother cannot take insulin, oral metformin may be prescribed as advised by your doctor.",
+      "Regular fetal surveillance: Detailed scans check for baby weight, excess amniotic fluid (polyhydramnios), and fetal heart patterns through non-stress tests (NST) in the third trimester."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not have an exact word for gestational diabetes, but they discuss metabolic imbalances under Prameha and emphasize Garbhini Paricharya (systematic care of the pregnant woman).",
+      "Traditional texts advise Ahara (nourishing, pure foods) and Vihara (gentle routines, peaceful mind) to keep all three doshas, especially Kapha and Vata, in balance.",
+      "Safety first: Classical bitter formulations, strong decoctions, purgative churnas, and untested herbal pills are strictly contraindicated during pregnancy because they can cause uterine contractions or harm fetal organ formation.",
+      "Ayurvedic concepts are strictly supportive and limited to wholesome culinary habits like light soups, warm water, and mindful eating alongside regular medical tests."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Fenugreek",
+        "slug": "fenugreek",
+        "note": "Methi seeds used in regular cooking provide soluble fibre that slows carbohydrate absorption. Do not consume concentrated supplements or large medicinal doses during pregnancy as advised by your doctor."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "A safe culinary spice that eases nausea and digestive discomfort in pregnancy. It has no proven blood sugar lowering power and should remain a kitchen seasoning."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Normal amounts of haldi used in everyday Indian curries and dhal provide antioxidant support, but concentrated extracts or high-dose supplements must be avoided during pregnancy."
+      }
+    ],
+    "nutrition": [
+      "Divide your plate into balanced zones: fill half with non-starchy vegetables (lauki, tori, tindora, bhindi, palak, methi saag), one quarter with protein, and one quarter with complex carbohydrates.",
+      "Choose low-glycemic, high-fibre carbohydrates: replace refined white rice and maida with whole wheat chapati, oats, brown rice, barley, or millets such as ragi and jowar in measured quantities.",
+      "Eat enough protein at every meal: include boiled eggs, paneer, unsweetened dahi, tofu, sprouts, moong dal, chana, or grilled chicken and fish to blunt blood sugar spikes.",
+      "Spread your food across 3 small main meals and 2 to 3 light snacks instead of eating large, heavy thalis that overload the pancreas.",
+      "Always take a balanced bedtime snack: a handful of roasted chana, a cup of warm unsweetened milk, or almonds and walnuts helps prevent midnight drops and morning rebound high sugars.",
+      "Cut out simple sugars completely: avoid sweets, mithai, halwa, chocolates, sodas, packaged juices, sweetened lassi, chai with sugar, and bakery items like biscuits and rusks.",
+      "Limit high-sugar fruits: avoid mangoes, chikoos, grapes, and bananas; instead, choose small portions of guava, apple, pear, or papaya between meals."
+    ],
+    "lifestyle": [
+      "Maintain a clear daily logbook: write down what you ate, the exact time, your walking minutes, and your glucometer readings before and after meals.",
+      "Prioritize 7 to 8 hours of restful sleep every night: fragmented or short sleep raises stress hormones like cortisol, which push morning fasting readings higher.",
+      "Stay well hydrated throughout the day: drink plenty of plain water, infused lemon water, or thin buttermilk without salt to help your kidneys filter extra glucose.",
+      "Manage emotional stress: anxiety can raise blood sugar. Practice relaxing hobbies, listen to calm music, read, and lean on family support for meal preparation.",
+      "Keep regular clinic appointments: do not skip routine antenatal visits, blood tests, or growth ultrasounds."
+    ],
+    "yogaActivity": [
+      "Post-meal walking: Walk at a comfortable, brisk pace for 10 to 15 minutes after breakfast, lunch, and dinner to activate skeletal muscles and absorb glucose.",
+      "Gentle prenatal yoga: Practice calming poses such as Baddha Konasana (supported butterfly pose), Marjariasana-Bitilasana (cat-cow stretch), and seated side stretches under a certified prenatal instructor.",
+      "Pranayama: Practice slow, soothing Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) to reduce tension and calm the nervous system.",
+      "Poses to avoid: Never practice postures that compress the belly, deep twists, inversions, or backbends. Avoid lying flat on your back (supine position) after the first trimester, as it compresses the inferior vena cava and reduces blood flow to the baby.",
+      "Avoid holding your breath (Kumbhaka) or practicing forceful abdominal contractions like Kapalbhati during pregnancy."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific proof that homeopathic remedies can lower maternal blood sugar or protect the unborn baby from birth complications.",
+      "Relying on sugar-based homeopathic globules instead of standard medical care can lead to dangerous fetal overgrowth and stillbirth. Always follow your obstetrician's prescribed care plan."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Self-monitoring of blood glucose, medical nutrition therapy, regular light walking, and insulin therapy significantly reduce the risks of macrosomia, cesarean section, and neonatal hypoglycemia.",
+      "Moderate evidence: Oral metformin can be used safely in select mothers who cannot tolerate or afford insulin, as determined by clinical trials, though insulin remains the first choice.",
+      "No evidence: No herb, diet or product can make it go away, and raw herbal remedies or detox drinks have no proven efficacy and carry potential safety risks for the fetus."
+    ],
+    "shouldNotDo": [
+      "Do not crash diet or eliminate carbohydrates completely: your developing baby needs a steady supply of glucose for healthy brain and organ growth.",
+      "Do not skip meals: going without food for long stretches leads to ketone production in your blood and triggers liver glucose dumps that spike blood sugar later.",
+      "Do not fear or delay insulin if prescribed: insulin does not cross the placenta, does not harm your baby, and is not an addiction.",
+      "Do not self-medicate with herbal decoctions, raw extracts, or store-bought diabetes powders, as they are not tested for safety during pregnancy.",
+      "Do not assume normal test results mean you are cured: gestational diabetes lasts until the placenta is delivered, requiring consistent monitoring throughout pregnancy."
+    ],
+    "medicationSafety": [
+      "Insulin is the safest medication during pregnancy because its large molecular size prevents it from crossing the placental barrier to your baby.",
+      "Learn proper injection technique: inject into the subcutaneous fat of your upper arms, thighs, or outer abdominal areas away from the baby, as advised by your doctor.",
+      "Rotate your injection sites daily to avoid lumps, thickening of fat tissue, or erratic insulin absorption.",
+      "Store unopened insulin vials or pens in the refrigerator between 2°C and 8°C; never freeze them. Keep your current in-use pen at room temperature away from direct sunlight.",
+      "Recognize hypoglycemia: if you take insulin or oral medicine, carry 3 to 4 glucose tablets or half a glass of fruit juice at all times to treat readings under 70 mg/dL.",
+      "Inform your doctor of every medicine you take, including iron, calcium, and thyroid tablets, so timing can be spaced correctly."
+    ],
+    "complications": [
+      "Macrosomia (large baby): Excess maternal sugar crosses the placenta, causing the baby's pancreas to produce extra insulin, leading to rapid fat storage and a birth weight over 4 kg.",
+      "Birth trauma and shoulder dystocia: Delivering a large baby increases the chance of the baby's shoulders getting stuck in the birth canal, risking nerve damage or fractures.",
+      "Preeclampsia: Gestational diabetes increases the mother's risk of sudden high blood pressure and protein leakage into the urine in late pregnancy.",
+      "Emergency cesarean delivery: Difficulty during labour or baby distress frequently leads to operative surgical delivery.",
+      "Neonatal hypoglycemia: After delivery, the baby no longer receives high sugar from the mother, but their pancreas still produces excess insulin, causing their blood sugar to crash dangerously within hours of birth.",
+      "Respiratory distress syndrome: High fetal insulin levels can delay lung maturation, causing breathing difficulties at birth.",
+      "Future metabolic risk: Both mother and baby face a higher lifetime risk of developing obesity, insulin resistance, and type 2 diabetes."
+    ],
+    "emergencySigns": [
+      "Signs of severe preeclampsia: Sudden intense headache, blurry vision, flashing spots before your eyes, or severe swelling of your face, hands, and feet.",
+      "Signs of dangerous hypoglycemia: Severe shakiness, cold sweating, dizziness, confusion, racing heartbeat, or fainting that does not resolve 15 minutes after taking 15 g of fast-acting sugar.",
+      "Decreased fetal movement: A noticeable drop or absence in your baby's regular kick count over a two-hour observation period.",
+      "Obstetric emergencies: Any vaginal bleeding, watery fluid leaking from the vagina, or regular painful contractions before your scheduled delivery date.",
+      "Blood glucose readings persistently over 200 mg/dL accompanied by nausea, vomiting, or deep rapid breathing."
+    ],
+    "whenToSeeDoctor": [
+      "Your home blood sugar readings stay above target (fasting 95 mg/dL or higher, or 2 hours post-meal 120 mg/dL or higher) for 2 to 3 days in a row.",
+      "You have frequent episodes of low blood sugar (below 70 mg/dL), indicating your insulin dose needs adjustment.",
+      "You experience burning, pain, or increased urgency during urination, which points to a urinary tract infection.",
+      "You find it difficult to eat or keep food down due to acidity or nausea, making glucose control difficult.",
+      "You are planning your delivery week or need post-delivery testing guidance."
+    ],
+    "faqs": [
+      {
+        "q": "Will my baby be born with diabetes?",
+        "a": "No. Your baby will not be born with diabetes. However, because maternal sugar crosses the placenta, the baby's pancreas produces extra insulin. If blood sugar is not controlled, the baby can experience low blood sugar right after delivery and faces a higher risk of developing type 2 diabetes later in adult life."
+      },
+      {
+        "q": "Can I eat white rice and roti if I have gestational diabetes?",
+        "a": "You do not need to give up staple foods completely, but portion size and choices matter. Limit white rice and pair smaller portions with plenty of dal, green sabzi, and salad. Choosing whole wheat chapati, oats, or millets like jowar gives you more fibre, which slows down sugar absorption."
+      },
+      {
+        "q": "Does gestational diabetes disappear after giving birth?",
+        "a": "In most women, blood sugar returns to normal shortly after the placenta is delivered. However, having gestational diabetes means your risk of developing type 2 diabetes in the next 5 to 10 years is roughly 50%. A follow-up oral glucose tolerance test is recommended 6 to 12 weeks after delivery."
+      },
+      {
+        "q": "Is insulin safe for my baby?",
+        "a": "Yes, insulin is completely safe during pregnancy. It does not cross the placenta, meaning it acts only in your body to lower your blood sugar. It is the gold standard treatment recommended worldwide for keeping both mother and baby protected."
+      },
+      {
+        "q": "Why do Indian women get gestational diabetes so often?",
+        "a": "South Asian women are genetically predisposed to higher insulin resistance and lower muscle mass compared to other ethnic groups. Because of this, pregnancy hormones put extra strain on the pancreas, causing blood sugar to climb more easily even at normal body weights."
+      },
+      {
+        "q": "Can I control gestational diabetes with methi seeds or karela juice?",
+        "a": "No herb, diet or product can make it go away. Methi seeds used in cooking can provide helpful dietary fibre, but bitter herbs and concentrated vegetable juices cannot replace balanced meals, physical activity, or medical treatment. In fact, concentrated herbal extracts can be unsafe for your pregnancy."
+      }
+    ],
+    "references": [
+      {
+        "title": "National Guidelines for Diagnosis & Management of Gestational Diabetes Mellitus",
+        "source": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "url": "https://nhm.gov.in/images/pdf/programmes/maternal-health/guidelines/National_Guidelines_for_Diagnosis_&_Management_of_Gestational_Diabetes_Mellitus.pdf",
+        "year": "2018"
+      },
+      {
+        "title": "Diagnostic Criteria and Classification of Hyperglycaemia First Detected in Pregnancy",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/publications/i/item/WHO-NMH-MND-13.2",
+        "year": "2013"
+      },
+      {
+        "title": "Gestational Diabetes Mellitus - A Review",
+        "source": "National Library of Medicine (PubMed / StatPearls)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK545196/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "pregnancy-diabetes",
+      "type-2-diabetes",
+      "prediabetes",
+      "insulin-resistance",
+      "obesity",
+      "high-blood-pressure",
+      "pcos",
+      "pregnancy-nutrition",
+      "postpartum-nutrition"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "iron-folic-acid",
+      "vitamin-d3",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "fenugreek",
+      "ginger",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "fasting-glucose",
+      "hba1c",
+      "urine-routine",
+      "tsh",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-20",
+    "imagePrompt": ""
+  }
+}
