@@ -1,4 +1,5 @@
 import "server-only";
+import { toVertexSchema } from "./vertex-schema";
 
 /**
  * Gemini on Vertex AI, used when the site runs on Google Cloud Run.
@@ -20,22 +21,7 @@ export const vertexConfigured = (env: Env = process.env) => env.VERTEX_AI !== "o
 /** The stable Flash model unless VERTEX_MODEL names another. */
 export const vertexModel = (env: Env = process.env) => env.VERTEX_MODEL?.trim() || "gemini-2.5-flash";
 
-const KEEP = new Set(["type", "properties", "required", "items", "enum", "description", "minItems", "maxItems", "nullable", "format"]);
-
-/** Vertex's responseSchema takes a smaller set of keys than JSON Schema, with upper-case types. */
-export function toVertexSchema(schema: unknown): unknown {
-  if (Array.isArray(schema)) return schema.map(toVertexSchema);
-  if (!schema || typeof schema !== "object") return schema;
-  const out: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(schema as Record<string, unknown>)) {
-    if (!KEEP.has(k)) continue;
-    if (k === "type" && typeof v === "string") out.type = v.toUpperCase();
-    else if (k === "properties" && v && typeof v === "object") out.properties = Object.fromEntries(Object.entries(v).map(([p, s]) => [p, toVertexSchema(s)]));
-    else if (k === "items") out.items = toVertexSchema(v);
-    else out[k] = v;
-  }
-  return out;
-}
+export { toVertexSchema };
 
 let token: { value: string; until: number } | null = null;
 let project: string | null = null;
