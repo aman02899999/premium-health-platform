@@ -90,6 +90,12 @@ describe("checkDraft: warnings vs claims (from the first real Gemini run)", () =
     expect(withLine("shouldNotDo", "Ignore the myth that type 1 diabetes can be permanently cured by diet.").ok).toBe(true);
   });
 
+  it("allows an FAQ question that asks about a cure", () => {
+    const raw = good();
+    (raw.faqs as { q: string; a: string }[])[0].q = "Can type 1 diabetes be cured or reversed with a special diet?";
+    expect(checkDraft(raw, known, "2026-11-20").ok).toBe(true);
+  });
+
   it("still blocks a plain claim", () => {
     expect(withLine("lifestyle", "Bitter gourd juice cures diabetes in weeks.").ok).toBe(false);
   });

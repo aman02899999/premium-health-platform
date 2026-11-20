@@ -105,7 +105,8 @@ export function checkDraft(raw: unknown, known: { diseases: Set<string>; herbs: 
   const claim = texts(d)
     .flatMap(sentences)
     .map((t) => t.replace(DENIAL, "").replace(/\bcure-all\b/gi, ""))
-    .find((t) => CLAIM.test(t) && !WARNING.test(t));
+    // A question ("Can type 1 diabetes be cured?") is the reader asking, not a claim.
+    .find((t) => CLAIM.test(t) && !WARNING.test(t) && !t.trim().endsWith("?"));
   if (claim) errors.push(`cure/guarantee claim: "${claim.match(new RegExp(`.{0,40}${CLAIM.source}.{0,20}`, "i"))?.[0]}"`);
   for (const [k, re] of DOSE_FIELDS) {
     const hit = texts(d[k]).find((t) => re.test(t));
