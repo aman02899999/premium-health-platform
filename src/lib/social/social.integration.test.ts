@@ -17,6 +17,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
   const calls: { url: string; body: Record<string, unknown> | null; auth?: string }[] = [];
   let publishFails = false;
   let reelFails = false;
+  let collabFails = false;
 
   beforeAll(async () => {
     process.env.POSTGRES_URL = url;
@@ -33,7 +34,9 @@ describe.skipIf(!url)("social automation on a real database", () => {
       if (u.includes("/me?fields=user_id")) return json({ user_id: "17841400000", username: "royalfitness93_" });
       if (u.endsWith("/17841400000/media")) {
         if (publishFails) return json({ error: { message: "Only photo or video can be accepted as media type." } }, 400);
-        const isReel = (JSON.parse(init?.body ?? "{}") as { media_type?: string }).media_type === "REELS";
+        const sent = JSON.parse(init?.body ?? "{}") as { media_type?: string; collaborators?: string[] };
+        if (collabFails && sent.collaborators) return json({ error: { message: "Invalid collaborator username" } }, 400);
+        const isReel = sent.media_type === "REELS";
         return isReel && reelFails ? json({ error: { message: "The video file you selected is in a format that we don't support." } }, 400) : json({ id: "container-1" });
       }
       if (u.includes("container-1?fields=status_code")) return json({ status_code: "FINISHED" });
@@ -60,6 +63,7 @@ describe.skipIf(!url)("social automation on a real database", () => {
     calls.length = 0;
     publishFails = false;
     reelFails = false;
+    collabFails = false;
   });
   afterAll(async () => {
     vi.unstubAllGlobals();
@@ -335,6 +339,50 @@ describe.skipIf(!url)("social automation on a real database", () => {
       { channel: "instagram-am", theme: "Happy Diwali 2026" },
       { channel: "instagram-story", theme: "Happy Diwali 2026" },
     ]);
+  });
+
+  it("Coach Rubi (20 Nov): the gym Reel takes the midday slot and the diet Reel the evening one, each with a Collab invite", async () => {
+    const mid = await social.runSecondReel(new Date("2026-11-20T06:30:00Z"), biz, fakeDeps2([]));
+    expect(mid).toEqual({ reel: "ready-made", instagram: "published", facebook: "published" });
+    let media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media).toHaveLength(1);
+    expect(media[0].body).toMatchObject({ media_type: "REELS", video_url: "https://www.royalfitnesclub.in/social/reels/coach-rubi-gym.mp4", collaborators: ["__rubi_i_love_u"] });
+    expect(String(media[0].body!.caption)).toContain("Female's Special");
+
+    calls.length = 0;
+    const log: string[] = [];
+    const eve = await social.runReels(new Date("2026-11-20T13:20:00Z"), biz, fakeDeps(log));
+    expect(eve).toEqual({ reel: "ready-made", instagram: "reel", facebook: "reel" });
+    expect(log).toEqual([]); // nothing rendered or uploaded: the file is already on the site
+    media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media).toHaveLength(1);
+    expect(media[0].body).toMatchObject({ video_url: "https://www.royalfitnesclub.in/social/reels/coach-rubi-diet-trial.mp4", collaborators: ["__rubi_i_love_u"] });
+    expect(String(media[0].body!.caption)).toContain("7-Day Trial Plan, sirf ₹49");
+    // Facebook gets the diet link, never a photo fallback.
+    expect(calls.filter((c) => c.url.endsWith("/PAGE1/photos"))).toHaveLength(0);
+    const themes = (await pool.query("select channel, theme from public.social_posts order by channel")).rows;
+    expect(themes).toEqual([
+      { channel: "facebook", theme: "Coach Rubi: ₹49 7-Day Trial Plan" },
+      { channel: "facebook-reel2", theme: "Coach Rubi: Female's Special + free trial" },
+      { channel: "instagram", theme: "Coach Rubi: ₹49 7-Day Trial Plan" },
+      { channel: "instagram-reel2", theme: "Coach Rubi: Female's Special + free trial" },
+    ]);
+  });
+
+  it("a refused Collab invite still posts the Reel on our profile; a failed ready-made evening Reel is retried, not swapped for a photo", async () => {
+    collabFails = true;
+    expect((await social.runSecondReel(new Date("2026-11-20T06:30:00Z"), biz, fakeDeps2([]))).instagram).toBe("published");
+    const media = calls.filter((c) => c.url.endsWith("/17841400000/media"));
+    expect(media.map((c) => Boolean(c.body!.collaborators))).toEqual([true, false]);
+
+    calls.length = 0;
+    collabFails = false;
+    reelFails = true;
+    const first = await social.runReels(new Date("2026-11-20T13:20:00Z"), biz, fakeDeps([]));
+    expect(first.instagram).toMatch(/^failed: The video file/);
+    expect(calls.filter((c) => c.url.endsWith("/PAGE1/photos") || (c.url.endsWith("/17841400000/media") && c.body!.image_url))).toHaveLength(0);
+    reelFails = false;
+    expect((await social.runReels(new Date("2026-11-20T15:40:00Z"), biz, fakeDeps([]))).instagram).toBe("reel");
   });
 
   it("month plan: SOCIAL_MONTH_PLAN=off stops every extra post", async () => {
