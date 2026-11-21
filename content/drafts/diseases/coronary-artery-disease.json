@@ -1,0 +1,267 @@
+{
+  "slug": "coronary-artery-disease",
+  "name": "Coronary Artery Disease",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Coronary artery disease, or CAD, happens when the blood vessels that supply blood, oxygen and nutrients to your heart muscle become narrow or hardened. This narrowing is caused by a slow buildup of fatty deposits, cholesterol and inflammatory cells called plaque inside the artery walls, a process known as atherosclerosis. When blood flow drops, your heart muscle does not get enough oxygen during physical activity or stress, causing chest discomfort known as angina. If a plaque breaks open, a blood clot can suddenly block the artery completely, triggering a heart attack. In India, coronary artery disease tends to strike earlier in life, often a decade younger than in Western populations, and it remains the leading cause of death and disability across both rural and urban areas.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "Narrowed heart arteries due to fatty plaque buildup"
+      },
+      {
+        "label": "Early onset in India",
+        "value": "Often appears 5 to 10 years earlier than in Western nations"
+      },
+      {
+        "label": "Top warning sign",
+        "value": "Chest heaviness, squeezing or breathlessness on exertion"
+      },
+      {
+        "label": "Leading drivers",
+        "value": "High LDL cholesterol, diabetes, high blood pressure, tobacco and abdominal fat"
+      },
+      {
+        "label": "Silent nature",
+        "value": "Plaques can build up quietly over decades without any symptoms until a major blockage occurs"
+      }
+    ],
+    "causes": [
+      "High LDL cholesterol and high triglycerides. Excess circulating bad cholesterol penetrates the inner lining of coronary arteries, oxidises, and forms the core of atherosclerotic plaques.",
+      "High blood pressure. Continuous mechanical strain on artery walls damages the delicate endothelial lining, making it easier for fatty deposits to take hold.",
+      "Type 2 diabetes and insulin resistance. High blood sugar and high insulin levels inflame blood vessels, accelerate plaque formation, and make blood more likely to form dangerous clots.",
+      "Tobacco use in all forms. Smoking cigarettes, bidis, or chewing gutka, khaini and zarda introduces toxins that damage blood vessels, raise heart rate, and drastically narrow coronary arteries.",
+      "Abdominal obesity and sedentary living. Carrying excess fat around the waist produces inflammatory proteins that promote arterial damage and worsen lipid levels.",
+      "Unhealthy diet patterns. Diets high in refined carbohydrates, deep-fried snacks, sweets, trans fats from vanaspati, and low in dietary fibre accelerate metabolic and arterial disease.",
+      "Strong family history and genetics. Having a first-degree relative (parent or sibling) who suffered a heart attack at an early age significantly increases personal risk."
+    ],
+    "types": [
+      {
+        "name": "Stable Angina",
+        "desc": "Predictable chest heaviness, tightness or ache that comes on during physical exertion or severe emotional stress and eases within a few minutes of rest or medication."
+      },
+      {
+        "name": "Unstable Angina",
+        "desc": "Chest discomfort that occurs with minimal exertion or even while resting, feels more severe or lasts longer than usual, and marks an unstable plaque that could lead to a heart attack."
+      },
+      {
+        "name": "Myocardial Infarction (Heart Attack)",
+        "desc": "A sudden, complete or near-complete blockage of a coronary artery by a blood clot, starving a part of the heart muscle of oxygen and causing permanent tissue damage if not opened immediately."
+      },
+      {
+        "name": "Silent Myocardial Ischemia",
+        "desc": "Reduced blood supply to the heart muscle without noticeable chest pain, very common among people with long-standing diabetes due to nerve damage."
+      }
+    ],
+    "diagnosis": [
+      "Doctors start with a thorough medical history, assessing your symptoms, family history, smoking habits, blood pressure and metabolic risk factors.",
+      "A baseline resting 12-lead electrocardiogram (ECG) detects past heart attacks, rhythm abnormalities, or signs of current strain on the heart muscle.",
+      "A treadmill stress test (TMT) measures your heart's electrical response and blood supply while you walk at increasing speeds and inclines.",
+      "A 2D echocardiogram uses sound waves to check how well the heart chambers pump blood and identify areas of muscle that move poorly due to lack of blood flow.",
+      "A CT coronary angiogram or calcium score provides cross-sectional images of the heart vessels to detect calcium deposits and non-invasively visualise plaque buildup.",
+      "A conventional catheter coronary angiogram is the gold standard diagnostic test, where dye is injected directly into coronary arteries under X-ray imaging to pinpoint exact blockage locations and percentages."
+    ],
+    "investigations": [
+      {
+        "test": "Lipid Profile",
+        "purpose": "Measures total cholesterol, LDL, HDL and triglycerides to guide lipid-lowering therapy",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Assesses 3-month average blood glucose because diabetes directly accelerates artery blockages",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Screens for undiagnosed prediabetes or diabetes affecting vascular health",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "High-Sensitivity C-Reactive Protein (hs-CRP)",
+        "purpose": "Measures low-grade systemic inflammation inside blood vessels",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Evaluates kidney function prior to angiograms and safe cardiac medication dosing",
+        "slug": "creatinine"
+      }
+    ],
+    "modernTreatment": [
+      "Lifelong lifestyle optimisation forms the base of all treatment: structured heart-friendly nutrition, supervised physical activity, quitting tobacco completely, and maintaining a healthy body weight.",
+      "Statins (such as atorvastatin) are essential medicines that lower LDL cholesterol, calm arterial inflammation, and stabilise existing plaques so they do not rupture.",
+      "Antiplatelet medications (such as aspirin or clopidogrel) keep blood platelets from sticking together, preventing life-threatening blood clots from forming inside narrowed vessels.",
+      "Beta-blockers and calcium channel blockers (such as amlodipine) reduce the heart's workload, lower blood pressure, and relieve exertional angina symptoms.",
+      "ACE inhibitors or ARBs (such as losartan) protect heart muscle, improve arterial elasticity, and lower blood pressure, especially after a heart attack or in people with diabetes.",
+      "Percutaneous coronary intervention (angioplasty with drug-eluting stent placement) physically widens severely blocked arteries using a small balloon and wire-mesh tube to restore blood flow.",
+      "Coronary artery bypass graft (CABG) surgery uses healthy blood vessels harvested from the leg, arm or chest to create detours around multiple or complex blockages."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, conditions resembling coronary heart disease are described under 'Hridroga', with plaque buildup often linked to 'dhamani pratichaya' or accumulation of kapha and meda (fat tissue) in the channels.",
+      "Aggravated vata and kapha, along with impaired digestive fire (mandagni), are believed to produce metabolic waste (ama), which clogs the micro and macro channels of the body.",
+      "Ayurvedic lifestyle principles emphasise light, digestible foods (langhana), moderation in eating, daily physical movement, stress-reducing routines, and adequate rest.",
+      "Traditional herbs such as Arjuna and Garlic are respected as heart-supportive botanicals in classical texts, but they are supportive additions only and must never replace modern cardiology medications, emergency care, or diagnostic testing."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "Traditional bark extract used for cardiovascular support. Clinical trials show modest antioxidant and supportive benefits, but it cannot dissolve established blockages or substitute for statins."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Widely used in Indian cooking. Modestly supports healthy lipid metabolism and blood pressure, but high-dose supplements can increase bleeding risk when taken alongside prescription blood thinners."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C and polyphenols that provide cellular antioxidant support. It helps general metabolic health alongside medical care."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN My Plate for the Day model: fill half your plate with fresh vegetables, salad and whole fruits, one quarter with whole grains or millets, and one quarter with protein foods like lentils, beans, low-fat paneer, eggs or lean fish.",
+      "Cut down drastically on deep-fried Indian foods such as samosas, pakoras, puris, bhujia, and commercial bakery items containing partially hydrogenated vegetable oils (vanaspati), which contain dangerous trans fats.",
+      "Swap refined flour (maida) and white polished rice for fibre-dense whole grains such as whole wheat atta, brown rice, oats, barley, and traditional millets like jowar, bajra and ragi to improve cholesterol clearance.",
+      "Limit added salt to less than 5 grams per day (about one level teaspoon). Avoid hidden sodium found in papads, commercial pickles, ready-made chutneys, instant noodles and packaged snacks.",
+      "Include a small handful of unsalted nuts daily, such as walnuts and almonds, which provide heart-healthy unsaturated fats and plant sterols.",
+      "Use heart-healthy cooking oils in strict moderation (under 20 to 25 grams per person per day). Rotate or blend cold-pressed mustard oil, groundnut oil, or sesame oil, and minimise saturated fats like butter and excess ghee."
+    ],
+    "lifestyle": [
+      "Accumulate at least 150 minutes of moderate-intensity aerobic exercise, such as brisk walking, cycling or light swimming, spread over at least five days each week, once cleared by your cardiologist.",
+      "Stop all tobacco use immediately. Whether smoking cigarettes or bidis, or chewing gutka, tobacco constricts coronary arteries and doubles your risk of fatal blood clots.",
+      "Work towards achieving a healthy waistline. In Indians, abdominal obesity is defined as a waist circumference above 90 cm in men and above 80 cm in women.",
+      "Prioritise 7 to 8 hours of uninterrupted sleep every night. Chronic sleep deprivation spikes stress hormones, raises blood pressure, and destabilises blood sugar levels.",
+      "Adopt structured stress management practices daily. Chronic mental distress releases adrenaline and cortisol, which constrict arteries and increase heart strain."
+    ],
+    "yogaActivity": [
+      "Practice slow, calming yogic breathing techniques (pranayama) like anulom vilom (alternate nostril breathing) and bhramari to activate the parasympathetic nervous system and reduce heart rate.",
+      "Incorporate gentle joint movements and supported asanas such as tadasana, setu bandhasana (supported bridge), and shavasana (corpse pose) to promote relaxation and circulation.",
+      "Avoid holding your breath (kumbhaka) or practicing forceful, rapid breathing techniques like fast kapalbhati or bhastrika, as sudden intra-thoracic pressure spikes can strain the heart.",
+      "Do not perform inverted postures like headstands (shirshasana) or extreme hot yoga sessions without explicit approval from your cardiologist."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence showing that homeopathic products can clear arterial plaques, reverse coronary blockages, or prevent heart attacks.",
+      "Relying on homeopathic preparations instead of prescribed modern heart medicines like blood thinners and statins carries a severe risk of sudden cardiac arrest and fatal heart attacks."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Lowering LDL cholesterol with statins, controlling blood pressure, stopping smoking, and using antiplatelet therapy directly reduce the risk of heart attacks and prolong life.",
+      "Strong evidence: Structured cardiac rehabilitation and regular aerobic exercise significantly cut cardiovascular mortality and hospital readmissions.",
+      "Moderate evidence: High-fibre diets, Mediterranean-style or traditional legume-rich Indian diets, and omega-3 fatty acids show measurable benefits in improving arterial inflammation and metabolic markers.",
+      "Limited evidence: Botanical extracts like arjuna and garlic show mild supportive antioxidant and lipid benefits in small studies, but cannot dissolve calcified or fibrous plaques.",
+      "No evidence: No herb, diet, cleanse or alternative product can make established coronary artery disease go away or unblock arteries overnight."
+    ],
+    "shouldNotDo": [
+      "Do not stop taking your statins or blood thinners simply because your cholesterol reports improved or you feel energetic. Plaques remain stable only while medications do their job.",
+      "Do not brush off unexplained burning in your upper chest or throat as simple 'gas' or acidity, especially if it happens while walking or carrying groceries.",
+      "Do not push yourself through sudden chest heaviness, jaw pain or shortness of breath during workouts; stop immediately and seek medical attention.",
+      "Do not take unverified herbal tonics, heavy metal formulations, or online 'plaque melting' juices that falsely claim to clean arteries without surgery or drugs.",
+      "Do not take non-steroidal anti-inflammatory painkillers (like ibuprofen or diclofenac) casually without checking with your doctor, as they can raise blood pressure and interact with cardiac medicines."
+    ],
+    "medicationSafety": [
+      "Take your heart medications at the exact same times every day without missing doses. Missing antiplatelet pills after getting a heart stent can cause acute stent thrombosis, a medical emergency.",
+      "If your doctor prescribes statins, inform them if you experience persistent unexplained muscle pain, tenderness, or weakness.",
+      "Because blood thinners reduce clot formation, watch out for signs of unusual bleeding, such as frequent nosebleeds, blood in your urine, black tarry stools, or large unexplained bruises.",
+      "Always carry an updated list of your cardiac medications in your wallet or on your phone so emergency teams know what you are taking in case of an acute event."
+    ],
+    "complications": [
+      "Acute myocardial infarction (heart attack) due to complete blockage of a coronary vessel",
+      "Heart failure, where damaged or oxygen-starved heart muscle cannot pump blood effectively to the rest of the body",
+      "Life-threatening cardiac arrhythmias, including ventricular tachycardia or fibrillation, which can lead to sudden cardiac arrest",
+      "Cardiogenic shock, a severe condition where the heart suddenly cannot supply enough blood to vital organs",
+      "Reduced quality of life and physical disability caused by chronic chest pain and severe breathlessness"
+    ],
+    "emergencySigns": [
+      "Crushing, squeezing, heavy, or burning pressure in the centre or left side of your chest lasting more than 5 minutes",
+      "Pain or numbness spreading from your chest to your left shoulder, arm, neck, jaw, throat, or upper back",
+      "Sudden shortness of breath with or without chest discomfort, accompanied by cold sweats, dizziness, or light-headedness",
+      "Sudden, unexplained nausea, vomiting, or extreme fatigue that feels far worse than typical indigestion",
+      "Sudden fainting or collapse. If these signs appear, call 108 or 112 or head to the nearest hospital emergency room immediately."
+    ],
+    "whenToSeeDoctor": [
+      "You notice new heaviness, tightness or discomfort in your chest when walking fast, climbing stairs, or hurrying uphill.",
+      "You get breathless much faster than usual while doing everyday household chores or light gym workouts.",
+      "Your resting pulse feels irregular, fluttering, or uncomfortably fast without an obvious cause.",
+      "You have type 2 diabetes, high blood pressure, or a family history of early heart attacks and have never undergone a formal heart health screening.",
+      "You experience dizziness or unusual light-headedness after starting or changing your heart medicines."
+    ],
+    "faqs": [
+      {
+        "q": "Can diet and exercise alone unblock my heart arteries?",
+        "a": "Diet and exercise are vital. They can slow or stop plaque progression and make plaques far more stable, lowering your risk of a heart attack. However, established calcified or fibrous blockages rarely disappear completely. No herb, diet or product can make established plaques go away on its own, which is why prescription medicines remain essential."
+      },
+      {
+        "q": "Why is heart disease striking young Indians in their 30s and 40s?",
+        "a": "Indians have a distinct risk profile often called the South Asian phenotype: higher abdominal fat, lower muscle mass, early insulin resistance, high triglycerides, low protective HDL, and smaller coronary artery calibres. Combined with smoking, intense work stress, processed foods and low physical activity, plaques develop much earlier."
+      },
+      {
+        "q": "How can I tell the difference between acidity and heart pain?",
+        "a": "Acidity usually causes a sharp, burning feeling linked to meals or lying down, often relieved by antacids. Heart pain typically feels like a heavy squeezing, tightness, or pressure, often brought on by walking or exertion and relieved by rest. However, many heart attacks mimic severe indigestion. If in doubt, never assume it is gas; get an immediate ECG."
+      },
+      {
+        "q": "Do I need to take statins for the rest of my life?",
+        "a": "In most people diagnosed with coronary artery disease, statins are intended for long-term use. They do more than just lower blood cholesterol numbers; they calm inflammation inside blood vessels and prevent the plaque cap from tearing open and causing a fatal heart attack. Never discontinue statins without your cardiologist's advice."
+      },
+      {
+        "q": "Is it safe to exercise at the gym if I have heart blockages?",
+        "a": "Yes, but it must be structured and cleared by your cardiologist first. A supervised treadmill test or formal cardiac rehabilitation program helps determine what heart rate and exercise intensity are safe for you. Regular brisk walking and light-to-moderate cardio are typically encouraged, while heavy lifting with breath-holding should be avoided."
+      }
+    ],
+    "references": [
+      {
+        "title": "Cardiovascular diseases (CVDs) Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+        "year": "2021"
+      },
+      {
+        "title": "Risk factors for acute myocardial infarction in South Asians (INTERHEART study)",
+        "source": "The Lancet (Joshi P et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17223473/",
+        "year": "2007"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "National Institute of Nutrition, ICMR",
+        "url": "https://www.nin.res.in",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "atherosclerosis",
+      "heart-disease",
+      "heart-failure",
+      "high-cholesterol",
+      "high-blood-pressure",
+      "type-2-diabetes",
+      "stroke"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "arjuna",
+      "garlic",
+      "amla"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "hba1c",
+      "fasting-glucose",
+      "crp",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

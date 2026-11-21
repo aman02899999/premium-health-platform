@@ -1,0 +1,307 @@
+{
+  "slug": "palpitations",
+  "name": "Palpitations",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Palpitations are sensations that make you aware of your own heartbeat. You may feel your heart is fluttering, thumping hard, beating much too fast, or skipping a beat entirely. These sensations are usually felt in your chest, throat, or neck. For many people, palpitations happen during times of intense stress, after drinking multiple cups of strong cutting chai or coffee, during hard gym workouts, or when dehydrated in hot weather. In most cases, these flutters are harmless extra beats or a normal physiological response. However, palpitations can sometimes be the first signal of an electrical rhythm disturbance in the heart, an overactive thyroid gland, or severe anemia. Getting a proper medical evaluation helps sort harmless flutters from conditions that require medical care.",
+    "quickFacts": [
+      {
+        "label": "Normal resting pulse",
+        "value": "60 to 100 beats per minute"
+      },
+      {
+        "label": "Common non-heart triggers",
+        "value": "Stress, chai, pre-workouts, dehydration, fever, anemia"
+      },
+      {
+        "label": "Most common harmless cause",
+        "value": "Premature beats (PACs and PVCs)"
+      },
+      {
+        "label": "First test needed",
+        "value": "12-lead Electrocardiogram (ECG)"
+      },
+      {
+        "label": "Red flag warning",
+        "value": "Palpitations with chest pain, dizziness, or fainting"
+      },
+      {
+        "label": "Prevalence",
+        "value": "One of the most frequent reasons adults visit cardiologists"
+      }
+    ],
+    "causes": [
+      "High intake of stimulants such as strong filter coffee, cutting chai, energy drinks, nicotine, gutka, and caffeine-heavy gym pre-workout powders.",
+      "Intense emotional stress, anxiety disorders, and sudden panic attacks that release surges of adrenaline.",
+      "Physical dehydration and electrolyte imbalance, common during hot Indian summers or vigorous training sessions without adequate fluids.",
+      "Nutritional deficiencies, especially iron-deficiency anemia, which forces the heart to pump faster to deliver oxygen to tissues.",
+      "Thyroid gland disorders, especially hyperthyroidism, where excess thyroid hormone overstimulates the cardiovascular system.",
+      "Cardiac electrical disturbances, including premature atrial contractions (PACs), premature ventricular contractions (PVCs), supraventricular tachycardia (SVT), and atrial fibrillation.",
+      "Fever, active viral or bacterial infections, and systemic inflammation that naturally raise the resting heart rate.",
+      "Certain medications and over-the-counter products, such as cold syrups with decongestants, asthma inhalers, and abrupt withdrawal from heart medications."
+    ],
+    "types": [
+      {
+        "name": "Premature Ectopic Beats",
+        "desc": "Extra beats originating in the upper or lower heart chambers (PACs or PVCs). They often feel like a missed beat followed by a strong thump. They are very common and mostly benign."
+      },
+      {
+        "name": "Sinus Tachycardia",
+        "desc": "A normal heart rhythm that is simply running faster than 100 beats per minute. Usually triggered by physical exercise, fever, severe anxiety, dehydration, or strong stimulants."
+      },
+      {
+        "name": "Supraventricular Tachycardias (SVT)",
+        "desc": "Rapid, regular heartbeats originating above the ventricles. They often start and stop abruptly like flipping a switch, causing rapid chest fluttering."
+      },
+      {
+        "name": "Atrial Fibrillation and Flutter",
+        "desc": "Disorganized electrical signals in the upper chambers causing a fast, irregular, and chaotic pulse. This requires medical treatment to prevent complications like stroke."
+      },
+      {
+        "name": "Ventricular Arrhythmias",
+        "desc": "Rhythm disturbances starting in the lower chambers of the heart. These are less common but potentially serious, especially in individuals with pre-existing heart disease."
+      }
+    ],
+    "diagnosis": [
+      "A thorough medical history: your doctor will ask what the fluttering feels like, how fast it beats, how long it lasts, and whether it starts suddenly or gradually.",
+      "Review of daily habits, including your intake of tea, coffee, energy drinks, pre-workout supplements, tobacco, alcohol, and stress levels.",
+      "Physical examination to check your pulse regularity, blood pressure, heart sounds, and signs of thyroid enlargement or pale skin indicating anemia.",
+      "A resting 12-lead ECG, which records the electrical activity of your heart at that moment, though it may look normal if palpitations are not happening during the test.",
+      "Extended ambulatory cardiac monitoring (such as a 24-hour to 48-hour Holter monitor or an event recorder) if palpitations happen intermittently at home or at the gym.",
+      "Basic blood tests to identify reversible triggers such as low hemoglobin, thyroid imbalances, or electrolyte shifts."
+    ],
+    "investigations": [
+      {
+        "test": "12-Lead Electrocardiogram (ECG)",
+        "purpose": "Records your heart electrical rhythm to identify premature beats, conduction delays, or arrhythmias"
+      },
+      {
+        "test": "24-48 Hour Holter Monitor",
+        "purpose": "A wearable portable ECG that tracks heart rhythm continuously during daily work, gym, and sleep"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia and low hemoglobin, which make your heart beat faster to supply oxygen",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Measures stored iron levels to evaluate iron deficiency even before severe anemia sets in",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out an overactive thyroid gland (hyperthyroidism) driving a racing heart",
+        "slug": "tsh"
+      },
+      {
+        "test": "Free T3 and Free T4",
+        "purpose": "Confirms active thyroid hormone levels if TSH is abnormal",
+        "slug": "t3-t4"
+      },
+      {
+        "test": "Serum Creatinine and Electrolytes",
+        "purpose": "Evaluates kidney function and checks potassium and sodium balance",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Echocardiogram (Echo)",
+        "purpose": "An ultrasound of the heart to check valve function, chamber size, and pumping strength"
+      }
+    ],
+    "modernTreatment": [
+      "Trigger elimination: For harmless flutters, cutting back on caffeine, ditching high-stimulant pre-workouts, staying hydrated, and managing stress are often the only treatments needed.",
+      "Treating underlying systemic conditions: Correcting iron deficiency with doctor-prescribed iron supplements or treating thyroid disorders restores a normal resting rhythm.",
+      "Prescription heart medications: If arrhythmias are present, cardiologists may prescribe beta-blockers or calcium channel blockers to slow the heart rate and calm irregular beats, as advised by your doctor.",
+      "Antiarrhythmic drugs: Specific medications may be chosen by a specialist to maintain a stable, regular rhythm in persistent conditions like atrial fibrillation.",
+      "Vagal maneuvers: Techniques like bearing down gently or applying cold water to the face can occasionally stop certain rapid SVT episodes, but should only be done after proper medical instruction.",
+      "Catheter ablation: A minimally invasive procedure where a specialist uses heat or cold energy to eliminate the tiny patch of heart tissue causing the abnormal electrical signals.",
+      "Cardioversion or electrical devices: For severe or unstable arrhythmias, an electrical reset (cardioversion) or an implantable device may be recommended by a cardiologist."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts discuss sensations of heart fluttering under terms such as Hridrava, Hridkampa, or Hridaya Spandana.",
+      "These conditions are commonly linked to an aggravation of Vata dosha (which governs movement, nervous impulses, and circulation) and Pitta dosha (which governs metabolic heat and intensity).",
+      "Traditional guidance emphasizes calming practices, establishing regular meal and sleep routines, minimizing pungent and overly stimulating foods, and maintaining digestive fire (Agni).",
+      "Ayurvedic concepts view emotional turbulence like worry, fear, and grief (Manasika doshas) as direct contributors to heart agitation.",
+      "Ayurvedic therapies and herbs are strictly supportive and must never replace medical evaluation, an ECG, or cardiology care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "A traditional bark used in Ayurveda for general cardiovascular support. Scientific evidence for treating active rhythm disorders is limited; it cannot replace medical antiarrhythmics."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally used to help the body handle physical and emotional stress. It may support calmness during anxiety-induced palpitations, but evidence for direct heart rhythm control is weak."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally taken to soothe mental restlessness and promote nervous system relaxation. Clinical trials evaluating its effect on cardiac arrhythmias are lacking."
+      }
+    ],
+    "nutrition": [
+      "Stay thoroughly hydrated throughout the day. In warm Indian climates, drink plenty of plain water, nimbu pani with a pinch of salt, or fresh coconut water to keep electrolytes balanced.",
+      "Cut down on caffeine. Be mindful of how many cups of cutting chai, espresso, or strong filter coffee you drink daily, especially on an empty stomach.",
+      "Avoid commercial energy drinks and high-stimulant gym pre-workout powders that pack massive amounts of caffeine, synephrine, or guarana.",
+      "Eat iron-dense foods if your lab work shows low iron or anemia: incorporate palak, methi, rajma, black chana, soybeans, drumstick leaves (moringa), dates, and roasted chana.",
+      "Include potassium- and magnesium-rich foods to help nerve and muscle function in the heart: enjoy bananas, tender coconut water, plain homemade curd, pumpkin seeds, and soaked almonds.",
+      "Avoid heavy, ultra-greasy late-night dinners. Large portions of fried snacks like samosas or heavy gravies can cause acid reflux and stimulate the vagus nerve, sparking palpitations when you lie down.",
+      "Limit alcohol consumption strictly, as binge drinking can irritate heart tissue and trigger episodes known as holiday heart syndrome."
+    ],
+    "lifestyle": [
+      "Prioritize 7 to 8 hours of uninterrupted sleep every night. Chronic sleep loss elevates circulating stress hormones and makes the heart far more irritable.",
+      "Keep a palpitation log: note the exact time, what you were doing, what you had just eaten or drank, and how long the sensation lasted to share with your physician.",
+      "Stop all tobacco use immediately, including cigarettes, bidis, gutka, khaini, and nicotine vapes, as nicotine directly triggers rapid and irregular heartbeats.",
+      "Take dedicated breaks during high-stress workdays. Dedicate 10 minutes to step away from screens and breathe calmly.",
+      "Check your fitness wearable data with caution. Constantly staring at real-time heart rate graphs on smartwatches often fuels health anxiety, which itself accelerates your pulse.",
+      "Maintain a steady workout routine without jumping straight into maximal lifts or all-out sprints without a gradual warm-up."
+    ],
+    "yogaActivity": [
+      "Practice slow, balanced breathing techniques such as Anulom Vilom (alternate nostril breathing) to activate the parasympathetic nervous system and lower resting tension.",
+      "Practice Bhramari pranayama (humming bee breath) for 5 minutes in a quiet room to settle an overstimulated mind.",
+      "Avoid aggressive, forceful breath-retention exercises (Kumbhaka) or extremely rapid Kapalbhati if you are prone to sudden heart spikes.",
+      "Incorporate relaxing restorative asanas such as Shavasana (corpse pose), Balasana (child pose), Viparita Karani (legs-up-the-wall pose), and gentle seated forward bends.",
+      "Perform light to moderate aerobic exercise such as brisk walking, gentle cycling, or swimming for 30 minutes on most days, keeping the intensity conversational."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence showing that homeopathic products can treat cardiac arrhythmias, repair heart conduction faults, or prevent complications.",
+      "Relying solely on homeopathic remedies for persistent or fast heart palpitations can delay essential medical diagnosis and necessary therapy.",
+      "If you choose to take homeopathic remedies, always consult your physician first and never discontinue prescribed cardiac or thyroid medications."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Standard 12-lead ECG and continuous ambulatory monitoring (Holter) are reliable tools for accurately identifying heart rhythm abnormalities.",
+      "Strong evidence: Correcting underlying systemic triggers, such as treating iron deficiency with supplements or fixing hyperthyroidism, consistently resolves secondary sinus tachycardia.",
+      "Strong evidence: Medical therapies, including doctor-prescribed beta-blockers and catheter ablation procedures, are effective at managing many forms of supraventricular and ventricular arrhythmias.",
+      "Moderate evidence: Structured cognitive stress reduction, sleep optimization, and limiting stimulants reduce the frequency of benign premature beats.",
+      "Weak evidence: Herbal preparations like Arjuna, Ashwagandha, and Brahmi have not been shown in large randomized clinical trials to treat or stop cardiac arrhythmias.",
+      "No evidence: Online herbal tonics, cleansing powders, or miracle heart elixirs claiming to stop fluttering permanently have no scientific validation."
+    ],
+    "shouldNotDo": [
+      "Do not assume all heart flutters are just gas, acidity, or anxiety without having at least one medical check and an ECG.",
+      "Do not consume concentrated stimulant-based pre-workout supplements, thermogenic fat burners, or energy drinks before lifting weights.",
+      "Do not stop, skip, or change doses of heart, blood pressure, or thyroid tablets without explicit guidance from your treating physician.",
+      "Do not push through intense, high-load gym training if you suddenly feel your heart racing uncontrollably or fluttering with lightheadedness.",
+      "Do not rely on home remedies or unverified tonics if you experience palpitations accompanied by breathlessness or chest discomfort.",
+      "Remember that no herb, diet or product can make it go away if your fluttering stems from a genuine electrical conduction defect in the heart."
+    ],
+    "medicationSafety": [
+      "Always take prescribed heart rate medications, such as beta-blockers or antiarrhythmics, exactly as advised by your doctor.",
+      "Never stop beta-blocker medications abruptly, as this can trigger a dangerous rebound surge in heart rate and blood pressure.",
+      "Be very careful with over-the-counter cough, cold, and sinus medicines; many contain decongestants (like phenylephrine or pseudoephedrine) that act as cardiac stimulants.",
+      "If you take thyroid hormone replacement (levothyroxine), get your TSH checked periodically; an excessive dose can cause drug-induced palpitations.",
+      "Inform your doctor of every dietary supplement, gym protein powder, or herbal capsule you consume, as hidden stimulants can interact with cardiac medications."
+    ],
+    "complications": [
+      "Syncope (fainting) resulting in sudden falls, head injuries, or road accidents if the rhythm drops blood flow to the brain.",
+      "Thromboembolism and stroke, particularly if palpitations are caused by untreated atrial fibrillation allowing clots to form in the heart.",
+      "Tachycardia-induced cardiomyopathy and heart failure, which can develop when the heart runs at abnormally rapid rates for weeks or months unchecked.",
+      "Severe health anxiety and panic disorder, where fear of the next palpitation episode severely restricts daily activities and exercise.",
+      "Life-threatening cardiac arrest in rare situations where palpitations arise from malignant ventricular arrhythmias."
+    ],
+    "emergencySigns": [
+      "Palpitations accompanied by chest pain, heaviness, tightness, or pressure spreading to your arm, neck, jaw, or back.",
+      "Sudden fainting (blackout), collapse, or severe lightheadedness where you feel you are about to pass out.",
+      "Severe, sudden shortness of breath or struggling to speak full sentences while your heart is racing.",
+      "Sudden weakness, facial drooping, or difficulty speaking during an episode of an irregular pulse (signs of a stroke).",
+      "A continuous racing pulse above 150 beats per minute at rest that does not slow down after sitting quietly for a few minutes."
+    ],
+    "whenToSeeDoctor": [
+      "You experience palpitations that happen frequently throughout the week or wake you up from sound sleep.",
+      "Your heart flutter lasts for more than a few minutes at a time rather than a fleeting split-second thump.",
+      "You have a known history of heart valve disease, previous heart attacks, or a family history of unexplained sudden death at a young age.",
+      "Your resting pulse regularly feels completely chaotic, uneven, and disorganized rather than steady.",
+      "You develop palpitations shortly after starting a new prescribed medicine, gym supplement, or fitness regimen."
+    ],
+    "faqs": [
+      {
+        "q": "Are all heart palpitations dangerous?",
+        "a": "No, the vast majority of palpitations in young, active people are completely harmless. They are often just premature extra beats or sinus tachycardia sparked by stress, lack of sleep, tea, coffee, or mild dehydration. However, only an examination and an ECG can confirm whether they are benign or require treatment."
+      },
+      {
+        "q": "Why do my gym pre-workout supplements give me heart flutters?",
+        "a": "Many gym pre-workout powders and fat burners contain heavy doses of anhydrous caffeine, synephrine, or related stimulant compounds. These trigger a large adrenaline surge, which raises your blood pressure and makes your heart muscle contract faster and more forcefully, frequently setting off palpitations."
+      },
+      {
+        "q": "Can gas, bloating, or acidity really cause heart palpitations?",
+        "a": "Yes, severe bloating, stomach distension, or acid reflux can stimulate the vagus nerve, which runs close to the esophagus and stomach and connects to the heart. This nerve stimulation can cause harmless ectopic beats or brief racing sensations, sometimes referred to as gastrocardiac syndrome. Even so, cardiac causes must always be ruled out first."
+      },
+      {
+        "q": "How can I tell if palpitations are from anxiety or a real heart problem?",
+        "a": "It can be difficult to tell from sensations alone, because anxiety releases adrenaline that produces real physical changes in heart rate. Generally, anxiety palpitations come with worry, trembling, or rapid breathing and build up gradually. Arrhythmias often start and stop with sudden precision, like a light switch. A doctor uses an ECG or Holter monitor to tell the difference."
+      },
+      {
+        "q": "What immediate steps can I take during a mild palpitation episode?",
+        "a": "Sit down quietly, rest your back, and take slow, deep breaths through your nose, letting your belly expand. Sip a glass of cool water and loosen any tight clothing around your collar. If the episode passes within seconds to a couple of minutes, record the details in your log. If it persists or brings pain or dizziness, seek emergency care immediately."
+      }
+    ],
+    "references": [
+      {
+        "title": "Heart palpitations: Overview, symptoms, and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/heart-palpitations/symptoms-causes/syc-20373196",
+        "year": "2023"
+      },
+      {
+        "title": "Heart Palpitations: Symptoms, Causes & Treatment",
+        "source": "Cleveland Clinic",
+        "url": "https://my.clevelandclinic.org/health/diseases/17084-heart-palpitations",
+        "year": "2022"
+      },
+      {
+        "title": "Heart palpitations - NHS Health A to Z",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/heart-palpitations/",
+        "year": "2023"
+      },
+      {
+        "title": "Heart Palpitations: MedlinePlus Medical Encyclopedia",
+        "source": "National Institutes of Health (NIH) / MedlinePlus",
+        "url": "https://medlineplus.gov/ency/article/003081.htm",
+        "year": "2024"
+      },
+      {
+        "title": "Arrhythmia: What is an Arrhythmia?",
+        "source": "American Heart Association (AHA)",
+        "url": "https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "anxiety",
+      "stress",
+      "heart-disease",
+      "coronary-artery-disease",
+      "heart-failure",
+      "hyperthyroidism",
+      "anemia",
+      "iron-deficiency",
+      "dehydration",
+      "dizziness"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "iron-folic-acid",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "arjuna",
+      "brahmi"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "tsh",
+      "t3-t4",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

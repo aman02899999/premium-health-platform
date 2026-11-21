@@ -1,0 +1,317 @@
+{
+  "slug": "high-cholesterol",
+  "name": "High Cholesterol",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "High cholesterol (hypercholesterolemia or dyslipidemia) means having too much waxy, fatty material circulating in your bloodstream. Your liver makes cholesterol naturally to build cell walls, make vitamin D and produce digestive bile. You also get cholesterol and fats from foods. But when low-density lipoprotein (LDL, often called 'bad cholesterol') builds up, it sticks to artery walls and forms hard plaques. Over time, these plaques narrow the arteries, restricting blood flow to your heart, brain and limbs. High cholesterol has zero warning signs on its own. Most people feel completely healthy until a blood test catches it or a heart attack occurs. In the nationwide ICMR-INDIAB study published in 2023, dyslipidemia was found in 81.2% of Indian adults, making it one of the most common metabolic issues in our country. Diet, regular gym or home activity, weight management and prescribed medicines can bring your cholesterol levels back to safe ranges.",
+    "quickFacts": [
+      {
+        "label": "Desirable Total Cholesterol",
+        "value": "Below 200 mg/dL"
+      },
+      {
+        "label": "Optimal LDL ('Bad') Cholesterol",
+        "value": "Below 100 mg/dL (under 70 or 55 mg/dL for high heart risk)"
+      },
+      {
+        "label": "Protective HDL ('Good') Cholesterol",
+        "value": "Above 40 mg/dL for men, above 50 mg/dL for women"
+      },
+      {
+        "label": "Optimal Triglycerides",
+        "value": "Below 150 mg/dL"
+      },
+      {
+        "label": "How common in India",
+        "value": "81.2% of adults have at least one lipid abnormality (ICMR-INDIAB, 2023)"
+      },
+      {
+        "label": "Symptoms",
+        "value": "None. It can only be found with a lipid blood test"
+      }
+    ],
+    "causes": [
+      "Diets rich in trans fats, vanaspati and reused cooking oils. Deep-fried snacks like samosas, pakoras, namkeen, bakery puffs and commercial sweets flood the liver with unhealthy fats.",
+      "Excess refined carbohydrates and sugars. High intake of maida, polished white rice, sugary drinks and sweets stimulates the liver to make more triglycerides and smaller, denser LDL particles.",
+      "Physical inactivity. Sitting for long hours and skipping daily physical exercise lowers protective HDL cholesterol and lets LDL cholesterol build up in the bloodstream.",
+      "Carrying excess weight, especially abdominal visceral fat. Belly fat releases free fatty acids directly into the portal circulation, upsetting normal liver lipid metabolism.",
+      "Smoking, bidi and gutka use. Chemical compounds in tobacco damage the lining of blood vessels, make LDL stickier and significantly drop protective HDL levels.",
+      "Genetics and family history. Conditions like familial hypercholesterolemia cause severe high LDL levels from a young age, regardless of how clean your diet is.",
+      "Underlying health conditions. An underactive thyroid gland (hypothyroidism), type 2 diabetes, chronic kidney disease and liver problems can push cholesterol higher.",
+      "Certain medications. Steroids, some blood pressure medications like beta-blockers or high-dose diuretics, and certain hormonal therapies can alter lipid numbers."
+    ],
+    "types": [
+      {
+        "name": "High LDL Hypercholesterolemia",
+        "desc": "Raised low-density lipoprotein particles. These are the main culprits that stick to artery walls and build dangerous arterial plaque."
+      },
+      {
+        "name": "Atherogenic Dyslipidemia",
+        "desc": "A very common pattern in South Asians: high triglycerides, low HDL and an abundance of small, dense LDL particles, strongly tied to insulin resistance."
+      },
+      {
+        "name": "Mixed Hyperlipidemia",
+        "desc": "Both total cholesterol and blood triglycerides are significantly elevated, multiplying cardiovascular risk."
+      },
+      {
+        "name": "Familial Hypercholesterolemia (FH)",
+        "desc": "A genetic condition where the liver cannot clear LDL effectively from blood. Total cholesterol and LDL are exceptionally high from childhood or early adulthood."
+      },
+      {
+        "name": "Secondary Hypercholesterolemia",
+        "desc": "Cholesterol spikes caused by another treatable condition, such as uncontrolled hypothyroidism, nephrotic syndrome or poorly managed diabetes."
+      }
+    ],
+    "diagnosis": [
+      "A standard blood test called a lipid panel or lipid profile is the only way to diagnose high cholesterol.",
+      "Blood is drawn from a vein, typically after 10 to 12 hours of overnight fasting (drinking plain water is allowed), though some basic non-fasting checks can be used for initial screening.",
+      "A full lipid profile measures total cholesterol, LDL cholesterol, HDL cholesterol, very-low-density lipoprotein (VLDL) and triglycerides.",
+      "Your doctor evaluates your numbers alongside overall cardiovascular risk: age, gender, blood pressure, smoking status, family history and blood sugar levels.",
+      "Because cholesterol fluctuates slightly day-to-day, an unusually high reading is often rechecked within a few weeks before major medical decisions are finalized.",
+      "Your doctor may also screen your thyroid gland (TSH), kidney function and liver enzymes to rule out underlying causes."
+    ],
+    "investigations": [
+      {
+        "test": "Fasting Lipid Profile",
+        "purpose": "Directly measures total cholesterol, LDL, HDL and triglycerides to confirm the diagnosis",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks for insulin resistance and diabetes, which accelerate artery damage",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Measures average blood sugar over the last three months to assess overall metabolic control",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Evaluates thyroid function, as an underactive thyroid is a treatable cause of high cholesterol",
+        "slug": "tsh"
+      },
+      {
+        "test": "Liver Function Tests (Liver Enzymes)",
+        "purpose": "Evaluates baseline liver health before and during cholesterol-lowering medication therapy",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "High-Sensitivity C-Reactive Protein (hs-CRP)",
+        "purpose": "Measures low-grade systemic inflammation inside blood vessel walls",
+        "slug": "crp"
+      }
+    ],
+    "modernTreatment": [
+      "Lifestyle modifications are the foundation of all cholesterol treatment. Every patient begins with heart-healthy nutrition, regular exercise, weight management and tobacco cessation.",
+      "Statin medications (such as atorvastatin) are the gold standard for lowering LDL cholesterol and stabilizing existing plaque in arteries, preventing heart attacks and strokes.",
+      "The dose and intensity of medicine depends on your individual cardiovascular risk category, not just a single blood number.",
+      "Additional non-statin medicines, such as ezetimibe or PCSK9 inhibitors, may be added by a specialist if statins alone do not bring LDL down to your personalized target.",
+      "Medications must be taken consistently as advised by your doctor. Discontinuing therapy will cause blood cholesterol to bounce back to unsafe baseline levels.",
+      "Routine follow-up lipid panels are scheduled every 4 to 12 weeks after starting or adjusting medication, and every 6 to 12 months once target levels are reached."
+    ],
+    "ayurvedaView": [
+      "Ayurveda views high cholesterol through the concept of 'Medo Roga' (disorders of fat tissue) and the formation of 'Ama' (toxic metabolic residue caused by sluggish digestive fire, or Mandagni).",
+      "When Agni is weak, food is not metabolized cleanly, leading to accumulation of sticky waste that blocks bodily channels (Srotas), particularly the Rakta Vaha Srotas (blood channels).",
+      "Traditional management focuses on stoking the digestive fire (Deepana and Pachana), clearing channel obstructions (Srotoshodhana) and adopting a Kapha-pacifying lifestyle.",
+      "Traditional Ayurvedic concepts provide a holistic lens on digestion and balance, but they do not replace modern lipid testing or proven cardiovascular medicines.",
+      "Herbal remedies and Ayurvedic churnas should only be taken as supportive measures with your doctor's explicit knowledge, ensuring they do not cause liver strain or drug interactions."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Contains allicin. Modest evidence suggests it can offer slight support for lipid balance, but it cannot substitute for prescription statins and can increase bleeding risk with blood thinners."
+      },
+      {
+        "name": "Fenugreek",
+        "slug": "fenugreek",
+        "note": "High in soluble fiber (galactomannan), which helps slow intestinal absorption of dietary fats and glucose. Used as dietary support alongside medical care."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C and polyphenols. Preliminary studies suggest supportive antioxidant properties that help reduce lipid peroxidation."
+      },
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "A traditional bark extract used in Indian medicine for heart health. Human trials on cholesterol reduction are limited; use only as supportive care as advised by your doctor."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild anti-inflammatory support for vascular walls. It does not replace lipid-lowering medical therapy."
+      }
+    ],
+    "nutrition": [
+      "Cut out industrial trans fats completely. Avoid dalda, vanaspati, margarine, commercially fried street snacks and pre-packaged bakery goods.",
+      "Minimize saturated fats by limiting full-fat dairy, heavy malai, butter, processed cheeses, palm oil, coconut oil and fatty red meats.",
+      "Use heart-healthy cooking oils in strict moderation (half a liter per person per month as recommended by ICMR-NIN). Rotate mustard oil, groundnut oil, sunflower oil or rice bran oil.",
+      "Drastically increase soluble fiber. Soluble fiber binds bile acids in the gut and pulls cholesterol out of your body. Eat oats, whole barley, methi dana, chia seeds, apples, guava and citrus fruits.",
+      "Fill half your plate at lunch and dinner with fresh vegetables like bhindi, tori, lauki, palak, methi leaves and beans.",
+      "Choose whole pulses with husks (chana, rajma, whole moong, lobia) instead of polished carbohydrates and refined maida.",
+      "Incorporate a small handful of unsalted raw nuts daily, such as almonds and walnuts, which provide plant sterols and heart-protective omega-3 fats.",
+      "Ditch sugary sodas, sweetened chai, fruit juice boxes and traditional sweets like gulab jamun and jalebi, which spike blood triglycerides."
+    ],
+    "lifestyle": [
+      "Commit to at least 150 to 300 minutes of moderate-intensity aerobic exercise each week, such as brisk walking, jogging, swimming or cycling.",
+      "Incorporate resistance and strength training at the gym or at home 2 to 3 days per week to build lean muscle and speed up lipid clearance.",
+      "Aim for steady, healthy weight loss if carrying extra weight. Dropping just 5% to 10% of your body weight can markedly lower LDL and triglycerides while raising HDL.",
+      "Stop all tobacco use immediately. Giving up cigarettes, bidi and gutka rapidly improves HDL levels and protects artery linings from chemical irritation.",
+      "Strictly limit or completely avoid alcohol intake. Alcohol is metabolized by the liver into triglycerides and significantly worsens fatty liver.",
+      "Prioritize 7 to 8 hours of uninterrupted, quality sleep every night. Chronic sleep deprivation elevates cortisol and promotes atherogenic lipid changes.",
+      "Practice daily stress reduction. Chronic psychological stress drives stress hormones that stimulate free fatty acid release and hepatic cholesterol synthesis."
+    ],
+    "yogaActivity": [
+      "Perform dynamic yoga sequences like Surya Namaskar (Sun Salutations) at a steady, rhythmic pace to improve circulation and burn calories.",
+      "Incorporate standing and core-strengthening postures such as Trikonasana (Triangle Pose), Utkatasana (Chair Pose) and Virabhadrasana (Warrior Pose).",
+      "Practice abdominal-toning postures like Ardha Matsyendrasana (Half Spinal Twist), Bhujangasana (Cobra Pose) and Dhanurasana (Bow Pose) to stimulate metabolism.",
+      "Engage in calming pranayama like Anulom Vilom (alternate nostril breathing) and Bhramari for 10 to 15 minutes daily to help manage stress-induced autonomic arousal.",
+      "Avoid holding your breath (Kumbhaka) forcefully during exercise, and take guidance from a certified yoga teacher if you have existing cardiac risk."
+    ],
+    "homeopathyNote": [
+      "There is no verified, rigorous clinical evidence proving homeopathic remedies can clear cholesterol plaques, lower LDL levels or prevent cardiovascular deaths.",
+      "High cholesterol carries life-threatening risks of stroke and heart attack. Relying solely on homeopathy while neglecting proven medical care is unsafe.",
+      "If you explore complementary therapies, never stop or alter your prescribed lipid medications without your cardiologist's or physician's explicit approval."
+    ],
+    "evidenceNotes": [
+      "High-certainty evidence: Prescription statin therapy significantly lowers LDL cholesterol, reduces arterial plaque progression, and cuts the rate of heart attacks, ischemic strokes and cardiovascular mortality.",
+      "High-certainty evidence: Replacing saturated and trans fats with polyunsaturated and monounsaturated fats significantly reduces circulating LDL cholesterol.",
+      "Moderate-certainty evidence: Daily consumption of soluble dietary fiber (such as beta-glucan from oats and psyllium husk) produces meaningful, dose-dependent reductions in LDL cholesterol.",
+      "Moderate-certainty evidence: Regular aerobic exercise and structured strength training consistently improve HDL cholesterol and decrease circulating triglycerides.",
+      "Low-to-very-limited evidence: Over-the-counter herbal supplements (such as garlic pearls, guggulu, or cinnamon capsules) show inconsistent, marginal effects and cannot substitute for clinical treatment.",
+      "Misleading claims: No herb, diet or product can make high cholesterol go away overnight or dissolve established artery plaques without medical guidance."
+    ],
+    "shouldNotDo": [
+      "Do not stop your statin or cholesterol medication just because your latest blood report shows normal numbers. The numbers are normal precisely because the medicine is working.",
+      "Do not assume young age or a lean frame protects you. Lean individuals can have severe genetic dyslipidemia or high triglycerides from poor dietary quality.",
+      "Do not substitute pure desi ghee, butter or coconut oil in large quantities under the belief that traditional saturated fats are harmless to your arteries.",
+      "Do not reuse cooking oil repeatedly. Heating vegetable oil multiple times creates toxic trans fats and oxidized lipid compounds that harm arterial health.",
+      "Do not rely on home remedies or viral social media drinks (like lemon-garlic tonics) in place of medical evaluations.",
+      "Do not wait for chest pain or physical symptoms to appear before getting your lipid profile tested."
+    ],
+    "medicationSafety": [
+      "Take your statin tablet (such as atorvastatin) consistently once daily, preferably at bedtime or as advised by your doctor, since the liver synthesizes the most cholesterol at night.",
+      "Report unexplained muscle soreness, muscle tenderness or unusual weakness to your doctor promptly. Mild muscle aches can often be managed by adjusting the dose or switching statins.",
+      "Avoid consuming large amounts of grapefruit or grapefruit juice, as it inhibits liver enzymes (CYP3A4) that break down certain statins, raising medication levels in your blood.",
+      "Your doctor will order baseline liver enzymes (ALT/AST) before starting statin therapy and check them periodically if clinically indicated.",
+      "Never combine over-the-counter cholesterol supplements with prescription statins without clearing it with your physician to avoid liver toxicity.",
+      "If you are pregnant, planning to become pregnant, or breastfeeding, inform your doctor immediately, as statin medications must be paused during pregnancy."
+    ],
+    "complications": [
+      "Coronary Artery Disease (CAD): Plaque buildup inside heart arteries limits blood supply, triggering angina (chest pain).",
+      "Myocardial Infarction (Heart Attack): An unstable cholesterol plaque ruptures, forming a blood clot that completely blocks blood flow to the heart muscle.",
+      "Ischemic Stroke: Blockage of an artery feeding brain tissue, causing rapid loss of brain cells and permanent disability or death.",
+      "Peripheral Artery Disease (PAD): Narrowed arteries in the legs and pelvis lead to leg cramping while walking (claudication), poor healing and tissue death.",
+      "Carotid Artery Stenosis: Narrowing of the main neck vessels carrying blood to the brain, drastically increasing stroke risk.",
+      "Acute Pancreatitis: Extremely elevated triglycerides (often above 500 to 1000 mg/dL) can trigger severe, life-threatening inflammation of the pancreas."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain, tightness, squeezing pressure or heaviness in the center of the chest lasting more than a few minutes.",
+      "Pain, ache or numbness radiating to the left shoulder, arm, neck, jaw, back or upper stomach.",
+      "Shortness of breath accompanied by cold sweats, dizziness, lightheadedness or nausea.",
+      "Sudden facial drooping, weakness or numbness in an arm or leg, especially on one side of the body.",
+      "Sudden difficulty speaking, slurred speech or trouble understanding speech: call emergency services (108 or 112) immediately."
+    ],
+    "whenToSeeDoctor": [
+      "Your routine lipid profile shows LDL above 130 mg/dL, total cholesterol above 200 mg/dL, or triglycerides above 150 mg/dL.",
+      "You have a family history of premature heart disease (heart attack in a male first-degree relative before age 55 or female before 65).",
+      "You have diabetes, high blood pressure or chronic kidney disease and have not had your cholesterol checked within the past year.",
+      "You experience unexplained cramping or severe aching in your calves or thighs when walking briskly or climbing stairs.",
+      "You are experiencing muscle aches, dark tea-colored urine, or unusual fatigue after starting a new cholesterol-lowering medication."
+    ],
+    "faqs": [
+      {
+        "q": "Can I stop taking atorvastatin once my cholesterol levels normalize?",
+        "a": "No. Statins work by blocking the liver enzyme responsible for manufacturing cholesterol. If you stop the medication, your liver will resume making excess cholesterol, and blood levels will rise back to their previous unsafe range within weeks. Any decision to change medication must be made with your doctor."
+      },
+      {
+        "q": "Is desi ghee healthy or does it raise bad cholesterol?",
+        "a": "Desi ghee is composed of roughly 60% saturated fat. While small amounts can be part of a balanced diet, consuming liberal amounts of ghee raises LDL cholesterol in most people. Moderation is essential, and people with high LDL should strictly limit total saturated fat intake."
+      },
+      {
+        "q": "I am thin and go to the gym. Can I still have high cholesterol?",
+        "a": "Yes. Body weight is only one component of lipid health. Genetics, liver enzyme activity, smoking, metabolic traits and hidden dietary saturated fats can cause severe high cholesterol in lean and physically active adults. Routine lipid testing is vital for everyone."
+      },
+      {
+        "q": "What is the difference between LDL and HDL cholesterol?",
+        "a": "LDL (low-density lipoprotein) carries cholesterol from the liver into the bloodstream and deposits it into artery walls, which is why it is called 'bad' cholesterol. HDL (high-density lipoprotein) acts as a scavenger, picking up excess cholesterol from tissues and carrying it back to the liver for disposal, making it 'good' cholesterol."
+      },
+      {
+        "q": "Can garlic raw cloves or garlic pills replace my cholesterol medicine?",
+        "a": "No. While garlic has mild health-promoting properties and may produce tiny improvements in laboratory lipid numbers, its effect is nowhere near potent enough to treat clinical dyslipidemia or protect diseased arteries. It must never replace prescribed statin therapy."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "2018 AHA/ACC/AACVPR/AAPA/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Blood Cholesterol",
+        "source": "Journal of the American College of Cardiology (Grundy SM et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30423393/",
+        "year": "2019"
+      },
+      {
+        "title": "Cardiovascular diseases (CVDs) Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+        "year": "2021"
+      },
+      {
+        "title": "ESC/EAS Guidelines for the management of dyslipidaemias: lipid modification to reduce cardiovascular risk",
+        "source": "European Heart Journal (Mach F et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31473748/",
+        "year": "2020"
+      },
+      {
+        "title": "High Cholesterol - Diagnosis and Treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/high-blood-cholesterol/diagnosis-treatment/drc-20350806",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "atherosclerosis",
+      "coronary-artery-disease",
+      "heart-disease",
+      "stroke",
+      "high-triglycerides",
+      "fatty-liver",
+      "type-2-diabetes",
+      "high-blood-pressure",
+      "peripheral-artery-disease"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "metformin",
+      "amlodipine"
+    ],
+    "relatedHerbs": [
+      "garlic",
+      "fenugreek",
+      "amla",
+      "arjuna",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "fasting-glucose",
+      "hba1c",
+      "tsh",
+      "liver-enzymes",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

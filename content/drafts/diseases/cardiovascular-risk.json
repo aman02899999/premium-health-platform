@@ -1,0 +1,297 @@
+{
+  "slug": "cardiovascular-risk",
+  "name": "Cardiovascular Risk",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Cardiovascular risk means your chance of having a major heart or blood vessel event, like a heart attack or stroke, over the next five to ten years. In India, heart conditions strike about a decade earlier than in Western countries, frequently affecting people in their thirties and forties. This heightened danger is often driven by the South Asian phenotype, which includes higher body fat, more abdominal fat, and smaller blood vessels, even at lower body weights. Cardiovascular risk is not a single illness. Instead, it is the combined effect of several factors working together, such as high blood pressure, abnormal cholesterol, elevated blood sugar, smoking, abdominal obesity, and genetics. Assessing your total risk helps you and your doctor take early steps to protect your arteries before lasting damage happens.",
+    "quickFacts": [
+      {
+        "label": "Earlier onset in South Asians",
+        "value": "First heart attacks often occur 5 to 10 years earlier than in Western groups"
+      },
+      {
+        "label": "India CVD death burden",
+        "value": "Cardiovascular diseases cause over 27% of all deaths in India (Global Burden of Disease)"
+      },
+      {
+        "label": "Waist cut-off for Asian Indians",
+        "value": "Under 90 cm for men and under 80 cm for women (ICMR guidelines)"
+      },
+      {
+        "label": "Diabetes and heart risk",
+        "value": "Diabetes doubles or triples the risk of cardiovascular events"
+      },
+      {
+        "label": "Silent nature",
+        "value": "Plaque builds inside arteries for years without producing any warning symptoms"
+      },
+      {
+        "label": "Preventability",
+        "value": "Up to 80% of premature heart attacks and strokes can be prevented with lifestyle and medical care"
+      }
+    ],
+    "causes": [
+      "High LDL cholesterol and high triglycerides. Excess lipids enter the walls of your blood vessels, leading to fatty plaques that narrow arteries over time.",
+      "Elevated blood pressure. High pressure constantly strains and tears the delicate inner lining of the arteries, speeding up plaque formation.",
+      "Type 2 diabetes and insulin resistance. High glucose levels stiffen blood vessels, increase body-wide inflammation, and make blood more likely to form dangerous clots.",
+      "Tobacco use. Whether through smoking bidis and cigarettes or chewing gutka, tobacco injures blood vessel walls, raises blood pressure, and reduces oxygen delivery.",
+      "Abdominal obesity. Excess fat around the organs produces inflammatory chemicals that disturb cholesterol and blood sugar control.",
+      "Physical inactivity. Sitting for long hours slows lipid metabolism and weakens heart muscle conditioning.",
+      "Diet high in ultra-processed snacks, trans fats, refined carbohydrates, and excess sodium. Traditional fried snacks like samosas, farsan, and packaged namkeen drive arterial damage.",
+      "Family history and genetics. Having a first-degree relative who experienced a heart attack at an early age significantly raises your baseline risk.",
+      "Chronic mental stress and poor sleep. Ongoing stress and untreated sleep problems elevate stress hormones like cortisol, pushing up blood pressure and inflammation."
+    ],
+    "types": [
+      {
+        "name": "Low Cardiovascular Risk",
+        "desc": "Estimated 10-year chance of a cardiovascular event is under 5%. Blood pressure, cholesterol, and blood glucose are in healthy ranges, with no history of tobacco use."
+      },
+      {
+        "name": "Borderline or Intermediate Risk",
+        "desc": "Estimated 10-year risk sits between 5% and 20%. Usually caused by a combination of mild issues, such as borderline blood pressure, slightly elevated LDL, or abdominal weight."
+      },
+      {
+        "name": "High or Very High Risk",
+        "desc": "Estimated 10-year risk exceeds 20%, or risk is automatically high due to established diabetes, chronic kidney disease, severe hypertension, or previous arterial events."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical assessment: Your doctor records your age, biological sex, smoking status, family medical history, and resting blood pressure.",
+      "Anthropometric checks: Measuring your body mass index and waist circumference. Indian guidelines use a waist cut-off of 90 cm for men and 80 cm for women.",
+      "Validated risk calculator engines: Using population-calibrated scoring tools, such as the WHO South-East Asia CVD Risk Chart, to estimate your 10-year risk percentage.",
+      "Laboratory panel evaluation: Checking fasting blood sugar, HbA1c, and a complete fasting lipid profile to assess metabolic and cholesterol targets.",
+      "Advanced vascular checks: When risk is uncertain, doctors may evaluate your coronary artery calcium score via CT scan or perform a carotid ultrasound to look for hidden arterial plaque."
+    ],
+    "investigations": [
+      {
+        "test": "Fasting lipid profile",
+        "purpose": "Measures total cholesterol, LDL, HDL, and triglycerides to judge arterial plaque risk",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "HbA1c test",
+        "purpose": "Shows average blood sugar over three months to detect undiagnosed diabetes or prediabetes",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Detects acute elevations in blood sugar and evaluates morning insulin response",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "High-sensitivity C-reactive protein (hs-CRP)",
+        "purpose": "Measures hidden low-grade arterial inflammation that contributes to plaque instability",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum creatinine and eGFR",
+        "purpose": "Assesses kidney function, as kidney disease dramatically increases cardiovascular strain",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine routine for microalbuminuria",
+        "purpose": "Detects microscopic protein leakage, an early marker of systemic blood vessel damage",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Resting 12-lead ECG",
+        "purpose": "Checks for past silent heart attacks, heart muscle thickening, or rhythm disturbances"
+      }
+    ],
+    "modernTreatment": [
+      "Lifestyle intervention as the foundation: Every person with elevated cardiovascular risk needs dietary adjustments, consistent exercise, and complete cessation of tobacco products.",
+      "Statin therapy: Medications like atorvastatin lower LDL cholesterol, reduce blood vessel inflammation, and stabilize existing arterial plaques to stop them from rupturing.",
+      "Blood pressure management: Antihypertensive medications like amlodipine or losartan are prescribed to keep blood pressure within safe ranges, protecting delicate blood vessels.",
+      "Glucose-lowering medicines: For those with type 2 diabetes, medications like metformin or dapagliflozin help manage blood sugar while providing proven kidney and heart protection.",
+      "Antiplatelet medications: In select high-risk individuals or those with existing vascular disease, doctors may advise low-dose aspirin to lower the chance of blood clots.",
+      "Routine clinical monitoring: Regular follow-up every 3 to 12 months to re-evaluate risk scores, monitor lab markers, and adjust medication doses as needed."
+    ],
+    "ayurvedaView": [
+      "Ayurveda views cardiovascular wellbeing through the balance of Hridaya (the heart seat), Rasa Dhatu (plasma and nutrients), and Rakta Dhatu (blood tissue).",
+      "Imbalances often stem from vitiated Kapha and Meda Dhatu (excess fat tissue) mixing with Ama (toxic metabolic residue), leading to Sroto-rodha (obstruction of micro-channels).",
+      "Traditional guidance emphasizes Langhana (lightening therapies), eating fresh and easily digestible foods, avoiding heavy oily snacks, and practicing regular calming routines.",
+      "Ayurvedic concepts serve as a framework for healthy living, not a standalone substitute for modern medical risk reduction. Herbs must only be used as gentle supportive measures alongside your doctor's treatment plan."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "Traditionally used for heart muscle support. Clinical evidence is preliminary; it cannot replace prescribed cholesterol or blood pressure drugs."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "May provide a minor, supportive effect on blood pressure and lipid balance. Can increase bleeding risks when combined with blood thinners."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Packed with vitamin C and plant polyphenols that act as antioxidants. Useful as food support but does not substitute for statins."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild anti-inflammatory properties, but poor absorption limits its impact. Consult your doctor if you take prescription blood thinners."
+      }
+    ],
+    "nutrition": [
+      "Fill half your plate with colorful vegetables and raw salads: bhindi, lauki, tori, methi, palak, cucumbers, and tomatoes provide fiber that reduces cholesterol absorption.",
+      "Replace polished white rice and refined maida with unpolished whole grains like jowar, bajra, ragi, brown rice, or whole wheat roti.",
+      "Include clean protein with every meal: use plenty of yellow and green moong dal, masoor, chana, boiled sprouts, and low-fat paneer, which improve satiety and metabolic health.",
+      "Limit added salt to under 5 grams per day (about one level teaspoon across all meals). Cut out high-sodium items like commercial papad, achaar, namkeen, and processed chutneys.",
+      "Dramatically reduce saturated fats and eliminate trans fats. Avoid vanaspati, palm oil, deep-fried snacks, and heavy butter or ghee gravies.",
+      "Opt for heart-friendly fats in moderation: choose cold-pressed mustard oil, groundnut oil, or sesame oil. Include a small fistful of unsalted walnuts and almonds daily.",
+      "Avoid sugary beverages, sweetened chai, soda, packaged fruit juices, and bakery sweets like mithai, pastries, and biscuits."
+    ],
+    "lifestyle": [
+      "Engage in at least 150 to 300 minutes of moderate-intensity aerobic exercise each week, such as brisk walking, cycling, or swimming.",
+      "Break up long periods of sitting: stand up and walk for two minutes every half hour during desk work or television watching.",
+      "Stop all tobacco use immediately. Avoid bidis, cigarettes, gutka, pan masala, and passive smoke. Quitting begins repairing blood vessels within days.",
+      "Restrict alcohol consumption, or cut it out completely. Alcohol raises blood pressure, adds empty calories, and worsens triglyceride levels.",
+      "Prioritize 7 to 8 hours of sound, uninterrupted sleep each night. Consistent sleep schedules support stable blood pressure and glucose regulation.",
+      "Track your waist circumference regularly at home. Keeping belly fat in check is one of the most effective ways to lower your long-term risk."
+    ],
+    "yogaActivity": [
+      "Pranayama breathing exercises: Practice anulom vilom (alternate nostril breathing) and bhramari (humming bee breath) for 10 to 15 minutes daily to quiet the nervous system and manage stress.",
+      "Gentle asanas: Postures like tadasana (mountain pose), vrikshasana (tree pose), and setu bandhasana (supported bridge pose) improve peripheral blood flow without straining the heart.",
+      "Shavasana (corpse pose): Conclude every session with 10 minutes of guided relaxation or yoga nidra to lower heart rate and calm sympathetic nerve firing.",
+      "Avoid forceful practices: Do not perform rapid hyperventilation techniques like fast kapalabhati, heavy breath retention (kumbhaka), or inverted postures like headstands if your blood pressure is high or unstable."
+    ],
+    "homeopathyNote": [
+      "There is no acceptable scientific proof that homeopathic remedies reduce cardiovascular risk, lower LDL cholesterol, or prevent vascular events.",
+      "Relying solely on homeopathy while neglecting standard risk factors like hypertension, diabetes, or dyslipidemia can lead to life-threatening complications.",
+      "If you choose to take homeopathic remedies, do so only after discussing it with your doctor, and never stop your prescribed medications."
+    ],
+    "evidenceNotes": [
+      "High-quality evidence: Clinical trials clearly prove that lowering LDL cholesterol with statins and controlling blood pressure with proven medications reduces heart attacks, strokes, and death.",
+      "High-quality evidence: The ICMR and WHO emphasize that quitting tobacco, cutting sodium under 5 g daily, and increasing physical activity significantly lower premature mortality.",
+      "Moderate evidence: Measuring coronary artery calcium (CAC) scoring helps refine risk categories for individuals in intermediate-risk grey zones.",
+      "Weak or limited evidence: Single botanical herbs or antioxidant supplements do not show consistent power to prevent cardiovascular events when used alone.",
+      "No credible evidence: Advertised herbal tonics, 'artery-cleaning' concoctions, or detox programs do not remove arterial plaques or eliminate cardiovascular danger."
+    ],
+    "shouldNotDo": [
+      "Do not assume you are completely safe just because you feel fit, lean, or have zero physical symptoms.",
+      "Do not stop your statin or blood pressure tablets simply because your lab numbers look normal on your latest report. The numbers are normal because the medication is doing its job.",
+      "No herb, diet or product can make cardiovascular risk go away on its own without comprehensive medical management.",
+      "Do not switch from table salt to sendha namak (rock salt) or pink salt thinking it is harmless; all varieties contain sodium that elevates blood pressure.",
+      "Do not jump directly into high-intensity workouts or unaccustomed heavy gym lifting without first getting your cardiovascular risk evaluated by a medical professional.",
+      "Do not overlook a strong family history of early heart disease, even if your personal health habits are reasonably good."
+    ],
+    "medicationSafety": [
+      "Take your daily preventive medications at the exact times prescribed by your doctor. Set a reminder on your phone to build consistency.",
+      "Never alter the dosage of your blood pressure, diabetes, or cholesterol tablets on your own.",
+      "If you experience persistent muscle aching or soreness after beginning a statin, inform your physician promptly so they can assess your symptoms and adjust your regimen.",
+      "Be cautious with over-the-counter painkillers like ibuprofen or diclofenac; frequent use can raise your blood pressure and interfere with heart medications.",
+      "Tell your doctor about all supplements and herbal products you consume, as some herbs can interact with blood thinners and metabolic medications."
+    ],
+    "complications": [
+      "Coronary artery disease and sudden heart attack (myocardial infarction)",
+      "Ischemic or hemorrhagic stroke, leading to paralysis, speech loss, or lasting cognitive impairment",
+      "Heart failure, where the heart muscle becomes too weak or stiff to pump blood effectively",
+      "Peripheral artery disease, causing poor blood circulation, pain while walking, and severe non-healing leg wounds",
+      "Chronic kidney disease caused by damaged, hardened blood vessels in the kidneys",
+      "Vascular dementia caused by repeated micro-strokes and reduced cerebral blood flow"
+    ],
+    "emergencySigns": [
+      "Crushing chest pain, tightness, heaviness, or burning sensation in the center of the chest lasting more than a few minutes",
+      "Pain or numbness radiating outwards into your left arm, shoulder, jaw, neck, back, or upper stomach",
+      "Sudden difficulty in breathing, cold sweats, unexplained dizziness, lightheadedness, or sudden fainting",
+      "Sudden weakness or numbness in the face, arm, or leg, especially on one side of the body",
+      "Sudden difficulty speaking, slurred words, or trouble understanding speech: call emergency services (108 or 112) immediately"
+    ],
+    "whenToSeeDoctor": [
+      "You have turned 30 years old and have never undergone a baseline blood pressure, glucose, and lipid screening.",
+      "A parent or sibling experienced a heart attack, stroke, or sudden cardiac death before the age of 55 for men or 65 for women.",
+      "Your routine health checkup reveals a fasting blood glucose over 100 mg/dL, elevated blood pressure above 130/80 mmHg, or high LDL levels.",
+      "Your waist measurement crosses 90 cm if you are a man, or 80 cm if you are a woman.",
+      "You experience mild chest tightness, uncharacteristic breathlessness, or unusual fatigue when climbing stairs or walking uphill."
+    ],
+    "faqs": [
+      {
+        "q": "Why are Indians at such high risk for heart attacks at young ages?",
+        "a": "South Asians often have a unique body composition known as the South Asian phenotype. This includes higher visceral body fat, higher insulin resistance, smaller coronary arteries, and higher levels of atherogenic lipids, even when body weight appears normal. Combined with rapid urban shifts, low physical activity, and refined diets, cardiovascular risk rises earlier in life."
+      },
+      {
+        "q": "Can I reverse plaque buildup inside my arteries naturally?",
+        "a": "You cannot completely erase established hard calcified plaques using diet or exercise alone. However, by strictly controlling LDL cholesterol with medications like statins, maintaining low blood pressure, eating a nutritious whole-food diet, and exercising, you can halt plaque progression, make existing plaques far more stable, and dramatically lower your chance of a heart attack."
+      },
+      {
+        "q": "I am thin and go to the gym. Do I still need to check my cholesterol?",
+        "a": "Yes, absolutely. Being physically lean does not make you immune to familial hypercholesterolemia, arterial inflammation, high blood pressure, or diabetes. Many slim individuals carry high visceral fat around their organs or have strong genetic predispositions that require medical attention."
+      },
+      {
+        "q": "Are home tests and smartwatches reliable for tracking heart health?",
+        "a": "Smartwatches and home monitors are helpful for tracking resting pulse, detecting certain irregular rhythms like atrial fibrillation, and keeping logs of your blood pressure. However, they cannot detect narrowed coronary arteries or assess your lipid levels. They serve as supportive tools, not replacements for clinical blood tests and medical evaluations."
+      },
+      {
+        "q": "Does stopping smoking really lower my heart risk if I have smoked for years?",
+        "a": "Yes. Within just 24 hours of quitting, your blood pressure and heart rate improve. Within one year, your risk of a heart attack drops to about half that of an active smoker. Over time, your blood vessels continue to recover, making quitting the single most powerful decision you can make for your heart."
+      }
+    ],
+    "references": [
+      {
+        "title": "Cardiovascular diseases (CVDs) Key Facts",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+        "year": "2021"
+      },
+      {
+        "title": "The India State-Level Disease Burden Initiative: Nations within a nation",
+        "source": "Lancet Global Health (ICMR & PHFI)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30219315/",
+        "year": "2018"
+      },
+      {
+        "title": "Guideline on the Primary Prevention of Cardiovascular Disease",
+        "source": "American College of Cardiology / American Heart Association",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30879355/",
+        "year": "2019"
+      },
+      {
+        "title": "WHO CVD Risk Chart Working Group: World Health Organization cardiovascular disease risk charts",
+        "source": "Lancet Global Health",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31488387/",
+        "year": "2019"
+      }
+    ],
+    "relatedDiseases": [
+      "coronary-artery-disease",
+      "atherosclerosis",
+      "high-blood-pressure",
+      "high-cholesterol",
+      "type-2-diabetes",
+      "stroke",
+      "heart-failure",
+      "metabolic-syndrome",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "metformin",
+      "dapagliflozin"
+    ],
+    "relatedHerbs": [
+      "arjuna",
+      "garlic",
+      "amla",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "hba1c",
+      "fasting-glucose",
+      "crp",
+      "creatinine",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

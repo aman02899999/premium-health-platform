@@ -1,0 +1,332 @@
+{
+  "slug": "obesity",
+  "name": "Obesity",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Obesity is a chronic, progressive health condition marked by an abnormal or excessive accumulation of body fat that increases the risk of other health problems. In India, people tend to accumulate fat around the belly and internal organs at a lower body mass index (BMI) than Western populations. Because of this unique body composition, Indian health authorities and the World Health Organization (WHO) use specific Asian Indian cut-offs: a BMI of 23.0 to 24.9 kg/m² is classified as overweight, and a BMI of 25.0 kg/m² or higher is classified as obesity. Belly fat, also called visceral fat, is especially metabolically active and releases inflammatory chemicals that drive insulin resistance. According to the nationwide ICMR-INDIAB study (2023), approximately 28.6% of Indian adults have generalised obesity, and 39.5% have abdominal obesity. Obesity is not a personal failure or a matter of willpower; it is a complex metabolic disease influenced by genetics, environment, hormones, and lifestyle.",
+    "quickFacts": [
+      {
+        "label": "Normal BMI (Asian Indian)",
+        "value": "18.0 to 22.9 kg/m²"
+      },
+      {
+        "label": "Overweight (Asian Indian)",
+        "value": "23.0 to 24.9 kg/m²"
+      },
+      {
+        "label": "Obesity (Asian Indian)",
+        "value": "25.0 kg/m² or higher"
+      },
+      {
+        "label": "Abdominal obesity cut-off",
+        "value": "Waist 90 cm or more for men; 80 cm or more for women"
+      },
+      {
+        "label": "India prevalence (Generalised)",
+        "value": "28.6% of adults (ICMR-INDIAB-17, 2023)"
+      },
+      {
+        "label": "India prevalence (Abdominal)",
+        "value": "39.5% of adults (ICMR-INDIAB-17, 2023)"
+      },
+      {
+        "label": "Core health impact",
+        "value": "Raises risk of type 2 diabetes, fatty liver, and heart disease at lower weights"
+      }
+    ],
+    "causes": [
+      "High-calorie, ultra-processed diet. Packaged foods, deep-fried snacks like pakoras, samosas, and bhujia, refined flour (maida), sweets, bakery items, and sugar-sweetened beverages supply excess calories without lasting fullness.",
+      "Lack of daily movement. Desk jobs, long commutes, elevator use, and long screen time mean the body burns far fewer calories than it consumes.",
+      "The Asian Indian 'thin-fat' phenotype. Indians often have higher percentages of body fat and lower muscle mass at any given weight compared to other ethnic groups, driven by evolutionary and genetic factors.",
+      "Chronic sleep deprivation. Sleeping fewer than 6 to 7 hours disrupts appetite hormones, raising ghrelin (which makes you feel hungry) and lowering leptin (which signals fullness).",
+      "High chronic stress. Persistent mental or work stress increases cortisol production, which encourages the liver and abdomen to store visceral fat and triggers cravings for comfort foods rich in sugar and fat.",
+      "Underlying hormonal conditions. Thyroid disorders like hypothyroidism, polycystic ovary syndrome (PCOS), and high cortisol states slow down metabolism or disrupt fat handling.",
+      "Medications. Certain prescription drugs, including some antidiabetic tablets, steroids, antidepressants, and anti-seizure medicines, can contribute to weight gain."
+    ],
+    "types": [
+      {
+        "name": "Generalised Obesity",
+        "desc": "Overall excess fat distributed across the body, diagnosed when the Asian Indian BMI reaches 25.0 kg/m² or higher."
+      },
+      {
+        "name": "Abdominal (Central or Visceral) Obesity",
+        "desc": "Excess fat stored deep inside the belly around the liver, pancreas, and intestines. Diagnosed when waist circumference is 90 cm or higher in men, or 80 cm or higher in women, even if overall BMI appears normal."
+      },
+      {
+        "name": "Class I Obesity (Asian Indian)",
+        "desc": "A BMI between 25.0 and 29.9 kg/m², which carries significant metabolic and cardiovascular risk for South Asians."
+      },
+      {
+        "name": "Class II / Severe Obesity (Asian Indian)",
+        "desc": "A BMI of 30.0 kg/m² or higher, where the risk of diabetes, joint damage, obstructive sleep apnoea, and fatty liver increases sharply."
+      },
+      {
+        "name": "Secondary Obesity",
+        "desc": "Weight gain directly caused by a specific medical condition, such as untreated hypothyroidism, Cushing's syndrome, or hypothalamic injury."
+      }
+    ],
+    "diagnosis": [
+      "Measurement of Body Mass Index (BMI). Calculated by dividing your weight in kilograms by your height in metres squared (kg/m²), interpreted using Asian Indian cut-offs.",
+      "Measurement of waist circumference. Measured midway between the lower rib margin and the top of the hip bone using a non-stretchable tape. A waist of 90 cm or more in men and 80 cm or more in women confirms abdominal obesity.",
+      "Waist-to-hip ratio assessment. A ratio above 0.90 in men or above 0.85 in women indicates significant central fat deposition.",
+      "Blood pressure check. Checking for hypertension, which commonly accompanies excess weight.",
+      "Laboratory evaluation. Testing blood sugars, liver enzymes, and lipid profiles to check for early metabolic complications.",
+      "Detailed clinical history. Reviewing diet, physical activity patterns, sleep quality, stress levels, weight history, and current prescription medicines."
+    ],
+    "investigations": [
+      {
+        "test": "HbA1c",
+        "purpose": "Screens for prediabetes and type 2 diabetes linked to insulin resistance",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Evaluates baseline blood sugar regulation",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid profile",
+        "purpose": "Detects high triglycerides and low HDL cholesterol, typical of metabolic obesity",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Liver enzymes (SGOT/SGPT)",
+        "purpose": "Checks for liver inflammation caused by metabolic dysfunction-associated steatotic liver disease",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Thyroid stimulating hormone (TSH)",
+        "purpose": "Rules out an underactive thyroid (hypothyroidism) as a contributor to weight gain",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum creatinine",
+        "purpose": "Assesses baseline kidney health before planning dietary and medical interventions",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Serum uric acid",
+        "purpose": "High uric acid is common in visceral obesity and raises the risk of gout",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Low vitamin D levels are frequently seen with obesity and affect bone and muscle health",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Comprehensive lifestyle modification. This is the cornerstone of all obesity care: creating a healthy, sustainable calorie deficit through wholesome food choices and increased daily physical activity.",
+      "Medical Nutrition Therapy (MNT). Working with a qualified clinical dietitian or doctor to create a culturally relevant Indian meal plan that preserves lean muscle while reducing body fat.",
+      "Structured exercise and strength training. Combining aerobic exercise (such as brisk walking or cycling) with progressive resistance training to protect muscle mass and maintain resting metabolic rate.",
+      "Prescription weight-loss medications. In select patients who do not reach target goals through lifestyle changes alone, doctors may prescribe approved anti-obesity medications. These work on appetite centres in the brain or delay stomach emptying. Take them only as advised by your doctor.",
+      "Management of co-morbidities. Using medicines such as metformin for prediabetes or insulin resistance, along with blood pressure and lipid-lowering therapies where required.",
+      "Bariatric or metabolic surgery. Recommended for adults with severe obesity (such as an Asian Indian BMI of 35 kg/m² or higher, or 32.5 kg/m² or higher with severe complications like diabetes or sleep apnoea) when non-surgical methods have not been enough."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, obesity is understood primarily as Sthaulya or Medoroga, a disorder involving an imbalance of Kapha dosha and an abnormal accumulation of Meda dhatu (fat tissue).",
+      "Traditional texts describe how impaired Jatharagni (digestive fire) leads to the formation of Ama (toxic metabolic residue), blocking the subtle body channels (srotas) and causing improper nourishment of other body tissues while fat tissue increases.",
+      "Traditional management focuses on Langhana (lightening therapies), eating Laghu (light-to-digest) and Ruksha (dry) foods, drinking warm water, and using pungent and bitter spices to kindle digestive fire.",
+      "Ayurvedic concepts are traditional frameworks for healthy living and do not replace modern metabolic diagnosis or medical care. Herbal churnas or decoctions must never be treated as quick fat-burners."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional mix of three fruits often used to support digestion and bowel regularity. Clinical evidence for weight loss is minimal, but it is widely used in traditional routines."
+      },
+      {
+        "name": "Fenugreek",
+        "slug": "fenugreek",
+        "note": "Rich in soluble fibre, which can slow carbohydrate absorption and promote feelings of fullness. It offers modest metabolic support alongside dietary changes."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Common culinary root that helps support digestion and thermogenesis in minor ways. Studies show only small supportive effects on body weight."
+      },
+      {
+        "name": "Gudmar",
+        "slug": "gudmar",
+        "note": "Traditionally used to reduce sugar cravings by altering sweet taste perception on the tongue. It supports healthy blood sugar management alongside medical care."
+      },
+      {
+        "name": "Cinnamon",
+        "slug": "cinnamon",
+        "note": "Contains polyphenols that may have a modest positive effect on insulin sensitivity. Evidence for meaningful weight reduction on its own remains weak."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN 'My Plate for the Day' model: fill half your plate with fresh vegetables, salad, and green leaves; one quarter with protein-rich foods; and one quarter with complex carbohydrates.",
+      "Prioritise lean protein at every meal. Good Indian sources include dals, whole pulses (chana, rajma, moong), sprouted legumes, low-fat paneer, curd, eggs, chicken breast, or fish. Protein increases satiety and protects your muscle.",
+      "Swap refined grains for unpolished alternatives. Reduce polished white rice and maida. Choose traditional millets (jowar, bajra, ragi) or whole wheat rotis in controlled portions.",
+      "Cut down on visible fats and oils. Limit cooking oil, vanaspati, and ghee to modest amounts. Avoid repeatedly reheated oils used for frying puris, bhaturas, and vadas.",
+      "Watch out for liquid calories. Eliminate aerated soft drinks, sweetened fruit juices, packaged energy drinks, and tea or coffee with excess sugar.",
+      "Minimise traditional high-calorie snacks. Replace namkeens, biscuits, rusk, fried mixture, and mithai with roasted chana, makhana, or fresh whole fruits.",
+      "Practice mindful eating. Eat without screens, chew slowly, and stop when you feel comfortably satisfied rather than completely full."
+    ],
+    "lifestyle": [
+      "Increase Non-Exercise Physical Activity (NEAT). Take the stairs instead of the lift, pace while talking on the phone, stand at work desks when possible, and walk for short errands.",
+      "Aim for 150 to 300 minutes of moderate-intensity aerobic exercise each week, such as brisk walking, swimming, dancing, or cycling.",
+      "Include strength training at least two to three days a week. Building and preserving muscle is the single best way to protect your metabolism during weight loss.",
+      "Protect your sleep. Sleep 7 to 8 hours every night in a dark, quiet room. Irregular sleep patterns directly trigger cravings for high-carbohydrate foods.",
+      "Manage daily stress effectively. Chronic stress keeps cortisol elevated; build a daily practice of deep breathing, hobbies, walking in nature, or spending time with family.",
+      "Track your progress consistently. Monitor your waist circumference and weight once every one to two weeks rather than obsessing over day-to-day fluctuations."
+    ],
+    "yogaActivity": [
+      "Practice dynamic sequences such as Surya Namaskar (Sun Salutations) at a steady pace to improve cardiovascular endurance, joint mobility, and calorie expenditure.",
+      "Incorporate standing and core-strengthening asanas such as Tadasana, Utkatasana (Chair Pose), Virabhadrasana (Warrior Pose), and Bhujangasana (Cobra Pose).",
+      "Include gentle twisting postures such as Ardha Matsyendrasana to improve abdominal mobility and stimulate digestion.",
+      "Practice calming pranayama like Anulom Vilom (alternate nostril breathing) and Bhramari to bring down stress and emotional eating impulses.",
+      "Avoid strenuous poses or heavy breath-holding if you have high blood pressure, joint pain, or hernia, until your doctor or certified yoga teacher clears you."
+    ],
+    "homeopathyNote": [
+      "There is no robust scientific or clinical evidence showing that homeopathic products cause meaningful fat loss, burn calories, or treat obesity.",
+      "Do not rely on over-the-counter 'fat-burning' homeopathic drops or tablets in place of evidence-based nutrition, exercise, and medical treatment."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: A sustained caloric deficit achieved through a balanced, nutrient-dense diet combined with regular physical activity is the proven foundation of weight loss and visceral fat reduction.",
+      "Strong evidence: Progressive resistance training protects lean muscle mass and resting metabolic rate during weight loss, improving long-term weight maintenance.",
+      "Strong evidence: Clinically supervised anti-obesity medications and metabolic surgery lead to substantial, sustained weight loss and remission of type 2 diabetes in qualified patients.",
+      "Moderate evidence: High-protein diets and high-fibre intake improve satiety, stabilise post-meal blood sugar spikes, and support fat loss.",
+      "Weak or limited evidence: Herbal extracts, spices, green tea extracts, and ayurvedic formulations show minor or inconsistent effects on metabolic rate and cannot replace dietary changes.",
+      "No scientific evidence: Commercial detox diets, sweat belts, body wraps, slimming oils, and quick-fix crash diets do not produce lasting fat loss and can cause dehydration or nutrient deficiencies."
+    ],
+    "shouldNotDo": [
+      "Do not follow extreme crash diets that provide fewer than 800 to 1,000 calories a day unless supervised in a specialised hospital setting. They trigger muscle loss and rebound weight gain.",
+      "Do not skip meals, especially breakfast or lunch, only to overeat heavily late at night.",
+      "Do not buy over-the-counter 'fat burners', slimming teas, or unregulated herbal churna powders sold online or in local shops. Many contain banned stimulants, laxatives, or heavy metals.",
+      "Do not judge your progress solely by the weighing scale. Muscle gain from exercise may keep weight stable even as your waist shrinks and metabolic health improves.",
+      "Do not rely on cardio workouts alone while ignoring strength and resistance training.",
+      "Do not stop prescribed medications for diabetes, thyroid disorders, or high blood pressure on your own just because you started a weight loss diet."
+    ],
+    "medicationSafety": [
+      "Any anti-obesity prescription medication must be initiated and monitored by a qualified physician after assessing your cardiovascular and organ health.",
+      "Never buy prescription weight-loss injections or tablets from social media sellers, gym trainers, or unauthorised websites.",
+      "Take all prescribed metabolic medicines at the exact times and doses advised by your doctor.",
+      "Inform your doctor immediately if you experience persistent nausea, severe vomiting, abdominal pain, lightheadedness, or mood changes after starting any weight-loss medication.",
+      "If you are planning a pregnancy or become pregnant, discuss your medicines promptly, as most weight-loss drugs must be discontinued before conception."
+    ],
+    "complications": [
+      "Type 2 diabetes and insulin resistance, driven by visceral fat interfering with cellular glucose uptake",
+      "Metabolic dysfunction-associated steatotic liver disease (fatty liver), which can progress to liver inflammation and scarring",
+      "High blood pressure, atherosclerosis, and increased risk of coronary artery disease and heart attacks",
+      "Obstructive sleep apnoea, marked by loud snoring, breathing pauses during sleep, and daytime exhaustion",
+      "Osteoarthritis, particularly in weight-bearing joints like the knees, hips, and lower back",
+      "Polycystic ovary syndrome (PCOS), menstrual irregularities, and reduced fertility in women; low testosterone and erectile dysfunction in men",
+      "Gastroesophageal reflux disease (GERD), bloating, and higher risk of gallstones",
+      "Increased risk of chronic kidney disease and elevated blood uric acid leading to gout"
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain, pressure, or tightness spreading to your left arm, neck, or jaw: seek emergency medical care immediately",
+      "Sudden weakness, numbness of the face, arm, or leg, or slurred speech (signs of an acute stroke)",
+      "Sudden, severe shortness of breath or gasping for air, whether at rest or with minimal effort",
+      "Severe, sudden upper abdominal pain radiating to the back, especially accompanied by vomiting or fever"
+    ],
+    "whenToSeeDoctor": [
+      "Your BMI is 25.0 kg/m² or above, or your waist is 90 cm or more (men) / 80 cm or more (women)",
+      "You snore loudly, wake up choking or gasping at night, or feel chronically exhausted during the day",
+      "You notice dark, velvety patches of skin around your neck, armpits, or groin (acanthosis nigricans, a sign of insulin resistance)",
+      "You struggle with irregular menstrual cycles, facial hair growth, or difficulty conceiving",
+      "You experience persistent knee, hip, or heel pain that restricts your daily walking",
+      "You have gained weight rapidly and unexpectedly without a clear change in diet or activity"
+    ],
+    "faqs": [
+      {
+        "q": "Why are Indian BMI cut-offs lower than Western guidelines?",
+        "a": "Indians naturally carry a higher percentage of body fat and more abdominal visceral fat at lower body weights compared to Caucasian populations. This 'thin-fat' body composition means Indians face high risks of diabetes and heart disease at a BMI of 23 or 25, whereas Western guidelines classify obesity starting at a BMI of 30."
+      },
+      {
+        "q": "Can herbal medicines or green teas melt away belly fat?",
+        "a": "No. No herb, diet, or product can make obesity go away. Some herbs and teas provide minor antioxidant benefits, but fat loss only happens when your body burns more energy than it consumes over time. Beware of products claiming to melt fat without lifestyle changes."
+      },
+      {
+        "q": "Is walking 10,000 steps a day enough to lose weight?",
+        "a": "Walking is wonderful for heart health, blood sugar control, and calorie burning, but it cannot undo a high-calorie diet. For lasting weight loss, walking must be paired with a balanced, calorie-conscious meal plan and resistance training to preserve muscle."
+      },
+      {
+        "q": "Why does weight bounce back after a crash diet?",
+        "a": "Severe calorie restriction causes your body to shed water and precious muscle tissue while down-regulating your resting metabolic rate. Hormones like ghrelin increase hunger drastically. When normal eating resumes, the slower metabolism causes rapid fat regain."
+      },
+      {
+        "q": "When should someone consider bariatric surgery?",
+        "a": "Under Indian consensus guidelines, bariatric or metabolic surgery is considered for individuals with a BMI of 35 or above, or a BMI of 32.5 or above accompanied by serious obesity-related conditions like type 2 diabetes or severe sleep apnoea, when structured lifestyle changes have not succeeded."
+      }
+    ],
+    "references": [
+      {
+        "title": "Consensus physical activity guidelines for Asian Indians",
+        "source": "Diabetes Technology & Therapeutics (Misra A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22188432/",
+        "year": "2012"
+      },
+      {
+        "title": "Appropriate body-mass index for Asian populations and its implications for policy and intervention strategies",
+        "source": "The Lancet (WHO Expert Consultation)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/14726171/",
+        "year": "2004"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in",
+        "year": "2024"
+      },
+      {
+        "title": "Obesity and overweight fact sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "prediabetes",
+      "insulin-resistance",
+      "metabolic-syndrome",
+      "fatty-liver",
+      "high-cholesterol",
+      "high-triglycerides",
+      "high-blood-pressure",
+      "coronary-artery-disease",
+      "heart-disease",
+      "sleep-apnea",
+      "osteoarthritis",
+      "knee-pain",
+      "pcos",
+      "gerd",
+      "gout"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "dapagliflozin"
+    ],
+    "relatedHerbs": [
+      "triphala",
+      "fenugreek",
+      "ginger",
+      "gudmar",
+      "cinnamon"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "lipid-profile",
+      "liver-enzymes",
+      "tsh",
+      "creatinine",
+      "uric-acid",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

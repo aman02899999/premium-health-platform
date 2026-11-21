@@ -1,0 +1,280 @@
+{
+  "slug": "hyperthyroidism",
+  "name": "Hyperthyroidism",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Hyperthyroidism, also known as an overactive thyroid, occurs when your thyroid gland produces and releases too much thyroid hormone into your bloodstream. The thyroid is a small, butterfly-shaped endocrine gland positioned at the base of your neck, just beneath the Adam's apple. It secretes thyroxine (T4) and triiodothyronine (T3), two powerful hormones that regulate your basal metabolic rate, body temperature, heart contractions, digestion, and neuromuscular function. When these hormones circulate in excessive amounts, your entire metabolic engine runs in overdrive. You may experience rapid and unexplained weight loss despite an increased appetite, an uncomfortably fast or pounding heartbeat, persistent inner restlessness, fine hand tremors, severe heat intolerance, profuse sweating, and frequent bowel movements. In India, hyperthyroidism affects women far more often than men. If left untreated, the continuous hormonal surge puts severe strain on the cardiovascular system and weakens bone density. However, with prompt medical evaluation, modern antithyroid medications, targeted interventions, and sensible lifestyle adjustments, hyperthyroidism can be effectively controlled and stabilized.",
+    "quickFacts": [
+      {
+        "label": "Normal TSH Range",
+        "value": "Approximately 0.4 to 4.5 mIU/L (varies slightly by laboratory)"
+      },
+      {
+        "label": "Hyperthyroidism TSH",
+        "value": "Suppressed or low, typically below 0.4 mIU/L or undetectable"
+      },
+      {
+        "label": "Free T3 and Free T4",
+        "value": "Elevated above normal reference ranges in overt disease"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Around 1% to 1.5% of adults have hyperthyroidism (higher in women)"
+      },
+      {
+        "label": "Most Common Cause",
+        "value": "Graves' disease (an autoimmune condition driving excess hormone production)"
+      },
+      {
+        "label": "Resting Heart Rate",
+        "value": "Often elevated above 100 beats per minute (sinus tachycardia)"
+      }
+    ],
+    "causes": [
+      "Graves' disease: An autoimmune disorder and the most frequent cause of hyperthyroidism. The immune system mistakenly produces abnormal antibodies known as thyroid-stimulating immunoglobulins (TSI) that bind to TSH receptors, constantly driving the gland to overproduce hormones.",
+      "Toxic multinodular goitre: Enlarged thyroid nodules or lumps that grow independently of the brain's regulatory signals and churn out excess thyroid hormones autonomously, common in older adults and in regions historically affected by iodine variations in India.",
+      "Toxic solitary adenoma: A single non-cancerous nodule in the thyroid gland that becomes hyperactive and functions independently of the pituitary gland's control.",
+      "Subacute or post-viral thyroiditis: Inflammation of the thyroid gland, often following a respiratory viral illness, which causes stored hormones to leak rapidly into the blood before the gland temporarily exhausts its supply.",
+      "Postpartum thyroiditis: An inflammatory thyroid condition occurring in women within the first year after giving birth, typically presenting as temporary hyperthyroidism followed by a low thyroid phase.",
+      "Excessive iodine exposure: Consuming excessive amounts of dietary iodine, kelp or seaweed supplements, or certain iodine-heavy medications like amiodarone, which can trigger hormone overproduction in vulnerable thyroid glands (the Jod-Basedow phenomenon).",
+      "Excessive thyroid hormone medication: Taking too high a dose of levothyroxine for treated hypothyroidism, leading to accidental or iatrogenic hyperthyroidism."
+    ],
+    "types": [
+      {
+        "name": "Graves' Disease",
+        "desc": "An autoimmune condition where antibodies continuously stimulate the entire thyroid gland. It often features an enlarged neck (goitre), eye irritation or bulging (Graves' orbitopathy), and skin thickening over the shins."
+      },
+      {
+        "name": "Toxic Multinodular Goitre (Plummer's Disease)",
+        "desc": "Occurs when multiple distinct nodules within an enlarged thyroid gland act autonomously, pumping out surplus hormones. It is especially prevalent in older adults."
+      },
+      {
+        "name": "Toxic Adenoma",
+        "desc": "A single autonomous thyroid nodule that overproduces hormones while the rest of the normal thyroid tissue becomes suppressed and inactive."
+      },
+      {
+        "name": "Subacute and Painless Thyroiditis",
+        "desc": "Temporary inflammation that causes preformed thyroid hormones to spill into the circulation. This phase is self-limiting and does not involve true increased hormone synthesis."
+      },
+      {
+        "name": "Subclinical Hyperthyroidism",
+        "desc": "A biochemical state where blood TSH is suppressed below normal, but free T3 and free T4 levels remain within laboratory normal limits. It may cause mild symptoms or none at all."
+      }
+    ],
+    "diagnosis": [
+      "Clinical evaluation: Your doctor reviews symptoms such as heat intolerance, heart palpitations, unprompted weight loss, sleep disturbances, and changes in bowel habits, alongside a thorough physical examination.",
+      "Physical neck and eye exam: A physician palpates the neck to inspect thyroid size, tenderness, and texture, uses a stethoscope to listen for blood flow sounds (thyroid bruit), and evaluates the eyes for staring, retraction, or swelling.",
+      "Tremor and reflex checks: Your doctor assesses fine tremors by placing a sheet of paper over your outstretched hands and checks for brisk deep-tendon reflexes.",
+      "Baseline blood tests: Confirmation requires blood tests demonstrating a suppressed serum TSH alongside elevated levels of Free T4 and Free T3.",
+      "Antibody testing: Checking for TSH receptor antibodies (TRAb) or thyroid-stimulating immunoglobulins (TSI) helps confirm or rule out Graves' disease.",
+      "Imaging and radioactive uptake scans: A radioactive iodine uptake (RAIU) scan or technetium pertechnetate scan helps determine whether the whole gland, specific nodules, or inflammatory leakage is driving the excess hormone levels. Thyroid ultrasonography assesses structural nodules and gland vascularity."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "The primary screening marker; levels are suppressed or very low in hyperthyroidism",
+        "slug": "tsh"
+      },
+      {
+        "test": "Free T3 and Free T4",
+        "purpose": "Measures active circulating thyroid hormones to confirm overt hyperthyroidism and grade severity",
+        "slug": "t3-t4"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Assesses baseline white blood cell count before starting antithyroid medications",
+        "slug": "cbc"
+      },
+      {
+        "test": "Liver Function Tests (Liver Enzymes)",
+        "purpose": "Checks baseline liver enzymes prior to initiating medications and monitors hepatic safety",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Detects rapid heart rates, sinus tachycardia, or abnormal rhythms like atrial fibrillation"
+      }
+    ],
+    "modernTreatment": [
+      "Antithyroid medications: Prescription drugs such as carbimazole or methimazole work by blocking the thyroid gland's ability to synthesize new hormones. In specific circumstances, such as the first trimester of pregnancy, propylthiouracil may be used as advised by your doctor. Treatment often continues for 12 to 18 months under strict medical monitoring.",
+      "Beta-blockers: Medications like propranolol or atenolol are frequently prescribed in the initial weeks to provide rapid symptomatic relief from heart palpitations, high pulse rates, tremors, sweating, and anxiety while antithyroid medicines take time to lower hormone levels.",
+      "Radioactive Iodine (RAI) therapy: A widely used definitive treatment where a measured dose of radioactive iodine is swallowed. Overactive thyroid cells absorb the iodine and are gradually destroyed over weeks to months. Most individuals treated with RAI eventually develop hypothyroidism and manage it easily with lifelong daily levothyroxine as advised by their doctor.",
+      "Thyroid surgery (Thyroidectomy): Surgical removal of all or part of the thyroid gland, indicated for individuals with very large goitres compressing the airway, severe Graves' eye disease, pregnant women who cannot tolerate antithyroid drugs, or suspected thyroid malignancies.",
+      "Regular hormone monitoring: Blood tests every 4 to 8 weeks initially to titrate medication dosages and avoid swinging into severe hypothyroidism or staying persistently overactive."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, hyperthyroidism is understood through imbalances of Pitta (the fire and metabolic principle) and Vata (the energy of movement and nervous function), which together create excessive digestive and metabolic fire (teekshna agni or atyagni).",
+      "This unchecked metabolic heat leads to the gradual depletion of bodily tissues (dhatu kshaya), manifesting as rapid wasting of flesh, severe heat sensitivity, thirst, mental restlessness, and physical weakness.",
+      "Traditional Ayurvedic approaches emphasize cooling, grounding, and nourishing therapies (shaman and brimhana chikitsa) to pacify aggravated Pitta and stabilize unstable Vata.",
+      "While traditional lifestyle wisdom highlights digestive calm, adequate hydration, and emotional quietude, hyperthyroidism can stress the heart and alter critical bodily functions. Ayurvedic concepts should only be viewed as supportive; they cannot substitute for modern endocrine diagnosis and prescription antithyroid management."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Used traditionally in Ayurveda as a cooling medhya rasayana to support mental calmness, ease restless thinking, and assist sleep. It does not lower thyroid hormones directly and should only be used as supportive care alongside prescribed medical therapy."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "An Indian cooling fruit naturally rich in vitamin C and antioxidants. It supports cellular defense against metabolic stress and general vitality, though human clinical trials do not demonstrate any direct effect on serum thyroid hormone levels."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Regarded as an adaptogen that assists general stress adaptation. Evidence regarding its specific role in hyperthyroidism is minimal and preliminary, meaning it cannot replace antithyroid medication."
+      }
+    ],
+    "nutrition": [
+      "Ensure adequate caloric density: Because your body is burning fuel at an abnormally accelerated rate, incorporate wholesome, energy-rich Indian foods such as khichdi with a teaspoon of pure ghee, dalia, paneer, boiled eggs, curd, and soaked nuts to prevent muscle wasting.",
+      "Emphasize calcium and vitamin D: Rapid bone turnover in hyperthyroidism leaches calcium from your skeleton. Consume regular portions of dairy products like curd, paneer, and milk, alongside ragi (finger millet), sesame seeds, and green leafy vegetables.",
+      "Moderate dietary iodine: Avoid consuming kelp, spirulina, bladderwrack, seaweed snacks, or excessive salt supplements that could flood the thyroid with iodine. Cook with normal iodized salt as recommended by national guidelines, but do not exceed normal culinary amounts.",
+      "Stay well hydrated: High metabolic rates and sweating increase fluid losses. Drink adequate plain water, fresh lime water (nimbu pani) without excess sugar, and thin buttermilk (chaas) lightly spiced with roasted cumin.",
+      "Eliminate stimulants: Cut out strong coffee, high-caffeine energy drinks, pre-workout supplements, and strong black tea, as they compound heart palpitations, tremors, and sleep disturbances.",
+      "Eat balanced protein: Include dal, pulses, sprouted moong, paneer, fish, or poultry across smaller, frequent meals throughout the day to support steady energy and repair depleted tissues."
+    ],
+    "lifestyle": [
+      "Prioritize deep physical rest: An overactive thyroid rapidly exhausts muscular and cardiovascular reserves. Aim for 8 hours of sleep each night and schedule daytime rest periods between physical tasks.",
+      "Keep your surroundings cool: Due to impaired heat tolerance, wear loose, breathable cotton garments and stay in well-ventilated, fan-cooled or air-conditioned rooms, especially during hot Indian summers.",
+      "Track your resting pulse: Check your heart rate once or twice daily when resting quietly. Log the readings in a notebook to share with your physician at each follow-up.",
+      "Quit all tobacco products: Completely stop smoking cigarettes, bidis, or using gutka. Tobacco smoke drastically increases the risk and severity of Graves' ophthalmopathy, including irreversible eye swelling and optic nerve pressure.",
+      "Avoid intense gym workouts initially: Until your resting heart rate and thyroid hormones are normalized by your doctor, stay away from high-intensity interval training, heavy weightlifting, and competitive sports that place dangerous strain on your heart."
+    ],
+    "yogaActivity": [
+      "Practice cooling pranayama: Gentle breathing exercises like sheetali, sheetkari, and slow chandra bhedana help cool internal body heat and pacify sympathetic nervous system hyperactivity. Avoid rapid, heat-generating breathing like kapalabhati and bhastrika.",
+      "Opt for restorative postures: Choose calming, supported asanas such as balasana (child's pose), viparita karani (legs up the wall), supta baddha konasana (reclining bound angle pose), and extended shavasana (corpse pose).",
+      "Avoid hot yoga and intense vinyasa: Fast-flowing sequences and heated exercise rooms raise internal body temperature, elevate heart rate, and can trigger severe dehydration or cardiac distress in untreated or partially treated hyperthyroidism."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence proving that homeopathic remedies can lower circulating thyroid hormones, reduce an overactive goitre, or prevent hyperthyroid cardiac complications.",
+      "Relying on homeopathic preparations instead of proven antithyroid medications risks severe complications, including atrial fibrillation, heart failure, and life-threatening thyroid storm. If you choose to explore complementary modalities, never discontinue or alter your doctor's prescribed medical therapy."
+    ],
+    "evidenceNotes": [
+      "Strong scientific evidence confirms that modern antithyroid medications (carbimazole, methimazole, propylthiouracil), radioactive iodine therapy, and total or subtotal thyroidectomy reliably control excessive thyroid hormone production.",
+      "Strong clinical trials demonstrate that beta-blockers promptly control rapid heart rates, tremor, heat intolerance, and functional impairment while awaiting biochemical response to antithyroid treatment.",
+      "There is moderate evidence that targeted calcium and vitamin D optimization helps protect skeletal bone density during active thyrotoxicosis.",
+      "There is no high-quality clinical evidence showing that dietary adjustments, herbal products, or alternative tonics alone can correct primary hyperthyroidism."
+    ],
+    "shouldNotDo": [
+      "Do not ignore persistent heart palpitations or assume an unexplained resting pulse above 100 bpm is just everyday anxiety or stress.",
+      "Do not take ashwagandha supplements; while popular in general fitness circles, some studies suggest ashwagandha may stimulate thyroid hormone synthesis, potentially aggravating hyperthyroidism.",
+      "Do not take seaweed, kelp powders, or high-dose iodine wellness tablets, as excess iodine can trigger further hormonal surges.",
+      "Do not abruptly stop taking your antithyroid pills because your symptoms improve or your energy returns; premature cessation almost always causes a rapid relapse.",
+      "Do not engage in heavy weight training or vigorous gym cardio while your resting heart rate is uncontrolled and over 100 bpm.",
+      "Do not assume sudden weight loss is a healthy fitness achievement; hyperthyroid weight loss comes largely from skeletal muscle loss and tissue breakdown.",
+      "No herb, diet or product can make hyperthyroidism go away; do not delay medical treatment for unverified home remedies."
+    ],
+    "medicationSafety": [
+      "Take your antithyroid tablets at the exact schedule advised by your doctor to maintain steady medication levels in your bloodstream.",
+      "Watch for signs of agranulocytosis: Antithyroid medicines can rarely cause a severe drop in infection-fighting white blood cells. If you develop a sudden sore throat, mouth ulcers, or unexplained fever, stop the medicine and consult your doctor immediately for an emergency CBC test.",
+      "Monitor for liver symptoms: Report any unexpected yellowing of your eyes or skin (jaundice), persistently dark urine, light-coloured stools, or upper right abdominal pain, as antithyroid medicines can occasionally irritate the liver.",
+      "Notify your doctor immediately if you become pregnant or plan to conceive; carbimazole and methimazole carry specific risks in early pregnancy, and your physician will adjust your medication regimen accordingly.",
+      "Do not use over-the-counter nasal decongestants, cold remedies, or weight-loss fat burners containing ephedrine or pseudoephedrine, as they can cause severe spikes in blood pressure and trigger dangerous heart rhythms."
+    ],
+    "complications": [
+      "Atrial fibrillation and stroke: Unchecked hyperthyroidism can cause an erratic, rapid atrial rhythm in the heart, increasing the risk of blood clots and stroke.",
+      "High-output heart failure: The heart is forced to pump excessively hard and fast for prolonged periods, eventually weakening the heart muscle.",
+      "Osteoporosis and fractures: Excessive thyroid hormone accelerates bone breakdown faster than calcium can be replaced, leading to brittle, porous bones.",
+      "Graves' ophthalmopathy: Autoimmune eye disease causing eye pain, double vision, light sensitivity, retracted eyelids, bulging eyes, and in severe cases, vision loss from optic nerve compression.",
+      "Thyroid storm (Thyrotoxic crisis): A rare, life-threatening emergency marked by extremely high fever, rapid heartbeat, delirium, and shock, requiring immediate intensive care."
+    ],
+    "emergencySigns": [
+      "Sudden high fever combined with extreme agitation, confusion, delirium, or severe weakness (signs of potential thyroid storm).",
+      "A resting heart rate exceeding 130 to 140 beats per minute, or an irregular, fluttering pulse accompanied by dizziness or fainting.",
+      "Severe chest pain, pressure, tightness, or marked breathlessness while sitting quietly.",
+      "Sudden loss of vision, severe eye pain, or an inability to close your eyelids over bulging eyes.",
+      "Yellowing of the eyes or skin (jaundice) or persistent high-grade fever with a severe sore throat while taking antithyroid medications."
+    ],
+    "whenToSeeDoctor": [
+      "You notice unintentional, rapid weight loss despite eating normally or having an increased appetite.",
+      "Your resting pulse consistently stays above 100 beats per minute, or you feel fluttering sensations in your chest.",
+      "You experience constant heat sensitivity, heavy sweating in air-conditioned environments, and frequent loose stools.",
+      "You develop a visible swelling or fullness at the lower front of your neck.",
+      "Your fingers exhibit a fine, involuntary tremor when your hands are held straight out in front of you.",
+      "Your eyes feel persistently gritty, dry, or look noticeably more prominent or bulging."
+    ],
+    "faqs": [
+      {
+        "q": "Can hyperthyroidism turn into hypothyroidism over time?",
+        "a": "Yes. When treated with radioactive iodine ablation or surgical thyroidectomy, the hormone-producing cells of the gland are deliberately reduced or removed. This often results in an underactive thyroid (hypothyroidism), which is straightforward, safe, and stable to manage over your lifetime with daily levothyroxine as advised by your doctor."
+      },
+      {
+        "q": "Is it safe to exercise at the gym if I have hyperthyroidism?",
+        "a": "You should pause heavy weight training, crossfit, running, and high-intensity interval workouts until your resting heart rate is controlled and your blood thyroid levels have improved under medical treatment. Strenuous exercise with active thyrotoxicosis places extreme, dangerous stress on your heart. Once cleared by your physician, you can gradually resume workouts."
+      },
+      {
+        "q": "Why am I losing weight even though I eat more food than before?",
+        "a": "Thyroid hormones set the speed of your metabolism. In hyperthyroidism, your body burns through carbohydrates, fats, and muscle tissue far faster than your food intake can supply. This causes rapid, involuntary weight loss that often includes loss of healthy muscle mass, leaving you feeling fatigued despite consuming more calories."
+      },
+      {
+        "q": "Can hyperthyroidism be managed with food and home remedies alone?",
+        "a": "No. While a nutrient-dense diet rich in calories, calcium, and protein supports your body through metabolic stress, no herb, diet or product can make hyperthyroidism go away. Without prescription antithyroid medication, radioactive iodine, or surgery, the excess hormone output will continue to damage your cardiovascular and skeletal systems."
+      },
+      {
+        "q": "How is hyperthyroidism different from hypothyroidism?",
+        "a": "Hyperthyroidism means your thyroid is overactive, releasing excess hormones that speed up your body's systems, leading to weight loss, heat intolerance, loose motions, and a rapid pulse. Hypothyroidism is the opposite: an underactive thyroid that produces too little hormone, slowing down metabolism and leading to fatigue, weight gain, feeling cold, and constipation."
+      }
+    ],
+    "references": [
+      {
+        "title": "2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis",
+        "source": "Thyroid (Ross DS et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27521067/",
+        "year": "2016"
+      },
+      {
+        "title": "Overview of Hyperthyroidism (Overactive Thyroid)",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/overactive-thyroid-hyperthyroidism/",
+        "year": "2022"
+      },
+      {
+        "title": "Thyroid disease: assessment and management (NICE Guideline NG145)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng145",
+        "year": "2019"
+      },
+      {
+        "title": "Prevalence of thyroid disorders in India: An epidemiological study",
+        "source": "Indian Journal of Endocrinology and Metabolism (Unnikrishnan AG et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23662248/",
+        "year": "2013"
+      },
+      {
+        "title": "Hyperthyroidism",
+        "source": "StatPearls - National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK537053/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "hypothyroidism",
+      "thyroid-nodules",
+      "palpitations",
+      "heart-failure",
+      "osteoporosis",
+      "anxiety"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "brahmi",
+      "amla",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "t3-t4",
+      "cbc",
+      "liver-enzymes"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

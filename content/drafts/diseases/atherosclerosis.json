@@ -1,0 +1,317 @@
+{
+  "slug": "atherosclerosis",
+  "name": "Atherosclerosis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Atherosclerosis is a long-term condition where fatty deposits, cholesterol, cellular waste, calcium, and clotting elements build up inside the walls of your arteries. These deposits form sticky patches called plaques. Over years, plaque makes the artery walls thicker, stiffer, and narrower. This narrows the channel for blood flow and starves vital organs like the heart, brain, and legs of oxygen-rich blood. In India, atherosclerosis develops nearly a decade earlier than in Western countries. South Asians have smaller coronary artery diameters on average and higher rates of central belly fat, insulin resistance, and atherogenic dyslipidemia (high triglycerides and low HDL cholesterol). Atherosclerosis is often completely silent for decades. Many people feel entirely healthy until a plaque suddenly ruptures, triggering a blood clot that causes a heart attack or a stroke. While no herb, diet or product can make existing calcified plaque vanish, healthy everyday choices and medical therapies can halt its growth, stabilize fragile plaques, and protect your blood vessels.",
+    "quickFacts": [
+      {
+        "label": "Nature of disease",
+        "value": "Silent, progressive inflammatory narrowing of arteries"
+      },
+      {
+        "label": "Onset in Indians",
+        "value": "Often strikes 5 to 10 years earlier than in Western populations"
+      },
+      {
+        "label": "Dyslipidemia burden",
+        "value": "81.2% of Indian adults have at least one abnormal lipid parameter (ICMR-INDIAB)"
+      },
+      {
+        "label": "Primary driver",
+        "value": "Elevated LDL cholesterol and apolipoprotein B combined with vessel wall inflammation"
+      },
+      {
+        "label": "Early warning signs",
+        "value": "Usually none until blood flow is significantly blocked"
+      },
+      {
+        "label": "Main modern goal",
+        "value": "Plaque stabilization and preventing rupture with lifestyle and medicines"
+      }
+    ],
+    "causes": [
+      "High LDL cholesterol and triglycerides. Excess low-density lipoprotein particles cross into the damaged inner lining of the artery (endothelium), where they get oxidized and trigger chronic inflammation.",
+      "High blood pressure. The constant mechanical force of blood pushing against vessel walls creates microscopic tears in the endothelium, making it easy for cholesterol to enter and lodge there.",
+      "Tobacco use in all forms. Smoking bidis or cigarettes, or chewing gutka, khaini, and zarda, releases toxic chemicals that damage the artery lining, accelerate plaque formation, and make blood platelets prone to clotting.",
+      "Insulin resistance and diabetes. High blood sugar glycates proteins and fats, damaging vascular walls and fueling rapid arterial stiffening and plaque accumulation.",
+      "Belly fat and metabolic syndrome. Visceral fat surrounding abdominal organs releases inflammatory chemicals (cytokines) that keep the vascular system in a state of continuous low-grade inflammation.",
+      "Diets rich in trans fats, refined oils, and simple carbohydrates. Reused frying oils in street foods, vanaspati, bakery items, namkeens, and excess maida drive oxidation and unhealthy blood fat levels.",
+      "Physical inactivity. Sitting for long hours lowers protective HDL cholesterol, reduces nitric oxide production in blood vessels, and slows down healthy circulation.",
+      "Genetic predisposition. South Asians carry higher baseline risks for premature coronary artery disease, often showing higher levels of lipoprotein(a), an inherited independent risk factor for plaque buildup."
+    ],
+    "types": [
+      {
+        "name": "Coronary Artery Atherosclerosis",
+        "desc": "Affects the arteries supplying blood to the heart muscle. Narrowing here causes angina (exertional chest tightness), breathlessness, and heart attacks if a plaque ruptures."
+      },
+      {
+        "name": "Carotid and Cerebral Atherosclerosis",
+        "desc": "Involves the arteries in the neck and brain. Narrowing or traveling clots from these plaques can lead to transient ischemic attacks (mini-strokes) or permanent ischemic strokes."
+      },
+      {
+        "name": "Peripheral Artery Disease (PAD)",
+        "desc": "Occurs in the major arteries supplying blood to the limbs, most commonly the legs. It causes calf or thigh pain while walking (intermittent claudication) and poor wound healing in the feet."
+      },
+      {
+        "name": "Renal Artery Atherosclerosis",
+        "desc": "Narrowing of the blood vessels leading to one or both kidneys. This leads to difficult-to-treat high blood pressure (renovascular hypertension) and progressive chronic kidney damage."
+      },
+      {
+        "name": "Aortic Atherosclerosis",
+        "desc": "Builds up in the aorta, the body's main blood highway. It can weaken the structural wall of the aorta, leading to thoracic or abdominal aortic aneurysms."
+      }
+    ],
+    "diagnosis": [
+      "Atherosclerosis is rarely found through physical examination alone because it stays quiet until blood flow is reduced or cut off.",
+      "Doctors start by calculating your total cardiovascular risk using age, blood pressure, lipid profile, smoking history, and blood sugar levels.",
+      "Non-invasive vascular imaging checks for plaque directly: ultrasound of the carotid arteries measures the thickness of the vessel wall (intima-media thickness) and spots visible plaques.",
+      "A Coronary Artery Calcium (CAC) CT scan checks for calcified plaques in the heart vessels, giving a clear numerical score of plaque burden.",
+      "Ankle-Brachial Index (ABI) tests blood pressure in your arms against your ankles to catch peripheral artery disease early.",
+      "Stress tests (Treadmill Test or Stress Echo) and CT Coronary Angiography check whether narrowing restricts actual blood flow during physical exertion."
+    ],
+    "investigations": [
+      {
+        "test": "Lipid Profile",
+        "purpose": "Measures total cholesterol, LDL, HDL, and triglycerides to evaluate circulating plaque-forming particles",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates three-month average blood glucose; diabetes sharply accelerates plaque formation",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks baseline blood sugar to detect insulin resistance and prediabetes early",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "High-Sensitivity C-Reactive Protein (hs-CRP)",
+        "purpose": "Detects vascular inflammation; higher levels mean plaques are more fragile and prone to rupture",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Assesses kidney function, which can decline if renal arteries stiffen or narrow",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Carotid Doppler Ultrasound",
+        "purpose": "Directly visualizes plaque buildup and blood flow velocities in the neck arteries supplying the brain"
+      },
+      {
+        "test": "Coronary CT Angiography or Calcium Score",
+        "purpose": "Visualizes anatomical narrowing and calcification inside the coronary arteries of the heart"
+      }
+    ],
+    "modernTreatment": [
+      "Lifestyle modifications are the bedrock of care: switching to a whole-food heart-protective diet, daily aerobic movement, weight loss, and completely quitting tobacco.",
+      "Statin therapy (such as atorvastatin). Statins lower LDL cholesterol production in the liver, reduce inflammation within the artery wall, and stabilize the fibrous caps of plaques so they do not rupture.",
+      "Additional lipid-lowering drugs: Ezetimibe or PCSK9 inhibitors may be added by your cardiologist if LDL targets are not met with statins alone.",
+      "Antiplatelet medications: Low-dose aspirin or clopidogrel may be prescribed to prevent blood platelets from sticking to roughened plaques and creating fatal clots.",
+      "Blood pressure management: Keeping blood pressure strictly controlled with medicines like amlodipine or losartan reduces mechanical stress on fragile artery linings.",
+      "Interventional procedures: For severe narrowings causing unstable angina or heart attack, angioplasty with stent placement reopens the closed artery. Coronary artery bypass grafting (CABG) reroutes blood around heavily diseased vessels."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda describes conditions resembling atherosclerosis under concepts of Dhamani Praticaya (thickening or hardening of the vessels) and Dhamani Rodha (obstruction of vascular channels).",
+      "It is understood as an imbalance involving Kapha dosha, Meda dhatu (fat tissue), and Ama (toxic, sticky metabolic residue). When weak digestive fire (Mandagni) leads to improperly metabolized food, Ama accumulates and circulates through Rasa and Rakta dhatus.",
+      "This sticky residue clogs the micro- and macro-channels (Srotas), leading to stiffness and sluggish circulation.",
+      "Ayurvedic care emphasizes Deepana and Pachana (clearing Ama and restoring digestion), Rukshana (drying excess fatty tissues), and Shodhana therapies, accompanied by light, warm, non-greasy foods.",
+      "These traditional concepts are useful for healthy lifestyle guidance but do not replace modern diagnostic imaging or life-saving cardiac medicines. Never stop prescribed statins or blood thinners for herbal remedies."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Garlic (Lahsun)",
+        "slug": "garlic",
+        "note": "Contains allicin and organosulfur compounds that provide mild support for healthy lipid metabolism and endothelial relaxation. Concentrated garlic extracts can thin the blood and must be discussed with your doctor if you take antiplatelet or anticoagulant medicines."
+      },
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "The bark of Terminalia arjuna is traditionally used in cardiovascular care. It provides antioxidant properties that support heart muscle function, but high-quality clinical evidence showing it can clear existing human arterial plaques is lacking."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Extremely rich in vitamin C, polyphenols, and flavonoids. It supports vascular health by reducing oxidative stress and helping maintain normal blood vessel elasticity as part of a balanced diet."
+      },
+      {
+        "name": "Turmeric (Haldi)",
+        "slug": "turmeric",
+        "note": "Curcumin exhibits mild anti-inflammatory properties that may help calm systemic vascular inflammation. However, it cannot replace medical therapies for established coronary artery disease."
+      },
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Rich in soluble galactomannan fibre, fenugreek seeds slow down intestinal absorption of dietary cholesterol and glucose, offering gentle metabolic support."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN dietary guidelines: build your plate around diverse whole plant foods, including unpolished grains, millets, a variety of seasonal vegetables, and legumes.",
+      "Significantly increase soluble fibre. Soluble fibre binds to bile acids in the intestine and drags cholesterol out of the body. Include oats, barley, methi seeds, bhindi (okra), apples, guavas, and dals like rajma and chana daily.",
+      "Dramatically reduce saturated fats and eliminate industrial trans fats completely. Avoid vanaspati, dalda, shortening, commercial bakery items, namkeens, deep-fried street snacks (samosas, pakoras, puris), and re-heated cooking oils.",
+      "Limit pure ghee and butter to very small, measured amounts as advised by your doctor, especially if your LDL cholesterol or Apolipoprotein B is already elevated.",
+      "Choose healthy unsaturated cooking oils in moderation, rotating or blending options like cold-pressed mustard oil, groundnut oil, or sesame oil. Keep total added oil under 20 to 25 grams per day.",
+      "Eat a handful of unsalted nuts daily, such as walnuts and almonds, which provide heart-healthy plant sterols, polyphenols, and omega-3 fatty acids.",
+      "Cut down on free sugars, sweetened beverages, fruit juices, and refined flour (maida). High glycemic loads cause your liver to churn out high amounts of triglycerides and dense, dangerous LDL particles."
+    ],
+    "lifestyle": [
+      "Stop all tobacco use immediately. Giving up smoking, bidis, gutka, and khaini is the single most powerful step you can take to stop endothelial injury and prevent plaque rupture.",
+      "Target 150 to 300 minutes of moderate-intensity aerobic exercise weekly. Brisk walking, cycling, or swimming boosts endothelial nitric oxide, which keeps arteries flexible and dilated.",
+      "Manage belly fat. For Indian adults, health guidelines recommend maintaining a waist circumference below 90 cm for men and below 80 cm for women to reduce vascular inflammation.",
+      "Prioritize 7 to 8 hours of uninterrupted, restful sleep each night. Untreated obstructive sleep apnea creates repeated oxygen drops at night that spike blood pressure and accelerate arterial plaque formation.",
+      "Find an active stress-management routine. Chronic mental stress floods your circulation with cortisol and adrenaline, increasing heart rate, raising blood pressure, and destabilizing vascular linings.",
+      "Monitor your numbers regularly. Check your blood pressure, lipid profile, and blood sugar on schedule, keeping an organized health diary for your medical visits."
+    ],
+    "yogaActivity": [
+      "Engage in gentle, rhythmic yogasanas that improve circulation without straining the heart: Tadasana, Vrikshasana, Marjariasana, and gentle Gomukhasana.",
+      "Practice slow, mindful breathing techniques such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) for 10 to 15 minutes daily to calm the sympathetic nervous system.",
+      "End every exercise session with 10 minutes of deep relaxation in Shavasana or guided Yoga Nidra to lower resting heart rate and blood pressure.",
+      "Avoid strenuous breath retention (Kumbhaka) and rapid, forceful breathing like intense Kapalabhati or Bhastrika if you have diagnosed coronary plaque or uncontrolled hypertension.",
+      "Do not perform advanced inversions like Sirsasana (headstand) or Sarvangasana (shoulder stand) without explicit clearance from your cardiologist, as they cause sudden shifts in arterial pressure."
+    ],
+    "homeopathyNote": [
+      "There is no acceptable scientific or clinical trial evidence showing that homeopathic preparations can dissolve arterial plaques, unclog narrowed blood vessels, or prevent heart attacks and strokes.",
+      "Relying solely on homeopathy while avoiding proven medications like statins and antiplatelets carries severe, life-threatening cardiovascular risks.",
+      "If you explore complementary treatments, always inform your cardiologist and never pause or stop your standard cardiovascular prescriptions."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Statins, PCSK9 inhibitors, and ezetimibe lower LDL cholesterol, slow plaque progression, stabilize existing plaques, and significantly lower the rate of heart attacks, strokes, and cardiovascular death across millions of patient years.",
+      "Strong evidence: Complete smoking cessation, blood pressure control, and regular aerobic exercise directly improve endothelial function and protect against acute cardiovascular events.",
+      "Moderate evidence: High-fibre diets, Mediterranean-style diets adapted to Indian cuisine, and weight loss reduce surrogate vascular markers like arterial stiffness and hs-CRP.",
+      "Limited or weak evidence: Garlic, arjuna bark, guggulu, and other herbal extracts show mild effects on blood markers in small animal or human trials, but zero evidence exists showing they can safely replace lipid-lowering drugs or reverse arterial blockages.",
+      "No evidence: Online concoctions, miracle tonics, 'artery-clearing' juice cleanses, or magnet therapies advertised to melt away blockages have no scientific basis."
+    ],
+    "shouldNotDo": [
+      "Do not fall for online advertisements, videos, or local practitioners claiming they can melt, scrape, or flush away arterial plaque with herbal juices, ginger-garlic tonics, or chelation therapy; no herb, diet or product can make it go away.",
+      "Do not stop your statin or blood thinner because your latest lipid report shows normal cholesterol numbers. The numbers are normal precisely because the medicine is working, and statins are needed to keep the plaque stable.",
+      "Do not believe the myth that eating large amounts of desi ghee is harmless or that it 'greases and lubricates' your blood vessels; saturated fats drive up LDL and apolipoprotein B.",
+      "Do not ignore recurring symptoms like vague chest discomfort, unusual fatigue, or calf tightness during walking, assuming it is simple gas, acidity, or muscle pull.",
+      "Do not start high-intensity gym workouts, heavy weightlifting, or sudden marathon running without a medical check-up if you have been sedentary, smoke, or have strong family heart risks."
+    ],
+    "medicationSafety": [
+      "Take your statin (such as atorvastatin) consistently, usually at bedtime or as advised by your doctor, as the liver synthesizes the majority of cholesterol during the night.",
+      "Report unexplained muscle pain, tenderness, or weakness to your doctor. While mild soreness can happen, true statin-induced muscle injury is rare and manageable under medical supervision; never abruptly quit on your own.",
+      "If prescribed antiplatelet medicines like aspirin or clopidogrel, monitor for signs of easy bruising, bleeding gums, or dark black stools, and inform your dentist or surgeon before any planned procedure.",
+      "Your doctor will periodically run liver enzyme tests and kidney panels to confirm your body is handling the medication safely.",
+      "Always carry an updated list of your cardiovascular medicines when visiting any doctor or specialist to prevent unsafe drug interactions."
+    ],
+    "complications": [
+      "Coronary Heart Disease and Acute Myocardial Infarction (heart attack) caused by plaque rupture and total blockage of a coronary artery.",
+      "Ischemic Stroke or Transient Ischemic Attack (mini-stroke) resulting from restricted blood flow to the brain or a dislodged clot.",
+      "Peripheral Artery Disease, which can progress to critical limb ischemia, severe rest pain, non-healing foot ulcers, and eventual amputation.",
+      "Congestive Heart Failure, developing because the heart muscle is constantly starved of oxygen or has been scarred by past heart attacks.",
+      "Aortic Aneurysm, an abnormal ballooning and potential catastrophic rupture of the main artery of the body.",
+      "Chronic Kidney Disease, resulting from long-term narrowing and hardening of the renal arteries that filter metabolic waste."
+    ],
+    "emergencySigns": [
+      "Chest pain, pressure, heaviness, tightness, or a squeezing sensation in the center of your chest lasting more than a few minutes.",
+      "Pain or discomfort spreading to your left shoulder, arm, back, neck, jaw, or upper stomach.",
+      "Sudden shortness of breath, cold sweating, unexplained nausea, or lightheadedness, with or without chest pain (especially common in women and people with diabetes).",
+      "Sudden face drooping, arm weakness or numbness, or difficulty speaking and slurred speech (FAST warning signs of stroke).",
+      "Sudden loss of vision in one or both eyes, or sudden loss of balance, dizziness, and difficulty walking."
+    ],
+    "whenToSeeDoctor": [
+      "You feel tight chest discomfort, breathlessness, or unusual fatigue whenever you walk uphill, climb stairs, or exert yourself physically.",
+      "You develop cramping pain in your calves, thighs, or hips while walking that consistently disappears after a few minutes of rest.",
+      "Your routine lipid profile shows elevated total cholesterol, high LDL, high triglycerides, or low HDL.",
+      "You have a first-degree family member (parent or sibling) who suffered a premature heart attack or stroke (under 55 for men, under 65 for women).",
+      "You are over 30 and have multiple metabolic risk factors like diabetes, high blood pressure, abdominal obesity, or a history of tobacco use."
+    ],
+    "faqs": [
+      {
+        "q": "Can arterial plaque be completely reversed or cleaned out?",
+        "a": "Calcified, established plaque cannot be scrubbed away or melted by any known diet, herb, or medication. However, modern medical treatment and dedicated lifestyle changes can shrink the soft fatty core of plaques, stop them from expanding, and make their outer caps tough and stable so they do not rupture to cause heart attacks."
+      },
+      {
+        "q": "Is desi ghee safe or protective for people with atherosclerosis?",
+        "a": "No. While traditional folklore sometimes claims ghee cleanses or lubricates blood vessels, science shows ghee is around 60% saturated fat. Excess saturated fat increases circulating LDL cholesterol and ApoB particles, accelerating plaque deposition. If you have atherosclerosis or high cholesterol, keep ghee to very minimal amounts as advised by your doctor."
+      },
+      {
+        "q": "Why are young Indian gym-goers having heart attacks from atherosclerosis?",
+        "a": "Atherosclerosis builds silently over many years. A person can look muscular and fit on the outside while harbor unstable soft plaques inside their coronary arteries due to genetics, high lipoprotein(a), untreated high cholesterol, smoking, poor sleep, or chronic stress. Intense exertion or stimulant supplements can then trigger plaque rupture if underlying heart health was never checked."
+      },
+      {
+        "q": "Will taking garlic and lemon juice daily open my blocked arteries?",
+        "a": "No. While garlic and lemon contain healthy antioxidants that support general wellness, there is no scientific evidence that drinking garlic, ginger, lemon, and vinegar mixtures dissolves arterial blockages. Trusting these remedies instead of proven medical therapies puts you at high risk for sudden cardiac events."
+      },
+      {
+        "q": "Do I need to take statin medicines for life?",
+        "a": "For most people with documented atherosclerosis, statin therapy is a long-term, protective commitment. Statins not only lower cholesterol production in your liver every single day, but they also reduce inflammation inside the arterial wall and stabilize plaques. If you stop taking them, your cholesterol levels and cardiovascular risk return to their previous baseline."
+      }
+    ],
+    "references": [
+      {
+        "title": "Cardiovascular diseases (CVDs) Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)",
+        "year": "2021"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "2018 AHA/ACC/AACVPR/AAPA/ABC/ACPM/ADA/AGS/APhA/ASPC/NLA/PCNA Guideline on the Management of Blood Cholesterol",
+        "source": "Journal of the American College of Cardiology (Grundy SM et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30423393/",
+        "year": "2019"
+      },
+      {
+        "title": "Atherosclerosis: Pathogenesis, Genetics, and Prevention",
+        "source": "National Center for Biotechnology Information (NCBI Bookshelf)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK507790/",
+        "year": "2023"
+      },
+      {
+        "title": "Consensus Statement for Diagnosis and Management of Dyslipidemia in Indian Asian Population",
+        "source": "Journal of the Association of Physicians of India (Misra A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24968574/",
+        "year": "2014"
+      }
+    ],
+    "relatedDiseases": [
+      "coronary-artery-disease",
+      "heart-disease",
+      "stroke",
+      "peripheral-artery-disease",
+      "high-cholesterol",
+      "high-triglycerides",
+      "high-blood-pressure",
+      "type-2-diabetes",
+      "cardiovascular-risk",
+      "metabolic-syndrome"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "metformin",
+      "dapagliflozin"
+    ],
+    "relatedHerbs": [
+      "garlic",
+      "arjuna",
+      "amla",
+      "turmeric",
+      "fenugreek"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "hba1c",
+      "fasting-glucose",
+      "crp",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "slug": "menopause",
+  "name": "Menopause",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Menopause is the natural life stage when a woman's menstrual cycles come to an end. Doctors define menopause clinically after you have gone 12 straight months without a period, as long as there is no other medical reason or pregnancy. In India, research shows that natural menopause happens at an average age of 46.2 years, which is roughly four to five years earlier than in Western countries. During this transition, your ovaries gradually produce less of the female hormones estrogen and progesterone. While menopause is a normal biological milestone rather than an illness, the fluctuating and declining hormone levels can bring noticeable physical and emotional changes. These commonly include hot flashes, sleep disturbances, mood swings, weight shifts around the belly, vaginal dryness, and joint aches. After menopause, the protective effect of estrogen on your bones and heart decreases. This makes long-term lifestyle habits, bone health checks, and cardiovascular screening essential parts of staying strong and active.",
+    "quickFacts": [
+      {
+        "label": "Clinical definition",
+        "value": "12 consecutive months without a menstrual period"
+      },
+      {
+        "label": "Average age in India",
+        "value": "46.2 years (Indian Menopause Society national data)"
+      },
+      {
+        "label": "Perimenopause window",
+        "value": "Typically lasts 4 to 8 years before periods stop"
+      },
+      {
+        "label": "Most common symptom",
+        "value": "Hot flashes and night sweats (vasomotor symptoms)"
+      },
+      {
+        "label": "Key long-term risks",
+        "value": "Accelerated bone loss (osteoporosis) and cardiovascular disease"
+      },
+      {
+        "label": "Treatment status",
+        "value": "Manageable with lifestyle, medical therapy, and local care"
+      }
+    ],
+    "causes": [
+      "Natural biological aging of the ovaries. From birth, a woman has a set reserve of eggs. Over decades, this reserve decreases until the ovaries produce minimal estrogen and progesterone, stopping ovulation completely.",
+      "Surgical removal of both ovaries (bilateral oophorectomy). If both ovaries are removed surgically, menopause occurs immediately, regardless of your age, often causing sudden and intense symptoms.",
+      "Hysterectomy with ovarian conservation. Removing only the uterus stops monthly bleeding, but if ovaries remain intact, natural hormonal menopause still happens around your normal age, though it can sometimes occur 1 to 2 years earlier.",
+      "Cancer therapies. Chemotherapy and pelvic radiation therapy can damage ovarian tissue, triggering temporary or permanent early menopause.",
+      "Primary ovarian insufficiency (POI). In roughly 1% of women, the ovaries stop functioning normally before age 40 due to autoimmune factors, genetic variations, or unknown causes."
+    ],
+    "types": [
+      {
+        "name": "Natural Menopause",
+        "desc": "The spontaneous, permanent end of menstruation that occurs as part of healthy aging, usually between ages 45 and 55."
+      },
+      {
+        "name": "Perimenopause (Menopausal Transition)",
+        "desc": "The transitional phase leading up to menopause. Hormone levels fluctuate unpredictably, cycles become irregular, and symptoms like hot flashes and mood shifts begin."
+      },
+      {
+        "name": "Premature Menopause",
+        "desc": "Menopause that occurs naturally or medically before the age of 40. This needs medical evaluation and hormone support to safeguard bone and heart health."
+      },
+      {
+        "name": "Early Menopause",
+        "desc": "Menopause occurring between the ages of 40 and 45, which can occur naturally, through surgery, or due to medical treatments."
+      },
+      {
+        "name": "Induced or Surgical Menopause",
+        "desc": "An abrupt cessation of ovarian function caused by surgical removal of both ovaries, radiation therapy, or chemotherapy."
+      }
+    ],
+    "diagnosis": [
+      "Menopause is primarily a clinical diagnosis. If you are over 45 with typical symptoms and have not had a menstrual period for 12 straight months, laboratory hormone tests are usually unnecessary.",
+      "During perimenopause, routine blood hormone checks such as FSH (follicle-stimulating hormone) and estrogen can rise and fall drastically from one day to the next, making single blood tests unreliable for staging.",
+      "Your doctor will take a thorough menstrual history, reviewing cycle length, heaviness of bleeding, and the timing of physical or mood symptoms.",
+      "If you have irregular bleeding or menopausal symptoms before age 40, your doctor will order blood tests (like FSH and prolactin) to check for primary ovarian insufficiency.",
+      "Your doctor will evaluate other conditions that mimic menopausal symptoms, such as thyroid disorders, iron deficiency anemia, or blood sugar instability."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Thyroid dysfunction causes fatigue, mood changes, irregular periods, and temperature intolerance that closely mimic menopausal symptoms",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for anemia caused by erratic or unusually heavy periods during perimenopause",
+        "slug": "cbc"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Monitors changes in cholesterol and triglycerides, as cardiovascular risk tends to increase when estrogen levels drop",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Screens for insulin resistance and type 2 diabetes, which become more common during the midlife metabolic shift",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Vitamin D (25-OH)",
+        "purpose": "Evaluates vitamin D levels required for calcium absorption and safeguarding bone mineral density",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Menopausal Hormone Therapy (MHT): For moderate to severe hot flashes, night sweats, and sleep disruption, MHT remains the most effective medical treatment. It replaces estrogen, combined with progesterone if you have an intact uterus to protect the uterine lining. Your doctor tailors the choice, timing, and route to your personal health history.",
+      "Local Vaginal Estrogen: Low-dose vaginal creams, rings, or tablets treat vaginal dryness, discomfort during intercourse, and frequent urinary urgency. Because very little enters the bloodstream, local estrogen carries minimal systemic risk.",
+      "Non-Hormonal Prescription Medications: For women who cannot or prefer not to take hormones, doctors may prescribe specific medications such as low-dose SSRIs, SNRIs, gabapentinoids, or newer neurokinin receptor antagonists to relieve hot flashes.",
+      "Bone Protection Strategies: If a bone density scan (DEXA) indicates osteopenia or osteoporosis, doctors recommend structured calcium and vitamin D3 supplementation, alongside bone-strengthening medications such as bisphosphonates when necessary.",
+      "Cardiometabolic Risk Management: Regular monitoring and management of blood pressure, blood sugar, and lipid levels to protect long-term heart health after the protective effects of natural estrogen decline."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, menopause is known as 'Rajonivritti', which translates to the natural retirement or end of menstrual flow. Classical texts view it not as a disease, but as a normal transition marking the shift from the Pitta-dominated phase of adult life to the Vata-dominated phase of older age.",
+      "When Vata dosha dominates, symptoms like dry skin, vaginal dryness, insomnia, anxiety, joint stiffness, and nervousness are prominent.",
+      "When Pitta dosha is aggravated, symptoms like intense hot flashes, night sweats, skin irritation, acid indigestion, and irritability tend to occur.",
+      "Ayurvedic care emphasises supportive lifestyle adjustments (Dinacharya), warm, nourishing, easily digestible foods, daily oil massage (Abhyanga) to soothe Vata, and calming practices. These measures are intended to support comfort alongside conventional medical care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally regarded as a rejuvenating herb for female health. Early lab studies explore its phytoestrogenic properties, but high-quality clinical trials in menopausal women remain limited. It is a supportive herb, not a replacement for medical therapy."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Used in traditional systems to help the body adapt to stress and support calm sleep. Small clinical studies suggest it may help ease mild nervous tension and sleep difficulties, though evidence for hot flashes is weak."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used to support cognitive function and soothe a busy mind. May offer mild calming support during episodes of midlife brain fog or stress, though robust trials for menopause are lacking."
+      }
+    ],
+    "nutrition": [
+      "Prioritise calcium-rich Indian foods daily to support bone density. Include ragi (finger millet), white sesame seeds (til), paneer, low-fat curd, and local dark green leafy vegetables like moringa leaves, methi, and chaulai.",
+      "Ensure adequate, high-quality protein at every meal to counter age-related muscle loss (sarcopenia). Include whole dals, rajma, chana, soya chunks, eggs, fish, or paneer based on your dietary preferences.",
+      "Incorporate natural plant lignans and isoflavones from modest portions of roasted flaxseeds (alsi), edamame, tofu, or fermented soy products. They may offer mild, gentle support for vasomotor symptoms.",
+      "Drink plenty of water throughout the day. Dehydration worsens fatigue, joint stiffness, and urinary irritation.",
+      "Limit potential hot flash triggers. Spicy curries, excessive black tea or filter coffee, alcohol, and very hot soups can trigger sudden perspiration and flushing.",
+      "Follow ICMR-NIN dietary guidelines: reduce refined carbohydrates, bakery snacks, and namkeen. Choose fibre-rich millets, oats, brown rice, and whole pulses to stabilise blood sugar and support weight management."
+    ],
+    "lifestyle": [
+      "Dress in breathable, layered clothing made from natural fibres like cotton or linen. This allows you to remove layers quickly when a hot flash begins.",
+      "Keep your sleeping environment cool and well-ventilated. Use a light cotton bedsheet and consider keeping a fan or air cooler focused on your sleeping area.",
+      "Engage in strength and resistance training at least 2 to 3 days per week. Lifting light weights, using resistance bands, or doing bodyweight exercises stimulates bone building and preserves muscle mass.",
+      "Walk briskly for 30 minutes at least 5 days a week. Regular aerobic movement supports heart health, enhances mood, and improves metabolic rate.",
+      "Practise good sleep hygiene. Maintain a fixed bedtime, minimise smartphone or television screen time 1 hour before sleeping, and avoid heavy, late-night dinners.",
+      "Stop all forms of tobacco use, including cigarettes, bidis, and gutka. Tobacco accelerates ovarian aging, worsens hot flashes, and significantly increases cardiovascular and osteoporosis risks."
+    ],
+    "yogaActivity": [
+      "Cooling pranayama techniques: Practise Sheetali and Sheetkari breathing alongside Anulom Vilom (alternate nostril breathing) for 10 to 15 minutes daily to help calm the autonomic nervous system and soothe hot flashes.",
+      "Restorative postures: Gentle poses like Supta Baddha Konasana (reclining bound angle pose), Viparita Karani (legs up the wall), and Balasana (child's pose) promote pelvic relaxation and ease tension.",
+      "Weight-bearing yoga asanas: Postures like Tadasana (mountain pose), Vrikshasana (tree pose), and the Virabhadrasana series (warrior poses) help build balance, hip stability, and bone strength.",
+      "Shavasana (corpse pose) and Yoga Nidra: Guided deep relaxation helps lower evening cortisol levels, encouraging deeper, more restorative sleep.",
+      "Avoid vigorous, fast-paced hot yoga or prolonged breath-holding if you are actively experiencing severe hot flashes or elevated blood pressure."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence demonstrating that homeopathic preparations can balance hormone levels, prevent bone loss, or treat menopausal complications.",
+      "Relying solely on homeopathy for postmenopausal bleeding or rapid bone thinning can delay necessary medical evaluation.",
+      "If you choose to use homeopathic remedies, always inform your doctor and continue all recommended medical screenings, such as mammograms and bone density tests."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Menopausal Hormone Therapy (MHT) is the most effective treatment for hot flashes, night sweats, and prevention of postmenopausal bone loss when started within 10 years of menopause or before age 60 in suitable candidates.",
+      "Strong evidence: Regular resistance training, weight-bearing exercise, and adequate calcium and vitamin D intake significantly reduce the rate of bone mineral loss and lower fall risk.",
+      "Moderate evidence: Cognitive Behavioural Therapy (CBT) and clinical mindfulness practices improve how women perceive and cope with hot flashes, night sweats, and midlife insomnia.",
+      "Weak or limited evidence: Over-the-counter herbal supplements such as Shatavari, black cohosh, and evening primrose oil show mixed or inconclusive results in clinical trials. No herb, diet or product can make menopause go away or guarantee symptom-free transitions."
+    ],
+    "shouldNotDo": [
+      "Do not ignore any vaginal bleeding or spotting that occurs after you have gone 12 months without a period. Postmenopausal bleeding is never normal and must be evaluated by a gynaecologist right away.",
+      "Do not assume weight gain around the abdomen during midlife is unavoidable and impossible to manage. Consistent protein intake and resistance training can prevent significant shifts in body composition.",
+      "Do not start over-the-counter hormone creams, herbal hormonal blends, or unregulated supplements without consulting a doctor.",
+      "Do not stop regular health screenings like mammograms, cervical cancer screenings (Pap tests), and blood pressure checks just because your periods have stopped.",
+      "Do not suffer in silence. Many women assume severe hot flashes, mood crashes, and pain during intimacy are an unavoidable burden that must simply be tolerated, even though safe and effective treatments exist."
+    ],
+    "medicationSafety": [
+      "Menopausal Hormone Therapy (MHT) requires careful medical evaluation. Your doctor will assess your age, timing since menopause, and personal or family risk factors for breast cancer, blood clots, stroke, and heart disease.",
+      "Women who still have a uterus must always take progesterone alongside estrogen in systemic therapy to prevent overgrowth of the uterine lining (endometrial hyperplasia).",
+      "Transdermal estrogen (delivered through skin patches or gels) carries a lower risk of deep vein thrombosis and blood clots compared to oral tablets, making it a safer option for many women.",
+      "Take calcium and vitamin D supplements only as advised by your doctor. Excessive calcium supplementation without medical supervision can raise the risk of kidney stones and arterial calcification.",
+      "Always inform every healthcare provider about all prescription drugs, herbal tablets, and dietary supplements you take, as interactions can occur."
+    ],
+    "complications": [
+      "Osteoporosis and fragility fractures: Accelerated loss of bone density occurs in the first 5 to 7 years after menopause, greatly increasing the risk of spine, wrist, and hip fractures.",
+      "Cardiovascular disease: The reduction of natural estrogen leads to stiffer arterial walls, increases in LDL cholesterol, and elevated blood pressure, making heart disease the leading health concern for postmenopausal women.",
+      "Genitourinary Syndrome of Menopause (GSM): Thinning and drying of vaginal and urinary tissues, causing painful intercourse, burning, urinary urgency, and recurrent urinary tract infections.",
+      "Metabolic syndrome and abdominal weight gain: Changes in hormone balance promote visceral fat accumulation around the waist, increasing the risk of insulin resistance and type 2 diabetes.",
+      "Mood disorders and cognitive distress: Heightened vulnerability to clinical anxiety, depressive episodes, and persistent brain fog during the menopausal transition."
+    ],
+    "emergencySigns": [
+      "Any unexpected vaginal bleeding, light spotting, or pinkish-brown discharge occurring months or years after your periods have fully stopped: seek immediate medical evaluation to rule out endometrial abnormalities.",
+      "Sudden, crushing chest pain, pressure, or tightness radiating to the left arm, jaw, neck, or back, often accompanied by shortness of breath, unexplained sweating, or nausea: call 108 or 112 immediately.",
+      "Sudden weakness, numbness, or tingling in the face, arm, or leg (especially on one side of the body), or sudden trouble speaking or understanding speech: possible stroke, emergency medical help required.",
+      "Sudden swelling, tenderness, redness, and warm skin in one calf: possible deep vein thrombosis (DVT), which needs emergency hospital attention."
+    ],
+    "whenToSeeDoctor": [
+      "Your menstrual cycles become significantly irregular, unusually heavy, or last longer than 7 days during perimenopause.",
+      "Hot flashes, night sweats, or daytime flushes significantly disrupt your professional life, daily activities, or restorative sleep.",
+      "You experience persistent vaginal dryness, itching, pain during intimacy, or recurring urinary tract infections.",
+      "You notice sudden, severe changes in mood, unmanageable anxiety, crying spells, or feelings of hopelessness.",
+      "Your periods stop completely before you reach the age of 40.",
+      "You experience any bleeding or spotting after 12 consecutive months of no periods."
+    ],
+    "faqs": [
+      {
+        "q": "Why do Indian women reach menopause earlier than Western women?",
+        "a": "Studies by the Indian Menopause Society and health researchers show that the average age of natural menopause in Indian women is around 46.2 years, compared to roughly 51 years in European and North American populations. Genetic factors, nutritional backgrounds across early life, and differences in ovarian reserve contribute to this earlier timing."
+      },
+      {
+        "q": "Is any amount of bleeding normal after menopause?",
+        "a": "No. Any bleeding, whether it is heavy flow, light spotting, or pinkish staining, that happens after you have gone 12 full months without a period is considered postmenopausal bleeding. While it is often caused by benign issues like thinning of the uterine lining or polyps, it can also be an early sign of uterine cancer. You must consult a gynaecologist promptly for an ultrasound and evaluation."
+      },
+      {
+        "q": "Will Menopausal Hormone Therapy (MHT) cause breast cancer or heart attacks?",
+        "a": "Modern medical evidence shows that when MHT is started in healthy women under the age of 60 or within 10 years of menopause (the 'window of opportunity'), the benefits for hot flashes and bone protection generally outweigh the risks. The absolute risk of serious side effects is very low for most women in this group. Your doctor will carefully review your personal health history to determine whether MHT is safe and suitable for you."
+      },
+      {
+        "q": "How can I manage belly fat gain during and after menopause?",
+        "a": "Declining estrogen changes where your body stores fat, shifting it from the hips and thighs toward the abdomen. To manage this, combine regular strength and resistance training with daily brisk walking. Prioritise adequate protein (such as lentils, eggs, paneer, and fish) to preserve muscle mass, and cut back on refined grains, sugary sweets, and deep-fried snacks."
+      },
+      {
+        "q": "How long do menopausal symptoms like hot flashes typically last?",
+        "a": "The duration varies widely between individuals. On average, vasomotor symptoms like hot flashes and night sweats last between 4 and 7 years, peaking during the first 1 to 2 years after your final period. In some women, mild hot flashes can continue for 10 years or longer. Lifestyle modifications and medical therapies can provide significant relief during this time."
+      }
+    ],
+    "references": [
+      {
+        "title": "Menopause: Overview and Global Health Considerations",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/menopause",
+        "year": "2022"
+      },
+      {
+        "title": "The Indian Menopause Society research study on age at menopause in Indian women",
+        "source": "Journal of Mid-life Health (Singh A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24672186/",
+        "year": "2014"
+      },
+      {
+        "title": "Menopause: diagnosis and management (NICE Guideline NG23)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng23",
+        "year": "2015"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "Indian Council of Medical Research - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "The 2022 Hormone Therapy Position Statement of The North American Menopause Society",
+        "source": "Menopause (NAMS)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35797481/",
+        "year": "2022"
+      },
+      {
+        "title": "Clinical management of the menopausal transition and osteoporosis",
+        "source": "Mayo Clinic Proceedings",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28688688/",
+        "year": "2017"
+      }
+    ],
+    "relatedDiseases": [
+      "osteoporosis",
+      "cardiovascular-risk",
+      "sleep-problems",
+      "anxiety",
+      "depression",
+      "joint-stiffness",
+      "urinary-tract-infection",
+      "calcium-deficiency",
+      "vitamin-d-deficiency"
+    ],
+    "relatedMedicines": [
+      "vitamin-d3",
+      "paracetamol",
+      "atorvastatin",
+      "amlodipine"
+    ],
+    "relatedHerbs": [
+      "shatavari",
+      "ashwagandha",
+      "brahmi",
+      "amla"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "lipid-profile",
+      "fasting-glucose",
+      "vitamin-d",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
