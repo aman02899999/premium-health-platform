@@ -242,6 +242,78 @@ Save karo, aur us dost ko bhejo jo 2 saal se "bulking" kar raha hai 😅
 Sources: ACSM resistance training position stand 2009; ISSN position stand 2017; CDC sleep guidance.
 ${EDU}`,
     tags: "#MuscleGain #SkinnyToStrong #GymTipsHindi #RoyalFitnessClub #NoidaGym #Sector93Noida #CoachAman",
+  }),  // Desi Food Science Reels (thread "Make Desi Food Science videos"), 21 Nov 2026. Owner asked to
+  // upload them everywhere. AI images, AI animation and AI voice: turn on "AI info" when it applies.
+  tipsReel({
+    id: "reel-desi-science-gond-laddu",
+    date: "2026-11-22",
+    video: "/social/reels/desi-science-gond-laddu.mp4",
+    theme: "Gond laddu ka science",
+    body: `Gond ke laddu sirf naani ka nuskha hain ya inke peeche science bhi hai? 🌳🧈
+
+Gond acacia jaise pedon ka sukha ras hai, aur isme zyada-tar soluble fibre hota hai. Ek study (British Journal of Nutrition, 2008) mein acacia gum se pet ke achhe bacteria badhe.
+
+Ek sach bhi jaan lo: ghee aur gud ki wajah se calories kaafi hoti hain. Gym karte ho toh din mein ek chhota laddu kaafi hai. Joint pain ho toh doctor ko dikhao, laddu dawa nahi hai.
+
+Sources: Calame et al., Br J Nutr 2008; ICMR-NIN Dietary Guidelines 2024.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#GondLaddu #DesiFood #WinterFood #Nutrition #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-desi-science-food-synergy",
+    date: "2026-11-23",
+    video: "/social/reels/desi-science-food-synergy.mp4",
+    theme: "Food synergy ka science",
+    body: `Sahi combo mein khao toh 1 + 1 = 3 🍋
+
+✅ Haldi + kali mirch: piperine curcumin ka absorption kai guna badhata hai (Planta Medica, 1998)
+✅ Haldi + ghee: curcumin fat mein ghulta hai, isliye tadka smart hai
+✅ Dal/palak + nimbu: vitamin C se iron zyada absorb hota hai
+✅ Dal + chawal: protein ki quality behtar
+❌ Khane ke saath chai: iron kam absorb hota hai, 1 ghante ka gap rakho
+
+Combo smart hai, jaadu nahi. Asli farak diet, neend aur workout se aata hai.
+
+Sources: Shoba et al., Planta Med 1998; Hallberg et al., AJCN 1989; ICMR-NIN Dietary Guidelines 2024.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#FoodSynergy #Haldi #DesiDiet #IronRich #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-desi-science-joints",
+    date: "2026-11-24",
+    video: "/social/reels/desi-science-joints.mp4",
+    theme: "Ghutne ka science",
+    body: `Sardi mein ghutne jakad jaate hain? Pehle samjho ki joint andar se kaise kaam karta hai 🦵
+
+Cartilage mein khoon ki nalein nahi hoti, isliye chalne-hilne se hi ise poshan milta hai. Mazboot jaangh aur kulhe ki muscles ghutne ka bhaar sambhalti hain. WHO hafte mein 2+ din strength training ki salah deta hai.
+
+Sardi ke 3 rule: 5-10 min warm-up, thodi dhoop, paani.
+Sujan, tez dard ya chot ho toh pehle doctor ko dikhao. Coach ke saath, apne level se shuru karo.
+
+Sources: Sophia Fox et al., Sports Health 2009; WHO physical activity guidelines 2020.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#KneeHealth #JointCare #StrengthTraining #WinterWorkout #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-desi-science-fibre-gut",
+    date: "2026-11-25",
+    video: "/social/reels/desi-science-fibre-gut.mp4",
+    theme: "Fibre ka science",
+    body: `Aapke pet mein kharabon bacteria rehte hain, aur unka favourite khana hai fibre 🦠🥦
+
+Ye bacteria fibre se butyrate jaise short chain fatty acids banate hain, jo aanton ki cells ke liye energy ka source hain (Cell, 2016). Fibre pet ko der tak bhara bhi rakhta hai.
+
+WHO: roz kam se kam 25 g natural fibre.
+Desi thaali mein: rajma, chana, dal, bajra, hari sabzi, chhilke wale phal.
+Fibre dheere-dheere badhao aur paani zyada piyo.
+
+Sources: Koh et al., Cell 2016; WHO carbohydrate intake guideline 2023.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Fibre #GutHealth #DesiThaali #FatLoss #Nutrition #RoyalFitnessClub #NoidaGym",
   }),
 ];
 

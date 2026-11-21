@@ -14,6 +14,11 @@ on:
         type: choice
         options: [image, video]
         default: image
+      set:
+        description: "Prompt set: default (gym stock) or anatomy (medical renders + food close-ups) or habits (Desi Habit Science Reels)"
+        type: choice
+        options: [default, anatomy, habits]
+        default: default
       start:
         description: "First prompt number (0 = the first)"
         default: "0"
@@ -50,6 +55,7 @@ jobs:
         env:
           GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
           KIND: ${{ inputs.kind }}
+          SET: ${{ inputs.set }}
           START: ${{ inputs.start }}
           COUNT: ${{ inputs.count }}
         run: |

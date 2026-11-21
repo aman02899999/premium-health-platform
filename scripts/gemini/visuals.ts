@@ -2,11 +2,11 @@
 // Reels, Shorts and ads, paid from the Google Cloud credit. Files go to the workflow's download
 // (artifact); nothing is stored in Google Cloud, so nothing keeps costing money.
 //
-//   GCP_ACCESS_TOKEN=... GCP_PROJECT_ID=... KIND=image|video START=0 COUNT=8 npx tsx scripts/gemini/visuals.ts
+//   GCP_ACCESS_TOKEN=... GCP_PROJECT_ID=... KIND=image|video SET=default|anatomy|habits START=0 COUNT=8 npx tsx scripts/gemini/visuals.ts
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { fullPrompt, IMAGE_PROMPTS, promptProblems, VIDEO_PROMPTS, type VisualPrompt } from "@/lib/ai/visual-prompts";
+import { fullPrompt, promptProblems, promptSet, reelOnlySet, type VisualPrompt } from "@/lib/ai/visual-prompts";
 import { IMAGE_MODELS, modelOrder, VIDEO_MODELS, withModelFallback } from "@/lib/ai/vertex-schema";
 import { listModels } from "./models";
 
@@ -80,12 +80,13 @@ async function video(p: VisualPrompt): Promise<Buffer | string> {
 
 async function main() {
   mkdirSync(OUT, { recursive: true });
-  const list = (kind === "video" ? VIDEO_PROMPTS : IMAGE_PROMPTS).slice(start, start + count);
+  const list = promptSet(process.env.SET, kind).slice(start, start + count);
   const problems = list.flatMap(promptProblems);
   if (problems.length) throw new Error(`prompts break the house rules: ${problems.join(", ")}`);
   const lines: string[] = [];
   for (const p of list) {
-    const shapes = kind === "video" ? (["9:16"] as const) : (["9:16", "3:4", "1:1"] as const);
+    // The anatomy and habits sets feed vertical Reels only, so one 9:16 still per prompt.
+    const shapes = kind === "video" || reelOnlySet(process.env.SET) ? (["9:16"] as const) : (["9:16", "3:4", "1:1"] as const);
     for (const shape of shapes) {
       if (lines.length) await sleep(kind === "video" ? 10_000 : 6_000); // stay under the per-minute quota
       const out = kind === "video" ? await video(p) : await image(p, shape);

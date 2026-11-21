@@ -5,7 +5,7 @@
 // before/after or body results, no text, logos or brands. Every file is labelled AI when posted
 // (Meta "AI info" label, YouTube "altered or synthetic content").
 
-export type VisualPrompt = { id: string; prompt: string; use: string };
+export type VisualPrompt = { id: string; prompt: string; use: string; style?: "anatomy" };
 
 const STYLE = "Photorealistic, natural light, warm tones, shallow depth of field, Indian setting. No text, no logos, no brand names, no watermarks. No identifiable faces: faces out of frame, turned away or in silhouette.";
 
@@ -41,7 +41,92 @@ export const VIDEO_PROMPTS: VisualPrompt[] = [
   { id: "stairs-climb", prompt: "Feet climbing apartment building stairs quickly, shot from behind at ankle height.", use: "Daily activity Reels" },
 ];
 
-export const fullPrompt = (p: VisualPrompt) => `${p.prompt} ${STYLE}`;
+// "anatomy" set: realistic medical 3D renders and food close-ups for the Desi Food Science Reels
+// (joints, muscles, gut, absorption). Education visuals only: no gore, no faces, no text.
+const ANATOMY_STYLE = "Ultra-realistic 3D medical visualisation or macro photograph, cinematic lighting, dark clean background, high detail, educational, not gory. No text, no labels, no logos, no watermarks. No identifiable faces.";
+const A = (id: string, prompt: string, use: string): VisualPrompt => ({ id, prompt, use, style: "anatomy" });
+
+export const ANATOMY_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("knee-joint-cutaway", "Cutaway view of a human knee joint: femur, tibia and kneecap bones, glossy blue-white articular cartilage on the bone ends, crescent menisci, and the joint capsule filled with clear golden synovial fluid.", "Joints Reel: inside the knee"),
+  A("cartilage-macro", "Microscopic close-up of smooth articular cartilage surface with a thin layer of glistening synovial fluid, soft blue and pearl tones.", "Joints Reel: cartilage"),
+  A("leg-muscles-xray", "Human leg in a half-squat seen from the side, skin semi-transparent to show red quadriceps, hamstrings and glute muscles wrapped around the knee and hip bones.", "Joints Reel: strong muscles support the knee"),
+  A("hip-glute-muscles", "Anatomical render of the hip and thigh: gluteus maximus and medius, quadriceps and the hip joint, seen from behind at an angle.", "Joints Reel: hip muscles"),
+  A("large-intestine", "Translucent human torso showing the large intestine (colon) glowing softly, small intestine coiled in the centre.", "Fibre Reel: big intestine"),
+  A("gut-bacteria", "Microscopic scene inside the human colon: many rod-shaped and round friendly bacteria among fibre strands on the intestinal lining, purple, green and blue tones.", "Fibre / gond Reel: gut bacteria"),
+  A("colon-cells-energy", "Microscopic view of colon lining cells absorbing tiny glowing molecules, warm energy glow around the cells.", "Fibre Reel: butyrate feeds colon cells"),
+  A("villi-absorption", "Microscopic view of finger-like small-intestine villi absorbing tiny golden particles into the blood vessels inside them.", "Synergy Reel: absorption"),
+  A("red-blood-cells", "Red blood cells flowing through a blood vessel, realistic, deep red tones.", "Synergy Reel: iron"),
+  A("acacia-gum-tree", "Macro photograph of amber-coloured natural gum resin drops on the bark of an acacia (babool) tree, Indian countryside, sunlight.", "Gond Reel: where gond comes from"),
+  A("gond-laddu-plate", "Photograph of homemade Indian gond laddus with almonds and dry fruits on a brass plate, warm kitchen light, winter mood.", "Gond Reel: hook"),
+  A("gond-ghee-kadhai", "Photograph of edible gum pieces puffing up into white crunchy balls in hot ghee in an iron kadhai, close-up.", "Gond Reel: gond puffs in ghee"),
+  A("laddu-ingredients", "Top-down photograph of laddu ingredients in small bowls on a dark wooden table: edible gum, ghee, wheat flour, jaggery, almonds, dry coconut, dry ginger powder, black peppercorns.", "Gond Reel: ingredients"),
+  A("almonds-pumpkin-seeds", "Photograph of almonds and green pumpkin seeds in two small brass bowls, close-up, natural light.", "Gond Reel: dry fruits and seeds"),
+  A("turmeric-black-pepper", "Photograph of fresh turmeric roots, a mound of turmeric powder and black peppercorns on a wooden board.", "Synergy Reel: haldi + kali mirch"),
+  A("tadka-ghee", "Photograph of a tadka: turmeric and black pepper sizzling in ghee in a small iron ladle above a bowl of dal.", "Synergy Reel: tadka"),
+  A("dal-palak-lemon", "Photograph of a bowl of palak dal with a hand squeezing a lemon half over it, close-up.", "Synergy Reel: vitamin C + iron"),
+  A("dal-chawal", "Photograph of a plate of steamed rice with yellow dal, homely Indian lunch, top-down.", "Synergy Reel: dal chawal"),
+  A("chai-with-meal", "Photograph of a cup of masala chai next to a plate of Indian food on a table.", "Synergy Reel: chai with meals"),
+  A("fibre-foods", "Top-down photograph of high-fibre Indian foods in bowls: rajma, chana, bajra, green vegetables, apple and guava with skin.", "Fibre Reel: desi fibre"),
+];
+
+export const ANATOMY_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("knee-bend-anim", "3D medical animation of a human knee joint slowly bending and straightening; the cartilage-covered bone ends glide smoothly over each other with synovial fluid between them. Slow orbiting camera.", "Joints Reel"),
+  A("cartilage-pump-anim", "3D microscopic animation: articular cartilage is gently compressed and released in a rhythm, and tiny glowing nutrient particles from the synovial fluid flow into it each time.", "Joints Reel: movement feeds cartilage"),
+  A("squat-muscles-anim", "3D anatomical animation of a human leg doing a slow bodyweight squat, skin semi-transparent, quadriceps and glute muscles contracting and glowing red, knee joint visible.", "Joints Reel: muscles support the knee"),
+  A("gut-bacteria-anim", "3D microscopic animation inside the colon: friendly bacteria swarm around strands of plant fibre and break them down, releasing small glowing molecules. Slow drifting camera.", "Fibre / gond Reel"),
+  A("villi-absorb-anim", "3D microscopic animation of small-intestine villi waving gently as tiny golden particles pass into them and into the blood vessels inside. Slow push-in.", "Synergy Reel: absorption"),
+  A("colon-flythrough-anim", "Smooth 3D fly-through inside a healthy human large intestine, soft pink lining, gentle lighting, educational medical animation.", "Fibre Reel"),
+  A("gond-puffing-anim", "Close-up slow motion of edible gum pieces puffing up and turning white and crunchy in hot ghee in an iron kadhai.", "Gond Reel"),
+  A("laddu-rolling-anim", "Close-up of hands rolling a gond laddu with dry fruits into a ball and placing it on a brass plate, warm light, faces out of frame.", "Gond Reel"),
+  A("lemon-dal-anim", "Slow motion of a lemon half being squeezed over a bowl of palak dal, juice drops falling.", "Synergy Reel"),
+  A("tadka-anim", "Slow motion of turmeric and black pepper sizzling in hot ghee in a small iron ladle, then poured over dal.", "Synergy Reel"),
+];
+
+// "habits" set: realistic visuals for the Desi Habit Science Reels (saunf after meals, a walk after
+// meals, soaked almonds, water with meals). Same style and rules as the anatomy set.
+export const HABITS_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("fennel-seeds-macro", "Macro photograph of green fennel seeds (saunf) heaped in a small brass bowl, every ridge on the seeds visible, warm side light.", "Saunf Reel: hook"),
+  A("saunf-mishri-bowl", "Photograph of a small steel bowl of fennel seeds mixed with crystal sugar (mishri) next to a finished Indian thali on a restaurant table.", "Saunf Reel: after the meal"),
+  A("fennel-plant", "Photograph of a fennel plant in a field with yellow umbrella-shaped flowers and green seed heads, soft morning light.", "Saunf Reel: where saunf comes from"),
+  A("fennel-oil-drop", "Macro photograph of a single golden drop of fennel essential oil falling from a glass dropper onto fennel seeds.", "Saunf Reel: anethole oils"),
+  A("stomach-calm", "Translucent human torso showing the stomach and intestines with a soft calm blue-green glow, relaxed, medical 3D render.", "Saunf Reel: pet ki marod"),
+  A("smooth-muscle-micro", "Microscopic 3D render of smooth muscle fibres in the wall of the intestine, spindle-shaped cells in soft pink and gold light.", "Saunf Reel: smooth muscle"),
+  A("saunf-airtight-jar", "Photograph of fennel seeds stored in a closed glass jar with a steel lid on a kitchen shelf.", "Saunf Reel: store it closed"),
+  A("evening-walk-family", "Two people walking side by side on a lit park path in an Indian city late in the evening, seen from behind at a distance, street lamps, calm night.", "Walk Reel: hook"),
+  A("glucose-muscle-cells", "3D medical render of glowing glucose molecules flowing from a blood vessel into red skeletal muscle fibres.", "Walk Reel: muscles use glucose"),
+  A("legs-walking-anatomy", "Side view of human legs mid-stride while walking, skin semi-transparent to show the red calf and thigh muscles working.", "Walk Reel: leg muscles"),
+  A("dinner-thali", "Top-down photograph of a homely Indian dinner thali: roti, dal, sabzi, rice and salad on a steel plate.", "Walk Reel: after dinner"),
+  A("soaked-almonds-bowl", "Photograph of almonds soaking in water in a glass bowl, a few peeled soaked almonds on a saucer beside it, morning light.", "Badam Reel: hook"),
+  A("almonds-handful", "Photograph of a cupped hand holding a small handful of almonds, close-up, face out of frame.", "Badam Reel: how many"),
+  A("almond-nutrients", "Macro photograph of almonds split open on a dark board, showing the creamy inside and brown skin.", "Badam Reel: what's inside"),
+  A("brain-glow", "3D medical render of a human brain with soft glowing neural pathways, dark background.", "Badam Reel: dimaag tez?"),
+  A("water-glass-thali", "Photograph of a steel glass of water next to an Indian thali on a dining table, natural light.", "Paani Reel: hook"),
+  A("stomach-anatomy", "Translucent 3D render of the human stomach with gastric folds visible inside and a little clear fluid, medical visualisation.", "Paani Reel: stomach"),
+  A("water-pour-glass", "Photograph of water being poured from a steel jug into a glass, droplets frozen mid-air.", "Paani Reel: drink water"),
+];
+
+export const HABITS_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("saunf-pour-anim", "Slow motion close-up of green fennel seeds pouring into a small brass bowl, warm light.", "Saunf Reel"),
+  A("stomach-calm-anim", "3D medical animation of the intestines with gentle wave-like movement slowing down and relaxing, soft blue-green glow, slow orbiting camera.", "Saunf Reel: relaxes smooth muscle"),
+  A("glucose-muscle-anim", "3D medical animation: glowing glucose molecules leave a blood vessel and enter red muscle fibres, which light up as they contract. Slow push-in.", "Walk Reel"),
+  A("night-walk-anim", "Feet in sports shoes walking on a park path at night under street lamps, camera tracking at ankle height.", "Walk Reel"),
+  A("almond-soak-anim", "Slow motion of almonds dropping into a glass bowl of water, bubbles rising, morning light.", "Badam Reel"),
+  A("water-pour-anim", "Slow motion of water being poured from a steel jug into a glass next to an Indian thali.", "Paani Reel"),
+  A("stomach-water-anim", "3D medical animation of water flowing into a translucent human stomach and quickly moving on into the small intestine, educational.", "Paani Reel: water passes quickly"),
+];
+
+const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
+  anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
+  habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
+};
+
+/** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
+export const promptSet = (set: string | undefined, kind: "image" | "video") => (set && SETS[set] ? SETS[set][kind] : kind === "video" ? VIDEO_PROMPTS : IMAGE_PROMPTS);
+
+/** Sets made for vertical Reels only, so one 9:16 still per prompt. */
+export const reelOnlySet = (set: string | undefined) => Boolean(set && SETS[set]);
+
+export const fullPrompt = (p: VisualPrompt) => `${p.prompt} ${p.style === "anatomy" ? ANATOMY_STYLE : STYLE}`;
 
 /** Words that would turn a stock scene into a claim about real people or results. */
 const BANNED = /\b(before|after|transformation|member|client|result|lost \d|kg in|six[- ]pack|steroid|selfie|logo|brand)\b/i;
