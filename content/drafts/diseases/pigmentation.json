@@ -1,0 +1,293 @@
+{
+  "slug": "pigmentation",
+  "name": "Pigmentation & Melasma",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Pigmentation refers to the natural colouring of your skin, driven by a brown-black pigment called melanin. Melanin is produced by specialized cells named melanocytes to protect your skin from harmful ultraviolet (UV) radiation. When melanocytes become overactive, they produce excess melanin in patches, leading to hyperpigmentation. In India, where most individuals have Fitzpatrick skin phototypes III to V, hyperpigmentation is one of the most common reasons people visit a skin doctor. Melasma is a specific, chronic form of hyperpigmentation that presents as symmetrical, brownish or slate-grey patches, most frequently across the cheeks, forehead, bridge of the nose, chin, and upper lip. While hyperpigmentation and melasma are medically harmless in terms of physical pain or organ damage, they can be persistent, recurrent, and emotionally distressing. Sun exposure, intense heat, hormonal changes during pregnancy or oral contraceptive use, thyroid dysfunction, and skin inflammation from acne or aggressive parlour treatments are major triggers for Indian skin.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "Excess melanin production causing darker patches on the skin"
+      },
+      {
+        "label": "Most common sites",
+        "value": "Cheeks, forehead, upper lip, chin, and bridge of the nose"
+      },
+      {
+        "label": "Key triggers",
+        "value": "Sunlight (UV and visible light), heat, hormones, and skin injury"
+      },
+      {
+        "label": "Hormonal link",
+        "value": "Common in pregnancy (chloasma), PCOS, and thyroid disorders"
+      },
+      {
+        "label": "Skin type impact",
+        "value": "Deeper Indian skin tones (types III-V) produce pigment quickly after irritation"
+      },
+      {
+        "label": "Treatment timeline",
+        "value": "Slow and gradual, taking several months of consistent care"
+      }
+    ],
+    "causes": [
+      "Ultraviolet (UV) radiation and visible blue light: Sunlight activates melanocytes to churn out excess melanin. In India, year-round intense UV index and exposure to visible light from strong overhead sun make sun protection essential.",
+      "Hormonal shifts: High levels of estrogen and progesterone sensitize melanocytes. This explains why melasma frequently flares during pregnancy, hormone replacement therapy, or while taking oral contraceptive pills.",
+      "Post-inflammatory hyperpigmentation (PIH): Any skin injury, severe acne breakout, eczema patch, insect bite, chemical burn, or aggressive facial treatment can leave a dark mark once healed, especially in brown skin.",
+      "Endocrine and metabolic disorders: Thyroid imbalances (hypothyroidism) and insulin resistance often travel with altered skin pigmentation or conditions like acanthosis nigricans and melasma.",
+      "Unregulated cosmetic and bleaching creams: Frequent use of over-the-counter creams containing hidden potent steroids (such as clobetasol), hydroquinone, or heavy metals damages the skin barrier and triggers rebound hyperpigmentation or steroid-induced rosacea.",
+      "Heat exposure (infrared radiation): Working near hot gas stoves, tandoors, furnaces, or exercising in unventilated, high-heat environments stimulates dermal blood vessels and triggers melanocytes even without direct sun.",
+      "Genetic predisposition: Having a family member with melasma or marked hyperpigmentation significantly increases personal risk."
+    ],
+    "types": [
+      {
+        "name": "Epidermal Melasma",
+        "desc": "The excess melanin sits in the top superficial layer of the skin (epidermis). It appears light brown with well-defined borders and responds most readily to medical creams and sun protection."
+      },
+      {
+        "name": "Dermal Melasma",
+        "desc": "Pigment deposits sink deeper into the dermis. It often looks bluish-grey or slate-brown with ill-defined borders and is notoriously stubborn, requiring long-term care and gentle medical guidance."
+      },
+      {
+        "name": "Mixed Melasma",
+        "desc": "The most common form seen in Indian clinics. Pigment is present in both superficial and deep skin layers, appearing as uneven dark brown or greyish patches."
+      },
+      {
+        "name": "Post-Inflammatory Hyperpigmentation (PIH)",
+        "desc": "Flat dark spots left behind after acne, burns, waxing irritation, or skin rashes heal. The colour ranges from pinkish-brown to dark black depending on depth."
+      },
+      {
+        "name": "Acanthosis Nigricans",
+        "desc": "Velvety, thickened, dark skin folds usually found around the neck, armpits, and groin, strongly linked with insulin resistance, obesity, and metabolic conditions."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination by a qualified dermatologist: A visual inspection of the face, neck, and hands under natural lighting to evaluate the distribution and pattern of pigmentation.",
+      "Wood's lamp examination: A handheld ultraviolet light used in a darkened room to identify whether the pigment is superficial (epidermal) or deep (dermal), which helps guide treatment choices.",
+      "Dermoscopy: A specialized non-invasive skin surface microscope that examines pigment networks, vascular changes, and rules out signs of steroid damage or exogenous ochronosis.",
+      "Medical history review: Doctors will check for pregnancy, oral contraceptive usage, cosmetic applications, family history, and systemic symptoms like weight fluctuations or menstrual irregularity.",
+      "Skin biopsy (rare): Occasionally performed only if a doctor needs to rule out other skin conditions such as lichen planus pigmentosus, fixed drug eruptions, or rare melanocytic lesions."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Identifies underlying thyroid dysfunction, which is frequently associated with recalcitrant melasma",
+        "slug": "tsh"
+      },
+      {
+        "test": "Free T3 and Free T4",
+        "purpose": "Evaluates active thyroid hormone levels alongside TSH when thyroid disease is suspected",
+        "slug": "t3-t4"
+      },
+      {
+        "test": "Fasting Plasma Glucose",
+        "purpose": "Screens for prediabetes or diabetes, particularly when velvety darkening is present on the neck or armpits",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Measures average blood sugar over the past three months to detect insulin resistance",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Rules out underlying nutritional deficiencies or systemic illness that can influence skin tone and health",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates body iron stores, as both iron overload and severe deficiencies can present with skin changes",
+        "slug": "ferritin"
+      }
+    ],
+    "modernTreatment": [
+      "Broad-spectrum photoprotection: Daily application of broad-spectrum sunscreen with SPF 30 to 50+ and high UVA protection (PA+++ or PA++++). Tinted sunscreens containing iron oxides are especially helpful because they block visible light that triggers melasma.",
+      "Topical depigmenting agents: First-line medical creams prescribed by dermatologists include azelaic acid, kojic acid, tranexamic acid, glycolic acid, niacinamide, and carefully supervised hydroquinone courses.",
+      "Triple combination creams: A medically formulated cream containing hydroquinone, a mild steroid, and tretinoin is effective for short-term control. It must be used strictly under a doctor's supervision for limited weeks to prevent severe skin thinning and rebound darkening.",
+      "Oral medications: In resistant cases, dermatologists may prescribe low-dose oral tranexamic acid after screening for blood clotting risks. It reduces vascular triggers and melanocyte activity.",
+      "In-clinic chemical peels: Superficial peels using glycolic acid, lactic acid, or salicylic acid carried out by trained professionals can gently remove outer pigment. Deep aggressive peels are avoided in brown skin due to high risk of PIH.",
+      "Laser and light therapies: Low-fluence Q-switched lasers or picosecond lasers may be used cautiously in selected stubborn cases, but improper laser use can significantly worsen pigmentation in Indian skin."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, facial pigmentation and discolouration are closely related to conditions like Vyanga and Neelika, described as painless, dark circular spots on the face.",
+      "It is traditionally viewed as an aggravation of Pitta dosha (specifically Bhrajaka Pitta, which governs skin lustre and temperature) interacting with vitiated Vata and Rakta dhatu (blood tissue).",
+      "Factors said to aggravate Pitta and Rakta include excessive intake of pungent, sour, and salty foods (katu, amla, lavana), prolonged exposure to direct sun and heat, chronic anger, and irregular digestion.",
+      "Ayurvedic care focuses on soothing internal heat, improving digestion, gentle external pastes (lepa), and cooling lifestyle practices alongside modern medical management.",
+      "Traditional remedies should be viewed as supportive care. Potent kitchen pastes like raw lime juice, baking soda, or raw garlic must never be applied to the skin, as they cause severe contact dermatitis and deepen pigmentation."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Yashtimadhu)",
+        "slug": "licorice",
+        "note": "Contains glabridin, which has been shown in laboratory studies to inhibit tyrosinase, the enzyme that produces melanin. Often used in supportive topical formulations."
+      },
+      {
+        "name": "Turmeric (Haridra)",
+        "slug": "turmeric",
+        "note": "Curcumin provides natural antioxidant and anti-inflammatory properties, but raw kitchen turmeric paste can stain or irritate sensitive facial skin."
+      },
+      {
+        "name": "Amla (Amalaki)",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C and polyphenols that help fight cellular oxidative stress when consumed as part of a balanced diet."
+      },
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditionally valued for soothing inflamed, acne-prone skin, which helps lower the chance of post-inflammatory hyperpigmentation."
+      }
+    ],
+    "nutrition": [
+      "Eat a diet rich in diverse antioxidants: Include seasonal Indian fruits like amla, guava, papaya, oranges, pomegranate, and watermelons to combat free-radical damage from sunlight.",
+      "Consume plenty of fresh vegetables: Incorporate colourful vegetables such as carrots, tomatoes, spinach, methi, beetroot, and bell peppers. Cooked tomatoes provide lycopene, which supports skin resilience.",
+      "Ensure adequate micronutrients: Zinc, vitamin C, vitamin E, and selenium support skin barrier repair. Include soaked almonds, walnuts, pumpkin seeds, and sunflower seeds daily.",
+      "Stay hydrated: Drink 2 to 3 litres of clean water throughout the day. Hydration keeps the skin supple and improves natural skin turnover.",
+      "Minimize refined sugars and ultra-processed foods: High glycemic Indian snacks like mithai, refined flour puris, samosas, and sugary drinks trigger insulin spikes that worsen hormonal imbalances and acanthosis nigricans.",
+      "Incorporate gentle cooling spices: Use coriander, cumin, fennel, and modest amounts of turmeric in cooking while limiting extremely fiery red chilli pastes and rancid oils."
+    ],
+    "lifestyle": [
+      "Strict daily sun protection: Apply a broad-spectrum sunscreen 15 to 20 minutes before stepping out, even on cloudy days, and reapply every 2 to 3 hours if sweating or outdoors.",
+      "Use physical barriers: Wear a broad-brimmed hat, carry an umbrella, or use a clean cotton scarf (dupatta) to shield your face when moving around in the afternoon sun.",
+      "Avoid heat exposure where possible: Stand away from direct steam while cooking, allow the kitchen to stay well-ventilated, and avoid washing your face with excessively hot water.",
+      "Gentle skincare routine: Switch to a mild, fragrance-free cleanser and a soothing ceramide-based moisturizer. Never scrub the face with coarse walnut scrubs or loofahs.",
+      "Manage daily stress: High cortisol levels can stimulate hormonal pathways that worsen melasma. Prioritize 7 to 8 hours of restful sleep every night."
+    ],
+    "yogaActivity": [
+      "Pranayama for stress reduction: Gentle breathing practices like Anulom Vilom (alternate nostril breathing), Sheetali, and Bhramari help calm the nervous system and manage stress-induced hormonal flares.",
+      "Avoid vigorous inverted poses during active heat: While gentle yoga is beneficial, avoid prolonged headstands (Sirsasana) or hot yoga rooms if you notice facial flushing, as vascular dilation can worsen melasma.",
+      "Restorative asanas: Incorporate calming postures like Balasana (Child's Pose), Supta Baddha Konasana (Reclining Bound Angle Pose), and Shavasana (Corpse Pose) to promote relaxation and restful sleep.",
+      "Outdoor exercise timing: If you practice yoga, run, or walk outdoors, schedule your sessions early in the morning before 8:00 AM or in the evening after sunset to avoid peak UV hours."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence demonstrating that homeopathic medicines can cure melasma, regulate melanocyte activity, or remove deep pigmentation.",
+      "People seeking homeopathic treatment must not abandon evidence-based sun protection measures or dermatological care.",
+      "Avoid unlabelled liquid preparations or over-the-counter drop mixtures that make unproven claims to wipe away pigmentation."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Daily use of broad-spectrum sunscreens (especially tinted formulas containing iron oxide) and topical agents like azelaic acid, tranexamic acid, and short-term triple combination creams consistently lighten melasma.",
+      "Strong evidence: Oral tranexamic acid prescribed by a dermatologist shows solid efficacy in treating stubborn, recurrent melasma in clinical trials.",
+      "Moderate evidence: Superficial chemical peels (such as glycolic and salicylic acid) and topical licorice extracts provide supportive lightening when combined with sun protection.",
+      "Weak or limited evidence: Dietary herbal supplements, home face packs, and standalone laser treatments without sun protection have weak or inconsistent evidence and carry a risk of rebound darkening."
+    ],
+    "shouldNotDo": [
+      "Do not buy over-the-counter 'fairness' or 'triple action' steroid creams from local pharmacies without a prescription. These often contain strong steroids like clobetasol, which thin the skin, cause permanent red veins, and lead to terrible rebound pigmentation.",
+      "Do not apply harsh home remedies such as lemon juice, raw apple cider vinegar, baking soda, or undiluted garlic to your face. These cause chemical burns, severe irritation, and deep post-inflammatory marks.",
+      "Do not rub, scrub, or exfoliate pigmented patches aggressively. Friction signals skin cells to produce more melanin as a protective response.",
+      "Do not stop wearing sunscreen just because you are staying indoors or working near windows; UVA rays and visible light penetrate window glass.",
+      "Do not expect overnight fixes. Melasma develops over months and takes sustained, gentle treatment over several months to fade."
+    ],
+    "medicationSafety": [
+      "Triple combination creams (fluocinolone, hydroquinone, tretinoin) must be used strictly as directed by your dermatologist, typically for a few weeks only, and never as a daily fairness cream.",
+      "Hydroquinone should not be used continuously for prolonged periods without medical monitoring, as it can occasionally trigger paradoxical bluish-black deposits known as exogenous ochronosis.",
+      "If taking oral tranexamic acid, inform your doctor immediately if you have a personal or family history of deep vein thrombosis, pulmonary embolism, stroke, or heart disease.",
+      "Topical retinoids and hydroquinone must be discontinued during pregnancy and breastfeeding; always inform your doctor if you are planning to conceive.",
+      "Perform a small patch test behind your ear or along your jawline before introducing any new active serum or cream to check for allergic contact dermatitis."
+    ],
+    "complications": [
+      "Significant emotional distress, anxiety, and lowered self-esteem due to appearance-related concerns.",
+      "Topical steroid-damaged facies (TSDF) from the misuse of steroid-containing fairness creams, presenting with skin thinning, visible spider veins (telangiectasia), pimples, and increased facial hair.",
+      "Exogenous ochronosis: A permanent, difficult-to-treat slate-grey or bluish-black pigmentation caused by excessive, unsupervised long-term hydroquinone use.",
+      "Post-inflammatory worsening: Rebound hyperpigmentation resulting from aggressive chemical peels, inappropriate laser settings, or harsh skin scrubbing."
+    ],
+    "emergencySigns": [
+      "Rapidly growing, asymmetrical, multicoloured (black, brown, blue, or red) mole or dark patch with irregular borders: seek immediate medical evaluation to rule out melanoma or other skin malignancies.",
+      "Sudden burning, severe swelling, blistering, or oozing of the face following the application of any cream, peel, or home remedy.",
+      "Signs of systemic blood clots while taking prescribed oral tranexamic acid, such as sudden chest pain, severe shortness of breath, or painful swelling in one leg: call 108 or 112 immediately."
+    ],
+    "whenToSeeDoctor": [
+      "You notice new, persistent dark patches on your face or body that do not fade with basic sun protection over several weeks.",
+      "Your pigmentation suddenly darkens, burns, or becomes intensely itchy.",
+      "You have been using an over-the-counter medical cream and notice facial hair growth, thinning skin, redness, or burning upon sun exposure.",
+      "You have dark, velvety skin around your neck or armpits accompanied by irregular menstrual periods or sudden weight gain.",
+      "You are pregnant, planning pregnancy, or taking hormones and notice rapid development of facial pigmentation."
+    ],
+    "faqs": [
+      {
+        "q": "Can melasma be cured permanently?",
+        "a": "Melasma is a chronic condition, meaning it can be lightened significantly and kept well controlled, but no herb, diet or product can make it go away permanently. Sun exposure, heat, or hormonal changes can trigger a recurrence, which is why ongoing sun protection and maintenance skincare are essential."
+      },
+      {
+        "q": "Does drinking lots of water remove pigmentation?",
+        "a": "Drinking adequate water supports general skin hydration and overall health, but water alone cannot dissolve or flush out excess melanin deposits in your skin layers. Targeted medical treatments and strict photoprotection are needed."
+      },
+      {
+        "q": "Are over-the-counter fairness creams safe for melasma?",
+        "a": "Many creams sold across the counter in India contain powerful topical steroids or unregulated bleaching chemicals. While they may lighten the skin temporarily, they cause severe long-term complications including skin thinning, increased hair growth, and intense rebound darkening. Always use medicines prescribed by a qualified dermatologist."
+      },
+      {
+        "q": "Why does my melasma worsen in the summer or while cooking?",
+        "a": "Melanocytes respond not only to ultraviolet rays but also to visible light and heat (infrared radiation). Cooking over hot stoves or walking in humid summer heat dilates blood vessels and stimulates pigment production. Tinted mineral sunscreens and proper ventilation help protect against this."
+      },
+      {
+        "q": "Can raw lemon juice or besan packs lighten my dark spots?",
+        "a": "Lemon juice is highly acidic and frequently causes severe contact dermatitis, chemical burns, and deep post-inflammatory pigmentation on Indian skin. Besan (gram flour) is fine as a gentle wash, but aggressive rubbing will irritate the skin and darken patches further."
+      }
+    ],
+    "references": [
+      {
+        "title": "Melasma: A comprehensive review of the epidemiology, pathogenesis, and clinical presentation",
+        "source": "Journal of the American Academy of Dermatology (Ogbechie-Godec OA, Elbuluk N)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28821412/",
+        "year": "2017"
+      },
+      {
+        "title": "Postinflammatory Hyperpigmentation: A Review of the Epidemiology, Clinical Features, and Treatment Options in Skin of Color",
+        "source": "Journal of Clinical and Aesthetic Dermatology (Davis EC, Callender VD)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20725554/",
+        "year": "2010"
+      },
+      {
+        "title": "Consensus Recommendations on the Management of Melasma in South Asian Skin",
+        "source": "Indian Journal of Dermatology, Venereology and Leprology (Sarkar R et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28585523/",
+        "year": "2017"
+      },
+      {
+        "title": "Steroid-induced Rosacea-like Dermatitis (Topical Steroid-Damaged Face): An Epidemic in India",
+        "source": "Indian Journal of Dermatology (Lahiri K, Coondoo A)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27057011/",
+        "year": "2016"
+      },
+      {
+        "title": "Hyperpigmentation",
+        "source": "Cleveland Clinic",
+        "url": "https://my.clevelandclinic.org/health/diseases/21885-hyperpigmentation",
+        "year": "2022"
+      }
+    ],
+    "relatedDiseases": [
+      "hypothyroidism",
+      "pcos",
+      "acne",
+      "type-2-diabetes",
+      "insulin-resistance",
+      "eczema"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "metformin",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "turmeric",
+      "amla",
+      "neem"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "t3-t4",
+      "fasting-glucose",
+      "hba1c",
+      "cbc",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

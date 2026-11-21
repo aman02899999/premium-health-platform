@@ -1,0 +1,317 @@
+{
+  "slug": "heart-failure",
+  "name": "Heart Failure",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Heart failure does not mean your heart has suddenly stopped beating. It means your heart muscle has become too weak or too stiff to pump blood as efficiently as your body needs. When the pump is less effective, blood backs up, pressure inside the heart chambers rises, and fluid slowly leaks into your lungs, belly, legs, and feet. Everyday actions like climbing a flight of stairs, walking to the local bazaar, or carrying grocery bags can leave you breathless, tired, and heavy. In India, heart failure tends to strike people at a much younger age than in Western nations, often around their late fifties or early sixties, because underlying conditions like coronary artery disease, uncontrolled high blood pressure, and diabetes are common and often go untreated for years. While heart failure is a serious, long-term condition, modern medical treatment combined with simple daily habits can relieve symptoms, keep you out of the hospital, and help you live an active life.",
+    "quickFacts": [
+      {
+        "label": "What it means",
+        "value": "The heart pump is weakened or stiffened and cannot meet the body's blood flow needs"
+      },
+      {
+        "label": "Common age in India",
+        "value": "Average age is roughly 61 years, nearly a decade younger than in Western cohorts (Trivandrum Heart Failure Registry)"
+      },
+      {
+        "label": "Key warning sign",
+        "value": "Sudden unexplained weight gain from hidden fluid buildup"
+      },
+      {
+        "label": "Daily salt guidance",
+        "value": "Under 5 g of total salt per day (less than one level teaspoon)"
+      },
+      {
+        "label": "Usual first symptoms",
+        "value": "Shortness of breath on mild effort and swollen ankles or feet"
+      },
+      {
+        "label": "Can it be managed?",
+        "value": "Yes, modern medicines and lifestyle measures help people live longer, better lives"
+      }
+    ],
+    "causes": [
+      "Coronary artery disease and past heart attacks. When blood supply to heart muscle is blocked, the starved muscle fibers can scar and permanently lose pumping strength.",
+      "Long-standing high blood pressure. Untreated hypertension forces the heart to push against heavy resistance day after day, causing the heart walls to become thick, stiff, and ultimately weak.",
+      "Poorly controlled type 2 diabetes. High blood sugar damages blood vessels and heart tissue over time, even without an obvious block in the coronary arteries.",
+      "Heart valve problems. In India, damaged valves can result from childhood rheumatic fever or natural aging, creating an extra workload that stretches the heart chambers.",
+      "Cardiomyopathy. Diseases of the heart muscle itself, which may be caused by genetic factors, viral infections, or heavy long-term alcohol consumption.",
+      "Severe lung conditions like chronic obstructive pulmonary disease (COPD) or sleep apnea, which raise pressure inside the right side of the heart.",
+      "Severe chronic anemia. When red blood cell counts remain dangerously low for months, the heart must pump much faster and harder to deliver basic oxygen, leading to high-output failure."
+    ],
+    "types": [
+      {
+        "name": "Heart Failure with Reduced Ejection Fraction (HFrEF)",
+        "desc": "Also called systolic failure. The lower chambers (ventricles) cannot squeeze with normal force, so the heart pumps out less blood with each beat. The ejection fraction is typically 40% or lower."
+      },
+      {
+        "name": "Heart Failure with Preserved Ejection Fraction (HFpEF)",
+        "desc": "Also known as diastolic failure. The ventricles squeeze normally, but the heart walls have become stiff and thick, preventing the chambers from relaxing and filling with enough blood between beats."
+      },
+      {
+        "name": "Left-Sided Heart Failure",
+        "desc": "The most common type. The left side pumps blood to the rest of the body. When it fails, fluid backs up directly into the lungs, triggering breathlessness and persistent coughing."
+      },
+      {
+        "name": "Right-Sided Heart Failure",
+        "desc": "Often caused by advanced left-sided failure. The right side pumps blood into the lungs. When it struggles, fluid backs up into the veins, causing swelling in the feet, ankles, shins, liver, and abdomen."
+      }
+    ],
+    "diagnosis": [
+      "A detailed clinical history and physical examination. Your doctor listens to your heart sounds, checks your lung fields for fluid crackles, looks at neck vein swelling, and presses your ankles to check for pitting edema.",
+      "Evaluating daily exercise tolerance. Doctors assess how far you can walk on level ground or how many stairs you climb before breathlessness forces you to stop.",
+      "Checking body weight and fluid changes. Rapid weight increases over two or three days indicate that fluid is accumulating in your tissues rather than fat.",
+      "Distinguishing heart failure from primary lung conditions. Because shortness of breath occurs in both asthma and heart disease, specific imaging and cardiac blood markers are essential.",
+      "Identifying underlying triggers. Your physician searches for treatable root causes, such as blocked coronary arteries, uncontrolled blood pressure, thyroid disorders, or severe anemia."
+    ],
+    "investigations": [
+      {
+        "test": "Echocardiogram (Echo)",
+        "purpose": "Ultrasound of the heart that measures ejection fraction, chamber dimensions, wall thickness, and valve function"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Detects past silent heart attacks, heart rhythm disturbances, and signs of muscle thickening"
+      },
+      {
+        "test": "Chest X-Ray",
+        "purpose": "Reveals heart enlargement and fluid buildup in lung tissues or pleural spaces"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Evaluates baseline kidney function, which directly affects how fluid and heart medicines are handled",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for chronic anemia that overburdens the heart or hidden infections that stress it",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose and HbA1c",
+        "purpose": "Screens for undetected diabetes or checks glycemic control, both major heart failure drivers",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Assesses overall cardiovascular plaque risk from cholesterol fractions",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out severe thyroid disorders, which can mimic or worsen heart failure symptoms",
+        "slug": "tsh"
+      }
+    ],
+    "modernTreatment": [
+      "Guideline-Directed Medical Therapy (GDMT). Modern cardiology relies on four primary classes of medicines that protect heart muscle, reduce hospital visits, and prolong life. These include ARNI or ARB/ACE inhibitors (such as losartan), evidence-based beta-blockers, mineralocorticoid receptor antagonists, and SGLT2 inhibitors (such as dapagliflozin), prescribed as advised by your doctor.",
+      "Diuretics (water pills). These medicines help your kidneys flush out extra sodium and water through urine, rapidly relieving swelling in the ankles and breathlessness caused by wet lungs.",
+      "Treating underlying conditions. Controlling high blood pressure with targeted therapies, managing blood sugar levels, and lowering LDL cholesterol with medicines like atorvastatin.",
+      "Revascularization procedures. If blocked coronary arteries are starving the heart of oxygen, your cardiologist may recommend an angioplasty with stenting or coronary artery bypass surgery (CABG).",
+      "Device therapies. For specific heart rhythm issues or low ejection fraction, doctors may recommend a cardiac resynchronization therapy (CRT) pacemaker or an implantable cardioverter-defibrillator (ICD).",
+      "Structured cardiac rehabilitation. Supervised, gentle exercise programs tailored to strengthen muscles, improve stamina, and build confidence under medical monitoring."
+    ],
+    "ayurvedaView": [
+      "Ayurvedic classical texts discuss heart disturbances under the broad concept of Hridroga. Heart failure presentation is traditionally viewed as an imbalance involving Vata (responsible for rhythmic pumping and circulation) and Kapha (responsible for fluid stability and lubrication), leading to tissue weakness (dhatu kshaya) and sluggish circulation (srotorodha).",
+      "Traditional Ayurvedic care emphasizes digestive lightness (deepana and pachana) because poor digestion is thought to produce metabolic waste (ama) that clutters bodily channels.",
+      "Ancient texts advise avoiding physical exhaustion, emotional strain, excessively heavy foods, and suppressed natural urges.",
+      "While Ayurvedic therapies offer general support for well-being, classical texts were written centuries before modern diagnostic tools and heart failure medications existed. Ayurvedic remedies cannot replace modern heart failure tablets or drain fluid from waterlogged lungs."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "Traditional bark used as an adjuvant tonic in Indian systems. Clinical trials show modest support for exercise tolerance, but it cannot replace medical therapies or diuretic drugs."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Studied for mild blood pressure and cholesterol support. Concentrated extracts can interact with blood thinners, so consult your doctor before using them."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally used for stress and fatigue. Human data in active heart failure are very limited, and it should never be taken without physician clearance."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Known for anti-inflammatory properties, but scientific evidence that it repairs failing heart pump function is lacking. Use standard culinary amounts in food."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Commonly taken as a soothing herbal tea for general wellness. It does not treat heart muscle weakness or clear accumulated bodily fluid."
+      }
+    ],
+    "nutrition": [
+      "Keep total daily salt under 5 g (less than one level teaspoon across the whole day). Excess sodium acts like a sponge, pulling water into blood vessels and overburdening the heart.",
+      "Eliminate high-sodium Indian kitchen staples: commercial achaar (pickles), papads, salted namkeens, packaged mixture, bhujia, ready-to-eat noodles, and canned soups.",
+      "Monitor daily fluid intake if advised by your doctor. When fluid retention is severe, doctors often recommend limiting total liquids (water, dal, tea, milk, rasam, and soups combined) to a set daily target.",
+      "Build a heart-healthy Indian plate: fill half your plate with non-starchy vegetables like lauki, ridge gourd (tori), spinach, bhindi, and beans cooked with minimal oil.",
+      "Switch refined grains for fiber-rich choices: opt for unpolished brown rice, whole wheat rotis, oats, or millets like jowar and ragi to support steady blood sugar levels.",
+      "Include plant proteins such as well-cooked moong dal, masoor dal, and sprouted pulses. If non-vegetarian, prefer baked or steamed fish and skinless chicken over red meat.",
+      "Flavor curries and sabzis using fresh aromatics like lemon juice, roasted jeera, dhaniya powder, fresh coriander, ginger, and curry leaves instead of adding extra salt.",
+      "Avoid heavy ghee, vanaspati, butter, and deep-fried foods like samosas, kachoris, and pakoras, which place heavy metabolic strain on damaged blood vessels."
+    ],
+    "lifestyle": [
+      "Weigh yourself every single morning. Step on a digital weighing scale right after using the bathroom and before breakfast. Write the number down in a notebook or phone app.",
+      "Track fluid weight trends closely. A gain of more than 1.5 to 2 kg over two or three days almost always means water is building up, not body fat.",
+      "Stop all tobacco use immediately. Cigarettes, bidis, gutka, and khaini dramatically constrict blood vessels, raise heart rate, and accelerate heart muscle decline.",
+      "Avoid alcohol completely. Alcohol acts as a direct heart muscle toxin and can trigger dangerous irregular heartbeats in people with heart failure.",
+      "Prioritize 7 to 8 hours of restorative sleep. If you wake up choking or snore heavily, consult your physician for sleep apnea evaluation, as it strains the right heart ventricle.",
+      "Elevate your feet on a footstool or cushion when sitting down for extended periods to encourage fluid to drain back toward your central circulation.",
+      "Stay physically active within medical limits. Take short, steady walks on flat ground during cooler hours, stopping immediately if you feel breathless or dizzy."
+    ],
+    "yogaActivity": [
+      "Gentle breathing exercises: slow, calm anulom vilom (alternate nostril breathing) performed without breath retention helps calm the autonomic nervous system.",
+      "Avoid forceful or rapid breathing techniques. Kapalabhati, fast bhastrika, and prolonged kumbhaka (breath-holding) raise thoracic pressure and place sudden, dangerous loads on the heart.",
+      "Restorative and gentle poses: Shavasana (corpse pose with head slightly elevated), seated butterfly (bhadrasana), and gentle neck and ankle rotations while seated on a chair.",
+      "Avoid inverted postures. Headstands (shirshasana), shoulder stands (sarvangasana), and deep backbends force massive blood volume back into the chest, stressing a fragile heart.",
+      "Never exercise to the point of exhaustion. Follow the 'talk test': you should always be able to speak a full sentence comfortably while moving."
+    ],
+    "homeopathyNote": [
+      "There are no rigorous scientific trials or clinical evidence showing that homeopathic products can improve heart ejection fraction, reverse heart failure, or replace medical drugs.",
+      "Relying on homeopathic sugar pills while stopping prescribed heart failure tablets can result in rapid, life-threatening fluid accumulation in the lungs (pulmonary edema).",
+      "If you choose to consult a homeopathic practitioner, never stop, delay, or adjust your cardiologist-prescribed tablets, and inform your cardiologist about every remedy you take."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Landmark global randomized trials confirm that modern guideline-directed medicines (including SGLT2 inhibitors like dapagliflozin, ARNI/ARBs like losartan, and beta-blockers) significantly lower mortality and keep patients out of hospitals.",
+      "Strong evidence: Dietary sodium restriction under 5 g daily directly reduces fluid overload and shortens hospital admissions for decompensated heart failure.",
+      "Moderate evidence: Structured cardiac rehabilitation and supervised walking programs consistently improve quality of life and functional walking capacity.",
+      "Limited or weak evidence: Herbal supplements, including Terminalia arjuna, show modest preliminary physiological effects, but lack large-scale phase-3 randomized trials proving survival benefits.",
+      "Zero evidence: No commercial tonic, dietary cleanse, or alternative powder can make heart failure go away. Any claim to permanently reverse heart failure with supplements alone is unfounded."
+    ],
+    "shouldNotDo": [
+      "Do not stop or skip your heart medications simply because your swelling has gone down and you feel energetic. The medicines are the exact reason you feel well.",
+      "Do not drink gallons of water thinking it flushes out kidneys. In heart failure, drinking excessive water overwhelms your circulation and settles straight into your lungs.",
+      "Do not take over-the-counter pain relievers like ibuprofen, diclofenac, or naproxen. These non-steroidal anti-inflammatory drugs (NSAIDs) cause salt and water retention and can trigger acute kidney and heart failure.",
+      "Do not consume rock salt (sendha namak) or pink Himalayan salt freely. They contain nearly identical amounts of sodium as white table salt and cause the exact same fluid retention.",
+      "Do not lie flat on your back if you feel breathless. Prop yourself up with two or three pillows to allow gravity to pull fluid away from your upper lungs.",
+      "Do not engage in heavy weightlifting, pushing heavy furniture, or sprinting, which create sudden spikes in internal vascular pressure."
+    ],
+    "medicationSafety": [
+      "Take your water pills (diuretics) in the morning or early afternoon so frequent urination does not disturb your night sleep.",
+      "Keep an updated printed list of all your prescription medicines, dosages, and timings in your wallet or phone for emergency situations.",
+      "Check your blood pressure and resting heart rate at home as instructed by your doctor before taking specific cardiac medicines.",
+      "Get routine blood checks for serum creatinine, urea, and electrolytes (sodium and potassium), because heart failure medicines adjust how kidneys filter minerals.",
+      "Always discuss over-the-counter cough syrups, pain creams, ayurvedic formulations, and antacids with your doctor before taking them.",
+      "Never double your dose the next day if you forget a tablet; continue with your standard routine as advised by your doctor."
+    ],
+    "complications": [
+      "Acute pulmonary edema: a medical emergency where fluid rapidly fills the air sacs of the lungs, causing severe suffocation and coughing up pink frothy phlegm.",
+      "Progressive kidney damage (cardiorenal syndrome): when low heart output starves kidneys of blood, leading to high creatinine and fluid retention.",
+      "Liver congestion: backward fluid pressure engorges liver tissue, causing upper abdominal heaviness, loss of appetite, and altered liver enzymes.",
+      "Dangerous heart rhythm abnormalities (arrhythmias): ventricular tachycardia or atrial fibrillation, which can lead to fainting or sudden cardiac arrest.",
+      "Severe muscle wasting and cardiac cachexia: advanced heart failure can lead to unintended, drastic loss of muscle mass, energy, and body weight.",
+      "Blood clots and stroke: sluggish blood flow inside dilated heart chambers increases the risk of clot formation that can travel to the brain."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain, pressure, or tightness spreading to the left arm, neck, jaw, or upper back",
+      "Severe, worsening shortness of breath that strikes suddenly, even while resting or sitting completely still",
+      "Inability to breathe while lying flat, forcing you to sit upright or stand near an open window to catch air",
+      "Coughing up pink, frothy, or blood-tinged sputum accompanied by cold, clammy sweat and blueish lips or fingertips",
+      "Sudden fainting, collapse, loss of consciousness, or violent, rapid heart fluttering accompanied by dizziness",
+      "Sudden confusion, slurred speech, facial drooping, or weakness on one side of the body: call 108 or 112 immediately"
+    ],
+    "whenToSeeDoctor": [
+      "You gain 1.5 to 2 kg or more in two to three days on your morning weighing scale",
+      "You notice swelling in your ankles, feet, calves, or abdomen that is getting visibly worse over a few days",
+      "You find yourself needing an extra pillow at night to breathe comfortably while sleeping",
+      "You wake up in the middle of the night gasping for air and have to sit upright on the edge of the bed",
+      "Your routine daily walk to the nearby grocery shop leaves you unusually exhausted, weak, or breathless",
+      "You experience persistent dizziness, lightheadedness, or feeling faint when standing up after taking your medicines"
+    ],
+    "faqs": [
+      {
+        "q": "Does heart failure mean my heart is about to stop beating?",
+        "a": "No. Heart failure means your heart muscle is pumping less efficiently or has stiffened, so it struggles to meet the body's circulation needs. It does not mean your heart has stopped. With modern medical care, lifestyle changes, and salt management, millions of people live stable, fulfilling lives for many years."
+      },
+      {
+        "q": "Can heart failure be cured completely?",
+        "a": "In most cases, heart failure is a chronic condition that cannot be cured completely, but it can be controlled very effectively. In select situations—such as heart failure caused by a thyroid disorder, heavy alcohol use, or a fixable valve problem—treating the root cause can dramatically restore heart function. Remember that no herb, diet or product can make it go away."
+      },
+      {
+        "q": "How much water can I drink in a day?",
+        "a": "There is no single number for everyone. When heart failure is stable without swelling, moderate fluid intake is fine. However, if your body tends to retain fluid, your doctor will prescribe a daily liquid limit, often around 1.5 liters per day, which includes water, dal, tea, milk, and curries. Always follow the specific limit set by your doctor."
+      },
+      {
+        "q": "Can I exercise if I have heart failure?",
+        "a": "Yes, regular gentle exercise is actually recommended for stable heart failure. Gentle walking on flat ground strengthens your leg muscles, boosts energy, and takes work off your heart. However, you must avoid heavy weightlifting, sprinting, and exercising during extreme heat. Always obtain your cardiologist's clearance before starting any routine."
+      },
+      {
+        "q": "Why do I need to weigh myself every single morning?",
+        "a": "Daily morning weigh-ins are the easiest and most reliable way to catch fluid buildup before you even notice swelling in your feet or shortness of breath. Gaining 1.5 to 2 kg over two to three days is almost always water retention. Catching this early lets your doctor adjust your water pills and prevents emergency hospital admissions."
+      }
+    ],
+    "references": [
+      {
+        "title": "The Trivandrum Heart Failure Registry: clinical presentation and outcomes",
+        "source": "Lancet Global Health (Harikrishnan S et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26109400/",
+        "year": "2015"
+      },
+      {
+        "title": "Heart failure: clinical management of heart failure in adults (NG106)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng106",
+        "year": "2018"
+      },
+      {
+        "title": "Guideline: Sodium intake for adults and children",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241504836",
+        "year": "2012"
+      },
+      {
+        "title": "Heart failure - Diagnosis and treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/heart-failure/diagnosis-treatment/drc-20373148",
+        "year": "2023"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "heart-disease",
+      "coronary-artery-disease",
+      "high-blood-pressure",
+      "type-2-diabetes",
+      "chronic-kidney-disease",
+      "breathing-problems",
+      "sleep-apnea",
+      "palpitations"
+    ],
+    "relatedMedicines": [
+      "dapagliflozin",
+      "losartan",
+      "atorvastatin",
+      "amlodipine"
+    ],
+    "relatedHerbs": [
+      "arjuna",
+      "garlic",
+      "ashwagandha",
+      "turmeric",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "creatinine",
+      "cbc",
+      "fasting-glucose",
+      "lipid-profile",
+      "tsh"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

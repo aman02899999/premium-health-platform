@@ -1,0 +1,287 @@
+{
+  "slug": "gastritis",
+  "name": "Gastritis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Gastritis is the medical term for irritation, inflammation, or erosion of the inner lining of your stomach, known as the gastric mucosa. In India, people often brush off stomach distress as common 'gas', 'indigestion', or acidity. However, true gastritis means that the protective barrier of mucus shielding the stomach wall from its own harsh digestive juices has weakened or become damaged. Gastritis can strike suddenly as a sharp, intense flare-up known as acute gastritis, or it can linger quietly for months or years as chronic gastritis. While acute forms often cause noticeable gnawing or burning in the upper abdomen, chronic gastritis can smoulder without obvious symptoms while slowly leading to ulcers, poor nutrient absorption, or blood loss. It is most commonly driven by a stubborn bacterial infection called Helicobacter pylori, regular use of over-the-counter painkiller tablets, excessive alcohol intake, or severe physiological stress. With an accurate medical diagnosis, proper stomach acid suppression, and healthy daily habits, the stomach lining can recover well.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "Inflammation or damage of the protective stomach mucosa"
+      },
+      {
+        "label": "Common Indian misconception",
+        "value": "Dismissed as simple 'gas' or regular acidity"
+      },
+      {
+        "label": "Leading bacterial cause",
+        "value": "Helicobacter pylori (H. pylori) infection"
+      },
+      {
+        "label": "Common medication trigger",
+        "value": "Frequent use of NSAID pain relievers (such as ibuprofen, diclofenac)"
+      },
+      {
+        "label": "Key warning sign",
+        "value": "Black, sticky stools or vomiting blood requires emergency care"
+      },
+      {
+        "label": "Treatment approach",
+        "value": "Acid-reducing medicines, targeted antibiotics if infected, and dietary rest"
+      }
+    ],
+    "causes": [
+      "Helicobacter pylori bacterial infection. This bacterium lives in the mucous layer of the human stomach. It is widespread in India and often spreads through contaminated food or water during childhood, gradually causing chronic inflammation.",
+      "Frequent or unmonitored use of NSAID painkillers. Common over-the-counter pain medicines like ibuprofen, naproxen, and diclofenac weaken the stomach lining by blocking prostaglandins, the natural chemicals that protect the stomach wall from acid.",
+      "Alcohol consumption. Alcohol irritates and erodes the stomach mucosa, leaving raw patches that are vulnerable to normal stomach digestive acids.",
+      "Severe physiological stress. Major physical illness, extensive burns, severe infections, or critical surgeries can drastically reduce blood flow to the stomach lining, triggering acute stress gastritis.",
+      "Autoimmune reactions. In autoimmune gastritis, the immune system mistakenly attacks healthy parietal cells in the stomach wall, halting acid production and impairing the body's ability to absorb vitamin B12.",
+      "Bile reflux. When the muscular valve between the stomach and small intestine does not close properly, bile backs up into the stomach and inflames its lining.",
+      "Irritants in food and fitness routines. Consuming concentrated pre-workout stimulants on an entirely empty stomach, heavy smoking, tobacco chewing, and very oily or harsh spice preparations can intensify mucosal irritation."
+    ],
+    "types": [
+      {
+        "name": "Acute Gastritis",
+        "desc": "Sudden, intense inflammation of the stomach lining. It often causes sharp, burning upper abdominal pain, nausea, and vomiting, commonly triggered by painkillers, alcohol benders, or food poisoning."
+      },
+      {
+        "name": "Chronic Gastritis",
+        "desc": "Slow, long-term inflammation that develops over months or years. It is frequently caused by persistent H. pylori infection or autoimmune responses and may cause dull aches, fullness, or no obvious symptoms initially."
+      },
+      {
+        "name": "Erosive Gastritis",
+        "desc": "A severe form where the mucosal lining is worn away, leading to shallow sores, bleeding, or ulcers. Often driven by heavy NSAID use, alcohol misuse, or critical illness."
+      },
+      {
+        "name": "Non-Erosive Gastritis",
+        "desc": "Characterised by cellular inflammation in the stomach lining without physical breaks or deep tissue erosion, typically identified through an endoscopy and biopsy."
+      },
+      {
+        "name": "Autoimmune Atrophic Gastritis",
+        "desc": "A chronic condition where the body attacks its own stomach cells, causing thinning of the lining and leading to severe vitamin B12 deficiency and pernicious anemia."
+      }
+    ],
+    "diagnosis": [
+      "Medical history and symptom check. Your doctor will ask about your pain patterns, alcohol use, smoking habits, and whether you take pain medicines or ayurvedic powders with unknown ingredients.",
+      "Physical abdominal examination. A doctor gently presses on your upper abdomen to check for tenderness, swelling, guarding, or fullness.",
+      "Testing for Helicobacter pylori. This can be done through a non-invasive urea breath test, a laboratory stool antigen test, or a biopsy taken during an endoscopy.",
+      "Upper gastrointestinal endoscopy (EGD). A specialist passes a thin, flexible tube with a camera down your throat to inspect the stomach lining for redness, swelling, bleeding, or erosion.",
+      "Gastric mucosal biopsy. During an endoscopy, tiny tissue samples are gently pinched from the stomach wall to check for micro-inflammation, H. pylori bacteria, or cellular changes under a microscope.",
+      "Blood tests to check for complications. These identify low haemoglobin from hidden bleeding or low vitamin levels due to chronic stomach wall thinning."
+    ],
+    "investigations": [
+      {
+        "test": "Upper Gastrointestinal Endoscopy",
+        "purpose": "Allows the gastroenterologist to directly see the stomach lining, identify erosions, and collect tissue samples"
+      },
+      {
+        "test": "Helicobacter pylori Stool Antigen or Urea Breath Test",
+        "purpose": "Detects an active H. pylori bacterial infection without needing an invasive tube procedure"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia resulting from silent, slow bleeding from an eroded stomach lining",
+        "slug": "cbc"
+      },
+      {
+        "test": "Vitamin B12 Level",
+        "purpose": "Identifies malabsorption issues caused by chronic or autoimmune gastritis damaging parietal cells",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates internal iron stores to confirm iron deficiency anemia caused by chronic microscopic blood loss",
+        "slug": "ferritin"
+      }
+    ],
+    "modernTreatment": [
+      "Reducing stomach acid production. Proton pump inhibitors (PPIs) like omeprazole or pantoprazole are prescribed to strongly lower acid output, giving the raw stomach lining time to repair.",
+      "H2 receptor blockers and antacids. Medicines such as famotidine or liquid antacids provide quick, temporary relief by neutralising existing stomach acid or moderately dampening acid release.",
+      "Eradication therapy for H. pylori. If tests show bacterial infection, doctors prescribe a combination regimen, usually consisting of two antibiotics alongside a proton pump inhibitor for 10 to 14 days.",
+      "Discontinuing offending substances. Stopping non-steroidal anti-inflammatory drugs (NSAIDs), giving up alcohol, and stopping tobacco completely are essential steps to allow healing.",
+      "Mucosal protective agents. Sucralfate or bismuth preparations may be used as advised by your doctor to form a soothing protective coat over raw, irritated stomach patches.",
+      "Monitoring and nutritional replacement. If long-standing gastritis has reduced nutrient absorption, your doctor may recommend iron or vitamin B12 supplementation."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, symptoms resembling gastritis are frequently discussed under conditions like Amlapitta and imbalances in Pachaka Pitta (the digestive fire).",
+      "Pitta dosha governs heat, digestion, and acid balance. When aggravated by fiery foods (katu), sour tastes (amla), irregular meal timings, anger, or stress, it is believed to create excess burning and fermentation in the Amashaya (stomach).",
+      "Traditional Ayurvedic management emphasizes cooling, sweet, and soothing measures to balance Pitta, including timely meals, light foods like rice porridge, and herbal preparations.",
+      "While traditional views provide helpful guidance on mindful eating and moderation, no herb, diet or product can make it go away on its own. Evidence for herbs curing bacterial gastritis is weak, so herbal options should only serve as gentle supportive care alongside your doctor's prescribed medical treatment."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Mulethi)",
+        "slug": "licorice",
+        "note": "Traditionally used to support gastric mucus production and soothe irritation. People with high blood pressure must exercise caution because unpurified licorice can raise blood pressure."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Valued in traditional practices for its cooling nature and antioxidant content. Clinical trials on active gastritis are limited, and concentrated sour forms may occasionally feel acidic to sensitive stomachs."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Widely used for mild nausea, but it is pungent and can irritate raw, actively inflamed, or eroded stomach linings. Must be used with caution."
+      }
+    ],
+    "nutrition": [
+      "Eat smaller, evenly spaced meals. Overloading the stomach with large, heavy thalis stretches the stomach wall and triggers massive acid secretion, worsening discomfort.",
+      "Choose bland, soothing Indian staples. Light khichdi, soft boiled rice with dilute yellow moong dal, soft idlis, bottle gourd (lauki) sabzi, and tender coconut water are gentle on irritated tissues.",
+      "Incorporate plain curd or homemade buttermilk (chaas). Unsweetened curd provides gentle protein and soothing nourishment, though it should be taken fresh and not overly sour.",
+      "Severely cut back on fiery spices and deep-fried foods. Avoid red chili powder, green chilies, garam masala, samosas, pakoras, and oily restaurant gravies that physically irritate the stomach mucosa.",
+      "Limit stomach-stimulating drinks. Strong cutting chai, filter coffee, energy drinks, and fizzy colas stimulate stomach acid secretion and should be avoided during flare-ups.",
+      "Avoid going long hours on an empty stomach. Prolonged fasting leaves stomach acid with no food to break down, allowing it to irritate the raw mucosal wall directly.",
+      "Do not eat right before bedtime. Finish your evening meal at least two to three hours before sleeping so your stomach can empty partially before you lie flat."
+    ],
+    "lifestyle": [
+      "Stop all tobacco use immediately. Nicotine from cigarettes, bidis, gutka, and khaini delays stomach healing, weakens stomach valves, and cuts blood flow to the mucosal wall.",
+      "Eliminate alcohol intake during healing. Even moderate alcohol directly dissolves the protective mucous barrier of the stomach, exposing it to acid damage.",
+      "Avoid taking painkillers for regular gym soreness. If you have muscle aches after lifting weights, use rest, heat, or cold packs, or discuss safer pain relief options with your doctor rather than popping NSAID pills.",
+      "Never take supplements or harsh medicines on an empty stomach. Always ask your physician if a medicine needs to be consumed after a meal.",
+      "Practice consistent stress management. Severe emotional stress raises stomach acid production and alters gut motility. Schedule 15 to 20 minutes daily for calming activities like reading, walking, or meditation.",
+      "Maintain regular meal routines. Eating breakfast, lunch, and dinner at predictable times trains your digestive tract to release digestive enzymes steadily rather than in erratic bursts."
+    ],
+    "yogaActivity": [
+      "Vajrasana (Thunderbolt Pose). Sitting comfortably in Vajrasana for 5 to 10 minutes after a meal helps promote healthy digestion without compressing the abdomen.",
+      "Shavasana (Corpse Pose). Deep, quiet relaxation in Shavasana helps quiet the autonomic nervous system, dampening stress-induced gastric hyperacidity.",
+      "Gentle seated stretches. Gentle forward leans and side stretches like gentle Sukhasana variations relieve mild tension without placing pressure on the upper belly.",
+      "Cooling pranayama practices. Shitali and Sitkari breathing, along with slow Anulom Vilom, are traditionally used to cool the body and calm mental tension.",
+      "Avoid intense abdominal pressure during flare-ups. Skip Kapalabhati, intense Bhastrika, vigorous core crunches, and tight abdominal twists when your stomach is burning, as they increase physical discomfort."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence showing that homeopathic products can heal eroded stomach tissue or eradicate Helicobacter pylori bacteria.",
+      "Relying solely on homeopathic drops instead of prescribed medical treatment can allow silent inflammation to progress to deeper stomach ulcers or chronic tissue thinning.",
+      "If you choose to explore complementary therapies, inform your doctor and never stop prescribed acid-suppressing medicines or antibiotic regimens without medical guidance."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Proton pump inhibitors (PPIs) such as pantoprazole and omeprazole effectively reduce stomach acid, providing proven relief and allowing mucosal healing.",
+      "Strong evidence: Standard multi-drug antibiotic eradication therapy successfully eliminates H. pylori bacteria, preventing recurrent gastritis and reducing future ulcer risk.",
+      "Strong evidence: Non-steroidal anti-inflammatory drugs (NSAIDs) and alcohol directly cause mucosal injury; stopping them is proven to aid stomach recovery.",
+      "Moderate evidence: Stress reduction techniques and structured dietary changes help lower symptom frequency and improve day-to-day quality of life.",
+      "Limited evidence: Herbs such as licorice or amla show preliminary soothing and antioxidant benefits in lab settings, but robust human clinical trials are lacking.",
+      "No evidence: Online miracle teas, digestive tonics, or detox powders that claim to eliminate gastritis or cure bacteria permanently."
+    ],
+    "shouldNotDo": [
+      "Do not pop over-the-counter painkiller tablets (like ibuprofen, combiflam, or diclofenac) every time you experience gym soreness, backache, or a minor headache.",
+      "Do not assume all upper belly pain is harmless 'gas' and self-treat indefinitely with over-the-counter baking soda, fizzy antacid sachets, or digestive candies.",
+      "Do not drink large amounts of strong, black coffee or energy drinks on an empty stomach before workouts.",
+      "Do not skip meals or observe strict, unguided fasts if prolonged fasting consistently causes sharp, burning belly pain.",
+      "Do not stop an antibiotic course for H. pylori halfway through just because your burning pain went away in four days; the bacteria can survive and develop resistance.",
+      "Do not ignore warning signs such as stools turning black or sudden difficulty swallowing food."
+    ],
+    "medicationSafety": [
+      "Take proton pump inhibitors correctly. Medicines like omeprazole or pantoprazole are usually most effective when swallowed whole with water about 30 to 60 minutes before your first meal of the day, as advised by your doctor.",
+      "Do not take antacids at the exact same moment as other prescription medicines. Antacids can coat the gut or change stomach acidity, stopping other crucial medicines from absorbing properly. Keep a gap of 1 to 2 hours.",
+      "Discuss long-term acid suppression with your doctor. Taking high-dose PPIs continuously for months or years without medical monitoring can reduce the absorption of calcium, magnesium, and vitamin B12.",
+      "Be cautious with pain relievers. If you need fever or pain management, ask your doctor if paracetamol is a safer choice for your stomach than NSAIDs.",
+      "Always disclose all health remedies. Inform your treating physician about any ayurvedic tablets, gym workout powders, or botanical extracts you use, as some may irritate the stomach or interact with acid reducers."
+    ],
+    "complications": [
+      "Peptic ulcer disease. Prolonged inflammation can wear deep holes into the protective lining of the stomach or the duodenum.",
+      "Upper gastrointestinal bleeding. Erosion of underlying blood vessels can cause slow, hidden blood loss or severe, life-threatening sudden haemorrhage.",
+      "Iron deficiency anemia. Chronic microscopic blood oozing from raw mucosal tissue depletes iron stores, leaving you fatigued, pale, and breathless.",
+      "Pernicious anemia and vitamin B12 deficiency. Chronic autoimmune inflammation can destroy stomach cells that make intrinsic factor, preventing the body from absorbing B12 and damaging nerves.",
+      "Atrophic gastritis. Long-term chronic inflammation gradually destroys normal stomach glands, replacing them with fibrous scar-like tissue or intestinal cells.",
+      "Stomach cancer risk. Chronic, unaddressed H. pylori infection and prolonged atrophic gastritis can slightly increase the long-term risk of gastric adenocarcinoma or gastric lymphoma."
+    ],
+    "emergencySigns": [
+      "Vomiting bright red blood, or vomiting dark brown material that looks like wet coffee grounds.",
+      "Passing black, sticky, foul-smelling stools (melena), which indicates active bleeding high up in the digestive tract.",
+      "Sudden, severe, sharp upper abdominal pain that feels unbearable or causes your stomach wall to feel hard and rigid like a board.",
+      "Feeling suddenly faint, dizzy, lightheaded, or collapsing when standing up, often accompanied by cold, clammy skin."
+    ],
+    "whenToSeeDoctor": [
+      "Your stomach pain, burning, or indigestion lasts longer than a week despite taking simple over-the-counter antacids.",
+      "You have persistent nausea and are unable to keep food or liquids down for more than 24 hours.",
+      "You notice an unintended drop in weight or completely lose your appetite over several weeks.",
+      "You feel full very quickly after eating only a few bites of food.",
+      "You develop progressive difficulty, choking sensations, or pain when trying to swallow your food.",
+      "Your symptoms return aggressively every time you try to stop taking acid-lowering tablets."
+    ],
+    "faqs": [
+      {
+        "q": "Is gastritis just the common Indian 'gas problem'?",
+        "a": "No. While people often say they have 'gas' whenever their stomach feels uneasy, true gastritis is physical inflammation or injury to the stomach lining. Gas is just swallowed air or normal gut fermentation, whereas gastritis involves irritated or eroded tissue that requires targeted medical evaluation."
+      },
+      {
+        "q": "Does drinking cold milk soothe gastritis permanently?",
+        "a": "Drinking a glass of cold milk may feel soothing for a few minutes because it coats the stomach. However, the protein and calcium in milk stimulate the stomach to produce even more acid shortly afterward, often causing a rebound increase in burning. It is not a treatment for gastritis."
+      },
+      {
+        "q": "Can I take paracetamol if I have gastritis?",
+        "a": "Paracetamol is generally much gentler on the stomach lining than NSAID painkillers like ibuprofen or diclofenac. However, you should still check with your doctor before taking any medication, especially if you have active stomach bleeding or liver concerns."
+      },
+      {
+        "q": "Can stress alone cause gastritis?",
+        "a": "Emotional stress alone does not usually create physical erosions in the lining, but it alters digestive motility, worsens pain perception, and increases acid production. Severe physical stress from major surgery, intensive care illness, or traumatic injury, however, can directly cause severe acute stress gastritis."
+      },
+      {
+        "q": "Can home remedies eliminate H. pylori bacteria?",
+        "a": "No. While dietary adjustments and soothing foods can ease daily symptoms, no herb, diet or product can make H. pylori go away. Eradicating this bacteria reliably requires a medically supervised combination of specific antibiotics and acid-reducing medicines prescribed by your doctor."
+      }
+    ],
+    "references": [
+      {
+        "title": "Gastritis",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gastritis",
+        "year": "2019"
+      },
+      {
+        "title": "Gastritis: Overview, Symptoms, and Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/gastritis/symptoms-causes/syc-20355807",
+        "year": "2022"
+      },
+      {
+        "title": "Gastritis",
+        "source": "NHS (UK)",
+        "url": "https://www.nhs.uk/conditions/gastritis/",
+        "year": "2023"
+      },
+      {
+        "title": "Gastritis",
+        "source": "StatPearls - National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK544250/",
+        "year": "2023"
+      },
+      {
+        "title": "Helicobacter pylori infection in developing countries: the burden for how long?",
+        "source": "Indian Journal of Medical Research",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/12470046/",
+        "year": "2002"
+      }
+    ],
+    "relatedDiseases": [
+      "peptic-ulcer",
+      "gerd",
+      "acidity",
+      "bloating",
+      "anemia",
+      "vitamin-b12-deficiency"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "amla",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "vitamin-b12",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "slug": "rheumatoid-arthritis",
+  "name": "Rheumatoid Arthritis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Rheumatoid arthritis is a long-term autoimmune disease in which the body's immune system attacks its own joint lining (synovium) by mistake. This attack causes painful inflammation, joint swelling, heat, and morning stiffness that lasts longer than 30 to 60 minutes. Unlike wear-and-tear arthritis (osteoarthritis), rheumatoid arthritis is symmetrical, meaning it usually affects both sides of the body equally, such as both wrists, knuckles, or ankles. In India, epidemiological studies estimate that rheumatoid arthritis affects about 0.5% to 0.75% of the adult population, with women developing the condition 3 to 4 times more often than men. If left untreated, ongoing inflammation can wear away cartilage and bone, causing joint deformity. Early treatment by a rheumatologist with disease-modifying medicines stops joint damage and helps people stay active and pain-free.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "Long-term autoimmune inflammatory joint disease"
+      },
+      {
+        "label": "Common onset age",
+        "value": "Most commonly starts between 30 and 50 years"
+      },
+      {
+        "label": "Gender ratio",
+        "value": "Women affected roughly 3 to 4 times more than men"
+      },
+      {
+        "label": "India prevalence",
+        "value": "About 0.5% to 0.75% of adults (ICMR / Indian rheumatology studies)"
+      },
+      {
+        "label": "Key morning sign",
+        "value": "Joint stiffness lasting longer than 30 to 60 minutes"
+      },
+      {
+        "label": "Main joints affected",
+        "value": "Small joints of the fingers, wrists, balls of feet, and knees"
+      }
+    ],
+    "causes": [
+      "Autoimmune response: The immune system mistakenly sends white blood cells and inflammatory chemicals to attack the synovium, the thin tissue lining the inside of your joints.",
+      "Genetic factors: Having specific genes, especially variants in the HLA-DRB1 family, significantly raises your risk of developing the condition.",
+      "Tobacco smoking: Smoking bidis or cigarettes is one of the strongest environmental triggers for rheumatoid arthritis and makes medicines less effective.",
+      "Hormonal factors: A high female-to-male ratio suggests hormones play a role; shifts after pregnancy or around menopause can trigger or alter disease activity.",
+      "Gum disease and chronic infections: Severe bacterial infections of the gums (periodontitis) have been linked to immune triggers that start rheumatoid inflammation.",
+      "Air pollution and dust: Emerging research indicates high exposure to urban particulate pollution can provoke systemic inflammatory pathways."
+    ],
+    "types": [
+      {
+        "name": "Seropositive Rheumatoid Arthritis",
+        "desc": "The most common form. Blood tests are positive for Rheumatoid Factor (RF) or anti-cyclic citrullinated peptide (anti-CCP) antibodies. It often involves more active joint inflammation."
+      },
+      {
+        "name": "Seronegative Rheumatoid Arthritis",
+        "desc": "A person has classic symptoms, joint swelling, and morning stiffness, but tests negative for both RF and anti-CCP antibodies. Treatment strategies remain largely similar."
+      },
+      {
+        "name": "Juvenile Idiopathic Arthritis (JIA)",
+        "desc": "A related group of autoimmune inflammatory joint conditions that begins in children and adolescents under the age of 16 years."
+      }
+    ],
+    "diagnosis": [
+      "Detailed clinical examination: Your doctor checks your hands, wrists, feet, and knees for swelling, warmth, tenderness, and range of motion.",
+      "Morning stiffness check: Assessing whether joint stiffness lasts for more than 30 minutes to an hour after waking up.",
+      "Blood antibody markers: Testing for Rheumatoid Factor (RF) and anti-CCP antibodies helps identify the autoimmune process.",
+      "Inflammatory markers: Testing Erythrocyte Sedimentation Rate (ESR) and C-reactive protein (CRP) shows the level of active inflammation in the blood.",
+      "Baseline imaging: X-rays or musculoskeletal ultrasound of the hands and feet detect early joint fluid, cartilage thinning, and bone erosions.",
+      "Exclusion of other causes: Doctors rule out conditions like gout, osteoarthritis, chikungunya arthritis, and lupus before confirming the diagnosis."
+    ],
+    "investigations": [
+      {
+        "test": "C-reactive protein (CRP)",
+        "purpose": "Measures systemic inflammation and monitors response to treatment",
+        "slug": "crp"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for anemia of chronic disease and white blood cell levels before starting medicines",
+        "slug": "cbc"
+      },
+      {
+        "test": "Liver Function Tests (Liver enzymes)",
+        "purpose": "Monitors liver safety before and during therapy with disease-modifying medicines",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses kidney function to ensure safe dosing of arthritis medications",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Evaluates bone health and deficiency, common in chronic inflammatory conditions",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Helps distinguish rheumatoid arthritis from crystal-induced gout flares",
+        "slug": "uric-acid"
+      }
+    ],
+    "modernTreatment": [
+      "Disease-Modifying Antirheumatic Drugs (DMARDs): Core treatments like methotrexate, hydroxychloroquine, sulfasalazine, and leflunomide slow down the immune attack and prevent joint erosion.",
+      "Biologics and targeted synthetic DMARDs: Advanced injectable therapies (TNF inhibitors, IL-6 blockers) and oral JAK inhibitors are used if standard DMARDs do not bring remission.",
+      "Short-term bridge therapy: Low-dose corticosteroids may be used temporarily for quick relief during active flares while waiting for DMARDs to work, as advised by your doctor.",
+      "Symptom management: Paracetamol or short courses of non-steroidal anti-inflammatory drugs (NSAIDs) help manage daily pain and swelling under medical supervision.",
+      "The 'Treat-to-Target' strategy: Rheumatologists review symptoms and inflammatory markers every few months to adjust therapy until minimal disease activity or remission is reached.",
+      "Physical therapy and occupational splints: Tailored exercises and wrist or finger splints protect inflamed joints and maintain grip strength."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, symptoms resembling rheumatoid arthritis are discussed under 'Amavata'. This describes a state where undigested toxic metabolic waste (ama) combines with disturbed vata dosha and settles into the joints.",
+      "Traditional guidance emphasizes light, warm, freshly cooked meals, avoiding heavy, curd-rich, fried, or fermenting foods that are believed to impair digestive fire (agni).",
+      "Ayurvedic therapies, such as warm herbal poultices and medicated oils, are used in traditional practice to support joint comfort and ease stiffness.",
+      "Herbal remedies and Ayurvedic concepts should only support your overall wellness alongside modern medical care. They do not replace DMARDs, and self-medicating with unverified powders poses serious health risks."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has mild anti-inflammatory properties that may support joint comfort alongside medical therapy."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally used to support digestion and ease stiffness; evidence for modifying joint damage is limited."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Used as an adaptogenic herb to support energy and reduce fatigue; clinical trials in rheumatoid arthritis remain preliminary."
+      }
+    ],
+    "nutrition": [
+      "Eat an anti-inflammatory plate filled with fresh vegetables, seasonal fruits, whole pulses, and whole grains such as jowar, bajra, and oats.",
+      "Incorporate healthy fats rich in omega-3 fatty acids: ground flaxseeds (alsi), walnuts (akhrot), chia seeds, or fatty fish like rohu, hilsa, or salmon.",
+      "Get adequate calcium and bone nutrients from homemade curd, paneer, fortified plant milk, ragi, and white sesame seeds (til) to protect bone density.",
+      "Cut down on ultra-processed foods, deep-fried Indian snacks (samosas, pakoras, bhujia), bakery biscuits, and refined vegetable oils that drive inflammation.",
+      "Use digestive spices naturally in daily cooking: fresh ginger, garlic, jeera, ajwain, and turmeric in moderate amounts.",
+      "Limit table salt and sugary beverages, which add metabolic stress and can worsen water retention when taking prescription steroids."
+    ],
+    "lifestyle": [
+      "Stop all tobacco use immediately: Smoking cigarettes or bidis triggers flare-ups, accelerates joint damage, and blunts the effect of medicines.",
+      "Balance rest and movement: Rest joints during painful, hot flares, but resume gentle moving as soon as pain softens to avoid muscle wasting.",
+      "Protect your joints: Use both hands to carry heavy shopping bags, avoid lifting heavy buckets by thin handles, and use wide-grip pens and kitchen tools.",
+      "Maintain a healthy body weight: Extra kilograms place significant mechanical strain on the weight-bearing joints of your hips, knees, and ankles.",
+      "Prioritize restorative sleep: Aim for 7 to 8 hours of consistent sleep each night to help control systemic fatigue and improve pain thresholds.",
+      "Attend regular laboratory appointments: Routine blood checks are essential to verify that your medications remain safe for your liver, kidneys, and blood cells."
+    ],
+    "yogaActivity": [
+      "Gentle joint loosening (Sukshma Vyayama): Slow, controlled rotations of wrists, fingers, ankles, and neck help clear morning stiffness without overloading joints.",
+      "Low-impact aerobic movement: Daily brisk walking on flat ground, swimming, or cycling on a stationary gym bike maintains heart health and joint lubrication.",
+      "Strengthening exercises: Light resistance band exercises and isometric muscle holds protect the stability of joints; perform them under the guidance of a physiotherapist.",
+      "Calming breath practices: Anulom Vilom (alternate nostril breathing) and Bhramari help soothe the nervous system and manage chronic pain distress.",
+      "Avoid during flares: Do not perform aggressive yoga postures, deep squats, or heavy weightlifting when a joint is hot, red, or severely swollen."
+    ],
+    "homeopathyNote": [
+      "There is no dependable scientific evidence showing that homeopathic preparations can slow joint destruction, alter immune antibodies, or prevent permanent joint deformity.",
+      "Relying solely on homeopathy while delaying modern disease-modifying medicines risks irreversible joint damage. If you explore complementary remedies, never stop your prescribed medical treatments."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Early treatment with DMARDs (started within the first 3 to 6 months of symptom onset) preserves joint structure, halts erosions, and lowers disability.",
+      "Strong evidence: Smoking cessation improves treatment response and reduces overall cardiovascular risk in people with rheumatoid arthritis.",
+      "Moderate evidence: Regular, low-impact exercise and muscle strengthening safely improve functional capacity, relieve chronic fatigue, and reduce pain.",
+      "Limited evidence: Dietary supplements, ginger, and curcumin show small improvements in subjective pain scores, but no trial shows they stop bone erosion.",
+      "No evidence: No herb, diet or product can make it go away, and claims of permanent herbal cures are false and dangerous."
+    ],
+    "shouldNotDo": [
+      "Do not stop or skip your DMARDs or biologics just because your joint pain has settled; remission requires continuous maintenance therapy.",
+      "Do not buy over-the-counter painkillers or unlabelled 'ayurvedic' pain relief powders, which frequently contain undeclared prescription steroids or heavy metals.",
+      "Do not stay completely in bed when joints feel stiff; lack of movement worsens stiffness and weakens supporting muscles.",
+      "Do not force a joint to bear heavy weights or endure high-impact jumping during an active inflammatory flare.",
+      "Do not ignore fever, chills, or persistent cough, as immunosuppressive medicines make early diagnosis of infections crucial."
+    ],
+    "medicationSafety": [
+      "Take DMARDs exactly on the schedule prescribed by your specialist. For example, oral methotrexate is taken once weekly, not daily.",
+      "If taking weekly methotrexate, your doctor will advise folic acid on off-days to minimize mouth ulcers, nausea, and hair thinning.",
+      "Never start, stop, or change doses of steroids without your doctor's supervision; sudden stopping can trigger life-threatening adrenal crisis.",
+      "If you take regular anti-inflammatory painkillers, your doctor may prescribe a stomach protector (such as pantoprazole or omeprazole) to avoid ulcers.",
+      "Family planning warning: Several core arthritis medications (including methotrexate and leflunomide) are unsafe during pregnancy. Discuss family planning months in advance with your rheumatologist."
+    ],
+    "complications": [
+      "Permanent joint deformity, joint instability, and functional disability requiring corrective joint replacement surgery.",
+      "Premature cardiovascular disease: Ongoing systemic inflammation speeds up atherosclerosis, doubling the risk of heart attacks and strokes.",
+      "Osteoporosis: Chronic inflammation and necessary steroid treatments can thin bones, raising the risk of fractures.",
+      "Interstitial Lung Disease (ILD): Persistent inflammation can cause scarring and stiffness in the lung tissues, leading to breathlessness.",
+      "Eye complications: Dry eyes (secondary Sjögren's syndrome) and severe inflammation of the sclera (scleritis).",
+      "Carpal tunnel syndrome: Swelling in the wrist joint compresses the median nerve, causing hand tingling and numbness."
+    ],
+    "emergencySigns": [
+      "Fever above 101°F (38.3°C), shaking chills, or a chest infection while taking DMARDs, steroids, or biologics: seek immediate medical attention.",
+      "Sudden weakness, numbness, or tingling in your hands, or severe neck pain: this can indicate instability of the upper cervical spine.",
+      "Sudden, intense eye pain, severe redness, or changes in vision.",
+      "Sudden chest pressure, pain spreading to the left arm or jaw, or unexplained shortness of breath.",
+      "Black, tarry stools or vomiting blood, which may indicate stomach bleeding from regular painkiller use."
+    ],
+    "whenToSeeDoctor": [
+      "You have persistent joint swelling, warmth, and morning stiffness lasting more than 30 minutes for over two weeks.",
+      "Your fingers or wrists feel puffy, tender, and weak, making routine actions like turning door handles or opening jars difficult.",
+      "You are diagnosed with rheumatoid arthritis and notice new swelling in previously unaffected joints.",
+      "You experience persistent nausea, mouth ulcers, yellowing of eyes, or dark urine while on arthritis medications.",
+      "You are planning a pregnancy or become pregnant while taking any arthritis treatments."
+    ],
+    "faqs": [
+      {
+        "q": "How is rheumatoid arthritis different from osteoarthritis?",
+        "a": "Rheumatoid arthritis is an autoimmune condition where the body attacks the joint lining, causing hot, symmetrical swelling and morning stiffness lasting over an hour. Osteoarthritis is primarily mechanical wear-and-tear of cartilage, usually affecting older individuals or previously injured joints, with stiffness that eases within a few minutes of moving."
+      },
+      {
+        "q": "Can a special diet make rheumatoid arthritis go away?",
+        "a": "No herb, diet or product can make it go away. A wholesome, anti-inflammatory diet rich in vegetables, pulses, and healthy fats supports overall health, weight management, and energy, but it cannot repair immune dysfunction or replace disease-modifying medicines."
+      },
+      {
+        "q": "Why do I need blood tests every few months if I feel well?",
+        "a": "Medicines like methotrexate, leflunomide, or biologics keep your immune system under control. Routine checks of liver enzymes, creatinine, and complete blood counts ensure that these medicines are working safely and that your organs remain healthy."
+      },
+      {
+        "q": "Is it safe to exercise at the gym with rheumatoid arthritis?",
+        "a": "Yes, exercise is strongly encouraged. Low-impact cardio (cycling, walking, swimming) and moderate resistance training strengthen muscles around the joints, reduce stiffness, and protect heart health. During an acute flare in a specific joint, rest that area and avoid heavy loads until inflammation settles."
+      },
+      {
+        "q": "Will I eventually need a wheelchair if I have rheumatoid arthritis?",
+        "a": "No. Decades ago, severe deformities were common, but modern rheumatology treatments started early (treat-to-target strategy) successfully halt joint damage in most people, allowing them to lead independent, active lives."
+      }
+    ],
+    "references": [
+      {
+        "title": "Rheumatoid Arthritis Fact Sheet",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/rheumatoid-arthritis",
+        "year": "2023"
+      },
+      {
+        "title": "Prevalence of rheumatoid arthritis in India: A community-based study",
+        "source": "Indian Journal of Rheumatology / PubMed",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24082697/",
+        "year": "2013"
+      },
+      {
+        "title": "2021 American College of Rheumatology Guideline for the Treatment of Rheumatoid Arthritis",
+        "source": "Arthritis Care & Research (Fraenkel L et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34101387/",
+        "year": "2021"
+      },
+      {
+        "title": "EULAR recommendations for the management of rheumatoid arthritis with synthetic and biological disease-modifying antirheumatic drugs: 2022 update",
+        "source": "Annals of the Rheumatic Diseases (Smolen JS et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36357238/",
+        "year": "2023"
+      },
+      {
+        "title": "Overview of Rheumatoid Arthritis",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/rheumatoid-arthritis/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "arthritis",
+      "joint-stiffness",
+      "osteoporosis",
+      "cardiovascular-risk",
+      "heart-disease",
+      "anemia",
+      "chronic-fatigue"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3",
+      "pantoprazole",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "crp",
+      "cbc",
+      "liver-enzymes",
+      "creatinine",
+      "vitamin-d",
+      "uric-acid"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

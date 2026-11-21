@@ -1,0 +1,295 @@
+{
+  "slug": "menstrual-health",
+  "name": "Menstrual Health",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Menstrual health means having a regular, predictable, and manageable monthly cycle without severe pain, heavy bleeding, or emotional distress that disrupts everyday life. In a healthy cycle, hormones coordinate the release of an egg from the ovary and prepare the lining of the womb for a possible pregnancy. When pregnancy does not happen, this lining sheds as period blood. A typical adult cycle lasts between 24 and 38 days, with bleeding lasting around 3 to 8 days. In India, menstrual health is deeply linked to daily nutrition, iron status, stress levels, and reproductive conditions such as polycystic ovary syndrome (PCOS) or fibroids. According to the National Family Health Survey (NFHS-5), over half of all Indian women between 15 and 49 years of age have anemia, making healthy periods a crucial part of overall well-being rather than just a private reproductive concern.",
+    "quickFacts": [
+      {
+        "label": "Normal cycle length",
+        "value": "24 to 38 days from day 1 to the next day 1"
+      },
+      {
+        "label": "Normal flow duration",
+        "value": "3 to 8 days per period"
+      },
+      {
+        "label": "Average blood loss",
+        "value": "30 to 40 ml per cycle (over 80 ml is heavy)"
+      },
+      {
+        "label": "Anemia burden in India",
+        "value": "57% of women aged 15 to 49 (NFHS-5, 2019-21)"
+      },
+      {
+        "label": "Common menstrual concern",
+        "value": "Up to 1 in 5 Indian women has PCOS"
+      },
+      {
+        "label": "Hygienic protection",
+        "value": "78% use hygienic methods in India (NFHS-5)"
+      }
+    ],
+    "causes": [
+      "Hormonal imbalance between estrogen and progesterone. When ovulation is missed or delayed, the uterine lining builds up too much and sheds irregularly or heavily.",
+      "Polycystic ovary syndrome (PCOS). High insulin and androgen levels block regular egg release, causing infrequent or completely skipped periods.",
+      "Thyroid disorders. An underactive thyroid (hypothyroidism) or overactive thyroid changes bleeding patterns, causing heavy, prolonged, or absent cycles.",
+      "Nutritional deficiencies and anemia. Low iron, low vitamin B12, or low protein levels cause body weakness, fatigue, and poor cycle regulation.",
+      "Structural changes in the uterus. Non-cancerous growths such as uterine fibroids or endometrial polyps stretch the uterine cavity and cause heavy clotty bleeding.",
+      "Endometriosis and adenomyosis. Tissue similar to the uterine lining grows outside the womb or deep inside the uterine muscle wall, causing severe pelvic pain and cramps.",
+      "Chronic emotional or physical stress. High cortisol suppresses the brain's signals (hypothalamus and pituitary) that tell the ovaries to produce hormones and ovulate.",
+      "Extreme weight changes or intense exercise. Severe calorie restriction, rapid weight loss, or high-intensity athletic training without enough food can stop periods entirely.",
+      "Certain medications and contraceptives. Hormonal birth control, emergency pills, blood thinners, and some psychiatric medications can shift period timing or flow."
+    ],
+    "types": [
+      {
+        "name": "Eumenorrhea (Healthy Normal Cycle)",
+        "desc": "Regular periods occurring every 24 to 38 days with moderate bleeding (3 to 8 days) and mild, manageable cramps that do not stop work or studies."
+      },
+      {
+        "name": "Dysmenorrhea (Painful Periods)",
+        "desc": "Severe cramping pain in the lower abdomen, back, and thighs. Primary dysmenorrhea is caused by natural uterine prostaglandins; secondary dysmenorrhea is driven by underlying conditions like endometriosis or fibroids."
+      },
+      {
+        "name": "Menorrhagia (Heavy Menstrual Bleeding)",
+        "desc": "Excessive blood loss soaking through one or more pads or tampons every hour for several consecutive hours, passing large clots, or bleeding that lasts longer than 8 days."
+      },
+      {
+        "name": "Oligomenorrhea (Infrequent Periods)",
+        "desc": "Cycles that stretch longer than 38 days apart, resulting in fewer than six to eight periods in a year, commonly seen in PCOS and thyroid dysfunction."
+      },
+      {
+        "name": "Amenorrhea (Absent Periods)",
+        "desc": "Missing periods for three or more months in a row when not pregnant, breastfeeding, or in menopause. It can be caused by hormonal failure, sudden weight drops, or severe stress."
+      },
+      {
+        "name": "Polymenorrhea (Frequent Periods)",
+        "desc": "Cycles that occur less than 21 to 24 days apart, leading to multiple bleeds in a single month and increasing the risk of severe iron deficiency."
+      }
+    ],
+    "diagnosis": [
+      "A detailed menstrual diary. Tracking period start dates, total bleeding days, pad counts, clot sizes, and pain scores across at least three continuous cycles.",
+      "Comprehensive medical history. Reviewing reproductive history, sudden weight shifts, family history of fibroids or early menopause, skin changes like acne or facial hair, and current medicines.",
+      "Physical and pelvic examination. Performed by a qualified gynecologist to check the cervix, uterus, and ovaries for tenderness, enlargement, or anatomical changes.",
+      "Laboratory blood investigations. Measuring complete blood count, ferritin for iron reserves, and hormone levels (TSH, prolactin, LH, FSH, and fasting insulin).",
+      "Pelvic ultrasonography. An ultrasound scan (abdominal or transvaginal) to examine the uterine lining thickness and check for ovarian cysts, fibroids, or adenomyosis."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures hemoglobin levels and red blood cells to check for anemia caused by heavy bleeding",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Assesses deep iron stores, which often drain long before visible anemia appears on a routine blood test",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Screens for hypothyroidism or hyperthyroidism, which are frequent causes of irregular and heavy bleeding",
+        "slug": "tsh"
+      },
+      {
+        "test": "HbA1c & Fasting Glucose",
+        "purpose": "Checks for insulin resistance and diabetes, which disrupt ovarian function in conditions like PCOS",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Pelvic Ultrasound (USG)",
+        "purpose": "Visualizes the uterus, endometrium, and ovaries to identify fibroids, polyps, or polycystic morphology"
+      },
+      {
+        "test": "Hormone Panel (LH, FSH, Prolactin, Free Testosterone)",
+        "purpose": "Identifies pituitary or ovarian hormonal imbalances that stop regular ovulation"
+      }
+    ],
+    "modernTreatment": [
+      "Iron and micronutrient replenishment. If heavy periods have caused anemia or low ferritin, doctors prescribe therapeutic iron and folic acid supplements alongside dietary upgrades.",
+      "Medical pain management. Non-steroidal anti-inflammatory drugs (NSAIDs) like mefenamic acid or paracetamol reduce prostaglandin production in the uterine wall, easing severe cramps and reducing total blood volume when taken as advised by your doctor.",
+      "Hormonal regulation. Combined oral contraceptive pills, cyclic progesterone tablets, or a levonorgestrel-releasing intrauterine system (hormonal IUD) help thin the uterine lining, prevent heavy bleeding, and regularize cycles.",
+      "Insulin sensitizers. In cases linked to PCOS, doctors often prescribe metformin to improve insulin action, lower androgens, and encourage spontaneous ovulation.",
+      "Tranexamic acid. An oral antifibrinolytic medicine taken only during heavy bleeding days to help blood clot normally and reduce menstrual flow by up to 50 percent.",
+      "Surgical interventions. For structural issues like large fibroids, polyps, or severe endometriosis that do not respond to medications, minimally invasive options like hysteroscopy, laparoscopy, or myomectomy may be performed."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda describes the menstrual cycle as Artava Chakra, governed primarily by Vata dosha (specifically Apana Vayu, responsible for downward movement of fluid) along with Pitta (governing blood tissue or Rakta Dhatu).",
+      "Imbalances in Apana Vayu are traditionally believed to cause pain, spasmodic cramps, and delayed bleeding, while aggravated Pitta is thought to drive burning sensations, inflammation, and excessive flow.",
+      "Traditional texts emphasize Rajaswala Paricharya, a set of gentle guidelines for the days of active bleeding: resting the body, eating light, warm foods, avoiding strenuous exertion, and keeping the mind calm.",
+      "Ayurvedic formulations and herbs are used solely as supportive therapies alongside modern diagnostic evaluation, never as a standalone substitute for treating underlying reproductive pathology."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally valued as a female reproductive tonic. Early studies suggest it may support hormonal balance, though robust clinical trial evidence remains limited."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Has natural anti-inflammatory actions that inhibit prostaglandin synthesis; clinical studies show it can help reduce menstrual pain when taken as advised."
+      },
+      {
+        "name": "Cinnamon",
+        "slug": "cinnamon",
+        "note": "May help improve insulin sensitivity and support menstrual regularity in women with PCOS, though it cannot replace medical therapies."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild anti-inflammatory support that may assist with premenstrual discomfort and pelvic ache alongside standard care."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C, which enhances dietary non-heme iron absorption from plant meals to help combat menstrual anemia."
+      }
+    ],
+    "nutrition": [
+      "Focus on iron-rich Indian foods: incorporate green leafy vegetables (palak, methi, chaulai), drumstick leaves, black chana, rajma, bajra, sesame seeds (til), and garden cress seeds (halim).",
+      "Pair plant iron with vitamin C: squeeze fresh nimbu (lemon) over your dal or sabzi, eat amla, guava, or oranges with meals to significantly boost iron absorption.",
+      "Prioritize adequate protein: include dals, paneer, sprouts, eggs, or fish in every major meal. ICMR-NIN guidelines emphasize adequate protein for hormone synthesis and muscle health.",
+      "Ensure healthy fats: consume small amounts of ghee, soaked almonds, walnuts, and flaxseeds to support the production of steroid hormones including progesterone and estrogen.",
+      "Hydrate well during bleeding days: drink warm water, jeera water, or thin buttermilk (chaas) to ease bloating, constipation, and pelvic fullness.",
+      "Limit ultra-processed snacks: cut down on high-sodium namkeens, bakery biscuits, sugary mithai, and packaged chips that increase water retention and worsen premenstrual breast tenderness.",
+      "Avoid drinking tea or coffee immediately with meals: tannins and phytates bind to dietary iron and prevent it from being absorbed into your bloodstream."
+    ],
+    "lifestyle": [
+      "Maintain a regular sleep schedule: aim for 7 to 8 hours of quality, uninterrupted sleep. Irregular sleep patterns disrupt melatonin and the hypothalamic-pituitary-ovarian axis.",
+      "Practice safe and hygienic period care: change sanitary pads or tampons every 4 to 6 hours, or empty menstrual cups every 8 to 12 hours to prevent bacterial infections and toxic shock risk.",
+      "Track your cycles digitally or on paper: note cycle lengths, symptom changes, mood variations, and bleeding intensity. Tracking helps your doctor spot patterns quickly.",
+      "Manage daily stress actively: chronic mental fatigue raises cortisol, which directly interferes with normal ovulation and can cause missed or late periods.",
+      "Maintain a steady, healthy body weight: both rapid weight gain and extreme weight loss can shut down ovulation and trigger irregular menstrual cycles.",
+      "Avoid smoking and limit alcohol intake: both impair ovarian reserve, accelerate hormonal fluctuations, and worsen menstrual cramping."
+    ],
+    "yogaActivity": [
+      "Engage in restorative asanas: gentle poses such as Baddha Konasana (Butterfly Pose), Supta Baddha Konasana (Reclining Bound Angle), and Balasana (Child's Pose) relax the pelvic floor muscles and relieve uterine cramps.",
+      "Practice gentle stretches: Marjaryasana-Bitilasana (Cat-Cow Pose) and Viparita Karani (Legs-Up-The-Wall) improve pelvic blood flow and reduce lower back tension during or before periods.",
+      "Incorporate calming pranayama: slow, gentle breathing like Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) calms the sympathetic nervous system and lessens PMS mood swings.",
+      "Avoid strenuous inversions during heavy flow: poses like Sirsasana (Headstand) or Sarvangasana (Shoulder Stand), as well as intense abdominal contractions (Kapalabhati), are traditionally avoided during peak flow days to prevent physical discomfort.",
+      "Stay moderately active throughout the month: 30 minutes of brisk walking, swimming, or light gym workouts on most days improves insulin sensitivity and cycle regularity."
+    ],
+    "homeopathyNote": [
+      "Homeopathic remedies are often marketed for menstrual complaints, cramps, and cycle irregularity, but there is no reliable, high-quality clinical trial evidence proving they correct hormonal disorders, clear fibroids, or resolve anemia.",
+      "If you choose to explore homeopathic treatments, never stop prescribed medical therapies, iron supplements, or diagnostic scans, and ensure your gynecologist is informed."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Non-steroidal anti-inflammatory drugs (NSAIDs) significantly reduce menstrual pain and blood loss by blocking endometrial prostaglandin release.",
+      "Strong evidence: Hormonal contraceptives and the levonorgestrel-releasing IUD effectively control menorrhagia and thin the endometrium.",
+      "Strong evidence: Treating iron deficiency with oral or intravenous iron restores hemoglobin levels, reduces chronic fatigue, and improves physical stamina in women with heavy bleeding.",
+      "Moderate evidence: Regular physical exercise and maintaining a healthy body weight improve ovulation frequency in women with PCOS-related cycle delays.",
+      "Moderate evidence: Ginger supplements show modest benefit in reducing primary dysmenorrhea pain intensity comparable to standard mild pain relievers in small randomized trials.",
+      "Limited or weak evidence: Over-the-counter herbal syrups and uterine tonics have poor clinical documentation and no herb, diet, or product can make structural fibroids or deep endometriosis go away on its own."
+    ],
+    "shouldNotDo": [
+      "Do not dismiss severe, debilitating period pain as normal. Suffering in silence can delay the diagnosis of endometriosis or adenomyosis for years.",
+      "Do not wash the inside of the vagina with commercial washes, soaps, or dettol. The vagina is self-cleaning, and harsh washes disturb healthy lactobacilli, triggering infections.",
+      "Do not take over-the-counter hormone pills or emergency contraceptive pills repeatedly to shift your period dates for festivals or travel without a doctor's advice.",
+      "Do not ignore heavy bleeding where you soak a thick pad every hour or pass large blood clots bigger than a coin; this rapidly leads to severe anemia.",
+      "Do not wear the same sanitary pad for the entire day even if the flow looks light; warm, damp environments breed bacteria and cause rashes or urinary tract infections."
+    ],
+    "medicationSafety": [
+      "Take iron tablets exactly as advised by your doctor, preferably with water or citrus juice between meals; avoid taking iron with milk, calcium tablets, tea, or coffee.",
+      "Be aware of iron side effects: mild constipation, dark stools, and slight stomach irritation are common. Speak to your doctor if discomfort is severe instead of stopping on your own.",
+      "Use pain relievers responsibly: take medicines like mefenamic acid or paracetamol with or after food to protect your stomach lining from acidity and gastritis.",
+      "If prescribed birth control pills for cycle regulation, take one tablet at the same hour every day. Missing doses can trigger breakthrough bleeding and reduce efficacy.",
+      "Tell your doctor about any herbal supplements or churna you are taking, as some herbs can interfere with blood clotting or interact with hormonal therapies."
+    ],
+    "complications": [
+      "Severe iron deficiency anemia, leading to chronic exhaustion, heart palpitations, hair loss, breathlessness, and low immunity.",
+      "Impaired fertility or subfertility resulting from untreated anovulation in PCOS, blocked fallopian tubes from endometriosis, or uterine distortion from fibroids.",
+      "Chronic pelvic pain syndrome that persists even outside menstrual bleeding days, deeply affecting daily work, fitness, and intimate relationships.",
+      "Increased risk of endometrial hyperplasia and uterine cancer if prolonged intervals of absent periods (amenorrhea or severe oligomenorrhea) leave the uterine lining unopposed by progesterone.",
+      "Emotional distress, anxiety, and depression caused by severe premenstrual dysphoric disorder (PMDD) or the chronic stress of living with unpredictable bleeding."
+    ],
+    "emergencySigns": [
+      "Bleeding so heavily that you soak through two or more sanitary pads an hour for two hours in a row: seek immediate emergency medical care.",
+      "Passing blood clots the size of a lemon or larger, accompanied by sudden extreme dizziness, faintness, or confusion.",
+      "Sudden, excruciating, sharp lower abdominal pain with vomiting, cold sweats, or fever, which could indicate an ectopic pregnancy, ruptured ovarian cyst, or pelvic infection.",
+      "High fever, body chills, vomiting, diarrhea, or a sunburn-like rash while using tampons or a menstrual cup (possible signs of Toxic Shock Syndrome): remove the product and go to an emergency room immediately."
+    ],
+    "whenToSeeDoctor": [
+      "Your periods have stopped completely for more than three months when you are not pregnant or breastfeeding.",
+      "Your cycle comes more frequently than every 21 days or stretches past 38 days regularly.",
+      "You have bleeding or spotting between your periods, after sexual intercourse, or after reaching menopause.",
+      "Your period pain is so severe that you miss work, college, or gym sessions despite using over-the-counter pain relief.",
+      "Your periods last longer than 8 days or you feel excessively weak, dizzy, and pale during or after your cycle."
+    ],
+    "faqs": [
+      {
+        "q": "How much period pain is considered normal?",
+        "a": "Mild to moderate cramping on the first day or two that responds to a warm compress or mild pain medication is common. However, severe pain that leaves you bedridden, causes vomiting, or does not improve with simple pain medicine is not normal and requires an evaluation by a gynecologist."
+      },
+      {
+        "q": "Can exercise be done during periods?",
+        "a": "Yes. Light to moderate exercise such as walking, light cycling, stretching, and upper-body gym workouts can actually reduce cramps and boost mood by releasing endorphins. Listen to your body and lower the intensity if you feel tired or heavy."
+      },
+      {
+        "q": "Why did my period become irregular after joining the gym?",
+        "a": "Starting very intense workouts without eating enough calories or protein puts stress on your hypothalamus, which pauses ovulation to conserve energy. Balancing workout intensity with adequate nutrition and rest usually restores regular cycles."
+      },
+      {
+        "q": "Does passing blood clots mean something is wrong?",
+        "a": "Occasional small, jelly-like clots on your heaviest flow day can be normal as the body's natural anti-clotting agents struggle to keep up with fast flow. However, passing frequent, large clots bigger than a coin indicates heavy bleeding that needs medical evaluation."
+      },
+      {
+        "q": "Can drinking hot turmeric milk or papaya induce a delayed period?",
+        "a": "No reliable clinical evidence shows that foods like raw papaya, jaggery, or turmeric milk can reliably induce a period. Delayed periods are caused by delayed ovulation, hormonal changes, or pregnancy, and need proper medical assessment if prolonged."
+      }
+    ],
+    "references": [
+      {
+        "title": "Clinical management of heavy menstrual bleeding",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng88",
+        "year": "2020"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "National Institute of Nutrition, Indian Council of Medical Research (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Abnormal Uterine Bleeding",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/menorrhagia/symptoms-causes/syc-20352829",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "pcos",
+      "endometriosis",
+      "pms",
+      "anemia",
+      "iron-deficiency",
+      "uterine-fibroids"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "paracetamol",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "shatavari",
+      "ginger",
+      "cinnamon",
+      "turmeric",
+      "amla"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "tsh",
+      "hba1c"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "slug": "allergic-rhinitis",
+  "name": "Allergic Rhinitis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Allergic rhinitis is an inflammatory condition of the nasal passages caused by an overactive immune response to harmless airborne substances known as allergens. When a person with this sensitivity breathes in particles such as house dust mites, pollen, fungal spores, or animal dander, the immune system mistakenly identifies them as harmful invaders. In response, specialised immune cells release chemical messengers, primarily histamine, into the tissues of the nose, eyes, and throat. This cascade triggers sudden bouts of sneezing, a clear runny nose, persistent nasal blockage, itchy eyes, and an irritated palate. In India, allergic rhinitis is often dismissed as a simple cold, yet it is a chronic, non-infectious condition that significantly affects sleep quality, energy levels, gym performance, and daily productivity. It frequently coexists with bronchial asthma under what medical specialists describe as the 'united airway' concept.",
+    "quickFacts": [
+      {
+        "label": "Global Burden",
+        "value": "Affects an estimated 400 million people worldwide (WHO / ARIA Guidelines)"
+      },
+      {
+        "label": "India Prevalence",
+        "value": "Estimated in 20% to 30% of the Indian population across major urban and rural surveys"
+      },
+      {
+        "label": "Asthma Connection",
+        "value": "Up to 80% of individuals with allergic asthma also have allergic rhinitis"
+      },
+      {
+        "label": "Top Indoor Trigger in India",
+        "value": "House dust mites (Dermatophagoides pteronyssinus and Dermatophagoides farinae)"
+      },
+      {
+        "label": "Top Weed Pollen Trigger",
+        "value": "Parthenium hysterophorus (Congress grass), widespread across Indian roadsides"
+      },
+      {
+        "label": "Primary Medical Treatment",
+        "value": "Intranasal corticosteroid sprays and non-sedating antihistamines"
+      }
+    ],
+    "causes": [
+      "Immunoglobulin E (IgE) mediated immune response: Exposure to airborne particles primes the immune system to produce allergen-specific IgE antibodies, which bind to mast cells in the nasal mucosa.",
+      "House dust mites: Microscopic mites thrive in warm, humid Indian households, particularly in mattresses, heavy cotton quilts (razais), pillows, upholstered furniture, and plush toys.",
+      "Plant pollens: Seasonal winds carry fine pollens from invasive weeds like Parthenium hysterophorus (Congress grass), grasses, and trees like neem, holoptelea, and eucalyptus during flowering seasons.",
+      "Fungi and indoor molds: Spores from Aspergillus, Alternaria, and Cladosporium species multiply on damp walls, air conditioner filters, leaking roofs, and poorly ventilated bathrooms, especially during the Indian monsoon.",
+      "Animal dander and saliva: Microscopic flakes of skin, dried saliva, and hair from household pets like dogs and cats trigger symptoms in sensitised individuals.",
+      "Cockroach droppings and residue: Debris and proteins from cockroaches present in urban Indian kitchens, pipes, and drains form a potent indoor respiratory allergen.",
+      "Aggravating air pollutants: While not allergens themselves, particulate matter (PM2.5 and PM10), vehicle exhaust, roadside dust, construction debris, mosquito coils, and incense smoke (agarbatti) inflame the nasal lining and make it significantly more reactive to underlying allergens."
+    ],
+    "types": [
+      {
+        "name": "Intermittent Allergic Rhinitis",
+        "desc": "Symptoms occur on fewer than 4 days per week or for less than 4 consecutive weeks at a stretch, often coinciding with specific pollen seasons or occasional allergen exposures."
+      },
+      {
+        "name": "Persistent Allergic Rhinitis",
+        "desc": "Symptoms occur on 4 or more days per week and continue for more than 4 consecutive weeks, most commonly driven by year-round indoor allergens like house dust mites or cockroach debris."
+      },
+      {
+        "name": "Mild Allergic Rhinitis",
+        "desc": "Nasal symptoms are present but do not disturb nocturnal sleep, do not impair sports, gym, or leisure activities, and do not hamper work or school performance."
+      },
+      {
+        "name": "Moderate-to-Severe Allergic Rhinitis",
+        "desc": "Symptoms cause significant sleep disturbance, fatigue, daytime drowsiness, and impairment of daily activities, exercise capacity, or workplace productivity."
+      },
+      {
+        "name": "Occupational Allergic Rhinitis",
+        "desc": "Triggered by specific airborne particles encountered in the workplace, such as flour in bakeries, wood dust in carpentry, animal proteins in research facilities, or chemical vapors."
+      }
+    ],
+    "diagnosis": [
+      "Clinical history: A doctor reviews the pattern, duration, and triggers of symptoms, checking whether sneezes occur in runs of 10 to 20, whether the nasal fluid is clear and watery, and whether eyes are itchy.",
+      "Physical examination: The clinician looks inside the nose using an anterior rhinoscopy light to inspect the nasal turbinates, which typically appear swollen, boggy, and pale or bluish-grey rather than the beefy red seen in viral infections.",
+      "Identification of classical physical signs: Dark circles under the eyes caused by venous congestion ('allergic shiners'), a transverse crease across the bridge of the nose from habitual upward rubbing ('allergic salute'), and chronic mouth breathing.",
+      "Skin Prick Testing (SPT): Performed under medical supervision by placing tiny drops of purified allergen extracts on the forearm and lightly pricking the skin to watch for a raised wheal and flare reaction within 15 to 20 minutes.",
+      "Serum Specific IgE blood test: Measures the circulating level of IgE antibodies directed against specific environmental allergens, useful when skin prick testing cannot be done due to widespread skin disease or daily antihistamine use."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC) with Absolute Eosinophil Count",
+        "purpose": "Measures eosinophils in the blood; raised eosinophil counts frequently accompany active allergic inflammation.",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Assesses general systemic inflammation to help differentiate allergic flare-ups from acute bacterial sinus infections.",
+        "slug": "crp"
+      },
+      {
+        "test": "25-Hydroxy Vitamin D",
+        "purpose": "Evaluates vitamin D status, as deficiency is common in urban India and can play a role in immune regulation.",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Diagnostic Nasal Endoscopy",
+        "purpose": "Allows an ear, nose, and throat (ENT) specialist to directly inspect the nasal cavity, identify nasal polyps, structural deviations, or blocked sinus ostia."
+      },
+      {
+        "test": "Allergen-Specific Serum IgE Panel",
+        "purpose": "Identifies precise sensitivities to specific Indian airborne allergens including weeds, trees, molds, and dust mites."
+      }
+    ],
+    "modernTreatment": [
+      "Allergen avoidance: Identifying and reducing contact with confirmed triggers is the essential starting point for all clinical management.",
+      "Nasal saline irrigation: Daily flushing of the nasal passages with isotonic sterile or boiled-then-cooled saline rinses physically clears trapped pollen, dust, and inflammatory mucus.",
+      "Intranasal corticosteroid sprays: Considered the most effective first-line medication for moderate-to-severe symptoms. They act locally to calm mucosal inflammation, relieve congestion, and reduce sneezing with minimal absorption into the rest of the body when used as advised by your doctor.",
+      "Second-generation oral antihistamines: Non-sedating medications taken in tablet or syrup form that block histamine receptors, calming runny nose, sneezing, and itching without causing severe daytime grogginess.",
+      "Intranasal antihistamine sprays: Sprayed directly into the nose to provide rapid relief from acute itching and sneezing, often combined with a steroid spray.",
+      "Leukotriene receptor antagonists: Oral medications that block inflammatory chemicals called leukotrienes, helpful in individuals who have both allergic rhinitis and asthma.",
+      "Allergen Immunotherapy (AIT): Under an allergy specialist, gradual administration of allergen extracts via subcutaneous injections (allergy shots) or sublingual tablets/drops can desensitise the immune system over a 3 to 5 year course for severe, treatment-resistant cases."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, conditions resembling allergic rhinitis are frequently described under 'Pratishyaya' (specifically Vataja and Kaphaja Pratishyaya) or as manifestations of 'Asatmya' (intolerance or hypersensitivity to specific environmental factors).",
+      "Traditional texts describe the accumulation of Kapha dosha blocking the Pranavaha Srotas (the channels carrying vital breath), combined with an aggravated Vata dosha causing dryness, irritation, and erratic sneezing.",
+      "Ayurvedic care emphasises digestive fire ('Agni') and reduction of metabolic toxins ('Ama'), which are thought to lower systemic resilience and make the body vulnerable to environmental irritants.",
+      "Practices such as Jala Neti (nasal rinsing with warm salt water) and gentle steam inhalation are commonly recommended. These measures can support comfort, but they do not alter immune sensitivity on their own.",
+      "Herbal remedies and traditional preparations should always be viewed as gentle supportive practices alongside standard medical care. They should never replace prescribed inhalers or nasal sprays."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows mild anti-inflammatory properties in laboratory models. Clinical trials in human allergic rhinitis are small and limited, meaning it cannot replace prescribed steroid sprays."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is traditionally taken in warm decoctions to soothe an irritated throat and respiratory passages. Scientific evidence demonstrating that it clears allergic inflammation is weak and preliminary."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Warm ginger infusions can provide subjective comfort during morning sneezing fits and congestion, but it has no proven power to stop an IgE-driven immune reaction."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Tinospora cordifolia has been evaluated in a few small clinical trials for allergic symptoms, but rigorous evidence remains limited. Quality control and liver safety must always be kept in mind."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN dietary guidelines by building a wholesome plate centred on diverse seasonal vegetables, whole grains, pulses, and lean proteins to support balanced immune function.",
+      "Incorporate antioxidant-rich Indian fruits such as amla (Indian gooseberry), guava, oranges, and sweet limes (mosambi), which supply dietary vitamin C to help protect tissues from oxidative stress.",
+      "Drink plenty of warm liquids throughout the day, including warm water, light clear soups, and homemade vegetable broths, which help thin out stubborn nasal secretions.",
+      "Limit excessive intake of ultra-processed foods, deep-fried snacks (pakoras, samosas), and sugar-sweetened beverages, as these promote general metabolic inflammation.",
+      "Be aware of cross-reactive reactions known as Oral Allergy Syndrome. Some individuals with weed or tree pollen allergies experience mild itching in the mouth or throat after eating certain raw fruits or raw salads; lightly steaming or peeling these foods usually neutralises the cross-reacting proteins.",
+      "Avoid unverified elimination diets that cut out entire food groups like milk, wheat, or rice unless a qualified medical specialist has confirmed a true food allergy through proper testing."
+    ],
+    "lifestyle": [
+      "Encase mattresses, pillows, and heavy blankets in dust-mite-proof zippered covers, and wash bed linen weekly in water heated above 55 degrees Celsius.",
+      "Sun your mattresses, quilts (razais), and thick carpets regularly under strong Indian sunlight for 4 to 6 hours, which naturally desiccates and kills dust mites.",
+      "Keep bedroom windows firmly shut during peak pollen release hours, usually in the dry morning breeze and early evening, and switch on an air purifier with a genuine HEPA filter if living in a high-pollution city.",
+      "Stop using incense sticks (agarbatti), dhoop, scented room fresheners, and chemical mosquito coils in bedrooms; these emit fine particulates that irritate inflamed nasal membranes.",
+      "Wear a well-fitting N95 mask when sweeping, dusting, visiting dusty outdoor markets, or walking near busy construction zones and traffic intersections.",
+      "Wipe household surfaces with a damp microfibre cloth instead of dry dusting or sweeping with a traditional broom (jhadu), which launches settled allergen particles back into the air.",
+      "Shower and change out of outdoor clothes immediately after coming home from long commutes or park workouts during flowering seasons to avoid carrying pollen into your bed."
+    ],
+    "yogaActivity": [
+      "Practice Jala Neti (saline nasal wash) using a clean neti pot with sterile, distilled, or previously boiled and cooled water mixed with the correct proportion of non-iodised salt; never use raw tap water.",
+      "Incorporate gentle Anulom Vilom (alternate nostril breathing) for 10 to 15 minutes each day. This slow, conscious breathing helps relax the nervous system and improves nasal airflow awareness.",
+      "Practice Bhramari (humming bee breath), which promotes mild nitric oxide production in the paranasal sinuses and induces relaxation.",
+      "Avoid vigorous, forceful breathing techniques like rapid Kapalabhati or Bhastrika if your nose is acutely inflamed, blocked, or if you have an active sinus infection.",
+      "Engage in moderate aerobic gym workouts, brisk walking, or cycling. Regular moderate physical activity improves respiratory stamina, but avoid outdoor training during days when urban air pollution or pollen spikes."
+    ],
+    "homeopathyNote": [
+      "There is no reliable, high-quality scientific evidence demonstrating that homeopathic remedies can cure allergic rhinitis, alter allergen-specific IgE levels, or desensitise the immune system.",
+      "Relying solely on homeopathic pills while discontinuing doctor-prescribed nasal sprays or asthma inhalers can lead to uncontrolled airway inflammation and severe breathing complications.",
+      "If you choose to explore homeopathic treatments, do so only as an adjunct, and ensure your primary medical doctor is aware while continuing your standard medical management."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Intranasal corticosteroid sprays provide the most comprehensive relief for nasal blockage, rhinorrhea, sneezing, and ocular itching (Allergic Rhinitis and its Impact on Asthma - ARIA Guidelines).",
+      "Strong evidence: Second-generation oral antihistamines (such as cetirizine, fexofenadine, and bilastine) are effective and safe for relieving itchiness, sneezing, and watery discharge without significant sedation.",
+      "Strong evidence: Allergen Immunotherapy (AIT) can modify the underlying immune response and provide sustained relief for years after treatment completion in carefully selected patients.",
+      "Moderate evidence: Regular saline nasal irrigation significantly reduces symptom severity and cuts the required dose of pharmacotherapy by mechanically clearing mucus and allergens.",
+      "Weak or limited evidence: Traditional herbs like turmeric, giloy, and tulsi have preliminary laboratory data, but robust, large-scale clinical trials in humans are lacking.",
+      "No evidence: Products, dietary cleanses, or miracle remedies claiming to permanently eradicate allergies have no scientific backing."
+    ],
+    "shouldNotDo": [
+      "Do not use over-the-counter decongestant nasal sprays (such as oxymetazoline or xylometazoline) for more than 3 to 5 consecutive days. Prolonged use causes 'rhinitis medicamentosa', a rebound swelling where nasal blockage becomes far worse than before.",
+      "Do not sweep dry floors or shake out dusty carpets inside closed rooms while the allergic person is present.",
+      "Do not ignore chronic nasal blockage in children or teenagers, as continuous mouth breathing can alter dental alignment, facial development, and sleep quality.",
+      "Do not spray steroid nasal sprays straight towards the middle wall of your nose (the nasal septum), as this can cause dryness, crusting, and nosebleeds.",
+      "Do not stop your prescribed nasal steroid spray after only two or three days just because your nose feels better; these sprays require regular use over several weeks to build their protective effect.",
+      "Do not use untreated municipal tap water for neti or nasal rinses, as this carries a rare but serious risk of dangerous waterborne amoebic infections."
+    ],
+    "medicationSafety": [
+      "Technique matters: When using a nasal spray, tilt your head slightly forward, hold the bottle in your right hand to spray into your left nostril (aiming outwards towards the outer corner of your eye/ear), and repeat with the left hand for the right nostril.",
+      "Avoid sniffing violently after spraying; a gentle, normal inhalation is all that is needed to keep the medication deposited on the nasal mucosal lining.",
+      "Check with your doctor before taking older, first-generation antihistamines (like chlorpheniramine or diphenhydramine), as they cause significant drowsiness, impair your ability to drive or lift weights, and can worsen urinary symptoms in older adults.",
+      "Inform your physician if you are pregnant, planning a pregnancy, or breastfeeding, so that pregnancy-safe nasal sprays and antihistamines are selected.",
+      "Do not share nasal spray bottles with family members, as this can transmit bacterial or viral infections between individuals."
+    ],
+    "complications": [
+      "Development or worsening of bronchial asthma: Chronic inflammation can spread down the respiratory tract, increasing asthma attacks and chest tightness.",
+      "Chronic rhinosinusitis: Swollen nasal tissues block the natural drainage openings of the sinuses, trapping mucus and inviting secondary bacterial infections.",
+      "Nasal polyps: Long-standing allergic inflammation can lead to painless, soft, non-cancerous growths inside the nasal passages that cause permanent nasal obstruction.",
+      "Sleep-disordered breathing and obstructive sleep apnea: Severe nasal blockage forces mouth breathing, increases snoring, fragments sleep architecture, and causes chronic daytime fatigue.",
+      "Eustachian tube dysfunction and otitis media: Swelling around the openings of the Eustachian tubes in the back of the throat can cause ear fullness, fluid accumulation, and middle ear infections, particularly in children.",
+      "Impaired cognitive performance: Constant congestion and broken sleep lead to reduced concentration, poor school grades in children, and decreased work and fitness output in adults."
+    ],
+    "emergencySigns": [
+      "Sudden swelling of the lips, tongue, throat, or face, accompanied by difficulty swallowing or a sensation of the throat closing up: immediate signs of systemic anaphylaxis.",
+      "Audible wheezing, severe chest tightness, persistent coughing, and rapid breathlessness where you cannot speak a full sentence in one breath.",
+      "Dizziness, lightheadedness, pale or clammy skin, or sudden collapse following an allergen exposure.",
+      "High fever accompanied by severe, unilateral facial pain, forehead tenderness, and swelling or redness around one or both eyes.",
+      "Sudden, heavy, and uncontrollable nosebleed (epistaxis) that does not stop after 10 to 15 minutes of direct pinching."
+    ],
+    "whenToSeeDoctor": [
+      "Nasal congestion, sneezing, and runny nose continue for more than 2 to 4 weeks despite basic allergen avoidance.",
+      "Symptoms severely interfere with your sleep, make you wake up with a parched mouth every morning, or cause constant daytime exhaustion.",
+      "Over-the-counter allergy tablets fail to provide relief, or you find yourself relying daily on decongestant nasal drops.",
+      "You develop recurrent ear pain, reduced hearing, persistent cough, or frequent episodes of facial headache and thick discoloured mucus.",
+      "You notice shortness of breath, a tight chest, or wheezing during gym workouts, morning runs, or cold weather."
+    ],
+    "faqs": [
+      {
+        "q": "Can allergic rhinitis be permanently cured so it never comes back?",
+        "a": "No herb, diet or product can make it go away permanently. Allergic rhinitis is driven by your body's individual immune sensitivity. However, with consistent allergen avoidance, the right nasal sprays, and in some cases allergen immunotherapy, the condition can be managed so effectively that you remain completely symptom-free for long periods."
+      },
+      {
+        "q": "How do I tell the difference between allergic rhinitis and a common cold?",
+        "a": "A common cold is a viral infection that typically starts with a sore throat, may involve a mild fever, body aches, and produces nasal mucus that turns thick and yellowish or greenish after a few days, clearing up within 7 to 10 days. Allergic rhinitis causes clear, watery discharge, paroxysms of repeated sneezes, intense itching of the nose and eyes, has no fever, and persists for weeks or months as long as the allergen is present."
+      },
+      {
+        "q": "Are steroid nasal sprays habit-forming or dangerous to use long term?",
+        "a": "No. Intranasal corticosteroid sprays are not addictive. When used as advised by your doctor, modern steroid sprays deliver microscopic doses directly to the nasal mucosa with virtually negligible absorption into the bloodstream. They are widely regarded by international guidelines as safe for extended use under regular medical supervision."
+      },
+      {
+        "q": "Why do my sneezes become much worse early in the morning?",
+        "a": "Morning symptom surges are common in India. They occur because natural body levels of anti-inflammatory cortisol drop overnight, house dust mite exposure peaks while sleeping on mattresses and pillows, and breathing in cooler morning air stimulates hypersensitive nasal nerve endings."
+      },
+      {
+        "q": "Can I continue working out in the gym if I have allergic rhinitis?",
+        "a": "Yes, regular exercise is beneficial and can temporarily improve nasal patency by stimulating adrenaline release. However, avoid lifting heavy weights with breath-holding if your nose is completely obstructed. Ensure your gym is well-ventilated, free of visible mold or damp carpets, and avoid intense outdoor conditioning on days with severe air pollution."
+      }
+    ],
+    "references": [
+      {
+        "title": "Allergic Rhinitis and its Impact on Asthma (ARIA) guidelines: 2016 revision",
+        "source": "Journal of Allergy and Clinical Immunology (Bousquet J et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28974399/",
+        "year": "2017"
+      },
+      {
+        "title": "Clinical Practice Guideline: Allergic Rhinitis",
+        "source": "Otolaryngology–Head and Neck Surgery (Seidman MD et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25644760/",
+        "year": "2015"
+      },
+      {
+        "title": "Allergic Rhinitis: Diagnosis and Treatment",
+        "source": "American Family Physician (Small P, Kim H)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30215975/",
+        "year": "2018"
+      },
+      {
+        "title": "Aerobiology and allergenicity of Parthenium hysterophorus pollen in India",
+        "source": "World Allergy Organization Journal",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23282476/",
+        "year": "2012"
+      },
+      {
+        "title": "Allergic Rhinitis: Practice Essentials, Background, Pathophysiology",
+        "source": "Medscape / NIH NCBI Bookshelf",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK538186/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "asthma",
+      "sinusitis",
+      "respiratory-allergies",
+      "seasonal-allergies",
+      "chronic-cough",
+      "sleep-apnea",
+      "eczema",
+      "skin-allergies"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "tulsi",
+      "ginger",
+      "giloy"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "slug": "seasonal-allergies",
+  "name": "Seasonal Allergies",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Seasonal allergies, often called seasonal allergic rhinitis or hay fever, happen when your immune system treats harmless airborne particles like plant pollen, fungal spores, or harvesting dust as dangerous invaders. When you breathe these in during specific times of the year, your body releases histamine and other inflammatory chemicals. This causes sudden bouts of sneezing, a runny or blocked nose, itchy eyes, and an irritated throat. In India, seasonal allergies frequently peak during seasonal transitions: spring (February to April) when trees and grasses bloom, and autumn or post-monsoon (September to November) when weed pollens like congress grass (Parthenium), harvesting dust, and airborne mold spores become widespread. Unlike a common viral cold, seasonal allergies do not cause high fever or body aches, and they return predictably around the same months every year. While no herb, diet or product can make it go away permanently, understanding your triggers, taking the right medications, and practicing simple environmental controls can keep symptoms completely manageable so you can work, sleep, and exercise without distress.",
+    "quickFacts": [
+      {
+        "label": "Medical Name",
+        "value": "Seasonal Allergic Rhinitis"
+      },
+      {
+        "label": "Estimated Prevalence in India",
+        "value": "20% to 30% of the population experiences allergic rhinitis symptoms (Indian Council of Medical Research / World Allergy Organization)"
+      },
+      {
+        "label": "Common Indian Seasons",
+        "value": "Spring (Feb–April) and Autumn/Post-Monsoon (Sept–Nov)"
+      },
+      {
+        "label": "Top Pollen Triggers in India",
+        "value": "Parthenium (Congress grass), Cynodon dactylon (Bermuda grass), Holoptelea (Indian elm), and Ricinus (Castor)"
+      },
+      {
+        "label": "Hallmark Symptom",
+        "value": "Bouts of repeated sneezing with clear, watery nasal discharge and itchy eyes"
+      },
+      {
+        "label": "Primary Medical Treatment",
+        "value": "Intranasal corticosteroid sprays and second-generation non-sedating antihistamines"
+      }
+    ],
+    "causes": [
+      "Pollen from trees: In early spring (February to April), blooming trees such as Holoptelea integrifolia (Indian elm), Prosopis juliflora (Mesquite), Eucalyptus, and Acacia shed microscopic, light pollen grains that travel miles through the air.",
+      "Grass pollens: Cynodon dactylon (Doob grass or Bermuda grass) and Sorghum halepense shed copious pollen throughout warmer months and during late monsoon transitions.",
+      "Weed pollens: Parthenium hysterophorus (popularly called Congress grass or carrot grass) grows abundantly along Indian roadsides, vacant plots, and agricultural boundaries, causing aggressive respiratory and skin allergies from late summer through autumn.",
+      "Mold and fungal spores: In the warm, humid weeks during and immediately after the Indian monsoon, fungal molds like Alternaria, Cladosporium, and Aspergillus proliferate on damp walls, fallen leaves, and soil, releasing millions of airborne spores.",
+      "Crop harvesting dust and crop residue burning: In Northern and Western India, the October-November harvesting and stubble burning periods release severe organic dust, ash, and particulate matter that act as irritants and heighten seasonal allergic sensitivity.",
+      "Genetic predisposition (atopy): If your parents or siblings have eczema, asthma, or hay fever, your immune system is significantly more likely to develop allergic sensitivities to environmental allergens.",
+      "Air pollution acting as an adjuvant: High particulate levels (PM2.5 and PM10) from traffic and construction in Indian cities break open pollen grains into finer fragments and irritate the nasal lining, making allergic reactions far more intense."
+    ],
+    "types": [
+      {
+        "name": "Spring Seasonal Rhinitis",
+        "desc": "Triggered primarily by early-season tree pollens (such as Indian elm, mesquite, and birch in hill states) between February and April."
+      },
+      {
+        "name": "Autumn / Post-Monsoon Rhinitis",
+        "desc": "Driven heavily by aggressive weed pollens like Parthenium (Congress grass), grass pollens, and outdoor mold spores from September through November."
+      },
+      {
+        "name": "Intermittent Allergic Rhinitis (ARIA Classification)",
+        "desc": "Symptoms are present on fewer than 4 days per week or for fewer than 4 consecutive weeks in a year."
+      },
+      {
+        "name": "Persistent Allergic Rhinitis with Seasonal Spikes",
+        "desc": "Underlying year-round sensitivity to house dust mites or indoor molds that sharply worsens when outdoor seasonal pollens rise."
+      },
+      {
+        "name": "Mild vs Moderate-to-Severe",
+        "desc": "Mild allergies do not interfere with sleep, gym, or daily work; moderate-to-severe forms disrupt sleep, impair concentration, and compromise lung function."
+      }
+    ],
+    "diagnosis": [
+      "Clinical evaluation: Your doctor reviews your symptom timeline, identifying the predictable seasonal spike and absence of infection signs like high fever or discoloured mucus.",
+      "Physical examination: The doctor checks inside your nose using an otoscope or nasal speculum to inspect for swollen, pale, boggy nasal mucosa and clear mucus. They also look for 'allergic shiners' (dark circles beneath eyes) and a transverse nasal crease from frequent nose rubbing.",
+      "Skin Prick Testing (SPT): Small drops of common Indian allergen extracts (Parthenium, local tree pollens, grass extracts, fungal spores) are placed on your forearm and the skin is gently pricked. A raised red welt within 15–20 minutes confirms specific allergic sensitivity.",
+      "Serum Specific IgE Blood Test: If skin conditions or current antihistamine use prevent skin testing, a blood test measures specific IgE antibodies against specific pollen and mold panels.",
+      "Assessment for coexisting asthma: Because the upper and lower respiratory tracts share the same airway mucosa, your physician will evaluate whether you experience seasonal chest tightness or wheezing."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC) with Absolute Eosinophil Count",
+        "purpose": "Checks for elevated eosinophils, a white blood cell subtype commonly raised in active allergic responses",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Specific IgE Profile (ImmunoCAP Aeroallergen Panel)",
+        "purpose": "Identifies exact pollen, weed, mold, or mite triggers provoking your seasonal immune reaction"
+      },
+      {
+        "test": "Total Serum IgE",
+        "purpose": "Assesses overall allergic and atopic state in the body, although it is not specific to one allergen alone"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Evaluates immune health, as deficiency is frequently observed in individuals with chronic airway reactivity",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Used when needed to distinguish allergic inflammation from an active bacterial sinus or respiratory infection",
+        "slug": "crp"
+      }
+    ],
+    "modernTreatment": [
+      "First-line treatment: Intranasal corticosteroid sprays (such as fluticasone or mometasone) are the most effective modern therapy for moderate-to-severe symptoms. They quiet local inflammation in the nasal passages when used daily throughout your allergy season, as advised by your doctor.",
+      "Non-sedating oral antihistamines: Second-generation antihistamines (such as cetirizine, fexofenadine, or bilastine) block histamine receptors, quickly stopping sneezing, itching, and runny nose without the heavy drowsiness of older medicines, as advised by your doctor.",
+      "Combination antihistamine and steroid nasal sprays: Sprays combining an antihistamine (like azelastine) with a steroid provide rapid, comprehensive symptom relief for blocked and runny nasal passages.",
+      "Sterile saline nasal irrigation: Rinsing the nasal cavities daily with sterile, isotonic saline washes away trapped pollen grains, mold spores, and thick secretions without any drug interactions.",
+      "Allergen Immunotherapy (AIT): For severe, unmanageable seasonal allergies, allergy shots (subcutaneous) or allergy drops/tablets (sublingual) given over 3 to 5 years gradually desensitize the immune system to identified pollen triggers, as supervised by an allergy specialist."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda views seasonal respiratory symptoms primarily through the lens of Pratishyaya (rhinitis), involving an imbalance of Vata and Kapha doshas affecting the Pranavaha Srotas (respiratory pathways).",
+      "Seasonal transition periods (Ritu Sandhi), such as the shift from monsoon to autumn (Sharad) or winter to spring (Vasant), are traditionally regarded as times when bodily Agni (digestive fire) fluctuates, making tissues susceptible to Ama (metabolic toxins) and environmental hypersensitivity.",
+      "Traditional Ayurvedic management emphasizes cleansing the nasal passage (Pratimarsa Nasya using medicated oils when not in acute flare), drinking warm spiced decoctions, and consuming light, easily digestible food to balance Kapha and Vata.",
+      "Herbal remedies and Ayurvedic preparations can serve as gentle, supportive comfort alongside modern medical treatments, but they cannot cure allergies or replace prescribed medical care. Discuss any herbal formulations with your doctor first."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil contains eugenol and other volatile oils with mild adaptogenic and supportive anti-inflammatory properties for the respiratory tract. Best consumed as a warm water infusion."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin in turmeric has been studied for its ability to support inflammatory balance and inhibit mast cell histamine release in laboratory studies. It can be taken as a warm spice in food, though it does not replace allergy medicines."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Fresh ginger (adrak) provides warm, soothing relief for throat tickling, sinus heaviness, and upper respiratory congestion due to its natural gingerols."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Tinospora cordifolia has been researched in small Indian clinical trials for supporting immune balance in allergic rhinitis. It should be taken only as advised by your doctor and never in excessive amounts."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Known as Mulethi, licorice root can soothe an irritated, scratchy throat and clear respiratory channels. Those with high blood pressure must avoid excessive intake."
+      }
+    ],
+    "nutrition": [
+      "Eat warm, freshly cooked meals: Warm dal, khichdi, vegetable soups, and lightly spiced stews are easier on digestion and provide comforting steam that loosens nasal secretions.",
+      "Incorporate anti-inflammatory Indian spices: Season your daily cooking with freshly grated ginger, black pepper, turmeric, jeera (cumin), and crushed garlic to support airway comfort.",
+      "Focus on natural Vitamin C: Eat fresh amla (Indian gooseberry), sweet limes, guavas, and squeeze fresh lemon over cooked dals. Vitamin C is a mild natural antioxidant that supports mucosal tissue health.",
+      "Stay thoroughly hydrated: Drink warm water throughout the day. Ample hydration thins thick post-nasal drip and keeps mucosal barriers lubricated against airborne dust.",
+      "Limit cold, heavy, and mucosal-irritating foods: During your acute allergy weeks, cut down on icy drinks, heavy dairy desserts, ultra-processed packaged snacks, and deep-fried savouries, which can trigger reflex throat clearing or acid reflux.",
+      "Avoid outdoor street food during high pollen or dust days: Uncovered street food in Indian urban areas easily gathers street dust, soot, and particulate matter that can trigger oral or systemic sensitivities."
+    ],
+    "lifestyle": [
+      "Wear an N95 or well-fitting mask outdoors: On windy days during peak pollen seasons (February-April and September-November), wearing a mask blocks microscopic pollen and particulate dust from entering your nasal passages.",
+      "Shower and change clothes immediately when coming home: Pollen and weed dust cling stubbornly to hair, eyebrows, skin, and clothing. Rinsing off removes the allergen source before it contaminates your bed.",
+      "Keep household windows closed during peak pollen hours: Tree and weed pollen counts are highest in the early morning (5:00 AM to 10:00 AM) and on dry, windy afternoons. Keep windows shut and use a recirculating fan or air conditioner if available.",
+      "Dry your laundry indoors: Hanging freshly washed clothes and bedsheets on open Indian balconies or rooftops allows them to act as pollen traps, bringing allergens straight to your pillowcase.",
+      "Use a HEPA air purifier in the bedroom: Running an air purifier with a genuine HEPA filter in your sleeping space captures fine pollen grains, fungal spores, and dust particulates, allowing your nasal passages to rest through the night.",
+      "Rinse your eyes with clean, cool water: After travelling through heavy traffic, rural crop areas, or parks, wash your face and rinse your eyes with fresh water to soothe conjunctival redness and remove trapped dust."
+    ],
+    "yogaActivity": [
+      "Jala Neti (nasal irrigation): Using a neti pot with sterile, boiled-and-cooled isotonic saline rinses allergens out of the nasal vault. Perform only with clean, sterile water and proper guidance; never use direct unboiled tap water.",
+      "Anulom Vilom (Alternate Nostril Breathing): 10 to 15 minutes of slow, rhythmic alternate nostril breathing calms the nervous system, eases autonomic nasal congestion, and supports balanced airflow.",
+      "Bhramari Pranayama (Humming Bee Breath): The gentle vibration of the humming sound promotes nitric oxide production in the paranasal sinuses, which supports mucosal circulation and eases sinus heaviness.",
+      "Gentle asanas: Poses such as Bhujangasana (Cobra Pose), Setu Bandhasana (Bridge Pose), and Matsyasana (Fish Pose) open the chest and improve respiratory comfort.",
+      "Gym workout adjustments: Move your high-intensity cardio indoors on days when pollen counts or air quality index (AQI) levels are dangerously high. Heavy breathing outdoors during a pollen peak pulls allergens deep into your bronchial tubes."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations (such as Allium cepa, Arsenicum album, or Sabadilla) are frequently tried in India for sneezing and allergic rhinitis.",
+      "Systematic scientific reviews, including assessments from the Cochrane Collaboration, conclude that there is no consistent, high-quality clinical evidence proving homeopathy is effective for allergic rhinitis beyond a placebo effect.",
+      "If you choose to use homeopathic remedies, never discontinue your prescribed steroid nasal sprays, antihistamines, or asthma inhalers without your doctor's explicit direction."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Intranasal corticosteroid sprays are established by major international guidelines (ARIA, American Academy of Otolaryngology) as the most effective monotherapy for seasonal allergic rhinitis.",
+      "Strong evidence: Second-generation oral antihistamines (like cetirizine, fexofenadine, and bilastine) are proven to relieve sneezing, rhinorrhea, and eye itching with low risk of central nervous system sedation.",
+      "Strong evidence: Allergen Immunotherapy (AIT) provides proven, long-term desensitization and reduces the risk of allergic rhinitis progressing to full-blown bronchial asthma.",
+      "Moderate evidence: Daily saline nasal rinses significantly improve symptom scores, thin secretions, and wash out environmental aeroallergens without pharmacological side effects.",
+      "Limited or weak evidence: Herbal extracts, detox drinks, and over-the-counter herbal teas have weak human clinical trial data and cannot prevent or reverse allergic sensitization."
+    ],
+    "shouldNotDo": [
+      "Do not use over-the-counter decongestant nasal sprays (such as oxymetazoline or xylometazoline) for more than 3 to 5 consecutive days. Prolonged use causes severe rebound nasal congestion (rhinitis medicamentosa), making your nose permanently blocked.",
+      "Do not use unboiled or raw tap water for neti pot irrigation. Raw tap water can carry deadly amoebic contaminants like Naegleria fowleri or severe bacterial strains. Always use distilled or boiled-and-cooled water.",
+      "Do not stop your prescribed nasal steroid spray as soon as you feel 1 or 2 days of relief. Nasal steroids take several days of continuous use to reach peak anti-inflammatory effect and must be taken through your vulnerable season, as advised by your doctor.",
+      "Do not aggressively rub your itchy eyes with unwashed hands. Rubbing damages delicate corneal tissue, worsens histamine release from conjunctival mast cells, and introduces bacterial infections like conjunctivitis.",
+      "Do not ignore coughing, wheezing, or chest tightness during allergy season. Assuming it is 'just a minor cold' can lead to an unexpected, severe asthma attack.",
+      "Do not trust advertisements claiming a permanent 'herbal or natural cure' for seasonal allergies. No herb, diet or product can make it go away permanently."
+    ],
+    "medicationSafety": [
+      "Master the correct nasal spray technique: Tilt your head slightly forward, insert the nozzle into the nostril aiming slightly outward toward the ear (away from the central nasal septum), and breathe in gently. Spraying directly onto the central septum can cause nasal dryness, crusting, and nosebleeds.",
+      "Watch out for drowsy antihistamines: Avoid first-generation antihistamines (such as chlorpheniramine) if you need to drive, operate machinery, or lift heavy weights at the gym, as they impair reaction time. Discuss non-sedating alternatives with your doctor.",
+      "Inform your doctor about underlying medical conditions: If you have high blood pressure, glaucoma, or prostate enlargement, oral decongestants (such as pseudoephedrine or phenylephrine) can cause dangerous spikes in blood pressure and urinary retention.",
+      "Use oral steroids only with strict medical supervision: Never take self-prescribed oral steroid tablets or depot steroid injections for routine seasonal allergies due to risks of high blood sugar, bone thinning, and suppressed immunity."
+    ],
+    "complications": [
+      "Development or aggravation of bronchial asthma: Up to 40% of people with untreated allergic rhinitis develop asthma, following the established 'one airway, one disease' clinical concept.",
+      "Acute or chronic sinusitis: Swollen nasal tissues block the narrow sinus drainage openings (ostia), trapping mucus and leading to painful bacterial sinus infections.",
+      "Eustachian tube dysfunction and middle ear fluid: Allergic swelling extending to the back of the nasal passage blocks the Eustachian tube, causing ear fullness, crackling sounds, and otitis media.",
+      "Nasal polyps: Long-standing, untreated allergic inflammation can lead to soft, non-cancerous teardrop-shaped growths inside the nasal cavity that obstruct breathing.",
+      "Severe sleep disruption and chronic daytime fatigue: Chronic nighttime nasal blockage causes mouth breathing, snoring, fragmented sleep, daytime exhaustion, and decreased athletic performance in the gym."
+    ],
+    "emergencySigns": [
+      "Sudden difficulty in breathing, rapid shallow breaths, or audible wheezing that does not settle",
+      "Swelling of the lips, tongue, throat, or face (angioedema) causing difficulty swallowing or speaking",
+      "Feeling faint, severe dizziness, lightheadedness, or sudden collapse accompanied by widespread hives (signs of anaphylaxis; call 108 or 112 immediately)",
+      "High fever accompanied by severe, localized facial swelling, redness around the eye socket, or altered vision",
+      "Inability to speak in full sentences without gasping for breath"
+    ],
+    "whenToSeeDoctor": [
+      "Your allergy symptoms persist for more than two consecutive weeks and disrupt your ability to sleep, exercise, or work",
+      "Over-the-counter non-sedating antihistamines fail to bring adequate relief from nasal congestion, sneezing, or eye itching",
+      "You develop pain, heavy pressure, or throbbing around your cheeks, forehead, and teeth, accompanied by thick green nasal discharge",
+      "You experience a persistent dry cough, chest tightness, or whistling sounds when breathing out during certain seasons",
+      "You find yourself relying on over-the-counter decongestant nasal sprays for more than 4 days in a row"
+    ],
+    "faqs": [
+      {
+        "q": "How can I tell the difference between seasonal allergies and a viral cold?",
+        "a": "A viral cold typically develops with a sore throat, general body aches, low-grade fever, and nasal discharge that turns thick and yellowish or greenish after a few days, clearing up within 7 to 10 days. Seasonal allergies do not cause fever or body aches, feature persistent clear watery mucus, cause intense itching of the eyes, nose, and palate, and last as long as the pollen or trigger remains in the air."
+      },
+      {
+        "q": "Can seasonal allergies lead to asthma?",
+        "a": "Yes. Medical science views the nose and the lungs as parts of a single connected airway system. Uncontrolled allergic inflammation in the upper airway (allergic rhinitis) frequently extends down to the bronchial tubes. Clinical studies show that a significant proportion of people with untreated seasonal allergies go on to develop allergic asthma."
+      },
+      {
+        "q": "Are nasal steroid sprays addictive or dangerous for long-term seasonal use?",
+        "a": "No. When used as advised by your doctor, modern nasal steroid sprays act locally on the lining of your nose with minimal absorption into the rest of the body. They are completely different from decongestant sprays (like oxymetazoline), which cause rebound dependency. Nasal steroid sprays are safe, non-habit forming, and the gold standard for seasonal control."
+      },
+      {
+        "q": "Why do my allergies get worse around Diwali and harvesting time in India?",
+        "a": "Late October and November combine two major respiratory insults: the blooming and drying of weed pollens (like Parthenium), combined with post-harvest crop stubble smoke, firecracker emissions, and dropping night temperatures. This dense cocktail of smoke particulates and pollen grains damages nasal mucosal barriers and triggers severe allergy flares."
+      },
+      {
+        "q": "Can I continue my regular gym workouts during allergy season?",
+        "a": "Yes, but with smart adjustments. Exercise in an air-conditioned or well-ventilated indoor gym rather than running outdoors during early morning hours when pollen counts are highest. Ensure you hydrate well, use your prescribed nasal spray before workouts, and shower immediately after training to rinse away any airborne allergens."
+      }
+    ],
+    "references": [
+      {
+        "title": "Allergic Rhinitis and its Impact on Asthma (ARIA) guidelines: 2016 revision",
+        "source": "Journal of Allergy and Clinical Immunology (Bousquet J et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28476356/",
+        "year": "2017"
+      },
+      {
+        "title": "Aeroallergens in India: an overview of pollen and fungal diversity and clinical relevance",
+        "source": "Indian Journal of Medical Research",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30636712/",
+        "year": "2018"
+      },
+      {
+        "title": "Allergic Rhinitis: Diagnosis and Treatment Guidelines",
+        "source": "American Academy of Otolaryngology-Head and Neck Surgery (AAO-HNSF)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25644617/",
+        "year": "2015"
+      },
+      {
+        "title": "Saline nasal irrigation for acute and chronic rhinosinusitis and allergic rhinitis",
+        "source": "Cochrane Database of Systematic Reviews",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29932224/",
+        "year": "2018"
+      },
+      {
+        "title": "Parthenium hysterophorus: a major weed problem and allergen in India",
+        "source": "World Health Organization / Indian Council of Medical Research",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/15298492/",
+        "year": "2004"
+      }
+    ],
+    "relatedDiseases": [
+      "allergic-rhinitis",
+      "asthma",
+      "sinusitis",
+      "chronic-cough",
+      "respiratory-allergies",
+      "breathing-problems",
+      "sleep-problems"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "turmeric",
+      "ginger",
+      "giloy",
+      "licorice",
+      "amla"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "vitamin-d",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

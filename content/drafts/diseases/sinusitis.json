@@ -1,0 +1,280 @@
+{
+  "slug": "sinusitis",
+  "name": "Sinusitis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Sinusitis is inflammation or swelling of the tissue that lines your sinuses. Your sinuses are four pairs of hollow, air-filled pockets in the bones of your face: behind your forehead, cheekbones, bridge of the nose, and behind your eyes. Healthy sinuses are lined with a thin layer of mucus that traps dirt, bacteria, and dust, and drains out through narrow channels into the back of your nose. When these narrow drainage pathways swell shut due to a common cold, seasonal allergy, dust, or air pollution, mucus gets trapped. The stagnant fluid creates an environment where pressure builds and viral or bacterial germs can multiply. You feel this as deep facial pressure, a blocked or runny nose, a dull throbbing headache, and fatigue. In India, where winter smog, construction dust, and sudden changes in weather are common, millions of people deal with sinus flare-ups every year. Most acute bouts begin as viral colds that clear up with simple supportive care within one to two weeks, but long-lasting or repeated attacks require a clear medical diagnosis.",
+    "quickFacts": [
+      {
+        "label": "Most common trigger",
+        "value": "Viral infections (common cold) and allergic rhinitis"
+      },
+      {
+        "label": "Viral vs Bacterial",
+        "value": "Over 90% of acute sinus infections are viral, not bacterial"
+      },
+      {
+        "label": "Duration: Acute",
+        "value": "Lasts less than 4 weeks, often resolving in 7 to 10 days"
+      },
+      {
+        "label": "Duration: Chronic",
+        "value": "Lasts 12 weeks or longer despite medical treatment"
+      },
+      {
+        "label": "First-line home care",
+        "value": "Saline nasal rinses, hydration, and steam inhalation"
+      },
+      {
+        "label": "Antibiotic use",
+        "value": "Not needed for most acute episodes unless bacterial symptoms are confirmed"
+      }
+    ],
+    "causes": [
+      "Viral upper respiratory infections: The common cold (rhinovirus, influenza, coronavirus) causes the lining of the nasal passages and sinuses to swell, blocking natural drainage pores.",
+      "Allergic rhinitis: Inhaling pollens, dust mites, pet dander, or fungus spores triggers allergic swelling and excessive mucus production in sensitive airways.",
+      "Air pollution and particulate matter: Exposure to heavy city smog (PM2.5 and PM10), vehicle exhaust, roadside dust, and seasonal crop-burning smoke inflames nasal passages across Indian cities.",
+      "Indoor irritants: Frequent burning of incense sticks (agarbatti), mosquito coils, dhoop, chemical room fresheners, and second-hand cigarette or bidi smoke irritate delicate sinus membranes.",
+      "Structural blockages inside the nose: A deviated nasal septum (crooked bone and cartilage between nostrils), enlarged nasal turbinates, or benign soft growths called nasal polyps physically block mucus flow.",
+      "Dental infections: Roots of the upper molars and premolars sit very close to the floor of the maxillary sinuses; an untreated tooth abscess can spread straight into the sinus cavity.",
+      "Dampness and mold: Living or working in unventilated rooms with damp walls, water seepage, or uncleaned desert coolers can expose you to fungal spores that cause chronic airway inflammation.",
+      "Weakened immunity: Conditions like uncontrolled diabetes or immune-suppressing treatments make clearing common respiratory infections much harder."
+    ],
+    "types": [
+      {
+        "name": "Acute Rhinosinusitis",
+        "desc": "A sudden episode that lasts fewer than four weeks. Usually triggered by a cold or seasonal allergy, it typically improves within 7 to 10 days with simple supportive home measures."
+      },
+      {
+        "name": "Subacute Rhinosinusitis",
+        "desc": "Sinus inflammation and congestion that lasts between 4 and 12 weeks. It represents an infection or inflammatory process that has not completely cleared after the acute phase."
+      },
+      {
+        "name": "Chronic Rhinosinusitis",
+        "desc": "Inflammation lasting 12 weeks or longer without complete resolution, with or without nasal polyps. It is driven more by ongoing tissue inflammation and structural issues than simple infection."
+      },
+      {
+        "name": "Recurrent Acute Sinusitis",
+        "desc": "Four or more separate episodes of acute sinusitis within a single year, with complete clearing of all symptoms between episodes."
+      }
+    ],
+    "diagnosis": [
+      "Clinical evaluation: An ear, nose, and throat (ENT) specialist or general physician examines your nasal passages, checks for facial tenderness by pressing on your forehead and cheeks, and examines your throat and teeth.",
+      "Distinguishing viral from bacterial infection: Doctors look at symptom duration. Acute viral sinusitis typically peaks around day three and fades by day seven to ten. Bacterial sinusitis is suspected if symptoms last beyond 10 days without improvement, or if symptoms worsen abruptly after initially improving ('double sickening').",
+      "Anterior rhinoscopy: Using a gentle nasal speculum and light, the doctor inspects the anterior nasal cavity to assess swelling, redness, mucosal colour, and the presence of pus or polyps.",
+      "Assessment of allergic factors: Identifying whether symptoms link directly to weather changes, dust, seasonal pollen, or animal exposure."
+    ],
+    "investigations": [
+      {
+        "test": "Diagnostic Nasal Endoscopy",
+        "purpose": "A thin, flexible camera is passed into the nasal passages to look directly at sinus openings, check for polyps, mucosal swelling, pus, or structural deviations."
+      },
+      {
+        "test": "Non-Contrast CT Scan of Paranasal Sinuses (PNS)",
+        "purpose": "Provides detailed cross-sectional imaging of the sinus bones, air spaces, and drainage channels; reserved for chronic sinusitis, complications, or surgical planning."
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures white blood cell count to detect significant systemic infection and checks eosinophil levels to screen for allergic tendency.",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "A general marker of systemic inflammation that helps assess acute inflammatory response when complications are suspected.",
+        "slug": "crp"
+      },
+      {
+        "test": "Sinus Culture or Nasal Swab",
+        "purpose": "Endoscopically guided pus sample taken from sinus openings to identify bacteria or fungi in difficult, non-responsive, or chronic cases."
+      },
+      {
+        "test": "Allergy Testing (Skin Prick or Specific IgE)",
+        "purpose": "Identifies specific environmental triggers like dust mites, molds, or pollen that cause recurrent sinus swelling."
+      }
+    ],
+    "modernTreatment": [
+      "Saline nasal irrigation: Rinsing the nasal cavities once or twice daily with sterile or boiled, cooled saline solution thins thick mucus, washes out trapped allergens and pollutants, and reduces swelling without side effects.",
+      "Intranasal corticosteroid sprays: Daily prescription steroid sprays reduce chronic tissue inflammation inside the nasal lining. They act locally with minimal absorption into the rest of the body, but require regular use for optimal benefit as advised by your doctor.",
+      "Pain and fever management: Over-the-counter pain relievers such as paracetamol help relieve facial pain, ear pressure, and sinus headaches while the body fights off the infection.",
+      "Oral or topical decongestants: Short-term use of decongestant sprays may relieve severe nasal blockage. They should never be used for more than 3 to 5 consecutive days to prevent rebound nasal congestion.",
+      "Targeted antibiotics: Prescribed only when a bacterial infection is clinically diagnosed based on prolonged duration (over 10 days), high fever, severe unilateral facial pain, or worsening after temporary improvement. They do not work against viruses.",
+      "Functional Endoscopic Sinus Surgery (FESS): A minimally invasive surgical procedure used for chronic sinusitis that does not respond to medical treatments, clearing blocked drainage pathways, removing polyps, and correcting structural defects."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, sinusitis is closely understood through conditions such as Dushta Pratishyaya or Peenasa, classified under Shiroroga (disorders of the head and upper body).",
+      "It is primarily viewed as an imbalance of Kapha and Vata doshas. Aggravated Kapha creates heavy, sticky mucus (ama) that blocks the subtle channels (srotas) of the respiratory tract (pranavaha srotas), while Vata disturbance causes local pain, dryness, and obstruction.",
+      "Ayurvedic care emphasises lightening the digestive fire (deepana and pachana), consuming warm, easily digestible foods, using steam inhalation with mild aromatics, and gently clearing nasal passages.",
+      "Traditional procedures like Nasya (application of medicated oils or herbal drops into the nasal passages) are practiced in classical clinics, but these should only be performed under the supervision of a certified Ayurvedic practitioner and never during an active, feverish, acute bacterial infection.",
+      "Ayurvedic remedies are supportive lifestyle tools; they do not replace standard medical diagnostics, antibiotics when truly indicated, or emergency medical treatment."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi (Holy Basil)",
+        "slug": "tulsi",
+        "note": "Traditionally used to support respiratory health and clear airway congestion. Often taken as a warm infusion; evidence is preliminary and supports comfort alongside medical care."
+      },
+      {
+        "name": "Ginger (Adrak / Shunthi)",
+        "slug": "ginger",
+        "note": "Contains gingerols known for mild anti-inflammatory properties. Warm ginger tea helps soothe throat irritation and promotes hydration; clinical evidence for treating sinus infections is limited."
+      },
+      {
+        "name": "Turmeric (Haldi)",
+        "slug": "turmeric",
+        "note": "Curcumin in turmeric has well-studied anti-inflammatory and antioxidant properties in laboratory settings. Drinking warm turmeric milk or water supports general wellness but cannot clear blocked sinuses alone."
+      },
+      {
+        "name": "Black Pepper (Kali Mirch)",
+        "slug": "black-pepper",
+        "note": "Traditionally added in small amounts to herbal decoctions (kadha) to support mucus clearance and aid the absorption of other botanicals; clinical trial evidence is weak."
+      }
+    ],
+    "nutrition": [
+      "Drink plenty of warm fluids throughout the day. Warm water, clear vegetable soups, dal ka pani, and light herbal teas thin out thick nasal secretions and keep mucus moving.",
+      "Eat freshly prepared, light, warm meals. Khichdi, warm vegetable porridge (daliya), and moong dal soup require minimal digestive effort when you are unwell and feverish.",
+      "Add warming culinary spices in moderate amounts. Small quantities of freshly grated ginger, crushed black pepper, jeera, and garlic in rasam or soups can make breathing feel more comfortable.",
+      "Avoid ice-cold beverages, refrigerated water, and sugary frozen desserts during acute flare-ups, as cold liquids can trigger reflex nasal congestion in sensitive individuals.",
+      "Limit deep-fried snacks, heavy sweets, and very oily gravies, which can promote acid reflux. Gastroesophageal reflux (GERD) is known to irritate the back of the throat and worsen sinus inflammation.",
+      "Include seasonal fruits rich in vitamin C, such as amla, oranges, sweet lime, and guava, consumed at room temperature to support normal immune function.",
+      "Follow general healthy eating guidelines from the Indian Council of Medical Research and National Institute of Nutrition (ICMR-NIN), ensuring balanced meals with plenty of local vegetables and adequate hydration."
+    ],
+    "lifestyle": [
+      "Perform gentle saline nasal rinses (jal neti or saline squeeze bottle) once or twice daily using only pre-boiled and cooled water or sterile distilled water, never raw tap water.",
+      "Use warm facial compresses: Placing a warm, damp towel across your nose, cheeks, and eyes for 5 to 10 minutes can soothe facial aches and ease sinus tension.",
+      "Protect yourself from urban air pollution: Wear a well-fitted particulate respirator mask (such as N95) when commuting in heavy city traffic, on dusty roads, or during high smog periods.",
+      "Keep indoor air clean: Avoid burning agarbatti, mosquito coils, or scented candles inside closed rooms. Use an exhaust fan while cooking, and regularly clean room air conditioner filters.",
+      "Clean air coolers and humidifiers: If you use a desert cooler in dry weather, scrub the water tank weekly to prevent mold and bacterial buildup, which can circulate directly into your sinuses.",
+      "Sleep with your head slightly elevated: Using an extra pillow or elevating the head of your bed helps mucus drain more naturally and reduces nighttime nasal blockage.",
+      "Quit smoking and avoid second-hand smoke: Tobacco smoke paralyzes the tiny microscopic hairs (cilia) that sweep mucus out of your sinuses, severely worsening congestion."
+    ],
+    "yogaActivity": [
+      "Practice gentle breathing exercises such as Anulom Vilom (alternate nostril breathing) at a calm, unforced pace when nasal passages are open. This promotes relaxed, diaphragmatic breathing.",
+      "Bhramari Pranayama (humming bee breath): The gentle humming vibration created during this practice has been shown in small physiological studies to increase nasal nitric oxide, which may help improve local airflow.",
+      "Gentle asanas like Tadasana, gentle chest-opening stretches, Bhujangasana (cobra pose), and Setu Bandhasana (supported bridge pose) promote upright posture and open the chest.",
+      "Avoid inverted postures like Sirsasana (headstand) or Sarvangasana (shoulder stand) during an acute sinus flare, as holding your head below your heart increases facial blood pressure and pain.",
+      "Modify gym workouts: If you have an active sinus infection with fever or significant facial pressure, pause heavy weightlifting, power cleans, and high-intensity interval training (HIIT). Stick to light walking.",
+      "Avoid swimming in chlorinated pools during acute sinus attacks; pool chemicals frequently irritate the delicate nasal lining and aggravate inflammation."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are sometimes sought by individuals experiencing recurring sinus complaints.",
+      "Systematic scientific reviews and global medical guidelines show no conclusive, robust clinical trial evidence that homeopathic remedies clear sinus infections or correct structural nasal obstructions.",
+      "If you choose to explore homeopathic remedies, do not discontinue your prescribed nasal sprays, saline irrigation, or recommended medical care.",
+      "Never delay consulting a qualified medical doctor or ENT specialist if you develop high fever, severe headaches, or eye swelling."
+    ],
+    "evidenceNotes": [
+      "High-quality evidence: Daily saline nasal irrigation significantly improves symptoms, clears mucus, and reduces the need for frequent medications in both acute and chronic rhinosinusitis.",
+      "High-quality evidence: Intranasal corticosteroid sprays reduce mucosal inflammation, decrease polyp size, and relieve congestion in chronic rhinosinusitis and allergic rhinitis.",
+      "Strong evidence: Most acute rhinosinusitis cases are viral; routine prescription of antibiotics provides little to no benefit over placebo in uncomplicated cases and contributes to antimicrobial resistance.",
+      "Moderate evidence: Steam inhalation provides temporary subjective symptom relief by moisturizing nasal passages, but does not shorten the total duration of the infection.",
+      "Weak or limited evidence: Herbal infusions, kadhas, and individual dietary supplements lack rigorous clinical evidence to eliminate sinus disease on their own. No herb, diet or product can make it go away without appropriate overall care."
+    ],
+    "shouldNotDo": [
+      "Do not demand antibiotics from your doctor or buy them without a prescription from the pharmacy within the first few days of a runny nose and facial pressure.",
+      "Do not use over-the-counter decongestant nasal drops (such as xylometazoline or oxymetazoline) for more than 3 to 5 days in a row; prolonged use causes rebound swelling (rhinitis medicamentosa), making blockage worse.",
+      "Do not use unboiled, plain tap water for nasal irrigation or jal neti, as tap water can carry microscopic amoebae or bacteria that cause life-threatening central nervous system infections.",
+      "Do not inhale boiling-hot steam directly over an open flame or unguarded pot, as hot steam can cause severe burns to the facial skin, eyes, and internal nasal mucosa.",
+      "Do not blow your nose with violent force through both nostrils at once; aggressive blowing forces infected mucus backward into your Eustachian tubes and middle ear.",
+      "Do not ignore symptoms of facial swelling, eye redness, or severe unilateral head pain, assuming it is just a routine weather-change cold."
+    ],
+    "medicationSafety": [
+      "Take pain relievers such as paracetamol strictly as advised by your doctor or according to package guidelines; never exceed recommended daily limits to protect your liver.",
+      "Learn the correct technique for nasal steroid sprays: Tilt your head slightly forward, hold the spray nozzle with the opposite hand pointing slightly outward toward the ear (away from the central nasal septum), and breathe in gently rather than sniffing forcefully.",
+      "If your doctor prescribes an antibiotic for a confirmed bacterial sinus infection, complete the full course exactly as directed; stopping early encourages antibiotic-resistant bacteria to survive.",
+      "Be cautious with combination over-the-counter cold and flu tablets, as they often contain both paracetamol and decongestants. Taking them alongside separate pain tablets can cause an accidental overdose.",
+      "Inform your doctor if you have high blood pressure, glaucoma, or heart disease before using oral decongestant tablets, as they can raise blood pressure and heart rate."
+    ],
+    "complications": [
+      "Periorbital and orbital cellulitis: Infection spreading from the ethmoid sinuses into the surrounding eye socket, leading to eyelid swelling, pain, impaired eye movement, or vision loss.",
+      "Chronic rhinosinusitis: Permanent mucosal thickening, polyp development, and repeated secondary infections resulting from persistent, untreated blockage.",
+      "Intracranial complications: Rare but life-threatening spread of infection into the brain space, causing meningitis, brain abscess, or cavernous sinus thrombosis.",
+      "Spread to middle ear: Eustachian tube dysfunction leading to fluid buildup in the middle ear (serous otitis media) and ear infections.",
+      "Exacerbation of lower airway diseases: Sinus inflammation frequently triggers asthma attacks or worsens chronic bronchitis due to post-nasal drip and shared airway reflexes.",
+      "Loss of sense of smell (anosmia or hyposmia): Prolonged severe mucosal inflammation can impair the olfactory nerves in the roof of the nose."
+    ],
+    "emergencySigns": [
+      "Swelling, redness, severe pain, or drooping of one or both eyelids or around the eye socket.",
+      "Changes in your vision, such as double vision (diplopia), sudden blurriness, or decreased ability to see.",
+      "Severe, excruciating headache, stiff neck, high fever, vomiting, or altered mental alertness, confusion, or extreme lethargy.",
+      "Visible swelling, tenderness, or bulging on the forehead bone (known as Pott puffy tumour, a sign of frontal bone infection).",
+      "Inability to move the eye properly or severe pain when moving the eyeball."
+    ],
+    "whenToSeeDoctor": [
+      "Your sinus symptoms (facial pain, pressure, discoloured discharge) have lasted for more than 10 days without any sign of improvement.",
+      "Your symptoms began to improve for a couple of days but then suddenly returned with worse fever, headache, or thicker nasal discharge ('double sickening').",
+      "You have a fever above 38.5 degrees Celsius (101.3 degrees Fahrenheit) along with severe one-sided facial pain or dental pain.",
+      "You suffer from three to four or more recurrent bouts of sinusitis every year.",
+      "Your symptoms do not improve after using prescribed nasal steroid sprays and saline rinses as directed for several weeks.",
+      "You experience persistent one-sided nasal obstruction, frequent nosebleeds, or foul-smelling nasal discharge."
+    ],
+    "faqs": [
+      {
+        "q": "Does green or yellow nasal discharge mean I need an antibiotic?",
+        "a": "No. Discoloured (yellow or green) mucus is primarily caused by white blood cells fighting off an infection and does not automatically mean a bacterial infection is present. Most viral colds also produce thick, discoloured discharge around day three to five. Antibiotics are only considered if symptoms last longer than 10 days without improvement, or if you experience a sudden worsening after initial recovery, as advised by your doctor."
+      },
+      {
+        "q": "How is a sinus headache different from a migraine?",
+        "a": "True sinus headaches are almost always accompanied by prominent nasal symptoms, including thick nasal discharge, facial pressure, nasal obstruction, and reduced smell. Many people who believe they have recurrent sinus headaches actually have migraines or tension headaches, which frequently cause facial discomfort and sensitivity to light or sound without persistent nasal blockage. An ENT specialist or neurologist can help determine the exact cause."
+      },
+      {
+        "q": "Why should I avoid using decongestant nasal sprays for more than five days?",
+        "a": "Over-the-counter decongestant nasal drops work by constricting blood vessels in your nasal lining to open the airway quickly. However, when used for more than three to five days continuously, the vessels become dependent on the chemical. As soon as the medicine wears off, the vessels swell up even more than before, a condition known as rhinitis medicamentosa or rebound congestion. This leads to a vicious cycle of overuse."
+      },
+      {
+        "q": "Can I continue working out at the gym when I have sinusitis?",
+        "a": "If your symptoms are mild and restricted to a slight runny nose without fever (the 'above the neck' rule), light movement like walking or gentle stationary cycling is generally safe and may even help clear nasal congestion. However, avoid intense cardio, heavy lifting, straining, and inverted yoga poses, as these increase facial pressure and headache. If you have fever, body aches, or significant fatigue, rest until you recover."
+      },
+      {
+        "q": "How can I safely do saline nasal rinses at home?",
+        "a": "Always use clean, safe water: either commercially prepared sterile saline, distilled water, or drinking water that has been boiled for at least one minute and allowed to cool to lukewarm temperature. Never use raw tap water. Mix it with the recommended amount of salt and baking soda packet or premade sachet. Lean over a sink, tilt your head slightly forward and to the side, breathe gently through your mouth, and allow the saline to flow into one nostril and out through the other."
+      }
+    ],
+    "references": [
+      {
+        "title": "Sinusitis",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/sinusitis-sinus-infection/",
+        "year": "2024"
+      },
+      {
+        "title": "Chronic Sinusitis: Symptoms and Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/chronic-sinusitis/symptoms-causes/syc-20351661",
+        "year": "2023"
+      },
+      {
+        "title": "Acute Sinusitis",
+        "source": "StatPearls Publishing / NCBI Bookshelf (Battisti AS et al.)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470383/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "allergic-rhinitis",
+      "seasonal-allergies",
+      "respiratory-allergies",
+      "asthma",
+      "chronic-cough",
+      "headache"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "turmeric",
+      "black-pepper"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

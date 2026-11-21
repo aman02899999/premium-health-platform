@@ -1,0 +1,329 @@
+{
+  "slug": "psoriasis",
+  "name": "Psoriasis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Psoriasis is a long-term, non-contagious autoimmune skin condition that speeds up the growth cycle of skin cells. In healthy skin, cells form deep in the skin and take about three to four weeks to rise to the surface, mature, and shed naturally. In psoriasis, an overactive immune response causes this turnover to happen in just three to seven days. Because the cells multiply much faster than they can fall off, they pile up on the skin surface. This build-up creates raised, thick patches called plaques. On lighter skin, these plaques typically look red or pink with silvery-white scales. On brown or dark Indian skin tones, they often look purple, grey, dark brown, or hyperpigmented, frequently covered with thick, silvery or grey scales. Psoriasis is not an infection, nor is it caused by poor personal hygiene, and it cannot spread from person to person through touch, shared clothing, food, or swimming pools. Modern medical research views psoriasis as a chronic systemic inflammatory condition, meaning the inflammation is not just on the outside of the body. It is tied to higher immune activity throughout the body, which can affect the joints, cardiovascular system, and metabolic health. While psoriasis has no permanent cure, modern dermatological treatments and consistent daily self-care can clear plaques, soothe itching, prevent flare-ups, and help you live an active life.",
+    "quickFacts": [
+      {
+        "label": "Prevalence in India",
+        "value": "0.44% to 2.8% among dermatology clinic patients (Indian Journal of Dermatology, Venereology and Leprology)"
+      },
+      {
+        "label": "Contagious?",
+        "value": "No. You cannot catch it or spread it by contact"
+      },
+      {
+        "label": "Joint involvement",
+        "value": "Up to 30% of people with psoriasis develop psoriatic arthritis (WHO)"
+      },
+      {
+        "label": "Skin cell cycle",
+        "value": "Accelerated from 28 days down to 3 to 7 days"
+      },
+      {
+        "label": "Common triggers",
+        "value": "Mental stress, skin injuries, dry winter air, infections, alcohol, and smoking"
+      },
+      {
+        "label": "Primary treatment",
+        "value": "Daily emollients, medical topicals, phototherapy, and systemic treatments"
+      }
+    ],
+    "causes": [
+      "Immune system misdirection: T-cells and other white blood cells mistakenly attack healthy skin tissue, releasing inflammatory chemical messengers (cytokines such as TNF-alpha, IL-17, and IL-23) that trigger rapid skin cell production.",
+      "Genetic factors: A family history of psoriasis or other autoimmune conditions increases your risk. Having certain genes makes the immune system more likely to overreact.",
+      "Mental and emotional stress: Severe psychological stress is one of the most common flare triggers in adults, releasing stress hormones that worsen systemic inflammation.",
+      "Physical injury to the skin (Koebner phenomenon): Cuts, scratches, sunburns, tight friction from gym equipment, insect bites, or surgical scars can cause new psoriatic plaques to erupt at the site of trauma.",
+      "Infections: Bacterial throat infections (like streptococcal pharyngitis) frequently trigger an acute flare-up of small, droplet-like spots known as guttate psoriasis, especially in young adults.",
+      "Cold, dry weather: The dry winter months in North and Central India strip the skin barrier of natural moisture, causing cracks and worsening scaly plaques.",
+      "Smoking and alcohol: Both habits significantly increase systemic inflammation, make flares more frequent and severe, and reduce how well prescription medicines work.",
+      "Certain prescription medications: Abruptly stopping oral steroids, or taking certain high blood pressure medicines (beta-blockers), lithium, or antimalarials, can trigger or aggravate flares."
+    ],
+    "types": [
+      {
+        "name": "Plaque Psoriasis (Psoriasis Vulgaris)",
+        "desc": "The most common form, accounting for roughly 80 to 90 percent of cases. It causes raised, well-defined plaques covered with thick silvery or greyish scales, commonly on the elbows, knees, lower back, and scalp."
+      },
+      {
+        "name": "Guttate Psoriasis",
+        "desc": "Appears as small, drop-shaped, red or dark pink spots across the chest, arms, legs, and scalp. It often starts suddenly after a bacterial infection, such as a sore throat."
+      },
+      {
+        "name": "Inverse (Flexural) Psoriasis",
+        "desc": "Develops in warm, friction-prone skin folds such as the armpits, groin, under the breasts, and around the buttocks. It produces smooth, red, inflamed patches without heavy scaling because sweat keeps the area moist."
+      },
+      {
+        "name": "Scalp Psoriasis",
+        "desc": "Can appear on parts of the scalp or the entire head, extending beyond the hairline to the forehead, neck, and behind the ears. It causes thick, powdery or adherent silvery scales that can be mistaken for severe dandruff."
+      },
+      {
+        "name": "Nail Psoriasis",
+        "desc": "Affects fingernails and toenails, causing tiny pits, yellowish-brown discoloration (oil-drop sign), thickening, chalky crumbly build-up beneath the nail, and separation from the nail bed."
+      },
+      {
+        "name": "Pustular Psoriasis",
+        "desc": "An uncommon and serious form marked by white, non-infectious pus bumps (pustules) surrounded by inflamed skin. It can be confined to the palms and soles or spread across the entire body."
+      },
+      {
+        "name": "Erythrodermic Psoriasis",
+        "desc": "A rare, life-threatening emergency where widespread, fiery redness and peeling cover more than 80 to 90 percent of the body, disrupting normal body temperature regulation and fluid balance."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination: A dermatologist examines your skin, scalp, and nails under good light to assess plaque thickness, redness, and scaling.",
+      "Auspitz sign check: When a dermatologist gently scrapes away a scale, tiny pinpoint bleeding spots may appear beneath it. This classic sign helps distinguish psoriasis from other rash conditions.",
+      "Joint evaluation: The doctor examines your fingers, toes, and back for morning stiffness, pain, or sausage-like swelling (dactylitis) to check for psoriatic arthritis.",
+      "Skin biopsy (when uncertain): A tiny skin sample is numbed, taken, and examined under a microscope to confirm the diagnosis and rule out conditions like eczema, lichen planus, or fungal infections.",
+      "Comorbidity screening: Because psoriasis involves whole-body inflammation, your doctor will check your blood pressure, waist circumference, blood sugar, and lipid levels."
+    ],
+    "investigations": [
+      {
+        "test": "Skin Biopsy",
+        "purpose": "Confirms diagnosis by revealing characteristic rapid epidermal thickening and inflammatory cells when visual signs overlap with eczema"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures general systemic inflammation levels, helping track overall inflammatory activity",
+        "slug": "crp"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks baseline red and white blood cell levels before and during treatment with systemic medicines",
+        "slug": "cbc"
+      },
+      {
+        "test": "Liver Function Tests (Liver Enzymes)",
+        "purpose": "Essential baseline and monitoring check, as certain oral systemic treatments pass through the liver",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine and Kidney Function",
+        "purpose": "Monitors kidney health before starting and during long-term systemic medical therapies",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Fasting Blood Glucose and HbA1c",
+        "purpose": "Screens for metabolic syndrome and type 2 diabetes, which share inflammatory pathways with psoriasis",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Assesses cardiovascular risk factors that are more common in people living with chronic psoriasis",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Rapid skin cell breakdown and turnover can sometimes elevate uric acid levels in the blood",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Serum Vitamin D",
+        "purpose": "Evaluates vitamin D status, which plays an important role in skin barrier and immune regulation",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Skin barrier repair: Regular, generous application of thick moisturizers, white soft paraffin, or ceramide creams keeps the skin supple, softens scales, and reduces cracking.",
+      "Topical prescription therapies: Dermatologists prescribe topical corticosteroids to calm acute inflammation, combined with topical vitamin D analogues (such as calcipotriol) to slow down rapid cell growth. Coal tar preparations and topical calcineurin inhibitors are also used for sensitive skin areas like the face or groin.",
+      "Keratolytics: Creams or shampoos containing salicylic acid help lift and dissolve tough, thick scales so other medicinal creams can reach the skin underneath.",
+      "Phototherapy (Light therapy): Controlled exposure to medical narrowband ultraviolet B (NB-UVB) or PUVA under clinical supervision slows cell turnover and calms plaques across large body surfaces.",
+      "Oral systemic medicines: For moderate-to-severe psoriasis, specialists prescribe targeted tablets such as methotrexate, cyclosporine, or apremilast to regulate the overactive immune response from within. These require regular blood monitoring.",
+      "Biologics: Advanced injectable therapies (such as anti-TNF, anti-IL-17, or anti-IL-23 medicines) target specific immune proteins causing the inflammation. They are used for severe psoriasis or psoriatic arthritis that does not respond to conventional tablets.",
+      "Treatment plans must be strictly tailored by a dermatologist. Never stop or start prescription pills or creams abruptly without medical guidance."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, psoriasis is broadly discussed under the category of 'Kushtha' (chronic skin disorders), frequently correlated with conditions such as 'Kitibha Kushtha' or 'Ekakushtha'.",
+      "It is traditionally described as an imbalance involving Vata and Kapha doshas, which leads to the accumulation of toxins ('Ama') in the deep tissues, particularly affecting Twak (skin), Rakta (blood), Mamsa (muscle/tissue), and Lasika (lymphatic fluids).",
+      "Traditional Ayurvedic management focuses on gentle purification therapies (Shodhana, such as Panchakarma), lifestyle balance, dietary regulation (Pathya-Apathya), and calming formulations.",
+      "Herbal preparations are used traditionally to support natural blood purification and soothe internal heat. However, scientific evidence supporting these treatments as standalone therapies is weak.",
+      "Ayurvedic care should only be used as a supportive lifestyle and wellness approach alongside your dermatologist's medical treatment, never as an unverified replacement for proven medicine."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditionally valued in Indian households for skin health. While neem has mild anti-inflammatory and soothing properties, human clinical evidence is very limited. It must only serve as gentle supportive skin care, never a substitute for medical therapy."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, a compound with well-documented anti-inflammatory properties that may help reduce systemic inflammatory markers in clinical trials. It provides mild supportive benefits when included in your daily meals."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Known traditionally as an immunomodulator. Scientific trials in psoriasis are lacking, and excessive or unregulated intake can strain the liver. Use only under qualified advice."
+      }
+    ],
+    "nutrition": [
+      "Eat a diverse, anti-inflammatory whole-food diet based on ICMR-NIN dietary guidelines: load half your plate with fresh seasonal vegetables, salads, and fruits.",
+      "Incorporate traditional Indian whole grains and millets like jowar, bajra, ragi, and brown rice instead of refined maida and polished white rice to maintain a healthy gut and steady blood sugar.",
+      "Ensure adequate lean protein to support healthy skin repair: include dal, moong, chana, rajma, paneer, eggs, or fish.",
+      "Add healthy omega-3 fatty acids: eat a handful of walnuts, flaxseeds (alsi), chia seeds, and fatty fish like rohu or mackerel, which help dampen internal inflammatory signals.",
+      "Cook with moderate amounts of traditional oils like mustard or groundnut oil, keeping total cooking fat within recommended ICMR limits (around 25 to 30 grams per day).",
+      "Limit ultra-processed snacks: cut down on deep-fried pakoras, bhujia, namkeen, bakery biscuits, sugary soft drinks, and packaged sweets, which drive systemic inflammation.",
+      "Stay well hydrated throughout the day with plain water, chaas (buttermilk), and tender coconut water to support internal skin hydration, avoiding sugary syrups."
+    ],
+    "lifestyle": [
+      "Soak and seal moisturization: Apply a thick, fragrance-free emollient or pure cold-pressed coconut oil all over your skin within three minutes of bathing while the skin is still slightly damp.",
+      "Take short, lukewarm showers: Avoid hot water baths, which strip natural protective oils and trigger intense itching and irritation.",
+      "Use mild, soap-free cleansers: Avoid harsh laundry detergents, strong antibacterial soaps, and heavily fragranced body washes.",
+      "Protect skin from injuries: Be gentle with your skin. Do not pick, peel, or vigorously scratch dry scales, as trauma triggers new plaques (Koebner effect).",
+      "Wear loose, breathable cotton clothes: Soft cotton garments minimize friction and sweat accumulation, unlike scratchy woollen or tight synthetic polyester fabrics.",
+      "Protect yourself in winter: Use a room humidifier if you live in dry northern climates, and apply heavier barrier ointments during winter months.",
+      "Quit tobacco and cut out alcohol: Both significantly worsen disease severity and interfere with the effectiveness of modern dermatological medicines.",
+      "Manage daily stress: Dedicate 20 to 30 minutes every day to calming activities such as listening to music, reading, walking in nature, or meditation."
+    ],
+    "yogaActivity": [
+      "Practice stress-relieving pranayama: Gentle breathing techniques such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) help soothe the nervous system and lower cortisol levels.",
+      "Engage in gentle stretching and mobility exercises: Asanas such as Tadasana, Marjaryasana-Bitilasana (Cat-Cow pose), and gentle Setu Bandhasana keep joints flexible, especially if you experience morning stiffness.",
+      "Incorporate Shavasana: Deep relaxation at the end of every yoga session promotes mental calm and aids the body's natural recovery processes.",
+      "Gym precautions: If you lift weights, wear smooth, padded gloves to avoid friction blisters on your palms. Clean gym benches before use and shower with lukewarm water immediately after your workout to remove sweat.",
+      "Avoid high-friction exercises and rough floor work without a soft mat, which can irritate plaques on your elbows and knees."
+    ],
+    "homeopathyNote": [
+      "There is no reliable, high-quality scientific evidence demonstrating that homeopathic remedies can clear psoriatic plaques, alter immune cell turnover, or prevent joint damage.",
+      "Delaying evidence-based dermatological care in favor of unverified remedies can lead to worsening flares, severe skin cracking, and permanent joint disability in psoriatic arthritis.",
+      "If you choose to take homeopathic remedies, always inform your dermatologist and never stop your prescribed medical treatments."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Topical corticosteroids, topical vitamin D analogues, phototherapy (NB-UVB), oral immunosuppressants (such as methotrexate), and targeted biologics are scientifically proven to clear plaques and reduce inflammation.",
+      "Moderate evidence: Weight loss in overweight individuals, dietary omega-3 fatty acids, and smoking cessation consistently improve skin clearance scores and enhance response to systemic medications.",
+      "Limited or weak evidence: Neem, local herbal pastes, specialized exclusion diets, and alternative purification procedures have little to no rigorous clinical data showing long-term benefit for psoriasis.",
+      "No credible evidence: Internet 'miracle cure' powders, herbal detox drinks, or blood-purifying tonics. No herb, diet, or product can make psoriasis go away permanently."
+    ],
+    "shouldNotDo": [
+      "Do not scratch, pick, or tear off silvery scales: Pulling off scales causes bleeding and triggers new, larger plaques to form in that exact spot.",
+      "Do not stop prescription oral medicines or steroid creams suddenly: Abrupt withdrawal, especially of oral steroids or strong systemic drugs, can trigger a dangerous rebound flare or pustular psoriasis.",
+      "Do not scrub plaques with loofahs, pumice stones, or harsh brushes during bathing.",
+      "Do not fall for advertisements promising a '100% permanent cure': Psoriasis is a manageable chronic genetic condition; claims of a complete wipeout are misleading and potentially dangerous.",
+      "Do not ignore joint pain or morning stiffness: Thinking it is just gym soreness can allow irreversible joint damage from psoriatic arthritis to progress quietly.",
+      "Do not apply unverified home remedies, raw garlic paste, caustic plant extracts, or battery acid pastes to plaques, which can cause severe chemical burns and infection."
+    ],
+    "medicationSafety": [
+      "Always apply topical prescription creams precisely as instructed by your dermatologist. Do not use strong steroid creams on delicate skin areas like the face, groin, or eyelids unless explicitly directed.",
+      "Take systemic medications (such as methotrexate) exactly on the designated day of the week as advised by your doctor, and never take extra doses.",
+      "Complete routine blood tests on schedule: Regular monitoring of your complete blood count, liver enzymes, and kidney function is essential while on oral systemic therapies.",
+      "Discuss family planning early: Certain systemic medicines are strictly unsafe during pregnancy and breastfeeding and must be discontinued months ahead of planned conception under medical guidance.",
+      "Inform every doctor and dentist about your medications: If you are taking immunosuppressants or biologic injections, your body may handle infections and vaccines differently."
+    ],
+    "complications": [
+      "Psoriatic arthritis: Inflammatory joint disease affecting up to 30 percent of people with psoriasis, causing pain, stiffness, and permanent joint deformity if untreated.",
+      "Cardiovascular disease: Persistent systemic inflammation significantly raises the long-term risk of high blood pressure, heart attack, and stroke.",
+      "Metabolic disorders: Higher incidence of obesity, insulin resistance, non-alcoholic fatty liver disease, and type 2 diabetes.",
+      "Secondary bacterial infections: Cracked, open skin lesions allow bacteria like staphylococcus to enter, leading to painful cellulitis or impetigo.",
+      "Psychological impact: Visible skin plaques frequently cause severe emotional distress, social anxiety, depression, sleep disturbances, and reduced self-confidence.",
+      "Erythroderma and fluid loss: Severe extensive flares can cause the skin to lose its ability to regulate temperature, leading to hypothermia, high-output heart failure, and severe dehydration."
+    ],
+    "emergencySigns": [
+      "Widespread redness and shedding covering almost the entire body (over 80 to 90 percent), accompanied by uncontrollable shivering, high fever, and extreme exhaustion (possible erythroderma).",
+      "Sudden eruption of widespread, burning, pus-filled blisters (pustules) over large areas of the body along with fever (generalized pustular psoriasis).",
+      "Rapidly spreading redness, severe heat, foul-smelling discharge, or red streaks extending from a skin plaque, signaling a severe bacterial skin infection.",
+      "Sudden chest tightness, shortness of breath, confusion, or fainting, requiring immediate emergency medical care."
+    ],
+    "whenToSeeDoctor": [
+      "You notice new, persistent red or dark scaly patches on your skin that do not improve with basic moisturizers within two weeks.",
+      "You develop persistent pain, swelling, tenderness, or morning stiffness in your fingers, toes, wrists, knees, or lower back.",
+      "Your nail plates develop pitting, crumbling, yellow-brown discoloration, or begin separating from the nail beds.",
+      "Existing skin plaques crack open, bleed regularly, become intensely painful, or show signs of oozing pus.",
+      "Your skin condition interferes with your ability to sleep, perform daily gym or work tasks, or causes severe emotional distress and anxiety.",
+      "You experience a sudden flare-up of widespread spots following a throat infection or cold."
+    ],
+    "faqs": [
+      {
+        "q": "Is psoriasis contagious? Can I get it from touching someone or sharing gym equipment?",
+        "a": "No. Psoriasis is completely non-contagious. It is driven by your body's internal immune system and genetics. You cannot contract it or transmit it through physical touch, sweat, sharing towels, gym weights, or swimming in the same pool."
+      },
+      {
+        "q": "Can psoriasis be cured permanently?",
+        "a": "Psoriasis cannot be cured permanently because the genetic and immune tendencies remain. However, modern treatments can clear skin plaques completely or near-completely, control itching, prevent joint damage, and keep symptoms in remission for long periods."
+      },
+      {
+        "q": "Does coconut oil help treat psoriasis?",
+        "a": "Pure coconut oil is an excellent natural emollient that hydrates dry skin, locks in moisture, and softens stubborn scales when applied immediately after a bath. While it provides great daily symptomatic comfort, no herb, diet or product can make it go away, and coconut oil does not replace targeted anti-inflammatory medications prescribed by a dermatologist."
+      },
+      {
+        "q": "Why does psoriasis get worse during winter?",
+        "a": "Winter air in many parts of India has very low humidity, which dries out the outer skin barrier. Cold weather, reduced sunlight exposure (which normally provides mild natural UV therapy), and hot water baths strip skin oils, triggering flare-ups."
+      },
+      {
+        "q": "How is psoriasis different from eczema?",
+        "a": "While both cause itchy rashes, psoriasis produces well-demarcated, thick plaques covered with silvery scales, commonly on the outer surfaces of elbows and knees. Eczema often causes intense itching, oozing, and less defined patches, frequently in the inner bends of elbows and knees."
+      },
+      {
+        "q": "Can I work out and lift weights in the gym if I have psoriasis?",
+        "a": "Yes, regular exercise is highly beneficial as it helps reduce systemic inflammation, supports weight management, and improves mood. Wear soft cotton clothes, protect hands with padded gloves to avoid friction trauma, and take a lukewarm shower shortly after exercising."
+      }
+    ],
+    "references": [
+      {
+        "title": "Global report on psoriasis",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241565189",
+        "year": "2016"
+      },
+      {
+        "title": "Psoriasis in India: Prevalence and pattern",
+        "source": "Indian Journal of Dermatology, Venereology and Leprology (Dogra S, Yadav S)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21045388/",
+        "year": "2010"
+      },
+      {
+        "title": "Joint AAD-NPF guidelines of care for the management and treatment of psoriasis with topical therapy and alternative approaches",
+        "source": "Journal of the American Academy of Dermatology (Elmets CA et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32738426/",
+        "year": "2021"
+      },
+      {
+        "title": "Psoriasis: Overview, Symptoms, and Management",
+        "source": "National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS / NIH)",
+        "url": "https://www.niams.nih.gov/health-topics/psoriasis",
+        "year": "2023"
+      },
+      {
+        "title": "Psoriasis: Diagnosis and Management Guidelines",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/psoriasis/",
+        "year": "2022"
+      }
+    ],
+    "relatedDiseases": [
+      "arthritis",
+      "joint-stiffness",
+      "cardiovascular-risk",
+      "metabolic-syndrome",
+      "type-2-diabetes",
+      "obesity",
+      "depression",
+      "anxiety",
+      "dry-skin"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3",
+      "atorvastatin",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "turmeric",
+      "giloy"
+    ],
+    "relatedLabs": [
+      "crp",
+      "cbc",
+      "liver-enzymes",
+      "creatinine",
+      "fasting-glucose",
+      "lipid-profile",
+      "uric-acid",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

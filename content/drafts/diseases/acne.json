@@ -1,0 +1,289 @@
+{
+  "slug": "acne",
+  "name": "Acne",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Acne (acne vulgaris) is a common, long-term skin condition that happens when hair follicles become blocked with excess natural oil (sebum) and dead skin cells. This blockage creates an ideal environment for normal skin bacteria, specifically Cutibacterium acnes, to multiply and trigger inflammation. It shows up as blackheads, whiteheads, red bumps, pus-filled pimples, or deep, painful cysts. Acne most often affects the face, neck, chest, upper back, and shoulders. While it is most frequent during the teenage years due to hormonal surges, it frequently continues or even begins in adulthood, particularly among women. In India, acne is one of the leading reasons people visit dermatologists. Indian skin tones (Fitzpatrick skin types III to V) naturally contain more melanin, which means even mild acne spots often leave stubborn dark brown marks, known as post-inflammatory hyperpigmentation, long after the pimple itself has flattened. Acne is not caused by poor hygiene or dirt, and it is not simply a cosmetic phase that one must endure. It is a genuine medical disorder of the hair follicle unit that responds well to systematic, evidence-based care.",
+    "quickFacts": [
+      {
+        "label": "Who is affected",
+        "value": "Over 80% of teenagers and up to 20% of adult women"
+      },
+      {
+        "label": "Peak age group",
+        "value": "15 to 24 years, though adult-onset acne is rising"
+      },
+      {
+        "label": "Primary cause",
+        "value": "Clogged pores, excess sebum, and bacterial inflammation"
+      },
+      {
+        "label": "Indian skin feature",
+        "value": "High risk of prolonged dark marks (hyperpigmentation)"
+      },
+      {
+        "label": "Average treatment time",
+        "value": "8 to 12 weeks of steady treatment to see clear results"
+      },
+      {
+        "label": "Daily care rule",
+        "value": "Gentle cleansing twice a day without scrubbing"
+      }
+    ],
+    "causes": [
+      "Excess sebum production. Androgen hormones stimulate the sebaceous glands in the skin to produce more oil, especially during puberty, around menstrual periods, or in hormonal conditions.",
+      "Abnormal shedding of skin cells. Instead of shedding smoothly, dead skin cells stick together inside the pore lining, forming a solid plug called a microcomedone.",
+      "Bacterial overgrowth. Cutibacterium acnes, a bacterium that lives harmlessly on human skin in small numbers, feeds on trapped sebum within blocked pores, multiplying quickly and releasing irritating substances.",
+      "Inflammation. The body's immune system sends white blood cells to combat the bacterial buildup, causing swelling, redness, soreness, and pus.",
+      "Hormonal fluctuations. Spikes in male hormones (androgens) during puberty, premenstrual phases, pregnancy, or conditions like Polycystic Ovary Syndrome (PCOS) drive oil glands into overdrive.",
+      "High-glycemic foods. Diets rich in refined carbohydrates, white flour (maida), sugary drinks, and traditional sweets cause rapid spikes in blood sugar and insulin, which can stimulate sebum and worsen breakouts.",
+      "Friction, pressure, and sweat (acne mechanica). In hot, humid Indian weather, wearing tight synthetic gym clothes, motorbike helmets, or tight collars traps sweat and rubs against follicles, provoking outbreaks.",
+      "Heavy cosmetic products and hair oils. Traditional practices like overnight head oiling (champis) with mustard, coconut, or mineral oils often cause pomade acne along the forehead and hairline.",
+      "Medications. Systemic steroids, certain anticonvulsants, lithium, and over-the-counter fairness creams that secretly contain strong topical corticosteroids frequently induce severe acne flares."
+    ],
+    "types": [
+      {
+        "name": "Comedonal acne (non-inflammatory)",
+        "desc": "Consists of closed comedones (whiteheads) where the pore is sealed, and open comedones (blackheads) where trapped oil oxidises on contact with air, turning dark."
+      },
+      {
+        "name": "Papulopustular acne (inflammatory)",
+        "desc": "Presents as small, red, tender bumps (papules) or bumps with visible white or yellow pus at the center (pustules), caused by deeper inflammation."
+      },
+      {
+        "name": "Nodulocystic acne (severe)",
+        "desc": "Deep, painful, hard lumps (nodules) or soft, fluid-filled pockets (cysts) under the skin. This severe form carries a very high risk of permanent pitted scars."
+      },
+      {
+        "name": "Adult hormonal acne",
+        "desc": "Often strikes women in their twenties, thirties, or beyond, presenting primarily along the jawline, chin, and lower neck, usually flaring a week before the menstrual cycle."
+      },
+      {
+        "name": "Acne mechanica",
+        "desc": "Triggered by friction, heat, and sweat under helmet straps, face masks, backpack straps, or tight gym vests."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination. A doctor or dermatologist diagnoses acne by visually examining your face, chest, and back under good lighting.",
+      "Severity grading. The doctor classifies your acne as mild, moderate, or severe based on the number, depth, and spread of comedones, papules, pustules, or cysts.",
+      "Screening for hormonal signs. In adult women, the doctor will check for clues of PCOS, such as irregular monthly periods, thinning scalp hair, or excess coarse hair on the chin and abdomen.",
+      "Medication and skincare review. Your doctor will review all face washes, fairness creams, hair oils, protein powders (especially whey concentrate), and medications you currently use.",
+      "Ruling out look-alikes. The doctor confirms the condition is not rosacea, fungal folliculitis, or steroid-induced skin eruptions."
+    ],
+    "investigations": [
+      {
+        "test": "Fasting plasma glucose",
+        "purpose": "Checks for insulin resistance, which often drives hormonal breakouts",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c test",
+        "purpose": "Evaluates three-month blood sugar control linked to systemic inflammation",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Thyroid stimulating hormone (TSH)",
+        "purpose": "Rules out thyroid disorders when irregular periods accompany adult acne",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Provides baseline blood parameters before starting oral prescription medicines",
+        "slug": "cbc"
+      },
+      {
+        "test": "Liver function tests (enzymes)",
+        "purpose": "Monitors liver health before and during treatments like oral isotretinoin",
+        "slug": "liver-enzymes"
+      }
+    ],
+    "modernTreatment": [
+      "Topical retinoids. Creams or gels containing adapalene, tretinoin, or trifarotene help normalise skin cell shedding, clear microcomedones, and prevent new plugs from forming. They are applied at night as advised by your doctor.",
+      "Benzoyl peroxide. An antimicrobial wash or gel that reduces C. acnes bacteria on the skin and gently breaks down plugs. It does not cause bacterial resistance, making it an essential treatment foundation.",
+      "Topical azelaic acid. Helps unclog pores, calms redness, and is especially valuable for Indian skin because it gently lightens post-acne dark marks (hyperpigmentation).",
+      "Topical and oral antibiotics. Dermatologists may prescribe medicines such as clindamycin gel (always paired with benzoyl peroxide to stop resistance) or oral doxycycline for short, controlled courses to calm acute, angry pustules.",
+      "Oral isotretinoin. A powerful vitamin A derivative reserved for severe, nodular, or scarring acne, or acne that fails other therapies. It shrinks oil glands and reduces sebum drastically. It requires strict medical supervision and liver monitoring.",
+      "Hormonal therapy for women. Certain combined oral contraceptive pills or anti-androgen tablets (such as spironolactone) can reduce androgen levels, curbing oil gland overactivity when lifestyle steps alone are not enough.",
+      "In-clinic procedures. Dermatologists may use superficial chemical peels, comedone extraction, or light-based treatments to support medical care, followed later by subcision or laser for existing scars."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, acne is commonly discussed under the terms Mukhadushika or Yuvanpidika (eruptions of youth). It is traditionally seen as an imbalance of Pitta and Kapha doshas, which disturb Rakta dhatu (the blood tissue).",
+      "Kapha is believed to increase stickiness and oiliness, while irritated Pitta brings heat, redness, and inflammation to the skin of the face.",
+      "Traditional texts advise consuming light, cooling, and bitter foods, while avoiding excessively spicy, sour, salty, and deep-fried preparations.",
+      "These concepts represent a historical philosophical framework rather than a modern scientific diagnosis. Ayurvedic treatments should only be used as gentle supportive care alongside validated medical treatment.",
+      "Caution is necessary with home-made herbal pastes applied directly to active acne, as coarse powders can cause contact dermatitis, block pores further, or leave severe hyperpigmentation on Indian skin."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditionally valued for antimicrobial properties. Mild laboratory activity exists, but clinical trials are very limited. Use only as supportive care and never apply raw leaf pastes on open pimples."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Contains volatile oils with weak antibacterial qualities in laboratory tests. Robust human evidence for curing acne is lacking. It may be enjoyed as a warm herbal tea to support general wellbeing."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild anti-inflammatory support in general wellness studies. Topical home-made haldi pastes can irritate delicate facial skin and cause staining; dietary intake in meals is safer."
+      }
+    ],
+    "nutrition": [
+      "Adopt a low-glycemic eating pattern. Swap refined flour (maida), white bread, bakery biscuits, and polished white rice for whole grains like brown rice, oats, whole wheat roti, and Indian millets (ragi, jowar, bajra).",
+      "Cut down on added sugars and sweetened beverages. Avoid carbonated sodas, packaged juices, and traditional Indian sweets (mithai), as sharp glucose spikes trigger an insulin rush that prompts sebum production.",
+      "Review your dairy consumption. Some studies show that skimmed and low-fat milk can trigger acne in sensitive individuals, possibly due to natural bovine hormones. If you notice breakouts after consuming milk, discuss a trial reduction with your doctor.",
+      "Reconsider whey protein supplements. Concentrated whey protein supplements used in gym workouts are a recognized trigger for sudden chest, back, and facial flares. Consider plant-based alternatives under professional guidance.",
+      "Fill half your plate with colorful vegetables. Include local greens (palak, methi, chaulai), carrots, pumpkin, and gourd vegetables (lauki, tori), which provide dietary fiber, vitamins A and C, and essential antioxidants.",
+      "Include healthy fats in moderation. Walnuts, flaxseeds, chia seeds, and modest amounts of mustard or olive oil provide omega-3 and healthy fatty acids that help support skin barrier health without overstimulating oil glands."
+    ],
+    "lifestyle": [
+      "Cleanse your face gently twice daily. Use a mild, soap-free, non-comedogenic foaming cleanser. Avoid aggressive face washes that strip your skin, as excessive dryness prompts glands to pump out even more rebound oil.",
+      "Stop touching, picking, or popping pimples. Squeezing drives bacteria and inflammatory debris deeper into the dermis, dramatically increasing the likelihood of pitted scars and dark hyperpigmented spots.",
+      "Wash gym gear and towels immediately after use. Do not sit in sweat-soaked workout shirts or sports bras; take a shower promptly after heavy exercise to avoid sweat-induced acne mechanica on the back and chest.",
+      "Rethink traditional hair oil routines. If you have forehead bumps or clogged temples, stop keeping coconut, almond, or mustard oil in your hair overnight. If you apply oil, do so 30 minutes before shampooing and wash it out completely.",
+      "Select non-comedogenic skincare and sunscreens. Always look for the terms 'non-comedogenic', 'oil-free', or 'gel-based' on moisturisers and sunscreens. A lightweight, matte-finish sunscreen is vital because acne treatments make skin sun-sensitive.",
+      "Wash your pillowcase twice a week. Fabric collects skin oils, residual hair products, and dead cells, which are transferred back to your facial skin throughout the night."
+    ],
+    "yogaActivity": [
+      "Practice stress-relieving asanas. High emotional stress releases cortisol and neuro-hormones that worsen acne flares. Gentle postures such as Balasana (Child's Pose), Viparita Karani (Legs-up-the-wall Pose), and Shavasana help lower sympathetic nervous system tone.",
+      "Adopt calming breathing techniques. Anulom Vilom (Alternate Nostril Breathing) and Bhramari Pranayama (Bee Breath) for 10 minutes daily promote relaxation and improve sleep hygiene.",
+      "Avoid extreme hot yoga sessions during acute, angry inflammatory breakouts, as intense convective heat and dripping sweat can worsen facial redness and folliculitis.",
+      "Maintain regular aerobic exercise. 30 minutes of moderate walking, cycling, or swimming most days helps regulate insulin sensitivity, but always rinse your face with plain water or a mild cleanser immediately after your session."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are sometimes marketed for purifying the blood or clearing facial eruptions. However, there is no high-quality, systematic scientific evidence demonstrating that homeopathic remedies resolve acne or stop scarring.",
+      "Relying solely on homeopathy for moderate or severe nodulocystic acne can delay proven medical intervention, resulting in permanent facial scarring and deep hyperpigmentation.",
+      "If you choose to use homeopathic remedies, do so only after discussing it with your dermatologist, and do not abandon prescribed topical or systemic medical therapies."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Topical retinoids, benzoyl peroxide, oral isotretinoin, and low-glycemic diets have robust, reproducible clinical trial evidence demonstrating efficacy in reducing comedones and inflammatory lesions.",
+      "Moderate evidence: Azelaic acid, oral tetracycline antibiotics, anti-androgen hormonal therapies, and zinc supplements show consistent benefit in clinical trials for specific patient subgroups.",
+      "Weak or limited evidence: Dietary elimination of chocolate or greasy foods alone without an overall glycemic reduction shows weak links; topical tea tree oil has small, limited trials showing slow benefit.",
+      "No credible evidence: Blood-purifying syrups, spot treatments with toothpaste or lemon juice, and magnet or detox patches have zero scientific backing and frequently provoke severe irritant contact dermatitis."
+    ],
+    "shouldNotDo": [
+      "Do not pop, squeeze, or scratch active pimples. This ruptures the delicate follicle wall underneath, introduces secondary bacterial infection, and guarantees dark marks or scars.",
+      "Do not apply raw household ingredients like lemon juice, garlic cloves, baking soda, or toothpaste to pimples. These cause chemical burns, severe peeling, and severe post-inflammatory hyperpigmentation.",
+      "Do not scrub your face with rough walnut or apricot scrubs, loofahs, or stiff brushes. Mechanical abrasion inflames the skin and aggravates acne.",
+      "Do not use over-the-counter steroid fairness creams (such as those containing clobetasol, betamethasone, or hydroquinone combinations) to lighten spots. They produce severe steroid acne, thin the skin, and cause visible blood vessels.",
+      "Do not skip daily moisturiser assuming it makes acne worse. When medical acne treatments dry your skin, an oil-free, gel-based moisturiser is essential to maintain the protective skin barrier."
+    ],
+    "medicationSafety": [
+      "Introduce topical retinoids slowly. Apply a pea-sized amount over the entire face every third night for the first two weeks, gradually increasing frequency to minimise flaking, burning, and dryness.",
+      "Always apply broad-spectrum sunscreen in the morning. Retinoids, benzoyl peroxide, and chemical peels make your skin significantly more vulnerable to sunburn and dark discoloration.",
+      "Strict pregnancy warnings with oral retinoids. Isotretinoin causes devastating birth defects. Women of childbearing potential must use reliable contraception and confirm a negative pregnancy test before, during, and right after therapy under strict medical guidance.",
+      "Complete antibiotic courses as directed. Never take oral or topical antibiotics intermittently or stop them early, as this leads to antibiotic-resistant bacterial strains on your skin.",
+      "Be aware that benzoyl peroxide can bleach clothing, dark pillowcases, and towels upon contact."
+    ],
+    "complications": [
+      "Post-inflammatory hyperpigmentation (PIH). Stubborn, dark brown or purple spots that remain for months or years after an acne lesion heals, particularly common and long-lasting in Indian skin.",
+      "Permanent scarring. Atrophic (depressed, ice-pick, boxcar, or rolling) scars, or raised hypertrophic and keloid scars, especially along the jawline, chest, and back.",
+      "Secondary bacterial infection. Scratching open pustules can allow Staphylococcus aureus to enter, leading to impetigo or deeper facial soft tissue infections.",
+      "Psychological distress. Severe impact on self-esteem, social withdrawal, anxiety, and depression, which are frequently reported among young adults dealing with visible facial blemishes.",
+      "Gram-negative folliculitis. A complication caused by prolonged, unsupervised courses of oral antibiotics, leading to widespread, resistant pustules."
+    ],
+    "emergencySigns": [
+      "Rapidly spreading redness, extreme tenderness, warmth, and swelling on the face, especially around the eyes or bridge of the nose, accompanied by high fever (signs of cellulitis).",
+      "Sudden severe swelling of the lips, tongue, eyelids, or difficulty breathing after taking an oral acne medicine (signs of an acute anaphylactic allergic reaction).",
+      "Severe, widespread blistering, skin peeling, or mouth ulcers after beginning a new prescription tablet (signs of severe drug reactions such as Stevens-Johnson syndrome).",
+      "Severe headache, vomiting, and visual blurring while on oral acne medications like isotretinoin or tetracyclines (possible raised intracranial pressure)."
+    ],
+    "whenToSeeDoctor": [
+      "Your acne is painful, deep, cystic, or leaves depressed pits and permanent marks as it resolves.",
+      "Over-the-counter washes and non-prescription gels have made no noticeable difference after 8 to 12 weeks of regular use.",
+      "You are an adult woman experiencing new acne breakouts alongside irregular periods, unexplained weight gain, or unusual hair growth on your chin or chest.",
+      "Your breakouts are causing severe emotional distress, social isolation, or feelings of depression.",
+      "Your skin becomes severely red, peeling, swollen, or painfully raw after starting a new acne preparation."
+    ],
+    "faqs": [
+      {
+        "q": "Does eating oily street food directly cause acne?",
+        "a": "Eating a single samosa or pakora does not directly cause an instant pimple the next morning. However, an overall diet high in fried, refined carbohydrates and sweets drives rapid insulin spikes, which stimulate oil glands over time. Moderation and balanced eating remain essential."
+      },
+      {
+        "q": "Why does acne leave such stubborn dark marks on Indian skin?",
+        "a": "Indian skin produces high amounts of melanin. Whenever inflammation occurs—such as from a pimple or picking at it—melanocytes in the skin get triggered to produce extra pigment. This post-inflammatory hyperpigmentation (PIH) takes months to fade and requires gentle care and sun protection."
+      },
+      {
+        "q": "Will washing my face five times a day clear my acne faster?",
+        "a": "No. In fact, washing too frequently strips away essential barrier lipids, causes irritation, and prompts your oil glands to release compensatory excess sebum. Stick to washing your face gently twice daily with a mild, soap-free cleanser."
+      },
+      {
+        "q": "Can gym protein powders trigger acne breakouts?",
+        "a": "Yes. Concentrated whey protein supplements stimulate insulin-like growth factor 1 (IGF-1), which boosts androgen hormones and sebum production. If you develop sudden acne on your face, back, or chest after starting whey, speak with your doctor about switching to a plant-based alternative."
+      },
+      {
+        "q": "How long does acne medical treatment take to show visible results?",
+        "a": "Skin cells take roughly 28 days to turn over, and hair follicles respond gradually. Most prescription treatments take between 8 to 12 weeks of steady, daily use before you see clear, noticeable improvements. Patience and consistency are vital."
+      }
+    ],
+    "references": [
+      {
+        "title": "Acne vulgaris: diagnosis and treatment",
+        "source": "American Family Physician (Sutaria AH et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29443577/",
+        "year": "2018"
+      },
+      {
+        "title": "Management of Acne: Canadian Clinical Practice Guideline Update",
+        "source": "CMAJ (Asai Y et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26573753/",
+        "year": "2016"
+      },
+      {
+        "title": "Diet and acne: A systematic review",
+        "source": "Journal of the American Academy of Dermatology (Bowe WP et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20362534/",
+        "year": "2010"
+      },
+      {
+        "title": "Guidelines of care for the management of acne vulgaris",
+        "source": "Journal of the American Academy of Dermatology (Reynolds RV et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38300170/",
+        "year": "2024"
+      },
+      {
+        "title": "Post-inflammatory hyperpigmentation: a review of the epidemiology, clinical features, and treatment options in skin of color",
+        "source": "Journal of Clinical and Aesthetic Dermatology (Davis EC, Callender VD)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20725554/",
+        "year": "2010"
+      },
+      {
+        "title": "Acne Vulgaris: Management guidelines",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng198",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "pcos",
+      "insulin-resistance",
+      "dandruff",
+      "pigmentation",
+      "stress",
+      "anxiety"
+    ],
+    "relatedMedicines": [
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "tulsi",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "fasting-glucose",
+      "hba1c",
+      "tsh",
+      "liver-enzymes",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

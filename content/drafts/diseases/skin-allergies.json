@@ -1,0 +1,281 @@
+{
+  "slug": "skin-allergies",
+  "name": "Skin Allergies",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A skin allergy occurs when your body's immune system mistakenly treats a harmless substance as a threat and launches an attack against it. When your skin comes into contact with or absorbs an allergen, your immune cells release inflammatory chemicals, including histamine. This reaction triggers redness, swelling, burning, fluid-filled blisters, or intense itching. In India, skin allergies are very common. They are often triggered by metals in artificial jewellery, chemicals in hair dyes and bindis, harsh laundry detergents, certain plants like Parthenium (Congress grass), synthetic Holi powders, cosmetic fragrances, and specific foods or medicines. Skin allergies can appear suddenly within minutes or build up slowly over days. While mild reactions resolve once the trigger is avoided, some reactions can become chronic or escalate into severe medical emergencies.",
+    "quickFacts": [
+      {
+        "label": "Common Indian Triggers",
+        "value": "Nickel jewellery, hair dye (PPD), Parthenium grass, detergents, and synthetic fragrances"
+      },
+      {
+        "label": "Key Symptoms",
+        "value": "Red or hyperpigmented patches, intense itching, raised hives (wheals), and dry flaking"
+      },
+      {
+        "label": "Onset Time",
+        "value": "Immediate (minutes to hours for hives) or delayed (24 to 72 hours for contact dermatitis)"
+      },
+      {
+        "label": "Typical Duration",
+        "value": "Acute episodes last 1 to 3 weeks; chronic urticaria can persist for months"
+      },
+      {
+        "label": "First-Line Medical Care",
+        "value": "Trigger avoidance, gentle barrier emollients, antihistamines, and prescribed topical creams"
+      }
+    ],
+    "causes": [
+      "Contact with sensitising metals: Nickel is the most frequent cause of metal-induced contact allergy. It is widely used in artificial gold and silver imitation jewellery, watch straps, jean buttons, belt buckles, and spectacle frames.",
+      "Cosmetics and personal care chemicals: Paraphenylenediamine (PPD) found in permanent black hair dyes and 'black henna', preservatives in skin creams, fragrance mixes, and adhesive gums used in stick-on bindis or cosmetic tapes.",
+      "Plant allergens: Parthenium hysterophorus (locally called Congress grass or carrot grass) is spread across urban and rural India. It causes severe airborne contact dermatitis, especially on exposed parts of the face, neck, and arms.",
+      "Household cleaning agents: Harsh laundry detergents, dishwashing soaps, and floor disinfectants strip the skin's protective lipid barrier and provoke acute or chronic irritant and allergic eczematous reactions on the hands.",
+      "Medicines and topical ointments: Adverse drug eruptions caused by antibiotics, anti-epileptic drugs, or over-the-counter painkiller tablets. Also, frequent self-application of topical neomycin or herbal pastes on damaged skin can sensitise the skin.",
+      "Food allergens and insect stings: Consuming foods such as peanuts, shellfish, tree nuts, eggs, or milk can cause widespread acute hives (urticaria). Stings from honeybees, wasps, or red ants can trigger both local swelling and systemic allergic reactions.",
+      "Physical triggers: Extreme heat, sweating during workouts in hot Indian summers, friction from synthetic gym clothes, cold air, or emotional stress can trigger hives in susceptible individuals."
+    ],
+    "types": [
+      {
+        "name": "Allergic Contact Dermatitis (ACD)",
+        "desc": "A delayed hypersensitivity reaction (Type IV) that appears 24 to 72 hours after skin touches an allergen like nickel, hair dye, cement, or poison ivy. It presents with red or dark swollen patches, tiny fluid-filled bumps, cracking, and severe burning itch."
+      },
+      {
+        "name": "Acute and Chronic Urticaria (Hives)",
+        "desc": "An immediate allergic or immune-mediated response (Type I) marked by raised, red, or pale pink swelling called wheals. Wheals itch intensely, move from place to place, and resolve within 24 hours in one spot. Acute urticaria lasts under 6 weeks, while chronic urticaria lasts beyond 6 weeks."
+      },
+      {
+        "name": "Angioedema",
+        "desc": "A deeper allergic swelling affecting the subcutaneous or submucosal tissues. It commonly causes dramatic, puffy swelling around the eyes, lips, tongue, hands, or throat, and requires urgent medical evaluation."
+      },
+      {
+        "name": "Airborne Contact Dermatitis",
+        "desc": "Triggered by volatile plant parts, pollens, or chemical fumes floating in the air. In India, this is classically caused by Parthenium pollen settling on exposed areas like eyelids, the V of the neck, and flexures of the arms."
+      },
+      {
+        "name": "Atopic Flare Reactions",
+        "desc": "Allergic flare-ups occurring in individuals with an inherited atopic tendency (sensitive skin, allergic rhinitis, or asthma), where environmental dust mites, pollen, or pet dander trigger severe skin inflammation."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical history: The doctor reviews the timeline of rashes, daily cosmetic use, workplace exposures, hair dye frequency, dietary changes, and newly started oral medicines.",
+      "Physical skin examination: Careful visual inspection of the rash distribution. For example, rashes on the earlobes suggest nickel, forehead rashes point to hair dye or bindi adhesive, and neck-crease rashes suggest plant or fragrance exposure.",
+      "Skin Patch Testing: The standard gold-test for allergic contact dermatitis. Standardised panels of common Indian allergens are placed on patches on the upper back, removed after 48 hours, and examined at 72 or 96 hours for delayed allergic responses.",
+      "Skin Prick Testing (SPT): Small droplets of suspected food, pollen, or dust allergens are placed on the forearm and lightly pricked into the skin to check for immediate wheal formation within 15 to 20 minutes.",
+      "Exclusion of mimics: The dermatologist differentiates allergies from superficial fungal infections (ringworm/tinea), viral exanthems, scabies, and psoriasis."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC) with Absolute Eosinophil Count",
+        "purpose": "Identifies elevated eosinophil counts, which frequently rise during active systemic allergic reactions or parasitic coinfections.",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures generalised systemic inflammation if hives are accompanied by joint pain, fever, or autoimmune disease symptoms.",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum Total IgE and Allergen-Specific IgE Blood Test",
+        "purpose": "Measures total circulating allergy antibodies and screens for specific sensitivities against dust mites, foods, or tree pollens when skin testing cannot be performed."
+      },
+      {
+        "test": "Skin Patch Test (Indian Standard Series)",
+        "purpose": "Identifies the exact contact chemical (such as nickel sulphate, fragrance mixes, or PPD) responsible for chronic contact dermatitis."
+      },
+      {
+        "test": "Skin Biopsy",
+        "purpose": "A small punch biopsy of skin sent for histopathology when an unusual, persistent rash fails to respond to standard therapy or if drug vasculitis is suspected."
+      }
+    ],
+    "modernTreatment": [
+      "Strict identification and avoidance of the culprit allergen: Removing the trigger is the primary medical step. Without eliminating contact, creams and medicines provide only temporary relief.",
+      "Non-sedating oral H1 antihistamines: Medications like cetirizine, levocetirizine, fexofenadine, or bilastine are prescribed to block histamine receptors, reducing itch, swelling, and wheals.",
+      "Prescribed topical corticosteroids: Dermatologist-recommended creams or ointments applied to calm localised inflammation. Mild steroids are used on the face and skin folds, while stronger ones are reserved for palms, soles, and thick skin.",
+      "Topical calcineurin inhibitors: Ointments such as tacrolimus or pimecrolimus used for sensitive areas like eyelids, the face, and neck, where long-term steroid creams can thin the skin.",
+      "Barrier-repair emollients: Bland, fragrance-free creams containing ceramides, liquid paraffin, or white petrolatum applied immediately after bathing to restore damaged skin barrier lipids.",
+      "Emergency auto-injectable adrenaline (epinephrine): Prescribed for individuals with a history of severe systemic allergic reactions (anaphylaxis) involving facial swelling, voice changes, or breathing distress."
+    ],
+    "ayurvedaView": [
+      "Ayurveda views allergic skin manifestations through concepts such as Sheetapitta, Udarda, and Kotha, which involve the simultaneous aggravation of Vata and Pitta doshas combining with Kapha.",
+      "These aggravated doshas affect Rasa (plasma) and Rakta (blood tissue) and manifest in the Twacha (skin) as redness, burning sensations, and raised itchy bumps.",
+      "Classical protocols suggest light, easily digestible food (Laghu Ahara), avoidance of sour, fermented, pungent, and salty foods (Amla, Lavana, and Katu Rasa), and stress reduction.",
+      "Herbal remedies and internal panchakarma procedures must be regarded solely as complementary supportive wellness approaches. They do not replace conventional medical care, precise allergy patch testing, or emergency treatments."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Neem leaves are traditionally steeped in warm bathwater to soothe irritated skin. It possesses mild antimicrobial properties, but there is no human clinical evidence that neem cures underlying allergic responses. Never apply raw, crushed neem pulp directly to raw, blistering allergic rashes."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin exhibits natural anti-inflammatory and antioxidant properties in laboratory studies. However, topical application of raw kitchen haldi on broken skin can actually trigger allergic contact dermatitis in sensitive individuals. Dietary culinary use is considered supportive."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is valued in traditional systems for general immune support. Evidence for direct anti-allergic or antihistaminic action in human skin disorders is very limited."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Licorice (Yashtimadhu) contains glycyrrhizin, which has been studied for mild soothing and anti-inflammatory properties on skin. High-quality human clinical trials are limited, and it should only be used as supportive care under professional guidance."
+      }
+    ],
+    "nutrition": [
+      "Follow a clean, balanced plate as advised by the Indian Council of Medical Research - National Institute of Nutrition (ICMR-NIN). Focus on freshly cooked home meals rich in whole grains, seasonal gourds, and pulses.",
+      "Strictly avoid proven food allergens: If tests confirm an allergy to peanuts, cow's milk, eggs, soy, shellfish, or gluten, eliminate that specific food entirely. Always read processed food labels for allergen warnings.",
+      "Incorporate natural anti-inflammatory foods: Include fresh seasonal fruits like papaya, guava, apples, and pomegranate, along with dark leafy greens like palak and methi to supply natural vitamin C and bioflavonoids.",
+      "Support the gut-skin axis: Consume fresh, unsweetened homemade curd or buttermilk to promote diverse gut microbiota, which plays a role in balanced immune regulation.",
+      "Avoid artificial food additives: Packaged namkeens, processed snacks, artificial food colourings (tartrazine), chemical preservatives (sulphites, benzoates), and monosodium glutamate (MSG) can worsen acute urticarial flare-ups in sensitive people.",
+      "Hydrate adequately: Drink 2 to 3 litres of clean water throughout the day to keep the skin hydrated and assist general physiological clearance."
+    ],
+    "lifestyle": [
+      "Adopt the 'Soak and Seal' moisturising method: Bathe in lukewarm water for no more than 5 to 10 minutes using a soap-free cleanser. Gently pat the skin dry with a soft towel and apply a generous layer of fragrance-free emollient within 3 minutes while the skin is still damp.",
+      "Wear breathable, pure cotton clothing: Avoid tight-fitting synthetic fabrics like nylon, polyester, or rough wool that trap sweat and cause mechanical friction. Wash new clothes before wearing them.",
+      "Choose certified hypoallergenic personal products: Switch to fragrance-free, dye-free body washes, shampoos, and laundry detergents. Avoid using fabric softeners or scented laundry pods.",
+      "Protect yourself from environmental triggers: If allergic to Parthenium or airborne pollen, wear full-sleeved cotton shirts, trousers, and sunglasses when outdoors. Wash your hands, face, and hair after coming indoors.",
+      "Maintain clean indoor air: Regularly wash bedsheets, pillowcases, and curtains in hot water to minimise dust mite colonies. Keep bedroom spaces well-ventilated and dry to prevent indoor mould growth.",
+      "Avoid scratching: Keep your fingernails clipped short and smooth. Scratching damages the epidermal barrier, triggers more histamine release (the itch-scratch cycle), and introduces bacteria."
+    ],
+    "yogaActivity": [
+      "Stress directly triggers mast cell degranulation and worsens allergy-induced itching. Gentle yoga and breathwork help reduce nervous system arousal and calm the skin.",
+      "Cooling pranayama techniques: Practising Sheetali and Sheetkari pranayama helps produce a cooling sensation throughout the body, soothing internal heat and itching sensations.",
+      "Calming breathing exercises: Slow Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) for 10 minutes twice daily help lower cortisol levels and calm mental agitation.",
+      "Restorative asanas: Gentle poses such as Shavasana (corpse pose), Balasana (child's pose), and Viparita Karani (legs-up-the-wall pose) improve blood circulation without overheating the body.",
+      "Exercise caution during workouts: Avoid heavy, intense cardiovascular workouts in hot, humid gym spaces during an active hives flare-up. Excess sweat and elevated body temperature can dramatically aggravate cholinergic urticaria."
+    ],
+    "homeopathyNote": [
+      "There is no robust, reproducible scientific evidence from large randomised clinical trials showing that homeopathic preparations treat or eliminate skin allergies.",
+      "Homeopathic solutions must never be used as a substitute for standard antihistamines, dermatologist-prescribed creams, or emergency adrenaline during acute allergic reactions or anaphylaxis.",
+      "Never discontinue life-saving allergy medicines or established skin care routines without consulting a registered medical doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Elimination of confirmed allergen triggers resolves allergic contact dermatitis over several weeks. Second-generation oral H1 antihistamines provide rapid, reliable symptomatic relief for urticaria.",
+      "Strong evidence: Topical corticosteroids and topical calcineurin inhibitors effectively reduce localised skin inflammation when used according to dermatological guidelines.",
+      "Moderate evidence: Skin patch testing using standardised panels shows high diagnostic accuracy in identifying the causative agent in chronic contact dermatitis.",
+      "Weak or limited evidence: Herbal extracts, topical plant oils, and dietary supplements show inconsistent, minimal benefits in clinical trials. In fact, raw topical plant pastes frequently cause secondary irritant dermatitis.",
+      "No good evidence: Blood-purifier syrups, detox teas, and commercial 'permanent allergy cure' powders have no verified clinical validation. No herb, diet or product can make an allergy go away permanently."
+    ],
+    "shouldNotDo": [
+      "Do not scratch or aggressively rub itchy patches. Scratching breaks the skin, drives inflammation deeper, and risks painful bacterial infections.",
+      "Do not self-prescribe over-the-counter 'triple-combination' steroid creams (containing betamethasone, clobetasol, neomycin, and miconazole). Unsupervised use causes skin thinning, stretch marks, steroid dependence, and fungal overgrowth.",
+      "Do not apply raw home remedies like baking soda, lemon juice, pure garlic paste, diluted vinegar, or hot mustard oil to inflamed or broken skin. These are severe chemical irritants.",
+      "Do not bathe in very hot water. Hot water strips natural skin oils, widens superficial blood vessels, and causes intense rebound itching.",
+      "Do not apply hair dye without a mandatory patch test behind your ear 48 hours prior, especially if you have had mild tingling, burning, or redness in past applications.",
+      "Do not assume natural or Ayurvedic products are automatically allergen-free. Many natural oils, plant resins, and essential oils are potent contact sensitisers."
+    ],
+    "medicationSafety": [
+      "Take oral antihistamines exactly as directed by your physician. While modern antihistamines rarely cause drowsiness, some individuals may still experience mild sedation; use caution when driving or operating gym machinery.",
+      "Use prescribed topical steroid creams strictly on affected patches, using the fingertip unit (FTU) rule advised by your dermatologist. Never apply potent steroids on the face, groin, or underarms unless explicitly ordered by a skin specialist.",
+      "Do not stop topical treatments abruptly if you have been using them for several weeks. Your doctor will provide a gradual tapering schedule to prevent rebound flare-ups.",
+      "Inform your doctor of all regular medicines you take. Certain blood pressure tablets (like ACE inhibitors or ARBs) and nonsteroidal anti-inflammatory drugs (NSAIDs like ibuprofen) can trigger or worsen hives and angioedema.",
+      "Store all anti-allergy medicines and emergency adrenaline devices in a cool, dry place away from direct sunlight."
+    ],
+    "complications": [
+      "Secondary bacterial skin infections (impetigo or cellulitis): Open wounds caused by persistent scratching allow bacteria like Staphylococcus aureus or Streptococcus to enter, leading to pus formation and honey-coloured crusts.",
+      "Post-Inflammatory Hyperpigmentation (PIH): In brown Indian skin tones, unresolved allergic inflammation often leaves behind persistent dark brown or grey patches that take months to fade.",
+      "Lichen Simplex Chronicus: Chronic scratching thickens and hardens the skin, creating leathery, hyperkeratotic patches with exaggerated skin markings that itch uncontrollably.",
+      "Sleep disruption and mental health strain: Severe nocturnal itching causes chronic sleep deprivation, fatigue, workplace impairment, anxiety, and depression.",
+      "Anaphylaxis: A rare, life-threatening allergic emergency involving airway constriction, swelling of the vocal cords, lightheadedness, and circulatory collapse."
+    ],
+    "emergencySigns": [
+      "Sudden swelling of the lips, tongue, throat, uvula, or eyes, making it hard to swallow.",
+      "Difficulty breathing, audible wheezing, tightness in the chest, or a sudden hoarse voice.",
+      "Dizziness, feeling faint, cold clammy skin, confusion, or sudden collapse (signs of a rapid drop in blood pressure).",
+      "Rapidly spreading hives covering the entire body within minutes, especially after a bee sting, injection, or new medicine.",
+      "Persistent vomiting, severe abdominal cramping, or diarrhoea accompanying a sudden skin eruption."
+    ],
+    "whenToSeeDoctor": [
+      "The rash or hives do not improve within 48 to 72 hours despite taking basic oral antihistamines and avoiding suspected triggers.",
+      "The itching is so intense that it disturbs your sleep or prevents you from working and exercising.",
+      "You notice signs of secondary infection: increasing redness, skin that feels unusually hot to the touch, pus discharge, or an accompanying fever.",
+      "The allergic reaction repeatedly returns every time you use a specific cosmetic, perfume, piece of jewellery, or hair dye.",
+      "The hives continue to erupt daily or weekly for more than 6 weeks (chronic urticaria)."
+    ],
+    "faqs": [
+      {
+        "q": "Can skin allergies be cured permanently?",
+        "a": "No. There is no permanent cure for an underlying allergic tendency. However, symptoms can be completely controlled. The most reliable solution is identifying and avoiding your specific triggers, using barrier-repair moisturizers, and following medical treatments prescribed by a dermatologist. No herb, diet or product can make an allergy go away permanently."
+      },
+      {
+        "q": "Why does black hair dye cause swelling and itching on my scalp and face?",
+        "a": "Most commercial permanent black hair dyes contain paraphenylenediamine (PPD), a known contact allergen. Sensitisation to PPD can cause severe redness, oozing blisters on the scalp, and marked swelling around the forehead and eyes. If you react once to PPD, you must stop using chemical hair dyes containing it, as subsequent exposures can cause progressively worse reactions."
+      },
+      {
+        "q": "Can synthetic gym clothes trigger skin allergies?",
+        "a": "Yes. Tight gym wear made of synthetic fabrics like polyester, spandex, or nylon traps heat and sweat against your skin, causing friction and irritation. Additionally, textile dyes and formaldehyde-based finishing resins used on new workout clothes can cause allergic contact dermatitis. Always choose breathable cotton workout gear or wash new synthetic clothes thoroughly before wearing them."
+      },
+      {
+        "q": "Is mustard oil safe to apply on itchy, allergic skin?",
+        "a": "No. Applying pure or raw mustard oil (sarson ka tel) to broken, inflamed, or allergic skin is not recommended. Mustard oil contains natural compounds (such as allyl isothiocyanate) that can irritate damaged skin and cause severe contact dermatitis. Stick to doctor-approved, fragrance-free medical emollients."
+      },
+      {
+        "q": "How is a skin allergy different from a fungal infection like ringworm?",
+        "a": "A fungal infection (tinea or ringworm) is caused by a living dermatophyte fungus and typically forms a distinct ring-shaped patch with raised, scaly active borders and central clearing. A skin allergy is an immune reaction, not an infection, and presents as diffuse red or dark itchy patches, tiny fluid vesicles, or raised hives. Applying steroid creams to a fungal infection worsens it dramatically, which is why accurate medical diagnosis is vital."
+      }
+    ],
+    "references": [
+      {
+        "title": "Allergic Contact Dermatitis: Practice Essentials and Pathophysiology",
+        "source": "MedlinePlus / National Library of Medicine",
+        "url": "https://medlineplus.gov/ency/article/000869.htm",
+        "year": "2023"
+      },
+      {
+        "title": "Diagnosis and Management of Urticaria and Angioedema",
+        "source": "National Institutes of Health (NIH) - StatPearls",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK538289/",
+        "year": "2024"
+      },
+      {
+        "title": "Overview of Contact Dermatitis",
+        "source": "NHS (National Health Service)",
+        "url": "https://www.nhs.uk/conditions/contact-dermatitis/",
+        "year": "2023"
+      },
+      {
+        "title": "Contact Dermatitis: Diagnosis and Treatment Guidelines",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/contact-dermatitis/diagnosis-treatment/drc-20352748",
+        "year": "2024"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "eczema",
+      "allergic-rhinitis",
+      "asthma",
+      "dry-skin",
+      "psoriasis",
+      "fungal-skin-infection"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "turmeric",
+      "tulsi",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

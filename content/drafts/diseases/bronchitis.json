@@ -1,0 +1,264 @@
+{
+  "slug": "bronchitis",
+  "name": "Bronchitis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Bronchitis is an inflammation of the lining of your bronchial tubes, which are the main airways carrying air in and out of your lungs. When these tubes become irritated and swollen, their delicate lining produces thick mucus or phlegm, causing a persistent cough, chest tightness, and difficulty breathing clearly. Bronchitis is generally divided into two main forms: acute bronchitis and chronic bronchitis. Acute bronchitis is very common and often develops following a standard cold, viral throat infection, or flu episode. It typically resolves within two to three weeks with proper supportive care. In contrast, chronic bronchitis is a much more serious, long-term condition marked by a daily productive cough that lasts for at least three consecutive months across two years in a row. In India, both forms are widely observed. While acute episodes spike during winter months and seasonal changes, chronic bronchitis is heavily driven by tobacco smoking (such as bidis and cigarettes), prolonged exposure to indoor biomass smoke from traditional chulhas in poorly ventilated kitchens, and heavy ambient urban air pollution with fine particulate matter (PM2.5 and PM10). Understanding the root cause of your airway irritation is essential because viral infections do not respond to antibiotics, and chronic lung damage requires systematic medical attention and environmental changes to safeguard lung function.",
+    "quickFacts": [
+      {
+        "label": "Acute Duration",
+        "value": "Usually improves in 10 to 21 days"
+      },
+      {
+        "label": "Viral Cause in Acute",
+        "value": "Over 90% of acute cases are caused by viruses, not bacteria"
+      },
+      {
+        "label": "Chronic Definition",
+        "value": "Cough with sputum for at least 3 months in 2 consecutive years"
+      },
+      {
+        "label": "Key Indian Triggers",
+        "value": "Smog, dust, bidi smoke, and chulha (biomass) fumes"
+      },
+      {
+        "label": "Antibiotic Need",
+        "value": "Rarely needed for acute bronchitis in otherwise healthy adults"
+      },
+      {
+        "label": "Core Symptom",
+        "value": "Persistent cough with clear, yellow, or greenish sputum"
+      }
+    ],
+    "causes": [
+      "Viral respiratory infections: More than 90% of acute bronchitis cases in adults are triggered by common viruses such as rhinovirus, influenza, parainfluenza, respiratory syncytial virus (RSV), or adenovirus. These often start as an ordinary upper respiratory cold before spreading downward into the bronchial airways.",
+      "Bacterial pathogens: While much less common than viral causes, bacteria such as Mycoplasma pneumoniae, Chlamydia pneumoniae, or Bordetella pertussis can occasionally trigger acute bronchial inflammation.",
+      "Active and passive tobacco smoking: Smoking bidis, cigarettes, or hookahs paralyzes the tiny hair-like structures (cilia) inside your airways that clear away mucus and dirt. Secondhand smoke at home or work causes equal harm, dramatically increasing the risk of chronic bronchitis.",
+      "Indoor air pollution: In many Indian households, burning wood, dried dung cakes, coal, or crop residue in traditional chulhas creates intense smoke inside living spaces. Decades of breathing these biomass fumes cause severe, progressive bronchial inflammation, especially among homemakers.",
+      "Outdoor air pollution and dust: Exposure to high levels of urban traffic fumes, construction dust, agricultural burning haze, and high winter PM2.5 levels directly irritates the respiratory tract, triggering acute flare-ups and accelerating chronic airway changes.",
+      "Occupational fumes and dust: Working in textile mills, chemical manufacturing, brick kilns, stone quarries, welding shops, or grain handling without certified respiratory protective gear exposes the lungs to fine mineral and chemical irritants.",
+      "Underlying respiratory conditions: Individuals living with pre-existing asthma, allergic rhinitis, gastroesophageal reflux disease (acid reflux), or compromised immune systems are noticeably more vulnerable to recurrent bronchial inflammation."
+    ],
+    "types": [
+      {
+        "name": "Acute Bronchitis",
+        "desc": "A short-term inflammation of the bronchial tubes, often referred to as a chest cold. It usually develops quickly after a viral upper respiratory infection. The cough and sputum production may persist for two to three weeks, but the bronchial lining heals completely without permanent structural harm in healthy adults."
+      },
+      {
+        "name": "Chronic Bronchitis",
+        "desc": "A persistent, irreversible, and progressive airway disease categorized under Chronic Obstructive Pulmonary Disease (COPD). It is clinically defined as a productive cough with sputum production lasting for at least three months per year for two consecutive years. It involves long-term bronchial swelling, excessive mucus gland enlargement, and damaged airway clearance mechanisms."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical examination: Your doctor starts by reviewing your symptoms, medical history, smoking background, exposure to household biomass or workplace dust, and listening to your chest with a stethoscope to detect wheezing, crackles, or rhonchi.",
+      "Pulse oximetry: A small, painless clip placed on your fingertip instantly measures your blood oxygen saturation (SpO2) to confirm whether your lungs are adequately oxygenating your body.",
+      "Chest X-ray: While not always required for simple acute chest colds, a chest radiograph is frequently used to rule out pneumonia, lung masses, or fluid in the lungs, particularly if you have high fever, severe breathlessness, or crackles on auscultation.",
+      "Spirometry (Lung Function Testing): Primarily used when chronic bronchitis or COPD is suspected. This test measures how much air your lungs can hold and how forcefully and quickly you can blow it out, confirming whether your airways are narrowed or blocked.",
+      "Sputum examination: A laboratory analysis of your coughed-up phlegm can be performed if your physician suspects a bacterial infection, pertussis, or tuberculosis, which remains an essential diagnostic consideration in India for any cough lasting more than two weeks."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Helps detect elevated white blood cell counts suggesting active infection or systemic inflammatory response.",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures general inflammation levels to assist clinicians in distinguishing mild viral airway disease from severe deep lung infections.",
+        "slug": "crp"
+      },
+      {
+        "test": "Pulse Oximetry",
+        "purpose": "Checks peripheral blood oxygen levels to identify hypoxia and respiratory distress quickly."
+      },
+      {
+        "test": "Chest Radiograph (X-Ray)",
+        "purpose": "Evaluates the lung fields to rule out pneumonia, fluid consolidation, or other structural chest diseases."
+      },
+      {
+        "test": "Spirometry / Pulmonary Function Test",
+        "purpose": "Determines the presence and reversibility of airway obstruction, central to diagnosing chronic bronchitis and COPD."
+      },
+      {
+        "test": "Sputum Smear and GeneXpert Testing",
+        "purpose": "Critical in the Indian clinical setting to evaluate persistent cough and rule out Mycobacterium tuberculosis."
+      }
+    ],
+    "modernTreatment": [
+      "Supportive care for acute bronchitis: Because the vast majority of acute episodes are viral, treatment focuses on symptom relief while your immune system clears the virus. This includes abundant hydration, rest, and warm humidified air.",
+      "Fever and pain relief: Over-the-counter antipyretics and analgesics such as paracetamol can be used as advised by your doctor to reduce high temperature, headache, sore throat, and muscle aches.",
+      "Airway relaxers (Bronchodilators): If you experience wheezing, chest tightness, or have underlying reactive airways, your doctor may prescribe a short-acting bronchodilator inhaler to open up narrowed bronchial passages temporarily.",
+      "Targeted cough management: Expectorants or mucus-thinning agents may be suggested by your doctor to help loosen sticky secretions. Cough suppressants are used very selectively, as suppressing a productive cough can trap infected secretions in the lungs.",
+      "Judicious antibiotic use: Antibiotics do not work against viruses and are not routinely prescribed for acute uncomplicated bronchitis. They are reserved strictly for confirmed bacterial complications, severe chronic lung exacerbations, or vulnerable elderly patients as decided by a qualified physician.",
+      "Management of chronic bronchitis: Focuses on halting disease progression. This involves absolute cessation of smoking, maintenance inhaled bronchodilators, inhaled corticosteroids when indicated, pulmonary rehabilitation, and annual vaccinations against influenza and pneumococcal pneumonia."
+    ],
+    "ayurvedaView": [
+      "In traditional Ayurveda, conditions mirroring bronchitis are commonly evaluated under the spectrum of Kasa (cough) and Shwasa roga (disorders involving breathing difficulty). The process is traditionally viewed as an aggravation of Vata and Kapha doshas, leading to the accumulation of sticky mucus (Kapha) and obstruction of Pranavaha Srotas (the channels carrying vital breath).",
+      "Traditional Ayurvedic concepts emphasize clearing digestive toxins (Ama), pacifying irritated Vata, and liquefying excess Kapha through warm, light foods, herbal steam, and digestive spices. These traditional perspectives serve as holistic lifestyle philosophies rather than modern clinical diagnoses.",
+      "Ayurvedic herbal decoctions and formulations should only be viewed as gentle, complementary support alongside modern medical assessment. They do not replace prescribed bronchodilators, oxygen therapy, or emergency medical treatment. Always inform your treating physician before introducing any herbal preparations."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi (Holy Basil)",
+        "slug": "tulsi",
+        "note": "Traditionally prepared as a warm tea or decoction to soothe irritated throat tissues and provide mild respiratory comfort. It provides supportive relief alongside medical care."
+      },
+      {
+        "name": "Ginger (Adrak / Sunthi)",
+        "slug": "ginger",
+        "note": "Widely used in Indian kitchens for its warming properties. Steeped in hot water, it can help soothe throat irritation and make clearing phlegm feel easier."
+      },
+      {
+        "name": "Licorice (Mulethi / Yashtimadhu)",
+        "slug": "licorice",
+        "note": "Known traditionally as a demulcent that coats and calms raw, inflamed mucous membranes of the upper airway. Must be used only as advised by your doctor, especially if you have high blood pressure."
+      },
+      {
+        "name": "Black Pepper (Kali Mirch)",
+        "slug": "black-pepper",
+        "note": "A traditional warming spice often combined with ginger or honey in home kadhas to provide symptomatic throat warmth and promote easier coughing."
+      }
+    ],
+    "nutrition": [
+      "Prioritize continuous hydration: Drink plenty of warm water throughout the day. Ample fluid intake is one of the most effective ways to thin out thick, tenacious mucus in your bronchial tubes so you can cough it out with less effort.",
+      "Sip warm, soothing broths: Traditional clear Indian soups such as light tomato-garlic rasam, moong dal soup, or clear vegetable and chicken shorba provide easy-to-digest nutrition while soothing an irritated respiratory tract.",
+      "Emphasize warm, freshly cooked meals: Follow the balanced nutritional guidance of ICMR-NIN by consuming easily digestible meals like khichdi, soft phulkas with seasonal gourds (lauki, tori), and steamed vegetables. Heavy, deep-fried snacks can slow digestion and worsen reflux-associated airway irritation.",
+      "Incorporate anti-inflammatory kitchen spices: Cook meals with modest amounts of fresh ginger, garlic, turmeric, and black pepper, which add comforting flavor and warmth without irritating the throat.",
+      "Minimize mucus-irritating foods: Avoid ice-cold beverages, refrigerated desserts, heavily processed namkeens, and excessively oily gravies while you are coughing, as extreme cold or greasy textures can trigger reflex coughing spasms.",
+      "Manage reflux triggers: If you have acidity or GERD, avoid late-night heavy dinners, excess tea, coffee, and acidic foods. Stomach acid backing up into the food pipe frequently irritates the airways and triggers prolonged bronchitis-like coughing fits."
+    ],
+    "lifestyle": [
+      "Eliminate all tobacco smoke: Complete cessation of smoking (bidis, cigarettes, hookah) is the single most critical intervention for healing bronchial tissues and preventing permanent airway remodeling in chronic bronchitis.",
+      "Shield your lungs from indoor smoke: Keep cooking areas well-ventilated. If your household uses biomass or chulhas, work toward cleaner cooking fuels like LPG under government welfare schemes (such as PM Ujjwala Yojana). Avoid burning dhoop, agarbatti, or mosquito coils inside closed bedrooms.",
+      "Check daily Air Quality Index (AQI): During severe smog periods, especially across northern Indian plains in winter, keep windows shut during peak pollution hours. Use a well-fitted N95 mask when stepping outdoors near heavy traffic or construction zones.",
+      "Practice steam inhalation: Inhaling warm water steam for 5 to 10 minutes once or twice daily helps hydrate mucosal linings, soothe tracheal irritation, and loosen stubborn phlegm. Avoid scalding water to prevent burns.",
+      "Prioritize rest and airway recovery: Allow your body sufficient sleep during the acute phase of illness. Physical exhaustion impairs immune defense, prolonging bronchial inflammation.",
+      "Maintain clean home humidity: Use damp mopping instead of dry sweeping with brooms to prevent fine dust particles from getting kicked up into the indoor air you breathe."
+    ],
+    "yogaActivity": [
+      "Rest during active infection: Avoid rigorous aerobic workouts, heavy weightlifting, or heated fitness classes while experiencing an acute chest infection, fever, or noticeable wheezing.",
+      "Gentle Pranayama: Once acute fever and chest soreness subside, practice slow, unhurried breathing exercises such as Anulom Vilom (alternate nostril breathing) and gentle Bhramari (humming bee breath). These help cultivate calm, steady diaphragmatic breathing.",
+      "Avoid forceful breath-holding: Do not perform vigorous breathing techniques like Kapalabhati or rapid Bhastrika during active bronchitis, as forceful abdominal and chest contractions can provoke severe coughing fits and strain delicate airways.",
+      "Restorative yoga postures: Gentle, supportive poses like Supta Baddha Konasana (supported reclining bound angle) with a bolster under the spine help open the chest gently. Simple Shavasana facilitates relaxed, unlabored breathing patterns.",
+      "Gradual return to activity: Once cleared by your doctor, resume brisk daily walking for 20 to 30 minutes, which helps rebuild aerobic stamina and clear baseline airway secretions gradually."
+    ],
+    "homeopathyNote": [
+      "Many individuals explore homeopathic remedies for chest colds and chronic coughs. However, there is no robust, reproducible scientific evidence demonstrating that homeopathic treatments cure bronchitis or reverse chronic airway damage.",
+      "Relying solely on homeopathic remedies for breathing distress or progressive chronic cough can lead to delayed diagnosis of serious conditions such as bacterial pneumonia, tuberculosis, or COPD.",
+      "If you choose to use homeopathic preparations, you must continue your prescribed medical inhalers and clinical follow-ups, and inform your primary doctor about everything you take."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Multiple comprehensive Cochrane reviews and clinical trials show that routine antibiotic treatment provides negligible to no benefit for acute bronchitis in otherwise healthy individuals, while increasing risks of gastrointestinal adverse effects and antimicrobial resistance.",
+      "Strong evidence: Complete smoking cessation halts the accelerated decline in lung function (FEV1) associated with chronic bronchitis and reduces acute flare-up frequency.",
+      "Moderate evidence: Inhaled short-acting beta-agonists provide measurable symptomatic relief specifically in patients who display active bronchial hyperresponsiveness or wheezing during acute bronchitis.",
+      "Limited evidence: Over-the-counter cough syrups have weak or conflicting clinical evidence regarding their ability to shorten the duration of an acute cough, though simple home hydration and honey (in individuals over one year of age) show modest symptomatic soothing.",
+      "No scientific evidence: Commercial powders, oils, or detox supplements marketed online claiming to permanently clean smoker lungs or reverse chronic bronchitis overnight have zero verified clinical support."
+    ],
+    "shouldNotDo": [
+      "Do not pressure your doctor for an antibiotic prescription: Taking antibiotics for a viral chest cold will not cure the infection, will not shorten the cough duration, and can cause digestive side effects and drug resistance.",
+      "Do not smoke or stay near smokers: Continuing to inhale tobacco smoke while your airways are inflamed severely cripples your lungs' natural clearing mechanisms and can turn an acute episode into chronic bronchitis.",
+      "Do not take cough suppressants for heavy, productive phlegm without guidance: Suppressing a productive cough traps thick secretions in your lower airways, which increases the likelihood of secondary pneumonia.",
+      "Do not ignore a cough lasting more than two to three weeks: In India, any cough persisting beyond two weeks must be professionally evaluated to rule out tuberculosis, adult-onset asthma, or structural lung disease.",
+      "Do not engage in high-intensity gym workouts while coughing with fever: Exercising through systemic viral infections places unnecessary strain on your heart and respiratory muscles."
+    ],
+    "medicationSafety": [
+      "Use inhalers with proper technique: If prescribed a bronchodilator or steroid inhaler, ensure you understand the correct inhalation steps. Using a spacer device with a metered-dose inhaler ensures the medication reaches deep into the bronchial airways rather than depositing on the back of your throat.",
+      "Antipyretic caution: When taking paracetamol for fever and body aches, use it strictly as advised by your doctor and never exceed safe daily limits to prevent liver toxicity. Always check combination cold remedies to ensure you are not accidentally doubling up on paracetamol.",
+      "Care with decongestants: Over-the-counter oral cold tablets containing systemic decongestants (like pseudoephedrine or phenylephrine) can cause palpitations and elevate blood pressure. Check with your doctor if you have hypertension or heart disease.",
+      "Rinse mouth after steroid inhalers: If your doctor prescribes an inhaled corticosteroid for chronic airway inflammation, always rinse your mouth and gargle with water thoroughly afterward and spit it out to prevent oral thrush (fungal infection) and hoarseness."
+    ],
+    "complications": [
+      "Secondary bacterial pneumonia: The most common serious complication, occurring when a viral bronchial infection spreads deeper into the lung alveoli, filling them with fluid or pus.",
+      "Development of Chronic Obstructive Pulmonary Disease (COPD): Repeated, unmanaged chronic bronchitis episodes cause permanent narrowing, scarring, and destruction of the airways over time.",
+      "Acute exacerbation of asthma: In people with asthma, an episode of acute bronchitis can trigger severe, prolonged bronchospasms requiring intensified emergency treatment.",
+      "Hemoptysis (Coughing up blood): Vigorous and prolonged coughing can rupture tiny, swollen blood vessels in the bronchial lining, resulting in blood streaks in the sputum.",
+      "Respiratory failure: In severe chronic bronchitis or during acute flare-ups in vulnerable individuals, the lungs may become unable to maintain normal oxygen or carbon dioxide levels, requiring intensive care."
+    ],
+    "emergencySigns": [
+      "Severe shortness of breath, rapid gasping, or struggle to complete a short sentence without pausing for breath",
+      "Bluish or gray discoloration of the lips, tongue, nail beds, or inner eyelids (cyanosis), indicating dangerously low blood oxygen",
+      "Blood oxygen saturation (SpO2) reading falling below 92% to 94% on a calibrated home pulse oximeter",
+      "Coughing up frank, bright red blood or blood clots exceeding a teaspoon",
+      "Sudden, sharp chest pain, especially pain that worsens with deep breathing or coughing, accompanied by high spiking fever and chills",
+      "Acute confusion, extreme drowsiness, dizziness, or inability to stay awake, signaling carbon dioxide retention or severe hypoxia"
+    ],
+    "whenToSeeDoctor": [
+      "Your cough persists for longer than two to three weeks without showing signs of daily improvement",
+      "Your coughed-up phlegm becomes rust-colored, persistently foul-smelling, or contains visible streaks of blood",
+      "You experience a persistent high fever (above 101 degrees Fahrenheit) or fever that returns several days after initial recovery",
+      "You notice audible wheezing, persistent whistling sounds in your chest, or progressive shortness of breath during routine home activities",
+      "You have pre-existing chronic conditions such as diabetes, heart disease, kidney disorders, or asthma and develop a worsening chest cold",
+      "You wake up repeatedly during the night coughing violently or feeling suffocated"
+    ],
+    "faqs": [
+      {
+        "q": "Why won't my doctor prescribe an antibiotic for my chest cough?",
+        "a": "More than 90% of acute bronchitis cases in adults are caused by common respiratory viruses. Antibiotics only kill bacteria; they have zero effect against viruses. Taking an antibiotic unnecessarily will not make your cough disappear any faster, can cause side effects like loose stools and stomach upset, and fuels dangerous antibiotic resistance. Your doctor will carefully examine you and recommend treatments that soothe symptoms while your body clears the virus."
+      },
+      {
+        "q": "How can I tell the difference between bronchitis and pneumonia?",
+        "a": "Bronchitis affects the main bronchial tubes that conduct air, causing cough and chest soreness. Pneumonia is a deeper, more dangerous infection of the tiny air sacs (alveoli) inside the lungs, which fill with fluid. Pneumonia typically produces higher fevers, shaking chills, sharper chest pain when breathing in, marked breathlessness, and significant weakness. A doctor uses a stethoscope and a chest X-ray to clearly distinguish between the two."
+      },
+      {
+        "q": "Does acute bronchitis always turn into chronic bronchitis?",
+        "a": "No. Acute bronchitis is a short-lived chest cold that generally heals completely within a few weeks without lasting harm. Chronic bronchitis develops after months and years of constant, daily irritation of the airways—most commonly from tobacco smoking, heavy urban air pollution, or continuous exposure to indoor chulha smoke."
+      },
+      {
+        "q": "Can home steam and kadha replace standard medical treatment?",
+        "a": "No herb, diet or product can make bronchitis go away on its own. While inhaling warm steam and sipping comforting home kadhas made with ginger or tulsi can help soothe an irritated throat and loosen thick mucus, they only provide supportive symptomatic comfort. They do not replace prescribed bronchodilator inhalers, oxygen therapy, or clinical evaluation by a medical doctor."
+      },
+      {
+        "q": "Why does my cough last so long even after the fever and cold have cleared?",
+        "a": "Even after your immune system eliminates the initial virus, the inner lining of your bronchial tubes often remains swollen, hypersensitive, and raw. It takes several weeks for this delicate tissue and its clearing cilia to regenerate completely. During this healing period, minor triggers like cold morning air, dust, or laughing can still spark coughing spasms."
+      }
+    ],
+    "references": [
+      {
+        "title": "Bronchitis: Symptoms, Diagnosis, and Treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/bronchitis/symptoms-causes/syc-20355566",
+        "year": "2023"
+      },
+      {
+        "title": "Overview: Bronchitis",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/bronchitis/",
+        "year": "2022"
+      },
+      {
+        "title": "Chronic Obstructive Pulmonary Disease (COPD)",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "copd",
+      "asthma",
+      "chronic-cough",
+      "breathing-problems",
+      "respiratory-allergies",
+      "fever"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "licorice",
+      "black-pepper"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

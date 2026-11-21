@@ -1,0 +1,301 @@
+{
+  "slug": "gout",
+  "name": "Gout",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Gout is a painful type of inflammatory arthritis that occurs when excess uric acid builds up in your blood and forms sharp, needle-like crystals inside joints and nearby tissues. In India, it often strikes suddenly in the middle of the night, turning the base of the big toe, an ankle, or a knee red, hot, swollen, and so tender that even the weight of a light bedsheet feels unbearable. While high uric acid (hyperuricemia) is the root cause, not everyone with elevated levels gets flares. The condition is closely linked with modern metabolic changes, excess belly fat, high intake of sweetened drinks, heavy non-vegetarian meals, and alcohol. Although gout pain can be extreme, it is one of the most controllable forms of arthritis when medical treatment, good hydration, and daily habits work together.",
+    "quickFacts": [
+      {
+        "label": "Most common first joint",
+        "value": "Base of the big toe (podagra) in about 50% of first attacks"
+      },
+      {
+        "label": "Target blood uric acid",
+        "value": "Below 6.0 mg/dL (360 µmol/L) to dissolve crystals"
+      },
+      {
+        "label": "Gender pattern",
+        "value": "3 to 4 times more common in adult men than premenopausal women"
+      },
+      {
+        "label": "Attack onset",
+        "value": "Rapid peak of intense pain within 12 to 24 hours"
+      },
+      {
+        "label": "Major dietary triggers",
+        "value": "Alcohol (especially beer), organ meats, seafood, and sugary drinks"
+      },
+      {
+        "label": "Long-term outlook",
+        "value": "Manageable with medicine; no herb or home remedy replaces treatment"
+      }
+    ],
+    "causes": [
+      "Under-excretion of uric acid by the kidneys. In roughly 90% of people with gout, the kidneys do not flush out normal amounts of uric acid into urine.",
+      "Overproduction of uric acid. The body breaks down chemical compounds called purines into uric acid; genetic traits or rapid cell turnover can cause overproduction.",
+      "High-purine animal foods. Heavy consumption of organ meats like liver (kaleji) and kidney (gurda), red meat like mutton, and certain seafood like prawns, mackerel, and dried fish (sukha jhinga).",
+      "Alcohol consumption. Beer is especially rich in purines and brewer's yeast, while spirits stimulate uric acid creation and reduce kidney excretion at the same time.",
+      "Fructose and sugar-sweetened beverages. Packaged juices, sodas, and sweet sherbets contain high amounts of fructose, which rapidly drives up uric acid production in the liver.",
+      "Excess weight and metabolic syndrome. Extra body fat, insulin resistance, and fatty liver make it harder for the kidneys to clear uric acid.",
+      "Certain medications. Thiazide diuretics taken for high blood pressure, low-dose aspirin, and some immunosuppressants can raise blood uric acid levels.",
+      "Dehydration and crash dieting. Not drinking enough water during workouts, extreme fasting, or sudden starvation diets produce ketones that compete with uric acid in the kidneys."
+    ],
+    "types": [
+      {
+        "name": "Asymptomatic Hyperuricemia",
+        "desc": "High blood uric acid levels above normal without any joint pain, swelling, or visible crystal deposits. It does not always require medicine, but lifestyle changes are advised."
+      },
+      {
+        "name": "Acute Gout Flare",
+        "desc": "Sudden, severe episodes of inflammatory joint pain, marked by redness, warmth, and swelling that reach peak agony within 12 to 24 hours."
+      },
+      {
+        "name": "Intercritical Gout",
+        "desc": "The quiet, symptom-free window between acute attacks. Even without pain, microscopic crystals may linger in the joint unless blood uric acid is kept low."
+      },
+      {
+        "name": "Chronic Tophaceous Gout",
+        "desc": "An advanced stage after years of uncontrolled uric acid, where chalky, gritty crystal lumps called tophi build up in joints, earlobes, and tendons, leading to permanent joint damage."
+      }
+    ],
+    "diagnosis": [
+      "Joint fluid aspiration (arthrocentesis). The gold standard test where a doctor draws fluid from the painful joint and views it under a polarizing microscope to confirm needle-shaped urate crystals.",
+      "Clinical diagnosis. When fluid testing is not possible, doctors identify gout by classic signs: sudden severe pain in the big toe, rapid swelling, redness, and high blood uric acid.",
+      "Blood uric acid testing. Measured to check baseline levels, though paradoxically, blood levels can sometimes drop into the normal range during the peak of an acute flare.",
+      "High-resolution ultrasound or DECT. Musculoskeletal ultrasound can detect the 'double contour sign' of urate crystals on cartilage, and dual-energy CT scans visualize crystal deposits in deep tissues.",
+      "X-rays of affected joints. Usually normal in early gout, but essential in longstanding disease to look for classic punched-out bone erosions and joint cartilage destruction."
+    ],
+    "investigations": [
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Measures circulating uric acid levels; target is below 6.0 mg/dL for long-term crystal dissolution",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Evaluates kidney function to guide safe medicine choice and check for kidney impairment",
+        "slug": "creatinine"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Assesses the level of active systemic inflammation during an attack",
+        "slug": "crp"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks white blood cell count to help distinguish gout from an infectious joint (septic arthritis)",
+        "slug": "cbc"
+      },
+      {
+        "test": "Urine Routine Examination",
+        "purpose": "Screens for microscopic blood, protein, and acidic crystal sediment in urine",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Screens for type 2 diabetes and insulin resistance, which frequently accompany hyperuricemia",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Evaluates cardiovascular risk markers, as gout increases long-term heart disease risks",
+        "slug": "lipid-profile"
+      }
+    ],
+    "modernTreatment": [
+      "Managing acute attacks fast. Treatment should start within 24 hours of flare onset using prescription anti-inflammatories, colchicine, or short courses of corticosteroids as advised by your doctor.",
+      "Rest and ice. Resting the inflamed joint, elevating it slightly, and applying cold gel packs wrapped in a towel helps numb local pain during a flare.",
+      "Long-term urate-lowering therapy (ULT). Medicines such as allopurinol or febuxostat reduce uric acid production to keep blood levels below 6.0 mg/dL permanently.",
+      "Flare prevention during ULT initiation. Starting urate-lowering medicines can temporarily dislodge old crystals and provoke flares; doctors prescribe low-dose anti-inflammatory cover for the first few months.",
+      "Never stop or start ULT abruptly during an active flare without medical advice, as rapid swings in blood uric acid can worsen joint inflammation.",
+      "Reviewing companion medicines. When treating co-existing conditions, doctors may choose drugs like losartan for blood pressure, which carries a mild natural uricosuric (uric-acid clearing) effect."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe conditions that closely resemble gout under the term 'Vatarakta' or 'Vatasra'. In this framework, vitiated Vata dosha combines with Rakta dhatu (blood tissue) and settles in small peripheral joints.",
+      "Traditional texts associate this state with excessive indulgence in sour, salty, pungent, heavy, or fermented foods, combined with sedentary daytime sleeping or erratic habits.",
+      "Ayurvedic care emphasizes cooling dietary modifications, digestion-strengthening spices, and stress relief alongside modern rheumatological monitoring.",
+      "Herbal concoctions and classical formulations cannot dissolve existing tophi or cure gout; no herb, diet or product can make it go away. They should strictly serve as lifestyle support alongside prescribed urate-lowering drugs."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which exhibits mild anti-inflammatory properties that may ease joint aches; does not replace uric-acid lowering medicines."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally consumed in Indian cooking for digestive comfort and mild swelling support; human evidence for gout flares is limited."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Known as Guduchi in Ayurveda and traditionally used for joint inflammation; robust clinical trials confirming uric acid reduction in humans are lacking."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "A rich dietary source of vitamin C and antioxidants; may provide modest metabolic support but cannot clear crystal deposits on its own."
+      }
+    ],
+    "nutrition": [
+      "Drink 2.5 to 3.5 litres of water every day. Adequate hydration helps your kidneys flush out uric acid and dilutes urine to prevent kidney stones.",
+      "Do not fear all dals. Old advice completely banned lentils, but modern research shows plant purines (like moong dal, masoor dal, and toor dal) have minimal impact on gout flares compared to meat; eat moderate, cooked portions.",
+      "Strictly avoid organ meats (kaleji, bheja, gurda) and limit red meat (mutton, beef) and purine-dense seafood (prawns, sardines, dried fish).",
+      "Cut out sweetened drinks, packaged juices, cola, and high-fructose corn syrup syrups; fructose directly spurs uric acid creation in your liver.",
+      "Incorporate low-fat dairy. Unsweetened skimmed milk, fresh curd, and homemade chaas (buttermilk) have proteins that encourage the kidneys to excrete uric acid.",
+      "Eat whole fruits rich in vitamin C like amla, guava, and oranges; cherries also have consistent observational evidence for reducing flare frequency.",
+      "Use everyday Indian spices like turmeric, coriander, cumin, and garlic to add rich flavour without adding excess table salt or heavy gravies."
+    ],
+    "lifestyle": [
+      "Avoid alcohol completely, especially during the first year of treatment. Beer and strong spirits trigger sharp spikes in uric acid and block its excretion.",
+      "Aim for gradual, sustainable weight loss. Shedding excess belly fat improves kidney clearance of uric acid; avoid rapid crash cuts.",
+      "Wear wide, supportive footwear. Tight or pinching shoes put mechanical stress on your big toe joint, which can set off localized crystal inflammation.",
+      "Maintain consistent workout hydration. Drink water before, during, and after gym sessions to prevent exercise-induced dehydration and uric acid spikes.",
+      "Keep your feet warm at night. Urate crystals precipitate more readily in cool temperatures, which is why gout flares so frequently strike the toes in the cold early morning hours."
+    ],
+    "yogaActivity": [
+      "During an active attack, practice absolute joint rest. Do not try to walk off the pain, run, or do standing asanas on an inflamed, red foot.",
+      "Between flares, engage in low-impact cardio. Swimming, stationary cycling, and brisk walking keep your joints mobile and burn visceral fat without pounding sensitive foot joints.",
+      "Gentle asanas like Sukhasana, Marjaryasana-Bitilasana (Cat-Cow), and supported Tadasana help maintain posture and hip flexibility once inflammation settles.",
+      "Perform the Pawanmuktasana anti-rheumatic series (micro-movements of toes and ankles) gently between attacks to preserve range of motion.",
+      "Practice calming breathwork like Anulom Vilom and Bhramari pranayama to manage chronic stress and reduce muscle tension around aching limbs."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific proof that homeopathic pills or dilutions can lower blood uric acid, eliminate crystals, or halt joint destruction.",
+      "Depending on homeopathy while skipping proven urate-lowering medication allows silent crystal accumulation, which can cause permanent joint erosion and kidney stones.",
+      "If you choose to take homeopathic remedies, always keep your doctor informed and never discontinue your prescribed allopurinol or anti-inflammatory drugs."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Long-term urate-lowering therapy that maintains serum uric acid below 6.0 mg/dL dissolves crystals, shrinks tophi, and prevents future joint attacks.",
+      "Strong evidence: Prompt treatment of acute flares with prescription anti-inflammatories or colchicine within 24 hours significantly reduces pain duration and severity.",
+      "Moderate evidence: Low-fat dairy intake, adequate hydration, and moderate vitamin C intake are linked with lower uric acid levels and fewer flares.",
+      "Weak evidence: Homeopathic remedies, herbal detox teas, alkaline waters, or special joint oils have no reliable proof of lowering uric acid or preventing joint damage."
+    ],
+    "shouldNotDo": [
+      "Do not stop your long-term uric acid medicine when your joint pain stops. High uric acid will silently return and form new crystals.",
+      "Do not apply heating pads or hot water soaks to a red, swollen gout flare. Heat accelerates inflammation and makes the throbbing pain worse; use cold packs instead.",
+      "Do not go on severe starvation diets, zero-carb crash diets, or prolonged dry fasts, as ketone buildup prevents your kidneys from clearing uric acid.",
+      "Do not start or abruptly increase urate-lowering medicine during the middle of a bad flare without expert medical direction, as sudden shifts can worsen the attack.",
+      "Do not self-prescribe high-dose pain relievers without checking kidney function; improper painkiller use can cause irreversible kidney damage."
+    ],
+    "medicationSafety": [
+      "Take urate-lowering medicines (such as allopurinol or febuxostat) every day at the same time as advised by your doctor, rather than using them only when pain appears.",
+      "Watch for skin reactions. If you start allopurinol and develop any skin rash, itchy bumps, or mouth peeling, stop the medicine immediately and call your doctor, as this can signal a serious allergic reaction.",
+      "Protect your stomach if taking NSAID painkillers. Doctors frequently co-prescribe stomach-protecting medicines like omeprazole or pantoprazole to avoid gastric irritation.",
+      "If you have high blood pressure or heart disease, discuss with your doctor whether losartan can be part of your treatment regimen due to its gentle uric-acid clearing effect.",
+      "Mild fever or joint aches can sometimes be managed with paracetamol, but paracetamol lacks the strong anti-inflammatory power required to stop a full gout attack."
+    ],
+    "complications": [
+      "Tophi formation: Firm, disfiguring lumps of urate crystals that gather under the skin of the fingers, hands, feet, and back of the elbows.",
+      "Permanent joint damage and bone erosion, causing chronic stiffness and lifelong disability.",
+      "Kidney stones (nephrolithiasis): Uric acid crystals can collect in the urinary tract, causing severe back pain and urinary blockages.",
+      "Chronic kidney disease: Prolonged untreated hyperuricemia and crystal deposits in renal tissue cause urate nephropathy and gradual loss of kidney filtration.",
+      "Heightened cardiovascular risk: Ongoing systemic inflammation from gout is linked with higher rates of high blood pressure, heart attacks, and strokes."
+    ],
+    "emergencySigns": [
+      "A hot, intensely swollen joint accompanied by high fever, shaking chills, or nausea (potential septic arthritis, a joint infection requiring urgent hospital care).",
+      "Sudden, unbearable flank or lower back pain with visible blood in the urine or inability to pass urine (indicates an obstructing kidney stone).",
+      "Developing a widespread rash, facial swelling, blisters, or peeling skin after starting allopurinol or another gout medication.",
+      "Severe abdominal burning, dark black sticky stools, or vomiting blood following frequent painkiller use."
+    ],
+    "whenToSeeDoctor": [
+      "You wake up with sudden, agonizing joint pain, severe redness, and swelling in your big toe, ankle, or knee for the first time.",
+      "You have had more than one attack in a year, or your attacks are becoming more frequent, lasting longer, or moving to new joints.",
+      "You notice hard, painless or tender white-yellow bumps (tophi) developing under your skin on your ears, fingers, or elbows.",
+      "Your routine blood test reveals a serum uric acid level above 7.0 mg/dL, even if you currently have no joint pain.",
+      "You have a personal history of kidney stones combined with high uric acid or recurring joint aches."
+    ],
+    "faqs": [
+      {
+        "q": "Can strict vegetarians in India get gout?",
+        "a": "Yes. While meat and seafood are rich in purines, high uric acid is also driven by genetics, poor kidney clearance, sweet drinks, obesity, and alcohol. Plant-based vegetarians with metabolic syndrome can still develop gout."
+      },
+      {
+        "q": "Do I need to stop eating all dals and pulses?",
+        "a": "No. Modern rheumatology guidelines confirm that plant purines found in toor, moong, and masoor dal do not raise gout risk the way animal purines do. Sensible, well-cooked dal portions can be safely eaten as part of a balanced diet."
+      },
+      {
+        "q": "Why did my joint flare up just after starting uric acid medicine?",
+        "a": "When urate-lowering medicines start working, blood uric acid drops rapidly. This causes existing crystal deposits in the joint to dissolve and break apart, which can trigger a temporary flare. Doctors usually provide preventive medicines for the first few months."
+      },
+      {
+        "q": "Can lemon water or apple cider vinegar cure gout?",
+        "a": "No. Lemon water is healthy and hydrating, but no vinegar, juice, or home remedy can dissolve urate crystals or cure gout. Consistent medical treatment is needed to keep uric acid at target levels."
+      },
+      {
+        "q": "Is high uric acid always treated with tablets?",
+        "a": "Not always. If you have elevated uric acid without symptoms, joint swelling, or kidney issues (asymptomatic hyperuricemia), doctors often start with lifestyle, dietary improvements, and hydration before prescribing medicines."
+      }
+    ],
+    "references": [
+      {
+        "title": "2020 American College of Rheumatology Guideline for the Management of Gout",
+        "source": "Arthritis Care & Research (FitzGerald JD et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32390406/",
+        "year": "2020"
+      },
+      {
+        "title": "2016 updated EULAR evidence-based recommendations for the management of gout",
+        "source": "Annals of the Rheumatic Diseases (Richette P et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27457514/",
+        "year": "2017"
+      },
+      {
+        "title": "Gout Overview and Management",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/gout/",
+        "year": "2022"
+      },
+      {
+        "title": "Gout: Diagnosis and Treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/gout/diagnosis-treatment/drc-20372903",
+        "year": "2023"
+      },
+      {
+        "title": "Dietary purines and risk of recurrent gout attacks",
+        "source": "Annals of the Rheumatic Diseases (Neogi T et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24464350/",
+        "year": "2014"
+      }
+    ],
+    "relatedDiseases": [
+      "kidney-stones",
+      "chronic-kidney-disease",
+      "arthritis",
+      "metabolic-syndrome",
+      "high-blood-pressure",
+      "type-2-diabetes",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "losartan",
+      "omeprazole",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "giloy",
+      "amla"
+    ],
+    "relatedLabs": [
+      "uric-acid",
+      "creatinine",
+      "crp",
+      "cbc",
+      "urine-routine",
+      "fasting-glucose",
+      "lipid-profile"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

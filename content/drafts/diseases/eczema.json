@@ -1,0 +1,285 @@
+{
+  "slug": "eczema",
+  "name": "Eczema",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Eczema, most commonly referring to atopic dermatitis, is a long-term inflammatory skin condition marked by a weakened skin barrier, dryness, intense itching, and recurrent red or discoloured rashes. In healthy skin, the outer layer locks in moisture and keeps irritants, allergens, and microbes out. In eczema, this protective shield is compromised, allowing water to escape quickly and foreign substances to penetrate easily, which triggers an overactive immune reaction. In India, eczema affects millions of people across all age groups, often flaring up during dry, dusty winters or in humid, sweaty monsoon seasons. It is not contagious and cannot be passed from person to person. While no herb, diet or product can make it go away permanently, consistent daily barrier care, avoiding individual triggers, and modern evidence-based medical treatments can control itching, calm inflammation, and restore comfort.",
+    "quickFacts": [
+      {
+        "label": "Most common form",
+        "value": "Atopic dermatitis"
+      },
+      {
+        "label": "Key symptom",
+        "value": "Persistent, intense itch and dry skin"
+      },
+      {
+        "label": "Is it contagious?",
+        "value": "No, it never spreads from person to person"
+      },
+      {
+        "label": "Common Indian triggers",
+        "value": "Sweat, dry winter air, dust mites, harsh soaps and detergent powders"
+      },
+      {
+        "label": "Core daily therapy",
+        "value": "Frequent, liberal application of fragrance-free moisturiser"
+      },
+      {
+        "label": "Atopic march connection",
+        "value": "Often coexists with asthma and allergic rhinitis"
+      }
+    ],
+    "causes": [
+      "Skin barrier defect: Alterations in structural skin proteins like filaggrin allow moisture to escape and environmental allergens to penetrate.",
+      "Immune dysregulation: An overactive immune response in the skin releases inflammatory chemical messengers, causing redness, swelling, and itching.",
+      "Genetic factors: Having parents or siblings with eczema, asthma, or hay fever (allergic rhinitis) significantly increases susceptibility.",
+      "Climate and weather changes: Dry, harsh winter winds in Northern and Central India dry out the skin rapidly, while high heat and sweat in coastal or monsoon conditions trigger irritation.",
+      "Household irritants: Washing powders, harsh alkaline laundry detergents, scented bathing soaps, disinfectant liquids in bathwater, and chemical floor cleaners.",
+      "Airborne allergens: House dust mites, pollen, pet dander, and city air pollution trigger flares in sensitised individuals.",
+      "Fabric friction: Rough woollen sweaters worn directly against the skin in winter, or non-breathable polyester and synthetic gym wear that traps sweat.",
+      "Emotional stress: Chronic stress raises cortisol and neuro-inflammatory markers that exacerbate the sensation of itching."
+    ],
+    "types": [
+      {
+        "name": "Atopic Dermatitis",
+        "desc": "The most widespread form, linked to allergic genetics. It typically appears in skin folds such as behind the knees, inner elbows, wrists, and neck, presenting with red, dry, or thickened itchy patches."
+      },
+      {
+        "name": "Contact Dermatitis",
+        "desc": "A localised skin reaction caused by touching an irritant (like harsh household cleaning chemicals or cement) or an allergen (such as nickel jewellery, hair dyes containing PPD, or fragrance oils)."
+      },
+      {
+        "name": "Dyshidrotic Eczema (Pompholyx)",
+        "desc": "Characterised by tiny, intensely itchy, deep-seated fluid blisters on the sides of fingers, palms of hands, and soles of feet, frequently exacerbated by sweat or stress."
+      },
+      {
+        "name": "Nummular (Discoid) Eczema",
+        "desc": "Distinct coin-shaped, scaly, and crusty patches that can appear anywhere on the limbs or trunk, often triggered by insect bites, dry weather, or skin trauma."
+      },
+      {
+        "name": "Seborrheic Dermatitis",
+        "desc": "Affects oil-rich areas like the scalp, eyebrows, sides of the nose, and chest, causing greasy, yellowish scales and itching, frequently overlapping with dandruff."
+      },
+      {
+        "name": "Stasis Dermatitis",
+        "desc": "Occurs on the lower legs due to poor circulation and pooling of blood in the veins, leading to swelling, discolouration, itching, and fragile skin."
+      }
+    ],
+    "diagnosis": [
+      "Diagnosis is clinical, meaning a doctor or dermatologist evaluates your skin, distribution of the rash, and medical history without needing a single conclusive blood test.",
+      "The doctor examines common flare zones, including the bends of the arms and legs, face, hands, and neck.",
+      "Evaluation includes checking for the 'atopic march'—asking if you or your family members have asthma, allergic rhinitis, or chronic hives.",
+      "Patch testing may be performed if an external chemical allergy (allergic contact dermatitis) from soaps, cosmetics, footwear, or workplace substances is suspected.",
+      "Skin scrapings may be examined under a microscope with potassium hydroxide (KOH) to rule out common fungal infections (such as ringworm or tinea), which can look similar to eczema."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC) with differential",
+        "purpose": "Checks for elevated eosinophil levels, which are often raised during allergic and atopic flares",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum C-Reactive Protein (CRP)",
+        "purpose": "Assesses systemic inflammation or helps detect secondary bacterial infection if rashes are severe",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Evaluates vitamin D levels, which play a role in skin barrier function and immune regulation",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Skin patch testing",
+        "purpose": "Identifies specific contact allergens like fragrances, preservatives, metals, or dyes triggering contact eczema"
+      }
+    ],
+    "modernTreatment": [
+      "Emollient therapy: Thick, bland, fragrance-free creams or ointments applied multiple times daily to repair and maintain the defective skin moisture barrier.",
+      "Soak and seal technique: Applying moisturiser within 3 minutes of finishing a lukewarm bath while the skin is still slightly damp, trapping hydration.",
+      "Topical corticosteroids: Medicated creams prescribed by a doctor to quickly calm acute inflammatory flares, used strictly as advised in brief, targeted courses.",
+      "Topical calcineurin inhibitors: Non-steroid prescription ointments (such as tacrolimus or pimecrolimus) used on delicate areas like the face, eyelids, and skin folds.",
+      "Topical PDE4 inhibitors or JAK inhibitors: Modern non-steroidal creams prescribed for mild-to-moderate eczema to reduce itch and inflammation without thinning skin.",
+      "Sedating oral antihistamines: Prescribed under medical guidance when nighttime itching disrupts restorative sleep.",
+      "Systemic treatments and biologics: For severe, refractory eczema that does not respond to topicals, dermatologists may prescribe oral immunosuppressants or targeted monoclonal antibody injections."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, eczema is commonly understood under the umbrella of 'Kushta' (skin disorders), particularly 'Vicharchika'.",
+      "It is traditionally seen as an imbalance of Vata (causing dryness, scaling, and roughness), Pitta (causing heat, redness, burning, and inflammation), and Kapha (leading to oozing, thickening, and deep itching), affecting the blood (Rakta) and skin tissues (Twacha).",
+      "Ayurvedic care suggests avoiding excess sour, salty, pungent, or fermented foods (such as pickles, papads, and excessively spicy gravies) that are thought to aggravate Pitta and vitiate Rakta.",
+      "Herbal oils and paste applications are sometimes recommended, but patients must exercise extreme caution because raw botanical pastes can cause severe allergic contact dermatitis on broken eczema skin.",
+      "Traditional practices are supportive lifestyle measures only; they do not replace standard medical moisturising therapy and dermatologist-guided prescriptions."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditionally used for cooling skin comfort and cleansing. Evidence for treating active eczema flares is weak, and topical application of raw neem oil can trigger contact dermatitis in sensitive skin."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, noted for mild anti-inflammatory properties. Dietary inclusion may support overall wellness, but no scientific trial proves it clears eczema plaques."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Contains glycyrrhizin, which shows mild skin-soothing actions in some topical research formulations, though standard medical emollients remain the proven standard."
+      }
+    ],
+    "nutrition": [
+      "Eat a balanced, nutrient-dense diet based on whole foods as recommended by the ICMR-NIN Dietary Guidelines, including lentils, whole grains, seasonal vegetables, and fruits.",
+      "Include healthy fats that nourish cell membranes: cold-pressed mustard oil, groundnut oil, chia seeds, flaxseeds, and walnuts.",
+      "Ensure adequate lean protein intake from dal, paneer, sprouts, eggs, or fish to help support skin tissue repair.",
+      "Stay well-hydrated throughout the day by drinking adequate water, tender coconut water, or homemade chaas, which prevents general bodily dehydration.",
+      "Avoid unnecessary, self-imposed elimination diets; cutting out dairy, wheat, or pulses without a doctor-confirmed allergy causes nutritional deficits without clearing eczema.",
+      "Limit ultra-processed packaged snacks, excessively sugary drinks, and heavy deep-fried street foods (like samosas and pakoras) that promote low-grade systemic inflammation."
+    ],
+    "lifestyle": [
+      "Keep baths and showers short (5 to 10 minutes) and use lukewarm water; hot water strips natural oils and immediately triggers itching.",
+      "Switch to soap-free, mild, neutral-pH synthetic detergent (syndet) cleansing bars rather than standard alkaline bath soaps.",
+      "Moisturise immediately after patting skin dry with a soft cotton towel—never rub the skin vigorously.",
+      "Wear loose, breathable 100% cotton clothing. Avoid synthetic fabrics like nylon and polyester, especially in warm Indian weather.",
+      "Wash newly bought clothes before wearing them to remove factory sizing chemicals, and use mild, perfume-free laundry detergents.",
+      "Keep your fingernails clipped short and smooth to prevent skin tearing and bacterial introduction during involuntary nighttime scratching.",
+      "Wipe away gym sweat promptly with a clean, damp towel, and change out of sweaty workout clothes right after your workout.",
+      "Use a humidifier in dry, air-conditioned rooms or during cold northern Indian winters to maintain room moisture."
+    ],
+    "yogaActivity": [
+      "Engage in calming pranayama like Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) to settle autonomic stress, which reduces the neural itch drive.",
+      "Practice restorative yoga postures like Shavasana, Balasana (Child pose), and Viparita Karani (Legs-up-the-wall) to lower psychological tension.",
+      "During gym workouts, choose moderate cardiovascular exercise in well-ventilated or temperature-controlled areas to avoid overheating.",
+      "Avoid holding your breath or extreme overheating during resistance training, as intense flushing and skin vasodilation can intensify itchiness.",
+      "Wipe sweat gently with a soft microfibre towel instead of letting salty sweat dry and crystallise on sensitive, eczema-prone skin folds."
+    ],
+    "homeopathyNote": [
+      "There is no reliable, high-quality clinical evidence showing that homeopathic preparations can repair a defective skin barrier or control moderate-to-severe eczema.",
+      "Patients should never substitute doctor-prescribed emollients, topical barrier treatments, or infection control medications with homeopathic remedies.",
+      "Delaying proper medical therapy for severe, oozing, or cracked eczema risks serious skin infections."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Consistent, frequent use of bland emollients and moisturisers repairs skin barrier function and reduces the frequency of flare-ups.",
+      "Strong evidence: Short-term, targeted courses of prescription topical corticosteroids or topical calcineurin inhibitors rapidly reduce acute inflammation and itch.",
+      "Moderate evidence: Wet wrap therapy (layering damp bandages over moisturiser) provides significant relief during severe, hospital-supervised or specialist-guided flares.",
+      "Limited evidence: Broad food elimination diets do not cure or resolve atopic dermatitis unless an objective, clinically validated food allergy is present.",
+      "Weak or no evidence: Herbal powders, blood-purifying tonics, homeopathic drops, and alternative detox diets do not reverse eczema."
+    ],
+    "shouldNotDo": [
+      "Do not scratch or rub the itchy patches; scratching damages the skin barrier, introduces bacteria, and worsens the itch-scratch cycle.",
+      "Do not bathe in scalding hot water, even though the intense heat may provide a fleeting, deceptive relief from itching.",
+      "Do not add antiseptic liquids, harsh disinfectants, or neem water to your daily bath, as they destroy skin lipids and aggravate inflammation.",
+      "Do not purchase over-the-counter 'four-in-one' or 'triple-action' creams containing strong steroids, antibiotics, and antifungals without a doctor's prescription.",
+      "Do not abruptly stop prescribed steroid creams when the skin first begins to clear; follow your doctor's instructions on tapering to avoid rebound flares.",
+      "Do not wear rough woollen fabrics directly over bare skin during winter; always wear a soft cotton inner layer first."
+    ],
+    "medicationSafety": [
+      "Use topical corticosteroids according to the fingertip unit (FTU) rule: one fingertip unit covers an area roughly equal to two adult hand palms.",
+      "Never apply strong steroid creams on delicate skin areas like the face, eyelids, groin, or underarms unless explicitly prescribed by a dermatologist.",
+      "Topical calcineurin inhibitors can cause a mild, temporary burning or stinging sensation during the first few days of use; this usually settles over time.",
+      "If taking prescribed sedating antihistamines to assist nighttime sleep, avoid driving or operating heavy gym equipment the following morning until full alertness returns.",
+      "Always discuss all topical creams, over-the-counter balms, and oral supplements with your physician to prevent unexpected drug reactions."
+    ],
+    "complications": [
+      "Secondary bacterial infection: Scratching allows Staphylococcus aureus to invade, leading to weeping, honey-coloured crusting, and pus-filled blisters (impetiginisation).",
+      "Eczema herpeticum: A severe, potentially dangerous viral infection caused by the herpes simplex virus spreading rapidly across eczematous skin.",
+      "Lichen simplex chronicus: Thickened, leathery, hyper-pigmented skin resulting from months or years of repetitive rubbing and scratching.",
+      "Post-inflammatory hyperpigmentation or hypopigmentation: Dark or pale marks left behind on Indian skin tones after an eczema flare resolves.",
+      "Severe sleep disruption: Relentless nocturnal itching causes fragmented sleep, leading to chronic daytime fatigue and mood disturbances.",
+      "Psychological impact: Visible skin plaques and persistent discomfort can contribute to anxiety, low self-confidence, and social withdrawal."
+    ],
+    "emergencySigns": [
+      "Sudden development of small, painful, clustered blisters that break into tiny round sores, accompanied by high fever (signs of eczema herpeticum)—seek emergency medical care immediately.",
+      "Rapidly spreading redness, extreme tenderness, warmth, swelling, or red streaks extending along the skin (signs of spreading cellulitis).",
+      "High fever accompanied by pus oozing from cracked skin, chills, and feeling severely unwell or lightheaded.",
+      "Sudden facial swelling, lip swelling, or difficulty breathing following exposure to a suspected food or medication trigger (anaphylaxis)."
+    ],
+    "whenToSeeDoctor": [
+      "Your skin remains severely dry, itchy, and inflamed despite applying moisturisers liberally for more than one week.",
+      "The itching disrupts your ability to sleep peacefully, concentrate at work, or exercise comfortably.",
+      "You notice signs of secondary bacterial infection, such as honey-coloured crusts, pus, or persistent oozing.",
+      "The rash begins spreading rapidly across new parts of your body, face, or around your eyes.",
+      "Over-the-counter moisturisers cause stinging, burning, or worsening redness each time you apply them."
+    ],
+    "faqs": [
+      {
+        "q": "Can eczema be permanently cured?",
+        "a": "No herb, diet or product can make eczema go away permanently. Eczema is a chronic skin tendency driven by genetics and immune mechanisms. However, with regular daily moisturising, avoiding known triggers, and appropriate doctor-prescribed medications during flares, it can be managed so effectively that skin remains clear and comfortable for long periods."
+      },
+      {
+        "q": "Is virgin coconut oil good for eczema?",
+        "a": "Virgin coconut oil can be a soothing, natural moisturiser for many people because it helps reduce skin moisture loss and has mild antibacterial qualities. However, pure oils do not replace water-based barrier-repair creams that contain ceramides, and some individuals may develop clogged pores or contact sensitivities. Test a tiny patch of skin first or ask your dermatologist."
+      },
+      {
+        "q": "Should I stop eating milk, wheat, or gluten to clear my eczema?",
+        "a": "No. You should not eliminate basic food groups without a proper medical evaluation and confirmed allergy testing. Most eczema flares in adults are triggered by environmental irritants, dry weather, sweat, and stress rather than food. Unnecessary diet restrictions can cause nutritional deficiencies without clearing your skin."
+      },
+      {
+        "q": "How should I manage eczema when exercising or working out at the gym?",
+        "a": "Sweat contains mineral salts that irritate broken eczema skin. Exercise in a well-ventilated or cool environment, wear loose, breathable pure-cotton sportswear, keep a clean damp towel handy to pat sweat away gently, and take a quick lukewarm shower immediately after your workout followed by moisturiser."
+      },
+      {
+        "q": "Is eczema contagious to my family members or gym partners?",
+        "a": "No. Eczema is completely non-contagious. You cannot catch eczema from anyone else, nor can you spread it to family members, gym equipment, or swimming pool water."
+      }
+    ],
+    "references": [
+      {
+        "title": "Atopic dermatitis: diagnosis and treatment",
+        "source": "American Academy of Dermatology (Eichenfield LF et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24290703/",
+        "year": "2014"
+      },
+      {
+        "title": "Atopic eczema in under 12s: diagnosis and management (NICE Clinical Guideline CG57)",
+        "source": "National Institute for Health and Care Excellence",
+        "url": "https://www.nice.org.uk/guidance/cg57",
+        "year": "2007"
+      },
+      {
+        "title": "Consensus guidelines for the management of atopic dermatitis: An Indian perspective",
+        "source": "Indian Journal of Dermatology, Venereology and Leprology (Sacchedeva S et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26607490/",
+        "year": "2015"
+      },
+      {
+        "title": "Atopic dermatitis (eczema) overview",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/atopic-dermatitis-eczema/symptoms-causes/syc-20353273",
+        "year": "2023"
+      },
+      {
+        "title": "Emollients and moisturisers for eczema",
+        "source": "Cochrane Database of Systematic Reviews (van Zuuren EJ et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28166570/",
+        "year": "2017"
+      }
+    ],
+    "relatedDiseases": [
+      "dry-skin",
+      "skin-allergies",
+      "asthma",
+      "allergic-rhinitis",
+      "sleep-problems",
+      "anxiety"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "turmeric",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

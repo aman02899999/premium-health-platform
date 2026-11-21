@@ -1,0 +1,269 @@
+{
+  "slug": "osteoarthritis",
+  "name": "Osteoarthritis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Osteoarthritis is a long-term joint condition where the smooth cartilage protecting the ends of your bones gradually thins and wears down. Cartilage acts like a shock-absorbing cushion inside your joints. When it roughens or wears thin, the bones rub closer together, causing pain, swelling, and stiffness. It most often affects the knees, hips, lower back, neck, and small joints of the fingers. In India, knee osteoarthritis is especially common, affecting millions of adults as they age. It is not an inevitable part of growing older that you must simply suffer through. While worn cartilage cannot be completely rebuilt, keeping your muscles strong, staying at a healthy body weight, and moving your body daily can dramatically reduce pain and keep you active.",
+    "quickFacts": [
+      {
+        "label": "Most common site in India",
+        "value": "Knee joint"
+      },
+      {
+        "label": "India prevalence",
+        "value": "Between 22% and 39% of older adults (Indian Journal of Orthopaedics, 2016)"
+      },
+      {
+        "label": "Global burden",
+        "value": "Over 500 million people affected worldwide (WHO, 2023)"
+      },
+      {
+        "label": "Weight impact",
+        "value": "Losing 1 kg of body weight removes roughly 4 kg of pressure from your knees"
+      },
+      {
+        "label": "Morning stiffness",
+        "value": "Typically lasts less than 30 minutes, unlike rheumatoid arthritis"
+      },
+      {
+        "label": "Core care",
+        "value": "Targeted exercise, weight control, and physiotherapy"
+      }
+    ],
+    "causes": [
+      "Natural wear and tear over time. As we age, joint cartilage loses its water content and resilience, making it more prone to thinning.",
+      "Carrying extra body weight. Excess weight puts continuous mechanical stress on load-bearing joints like the knees and hips. Fat tissue also releases inflammatory chemicals that accelerate cartilage breakdown.",
+      "Past joint injuries. A previous fracture, meniscus tear, or ligament injury from sports, gym accidents, or road mishaps can lead to joint wear years later.",
+      "Weak leg muscles. Weak quadriceps (front thigh muscles) and weak glutes fail to absorb daily walking shocks, transferring unnecessary impact directly onto the knee joint.",
+      "Repetitive occupational stress. Decades of heavy manual labour, frequent deep floor squatting, or carrying heavy loads can place repetitive strain on the knee cartilage.",
+      "Joint alignment and genetics. Inherited bone shape, knock-knees, bowlegs, or a family history of osteoarthritis increase personal risk.",
+      "Hormonal shifts in women. Osteoarthritis rates climb noticeably in women after menopause, linked partly to falling oestrogen levels."
+    ],
+    "types": [
+      {
+        "name": "Primary Osteoarthritis",
+        "desc": "The most common form. It develops gradually over years without a single specific injury, driven by ageing, body weight, genetics, and cumulative daily wear."
+      },
+      {
+        "name": "Secondary Osteoarthritis",
+        "desc": "Joint wear that develops as a direct consequence of a pre-existing condition, such as a prior ligament rupture, joint fracture, childhood joint abnormality, or previous joint infection."
+      },
+      {
+        "name": "Nodal or Hand Osteoarthritis",
+        "desc": "Affects the small joints of the fingers and thumb base. It often causes firm bony enlargements known as Heberden and Bouchard nodes and runs strongly in families."
+      }
+    ],
+    "diagnosis": [
+      "Your doctor takes a detailed history of your joint pain, checking when it hurts most, how far you can walk, and whether your joints feel stiff after resting.",
+      "A physical examination checks for joint tenderness, swelling, reduced range of motion, and crepitus (a crunching or crackling sensation when moving the joint).",
+      "Morning joint stiffness from osteoarthritis characteristically eases within 30 minutes of getting up, which helps distinguish it from inflammatory forms like rheumatoid arthritis.",
+      "Weight-bearing X-rays of the joints are usually taken while standing. They show whether the space between bones has narrowed and whether small bony spurs (osteophytes) have formed.",
+      "Blood tests cannot detect osteoarthritis directly, but doctors use them to rule out other problems such as gout, infection, or rheumatoid arthritis if your joint is hot, red, or very swollen."
+    ],
+    "investigations": [
+      {
+        "test": "Weight-bearing X-ray (Knee or Hip)",
+        "purpose": "Assesses joint space narrowing, bone spurs, and structural changes under actual body weight"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Rules out systemic inflammatory arthritis such as rheumatoid arthritis",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Differentiates osteoarthritis from gout flares in painful joints",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Vitamin D Test (25-OH)",
+        "purpose": "Evaluates underlying bone mineral health and calcium handling",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Rules out underlying infections or systemic inflammatory disorders",
+        "slug": "cbc"
+      }
+    ],
+    "modernTreatment": [
+      "First-line management for everyone focuses on non-drug measures: strengthening the muscles around the joint, regular low-impact aerobic exercise, and losing extra weight.",
+      "Targeted physical therapy builds strong quadriceps, hamstrings, and hip stabilisers. Strong muscles act like natural shock absorbers, unloading the vulnerable joint.",
+      "Topical pain-relief gels (such as diclofenac gel) are applied directly over the joint. They provide local relief with minimal absorption into the bloodstream, making them safer for long-term comfort.",
+      "Oral pain medicines such as paracetamol or short courses of non-steroidal anti-inflammatory drugs (NSAIDs) may be prescribed by your doctor during painful flare-ups. They are kept to the lowest dose and shortest time possible.",
+      "Assistive devices provide immediate relief. A simple walking stick held in the hand opposite to the painful knee, knee sleeves, or shock-absorbing footwear can cut joint stress.",
+      "Joint injections (such as corticosteroids) may be used by orthopaedic specialists for temporary relief during an acute, painful swelling episode.",
+      "Joint replacement surgery (such as total knee arthroplasty) is considered when cartilage wear is severe, pain disrupts sleep and daily life, and conservative measures no longer provide relief."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda describes joint degeneration predominantly under Sandhivata. In this view, an aggravated Vata dosha accumulates in the joints, leading to dryness (shosha) of joint lubrication and thinning of tissues.",
+      "Traditional supportive therapies include Snehana (external oleation using warm medicated oils) and Swedana (gentle warm fomentation), often performed as Janu Basti for knee comfort.",
+      "These oil applications and warm compresses can relax tight surrounding muscles and soothe local stiffness, but no herb, diet or product can make structural cartilage wear go away.",
+      "Ayurvedic herbs should only be used as a supportive measure alongside your regular physical therapy and medical guidance. Always share any herbal remedies you take with your treating doctor."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which possesses mild natural anti-inflammatory properties. Human studies suggest modest joint comfort, though it cannot regrow lost cartilage."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally used to soothe joint stiffness and muscular soreness. Studies show minor pain relief, acting as a gentle dietary support alongside exercise."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally used for physical strength and vitality. Early trials suggest mild support for knee comfort and functional mobility."
+      }
+    ],
+    "nutrition": [
+      "Aim for gradual, sustainable weight reduction if you carry extra kilos. Trimming just 5% to 10% of your body weight significantly lowers knee joint loading and systemic inflammation.",
+      "Build your meals around the ICMR-NIN My Plate for the Day guidelines: fill half your plate with diverse seasonal vegetables, greens, and fresh fruits.",
+      "Ensure adequate dietary protein at every meal to preserve thigh muscle mass. Include moong dal, chana, rajma, paneer, low-fat dahi, eggs, sattu, or fish.",
+      "Support your bones with calcium-rich Indian foods such as ragi (finger millet), curd, til (sesame seeds), paneer, and dark green leafy vegetables like methi and drumstick leaves.",
+      "Cut down on ultra-processed foods, deep-fried snacks like samosas and pakoras, refined maida, and sugary sweets, which fuel systemic low-grade inflammation and unwanted weight gain.",
+      "Incorporate anti-inflammatory cooking spices into everyday dishes, including haldi, freshly grated ginger, garlic, and cracked black pepper."
+    ],
+    "lifestyle": [
+      "Stay physically active every day. Movement delivers nutrients to joint cartilage through synovial fluid; complete bed rest actually speeds up joint stiffness and muscle wasting.",
+      "Choose low-impact cardiovascular exercises that protect your joints: flat-ground walking, stationary cycling at the gym, water aerobics, or swimming.",
+      "Modify deep squatting and floor sitting if your knees are painful. Consider using a dining chair instead of sitting on the floor for meals, and switch to a Western commode or raised toilet seat.",
+      "Wear sensible, well-cushioned sports shoes or walking shoes with arch support. Avoid walking barefoot on hard marble floors or wearing high heels and worn-out flat chappals.",
+      "Break up long periods of sitting at your desk. Stand up, stretch your legs, and flex your knees gently every 30 to 45 minutes.",
+      "Prioritise 7 to 8 hours of uninterrupted night sleep. Poor sleep lowers your pain tolerance and worsens the perception of joint ache."
+    ],
+    "yogaActivity": [
+      "Practice gentle joint-loosening movements (Sukshma Vyayama) such as slow ankle rotations, seated knee extensions, and hip openers while seated comfortably on a chair.",
+      "Safe, supportive asanas include Tadasana (mountain pose) against a wall, Setu Bandhasana (supported bridge pose), and gentle Uttanpadasana (single-leg raises while lying on your back) to strengthen the front thigh.",
+      "Avoid deep floor squats (Malasana), forceful cross-legged postures (Padmasana), or extreme kneeling (Vajrasana) if you have moderate to severe knee osteoarthritis.",
+      "Incorporate calming pranayama like Anulom Vilom and Bhramari to calm the nervous system, decrease stress hormones, and build resilience against chronic pain."
+    ],
+    "homeopathyNote": [
+      "There is no robust scientific evidence showing that homeopathic products can rebuild degraded joint cartilage or reverse osteoarthritis progression.",
+      "Relying solely on homeopathic pills while skipping quadriceps exercises, weight management, or medical care can result in preventable joint stiffness and muscle loss.",
+      "If you decide to use homeopathy, ensure it remains strictly complementary and never replaces your doctor-prescribed treatments or physiotherapy exercises."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Structured exercise programs (quadriceps and hip strengthening), regular low-impact aerobic activity, and weight loss produce substantial, long-lasting reductions in pain and disability.",
+      "Strong evidence: Total joint replacement surgery provides significant pain relief and functional restoration for individuals with end-stage osteoarthritis who fail conservative therapies.",
+      "Moderate evidence: Topical NSAIDs offer effective short-term pain relief with far fewer gastrointestinal side effects than oral painkillers.",
+      "Limited or mixed evidence: Dietary supplements such as glucosamine, chondroitin, and various herbal extracts show conflicting results in large clinical trials and do not regrow cartilage.",
+      "No evidence: No oil, paste, detox diet, or over-the-counter pill can regrow lost cartilage or make joint degeneration disappear."
+    ],
+    "shouldNotDo": [
+      "Do not stop exercising or stay in bed out of fear of joint wear. Complete inactivity weakens supporting muscles and makes joints stiffer and more painful.",
+      "Do not swallow over-the-counter painkiller tablets (NSAIDs) every day without a doctor's prescription. Regular unmonitored use can cause stomach ulcers and damage your kidneys.",
+      "Do not force yourself into deep floor squats or aggressive cross-legged sitting if your knees swell or throb afterwards.",
+      "Do not spend money on unregulated oils, pastes, or powders advertised to 'completely cure' or 'regrow' knee cartilage; no product can make it go away.",
+      "Do not ignore progressive joint deformity, limping, or persistent joint locking, as delaying medical evaluation limits treatment options."
+    ],
+    "medicationSafety": [
+      "Take paracetamol or oral pain medicines strictly as advised by your doctor, without exceeding recommended daily limits, to protect your liver and kidneys.",
+      "If your doctor prescribes oral anti-inflammatory tablets, take them after food with plenty of water. Speak to your doctor if you have a history of gastritis, high blood pressure, or kidney disease.",
+      "Apply topical pain-relieving gels only to clean, unbroken skin; do not wrap the area tightly with plastic film or apply over open cuts or rashes.",
+      "Inform your doctor about any vitamins, calcium tablets, or herbal extracts you take, ensuring they do not interfere with other prescription medicines."
+    ],
+    "complications": [
+      "Persistent chronic pain that interferes with walking, climbing stairs, and sleeping soundly.",
+      "Severe loss of physical mobility, leading to a sedentary routine that increases your risk of obesity, type 2 diabetes, and heart problems.",
+      "Progressive joint deformity, such as knees bending inward (knock-knees) or outward (bowlegs).",
+      "Increased risk of slips and falls due to muscle weakness, joint instability, and impaired balance.",
+      "Loss of personal independence in everyday household activities, such as bathing, using the toilet, and grocery shopping.",
+      "Emotional distress, anxiety, and depression arising from long-term, unmanaged pain and restricted social life."
+    ],
+    "emergencySigns": [
+      "A joint that suddenly becomes hot, bright red, visibly swollen, and excruciatingly painful within hours, especially if accompanied by high fever (possible septic arthritis).",
+      "Sudden inability to put any weight on your leg after a minor slip, twist, or fall (possible joint fracture).",
+      "Sudden warmth, swelling, tightness, and tenderness in your calf muscle below a painful knee (possible deep vein thrombosis).",
+      "Sudden loss of bowel or bladder control accompanied by severe back pain and numbness down both legs (cauda equina syndrome)."
+    ],
+    "whenToSeeDoctor": [
+      "Your joint pain has persisted for more than two to three weeks despite rest and gentle home care.",
+      "Your joint catches, locks up, or unexpectedly gives way while you are walking.",
+      "Morning stiffness lasts longer than 30 to 45 minutes, or you develop swelling in multiple small finger joints.",
+      "You find it increasingly difficult to climb stairs, get up from a standard chair, or walk short distances.",
+      "You notice a visible shift in the shape or alignment of your knees or feet."
+    ],
+    "faqs": [
+      {
+        "q": "Can damaged joint cartilage regrow with medicines or supplements?",
+        "a": "No. Cartilage has very limited blood supply and cannot regrow once worn down. However, strengthening your thigh muscles, managing body weight, and moving well can relieve stress on the joint so you stay active without pain."
+      },
+      {
+        "q": "Should I stop walking if my knees hurt from osteoarthritis?",
+        "a": "No, you should not stop walking completely. Gentle walking on flat ground lubricates your joints and strengthens your leg muscles. If walking causes sharp pain, reduce your distance, walk on level surfaces, and build thigh strength with seated gym exercises first."
+      },
+      {
+        "q": "Does every person with knee osteoarthritis need joint replacement surgery?",
+        "a": "Not at all. Most people manage osteoarthritis successfully for years through muscle strengthening, weight control, supportive footwear, and simple pain relief. Surgery is reserved for advanced cases where severe pain persists despite all conservative treatments."
+      },
+      {
+        "q": "Are cracking or popping sounds in my knees dangerous?",
+        "a": "Painless joint noises (crepitus) are very common and usually harmless. They happen when gas bubbles pop in synovial fluid or tendons glide over bone. If the cracking comes with pain, swelling, or catching, consult an orthopaedic doctor."
+      },
+      {
+        "q": "Can I continue using an Indian-style squat toilet with knee osteoarthritis?",
+        "a": "Deep squatting places pressure up to seven times your body weight on your kneecaps. If you have knee osteoarthritis, deep squatting often triggers severe pain and strain. Switching to a Western commode or using a raised toilet chair is strongly recommended."
+      }
+    ],
+    "references": [
+      {
+        "title": "Osteoarthritis: assessment and management (NICE guideline NG226)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng226",
+        "year": "2022"
+      },
+      {
+        "title": "Osteoarthritis Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/osteoarthritis",
+        "year": "2023"
+      },
+      {
+        "title": "2019 American College of Rheumatology/Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee",
+        "source": "Arthritis & Rheumatology (Kolasinski SL et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31908163/",
+        "year": "2020"
+      },
+      {
+        "title": "Epidemiology of knee osteoarthritis in India and related factors",
+        "source": "Indian Journal of Orthopaedics (Pal CP et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27293282/",
+        "year": "2016"
+      }
+    ],
+    "relatedDiseases": [
+      "knee-pain",
+      "joint-stiffness",
+      "arthritis",
+      "obesity",
+      "osteoporosis",
+      "back-pain"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "crp",
+      "uric-acid",
+      "vitamin-d",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

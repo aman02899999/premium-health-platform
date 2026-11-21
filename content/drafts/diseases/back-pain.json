@@ -1,0 +1,290 @@
+{
+  "slug": "back-pain",
+  "name": "Back Pain",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Back pain is discomfort or ache felt anywhere along your spine, from the base of your neck down to your hips, most commonly in the lower back (lumbar area). The lower back carries most of your body weight and absorbs stress every time you walk, lift, sit or bend. In India, back pain is one of the most frequent reasons adults visit a clinic, miss work, or give up gym routines. According to the World Health Organization (WHO), low back pain affected 619 million people globally in 2020 and remains the single leading cause of physical disability worldwide. In urban and rural India alike, everyday habits—such as long commutes on two-wheelers over uneven roads, hours spent slumping over laptops at desk jobs, lifting domestic gas cylinders or buckets of water with bent knees, and low physical fitness—place immense mechanical strain on spinal joints, ligaments, discs, and muscles. Most episodes of back pain are 'mechanical' and resolve within a few weeks with movement and basic care, but recurring or long-standing pain requires steady lifestyle changes and medical guidance.",
+    "quickFacts": [
+      {
+        "label": "Global prevalence",
+        "value": "619 million people affected in 2020 (WHO)"
+      },
+      {
+        "label": "Leading cause of disability",
+        "value": "Number 1 cause of physical disability globally (WHO)"
+      },
+      {
+        "label": "Mechanical back pain share",
+        "value": "Roughly 85% to 90% of all back pain cases (Lancet 2018)"
+      },
+      {
+        "label": "Acute recovery window",
+        "value": "Most non-specific episodes improve within 4 to 6 weeks"
+      },
+      {
+        "label": "Bed rest advice",
+        "value": "Strict bed rest delays recovery; active movement is best"
+      },
+      {
+        "label": "Common Indian contributors",
+        "value": "Desk slouching, two-wheeler riding, heavy lifting, low vitamin D"
+      }
+    ],
+    "causes": [
+      "Muscle and ligament strain. Lifting heavy objects, sudden awkward twists, or sudden gym workouts without warm-up can cause tiny tears or spasms in the back muscles and stabilizing ligaments.",
+      "Prolonged sitting and poor posture. Slouching in office chairs, hunching over mobile screens, or working from a bed or sofa puts uneven, prolonged pressure on lumbar spinal discs and weakens core muscles.",
+      "Commuting stress on Indian roads. Riding motorbikes, scooters, or auto-rickshaws on uneven roads and potholes transmits repeated vertical shock directly into the lumbar spine.",
+      "Herniated or bulging discs. The rubbery cushions (intervertebral discs) between your spinal bones can bulge outward or tear, pressing on nearby spinal nerves and sending pain into the hip or leg.",
+      "Degenerative disc disease and facet joint arthritis. Normal wear and tear over decades narrows spinal spaces, wears down cartilage, and creates joint friction, especially past age 45.",
+      "Sedentary habits and weak core muscles. Deep abdominal, back, and hip (gluteal) muscles support the spine like a natural belt. When these are underused, spinal joints bear all the load alone.",
+      "Carrying sudden heavy domestic loads. In Indian households, picking up LPG gas cylinders, 20-litre water bottles, or full buckets of water from the floor while bending from the waist instead of the knees triggers acute spasm.",
+      "Extra body weight. A heavy midsection pulls the pelvis forward, exaggerating the natural inward curve of the lower back (lordosis) and overloading the lower joints.",
+      "Mental stress and poor sleep. Psychological stress tightens back muscles unconsciously, lowers your threshold for pain, and slows tissue healing.",
+      "Underlying bone and metabolic issues. Low bone density (osteoporosis) can cause microscopic compression fractures, while severe vitamin D deficiency causes aching bone and muscle weakness."
+    ],
+    "types": [
+      {
+        "name": "Acute low back pain",
+        "desc": "Sudden pain lasting less than 6 weeks, usually triggered by an injury, lifting accident, or muscle spasm, which improves with gentle movement."
+      },
+      {
+        "name": "Subacute low back pain",
+        "desc": "Pain that persists between 6 and 12 weeks, signaling that muscle healing is slow or poor postural habits continue to irritate tissues."
+      },
+      {
+        "name": "Chronic low back pain",
+        "desc": "Pain that lingers for 12 weeks or longer, requiring a structured approach combining rehabilitation, core training, and lifestyle changes."
+      },
+      {
+        "name": "Non-specific (mechanical) back pain",
+        "desc": "Accounting for nearly 90% of cases, this is pain without a dangerous structural cause, arising from strained muscles, ligaments, and joints."
+      },
+      {
+        "name": "Radicular back pain (Sciatica)",
+        "desc": "Pain caused by irritation or compression of a spinal nerve root, shooting sharp pain, numbness, or tingling down the buttock, thigh, and calf."
+      },
+      {
+        "name": "Axial / Inflammatory back pain",
+        "desc": "Pain driven by inflammatory conditions like ankylosing spondylitis, typically worse in the second half of the night, improving with morning activity, and common in young men."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive physical and neurological examination. A doctor checks your posture, spine curvature, range of motion, reflexes, toe and heel walking, and tests nerve sensitivity along the legs.",
+      "Screening for 'red flag' symptoms. Your physician immediately evaluates for red flags such as sudden loss of urine or bowel control, saddle numbness, unexplained fever, history of cancer, or major trauma.",
+      "Straight Leg Raise (SLR) test. While you lie flat, the doctor slowly raises your extended leg to check if it recreates shooting electric pain down past your knee, suggesting disc herniation.",
+      "Why routine early X-rays or MRIs are not recommended. International clinical guidelines (including NICE and the Lancet Low Back Pain Series) emphasize that routine scans within the first 4 to 6 weeks for simple back pain are unnecessary. They often reveal harmless age-related disc bulges that mislead treatment and cause needless fear."
+    ],
+    "investigations": [
+      {
+        "test": "Vitamin D (25-OH) test",
+        "purpose": "Identifies severe vitamin D deficiency which causes bone aches, muscle soreness, and slow tissue healing",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Vitamin B12 test",
+        "purpose": "Checks for nerve-support vitamin deficits that can worsen tingling, burning, and radicular nerve symptoms",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Detects systemic inflammation to help rule out inflammatory spondyloarthritis or spinal infections",
+        "slug": "crp"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Screens for signs of hidden systemic infection or underlying hematologic conditions",
+        "slug": "cbc"
+      },
+      {
+        "test": "Magnetic Resonance Imaging (MRI) of Lumbar Spine",
+        "purpose": "Reserved for progressive nerve weakness, persistent sciatica beyond 6 weeks, or suspected infection and cancer"
+      },
+      {
+        "test": "X-ray of the Lumbosacral Spine",
+        "purpose": "Assesses bone fractures, significant degenerative changes, or alignment slippage (spondylolisthesis)"
+      }
+    ],
+    "modernTreatment": [
+      "Stay gently active. The single most important modern medical recommendation is to avoid staying in bed. Normal gentle walking, light daily tasks, and gentle stretches accelerate recovery much faster than rest.",
+      "Short-term pain relief. Your doctor may prescribe basic pain relievers like paracetamol or a short course of non-steroidal anti-inflammatory drugs (NSAIDs) to calm acute pain so you can move comfortably.",
+      "Structured physiotherapy. Once the sharp spasm subsides, a physiotherapist guides you through exercises to strengthen deep core muscles (transversus abdominis, multifidus), hip stabilizers, and back extensors.",
+      "Heat and cold therapy. Applying an ice pack for the first 48 hours helps quiet sharp muscle inflammation; warm compresses or hot water bags thereafter loosen tight, guarding muscles.",
+      "Spinal injections. For persistent sciatica caused by disc herniation that does not respond to rehab, epidural steroid injections may be considered by a specialist to reduce localized nerve swelling.",
+      "Surgery as a selective option. Decompression surgery (discectomy or laminectomy) is only needed for a tiny percentage of individuals who have persistent, severe nerve compression with motor weakness or cauda equina syndrome."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, low back pain is broadly understood as 'Kati Shula' or 'Kati Graha', categorized primarily as an aggravation of Vata dosha in the asthi (bone) and majja (marrow/nerve) tissues.",
+      "Vata is considered dry, light, and cold; hence factors like irregular schedules, overexertion, dry diets, suppression of natural urges, and lack of oiling are thought to increase back stiffness.",
+      "Traditional supportive therapies include Snehana (external oleation with warm herbal oils like Mahanarayan taila), Swedana (gentle herbal steam or warm poultices), and Kati Basti (pooling warm herbal oil over the lumbar area in a dough ring).",
+      "These classical procedures aim to soothe muscle guarding and improve local blood flow. However, they should only serve as supportive comfort alongside proper medical evaluation, and never replace medical investigation for nerve compression."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin possesses modest anti-inflammatory properties that may help calm joint and muscular soreness alongside standard therapy."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally taken to support muscle recovery, lower stress-induced muscle tension, and assist sleep."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Contains gingerols with natural mild anti-inflammatory effects that can support comfort when consumed in daily warm teas or food."
+      }
+    ],
+    "nutrition": [
+      "Prioritize daily dietary calcium. Indian dietary surveys often highlight low calcium intakes. Include regular portions of curd, paneer, cow's milk, ragi (finger millet), white sesame seeds (til), and moringa leaves in your meals.",
+      "Address Vitamin D status. Vitamin D is essential for calcium absorption into your spinal vertebrae. Since modern indoor lifestyle limits sun exposure, eat fortified foods, eggs, and take supplements as advised by your doctor.",
+      "Maintain adequate protein intake. The ICMR-NIN dietary guidelines emphasize adequate daily protein (around 0.83 g/kg of body weight) to rebuild muscle tissue. Include dal, chana, rajma, sprouts, soy, paneer, eggs, or lean meat.",
+      "Eat anti-inflammatory whole foods. Load your plate with colourful vegetables, local greens like palak and methi, walnuts, and flaxseeds while minimizing packaged bakery snacks and fried namkeens that promote inflammation.",
+      "Hydrate well throughout the day. Intervertebral discs rely heavily on water to retain their plumpness and cushioning shock-absorption. Drink adequate clean water across the day.",
+      "Watch portion sizes for weight management. Every extra kilogram of central abdominal fat exerts several kilograms of downward shear force on your lower back joints. Aim for steady, balanced home-cooked meals."
+    ],
+    "lifestyle": [
+      "Break the sitting cycle at work. If you work a desk job, stand up every 45 to 60 minutes. Walk for two minutes, stretch your hips, and adjust your posture.",
+      "Set up an ergonomic workstation. Keep your computer monitor at eye level so your neck does not crane forward. Use a chair with firm lumbar support, keeping your knees at a 90-degree angle and feet flat on the floor.",
+      "Protect your spine on Indian roads. When riding a scooter or motorbike, sit upright without slouching, engage your core slightly over rough patches, and slow down over speed bumps. Consider an ergonomic seat cushion.",
+      "Master the squat-to-lift technique. When picking up floor buckets, cylinder gas tanks, or gym weights, bend at your knees and hips with a flat back. Hold the load close to your chest instead of reaching out with rounded shoulders.",
+      "Choose a firm, supportive mattress. Avoid sleeping on ultra-soft sinking mattresses or saggy cots. A medium-firm mattress supports the natural curvature of your spine.",
+      "Sleep with spinal support. If sleeping on your back, place a small pillow under your knees to flatten the lumbar curve. If sleeping on your side, put a pillow between your knees to keep your pelvis aligned."
+    ],
+    "yogaActivity": [
+      "Bhujangasana (Gentle Cobra Pose). Lying on your stomach and gently lifting your upper chest strengthens back extensor muscles and helps reverse the slouch from prolonged sitting. Avoid forcing height.",
+      "Marjaryasana-Bitilasana (Cat-Cow Stretch). Moving smoothly between arching and rounding the back on your hands and knees mobilizes the entire vertebral column and relieves lumbar stiffness.",
+      "Setu Bandhasana (Bridge Pose). Lifting your hips while pressing your feet into the floor engages the gluteal muscles and hamstrings, which take strain off the lower back.",
+      "Balasana (Child's Pose). Resting your hips back toward your heels stretches tight paraspinal muscles and promotes relaxation. Keep knees wide if your hips or knees feel tight.",
+      "What to avoid during acute flare-ups. Skip aggressive forward bends (like touching your toes with straight legs), intense spinal twists, or rapid abdominal crunches until your pain has settled and your doctor clears you."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations such as Arnica or Rhus tox are sometimes sought by individuals for back pain.",
+      "There is no reliable scientific or high-quality clinical trial evidence demonstrating that homeopathic remedies relieve spinal nerve compression, repair disc herniations, or strengthen spinal muscles.",
+      "If you choose to explore homeopathy, do so purely as an optional adjunct. Never abandon medical check-ups, prescribed pain medications, or active physical therapy."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Clinical guidelines worldwide (including Lancet 2018 and NICE 2016) strongly confirm that staying physically active, early return to normal activities, and structured exercise therapy provide the best outcomes for mechanical low back pain.",
+      "Strong evidence against bed rest: Strict bed rest causes rapid muscle atrophy, joint stiffness, and prolongs the duration of back disability.",
+      "Moderate evidence: Superficial heat application, physical therapy with core stabilization, and short-term supervised NSAID use offer clear symptomatic benefit during acute phases.",
+      "Limited evidence: Herbal supplements, routine bed traction, and passive treatments like ultrasound therapy show little long-term clinical benefit.",
+      "No evidence: No herb, diet or product can make structural spine disease or nerve compression go away."
+    ],
+    "shouldNotDo": [
+      "Do not stay lying in bed for days. More than 48 hours of lying down weakens your spinal muscles and prolongs recovery time.",
+      "Do not rush for an immediate MRI or X-ray for ordinary back pain unless you have red-flag symptoms; scans frequently reveal harmless findings that create unnecessary anxiety.",
+      "Do not self-medicate with high-dose painkillers from the local chemist for weeks. Prolonged unmonitored use causes stomach ulcers and damages kidney function.",
+      "Do not lift heavy gym weights (such as squats or deadlifts) with a rounded spine, and never work through sharp, shooting nerve pain.",
+      "Do not allow unqualified practitioners to perform violent, sudden spinal cracking or manipulations.",
+      "Do not sleep on your stomach with a heavy pillow under your head, as this twists the neck and exaggerates the lower spine curve."
+    ],
+    "medicationSafety": [
+      "Use paracetamol strictly as advised by your doctor to help manage mild-to-moderate back ache, keeping within prescribed daily limits to protect your liver.",
+      "If taking NSAIDs (such as ibuprofen or diclofenac) for acute swelling or spasms, take them only for the brief duration prescribed and always after food.",
+      "If you have high blood pressure, heart disease, or kidney problems, notify your physician before taking NSAIDs, as they can worsen blood pressure and kidney filtration.",
+      "Patients prone to hyperacidity or gastric ulcers are frequently prescribed an acid-suppressor such as pantoprazole or omeprazole alongside painkillers; take them exactly as advised by your doctor.",
+      "Never consume muscle relaxants if you need to drive or operate machinery, as they can cause significant drowsiness and slower reflexes."
+    ],
+    "complications": [
+      "Progression to chronic intractable back pain, leading to long-term work absenteeism and loss of functional independence.",
+      "Permanent nerve damage with foot drop or persistent numbness if severe nerve root compression goes unaddressed.",
+      "Cauda equina syndrome, a rare surgical emergency where compressed lower sacral nerves cause permanent bladder and bowel paralysis.",
+      "Secondary mental health struggles, including chronic sleep disruption, severe anxiety, and clinical depression due to unmanaged persistent pain.",
+      "Physical deconditioning, where fear of moving (kinesiophobia) causes total muscle weakening, weight gain, and stiffened joints."
+    ],
+    "emergencySigns": [
+      "Sudden loss of bowel or bladder control, or feeling unable to pass urine despite an urgent sensation: go to an emergency room immediately.",
+      "Loss of feeling or numbness in your groin, buttocks, or between your thighs (saddle anesthesia).",
+      "Sudden development of weakness in one or both legs, such as inability to lift your foot (foot drop) or legs collapsing under you.",
+      "Back pain accompanied by a high fever, chills, and sweats, which can signal an epidural abscess or spinal infection.",
+      "Severe, unbearable back pain following high-impact trauma, a vehicle accident, or a fall from a height."
+    ],
+    "whenToSeeDoctor": [
+      "Your back pain shows no signs of improvement after two to three weeks of simple home care and gentle walking.",
+      "Pain travels below your knee into your calf, ankle, or toes, accompanied by numbness, pins-and-needles, or electric shocks.",
+      "The pain is relentlessly severe at night, wakes you from deep sleep, and does not improve when you change body positions.",
+      "You have unexplained weight loss alongside persistent back stiffness.",
+      "You are over age 55 or have a history of cancer, osteoporosis, or long-term steroid use and develop new back pain."
+    ],
+    "faqs": [
+      {
+        "q": "Should I take complete bed rest when my back pain starts?",
+        "a": "No. Doctors and global clinical guidelines advise against prolonged bed rest. Resting for half a day during severe spasm is fine, but staying in bed for days weakens muscles and delays recovery. Gentle walking and light movement are much safer and more effective."
+      },
+      {
+        "q": "Do I need an immediate MRI scan for back pain?",
+        "a": "In most cases, no. Around 90% of back pain is mechanical and heals within 4 to 6 weeks. Routine MRIs often detect normal age-related disc changes that are not the true source of your pain. An MRI is primarily required if you have red flags like nerve weakness, fever, or pain radiating past the knee that fails to resolve."
+      },
+      {
+        "q": "Is a hard wooden plank or floor better for back pain than a bed?",
+        "a": "Sleeping directly on a hard floor can place excessive pressure on bony points like your hips and shoulder blades. Medical evidence suggests that a medium-firm mattress that contours slightly to your natural spinal curves provides the best support and pain relief."
+      },
+      {
+        "q": "Can gym exercises like deadlifts cause permanent back damage?",
+        "a": "Deadlifts and squats do not inherently damage the spine; when performed with proper hip hinge mechanics and reasonable weights, they actually strengthen your spinal stabilizers. However, lifting with a rounded lower back, lifting weights beyond your capacity, or ignoring fatigue can cause severe muscle tears or disc herniations."
+      },
+      {
+        "q": "Can special herbal oils or balms cure slipped discs?",
+        "a": "No. While warm herbal oils and balms can bring soothing temporary warmth to tight surface muscles, no herb, diet or product can make a displaced or herniated disc go away. Healing requires time, inflammation control, and gradual physical conditioning under medical guidance."
+      }
+    ],
+    "references": [
+      {
+        "title": "Low back pain Fact sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/low-back-pain",
+        "year": "2023"
+      },
+      {
+        "title": "Low back pain and sciatica in over 16s: assessment and management (NICE guideline NG59)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng59",
+        "year": "2016"
+      },
+      {
+        "title": "Back Pain: In Depth",
+        "source": "National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIH-NIAMS)",
+        "url": "https://www.niams.nih.gov/health-topics/back-pain",
+        "year": "2023"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "neck-pain",
+      "knee-pain",
+      "osteoarthritis",
+      "osteoporosis",
+      "vitamin-d-deficiency",
+      "obesity",
+      "neuropathy"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ashwagandha",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "vitamin-d",
+      "vitamin-b12",
+      "crp",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

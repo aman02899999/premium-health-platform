@@ -1,0 +1,278 @@
+{
+  "slug": "knee-pain",
+  "name": "Knee Pain",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Knee pain is one of the most frequent joint complaints among Indian adults. It can affect anyone, from a gym beginner struggling with squats to an elder managing everyday stairs. The knee is a complex hinge joint where your thigh bone (femur), shin bone (tibia), and kneecap (patella) meet, cushioned by cartilage and stabilized by strong ligaments and tendons. When any of these structures become irritated, injured, or worn down, knee pain develops. In India, knee pain is exceptionally common due to widespread osteoarthritis in older adults, sports or gym injuries in younger people, and lifestyle factors like carrying excess body weight or prolonged squatting. While knee pain can disrupt your work and workouts, understanding the underlying cause helps you manage symptoms, rebuild joint stability, and protect your mobility.",
+    "quickFacts": [
+      {
+        "label": "Commonest chronic cause",
+        "value": "Osteoarthritis (degenerative cartilage wear)"
+      },
+      {
+        "label": "Impact of body weight",
+        "value": "Every 1 kg of extra weight adds 4 kg of pressure across the knee joint during walking"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Over 28% of Indian adults over 45 experience knee osteoarthritis symptoms (LASI study, MoHFW)"
+      },
+      {
+        "label": "Common gym causes",
+        "value": "Patellofemoral pain syndrome, IT band friction, patellar tendinopathy"
+      },
+      {
+        "label": "Primary management",
+        "value": "Targeted strength training, weight control, and low-impact cardiovascular activity"
+      }
+    ],
+    "causes": [
+      "Age-related joint wear (Osteoarthritis): Cartilage gradually thins over time, causing bone surfaces to rub against each other, creating pain, friction, and stiffness.",
+      "Excess mechanical load: Carrying extra body weight places immense stress on the knee joint with every step, speeding up cartilage breakdown.",
+      "Gym and sports injuries: Rapid pivoting, jumping, or heavy lifting with poor form can tear the anterior cruciate ligament (ACL), collateral ligaments (MCL/LCL), or the meniscus shock pads.",
+      "Patellofemoral pain syndrome: Improper kneecap tracking, often triggered by muscular imbalance between the quadriceps and hip abductors during squats or running.",
+      "Tendon and bursa inflammation: Overuse leads to patellar tendinitis (jumper's knee) or prepatellar bursitis (often called housemaid's knee from prolonged kneeling).",
+      "Metabolic and inflammatory conditions: Elevated uric acid crystals (gout) or autoimmune attacks (rheumatoid arthritis) trigger intense joint swelling and pain.",
+      "Muscle weakness and tightness: Weak quadriceps, glutes, and tight hamstrings fail to absorb shock, passing excessive ground forces straight into the knee joint."
+    ],
+    "types": [
+      {
+        "name": "Degenerative Knee Pain (Osteoarthritis)",
+        "desc": "Gradual wearing away of joint cartilage over months and years, most common in adults over 45. Characterized by deep aching, grinding sounds, and stiffness after rest."
+      },
+      {
+        "name": "Acute Traumatic Knee Pain",
+        "desc": "Sudden injury from a sports accident, fall, or awkward gym lift. Often involves a torn ligament (such as an ACL tear) or a torn meniscus, with rapid swelling and instability."
+      },
+      {
+        "name": "Overuse and Tracking Disorders",
+        "desc": "Pain that builds slowly around the front of the kneecap, common in runners, cyclists, and gym trainees. Often called runner's knee or patellofemoral pain syndrome."
+      },
+      {
+        "name": "Inflammatory and Crystalline Arthritis",
+        "desc": "Joint pain accompanied by warmth, redness, and swelling caused by systemic conditions such as gout or rheumatoid arthritis."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination: Your doctor evaluates swelling, warmth, range of motion, and presses on specific joint lines to locate tenderness.",
+      "Special physical tests: Specific maneuvers like Lachman's test, anterior drawer test, and McMurray's test check the stability of your ligaments and meniscus.",
+      "Gait and posture analysis: The doctor watches how you walk, stand, and squat to identify knock-knees (valgus), bow-legs (varus), or flat feet.",
+      "Symptom history: Differentiating between sudden traumatic pain, morning stiffness, or pain worsened specifically by climbing stairs helps identify the exact tissue involved."
+    ],
+    "investigations": [
+      {
+        "test": "Weight-bearing Knee X-Ray (AP and Lateral views)",
+        "purpose": "Shows joint space narrowing, bone spurs (osteophytes), and bone alignment while standing under real body load."
+      },
+      {
+        "test": "MRI of the Knee Joint",
+        "purpose": "Provides detailed cross-sectional images of soft tissues, confirming ligament tears, meniscus tears, or cartilage damage."
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Identifies high uric acid levels to evaluate suspected gout flares presenting with sudden red, hot knee swelling.",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures systemic inflammation, useful in detecting inflammatory arthritis or joint infection.",
+        "slug": "crp"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks white blood cell count to help rule out septic arthritis (bacterial joint infection).",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Assesses vitamin D status, as severe deficiency contributes to bone thinning, muscle weakness, and generalized ache.",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Physiotherapy and rehabilitation: The cornerstone of knee recovery. Focuses on progressive strengthening of the quadriceps (especially vastus medialis), hamstrings, calves, and hip abductor muscles to cushion the joint.",
+      "Weight optimization: Sustainable fat loss is one of the most effective treatments for knee pain. Lightening mechanical load directly reduces pain scores and slows joint wear.",
+      "Medications for short-term relief: Doctors may advise paracetamol or topical non-steroidal anti-inflammatory gel for symptom flares. Oral anti-inflammatory medicines are kept to the lowest effective dose for brief periods.",
+      "Supportive braces and taping: Knee sleeves provide compression, warmth, and joint awareness (proprioception). Unloader braces can redistribute pressure away from damaged joint compartments.",
+      "Joint injections: When oral therapy and exercise are not enough, orthopaedic specialists may offer intra-articular corticosteroid injections for acute flare relief, as advised by your doctor.",
+      "Surgical interventions: Arthroscopic repair or trimming may be needed for severe mechanical meniscus tears. In advanced, bone-on-bone osteoarthritis with unmanageable disability, partial or total knee replacement surgery offers restored function."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, chronic knee pain is frequently understood as Janu Sandhigata Vata, a condition where aggravated Vata dosha accumulates in the knee joint (Janu Sandhi), leading to dryness, degeneration of lubricating fluids (Shleshaka Kapha), and cracking sensations.",
+      "When knee pain is associated with morning stiffness, heaviness, and hot swelling, it is often viewed through the lens of Amavata, where toxic digestive residue (Ama) mixes with Vata in the joints.",
+      "Traditional Ayurvedic therapies include Janu Basti (retaining warm herbalized medicated oils over the knee joint inside a dough ring) and gentle herbal steam fomentation (Nadi Sweda) to relieve stiffness.",
+      "These traditional therapies can provide relaxing, supportive comfort alongside modern medical care. However, no oil or traditional procedure can rebuild lost joint cartilage or mend a torn ligament. Always consult a qualified orthopaedic doctor for definitive structural diagnosis."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin extracts have demonstrated modest anti-inflammatory support in mild joint discomfort. It only acts as supportive care alongside medical treatment."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Known for mild anti-inflammatory properties that may gently ease muscular soreness around stiff joints. It does not replace prescribed arthritis therapies."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditionally taken to build physical resilience and manage stress. Early studies suggest modest support for muscle recovery and joint comfort."
+      }
+    ],
+    "nutrition": [
+      "Focus on an anti-inflammatory Indian plate: Build meals around diverse seasonal vegetables such as palak, methi, tori, ghiya, and bhindi alongside whole grains and legumes.",
+      "Prioritize daily dietary protein: Strong thigh muscles protect the knee joint. Include paneer, dahi, whole dals, rajma, chana, eggs, or lean chicken in every meal as advised by your nutritionist.",
+      "Incorporate anti-inflammatory healthy fats: Consume modest amounts of walnuts, chia seeds, crushed flaxseeds (alsi), and mustard oil. Fatty fish like rohu, katla, or sardines provide natural omega-3 fatty acids.",
+      "Boost calcium and vitamin D intake: Calcium-rich foods like ragi (finger millet), white sesame seeds (til), and fortified milk products maintain subchondral bone strength beneath joint cartilage.",
+      "Flavor with culinary anti-inflammatory spices: Use haldi, freshly grated ginger, crushed black pepper, and garlic in everyday cooking.",
+      "Cut down on inflammatory processed foods: Minimize deep-fried snacks (namkeen, pakoras, samosas), sugary sweets, and refined bakery biscuits, which increase systemic inflammation and add excess weight.",
+      "Stay consistently hydrated: Water makes up a substantial portion of joint cartilage and synovial fluid. Drink adequate water throughout the day, especially around gym sessions."
+    ],
+    "lifestyle": [
+      "Choose low-impact cardiovascular conditioning: Switch from high-impact pavement running to indoor stationary cycling, elliptical training, or swimming. Cycling keeps the knee moving through its full range without impact shock.",
+      "Evaluate your footwear: Wear properly cushioned athletic shoes with good arch support. Avoid walking barefoot on hard marble or tile floors if you have chronic knee pain.",
+      "Modify sitting and bathroom habits: If you have significant knee osteoarthritis, avoid deep floor squatting, cross-legged sitting for long hours, or using low Indian toilets. Use a raised toilet seat or Western commode to protect your joints.",
+      "Never skip dynamic warm-ups: Spend 5 to 10 minutes performing gentle leg swings, bodyweight hip hinges, and glute bridges before lifting weights or cardio.",
+      "Manage daily steps smartly: If you have an active flare-up, break your daily walking into three shorter 10-minute walks rather than one grueling 45-minute trek.",
+      "Maintain steady, sustainable weight loss: Aim for gradual weight loss through dietary discipline. Even a 5% drop in body weight creates a noticeable reduction in knee discomfort."
+    ],
+    "yogaActivity": [
+      "Setu Bandhasana (Bridge Pose): Strengthens the glutes and hamstrings, creating muscular balance that takes pressure off the front of your knees.",
+      "Tadasana (Mountain Pose): Teaches grounded posture, even weight distribution through both feet, and proper knee alignment.",
+      "Vrikshasana (Tree Pose with wall support): Enhances ankle stability and joint position sense (proprioception), protecting the knee from twisting forces.",
+      "Dandasana with gentle quadriceps setting: Sit upright with legs extended, gently tightening your thigh muscles to push the back of the knee toward the floor.",
+      "Pranayama: Practice slow, mindful breathing such as Anulom Vilom and Bhramari to regulate pain sensitivity and reduce stress without placing any joint strain.",
+      "Poses to modify or avoid: Skip Padmasana (Full Lotus), Virasana (Hero Pose), and deep unsupported squats if you experience pinch, grinding, or pain in the knee."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific proof that homeopathic preparations can restore knee cartilage, repair torn meniscus tissue, or correct joint malalignment.",
+      "Relying solely on homeopathy for progressive osteoarthritis or acute sports tears delays essential physical therapy and medical care. Always consult an orthopaedic specialist."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Supervised physical therapy focusing on quadriceps and hip muscle strengthening produces substantial pain reduction and functional improvement in knee osteoarthritis.",
+      "Strong evidence: Weight loss in overweight and obese individuals directly unloads joint pressure and reduces systemic inflammatory markers.",
+      "Moderate evidence: Topical non-steroidal anti-inflammatory creams offer temporary local relief with a significantly lower risk of stomach or kidney side effects than oral pills.",
+      "Limited or mixed evidence: Glucosamine, chondroitin sulfate, and collagen supplements show inconsistent results in clinical trials; no reliable evidence shows they regrow cartilage.",
+      "No scientific evidence: Herbal pain-relief oils, magnetic knee bands, and online miracle herbal pastes claiming to cure arthritis or regrow knee cushion permanently have no scientific validation."
+    ],
+    "shouldNotDo": [
+      "Do not push through sharp, stabbing, or pinching pain during workouts; exercise should challenge your muscles, not irritate your joints.",
+      "Do not let your knees collapse inward (valgus collapse) during squats, lunges, or stair climbing; keep knees tracking directly over your second toe.",
+      "Do not take daily over-the-counter painkiller pills on your own for weeks; unmonitored use can lead to stomach ulcers, high blood pressure, and kidney injury.",
+      "Do not completely immobilize your leg for days unless specifically directed by an orthopaedic surgeon for a fracture; inactivity causes rapid quadriceps wasting and joint stiffness.",
+      "Do not assume knee pain is an inevitable part of aging that you must suffer through quietly without medical assessment.",
+      "Do not buy into internet advertisements claiming a special powder or paste can make your knee osteoarthritis go away."
+    ],
+    "medicationSafety": [
+      "Take pain medications, including paracetamol or oral NSAIDs, strictly as advised by your doctor, using the smallest dose that provides adequate relief.",
+      "If prescribed oral anti-inflammatory tablets, take them after meals. Your doctor may also prescribe an antacid or proton pump inhibitor (such as pantoprazole) to shield your stomach lining.",
+      "Inform your physician if you have a history of kidney disease, acidity, heart trouble, or high blood pressure before starting any pain medicine.",
+      "If taking prescription vitamin D3 supplements for bone health, follow the frequency and duration strictly advised by your doctor to avoid vitamin D toxicity."
+    ],
+    "complications": [
+      "Chronic joint instability and recurring falls caused by muscle weakness or torn stabilizing ligaments.",
+      "Severe joint stiffness and permanent loss of knee flexion or extension, making walking on flat ground difficult.",
+      "Progressive joint deformity, such as bow-legs (varus deformity) or knock-knees (valgus deformity).",
+      "Compensatory pain syndromes: Walking with a limp often leads to secondary chronic lower back pain, hip strain, or opposite knee overload.",
+      "Cardiovascular and metabolic decline: Reduced physical activity due to knee pain frequently leads to weight gain, worsening blood sugar, and elevated blood pressure."
+    ],
+    "emergencySigns": [
+      "Inability to put any weight on the leg after an injury, fall, or audible 'pop' sound.",
+      "The knee joint suddenly locks and cannot be bent or straightened, indicating a trapped meniscus fragment or loose body.",
+      "A hot, intensely red, rapidly swelling knee accompanied by high fever or shivering (suspected septic arthritis).",
+      "Visible, gross physical deformity of the knee joint or lower leg following a severe impact.",
+      "Sudden calf swelling, heat, and tenderness in the leg below the painful knee (possible deep vein thrombosis)."
+    ],
+    "whenToSeeDoctor": [
+      "Knee pain or swelling that persists beyond two weeks despite rest, ice, and activity modification.",
+      "Joint stiffness lasting longer than 30 minutes every morning upon waking.",
+      "A feeling that the knee is unstable, wobbling, or frequently 'giving way' while walking or descending stairs.",
+      "Pain that regularly wakes you up from sleep or prevents you from performing basic household tasks.",
+      "Noticing progressive outward bowing or inward knocking of your knees over time."
+    ],
+    "faqs": [
+      {
+        "q": "Can walking make my knee pain worse?",
+        "a": "Gentle walking on flat, even ground is generally beneficial because movement lubricates the joint and delivers nutrients to cartilage. However, walking through sharp pain, walking on steep slopes, or walking too far during an acute flare can irritate the joint. Keep walks moderate, wear supportive shoes, and stop if pain spikes."
+      },
+      {
+        "q": "Should I apply ice or warm fomentation to my knee?",
+        "a": "Use ice packs wrapped in a towel for sudden injuries, acute swelling, or after a hard workout to reduce inflammation. Use warm fomentation for chronic, stiff, aching joints in the morning to relax tight surrounding muscles. Never apply extreme heat or ice directly to bare skin."
+      },
+      {
+        "q": "Can knee cartilage regrow with special diets, herbs, or collagen supplements?",
+        "a": "No herb, diet, or supplement can regrow lost knee cartilage. Cartilage has very limited blood supply and cannot naturally rebuild once significantly worn away. Nutrition and exercise strengthen the surrounding muscles, preserve remaining cartilage, and manage inflammation, but claims of total cartilage regrowth are false."
+      },
+      {
+        "q": "Are squats harmful if I already have knee pain?",
+        "a": "Squats are not inherently harmful and are actually one of the best exercises to strengthen your legs when performed correctly. However, deep squats with poor form or excessive weights can stress the kneecap. Start with shallow box squats, ensure your knees track over your toes without collapsing inward, and work within a pain-free range of motion."
+      },
+      {
+        "q": "When is knee replacement surgery truly necessary?",
+        "a": "Knee replacement is considered when advanced osteoarthritis causes severe bone-on-bone friction, persistent pain that does not respond to physiotherapy, weight loss, and medication, and your ability to walk or sleep is profoundly compromised. It is an elective procedure decided together with your orthopaedic surgeon."
+      }
+    ],
+    "references": [
+      {
+        "title": "Osteoarthritis: care and management (NICE Guideline NG226)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng226",
+        "year": "2022"
+      },
+      {
+        "title": "2019 American College of Rheumatology/Arthritis Foundation Guideline for the Management of Osteoarthritis of the Hand, Hip, and Knee",
+        "source": "Arthritis & Rheumatology (Kolasinski SL et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31908163/",
+        "year": "2020"
+      },
+      {
+        "title": "Longitudinal Ageing Study in India (LASI) Wave-1 India Report",
+        "source": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "url": "https://www.mohfw.gov.in/",
+        "year": "2020"
+      },
+      {
+        "title": "Knee pain: Diagnosis and management in primary care",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/knee-pain/",
+        "year": "2023"
+      },
+      {
+        "title": "Knee pain symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/knee-pain/symptoms-causes/syc-20350849",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "osteoarthritis",
+      "rheumatoid-arthritis",
+      "gout",
+      "joint-stiffness",
+      "osteoporosis",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "pantoprazole",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "uric-acid",
+      "crp",
+      "cbc",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

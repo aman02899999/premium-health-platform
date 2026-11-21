@@ -1,0 +1,273 @@
+{
+  "slug": "neck-pain",
+  "name": "Neck Pain",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Neck pain is discomfort, stiffness, or soreness felt in the cervical spine area, extending from the base of the skull down to the top of the shoulders and upper back. It is one of the most common musculoskeletal complaints in India, driven heavily by long hours seated at office desks, two-wheeler commutes over uneven roads, poor sleeping positions, and the modern habit of hunching over smartphones and laptops, often called tech neck. Most neck pain stems from strained muscles, tight ligaments, or ordinary age-related wear in the cervical discs and facet joints. In a smaller number of cases, pain arises when a degenerated or bulging disc irritates an outgoing spinal nerve, causing pain, tingling, or weakness that travels down the arm, a condition known as cervical radiculopathy. In rare situations, severe spinal cord compression or systemic illness can trigger symptoms that demand emergency evaluation. For the vast majority of Indian adults, neck pain is self-limiting and responds remarkably well to active movement, targeted postural corrections, physiotherapy, stress management, and sensible workplace ergonomics. Complete bed rest and aggressive spinal manipulation can actually delay recovery. Understanding the mechanics of your neck helps you stay calm, protect your spinal health, and build lasting muscular resilience.",
+    "quickFacts": [
+      {
+        "label": "Global burden",
+        "value": "Ranked among the top four leading causes of years lived with disability worldwide (GBD Study)"
+      },
+      {
+        "label": "Common desk worker prevalence",
+        "value": "Up to 50% of computer professionals report neck discomfort annually"
+      },
+      {
+        "label": "Typical recovery time",
+        "value": "Most uncomplicated mechanical neck strains improve within 2 to 6 weeks"
+      },
+      {
+        "label": "Main daily driver",
+        "value": "Forward head posture, placing up to 27 kg of extra load on the cervical spine"
+      },
+      {
+        "label": "Initial imaging need",
+        "value": "Rarely required in the first 4 to 6 weeks unless red-flag warning signs appear"
+      }
+    ],
+    "causes": [
+      "Postural strain and prolonged static posture. Sitting hunched over a laptop, reading a smartphone placed in the lap, or working at a desk without forearm support forces the neck muscles to hold up the heavy human head for hours without rest.",
+      "Cervical spondylosis. Natural, age-related wear and tear of the spinal discs and cartilage joints in the cervical spine. Discs dry out, lose shock-absorbing height, and develop small bony spurs called osteophytes over time.",
+      "Cervical disc herniation. When the soft inner gel of a cervical spinal disc bulges or leaks outward, it can compress or inflame an adjacent spinal nerve root, sending sharp or burning pain into the shoulder, arm, or fingers.",
+      "Sudden muscle spasms. Waking up with a stiff neck after sleeping in an awkward angle, sitting directly under an air conditioner blast, or carrying heavy shoulder bags on one side can cause acute, painful protective guarding of the trapezius and levator scapulae muscles.",
+      "Road travel and mechanical vibration. Daily commuting on two-wheelers across potholes, long rides in autorickshaws, and rough driving can subject the neck joints to repetitive micro-trauma and sudden jerking movements.",
+      "Emotional stress and tension. Mental worry and anxiety cause involuntary contraction and tightening of the upper trapezius and suboccipital muscles, creating stubborn muscular knots and tension headaches.",
+      "Whiplash and physical trauma. Sudden deceleration in a road traffic collision, sports collision, or fall can rapidly whip the head forward and backward, injuring muscles, ligaments, and cervical facet capsules."
+    ],
+    "types": [
+      {
+        "name": "Axial (mechanical) neck pain",
+        "desc": "Pain felt purely in the neck and upper shoulders without radiating down the arms. It is usually caused by muscle fatigue, ligament sprain, or mild facet joint irritation, worsening with certain postures."
+      },
+      {
+        "name": "Cervical radiculopathy",
+        "desc": "Nerve root compression or inflammation in the neck. Pain often shoots like an electric shock or deep ache down the shoulder, arm, forearm, or fingers, frequently accompanied by tingling, numbness, or weakness in a specific nerve distribution."
+      },
+      {
+        "name": "Cervical myelopathy",
+        "desc": "A serious condition where the cervical spinal cord itself is compressed by large herniated discs, severe bone spurs, or ligament thickening. It causes progressive hand clumsiness, difficulty buttoning shirts, balance issues, and stiff walking."
+      },
+      {
+        "name": "Acute torticollis (wry neck)",
+        "desc": "A sudden, painful spasm that locks the neck twisted to one side, making rotation impossible without sharp distress. It often appears overnight after awkward sleeping positions or sudden drafts."
+      }
+    ],
+    "diagnosis": [
+      "Thorough medical history. Your doctor asks how the pain began, what movements make it better or worse, whether you have pain or tingling in your fingers, and whether your sleep or work habits play a role.",
+      "Physical and neurological examination. Your doctor assesses your active range of motion, gently palpates tender muscle bands, tests deep tendon reflexes at your biceps and triceps, and checks arm muscle strength and skin sensation.",
+      "Provocative clinical tests. Tests like Spurling's maneuver (gently tilting and pressing the head toward the painful side) help confirm or rule out nerve root impingement without immediate need for expensive scans.",
+      "Screening for red flags. Doctors systematically check for fever, unexplained weight loss, night sweats, balance loss, or bowel and bladder dysfunction to ensure the pain is not linked to infection, malignancy, or severe spinal cord compression.",
+      "Conservative observation window. For ordinary mechanical neck pain without warning signs, international clinical guidelines advise against early X-rays or MRI scans because incidental, painless disc bulges are common and can cause unnecessary anxiety."
+    ],
+    "investigations": [
+      {
+        "test": "Cervical spine X-ray (AP and lateral views)",
+        "purpose": "Assesses overall spinal curvature, disc height narrowing, alignment, and the presence of bony spurs (osteophytes)"
+      },
+      {
+        "test": "Magnetic Resonance Imaging (MRI) of the cervical spine",
+        "purpose": "Gold standard for viewing soft tissues, disc bulges, nerve root compression, and spinal cord changes when radicular symptoms persist"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Assesses general health and screens for underlying systemic infection or occult inflammation",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-reactive protein (CRP) or Erythrocyte sedimentation rate (ESR)",
+        "purpose": "Helps identify inflammatory joint conditions, systemic rheumatological illnesses, or infections",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum 25-hydroxy Vitamin D",
+        "purpose": "Evaluates bone mineralization and muscle function, as low levels are widespread across urban India",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Checks for deficiency that can mimic or worsen nerve numbness, tingling, and radiating limb pain",
+        "slug": "vitamin-b12"
+      }
+    ],
+    "modernTreatment": [
+      "Staying active instead of taking prolonged bed rest. Gentle, regular movement keeps the cervical joints lubricated and prevents muscle deconditioning and chronic stiffness.",
+      "Over-the-counter and prescribed pain relief. Short courses of paracetamol or oral nonsteroidal anti-inflammatory drugs (NSAIDs) help calm acute inflammation and pain so you can move, taken as advised by your doctor.",
+      "Targeted physical therapy. A qualified physiotherapist guides you through isometric neck strengthening, deep cervical flexor training, scapular retractor conditioning, and gentle active range-of-motion routines.",
+      "Ergonomic adjustments. Elevating laptop screens to eye level, using an external keyboard and mouse, supporting the forearms, and taking frequent micro-breaks during long desk shifts reduce cervical strain.",
+      "Short-term muscle relaxants. For intense, acute muscle spasms that interrupt rest, a doctor may prescribe a short, temporary bedtime course to break the spasm cycle.",
+      "Local heat or cold therapy. Applying an ice pack wrapped in a cloth during the first 48 hours of an acute strain, followed by warm compresses or a warm shower, eases muscle tightness and improves local circulation.",
+      "Specialist interventions. For refractory cervical radiculopathy that fails conservative care after several months, doctors may consider guided cervical epidural steroid injections or surgical decompression to relieve pressure on the nerve."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic philosophy, neck stiffness and pain are often understood under conditions such as Manyastambha or Greeva Shula, primarily driven by an aggravation of Vata dosha lodged in the neck channels (manya).",
+      "Aggravated Vata, associated with dryness, coldness, and irregular habits, can cause stiffness, muscle guarding, and restricted mobility. Kapha may also become involved, causing heaviness and dull aches.",
+      "Traditional supportive measures include Snehana (gentle external oil application) using medicated oils like Mahanarayana taila, followed by mild Swedana (warm herbal steam or fomentation) to ease stiffness.",
+      "Ayurvedic classical texts also emphasize dietary regularity, avoiding dry, stale, or excessively cold foods, and drinking warm fluids to balance Vata.",
+      "These traditional perspectives serve as gentle comfort and supportive care. They do not replace modern clinical evaluation, neurological exams, or medical interventions."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows mild anti-inflammatory properties in laboratory and clinical studies. It may serve as a supportive dietary spice, but evidence for treating structural spinal conditions is limited."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "A traditional adaptogen that helps calm systemic stress and supports muscle relaxation. Clinical trials showing direct structural healing of cervical discs are lacking."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Contains gingerols with mild anti-inflammatory mechanisms. It can be enjoyed as a culinary tea for warmth and comfort alongside standard medical care."
+      }
+    ],
+    "nutrition": [
+      "Build a nutrient-dense plate following the ICMR-NIN dietary guidelines, with plenty of seasonal vegetables, whole grains, lentils, and fresh produce to support musculoskeletal tissue repair.",
+      "Ensure adequate calcium intake for bone density through dairy products like paneer, curd, and milk, or plant sources like ragi (finger millet), sesame seeds, and dark leafy greens.",
+      "Include sufficient daily protein from dal, chana, rajma, eggs, or paneer to nourish and repair the supporting muscles of the neck and upper back.",
+      "Correct common nutrient deficiencies, especially vitamin D and vitamin B12, by eating fortified foods and taking supplements as advised by your doctor.",
+      "Stay well-hydrated throughout the day; spinal discs rely on adequate water content to maintain their shock-absorbing height and flexibility.",
+      "Limit sugary confectioneries, deep-fried snacks, and highly processed packaged foods that can promote systemic low-grade inflammation."
+    ],
+    "lifestyle": [
+      "Raise your work screens. Elevate your computer monitor or laptop so that the top third of the screen sits directly at eye level, preventing forward head tilt.",
+      "Follow the 30-minute posture rule. Stand up, roll your shoulders back, and stretch your chest every 30 minutes during long desk or driving sessions.",
+      "Hold your smartphone higher. Bring your phone up toward your eyes rather than bending your chin toward your chest to scroll or text.",
+      "Choose a supportive pillow. Use a single contoured cervical pillow or a medium-firm pillow that keeps your head and neck aligned straight with your spine, whether on your back or side.",
+      "Avoid sleeping on your stomach, as this forces your neck to stay rotated to one extreme side for hours at a time, straining facet joints.",
+      "Avoid carrying heavy shoulder bags or backpacks on a single shoulder; distribute weight evenly or switch to a balanced backpack with padded straps.",
+      "Practice daily relaxation techniques such as deep diaphragmatic breathing or mindfulness to release subconscious tension stored in your neck and shoulder muscles."
+    ],
+    "yogaActivity": [
+      "Chin tucks. Gently pull your chin straight back as if making a subtle double chin, hold for 5 seconds, and release to strengthen deep neck flexors.",
+      "Scapular retractions (shoulder blade squeezes). Draw your shoulder blades gently down and toward each other, holding for 5 seconds to counteract rounded shoulders.",
+      "Gentle neck range of motion. Perform slow, controlled neck rotations, side bends, and nods within a comfortable, pain-free range; never force a stiff joint.",
+      "Cat-Cow pose (Marjaryasana-Bitilasana). Perform gentle spinal flexion and extension on hands and knees to mobilize the entire vertebral column safely.",
+      "Cobra pose (Bhujangasana). A gentle, supported chest-opening backbend that strengthens upper back extensors without hyperextending the neck.",
+      "Avoid aggressive neck rolling, uncontrolled head-cracking, or inverted postures like headstands (Sirsasana) and shoulder stands (Sarvangasana) when experiencing neck pain."
+    ],
+    "homeopathyNote": [
+      "Some individuals turn to homeopathic preparations for neck stiffness and musculoskeletal discomfort.",
+      "Systematic reviews and major clinical health bodies indicate that reliable scientific evidence demonstrating clinical efficacy for homeopathy in cervical spine disorders is lacking.",
+      "Relying solely on homeopathic remedies can delay necessary medical imaging, physiotherapy, or surgical evaluation for genuine nerve compression.",
+      "If you use homeopathic remedies, always do so alongside, never in place of, standard medical evaluation and guidance."
+    ],
+    "evidenceNotes": [
+      "Strong scientific evidence supports active exercise, targeted neck and shoulder strengthening, and ergonomic modifications for reducing mechanical neck pain and preventing recurrence.",
+      "Moderate evidence shows that short courses of paracetamol or prescribed anti-inflammatory medicines provide temporary symptomatic relief to allow participation in rehabilitation.",
+      "Weak evidence exists for passive treatments used alone, including rigid cervical collars, traction, hot packs, or ultrasound; they provide brief comfort but do not resolve the problem without exercise.",
+      "No herb, diet or product can make cervical disc degeneration or bone spurs go away. Beware of miracle oils, collars, or herbal pastes claiming permanent structural cures."
+    ],
+    "shouldNotDo": [
+      "Do not allow unqualified roadside barbers or practitioners to forcefully twist, snap, or crack your neck, as sudden high-velocity rotation can tear the vertebral artery and trigger a stroke.",
+      "Do not remain in bed for days waiting for pain to vanish; prolonged rest weakens supporting neck muscles and stiffens spinal joints.",
+      "Do not sleep with multiple high, rigid pillows that force your neck into an unnatural bend throughout the night.",
+      "Do not cradle your phone between your ear and shoulder while multitasking; use a hands-free headset or speaker instead.",
+      "Do not ignore spreading arm numbness, finger clumsiness, or sudden drops in hand grip strength."
+    ],
+    "medicationSafety": [
+      "Use pain relievers only as advised by your doctor; do not continuously take over-the-counter painkillers without medical review.",
+      "If taking paracetamol, ensure total daily intake remains within safe limits specified by your doctor to avoid liver damage, and check other combination cold medicines for hidden paracetamol.",
+      "Oral NSAIDs such as ibuprofen or diclofenac should be taken for the shortest possible duration, ideally with food, as they can irritate the stomach, raise blood pressure, and strain kidneys.",
+      "If your doctor prescribes a muscle relaxant for acute spasm, avoid driving, operating machinery, or consuming alcohol, as these medicines can cause significant drowsiness.",
+      "Always inform your healthcare provider about all health conditions, including ulcers, asthma, high blood pressure, and kidney disease, before starting pain medications."
+    ],
+    "complications": [
+      "Chronic, disabling neck pain lasting beyond three months, leading to reduced productivity and sleep disturbances.",
+      "Cervical radiculopathy, causing persistent arm pain, numbness, tingling, and permanent sensory loss if nerve compression remains unaddressed.",
+      "Cervical spondylotic myelopathy, resulting in spinal cord damage that can cause loss of hand coordination, progressive gait unsteadiness, and bladder control problems.",
+      "Cervicogenic headaches, where referred pain from the upper cervical joints radiates up over the skull to the forehead and eyes.",
+      "Myofascial pain syndrome, characterized by hypersensitive, persistent trigger points across the upper trapezius and shoulder girdle."
+    ],
+    "emergencySigns": [
+      "Sudden difficulty walking, loss of balance, or tripping frequently accompanied by stiff legs",
+      "New loss of control over urination or bowel movements, or numbness in the groin and genital area",
+      "Sudden weakness in both hands or arms, such as being unable to grip a cup or lift the arms",
+      "High fever, severe headache, sensitivity to light, and an extremely rigid neck that cannot touch the chest (signs of meningitis): seek emergency medical care immediately",
+      "Neck pain following a serious fall, vehicle accident, or direct blow to the head or spine"
+    ],
+    "whenToSeeDoctor": [
+      "Pain that steadily radiates down past the shoulder into the forearm, hand, or fingers",
+      "Persistent numbness, burning, or pins-and-needles sensations in the arm or hand",
+      "Neck pain that persists beyond 4 to 6 weeks despite rest, stretching, and ergonomic corrections",
+      "Pain that awakens you consistently from deep sleep or is accompanied by unexplained weight loss",
+      "Noticeable loss of grip strength, such as frequently dropping pens, keys, or mobile phones"
+    ],
+    "faqs": [
+      {
+        "q": "Can looking down at a mobile phone really damage my neck?",
+        "a": "Yes. When you tilt your head forward at a 60-degree angle to look at a phone, the mechanical stress on your cervical spine increases from about 5 kg to nearly 27 kg. Over time, this constant load fatigues neck muscles, strains ligaments, and accelerates disc wear, causing what is commonly termed tech neck. Holding your phone higher and taking frequent micro-breaks helps protect your spine."
+      },
+      {
+        "q": "Which pillow is best for chronic neck pain?",
+        "a": "The best pillow keeps your neck in a neutral, straight alignment with your spine throughout the night. A medium-firm contoured pillow or a thin memory foam pillow that fills the space under the curve of your neck works well for back sleepers. Side sleepers need a pillow thick enough to bridge the distance between the ear and the shoulder. Avoid stacking multiple pillows or sleeping on your stomach."
+      },
+      {
+        "q": "Is it safe to get my neck cracked by a salon barber?",
+        "a": "No. Forceful, sudden twisting of the neck performed by untrained individuals can cause severe injuries, including cervical disc herniation, ligament tears, and vertebral artery dissection, which can lead to a stroke. If joint mobilization is needed, it must only be performed by a licensed physiotherapist or medical spine specialist using gentle, controlled techniques."
+      },
+      {
+        "q": "Do I need an immediate MRI for neck pain?",
+        "a": "In most cases, no. Guidelines from international spine societies recommend against routine MRI scans for uncomplicated neck pain without red flags during the first 4 to 6 weeks. Many people without any pain have disc bulges on their MRI scans. Scans are generally reserved for when red flags exist, when pain radiates down the arm with nerve deficits, or when pain fails to improve after conservative treatment."
+      },
+      {
+        "q": "Can regular gym workouts help my neck pain, or will they make it worse?",
+        "a": "When done with correct form, exercise is one of the best treatments for neck pain. Strengthening the upper back, latissimus dorsi, and shoulder stabilizers takes pressure off the neck. However, you should avoid heavy overhead presses, aggressive shrugs, or jerky movements while in acute pain. Focus first on posture, core strength, and controlled rowing exercises under professional guidance."
+      }
+    ],
+    "references": [
+      {
+        "title": "Musculoskeletal health: Neck pain",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/musculoskeletal-conditions",
+        "year": "2022"
+      },
+      {
+        "title": "Prevalence of neck pain and its associated factors among computer users: A cross-sectional study",
+        "source": "Indian Journal of Occupational and Environmental Medicine (PubMed/NCBI)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30116070/",
+        "year": "2018"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "back-pain",
+      "joint-stiffness",
+      "osteoarthritis",
+      "headache",
+      "migraine",
+      "stress",
+      "vitamin-d-deficiency"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ashwagandha",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "vitamin-d",
+      "vitamin-b12",
+      "crp",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

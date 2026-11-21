@@ -1,0 +1,278 @@
+{
+  "slug": "kidney-infection",
+  "name": "Kidney Infection (Pyelonephritis)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A kidney infection, known medically as pyelonephritis, is a serious bacterial infection of one or both kidneys. It usually begins when bacteria, most commonly Escherichia coli from the digestive tract, enter the urethra, multiply in the bladder, and travel upwards through the ureters into the renal tissue. Unlike a standard lower urinary tract infection (cystitis) that stays confined to the bladder, pyelonephritis affects the vital functional units of the kidneys. This causes intense loin or back pain, high fever with shaking chills, nausea, and vomiting. In India, factors such as warm weather leading to dehydration, high rates of kidney stones, and a high prevalence of type 2 diabetes make kidney infections a common and dangerous medical emergency. Prompt medical care with targeted antibiotics is essential. Delaying treatment can lead to irreversible kidney scarring, renal abscesses, or life-threatening bacterial spread into the bloodstream known as urosepsis.",
+    "quickFacts": [
+      {
+        "label": "Primary Bacterial Cause",
+        "value": "Escherichia coli (E. coli) causes approximately 80% of uncomplicated community cases"
+      },
+      {
+        "label": "Gender Risk",
+        "value": "Women are 4 to 5 times more vulnerable than men due to a shorter urethra"
+      },
+      {
+        "label": "Hallmark Symptom Triad",
+        "value": "High fever with chills, flank (side or back) pain, and nausea or vomiting"
+      },
+      {
+        "label": "Urgent Treatment",
+        "value": "Prescription antibiotic therapy guided by urine culture; hospital admission if vomiting or severe"
+      },
+      {
+        "label": "Key Hazard",
+        "value": "Untreated cases can lead to blood poisoning (urosepsis) or permanent kidney scarring"
+      }
+    ],
+    "causes": [
+      "Ascending urinary infection: Bacteria from the bowel, most often Escherichia coli, enter the urethra, multiply inside the bladder, and climb up the ureters into the kidneys.",
+      "Urinary tract obstruction: Obstacles such as kidney stones (calculi), an enlarged prostate gland in men, or structural narrowings (strictures) block normal urine outflow, creating stagnant pools where bacteria rapidly multiply.",
+      "Type 2 diabetes: Elevated blood sugar impairs normal white blood cell defence mechanisms and can cause nerve changes that prevent the bladder from emptying fully, dramatically increasing bacterial risk.",
+      "Anatomical and urinary tract defects: Conditions like vesicoureteral reflux, where urine flows backwards from the bladder to the kidneys, often seen in children or adults with chronic urinary abnormalities.",
+      "Indwelling urinary catheters: Tubes placed to drain the bladder provide a direct pathway for bacterial colonies and biofilm formation into the urinary system.",
+      "Pregnancy: Hormonal shifts relax the muscles of the ureters, and the growing uterus presses against the urinary tract, slowing urine drainage and allowing bacteria to ascend quickly.",
+      "Weakened immunity: Conditions like HIV, chemotherapy treatments, or taking immunosuppressive medicines weaken the body's natural defences against bacterial invaders."
+    ],
+    "types": [
+      {
+        "name": "Acute Uncomplicated Pyelonephritis",
+        "desc": "A sudden, severe bacterial infection of the kidney developing in an otherwise healthy, non-pregnant adult without structural urinary tract abnormalities."
+      },
+      {
+        "name": "Acute Complicated Pyelonephritis",
+        "desc": "An infection occurring in an individual with high-risk factors such as pregnancy, poorly controlled diabetes, kidney stones, an indwelling catheter, anatomical defects, or in men."
+      },
+      {
+        "name": "Chronic Pyelonephritis",
+        "desc": "A long-standing or recurrent kidney inflammation that causes gradual scarring, shrinkage of renal tissue, and progressive loss of kidney function, frequently linked to chronic reflux or persistent stones."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination by a doctor to assess systemic distress, body temperature, blood pressure, and heart rate for early signs of sepsis.",
+      "Physical check for costovertebral angle (CVA) tenderness, where gentle tapping or pressure over the lower back below the ribs reproduces sharp, unmistakable kidney pain.",
+      "Urine dipstick and microscopic examination to check for the presence of white blood cells (pus cells), bacteria, red blood cells, and nitrites.",
+      "Urine culture and antimicrobial sensitivity testing to isolate the exact organism and identify which antibiotic will successfully clear it.",
+      "Routine blood tests, including inflammatory markers and kidney function indicators, to confirm the severity of systemic spread.",
+      "Diagnostic ultrasound or contrast-enhanced CT scan of the abdomen and pelvis if fever lasts past 72 hours of antibiotics, or to rule out obstructing kidney stones or kidney abscesses."
+    ],
+    "investigations": [
+      {
+        "test": "Urine routine and microscopy",
+        "purpose": "Detects pus cells (pyuria), red blood cells (hematuria), and nitrites confirming urinary infection",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Checks white blood cell count (leukocytosis) to evaluate systemic bacterial response",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum creatinine and eGFR",
+        "purpose": "Measures how well the kidneys are filtering waste during the acute inflammatory episode",
+        "slug": "creatinine"
+      },
+      {
+        "test": "C-reactive protein (CRP)",
+        "purpose": "Assesses the degree of active systemic and tissue inflammation",
+        "slug": "crp"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Evaluates blood sugar control, since undiagnosed or high diabetes increases infection severity",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Ultrasound Kidney-Ureter-Bladder (USG KUB)",
+        "purpose": "Identifies urinary tract obstruction, kidney stones, structural issues, or abscess collection"
+      }
+    ],
+    "modernTreatment": [
+      "Immediate medical evaluation is necessary; a kidney infection is a serious condition that cannot be managed at home without prescription medicine.",
+      "Prompt antibiotic therapy is the cornerstone of treatment. Doctors start broad-spectrum empirical antibiotics right away and adjust them once urine culture sensitivity results are available.",
+      "Mild to moderate uncomplicated cases are usually treated with an oral antibiotic course for 7 to 14 days, as directed by the treating physician.",
+      "Severe infections, cases with persistent vomiting, dehydration, pregnancy, or high systemic toxicity require hospital admission for intravenous (IV) fluids and IV antibiotics.",
+      "Pain and fever management using paracetamol as advised by your doctor to lower temperature and ease flank discomfort.",
+      "Treating any underlying blockage, such as placing a temporary ureteral stent or nephrostomy tube if a kidney stone is trapping infected urine inside the kidney.",
+      "Drinking plenty of clean, safe water once vomiting has settled, helping flush bacteria and inflammatory debris out of the urinary tract."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, severe urinary infections are viewed under conditions of Mutravaha Srotas (urinary channel disturbances) involving intense Pitta and Vata aggravation.",
+      "Pitta vitiation is believed to drive burning sensations, intense heat, and fever (Jwara), while Vata aggravation causes severe spasmodic pain (Shoola) in the loin and flank region.",
+      "Traditional principles focus on cooling (Sheetala), diuretic (Mutrala), and soothing properties to reduce burning and support urine passage alongside adequate hydration.",
+      "Classical texts never intended these methods to manage an acute, invasive bacterial infection of the kidney tissues; such cases require modern emergency antibiotics.",
+      "Ayurvedic herbs should never replace antibiotic therapy; no herb, diet or product can make an active bacterial kidney infection go away on its own."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which demonstrates anti-inflammatory and antioxidant properties in laboratory studies. It provides supportive wellness after medical recovery but cannot clear renal bacteria."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Traditionally used in Indian households to support natural vitality during convalescence and fevers. Human clinical evidence for clearing kidney infections is lacking."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "An adaptogenic herb traditionally taken for general respiratory and immune support. It has no proven clinical ability to eradicate bacterial pyelonephritis."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Can offer mild natural relief for nausea once the acute crisis has settled, but it must never be used in place of prescribed hospital care."
+      }
+    ],
+    "nutrition": [
+      "Drink adequate amounts of safe, boiled or filtered water throughout the day to keep urine pale and running freely, unless your doctor has placed you on fluid restriction.",
+      "Include clear, hydrating fluids such as fresh tender coconut water, light moong dal water, and warm vegetable soups to maintain fluid balance and replace lost minerals.",
+      "Choose gentle, easy-to-digest Indian staples while recovering, such as plain rice khichdi, thin dalia, soft curd rice, and steamed lauki (bottle gourd) or tori (ridge gourd).",
+      "Avoid strong bladder irritants that worsen urinary discomfort, including spicy masalas, deep-fried snacks, vinegar, raw red chilies, excess caffeine from black tea or coffee, and alcohol.",
+      "Keep sodium levels moderate; do not eat salty pickles, papads, namkeens, or heavily processed foods that place unnecessary strain on healing kidneys.",
+      "Ensure hygienic food preparation; wash fresh vegetables thoroughly and avoid unpasteurised dairy or unhygienic street beverages that could introduce other infections."
+    ],
+    "lifestyle": [
+      "Ensure strict and complete physical bed rest during the febrile, painful stage of the infection to help your body focus its energy on fighting the bacteria.",
+      "Never suppress or delay the natural urge to urinate; holding urine inside the bladder gives bacteria additional time to multiply and ascend toward the kidneys.",
+      "Practice proper personal hygiene: always wipe or clean from front to back after using the toilet to stop rectal bacteria from moving toward the urethra.",
+      "Urinate immediately after sexual activity to flush out any bacteria that may have entered the urinary canal during intercourse.",
+      "Wear loose, breathable cotton underwear and avoid tight-fitting synthetic pants that trap moisture, heat, and sweat around the groin area.",
+      "Avoid commercial scented feminine hygiene washes, intimate chemical sprays, or harsh soaps around the genital area, as they destroy normal protective microbial barriers."
+    ],
+    "yogaActivity": [
+      "During the acute infection, all forms of yoga, gym workouts, running, and heavy physical activity are strictly contraindicated; your body needs complete rest.",
+      "Once the fever has subsided and your doctor confirms the infection is resolving, you may practice gentle, unforced breathing exercises such as slow Anulom Vilom to reduce stress.",
+      "Convalescent relaxation poses like Shavasana (Corpse Pose) and gentle Supta Baddhakonasana with cushions can help relax tense pelvic and lower back muscles.",
+      "Avoid all abdominal compressions, intense forward folds, vigorous twists, and inverted postures like Sirsasana until kidney function and pain have returned to normal."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence demonstrating that homeopathic preparations can eliminate bacterial pathogens from kidney tissues.",
+      "Pyelonephritis is an invasive bacterial infection with high risk of sepsis; relying on alternative remedies instead of antibiotics can result in fatal blood poisoning or permanent renal damage.",
+      "Prescription antibiotics remain the mandatory, evidence-based standard of care."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Prescription antibiotic therapy is lifesaving and essential to eliminate bacterial infection, stop tissue death, and prevent urosepsis.",
+      "Strong evidence: Prompt treatment of lower urinary tract infections (cystitis) prevents ascending spread into the upper urinary tract.",
+      "Moderate evidence: Imaging (USG or CT) in non-resolving pyelonephritis significantly reduces complications by finding silent stones, anatomical blockages, or abscesses.",
+      "Limited evidence: Herbal preparations and cranberry extracts have not been shown to treat an established bacterial kidney infection. No herb, diet or product can make it go away."
+    ],
+    "shouldNotDo": [
+      "Do not take over-the-counter painkillers such as ibuprofen, naproxen, or diclofenac without explicit medical clearance; these NSAID medicines can damage acutely inflamed kidneys and impair renal blood flow.",
+      "Do not stop taking your prescribed antibiotics just because your fever has dropped after two or three days; stopping early allows resistant bacteria to survive and cause a dangerous relapse.",
+      "Do not attempt to cure a kidney infection at home using cranberry juice, barley water, herbal concoctions, or detox teas.",
+      "Do not hold your urine when you feel the need to relieve yourself, as stagnant urine accelerates bacterial multiplication.",
+      "Do not ignore early symptoms of urinary burning or frequency; treating a bladder infection early prevents it from climbing to the kidneys."
+    ],
+    "medicationSafety": [
+      "Take your antibiotics at the exact times prescribed by your doctor to maintain steady medication levels in your blood and kidney tissues.",
+      "Use paracetamol for fever and pain as advised by your doctor, taking care never to exceed recommended daily limits.",
+      "Inform your treating doctor about your complete medical history, including allergies to penicillin, cephalosporins, or sulfa drugs, and any existing kidney or liver problems.",
+      "If you are prescribed oral antibiotics but continue to vomit and cannot keep pills down, report to an emergency hospital department immediately for intravenous therapy.",
+      "Inform your physician if you are pregnant or breastfeeding, as several common antibiotics used for urinary infections are unsafe during pregnancy."
+    ],
+    "complications": [
+      "Urosepsis: Bacteria enter the bloodstream from the infected kidney, triggering a severe, life-threatening drop in blood pressure and organ failure.",
+      "Renal abscess: Formation of a walled-off pocket of pus within the kidney parenchyma or surrounding tissues that may require surgical drainage.",
+      "Acute kidney injury: A sudden, critical drop in kidney filtration capacity requiring intensive monitoring or temporary dialysis.",
+      "Permanent renal scarring: Irreversible structural damage to the delicate nephrons, which can cause chronic kidney disease and long-term high blood pressure.",
+      "Emphysematous pyelonephritis: A rare, life-threatening gas-forming bacterial infection of the kidney, seen most often in people with poorly managed diabetes.",
+      "Pregnancy complications: Untreated maternal pyelonephritis significantly increases the risk of preterm labour, low birth weight, and maternal septic shock."
+    ],
+    "emergencySigns": [
+      "High body temperature accompanied by severe shaking chills (rigors) and confusion or dizziness.",
+      "Severe, unmanageable pain in the side, back, or lower abdomen accompanied by continuous vomiting that prevents drinking water or taking pills.",
+      "Rapid heartbeat, shallow rapid breathing, cold clammy skin, or extreme lethargy, which are warning signs of impending septic shock.",
+      "A significant reduction in urine output or a total inability to pass urine over several hours.",
+      "Sudden appearance of dark red blood or large clots in the urine."
+    ],
+    "whenToSeeDoctor": [
+      "You develop back or side pain alongside painful, frequent, or cloudy urination.",
+      "You have been treated for a bladder infection, but your symptoms worsen or you develop a fever.",
+      "Your fever and flank pain do not begin to improve within 48 to 72 hours of starting prescribed antibiotics.",
+      "You are pregnant and develop any burning during urination or discomfort in your lower back.",
+      "You have diabetes or kidney stones and experience unexplained fever, shivering, or nausea."
+    ],
+    "faqs": [
+      {
+        "q": "Can drinking extra water alone cure a kidney infection?",
+        "a": "No. While drinking water helps flush the urinary passage, it cannot eradicate bacteria that have already invaded kidney tissue. A kidney infection requires prescription antibiotics evaluated by a medical doctor; no herb, diet or product can make it go away on its own."
+      },
+      {
+        "q": "How is a kidney infection different from a bladder infection?",
+        "a": "A bladder infection (cystitis) is restricted to the lower urinary tract and mainly causes local symptoms like burning and urinary urgency without fever. A kidney infection (pyelonephritis) occurs when bacteria ascend into the upper tract, causing systemic illness, including high fever, shaking chills, nausea, vomiting, and deep flank pain."
+      },
+      {
+        "q": "Why are common painkillers like ibuprofen dangerous during a kidney infection?",
+        "a": "Non-steroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen and diclofenac reduce blood flow through the kidneys. In an already inflamed, infected kidney, these medicines can precipitate acute kidney injury. Paracetamol is generally preferred for fever and pain, taken as advised by your doctor."
+      },
+      {
+        "q": "Can an episode of pyelonephritis cause lasting damage to my kidneys?",
+        "a": "A single uncomplicated kidney infection that is diagnosed early and treated completely with the right antibiotics rarely leaves permanent damage. However, delayed treatment, recurring infections, or infections with underlying kidney stones can cause scarring that leads to chronic kidney disease or high blood pressure over time."
+      },
+      {
+        "q": "Why are women more prone to kidney infections than men?",
+        "a": "Women have a much shorter urethra than men, and the urethral opening is located closer to the anus. This anatomical arrangement makes it easier for bowel bacteria like E. coli to enter the bladder and travel upward into the kidneys."
+      }
+    ],
+    "references": [
+      {
+        "title": "Acute Pyelonephritis",
+        "source": "StatPearls - National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK534842/",
+        "year": "2023"
+      },
+      {
+        "title": "Kidney infection (pyelonephritis)",
+        "source": "NHS",
+        "url": "https://www.nhs.uk/conditions/kidney-infection/",
+        "year": "2023"
+      },
+      {
+        "title": "Pyelonephritis (acute): antimicrobial prescribing",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng111",
+        "year": "2018"
+      },
+      {
+        "title": "Kidney infection",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/kidney-infection/symptoms-causes/syc-20353387",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "urinary-tract-infection",
+      "kidney-stones",
+      "chronic-kidney-disease",
+      "kidney-health",
+      "high-creatinine",
+      "type-2-diabetes"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "giloy",
+      "tulsi",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "urine-routine",
+      "cbc",
+      "creatinine",
+      "crp",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "slug": "copd",
+  "name": "COPD",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Chronic Obstructive Pulmonary Disease (COPD) is a long-term, progressive lung disorder that causes narrowing of the airways and damage to lung tissues, making it harder and harder to breathe. It is not a single problem but primarily an umbrella term that includes chronic bronchitis (prolonged swelling and mucus build-up in the bronchial tubes) and emphysema (destruction and loss of elasticity in the tiny air sacs called alveoli). In India, COPD is a massive and often underdiagnosed health challenge. According to the India State-Level Disease Burden Initiative led by the Indian Council of Medical Research (ICMR), COPD was the second leading cause of death in India in 2016, responsible for roughly 8.7% of all deaths nationwide. While tobacco smoking—including bidis, chillum, hookah, and cigarettes—remains a major trigger, an equally dangerous cause across rural and peri-urban India is household air pollution from burning biomass fuels like wood, cow dung, and crop residues in unventilated chulhas for cooking and heating. Exposure to industrial dust, heavy urban vehicular smog, and burning incense or mosquito coils in closed rooms also contribute. Although the physical damage to the lungs cannot be reversed and no herb, diet, or product can make it go away, early diagnosis, medical inhalers, smoking cessation, pulmonary rehabilitation, and clean air practices can significantly slow its worsening, prevent life-threatening flare-ups, and keep people active.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "A progressive, chronic lung disease that permanently restricts airflow and makes breathing difficult"
+      },
+      {
+        "label": "India mortality burden",
+        "value": "Second leading cause of death in India, causing 8.7% of total deaths (ICMR / Lancet Global Health 2018)"
+      },
+      {
+        "label": "Diagnostic benchmark",
+        "value": "Post-bronchodilator FEV1/FVC ratio below 0.70 on spirometry"
+      },
+      {
+        "label": "Top non-tobacco driver in India",
+        "value": "Biomass smoke from indoor chulhas, heavily affecting rural women"
+      },
+      {
+        "label": "Core clinical symptoms",
+        "value": "Persistent cough with sputum, progressive breathlessness during daily tasks, wheezing, and fatigue"
+      },
+      {
+        "label": "Primary medical tool",
+        "value": "Daily inhaled bronchodilators and anti-inflammatory inhalers taken with proper technique"
+      }
+    ],
+    "causes": [
+      "Tobacco smoking. Smoking bidis, cigarettes, hookahs, or chillum is the best-known cause. Bidi smoke contains higher concentrations of nicotine, carbon monoxide, and tar than conventional commercial cigarettes, accelerating airway damage.",
+      "Household biomass smoke (chulha pollution). Millions of Indian homes use wood, dried cattle dung cakes, kerosene, or crop residue for indoor cooking. Women who spend decades cooking near traditional chulhas in poorly ventilated kitchens inhale massive quantities of toxic particulate matter (PM2.5), causing severe non-smoker COPD.",
+      "Ambient outdoor air pollution. Extremely high levels of fine particulate matter, industrial exhaust, road dust, and construction debris across Indian cities irritate the respiratory tract and accelerate lung function decline.",
+      "Occupational exposures. Working in brick kilns, stone-crushing units, textile mills (cotton dust), coal mines, grain handling, welding, or construction sites without certified respiratory protection leads to chronic airway inflammation.",
+      "Secondhand tobacco smoke. Passive inhalation of smoke in homes or workplaces causes significant long-term airway injury, particularly in women and children.",
+      "History of severe early childhood respiratory infections or pulmonary tuberculosis. India has a high burden of treated tuberculosis; post-tubercular lung damage and fibrosis frequently lead to permanent obstructive airway disease.",
+      "Genetic factors. A rare inherited deficiency of the alpha-1 antitrypsin protein leaves lungs vulnerable to breakdown even in young adults or non-smokers, though it represents only a small minority of cases."
+    ],
+    "types": [
+      {
+        "name": "Chronic Bronchitis Predominant",
+        "desc": "Defined clinically by a productive cough with phlegm that lasts for at least three consecutive months in two successive years. The bronchial tubes become chronically inflamed, swollen, and choked with thick mucus, creating persistent resistance to airflow."
+      },
+      {
+        "name": "Emphysema Predominant",
+        "desc": "Characterized by permanent destruction and enlargement of the delicate alveoli (air sacs). The lung tissues lose their natural springiness, trapping stale air inside the chest during exhalation and impairing the exchange of oxygen and carbon dioxide."
+      },
+      {
+        "name": "Asthma-COPD Overlap (ACO)",
+        "desc": "A condition seen in individuals who show features of both asthma (such as airway hyperresponsiveness, allergy history, and variability) and fixed, non-reversible airflow obstruction typical of COPD."
+      },
+      {
+        "name": "Non-Smoker Biomass-Induced COPD",
+        "desc": "A distinct phenotype common among Indian women exposed to indoor chulha smoke over decades. It often presents with severe bronchial thickening, chronic cough, and high symptom burden despite normal tobacco exposure history."
+      }
+    ],
+    "diagnosis": [
+      "Spirometry (lung function test). This is the absolute gold standard for diagnosis. You breathe out as forcefully and rapidly as possible into a device before and after taking an inhaled bronchodilator. A post-bronchodilator FEV1/FVC ratio under 0.70 confirms persistent airflow obstruction.",
+      "Comprehensive clinical history. Your doctor evaluates your lifetime history of bidi or cigarette smoking, cooking with biomass fuel or chulha, workplace dust exposures, previous tuberculosis treatment, and recurring seasonal chest infections.",
+      "Physical chest examination. The physician listens for wheezing, prolonged exhalation, quiet breath sounds, or signs of hyperinflated lungs (barrel chest).",
+      "Differentiation from asthma. Unlike asthma, which frequently begins during childhood and shows wide day-to-day reversibility with inhalers, COPD usually manifests after age 40 and presents with continuous, progressive breathlessness that does not fully normalize.",
+      "Assessment of symptom burden. Doctors use structured questionnaires like the mMRC (Modified Medical Research Council) dyspnoea scale or CAT (COPD Assessment Test) to classify disease severity and tailor long-term treatment plans."
+    ],
+    "investigations": [
+      {
+        "test": "Spirometry with post-bronchodilator reversibility testing",
+        "purpose": "The essential test to confirm irreversible airflow limitation and measure disease stage"
+      },
+      {
+        "test": "Chest X-ray (PA view)",
+        "purpose": "Detects lung hyperinflation, flattened diaphragms, bullae, and helps rule out active tuberculosis, pneumonia, or lung cancer"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Screens for secondary polycythaemia (excess red blood cells due to chronic low oxygen) or underlying anaemia that worsens fatigue",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Assesses systemic inflammation during acute clinical flare-ups and suspected bacterial exacerbations",
+        "slug": "crp"
+      },
+      {
+        "test": "Pulse oximetry and resting oxygen saturation",
+        "purpose": "Measures daytime blood oxygen saturation to detect chronic hypoxaemia and the need for medical oxygen therapy"
+      },
+      {
+        "test": "Arterial Blood Gas (ABG) analysis",
+        "purpose": "Measures precise levels of oxygen and carbon dioxide retention in the blood during acute distress or severe disease"
+      },
+      {
+        "test": "High-Resolution Computed Tomography (HRCT) of the chest",
+        "purpose": "Provides detailed imaging of emphysematous destruction, bronchiectasis, and post-tubercular structural changes"
+      }
+    ],
+    "modernTreatment": [
+      "Complete cessation of tobacco exposure. Stopping bidis and cigarettes is the single most effective intervention to stop the accelerated loss of lung function. Nicotine replacement therapy and structured counselling can be used as advised by your doctor.",
+      "Elimination of indoor smoke. Switching immediately from smoky traditional chulhas to clean fuels such as LPG, electricity, or biogas, and keeping cooking areas well-ventilated.",
+      "Inhaled bronchodilators. These form the backbone of modern pharmacological therapy. Long-acting muscarinic antagonists (LAMA) and long-acting beta2-agonists (LABA) relax airway smooth muscles, widen bronchial passages, and reduce breathlessness. They are prescribed as single or combination daily inhalers.",
+      "Inhaled Corticosteroids (ICS). For individuals with frequent flare-ups, high blood eosinophil counts, or features of asthma overlap, doctors add inhaled steroids to bronchodilators to suppress chronic airway inflammation.",
+      "Inhaler technique and spacer training. Using dry powder inhalers (DPI) or pressurized metered-dose inhalers (pMDI) with a spacer correctly is vital. Many patients fail to benefit simply because of incorrect inhalation technique.",
+      "Pulmonary rehabilitation. A medically supervised program combining tailored exercise training, breathing retuning (like pursed-lip breathing), energy conservation, and disease education. It markedly reduces hospital visits and improves stamina.",
+      "Preventive immunizations. Annual influenza vaccination and pneumococcal vaccines are strongly recommended by national and global respiratory guidelines to prevent severe pneumonia and sudden flare-ups.",
+      "Long-term oxygen therapy (LTOT) and non-invasive ventilation (NIV). Prescribed only for patients with severe, persistent resting hypoxaemia or chronic hypercapnic respiratory failure, strictly as advised by your pulmonologist.",
+      "Management of acute exacerbations. Sudden worsening of breathlessness or changes in sputum colour and volume require prompt treatment with short-acting rescue inhalers, oral corticosteroids, and targeted antibiotics when bacterial infection is present."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, chronic respiratory disorders characterised by breathlessness and cough are studied primarily under the concepts of Shwasa Roga (notably Tamaka Shwasa or chronic forms of Shwasa) and Kasa (chronic cough).",
+      "Ayurveda views these conditions as an aggravation of Vata and Kapha doshas originating in the digestive tract (Amashaya) and moving into the channels of respiration (Pranavaha Srotas). The movement of Vata is obstructed by sticky, stagnant Kapha mucus, leading to compromised breathing.",
+      "Traditional interventions emphasize gentle digestive fire enhancement (Deepana-Pachana), clearing metabolic impurities (Ama), and utilizing warming, expectorant formulations alongside balancing daily routines.",
+      "These classical concepts provide a traditional wellness perspective and are not an alternative to modern diagnostic spirometry or medical inhalers. Ayurvedic herbs can only serve as supportive wellness aids; no herb, diet, or product can make COPD go away or rebuild destroyed lung tissue."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is traditionally used in warm herbal brews to soothe the throat and assist in clearing phlegm. Evidence for chronic airway obstruction is limited, so it must only be used as a comforting beverage alongside prescribed inhalers."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Rich in gingerols and shogaols, fresh ginger tea helps warm the chest and ease mucus clearing. It provides mild supportive comfort but has no ability to reverse structural lung damage."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild antioxidant properties. While lab studies explore its anti-inflammatory actions, clinical trials show modest impact on human COPD lung function; do not replace medical treatment."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Mulethi is historically used as a soothing expectorant for irritation in the throat. People with high blood pressure must exercise caution because licorice can elevate blood pressure when taken carelessly; use only as advised by your doctor."
+      }
+    ],
+    "nutrition": [
+      "Eat small, frequent, nutrient-dense meals throughout the day. A full, heavy stomach pushes upwards against the diaphragm, making it much harder for weakened lungs to expand.",
+      "Prioritize quality protein to prevent respiratory muscle wasting. COPD increases resting energy expenditure because breathing requires intense physical work. Incorporate lentils, moong dal, paneer, boiled eggs, tofu, fish, or sprouted pulses daily.",
+      "Balance your carbohydrate and healthy fat intake. Digesting excess refined carbohydrates produces more carbon dioxide, which struggling lungs must work harder to expel. Emphasize complex grains (jowar, bajra, brown rice, whole wheat) and incorporate healthy fats like mustard oil, olive oil, groundnuts, and seeds.",
+      "Include potassium and magnesium-rich foods such as bananas, spinach, pumpkin seeds, and cooked pulses to support optimal muscle contraction, provided you do not have advanced kidney disease.",
+      "Stay adequately hydrated with warm water throughout the day. Drinking sufficient fluids keeps thick airway secretions loose and much easier to cough out.",
+      "Avoid foods that cause abdominal gas, bloating, or acid reflux, such as deep-fried street snacks (samosas, pakoras), carbonated sodas, and heavy creamy dishes, as bloating puts immediate upward mechanical pressure on the lungs.",
+      "Limit sodium intake. Avoid excess table salt, pickles, papads, and processed namkeen, especially if you have swelling in your feet or concurrent heart strain."
+    ],
+    "lifestyle": [
+      "Quit smoking bidis, cigarettes, hookahs, and chillum immediately. Ask your healthcare team for medical smoking cessation support if you struggle to quit on willpower alone.",
+      "Switch entirely away from indoor chulha cooking. Use LPG under government schemes like Pradhan Mantri Ujjwala Yojana or electric induction hotplates. Ensure the cooking space has open windows or an exhaust fan.",
+      "Eliminate indoor smoke sources. Do not burn mosquito coils, dhoop, agarbatti, or room fresheners in closed bedrooms; use mosquito nets and mechanical repellents instead.",
+      "Monitor local air quality index (AQI) levels. On days when AQI reaches poor or hazardous tiers, keep windows closed, stay indoors as much as possible, and wear a well-fitted N95 particulate mask if you must go outside.",
+      "Practice strict energy conservation. Sit on a stool while preparing vegetables or bathing, organize frequently used kitchen and household items within arm's reach, and take brief pauses between chores.",
+      "Protect against respiratory infections. Wash your hands frequently with soap, maintain distance from relatives who have active colds or coughs, and stay up to date on pneumococcal and annual flu shots."
+    ],
+    "yogaActivity": [
+      "Pursed-lip breathing technique. Inhale slowly through your nose for 2 counts, purse your lips as if you are gently blowing out a birthday candle, and breathe out slowly for 4 counts. This keeps airway pressure up and prevents bronchial tubes from collapsing during exhalation.",
+      "Diaphragmatic (belly) breathing. Lie on your back or sit comfortably with one hand on your chest and the other on your belly. Breathe in slowly through the nose, making your belly rise while keeping your chest quiet, then exhale gently. This trains your main breathing muscle to take over from strained neck and shoulder muscles.",
+      "Gentle seated stretches and chest openers. Practice seated Tadasana, gentle neck and shoulder rotations, and Gomukhasana arms to relieve tightness in accessory respiratory muscles.",
+      "Very mild Bhramari Pranayama (humming bee breath). Slow, vibration-focused exhalations help release tension and calm the nervous system. Avoid forceful breathing practices such as fast Kapalabhati or prolonged breath-holding (Kumbhaka), which can trigger airway spasms or pneumothorax in damaged lungs.",
+      "Daily level-ground walking. Aim for 20 to 30 minutes of comfortable, steady walking broken into shorter 10-minute intervals if needed. Walk at a pace where you can still speak short sentences without gasping."
+    ],
+    "homeopathyNote": [
+      "There is no reproducible, high-quality scientific evidence demonstrating that homeopathic preparations can restore airflow, widen narrowed airways, or treat COPD.",
+      "Delaying or substituting medically prescribed bronchodilators, inhaled corticosteroids, or supplemental oxygen with homeopathic remedies risks acute respiratory failure, sudden hospitalization, and irreversible lung damage.",
+      "If you choose to explore homeopathic remedies, inform your pulmonologist and never discontinue or adjust your modern maintenance inhalers."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Smoking cessation is the single most proven intervention that halts accelerated lung function decline and improves survival in COPD. Long-acting inhaled bronchodilators (LAMA and LABA) robustly reduce exacerbations and improve exercise tolerance.",
+      "Strong evidence: Pulmonary rehabilitation markedly improves exercise stamina, quality of life, and reduces re-hospitalization rates across all severities of stable COPD.",
+      "Strong evidence: Long-term oxygen therapy (LTOT) improves survival in patients who have chronic, severe resting low blood oxygen (PaO2 at or below 55 mmHg).",
+      "Moderate evidence: Annual influenza vaccination and pneumococcal immunization significantly decrease the frequency of life-threatening respiratory infections and winter flare-ups.",
+      "Limited or weak evidence: Herbal remedies, standalone Ayurvedic rasayanas, or unverified breathing gadgets lack robust randomized controlled trial evidence for improving spirometry indices or modifying long-term disease progression.",
+      "No evidence: Claims that any oil, herbal tonic, detox diet, or steam treatment can regrow damaged alveoli or cure emphysema."
+    ],
+    "shouldNotDo": [
+      "Do not stop your maintenance inhalers just because you are having a good breathing day. Maintenance inhalers work like blood pressure medicines: they keep airways open only when taken regularly every single day.",
+      "Do not cook over open firewood or cow-dung chulhas inside enclosed rooms without cross-ventilation or an exhaust chimney.",
+      "Do not assume a morning smoker's cough is normal. A chronic daily cough bringing up sputum is a hallmark warning sign of progressive airway damage.",
+      "Do not take sleeping pills, sedatives, or over-the-counter cough syrups with codeine without specialist advice; they can suppress your breathing drive and cause dangerous carbon dioxide buildup.",
+      "Do not breathe in boiling water steam with added synthetic balms or strong essential oils multiple times a day; intense hot steam can irritate swollen bronchial mucosa and provoke acute bronchospasm.",
+      "Do not use rescue inhalers (like salbutamol) continuously throughout the day in place of your scheduled long-acting maintenance inhalers.",
+      "Do not self-prescribe steroid tablets or unregulated antibiotic courses every time your cough increases; improper steroid use leads to brittle bones, diabetes, and infections."
+    ],
+    "medicationSafety": [
+      "Master the correct technique for your specific inhaler device. Always ask your doctor, pharmacist, or respiratory therapist to inspect how you use your meter-dose inhaler or dry powder device at every clinic visit.",
+      "Always use a spacer with pressurized metered-dose inhalers (pMDI). A spacer dramatically improves the amount of medication that reaches deep into the lungs and reduces medicine settling in the mouth and throat.",
+      "Rinse your mouth thoroughly with plain water and spit it out after every dose of an inhaler containing a corticosteroid. This simple step prevents oral fungal infections (candidiasis or thrush) and hoarseness of voice.",
+      "Keep a short-acting rescue bronchodilator (reliever inhaler) within easy reach at all times, including by your bedside and in your travel bag, for sudden attacks of breathlessness.",
+      "Do not alter, split, or stop prescribed long-acting combination medicines without consulting your doctor, even if your breathing feels completely stable.",
+      "Inform your physician if you experience hand tremors, rapid heart palpitations, or difficulty passing urine after starting new bronchodilator therapy."
+    ],
+    "complications": [
+      "Acute exacerbations of COPD: sudden, severe flare-ups marked by intense breathlessness, exhaustion, and coughing up discoloured, thick sputum requiring emergency medical care.",
+      "Cor Pulmonale and right-sided heart failure: chronic low oxygen levels force blood vessels in the lungs to constrict, causing pulmonary hypertension and placing heavy strain on the right side of the heart, resulting in swelling of the feet, ankles, and legs.",
+      "Chronic respiratory failure: inability of the damaged lungs to maintain adequate oxygen levels or flush out toxic carbon dioxide, requiring long-term mechanical ventilation or home oxygen.",
+      "Secondary polycythaemia: an abnormally high concentration of red blood cells produced in response to chronic low oxygen, which thickens the blood and increases the risk of blood clots.",
+      "Severe muscle wasting and cachexia: marked loss of skeletal and respiratory muscle mass due to chronic systemic inflammation, decreased physical activity, and heavy metabolic energy expenditure during breathing.",
+      "Pneumothorax: rupture of fragile, damaged air blisters (bullae) on the lung surface causing sudden lung collapse.",
+      "Heightened risk of lung cancer: chronic airway inflammation and shared tobacco carcinogen exposure significantly elevate the chance of malignant lung tumors.",
+      "Depression and anxiety: severe limitations on mobility, feelings of suffocating breathlessness, and social isolation frequently lead to debilitating mental health struggles."
+    ],
+    "emergencySigns": [
+      "Severe, sudden breathlessness where you cannot speak more than two or three words at a time without gasping",
+      "Bluish, purplish, or dusky discolouration of the lips, tongue, nail beds, or gums (cyanosis), indicating dangerously low oxygen",
+      "Resting oxygen saturation dropping below 88% on a verified home pulse oximeter",
+      "Acute mental confusion, excessive drowsiness, slurred speech, or difficulty waking up, which are signs of severe carbon dioxide retention",
+      "Sudden, sharp chest pain accompanied by rapid breathing or coughing up fresh blood (haemoptysis)",
+      "Severe swelling in both feet, ankles, or legs that suddenly worsens over one or two days"
+    ],
+    "whenToSeeDoctor": [
+      "Your baseline breathlessness is steadily worsening over several days or weeks during everyday activities like walking or climbing stairs",
+      "Your sputum (cough mucus) changes from clear or white to thick yellow, brown, or green, or its daily volume increases markedly",
+      "You find yourself reaching for your short-acting rescue reliever inhaler more frequently than usual",
+      "You develop a low-grade fever, chills, or persistent wheezing that does not improve after using your prescribed medicines",
+      "You have had a daily productive cough for more than two months, especially if you have a history of smoking or chulha exposure",
+      "You notice swelling beginning in your feet, ankles, or lower legs"
+    ],
+    "faqs": [
+      {
+        "q": "Can COPD be cured completely if I take the right medicines?",
+        "a": "No. Once the alveoli and delicate bronchial tissues are permanently destroyed or structurally remodeled, they cannot be regrown. No herb, diet, or product can make COPD go away. However, modern treatments, daily inhalers, pulmonary rehabilitation, and clean air practices can stabilize your lung function, relieve breathlessness, prevent sudden flare-ups, and help you lead an active, fulfilling life."
+      },
+      {
+        "q": "I never smoked bidis or cigarettes. How did I get COPD?",
+        "a": "In India, millions of non-smokers develop COPD, especially women who spent years cooking over wood, dung, or charcoal chulhas in unventilated indoor spaces. Severe outdoor urban air pollution, occupational dust in construction or textile mills, passive smoking, and past lung infections like treated tuberculosis are also major causes."
+      },
+      {
+        "q": "Is an inhaler addictive or will it weaken my lungs over time?",
+        "a": "No. Inhalers are not addictive. Inhaled medicines deliver tiny, precise doses directly to the bronchial tubes where they are needed, with far fewer body-wide side effects than oral tablets or syrups. They protect your lungs by keeping the airways relaxed and open. Stopping them out of fear of dependence can cause severe, dangerous flare-ups."
+      },
+      {
+        "q": "What is the difference between asthma and COPD?",
+        "a": "Asthma typically begins in childhood or young adulthood, causes variable symptoms that come and go, and is marked by airway narrowing that completely or largely reverses with treatment. COPD usually develops after the age of 40 in people with long exposure to smoke or dust, causes continuous symptoms that slowly worsen, and results in permanent, irreversible airway narrowing on spirometry tests."
+      },
+      {
+        "q": "Is exercise safe for someone with COPD?",
+        "a": "Yes, regular physical activity is one of the best things you can do for COPD. While it is natural to feel mildly short of breath when you move, supervised exercise strengthens your leg and heart muscles, meaning your body needs less oxygen for daily tasks. Ask your doctor about pulmonary rehabilitation or start with gentle level-ground walking and pursed-lip breathing."
+      },
+      {
+        "q": "Can deep breathing exercises like Pranayama replace inhalers?",
+        "a": "No. Breathing exercises like pursed-lip breathing and diaphragmatic breathing strengthen the diaphragm and help you empty trapped air from your lungs, but they cannot open mechanically narrowed airways or reduce severe bronchial inflammation. They must always be practiced as an add-on alongside your prescribed medical inhalers."
+      }
+    ],
+    "references": [
+      {
+        "title": "Chronic obstructive pulmonary disease (COPD) Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/chronic-obstructive-pulmonary-disease-(copd)",
+        "year": "2023"
+      },
+      {
+        "title": "Guidelines for diagnosis and management of chronic obstructive pulmonary disease: Joint Indian Chest Society/National College of Chest Physicians (India) position statement",
+        "source": "Lung India",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24082643/",
+        "year": "2013"
+      },
+      {
+        "title": "Clinical Practice Guideline: Pharmacological Management of Chronic Obstructive Pulmonary Disease",
+        "source": "American Thoracic Society / American Journal of Respiratory and Critical Care Medicine",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32352814/",
+        "year": "2020"
+      },
+      {
+        "title": "Pulmonary Rehabilitation: Joint ACCP/AACVPR Evidence-Based Clinical Practice Guidelines",
+        "source": "CHEST Journal",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17925422/",
+        "year": "2007"
+      }
+    ],
+    "relatedDiseases": [
+      "asthma",
+      "bronchitis",
+      "chronic-cough",
+      "breathing-problems",
+      "sleep-apnea",
+      "heart-failure"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "pantoprazole",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "turmeric",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

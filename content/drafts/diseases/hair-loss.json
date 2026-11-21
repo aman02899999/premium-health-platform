@@ -1,0 +1,302 @@
+{
+  "slug": "hair-loss",
+  "name": "Hair Loss",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Hair loss, medically known as alopecia, occurs when the natural hair growth cycle is disrupted or when hair follicles shrink and stop producing visible hair. On average, a healthy human scalp loses between 50 to 100 hairs per day as old strands shed to make room for new growth. When shedding significantly exceeds this rate, or when shed hairs fail to grow back, thinning, widening part lines, or bald patches begin to appear. In India, hair loss is one of the most common reasons adults visit dermatologists. While genetic factors drive pattern baldness in both men and women, widespread nutritional gaps—such as low ferritin (iron stores), vitamin D insufficiency, and low protein intake—combine with hormonal conditions like polycystic ovary syndrome (PCOS) and thyroid disorders to trigger chronic shedding across all age groups.",
+    "quickFacts": [
+      {
+        "label": "Normal daily shedding",
+        "value": "50 to 100 strands per day"
+      },
+      {
+        "label": "Most common cause",
+        "value": "Androgenetic alopecia (genetic pattern hair loss)"
+      },
+      {
+        "label": "Key nutritional driver in India",
+        "value": "Low iron stores (ferritin) and low dietary protein"
+      },
+      {
+        "label": "Hair growth cycle length",
+        "value": "Anagen (growth) phase lasts 2 to 7 years"
+      },
+      {
+        "label": "Regrowth evaluation time",
+        "value": "3 to 6 months of consistent medical care needed to see changes"
+      },
+      {
+        "label": "Scalp washing impact",
+        "value": "Washing clears loose strands; it does not cause root-level hair loss"
+      }
+    ],
+    "causes": [
+      "Genetics and hormones: Androgenetic alopecia is inherited from either parent. In sensitive follicles, dihydrotestosterone (DHT), a derivative of testosterone, binds to receptors and causes follicles to gradually miniaturize, producing progressively thinner, shorter hairs until they stop growing altogether.",
+      "Nutritional deficiencies: Hair follicles have some of the most active cell division in the body and require steady supplies of iron, zinc, amino acids, and vitamins. Low ferritin (stored iron), vitamin D deficiency, and inadequate protein intake are frequent triggers for diffuse shedding in Indian diets.",
+      "Telogen effluvium from physical or emotional stress: Severe illness, high viral fevers (such as dengue or COVID-19), major surgery, rapid weight loss, or intense psychological distress can push large numbers of growing hairs prematurely into the resting (telogen) phase, causing heavy shedding two to three months later.",
+      "Hormonal transitions: Changes after childbirth (postpartum shedding), menopause, or endocrine disorders like hypothyroidism and polycystic ovary syndrome (PCOS) disrupt the normal balance of growth and shedding.",
+      "Traction and mechanical styling: Consistently pulling hair into tight buns, ponytails, braids, or tightly wound turbans creates prolonged mechanical tension on the roots, damaging follicles over time and causing traction alopecia along the hairline.",
+      "Scalp inflammation and fungal infections: Severe dandruff (seborrheic dermatitis), psoriasis, or fungal infections like tinea capitis inflame the scalp microenvironment and weaken hair anchorage.",
+      "Autoimmune reactions: In conditions like alopecia areata, the body's immune system mistakenly attacks healthy hair follicles, leading to sudden, well-defined coin-shaped bald patches."
+    ],
+    "types": [
+      {
+        "name": "Androgenetic Alopecia",
+        "desc": "The most common form. In men, it presents as a receding hairline and thinning at the crown (male pattern baldness). In women, it causes diffuse thinning across the top of the scalp with preservation of the frontal hairline (female pattern hair loss)."
+      },
+      {
+        "name": "Telogen Effluvium",
+        "desc": "A temporary, widespread shedding across the entire scalp, typically triggered 8 to 12 weeks after a major physiological shock, illness, nutritional crash, or childbirth."
+      },
+      {
+        "name": "Alopecia Areata",
+        "desc": "An autoimmune disorder causing sudden, smooth, round or oval bald patches on the scalp, beard, or eyebrows."
+      },
+      {
+        "name": "Traction Alopecia",
+        "desc": "Hair loss caused by continuous mechanical pulling from tight hairstyles, headgear, or extensions, most often visible along the temples and frontal hairline."
+      },
+      {
+        "name": "Anagen Effluvium",
+        "desc": "Rapid, extensive hair loss occurring during the active growth phase, most commonly caused by cancer chemotherapy, radiation therapy, or severe toxic exposures."
+      },
+      {
+        "name": "Cicatricial (Scarring) Alopecia",
+        "desc": "A group of rare inflammatory conditions, such as lichen planopilaris, that permanently destroy hair follicles and replace them with scar tissue."
+      }
+    ],
+    "diagnosis": [
+      "Dermatological examination: A doctor inspects the scalp, shedding pattern, and hair density. A gentle 'hair pull test' helps determine if shedding is active across multiple areas.",
+      "Trichoscopy: The specialist uses a specialized handheld dermatoscope to examine the hair shafts, scalp skin, and follicle openings at high magnification to look for miniaturization, empty follicles, or inflammation.",
+      "Medical and lifestyle history: Your doctor evaluates family history, dietary habits, recent illnesses, stress levels, menstrual regularity, and current medications.",
+      "Targeted blood tests: Screening for iron stores, thyroid hormones, blood counts, and vitamin levels identifies internal triggers that disrupt the growth cycle.",
+      "Scalp biopsy: In rare or atypical cases, particularly where scarring alopecia is suspected, a small skin punch biopsy confirms whether follicles are destroyed or inflamed."
+    ],
+    "investigations": [
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates deep iron storage; low ferritin is a common, overlooked cause of chronic diffuse shedding even without full anemia",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia and low hemoglobin, which limit oxygen delivery to dividing follicle cells",
+        "slug": "cbc"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Checks for an underactive or overactive thyroid, both of which cause dry, brittle, and thinning hair",
+        "slug": "tsh"
+      },
+      {
+        "test": "Free T3 and Free T4",
+        "purpose": "Provides an in-depth view of thyroid hormone output when TSH is abnormal",
+        "slug": "t3-t4"
+      },
+      {
+        "test": "25-Hydroxy Vitamin D",
+        "purpose": "Measures vitamin D levels, which play a direct role in follicle cycling and cellular regeneration",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Detects B12 deficiency, common among Indian vegetarians, which affects red blood cell production and nerve health",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Fasting Plasma Glucose or HbA1c",
+        "purpose": "Screens for insulin resistance, which is frequently linked with PCOS and premature androgenetic hair loss",
+        "slug": "fasting-glucose"
+      }
+    ],
+    "modernTreatment": [
+      "Topical Minoxidil: A medically proven topical solution or foam that stimulates blood flow around follicles and extends the active growth (anagen) phase. It must be applied consistently as advised by your doctor, and initial shedding for 2 to 6 weeks is common as follicles reset.",
+      "Oral 5-Alpha Reductase Inhibitors: Medicines such as finasteride block the conversion of testosterone to DHT, halting miniaturization in male pattern hair loss. They require strict medical prescription and monitoring.",
+      "Correcting underlying deficiencies: If tests reveal low ferritin, vitamin D, or thyroid imbalance, your doctor prescribes therapeutic supplements or hormone therapy (such as levothyroxine) to address the root cause.",
+      "Anti-androgen therapy for women: In women with androgenetic thinning driven by PCOS or elevated androgens, doctors may prescribe specific oral medications to block hormonal receptors on hair roots.",
+      "Anti-inflammatory scalp treatments: Medicated shampoos containing ketoconazole, zinc pyrithione, or topical corticosteroids help control scalp seborrheic dermatitis and clear inflammatory blockages around follicles.",
+      "Platelet-Rich Plasma (PRP) therapy: An in-clinic procedure where a patient's own blood is drawn, spun to concentrate growth factors, and injected into thinning scalp areas to support follicle vitality alongside standard medicines.",
+      "Surgical hair transplantation: For stable, mature pattern baldness, surgical techniques (like Follicular Unit Extraction) transfer healthy, DHT-resistant follicles from the back of the head to balding zones."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, diffuse hair loss and premature thinning are referred to as Khalitya. It is primarily considered a disorder of Pitta dosha combined with Vata, which overheats the tissues and weakens the hair roots (romakoopa).",
+      "Traditional Ayurvedic care emphasizes balancing excess internal heat through a cooling diet, adequate hydration, stress relief, and gentle head massage (shiroabhyanga) using herbal oils.",
+      "While traditional scalp massage improves local scalp circulation, reduces stress, and conditions hair shafts, it cannot alter genetic receptor sensitivity to DHT or revive completely scarred follicles.",
+      "Herbal formulations should serve purely as supportive lifestyle practices. Always inform your treating dermatologist about any oils or powders you apply, as heavy oils can worsen fungal dandruff and scalp inflammation."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in vitamin C and antioxidants. Traditionally consumed and applied to condition hair strands, though clinical trials showing it halts genetic baldness are lacking."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Used traditionally in scalp oils to calm the nervous system and promote restful sleep, indirectly helping stress-related shedding."
+      },
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Soaked seed pastes are a popular home remedy for scalp conditioning; evidence for active follicle stimulation remains preliminary."
+      },
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Known for antimicrobial properties; helpful as an adjunctive wash for dandruff-prone scalps, but does not alter hormone-driven thinning."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb used to support stress management; may assist recovery in telogen effluvium triggered by chronic tension."
+      }
+    ],
+    "nutrition": [
+      "Prioritize daily protein: Hair is primarily made of keratin, a fibrous protein. Ensure every meal contains quality protein from sources like dal, chana, paneer, low-fat curd, eggs, tofu, or soy chunks, following ICMR-NIN dietary guidelines.",
+      "Boost bioavailable iron: Combat low ferritin by including green leafy vegetables (spinach, methi, moringa leaves), black chana, rajma, and beetroot. Pair iron sources with vitamin C (lemon juice, amla, tomatoes) to enhance absorption.",
+      "Include zinc and selenium: Pumpkin seeds, sunflower seeds, almonds, and whole grains supply trace minerals essential for protein synthesis and cell repair within follicle matrices.",
+      "Healthy dietary fats: Consume moderate amounts of walnuts, chia seeds, flaxseeds, and mustard or sesame oil for essential fatty acids that nourish the scalp barrier.",
+      "Avoid crash dieting: Severe calorie restriction, skipping meals, or unmonitored rapid weight loss diets quickly shock follicles into the telogen resting phase, leading to heavy shedding a few months later."
+    ],
+    "lifestyle": [
+      "Wash your scalp regularly: In warm, humid Indian climates, sweat, pollution, and natural sebum accumulate quickly. Washing your scalp two to three times a week with a gentle cleanser maintains follicle hygiene; washing does not cause root-level hair loss.",
+      "Handle wet hair gently: Wet hair is fragile and stretches easily, leading to breakage. Avoid vigorous towel-rubbing. Use a wide-toothed comb and let hair air-dry whenever possible.",
+      "Loosen tight hairstyles: Avoid keeping hair in tight buns, braids, or tightly pulled ponytails every day to prevent mechanical tension and traction alopecia.",
+      "Prioritize restorative sleep: Aim for 7 to 8 hours of uninterrupted sleep every night to allow nighttime cellular repair and maintain balanced cortisol levels.",
+      "Limit excessive heat and chemical styling: Frequent hair ironing, blow-drying at high temperatures, chemical straightening, and frequent bleaching weaken the protein structure of the hair shaft and cause severe breakage."
+    ],
+    "yogaActivity": [
+      "Pranayama for stress control: Slow, guided breathing exercises such as Anulom Vilom and Bhramari reduce physiological stress and lower circulating stress hormones.",
+      "Gentle forward bends: Poses like Uttanasana (standing forward fold), Balasana (child's pose), and Adho Mukha Svanasana (downward dog) encourage relaxation and healthy systemic blood circulation.",
+      "Inversions with caution: Supported postures like Viparita Karani (legs-up-the-wall pose) can be practiced safely. Avoid strenuous headstands (Sirsasana) if you have high blood pressure, neck problems, or glaucoma.",
+      "Consistent, moderate exercise: 30 minutes of brisk walking, swimming, or cycling on most days improves insulin sensitivity and systemic circulation, supporting overall metabolic and follicle health."
+    ],
+    "homeopathyNote": [
+      "There is no rigorous, independently replicated scientific evidence demonstrating that homeopathic dilutions can halt androgenetic alopecia, alter hormonal hair loss, or stimulate dormant hair follicles.",
+      "Relying solely on homeopathic treatments often delays proven medical interventions, allowing follicle miniaturization to progress past the point where hair can be recovered.",
+      "If you choose to explore alternative remedies, continue your prescribed dermatological care and regular blood test monitoring."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Topical minoxidil and oral 5-alpha reductase inhibitors (like finasteride) have robust clinical trial backing for slowing hair loss and encouraging regrowth in androgenetic alopecia.",
+      "Strong evidence: Treating underlying medical triggers, such as normalizing thyroid levels with levothyroxine and correcting low iron stores with therapeutic iron, stops telogen effluvium once reserves are restored.",
+      "Moderate evidence: Low-level laser therapy (LLLT) and microneedling as an add-on to topical minoxidil show promising results in clinical trials for stimulating dormant follicles.",
+      "Limited or weak evidence: Anti-hair-fall shampoos, onion juice, biotin supplements in people with normal biotin levels, and home hair oils cannot alter genetic pattern baldness or repair miniaturized follicles."
+    ],
+    "shouldNotDo": [
+      "Do not trust advertisements promising miraculous regrowth in days or weeks: Hair grows at roughly one centimeter per month; biological recovery takes at least three to six months.",
+      "Do not self-prescribe high-dose biotin or multivitamin tablets without lab tests: True biotin deficiency is rare, and excessive biotin can interfere with critical blood tests, including thyroid and heart markers.",
+      "Do not apply thick oils over an itchy, flaking, or inflamed scalp: Heavy oiling feeds Malassezia yeast, worsening seborrheic dermatitis and increasing shedding.",
+      "Do not stop washing your hair out of fear of seeing strands in the drain: Those shed hairs detached days earlier; delaying washing simply allows dirt and oil to build up around follicles.",
+      "Do not buy over-the-counter hormone-altering pills or steroid creams without an explicit prescription from a registered medical specialist."
+    ],
+    "medicationSafety": [
+      "Understand the minoxidil shedding phase: When starting minoxidil, a temporary increase in shedding often occurs during the first 2 to 6 weeks. This indicates older resting hairs are making way for new growth; do not stop treatment without consulting your doctor.",
+      "Pregnancy and handling precautions: Finasteride and dutasteride must never be taken or handled by women who are pregnant or planning pregnancy, as they can cause severe birth defects in male fetuses.",
+      "Monitor for local irritation: Topical solutions with propylene glycol can cause contact dermatitis, redness, or itching. If this occurs, your dermatologist can switch you to a foam or alcohol-free formulation.",
+      "Take supplements as advised by your doctor: Iron supplements should be taken on an empty stomach or with vitamin C, avoiding milk, tea, or coffee for two hours around the dose to ensure proper absorption."
+    ],
+    "complications": [
+      "Psychological impact: Severe distress, anxiety, body image concerns, and clinical depression linked to changing appearance and self-esteem.",
+      "Scalp sun damage: Significant thinning exposes the scalp skin to intense UV radiation, raising the risk of actinic keratosis and sunburn.",
+      "Permanent follicle scarring: Delayed diagnosis in inflammatory conditions (like lichen planopilaris or discoid lupus) leads to irreversible destruction of hair follicles.",
+      "Unnecessary financial strain: Spending heavily on unproven commercial oils, salon treatments, and miracle clinics without addressing the medical root cause."
+    ],
+    "emergencySigns": [
+      "Sudden appearance of painful, tender, swollen scalp swellings with oozing pus or crusts (possible severe bacterial infection or kerion requiring urgent antibiotics)",
+      "Rapid, widespread blistering, burning, or peeling of the scalp skin",
+      "Hair loss accompanied by severe facial swelling, widespread skin rash, or high fever",
+      "Signs of severe systemic disease, such as extreme breathlessness, profound pale skin, or fainting alongside sudden hair thinning"
+    ],
+    "whenToSeeDoctor": [
+      "You notice sudden, round, smooth bald patches appearing on your scalp, beard, or eyebrows within a few weeks",
+      "You are shedding large clumps of hair (more than 100 to 150 strands daily) for longer than six to eight weeks",
+      "Your hairline is steadily receding or your middle parting is visibly widening over months",
+      "Hair thinning is accompanied by irregular menstrual cycles, severe cystic acne, or excess facial hair",
+      "Your scalp feels persistently itchy, painful, red, burning, or shows tight scaling and crusting"
+    ],
+    "faqs": [
+      {
+        "q": "Does hard water cause permanent baldness?",
+        "a": "Hard water contains high levels of minerals like calcium and magnesium that coat the hair shaft, making it feel rough, dry, and prone to surface breakage. However, hard water does not reach or damage the living hair follicle inside the scalp. It causes cosmetic breakage, not true biological baldness."
+      },
+      {
+        "q": "Does oiling your hair overnight stop hair loss?",
+        "a": "Oiling conditions the hair strands, lubricates the cuticle, and reduces mechanical friction. However, no oil can block DHT, correct thyroid disorders, or reverse genetic hair loss. Leaving heavy oil on an inflamed or dandruff-prone scalp can actually worsen fungal growth and trigger more shedding."
+      },
+      {
+        "q": "Will taking biotin supplements regrow my hair?",
+        "a": "Biotin only helps if you have a genuine, medically documented biotin deficiency, which is rare in people eating a balanced diet. If your hair loss is driven by genetics, low ferritin, or thyroid issues, biotin will not resolve it. Always consult your doctor before taking supplements."
+      },
+      {
+        "q": "Why am I losing so much hair after having a baby or recovering from typhoid?",
+        "a": "This is telogen effluvium. The severe physical strain of childbirth or high fever shocks growing follicles into a resting state. These hairs shed together about two to three months after the event. In most cases, hair regrows over 6 to 9 months once your body recovers and nutrition is restored."
+      },
+      {
+        "q": "Can no herb, diet or product make hair loss go away completely?",
+        "a": "No herb, diet or product can make it go away completely if the underlying cause is genetic pattern baldness or scarring alopecia. However, medically approved therapies, balanced nutrition, and treating internal conditions can effectively slow shedding, stabilize thinning, and support healthy regrowth."
+      }
+    ],
+    "references": [
+      {
+        "title": "Telogen Effluvium: A Review",
+        "source": "National Center for Biotechnology Information (NCBI / NIH)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK430848/",
+        "year": "2023"
+      },
+      {
+        "title": "Androgenetic Alopecia",
+        "source": "National Library of Medicine (MedlinePlus / NIH)",
+        "url": "https://medlineplus.gov/genetics/condition/androgenetic-alopecia/",
+        "year": "2022"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "male-pattern-hair-loss",
+      "dandruff",
+      "iron-deficiency",
+      "anemia",
+      "hypothyroidism",
+      "pcos",
+      "vitamin-d-deficiency",
+      "vitamin-b12-deficiency",
+      "stress",
+      "protein-deficiency"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "vitamin-d3",
+      "levothyroxine",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "amla",
+      "brahmi",
+      "fenugreek",
+      "neem",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "ferritin",
+      "cbc",
+      "tsh",
+      "t3-t4",
+      "vitamin-d",
+      "vitamin-b12",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

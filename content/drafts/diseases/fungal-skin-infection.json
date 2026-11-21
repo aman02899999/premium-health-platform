@@ -1,0 +1,300 @@
+{
+  "slug": "fungal-skin-infection",
+  "name": "Fungal Skin Infection",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A fungal skin infection happens when microscopic fungi, most commonly dermatophytes or yeasts, overgrow on the outer layer of your skin, hair, or nails. In India, people often refer to these itchy, ring-shaped rashes as 'daad', ringworm, or jock itch. Fungi thrive in warm, damp, and humid conditions. Because of this, fungal skin infections are very common across India, especially during the hot summer and monsoon months, and among people who sweat heavily during workouts in gyms. The infection causes red, scaly, circular patches with raised borders that itch intensely. While fungal infections are rarely life-threatening, they have become widespread and harder to treat across India in recent years, largely due to the overuse of over-the-counter mixed steroid creams. With accurate medical diagnosis, proper hygiene, and the full course of antifungal medicines, these infections can be cleared and prevented from coming back.",
+    "quickFacts": [
+      {
+        "label": "Common Indian Names",
+        "value": "Daad, Daad-Khaaj-Khujli, Ringworm, Dhobi Itch"
+      },
+      {
+        "label": "Main Culprits",
+        "value": "Dermatophyte fungi (such as Trichophyton species) and Candida yeasts"
+      },
+      {
+        "label": "Favourite Environment",
+        "value": "Warm, moist skin folds like the groin, armpits, between toes, and under breasts"
+      },
+      {
+        "label": "Major Indian Challenge",
+        "value": "Widespread resistance due to over-the-counter steroid-cocktail creams"
+      },
+      {
+        "label": "Contagious Level",
+        "value": "Highly contagious through skin-to-skin contact, gym benches, and shared towels"
+      },
+      {
+        "label": "Primary Medical Treatment",
+        "value": "Doctor-prescribed topical or oral antifungal medications"
+      }
+    ],
+    "causes": [
+      "Hot and humid weather: Tropical climate and monsoon humidity trap moisture against the skin, creating an ideal breeding ground for fungi.",
+      "Sweat accumulation from workouts: Sweating during gym training or sports, especially when wearing tight polyester or synthetic activewear, keeps skin damp for hours.",
+      "Skin friction: Chafing in skin folds, such as the inner thighs, groin, armpits, and under the breasts, damages the skin barrier and allows fungi to invade.",
+      "Sharing personal items: Fungal spores spread easily through shared towels, gym equipment, yoga mats, unwashed workout clothes, bedsheets, and soaps.",
+      "Over-the-counter steroid abuse: Applying combination creams containing potent steroids (such as clobetasol) thins the skin, suppresses local immunity, and makes fungal infections flare up aggressively.",
+      "High blood sugar levels: People with uncontrolled diabetes or prediabetes have higher sugar levels in their sweat, which feeds fungal organisms.",
+      "Weakened immune function: Illness, long-term stress, poor nutrition, or immune-suppressing medications make it harder for the body to keep fungal growth in check.",
+      "Occlusive footwear: Wearing closed leather shoes or tight socks all day without ventilation leads to soggy feet and fungal growth between the toes."
+    ],
+    "types": [
+      {
+        "name": "Tinea Corporis (Body Ringworm)",
+        "desc": "Occurs on the trunk, arms, or legs. It forms circular or oval red patches with raised, scaly edges and clearer skin in the middle, accompanied by sharp itching."
+      },
+      {
+        "name": "Tinea Cruris (Jock Itch / Dhobi Itch)",
+        "desc": "Affects the groin, inner thighs, and buttocks. It causes severe itching and chafing, aggravated by friction, sweat, and tight underwear."
+      },
+      {
+        "name": "Tinea Pedis (Athlete's Foot)",
+        "desc": "Forms between the toes or on the soles of the feet. It causes peeling, cracked, whitish, or burning skin, often picked up from wet gym locker rooms or communal shower floors."
+      },
+      {
+        "name": "Tinea Versicolor (Pityriasis Versicolor)",
+        "desc": "A superficial yeast overgrowth causing lighter or darker scaly patches on the chest, back, neck, and upper arms, common in young adults who sweat heavily."
+      },
+      {
+        "name": "Tinea Capitis (Scalp Ringworm)",
+        "desc": "Involves the scalp and hair shafts, causing scaly, itchy bald patches, common in school-age children and spread through shared combs and caps."
+      },
+      {
+        "name": "Cutaneous Candidiasis",
+        "desc": "A yeast infection appearing in warm, moist creases like under the breasts or around the waistband, presenting as fiery red patches with tiny satellite pustules."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination: A qualified dermatologist examines the rash, noting its classic raised borders, active edges, scale patterns, and distribution.",
+      "Checking treatment history: The doctor checks if you have used any over-the-counter creams, as steroids alter the rash's classic appearance (Tinea incognito).",
+      "Potassium Hydroxide (KOH) preparation: The doctor gently scrapes tiny skin flakes from the edge of the rash, places them on a glass slide with KOH solution, and examines them under a microscope to confirm fungal hyphae.",
+      "Wood's lamp examination: Shining a special ultraviolet light on the affected skin helps identify certain fungal and bacterial infections by their characteristic glow.",
+      "Fungal culture: In chronic, recurring, or drug-resistant cases, scraped skin samples are cultured in a laboratory to pinpoint the exact fungal species and determine which medicine will work.",
+      "Skin biopsy: Rarely needed, but used when an atypical rash does not respond to standard therapy and needs differentiation from psoriasis or eczema."
+    ],
+    "investigations": [
+      {
+        "test": "Skin scraping for KOH mount",
+        "purpose": "Quick microscopic test to confirm the presence of active fungal elements directly from the lesion"
+      },
+      {
+        "test": "Fungal culture and sensitivity",
+        "purpose": "Identifies the exact fungal strain and detects drug resistance in difficult or non-healing cases"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates average blood sugar over three months, as hidden diabetes often fuels chronic fungal infections",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Detects undiagnosed prediabetes or diabetes that impairs skin immunity",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Liver enzymes (SGOT, SGPT, Bilirubin)",
+        "purpose": "Assesses liver health before and during long courses of oral antifungal tablets",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks overall immune health and screens for chronic underlying infections",
+        "slug": "cbc"
+      }
+    ],
+    "modernTreatment": [
+      "Topical antifungal creams: For limited, early infections, doctors prescribe creams such as clotrimazole, miconazole, terbinafine, luliconazole, or amorolfine. These are applied directly to the rash and two centimetres beyond its visible border.",
+      "Completing the topical course: Creams must be continued for at least one to two weeks after the rash disappears to eliminate lingering spores and stop recurrences.",
+      "Oral antifungal medications: For widespread, recurrent, or resistant infections, dermatologists prescribe oral tablets such as terbinafine or itraconazole. Doses and durations are determined solely by your doctor.",
+      "Never stopping midway: Oral tablets must be taken for the complete duration advised by your physician, even if itching stops within four days.",
+      "Antihistamine tablets: Doctors may add a mild antihistamine for a few days to relieve relentless itching and prevent skin damage from scratching.",
+      "Barrier powders: Plain, antifungal dusting powders may be advised in high-friction body folds to absorb sweat during hot days and workouts.",
+      "Stopping steroid creams: Any ongoing application of combination steroid creams must be halted under medical guidance to allow normal skin immunity to recover."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda describes fungal skin conditions under the broad heading of 'Kushtha', specifically categorised as 'Dadru'.",
+      "It is traditionally seen as an imbalance of Kapha and Pitta doshas affecting the Rakta (blood), Rasa (plasma), and Mamsa (muscle tissues), leading to itching (Kandu), redness (Raga), and elevated borders (Utsanna Mandala).",
+      "Ayurvedic care focuses on clearing internal dampness and metabolic toxins (Ama) through simple, non-greasy foods and gentle herbal washes.",
+      "Traditional external preparations such as warm neem-infused water are used for gentle skin cleansing, but these are supportive hygienic measures only.",
+      "Herbal remedies cannot substitute for modern antifungal medications, especially given the current epidemic of resistant fungal strains in India. Always consult a certified doctor."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditional bitter herb used for external skin washing. Laboratory studies show mild antimicrobial properties, but it does not replace pharmaceutical antifungals."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, known for anti-inflammatory qualities. Traditional topical pastes may stain and irritate broken skin, so it should only be used as a dietary spice unless advised otherwise by your doctor."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil contains essential oils with mild antifungal activity in laboratory dishes, but human clinical trial evidence for skin ringworm is weak."
+      }
+    ],
+    "nutrition": [
+      "Cut down on refined sugar, sweets, mithai, bakery cakes, and sweetened soft drinks, as high sugar intake can alter skin chemistry and promote fungal growth.",
+      "Emphasise whole Indian foods: Eat fresh vegetables like lauki, tori, karela, bhindi, spinach, and methi, alongside unpolished grains like brown rice, oats, jowar, and bajra.",
+      "Include adequate protein: Add balanced portions of dal, chana, rajma, eggs, paneer, and lean chicken to support the repair of damaged skin tissue.",
+      "Incorporate natural probiotics: Fresh homemade curd (dahi) or spiced buttermilk (chaas) provides beneficial bacteria that support gut and skin health.",
+      "Drink plenty of water: Stay well-hydrated throughout the day with clean water and plain lemon water, especially when exercising in Indian heat.",
+      "Limit ultra-processed and greasy deep-fried foods: Foods like samosas, pakoras, and oily gravies can provoke sluggish digestion and promote sweating."
+    ],
+    "lifestyle": [
+      "Dry completely after bathing: Always pat yourself thoroughly dry, especially between the toes, behind the knees, under the breasts, and in the groin, before wearing clothes.",
+      "Change workout clothes immediately: Never sit around in sweaty gym gear after your workout. Shower promptly and change into clean, dry clothing.",
+      "Choose breathable fabrics: Wear loose-fitting, 100% cotton underwear and airy clothing. Avoid tight denim, nylon track pants, and synthetic leggings during hot and humid days.",
+      "Wash clothes in hot water: Wash your daily clothes, gym wear, undergarments, bed linen, and towels separately in warm water, and dry them under direct sunlight.",
+      "Iron your clothes: Ironing underwear and clothing on the inside helps destroy remaining fungal spores lingering in the fabric seams.",
+      "Never share personal items: Do not share towels, soap bars, nail clippers, footwear, caps, or gym mats with family members or workout partners.",
+      "Wipe gym equipment: Always lay your own clean towel on gym benches before lying down, and wipe machines before and after use."
+    ],
+    "yogaActivity": [
+      "Focus on cooling and calming pranayama: Practices such as Sheetali, Sheetkari, and slow Anulom Vilom help regulate body heat and reduce stress-induced itching.",
+      "Gentle asanas: Practice gentle postures like Tadasana, Vrikshasana, Vajrasana, and Marjaryasana in a well-ventilated, cool room to avoid excessive sweating.",
+      "Avoid hot yoga or intense workouts in poorly ventilated rooms: Strenuous exercise that produces heavy, trapped sweat can aggravate active fungal lesions.",
+      "Restorative poses: Practice Shavasana to relax the nervous system, as emotional stress can amplify itch perception.",
+      "Wear loose cotton clothes during yoga: Avoid tight spandex or synthetic yoga suits that trap heat against active patches."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are sometimes sought for chronic skin itching and ringworm.",
+      "There is no robust scientific evidence from large, randomised clinical trials proving that homeopathic remedies eliminate fungal pathogens or clear skin infections.",
+      "Relying solely on homeopathy while an infection spreads can lead to severe skin damage and transmission to family members. Always consult a qualified medical doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Topical and oral antifungal medications (such as terbinafine, itraconazole, and clotrimazole) are proven by clinical trials to clear fungal organisms when taken as prescribed.",
+      "Strong evidence: Maintaining dry skin folds, washing gym gear regularly, and avoiding tight synthetic fabrics significantly reduce recurrence rates.",
+      "Strong evidence: Topical steroid creams (like clobetasol and betamethasone) suppress local immunity, worsen fungal spread, and cause resistant Tinea incognito.",
+      "Moderate evidence: Maintaining strict blood sugar control in people with diabetes reduces the frequency of recurrent fungal skin infections.",
+      "Weak evidence: Herbal pastes, home remedies, and kitchen ingredients have no proven ability to eliminate resistant dermatophyte strains and may cause contact dermatitis."
+    ],
+    "shouldNotDo": [
+      "Do not buy over-the-counter mixed creams: Avoid pharmacist-dispensed four-in-one or triple-combination creams containing steroids, antibacterials, and antifungals.",
+      "Do not stop treatment early: Do not stop using prescribed creams or tablets just because the itching stopped. Fungal spores survive beneath the surface.",
+      "Do not scratch the rash: Scratching tears the skin, introduces secondary bacterial infections, and spreads spores to your fingernails and other body parts.",
+      "Do not apply burning home remedies: Never apply garlic paste, raw ginger, concentrated dettol, kerosene, or battery acid onto active fungal rashes.",
+      "Do not wear damp clothes: Never wear clothes that are half-dry or smell musty during the monsoon season.",
+      "Do not walk barefoot in communal areas: Never walk barefoot around swimming pools, gym shower stalls, or shared hostel washrooms.",
+      "Do not share personal hygiene tools: Avoid sharing soaps, combs, loofahs, undergarments, or workout tights."
+    ],
+    "medicationSafety": [
+      "Apply topical creams cleanly: Wash and dry your hands before and after applying your cream. Apply a thin layer covering the rash and extending 2 cm onto surrounding healthy skin.",
+      "Take oral antifungals with food if advised: Medicines like itraconazole are absorbed best when taken with a full meal or as instructed by your doctor.",
+      "Inform your doctor of all medicines: Oral antifungals can interact with blood pressure tablets, statins, and antidiabetic drugs. Always provide a full medicine list.",
+      "Liver health monitoring: If your doctor prescribes oral antifungal tablets for several weeks, they may recommend periodic liver function blood tests.",
+      "Pregnancy and breastfeeding caution: Many oral antifungal tablets are not safe during pregnancy or nursing. Always inform your doctor if you are pregnant or planning to conceive.",
+      "Report unusual side effects: If you experience yellowing of eyes, dark urine, upper abdominal pain, or severe nausea while on oral tablets, contact your doctor immediately."
+    ],
+    "complications": [
+      "Secondary bacterial infection: Scratching breaks open the skin barrier, allowing bacteria like Staph and Strep to enter, leading to painful cellulitis or pus-filled impetigo.",
+      "Tinea incognito: Severe, widespread, altered fungal infection caused by applying steroid creams, making the rash atypical, intensely red, and hard to diagnose.",
+      "Permanent skin changes: Prolonged scratching and steroid misuse can cause post-inflammatory hyperpigmentation, skin thinning, and permanent stretch marks (striae).",
+      "Spread across family members: Fungal spores readily spread to spouses, children, and parents sharing the same household linen or bathroom.",
+      "Onychomycosis: Spread of fungal infection to fingernails and toenails, leading to thickened, crumbly, discoloured nails that take months to treat.",
+      "Emotional and social distress: Intractable itching, sleepless nights, and visible skin lesions frequently cause anxiety, social embarrassment, and low self-esteem."
+    ],
+    "emergencySigns": [
+      "Sudden, rapidly spreading redness, intense pain, warmth, and swelling around the fungal patch, indicating bacterial cellulitis",
+      "High fever or chills developing alongside a worsening skin rash",
+      "Pus oozing from the rash with red streaks travelling up your arm or leg",
+      "Yellowing of the eyes or skin, severe nausea, or dark urine while taking oral antifungal tablets",
+      "Sudden widespread peeling, blister formation, or facial swelling after starting an oral medication"
+    ],
+    "whenToSeeDoctor": [
+      "Your rash shows no sign of improvement after two weeks of using an over-the-counter single-ingredient antifungal cream",
+      "The rash is spreading quickly across large areas of your body, groin, or face",
+      "The itching is so severe that it wakes you from sleep or disrupts your work",
+      "You have used a pharmacy steroid cream and the rash has flared back worse than before",
+      "You have diabetes, kidney disease, or a weakened immune system and notice any new skin rash",
+      "The infection has spread to your scalp or under your fingernails and toenails"
+    ],
+    "faqs": [
+      {
+        "q": "Why are fungal infections so difficult to get rid of in India today?",
+        "a": "The primary reason is the widespread, unregulated use of over-the-counter mixed creams containing potent steroids like clobetasol. These creams provide immediate, temporary relief from itching, but they paralyse local skin immunity. The fungus mutates, becomes resistant, and spreads aggressively. In addition, humid weather, synthetic gym clothing, and stopping prescribed medications too early contribute to frequent recurrences."
+      },
+      {
+        "q": "Can I use home remedies like neem or garlic paste to cure my ringworm?",
+        "a": "No herb, diet, or product can make a fungal skin infection go away on its own. While neem has mild traditional cleansing uses, harsh kitchen pastes like raw garlic, ginger, or concentrated antiseptics cause chemical burns, worsen inflammation, and fail to kill modern resistant fungal strains. Fungal infections require proven medical antifungal treatments guided by a doctor."
+      },
+      {
+        "q": "How long does it take for a fungal skin infection to clear?",
+        "a": "Mild, early infections treated with the correct topical antifungal cream often clear within two to four weeks. Extensive, chronic, or resistant infections requiring oral antifungal tablets may take six to eight weeks or longer. You must continue your medication for the exact duration your doctor prescribes, even if the visible rash disappears earlier."
+      },
+      {
+        "q": "Is it safe to continue working out at the gym while having a fungal infection?",
+        "a": "You can continue exercising, provided you take strict precautions. Wear loose, breathable cotton clothes that cover the affected areas to prevent direct contact with equipment. Never share towels, wipe benches before and after use, shower immediately after your workout, dry your skin thoroughly, and change into fresh clothes right away."
+      },
+      {
+        "q": "Why does the fungal infection return every monsoon?",
+        "a": "Fungal spores can survive in clothing seams, damp shoes, and the environment for months. When the monsoon brings high humidity and increased sweating, dormant spores reactivate. People also tend to stop their antifungal treatment as soon as itching stops, leaving viable spores behind. Following full treatment courses and strict hygiene prevents monsoon recurrences."
+      },
+      {
+        "q": "Can I catch a fungal infection from my pets?",
+        "a": "Yes. Dogs, cats, and cattle can carry dermatophyte fungi on their fur and skin, often without showing obvious symptoms. If your pet has patchy hair loss or scaly skin, take them to a veterinarian, wash your hands after handling pets, and avoid letting them sleep in your bed."
+      }
+    ],
+    "references": [
+      {
+        "title": "Ringworm and Fungal Skin Infections",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/ringworm/",
+        "year": "2023"
+      },
+      {
+        "title": "The epidemic of extensive and recalcitrant dermatophytosis in India",
+        "source": "Indian Journal of Dermatology, Venereology and Leprology (PMC)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6080376/",
+        "year": "2018"
+      },
+      {
+        "title": "WHO fungal priority pathogens list to guide research, development and public health action",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789240060241",
+        "year": "2022"
+      },
+      {
+        "title": "Tinea Infections (Ringworm)",
+        "source": "MedlinePlus Medical Encyclopedia, National Institutes of Health",
+        "url": "https://medlineplus.gov/ency/article/001439.htm",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "prediabetes",
+      "obesity",
+      "eczema",
+      "psoriasis",
+      "dandruff",
+      "skin-allergies"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "turmeric",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "liver-enzymes",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

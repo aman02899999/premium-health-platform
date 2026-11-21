@@ -1,0 +1,296 @@
+{
+  "slug": "breathing-problems",
+  "name": "Breathing Problems Guide",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Breathing problems, clinically called dyspnea or shortness of breath, happen when you feel you cannot get enough air into your lungs. It can feel like chest tightness, air hunger, gasping, or working much harder than usual just to breathe. Breathing troubles are not a single illness by themselves; they are a warning sign that something is affecting your airways, lungs, heart, blood, or nervous system. In India, breathing problems are exceptionally common. Millions of adults face breathing strain due to high outdoor particulate pollution, indoor biomass smoke from chulhas, smoking bidis or cigarettes, seasonal pollen, and chronic conditions like asthma, chronic obstructive pulmonary disease (COPD), and heart failure. While getting out of breath after sprinting is normal, feeling breathless while doing everyday chores, resting, or lying flat in bed is abnormal and always requires a medical check.",
+    "quickFacts": [
+      {
+        "label": "Normal resting breath rate",
+        "value": "12 to 20 breaths per minute for adults"
+      },
+      {
+        "label": "Normal blood oxygen (SpO2)",
+        "value": "95% to 100% on room air"
+      },
+      {
+        "label": "When oxygen is too low",
+        "value": "Below 92% to 94% needs prompt medical review"
+      },
+      {
+        "label": "Chronic respiratory burden in India",
+        "value": "India accounts for about 32% of global chronic respiratory disease disability-adjusted life years (DALYs) (Lancet Global Health / ICMR)"
+      },
+      {
+        "label": "Major environmental driver",
+        "value": "High particulate matter (PM2.5) and indoor cooking fuel smoke"
+      },
+      {
+        "label": "Key rule",
+        "value": "Sudden or severe breathlessness is an emergency, not an ailment to treat at home"
+      }
+    ],
+    "causes": [
+      "Airway obstruction and inflammation: Conditions like asthma cause swelling and narrowing of airway passages with extra mucus. Chronic obstructive pulmonary disease (COPD) causes irreversible airway narrowing and alveolar damage, often linked to long-term bidi or cigarette smoking and woodfire smoke.",
+      "Lung infections: Acute pneumonia, bronchitis, viral respiratory infections, and pulmonary tuberculosis inflame lung tissue and fill air sacs with fluid or pus.",
+      "Heart conditions: In heart failure or ischemic heart disease, the heart cannot pump blood forward efficiently. Fluid backs up into the lungs (pulmonary congestion), causing breathlessness, especially when lying down.",
+      "Poor air quality and environmental dust: Exposure to high vehicular exhaust, construction dust, burning crop residue, mosquito coils, and dhoop or agarbatti smoke inflames airway linings and triggers spasms.",
+      "Severe anemia: When red blood cell counts or hemoglobin levels fall significantly, the blood carries less oxygen to muscles and organs, forcing the lungs to breathe faster even with minimal movement.",
+      "Physical deconditioning and obesity: Extra body fat puts direct mechanical pressure on the diaphragm and chest wall, making breathing feel laborious during gentle walks or climbing stairs.",
+      "Anxiety and hyperventilation: Intense stress or panic attacks can cause rapid, shallow breathing (air hunger), chest tightness, and lightheadedness.",
+      "Allergies and sinus conditions: Chronic allergic rhinitis and sinusitis can cause post-nasal drip and reactive airway cough that disrupts comfortable breathing."
+    ],
+    "types": [
+      {
+        "name": "Acute breathlessness",
+        "desc": "Starts suddenly over minutes or hours. It is caused by emergencies such as an asthma attack, severe pneumonia, heart attack, fluid buildup in the lungs, or an airway allergy."
+      },
+      {
+        "name": "Chronic breathlessness",
+        "desc": "Lasts for weeks or months and develops gradually. Common causes include chronic obstructive pulmonary disease (COPD), long-standing asthma, heart failure, or chronic interstitial lung changes."
+      },
+      {
+        "name": "Exertional breathlessness",
+        "desc": "Occurs only during physical effort such as walking up a slope, carrying groceries, or climbing stairs, and improves with rest. It is common in early heart or lung disease, severe anemia, and deconditioning."
+      },
+      {
+        "name": "Orthopnea and paroxysmal nocturnal dyspnea (PND)",
+        "desc": "Orthopnea means breathing becomes difficult when lying flat on your back and eases when propped up on pillows. PND means waking up suddenly after 1 to 2 hours of sleep gasping for air, often linked to heart weakness."
+      }
+    ],
+    "diagnosis": [
+      "A thorough medical history: Your doctor will ask when the breathlessness started, what triggers it (dust, cold weather, stairs), whether you have a cough or fever, and your history of smoking or chulha smoke exposure.",
+      "Physical examination: The doctor listens to your breath sounds with a stethoscope to check for wheezing (musical whistling from tight airways), crackles (fluid or inflammation in the alveoli), or decreased breath sounds.",
+      "Pulse oximetry: A finger probe measures the percentage of oxygen carried by your red blood cells (SpO2) and your resting pulse rate.",
+      "Spirometry / Pulmonary function testing (PFT): You blow into a machine that measures how much air your lungs can hold and how fast you can blow it out. This confirms conditions like asthma or COPD.",
+      "Imaging studies: A chest X-ray or CT scan looks for pneumonia, lung hyperinflation, tuberculosis patches, fluid buildup, or an enlarged heart silhouette.",
+      "Cardiovascular checks: An electrocardiogram (ECG) and echocardiogram check whether the heart muscle is stiff, weakened, or lacking blood supply."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks hemoglobin levels to detect anemia and white blood cell count for signs of respiratory infection",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures inflammatory activity in the body caused by lung infections or systemic inflammation",
+        "slug": "crp"
+      },
+      {
+        "test": "Ferritin",
+        "purpose": "Checks iron stores when low hemoglobin or fatigue is suspected as a cause of breathlessness",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Chest X-Ray",
+        "purpose": "Shows lung fields, signs of fluid, infection, tuberculosis, or changes in heart size"
+      },
+      {
+        "test": "Spirometry with Reversibility Test",
+        "purpose": "Measures airway airflow before and after an inhaled bronchodilator to confirm asthma or COPD"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Assesses heart rhythm, past heart attacks, and signs of strain on the right or left heart chambers"
+      }
+    ],
+    "modernTreatment": [
+      "Inhaled therapies: Inhaled bronchodilators relax narrowed muscles around the airways, while inhaled corticosteroids reduce inner lining swelling. These are delivered straight to the lungs using metered-dose inhalers or dry powder inhalers as advised by your doctor.",
+      "Treating underlying infections: Bacterial pneumonia or bronchitis is treated with appropriate antibiotics, while viral infections receive supportive symptomatic care.",
+      "Managing heart-related fluid: Doctors prescribe specific tablets such as diuretics, blood pressure stabilizers, and heart medications to clear lung congestion and reduce cardiac workload.",
+      "Pulmonary rehabilitation: Supervised exercise programs, breathing techniques, and energy-conserving habits help patients with chronic lung disease gain stamina and breathe with less effort.",
+      "Oxygen therapy: For individuals with chronically low blood oxygen levels documented by a pulmonologist, medical oxygen devices are prescribed for home use.",
+      "Correcting systemic drivers: Nutritional support and doctor-guided iron supplementation are given if breathlessness is caused by severe anemia."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, respiratory difficulties are generally discussed under the framework of 'Shwasa Roga'. It is traditionally understood as an imbalance involving Vata and Kapha doshas affecting the Pranavaha Srotas (the bodily channels carrying breath).",
+      "Kapha is thought to create congestion and phlegm, while vitiated Vata is believed to cause constriction and erratic breath movement.",
+      "Traditional supportive regimens focus on warm, light meals, drinking warm water, avoiding damp or cold environments, and gentle herbal preparations.",
+      "This is an explanatory traditional framework, not a standalone medical diagnosis. Ayurvedic concepts must never replace emergency bronchodilators, oxygen support, or antibiotics during acute respiratory distress."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Traditionally brewed into warm water for soothing the throat and easing mild upper respiratory discomfort. Clinical evidence that it can treat asthma or chronic lung disease is weak."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Fresh ginger tea can help loosen mild throat mucus and provide warming comfort, but it does not open constricted lower airways during an asthma or COPD flare."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Studied for general anti-inflammatory properties due to curcumin, but it cannot replace inhaled anti-inflammatory medicines prescribed for lung disorders."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Known as mulethi; traditionally used to soothe irritated airways and throat tickles. It must be used cautiously as high intake can raise blood pressure."
+      }
+    ],
+    "nutrition": [
+      "Eat smaller, more frequent meals rather than heavy thalis. A very full stomach pushes upward against your diaphragm, leaving less room for your lungs to expand comfortably.",
+      "Drink adequate warm fluids throughout the day. Warm water, clear vegetable soups, and thin dal help keep respiratory secretions thin and easier to clear.",
+      "Keep salt modest. If your breathing trouble is connected to high blood pressure or heart weakness, excess sodium causes your body to hold water, worsening fluid congestion in the lungs.",
+      "Include iron-rich foods if blood tests show low iron or anemia. Lentils, rajma, chana, spinach, drumstick leaves (moringa), and fortified whole grains help your body produce healthy hemoglobin to transport oxygen.",
+      "Focus on wholesome anti-inflammatory foods: fresh seasonal vegetables, amla, guava, seeds, and curd if tolerated, avoiding heavily processed, deep-fried snacks that provoke gastric reflux.",
+      "Manage gas and bloating. Acidity and severe abdominal distension can make breathing feel tight and shallow by restricting normal belly movements."
+    ],
+    "lifestyle": [
+      "Stop all tobacco use immediately. This includes bidis, cigarettes, gutka, and hookahs. Avoid sitting near people who smoke, as second-hand smoke quickly triggers airway spasms.",
+      "Cut down indoor air pollution at home. Ensure good cross-ventilation in the kitchen. Avoid burning firewood or cow dung inside, and stop using mosquito coils and heavy incense (agarbatti or dhoop) in closed bedrooms.",
+      "Track the Air Quality Index (AQI) in your city. On days with poor, very poor, or severe air quality, stay indoors when possible, keep windows shut during peak traffic hours, and wear a well-fitted N95 mask if you must go outside.",
+      "Pace your daily activities. If you have chronic lung or heart disease, break your chores into manageable segments and sit down while chopping vegetables or folding laundry.",
+      "Maintain a healthy body weight. Shedding excess kilos around the abdomen takes mechanical pressure off the diaphragm and reduces how hard your lungs must work during movement.",
+      "Keep your sleeping environment dust-free. Wash bedsheets, pillow covers, and curtains regularly in warm water to reduce dust mite exposure."
+    ],
+    "yogaActivity": [
+      "Pursed-lip breathing: Inhale slowly through your nose for 2 counts, purse your lips as if about to whistle, and breathe out gently through your mouth for 4 counts. This keeps airways open longer and calms breathing during activity.",
+      "Diaphragmatic breathing (belly breathing): Lie or sit comfortably with one hand on your chest and one on your belly. Breathe in slowly through your nose so your belly rises more than your chest, then breathe out slowly.",
+      "Gentle Pranayama: Practice slow, unforced Anulom Vilom (alternate nostril breathing). Avoid any breath retention (kumbhaka) and stop immediately if you feel dizzy.",
+      "Gentle upper-body stretching: Seated cat-cow stretches, gentle chest openers, and Tadasana help expand ribcage mobility without straining your lungs.",
+      "Important safety rule: Never perform rapid, forceful breathing practices like intense Kapalbhati or Bhastrika if you have active asthma, wheezing, COPD, or heart disease, as forceful breathing can trigger severe airway spasms."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence that homeopathic medicines can relieve narrowed airways, raise blood oxygen levels, or treat lung infections.",
+      "If you decide to take homeopathic preparations, never stop, delay, or replace your prescribed inhalers, heart tablets, antibiotics, or emergency medical care."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Inhaled bronchodilators and inhaled steroids improve lung airflow and reduce flare-ups in asthma and COPD. Medical treatments for heart failure reduce breathlessness and hospital admissions.",
+      "Strong evidence: Quitting tobacco halts the rapid loss of lung function in chronic respiratory illness. Pulmonary rehabilitation significantly improves walking distance and quality of life.",
+      "Moderate evidence: Diaphragmatic and pursed-lip breathing techniques help reduce breathlessness episodes and improve exercise tolerance in chronic lung diseases.",
+      "Limited evidence: Warm herbal decoctions (kadhas) with tulsi or ginger provide mild, temporary throat comfort, but studies do not show improvements in lung airflow or oxygen levels.",
+      "No evidence: No herb, diet, or online 'lung detox' product can make asthma, COPD, or lung damage go away. Beware of products claiming to permanently clean the lungs."
+    ],
+    "shouldNotDo": [
+      "Do not stop your inhalers simply because your breathing feels fine today. Maintenance inhalers prevent attacks by controlling background swelling; stopping them invites sudden flare-ups.",
+      "Do not use home steam inhalation at boiling, scalding temperatures. Very hot steam can burn your delicate airway lining and worsen airway irritability.",
+      "Do not light mosquito coils, dhoop, camphor, or scented candles in a closed bedroom where someone with breathing issues sleeps.",
+      "Do not self-medicate with over-the-counter cough syrups or sedatives during sudden breathlessness; they do not open airways and can dangerously slow down your breathing drive.",
+      "Do not dismiss breathlessness as 'just aging' or 'a little seasonal cold' if it lasts for more than a few days or stops you from doing normal daily tasks."
+    ],
+    "medicationSafety": [
+      "Learn the correct inhaler technique from your doctor or nurse. Using an inhaler incorrectly means the medicine stays in your mouth rather than reaching your lungs. Use a spacer device if advised.",
+      "Rinse your mouth with plain water and spit it out after using steroid inhalers. This simple habit prevents hoarseness and oral fungal infections (thrush).",
+      "Keep your fast-acting rescue inhaler accessible at all times, including when travelling, at work, or at the gym.",
+      "Inform your doctor of all medicines you take. Certain blood pressure tablets (like non-selective beta-blockers) and common painkillers (like aspirin or ibuprofen) can trigger severe wheezing in sensitive individuals with asthma.",
+      "Take antibiotic courses exactly as advised by your doctor for respiratory infections; do not stop halfway when you begin feeling better."
+    ],
+    "complications": [
+      "Acute respiratory failure, where oxygen levels fall dangerously low or carbon dioxide builds up in the blood",
+      "Cor pulmonale (strain, enlargement, and eventual failure of the right side of the heart due to high blood pressure in lung arteries)",
+      "Frequent, severe chest infections and pneumonia requiring hospitalization",
+      "Severe limitation of daily activities, leading to muscle weakness, weight loss, and social isolation",
+      "Severe sleep disruption, chronic daytime fatigue, and impaired concentration",
+      "Anxiety and panic disorders stemming from the terrifying sensation of recurrent air hunger"
+    ],
+    "emergencySigns": [
+      "Bluish or greyish tint on your lips, tongue, nail beds, or face (cyanosis)",
+      "Struggling to speak even a short sentence without stopping to catch your breath",
+      "Pulse oximeter reading (SpO2) showing less than 92% on room air",
+      "Breathing problems paired with crushing chest pain, pressure, sweating, or pain spreading to the jaw, neck, or left arm",
+      "Confusion, extreme drowsiness, restlessness, or trouble staying awake",
+      "Sucking in of the skin around the ribs or neck with each breath (retractions), or breathing with a high-pitched whistling noise (stridor) while sitting still",
+      "Sudden, severe shortness of breath that starts out of nowhere within minutes"
+    ],
+    "whenToSeeDoctor": [
+      "Your breathlessness has been slowly worsening over weeks or months, even during light activities like walking inside your home",
+      "You develop persistent ankle, foot, or leg swelling alongside difficulty breathing when lying down flat",
+      "You have had a cough with phlegm or wheezing that has lasted for more than 3 weeks",
+      "You find yourself needing your quick-relief rescue inhaler more than twice a week",
+      "You cough up blood or rust-colored sputum",
+      "Your breathing issues are accompanied by an unexplained fever or chills"
+    ],
+    "faqs": [
+      {
+        "q": "Why do I feel breathless after climbing just one flight of stairs?",
+        "a": "Feeling out of breath after a single flight of stairs can be caused by physical deconditioning, extra body weight, low hemoglobin (anemia), early asthma, or mild heart strain. If this is new for you, or getting worse, consult a doctor for a basic evaluation including blood tests and a chest check."
+      },
+      {
+        "q": "Can steam inhalation cure chronic breathing troubles?",
+        "a": "No. Warm steam can temporarily loosen mucus in the nose and throat during a common cold, but it cannot reverse asthma, open lung passages, or clear chronic lung damage. No herb, diet, or product can make chronic airway diseases go away. Always rely on prescribed medicines."
+      },
+      {
+        "q": "What is the difference between asthma and COPD?",
+        "a": "Asthma usually begins in childhood or young adulthood, causes variable airway narrowing that often reverses completely between attacks, and is commonly linked to allergies. COPD typically develops in adults over 40 with a history of long-term exposure to tobacco or biomass smoke, and the airway narrowing is largely permanent and slowly progressive."
+      },
+      {
+        "q": "Is it safe to exercise if I have breathing problems?",
+        "a": "Yes, gentle and structured exercise is one of the best ways to build breathing stamina once your condition is stable. Walking, cycling, and light strength work are generally helpful. However, always check with your doctor first, keep your rescue medicine nearby, and avoid exercising outdoors when city air pollution levels are severe."
+      },
+      {
+        "q": "Why does my breathing get worse when I lie flat at night?",
+        "a": "When you lie flat, gravity causes fluid in your body to shift toward your chest and lungs, and your abdominal organs press slightly against your diaphragm. If your heart is struggling to pump or your lungs are congested, this fluid shift makes breathing much harder, forcing you to prop yourself up on pillows."
+      }
+    ],
+    "references": [
+      {
+        "title": "Chronic respiratory diseases",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/health-topics/chronic-respiratory-diseases",
+        "year": "2023"
+      },
+      {
+        "title": "The burden of chronic respiratory diseases and their heterogeneity across the states of India: the Global Burden of Disease Study 1990–2016",
+        "source": "The Lancet Global Health (India State-Level Disease Burden Initiative CRD Collaborators)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30219315/",
+        "year": "2018"
+      },
+      {
+        "title": "Shortness of breath",
+        "source": "NHS UK",
+        "url": "https://www.nhs.uk/conditions/shortness-of-breath/",
+        "year": "2023"
+      },
+      {
+        "title": "Breathing Problems",
+        "source": "MedlinePlus (US National Library of Medicine)",
+        "url": "https://medlineplus.gov/breathingproblems.html",
+        "year": "2022"
+      },
+      {
+        "title": "Shortness of breath: Symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/symptoms/shortness-of-breath/basics/definition/sym-20050890",
+        "year": "2022"
+      }
+    ],
+    "relatedDiseases": [
+      "asthma",
+      "copd",
+      "bronchitis",
+      "chronic-cough",
+      "heart-failure",
+      "allergic-rhinitis",
+      "sleep-apnea",
+      "anemia",
+      "anxiety"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "pantoprazole",
+      "omeprazole",
+      "iron-folic-acid",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "turmeric",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

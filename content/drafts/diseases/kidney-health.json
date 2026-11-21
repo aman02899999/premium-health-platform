@@ -1,0 +1,292 @@
+{
+  "slug": "kidney-health",
+  "name": "Kidney Health Basics",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Kidney health means your two bean-shaped kidneys are working properly to filter waste, clear extra fluid, and balance minerals in your blood. Each kidney contains around one million microscopic filtering units called nephrons. Every day, they filter about 180 litres of fluid, keeping vital proteins and cells inside the body while turning waste and excess water into 1 to 2 litres of urine. Beyond filtering, healthy kidneys control blood pressure by making renin, signal bone marrow to make red blood cells with erythropoietin, and convert vitamin D into its active form for strong bones. In India, kidney damage often develops silently over years without pain or noticeable changes in urine. The two leading causes of kidney trouble in Indian adults are type 2 diabetes and high blood pressure. Because early kidney strain causes no symptoms, simple routine tests like blood creatinine and urine routine tests are essential to catch problems early when lifestyle, blood pressure control, and medical care can protect remaining kidney function.",
+    "quickFacts": [
+      {
+        "label": "Daily blood filtration",
+        "value": "Around 180 litres filtered every 24 hours"
+      },
+      {
+        "label": "Normal urine output",
+        "value": "About 1 to 2 litres per day for average adults"
+      },
+      {
+        "label": "Top causes of kidney damage in India",
+        "value": "Type 2 diabetes and high blood pressure"
+      },
+      {
+        "label": "Early symptoms",
+        "value": "Usually completely silent in early stages"
+      },
+      {
+        "label": "Recommended salt intake",
+        "value": "Under 5 g per day (ICMR-NIN and WHO limit)"
+      },
+      {
+        "label": "Key screening tests",
+        "value": "Serum creatinine (eGFR) and urine routine for protein"
+      }
+    ],
+    "causes": [
+      "Uncontrolled blood sugar. Long-standing high glucose in type 2 diabetes damages the tiny filtering units (glomeruli) in the kidneys over time, leading to diabetic kidney disease.",
+      "High blood pressure. Continuous force against the delicate renal blood vessels thickens and narrows the kidney arteries, reducing their filtering power.",
+      "Frequent, unmonitored use of painkiller medicines. Non-steroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen, diclofenac, and naproxen reduce blood supply to the kidneys and cause acute or long-term damage.",
+      "Chronic dehydration and heat exposure. Working or exercising in hot Indian climates without drinking enough water puts repetitive strain on kidneys and can contribute to stones and renal injury.",
+      "High dietary salt and processed foods. The average Indian eats about 11 grams of salt daily, which raises blood pressure and forces the kidneys to work much harder to expel excess sodium.",
+      "Recurrent kidney stones and untreated urinary tract infections. Blockages and repeated bacterial infections cause physical backpressure and scarring in the renal tissues.",
+      "Unregulated indigenous powders and adulterated supplements. Some spurious bhasmas, heavy metal formulations, or body-building powders place toxic burdens on kidney filtration tubules."
+    ],
+    "types": [
+      {
+        "name": "Acute Kidney Injury (AKI)",
+        "desc": "A sudden, rapid decline in kidney function occurring over hours or days, often caused by severe dehydration, dengue, snakebites, toxic medicines, severe infections, or sudden urinary blockage. It is often reversible if treated quickly."
+      },
+      {
+        "name": "Chronic Kidney Disease (CKD)",
+        "desc": "A gradual, permanent loss of kidney filtration over months or years, commonly divided into five stages based on estimated glomerular filtration rate (eGFR). It is most often driven by diabetes and hypertension."
+      },
+      {
+        "name": "Kidney Stones (Nephrolithiasis)",
+        "desc": "Solid mineral deposits, commonly calcium oxalate or uric acid, that form inside the renal pelvis and ureters when urine becomes too concentrated, causing sharp flank pain."
+      },
+      {
+        "name": "Glomerulonephritis and Nephrotic Syndrome",
+        "desc": "Inflammation or structural damage to the kidney filters themselves, leading to massive leakage of protein into the urine, low blood protein, and marked body swelling."
+      }
+    ],
+    "diagnosis": [
+      "Kidney health cannot be assessed by physical feeling or clear urine color alone; objective blood and urine tests are mandatory.",
+      "Blood test for serum creatinine calculates the estimated glomerular filtration rate (eGFR), which indicates how many millilitres of blood your kidneys clean each minute.",
+      "A simple urine routine examination checks for the abnormal presence of protein (albumin), red blood cells, pus cells, or crystals.",
+      "Urine Albumin-to-Creatinine Ratio (uACR) is a precise test that detects microscopic traces of protein long before ordinary dipstick tests can spot them.",
+      "Ultrasound scan of the abdomen and pelvis shows the size, shape, and structure of the kidneys, and checks for stones, cysts, shrinkage, or urinary tract blockage.",
+      "Blood pressure check on both arms confirms whether renal strain is causing or being aggravated by elevated vascular pressure."
+    ],
+    "investigations": [
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Measures waste product clearance and estimates overall percentage of kidney filtration function",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine Examination",
+        "purpose": "Detects leakage of protein, blood cells, infection markers, and microscopic crystals",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates three-month blood sugar control to screen for or monitor diabetic kidney injury",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Screens for diabetes, the leading cause of renal failure in India",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Assesses cardiovascular risk, which is closely linked to progressive kidney vessel stiffness",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Identifies high uric acid levels that can trigger kidney stones or tubule inflammation",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia, which commonly occurs when damaged kidneys produce less erythropoietin",
+        "slug": "cbc"
+      }
+    ],
+    "modernTreatment": [
+      "Foundational control of underlying conditions: keeping blood pressure strictly below 130/80 mmHg and maintaining blood glucose within personal target ranges set by a doctor.",
+      "Kidney-protective prescription blood pressure medicines, notably Angiotensin Receptor Blockers (ARBs like losartan) or ACE inhibitors, which relax kidney blood vessels and reduce protein leakage.",
+      "Modern metabolic therapies, including SGLT2 inhibitors (such as dapagliflozin), which have shown strong clinical evidence for slowing kidney disease progression and protecting heart function.",
+      "Careful management of fluid balance, minerals, and electrolytes, including balancing serum potassium, calcium, and phosphorus through diet and medications under medical supervision.",
+      "Prompt medical treatment for urinary tract infections, prostate obstruction, or kidney stones to prevent obstructive scarring.",
+      "Advanced kidney replacement therapy, including haemodialysis, peritoneal dialysis, or kidney transplantation, reserved for end-stage renal disease when natural filtering drops below life-sustaining levels."
+    ],
+    "ayurvedaView": [
+      "Traditional Ayurvedic concepts discuss kidney-related functions under Mutravaha Srotas (the channels carrying urine) and disorders like Mutrakricchra (painful urination) or Mutraghata (urinary retention).",
+      "These classical frameworks view kidney conditions as an imbalance of Vata, Pitta, and Kapha affecting the Medovaha and Mutravaha systems. This is a traditional perspective and not an anatomical or clinical diagnosis.",
+      "Classical texts emphasize natural hydration, avoiding the suppression of the urge to urinate (vega dharana), and eating fresh, digestible foods.",
+      "Herbal remedies and decoctions can only offer supportive wellness alongside modern medical care. No Ayurvedic product can reverse or cure chronic kidney scarring.",
+      "Extreme caution is required with unverified Ayurvedic preparations, herbal bhasmas, and online churnas. Adulteration with toxic heavy metals or undisclosed substances can cause acute tubule poisoning and accelerate kidney failure. Always consult your nephrologist before taking any supplement."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows mild anti-inflammatory properties in preliminary laboratory studies, but it cannot cure kidney disease and high-dose extracts may increase oxalate load."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Used traditionally for digestion and circulation; culinary amounts are safe, but concentrated supplements lack clinical trial support for improving kidney filtration."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in dietary vitamin C and antioxidants; useful as a fruit in balanced meals, though it does not replace kidney medicines."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Consumed traditionally as an herbal tea; offers mild antioxidant support but has no proven clinical ability to lower serum creatinine."
+      }
+    ],
+    "nutrition": [
+      "Cut daily salt to under 5 grams per day (about one level teaspoon). Avoid high-sodium Indian staples such as papad, commercial pickles (achaar), savoury namkeens, packaged chips, bhujia, and instant noodles.",
+      "Hydrate sensibly based on your climate, activity level, and medical guidance. For healthy adults without heart or kidney disease, 2 to 3 litres of water daily is generally suitable. Drink enough so your urine stays pale straw-coloured.",
+      "Do not force-feed excessive water if your doctor has diagnosed kidney failure or placed you on a fluid restriction, as damaged kidneys cannot clear excess water and lungs can fill with fluid.",
+      "Consume high-quality, balanced protein in moderate amounts. For healthy adults, ICMR-NIN recommends about 0.8 to 1.0 gram of protein per kilogram of body weight per day from dals, paneer, eggs, or fish. If you have confirmed kidney disease, your doctor may advise a lower protein intake to reduce urea buildup.",
+      "Be cautious with high-potassium foods if you have advanced kidney trouble. While coconut water, bananas, palak (spinach), and citrus fruits are healthy for normal kidneys, damaged kidneys cannot remove potassium, which can lead to life-threatening heart rhythm issues.",
+      "Avoid carbonated dark colas and heavily processed packaged snacks, which contain inorganic phosphate additives that leach calcium from your bones and strain kidney filtering.",
+      "Cook using home-ground spices like jeera, coriander, black pepper, and fresh lemon juice to bring out flavour without relying on extra table salt."
+    ],
+    "lifestyle": [
+      "Get your blood pressure and fasting blood sugar checked at least once a year, or more frequently if there is a family history of diabetes or kidney disease.",
+      "Maintain a healthy body weight. Carrying excess visceral abdominal fat directly increases pressure inside kidney glomeruli, speeding up tissue damage.",
+      "Quit smoking and avoid all tobacco products including gutka, khaini, and bidis. Tobacco chemicals narrow renal blood vessels and double the rate of kidney decline in diabetic individuals.",
+      "Avoid self-prescribing over-the-counter painkillers. If you have headache or joint pain, discuss safe alternatives with your doctor instead of frequently taking NSAIDs.",
+      "Never suppress the urge to pass urine. Empty your bladder regularly to prevent bacterial overgrowth and backpressure on the ureters.",
+      "Prioritize 7 to 8 hours of restful sleep every night. Irregular sleep and untreated obstructive sleep apnea place continuous stress on nighttime blood pressure and renal recovery."
+    ],
+    "yogaActivity": [
+      "Engage in 150 minutes of moderate aerobic exercise every week, such as brisk walking, light jogging, swimming, or cycling, to keep blood pressure and blood sugar controlled.",
+      "Gentle yoga asanas such as Bhujangasana (Cobra Pose), Setu Bandhasana (Bridge Pose), Marjaryasana-Bitilasana (Cat-Cow Pose), and Shavasana help improve pelvic blood circulation and lower emotional stress.",
+      "Practice calming, slow pranayama exercises such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) under proper instruction, avoiding aggressive abdominal strain or breath-holding.",
+      "If you have high blood pressure or established kidney disease, avoid extreme hot yoga, inverted postures like Sirsasana (headstand), or intense heavy lifting with Valsalva breath-holding until cleared by your physician.",
+      "Always rehydrate with plain water after gym sessions or workouts, especially during humid Indian summer months, to prevent exercise-induced dehydration and muscle breakdown."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence that homeopathic remedies can repair damaged kidneys, dissolve large kidney stones, or lower serum creatinine.",
+      "Relying solely on homeopathy while delaying modern evaluation for conditions like diabetic nephropathy or severe high blood pressure can allow silent, irreversible kidney failure to progress.",
+      "If you choose to use homeopathic preparations, you must continue your prescribed medical treatments, monitor your kidney labs, and keep your nephrologist informed."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Strict control of blood sugar and blood pressure significantly delays or prevents the onset of diabetic kidney disease and chronic kidney failure.",
+      "Strong evidence: Salt restriction below 5 g daily reduces blood pressure, eases kidney workload, and improves the effectiveness of renal protective medications.",
+      "Strong evidence: Medications like ACE inhibitors, ARBs, and SGLT2 inhibitors provide proven organ protection by reducing pressure inside the renal filtering apparatus and stopping protein leakage.",
+      "Moderate evidence: Regular moderate physical activity and gradual weight loss reduce microalbuminuria in overweight individuals with metabolic syndrome.",
+      "Limited or weak evidence: Herbal extracts, cleanses, detox teas, and commercial 'kidney rejuvenation' capsules lack verified human clinical evidence and can carry severe risks of chemical or heavy-metal toxicity."
+    ],
+    "shouldNotDo": [
+      "Do not pop painkillers (NSAIDs like diclofenac, ibuprofen, or aceclofenac) for everyday body aches without medical advice; they are a major cause of preventable drug-induced kidney injury.",
+      "Do not fall for unscientific 'kidney detox' drinks, herbal juices, or raw vegetable smoothie cleanses; large amounts of raw spinach or star fruit juices can cause sudden oxalate nephropathy.",
+      "Do not ignore foamy, frothy, or reddish urine, assuming it is merely 'body heat' or dehydration; frothy urine often signals protein leakage.",
+      "Do not stop your diabetes or blood pressure tablets just because your readings look normal on a particular morning; normal numbers mean the medicines are protecting your organs.",
+      "Do not consume rock salt (sendha namak) or black salt (kala namak) under the false impression that they are sodium-free; they contain nearly the same sodium as common table salt and still raise blood pressure.",
+      "Do not start high-dose protein powders or bodybuilding supplements without checking your baseline kidney function and consulting a qualified sports nutritionist or doctor."
+    ],
+    "medicationSafety": [
+      "Always inform every prescribing doctor and dentist if you have known kidney disease, as many antibiotics, diabetes drugs, and pain medicines require dose adjustments based on your eGFR.",
+      "If you are prescribed ACE inhibitors or ARBs (like losartan) or SGLT2 inhibitors (like dapagliflozin), your doctor will check your serum creatinine and potassium 1 to 2 weeks after starting; a minor fluctuation is normal, but large changes need medical review.",
+      "Paracetamol is generally safer for occasional mild pain or fever compared to NSAIDs, but it should still be taken strictly as advised by your doctor.",
+      "Avoid taking antacids, laxatives, or calcium-vitamin combinations continuously without doctor supervision, as impaired kidneys struggle to eliminate excess magnesium and phosphate.",
+      "If you develop severe vomiting, watery diarrhea, or high fever with dehydration, contact your doctor promptly, as certain kidney medicines may need a temporary pause ('sick day rules') to protect your kidneys."
+    ],
+    "complications": [
+      "Progressive Chronic Kidney Disease (CKD) advancing to Stage 5 End-Stage Renal Disease (ESRD) requiring lifelong dialysis or kidney transplantation.",
+      "Cardiovascular disease, heart attacks, and heart failure, which represent the leading cause of death in individuals with reduced kidney function.",
+      "Severe fluid overload, causing pulmonary edema (fluid in the lungs) and dangerous swelling of the feet, legs, and abdomen.",
+      "Hyperkalemia (dangerously elevated blood potassium), which can trigger sudden fatal heart arrhythmias.",
+      "Renal anemia and extreme fatigue, resulting from the kidneys losing their ability to make adequate erythropoietin hormone.",
+      "Mineral and bone disorder (renal osteodystrophy), causing weakened bones, joint pain, and increased fracture risk due to poor vitamin D activation and calcium imbalance."
+    ],
+    "emergencySigns": [
+      "Sudden inability to pass urine, or a drastic drop in daily urine volume to less than a small cup, accompanied by lower abdominal swelling.",
+      "Severe, sudden breathlessness, especially when lying flat, coughing up pink frothy phlegm, or gasping for air (signs of fluid in the lungs).",
+      "Chest pain, rapid irregular heartbeats, or profound muscle weakness, which may signal critical hyperkalemia.",
+      "New confusion, extreme drowsiness, seizures, persistent vomiting, or loss of consciousness caused by high levels of toxic uremic waste in the blood.",
+      "Sudden severe flank pain spreading to the groin, accompanied by high fever, chills, and cloudy or bloody urine (suggesting acute kidney infection or blocked stone)."
+    ],
+    "whenToSeeDoctor": [
+      "You notice persistent persistent puffiness around your eyes in the morning or swelling in your feet and ankles that leaves an indentation when pressed.",
+      "Your urine consistently appears frothy, foamy, cloudy, or reddish-brown (cola-coloured).",
+      "You have lived with type 2 diabetes or high blood pressure for more than a year and have never had your urine protein or serum creatinine checked.",
+      "You feel unexplained, worsening fatigue, metallic taste in the mouth, loss of appetite, or persistent nausea.",
+      "You experience a burning sensation during urination, increased night-time bathroom trips, or difficulty starting your urinary stream."
+    ],
+    "faqs": [
+      {
+        "q": "Does drinking 5 litres of water every day keep kidneys healthy?",
+        "a": "No. While good hydration is important, drinking extreme amounts of water does not provide extra kidney cleansing and can dangerously dilute your blood sodium levels (hyponatremia). For healthy adults, 2 to 3 litres per day is usually sufficient. If you already have advanced kidney or heart disease, excessive fluid intake can cause dangerous swelling and lung congestion."
+      },
+      {
+        "q": "Can damaged kidneys heal or regenerate?",
+        "a": "Acute kidney injury caused by temporary dehydration, infections, or reversible drug toxicity can often recover with prompt treatment. However, chronic kidney disease involves fibrous scarring of nephrons, which cannot be reversed. The primary goal of medical care is to protect your remaining healthy kidney tissue and prevent further decline."
+      },
+      {
+        "q": "Why are diabetes and high blood pressure so dangerous for kidneys?",
+        "a": "Your kidneys contain millions of tiny, delicate blood vessel clusters that filter blood. High blood sugar gradually damages these micro-vessels, causing them to leak protein, while high blood pressure physically tears and stiffens the artery walls. Together, they account for the vast majority of kidney failure cases in India."
+      },
+      {
+        "q": "Are Ayurvedic kashayams or herbal kidney cleansers safe?",
+        "a": "Not necessarily. While culinary herbs in everyday meals are harmless, concentrated herbal decoctions, unregulated tonics, and indigenous powders can contain high potassium, unknown toxins, or heavy metals that directly poison kidney tubules. No herbal product can make kidney disease go away, and you should never take them without your nephrologist's explicit consent."
+      },
+      {
+        "q": "Is foam in the urine always a sign of kidney disease?",
+        "a": "Not always. Fast urination into a dry toilet bowl or mild dehydration can occasionally create temporary bubbles that disappear quickly. However, if your urine shows thick, foamy, beer-like froth that persists and requires multiple flushes, it is frequently a sign of protein leakage (albuminuria) and should be checked with a simple urine routine test."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (NIN)",
+        "url": "https://www.nin.res.in/downloads/DietaryGuidelinesforNINwebsite.pdf",
+        "year": "2020"
+      },
+      {
+        "title": "Global report on hypertension: the race against a silent killer",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789240081062",
+        "year": "2023"
+      },
+      {
+        "title": "Sodium intake for adults and children",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241504836",
+        "year": "2012"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "high-blood-pressure",
+      "chronic-kidney-disease",
+      "protein-in-urine",
+      "high-creatinine",
+      "kidney-stones"
+    ],
+    "relatedMedicines": [
+      "losartan",
+      "dapagliflozin",
+      "amlodipine"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "amla",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "creatinine",
+      "urine-routine",
+      "hba1c",
+      "fasting-glucose",
+      "lipid-profile"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
