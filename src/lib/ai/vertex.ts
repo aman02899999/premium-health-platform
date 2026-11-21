@@ -1,5 +1,5 @@
 import "server-only";
-import { toVertexSchema } from "./vertex-schema";
+import { modelOrder, TEXT_MODELS, toVertexSchema, withModelFallback } from "./vertex-schema";
 
 /**
  * Gemini on Vertex AI, used when the site runs on Google Cloud Run.
@@ -18,8 +18,11 @@ const API = "https://aiplatform.googleapis.com/v1";
 /** On inside Cloud Run (K_SERVICE is set there). VERTEX_AI=off switches it off. */
 export const vertexConfigured = (env: Env = process.env) => env.VERTEX_AI !== "off" && Boolean(env.K_SERVICE);
 
-/** The stable Flash model unless VERTEX_MODEL names another. */
-export const vertexModel = (env: Env = process.env) => env.VERTEX_MODEL?.trim() || "gemini-2.5-flash";
+/** Models to try, newest first; VERTEX_MODEL goes first when set. */
+export const vertexModels = (env: Env = process.env) => modelOrder(env.VERTEX_MODEL, TEXT_MODELS);
+
+/** The model that last answered, so later calls skip retired ones. */
+let working: string | null = null;
 
 export { toVertexSchema };
 
@@ -48,25 +51,29 @@ export async function geminiJson(
   req: { system: string; prompt: string; schema: unknown; maxTokens?: number },
   f: Fetch = fetch,
   env: Env = process.env,
+  models?: string[],
 ): Promise<JsonResult> {
   try {
     const c = await credentials(f);
-    const url = `${API}/projects/${c.project}/locations/global/publishers/google/models/${vertexModel(env)}:generateContent`;
-    const res = await f(url, {
-      method: "POST",
-      headers: { authorization: `Bearer ${c.token}`, "content-type": "application/json" },
-      signal: AbortSignal.timeout(60_000),
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: req.system }] },
-        contents: [{ role: "user", parts: [{ text: req.prompt }] }],
-        generationConfig: {
-          responseMimeType: "application/json",
-          responseSchema: toVertexSchema(req.schema),
-          maxOutputTokens: req.maxTokens ?? 4000,
-          temperature: 0.4,
-        },
+    const order = working && !models ? [working, ...vertexModels(env)] : (models ?? vertexModels(env));
+    const { model, result: res } = await withModelFallback([...new Set(order)], (m) =>
+      f(`${API}/projects/${c.project}/locations/global/publishers/google/models/${m}:generateContent`, {
+        method: "POST",
+        headers: { authorization: `Bearer ${c.token}`, "content-type": "application/json" },
+        signal: AbortSignal.timeout(90_000),
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: req.system }] },
+          contents: [{ role: "user", parts: [{ text: req.prompt }] }],
+          generationConfig: {
+            responseMimeType: "application/json",
+            responseSchema: toVertexSchema(req.schema),
+            maxOutputTokens: req.maxTokens ?? 8000,
+            temperature: 0.4,
+          },
+        }),
       }),
-    });
+    );
+    if (res.ok) working = model;
     const json = (await res.json().catch(() => ({}))) as {
       error?: { message?: string };
       candidates?: { finishReason?: string; content?: { parts?: { text?: string }[] } }[];
@@ -74,7 +81,7 @@ export async function geminiJson(
     };
     if (!res.ok) {
       const msg = json.error?.message ?? "no details";
-      const hint = res.status === 403 ? " (give the Cloud Run service account the Vertex AI User role, and turn on the Vertex AI API)" : "";
+      const hint = res.status === 404 ? ` (tried ${order.join(", ")}: set VERTEX_MODEL to a current Gemini model)` : res.status === 403 ? " (give the Cloud Run service account the Vertex AI User role, and turn on the Vertex AI API)" : "";
       return { ok: false, error: `Gemini (${res.status}): ${msg}${hint}`.slice(0, 300) };
     }
     if (json.promptFeedback?.blockReason) return { ok: false, error: `The AI declined this (${json.promptFeedback.blockReason})` };

@@ -69,8 +69,14 @@ const CLAIM = /\b(cures?|cured|guaranteed?|miracle)\b/i;
 // "No good evidence: 'BP cure' powders" is a denial too, so the gap may hold any non-sentence-ending text.
 const DENIAL = /(?:\b(?:not|no|never|without|nor)\b|n't)(?:\s+[^\s.!?]+){0,6}?\s+['"‘“]?(?:\w+\s)?(?:cures?|cured|guaranteed?|miracle)\b/gi;
 /** A number with a dose unit: medicine, herb or supplement doses are never allowed (house rule). */
-const DOSE = /\b\d+(?:\.\d+)?\s?(?:mg|mcg|µg|ml|iu|units?|tablets?|capsules?|drops|g|gm|grams?|teaspoons?|tsp|tablespoons?|tbsp)\b/i;
-const DOSE_FIELDS = ["modernTreatment", "medicationSafety", "ayurvedaView", "homeopathyNote", "herbsUsed"] as const;
+/** A sentence that warns against a claim ("beware of tonics promising a guaranteed cure") is fine. */
+const WARNING = /\b(?:not|no|never|without|nor|myths?|claims?|claiming|promis\w*|false|fake|so-called|beware|avoid|don't|doesn't|isn't|cannot|can't|scam)\b|n't\b/i;
+/** Medicine doses: blocked in every treatment field. Lab units like mg/dL and mmol/L are results, not doses. */
+const MED_DOSE = /\b\d+(?:\.\d+)?\s?(?:mg|mcg|µg|ml|iu|units?|tablets?|capsules?|drops)\b(?!\s?\/\s?(?:dl|l)\b)/i;
+/** Herb and remedy amounts (grams, spoons) as well: blocked where herbs and remedies are discussed. */
+const HERB_DOSE = new RegExp(`${MED_DOSE.source}|\\b\\d+(?:\\.\\d+)?\\s?(?:g|gm|grams?|teaspoons?|tsp|tablespoons?|tbsp)\\b`, "i");
+const DOSE_FIELDS: [string, RegExp][] = [["modernTreatment", MED_DOSE], ["medicationSafety", MED_DOSE], ["ayurvedaView", HERB_DOSE], ["homeopathyNote", HERB_DOSE], ["herbsUsed", HERB_DOSE]];
+const sentences = (s: string) => s.split(/(?<=[.!?])\s+/);
 
 const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
 const texts = (v: unknown): string[] => (typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(texts) : v && typeof v === "object" ? Object.values(v).flatMap(texts) : []);
@@ -96,14 +102,17 @@ export function checkDraft(raw: unknown, known: { diseases: Set<string>; herbs: 
   const faqs = list("faqs").length;
   if (faqs < 4 || faqs > 8) errors.push(`${faqs} FAQs (needs 4-8)`);
 
-  const claims = own.replace(DENIAL, "").replace(/\bcure-all\b/gi, "");
-  const claim = claims.match(new RegExp(`.{0,40}${CLAIM.source}.{0,20}`, "i"));
-  if (claim) errors.push(`cure/guarantee claim: "${claim[0]}"`);
-  for (const k of DOSE_FIELDS) {
-    const hit = texts(d[k]).find((t) => DOSE.test(t));
-    if (hit) errors.push(`dose in ${k}: "${hit.match(new RegExp(`.{0,30}${DOSE.source}.{0,10}`, "i"))?.[0]}"`);
+  const claim = texts(d)
+    .flatMap(sentences)
+    .map((t) => t.replace(DENIAL, "").replace(/\bcure-all\b/gi, ""))
+    // A question ("Can type 1 diabetes be cured?") is the reader asking, not a claim.
+    .find((t) => CLAIM.test(t) && !WARNING.test(t) && !t.trim().endsWith("?"));
+  if (claim) errors.push(`cure/guarantee claim: "${claim.match(new RegExp(`.{0,40}${CLAIM.source}.{0,20}`, "i"))?.[0]}"`);
+  for (const [k, re] of DOSE_FIELDS) {
+    const hit = texts(d[k]).find((t) => re.test(t));
+    if (hit) errors.push(`dose in ${k}: "${hit.match(new RegExp(`.{0,30}(?:${re.source}).{0,10}`, "i"))?.[0]}"`);
   }
-  for (const f of list("faqs") as { a?: unknown }[]) if (typeof f?.a === "string" && /\b(?:take|dose|dosage)\b/i.test(f.a) && DOSE.test(f.a)) errors.push(`dose in an FAQ answer: "${f.a.slice(0, 60)}"`);
+  for (const f of list("faqs") as { a?: unknown }[]) if (typeof f?.a === "string" && /\b(?:take|dose|dosage)\b/i.test(f.a) && MED_DOSE.test(f.a)) errors.push(`dose in an FAQ answer: "${f.a.slice(0, 60)}"`);
 
   const refs = (list("references") as { url?: unknown }[]).filter((r) => typeof r?.url === "string" && trustedUrl(r.url));
   const dropped = list("references").length - refs.length;
@@ -134,7 +143,8 @@ export const DRAFT_SYSTEM = `You write one disease page for Bharat Health Guide,
 Write in plain English, short sentences, warm and direct. Use Indian context: Indian foods, Indian guidelines (ICMR, ICMR-NIN, MoHFW) and Indian numbers where they exist.
 Rules that never bend:
 - Education only. Never say anything cures a disease, never promise or guarantee a result.
-- Never give a dose or amount for any medicine, herb, supplement or homeopathic remedy. Say "as advised by your doctor".
+- Never give a dose or amount for any medicine, insulin, herb, supplement or homeopathic remedy. Say "as advised by your doctor".
+- When you warn about false claims, say "no herb, diet or product can make it go away" rather than repeating words like "cure" or "guaranteed".
 - Herbs and Ayurveda can only "support" alongside medical care. Say clearly when evidence is weak.
 - Every number or statistic must come from one of the references you list.
 - references: 4 to 8 real, existing pages from WHO, ICMR, ICMR-NIN, MoHFW, FSSAI, AIIMS, NIH/NCBI/MedlinePlus, CDC, NHS, NICE, Mayo Clinic, Cleveland Clinic, Harvard, the American Heart or Diabetes Association, or Cochrane. Give exact URLs you are sure exist. Fewer real ones beat more made-up ones.

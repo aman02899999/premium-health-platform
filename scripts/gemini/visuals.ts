@@ -7,17 +7,21 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fullPrompt, IMAGE_PROMPTS, promptProblems, VIDEO_PROMPTS, type VisualPrompt } from "@/lib/ai/visual-prompts";
+import { IMAGE_MODELS, modelOrder, VIDEO_MODELS, withModelFallback } from "@/lib/ai/vertex-schema";
+import { listModels } from "./models";
 
 const token = process.env.GCP_ACCESS_TOKEN;
 const project = process.env.GCP_PROJECT_ID;
 const kind = process.env.KIND === "video" ? "video" : "image";
 const start = Math.max(0, Number(process.env.START) || 0);
 const count = Math.max(1, Math.min(kind === "video" ? 10 : 20, Number(process.env.COUNT) || 4));
-const imageModel = process.env.IMAGE_MODEL || "imagen-4.0-generate-001";
-const videoModel = process.env.VIDEO_MODEL || "veo-3.1-fast-generate-001";
+// Imagen was retired on Vertex AI in 2026; stills now come from Gemini's image models.
+// Retired names are skipped on 404, and the first model that answers is kept for the run.
+let imageModels = modelOrder(process.env.IMAGE_MODEL, IMAGE_MODELS);
+let videoModels = modelOrder(process.env.VIDEO_MODEL, VIDEO_MODELS);
 const OUT = path.join(process.cwd(), "out/visuals");
-const LOCATION = "us-central1";
-const BASE = `https://${LOCATION}-aiplatform.googleapis.com/v1/projects/${project}/locations/${LOCATION}/publishers/google/models`;
+const BASE = `https://us-central1-aiplatform.googleapis.com/v1/projects/${project}/locations/us-central1/publishers/google/models`;
+const GLOBAL = `https://aiplatform.googleapis.com/v1/projects/${project}/locations/global/publishers/google/models`;
 if (!token || !project) throw new Error("GCP_ACCESS_TOKEN and GCP_PROJECT_ID are required");
 
 const headers = { authorization: `Bearer ${token}`, "content-type": "application/json" };
@@ -31,15 +35,24 @@ const errorOf = (r: { status: number; json: Record<string, unknown> }) => `HTTP 
 
 async function image(p: VisualPrompt, aspect: "9:16" | "3:4" | "1:1"): Promise<Buffer | string> {
   // 9:16 for Stories/Reels covers, 3:4 for feed posts (crop to 4:5), 1:1 for ads.
-  const r = await post(`${BASE}/${imageModel}:predict`, { instances: [{ prompt: fullPrompt(p) }], parameters: { sampleCount: 1, aspectRatio: aspect, personGeneration: "allow_adult", addWatermark: true } });
+  const { model, result: r } = await withModelFallback(imageModels, (m) =>
+    post(`${GLOBAL}/${m}:generateContent`, { contents: [{ role: "user", parts: [{ text: fullPrompt(p) }] }], generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: aspect } } }),
+  );
+  if (r.status === 404) return `no image model found (tried ${imageModels.join(", ")}). Available: ${await listModels(token!, "image")}`;
+  imageModels = [model];
   if (!r.ok) return errorOf(r);
-  const b64 = (r.json.predictions as { bytesBase64Encoded?: string }[] | undefined)?.[0]?.bytesBase64Encoded;
+  const parts = ((r.json.candidates as { content?: { parts?: { inlineData?: { data?: string } }[] } }[] | undefined)?.[0]?.content?.parts ?? []);
+  const b64 = parts.find((x) => x.inlineData?.data)?.inlineData?.data;
   return b64 ? Buffer.from(b64, "base64") : "no image returned (filtered by safety rules?)";
 }
 
 async function video(p: VisualPrompt): Promise<Buffer | string> {
   // Silent clips: every Reel gets its own licence-safe music later (house rule).
-  const r = await post(`${BASE}/${videoModel}:predictLongRunning`, { instances: [{ prompt: fullPrompt(p) }], parameters: { aspectRatio: "9:16", durationSeconds: 8, sampleCount: 1, generateAudio: false, personGeneration: "allow_adult" } });
+  const { model: videoModel, result: r } = await withModelFallback(videoModels, (m) =>
+    post(`${BASE}/${m}:predictLongRunning`, { instances: [{ prompt: fullPrompt(p) }], parameters: { aspectRatio: "9:16", durationSeconds: 8, sampleCount: 1, generateAudio: false, personGeneration: "allow_adult" } }),
+  );
+  if (r.status === 404) return `no video model found (tried ${videoModels.join(", ")}). Available: ${await listModels(token!, "veo")}`;
+  videoModels = [videoModel];
   if (!r.ok) return errorOf(r);
   const operationName = r.json.name as string;
   for (let i = 0; i < 40; i++) {
@@ -71,7 +84,7 @@ async function main() {
     }
   }
   const readme = [
-    `AI visuals, ${new Date().toISOString().slice(0, 10)}, ${kind === "video" ? videoModel : imageModel}`,
+    `AI visuals, ${new Date().toISOString().slice(0, 10)}, ${(kind === "video" ? videoModels : imageModels).join(" / ")}`,
     "",
     "Rules for using these files:",
     "- Turn on the AI label when posting (Instagram/Facebook \"AI info\", YouTube \"altered or synthetic content\").",
@@ -83,6 +96,8 @@ async function main() {
   writeFileSync(path.join(OUT, "README.txt"), `${readme}\n`);
   console.log(readme);
   if (process.env.GITHUB_STEP_SUMMARY) writeFileSync(process.env.GITHUB_STEP_SUMMARY, `${readme}\n`, { flag: "a" });
+  // A run that made nothing shows red in GitHub instead of a quiet green tick.
+  if (lines.length && !lines.some((l) => l.includes("saved"))) process.exitCode = 1;
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
