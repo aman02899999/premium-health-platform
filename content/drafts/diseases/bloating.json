@@ -1,0 +1,282 @@
+{
+  "slug": "bloating",
+  "name": "Bloating & Gas",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Bloating is the uncomfortable sensation of fullness, tightness, or pressure in your belly, often accompanied by visible swelling or distension. Intestinal gas is a natural byproduct of digestion that leaves the body through burping (eructation) or passing wind (flatulence). In India, where daily meals often rely heavily on legumes, whole grains, and diverse spices, occasional gas and mild fullness after a heavy meal are entirely normal. However, when bloating becomes persistent, painful, or interferes with daily life, work, and gym workouts, it signals that gut motility, digestive secretions, or the community of gut bacteria need attention. While many people turn to over-the-counter sodas or digestive churnas, lasting comfort comes from identifying personal food triggers, pacing meals, moving regularly, and ruling out underlying medical conditions.",
+    "quickFacts": [
+      {
+        "label": "Global Prevalence",
+        "value": "15% to 30% of adults experience recurrent bloating (Rome Foundation)"
+      },
+      {
+        "label": "Normal Flatus Frequency",
+        "value": "Passing gas 14 to 25 times per day is medically normal (NIH)"
+      },
+      {
+        "label": "Primary Gas Source",
+        "value": "Swallowed air and bacterial fermentation of undigested carbohydrates in the colon"
+      },
+      {
+        "label": "Common Indian Trigger",
+        "value": "Unsoaked legumes (rajma, chana, urad) and rapid, distracted eating"
+      },
+      {
+        "label": "Post-Meal Relief",
+        "value": "A gentle 10 to 15 minute stroll significantly speeds intestinal gas clearance"
+      }
+    ],
+    "causes": [
+      "Swallowing excess air (aerophagia) by eating too fast, talking while chewing, drinking through straws, gulping water, or chewing gum.",
+      "Fermentation of complex carbohydrates in the large intestine. Foods rich in oligosaccharides, such as rajma, kabuli chana, lobia, urad dal, cabbage, cauliflower, and onions, feed gut bacteria that produce hydrogen and methane gas.",
+      "Lactose intolerance, which is very common among Indian adults. A decline in the intestinal lactase enzyme leads to gas, cramps, and loose stools after consuming milk, paneer, or creamy gravies.",
+      "Constipation. When hard stool sits in the colon for days, it slows down the transit of gas, leading to trapped flatus, fermentation, and noticeable belly swelling.",
+      "Irritable Bowel Syndrome (IBS) and visceral hypersensitivity, where normal volumes of intestinal gas feel intensely painful or distended due to hyperactive gut nerves.",
+      "Small Intestinal Bacterial Overgrowth (SIBO), where bacteria usually confined to the colon migrate into the small intestine and ferment food prematurely.",
+      "Carbonated beverages, sparkling water, beer, and sodas that release large volumes of carbon dioxide directly into the stomach.",
+      "Sedentary habits, especially sitting slumped at an office desk or lying down immediately after a heavy thali, which hinders natural bowel motility."
+    ],
+    "types": [
+      {
+        "name": "Functional Bloating",
+        "desc": "A feeling of abdominal fullness or distension that occurs on its own, without meeting the full criteria for other gut disorders like IBS, and not caused by structural damage."
+      },
+      {
+        "name": "Postprandial Bloating",
+        "desc": "Fullness and swelling that peak shortly after eating, often linked to large meal volumes, high fat content, unsoaked pulses, or rapid swallowing."
+      },
+      {
+        "name": "Constipation-Related Bloating",
+        "desc": "Gas buildup that occurs secondary to delayed colonic transit; the trapped stool mechanically blocks gas from moving forward smoothly."
+      },
+      {
+        "name": "Visceral Hypersensitivity Bloating",
+        "desc": "A condition seen in IBS where the volume of gas inside the bowel is normal, but the nerves sensing the gut wall are overly sensitive, sending exaggerated pain signals to the brain."
+      },
+      {
+        "name": "Secondary or Organic Bloating",
+        "desc": "Distension caused by an identifiable underlying medical issue, such as celiac disease, inflammatory bowel disease, gallstones, abdominal fluid (ascites), or pelvic masses."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical history reviewing meal timing, eating speed, specific food triggers, bowel patterns, and stress levels.",
+      "Maintenance of a 7-day food and symptom diary to spot patterns connecting dairy, pulses, or artificial sweeteners to episodes of distension.",
+      "Thorough physical examination, including palpation and tapping (percussion) of the abdomen to detect fluid, organ enlargement, or gas pockets (tympany).",
+      "Screening for alarm features, such as unintentional weight loss, anemia, blood in stool, persistent vomiting, or symptoms waking you at night, which require prompt specialist evaluation.",
+      "Targeted diagnostic testing when symptoms resist initial dietary changes or when red-flag signs are present."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Identifies hidden anemia or systemic infection that could point to chronic gut inflammation or malabsorption",
+        "slug": "cbc"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Evaluates for an underactive thyroid (hypothyroidism), a frequent cause of sluggish gut transit and chronic constipation",
+        "slug": "tsh"
+      },
+      {
+        "test": "Fasting Blood Glucose or HbA1c",
+        "purpose": "Screens for diabetes, which can cause autonomic neuropathy and delayed stomach emptying (gastroparesis)",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Liver Function Tests",
+        "purpose": "Checks hepatic health and screens for liver congestion or fluid retention that can mimic gas distension",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Abdominal Ultrasound",
+        "purpose": "Rules out gallstones, fatty liver disease, ovarian cysts, or ascites causing mechanical pressure"
+      }
+    ],
+    "modernTreatment": [
+      "Stepwise dietary modification, including pacing meals, identifying trigger foods, and considering a short-term trial of a low-FODMAP eating plan supervised by a qualified dietitian.",
+      "Gentle physical activity, such as a brisk 10 to 15 minute walk right after meals, which helps the gut move gas through normal peristalsis.",
+      "Correcting underlying constipation with gradual increases in dietary soluble fiber, adequate fluid intake, and stool-softening agents as advised by your doctor.",
+      "Over-the-counter antifoaming agents such as simethicone, which help coalesce small gas bubbles so they are easier to pass, taken as advised by your doctor.",
+      "Short courses of antispasmodics or gut-directed prokinetic medications prescribed by a physician to improve bowel coordination in irritable bowel syndrome.",
+      "Targeted courses of non-absorbable antibiotics or specific probiotics under gastroenterologist supervision if Small Intestinal Bacterial Overgrowth (SIBO) or dysbiosis is confirmed."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, chronic bloating and gas are viewed through the concepts of Agnimandya (impaired digestive fire) and Adhmana or Anaha (abdominal distension and retention of gas).",
+      "It is primarily linked to an imbalance of Apana Vata, the subtype of Vata dosha responsible for downward movement of flatus, stool, and urine. When Apana Vata becomes blocked or moves upward (Udavarta), gas gets trapped in the gut.",
+      "Traditional texts advise eating freshly cooked, warm foods (Ushna), incorporating mild carminative spices (Deepana-Pachana) like cumin, carom seeds, ginger, and asafoetida, and strictly avoiding cold, stale, dry, or excessively heavy items.",
+      "These traditional frameworks offer useful lifestyle tips, but herbal remedies should support rather than replace clinical evaluation, especially if symptoms do not improve."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Contains gingerols that support gastric emptying and reduce intestinal cramping; evidence is moderate for digestive support, though it can cause heartburn in sensitive individuals."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional combination of three fruits used to gently support bowel regularity; helpful when bloating is driven by sluggish colonic transit, though clinical trials in functional bloating remain small."
+      },
+      {
+        "name": "Black Pepper",
+        "slug": "black-pepper",
+        "note": "Stimulates digestive enzymes and aids gastric secretions; helpful in small culinary amounts, but excessive quantities can irritate an inflamed stomach lining."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Traditionally used to soothe the gut mucosal lining; clinical evidence for isolated bloating is limited, and chronic high consumption can affect blood pressure and potassium levels."
+      }
+    ],
+    "nutrition": [
+      "Soak all whole pulses (rajma, chana, urad, lobia) for at least 8 to 12 hours before pressure cooking, and discard the soaking water to leach out non-digestible gas-producing oligosaccharides.",
+      "Temper everyday Indian dishes with natural carminative spices such as hing (asafoetida), ajwain (carom seeds), jeera (cumin), and fresh ginger, which facilitate digestive secretions.",
+      "If milk causes discomfort, switch to plain homemade curd (dahi) or buttermilk (chaas), as fermentation partially breaks down lactose, making it easier on Indian digestive tracts.",
+      "Avoid washing down your meals with large tumblers of cold water or carbonated beverages; sip small amounts of warm or room-temperature water if needed.",
+      "Eat in a calm setting without screens, chew each mouthful thoroughly into a smooth paste, and stop when you feel about eighty percent full.",
+      "Be cautious with sudden spikes in raw salads, raw sprouts, or excessive psyllium husk (isabgol), which can dramatically increase gas fermentation if your gut is not used to high fiber."
+    ],
+    "lifestyle": [
+      "Adopt the traditional Indian habit of Shatapadi: take 100 gentle steps or a 10 to 15 minute slow walk immediately after lunch and dinner to assist intestinal motility.",
+      "Maintain regular meal timings every day; long gaps between meals followed by rushed, oversized dinners promote poor digestion and gas formation.",
+      "Stop smoking and chewing tobacco, both of which cause you to swallow significant amounts of ambient air into the digestive tract.",
+      "Avoid tight belts, constricting shapewear, or tight salwar waistbands that exert physical pressure on the abdomen and trap gas pockets.",
+      "Manage daily mental stress through regular downtime, as emotional anxiety directly alters gut nerve sensitivity and disrupts normal bowel contractions."
+    ],
+    "yogaActivity": [
+      "Practice Vajrasana (Thunderbolt Pose) for 5 to 10 minutes right after your meals; it is one of the few postures safe after eating and encourages blood flow toward the abdominal organs.",
+      "Incorporate Pawanmuktasana (Wind-Relieving Pose) during your morning routine on an empty stomach to gently massage the colon and release trapped flatus.",
+      "Perform gentle spinal twists like Ardha Matsyendrasana and supported forward folds like Balasana to relax the abdominal wall and stimulate peristalsis.",
+      "Practice slow, diaphragmatic breathing (Belly Breathing) and Anulom Vilom to shift the autonomic nervous system into rest-and-digest mode, reducing gut spasm.",
+      "Avoid strenuous abdominal crunches, intense heavy lifting with breath-holding (Valsalva maneuver), or deep inversions when your belly is acutely distended and uncomfortable."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are frequently sought by people with indigestion and flatulence, but there is no reliable, high-quality clinical trial evidence demonstrating that they reduce intestinal gas or treat gut disorders.",
+      "Patients who choose to consult a homeopath should never delay medical investigations or discontinue prescribed treatments for digestive diseases."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Soluble fiber adjustments, treating constipation, low-FODMAP dietary interventions, and regular post-meal walking significantly reduce abdominal bloating and gas retention.",
+      "Moderate evidence: Antispasmodics and simethicone provide symptom relief in functional bowel disorders; ginger supports gastric motility and reduces nausea.",
+      "Limited or mixed evidence: Probiotic supplements produce variable results depending on the specific bacterial strain used; herbal decoctions show traditional value but lack large randomized controlled trials.",
+      "No scientific evidence: Commercial detox teas, abdominal slimming belts, charcoal pills for general bloating, and over-the-counter digestive tonics promising total elimination of intestinal gas."
+    ],
+    "shouldNotDo": [
+      "Do not consume commercial baking soda drinks, sugary fruit salts, or fizzy sodas daily to induce burping; they provide false, temporary relief and introduce excess sodium and gas.",
+      "Do not jump into an extreme elimination diet or cut out whole food groups like wheat or pulses without consulting a doctor or dietitian.",
+      "Do not take large doses of fiber supplements or raw isabgol without drinking sufficient water, as this will worsen intestinal obstruction and gas.",
+      "Do not ignore recurring bloating if you are over 50 or if the swelling does not go down overnight after sleeping.",
+      "Do not rely solely on digestive churnas bought from street vendors, as some may contain undisclosed ingredients or heavy salt loads harmful for blood pressure."
+    ],
+    "medicationSafety": [
+      "Take over-the-counter gas relief tablets, simethicone, or antacids only for short periods and as advised by your doctor or pharmacist.",
+      "Avoid long-term, unmonitored use of acid-suppressing proton pump inhibitors like omeprazole or pantoprazole; suppressing stomach acid without clear medical reason can alter gut flora and worsen bacterial fermentation.",
+      "If taking iron supplements (such as iron-folic-acid formulations) that trigger constipation and bloating, discuss alternative forms or dosing schedules with your physician.",
+      "If you take oral diabetes medications such as metformin or acarbose, be aware that these can increase flatulence; speak with your doctor rather than suddenly stopping your medication.",
+      "Always inform your doctor about every herbal powder, churna, or health supplement you consume, as some herbs interact with prescribed medications or alter bowel transit."
+    ],
+    "complications": [
+      "Chronic abdominal pain, cramping, and severe daily discomfort that disrupt work productivity and personal well-being.",
+      "Nutritional deficiencies and unintentional weight loss caused by self-imposed, overly restrictive diets that avoid essential nutrients.",
+      "Social anxiety, emotional distress, and avoidance of social gatherings due to fear of unpredictable flatulence or visible stomach distension.",
+      "Delayed diagnosis of serious underlying illnesses, such as celiac disease, inflammatory bowel disease, bowel strictures, or ovarian cancer, when symptoms are dismissed as simple gas."
+    ],
+    "emergencySigns": [
+      "Severe, sudden, or rapidly worsening abdominal pain that does not ease after passing wind or stool.",
+      "Inability to pass any stool or gas accompanied by persistent vomiting and intense belly swelling, signaling possible bowel obstruction.",
+      "Vomiting blood or passing dark, tarry, black stools.",
+      "High fever, shaking chills, and an abdomen that feels rigid or tender to the lightest touch.",
+      "Sudden dizziness, fainting, or rapid pulse accompanied by sharp, localized abdominal or pelvic pain."
+    ],
+    "whenToSeeDoctor": [
+      "Bloating that is progressively worsening over several weeks or does not flatten after a night of sleep.",
+      "Unintended, noticeable weight loss occurring alongside digestive symptoms.",
+      "Persistent changes in bowel habits, such as chronic diarrhea, worsening constipation, or alternating patterns lasting more than three weeks.",
+      "Onset of chronic bloating after age 50 without prior digestive history.",
+      "A family history of stomach, colon, or ovarian cancers in first-degree relatives."
+    ],
+    "faqs": [
+      {
+        "q": "Why do dals and pulses cause so much gas?",
+        "a": "Legumes contain complex sugars called oligosaccharides (such as raffinose and stachyose) that human digestive enzymes cannot break down in the stomach or small intestine. When these reach the colon, resident bacteria ferment them, releasing hydrogen and methane gases. Soaking pulses for 8 to 12 hours, discarding the water, and cooking them thoroughly with spices like hing and ajwain helps reduce this effect."
+      },
+      {
+        "q": "Does drinking hot water or jeera water after meals reduce bloating?",
+        "a": "Sipping warm water or mild cumin (jeera) water can relax the smooth muscles of the digestive tract and facilitate the natural passage of trapped gas. However, while it provides comforting symptomatic relief, it is not a complete treatment for underlying gastrointestinal disorders."
+      },
+      {
+        "q": "Can gym protein powders cause bloating and flatulence?",
+        "a": "Yes. Many whey protein concentrates contain residual lactose, which triggers gas in lactose-sensitive individuals. Additionally, gulping down protein shakes quickly introduces swallowed air, and artificial sweeteners added to fitness supplements can be fermented by gut bacteria. Switching to a whey isolate or plant-based protein and drinking it slowly often helps."
+      },
+      {
+        "q": "How can I tell the difference between belly fat and bloating?",
+        "a": "Bloating is dynamic and variable: your abdomen is often relatively flat in the morning and expands noticeably as the day progresses or after meals, feeling tense like an inflated balloon. Abdominal fat remains consistent in size throughout the day, feels softer, and is not accompanied by internal gut pressure or excessive gas."
+      },
+      {
+        "q": "Is passing gas throughout the day a sign of poor digestion?",
+        "a": "Not necessarily. Passing flatus between 14 and 25 times a day is a normal biological event resulting from standard bacterial digestion of dietary fiber and swallowing minor amounts of air. It only becomes a clinical concern if it is accompanied by severe pain, cramping, bloating, foul-smelling diarrhea, or sudden weight loss."
+      }
+    ],
+    "references": [
+      {
+        "title": "Symptoms & Causes of Gas in the Digestive Tract",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/gas-digestive-tract/symptoms-causes",
+        "year": "2021"
+      },
+      {
+        "title": "Bloating and Abdominal Distension: Clinical Approach and Management",
+        "source": "Mayo Clinic Proceedings (Lacy BE et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31585642/",
+        "year": "2019"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Rome IV Diagnostic Criteria for Functional Gastrointestinal Disorders",
+        "source": "Gastroenterology (Drossman DA et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27144627/",
+        "year": "2016"
+      },
+      {
+        "title": "Abdominal Bloating: Pathophysiology and Treatment",
+        "source": "Alimentary Pharmacology & Therapeutics (Foley A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24810267/",
+        "year": "2014"
+      }
+    ],
+    "relatedDiseases": [
+      "ibs",
+      "constipation",
+      "acidity",
+      "gerd",
+      "gastritis",
+      "gallstones"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "triphala",
+      "black-pepper",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "tsh",
+      "fasting-glucose",
+      "liver-enzymes"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "slug": "chronic-kidney-disease",
+  "name": "Chronic Kidney Disease",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Chronic kidney disease (CKD) means your kidneys have suffered gradual, long-term damage and can no longer filter your blood as well as they should. Healthy kidneys work like master purifiers: they remove toxins, flush out extra fluid through urine, help control blood pressure, and make hormones that build red blood cells and keep bones strong. When you have chronic kidney disease, waste products build up in your blood, slowly harming your heart, brain, and other organs. In India, CKD is very common, driven heavily by our high rates of type 2 diabetes and high blood pressure. Most people have no symptoms in the early stages, earning CKD the label of a silent disease. While lost kidney tissue cannot easily regrow and no herb or diet can make it go away, finding it early and protecting remaining kidney function can prevent or delay kidney failure.",
+    "quickFacts": [
+      {
+        "label": "Standard definition",
+        "value": "Kidney damage or eGFR below 60 mL/min/1.73m² lasting over 3 months"
+      },
+      {
+        "label": "Normal eGFR",
+        "value": "90 mL/min/1.73m² or higher in healthy adults"
+      },
+      {
+        "label": "Top causes in India",
+        "value": "Type 2 diabetes and high blood pressure account for over 60% of cases"
+      },
+      {
+        "label": "Early symptoms",
+        "value": "Usually completely silent until kidney function drops significantly"
+      },
+      {
+        "label": "Global prevalence",
+        "value": "Roughly 10% of adults worldwide live with some stage of CKD"
+      },
+      {
+        "label": "Key screening tests",
+        "value": "Serum creatinine for eGFR and urine routine for albumin or protein"
+      }
+    ],
+    "causes": [
+      "Uncontrolled type 2 diabetes. High blood sugar damages the delicate clusters of blood vessels (glomeruli) in the kidneys over years, known as diabetic kidney disease.",
+      "Long-standing high blood pressure. High pressure thickens and narrows the kidney blood vessels, reducing blood flow and filtering ability.",
+      "Chronic overuse of pain medicines. Regular use of over-the-counter painkillers like non-steroidal anti-inflammatory drugs (NSAIDs, such as ibuprofen or diclofenac) is a frequent and preventable cause of kidney damage in India.",
+      "Glomerulonephritis. Inflammation and scarring of the filtering units of the kidneys, caused by autoimmune conditions or post-infectious issues.",
+      "Untreated kidney stones and urinary blockages. Longstanding obstruction from stones or an enlarged prostate creates back-pressure that damages kidney tissue.",
+      "Polycystic kidney disease and genetic conditions that cause fluid-filled cysts to replace normal kidney tissue.",
+      "Unregulated indigenous powders or preparations containing toxic heavy metals like lead, mercury, or arsenic, which poison renal tubules."
+    ],
+    "types": [
+      {
+        "name": "Stage 1 CKD",
+        "desc": "Kidney damage (such as protein in the urine) with normal filtering capacity, shown by an eGFR of 90 mL/min/1.73m² or higher."
+      },
+      {
+        "name": "Stage 2 CKD",
+        "desc": "Kidney damage with a mild drop in filtering capacity, with an eGFR between 60 and 89 mL/min/1.73m²."
+      },
+      {
+        "name": "Stage 3a and 3b CKD",
+        "desc": "Moderate loss of kidney function. eGFR ranges from 45 to 59 in 3a, and 30 to 44 in 3b. Waste products begin to rise, and complications like anemia may start."
+      },
+      {
+        "name": "Stage 4 CKD",
+        "desc": "Severe loss of kidney function with an eGFR between 15 and 29 mL/min/1.73m². You will need close nephrologist care and planning for kidney replacement therapy."
+      },
+      {
+        "name": "Stage 5 CKD (Kidney Failure)",
+        "desc": "End-stage kidney disease with an eGFR below 15 mL/min/1.73m². Dialysis or a kidney transplant becomes necessary to sustain life."
+      }
+    ],
+    "diagnosis": [
+      "A single abnormal lab value never confirms CKD. Guidelines require evidence of kidney damage or low filtration lasting for at least 3 months.",
+      "Your doctor calculates your estimated Glomerular Filtration Rate (eGFR) using your blood creatinine level, age, and sex.",
+      "A simple urine check looks for albumin or total protein. Leaking protein into urine (albuminuria) is the earliest warning sign of kidney filter damage.",
+      "An ultrasound of the abdomen evaluates the size, shape, and structure of your kidneys, ruling out stones, cysts, blockages, or shrunken scarred kidneys.",
+      "Blood pressure is measured carefully on multiple visits, as high blood pressure is both a leading cause and a direct result of kidney disease."
+    ],
+    "investigations": [
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Calculates how much blood your kidneys clean per minute",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine and Albumin-to-Creatinine Ratio (uACR)",
+        "purpose": "Detects microscopic protein leaks that signal filter strain",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Measures long-term blood sugar control to manage diabetic kidney damage",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks daily sugar levels to prevent ongoing vascular injury",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for anemia, common as kidneys fail to produce erythropoietin",
+        "slug": "cbc"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Assesses cardiovascular risk, which rises steeply in kidney disease",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Monitors waste buildup and gout risk as kidney excretion declines",
+        "slug": "uric-acid"
+      }
+    ],
+    "modernTreatment": [
+      "Strict blood pressure management. Doctors frequently prescribe medications like angiotensin receptor blockers (such as losartan) because they lower blood pressure and protect kidney filters from mechanical stress.",
+      "Optimized blood sugar control. Modern therapies, including SGLT2 inhibitors (such as dapagliflozin), significantly slow down the decline of kidney function in people with diabetic and non-diabetic kidney disease, as advised by your doctor.",
+      "Cardiovascular risk reduction. Heart disease is the biggest danger for people with CKD; cholesterol-lowering medications like atorvastatin are often used to protect blood vessels.",
+      "Managing complications. Doctors treat anemia with iron supplements and erythropoiesis-stimulating agents, manage bone-mineral balance with phosphate binders or vitamin D analogs, and balance blood acid levels.",
+      "Kidney Replacement Therapy for Stage 5. When kidneys can no longer support bodily functions, hemodialysis, peritoneal dialysis, or a kidney transplant is prepared and provided under nephrology care."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not describe chronic kidney disease under a single modern diagnosis, but discuss kidney problems under Mutravaha Srotas disorders (imbalances in the urinary channels) and Vrikka roga.",
+      "Ayurveda traditionally considers it an imbalance of all three doshas, often involving Vata blocking fluid channels and Pitta causing tissue inflammation, leading to metabolic waste accumulation (Ama).",
+      "Traditional supportive concepts emphasize eating easily digestible meals, avoiding heavy or salty foods, and staying mentally calm.",
+      "Critical safety note: No Ayurvedic remedy can reverse established kidney scarring. Many unregulated churnas, rasashastra medicines, and bhasmas have been found to contain dangerous levels of heavy metals like lead and mercury, which can cause rapid and permanent kidney damage. Always inform your nephrologist before taking any traditional formulation."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Offers mild cardiovascular and blood pressure support. However, it cannot repair kidney filters and does not replace prescribed kidney medicines."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which is studied for mild anti-inflammatory properties. Concentrated supplements can increase oxalate load and should only be used with nephrologist approval."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Used traditionally in Indian cooking for digestive comfort and nausea. Safe in normal food amounts, but concentrated herbal pills have no proven benefit in kidney repair."
+      }
+    ],
+    "nutrition": [
+      "Cut your salt intake to under 5 grams per day (about one level teaspoon). In Indian kitchens, avoid adding extra salt at the table and steer clear of papad, pickles, namkeen, packaged bhujia, and instant noodles.",
+      "Watch your protein intake carefully. While gym culture promotes heavy protein, damaged kidneys struggle to process high protein waste. Eat modest, high-quality portions of dal, curd, egg whites, or paneer as advised by your renal dietitian.",
+      "Be cautious with potassium if your kidney disease is moderate or advanced (Stage 3 or higher). High potassium foods like tender coconut water, bananas, spinach, and fruit juices may need to be limited based on lab tests.",
+      "Limit foods high in phosphorus, such as packaged foods with phosphate additives, processed cheese, colas, and excess dairy, to protect your bones and blood vessels.",
+      "Do not blindly drink 4 to 5 liters of water. If your kidneys are losing the ability to remove fluid, excess water causes swelling and breathlessness. Follow your doctor's exact fluid limit.",
+      "Avoid salt substitutes (so-called low-sodium salts or rock salts). Many replace sodium with potassium chloride, which can trigger dangerous, life-threatening potassium spikes in CKD."
+    ],
+    "lifestyle": [
+      "Measure your blood pressure at home every morning and evening, keeping a written log for your nephrologist.",
+      "Stop all forms of tobacco immediately, including cigarettes, bidis, gutka, and khaini. Nicotine accelerates kidney blood vessel hardening.",
+      "Engage in moderate-intensity physical activity, such as 30 minutes of brisk walking most days of the week, avoiding extreme exhaustion.",
+      "Maintain a healthy body weight. Carrying excess abdominal fat increases pressure inside the kidney filtering units (hyperfiltration).",
+      "Avoid self-prescribed over-the-counter painkillers for headaches, joint aches, or back pain; always consult your doctor for kidney-safe alternatives."
+    ],
+    "yogaActivity": [
+      "Gentle asanas like Tadasana, Vajrasana after meals, and gentle forward stretches can help maintain mobility and reduce stress.",
+      "Calming breathing practices such as Anulom Vilom and Bhramari Pranayama soothe the autonomic nervous system and help support healthy blood pressure.",
+      "Avoid strenuous hot yoga, intense power yoga, or heavy weightlifting with breath-holding (Valsalva maneuver), which cause sudden blood pressure spikes and risk dehydration.",
+      "Stop any exercise immediately if you feel dizzy, breathless, or notice chest discomfort."
+    ],
+    "homeopathyNote": [
+      "There is no credible scientific evidence that homeopathic medicines can repair damaged kidney filters, reduce serum creatinine, or halt the progression of chronic kidney disease.",
+      "Relying on homeopathic preparations while skipping proven medical management risks irreversible progression to kidney failure. If you use homeopathy, never stop your prescription kidney medicines or skip your nephrology appointments."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Blood pressure control, ACE inhibitors or ARBs, SGLT2 inhibitors, blood sugar optimization, and sodium restriction under 5 grams daily significantly slow the decline of kidney function.",
+      "Moderate evidence: Moderate dietary protein moderation in non-dialysis CKD reduces nitrogen waste and helps manage symptoms under dietitian guidance.",
+      "Weak or conflicting evidence: Herbal supplements, detox juices, and herbal teas claim to cleanse the kidneys but lack robust clinical trial data and can harm already weakened kidneys.",
+      "No evidence: Any online product, stone-cleansing syrup, or alternative package claiming to cure kidney disease or completely normalize creatinine in scarred kidneys."
+    ],
+    "shouldNotDo": [
+      "Do not take NSAID painkillers like ibuprofen, diclofenac, naproxen, or aceclofenac without asking your doctor. Even a few doses can cause acute worsening of kidney function.",
+      "Do not consume heavy gym protein powders, creatine supplements, or mass gainers if you have kidney disease or unexplained high creatinine.",
+      "Do not consume unverified Ayurvedic bhasmas, metal-containing powders, or native herbal concoctions; these are a proven cause of toxic nephropathy in India.",
+      "Do not drink excessive water believing it will wash out your creatinine. When kidneys fail, excess water builds up in your lungs and legs.",
+      "Do not skip or stop your blood pressure or diabetes tablets because you feel healthy. Kidney damage progresses silently."
+    ],
+    "medicationSafety": [
+      "Many common medications are cleared by the kidneys. Whenever you visit any doctor, dentist, or specialist, clearly state: 'I have chronic kidney disease.'",
+      "Your doctor may need to adjust doses for routine medicines, including diabetes tablets (like metformin) and certain antibiotics, as kidney function drops.",
+      "If you are prescribed ACE inhibitors or ARBs (like losartan), have your blood creatinine and potassium checked within 1 to 2 weeks of starting or changing the dose.",
+      "Avoid contrast dye injections for CT scans or angiographies unless your nephrologist has approved protective measures, as radiographic dyes can cause kidney injury."
+    ],
+    "complications": [
+      "Fluid overload leading to swelling in the legs, high blood pressure, and pulmonary edema (fluid in the lungs).",
+      "High blood potassium (hyperkalemia), which can disrupt heart rhythm and cause sudden cardiac arrest.",
+      "Cardiovascular disease, including heart attack, heart failure, and stroke, which is the leading cause of death in people with CKD.",
+      "Renal anemia due to a drop in erythropoietin hormone production by the damaged kidneys.",
+      "Mineral and bone disorder (renal osteodystrophy), causing weak, brittle bones and calcium deposits in blood vessels.",
+      "Uremia, a dangerous buildup of waste products causing extreme nausea, loss of appetite, metallic taste, confusion, and pericarditis."
+    ],
+    "emergencySigns": [
+      "Sudden, severe shortness of breath or inability to lie flat on your bed, indicating fluid in your lungs (pulmonary edema): seek emergency care immediately.",
+      "Chest pain, rapid or irregular heartbeats, or severe lightheadedness, which may signal critical hyperkalemia or a heart attack: call 108 or 112.",
+      "Sudden drop in urine output or passing no urine at all over 12 to 24 hours.",
+      "Severe confusion, drowsiness, uncontrolled vomiting, seizures, or muscle twitching from advanced waste buildup (uremic encephalopathy)."
+    ],
+    "whenToSeeDoctor": [
+      "You notice persistent puffiness around your eyes in the morning or swelling in your feet and ankles.",
+      "Your urine appears unusually frothy, bubbly, cloudy, or tea-colored.",
+      "Your routine health checkup reveals protein in your urine or an elevated serum creatinine level.",
+      "Your blood pressure remains high despite taking two or more blood pressure tablets regularly.",
+      "You have long-standing diabetes or hypertension and have not had your kidney numbers checked in the past 12 months."
+    ],
+    "faqs": [
+      {
+        "q": "Can chronic kidney disease be cured completely?",
+        "a": "No herb, diet, or product can make scarred kidney tissue go away. However, with early diagnosis, proper medicines, blood pressure control, and diet, you can significantly slow its progression and live a full life."
+      },
+      {
+        "q": "Why is my urine frothy like beer foam?",
+        "a": "Frothy or foamy urine that requires multiple flushes is often a sign of excess protein (albumin) leaking into the urine. This is a key early marker of damaged kidney filters and requires immediate medical evaluation."
+      },
+      {
+        "q": "Can I drink coconut water if I have kidney disease?",
+        "a": "In early stages with normal potassium, small amounts may be fine, but in Stage 3 or higher, tender coconut water is very rich in potassium and can trigger dangerous heart rhythm problems. Always ask your doctor before drinking it."
+      },
+      {
+        "q": "Are protein powders safe if I go to the gym?",
+        "a": "If you have diagnosed CKD or high creatinine, commercial whey or casein protein shakes place extra strain on your kidneys and should be avoided unless specifically planned by a certified renal dietitian."
+      },
+      {
+        "q": "What painkiller is safe for my headaches or body pain?",
+        "a": "Paracetamol is generally considered the safest over-the-counter painkiller for people with kidney disease when taken as advised by your doctor. Avoid NSAIDs like ibuprofen, diclofenac, or naproxen."
+      }
+    ],
+    "references": [
+      {
+        "title": "Chronic Kidney Disease in India: A Review",
+        "source": "Clinical Kidney Journal (Oxford Academic)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26064205/",
+        "year": "2015"
+      },
+      {
+        "title": "Chronic Kidney Disease Overview",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIH)",
+        "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd",
+        "year": "2023"
+      },
+      {
+        "title": "Diagnosis and Management of Chronic Kidney Disease in Adults",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng203",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "high-blood-pressure",
+      "heart-failure",
+      "cardiovascular-risk",
+      "protein-in-urine",
+      "high-creatinine",
+      "kidney-health",
+      "anemia"
+    ],
+    "relatedMedicines": [
+      "losartan",
+      "dapagliflozin",
+      "amlodipine",
+      "atorvastatin",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "garlic",
+      "turmeric",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "creatinine",
+      "urine-routine",
+      "hba1c",
+      "cbc",
+      "lipid-profile",
+      "uric-acid"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

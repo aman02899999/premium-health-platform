@@ -1,0 +1,269 @@
+{
+  "slug": "thyroid-nodules",
+  "name": "Thyroid Nodules",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "3 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A thyroid nodule is an unusual growth or lump of cells in your thyroid gland, the butterfly-shaped gland resting at the front base of your neck. Most nodules are small, painless, and discovered purely by accident during a routine neck scan, sonography, or health checkup. The most reassuring fact about thyroid nodules is that more than 90 to 95 percent of them are completely benign (non-cancerous). Nodules can be solid tissue, fluid-filled sacs called cysts, or a mix of both. While a small number may produce excess thyroid hormone or require treatment due to size or cellular changes, the majority stay stable for life and simply need structured observation rather than rush surgery.",
+    "quickFacts": [
+      {
+        "label": "How common they are",
+        "value": "Found on ultrasound in up to 50% to 65% of adults, especially women and older adults"
+      },
+      {
+        "label": "Cancer risk",
+        "value": "Over 90% to 95% of all thyroid nodules are non-cancerous (benign)"
+      },
+      {
+        "label": "Primary check",
+        "value": "High-resolution neck ultrasound and a TSH blood test"
+      },
+      {
+        "label": "Typical symptoms",
+        "value": "Most produce zero symptoms and are discovered incidentally"
+      },
+      {
+        "label": "Biopsy method",
+        "value": "Fine Needle Aspiration Cytology (FNAC), done only when ultrasound features warrant it"
+      },
+      {
+        "label": "Main medical aim",
+        "value": "Rule out malignancy and ensure the nodule does not hinder breathing or swallowing"
+      }
+    ],
+    "causes": [
+      "Overgrowth of normal thyroid tissue: Also called follicular or adenomatous hyperplasia, where regular gland cells multiply into a harmless clump.",
+      "Thyroid cysts: Fluid-filled cavities that often develop from degenerating thyroid adenomas or following tiny, harmless bleeds within a nodule.",
+      "Chronic thyroid inflammation: Autoimmune conditions like Hashimoto's thyroiditis cause persistent low-grade swelling, which frequently leads to nodule formation.",
+      "Multinodular goitre: An enlarged thyroid containing multiple distinct nodules, historically linked to iodine imbalance or regional family tendencies.",
+      "Iodine imbalance: Both long-term iodine deficiency and excessive iodine intake can prompt the thyroid gland to form structural lumps.",
+      "Radiation exposure: Previous medical radiation therapy directed at the head or neck area significantly increases the risk of both benign and malignant nodules.",
+      "Genetic factors: A family history of thyroid nodules, goitre, or specific familial thyroid conditions increases personal likelihood."
+    ],
+    "types": [
+      {
+        "name": "Colloid or Adenomatous Nodules",
+        "desc": "These are harmless overgrowths of normal thyroid tissue. They are the most common type and never spread outside the gland."
+      },
+      {
+        "name": "Thyroid Cysts",
+        "desc": "Fluid-filled lumps or mixed solid-cystic lumps. Pure fluid cysts are almost always benign, though larger ones may occasionally cause a mild neck ache."
+      },
+      {
+        "name": "Inflammatory Nodules (Thyroiditis)",
+        "desc": "Lumps that arise from chronic or subacute inflammation of the gland, often related to an autoimmune reaction such as Hashimoto's."
+      },
+      {
+        "name": "Toxic (Hyperfunctioning) Nodules",
+        "desc": "Nodules that produce thyroid hormones independently of the pituitary gland's control. They can push the body into mild or noticeable hyperthyroidism."
+      },
+      {
+        "name": "Thyroid Neoplasms and Malignancies",
+        "desc": "A small fraction (around 5% to 10%) are cancerous, with papillary thyroid cancer being the most frequent, highly treatable, and slow-growing type."
+      }
+    ],
+    "diagnosis": [
+      "Clinical physical examination: The doctor gently feels (palpates) your lower neck while you swallow water to check gland movement, lump firmness, and lymph nodes.",
+      "Thyroid Function Blood Test: Checking Thyroid Stimulating Hormone (TSH) reveals whether the nodule is hormonally active (toxic) or quiet.",
+      "High-Resolution Neck Ultrasound: The gold standard imaging test. It visualises exact nodule size, borders, internal texture (solid vs cystic), microcalcifications, and vascular flow using international scoring criteria like EU-TIRADS or ACR-TIRADS.",
+      "Fine Needle Aspiration Cytology (FNAC): A quick, outpatient procedure where a tiny needle collects cellular samples from nodules meeting specific size and risk criteria on ultrasound.",
+      "Nuclear Thyroid Scintigraphy (Scan): Done mainly when TSH is unusually low to confirm whether a 'hot' (hyperfunctioning) nodule is responsible."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Checks whether the gland is producing normal, excess, or low thyroid hormones",
+        "slug": "tsh"
+      },
+      {
+        "test": "Free T3 and Free T4",
+        "purpose": "Evaluates active thyroid hormone levels if TSH is abnormal",
+        "slug": "t3-t4"
+      },
+      {
+        "test": "High-Resolution Thyroid Ultrasound",
+        "purpose": "Determines exact nodule size, solid vs cystic nature, and structural risk score"
+      },
+      {
+        "test": "Fine Needle Aspiration Cytology (FNAC)",
+        "purpose": "Examines cell architecture under a microscope to distinguish benign from suspicious cells"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Assesses baseline health parameters if surgical intervention or biopsy is planned",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Vitamin D",
+        "purpose": "Evaluates general bone, immune, and endocrine system health",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Active surveillance (watchful waiting): For small, benign nodules with reassuring ultrasound and FNAC results, regular follow-up scans every 6 to 18 months are the standard approach.",
+      "No routine hormone suppression: Contemporary international guidelines do not recommend prescribing levothyroxine simply to shrink benign nodules, as evidence shows limited benefit and unnecessary cardiac or bone strain.",
+      "Surgical removal (Thyroidectomy or Lobectomy): Indicated when FNAC shows suspected or confirmed malignancy, when the nodule is large enough to compress the trachea or oesophagus, or when it grows steadily.",
+      "Radioactive iodine therapy: Used for 'hot' hyperfunctioning nodules producing excessive thyroid hormone to calm overactivity without major neck surgery.",
+      "Ultrasound-guided cyst aspiration or ablation: Simple fluid cysts that repeatedly refill and cause physical discomfort can be drained or managed with targeted minimally invasive procedures.",
+      "Thyroid hormone replacement: If surgery removes part or all of the gland, or if baseline hypothyroidism coexists, levothyroxine tablets are taken daily to sustain normal body metabolism."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe chronic neck swellings and glandular enlargements primarily under the terms 'Galaganda' (goitre-like swelling) and 'Granthi' (localised benign mass or knot).",
+      "These conditions are historically attributed to an imbalance of Kapha dosha combined with Meda dhatu (fat and connective tissue), which leads to stagnation and physical thickening in the throat channel (Manya).",
+      "Traditional texts recommend dietary adjustments that reduce heavy, slimy, and cold foods, alongside internal purification (deepana-pachana) to enhance metabolic fire (Agni).",
+      "Modern perspective: Ayurvedic concepts of Galaganda offer historical insights into wellness but cannot differentiate benign nodules from early-stage thyroid cancers. Herbal formulations cannot dissolve a solid nodule, and all structural neck swellings must be thoroughly evaluated with modern ultrasound and FNAC."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditionally used for stress and adaptogenic support. Caution is needed as it may raise thyroid hormone levels and is not suitable if a nodule is hormonally hyperactive."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows mild anti-inflammatory properties in laboratory settings. It does not shrink or dissolve physical thyroid nodules."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "A traditional herb used for overall vitality and metabolic balance. There is no clinical evidence that it alters thyroid nodule architecture."
+      }
+    ],
+    "nutrition": [
+      "Use standard iodised table salt in normal domestic cooking. India's universal salt iodisation policy has successfully tackled severe iodine-deficiency goitre; do not consume excessive iodine supplements or kelp tablets without a doctor's advice.",
+      "Avoid extreme diets: Neither extreme low-carb keto diets nor severe raw-vegetable juicing cleanses have any scientific backing for shrinking neck lumps.",
+      "Cook cruciferous vegetables normally: Vegetables like cabbage, cauliflower, broccoli, radish, and mustard greens contain goitrogens, but standard Indian boiling, steaming, and cooking inactivates these compounds. You do not need to cut them out of your sabzis and dals.",
+      "Prioritise lean protein: Ensure your thali includes sufficient protein from moong dal, chana, rajma, paneer, eggs, or fish to support normal gland tissue repair.",
+      "Emphasise whole foods and minerals: Selenium and zinc, present in modest amounts in whole grains, sunflower seeds, pumpkin seeds, and lentils, assist regular thyroid hormone conversion.",
+      "Limit ultra-processed snacks: Packaged namkeens, bakery biscuits, and deep-fried roadside items promote systemic inflammation and metabolic sluggishness without aiding thyroid recovery."
+    ],
+    "lifestyle": [
+      "Maintain a calendar of your scheduled ultrasound checkups. Do not assume a benign nodule can be forgotten entirely; monitoring confirms it stays harmless.",
+      "Avoid self-palpation and aggressive neck prodding. Constant poking, kneading, or rubbing the front of the throat can cause localised inflammation or bruising within a cyst.",
+      "Engage in consistent daily physical activity. 30 to 45 minutes of brisk walking, cycling, or gym training supports healthy insulin sensitivity and metabolic health.",
+      "Stop all tobacco use. Smoking and chewing gutka introduce chemical toxins that disrupt endocrine glandular function and irritate throat structures.",
+      "Ensure 7 to 8 hours of restorative sleep to maintain balanced hypothalamic-pituitary-thyroid signalling."
+    ],
+    "yogaActivity": [
+      "Practice gentle neck mobility exercises (Griva Sanchalana): Slow, pain-free upward, downward, and side-to-side movements keep neck and shoulder musculature relaxed.",
+      "Incorporate relaxing asanas: Gentle poses like Tadasana, Vrikshasana, Bhujangasana (cobra pose without straining the neck), and Setu Bandhasana help improve posture and chest expansion.",
+      "Mindful breath control: Pranayama techniques such as Anulom Vilom and gentle Bhramari aid autonomic nervous system regulation and stress reduction.",
+      "Avoid forceful neck compressions: Skip aggressive, prolonged chin-locks (Jalandhara Bandha) or unsupported headstands (Sirsasana) if you have large or compressive neck nodules until cleared by your physician."
+    ],
+    "homeopathyNote": [
+      "Homeopathic clinics often advertise remedies claiming to dissolve neck lumps, thyroid swellings, or cysts without surgery.",
+      "There is no reproducible, high-quality clinical scientific evidence proving homeopathic remedies can shrink thyroid nodules, alter cellular atypia, or prevent malignant progression.",
+      "Relying solely on alternative therapies while ignoring ultrasound-guided monitoring or advised biopsy exposes individuals to the risk of delayed diagnosis of treatable thyroid conditions."
+    ],
+    "evidenceNotes": [
+      "High-certainty evidence: High-resolution ultrasound combined with ACR-TIRADS or ATA risk stratification reliably distinguishes nodules requiring biopsy from those safe to monitor.",
+      "High-certainty evidence: Fine Needle Aspiration Cytology (FNAC) is the most accurate, minimally invasive technique for evaluating whether a nodule contains atypical or cancerous cells.",
+      "High-certainty evidence: Modern international endocrine societies advise against routine levothyroxine suppression therapy for benign nodules due to heart arrhythmia and bone density risks.",
+      "Zero clinical evidence: No dietary regimen, juice fast, homeopathic dilution, or Ayurvedic rasayana has been proven in peer-reviewed clinical trials to reliably dissolve thyroid nodules."
+    ],
+    "shouldNotDo": [
+      "Do not ignore a new, firm, or rapidly expanding lump in your neck, assuming it is just a swollen lymph node from a cold.",
+      "Do not panic upon reading the word 'nodule' on an ultrasound report; remember that 9 out of 10 nodules are non-cancerous.",
+      "Do not buy over-the-counter 'thyroid support' supplements, kelp powders, or high-dose iodine drops, as excess iodine can trigger severe hyperthyroidism or thyroiditis.",
+      "Do not let unqualified practitioners perform vigorous neck massages or acupressure directly over your thyroid gland.",
+      "Do not skip follow-up ultrasounds just because you feel entirely healthy; slow structural changes require objective radiologic measurement."
+    ],
+    "medicationSafety": [
+      "If your doctor prescribes levothyroxine because of coexisting underactive thyroid (hypothyroidism), take it on an empty stomach first thing in the morning with plain water.",
+      "Wait at least 30 to 60 minutes after taking levothyroxine before drinking your morning chai, coffee, or eating breakfast.",
+      "Keep calcium, iron, and antacid tablets separated from your thyroid medicine by at least 4 hours, as they bind to the medicine and block absorption.",
+      "Never initiate, stop, or alter thyroid hormone doses on your own; always adjust strictly as advised by your doctor based on recent blood test numbers.",
+      "If a nodule turns out to be hyperfunctioning ('hot'), medications such as antithyroid tablets or beta-blockers must be monitored strictly with periodic liver and blood checks."
+    ],
+    "complications": [
+      "Tracheal or oesophageal compression: Very large nodules or retrosternal goitres can press on the windpipe or food pipe, making swallowing solids or lying flat uncomfortable.",
+      "Vocal cord paresis and hoarseness: A nodule that invades or presses against the recurrent laryngeal nerve can cause a raspy, weak voice.",
+      "Autonomous hyperthyroidism: A toxic nodule can overproduce thyroid hormones, resulting in rapid heart rate, unintended weight loss, trembling hands, and heat intolerance.",
+      "Intranodal haemorrhage: Sudden bleeding into a pre-existing cyst can trigger sharp, sudden local neck pain and swift swelling.",
+      "Delayed diagnosis of malignancy: Postponing clinical evaluation or biopsy of a high-risk nodule allows potential thyroid cancer to extend to nearby cervical lymph nodes."
+    ],
+    "emergencySigns": [
+      "Acute, sudden breathing difficulty or noisy, high-pitched breathing (stridor): Seek emergency medical care immediately.",
+      "Rapidly growing neck mass appearing over days or weeks that feels rock-hard or fixed to surrounding tissues.",
+      "Sudden inability to swallow liquids or saliva accompanied by severe local throat pressure.",
+      "Severe neck pain accompanied by rapid swelling, high fever, and redness over the thyroid gland."
+    ],
+    "whenToSeeDoctor": [
+      "You notice a visible lump or feel a distinct pebble-like firmness in the lower part of your front neck.",
+      "You develop persistent hoarseness or voice changes lasting longer than three weeks without an upper respiratory infection.",
+      "You feel a recurrent sensation of a lump in your throat (globus sensation) or difficulty swallowing tablets and solid food.",
+      "An incidental nodule was detected on an MRI, CT, or carotid Doppler ultrasound done for other health reasons.",
+      "You experience unexplained palpitations, heat intolerance, shakiness, or unexplained weight loss alongside a neck lump."
+    ],
+    "faqs": [
+      {
+        "q": "Does having a thyroid nodule mean I have cancer?",
+        "a": "No. More than 90% to 95% of all thyroid nodules are completely benign. An ultrasound and, if necessary, an FNAC test will accurately determine whether any further action or treatment is needed."
+      },
+      {
+        "q": "Can I take Ayurvedic herbs or special foods to dissolve the nodule?",
+        "a": "No herb, diet or product can make a thyroid nodule go away. While healthy food and herbs can support general metabolic well-being, physical nodules cannot be dissolved by supplements and must be medically monitored."
+      },
+      {
+        "q": "Will my thyroid nodule need to be removed through surgery?",
+        "a": "Most thyroid nodules do not require surgery. Surgery is generally reserved for nodules proven or strongly suspected to be malignant on FNAC, nodules causing breathing or swallowing difficulties, or very large, growing goitres."
+      },
+      {
+        "q": "Should I stop eating cabbage, cauliflower, and soya?",
+        "a": "No. In typical dietary quantities, cooked cabbage, cauliflower, and soya are perfectly safe and healthy. Normal cooking largely neutralises goitrogens. There is no need to eliminate these nutritious foods from your meals unless your doctor specifically advises otherwise."
+      },
+      {
+        "q": "How often do I need to get the nodule checked?",
+        "a": "For benign nodules, doctors typically recommend a repeat high-resolution ultrasound in 12 to 24 months to confirm stability. If the size and appearance remain unchanged over time, monitoring visits often become less frequent."
+      }
+    ],
+    "references": [
+      {
+        "title": "2015 American Thyroid Association Management Guidelines for Adult Patients with Thyroid Nodules and Differentiated Thyroid Cancer",
+        "source": "Thyroid (Haugen BR et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26462967/",
+        "year": "2016"
+      },
+      {
+        "title": "Thyroid Nodules: Overview and Management",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/thyroid-nodules/symptoms-causes/syc-20355262",
+        "year": "2023"
+      },
+      {
+        "title": "Thyroid disorders in India: An epidemiological perspective",
+        "source": "Indian Journal of Endocrinology and Metabolism (Unnikrishnan AG, Menon UV)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21808035/",
+        "year": "2011"
+      }
+    ],
+    "relatedDiseases": [
+      "hypothyroidism",
+      "hyperthyroidism",
+      "breathing-problems",
+      "neck-pain"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "turmeric",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "t3-t4",
+      "vitamin-d",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

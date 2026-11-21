@@ -1,0 +1,288 @@
+{
+  "slug": "endometriosis",
+  "name": "Endometriosis",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Endometriosis is a long-term inflammatory disease where tissue similar to the lining of the uterus (known as the endometrium) grows outside the womb. In a normal menstrual cycle, this lining thickens, breaks down, and bleeds out of your body as a period. In endometriosis, this misplaced tissue has nowhere to exit. It builds up, bleeds, triggers intense inflammation, and over time forms painful adhesions, scar tissue, and cysts. It most often settles on the ovaries, fallopian tubes, outer surface of the uterus, bowel, bladder, and the lining of the pelvis. Endometriosis affects roughly 10 percent of girls and women of reproductive age worldwide, which translates to millions of women in India. Despite being widespread, it often remains undiagnosed for years. Many Indian girls are taught from their first period that severe pain is simply a woman's fate to bear silently. Pain that stops you from going to college, going to work, or doing everyday tasks is not normal, and it deserves clear medical attention.",
+    "quickFacts": [
+      {
+        "label": "Global Prevalence",
+        "value": "Roughly 10% of reproductive-age women and girls (WHO, 2023)"
+      },
+      {
+        "label": "Average Diagnosis Delay",
+        "value": "7 to 10 years from symptom onset worldwide"
+      },
+      {
+        "label": "Key Warning Sign",
+        "value": "Debilitating period pain (dysmenorrhea) not relieved by simple rest"
+      },
+      {
+        "label": "Impact on Fertility",
+        "value": "Found in 30% to 50% of women experiencing infertility (ASRM)"
+      },
+      {
+        "label": "Common Misconception",
+        "value": "Pregnancy or marriage does not cure endometriosis"
+      },
+      {
+        "label": "Gold Standard Confirmation",
+        "value": "Laparoscopy with histological biopsy"
+      }
+    ],
+    "causes": [
+      "Retrograde menstruation: Menstrual blood containing endometrial cells flows backwards through the fallopian tubes into the pelvic cavity instead of leaving the body through the vagina. These cells can stick to pelvic surfaces and grow.",
+      "Cellular metaplasia: Cells outside the uterus, such as peritoneal or stem cells, transform into endometrial-like cells under the influence of hormones or local inflammatory factors.",
+      "Immune system dysregulation: In healthy bodies, the immune system detects and clears out stray endometrial tissue. In endometriosis, immune cells fail to recognise or destroy these misplaced deposits, allowing them to attach and thrive.",
+      "Genetics and family history: Women with a first-degree relative (mother, sister, or aunt) who has endometriosis face up to a seven-to-ten-fold higher chance of developing the condition.",
+      "Hormonal signaling: Endometriosis lesions depend heavily on estrogen to survive and spread. The lesions produce their own local estrogen, creating an internal loop of inflammation and growth.",
+      "Vascular and lymphatic transport: Endometrial cells can travel through blood vessels or the lymphatic system to distant areas of the body, such as the lungs or surgical scars."
+    ],
+    "types": [
+      {
+        "name": "Superficial Peritoneal Endometriosis",
+        "desc": "The most common form. Thin, flat lesions attach to the peritoneum, which is the clear membrane that lines the inner wall of the abdomen and pelvis."
+      },
+      {
+        "name": "Ovarian Endometrioma",
+        "desc": "Often called chocolate cysts because they contain dark, thick, aged blood. These develop deep within one or both ovaries and can damage healthy egg reserves over time."
+      },
+      {
+        "name": "Deep Infiltrating Endometriosis (DIE)",
+        "desc": "A severe form where endometrial-like deposits penetrate more than 5 millimetres beneath the surface of pelvic organs, such as the bowel, bladder, ureters, or the pouch of Douglas."
+      },
+      {
+        "name": "Extrapelvic Endometriosis",
+        "desc": "A rare form where lesions travel outside the pelvic cavity, attaching to surgical incisions (such as caesarean section scars), the diaphragm, or lungs."
+      }
+    ],
+    "diagnosis": [
+      "A detailed symptom history is the first step. Your gynaecologist will ask about the timing and nature of period pain, pain during intimacy, bladder or bowel discomfort, and any challenges in conceiving.",
+      "Pelvic examination helps doctors feel for nodules behind the uterus, tender spots, or fixed, enlarged ovaries.",
+      "A normal scan does not rule out the disease. Superficial peritoneal lesions are microscopic or flat and rarely show on routine scans, though advanced imaging identifies cysts and deep nodules.",
+      "A diagnostic laparoscopy is the only way to confirm endometriosis beyond doubt. A surgeon inserts a tiny camera through your navel to look directly at pelvic organs and take tissue samples for laboratory testing.",
+      "Clinical staging ranges from Stage 1 (minimal) to Stage 4 (severe). It is important to know that staging measures the spread and depth of lesions, not your pain level; someone with Stage 1 can experience extreme pain, while Stage 4 can sometimes cause quiet discomfort."
+    ],
+    "investigations": [
+      {
+        "test": "Transvaginal Ultrasound (TVUS)",
+        "purpose": "A specialised pelvic scan used by trained sonologists to detect ovarian endometriomas, adenomyosis, and signs of pelvic adhesions or deep nodules."
+      },
+      {
+        "test": "Pelvic Magnetic Resonance Imaging (MRI)",
+        "purpose": "Provides detailed cross-sectional pictures of soft tissues to map deep infiltrating endometriosis before surgery."
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks hemoglobin and platelet levels, identifying blood loss and anemia from heavy menstrual cycles.",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Measures stored iron levels, which often drop severely in women facing prolonged heavy menstrual bleeding.",
+        "slug": "ferritin"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "A general blood test that evaluates systemic inflammation in the body.",
+        "slug": "crp"
+      }
+    ],
+    "modernTreatment": [
+      "Pain control: First-line medical therapy uses non-steroidal anti-inflammatory medicines (NSAIDs) or paracetamol to curb inflammatory prostaglandins and lower period cramps. Take them as advised by your doctor.",
+      "Hormonal suppression: The goal is to quiet down ovarian estrogen production and stop or lighten menstrual cycles. Options include combined oral contraceptive pills, progestin-only pills, hormone-releasing intrauterine devices (LNG-IUD), or subcutaneous progestin implants.",
+      "GnRH analogues: Gonadotropin-releasing hormone agonists or antagonists temporarily switch off ovarian hormone output, putting the body into a reversible medical menopause to shrink active lesions. They are usually paired with small doses of estrogen or progesterone (add-back therapy) to safeguard bone density.",
+      "Conservative laparoscopic surgery: A gynaecological surgeon removes or vaporises visible lesions and cysts while preserving the uterus and ovaries. This is key for symptom relief and boosting natural fertility.",
+      "Hysterectomy and oophorectomy: In severe, intractable cases where childbearing is complete and conservative options fail, removing the uterus with or without the ovaries may be considered. However, this is not a universal solution, as microscopic lesions left behind in the pelvis can still cause pain.",
+      "Assisted Reproductive Technology (ART): For women struggling with infertility due to damaged fallopian tubes or ovarian cysts, intrauterine insemination (IUI) or in vitro fertilisation (IVF) offers a structured path to conception."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not feature a single modern word for endometriosis. It is often understood through conditions like Kashtartava (painful menstruation), Udavartini Yonivyapad, and Granthi (cysts or growths).",
+      "Ayurveda views this condition primarily as an imbalance of Vata dosha, particularly Apana Vayu, which governs downward movement in the pelvic region. When Apana Vayu moves upwards (Udavarta), menstrual flow is hindered, leading to pain and backward movement.",
+      "Secondary imbalances involve Pitta (leading to local inflammation, burning pain, and heavy bleeding) and Kapha (contributing to thick tissue formation, adhesions, and cysts).",
+      "Traditional supportive regimens focus on balancing Apana Vayu through gentle warm therapies, light non-inflammatory foods, and regular bowel movements.",
+      "Herbal remedies and Panchakarma therapies must only be considered supportive. No herb, diet, or product can make endometriosis go away, and Ayurvedic measures should never replace medical or surgical evaluation by a gynaecologist."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has been studied in laboratory models for its natural anti-inflammatory actions. Human evidence in endometriosis is emerging but remains limited. Use as a culinary spice; take concentrated extracts only as advised by your doctor."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Well-studied for reducing primary menstrual cramps by dampening prostaglandin pathways. It can offer gentle symptomatic pain support during periods, though it does not eliminate tissue lesions."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally taken in India for female reproductive balance. Robust clinical trials demonstrating benefits in endometriosis are lacking, and its phytoestrogen content means you should discuss it with your gynaecologist first."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb used to help the body manage chronic stress, fatigue, and sleep disturbances caused by long-term pelvic pain. It does not treat the lesions directly."
+      }
+    ],
+    "nutrition": [
+      "Focus on an anti-inflammatory Indian plate. Fill half your plate with colourful seasonal vegetables like lauki, tori, bhindi, spinach, methi, carrots, and bottle gourd.",
+      "Boost dietary fibre to help your liver process and clear used estrogen through your stool. Include whole pulses with skin, brown rice, whole oats, and millets such as jowar, bajra, and ragi.",
+      "Include anti-inflammatory fats. Add soaked walnuts, chia seeds, and freshly ground flaxseeds (alsi) to your daily routine for plant-based omega-3 fatty acids.",
+      "Protect your iron stores. Chronic heavy menstrual bleeding often drains iron. Eat iron-rich foods such as bathua, moringa leaves, beetroot, roasted chana, and dates, paired with vitamin C (like a squeeze of lemon) to boost absorption.",
+      "Cut down on ultra-processed foods, refined maida, sugary mithai, packaged snacks (namkeen, chips), and trans-fat-laden bakery goods, which elevate systemic inflammatory markers like CRP.",
+      "Moderate red meat and deep-fried foods. Some women notice increased pelvic cramping and bloating with heavy dairy or excess caffeine; observe how your own digestion reacts.",
+      "Stay well hydrated. Drink warm water throughout the day, and use gentle digestive spices like jeera, saunf, and ajwain to ease the abdominal bloating that frequently accompanies menstrual flare-ups."
+    ],
+    "lifestyle": [
+      "Apply local heat therapy: A hot water bag or an electric heating pad placed over your lower abdomen and lower back helps relax contracted uterine and pelvic floor muscles, cutting acute cramp intensity.",
+      "Track your pain cycle: Maintain a daily diary or smartphone log of your pain scores, bowel changes, and bleeding patterns. This helps your doctor evaluate whether treatments are working.",
+      "Prioritise pelvic floor physiotherapy: Chronic pain causes the muscles of your pelvic floor to guard and clench, which creates severe secondary pain during urination, bowel movements, and intimacy. A specialised physiotherapist can teach you release techniques.",
+      "Protect your sleep: Chronic inflammation and severe pain disturb deep sleep, which in turn lowers your pain threshold. Strive for 7 to 8 hours of quiet rest in a dark, cool room.",
+      "Build a trusted support system: Living with an invisible, chronic pain condition takes an emotional toll. Talk openly with trusted family members, and consider speaking with a mental health counsellor to learn healthy coping tools for chronic pain."
+    ],
+    "yogaActivity": [
+      "Choose gentle, restorative yoga poses over intense workouts during painful cycle days. Restorative postures ease tension without increasing intra-abdominal pressure.",
+      "Supta Baddha Konasana (Reclining Bound Angle Pose): Supported with cushions or bolsters beneath your knees and back, this pose gently opens the pelvic area and calms the nervous system.",
+      "Balasana (Child's Pose): A wide-kneed child's pose rests the abdominal muscles, stretches the lower back, and relieves pelvic cramping.",
+      "Viparita Karani (Legs-up-the-Wall Pose): Improves blood circulation back from the legs and pelvis, helping you feel grounded and refreshed when chronic fatigue hits.",
+      "Marjaryasana-Bitilasana (Cat-Cow Stretch): Slow, rhythmic movements loosen up a stiff lower back and gently mobilize the pelvis without strain.",
+      "Soothing breathwork: Practice slow Anulom Vilom (alternate nostril breathing) and gentle Bhramari (humming bee breath). Avoid forceful abdominal practices like Kapalbhati during your menstrual period or acute pain flare-ups."
+    ],
+    "homeopathyNote": [
+      "There is no clear or reliable scientific evidence from large clinical trials showing that homeopathic remedies treat, shrink, or cure endometriosis lesions.",
+      "Relying entirely on alternative therapies for chronic pelvic pain can delay essential investigations, allowing silent scarring, cyst growth, and fallopian tube blockages to progress.",
+      "If you choose to consult a homeopath, do so only as an emotional comfort alongside your prescribed medical care, and never stop medical therapies or skip surgeries without your gynaecologist's guidance."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Combined oral contraceptives, progestins, and GnRH analogues significantly reduce endometriosis-related pelvic pain while being taken.",
+      "Strong evidence: Laparoscopic surgical excision or ablation of visible lesions provides meaningful pain relief and improves spontaneous pregnancy rates in mild-to-moderate disease.",
+      "Moderate evidence: Pelvic floor physical therapy and targeted lifestyle adaptations (such as consistent sleep, heat therapy, and light movement) reduce the overall burden of chronic pain.",
+      "Limited or mixed evidence: Dietary supplements, including omega-3 fish oils, turmeric extracts, and vitamin E, show small, inconsistent results in human trials. They cannot replace formal medical treatment.",
+      "No credible evidence: Internet-marketed detox teas, womb-cleansing packages, or herbal pastes claiming to dissolve endometriosis cysts permanently."
+    ],
+    "shouldNotDo": [
+      "Do not dismiss severe menstrual cramps as normal period pain. If you need bed rest, miss office, or vomit from pain, consult a specialist.",
+      "Do not assume marriage or having a baby will make the disease disappear. While pregnancy halts periods temporarily, lesions can persist or flare up again postpartum.",
+      "Do not take high doses of over-the-counter pain relievers for days on end without food or medical guidance, as this damages the stomach lining and strains the kidneys.",
+      "Do not ignore painful bowel movements or blood in your urine during your period. These are key signs of deep infiltrating disease that require thorough scanning.",
+      "Do not believe claims that a single diet, juice cleanse, or miracle herb can dissolve endometriosis lesions."
+    ],
+    "medicationSafety": [
+      "Take hormonal pills at the exact same hour every day. Irregular timing can trigger breakthrough spotting and bring back painful pelvic cramps.",
+      "Tell your doctor if you have a personal or family history of deep vein thrombosis, stroke, or migraine with aura before starting estrogen-containing medications.",
+      "If you are prescribed GnRH analogues for more than a few months, ensure your doctor includes add-back therapy and monitors your bone health to guard against bone thinning.",
+      "Always take NSAID painkillers with a meal or a glass of milk to protect your stomach lining from ulcers and acid irritation.",
+      "If you plan to start a family, talk with your gynaecologist early. Most hormonal medications act as contraceptives, so your treatment plan must be shifted toward fertility-focused steps."
+    ],
+    "complications": [
+      "Infertility and difficulty conceiving: Endometriosis is one of the leading causes of subfertility, creating anatomical blockages in fallopian tubes, scarring ovaries, and changing the pelvic biochemical environment.",
+      "Frozen pelvis: Severe adhesions can glue the uterus, ovaries, bowel, and bladder together into a rigid mass, causing continuous, disabling pain.",
+      "Ovarian endometrioma rupture: A large cyst can leak or rupture inside your abdomen, causing sudden, extreme abdominal pain that requires immediate medical care.",
+      "Bowel and urinary tract complications: Deep lesions can narrow the intestine or ureters, causing partial obstruction or kidney swelling (hydronephrosis) if left unchecked.",
+      "Chronic fatigue and low energy: Persistent, high-level inflammation leaves many women feeling deeply drained every day, not just during their periods.",
+      "Emotional health struggles: Coping with unpredictable pain, societal disbelief, and fertility worries often leads to anxiety and clinical depression."
+    ],
+    "emergencySigns": [
+      "Sudden, excruciating, sharp pain on one side of your lower abdomen that does not ease: this may indicate a ruptured ovarian cyst or ovarian torsion.",
+      "High fever, chills, and vomiting accompanied by severe pelvic tenderness.",
+      "Heavy vaginal bleeding soaking through two or more maxi pads an hour for two consecutive hours, accompanied by cold sweats, dizziness, or fainting.",
+      "Inability to pass urine or complete inability to pass bowel movements due to unbearable pelvic obstruction."
+    ],
+    "whenToSeeDoctor": [
+      "Your period pain is so intense that standard over-the-counter painkillers do not bring relief.",
+      "You regularly miss school, college, or work because of painful periods.",
+      "You experience deep, sharp pain during or after sexual intercourse.",
+      "You have painful urination, rectal pain, or bleeding from the bowel that coincides with your menstrual cycle.",
+      "You have been trying to conceive for 12 months (or 6 months if you are over 35) without success."
+    ],
+    "faqs": [
+      {
+        "q": "Will having a baby cure my endometriosis?",
+        "a": "No, pregnancy does not cure endometriosis. High levels of progesterone during pregnancy, combined with the pause in monthly periods, often bring welcome symptom relief. However, once periods resume after childbirth or breastfeeding, the pain and lesions frequently return."
+      },
+      {
+        "q": "Can a normal ultrasound mean I do not have endometriosis?",
+        "a": "Yes. A standard ultrasound can be completely clear even if you have active endometriosis. Ultrasound is excellent at finding ovarian chocolate cysts and deep nodules, but it cannot pick up flat, superficial peritoneal lesions. If your symptoms are severe, your doctor may suggest further imaging or a diagnostic laparoscopy."
+      },
+      {
+        "q": "Does endometriosis cause cancer?",
+        "a": "Endometriosis is a benign condition, not a cancer. Women with endometriosis have a very slightly higher statistical risk of certain rare subtypes of ovarian cancer, but the overall lifetime risk remains low. Keep up with your regular gynaecological check-ups."
+      },
+      {
+        "q": "Why did it take so many years to get my diagnosis?",
+        "a": "Endometriosis symptoms often mimic irritable bowel syndrome, pelvic infections, or normal period cramps. Because painful periods are frequently minimised by society, many women wait years before getting specialised imaging or laparoscopic assessment."
+      },
+      {
+        "q": "Can I still get pregnant if I have endometriosis?",
+        "a": "Yes, many women with endometriosis conceive naturally. Others may require laparoscopic surgery to clear adhesions, or medical support through assisted reproductive techniques like IUI or IVF. Early consultation with a fertility specialist is recommended."
+      }
+    ],
+    "references": [
+      {
+        "title": "Endometriosis: Key facts and global impact",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/endometriosis",
+        "year": "2023"
+      },
+      {
+        "title": "Endometriosis: diagnosis and management (NICE Guideline NG73)",
+        "source": "National Institute for Health and Care Excellence",
+        "url": "https://www.nice.org.uk/guidance/ng73",
+        "year": "2017"
+      },
+      {
+        "title": "ESHRE guideline: endometriosis",
+        "source": "Human Reproduction Open (European Society of Human Reproduction and Embryology)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35350463/",
+        "year": "2022"
+      },
+      {
+        "title": "Endometriosis: Clinical presentation, diagnosis, and treatment options",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/endometriosis/symptoms-causes/syc-20354656",
+        "year": "2023"
+      },
+      {
+        "title": "Clinical management of endometriosis: ACOG Practice Bulletin No. 114",
+        "source": "Obstetrics & Gynecology (American College of Obstetricians and Gynecologists)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20567145/",
+        "year": "2010"
+      }
+    ],
+    "relatedDiseases": [
+      "menstrual-health",
+      "fertility",
+      "pms",
+      "anemia",
+      "iron-deficiency",
+      "uterine-fibroids",
+      "chronic-fatigue",
+      "back-pain",
+      "anxiety",
+      "depression",
+      "bloating",
+      "constipation"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "iron-folic-acid"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "shatavari",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

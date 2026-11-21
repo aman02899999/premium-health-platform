@@ -1,0 +1,302 @@
+{
+  "slug": "prediabetes",
+  "name": "Prediabetes",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Prediabetes means your blood sugar levels are higher than normal, but not yet high enough to be classified as type 2 diabetes. It is a critical warning bell from your body. In prediabetes, the cells in your muscles, fat, and liver do not respond properly to insulin, a condition called insulin resistance. As a result, your pancreas has to work overtime to produce more insulin to move glucose out of the bloodstream. Over time, the pancreas struggles to keep up, causing blood sugar to climb. In India, prediabetes is extremely widespread. According to the landmark ICMR-INDIAB national study published in 2023, an estimated 15.3% of Indian adults—roughly 136 million people—are living with prediabetes. South Asians often develop insulin resistance at a younger age and at a lower body mass index (BMI) than Western populations, partly due to a higher proportion of visceral body fat around the abdominal organs, sometimes called the 'thin-fat' Indian phenotype. Prediabetes rarely produces noticeable symptoms, which is why millions of people have no idea their blood sugar is elevated. If left unaddressed, most people with prediabetes progress to type 2 diabetes within several years. However, prediabetes is not an irreversible fate. Groundbreaking clinical trials, including the Indian Diabetes Prevention Programme, have shown that sustained lifestyle modifications—focusing on structured physical activity, portion control, reducing refined carbohydrates, and modest weight reduction—can return blood sugar to healthy ranges or significantly delay the onset of diabetes.",
+    "quickFacts": [
+      {
+        "label": "Fasting blood sugar range",
+        "value": "100 to 125 mg/dL (5.6 to 6.9 mmol/L)"
+      },
+      {
+        "label": "HbA1c range",
+        "value": "5.7% to 6.4% (39 to 46 mmol/mol)"
+      },
+      {
+        "label": "Oral Glucose Tolerance Test (2-hr)",
+        "value": "140 to 199 mg/dL (7.8 to 11.0 mmol/L)"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "15.3% of adults (ICMR-INDIAB study, 2023)"
+      },
+      {
+        "label": "Key target for risk reduction",
+        "value": "5% to 7% loss of body weight if carrying excess weight"
+      },
+      {
+        "label": "Physical activity goal",
+        "value": "At least 150 minutes of moderate aerobic exercise per week"
+      }
+    ],
+    "causes": [
+      "Insulin resistance: Muscle, fat, and liver cells do not respond effectively to insulin, leaving excess sugar in the blood.",
+      "Abdominal and visceral fat: Carrying excess weight around the waistline releases inflammatory markers and free fatty acids that impair insulin action. Indian guidelines identify waist circumferences above 90 cm for men and 80 cm for women as high risk.",
+      "Refined carbohydrate-heavy diet: Daily consumption of large portions of polished white rice, refined wheat flour (maida), fried snacks (namkeen, pakoras, samosas), sugary sweets, and sweetened beverages causes sharp, repeated glucose spikes.",
+      "Sedentary routines: Long hours of sitting at desk jobs, commuting, and minimal daily leisure-time walking reduce muscle glucose uptake independent of insulin.",
+      "Genetic predisposition: Having a first-degree relative (parent or sibling) with type 2 diabetes sharply increases your personal risk.",
+      "South Asian ethnicity: Due to genetic, epigenetic, and metabolic traits, Indians tend to have higher body fat percentages and lower muscle mass at the same body weight compared to Caucasian peers.",
+      "Poor sleep and chronic psychological stress: Ongoing emotional stress raises cortisol and adrenaline, which directly elevate blood sugar, while obstructive sleep apnoea severely worsens insulin sensitivity.",
+      "History of gestational diabetes: Women who had elevated blood sugar during pregnancy face a substantially higher lifetime risk of developing prediabetes and type 2 diabetes.",
+      "Polycystic ovary syndrome (PCOS): Women with PCOS commonly produce excess insulin due to underlying receptor defects, significantly accelerating prediabetes."
+    ],
+    "types": [
+      {
+        "name": "Impaired Fasting Glucose (IFG)",
+        "desc": "Blood sugar levels are elevated after an overnight fast (100 to 125 mg/dL), primarily indicating that the liver continues to produce excess glucose during sleep because it is resistant to basal insulin signals."
+      },
+      {
+        "name": "Impaired Glucose Tolerance (IGT)",
+        "desc": "Blood sugar levels rise higher than normal two hours after consuming a standardized sugary drink (140 to 199 mg/dL), reflecting reduced muscle glucose disposal and delayed early-phase insulin release from the pancreas."
+      },
+      {
+        "name": "Combined IFG and IGT",
+        "desc": "Both fasting glucose and 2-hour post-meal or glucose challenge values are abnormal. Individuals with both disturbances carry the steepest short-term risk of progressing to clinical type 2 diabetes."
+      },
+      {
+        "name": "Elevated HbA1c Prediabetes",
+        "desc": "Identified when the 3-month average glycation marker sits between 5.7% and 6.4%, capturing chronic, cumulative exposure to mild hyperglycemia throughout both day and night."
+      }
+    ],
+    "diagnosis": [
+      "A diagnosis of prediabetes cannot be made on a whim or a single finger-prick random reading; it requires formal venous blood testing in an accredited laboratory.",
+      "Fasting Plasma Glucose (FPG): Measured after an overnight fast of at least 8 to 10 hours. A reading between 100 mg/dL and 125 mg/dL indicates impaired fasting glucose.",
+      "Glycated Hemoglobin (HbA1c): Reflects the average blood sugar over the preceding 2 to 3 months. An HbA1c between 5.7% and 6.4% confirms prediabetes under standard ICMR and ADA criteria.",
+      "Oral Glucose Tolerance Test (OGTT): Involves checking fasting blood glucose, drinking 75 grams of anhydrous glucose dissolved in water, and drawing blood two hours later. A 2-hour reading of 140 to 199 mg/dL indicates impaired glucose tolerance.",
+      "Repeat verification: Unless unequivocal metabolic symptoms or marked risk factors are present, an abnormal reading should be confirmed with a second test on a separate day or using two concordant tests drawn simultaneously (such as fasting glucose and HbA1c)."
+    ],
+    "investigations": [
+      {
+        "test": "HbA1c (Glycated Hemoglobin)",
+        "purpose": "Measures your average blood sugar over the last 90 days without requiring fasting.",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Plasma Glucose",
+        "purpose": "Evaluates the liver's glucose output and baseline insulin regulation after an 8-hour fast.",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Screens for dyslipidemia (high triglycerides, low HDL), which almost always travels with insulin resistance.",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Liver Function Tests (Enzymes)",
+        "purpose": "Checks for elevated ALT and AST, which frequently signal non-alcoholic fatty liver disease associated with metabolic dysfunction.",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Establishes a baseline for kidney health before starting medical therapy such as metformin.",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine for Albumin/Protein",
+        "purpose": "Identifies early microscopic kidney stress or vascular leakage that can begin even during the prediabetic phase.",
+        "slug": "urine-routine"
+      }
+    ],
+    "modernTreatment": [
+      "Lifestyle modification is the undisputed cornerstone of modern prediabetes management. In major clinical trials worldwide, including the US Diabetes Prevention Program and the Indian Diabetes Prevention Programme (IDPP), lifestyle changes reduced the risk of developing diabetes by up to 58%, performing significantly better than medication alone.",
+      "Targeted weight loss: If your weight is above the healthy range for Indian standards (BMI above 23 kg/m²), losing just 5% to 7% of your starting weight can improve insulin sensitivity remarkably.",
+      "Physical activity prescription: The standard medical guideline is at least 150 minutes of moderate-intensity aerobic physical activity (such as brisk walking at 5 km/h, cycling, or swimming) per week, spread across at least 3 to 5 days, combined with 2 to 3 sessions of full-body resistance training.",
+      "Medical therapy: When lifestyle measures do not achieve adequate glycemic control after several months, or in individuals at exceptionally high risk (such as those with a BMI over 25 kg/m² in Indians, age under 60, women with a history of gestational diabetes, or an HbA1c rapidly climbing toward 6.4%), physicians may prescribe metformin, as advised by your doctor.",
+      "Cardiovascular risk management: Because prediabetes is an independent risk marker for heart attack and stroke, doctors also treat accompanying high blood pressure or elevated LDL cholesterol aggressively using standard therapies.",
+      "Routine re-screening: Patients with confirmed prediabetes should be re-evaluated with an HbA1c or fasting glucose test every 6 to 12 months to monitor trajectories."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, conditions of metabolic dysregulation and urinary changes are classified under Prameha, which encompasses 20 distinct varieties. Prediabetes closely aligns with the early, manageable stages (Purvaroopa or Kaphaja Prameha), marked by sluggish metabolism (Mandaagni), heavy tissues (Medo Dhatu vriddhi), and an accumulation of metabolic toxins (Ama).",
+      "Ayurvedic philosophy views the imbalance as stemming from Guru (heavy), Snigdha (excessively oily), and Sheeta (cold) foods paired with Diwaswapna (sleeping during the day) and Avyayama (lack of physical exertion).",
+      "Traditional interventions emphasize Langhana (lightening therapies), Deepana-Pachana (kindling metabolic digestion), Shodhana (gentle cleansing), and shifting to Ruksha (dry, light), Tikta (bitter), and Kashaya (astringent) tastes to balance Kapha and Medas.",
+      "While classical concepts provide valuable lifestyle perspectives on moderation and daily routine (Dinacharya), Ayurvedic formulations must only serve as supportive measures. They do not replace formal metabolic monitoring or evidence-based medical care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Contains soluble galactomannan fibre and 4-hydroxyisoleucine, which slow carbohydrate absorption in the gut. Evidence shows modest glycemic support alongside a healthy diet."
+      },
+      {
+        "name": "Bitter Gourd (Karela)",
+        "slug": "bitter-gourd",
+        "note": "Contains compounds like charantin and polypeptide-p. Small clinical studies suggest mild supportive effects on postprandial glucose, but evidence remains weak and inconsistent."
+      },
+      {
+        "name": "Cinnamon (Dalchini)",
+        "slug": "cinnamon",
+        "note": "Investigated for improving insulin receptor sensitivity in laboratory studies. Human trials show inconsistent, slight improvements in fasting glucose; it should not be relied upon as a primary intervention."
+      },
+      {
+        "name": "Jamun (Indian Blackberry)",
+        "slug": "jamun",
+        "note": "Traditionally consumed as seed powder to support glucose metabolism. Clinical trial evidence in humans is very limited; useful mainly as a low-glycemic traditional dietary inclusion."
+      },
+      {
+        "name": "Gudmar (Gymnema Sylvestre)",
+        "slug": "gudmar",
+        "note": "Literally named 'sugar destroyer' due to gymnemic acids that temporarily dull the perception of sweetness on the tongue. May mildly support glycemic parameters, but robust large-scale human data is lacking."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN 2024 Dietary Guidelines for Indians: create a balanced plate where at least half is filled with non-starchy vegetables and green salads, one-quarter with protein sources, and only one-quarter with whole complex grains.",
+      "Rethink carbohydrate staples: drastically cut back on polished white rice and refined maida. Replace them with whole grains and millets that provide higher dietary fibre, such as whole wheat atta mixed with chickpea flour, foxtail millet, ragi, jowar, or steel-cut oats, paying close attention to portion sizes.",
+      "Prioritize protein at every meal: Indian vegetarian diets are frequently deficient in protein. Incorporate whole dals, sprouted moong, black chana, rajma, paneer, unsweetened curd, tofu, soy chunks, eggs, fish, or skinless poultry. Protein slows gastric emptying and curbs post-meal sugar spikes.",
+      "Eliminate liquid sugars and hidden syrups: discard sugar-sweetened chai, coffee with condensed milk, packaged fruit juices, commercial sodas, sweetened lassi, and energy drinks. Opt for plain water, unsweetened buttermilk (chaas), clear vegetable soups, or green tea.",
+      "Beware of traditional snack traps: samosas, kachoris, mathri, sev, bhujia, and white bread toasts are dense in trans fats, refined starches, and sodium. Substitute them with roasted chana, a handful of raw almonds or walnuts, or boiled sprouted salads.",
+      "Harness dietary fibre: aim for 30 to 40 grams of fibre daily from raw salads (cucumber, tomato, radish), leafy greens (palak, methi, sarson), vegetables (bhindi, lauki, tori, baingan), and legumes. Soluble fibre binds to bile and slows glucose absorption.",
+      "Cook with measured, healthy fats: limit total cooking oils to under 20 to 25 grams per person per day. Rotate cold-pressed mustard oil, groundnut oil, or sesame oil, and sharply restrict reused cooking fats, palm oil, and commercial vanaspati."
+    ],
+    "lifestyle": [
+      "Accumulate 150 to 300 minutes of moderate-intensity aerobic exercise every week. Brisk walking where your breathing accelerates but you can still hold a broken conversation is practical and effective.",
+      "Add resistance training 2 to 3 days per week. Skeletal muscle is the primary organ for disposing of post-meal glucose. Using dumbbells, resistance bands, or bodyweight exercises (like squats and push-ups) builds muscle mass and clears glucose independently of insulin.",
+      "Break up sedentary time: avoid sitting continuously for more than 45 minutes. Take a 2-minute walking break, stretch, or do 10 calf raises between meetings or desk work.",
+      "Take a 10 to 15-minute gentle stroll immediately after major meals, especially dinner (the postprandial walk). This draws circulating blood sugar directly into working leg muscles, blunting post-meal spikes.",
+      "Prioritize 7 to 8 hours of uninterrupted nocturnal sleep. Sleep deprivation increases ghrelin (hunger hormone), decreases leptin (satiety hormone), and spikes early morning cortisol, triggering sharp insulin resistance.",
+      "Implement daily emotional decompression: chronic workplace or domestic stress triggers adrenaline and cortisol release. Dedicate 15 minutes daily to meditation, slow walking in nature, or reading.",
+      "Stop all tobacco products: smoking and chewing tobacco (gutka, khaini) damage the vascular endothelial lining and directly intensify metabolic insulin resistance."
+    ],
+    "yogaActivity": [
+      "Adopt dynamic yoga protocols such as Surya Namaskar (Sun Salutations): performing 6 to 12 cycles at a steady pace improves cardiorespiratory fitness and enhances muscle glucose uptake.",
+      "Practice abdominal-toning and twisting asanas: postures such as Mandukasana (Frog pose), Ardha Matsyendrasana (Half Fish pose), Paschimottanasana (Seated Forward Bend), and Dhanurasana (Bow pose) gently stimulate abdominal organs and build core strength.",
+      "Standing postures for lower body strength: Virabhadrasana (Warrior pose), Utkatasana (Chair pose), and Trikonasana (Triangle pose) recruit large muscle groups like quadriceps and glutes, which consume the most circulating glucose.",
+      "Incorporate relaxing Pranayama: slow, controlled breathing through Anulom Vilom (Alternate Nostril Breathing) and Bhramari (Humming Bee breath) helps downregulate sympathetic nervous system overdrive and lowers cortisol levels.",
+      "Finish sessions with 5 to 10 minutes of complete physiological relaxation in Shavasana to facilitate recovery and metabolic calm."
+    ],
+    "homeopathyNote": [
+      "There is no credible scientific evidence demonstrating that homeopathic remedies can alter insulin sensitivity, lower HbA1c, or halt the progression from prediabetes to type 2 diabetes.",
+      "Relying on homeopathic preparations while ignoring necessary dietary adjustments and regular medical screening exposes individuals to progressive, silent vascular and metabolic damage.",
+      "If you choose to explore homeopathy as a complementary therapy, it must never replace medical follow-up, evidence-based lifestyle changes, or prescribed pharmaceuticals."
+    ],
+    "evidenceNotes": [
+      "High-certainty evidence: structured lifestyle intervention programs that target modest weight reduction (5-7%) and 150 minutes of weekly aerobic exercise reduce the cumulative risk of developing type 2 diabetes by up to 58% over 3 to 4 years.",
+      "High-certainty evidence: metformin therapy reduces the incidence of diabetes in people with prediabetes by approximately 31% compared to placebo, showing the highest efficacy in individuals with higher baseline BMIs or prior gestational diabetes.",
+      "Moderate-certainty evidence: resistance training performed alongside aerobic physical activity produces superior improvements in insulin sensitivity and HbA1c compared to aerobic exercise alone.",
+      "Low to very low-certainty evidence: individual culinary spices and herbal extracts (such as cinnamon, bitter gourd, and fenugreek) show small, inconsistent, short-term trends on fasting blood glucose in small trials, but lack large-scale long-term data proving prevention of diabetes.",
+      "Fraudulent claims: no herb, diet or product can make it go away overnight or provide a permanent instant reset of metabolic hormones."
+    ],
+    "shouldNotDo": [
+      "Do not ignore the diagnosis because you feel completely healthy. Prediabetes is clinically silent, yet vascular and microvascular damage can begin developing quietly during this stage.",
+      "Do not fall for commercial 'sugar-detox' juices, bitter-gourd cleanses, or miracle teas claiming to reset your pancreas; these often contain hidden calories or excessive potassium, and no product can make metabolic disease disappear.",
+      "Do not switch from white sugar to jaggery (gur), honey, brown sugar, or coconut sugar assuming they are safe for your blood sugar. They have nearly identical glycemic impacts and raise blood glucose just like refined sugar.",
+      "Do not rely solely on walking 10,000 slow, leisurely steps while leaving your high-carbohydrate, low-protein diet unchanged; intensity and dietary composition matter immensely.",
+      "Do not self-prescribe or purchase over-the-counter diabetes tablets like metformin without a doctor's evaluation and baseline renal function tests.",
+      "Do not starve yourself or adopt extreme, unscientific crash diets that you cannot sustain for more than two weeks, as rapid rebound weight gain worsens metabolic resistance."
+    ],
+    "medicationSafety": [
+      "If your physician prescribes metformin for prediabetes prevention, take it strictly as advised by your doctor, usually with or immediately after meals to reduce gastrointestinal side effects.",
+      "Common initial side effects of metformin include loose stools, mild nausea, abdominal cramping, or a metallic taste; these generally subside within 1 to 2 weeks as your digestive system adapts.",
+      "Long-term use of metformin can occasionally interfere with the absorption of vitamin B12; discuss periodic testing of your vitamin B12 levels with your doctor.",
+      "Always inform your medical team about any pre-existing kidney disorders or liver issues before starting medication.",
+      "Never combine prescription antidiabetic medications with poorly characterized herbal concoctions or unregulated patent powders, which may trigger severe digestive upset or toxic organ strain."
+    ],
+    "complications": [
+      "Progression to overt type 2 diabetes: without targeted intervention, up to 50% of individuals with prediabetes advance to full clinical diabetes within 5 to 10 years.",
+      "Coronary artery disease and heart attacks: the vascular inflammation and lipid abnormalities associated with insulin resistance double the risk of cardiovascular events even before reaching diabetic ranges.",
+      "Cerebrovascular accidents (ischemic strokes): accelerated arterial stiffening and atheroma formation increase long-term stroke incidence.",
+      "Early peripheral neuropathy: mild, subtle nerve damage causing tingling, burning sensations, or numbness in the toes can initiate during the prediabetic phase.",
+      "Early diabetic nephropathy: microscopic leakage of protein in the urine (microalbuminuria) and early structural changes in kidney filtration units.",
+      "Metabolic-associated fatty liver disease (MAFLD): accumulation of triglycerides inside hepatocytes, which can progress to liver inflammation, fibrosis, and cirrhosis."
+    ],
+    "emergencySigns": [
+      "Extreme, unquenchable thirst (polydipsia) accompanied by urination every 30 to 60 minutes and profound dehydration: indicates acute, severe hyperglycemia requiring urgent medical evaluation.",
+      "Sudden onset of fruity-smelling breath, rapid deep breathing, persistent vomiting, and abdominal pain: signs of severe metabolic acidosis.",
+      "Sudden weakness, facial drooping, numbness on one side of the body, or slurred speech: possible stroke, requiring immediate emergency hospital transfer.",
+      "Crushing chest pressure, central chest tightness radiating to the jaw, neck, or left arm, accompanied by cold sweats: signs of acute myocardial ischemia."
+    ],
+    "whenToSeeDoctor": [
+      "Your routine health check-up reveals a fasting blood glucose between 100 and 125 mg/dL or an HbA1c between 5.7% and 6.4%.",
+      "You have a strong family history of type 2 diabetes, are above 30 years of age, and have never had your blood sugar or HbA1c tested.",
+      "You notice persistent daytime fatigue, recurrent skin infections, boils, or slow healing of minor cuts and scratches.",
+      "You developed high blood sugar during a past pregnancy (gestational diabetes) and have not undergone a postpartum or annual glucose screening.",
+      "You notice dark, velvety, thickened patches of skin around your neck, armpits, or groin (acanthosis nigricans), which are physical markers of marked insulin resistance."
+    ],
+    "faqs": [
+      {
+        "q": "Can prediabetes really be reversed back to normal?",
+        "a": "Yes. Clinical trials like the Diabetes Prevention Program have proven that prediabetes can be brought back to normal glucose levels through sustainable lifestyle changes. Modest weight loss, daily exercise, and replacing refined carbs with fibre and protein restore insulin sensitivity. However, maintaining normal numbers requires permanent healthy habits."
+      },
+      {
+        "q": "Is jaggery (gur) or honey safer than white sugar for prediabetes?",
+        "a": "No. While jaggery and honey contain trace minerals, their chemical composition is predominantly sucrose, glucose, and fructose. They trigger blood sugar spikes almost identical to refined table sugar. If you have prediabetes, all concentrated sweeteners should be strictly minimized."
+      },
+      {
+        "q": "Are there noticeable symptoms of prediabetes?",
+        "a": "Most people feel completely normal. Prediabetes is usually a silent metabolic condition. Occasionally, visible signs of severe insulin resistance appear, such as acanthosis nigricans (dark, velvety skin around the neck or underarms), or mild lethargy following heavy carbohydrate meals."
+      },
+      {
+        "q": "Will walking 30 minutes every day be enough to manage prediabetes?",
+        "a": "A brisk 30-minute daily walk is a wonderful and necessary foundation, but physical activity must be paired with dietary changes. If you walk regularly but continue eating large plates of white rice, fried snacks, and sweets, your blood sugar may continue to climb. Exercise and dietary changes work hand in hand."
+      },
+      {
+        "q": "Does having prediabetes mean I will definitely need insulin injections?",
+        "a": "No. Prediabetes does not require insulin therapy. In fact, individuals with prediabetes typically produce surplus insulin that their resistant cells cannot use efficiently. Taking action during the prediabetic phase is specifically designed to protect your pancreatic beta cells so you never reach the stage of requiring insulin."
+      }
+    ],
+    "references": [
+      {
+        "title": "The Indian Diabetes Prevention Programme shows that lifestyle modification and metformin prevent type 2 diabetes in Asian Indian subjects with impaired glucose tolerance (IDPP-1)",
+        "source": "Diabetologia (Ramachandran A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16397760/",
+        "year": "2006"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (NIN), Hyderabad",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Reduction in the incidence of type 2 diabetes with lifestyle intervention or metformin (DPP Research Group)",
+        "source": "New England Journal of Medicine (Knowler WC et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/11832527/",
+        "year": "2002"
+      },
+      {
+        "title": "Prediabetes: Diagnosis and Management",
+        "source": "Mayo Clinic Proceedings (Bansal N)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25749727/",
+        "year": "2015"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "insulin-resistance",
+      "metabolic-syndrome",
+      "obesity",
+      "fatty-liver",
+      "high-blood-pressure",
+      "cardiovascular-risk",
+      "pcos"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "atorvastatin",
+      "amlodipine"
+    ],
+    "relatedHerbs": [
+      "fenugreek",
+      "bitter-gourd",
+      "cinnamon",
+      "jamun",
+      "gudmar"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "lipid-profile",
+      "liver-enzymes",
+      "creatinine",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

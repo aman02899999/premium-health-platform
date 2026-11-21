@@ -1,0 +1,287 @@
+{
+  "slug": "low-blood-pressure",
+  "name": "Low Blood Pressure",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Low blood pressure, known medically as hypotension, is generally defined as a blood pressure reading below 90/60 mmHg. The first number (systolic) represents the pressure in your arteries when your heart beats, and the second number (diastolic) measures the pressure when your heart rests between beats. In healthy, physically active people, low blood pressure is often a sign of good cardiovascular fitness and causes no harm. However, when blood pressure drops too low, vital organs like the brain and heart do not receive enough oxygen-rich blood. This can lead to symptoms such as dizziness, lightheadedness, blurred vision, weakness, and fainting (syncope). In India, temporary drops in blood pressure are frequently triggered by dehydration during harsh summer months, long periods of standing in crowded places, nutritional deficiencies like anemia, or side effects from blood pressure medications.",
+    "quickFacts": [
+      {
+        "label": "Clinical definition",
+        "value": "Below 90/60 mmHg"
+      },
+      {
+        "label": "Normal reference",
+        "value": "Around 120/80 mmHg"
+      },
+      {
+        "label": "Postural drop",
+        "value": "Fall of 20 mmHg systolic or 10 mmHg diastolic within 3 minutes of standing"
+      },
+      {
+        "label": "Key symptoms",
+        "value": "Dizziness, lightheadedness, unsteadiness, and fainting"
+      },
+      {
+        "label": "Common Indian trigger",
+        "value": "Dehydration due to summer heat and gastrointestinal illnesses"
+      },
+      {
+        "label": "Symptomless low BP",
+        "value": "Generally healthy and harmless; treatment is only needed when symptoms appear"
+      }
+    ],
+    "causes": [
+      "Dehydration. Losing fluid through heavy sweating in hot weather, fever, vomiting, or acute loose motions reduces total blood volume, causing pressure to plunge.",
+      "Nutritional deficiencies. Lack of iron, vitamin B12, or folate prevents the body from producing sufficient red blood cells (anemia), reducing oxygen delivery and vascular tone.",
+      "Medication side effects. Taking too high a dose of medicines for high blood pressure (such as amlodipine or losartan), water pills (diuretics), or certain psychiatric medicines can lower pressure excessively.",
+      "Orthostatic or postural shifts. Standing up rapidly causes gravity to pool blood in your legs and belly, leading to a temporary drop in blood flow to the head.",
+      "Heart problems. A very slow heart rate (bradycardia), valve disorders, or early heart failure can prevent the heart from pumping enough blood.",
+      "Endocrine and hormonal disorders. Conditions affecting the thyroid gland (hypothyroidism) or adrenal glands (Addison's disease) can impair the hormonal control of blood pressure.",
+      "Prolonged bed rest or immobility. Staying in bed for days due to illness weakens vascular tone and the autonomic reflexes that maintain upright pressure.",
+      "Severe systemic conditions. Widespread bacterial infection (septic shock), sudden internal blood loss, or severe allergic reactions (anaphylaxis) cause life-threatening drops in blood pressure."
+    ],
+    "types": [
+      {
+        "name": "Orthostatic (postural) hypotension",
+        "desc": "A sudden drop in blood pressure when you move from lying or sitting to standing. It commonly causes lightheadedness or a 'blackout' sensation for a few seconds."
+      },
+      {
+        "name": "Postprandial hypotension",
+        "desc": "A drop in blood pressure that occurs 30 to 60 minutes after eating a meal, especially heavy carbohydrate-rich foods, as large amounts of blood divert to the gut."
+      },
+      {
+        "name": "Neurally mediated hypotension",
+        "desc": "A miscommunication between the brain and heart that causes pressure to drop after standing for long periods or experiencing severe emotional distress, fear, or pain."
+      },
+      {
+        "name": "Severe acute hypotension (Shock)",
+        "desc": "A dangerous, sudden drop in blood pressure caused by massive blood loss, severe infection, or heart failure, requiring immediate emergency medical intervention."
+      }
+    ],
+    "diagnosis": [
+      "A standard upper-arm blood pressure check showing readings below 90/60 mmHg alongside typical symptoms confirms the condition.",
+      "Postural (orthostatic) vitals testing: The doctor records your blood pressure and pulse while you lie down flat, and repeats the measurement after you stand for one to three minutes.",
+      "Comprehensive review of current medications to identify over-treatment of hypertension or drug interactions.",
+      "Assessment of hydration status, mucous membranes, skin turgor, and signs of pallor.",
+      "Further cardiovascular or neurological tests, such as a tilt table test, if you experience frequent unexplained fainting episodes."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia, low hemoglobin, or signs of underlying infection",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Creatinine and Urea",
+        "purpose": "Evaluates kidney function and checks for significant dehydration",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out an underactive thyroid gland, which can cause fatigue, low pulse, and hypotension",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin B12",
+        "purpose": "Checks for B12 deficiency, which can cause both anemia and autonomic nerve dysfunction",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Urine Routine Examination",
+        "purpose": "Identifies urinary tract infections or protein leakage that point to systemic strain",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Assesses heart rhythm, detects very slow heart rates (bradycardia), and checks for conduction blocks"
+      }
+    ],
+    "modernTreatment": [
+      "Identifying and correcting the root cause: Doctors evaluate your routine, adjust excess anti-hypertensive drugs, or manage systemic problems.",
+      "Fluid and electrolyte replenishment: Rehydrating with clean water, oral rehydration salts (ORS), or balanced electrolyte solutions to restore circulating blood volume.",
+      "Dietary salt adjustment: In confirmed chronic orthostatic hypotension without heart or kidney disease, a doctor may advise adding a controlled amount of salt to daily meals.",
+      "Physical counter-pressure maneuvers: Crossing legs, squeezing thigh muscles, or tensing the abdomen while standing helps pump blood back toward the heart.",
+      "Compression stockings or abdominal binders: Elastic medical stockings prevent excessive pooling of blood in the lower legs.",
+      "Prescription medications: For chronic, disabling autonomic hypotension that fails conservative care, doctors may consider specific medications, taken strictly as advised by your doctor."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda associates persistent low blood pressure and dizziness with an imbalance in Vata and Pitta doshas, along with a state of Rakta Dhatu Kshaya (depletion of blood tissue) and low Ojas (vital vigor).",
+      "Traditional texts focus on revitalizing the digestive fire (Agni), building physical stamina, and replenishing body fluids with wholesome, nourishing foods.",
+      "Ayurvedic care uses traditional culinary spices and adaptogenic herbs to support daily vitality alongside medical care.",
+      "These traditional concepts are philosophical frameworks rather than clinical medical diagnoses; they must not replace standard diagnostic testing."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Yashtimadhu)",
+        "slug": "licorice",
+        "note": "Contains glycyrrhizin, which supports sodium retention and can help maintain blood pressure. Use only under medical supervision as excess can cause electrolyte imbalances."
+      },
+      {
+        "name": "Ginger (Adrak)",
+        "slug": "ginger",
+        "note": "Traditionally consumed in teas or meals to stimulate circulation and settle lightheadedness. Clinical evidence for chronic hypotension is very limited."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb used traditionally to combat fatigue, debility, and general weakness. It provides general metabolic support alongside doctor-prescribed care."
+      }
+    ],
+    "nutrition": [
+      "Drink plenty of fluids throughout the day. Aim for 2.5 to 3 liters of water, especially during hot Indian summers or after physical exertion.",
+      "Include traditional hydrating beverages such as salted buttermilk (chaas), fresh coconut water, and lemon water with a pinch of salt.",
+      "If advised by your doctor, increase your daily dietary salt moderately by adding a pinch of salt to curd, salads, or dal.",
+      "Eat smaller, more frequent meals. Large meals rich in refined carbohydrates (like large portions of white rice, naan, or sweets) divert excessive blood to the stomach, causing pressure drops.",
+      "Ensure adequate intake of iron and folate to prevent nutritional anemia: consume green leafy vegetables (palak, methi), lentils, chickpeas, eggs, and fortified grains.",
+      "Include vitamin B12 sources such as dairy products (milk, paneer, curd) or take supplements as advised by your doctor if following a strict vegetarian or vegan diet.",
+      "A small cup of caffeinated tea or filter coffee in the morning may provide a transient boost in blood pressure, but do not rely on caffeine as a substitute for proper hydration."
+    ],
+    "lifestyle": [
+      "Rise slowly from bed. Sit up on the edge of the mattress for 30 to 60 seconds before standing up completely.",
+      "Avoid standing completely motionless for prolonged periods, especially in queues or crowded buses. Shift your weight from one foot to the other.",
+      "Perform simple calf pumps (lifting your heels up and down) before getting up from a chair to get your circulation moving.",
+      "Wear medical-grade graduated compression stockings if recommended by your physician to reduce venous pooling in your calves.",
+      "Sleep with the head of your bed slightly elevated (by 10 to 15 centimeters) to prevent the kidneys from excreting excess fluid overnight.",
+      "Avoid taking very hot water baths, steam baths, or saunas, as high heat dilates blood vessels and can cause immediate fainting."
+    ],
+    "yogaActivity": [
+      "Gentle asanas such as Tadasana (Mountain Pose with heel raises), Virabhadrasana (Warrior Pose), and Setu Bandhasana (Bridge Pose) help build leg strength and venous return.",
+      "Viparita Karani (Legs-up-the-wall pose) allows pooled blood from the feet and lower limbs to flow back toward the heart and brain after a tiring day.",
+      "Practicing slow, controlled Pranayama such as Anulom Vilom and Ujjayi calms the autonomic nervous system and promotes healthy vascular reflexes.",
+      "Avoid rapid transitions from seated or inverted positions to standing poses. Move between asanas with deliberate, steady pacing.",
+      "Avoid practicing vigorous yoga or heavy workouts in unventilated, excessively hot rooms without adequate water breaks."
+    ],
+    "homeopathyNote": [
+      "There is no robust scientific or clinical evidence proving that homeopathic products can treat low blood pressure or prevent fainting episodes.",
+      "Relying solely on alternative globules during episodes of severe hypotension or shock can delay vital medical interventions.",
+      "If you explore complementary treatments, always inform your primary doctor and continue following all hydration, dietary, and medical guidelines."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Prompt fluid replacement, oral rehydration solutions, dietary salt adjustment in confirmed hypovolemia, and physical counter-pressure maneuvers reliably improve orthostatic symptoms.",
+      "Moderate evidence: The use of graduated compression garments and elevating the head of the bed effectively prevents blood pooling and morning postural drops.",
+      "Limited or weak evidence: Herbal remedies such as licorice, ginger, and ashwagandha show minimal high-quality clinical trial data for the definitive treatment of hypotension.",
+      "No credible evidence: Internet-marketed supplements or magic tonics promising to cure low blood pressure; no herb, diet or product can make it go away permanently without treating the primary cause."
+    ],
+    "shouldNotDo": [
+      "Do not stand up abruptly from a deep squat, bed, or low chair, as this triggers severe postural lightheadedness.",
+      "Do not self-prescribe large amounts of table salt without consulting a doctor, especially if you have a history of heart or kidney conditions.",
+      "Do not stop or alter prescribed high blood pressure medications on your own simply because a single reading is low; consult your physician.",
+      "Do not consume heavy, carb-heavy meals in a single sitting if you frequently feel dizzy after eating.",
+      "Do not stay in hot tubs, saunas, or under direct blazing sun without regular sips of water or electrolyte fluids.",
+      "Do not ignore frequent fainting or blacking out, assuming it is merely normal weakness."
+    ],
+    "medicationSafety": [
+      "If you are taking blood pressure medicines such as amlodipine, losartan, or diuretics, maintain a home blood pressure log and report repeated readings below 100/60 mmHg to your doctor.",
+      "Never double your dose or suddenly discontinue any cardiovascular drug without explicit medical supervision.",
+      "Be cautious with over-the-counter allergy tablets, muscle relaxants, or painkillers, as some can worsen autonomic instability or interact with your prescribed regimen.",
+      "Inform your physician immediately if you experience lightheadedness, cold sweats, or unsteadiness within an hour of taking your routine tablets."
+    ],
+    "complications": [
+      "Falls, bone fractures, and head injuries resulting from sudden fainting spells (syncope)",
+      "Transient ischemic attacks or reduced cerebral blood flow due to insufficient oxygen reaching the brain",
+      "Organ hypoperfusion: In severe acute drops, inadequate blood flow can cause temporary kidney or liver impairment",
+      "Severe shock: An untreated, critical drop in blood pressure can become life-threatening if oxygen cannot reach essential organs",
+      "Reduced quality of life and anxiety related to a fear of falling during routine daily activities"
+    ],
+    "emergencySigns": [
+      "Sudden loss of consciousness or fainting with an inability to wake up quickly",
+      "Systolic blood pressure falling below 80 mmHg accompanied by confusion, lethargy, or extreme drowsiness",
+      "Cold, pale, clammy skin with a rapid, weak, or fluttering pulse",
+      "Rapid, shallow breathing and blue or grey tint to the lips or nail beds",
+      "Low blood pressure occurring alongside chest pain, pressure, or shortness of breath",
+      "Signs of internal bleeding, such as vomiting blood or passing black, tarry stools"
+    ],
+    "whenToSeeDoctor": [
+      "You frequently experience dizzy spells, dimming vision, or unsteadiness when standing up from a chair or bed",
+      "Your blood pressure readings consistently stay below 90/60 mmHg and you feel tired, weak, or unable to concentrate",
+      "You have recently started a new medicine for blood pressure, prostate issues, or mood and now feel faint",
+      "You experience noticeable lightheadedness or nausea within an hour after having your lunch or dinner",
+      "You notice an unexplained slow pulse (below 50 beats per minute) along with persistent fatigue and low pressure"
+    ],
+    "faqs": [
+      {
+        "q": "Is a blood pressure reading of 90/60 mmHg always dangerous?",
+        "a": "No. Many young, healthy individuals and athletic gym-goers naturally have blood pressures around 90/60 mmHg without any symptoms. It only requires medical evaluation if it causes dizziness, fatigue, or fainting."
+      },
+      {
+        "q": "Should I drink salt water every time I feel dizzy?",
+        "a": "Drinking an oral rehydration solution (ORS) or lightly salted lemon water can help if you are dehydrated or have been sweating heavily. However, you should not consume excessive salt without medical advice, as it may strain your kidneys or heart if another medical issue exists."
+      },
+      {
+        "q": "Can dehydration during Indian summers cause low blood pressure?",
+        "a": "Yes. When you sweat excessively and do not replenish fluids, your total blood volume drops. This is one of the most common causes of postural dizziness and low readings during hot weather."
+      },
+      {
+        "q": "Why do I feel lightheaded right after a heavy meal?",
+        "a": "This is known as postprandial hypotension. After eating a large meal, especially one high in carbohydrates, blood shifts to your digestive system to aid digestion, causing a temporary dip in blood flow to the brain."
+      },
+      {
+        "q": "Can working out at the gym make low blood pressure worse?",
+        "a": "Exercise dilates your blood vessels. If you stop abruptly without cooling down, or if you do not drink enough water, your blood pressure can drop rapidly post-workout. Always cool down gradually and stay hydrated."
+      }
+    ],
+    "references": [
+      {
+        "title": "Low blood pressure (hypotension) - Symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/low-blood-pressure/symptoms-causes/syc-20355465",
+        "year": "2023"
+      },
+      {
+        "title": "Low blood pressure (hypotension)",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/low-blood-pressure-hypotension/",
+        "year": "2023"
+      },
+      {
+        "title": "Low Blood Pressure Overview",
+        "source": "National Heart, Lung, and Blood Institute (NIH)",
+        "url": "https://www.nhlbi.nih.gov/health/low-blood-pressure",
+        "year": "2022"
+      },
+      {
+        "title": "Orthostatic Hypotension: Management and Clinical Practice",
+        "source": "Cleveland Clinic",
+        "url": "https://my.clevelandclinic.org/health/diseases/9385-orthostatic-hypotension",
+        "year": "2024"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/downloads/DietaryGuidelinesforNINwebsite.pdf",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "dizziness",
+      "weakness",
+      "dehydration",
+      "anemia",
+      "vitamin-b12-deficiency",
+      "electrolyte-imbalance",
+      "heart-failure"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "amlodipine",
+      "losartan"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "ginger",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "creatinine",
+      "tsh",
+      "vitamin-b12",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

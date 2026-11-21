@@ -1,0 +1,314 @@
+{
+  "slug": "kidney-stones",
+  "name": "Kidney Stones",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Kidney stones (nephrolithiasis or renal calculi) are hard mineral deposits that form inside your kidneys when urine becomes too concentrated. Minerals and salts, most commonly calcium, oxalate, phosphate, or uric acid, crystallise and clump together into pebbles. They can be as tiny as a grain of sand or grow larger than a lemon seed, sometimes filling parts of the kidney drainage system. When a stone moves down into the narrow ureter—the thin tube connecting the kidney to the urinary bladder—it can block the flow of urine, stretching the kidney tissue and causing sudden, sharp, cramping back and flank pain known as renal colic. In India, kidney stone disease affects an estimated 12% of the population over their lifetime, with high rates observed across the central and northwestern 'stone belt' running through parts of Rajasthan, Gujarat, Maharashtra, Punjab, and Uttar Pradesh. Hot climates, heavy sweating, low fluid intake, and high-salt diets make concentrated urine much more common. Most small stones pass naturally with water and medical support, but larger or obstructing stones need timely clinical evaluation to protect kidney function.",
+    "quickFacts": [
+      {
+        "label": "Lifetime risk in India",
+        "value": "Around 12% of the population develops kidney stones (AIIMS and ICMR reviews)"
+      },
+      {
+        "label": "Most common type",
+        "value": "Calcium oxalate stones (making up roughly 70% to 80% of all stones)"
+      },
+      {
+        "label": "Primary trigger",
+        "value": "Dehydration and low daily urine volume"
+      },
+      {
+        "label": "Recurrence rate",
+        "value": "Up to 50% recur within 5 to 10 years without preventive dietary changes"
+      },
+      {
+        "label": "Usual pain site",
+        "value": "Severe, wave-like pain in the lower back or side, radiating to the groin"
+      },
+      {
+        "label": "Diagnostic gold standard",
+        "value": "Non-contrast CT scan of the abdomen and pelvis (NCCT KUB)"
+      }
+    ],
+    "causes": [
+      "Not drinking enough water. In warm Indian weather or during intense gym workouts, heavy sweating causes concentrated urine. Low urine output gives dissolved minerals time to stick together and crystallise.",
+      "Too much dietary salt. Excess sodium from pickles, papads, namkeens, processed snacks, and table salt forces the kidneys to dump more calcium into the urine (hypercalciuria), directly feeding stone formation.",
+      "Excess animal protein. Diets heavy in mutton, chicken, organ meats, or fish increase uric acid levels, lower urinary pH, and reduce citrate, which is the natural chemical inhibitor that stops crystals from growing.",
+      "High-oxalate food overload without dietary calcium. Foods like spinach (palak), beetroot (chukandar), nuts, dark chocolate, and black tea are rich in oxalate. If eaten without calcium in the same meal, free oxalate gets absorbed into the bloodstream and binds with calcium inside the kidneys.",
+      "Low intake of dietary calcium. Contrary to popular belief, cutting out dairy worsens calcium oxalate stones. When gut calcium is too low, oxalates are freely absorbed into the blood instead of passing harmlessly in the stool.",
+      "Metabolic disorders and obesity. Insulin resistance, type 2 diabetes, and high body weight alter urine pH and raise excretion of uric acid and oxalate.",
+      "High uric acid and gout. Elevated blood uric acid levels cause acidic urine (pH below 5.5), where uric acid crystals easily precipitate into stones.",
+      "Family history and genetics. Having a first-degree relative with kidney stones significantly raises your personal risk due to shared genes and household dietary habits.",
+      "Medical conditions and surgeries. Hyperparathyroidism, chronic urinary tract infections, distal renal tubular acidosis, inflammatory bowel disease, and prior bariatric surgery alter mineral absorption and clearance.",
+      "Medications and unguided supplements. Excessive vitamin C supplementation, high-dose unprescribed calcium pills taken without food, certain diuretics, and certain antacids increase crystallization risk."
+    ],
+    "types": [
+      {
+        "name": "Calcium Oxalate Stones",
+        "desc": "The most frequent stone type, accounting for roughly 70% to 80% of cases. They develop when calcium binds to oxalate in concentrated urine, often driven by low water intake, high dietary salt, and metabolic imbalances."
+      },
+      {
+        "name": "Calcium Phosphate Stones",
+        "desc": "These form in alkaline urine (high pH), often linked to metabolic or kidney conditions such as renal tubular acidosis or overactive parathyroid glands (hyperparathyroidism)."
+      },
+      {
+        "name": "Uric Acid Stones",
+        "desc": "Forming in persistently acidic urine, these account for 8% to 10% of stones. Common in people who eat excessive purine-rich animal proteins, carry excess visceral weight, or manage gout and metabolic syndrome."
+      },
+      {
+        "name": "Struvite Stones (Infection Stones)",
+        "desc": "Caused by upper urinary tract infections with bacteria that produce the urease enzyme. They can grow rapidly into large 'staghorn' shapes that fill the entire kidney, often with minimal early pain."
+      },
+      {
+        "name": "Cystine Stones",
+        "desc": "A rare stone type caused by an inherited genetic defect (cystinuria) that makes the kidneys leak excessive amounts of the amino acid cystine into the urine."
+      }
+    ],
+    "diagnosis": [
+      "Clinical assessment: Your doctor reviews the exact location, timing, and nature of your pain, along with your fluid habits, diet, and history of past stones or fever.",
+      "Physical examination: Checking for severe tenderness at the costovertebral angle (the renal angle on your back below the ribs) and ruling out acute appendicitis, gallstones, or reproductive emergencies.",
+      "Imaging confirmation: A non-contrast computed tomography scan of the kidneys, ureters, and bladder (NCCT KUB) is the gold standard imaging test. It detects even tiny stones, shows their exact size and position, and checks for swelling (hydronephrosis).",
+      "Ultrasound KUB: Often used as an initial radiation-free imaging tool, especially in pregnant women, young people, or for routine follow-up, though it can miss small ureteric stones.",
+      "X-ray KUB: Sometimes used to monitor known calcium-based radio-opaque stones, but misses uric acid stones completely.",
+      "Laboratory evaluation: Routine urine tests and blood kidney function markers help detect infection, microscopic blood, and kidney strain.",
+      "Metabolic stone workup: For repeat stone formers, doctors analyze passed stones and collect 24-hour urine to measure total volume, calcium, oxalate, citrate, uric acid, sodium, and creatinine."
+    ],
+    "investigations": [
+      {
+        "test": "NCCT KUB (Non-contrast CT of Kidneys, Ureters, Bladder)",
+        "purpose": "Detects stone size, location, stone density, and checks for urinary blockage or kidney swelling"
+      },
+      {
+        "test": "Ultrasound KUB",
+        "purpose": "Safely checks for kidney swelling (hydronephrosis) and detects larger kidney stones without radiation"
+      },
+      {
+        "test": "Urine routine and microscopy",
+        "purpose": "Identifies microscopic blood (hematuria), pus cells suggesting infection, urine pH, and mineral crystals",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Evaluates baseline kidney function and catches acute kidney injury caused by stone blockage",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Measures circulating uric acid levels to detect underlying hyperuricemia and evaluate uric acid stone risk",
+        "slug": "uric-acid"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks white blood cell counts to rule out systemic infection or developing sepsis behind an obstruction",
+        "slug": "cbc"
+      },
+      {
+        "test": "Stone Analysis (spectroscopy or diffraction)",
+        "purpose": "Determines exact mineral composition of a recovered stone to guide long-term preventive treatment"
+      },
+      {
+        "test": "24-Hour Urine Metabolic Profile",
+        "purpose": "Quantifies total daily volume, calcium, oxalate, citrate, uric acid, and sodium to tailor lifestyle and drug prevention"
+      }
+    ],
+    "modernTreatment": [
+      "Medical Expulsive Therapy (MET): For small stones (typically under 5 to 6 mm) without severe blockage or infection, doctors often prescribe alpha-blockers like tamsulosin. These medications relax the smooth muscle of the lower ureter, helping the stone pass naturally with less pain.",
+      "Pain management: Intravenous or oral non-steroidal anti-inflammatory drugs (NSAIDs) or paracetamol are used as advised by your doctor to reduce ureteral spasm and inflammation. Adequate hydration is maintained, but excessive force-drinking during acute colic is avoided as it can worsen kidney swelling.",
+      "Extracorporeal Shock Wave Lithotripsy (ESWL): A non-invasive procedure that directs focused shock waves from outside the body to crumble kidney stones into fine sand, which then passes through the urine over the following weeks. Ideal for smaller, softer kidney stones.",
+      "Ureteroscopy (URS) and Retrograde Intrarenal Surgery (RIRS): A thin, flexible scope is guided up through the bladder into the ureter or kidney. A holmium or thulium laser then fragments the stone into dust or tiny pieces that are extracted with a miniature basket.",
+      "Percutaneous Nephrolithotomy (PCNL): A minimally invasive surgical procedure for large stones (over 2 cm) or complex staghorn calculi. The surgeon makes a small puncture on your back to enter the kidney directly, break the stone, and suction it out.",
+      "Emergency decompression: If a stone blocks urine flow and is accompanied by an active infection or rising creatinine, doctors urgently place a ureteral DJ stent or a percutaneous nephrostomy tube to drain the trapped urine before treating the stone itself.",
+      "Long-term preventive medications: Depending on metabolic tests, doctors may prescribe potassium citrate to alkalize urine and raise protective citrate, thiazide diuretics to lower urine calcium, or allopurinol to lower uric acid production."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, kidney stones are discussed under the broad concept of Ashmari (calculi), classified according to the predominant doshas involved: Vataja, Pittaja, Kaphaja, and Shukraja ashmari.",
+      "Ayurvedic texts describe how vitiated vata dries up kapha and semen or urine in the urinary channels (mutravaha srotas), leading to the gradual crystallization and consolidation of stones.",
+      "Traditional supportive approaches focus on enhancing urine output (mutral dravyas), reducing burning sensations, and calming spasmodic discomfort alongside standard medical care.",
+      "While traditional remedies have a long cultural history in India, they cannot replace emergency medical or surgical intervention when a stone is causing acute urinary obstruction, kidney swelling, or infection.",
+      "Modern urological guidelines emphasize that herbal products must be taken only with your doctor's explicit knowledge, as unverified preparations can carry heavy metals or interact negatively with kidney clearance."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Frequently used in Indian households to calm nausea associated with renal colic. Scientific evidence for stone dissolution is lacking, so it serves only as gentle digestive comfort."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil contains trace amounts of acetic acid and antioxidants. Small laboratory models suggest it may support urinary health, but high-quality human trials showing stone dissolution do not exist."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Indian gooseberry is rich in natural antioxidants and acts as a mild dietary diuretic. However, because it contains vitamin C, very high supplement doses must be avoided by calcium oxalate stone formers."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin with mild anti-inflammatory properties. Because turmeric is moderately high in soluble oxalates, concentrated extracts should not be used without a physician's guidance."
+      }
+    ],
+    "nutrition": [
+      "Drink enough fluids to produce at least 2 to 2.5 litres of clear or pale-straw urine every day. In hot Indian summers or during gym sessions, this usually means drinking 3 to 3.5 litres of water spread evenly across the day and night.",
+      "Cut your salt intake to under 5 g per day (less than one level teaspoon total). Avoid store-bought pickles (aachar), papads, salted namkeens, chips, instant noodles, and packaged spice mixes, as high sodium directly pulls calcium into the urine.",
+      "Do not stop eating calcium. Have 2 to 3 servings of natural dairy daily, such as home-set curd (dahi), low-fat paneer, or milk. Eating calcium-rich foods alongside meals binds dietary oxalate in your intestines so it leaves in your stool instead of entering your kidneys.",
+      "Be mindful of ultra-high-oxalate foods if you have had calcium oxalate stones. Avoid gorging on raw spinach (palak), beetroot, amaranth leaves (chaulai), star fruit, cashew nuts, and dark chocolate. When you do cook greens, boiling and discarding the cooking water helps reduce oxalate content.",
+      "Add fresh lemon or amla juice to your daily water. Lemons contain natural citrate, which binds to urinary calcium and prevents crystals from grouping together into stones.",
+      "Moderate your intake of animal protein. Keep portions of red meat, mutton, chicken, and seafood modest, balancing your meals with vegetarian protein sources like lentils (dal), moong, rajma, and chickpeas.",
+      "Avoid sugary sodas, colas, and drinks sweetened with high-fructose corn syrup. Fructose increases calcium, oxalate, and uric acid excretion while reducing urine pH.",
+      "Limit extra, unprescribed vitamin C supplements. The human body metabolises excess ascorbic acid into oxalate, raising the risk of stone formation."
+    ],
+    "lifestyle": [
+      "Keep a water bottle nearby at all times, including at your gym, office desk, and bedside. Drink a glass of water before going to sleep and whenever you wake up during the night to prevent morning urine concentration.",
+      "Weigh yourself regularly and aim for a healthy body mass index. Excess abdominal weight and metabolic syndrome change urinary acidity and promote uric acid stone formation.",
+      "Stay physically active with regular brisk walking, cycling, or gym training. Sedentary lifestyles can promote bone mineral loss, sending extra calcium through the kidneys.",
+      "Replace heavy fluid losses immediately after exercise. If you sweat heavily during workouts or outdoor sports in hot weather, drink water or electrolyte-balanced fluids right away to prevent acute urine concentration.",
+      "Check the colour of your urine throughout the day. A dark yellow or amber tint indicates you are dehydrated and need to drink water immediately.",
+      "Avoid holding your urine for prolonged periods. Empty your bladder regularly to prevent mineral stagnation and reduce your risk of urinary tract infections."
+    ],
+    "yogaActivity": [
+      "Gentle asanas like Bhujangasana (Cobra Pose), Dhanurasana (Bow Pose), and Pawanmuktasana (Wind-Relieving Pose) help stretch the abdominal and flank muscles, improving local blood flow during recovery periods.",
+      "Ustrasana (Camel Pose) and Setu Bandhasana (Bridge Pose) gently mobilize the pelvic and lumbar regions. Practice them gently only when you are entirely free of acute pain.",
+      "Cooling and calming breathing practices such as Anulom Vilom (alternate nostril breathing) and Shitali pranayama help ease stress and muscle tension without straining the kidneys.",
+      "Never attempt intense twists, deep abdominal contractions, or rigorous inverted poses during an episode of acute renal colic or while a large stone is lodged in your ureter.",
+      "Always consult your treating urologist before resuming strenuous workouts, core training, or advanced yoga if you have an active stone or an indwelling DJ stent."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are frequently marketed online with claims that they rapidly dissolve or melt large kidney stones without surgery.",
+      "There is no rigorous, high-quality scientific or clinical trial evidence proving that homeopathic remedies can dissolve mineralized kidney stones or relieve acute urinary obstructions.",
+      "Relying on unproven drops or pills while a stone blocks the ureter can lead to irreversible kidney damage, silent renal failure, and life-threatening bacterial infections."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Increasing fluid intake to maintain urine output above 2.5 litres per day reduces the risk of stone recurrence by almost 50% in randomized clinical trials.",
+      "Strong evidence: Restricting dietary sodium (under 2,000 mg sodium or 5 g salt daily) and avoiding excess animal protein significantly lowers urinary calcium excretion and recurrent stone formation.",
+      "Strong evidence: Medical Expulsive Therapy with alpha-blockers like tamsulosin increases the spontaneous passage rate of distal ureteral stones measuring between 5 mm and 10 mm.",
+      "Strong evidence: Advanced urological interventions such as shock wave lithotripsy (ESWL), ureteroscopy (RIRS), and PCNL achieve stone clearance rates above 85% to 90% when appropriately selected.",
+      "Moderate evidence: Drinking fresh lemon juice or taking prescription potassium citrate raises urinary citrate and increases urine pH, effectively preventing new stone formation.",
+      "No credible evidence: Herbal concoctions, detox juices, or homeopathic preparations that claim to melt or magically dissolve solid calcium oxalate stones."
+    ],
+    "shouldNotDo": [
+      "Do not stop consuming milk, curd, or calcium-rich foods because you have a calcium stone. Cutting dietary calcium causes more oxalate to enter your bloodstream, which actually increases stone formation.",
+      "Do not ignore severe back or side pain, especially if it comes with vomiting, shivering, or fever.",
+      "Do not take high doses of over-the-counter painkillers like diclofenac or ibuprofen repeatedly for days without a doctor's advice, as they can cause severe acute kidney damage, particularly when you are dehydrated.",
+      "Do not take high-dose unprescribed vitamin C tablets or excessive calcium supplements between meals.",
+      "Do not believe advertisements claiming that a special syrup, stone-breaker powder, or juice will permanently cure your stones; no herb, diet or product can make it go away without proper medical management.",
+      "Do not skip follow-up imaging after acute pain subsides. Sometimes pain stops because the kidney has stopped functioning behind a completely blocked ureter, creating a silent emergency."
+    ],
+    "medicationSafety": [
+      "Take prescribed pain relievers and alpha-blockers strictly as advised by your doctor, and report any dizziness or lightheadedness when standing up.",
+      "If your doctor prescribes potassium citrate liquid or tablets, dilute or take them with plenty of water after meals to prevent stomach irritation.",
+      "Inform your physician of all supplements you take, including gym protein powders, creatine, calcium pills, and multivitamins.",
+      "If you take medications for blood pressure or diabetes (such as losartan, amlodipine, or metformin), ensure your doctor checks your kidney function (creatinine) before starting anti-inflammatory painkillers.",
+      "Complete any prescribed antibiotic course fully if your kidney stone was complicated by a urinary tract infection."
+    ],
+    "complications": [
+      "Hydronephrosis: Severe swelling and stretching of the kidney caused by trapped urine behind a blocked ureter.",
+      "Urinary tract infection (UTI) and pyelonephritis: Stagnant urine behind a stone acts as a breeding ground for bacteria, leading to severe kidney infections.",
+      "Urosepsis: A life-threatening systemic infection caused by bacteria spreading from an obstructed, infected kidney into the bloodstream.",
+      "Permanent kidney damage and loss of function: Prolonged, uncorrected blockage of the ureter gradually destroys functioning nephrons, leading to high creatinine and chronic kidney disease.",
+      "Ureteral stricture: Scarring and narrowing of the ureter after prolonged inflammation or trauma from an impacted, jagged stone.",
+      "Chronic or recurrent pain: Frequent hospitalizations and repeated surgical procedures that disrupt work, family life, and physical fitness."
+    ],
+    "emergencySigns": [
+      "Severe, excruciating back, side, or lower stomach pain that does not ease with rest or position changes, accompanied by continuous vomiting",
+      "Fever above 100.4°F (38°C) with shaking chills and rigors alongside back or groin pain, signaling a life-threatening obstructed infected kidney",
+      "Inability to pass urine, passing only drops, or a feeling of complete urinary blockage",
+      "Passing visible bright red blood or large clots in your urine",
+      "Sudden dizziness, confusion, clammy skin, or fainting during a stone episode (warning signs of impending septic shock)"
+    ],
+    "whenToSeeDoctor": [
+      "You have persistent, dull, or nagging flank pain on one side that lasts for several days",
+      "You notice pink, brown, or smoky discoloration in your urine",
+      "You experience burning, stinging, or an unusually frequent urge to urinate",
+      "You have previously passed a kidney stone and want a metabolic evaluation to prevent recurrence",
+      "Your routine health checkup or ultrasound shows incidental kidney stones or mild hydronephrosis"
+    ],
+    "faqs": [
+      {
+        "q": "Should I stop drinking milk and eating paneer if I have calcium stones?",
+        "a": "No, absolutely not. Cutting out dietary calcium actually increases your risk of forming calcium oxalate stones. When you eat calcium-rich foods like curd or milk with your meals, calcium binds to oxalate in your stomach and intestines. This allows the oxalate to be eliminated safely through your stool rather than being absorbed into your bloodstream and filtered into your kidneys. Aim for standard dietary calcium from natural foods, but avoid high-dose calcium pills unless your doctor specifically recommends them with food."
+      },
+      {
+        "q": "Can beer dissolve kidney stones?",
+        "a": "No. Beer does not dissolve kidney stones. While beer acts as a diuretic and increases urine volume for a short period, it dehydrates you afterwards. Beer is also rich in purines, which can raise uric acid levels in your blood and urine, promoting uric acid stones. Plain water, lemon water, and tender coconut water are far healthier, safer, and more effective choices."
+      },
+      {
+        "q": "Does drinking tomato juice or eating tomatoes cause kidney stones?",
+        "a": "Tomatoes contain modest amounts of oxalate, but they are not the primary cause of stones for most people. The seeds of tomatoes also do not directly turn into kidney stones. For the vast majority of individuals, eating fresh tomatoes in everyday Indian cooking is safe, provided you drink adequate water and keep your salt intake low. If you are diagnosed with severe hyperoxaluria, your clinical dietitian will advise you on specific portion sizes."
+      },
+      {
+        "q": "How long does it take for a small kidney stone to pass on its own?",
+        "a": "Small stones under 4 mm to 5 mm often pass within one to four weeks if you stay well hydrated and use medical expulsive therapy prescribed by your doctor. However, your physician must monitor your progress with repeat scans to ensure the stone is moving and is not quietly blocking urine flow or damaging your kidney."
+      },
+      {
+        "q": "Why are kidney stones so common in India?",
+        "a": "India sits in a tropical and subtropical climate zone where high ambient temperatures cause significant sweating and dehydration, leading to concentrated urine. In addition, average Indian diets often contain double the recommended daily salt intake (due to pickles, papads, and namkeens), combined with low fluid intake during work hours. These environmental and dietary factors create the ideal environment for minerals to crystallize into stones."
+      }
+    ],
+    "references": [
+      {
+        "title": "Surgical Management of Stones: American Urological Association/Endourological Society Guideline",
+        "source": "Journal of Urology (Assimos D et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27086080/",
+        "year": "2016"
+      },
+      {
+        "title": "Kidney Stones: Medical and Surgical Management",
+        "source": "Mayo Clinic Proceedings (Pearle MS et al.)",
+        "url": "https://www.mayoclinic.org/diseases-conditions/kidney-stones/symptoms-causes/syc-20355755",
+        "year": "2022"
+      },
+      {
+        "title": "Dietary and Lifestyle Management of Kidney Stones",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/kidney-stones/eating-diet-nutrition",
+        "year": "2021"
+      },
+      {
+        "title": "Epidemiology of urolithiasis in India: An update",
+        "source": "Indian Journal of Urology (Tandon S et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20418991/",
+        "year": "2010"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "chronic-kidney-disease",
+      "urinary-tract-infection",
+      "kidney-infection",
+      "kidney-health",
+      "high-blood-pressure",
+      "type-2-diabetes",
+      "gout",
+      "dehydration"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "tulsi",
+      "amla",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "creatinine",
+      "urine-routine",
+      "uric-acid",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

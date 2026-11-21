@@ -1,0 +1,273 @@
+{
+  "slug": "gerd",
+  "name": "GERD (Acid Reflux Disease)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Gastroesophageal reflux disease, commonly called GERD, is a chronic condition where stomach acid, digestive juices, and food contents repeatedly rise back up into the food pipe (esophagus). In normal digestion, a small muscular ring at the lower end of the food pipe—called the lower esophageal sphincter (LES)—acts like a one-way valve. It opens to let swallowed food enter the stomach and clamps shut immediately to keep acid inside. In people with GERD, this muscular ring weakens or relaxes at the wrong times. Because the delicate lining of the esophagus lacks the thick protective mucus layer found inside the stomach, repeated exposure to strong stomach acid causes burning pain, inflammation, and cellular injury. While nearly everyone experiences occasional mild acidity after a heavy or spicy meal, GERD is diagnosed when acid reflux happens regularly—typically twice a week or more—or causes uncomfortable symptoms and tissue damage that disrupt daily living and sleep. In India, fast-changing food habits, late-night dinners, rising body weight, and high consumption of fried snacks have made GERD an increasingly common digestive complaint across both urban and rural communities.",
+    "quickFacts": [
+      {
+        "label": "What it is",
+        "value": "A chronic digestive disorder where stomach acid repeatedly washes back into the food pipe"
+      },
+      {
+        "label": "Key symptoms",
+        "value": "Burning in the chest (heartburn), sour acid burps, and regurgitation of food"
+      },
+      {
+        "label": "India prevalence",
+        "value": "Between 7.6% and 22.2% of Indian adults report frequent reflux symptoms in epidemiological surveys"
+      },
+      {
+        "label": "Common trigger",
+        "value": "Eating heavy, oily dinners late at night and lying down within two hours of eating"
+      },
+      {
+        "label": "Standard medical therapy",
+        "value": "Acid-suppressing medicines (such as PPIs) combined with targeted lifestyle and dietary corrections"
+      },
+      {
+        "label": "Critical rule",
+        "value": "Always rule out heart problems first; severe chest burning must never be casually dismissed as gas"
+      }
+    ],
+    "causes": [
+      "Weakness or inappropriate relaxation of the lower esophageal sphincter (LES), permitting acidic contents to splash upward into the unprotected food pipe.",
+      "Excess body weight and abdominal fat, which pushes against the stomach and increases intra-abdominal pressure, forcing acid upward.",
+      "Late-night eating habits common in Indian households, where large dinners are consumed shortly before going to sleep.",
+      "Frequent consumption of high-fat, deep-fried snacks such as samosas, pakoras, bhajis, and rich oily gravies, which delay stomach emptying.",
+      "High intake of caffeinated beverages, including multiple cups of strong masala chai, filter coffee, or carbonated soft drinks throughout the day.",
+      "Hiatal hernia, an anatomical condition where the upper part of the stomach pushes upward through the diaphragm muscle into the chest cavity.",
+      "Smoking, bidi use, and tobacco chewing, which directly weaken the muscular tone of the esophagus valve and dry up protective saliva.",
+      "Certain medications, including routine over-the-counter painkillers (NSAIDs like ibuprofen), calcium channel blockers, and sedatives that relax smooth muscle.",
+      "Pregnancy, due to elevated progesterone levels relaxing the digestive sphincter combined with physical pressure from the growing baby against the stomach."
+    ],
+    "types": [
+      {
+        "name": "Non-Erosive Reflux Disease (NERD)",
+        "desc": "The most common form of GERD, representing about 60% to 70% of cases. Patients experience frequent and distressing heartburn or acid regurgitation, but an upper endoscopy shows no visible breaks, redness, or ulcers in the esophagus lining."
+      },
+      {
+        "name": "Erosive Esophagitis",
+        "desc": "A form of GERD where stomach acid has caused visible physical injury to the esophageal surface. Doctors see distinct redness, mucosal breaks, erosions, or raw ulcers during an endoscopic camera examination."
+      },
+      {
+        "name": "Extra-Esophageal GERD (Atypical Reflux)",
+        "desc": "Reflux that travels beyond the food pipe into the throat, voice box, airways, or mouth. It often presents without classic heartburn, showing up instead as chronic dry cough, hoarseness, throat clearing, unexplained asthma worsening, or eroded dental enamel."
+      },
+      {
+        "name": "Barrett's Esophagus",
+        "desc": "A serious, long-term complication where continuous acid injury forces the normal pink squamous lining of the esophagus to be replaced by gland-like cells similar to the intestine lining. It carries a small risk of developing into esophageal adenocarcinoma and requires regular medical surveillance."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical assessment: In many straightforward cases, a doctor identifies GERD based on classic symptoms like frequent heartburn and acid regurgitation occurring after meals or while lying down.",
+      "Empirical PPI trial: Doctors often prescribe a short course of an acid-reducing medicine (like omeprazole or pantoprazole) for two to four weeks. Marked symptom relief strongly supports the diagnosis of acid-related disease.",
+      "Red-flag screening: Patients over 50 years of age or those with difficulty swallowing, painful swallowing, anemia, weight loss, or persistent vomiting require prompt diagnostic testing rather than trial medication.",
+      "Upper gastrointestinal endoscopy: A flexible camera tube is guided down the throat to look directly at the lining of the food pipe and stomach, check for inflammation, grade esophagitis, or take tissue samples.",
+      "Esophageal 24-hour pH or impedance monitoring: A small probe or wireless capsule measures how often and for how long acid enters the food pipe over a full day, identifying reflux that does not respond to standard care.",
+      "Esophageal manometry: A test that measures the rhythmic muscle contractions and closing pressure of the food pipe, usually performed before anti-reflux surgery to rule out movement disorders like achalasia."
+    ],
+    "investigations": [
+      {
+        "test": "Upper GI Endoscopy (Esophagogastroduodenoscopy)",
+        "purpose": "Direct visual inspection of the esophageal lining to identify erosions, ulcers, strictures, hiatal hernia, or Barrett's esophagus"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Evaluates hemoglobin levels to detect hidden blood loss or chronic iron deficiency anemia resulting from bleeding esophageal ulcers",
+        "slug": "cbc"
+      },
+      {
+        "test": "Ambulatory 24-Hour Esophageal pH Monitoring",
+        "purpose": "Calculates the exact total acid exposure time in the lower esophagus over a 24-hour period to confirm reflux in doubtful cases"
+      },
+      {
+        "test": "High-Resolution Esophageal Manometry",
+        "purpose": "Evaluates the strength, coordination, and resting pressure of the lower esophageal sphincter muscle"
+      }
+    ],
+    "modernTreatment": [
+      "Foundational lifestyle and dietary changes: Weight management, meal timing, and head-end elevation are implemented first and continued alongside all medical therapies.",
+      "Proton Pump Inhibitors (PPIs): Medicines such as omeprazole and pantoprazole represent the cornerstone of modern treatment. They turn off the stomach's acid pumps, providing rapid symptom control and allowing inflamed tissue to heal.",
+      "Histamine H2-Receptor Antagonists (H2 blockers): Drugs like famotidine reduce acid output and may be used for milder cases or as add-on therapy for nighttime acid breakthrough.",
+      "Alginate-based formulations and antacids: Provide fast, temporary physical barriers or neutralize existing acid for immediate relief after trigger meals, though they do not heal tissue erosions.",
+      "Step-down therapy strategy: Once symptoms are completely controlled for four to eight weeks, doctors gradually taper the medication to the lowest effective dose or switch to on-demand use.",
+      "Anti-reflux surgery (such as laparoscopic Nissen fundoplication): Considered for carefully selected patients with documented severe reflux, large hiatal hernias, or those who cannot tolerate daily medication long-term."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, symptoms resembling GERD are traditionally evaluated under the concept of 'Amlapitta'. In this traditional framework, Pitta dosha becomes aggravated and increases in sourness (amla) and burning heat (vidahi), affecting the upper digestive tract.",
+      "Traditional Ayurvedic concepts describe digestion (Agni) as impaired, leading to the accumulation of poorly digested metabolic residues (Ama) that irritate the gut lining.",
+      "Classical management emphasizes pacifying hot and sharp qualities by favoring sweet, bitter, and astringent tastes while avoiding sour, salty, and excessively spicy preparations.",
+      "Ayurvedic concepts are traditional philosophies and must not be used as clinical substitutes for medical diagnosis or standard gastrointestinal care. Always inform your treating doctor before taking any commercial Ayurvedic digestive blends."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Yashtimadhu)",
+        "slug": "licorice",
+        "note": "Traditionally used to soothe the gut lining. Deglycyrrhizinated licorice (DGL) is preferred because regular licorice taken in high amounts can elevate blood pressure. It offers mild supportive relief alongside medical care."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "A traditional fruit valued for its cooling qualities. Small clinical trials suggest amla extract may help reduce the frequency of heartburn in non-erosive reflux, but scientific evidence remains modest."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Known to support gastric motility and reduce nausea in mild amounts. However, concentrated ginger supplements or spicy ginger teas can irritate an already inflamed esophagus and worsen acid burn."
+      }
+    ],
+    "nutrition": [
+      "Eat smaller, more frequent meals rather than two or three enormous thalis. Overfilling the stomach stretches the stomach wall and forces the lower valve open.",
+      "Finish dinner at least three hours before lying down to sleep. Gravity keeps acid in your stomach while you are upright, giving your food time to clear.",
+      "Cut down on high-fat, deep-fried Indian foods like samosas, kachoris, pakoras, puris, and rich creamy curries. Fats slow down stomach emptying and keep acid in the stomach longer.",
+      "Limit acidic and irritating foods, including excessive raw onions, garlic-heavy pastes, concentrated tomato gravies, hot green chillies, and sour pickles (achaar).",
+      "Reduce daily consumption of strong milk tea (cutting chai), filter coffee, and carbonated beverages, all of which stimulate acid production and relax the digestive valve.",
+      "Choose easily digestible, traditional home-cooked foods such as soft moong dal khichdi, steamed idlis, oats, boiled vegetables, bottle gourd (lauki), ridge gourd (turai), and cooling tender coconut water.",
+      "Drink water between meals rather than gulping large tumblers of water during your meal, which over-distends the stomach."
+    ],
+    "lifestyle": [
+      "Elevate the head of your bed by 6 to 8 inches using sturdy wooden blocks under the bedposts or a specialized medical wedge pillow. Stacking extra soft pillows bends your neck and compresses your abdomen, worsening reflux.",
+      "Maintain a healthy body weight. Even a modest loss of 3 to 5 kilos significantly lowers abdominal pressure and improves reflux symptoms in overweight adults.",
+      "Avoid wearing tight clothes, tight belts, or constricting saree petticoat strings around the waist, as external compression pushes stomach acid upward.",
+      "Stop all forms of tobacco use, including cigarettes, bidis, gutka, and paan masala. Nicotine relaxes the esophagus sphincter and cuts saliva production.",
+      "Chew your food slowly and deliberately in a calm environment. Rushed eating causes air swallowing (aerophagia), which leads to belching and acid reflux.",
+      "Take a gentle, slow 10-minute stroll after meals instead of collapsing immediately onto the sofa or bed."
+    ],
+    "yogaActivity": [
+      "Adopt Vajrasana (Thunderbolt Pose) for 10 to 15 minutes after light meals. This upright kneeling posture supports natural posture and healthy stomach settling.",
+      "Practice cooling and calming pranayama techniques such as Sheetali, Sheetkari, and Anulom Vilom (alternate nostril breathing) to help downregulate stress, which strongly amplifies esophageal pain sensitivity.",
+      "Incorporate gentle morning stretches such as Tadasana (Mountain Pose), Marjaryasana-Bitilasana (Cat-Cow Pose), and gentle forward release to release abdominal tension.",
+      "Avoid forceful abdominal breathing techniques like Kapalabhati and rapid Bhastrika if you have active acid reflux, as sharp upward abdominal thrusts force acid into the throat.",
+      "Strictly avoid inverted postures (Sirshasana, Sarvangasana, or deep downward dog) within three hours of eating, as gravity will instantly cause stomach contents to flow back into the mouth."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence showing that homeopathic preparations can repair damaged esophageal tissue, eliminate acid reflux, or prevent GERD complications.",
+      "If you choose to explore homeopathic remedies, you must never discontinue prescribed acid-suppressing medicines or skip recommended diagnostic endoscopies without your doctor's explicit advice."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Weight reduction, elevating the head of the bed, avoiding meals within three hours of bedtime, and medical acid suppression with proton pump inhibitors (PPIs) consistently heal esophagitis and relieve symptoms.",
+      "Moderate evidence: Eliminating specific individualized food triggers (such as coffee, chocolate, or high-fat meals) improves symptoms in sensitive individuals, though universal dietary bans are not necessary for all.",
+      "Limited evidence: Herbal remedies such as deglycyrrhizinated licorice (DGL), amla powder, and cooling herbal concoctions show modest symptom relief in small pilot studies, but lack large-scale verification.",
+      "No scientific evidence: Online health blogs frequently promote drinking raw apple cider vinegar or baking soda solutions to 'cure' acid reflux; raw vinegar can cause severe burns to an already inflamed esophagus, and baking soda can disrupt body electrolytes."
+    ],
+    "shouldNotDo": [
+      "Do not lie down, recline on a sofa, or take a nap right after lunch or dinner.",
+      "Do not assume severe chest pain or burning is 'just acidity'—always obtain medical evaluation to ensure it is not a heart attack.",
+      "Do not self-medicate continuously with over-the-counter antacid tablets or chewables for months without a doctor's guidance.",
+      "Do not suddenly stop prescription PPI medications if you have been taking them for a long time; rapid stoppage can trigger an intense rebound acid surge.",
+      "Do not drink raw apple cider vinegar or lemon juice shots on an empty stomach based on internet fads.",
+      "Do not perform heavy deadlifts, intense abdominal crunches, or inverted yoga poses soon after a meal."
+    ],
+    "medicationSafety": [
+      "Take proton pump inhibitors (such as omeprazole or pantoprazole) exactly as advised by your doctor—typically once daily, 30 to 60 minutes before the first meal of the day, as they require active stomach acid pumps to work effectively.",
+      "Inform your physician if you have taken PPIs continuously for over one year; long-term high-dose use may require checking vitamin B12, magnesium, and bone density.",
+      "Never combine prescription acid reducers with over-the-counter herbal cleansers or unregulated digestive churnas without informing your healthcare provider.",
+      "If your doctor recommends tapering off your medicine, follow a gradual schedule over several weeks to avoid rebound acid hypersecretion.",
+      "If you are pregnant or breastfeeding, discuss your reflux symptoms with your obstetrician; certain antacids and acid reducers are safer than others during pregnancy."
+    ],
+    "complications": [
+      "Erosive esophagitis: Raw, painful sores and open ulcers in the lining of the food pipe that can bleed.",
+      "Esophageal stricture: Chronic acid scarring that narrows the food pipe, making it difficult or impossible to swallow solid food.",
+      "Barrett's esophagus: Precancerous cellular changes in the lower esophagus resulting from years of unbuffered acid exposure.",
+      "Respiratory issues: Inhalation of micro-droplets of acid into the lungs, triggering adult-onset asthma, chronic bronchitis, or aspiration pneumonia.",
+      "Chronic laryngitis and vocal cord damage: Constant acid irritation leading to persistent hoarseness, throat tickling, and loss of voice.",
+      "Severe dental erosion: Acid traveling up to the oral cavity, dissolving tooth enamel and causing decay."
+    ],
+    "emergencySigns": [
+      "Heavy, squeezing, crushing chest pain, pressure, or tightness spreading to your left arm, shoulder, jaw, neck, or back—treat this as a suspected heart attack and call emergency services (108 or 112) immediately.",
+      "Sudden difficulty swallowing, feeling like food or pills are physically stuck inside your chest or throat (dysphagia).",
+      "Vomiting bright red blood or dark material that looks like coffee grounds.",
+      "Passing black, sticky, tarry stools (melena), which indicates internal bleeding from the upper digestive tract.",
+      "Severe, unbearable abdominal or chest pain accompanied by profuse sweating, shortness of breath, or dizziness."
+    ],
+    "whenToSeeDoctor": [
+      "Your heartburn or acid regurgitation happens two or more times every week.",
+      "Your symptoms continue or worsen despite taking over-the-counter antacids or lifestyle changes for more than two weeks.",
+      "You have painful swallowing (odynophagia) or feel food halting on its way down.",
+      "You are experiencing unexplained weight loss, loss of appetite, or persistent nausea and vomiting.",
+      "You suffer from a persistent dry cough, unexplained morning hoarseness, or frequent choking episodes at night."
+    ],
+    "faqs": [
+      {
+        "q": "What is the difference between simple acidity and GERD?",
+        "a": "Acidity is a general term for occasional, short-lived stomach discomfort or burning that happens after an unusually spicy or heavy meal. GERD is a formal medical condition where acid backflow happens frequently (usually twice a week or more), persists over months, and causes troublesome symptoms, sleep disturbances, or physical injury to the food pipe."
+      },
+      {
+        "q": "Can drinking cold milk relieve my acid reflux?",
+        "a": "Cold milk often provides brief, soothing relief because it coats the esophagus and temporarily buffers stomach acid. However, the fat and protein in whole milk stimulate the stomach to produce even more acid shortly afterward, leading to a rebound burning sensation. Low-fat milk or water is a safer alternative."
+      },
+      {
+        "q": "Why does my acid reflux get so much worse at night?",
+        "a": "When you stand or sit upright, gravity keeps stomach acid down. When you lie flat in bed, gravity is removed, allowing acid to flow freely backward into the food pipe where it lingers longer because you swallow less often while asleep. Eating late dinners makes this problem much worse."
+      },
+      {
+        "q": "Can gym workouts trigger my acid reflux?",
+        "a": "Yes. Intense abdominal crunches, heavy squats, deadlifts, and lying flat on a bench immediately after eating create high intra-abdominal pressure that pushes stomach contents up. To exercise safely, wait at least two to three hours after eating, stay upright, and avoid extreme abdominal straining when reflux is active."
+      },
+      {
+        "q": "Can herbal churnas or home remedies cure GERD permanently?",
+        "a": "No herb, diet, or product can make GERD go away permanently. While mild traditional remedies like saunf water or amla may provide soothing support, structural valve weakness or tissue erosions require medical evaluation, proper medications, and sustainable lifestyle corrections."
+      }
+    ],
+    "references": [
+      {
+        "title": "Indian consensus on gastroesophageal reflux disease",
+        "source": "Indian Journal of Gastroenterology (Bhatia SJ et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22102148/",
+        "year": "2011"
+      },
+      {
+        "title": "ACG Clinical Guideline for the Diagnosis and Management of Gastroesophageal Reflux Disease",
+        "source": "The American Journal of Gastroenterology (Katz PO et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34807007/",
+        "year": "2022"
+      },
+      {
+        "title": "Gastro-oesophageal reflux disease and dyspepsia in adults: investigation and management (NICE Clinical Guideline NG1)",
+        "source": "National Institute for Health and Care Excellence (NICE UK)",
+        "url": "https://www.nice.org.uk/guidance/ng1",
+        "year": "2014"
+      },
+      {
+        "title": "Heartburn and acid reflux (GERD) overview",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/heartburn-and-acid-reflux/",
+        "year": "2023"
+      },
+      {
+        "title": "Acid Reflux (GER & GERD) in Adults",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIH NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/acid-reflux-ger-gerd-adults",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "acidity",
+      "gastritis",
+      "peptic-ulcer",
+      "bloating",
+      "obesity",
+      "chronic-cough",
+      "sleep-apnea",
+      "asthma"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "amla",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "slug": "metabolic-syndrome",
+  "name": "Metabolic Syndrome",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Metabolic syndrome is not a single disease by itself. It is a cluster of five metabolic warning signs that often occur together: excess fat around the belly, elevated blood pressure, raised fasting blood sugar, high triglycerides, and low protective HDL cholesterol. Having just one of these issues is risky, but having three or more dramatically multiplies your risk of developing type 2 diabetes, heart attacks, fatty liver disease, and strokes. In India, this problem is widespread and appears at a younger age and at a lower body weight than in Western countries. This is driven by what doctors call the 'Asian Indian phenotype', characterized by higher body fat and central abdominal fat even when a person does not look visibly heavy. The ICMR-INDIAB national study showed that over one-third of Indian adults have abdominal obesity and hypertension, placing tens of millions at risk for metabolic syndrome. The encouraging reality is that metabolic syndrome is deeply responsive to daily habits. By improving what you eat, moving more, building muscle, and taking prescribed medicines when advised by your doctor, you can bring these metabolic numbers back into safer ranges.",
+    "quickFacts": [
+      {
+        "label": "Clinical definition",
+        "value": "Presence of 3 or more of 5 specific metabolic criteria"
+      },
+      {
+        "label": "Belly waist cutoff (Indian men)",
+        "value": "90 cm (about 35.4 inches) or more"
+      },
+      {
+        "label": "Belly waist cutoff (Indian women)",
+        "value": "80 cm (about 31.5 inches) or more"
+      },
+      {
+        "label": "Triglyceride threshold",
+        "value": "150 mg/dL or higher (or on treatment)"
+      },
+      {
+        "label": "Good cholesterol (HDL) threshold",
+        "value": "Below 40 mg/dL in men; below 50 mg/dL in women"
+      },
+      {
+        "label": "Blood pressure threshold",
+        "value": "130/85 mmHg or higher (or on BP medicines)"
+      },
+      {
+        "label": "Fasting blood sugar threshold",
+        "value": "100 mg/dL or higher (or on diabetes medicines)"
+      },
+      {
+        "label": "Diabetes risk multiplier",
+        "value": "Roughly 5 times higher than in those without the syndrome"
+      }
+    ],
+    "causes": [
+      "Insulin resistance. This is the central engine of metabolic syndrome. Muscle, liver, and fat cells stop responding properly to insulin, forcing the pancreas to pump out extra insulin. Over time, high circulating insulin drives fat storage, raises blood pressure, and disturbs blood lipids.",
+      "Central abdominal (visceral) adiposity. South Asians tend to store excess calories as deep visceral fat around organs like the liver and pancreas, rather than harmlessly under the skin. This visceral fat behaves like an active gland, releasing inflammatory chemicals into the bloodstream.",
+      "Refined carbohydrate-heavy Indian diets. Traditional plates dominated by polished white rice, refined maida rotis, fried puris, sweetened beverages, and bakery goods rapidly spike blood glucose and stimulate excess fat production in the liver.",
+      "Low daily physical activity and sedentary work. Sitting for long hours at office desks or in front of screens without structured exercise reduces insulin sensitivity in skeletal muscle, which is the body's largest user of blood glucose.",
+      "Lack of skeletal muscle mass. Many urban Indians have low muscle mass (sarcopenia) combined with higher body fat. Because muscle tissue clears most of the glucose after a meal, having poor muscle mass worsens metabolic strain.",
+      "Chronic sleep deprivation and stress. Getting under six hours of sleep or experiencing persistent mental stress raises cortisol and adrenaline. These stress hormones drive up blood sugar, raise blood pressure, and stimulate cravings for calorie-dense foods.",
+      "Genetic predisposition. People of Indian descent have a strong hereditary tendency toward early insulin resistance, lower baseline HDL cholesterol, and higher triglycerides, meaning lifestyle slip-ups trigger metabolic problems sooner."
+    ],
+    "types": [
+      {
+        "name": "Abdominal Obesity and Dyslipidemia Dominant",
+        "desc": "Commonly seen in working adults who notice increasing waist size along with very high triglycerides and low HDL on a routine corporate health checkup, while blood sugars remain borderline."
+      },
+      {
+        "name": "Hyperglycemic Dominant (Prediabetic)",
+        "desc": "Characterized primarily by impaired fasting glucose (between 100 and 125 mg/dL) or raised HbA1c, reflecting that the pancreas is struggling to overcome insulin resistance."
+      },
+      {
+        "name": "Cardiovascular and Hypertensive Dominant",
+        "desc": "Marked by blood pressure consistently tracking at or above 130/85 mmHg alongside abdominal fat and early vascular stiffening, carrying a higher immediate risk for stroke and heart strain."
+      },
+      {
+        "name": "Full Five-Component Syndrome",
+        "desc": "All five criteria (waistline, triglycerides, low HDL, blood pressure, and fasting sugar) are breached simultaneously, representing the highest category of heart and vascular risk."
+      }
+    ],
+    "diagnosis": [
+      "Metabolic syndrome is diagnosed using unified clinical criteria adapted for South Asians (endorsed by ICMR, the International Diabetes Federation, and consensus expert panels). You have metabolic syndrome if you meet at least three of the following five conditions:",
+      "1. Abdominal obesity: Waist circumference of 90 cm or more in men, or 80 cm or more in women. Your doctor or nurse measures this with a tape placed midway between the lowest rib and the top of the hip bone while you breathe out naturally.",
+      "2. Elevated triglycerides: A fasting blood test showing serum triglycerides at or above 150 mg/dL, or being on specific medication for high triglycerides.",
+      "3. Reduced HDL cholesterol: Fasting blood test showing protective HDL below 40 mg/dL in men or below 50 mg/dL in women, or being on treatment for low HDL.",
+      "4. Elevated blood pressure: A resting blood pressure reading of 130/85 mmHg or higher on repeat checks, or already taking prescribed blood pressure medication.",
+      "5. Elevated fasting blood glucose: Fasting plasma sugar of 100 mg/dL or higher, or previously diagnosed type 2 diabetes, or being on medication to control glucose.",
+      "A single abnormal test does not mean you have the syndrome, which is why your doctor assesses your waistline, blood pressure, and a complete fasting lipid and glucose panel together."
+    ],
+    "investigations": [
+      {
+        "test": "Lipid Profile (Fasting)",
+        "purpose": "Measures triglycerides, protective HDL, LDL, and total cholesterol to confirm two of the five syndrome criteria",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Fasting Plasma Glucose",
+        "purpose": "Assesses baseline blood sugar after an 8 to 12 hour overnight fast to identify impaired glucose tolerance or diabetes",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c (Glycated Hemoglobin)",
+        "purpose": "Reflects average blood sugar control over the past 2 to 3 months to evaluate long-term glycemic strain",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Liver Function Tests (Enzymes)",
+        "purpose": "Evaluates ALT and AST levels to screen for non-alcoholic fatty liver disease (MASLD), which is closely tied to metabolic syndrome",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine and eGFR",
+        "purpose": "Checks baseline kidney health, which is vulnerable to long-standing high blood pressure and insulin resistance",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine and Microalbumin",
+        "purpose": "Screens for tiny amounts of leaked protein in urine, an early warning sign of vascular and kidney strain",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Checks for elevated uric acid, which frequently coexists with insulin resistance, fatty liver, and high triglycerides",
+        "slug": "uric-acid"
+      }
+    ],
+    "modernTreatment": [
+      "Lifestyle modification forms the non-negotiable foundation of treatment. The primary goal is reducing visceral fat by 5% to 10% through a sustainable calorie deficit, whole-food nutrition, and consistent physical movement.",
+      "Managing blood sugar and insulin resistance: If lifestyle alone does not normalize elevated fasting glucose or HbA1c, doctors frequently prescribe metformin to reduce hepatic glucose output and improve tissue insulin sensitivity. When indicated, newer agents like dapagliflozin may be considered as advised by your physician.",
+      "Managing blood pressure: If blood pressure remains at or above 130/85 mmHg despite reducing dietary sodium and improving fitness, doctors initiate antihypertensive tablets such as amlodipine (a calcium-channel blocker) or losartan (an angiotensin receptor blocker) to protect delicate blood vessels.",
+      "Managing abnormal blood lipids: When triglycerides are elevated and total cardiovascular risk is increased, physicians often prescribe a statin such as atorvastatin. Statins stabilize blood vessel walls and lower heart attack risk even if total cholesterol appears only moderately raised.",
+      "Comprehensive risk monitoring: Because the syndrome involves multiple systems, your doctor coordinates your care as a unified picture rather than treating high sugar, high pressure, and high lipids in isolated silos.",
+      "Never stop, start, or adjust medications on your own. Medications work alongside diet and gym routines, not in place of them."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not describe metabolic syndrome under a single modern heading. Instead, traditional practitioners understand this constellation of signs through concepts such as 'Medoroga' (disorders of the fat tissue), 'Sthaulya' (excessive bodily heaviness or obesity), and 'Prameha' (a spectrum of metabolic disorders involving abnormal fluid and tissue transformation).",
+      "In this traditional framework, poor digestive fire (mandagni) is thought to produce metabolic waste (ama), which obstructs internal micro-channels (srotas) and causes kapha and medas (adipose tissue) to accumulate abnormally.",
+      "Ayurvedic lifestyle principles that align well with modern medical advice include 'mitahara' (wholesome, measured eating), avoiding heavy daytime sleep (divaswapna), incorporating regular physical labor or brisk walking (vyayama), and consuming warm, easily digestible meals.",
+      "Herbal remedies and classical formulations in Ayurveda are intended solely as supportive measures. They cannot dissolve visceral fat, cure insulin resistance, or replace essential medical therapies. Always discuss any herbal preparation with your treating doctor to avoid harmful interactions with prescription drugs."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Rich in soluble fiber (galactomannan). Some human trials show it can modestly slow carbohydrate absorption and assist post-meal glucose balance as a dietary support."
+      },
+      {
+        "name": "Cinnamon (Dalchini)",
+        "slug": "cinnamon",
+        "note": "Contains polyphenols that have been studied for modest supportive effects on insulin sensitivity. Evidence remains mixed, and it is never a substitute for prescription medication."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "A rich natural source of vitamin C and antioxidants. Small clinical studies suggest it may provide modest supportive benefits for lipid profiles, though overall evidence is limited."
+      },
+      {
+        "name": "Gudmar",
+        "slug": "gudmar",
+        "note": "Traditionally called 'sugar destroyer'. Some preliminary research indicates it may support pancreatic function, but human trials are small and weak. Use only with medical knowledge to avoid low blood sugar."
+      },
+      {
+        "name": "Turmeric (Haldi)",
+        "slug": "turmeric",
+        "note": "Curcumin exhibits mild anti-inflammatory properties that may support overall metabolic health, though it does not replace diet or exercise."
+      }
+    ],
+    "nutrition": [
+      "Adopt the ICMR-NIN 'My Plate for the Day' approach. Divide your standard plate into clear portions: half the plate filled with colorful vegetables and raw salads, one quarter with quality protein, and only one quarter with whole grains.",
+      "Replace refined carbohydrates with high-fiber whole grains. Swap polished white rice and maida for unpolished millets (ragi, jowar, bajra), whole wheat, brown rice, or barley. The high fiber content slows glucose absorption and keeps you full longer.",
+      "Prioritize lean protein at every meal. Most Indian vegetarian diets are heavily carb-dense and protein-poor. Include cooked dals, whole chana, rajma, sprouted moong, low-fat paneer, unsweetened curd, tofu, eggs, or grilled fish to stimulate satiety and preserve muscle tissue.",
+      "Eliminate liquid sugars and sweetened drinks. Stop drinking sweetened chai, filter coffee with excess sugar, canned juices, carbonated sodas, and energy drinks. Even fresh fruit juices spike sugar rapidly; choose whole fruits like guava, apple, or papaya instead.",
+      "Cut down deep-fried foods and trans fats. Severely restrict fried snacks like samosas, pakoras, namkeens, bhujia, and commercial bakery biscuits. Cook meals at home using modest amounts of cold-pressed oils like mustard or groundnut oil, keeping total cooking oil under 20 to 25 grams per day per person.",
+      "Cut hidden dietary salt. Keep total salt consumption under 5 grams (about one level teaspoon) per day to help lower blood pressure. Avoid high-sodium culprits like commercial pickles, papads, instant noodles, and packaged soups."
+    ],
+    "lifestyle": [
+      "Target gradual, sustained weight loss. Aim to lose 5% to 7% of your starting body weight over three to six months. In clinical trials, losing just four to six kilograms often cuts visceral fat significantly and substantially improves all five metabolic markers.",
+      "Engage in at least 150 to 300 minutes of moderate-intensity aerobic exercise every week. Brisk walking (at a pace where you can talk but not sing), cycling, or swimming for 30 to 45 minutes on five days a week helps muscles burn glucose without needing as much insulin.",
+      "Incorporate resistance training twice a week. Lifting weights, using gym machines, or performing bodyweight movements like squats and push-ups builds skeletal muscle. Muscle serves as the body's primary sink for clearing glucose after meals.",
+      "Measure your waistline at home every month. Use a simple, non-elastic measuring tape around your bare abdomen at the level of your navel. Watching this number go down is often a clearer sign of metabolic improvement than the number on a standard bathroom scale.",
+      "Prioritize 7 to 8 hours of uninterrupted sleep. Poor sleep triggers hunger hormones (ghrelin) and spikes morning insulin resistance. Keep a fixed sleep schedule and avoid screens for 45 minutes before bedtime.",
+      "Stop all tobacco use and strictly limit alcohol. Smoking and chewing gutka directly injure blood vessel linings and accelerate plaque buildup, while alcohol adds empty calories and directly drives triglyceride production in the liver."
+    ],
+    "yogaActivity": [
+      "Dynamic sequences like Surya Namaskar (Sun Salutations), performed at a moderate, steady pace, provide an effective cardiovascular and muscular warmup that enhances insulin action across large muscle groups.",
+      "Abdominal-toning asanas such as Bhujangasana (Cobra Pose), Dhanurasana (Bow Pose), Paschimottanasana (Seated Forward Bend), and Ardha Matsyendrasana (Half Spinal Twist) help build core strength, mobility, and abdominal wall tone.",
+      "Slow breathing practices (Pranayama) like Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) activate the parasympathetic nervous system, helping to lower elevated heart rates and baseline stress.",
+      "Avoid rapid or forceful breathing practices like vigorous Kapalabhati if your resting blood pressure is uncontrolled, as rapid abdominal contractions can temporarily drive up arterial pressure.",
+      "Remember that while yoga is fantastic for flexibility, mental calm, and core strength, pairing it with brisk walking or gym resistance training provides the most potent benefit for reversing metabolic dysfunction."
+    ],
+    "homeopathyNote": [
+      "There are no rigorous scientific studies or randomized clinical trials showing that homeopathic remedies can reverse insulin resistance, normalize blood lipids, or clear visceral fat.",
+      "Relying on homeopathic preparations instead of proven medical therapies and structured lifestyle changes can allow silent cardiovascular damage, arterial stiffening, and diabetes to progress unchecked.",
+      "If you choose to consult a homeopathic practitioner, never discontinue your prescribed blood pressure tablets, statins, or blood sugar medicines without direct instruction from your medical doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Large multinational trials (such as the Diabetes Prevention Program and the Finnish Diabetes Prevention Study) confirm that losing 5% to 7% of body weight through dietary changes and 150 minutes of weekly activity reduces progression to type 2 diabetes by over 50%.",
+      "Strong evidence: Antihypertensive medications, statins for dyslipidemia, and metformin for glucose control have extensive clinical trial evidence proving they prevent heart attacks, strokes, and kidney failure.",
+      "Moderate evidence: High dietary fiber intake (especially soluble fiber from legumes, oats, and fenugreek) and Mediterranean-style or DASH-style dietary patterns show consistent benefits for lowering triglycerides and improving blood pressure.",
+      "Weak or limited evidence: Single herbal extracts, green tea capsules, apple cider vinegar, and detox powders have minimal, inconsistent human trial data. No herbal product alone can make metabolic syndrome go away."
+    ],
+    "shouldNotDo": [
+      "Do not assume you are healthy just because your body mass index (BMI) or bathroom scale looks normal. Measure your waistline; 'skinny-fat' individuals with thin arms and a protruding belly carry high metabolic risk.",
+      "Do not fall for internet 'fat burner' pills, detox juices, or belly wraps. No product can melt visceral fat from the inside; sustainable calorie reduction and exercise are the only proven routes.",
+      "Do not follow extreme crash diets or starve yourself. Rapid starvation causes muscle loss, lowers your resting metabolic rate, and leads to rapid rebound fat storage once normal eating resumes.",
+      "Do not stop taking your statin or blood pressure tablets just because your latest blood test came back normal. The test is usually normal precisely because the medication is doing its job.",
+      "Do not replace wholesome home-cooked meals with packaged 'diet' snacks, sugar-free biscuits, or commercial protein bars, which are often loaded with hidden sodium, refined starches, and artificial additives."
+    ],
+    "medicationSafety": [
+      "Take all prescribed tablets at the same time each day as instructed by your doctor. Using a simple weekly pill organizer or smartphone alarms can prevent missed or doubled doses.",
+      "If you are prescribed metformin, take it with or immediately after meals to minimize common initial digestive side effects like bloating, loose stools, or mild nausea.",
+      "If your doctor starts you on a statin like atorvastatin, be aware that while serious side effects are rare, you should report unexplained muscle aches, tenderness, or extreme weakness promptly.",
+      "If taking blood pressure medicines such as amlodipine or losartan, rise slowly from a sitting or lying position to avoid sudden lightheadedness caused by a rapid postural drop in pressure.",
+      "Never combine over-the-counter herbal supplements with prescribed medications without asking your doctor, as some herbs can interfere with liver metabolism or cause unexpected blood sugar drops."
+    ],
+    "complications": [
+      "Type 2 diabetes mellitus: Persistent insulin resistance eventually exhausts the pancreatic beta cells, causing chronic, irreversible elevation in blood sugar.",
+      "Coronary artery disease and heart attacks: High triglycerides, low HDL, hypertension, and systemic inflammation combine to form thick, calcified plaques inside coronary arteries.",
+      "Ischemic stroke: Damaged, narrowed brain arteries or migrating blood clots can suddenly block blood supply to parts of the brain.",
+      "Metabolic dysfunction-associated steatotic liver disease (MASLD / Fatty Liver): Excess fat accumulation in liver cells can progress to chronic inflammation (MASH), fibrosis, and eventually cirrhosis.",
+      "Chronic kidney disease (CKD): Elevated blood pressure and metabolic vascular damage gradually destroy the delicate filtering units inside the kidneys.",
+      "Obstructive sleep apnea: Accumulation of fat tissue around the upper neck and airway leads to repeated breathing pauses during nighttime sleep, exacerbating hypertension.",
+      "Erectile dysfunction in men and Polycystic Ovary Syndrome (PCOS) in women: Both conditions are deeply linked to underlying vascular stiffening and severe insulin resistance."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain, tightness, or heavy pressure across the center of the chest that may radiate to the left shoulder, arm, neck, or jaw.",
+      "Sudden weakness, numbness, or tingling in the face, arm, or leg, especially on one side of the body.",
+      "Sudden slurring of speech, difficulty speaking, or trouble understanding simple sentences.",
+      "Sudden severe shortness of breath, unexplained fainting, or profuse cold sweating accompanied by dizziness.",
+      "Sudden, excruciating headache unlike any experienced before, especially accompanied by blurred vision or vomiting: seek immediate emergency medical care (call 108 or 112 in India)."
+    ],
+    "whenToSeeDoctor": [
+      "Your waist measurement crosses 90 cm (for men) or 80 cm (for women), even if your total weight seems ordinary.",
+      "A routine corporate or annual health checkup reveals fasting blood glucose at or above 100 mg/dL, or serum triglycerides at or above 150 mg/dL.",
+      "Home or clinic blood pressure checks consistently read 130/85 mmHg or higher on separate days.",
+      "You notice dark, velvety patches of thickened skin around your neck folds, armpits, or knuckles (acanthosis nigricans), which is a visible marker of insulin resistance.",
+      "You have a strong family history of early heart attacks, bypass surgery, or diabetes in your parents or siblings before age 55."
+    ],
+    "faqs": [
+      {
+        "q": "Can I have metabolic syndrome if my weight is normal?",
+        "a": "Yes. This is very common in India and is often referred to as being 'metabolically obese normal weight' or 'thin-fat'. A person may have thin arms and legs and a normal body weight on the scale, but carry significant hidden visceral fat inside the abdomen and around internal organs. This is why measuring your waistline is far more informative than checking your weight alone."
+      },
+      {
+        "q": "Can metabolic syndrome be completely reversed?",
+        "a": "Yes, in many individuals, the components of metabolic syndrome can be brought back into normal ranges. Losing 7% to 10% of body weight, cutting refined carbohydrates, performing regular cardio and strength exercises, and improving sleep can resolve insulin resistance and normalize blood pressure, triglycerides, and sugar levels. However, maintaining these normal numbers requires sticking to healthy habits permanently."
+      },
+      {
+        "q": "Why are Indians at such high risk for metabolic syndrome?",
+        "a": "People of Indian origin have a distinct genetic tendency to develop higher body fat percentages and central visceral fat at lower body mass indexes compared to other global populations. When this genetic background is combined with modern urban habits—such as polished rice, fried snacks, sweetened beverages, long desk hours, and high mental stress—metabolic syndrome emerges decades earlier."
+      },
+      {
+        "q": "Does drinking warm lemon water with honey or jeera water in the morning melt belly fat?",
+        "a": "No drink, herbal tea, or warm concoction can selectively melt visceral belly fat. While drinking water helps keep you hydrated, honey is still a form of simple sugar that adds extra calories. The only reliable way to reduce belly fat is to create a moderate, sustained calorie deficit through balanced nutrition and consistent muscular activity."
+      },
+      {
+        "q": "Will I have to stay on medicines forever if I have metabolic syndrome?",
+        "a": "Not necessarily. If your doctor starts you on medications for blood pressure, blood sugar, or lipids, these protect your organs while you rebuild your metabolic health. Some individuals who make major, long-lasting improvements in weight, nutrition, and fitness are able to reduce or safely taper off certain medicines under their doctor's guidance. Others continue a low-dose tablet long term to maintain protective benefits."
+      }
+    ],
+    "references": [
+      {
+        "title": "Consensus statement for diagnosis of obesity, abdominal obesity and the metabolic syndrome for Asian Indians and recommendations for physical activity, medical and surgical management",
+        "source": "Journal of the Association of Physicians of India (Misra A, Chowbey P, Makkar BM, et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19705739/",
+        "year": "2009"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Noncommunicable diseases: Key facts and risk factors",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/noncommunicable-diseases",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "prediabetes",
+      "insulin-resistance",
+      "obesity",
+      "fatty-liver",
+      "high-cholesterol",
+      "high-triglycerides",
+      "high-blood-pressure",
+      "heart-disease",
+      "coronary-artery-disease",
+      "stroke",
+      "cardiovascular-risk"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "dapagliflozin"
+    ],
+    "relatedHerbs": [
+      "fenugreek",
+      "cinnamon",
+      "amla",
+      "gudmar",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "fasting-glucose",
+      "hba1c",
+      "liver-enzymes",
+      "creatinine",
+      "urine-routine",
+      "uric-acid"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

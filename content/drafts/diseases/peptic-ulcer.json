@@ -1,0 +1,279 @@
+{
+  "slug": "peptic-ulcer",
+  "name": "Peptic Ulcer",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "A peptic ulcer is an open sore that develops on the inner protective lining of your stomach or the upper part of your small intestine (duodenum). Under normal conditions, a thick layer of mucus protects the stomach wall from its own harsh digestive acid and enzymes. When this protective barrier breaks down or acid levels become overwhelming, the lining erodes, leaving a raw, painful sore. In India, most peptic ulcers are caused by a bacterial infection called Helicobacter pylori (H. pylori) or by regular, unmonitored use of painkiller medicines such as non-steroidal anti-inflammatory drugs (NSAIDs). Contrary to long-held beliefs, spicy food, chilies, and everyday stress do not trigger these ulcers on their own, although they can irritate an existing sore and make the burning pain noticeably worse. With an accurate diagnosis, modern acid-suppressing tablets, and antibiotics to clear bacterial infection, most ulcers heal completely within a few weeks.",
+    "quickFacts": [
+      {
+        "label": "Most common cause",
+        "value": "Helicobacter pylori (H. pylori) bacterial infection"
+      },
+      {
+        "label": "Second major cause",
+        "value": "Frequent use of NSAID painkillers (such as ibuprofen, diclofenac)"
+      },
+      {
+        "label": "Classic symptom",
+        "value": "Gnawing, burning pain in the upper belly between meals or at night"
+      },
+      {
+        "label": "H. pylori prevalence in India",
+        "value": "Up to 60% to 80% of adults carry the bacteria (often without symptoms)"
+      },
+      {
+        "label": "Curable?",
+        "value": "Yes, standard medical therapy heals the vast majority of ulcers"
+      },
+      {
+        "label": "Diet role",
+        "value": "Spicy food irritates symptoms but does not cause the ulcer"
+      }
+    ],
+    "causes": [
+      "Helicobacter pylori infection: This hardy bacterium survives inside stomach acid and burrows into the protective mucus layer. It causes long-standing inflammation, weakening the mucosal barrier so acid burns the delicate tissue beneath. It spreads mainly through contaminated food, unboiled water, and close household contact.",
+      "Regular use of pain medicines (NSAIDs): Common over-the-counter painkillers like ibuprofen, naproxen, and diclofenac, as well as daily aspirin, block protective chemical messengers called prostaglandins. Without prostaglandins, the stomach lining thins out, cannot produce enough mucus, and easily forms sores.",
+      "Cigarette, bidi, and gutka use: Tobacco and nicotine reduce protective bicarbonate secretion from the pancreas, cut blood flow to the stomach lining, and slow down natural tissue repair, making ulcers far more likely to bleed or recur.",
+      "Heavy alcohol consumption: Regular alcohol intake irritates the gastric mucosa, strips away mucus, and stimulates sudden acid surges.",
+      "Severe physiological stress: Life-threatening critical illness, major burns, head trauma, or extensive surgery can trigger rapid mucosal erosion ('stress ulcers') in intensive care settings.",
+      "Rare acid-producing conditions: Conditions such as Zollinger-Ellison syndrome cause rare tumours in the pancreas or duodenum that secrete massive amounts of gastrin, producing uncontrolled acid."
+    ],
+    "types": [
+      {
+        "name": "Duodenal ulcer",
+        "desc": "Forms in the duodenum, the first part of the small intestine just below the stomach. Pain typically peaks 2 to 3 hours after a meal or in the middle of the night when the stomach is empty, and often feels temporarily better right after eating or taking an antacid."
+      },
+      {
+        "name": "Gastric ulcer",
+        "desc": "Forms directly on the inner curve or wall of the stomach. Pain often flares up shortly after eating food because the stomach releases digestive acid to break down the meal, sometimes leading to early fullness, nausea, and reduced appetite."
+      },
+      {
+        "name": "Esophageal ulcer",
+        "desc": "Occurs at the lower end of the food pipe (esophagus), often related to chronic, severe acid reflux (GERD) or prolonged pill-induced irritation."
+      }
+    ],
+    "diagnosis": [
+      "Doctors take a detailed history of your upper belly pain, food triggers, and exact list of painkiller tablets, blood thinners, and joint supplements.",
+      "Testing for H. pylori infection is standard and can be done via a simple urea breath test, a stool antigen test, or during an endoscopy.",
+      "An upper gastrointestinal (GI) endoscopy (gastroscopy) is the gold standard investigation. A doctor inserts a thin, flexible tube with a camera down your throat to look directly at the stomach and duodenum, measure ulcer size, and take small tissue samples (biopsies).",
+      "Barium swallow or upper GI X-ray series is occasionally used when endoscopy is not immediately available, though it cannot provide tissue biopsies."
+    ],
+    "investigations": [
+      {
+        "test": "Upper GI Endoscopy (Gastroscopy)",
+        "purpose": "Directly visualises the ulcer, checks for bleeding, and allows biopsy for H. pylori or abnormal cells"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures haemoglobin to detect hidden slow bleeding and anaemia caused by the ulcer",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Checks total body iron stores if chronic microscopic blood loss is suspected",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Urea Breath Test or Stool Antigen Test",
+        "purpose": "Non-invasive test to confirm active H. pylori infection or verify its clearance after treatment"
+      },
+      {
+        "test": "Liver Function Tests (Liver Enzymes)",
+        "purpose": "Rules out gallstones, gallbladder inflammation, or liver conditions that cause similar upper belly pain",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Ensures healthy kidney function before choosing specific antibiotics or ulcer medications",
+        "slug": "creatinine"
+      }
+    ],
+    "modernTreatment": [
+      "Antibiotic combination therapy: If H. pylori is found, your doctor prescribes a targeted 14-day course combining two or three antibiotics with an acid reducer. Finishing every tablet exactly as prescribed is essential to eradicate the bacteria and prevent treatment failure.",
+      "Proton Pump Inhibitors (PPIs): Powerful acid suppressors like pantoprazole or omeprazole block the acid-producing pumps in stomach cells, lowering stomach acidity so the raw ulcer bed can heal quickly.",
+      "H2-receptor blockers: Medicines such as famotidine reduce acid production and provide an alternative or night-time support as advised by your doctor.",
+      "Mucosal protectants: Liquid coatings containing sucralfate form a physical barrier over the ulcer crater, shielding it from direct acid, bile, and digestive enzymes.",
+      "Stopping harmful painkillers: Your doctor will immediately review and stop unnecessary NSAIDs, switching you to safer pain relief options such as paracetamol when needed.",
+      "Emergency endoscopic therapy: If an ulcer bleeds heavily, doctors treat it directly during an emergency endoscopy using heat probes, clips, or adrenaline injections to seal the ruptured vessel."
+    ],
+    "ayurvedaView": [
+      "Ayurvedic texts describe chronic burning abdominal pain and acid conditions under terms like Parinama Shula and Annadrava Shula, closely linked to aggravated Pitta dosha combined with Vata.",
+      "Excess Pitta is viewed as an overload of heat, sharp quality (tikshna), and sourness (amla) that irritates the stomach tissue, while Vata imbalance can impair digestive rhythm.",
+      "Traditional regimens focus on Pitta-pacifying (cooling, soothing) foods, mindful meal timing, and cooling herbs to support digestive comfort alongside medical care.",
+      "Ayurvedic herbs should never replace modern antibiotics for H. pylori or replace prescribed acid-reducing drugs, as untreated ulcers carry a risk of perforation or severe bleeding."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Yashtimadhu)",
+        "slug": "licorice",
+        "note": "Traditionally used to soothe the gut lining. Deglycyrrhizinated forms support the stomach mucus layer, but whole licorice must be avoided in people with high blood pressure without doctor review."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Known in traditional systems for digestive balance; however, its natural sour acidity can sometimes aggravate active gastric sores in sensitive individuals."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Considered soothing and cooling in Ayurveda to support gut comfort, though rigorous human trials for ulcer healing remain limited."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin possesses anti-inflammatory properties, but concentrated extracts may cause stomach upset and should only be used as mild kitchen spice during active ulceration."
+      }
+    ],
+    "nutrition": [
+      "Eat regular, moderate meals instead of fasting for long hours or consuming huge, heavy dinners that overfill the stomach and trigger heavy acid production.",
+      "Include soft, easily digestible Indian foods such as moong dal khichdi, soft rice, boiled oats, vegetable soups, and lightly cooked bottle gourd (lauki) or ridge gourd (torai).",
+      "Fresh, room-temperature curd (dahi) or mild buttermilk (chaas) without heavy green chilies can provide natural probiotics that soothe the digestive tract, especially during antibiotic therapy.",
+      "Cut down on heavily fried snacks like samosas, pakoras, puri, bhujia, and rich oily gravies, which delay stomach emptying and trigger excess acid wash.",
+      "Minimise red chili powder, raw green chilies, black pepper, and excessive garam masala while the ulcer is actively healing, as they irritate the raw tissue.",
+      "Avoid citrus juices, raw onions, and vinegar on an empty stomach if they trigger sharp burning pain.",
+      "Strictly avoid alcohol, energy drinks, and strong black tea or filter coffee, as both caffeine and alcohol stimulate stomach acid and erode the lining."
+    ],
+    "lifestyle": [
+      "Stop all forms of tobacco completely, including cigarettes, bidis, gutka, and khaini. Smoking directly delays ulcer healing and doubles the risk of repeat ulcers.",
+      "Do not lie down immediately after eating. Stay upright for at least 2 to 3 hours after dinner to let your stomach empty smoothly.",
+      "Elevate the head of your bed by 6 to 8 inches if you experience nighttime burning or acid reflux along with your ulcer.",
+      "Maintain consistent meal timings every day so your digestive system is not subjected to long stretches of high-acid fasting.",
+      "Practice structured stress-reduction techniques such as daily outdoor walking, deep breathing, or light reading, as mental distress lowers gut mucosal blood flow.",
+      "Stay adequately hydrated throughout the day by sipping clean, boiled or filtered water, avoiding large gulps right in the middle of heavy meals."
+    ],
+    "yogaActivity": [
+      "Practice gentle breathing exercises like Anulom Vilom (alternate nostril breathing) and Sheetali or Sheetkari pranayama to cool and calm the autonomic nervous system.",
+      "Incorporate relaxing, resting postures such as Shavasana, Supta Baddha Konasana with bolster support, and gentle Vajrasana for 10 minutes after light meals.",
+      "Avoid strenuous abdominal core exercises, heavy crunches, forceful forward bends, and vigorous Kapalbhati while an ulcer is actively inflamed or painful.",
+      "Skip heavy weightlifting, intense isometric straining, or holding your breath (Valsalva manoeuvre) under heavy gym barbells until your doctor confirms the ulcer has completely healed."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence showing that homeopathic products can clear H. pylori infection or heal an open peptic ulcer.",
+      "Relying solely on homeopathy for peptic ulcer disease carries serious risks, including silent internal bleeding, sudden perforation, and stomach wall scarring.",
+      "Always follow your physician's prescribed diagnostic plan and modern medications."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Eradicating H. pylori with antibiotic regimens and using proton pump inhibitors (PPIs) heals over 85% to 90% of peptic ulcers and prevents life-threatening recurrence.",
+      "Strong evidence: Stopping non-steroidal anti-inflammatory drugs (NSAIDs) allows the natural gastric mucus layer to regenerate and prevents recurrent mucosal bleeding.",
+      "Moderate evidence: Quitting smoking significantly speeds up ulcer healing rates and cuts relapse rates across clinical trials.",
+      "Limited or weak evidence: Herbal remedies and traditional powders show mixed or weak clinical evidence for independently closing ulcer craters. No herb, diet or product can make it go away without treating the root cause."
+    ],
+    "shouldNotDo": [
+      "Do not self-prescribe over-the-counter pain relievers such as brufen, combiflam, voveran, or aspirin whenever you have a headache, backache, or fever; talk to your doctor about safer choices.",
+      "Do not stop your prescribed antibiotics midway just because the stomach pain vanished in three days. Incomplete antibiotic courses cause resistant H. pylori that is much harder to treat.",
+      "Do not consume milk by the litre thinking it 'coats' the stomach. While cold milk feels soothing for a few minutes, milk proteins and calcium trigger a strong 'acid rebound' an hour later.",
+      "Do not ignore recurring black, sticky stools, assuming they are just caused by food, indigestion, or routine constipation.",
+      "Do not skip meals or follow extreme dry fasting routines while recovering from an active peptic ulcer."
+    ],
+    "medicationSafety": [
+      "Take proton pump inhibitors (like pantoprazole or omeprazole) exactly as advised by your doctor, usually 30 to 60 minutes before your first meal of the day for best acid control.",
+      "If your doctor prescribes an antibiotic kit for H. pylori, complete all tablets for the entire 14-day duration without skipping doses.",
+      "Inform your physician if you take blood thinners (like aspirin, clopidogrel, or warfarin), as these greatly raise the danger of ulcer bleeding and require protective acid-suppressing cover.",
+      "Do not take antacid liquids and sucralfate at the exact same minute as other tablets, as they can block the absorption of your blood pressure or thyroid medicines; leave at least a 2-hour gap."
+    ],
+    "complications": [
+      "Internal bleeding: An ulcer can slowly eat into a stomach blood vessel, causing chronic fatigue and anaemia, or break into a major artery causing massive, life-threatening blood vomiting.",
+      "Gastric perforation: The ulcer burns a hole completely through the wall of the stomach or duodenum, leaking digestive contents into the sterile abdominal cavity (peritonitis), requiring immediate emergency surgery.",
+      "Gastric outlet obstruction: Chronic ulcers near the pyloric channel cause severe swelling and dense scar tissue, blocking food from passing into the intestines and causing persistent projectile vomiting.",
+      "Stomach cancer risk: Long-term, untreated H. pylori infection causing chronic atrophic gastritis is an established risk factor for certain forms of gastric cancer."
+    ],
+    "emergencySigns": [
+      "Vomiting fresh bright red blood or dark brown material that looks like wet coffee grounds",
+      "Passing loose, sticky, foul-smelling, jet-black stools (known as melaena)",
+      "Sudden, excruciating, sharp pain in your belly that spreads quickly and makes your abdomen feel rigid or hard as a wooden board",
+      "Feeling suddenly faint, dizzy, unusually pale, or losing consciousness",
+      "Inability to keep any liquids down accompanied by continuous vomiting and high fever"
+    ],
+    "whenToSeeDoctor": [
+      "You have persistent, gnawing, or burning pain in your upper abdomen that lasts more than two weeks",
+      "You find yourself regularly taking antacid gels or over-the-counter acid-blockers just to get through the day",
+      "You feel full unusually fast after eating only a few bites of food, or have unexplained weight loss",
+      "You experience unexplained weakness, breathlessness while climbing stairs, and unusual paleness",
+      "You need long-term daily painkillers for joint pain or arthritis and experience stomach discomfort"
+    ],
+    "faqs": [
+      {
+        "q": "Does eating very spicy Indian food cause a peptic ulcer?",
+        "a": "No. Modern medical science proves that spicy food, chilies, and oily curries do not cause ulcers on their own. The true primary causes are H. pylori bacteria and NSAID painkiller medications. However, if an ulcer is already open and raw, strong chilies and spices will sting the tissue and worsen your burning pain."
+      },
+      {
+        "q": "Can drinking cold milk heal my stomach ulcer?",
+        "a": "No. Cold milk can provide a brief soothing sensation because it temporarily buffers stomach acid. However, milk stimulates your stomach to produce even more acid and digestive enzymes an hour later (known as acid rebound), which can aggravate the ulcer. Rely on prescribed medicines rather than milk therapy."
+      },
+      {
+        "q": "How long does it take for a peptic ulcer to heal?",
+        "a": "With regular use of prescribed acid-suppressing tablets (like PPIs) and eradication of H. pylori with antibiotics, most uncomplicated duodenal ulcers heal in 4 weeks, and gastric ulcers generally heal within 6 to 8 weeks."
+      },
+      {
+        "q": "Which painkiller is safe to take if I have a history of ulcers?",
+        "a": "Paracetamol is generally considered much safer for the stomach lining than NSAIDs like ibuprofen, diclofenac, or naproxen. However, you should always consult your doctor to confirm what pain medication and dose is safe for your specific health history."
+      },
+      {
+        "q": "Can stress alone give me a stomach ulcer?",
+        "a": "Everyday emotional or workplace stress does not directly cause a peptic ulcer by itself, though it can worsen your symptoms and lead to unhealthy habits like smoking, skipping meals, or excess tea. Only severe physiological trauma—such as major burns or intensive care illness—causes true stress-related gastric ulcers."
+      }
+    ],
+    "references": [
+      {
+        "title": "Peptic Ulcer Disease",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK), NIH",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/peptic-ulcers-stomach-ulcers",
+        "year": "2022"
+      },
+      {
+        "title": "Stomach ulcer",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/stomach-ulcer/",
+        "year": "2021"
+      },
+      {
+        "title": "Peptic ulcer",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/peptic-ulcer/symptoms-causes/syc-20354223",
+        "year": "2023"
+      },
+      {
+        "title": "ACG Clinical Guideline: Treatment of Helicobacter pylori Infection",
+        "source": "American College of Gastroenterology / PubMed (Chey WD et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28414327/",
+        "year": "2017"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "gastritis",
+      "gerd",
+      "acidity",
+      "anemia",
+      "iron-deficiency",
+      "bloating"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "amla",
+      "shatavari",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "liver-enzymes",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

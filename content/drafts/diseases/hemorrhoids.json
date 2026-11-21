@@ -1,0 +1,286 @@
+{
+  "slug": "hemorrhoids",
+  "name": "Hemorrhoids (Piles)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Hemorrhoids, commonly known as piles, are swollen, inflamed veins located in the lowest part of your rectum and anus. Everyone has natural cushions of tissue and blood vessels in this area to help control bowel movements. When pressure inside the lower abdomen builds up—often from long periods of straining on the toilet, severe constipation, heavy lifting, or pregnancy—these vascular cushions stretch, swell, and become irritated. Internal hemorrhoids develop inside the rectum and are usually painless, often showing up as bright red blood on your stool or toilet paper. External hemorrhoids form under the delicate skin around the anal opening, where they can cause itching, swelling, irritation, and significant pain if a small clot forms. Piles are exceptionally common across India, affecting millions of adults at some point in their lives, yet social hesitation often delays care. The good news is that with improved dietary fibre, adequate hydration, better toilet habits, and timely medical attention, symptoms can be managed effectively and safely.",
+    "quickFacts": [
+      {
+        "label": "Common Age Group",
+        "value": "Most frequently seen between ages 45 and 65, though common at any adult age"
+      },
+      {
+        "label": "Global Burden",
+        "value": "About 50% of adults experience symptomatic piles by age 50"
+      },
+      {
+        "label": "Daily Fibre Need (ICMR-NIN)",
+        "value": "30 to 40 grams per day for Indian adults to keep stools soft"
+      },
+      {
+        "label": "Most Common Sign",
+        "value": "Painless, bright red bleeding during or after passing stools"
+      },
+      {
+        "label": "Main Driver",
+        "value": "Chronic constipation, straining, and prolonged sitting on the commode"
+      }
+    ],
+    "causes": [
+      "Chronic constipation and hard stools. Straining forces excessive blood pressure into the delicate anal venous cushions, causing them to engorge and stretch.",
+      "Sitting too long on the toilet commode. Spending 15 to 20 minutes on the toilet, especially while scrolling on smartphones or reading newspapers, keeps the pelvic floor in a relaxed, unsupported position where venous pooling increases.",
+      "A low-fibre Indian diet. Eating excessive amounts of refined flour (maida), polished white rice, packaged snacks, and fried items without enough vegetables, whole grains, and pulses results in dry, hard, difficult-to-pass stools.",
+      "Inadequate daily water intake. Not drinking enough fluid makes stools firm and compact, increasing the friction and strain during every bowel evacuation.",
+      "Frequent bouts of chronic diarrhoea. Watery, frequent stools cause repeated chemical irritation and mechanical inflammation of the rectal and anal tissue.",
+      "Pregnancy and childbirth. The growing baby places mechanical pressure on the pelvic veins and the inferior vena cava, while hormonal changes slow gut motility. Labour and pushing can also trigger or worsen piles.",
+      "Heavy weightlifting and improper gym breathing. Straining intensely while holding your breath (Valsalva manoeuvre) during heavy squats, leg presses, or deadlifts dramatically spikes intra-abdominal pressure.",
+      "Sedentary desk jobs and lack of movement. Sitting in an office chair for eight to ten hours a day impairs pelvic blood circulation and slows bowel motility.",
+      "Ageing. The connective tissues and muscle fibres supporting the veins in your lower rectum weaken and stretch as you get older."
+    ],
+    "types": [
+      {
+        "name": "Internal Hemorrhoids",
+        "desc": "These originate deep inside the rectum, above the dentate line, where there are few pain-sensing nerves. They are typically painless and usually make their presence known through painless, bright red bleeding during bowel movements. They are classified into four grades based on how much they protrude."
+      },
+      {
+        "name": "Grade 1 (First Degree)",
+        "desc": "Internal piles that bleed but remain completely inside the anal canal and do not prolapse or poke out during a bowel movement."
+      },
+      {
+        "name": "Grade 2 (Second Degree)",
+        "desc": "Internal piles that prolapse or slide past the anal opening during straining, but pull back inside on their own once you finish passing stools."
+      },
+      {
+        "name": "Grade 3 (Third Degree)",
+        "desc": "Internal piles that prolapse during a bowel movement and do not return on their own; you must gently push them back inside with a clean finger."
+      },
+      {
+        "name": "Grade 4 (Fourth Degree)",
+        "desc": "Permanent, severe prolapse where the internal piles remain permanently outside the anal canal and cannot be pushed back inside. These carry a risk of strangulation and severe pain."
+      },
+      {
+        "name": "External Hemorrhoids",
+        "desc": "These develop below the dentate line, under the sensitive, nerve-rich skin around the anus. They can itch, burn, swell, and cause clear discomfort, especially while sitting or cleaning."
+      },
+      {
+        "name": "Thrombosed External Hemorrhoids",
+        "desc": "A sudden, painful condition where blood pools inside an external hemorrhoid and forms a small clot (thrombus). This causes a firm, dark blue or purple lump that is acutely tender to touch and makes sitting or walking very difficult."
+      }
+    ],
+    "diagnosis": [
+      "A detailed clinical history. Your doctor will ask about the colour of blood, whether you feel pain, your bowel habits, diet, and how long you sit on the commode.",
+      "Visual physical examination. A simple inspection of the skin around your anus in a private, clinical setting can quickly detect external piles, skin tags, fissures, or prolapsed tissue.",
+      "Digital Rectal Examination (DRE). Your doctor gently inserts a lubricated, gloved finger into the rectum to feel for abnormal masses, tenderness, sphincter muscle tone, or internal swellings.",
+      "Anoscopy or Proctoscopy. A short, narrow, hollow lighted tube (anoscope) is placed gently a few centimetres into the anal canal. This allows the doctor to clearly see internal hemorrhoids, determine their size and grade, and evaluate mucosal inflammation.",
+      "Sigmoidoscopy or Colonoscopy. If you are over 45, have unexplained weight loss, notice dark or mixed blood, or have a family history of bowel conditions, your doctor may examine the deeper colon to rule out polyps, inflammatory bowel disease, or colorectal cancer."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures haemoglobin and red blood cell count to detect anemia caused by repeated or unnoticed anal blood loss.",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates stored iron levels in your body to check for chronic iron deficiency due to recurring piles bleeding.",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Anoscopy",
+        "purpose": "Provides direct, bright visual evaluation of the lower anal canal and internal hemorrhoidal cushions."
+      },
+      {
+        "test": "Colonoscopy",
+        "purpose": "Inspects the entire large intestine when bleeding is unusual, dark, or when cancer and inflammatory bowel disease must be ruled out."
+      }
+    ],
+    "modernTreatment": [
+      "Conservative medical therapy is the first step for all early-stage piles. This combines dietary fibre supplements, higher fluid intake, stool-softening agents, and regular toilet routines.",
+      "Warm sitz baths. Sitting in a tub of plain warm water for 10 to 15 minutes, two to three times a day, relaxes the internal anal sphincter muscle, reduces spasm, and calms local irritation.",
+      "Topical ointments and suppositories. Your doctor may prescribe soothing local formulations containing mild anaesthetics, anti-inflammatory compounds, or barrier protectants to relieve acute itching and pain. These should be used for short periods as directed by your doctor.",
+      "Rubber Band Ligation (RBL). A common, quick, in-clinic procedure for Grade 1, 2, and some Grade 3 internal piles. A small elastic band is placed around the base of the pile to cut off its blood supply, causing it to shrink and drop off painlessly within a week.",
+      "Sclerotherapy and Infrared Coagulation (IRC). Liquid chemical solutions or focused infrared light are used to create tiny scars that shrink small internal bleeding veins.",
+      "Surgical interventions. For large Grade 3 or Grade 4 piles, or severe thrombosed cases that do not settle, surgical procedures such as excisional hemorrhoidectomy, stapled hemorrhoidopexy (MIPH), or Doppler-guided hemorrhoidal artery ligation are performed by experienced colorectal surgeons."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, hemorrhoids are classified under 'Arsha', a condition known as an obstruction or disturbance in the anal canal ('Guda').",
+      "Ayurvedic texts describe Arsha as stemming primarily from 'Manda Agni' (sluggish or weakened digestive fire) and chronic 'Vibandha' (constipation). When food is poorly digested, it creates Ama (metabolic residues) and vitiates the doshas—principally Apana Vata, which governs downward elimination, and Pitta, which governs heat and blood.",
+      "Traditional management focuses on rekindling digestive fire (Deepana and Pachana), balancing bowel movement, avoiding excessively sour, fermented, or fiery foods, and supporting local tissue healing.",
+      "Kshara Karma (a specialised alkaline medicated thread or paste procedure) is described in Sushruta Samhita for select cases and must only be assessed or performed by certified Ayurvedic surgical specialists (Shalya Tantra), never by untrained practitioners.",
+      "Ayurvedic remedies act as supportive dietary or lifestyle tools. No herbal formulation can make established, advanced piles disappear overnight. Modern surgical and medical evaluation is essential."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional blend of three Indian fruits (Amalaki, Haritaki, and Bibhitaki) used as a gentle digestive tonic and bowel regulator. It helps keep bowel movements regular and soft. Evidence supports mild laxative action, but it does not remove enlarged venous cushions."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C and dietary fibre, Indian gooseberry supports digestive comfort, bowel health, and vascular wall stability as an everyday nutritional addition."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin possesses well-studied anti-inflammatory and mild antimicrobial properties. Used historically in traditional warm sitz waters or diet, though clinical evidence for resolving piles directly is limited."
+      }
+    ],
+    "nutrition": [
+      "Boost your daily dietary fibre. Meet the Indian Council of Medical Research (ICMR-NIN) guideline of 30 to 40 grams of fibre every day. Eat whole grains like whole wheat roti with bran, broken wheat (dalia), oats, and unpolished millets such as jowar, bajra, or ragi.",
+      "Load your thali with fresh Indian vegetables. Include generous portions of bottle gourd (lauki), ridge gourd (turai), pointed gourd (parwal), pumpkin (kaddu), spinach (palak), fenugreek leaves (methi), carrots, and beans every day.",
+      "Eat whole fresh fruits with their peel where possible. Apples, pears, guavas, papayas, and oranges provide insoluble fibre that bulks up stool and soluble fibre that keeps it soft and slippery.",
+      "Incorporate natural bulk-formers like Isabgol (psyllium husk). Taking psyllium husk in a large glass of plain water or warm milk helps draw moisture into the stool. Drink it as advised by your doctor and always follow with plenty of water.",
+      "Drink adequate fluids throughout the day. Aim for 2.5 to 3.5 litres of clean fluid daily, including plain water, thin homemade chaas (buttermilk) with roasted jeera, tender coconut water, and clear vegetable soups.",
+      "Avoid refined foods (maida). Minimise bakery breads, biscuits, naans, samosas, kachoris, pizzas, instant noodles, and fast foods that form dry, sticky stools.",
+      "Moderate red chilli powder and strong hot spices. While chillies do not create swollen veins by themselves, unabsorbed capsaicin causes intense burning and inflammation across raw, swollen anal tissues during bowel movements.",
+      "Cut down on heavy, deep-fried snacks, excessive caffeine, and alcohol, which can irritate the digestive lining and dehydrate your system."
+    ],
+    "lifestyle": [
+      "Never strain on the commode. Let your bowel move naturally. If nothing happens within three to five minutes, get up and try again later rather than pushing forcefully.",
+      "Ban smartphones and reading material from the toilet. Keeping your toilet visits strictly under five minutes prevents unnecessary pressure and blood pooling in the anal veins.",
+      "Use a footstool to adopt a squat-like posture. Placing a small 6-to-8-inch stool under your feet while using a Western toilet bends your hips and straightens the anorectal angle, making evacuation effortless.",
+      "Respond immediately to nature's call. Holding back stools dries them out in the colon, turning them into hard, painful rocks that scrape and tear delicate veins.",
+      "Take movement breaks during long office shifts. If you work a desk job, stand up, stretch, and walk for two to three minutes every hour to relieve pelvic congestion.",
+      "Maintain gentle anal hygiene. Use warm water or a gentle bidet spray instead of dry, rough toilet paper. Pat the area dry softly with a soft cotton cloth; never rub vigorously.",
+      "Maintain a healthy body weight. Carrying extra visceral fat around your abdomen places continuous downward mechanical pressure on pelvic blood vessels."
+    ],
+    "yogaActivity": [
+      "Engage in regular daily walking. A brisk 30-minute daily walk stimulates natural peristaltic waves in your colon, keeping your bowels active without pelvic strain.",
+      "Malasana (Garland Pose). Sitting in a deep, supported squat helps stretch the pelvic floor, eases constipation, and promotes healthy elimination.",
+      "Pawanmuktasana (Wind-Relieving Pose). Gently massaging the abdominal organs through this posture helps release trapped gas and encourages gut motility.",
+      "Viparita Karani (Legs-Up-The-Wall Pose). Elevating your legs rests the lower pelvis, drains accumulated venous blood from the lower extremities, and reduces pelvic pressure.",
+      "Ashwini Mudra (Anal contraction and relaxation). Gently contracting and releasing the pelvic floor and anal sphincter muscles helps improve local blood circulation and muscle tone.",
+      "Gym guidance for weightlifters: Avoid holding your breath during heavy lifts. Exhale on exertion to prevent sharp intra-abdominal pressure spikes. If you have an active, painful flare-up or prolapse, swap heavy squats, leg presses, and deadlifts for light resistance machines, swimming, or brisk walking until your doctor clears you."
+    ],
+    "homeopathyNote": [
+      "Several homeopathic dilutions and ointments are marketed for piles and anal discomfort.",
+      "There are no robust, large-scale, peer-reviewed clinical trials demonstrating that homeopathic remedies can shrink enlarged venous cushions, reverse prolapse, or eliminate hemorrhoids.",
+      "If you choose to explore homeopathic treatments, do so only as a personal preference, and never use them in place of medically verified treatments, dietary fibre, or surgical care. Never ignore persistent rectal bleeding under the assumption that an alternative remedy will cure it."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Increasing dietary fibre (via food and psyllium husk) combined with higher fluid intake consistently reduces bleeding, softens stool, and improves symptoms in Grade 1 and Grade 2 internal piles.",
+      "Strong evidence: Outpatient non-surgical techniques, especially rubber band ligation (RBL), have very high success rates for resolving Grade 1 to Grade 3 internal hemorrhoids with minimal discomfort.",
+      "Strong evidence: Excisional hemorrhoidectomy and modern minimally invasive surgical methods (such as stapled hemorrhoidopexy) provide definitive, long-term relief for chronic, irreducible Grade 4 piles and severe mixed hemorrhoids.",
+      "Moderate evidence: Warm water sitz baths provide short-term symptomatic relief, reduce internal anal sphincter resting tone, and soothe burning sensations.",
+      "Weak or limited evidence: Over-the-counter herbal oils, proprietary herbal capsules, or home pastes claiming to dissolve piles permanently lack robust clinical verification. No herb, diet, or product can make advanced prolapsed piles magically go away."
+    ],
+    "shouldNotDo": [
+      "Do not ignore rectal bleeding or assume it is 'just piles'. Rectal bleeding can also be caused by anal fissures, inflammatory bowel disease, colorectal polyps, or bowel cancer.",
+      "Do not sit on the toilet commode for 15, 20, or 30 minutes while reading messages or watching videos.",
+      "Do not push, strain, or grunt forcefully while passing stools. Straining directly enlarges the venous cushions.",
+      "Do not take harsh stimulant chemical laxatives continuously on your own. Habitual use can weaken bowel tone and cause rebound constipation.",
+      "Do not apply unverified home concoctions, caustic chemical pastes, or sharp substances to the anal area. These cause severe chemical burns, ulcers, and catastrophic infections.",
+      "Do not lift maximal weights in the gym while holding your breath during an active flare-up.",
+      "Do not scrub the anal opening with harsh antibacterial soaps, heavily perfumed wet wipes, or coarse tissue paper."
+    ],
+    "medicationSafety": [
+      "Use over-the-counter soothing or corticosteroid-containing hemorrhoid creams only for short durations, as advised by your doctor. Prolonged use of steroid creams around the anus can thin the delicate skin, cause skin breakdown, and lead to fungal infections.",
+      "Stool softeners and osmotic agents should be used under medical guidance. Always drink adequate water alongside them to prevent cramping or dehydration.",
+      "If you need mild pain relief for acute swelling or thrombosed piles, paracetamol may be used as advised by your doctor. Avoid regular self-medication with strong NSAID painkillers like high-dose ibuprofen or diclofenac without checking, as they can sometimes irritate the gut lining or affect bleeding.",
+      "If blood loss has led to low haemoglobin, your doctor may evaluate your iron levels and prescribe iron-folic-acid tablets alongside treatment for piles. Take them strictly as directed, and remember that iron supplements can sometimes firm up stools, meaning you must increase your fibre and water intake simultaneously."
+    ],
+    "complications": [
+      "Iron-deficiency anemia from slow, continuous, or recurrent blood loss over months.",
+      "Thrombosis, where a sudden blood clot forms inside an external hemorrhoid, causing severe, throbbing pain and a hard, swollen lump.",
+      "Strangulated hemorrhoid, which happens when the blood supply to a prolapsed internal hemorrhoid is cut off by the anal sphincter. This causes intense, agonising pain and can lead to tissue death (gangrene) if untreated.",
+      "Perianal hygiene issues, skin breakdown, and painful skin tags left behind after a swollen hemorrhoid recedes.",
+      "Local infection or perianal abscess formation, especially if prolapsed tissues ulcerate or are subjected to caustic home remedies."
+    ],
+    "emergencySigns": [
+      "Continuous, heavy anal bleeding that fills the toilet bowl, shoots out in a jet, or will not stop after a few minutes",
+      "Passing large dark blood clots or dark, sticky, tarry stools (melena)",
+      "Feeling lightheaded, dizzy, fainting, or experiencing extreme weakness and pale skin",
+      "Sudden, excruciating, unbearable anal pain accompanied by high fever, chills, or foul-smelling discharge",
+      "A hard, purple, severely swollen lump at the anus that cannot be touched and causes severe agony"
+    ],
+    "whenToSeeDoctor": [
+      "You notice blood in your stool, on the toilet paper, or in the pan for the first time in your life",
+      "Your bleeding, pain, or swelling does not improve after one week of high fibre, increased fluids, and warm sitz baths",
+      "Piles tissue prolapses during bowel movements and needs to be pushed back manually or stays permanently outside",
+      "You feel a firm, tender, painful lump near the anal rim",
+      "Your bowel habits have changed noticeably over several weeks—such as alternating loose stools and constipation—or you are losing weight without trying"
+    ],
+    "faqs": [
+      {
+        "q": "Does eating spicy Indian food cause piles?",
+        "a": "Spicy food does not create swollen veins on its own. The primary cause of piles is mechanical pressure from straining, hard stools, and prolonged sitting. However, if you already have inflamed hemorrhoids or tiny anal tears, strong chillies and spices pass through the digestive system without complete breakdown, causing intense burning, irritation, and pain when you pass stool."
+      },
+      {
+        "q": "Can I continue working out in the gym if I have piles?",
+        "a": "Yes, regular exercise is wonderful for your digestive motility. However, you should avoid heavy maximal lifting, deep squats, and breath-holding (Valsalva manoeuvre) while you have an active, painful flare-up or bleeding piles. Focus on brisk walking, bodyweight movements, cycling on a comfortable seat, and proper breathing—always exhaling on exertion."
+      },
+      {
+        "q": "Is rectal bleeding always caused by piles?",
+        "a": "No. While piles are the most frequent reason for bright red rectal bleeding, bleeding can also stem from an anal fissure (a painful tear), rectal polyps, diverticular disease, ulcerative colitis, Crohn's disease, or colorectal cancer. Every episode of rectal bleeding should be evaluated by a doctor to confirm the true diagnosis."
+      },
+      {
+        "q": "Can psyllium husk (isabgol) cure my piles?",
+        "a": "Psyllium husk is a natural soluble fibre that absorbs water, softens stool, and eases passage, which dramatically reduces straining and helps inflamed veins recover. However, it does not dissolve or cure established, high-grade prolapsed piles. It works as an excellent supportive measure alongside medical care."
+      },
+      {
+        "q": "Will every case of piles eventually require surgery?",
+        "a": "Not at all. The vast majority of early-stage piles (Grade 1 and Grade 2) improve significantly with simple dietary adjustments, higher water intake, sitz baths, and brief medical therapy. Even when intervention is needed, simple outpatient procedures like rubber band ligation can often resolve the problem without traditional surgery. Surgery is reserved for advanced, severe, or non-responsive cases."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in",
+        "year": "2024"
+      },
+      {
+        "title": "The American Society of Colon and Rectal Surgeons Clinical Practice Guidelines for the Management of Hemorrhoids",
+        "source": "Diseases of the Colon & Rectum (Davis BR et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29420423/",
+        "year": "2018"
+      },
+      {
+        "title": "Hemorrhoids and what to do about them",
+        "source": "Harvard Health Publishing",
+        "url": "https://www.health.harvard.edu/diseases-and-conditions/hemorrhoids_and_what_to_do_about_them",
+        "year": "2021"
+      },
+      {
+        "title": "Piles (haemorrhoids)",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/piles-haemorrhoids/",
+        "year": "2023"
+      },
+      {
+        "title": "Hemorrhoids",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIH NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/hemorrhoids",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "constipation",
+      "anemia",
+      "iron-deficiency",
+      "obesity",
+      "pregnancy-nutrition"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "iron-folic-acid"
+    ],
+    "relatedHerbs": [
+      "triphala",
+      "amla",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

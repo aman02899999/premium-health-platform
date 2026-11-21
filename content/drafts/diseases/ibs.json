@@ -1,0 +1,303 @@
+{
+  "slug": "ibs",
+  "name": "IBS (Irritable Bowel Syndrome)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Irritable Bowel Syndrome (IBS) is a common disorder of the gut-brain interaction. It affects how your brain and gut communicate, making your digestive tract overly sensitive and changing how your bowel muscles contract. People with IBS experience recurring stomach cramps, belly pain, bloating, gas, and changes in bowel habits such as loose motions, hard stools, or alternating between the two. IBS does not cause permanent physical damage to your intestines, nor does it lead to bowel cancer or bleeding. However, its unpredictable flare-ups can significantly disrupt daily routines, work productivity, travel, and emotional well-being. In India, functional bowel disorders like IBS are widely seen in gastroenterology clinics, often triggered or worsened by daily stress, irregular meal schedules, oily street food, and gut infections. While no single treatment makes it vanish completely, most people find substantial relief through personalised food changes, stress reduction, and medicines advised by a doctor.",
+    "quickFacts": [
+      {
+        "label": "Nature of condition",
+        "value": "Functional gut-brain disorder (no structural organ damage)"
+      },
+      {
+        "label": "Key symptoms",
+        "value": "Abdominal pain linked to pooping, bloating, gas, loose or hard stools"
+      },
+      {
+        "label": "Global prevalence",
+        "value": "Roughly 4% to 10% of adults worldwide (Rome IV criteria)"
+      },
+      {
+        "label": "Main subtypes",
+        "value": "IBS-C (constipation), IBS-D (diarrhea), IBS-M (mixed), IBS-U (unclassified)"
+      },
+      {
+        "label": "Common triggers",
+        "value": "Stress, anxiety, spicy or greasy food, dairy, and gut infections"
+      },
+      {
+        "label": "Red flag warning",
+        "value": "IBS does not cause rectal bleeding, unexplained weight loss, or midnight diarrhea"
+      }
+    ],
+    "causes": [
+      "Faulty gut-brain communication. The nerves connecting the brain and the digestive tract misfire, causing the intestine to overreact to normal digestive gas or mild contractions.",
+      "Visceral hypersensitivity. An unusually low pain threshold in the gut nerves, meaning ordinary gas or digestion feels like sharp, agonizing stomach cramps.",
+      "Altered gut motility. Muscle contractions in the bowel wall may happen too fast, causing loose motions, or too slowly, leading to hard, dry stools.",
+      "Post-infectious changes. Developing long-lasting gut symptoms after a severe bout of bacterial or viral food poisoning (gastroenteritis).",
+      "Imbalance in gut bacteria (dysbiosis). Disruptions in the healthy bacterial colonies of the colon can increase fermentation, leading to painful gas and bloating.",
+      "Psychological stress and anxiety. High work pressure, family tensions, and poor sleep stimulate stress hormones that directly speed up or stall bowel movements.",
+      "Food intolerances and sensitivities. Certain poorly absorbed carbohydrates, dairy (lactose), excess chilies, deep-fried snacks, or artificial sweeteners can trigger attacks."
+    ],
+    "types": [
+      {
+        "name": "IBS with Constipation (IBS-C)",
+        "desc": "More than a quarter of your bowel movements are hard or lumpy pebbles, and fewer than a quarter are loose or watery. It often comes with straining, painful gas, and a feeling that your bowels never empty fully."
+      },
+      {
+        "name": "IBS with Diarrhea (IBS-D)",
+        "desc": "More than a quarter of your stools are loose, mushy, or watery, and hard stools happen rarely. Sufferers often experience sudden, urgent bathroom rushes, especially right after breakfast or during nervous moments."
+      },
+      {
+        "name": "IBS with Mixed Bowel Habits (IBS-M)",
+        "desc": "Your stool patterns fluctuate unpredictably. On some days you struggle with painful constipation, while on other days you suffer from sudden loose motions."
+      },
+      {
+        "name": "IBS Unclassified (IBS-U)",
+        "desc": "You meet the official symptom criteria for IBS, but your stool consistency does not neatly fall into the constipation, diarrhea, or mixed categories."
+      }
+    ],
+    "diagnosis": [
+      "IBS is diagnosed using clinical symptom criteria known as the Rome IV criteria, combined with ruling out red flags.",
+      "To meet Rome IV criteria, you must have recurring abdominal pain at least 1 day per week over the last 3 months, with symptoms starting at least 6 months earlier.",
+      "Your stomach pain must be linked to at least two of these: related to passing stool, accompanied by a change in stool frequency, or accompanied by a change in stool form.",
+      "Your doctor will take a detailed medical history to check for warning signs like rectal bleeding, unintentional weight loss, anemia, persistent fever, or a family history of colon cancer.",
+      "A physical examination, including feeling your abdomen for swelling or lumps, is routinely done.",
+      "If no red flags are present, extensive testing like routine colonoscopies is usually unnecessary for young individuals."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for anemia or hidden infection to rule out inflammatory bowel disease or internal bleeding",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures systemic inflammation, which stays normal in IBS but rises in conditions like Crohn's disease",
+        "slug": "crp"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out hyperthyroidism causing frequent loose stools or hypothyroidism causing chronic constipation",
+        "slug": "tsh"
+      },
+      {
+        "test": "HbA1c or Fasting Blood Glucose",
+        "purpose": "Screens for diabetes, which can cause autonomic gut nerve damage with chronic diarrhea",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Stool test for infection and occult blood",
+        "purpose": "Looks for parasites, bacterial pathogens, or microscopic traces of blood in the stool"
+      },
+      {
+        "test": "Tissue Transglutaminase (tTG-IgA) antibody test",
+        "purpose": "Screens for celiac disease, an autoimmune gluten reaction that closely mimics IBS-D"
+      }
+    ],
+    "modernTreatment": [
+      "Dietary and lifestyle adjustments form the primary foundation for managing all forms of IBS.",
+      "For IBS with constipation, doctors often suggest increasing soluble fiber gradually, using osmotic laxatives like polyethylene glycol, or prescribing specific secretagogues as advised by your doctor.",
+      "For IBS with diarrhea, antimotility medicines such as loperamide may be recommended for short-term control of sudden attacks, strictly as advised by your doctor.",
+      "Antispasmodic medicines are frequently prescribed before meals to relax gut muscles and reduce painful stomach cramping and spasms.",
+      "Low-dose neuromodulators, such as certain tricyclic antidepressants or SSRIs, are often prescribed not for depression, but to calm hypersensitive gut nerves and regulate motility.",
+      "Targeted, non-absorbable gut antibiotics (like rifaximin) may be considered in selected cases of IBS-D to reduce gas-producing gut bacteria.",
+      "Psychological therapies, including cognitive behavioral therapy (CBT) and gut-directed hypnotherapy, have strong medical evidence for calming the gut-brain axis."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, chronic bowel dysfunction with alternating loose and hard stools, cramping, and indigestion closely resembles Grahani Roga, a condition of the digestive seat.",
+      "Ayurveda attributes this problem to weak digestive fire (Manda Agni), which leads to incomplete digestion and the accumulation of metabolic waste (Ama).",
+      "It is traditionally seen as an imbalance of Vata dosha (disturbing gut movement and creating gas) and Pitta dosha (causing heat, burning, and loose motions).",
+      "Traditional advice focuses on eating freshly prepared, warm meals at fixed times, avoiding heavy and stale foods, and sipping warm water or spiced buttermilk (Takra).",
+      "Herbal remedies and churnas can only play a supportive role alongside medical guidance. Always consult your allopathic doctor before starting any Ayurvedic formulations, as evidence remains preliminary."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally used to support gastric emptying and ease nausea and bloating. Human trials for IBS symptoms remain limited."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has mild anti-inflammatory properties that may soothe gut discomfort, though clinical evidence in IBS is modest."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional three-fruit blend sometimes used as a mild bowel regulator for constipation. Evidence from controlled trials is weak, and excess use can cause diarrhea."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb known to help buffer mental stress and anxiety, which indirectly supports gut-brain balance. Not a direct bowel treatment."
+      }
+    ],
+    "nutrition": [
+      "Eat meals at predictable, regular times every day. Skipping breakfast or eating late dinners over-strains bowel rhythm.",
+      "Chew your food slowly and avoid gulping water during meals to prevent swallowing excess air that triggers bloating.",
+      "Identify personal food triggers by keeping a simple food and symptom diary for two weeks.",
+      "Try a temporary low-FODMAP eating plan under the guidance of a qualified dietitian. This reduces fermentable sugars that gut bacteria turn into painful gas.",
+      "Watch out for common Indian gas-forming foods: rajma, chana, urad dal, cabbage, cauliflower, raw onions, and excess garlic. Soaking pulses overnight and cooking them with hing (asafoetida) or jeera may improve tolerance.",
+      "If you have IBS-D, cut back on full-cream buffalo milk, paneer, milky sweets, and oily gravies, as dairy and excess fat frequently trigger urgent loose motions.",
+      "If you have IBS-C, increase soluble fiber slowly using foods like oats, isabgol (psyllium husk), and papaya. Avoid loading up on raw wheat bran suddenly, as it can worsen gas and belly pain.",
+      "Stay hydrated with plain warm water, light coconut water, and thin homemade chaas seasoned with roasted cumin and mint. Limit carbonated soft drinks, strong tea, coffee, and alcohol."
+    ],
+    "lifestyle": [
+      "Prioritize 7 to 8 hours of restful sleep each night. Poor or broken sleep significantly heightens gut pain sensitivity the next morning.",
+      "Set aside dedicated, unhurried time for bowel movements each morning, preferably after drinking a glass of warm water.",
+      "Engage in at least 30 minutes of moderate physical activity, such as brisk walking, cycling, or swimming, on 5 days a week to stimulate healthy peristalsis.",
+      "Build a daily stress-management ritual: practice slow diaphragmatic breathing for 10 minutes when you feel overwhelmed at work.",
+      "Avoid tight belts and constrictive clothing around your waist that compress the abdomen and aggravate bloating.",
+      "Quit all forms of tobacco, including cigarettes, bidi, and gutka, because nicotine irritates the intestinal lining and disturbs bowel motility."
+    ],
+    "yogaActivity": [
+      "Gentle yoga postures can release trapped abdominal gas and stimulate blood circulation to digestive organs without jarring the abdomen.",
+      "Pawanmuktasana (wind-relieving pose) helps relieve trapped gas and eases cramping in both constipation and bloating.",
+      "Vajrasana (thunderbolt pose), practiced for 5 to 10 minutes after light meals, helps calm the nervous system and aids digestive comfort.",
+      "Marjaryasana-Bitilasana (cat-cow stretch) and Bhujangasana (gentle cobra pose) gently mobilize the spine and relieve abdominal tension.",
+      "Pranayama techniques like Anulom Vilom (alternate nostril breathing) and slow abdominal diaphragmatic breathing soothe the sympathetic nervous system and reduce stress-induced bowel spasms.",
+      "Avoid strenuous, high-impact workouts or intense abdominal crunches during acute cramping flare-ups."
+    ],
+    "homeopathyNote": [
+      "Many homeopathic practitioners market remedies for chronic diarrhea, constipation, and belly bloating.",
+      "There is no robust scientific evidence from high-quality clinical trials showing that homeopathic dilutions treat or correct Irritable Bowel Syndrome.",
+      "If you explore homeopathy, never stop your prescribed medications, never follow extreme unsupervised dietary restrictions, and always ensure your symptoms are evaluated by a doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Soluble fiber (such as psyllium husk), antispasmodics, low-dose gut-brain neuromodulators, and low-FODMAP dietary interventions supervised by a dietitian reduce abdominal pain and normalize stool patterns.",
+      "Strong evidence: Gut-directed hypnotherapy and cognitive behavioral therapy (CBT) produce lasting improvements in bowel comfort by retraining nerve signals along the gut-brain axis.",
+      "Moderate evidence: Specific, well-studied multi-strain probiotics and non-absorbable antibiotics provide symptom relief for some patients with IBS-D and severe bloating.",
+      "Limited or weak evidence: Herbal remedies like triphala, ginger, and raw herbal decoctions lack large-scale randomized trial data for IBS.",
+      "No credible evidence: Food sensitivity blood tests (such as IgG food antibody panels) and unverified detox powders sold online; these often lead to malnutrition and unnecessary fear of food."
+    ],
+    "shouldNotDo": [
+      "Do not fall for internet promises of a permanent cure; no herb, diet or product can make it go away overnight.",
+      "Do not severely restrict your daily food intake down to just two or three items out of fear. Malnutrition and micronutrient deficiencies can develop rapidly.",
+      "Do not self-prescribe over-the-counter laxatives or antimotility pills for months on end without consulting your doctor.",
+      "Do not ignore red flag symptoms such as blood in your stool, dark black motions, or sudden weight loss by assuming it is just routine IBS.",
+      "Do not rely on commercial IgG food intolerance tests that claim to identify dozens of food allergies from a single blood sample.",
+      "Do not rush to take frequent courses of broad-spectrum antibiotics for stomach upsets, as they wipe out beneficial gut microbes."
+    ],
+    "medicationSafety": [
+      "Always take prescription gut antispasmodics, laxatives, or neuromodulators at the exact timings advised by your doctor.",
+      "If your doctor prescribes psyllium husk or fiber supplements, introduce them gradually and drink plenty of water to prevent worsening gas or intestinal blockage.",
+      "Be cautious with routine over-the-counter painkillers like ibuprofen or diclofenac (NSAIDs); they can irritate the stomach and bowel lining and trigger gut flare-ups.",
+      "If you are prescribed low-dose antidepressants for gut nerve sensitivity, understand that they take several weeks to stabilize nerve signaling; do not stop them abruptly.",
+      "Inform your physician about any herbal supplements or churna you consume, as some contain senna or heavy metals that disrupt bowel habits."
+    ],
+    "complications": [
+      "Severe disruption of quality of life, frequent absenteeism from work, and hesitation to travel or attend social functions.",
+      "Secondary mental health struggles, including heightened generalized anxiety, health-related anxiety, and depression.",
+      "Disordered eating habits, excessive fear of normal foods, and unintended nutritional deficiencies.",
+      "Aggravation of anal fissures and painful hemorrhoids (piles) from chronic straining during constipation.",
+      "Severe dehydration, dizziness, and electrolyte imbalance from uncontrolled bouts of loose motions."
+    ],
+    "emergencySigns": [
+      "Visible red blood in your stool, stools that look like black tar, or bleeding from the rectum",
+      "Unexplained, rapid weight loss without any change in diet or exercise",
+      "High fever accompanied by severe, unrelenting abdominal pain",
+      "Persistent, watery diarrhea that wakes you up from deep sleep in the middle of the night",
+      "Continuous vomiting and inability to keep fluids down for over 24 hours",
+      "A hard, tender swelling or palpable lump in your abdomen"
+    ],
+    "whenToSeeDoctor": [
+      "Your bowel habits change noticeably and persist for more than 4 weeks",
+      "You find yourself taking over-the-counter stomach pills, churna, or loose motion tablets almost every week",
+      "Belly pain and bloating routinely wake you up from sleep or interfere with your daily office work",
+      "Your symptoms first begin after the age of 50",
+      "You have a family history of colon cancer, inflammatory bowel disease (Crohn's or Ulcerative Colitis), or celiac disease"
+    ],
+    "faqs": [
+      {
+        "q": "Does IBS turn into bowel cancer or colitis over time?",
+        "a": "No. IBS is a functional disorder of gut sensitivity and movement. It does not cause physical inflammation, ulceration, or cell mutations, and it does not increase your risk of developing colorectal cancer or inflammatory bowel disease."
+      },
+      {
+        "q": "Is IBS the same as IBD?",
+        "a": "No, they are very different. IBS (Irritable Bowel Syndrome) involves no physical damage or inflammation inside the intestine. IBD (Inflammatory Bowel Disease, which includes Crohn's disease and Ulcerative Colitis) causes visible swelling, deep ulcers, bleeding, and permanent tissue damage seen on colonoscopy."
+      },
+      {
+        "q": "Why does my IBS flare up every time I feel anxious or stressed?",
+        "a": "Your gut and brain are directly connected through millions of nerves called the gut-brain axis. When you experience stress, your brain releases hormones that accelerate or slow down intestinal contractions and amplify gut pain sensors, rapidly triggering cramps, diarrhea, or gas."
+      },
+      {
+        "q": "Is isabgol (psyllium husk) safe to take daily for IBS?",
+        "a": "Isabgol is a soluble fiber that absorbs water and forms a smooth gel. It softens hard stools in IBS-C and helps provide form to loose stools in mild IBS-D. It is generally safe when taken as advised by your doctor with adequate water, though starting with too much can cause temporary gas."
+      },
+      {
+        "q": "Can a blood test diagnose IBS?",
+        "a": "There is no single blood test that confirms IBS. Doctors use routine blood tests (like CBC and CRP) to rule out other medical issues such as anemia, infection, celiac disease, or systemic inflammation. If those tests are normal and your symptoms match, IBS is diagnosed."
+      }
+    ],
+    "references": [
+      {
+        "title": "Irritable bowel syndrome in adults: diagnosis and management",
+        "source": "National Institute for Health and Care Excellence (NICE Clinical Guideline CG61)",
+        "url": "https://www.nice.org.uk/guidance/cg61",
+        "year": "2017"
+      },
+      {
+        "title": "ACG Clinical Guideline: Management of Irritable Bowel Syndrome",
+        "source": "American Journal of Gastroenterology (Lacy BE et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33315078/",
+        "year": "2021"
+      },
+      {
+        "title": "Consensus on irritable bowel syndrome in India",
+        "source": "Indian Journal of Gastroenterology (Ghoshal UC et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18698111/",
+        "year": "2008"
+      },
+      {
+        "title": "Irritable Bowel Syndrome (IBS)",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIH NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/irritable-bowel-syndrome",
+        "year": "2023"
+      },
+      {
+        "title": "Bowel disorders (Rome IV Criteria)",
+        "source": "Gastroenterology (Lacy BE et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27144627/",
+        "year": "2016"
+      }
+    ],
+    "relatedDiseases": [
+      "constipation",
+      "diarrhea",
+      "bloating",
+      "acidity",
+      "gerd",
+      "gastritis",
+      "hemorrhoids",
+      "anxiety",
+      "depression",
+      "stress",
+      "sleep-problems"
+    ],
+    "relatedMedicines": [
+      "pantoprazole",
+      "omeprazole",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "turmeric",
+      "triphala",
+      "ashwagandha"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "tsh",
+      "hba1c"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

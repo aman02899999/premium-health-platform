@@ -1,0 +1,273 @@
+{
+  "slug": "acidity",
+  "name": "Acidity",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Acidity, often described as heartburn, acid reflux, or a burning sour feeling in the chest and throat, occurs when digestive juices from the stomach travel upward into the food pipe (oesophagus) or irritate the stomach lining. In healthy digestion, a muscular ring called the lower oesophageal sphincter acts as a one-way valve, opening to let food into the stomach and closing tight to keep stomach acid inside. When this valve relaxes at the wrong time or stays weak, acid washes up into the delicate lining of the food pipe, causing a fiery discomfort. In India, acidity is among the most frequent digestive complaints seen in primary clinics. While an occasional bout after a festive wedding feast or heavy street food is common and usually harmless, repeated episodes that occur two or more times a week can indicate a chronic condition such as gastro-oesophageal reflux disease (GERD) or gastritis, which requires careful medical attention and long-term lifestyle changes.",
+    "quickFacts": [
+      {
+        "label": "Common Indian terms",
+        "value": "Khatti dakar, chhati mein jalan, pitta, hyperacidity"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Affects 7.6% to 22.2% of Indian adults (Indian Society of Gastroenterology)"
+      },
+      {
+        "label": "Key mechanical trigger",
+        "value": "Lying down flat within 2 to 3 hours after a heavy meal"
+      },
+      {
+        "label": "Most common dietary triggers",
+        "value": "Deep-fried snacks, excess tea/coffee, raw onions, and late-night dinners"
+      },
+      {
+        "label": "Primary medical goal",
+        "value": "Control acid exposure, heal the lining, and prevent complications"
+      },
+      {
+        "label": "Golden rule",
+        "value": "Never assume severe central chest pain is just acidity; rule out heart issues first"
+      }
+    ],
+    "causes": [
+      "Late-night heavy dinners. Eating late and going straight to bed means gravity cannot help keep stomach contents down, allowing acid to easily enter the oesophagus.",
+      "Oily, deep-fried, and heavily spiced foods. Traditional snacks like samosas, pakoras, vadas, and rich gravies delay stomach emptying and trigger extra acid release.",
+      "Excess tea and coffee consumption. Drinking multiple cups of strong masala chai or coffee on an empty stomach stimulates stomach acid and relaxes the lower food pipe valve.",
+      "Belly fat and excess weight. High visceral fat puts direct mechanical pressure on the stomach, forcing the valve open and pushing acid upward.",
+      "Tobacco and alcohol. Smoking cigarettes, using bidi or chewing gutka, and drinking alcohol irritate the digestive lining and weaken the oesophageal valve.",
+      "Frequent use of painkillers. Over-the-counter non-steroidal anti-inflammatory drugs (NSAIDs) like ibuprofen or diclofenac damage the protective mucous layer of the stomach.",
+      "Helicobacter pylori (H. pylori) infection. This common stomach bacterial infection inflames the gastric lining and can cause chronic burning and ulcers.",
+      "Chronic mental stress. High stress disrupts normal gut motility, increases stomach sensitivity, and leads to poor eating habits."
+    ],
+    "types": [
+      {
+        "name": "Occasional Acidity (Functional Heartburn)",
+        "desc": "Infrequent flare-ups tied directly to a specific trigger, such as a large wedding banquet, fasting for long hours, or missing meals."
+      },
+      {
+        "name": "Gastro-Oesophageal Reflux Disease (GERD)",
+        "desc": "A chronic condition diagnosed when acid flows back into the food pipe at least twice a week, leading to troublesome symptoms or tissue damage."
+      },
+      {
+        "name": "Gastritis",
+        "desc": "Inflammation or erosion of the inner stomach lining itself, frequently caused by H. pylori infection, stress, or painkiller overuse, causing upper stomach pain rather than chest burning."
+      },
+      {
+        "name": "Laryngopharyngeal Reflux (Silent Reflux)",
+        "desc": "Acid travels all the way up into the throat and vocal cords, often causing hoarseness, chronic throat clearing, or an ongoing dry cough without obvious heartburn."
+      }
+    ],
+    "diagnosis": [
+      "Clinical review: In most cases, a doctor can diagnose simple acidity or reflux based on typical symptoms like burning behind the breastbone after meals and sour regurgitation.",
+      "Assessing red flag symptoms: Your doctor will immediately ask about red flags such as pain during swallowing, unintentional weight loss, vomiting, or anemia before deciding on tests.",
+      "Ruling out cardiac problems: Because acid reflux chest pain closely mimics angina or a heart attack, an ECG is frequently ordered first to ensure the heart is safe.",
+      "Upper gastrointestinal endoscopy: If symptoms persist despite medication, or if red flags appear, a specialist uses a thin flexible camera to inspect the food pipe and stomach lining.",
+      "H. pylori testing: Doctors may check for this bacterial infection using a simple breath test, stool antigen test, or tissue sample taken during endoscopy."
+    ],
+    "investigations": [
+      {
+        "test": "Upper GI Endoscopy (OGD)",
+        "purpose": "Directly visualises inflammation, erosions, ulcers, or structural changes in the oesophagus and stomach"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia resulting from silent microscopic bleeding from the stomach lining",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks for diabetes, which can delay stomach emptying and worsen reflux",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Rules out heart disease, which can feel identical to severe heartburn"
+      }
+    ],
+    "modernTreatment": [
+      "First-line lifestyle changes: Adjusting meal schedules, stopping late-night snacking, elevating the head of the bed, and weight reduction are essential steps for all patients.",
+      "Antacids: Liquid suspensions or chewable tablets containing aluminium, magnesium, or alginates provide rapid, temporary relief by neutralising existing stomach acid.",
+      "Proton Pump Inhibitors (PPIs): Medications such as omeprazole or pantoprazole shut down the acid pumps in the stomach, allowing the food pipe lining to heal, taken exactly as advised by your doctor.",
+      "H2-receptor blockers: Medicines like famotidine decrease acid production and can be used for mild to moderate symptoms or night-time breakthrough reflux as directed by a doctor.",
+      "Prokinetics: In cases where delayed stomach emptying contributes to reflux, a doctor may prescribe medications to help move food through the digestive tract faster.",
+      "Review of other medicines: Your doctor will evaluate and adjust medicines that irritate the stomach, such as certain blood pressure pills or joint painkillers."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, acidity is often understood under the concept of Amlapitta, where Pitta dosha (associated with fire and metabolic heat) becomes aggravated and turns sour (amla) and toxic.",
+      "Traditional Ayurvedic management emphasizes eliminating causative factors (Nidana Parivarjana), especially excessively spicy (katu), sour (amla), salty (lavana), and fermented foods.",
+      "Ayurvedic care recommends cooling, easily digestible foods such as moong dal, barley, bottle gourd, and cooling milk preparations to calm digestive fire (Agni) without stopping it completely.",
+      "Herbal remedies and Ayurvedic churnas can only provide supportive relief alongside mainstream medical care; no herb can make chronic acid reflux go away permanently on its own."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Licorice (Mulethi)",
+        "slug": "licorice",
+        "note": "Traditionally used to soothe the gut lining. Deglycyrrhizinated licorice (DGL) is preferred because excess standard licorice can raise blood pressure. Use as advised by your doctor."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Traditionally valued for balancing Pitta. While rich in antioxidants, its natural tanginess may bother some individuals with active stomach inflammation."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Used in modest culinary amounts to support healthy digestion and relieve nausea, but concentrated amounts can aggravate heartburn in some people."
+      }
+    ],
+    "nutrition": [
+      "Eat smaller, more frequent meals instead of two or three enormous thalis. An overloaded stomach forces the lower food pipe valve to stretch open.",
+      "Complete your dinner at least 2 to 3 hours before going to sleep. This gives your stomach sufficient time to empty before you lie down flat.",
+      "Reduce deep-fried items like samosas, kachoris, chips, and bhujia, which delay gastric emptying and cause extended acid secretion.",
+      "Moderate your intake of strong spices, raw green chillies, black pepper, and garlic, opting instead for gentle seasonings like cumin (jeera) and coriander.",
+      "Cut down on tea and filter coffee, especially on an empty stomach. Switch to warm water or diluted buttermilk (chaas) seasoned with roasted cumin and mint.",
+      "Incorporate soothing foods recommended in Indian nutrition guidelines: bottle gourd (lauki), ridge gourd (turai), boiled pumpkin, soft khichdi, and ripe bananas.",
+      "Avoid citrus fruits (lemons, oranges), raw tomatoes, vinegar, and fizzy carbonated drinks during active flare-ups as they can directly irritate the food pipe."
+    ],
+    "lifestyle": [
+      "Elevate the head of your bed by 6 inches (15 cm) using sturdy bed risers or an angled wedge pillow. Extra sleeping pillows only bend your neck and can worsen reflux by compressing the belly.",
+      "Avoid wearing tight trousers, tight belts, or constricting waistbands, as external pressure pushes stomach acid upward.",
+      "Work toward a healthy body weight through consistent daily movement, as reducing abdominal fat significantly cuts reflux symptoms.",
+      "Stop all tobacco use immediately, including bidi, cigarettes, and gutka, because nicotine relaxes the oesophageal valve.",
+      "Stay upright after meals. Take a gentle 10-minute stroll (shatapadi) rather than slumping on the sofa or going straight to bed.",
+      "Practice good sleep hygiene, aiming for 7 to 8 hours of quiet, regular rest, which helps regulate digestive sensitivity."
+    ],
+    "yogaActivity": [
+      "Vajrasana (Thunderbolt Pose): Sitting gently in this posture for 10 minutes after a meal helps promote healthy digestion without straining the stomach.",
+      "Gentle breathing exercises: Cooling pranayamas such as Sheetali, Sheetkari, and slow Anulom Vilom help soothe nervous system stress and reduce perceived visceral pain.",
+      "Gentle restorative postures: Supta Baddha Konasana (supported with cushions) and gentle cat-cow stretches help relieve abdominal tension without putting undue pressure on the gut.",
+      "Avoid inversions: Do not perform headstands (Sirsasana), shoulder stands (Sarvangasana), or intense forward folds during an active reflux episode or soon after eating, as gravity will pull acid straight into your throat."
+    ],
+    "homeopathyNote": [
+      "There is no robust, reproducible scientific evidence proving that homeopathic preparations can reduce stomach acid, repair damaged food pipe tissue, or eradicate H. pylori.",
+      "Relying solely on homeopathic remedies for chronic reflux can delay necessary medical evaluation, putting you at risk of developing strictures or precancerous tissue changes.",
+      "If you choose to take homeopathic remedies, always keep your primary physician informed and do not discontinue prescribed acid-suppressing medications on your own."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Proton Pump Inhibitors (PPIs) and H2-blockers significantly reduce stomach acid, relieve heartburn, and heal erosive esophagitis.",
+      "Strong evidence: Weight loss in overweight individuals and elevating the head of the bed at night reliably decrease nighttime acid exposure in clinical trials.",
+      "Moderate evidence: Eliminating specific personal trigger foods (such as late dinners, chocolate, or excess caffeine) provides symptom relief in many people.",
+      "Limited evidence: Herbal remedies like deglycyrrhizinated licorice and amla show mild soothing qualities in small preliminary studies, but evidence remains weak compared to standard medical treatment."
+    ],
+    "shouldNotDo": [
+      "Do not lie down, take a nap, or lounge horizontally immediately after lunch or dinner.",
+      "Do not drink large mugs of strong tea or coffee first thing in the morning on an empty stomach.",
+      "Do not self-prescribe and take over-the-counter PPIs (like omeprazole or pantoprazole) continuously for months without a doctor's review.",
+      "Do not ignore pain or difficulty when swallowing solid food; this is never normal acidity.",
+      "Do not dismiss severe, crushing chest pain as 'gas' or 'acidity', especially if it comes with sweating or shortness of breath.",
+      "Do not consume large amounts of baking soda or unmeasured household remedies, which can disturb electrolyte balance and cause rebound acidity."
+    ],
+    "medicationSafety": [
+      "Take Proton Pump Inhibitors (such as omeprazole or pantoprazole) 30 to 60 minutes before your first meal of the day, as advised by your doctor, so they can block active acid pumps.",
+      "Do not stop long-term daily acid medications abruptly on your own; sudden stopping can trigger a rebound surge of acid. Your doctor will taper the dose gradually.",
+      "Long-term, unsupervised use of high-dose acid suppressants may impair the absorption of essential nutrients like vitamin B12, magnesium, and calcium.",
+      "Be cautious with routine painkiller use. If you need pain relief for headaches or joint aches, consult your doctor about gut-safer options rather than taking NSAIDs.",
+      "Liquid antacids should generally be taken between meals or at bedtime, spaced at least 2 hours away from other oral medications to prevent binding interactions."
+    ],
+    "complications": [
+      "Erosive Oesophagitis: Ongoing acid contact strips away the lining of the food pipe, leading to painful ulcers, inflammation, and bleeding.",
+      "Oesophageal Stricture: Chronic inflammation and scar tissue formation can narrow the food pipe, making it difficult or painful to swallow food.",
+      "Barrett's Oesophagus: Long-standing reflux can cause the cells lining the lower food pipe to change into intestinal-type cells, which carries a small risk of developing oesophageal cancer.",
+      "Chronic Respiratory Problems: Microscopic droplets of acid inhaled into the airways can trigger or worsen asthma, chronic bronchitis, laryngitis, and persistent cough.",
+      "Dental Erosion: Acid washing up into the mouth gradually dissolves tooth enamel, leading to sensitivity, decay, and gum irritation."
+    ],
+    "emergencySigns": [
+      "Crushing, squeezing, or heavy chest pain that radiates to your left arm, shoulder, neck, jaw, or back: call 108 or go to the nearest emergency room immediately.",
+      "Chest tightness or pain accompanied by cold sweats, dizziness, lightheadedness, or sudden shortness of breath.",
+      "Vomiting bright red blood or material that looks like dark coffee grounds.",
+      "Passing black, sticky, tarry stools, which points to active bleeding in the stomach or upper digestive tract.",
+      "Sudden inability to swallow food or liquids, or feeling as though food is completely stuck in your chest."
+    ],
+    "whenToSeeDoctor": [
+      "Your heartburn or sour regurgitation happens two or more times a week despite watching your diet.",
+      "Over-the-counter antacids fail to provide relief after two weeks of regular use.",
+      "You have trouble swallowing, or food feels like it catches on the way down.",
+      "You have unexplained weight loss, loss of appetite, or persistent nausea and vomiting.",
+      "You are over the age of 50 and experiencing new, unexplained symptoms of indigestion or stomach discomfort for the first time.",
+      "You wake up frequently at night choking, coughing, or with severe burning in your throat."
+    ],
+    "faqs": [
+      {
+        "q": "Can warm milk cure acidity?",
+        "a": "No, milk cannot cure acidity. While cold or room-temperature milk may give brief soothing relief by coating the stomach, its fat and protein content soon trigger the stomach to produce even more acid. No food or beverage can make acidity go away permanently."
+      },
+      {
+        "q": "How can I tell the difference between acidity and a heart attack?",
+        "a": "Both can cause intense burning or pressure behind the breastbone. However, heart-related pain often feels heavy or crushing, may spread to the arm, neck, or jaw, and is frequently accompanied by shortness of breath and cold sweats. Because they can feel identical, always treat unexplained chest pain as an emergency and get an ECG first."
+      },
+      {
+        "q": "Why does acidity get worse at night?",
+        "a": "When you lie flat, you lose the natural pulling effect of gravity, allowing stomach acid to flow freely up into the food pipe. Swallowing, which naturally clears acid, also slows down during sleep. Eating late at night makes this significantly worse."
+      },
+      {
+        "q": "Is it safe to take pantoprazole or omeprazole every day?",
+        "a": "These medications are very effective and safe when used for structured courses under medical supervision. However, using them continuously for months or years without your doctor's knowledge can lead to nutrient deficiencies and masks underlying conditions. Always have your treatment reviewed periodically."
+      },
+      {
+        "q": "Does drinking lemon water or apple cider vinegar reduce acidity?",
+        "a": "No. Lemon water and vinegar are naturally acidic and can directly irritate an already inflamed food pipe or stomach lining. While some claims suggest they balance stomach pH, scientific evidence does not support using acidic drinks to treat reflux."
+      }
+    ],
+    "references": [
+      {
+        "title": "Symptoms & Causes of GER & GERD",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/gerd/symptoms-causes/syc-20361940",
+        "year": "2023"
+      },
+      {
+        "title": "Heartburn and acid reflux",
+        "source": "NHS",
+        "url": "https://www.nhs.uk/conditions/heartburn-and-acid-reflux/",
+        "year": "2023"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Gastro-oesophageal reflux disease and dyspepsia in adults: investigation and management (NICE Guideline CG184)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg184",
+        "year": "2019"
+      },
+      {
+        "title": "Epidemiology of Gastroesophageal Reflux Disease in India",
+        "source": "Journal of the Association of Physicians of India (JAPI)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/21516740/",
+        "year": "2011"
+      }
+    ],
+    "relatedDiseases": [
+      "gerd",
+      "gastritis",
+      "peptic-ulcer",
+      "bloating",
+      "constipation",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "licorice",
+      "amla",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
