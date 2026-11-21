@@ -1112,6 +1112,67 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
+    id: "short-desi-science-gond-laddu",
+    date: "2026-11-30",
+    title: "Gond Laddu Ka Science 🌳 Sardi Ka Desi Energy Ball, Sach Kya Hai? #shorts",
+    intro: "Gond ke laddu: naani ka nuskha ya science? Gond acacia jaise pedon ka sukha ras hai, zyada-tar soluble fibre. Ghee aur gud se calories bhi kaafi, isliye gym karne walon ke liye din mein ek chhota laddu kaafi hai. Joint pain ho toh doctor ko dikhao.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Calame et al. 2008, Gum arabic prebiotic effect (Br J Nutr)", "https://pubmed.ncbi.nlm.nih.gov/?term=Calame+2008+gum+arabic+prebiotic"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["gond laddu", "gond ke laddu", "gond laddu benefits", "winter food india", "desi nutrition", "acacia gum fibre", "prebiotic fibre", "healthy winter snacks"],
+    short: true,
+  },
+  {
+    id: "short-desi-science-food-synergy",
+    date: "2026-12-01",
+    title: "1+1=3? Food Synergy Ka Desi Science (Haldi, Nimbu, Dal-Chawal) #shorts",
+    intro: "Haldi + kali mirch, haldi + ghee, dal/palak + nimbu, dal + chawal: sahi combo se absorption aur protein quality behtar. Aur khane ke saath chai se iron kam absorb hota hai, 1 ghante ka gap rakho.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Shoba et al. 1998, Piperine and curcumin absorption (Planta Med)", "https://pubmed.ncbi.nlm.nih.gov/9619120/"],
+      ["Hallberg et al. 1989, Ascorbic acid and iron absorption (Am J Clin Nutr)", "https://pubmed.ncbi.nlm.nih.gov/?term=Hallberg+1989+ascorbic+acid+phytate+iron+absorption"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["food synergy", "haldi kali mirch", "turmeric black pepper", "curcumin absorption", "vitamin c iron absorption", "dal chawal protein", "tea after meal iron", "indian diet tips"],
+    short: true,
+  },
+  {
+    id: "short-desi-science-joints",
+    date: "2026-12-02",
+    title: "Ghutne Ka Science 🦵 Sardi Mein Joints Kyun Jakadte Hain? #shorts",
+    intro: "Cartilage mein khoon ki nalein nahi hoti, isliye movement se hi ise poshan milta hai. Mazboot jaangh aur kulhe ki muscles ghutne ka bhaar sambhalti hain. Sardi ke 3 rule: warm-up, dhoop, paani. Sujan, tez dard ya chot ho toh pehle doctor ko dikhao.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Sophia Fox et al. 2009, The basic science of articular cartilage (Sports Health)", "https://pubmed.ncbi.nlm.nih.gov/23015907/"],
+      ["WHO guidelines on physical activity and sedentary behaviour (2020)", "https://www.who.int/publications/i/item/9789240015128"],
+    ],
+    tags: ["knee joint", "joint health", "cartilage", "synovial fluid", "knee pain winter", "strength training knees", "warm up winter", "joint care tips hindi"],
+    short: true,
+  },
+  {
+    id: "short-desi-science-fibre-gut",
+    date: "2026-12-03",
+    title: "Fibre Ka Science 🦠 Pet Ke Bacteria Ka Khana, Roz Kitna Chahiye? #shorts",
+    intro: "Pet ke bacteria fibre se butyrate jaise short chain fatty acids banate hain, jo aanton ki cells ki energy hain. WHO: roz kam se kam 25 g natural fibre. Desi thaali mein rajma, chana, dal, bajra, hari sabzi. Fibre dheere-dheere badhao, paani zyada piyo.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Koh et al. 2016, From dietary fiber to host physiology (Cell)", "https://pubmed.ncbi.nlm.nih.gov/27259147/"],
+      ["WHO guideline, Carbohydrate intake for adults and children (2023)", "https://www.who.int/publications/i/item/9789240073593"],
+    ],
+    tags: ["fibre benefits", "dietary fibre", "gut health", "gut bacteria", "short chain fatty acids", "butyrate", "high fibre indian foods", "fat loss diet india"],
+    short: true,
+  },
+  {
     id: "promo-lib-habits",
     date: "2026-12-03",
     title: "Motivation Nahi, System: 5 Tips + Habits Ki 5 PDF Books",
