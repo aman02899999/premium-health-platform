@@ -60,6 +60,7 @@ export async function POST(req: Request) {
     if (err) return NextResponse.json({ error: err }, { status: 400 });
     // This server shows the change straight away; other servers within a day (page revalidate).
     revalidatePath(`/health/diseases/${slug}`);
+    revalidatePath("/health/diseases");
     revalidatePath("/health/sitemap.xml");
     return NextResponse.json({ ok: true });
   } catch (err) {
