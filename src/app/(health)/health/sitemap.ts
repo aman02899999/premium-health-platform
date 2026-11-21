@@ -11,6 +11,7 @@ import { BLOG_CATEGORIES } from "@/health/data/blog-enrichment";
 import { getSeedNews } from "@/health/data/news";
 import { POSTS } from "@/health/data/posts-index.generated";
 import { postPath } from "@/health/lib/post-types";
+import { approvedDiseaseSlugs } from "@/health/lib/disease-reviews";
 import { DIGITAL_PRODUCTS, BUSINESS_LISTINGS } from "@/health/lib/monetization/config";
 
 const STATIC_ROUTES = [
@@ -46,7 +47,12 @@ const STATIC_ROUTES = [
 // lastmod only where a real date exists. Stamping every URL with the time of the request told
 // search engines that 300+ pages changed on every crawl, so they learn to ignore the signal.
 // Listing pages take the date of their newest guide; reference pages without a date get none.
-export default function sitemap(): MetadataRoute.Sitemap {
+// Rebuilt daily so pages a doctor approves in Admin reach every server (an approval also refreshes
+// this file at once on the server that saved it).
+export const revalidate = 86400;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const approved = new Set(await approvedDiseaseSlugs());
   const dates = [...ARTICLES.map((a) => a.updatedAt), ...POSTS.map((p) => p.lastReviewed)].filter(Boolean).sort();
   const newest = dates[dates.length - 1];
   const newestHi = POSTS.filter((p) => p.lang === "hi").map((p) => p.lastReviewed).sort().pop();
@@ -70,7 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
 
   // Template-only disease pages are noindex until rewritten, so they are not listed.
-  push("/health/diseases", DISEASES.map((d) => d.slug).filter(diseaseIndexable), 0.85, "weekly");
+  push("/health/diseases", DISEASES.map((d) => d.slug).filter((s) => diseaseIndexable(s) || approved.has(s)), 0.85, "weekly");
   // Short reference pages stay out until expanded (content-quality.ts THIN_SECTIONS).
   push("/health/herbs", HERBS.map((h) => h.slug), 0.75, "monthly");
   push("/health/medicines", MEDICINES.map((m) => m.slug).filter((x) => referenceIndexable("medicines", x)), 0.75, "monthly");

@@ -1,4 +1,5 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
 import { DEFAULT_CONTENT } from "./content/defaults";
 import { applyOffer, OFFERS } from "./offers";
 import { faqsWithOffer, llmsTxt } from "./content/ai-facts";
@@ -108,9 +109,9 @@ describe("Health portal identity", () => {
 });
 
 describe("Health sitemap lastmod", () => {
-  it("is never the time of the request", () => {
+  it("is never the time of the request", async () => {
     const before = Date.now();
-    const entries = healthSitemap();
+    const entries = await healthSitemap();
     const stamped = entries.filter((e) => e.lastModified && Math.abs(new Date(e.lastModified).getTime() - before) < 60_000);
     expect(stamped).toEqual([]);
     expect(entries.find((e) => e.url.endsWith("/health/herbs/ashwagandha"))?.lastModified).toBeUndefined();

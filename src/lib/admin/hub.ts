@@ -98,6 +98,7 @@ export const HUB_SECTIONS: Section[] = [
       { id: "blog", title: "Blog", hint: "Write and publish articles", href: "/admin/website?tab=blog", icon: "FileText", keywords: "article post seo write" },
       { id: "seo", title: "SEO & theme", hint: "Titles, descriptions, colours", href: "/admin/website?tab=seo", icon: "Search", keywords: "google meta title description theme colour" },
       { id: "library", title: "Book library", hint: "E-books, sales and reviews", href: "/admin/website?tab=library", icon: "BookOpen", keywords: "ebook book pdf" },
+      { id: "health-review", title: "Health page review", hint: "A doctor approves health page drafts before they go live", href: "/admin/health-review", icon: "FileCheck2", keywords: "doctor medical review approve disease health draft gemini" },
       { id: "faqs", title: "FAQs & results", hint: "Questions, member results, testimonials", href: "/admin/website?tab=faqs", icon: "HelpCircle", keywords: "faq question answer result testimonial" },
     ],
   },

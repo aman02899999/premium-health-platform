@@ -22,8 +22,8 @@ describe("disease pages built from the shared template stay out of search", () =
     expect((await meta("asthma")).robots).toEqual({ index: false, follow: true });
   });
 
-  it("leaves noindexed pages out of the sitemap", () => {
-    const urls = sitemap().map((e) => e.url);
+  it("leaves noindexed pages out of the sitemap", async () => {
+    const urls = (await sitemap()).map((e) => e.url);
     const diseaseUrls = urls.filter((u) => /\/health\/diseases\/[^/]+$/.test(u));
     expect(diseaseUrls.map((u) => u.split("/").pop()).sort()).toEqual([...INDEXED_DISEASES].sort());
   });
@@ -75,8 +75,8 @@ describe("short reference pages stay out of search and ad-free until expanded", 
     expect((await symMeta({ params: Promise.resolve({ slug: "cough" }) })).robots).toEqual({ index: false, follow: true });
   });
 
-  it("leaves thin sections out of the sitemap but keeps herbs", () => {
-    const urls = sitemap().map((e) => e.url);
+  it("leaves thin sections out of the sitemap but keeps herbs", async () => {
+    const urls = (await sitemap()).map((e) => e.url);
     for (const sec of THIN_SECTIONS) expect(urls.filter((u) => new RegExp(`/health/${sec}/[^/]+$`).test(u)), sec).toEqual([]);
     expect(urls.some((u) => /\/health\/herbs\/[^/]+$/.test(u))).toBe(true);
   });

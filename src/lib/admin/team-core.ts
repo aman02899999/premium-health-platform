@@ -1,11 +1,12 @@
 // Team & Agents: who may open which admin area. Pure, so the proxy (which guards every admin
 // request), the Command Center (which hides tiles) and the tests all use the same rules.
 
-export type Role = "owner" | "manager" | "agent";
+export type Role = "owner" | "manager" | "agent" | "reviewer";
 export const ROLES: { id: Role; label: string; hint: string }[] = [
   { id: "owner", label: "Owner", hint: "Everything, including adding and removing team members" },
   { id: "manager", label: "Manager", hint: "Everything except the team page" },
   { id: "agent", label: "Desk agent", hint: "WhatsApp chats, contacts, leads, members, today's tasks and call list, QR codes" },
+  { id: "reviewer", label: "Medical reviewer", hint: "Only the health page review area: read drafts, approve them or ask for changes" },
 ];
 export const isRole = (r: unknown): r is Role => ROLES.some((x) => x.id === r);
 
@@ -30,6 +31,9 @@ const AGENT_AREAS = [
   "/api/admin/me",
 ];
 
+// A medical reviewer (a doctor) sees only the health-page review area: no contacts, chats or money.
+const REVIEWER_AREAS = ["/admin/login", "/api/admin/login", "/api/admin/logout", "/api/admin/me", "/admin/health-review", "/api/admin/health-review"];
+
 // Inside an agent area, but not desk work: a diet plan goes to a paying client from Diet Pro, which
 // agents can't open. (Member list uploads, /api/admin/members, are left out of the areas above.)
 const AGENT_DENIED = ["/api/admin/growth/diet-plan", "/api/admin/growth/diet-order"];
@@ -49,6 +53,7 @@ export function allowed(role: Role, pathname: string): boolean {
   const path = pathname.replace(/\/+$/, "") || "/";
   if (!under(path, "/admin") && !under(path, "/api/admin")) return true;
   if (OWNER_ONLY.some((p) => under(path, p))) return role === "owner";
+  if (role === "reviewer") return path === "/admin" || REVIEWER_AREAS.some((p) => under(path, p));
   if (role !== "agent") return true;
   // Agents: the Command Center home, and their areas.
   if (AGENT_DENIED.some((p) => under(path, p))) return false;
