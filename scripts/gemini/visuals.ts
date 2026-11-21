@@ -31,12 +31,23 @@ async function post(url: string, body: unknown, timeout = 120_000): Promise<{ ok
   const res = await fetch(url, { method: "POST", headers, body: JSON.stringify(body), signal: AbortSignal.timeout(timeout) });
   return { ok: res.ok, status: res.status, json: (await res.json().catch(() => ({}))) as Record<string, unknown> };
 }
+/** Vertex answers 429 when calls come too fast for the project's per-minute quota: wait and retry. */
+async function postWithRetry(url: string, body: unknown): Promise<{ ok: boolean; status: number; json: Record<string, unknown> }> {
+  let r = await post(url, body);
+  for (const wait of [20_000, 40_000, 60_000, 90_000]) {
+    if (r.status !== 429) break;
+    console.log(`  rate limited, waiting ${wait / 1000}s`);
+    await sleep(wait);
+    r = await post(url, body);
+  }
+  return r;
+}
 const errorOf = (r: { status: number; json: Record<string, unknown> }) => `HTTP ${r.status}: ${(r.json.error as { message?: string } | undefined)?.message ?? ""}`.slice(0, 300);
 
 async function image(p: VisualPrompt, aspect: "9:16" | "3:4" | "1:1"): Promise<Buffer | string> {
   // 9:16 for Stories/Reels covers, 3:4 for feed posts (crop to 4:5), 1:1 for ads.
   const { model, result: r } = await withModelFallback(imageModels, (m) =>
-    post(`${GLOBAL}/${m}:generateContent`, { contents: [{ role: "user", parts: [{ text: fullPrompt(p) }] }], generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: aspect } } }),
+    postWithRetry(`${GLOBAL}/${m}:generateContent`, { contents: [{ role: "user", parts: [{ text: fullPrompt(p) }] }], generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: aspect } } }),
   );
   if (r.status === 404) return `no image model found (tried ${imageModels.join(", ")}). Available: ${await listModels(token!, "image")}`;
   imageModels = [model];
@@ -49,7 +60,7 @@ async function image(p: VisualPrompt, aspect: "9:16" | "3:4" | "1:1"): Promise<B
 async function video(p: VisualPrompt): Promise<Buffer | string> {
   // Silent clips: every Reel gets its own licence-safe music later (house rule).
   const { model: videoModel, result: r } = await withModelFallback(videoModels, (m) =>
-    post(`${BASE}/${m}:predictLongRunning`, { instances: [{ prompt: fullPrompt(p) }], parameters: { aspectRatio: "9:16", durationSeconds: 8, sampleCount: 1, generateAudio: false, personGeneration: "allow_adult" } }),
+    postWithRetry(`${BASE}/${m}:predictLongRunning`, { instances: [{ prompt: fullPrompt(p) }], parameters: { aspectRatio: "9:16", durationSeconds: 8, sampleCount: 1, generateAudio: false, personGeneration: "allow_adult" } }),
   );
   if (r.status === 404) return `no video model found (tried ${videoModels.join(", ")}). Available: ${await listModels(token!, "veo")}`;
   videoModels = [videoModel];
@@ -76,6 +87,7 @@ async function main() {
   for (const p of list) {
     const shapes = kind === "video" ? (["9:16"] as const) : (["9:16", "3:4", "1:1"] as const);
     for (const shape of shapes) {
+      if (lines.length) await sleep(kind === "video" ? 10_000 : 6_000); // stay under the per-minute quota
       const out = kind === "video" ? await video(p) : await image(p, shape);
       const name = `AI-${p.id}-${shape.replace(":", "x")}.${kind === "video" ? "mp4" : "png"}`;
       if (typeof out === "string") { lines.push(`- ${name}: FAILED (${out})`); continue; }
