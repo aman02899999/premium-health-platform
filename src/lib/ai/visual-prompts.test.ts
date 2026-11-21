@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ANATOMY_IMAGE_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, IMAGE_PROMPTS, promptProblems, promptSet, VIDEO_PROMPTS } from "./visual-prompts";
+import { ANATOMY_IMAGE_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, HABITS_IMAGE_PROMPTS, HABITS_VIDEO_PROMPTS, IMAGE_PROMPTS, promptProblems, promptSet, reelOnlySet, VIDEO_PROMPTS } from "./visual-prompts";
 
 describe("visual prompts", () => {
   const all = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS];
@@ -24,5 +24,18 @@ describe("visual prompts", () => {
     expect(ANATOMY_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
     expect(ANATOMY_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
     for (const p of ANATOMY_IMAGE_PROMPTS) expect(fullPrompt(p)).toMatch(/medical visualisation/);
+  });
+
+  it("picks the habits set, keeps it Reel-only and within the per-run limits", () => {
+    expect(promptSet("habits", "image")).toBe(HABITS_IMAGE_PROMPTS);
+    expect(promptSet("habits", "video")).toBe(HABITS_VIDEO_PROMPTS);
+    expect(promptSet("nope", "video")).toBe(VIDEO_PROMPTS);
+    expect(reelOnlySet("habits")).toBe(true);
+    expect(reelOnlySet("default")).toBe(false);
+    expect(HABITS_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
+    expect(HABITS_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
+    const ids = [...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS].map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const p of [...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS]) expect(promptProblems(p)).toEqual([]);
   });
 });

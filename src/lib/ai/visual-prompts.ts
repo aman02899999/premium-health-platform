@@ -82,8 +82,49 @@ export const ANATOMY_VIDEO_PROMPTS: VisualPrompt[] = [
   A("tadka-anim", "Slow motion of turmeric and black pepper sizzling in hot ghee in a small iron ladle, then poured over dal.", "Synergy Reel"),
 ];
 
-export const promptSet = (set: string | undefined, kind: "image" | "video") =>
-  set === "anatomy" ? (kind === "video" ? ANATOMY_VIDEO_PROMPTS : ANATOMY_IMAGE_PROMPTS) : kind === "video" ? VIDEO_PROMPTS : IMAGE_PROMPTS;
+// "habits" set: realistic visuals for the Desi Habit Science Reels (saunf after meals, a walk after
+// meals, soaked almonds, water with meals). Same style and rules as the anatomy set.
+export const HABITS_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("fennel-seeds-macro", "Macro photograph of green fennel seeds (saunf) heaped in a small brass bowl, every ridge on the seeds visible, warm side light.", "Saunf Reel: hook"),
+  A("saunf-mishri-bowl", "Photograph of a small steel bowl of fennel seeds mixed with crystal sugar (mishri) next to a finished Indian thali on a restaurant table.", "Saunf Reel: after the meal"),
+  A("fennel-plant", "Photograph of a fennel plant in a field with yellow umbrella-shaped flowers and green seed heads, soft morning light.", "Saunf Reel: where saunf comes from"),
+  A("fennel-oil-drop", "Macro photograph of a single golden drop of fennel essential oil falling from a glass dropper onto fennel seeds.", "Saunf Reel: anethole oils"),
+  A("stomach-calm", "Translucent human torso showing the stomach and intestines with a soft calm blue-green glow, relaxed, medical 3D render.", "Saunf Reel: pet ki marod"),
+  A("smooth-muscle-micro", "Microscopic 3D render of smooth muscle fibres in the wall of the intestine, spindle-shaped cells in soft pink and gold light.", "Saunf Reel: smooth muscle"),
+  A("saunf-airtight-jar", "Photograph of fennel seeds stored in a closed glass jar with a steel lid on a kitchen shelf.", "Saunf Reel: store it closed"),
+  A("evening-walk-family", "Two people walking side by side on a lit park path in an Indian city late in the evening, seen from behind at a distance, street lamps, calm night.", "Walk Reel: hook"),
+  A("glucose-muscle-cells", "3D medical render of glowing glucose molecules flowing from a blood vessel into red skeletal muscle fibres.", "Walk Reel: muscles use glucose"),
+  A("legs-walking-anatomy", "Side view of human legs mid-stride while walking, skin semi-transparent to show the red calf and thigh muscles working.", "Walk Reel: leg muscles"),
+  A("dinner-thali", "Top-down photograph of a homely Indian dinner thali: roti, dal, sabzi, rice and salad on a steel plate.", "Walk Reel: after dinner"),
+  A("soaked-almonds-bowl", "Photograph of almonds soaking in water in a glass bowl, a few peeled soaked almonds on a saucer beside it, morning light.", "Badam Reel: hook"),
+  A("almonds-handful", "Photograph of a cupped hand holding a small handful of almonds, close-up, face out of frame.", "Badam Reel: how many"),
+  A("almond-nutrients", "Macro photograph of almonds split open on a dark board, showing the creamy inside and brown skin.", "Badam Reel: what's inside"),
+  A("brain-glow", "3D medical render of a human brain with soft glowing neural pathways, dark background.", "Badam Reel: dimaag tez?"),
+  A("water-glass-thali", "Photograph of a steel glass of water next to an Indian thali on a dining table, natural light.", "Paani Reel: hook"),
+  A("stomach-anatomy", "Translucent 3D render of the human stomach with gastric folds visible inside and a little clear fluid, medical visualisation.", "Paani Reel: stomach"),
+  A("water-pour-glass", "Photograph of water being poured from a steel jug into a glass, droplets frozen mid-air.", "Paani Reel: drink water"),
+];
+
+export const HABITS_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("saunf-pour-anim", "Slow motion close-up of green fennel seeds pouring into a small brass bowl, warm light.", "Saunf Reel"),
+  A("stomach-calm-anim", "3D medical animation of the intestines with gentle wave-like movement slowing down and relaxing, soft blue-green glow, slow orbiting camera.", "Saunf Reel: relaxes smooth muscle"),
+  A("glucose-muscle-anim", "3D medical animation: glowing glucose molecules leave a blood vessel and enter red muscle fibres, which light up as they contract. Slow push-in.", "Walk Reel"),
+  A("night-walk-anim", "Feet in sports shoes walking on a park path at night under street lamps, camera tracking at ankle height.", "Walk Reel"),
+  A("almond-soak-anim", "Slow motion of almonds dropping into a glass bowl of water, bubbles rising, morning light.", "Badam Reel"),
+  A("water-pour-anim", "Slow motion of water being poured from a steel jug into a glass next to an Indian thali.", "Paani Reel"),
+  A("stomach-water-anim", "3D medical animation of water flowing into a translucent human stomach and quickly moving on into the small intestine, educational.", "Paani Reel: water passes quickly"),
+];
+
+const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
+  anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
+  habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
+};
+
+/** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
+export const promptSet = (set: string | undefined, kind: "image" | "video") => (set && SETS[set] ? SETS[set][kind] : kind === "video" ? VIDEO_PROMPTS : IMAGE_PROMPTS);
+
+/** Sets made for vertical Reels only, so one 9:16 still per prompt. */
+export const reelOnlySet = (set: string | undefined) => Boolean(set && SETS[set]);
 
 export const fullPrompt = (p: VisualPrompt) => `${p.prompt} ${p.style === "anatomy" ? ANATOMY_STYLE : STYLE}`;
 
