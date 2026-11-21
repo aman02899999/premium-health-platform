@@ -1,0 +1,282 @@
+{
+  "slug": "mens-nutrition",
+  "name": "Men's Nutrition",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Men's nutrition is the practice of meeting the biological and physiological nutritional requirements of the male body across every decade of life. Indian men have distinct metabolic patterns, lean muscle distributions, and hormone dynamics, especially concerning testosterone and insulin sensitivity. According to the Indian Council of Medical Research and National Institute of Nutrition (ICMR-NIN), a standard reference Indian man weighs 65 kg and requires adequate macronutrients and micronutrients to support cardiovascular health, muscle maintenance, and hormonal balance. Because South Asian men face an earlier onset of visceral adiposity (belly fat) and heart disease compared to global populations, daily nutrition must do more than just provide fuel. It must protect blood vessels, preserve muscle mass, support reproductive health, and prevent chronic metabolic disorders through sensible, whole-food dietary patterns adapted to Indian kitchens.",
+    "quickFacts": [
+      {
+        "label": "ICMR Reference Man",
+        "value": "65 kg body weight, aged 19 to 39 years with a healthy BMI"
+      },
+      {
+        "label": "Daily Protein RDA",
+        "value": "54 grams per day for a 65 kg man (ICMR-NIN 2020)"
+      },
+      {
+        "label": "Sedentary Calorie Target",
+        "value": "Around 2,110 kcal per day for an average sedentary Indian man"
+      },
+      {
+        "label": "Visceral Belly Fat Cut-off",
+        "value": "Waist circumference above 90 cm signals increased metabolic risk in Asian men"
+      },
+      {
+        "label": "Vegetable & Fruit Target",
+        "value": "Minimum 400 g vegetables and 100 g fresh fruits daily (ICMR-NIN)"
+      },
+      {
+        "label": "Widespread Micronutrient Gaps",
+        "value": "High rates of Vitamin B12 and Vitamin D deficiency across urban and rural men"
+      }
+    ],
+    "causes": [
+      "High refined carbohydrate intake: Indian diets often centre on polished white rice, maida, and low-protein meals, which drive high insulin spikes and fat deposition around the liver and abdomen.",
+      "Widespread protein deficit: Most Indian thalis provide less than 10 to 12 percent of daily calories from quality protein, leading to early loss of muscle tissue (sarcopenia) and sluggish metabolic rates.",
+      "Frequent consumption of industrial fats: Palm oil, vanaspati, and repeatedly heated cooking oils in street snacks, samosas, and namkeens elevate systemic inflammation and LDL cholesterol.",
+      "Late dinner routines: Eating large, calorie-dense dinners past 9:30 or 10:00 PM followed immediately by sleep impairs overnight glucose control and promotes visceral fat storage.",
+      "Hidden liquid calories and social drinking: Sugary chai, sweetened sodas, packaged juices, and regular alcohol intake add empty calories that stress the liver and raise triglycerides.",
+      "Overcooking and nutrient loss: Long boiling, deep frying, and discarding cooking water reduce heat-sensitive vitamins such as folate, vitamin C, and B-complex vitamins from fresh produce.",
+      "Sedentary work culture: Long hours seated at desks combined with lack of structured physical exertion reduces muscle glucose uptake, making standard carbohydrate portions excess to bodily needs."
+    ],
+    "types": [
+      {
+        "name": "Young Adulthood (18 to 35 Years)",
+        "desc": "Focuses on building peak skeletal muscle mass, establishing high bone mineral density, supporting testosterone production, and fueling high daily energy demands without relying on junk foods."
+      },
+      {
+        "name": "Middle Adulthood (36 to 55 Years)",
+        "desc": "Focuses on combating a slowing basal metabolic rate, preserving lean muscle mass, mitigating central belly fat, preventing fatty liver, and maintaining healthy blood pressure and lipid levels."
+      },
+      {
+        "name": "Older Adulthood (56 Years and Above)",
+        "desc": "Focuses on halting age-related muscle wasting (sarcopenia), supporting joint cartilage, maintaining digestive absorption, protecting prostate health, and preventing micronutrient deficiencies like B12 and calcium."
+      },
+      {
+        "name": "Athletic and Active Men",
+        "desc": "Tailored for men engaging in regular heavy resistance training or endurance sports, requiring elevated protein distribution, strategic carbohydrate timing, and electrolyte balancing."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive dietary assessment: A clinical review of a typical 3-day or 7-day food diary to calculate total caloric intake, macronutrient distribution, dietary fiber, and hidden sodium levels.",
+      "Waist-to-hip and waist circumference checks: In Asian Indian men, an absolute waist circumference greater than 90 cm or a waist-to-hip ratio above 0.90 indicates high visceral fat and cardiometabolic risk.",
+      "Body composition analysis: Bioelectrical impedance or DEXA scans evaluate skeletal muscle mass versus visceral and subcutaneous adipose tissue rather than relying solely on simple bathroom scales.",
+      "Biochemical blood screening: Evaluating blood sugar stability, lipid profiles, liver and kidney markers, and critical micronutrient levels including Vitamin B12, Vitamin D, and iron status."
+    ],
+    "investigations": [
+      {
+        "test": "Lipid Profile",
+        "purpose": "Evaluates total cholesterol, LDL, HDL, and triglycerides to detect premature cardiovascular risk",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Fasting Plasma Glucose & HbA1c",
+        "purpose": "Measures baseline blood sugar control and 3-month average glycaemic stability",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Vitamin B12 Level",
+        "purpose": "Detects deficiency common in vegetarian men causing nerve issues, low energy, and high homocysteine",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "25-Hydroxy Vitamin D",
+        "purpose": "Assesses bone health, muscle power, and immune regulation; very low in indoor Indian workers",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Rules out nutritional anemia and confirms healthy red blood cell counts and hemoglobin",
+        "slug": "cbc"
+      },
+      {
+        "test": "Liver Function Tests (ALT/AST)",
+        "purpose": "Assesses liver inflammation often triggered by non-alcoholic fatty liver and excess sugar or alcohol",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Uric Acid",
+        "purpose": "Checks for hyperuricemia, which can precipitate gout or kidney problems in men on purine-rich or high-fructose diets",
+        "slug": "uric-acid"
+      }
+    ],
+    "modernTreatment": [
+      "Correction of macronutrient ratios: Shifting daily plates toward 20 to 25 percent high-quality protein, 45 to 50 percent low-glycaemic complex carbohydrates, and 25 to 30 percent heart-healthy fats.",
+      "Standardized protein distribution: Ensuring that 20 to 30 grams of protein are consumed per main meal rather than dumping all protein into a single dinner, optimizing muscle protein synthesis throughout the day.",
+      "Targeted, evidence-based supplementation: Prescribing medical-grade Vitamin D3, Vitamin B12, or omega-3 fatty acids only when dietary intake is deficient or laboratory tests prove suboptimal levels.",
+      "Structured fiber intervention: Increasing soluble and insoluble dietary fiber to 30 grams daily using whole pulses, vegetables, and seeds to feed beneficial gut flora and clear excess circulating cholesterol.",
+      "Management of underlying metabolic conditions: Coordinating dietary changes alongside standard medications when chronic conditions like hypertension, high triglycerides, or diabetes are present."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, nutrition (Ahara) is considered the foremost pillar of health (Maha-bheshaja), vital for sustaining Agni (digestive fire) and building healthy Dhatus (tissues).",
+      "For men, balanced nutrition is particularly vital for nourishing Mamsa Dhatu (muscle tissue), Asthi Dhatu (bone tissue), and Shukra Dhatu (reproductive and vitality fluids).",
+      "Ayurvedic principles advise eating freshly prepared, warm meals aligned with one's Prakriti (dosha constitution) and avoiding Viruddha Ahara (incompatible food combinations like milk with sour fruits or fish).",
+      "Traditional herbs and preparations are viewed as supportive aids to ignite digestive Agni and promote metabolic balance, but they must never replace whole, balanced nutrition or modern medical diagnostics."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic root used in traditional medicine to help manage chronic stress, sleep, and physical vigor. Evidence shows modest support for vitality; use as advised by your doctor."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Indian gooseberry is rich in vitamin C and polyphenols. It supports natural antioxidant defenses and digestive function alongside a balanced diet."
+      },
+      {
+        "name": "Moringa",
+        "slug": "moringa",
+        "note": "Drumstick leaves provide a rich botanical source of plant calcium, iron, and carotenoids to naturally bolster everyday micronutrient intake."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Contains allicin compounds shown in clinical trials to offer modest support for blood vessel dilation and healthy lipid profiles."
+      }
+    ],
+    "nutrition": [
+      "Prioritize quality protein at every meal: Incorporate low-fat paneer, whole eggs, skinless chicken, fish, double-boiled dal, chana, rajma, edamame, tofu, or roasted sattu into breakfast, lunch, and dinner.",
+      "Replace refined grains with complex staples: Swap white rice and refined maida rotis for unpolished millets like jowar, bajra, and ragi, or brown rice and whole-wheat atta mixed with roasted besan or sattu.",
+      "Fill half your plate with colorful vegetables: Eat at least 400 grams of local seasonal vegetables daily, including spinach, methi, bhindi, louki, karela, capsicum, and cabbage for vital potassium, folate, and insoluble fiber.",
+      "Adopt healthy cooking fats in moderation: Use cold-pressed mustard oil, groundnut oil, or sesame oil for everyday cooking. Limit total visible fat to about 20 to 30 grams per day, and minimize animal fats, butter, and dalda.",
+      "Include healthy nuts and seeds daily: Consume a handful of soaked almonds, walnuts, pumpkin seeds, and chia seeds daily to provide heart-friendly monounsaturated fats, zinc, and magnesium.",
+      "Eliminate liquid sugars and deep-fried savouries: Avoid commercial samosas, kachoris, bhujia, packed colas, and sweetened lassis. Satisfy thirst with plain water, chaas with roasted jeera, or tender coconut water.",
+      "Plan an earlier, lighter dinner: Eat dinner at least two to three hours before sleeping. Keep it lighter than lunch to reduce nighttime acid reflux and promote optimal overnight glucose regulation."
+    ],
+    "lifestyle": [
+      "Engage in structured physical exercise: Aim for at least 150 minutes of moderate aerobic activity, such as brisk walking, jogging, or cycling, combined with progressive resistance training at least two days a week.",
+      "Guard your sleep quality: Get 7 to 8 hours of uninterrupted sleep nightly. Poor sleep disrupts leptin and ghrelin balance, drives sugar cravings, and suppresses morning testosterone levels.",
+      "Cease all tobacco use: Avoid cigarettes, bidis, gutka, and khaini completely. Tobacco narrows blood vessels, destroys vitamin C stores, and accelerates arterial plaque formation.",
+      "Limit alcohol consumption: Alcohol provides empty calories, stresses liver cells, triggers visceral fat deposition, and impairs nutrient absorption, particularly folate and thiamine.",
+      "Manage daily nervous tension: Chronic work stress elevates cortisol, which promotes central fat storage and breaks down muscle tissue. Practice daily downtime, hobby engagement, or quiet walking."
+    ],
+    "yogaActivity": [
+      "Practice dynamic Sun Salutations (Surya Namaskar): Performing 6 to 12 cycles daily enhances cardiovascular endurance, mobilizes joints, and burns stored glycogen.",
+      "Incorporate core and pelvic-strengthening asanas: Postures like Setu Bandhasana (Bridge Pose), Bhujangasana (Cobra Pose), and Dhanurasana (Bow Pose) improve core stability and pelvic blood circulation.",
+      "Do standing strength postures: Virabhadrasana (Warrior Poses) and Utkatasana (Chair Pose) build lower-body muscular endurance and support joint integrity.",
+      "Perform calming Pranayama: Ten minutes of slow Anulom Vilom (alternate nostril breathing) or Bhramari helps settle the autonomic nervous system after stressful workdays."
+    ],
+    "homeopathyNote": [
+      "There is no verifiable scientific or clinical trial evidence showing that homeopathic products can correct nutritional deficiencies, build muscle tissue, or replace dietary macronutrients.",
+      "Men facing vitamin deficits, metabolic imbalances, or weight concerns should rely on validated dietary modifications, qualified clinical nutrition counseling, and standard medical care."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Diets rich in dietary fiber, low in saturated and trans fats, and sufficient in lean protein lower cardiovascular events, improve insulin sensitivity, and prevent sarcopenia.",
+      "Strong evidence: Clinical correction of documented Vitamin D and Vitamin B12 deficiencies improves neurological function, fatigue, bone density, and muscle power.",
+      "Moderate evidence: Supplementation with omega-3 fatty acids helps lower elevated blood triglycerides in men with dyslipidemia.",
+      "Limited evidence: Commercial 'testosterone booster' herbal blends, proprietary fat-burning capsules, and detox teas show no consistent proof of efficacy and often pose contamination risks."
+    ],
+    "shouldNotDo": [
+      "Do not consume unverified gym supplements or protein powders bought from unauthorised local sources, as they may contain banned steroids, heavy metals, or adulterants.",
+      "Do not skip meals during the day only to binge on heavy, oily foods late at night; this worsens insulin resistance and visceral adiposity.",
+      "Do not ignore a expanding waistline just because your total body weight appears stable on a basic bathroom scale.",
+      "Do not self-prescribe mega-doses of fat-soluble vitamins like Vitamin A or D without a doctor's laboratory confirmation, as they accumulate and cause toxicity.",
+      "Do not rely exclusively on multivitamin pills while continuing to eat processed, fiber-poor, deep-fried foods; pills cannot duplicate whole-food matrix benefits.",
+      "Do not believe claims that a single exotic root, seed, or herbal concoction can eliminate metabolic disease or burn off belly fat on its own."
+    ],
+    "medicationSafety": [
+      "Inform your physician of all dietary supplements, protein shakes, and herbs you consume, as they can interact with blood thinners, blood pressure tablets, or diabetes medications.",
+      "High-dose calcium or iron supplements must not be taken simultaneously with thyroid medications like levothyroxine, as they severely block absorption.",
+      "If taking medications like metformin for blood sugar, have your Vitamin B12 levels checked annually, as long-term use can reduce intestinal B12 absorption.",
+      "Men taking statins or antihypertensives should exercise caution with concentrated herbal extracts that might stress liver enzymes or alter medication clearance."
+    ],
+    "complications": [
+      "Sarcopenic obesity: A dangerous combination of low muscle mass and high visceral fat that severely increases mortality and physical disability.",
+      "Cardiovascular disease: Atherosclerosis, heart attack, and peripheral artery blockages driven by years of high trans-fat, high-refined-carb eating.",
+      "Metabolic syndrome and Type 2 Diabetes: Chronic insulin exhaustion resulting from central adiposity and lack of dietary fiber.",
+      "Non-Alcoholic Fatty Liver Disease (NAFLD): Excess dietary sugars, refined grains, and fats converted into liver fat, leading to inflammation and scarring.",
+      "Erectile dysfunction and subfertility: Microvascular damage and poor hormonal profiles linked to metabolic syndrome and poor micronutrient density.",
+      "Premature osteopenia and joint degradation: Low dietary calcium, lack of vitamin D, and excess body weight accelerating knee osteoarthritis."
+    ],
+    "emergencySigns": [
+      "Sudden crushing chest pain, heaviness, or burning radiating to the left arm, neck, or jaw: Call 108 or 112 immediately.",
+      "Sudden difficulty speaking, facial drooping, or one-sided arm weakness: Immediate medical emergency indicating a potential stroke.",
+      "Sudden, unexplained shortness of breath accompanied by cold sweating and dizziness during or after light activity.",
+      "Severe, excruciating pain in the upper abdomen radiating to the back, accompanied by persistent vomiting, which may suggest acute pancreatitis."
+    ],
+    "whenToSeeDoctor": [
+      "Your waist circumference exceeds 90 cm or you notice steady fat accumulation around your abdomen despite normal weight.",
+      "You experience persistent, unexplained daytime fatigue, low stamina, or brain fog that does not resolve after adequate sleep.",
+      "You notice sudden, unintended weight loss, chronic muscle weakness, or recurring joint and bone pain.",
+      "You develop persistent erectile dysfunction, sudden loss of morning erections, or notable loss of libido.",
+      "Routine health checks reveal abnormal fasting blood sugars, high triglycerides, elevated liver enzymes, or high uric acid."
+    ],
+    "faqs": [
+      {
+        "q": "How much protein does an Indian man really need every day?",
+        "a": "According to the ICMR-NIN 2020 guidelines, an average healthy adult Indian man requires 0.83 grams of protein per kilogram of body weight per day, which works out to about 54 grams daily for a 65 kg man. Men who perform regular heavy gym resistance training or sports may require higher amounts, which should be determined with a qualified dietitian."
+      },
+      {
+        "q": "Can Indian vegetarian diets provide enough quality protein for men?",
+        "a": "Yes, but it requires mindful planning. Combining cereals with pulses (like dal-rice or khichdi) creates a complete amino acid profile. Including paneer, curd, milk, tofu, soy chunks, roasted chana, sattu, and sprouts helps vegetarian men comfortably meet their daily requirements without excess refined carbohydrates."
+      },
+      {
+        "q": "Why do Indian men tend to gain fat specifically around the belly?",
+        "a": "South Asian genetics predispose men to what researchers call the 'thin-fat' Indian phenotype: higher visceral fat surrounding internal organs even at normal body mass index. This is strongly accelerated by diets heavy in polished rice, maida, trans-fat-laden fried snacks, lack of muscle training, and high chronic stress."
+      },
+      {
+        "q": "Are gym protein powders safe for ordinary Indian men?",
+        "a": "Certified, laboratory-tested whey or plant protein powders from reputable brands are generally safe and convenient dietary tools. However, they are supplements, not replacements for wholesome food. Always choose products verified for heavy metals, avoid spurious counterfeits, and consult a doctor if you have pre-existing kidney or liver disorders."
+      },
+      {
+        "q": "Can taking ashwagandha or other herbs replace a balanced diet?",
+        "a": "No. While some herbs like ashwagandha or amla have supportive roles in managing stress or providing antioxidants, no herb, diet, or product can replace fundamental macronutrients, essential vitamins, and dietary fiber. True health rests on consistent daily nutrition."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "National Institute of Nutrition, Indian Council of Medical Research (ICMR-NIN)",
+        "url": "https://www.nin.res.in/downloads/DietaryGuidelinesforNINwebsite.pdf",
+        "year": "2020"
+      },
+      {
+        "title": "Healthy diet: Key facts and recommendations",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+        "year": "2020"
+      },
+      {
+        "title": "The Asian Indian Phenotype: Mechanisms and Implications for Cardiometabolic Risk",
+        "source": "National Institutes of Health / NCBI (Misra A, Khurana L)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19888806/",
+        "year": "2009"
+      }
+    ],
+    "relatedDiseases": [
+      "metabolic-syndrome",
+      "type-2-diabetes",
+      "fatty-liver",
+      "cardiovascular-risk",
+      "mens-weight-management",
+      "protein-deficiency"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "atorvastatin",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "amla",
+      "moringa",
+      "garlic"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "hba1c",
+      "vitamin-b12",
+      "vitamin-d",
+      "uric-acid"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

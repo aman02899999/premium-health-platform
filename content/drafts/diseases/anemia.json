@@ -1,0 +1,297 @@
+{
+  "slug": "anemia",
+  "name": "Anemia",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Anemia is a medical condition where your blood has a lower than normal amount of hemoglobin, or fewer red blood cells than your body needs. Hemoglobin is the iron-rich protein inside red blood cells that picks up oxygen in your lungs and carries it to your muscles, brain, heart, and every living tissue. When hemoglobin drops, your organs are starved of oxygen, leaving you feeling constantly drained, breathless, dizzy, or weak. In India, anemia is exceptionally common and touches every part of society. According to the national NFHS-5 survey (2019-21), 57.0% of women of reproductive age (15 to 49 years) and 25.0% of men in the same age bracket have anemia. Among pregnant women, the figure reaches 52.2%. While many people assume feeling tired is just part of a busy workday or gym routine, chronic exhaustion is often an untreated drop in hemoglobin. The most frequent reason in India is iron deficiency, followed by low levels of vitamin B12 and folate, but blood loss from heavy periods or piles, and chronic health issues also play a major role. Fortunately, simple blood tests can identify the exact type of anemia, and structured medical care alongside dietary changes can restore healthy red blood cells over time.",
+    "quickFacts": [
+      {
+        "label": "Normal Hemoglobin (Adult Men)",
+        "value": "13.0 g/dL or above (WHO / ICMR criteria)"
+      },
+      {
+        "label": "Normal Hemoglobin (Non-Pregnant Women)",
+        "value": "12.0 g/dL or above"
+      },
+      {
+        "label": "Normal Hemoglobin (Pregnant Women)",
+        "value": "11.0 g/dL or above"
+      },
+      {
+        "label": "Women with Anemia in India",
+        "value": "57.0% of women aged 15-49 (NFHS-5)"
+      },
+      {
+        "label": "Men with Anemia in India",
+        "value": "25.0% of men aged 15-49 (NFHS-5)"
+      },
+      {
+        "label": "Most Common Cause",
+        "value": "Iron deficiency, followed by Vitamin B12 deficiency"
+      },
+      {
+        "label": "First Warning Signs",
+        "value": "Unusual fatigue, breathlessness on climbing stairs, pale nail beds"
+      }
+    ],
+    "causes": [
+      "Low dietary iron intake or poor absorption. Many Indian diets rely heavily on polished grains and cereals with modest iron content, while phytates in unrefined grains and tannins in tea or coffee drank with meals block what little iron is eaten.",
+      "Low intake of Vitamin B12 and folate. Vitamin B12 is found naturally in animal-source foods, so strict vegetarians, vegans, and people with poor gut absorption often become deficient, producing large, fragile red blood cells.",
+      "Chronic blood loss from the reproductive tract. Heavy, prolonged, or frequent menstrual bleeding (menorrhagia) is the primary driver of iron loss in Indian women and adolescent girls.",
+      "Blood loss through the digestive tract. Bleeding hemorrhoids (piles), peptic ulcers from regular painkiller use, gastritis, inflammatory bowel conditions, or colon polyps quietly bleed over weeks or months.",
+      "Intestinal parasites and hookworms. In areas with barefoot walking or poor soil sanitation, hookworm infestation remains an important hidden cause of persistent gut blood loss.",
+      "Increased physical demand. Pregnancy and breastfeeding substantially expand blood volume and channel iron toward fetal growth, rapidly exhausting maternal iron stores if not replenished.",
+      "Underlying chronic diseases. Long-standing chronic kidney disease, uncontrolled rheumatoid arthritis, persistent infections, or liver disorders disrupt red blood cell production in the bone marrow.",
+      "Genetic hemoglobin disorders. Inherited conditions such as Thalassemia minor or trait and sickle cell disease lead to malformed or quickly destroyed red blood cells."
+    ],
+    "types": [
+      {
+        "name": "Iron Deficiency Anemia",
+        "desc": "The most widespread type in India. Red blood cells become tiny and pale (microcytic, hypochromic) because the bone marrow lacks enough raw iron to build hemoglobin molecules."
+      },
+      {
+        "name": "Vitamin Deficiency (Megaloblastic) Anemia",
+        "desc": "Caused by a shortage of Vitamin B12 or folate. The bone marrow produces unusually large, underdeveloped, and structurally weak red blood cells that die sooner than normal."
+      },
+      {
+        "name": "Anemia of Chronic Disease",
+        "desc": "Triggered by long-standing illnesses such as chronic kidney disease, autoimmune disorders, or persistent inflammation, which block the body from using its stored iron."
+      },
+      {
+        "name": "Hemolytic Anemia",
+        "desc": "Occurs when the body destroys red blood cells faster than the bone marrow can manufacture new ones, often due to autoimmune issues, infections, or inherited cell wall defects."
+      },
+      {
+        "name": "Aplastic Anemia",
+        "desc": "A rare, serious disorder where the bone marrow stops producing enough new blood cells of all types, usually related to autoimmune attack, toxins, or viral infections."
+      },
+      {
+        "name": "Thalassemia",
+        "desc": "An inherited genetic condition causing defective hemoglobin production. Thalassemia minor is common in India and is often accidentally confused with basic iron deficiency."
+      }
+    ],
+    "diagnosis": [
+      "A complete clinical history checking your diet, workout stamina, menstrual cycle duration, digestive symptoms, and family history.",
+      "Physical examination looking for pale conjunctiva (the inner lining of the lower eyelids), pale nail beds or palmar creases, smooth or sore tongue (glossitis), and rapid resting heart rate.",
+      "A Complete Blood Count (CBC) with red cell indices (MCV, MCH, MCHC) to establish the hemoglobin number and examine red blood cell size and shape.",
+      "Serum ferritin and iron studies to confirm whether bone marrow iron storage tanks are empty or full.",
+      "Vitamin B12 and serum folate levels to diagnose or exclude megaloblastic anemia, especially in vegetarian adults.",
+      "Targeted investigation into the cause of blood loss, such as stool tests for hidden blood, pelvic ultrasounds for uterine fibroids, or an endoscopy."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures hemoglobin, hematocrit, red blood cell count, and cell sizes (MCV) to identify anemia patterns",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Checks the actual iron reserves stored inside your bone marrow and liver",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Detects B12 deficiency that causes oversized red blood cells and nerve issues",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Evaluates kidney function to rule out anemia caused by low erythropoietin production in the kidneys",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine",
+        "purpose": "Screening for microscopic blood loss or underlying systemic illness",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Peripheral Blood Smear",
+        "purpose": "A pathologist examines red blood cells directly under a microscope to spot abnormal shapes, hemolysis, or parasites"
+      },
+      {
+        "test": "Stool for Occult Blood",
+        "purpose": "Checks for microscopic bleeding from the stomach or intestines caused by ulcers, piles, or polyps"
+      }
+    ],
+    "modernTreatment": [
+      "Identifying and treating the underlying root cause first, such as treating bleeding piles, managing heavy menstrual bleeding, or healing a bleeding stomach lining.",
+      "Oral iron therapy prescribed by your doctor. Common tablets contain ferrous salts, which help rebuild hemoglobin and gradually refill depleted bone marrow reserves.",
+      "Injectable or intravenous (IV) iron infusions for individuals who cannot tolerate oral tablets, have severe malabsorption, or have very low hemoglobin that needs prompt support.",
+      "Vitamin B12 supplementation through tablets or intramuscular injections, combined with oral folic acid for megaloblastic anemia.",
+      "Erythropoiesis-stimulating agents (ESAs) under nephrologist care for patients with anemia caused by advanced chronic kidney disease.",
+      "Packed red blood cell transfusions in emergency situations where hemoglobin falls dangerously low or unstable heart symptoms develop.",
+      "Routine follow-up blood tests at 4 to 12 weeks to ensure hemoglobin is rising and that treatment is working as expected."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe anemia under the clinical concept of Pandu Roga, named after the pale or yellowish-white tint (pandu varna) of the skin, eyes, and nails.",
+      "It is traditionally viewed as an imbalance driven primarily by aggravated Pitta dosha affecting Rakta dhatu (blood tissue), leading to weakness, poor complexion, and sluggish metabolism.",
+      "Traditional care focuses on strengthening digestive fire (Deepana and Pachana) so the gut can properly digest food and assimilate mineral nutrients.",
+      "While Ayurvedic dietetics emphasizes amla, pomegranate, raisins, and leafy preparations, no herb or traditional preparation can replace prescribed iron tablets or medical care in true clinical anemia.",
+      "Warning on traditional mineral products: Classical bhasmas and metallic preparations must be approached with extreme caution, as untested or unregulated preparations carry documented risks of heavy metal toxicity."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Naturally rich in vitamin C and organic acids, which enhance the gut absorption of non-heme iron from plant-based Indian meals."
+      },
+      {
+        "name": "Moringa",
+        "slug": "moringa",
+        "note": "Drumstick leaves contain natural plant iron, vitamin C, and amino acids. It serves as a nutritious dietary addition, though it does not replace medical supplements."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "Traditional herbal blend often used to support regular bowel movements and gut comfort, especially if prescribed iron tablets cause mild constipation."
+      }
+    ],
+    "nutrition": [
+      "Eat iron-rich vegetarian foods daily: bajra, ragi, whole green moong, rajma, chana, black chana, soybeans, roasted pumpkin seeds, and sesame seeds (til).",
+      "Include green leafy vegetables like bathua, methi, palak, mustard leaves (sarson), and drumstick leaves (moringa) in your curries, dals, and rotis.",
+      "For non-vegetarians, poultry, eggs, fish, and organ meats (such as mutton liver) provide heme iron, which the human body absorbs two to three times more efficiently than plant iron.",
+      "Always pair plant iron with vitamin C: squeeze fresh lemon juice over your dal, sabzi, or sprouts, and eat fresh amla, guavas, oranges, or raw tomatoes alongside meals to double or triple iron uptake.",
+      "Separate tea and coffee from your meals: tannins and polyphenols in chai and coffee bind tightly to iron in your food and prevent absorption. Leave at least a 60 to 90 minute gap before or after eating.",
+      "Cook in cast iron pots (lohe ki kadai): preparing acidic or semi-dry foods like tomato-based subzis or dry greens in iron cookware leaches small, safe amounts of dietary iron into the food.",
+      "Ensure sufficient Vitamin B12: drink milk, eat paneer and fresh curd daily if you are vegetarian. Since plant foods lack active B12, ask your doctor for a dedicated supplement if tests show low levels."
+    ],
+    "lifestyle": [
+      "Pace your gym training: if your hemoglobin is low, high-intensity workouts or heavy lifting can cause lightheadedness. Switch to steady walking or lighter weights until your levels climb back up.",
+      "Prioritize 7 to 8 hours of uninterrupted night sleep: your bone marrow relies on restorative sleep cycles to build fresh red blood cells.",
+      "Track your menstrual cycle: note how many pads or tampons you soak through, and record if bleeding lasts beyond 7 days or contains large clots. Share this log with your gynecologist.",
+      "Avoid walking barefoot outdoors: wear sandals or shoes outside to prevent hookworm larvae from penetrating the skin of your feet.",
+      "Do not self-prescribe iron pills: taking iron supplements when you do not need them or without knowing the cause can hide serious conditions and overload your liver."
+    ],
+    "yogaActivity": [
+      "Practice gentle, restorative asanas such as Supta Baddhakonasana (reclining bound angle pose), Balasana (child pose), and Viparita Karani (legs-up-the-wall pose) to refresh circulation without straining your heart.",
+      "Incorporate slow pranayama practices like Anulom Vilom (alternate nostril breathing) and Bhramari to calm the nervous system and help manage chronic fatigue.",
+      "Avoid intense, fast-paced hot yoga or breath-retention (kumbhaka) techniques, which place high oxygen demands on an already oxygen-deprived circulatory system.",
+      "Stop immediately if you feel dizzy or lightheaded: sit down, keep your head level, and sip water rather than forcing yourself through a routine."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence that homeopathic remedies can stimulate bone marrow red blood cell production or correct nutrient deficiencies.",
+      "Relying on homeopathic dilutions instead of prescribed iron or B12 supplements leaves your heart and brain starved of oxygen and can allow severe complications to develop.",
+      "If you consult a homeopath, never stop your prescribed iron or vitamin therapy, and continue tracking your hemoglobin with standard lab tests."
+    ],
+    "evidenceNotes": [
+      "Strong evidence confirms that oral ferrous iron supplements, intravenous iron, and vitamin B12 therapy reliably raise hemoglobin and rebuild body stores.",
+      "Strong evidence shows that dietary vitamin C substantially increases non-heme iron absorption, while tea, coffee, and dietary phytates inhibit it.",
+      "Moderate evidence shows that cooking food in iron utensils adds measurable amounts of bioavailable iron to home-cooked meals.",
+      "No credible scientific evidence supports online claims of single herbs, herbal juices, detox diets, or miracle tonics curing or eliminating anemia."
+    ],
+    "shouldNotDo": [
+      "Do not drink chai, green tea, or coffee immediately before, during, or after your meals or iron tablets.",
+      "Do not take iron tablets together with milk, calcium supplements, or antacid syrups; calcium and reduced stomach acid block iron absorption.",
+      "Do not stop taking iron pills the moment you feel more energetic; replenishing bone marrow ferritin stores takes three to six months of steady therapy.",
+      "Do not assume persistent tiredness is simply work stress, laziness, or gym fatigue without testing your hemoglobin.",
+      "Do not take leftover iron tablets from family members; excess iron cannot be easily excreted by the body and can damage internal organs.",
+      "Do not ignore dark red or black tarry stools, thinking they are just digestive upset, as they indicate internal bleeding unless you are already on oral iron."
+    ],
+    "medicationSafety": [
+      "Take your iron tablet exactly as advised by your doctor, usually on an empty stomach with a glass of water or lemon water for peak absorption.",
+      "If iron tablets cause stomach burning or nausea, ask your doctor if you can take them with a small light snack or switch to an alternate formulation.",
+      "Expect your stools to turn dark green or black while taking oral iron tablets; this color change is harmless and normal.",
+      "Constipation is a frequent side effect of iron pills; drink plenty of water, eat fiber-rich fruits and vegetables, and stay gently active.",
+      "Keep iron tablets in child-resistant containers well out of reach of children; accidental ingestion of adult iron supplements can cause fatal poisoning in toddlers."
+    ],
+    "complications": [
+      "Severe chronic fatigue that impairs work productivity, gym performance, and daily mental focus.",
+      "Heart problems: to make up for low oxygen, your heart beats much faster and harder, which can lead to an enlarged heart (cardiomegaly), rapid arrhythmias, and heart failure over time.",
+      "Pregnancy complications: severe anemia increases the risk of premature birth, low infant birth weight, intrauterine growth restriction, and life-threatening postpartum hemorrhage.",
+      "Impaired immune defense: iron is crucial for immune cell activity, making anemic individuals more susceptible to recurrent respiratory and gut infections.",
+      "Restless legs syndrome: an irresistible urge to move the legs, particularly at night, which severely disrupts restful sleep.",
+      "Growth and developmental delays in children and adolescents, alongside reduced cognitive scores and learning difficulties."
+    ],
+    "emergencySigns": [
+      "Sudden crushing chest pain, pressure, or tightness spreading to your jaw, neck, or left arm.",
+      "Severe, sudden breathlessness even while resting quietly in bed or sitting in a chair.",
+      "Fainting episodes (syncope), sudden blackouts, or inability to stand without collapsing.",
+      "Vomiting bright red blood or dark material that resembles wet coffee grounds.",
+      "Passing sticky, jet-black, foul-smelling stools or large amounts of fresh red blood from the rectum."
+    ],
+    "whenToSeeDoctor": [
+      "You feel tired all the time despite getting 7 to 8 hours of sleep, or get unusually breathless climbing a single flight of stairs.",
+      "Your inner eyelids, gums, lips, or fingernail beds look visibly pale, washed out, or yellowish.",
+      "You have heavy periods where you need to change your pad or tampon every 1 to 2 hours or pass large clots.",
+      "You notice blood in your stool or struggle with bleeding hemorrhoids (piles).",
+      "You are following a strict vegetarian or vegan diet and notice tingling, numbness, or pins-and-needles in your hands or feet.",
+      "You are planning a pregnancy or have recently become pregnant."
+    ],
+    "faqs": [
+      {
+        "q": "Why are so many Indian women and men anemic even when eating enough food?",
+        "a": "Quantity of food does not equal iron absorption. Most traditional Indian meals feature cereals, lentils, and tea. Cereals and lentils contain phytates, and tea contains tannins, both of which lock onto plant iron and prevent your gut from absorbing it. In addition, high rates of vegetarianism mean little to no heme iron or vitamin B12 is consumed, and heavy menstrual blood loss often outpaces daily intake."
+      },
+      {
+        "q": "Can eating jaggery (gur) and pomegranate cure my anemia?",
+        "a": "No single food can make anemia go away. While jaggery contains small traces of iron and pomegranates offer vitamin C, the actual amount of absorbable iron in a standard serving is very small. If your ferritin stores are empty, you need medically supervised iron supplements alongside dietary upgrades. Food supports your recovery, but it cannot replace medical treatment for clinical anemia."
+      },
+      {
+        "q": "Why does my doctor want me to keep taking iron pills for months after my hemoglobin is normal?",
+        "a": "Your blood hemoglobin is like cash in your wallet, while your ferritin is like money in your savings account. When you treat anemia, the body uses the initial iron to raise blood hemoglobin first. Once hemoglobin reaches normal, it takes an extra 3 to 6 months of daily therapy to refill the empty savings account in your bone marrow. Stopping too early causes hemoglobin to drop right back down."
+      },
+      {
+        "q": "Why did my doctor say to stop drinking chai with my paratha or dal?",
+        "a": "Chai contains powerful compounds called tannins and polyphenols. When you sip hot tea with or right after your food, these compounds bind tightly to the non-heme iron in your roti, dal, and vegetables right inside your stomach, turning it into an insoluble compound that leaves your body unabsorbed. Drinking tea at least one hour away from meals keeps your iron free for absorption."
+      },
+      {
+        "q": "Can men get anemia, or is it only a women's health problem?",
+        "a": "Men can definitely develop anemia; in India, 1 in 4 men between 15 and 49 years of age has it. Because men do not lose blood through menstruation, anemia in an adult man is an important signal that warrants careful medical investigation. Doctors usually check for internal digestive blood loss (like bleeding ulcers or piles), poor diet, or low vitamin B12."
+      }
+    ],
+    "references": [
+      {
+        "title": "Anaemia Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/anaemia",
+        "year": "2023"
+      },
+      {
+        "title": "Iron deficiency anemia: Symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/anemia/symptoms-causes/syc-20351360",
+        "year": "2023"
+      },
+      {
+        "title": "Iron deficiency anaemia: Overview and Management",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/iron-deficiency-anaemia/",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "iron-deficiency",
+      "vitamin-b12-deficiency",
+      "weakness",
+      "dizziness",
+      "chronic-fatigue",
+      "menstrual-health",
+      "pregnancy-nutrition",
+      "heart-failure"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "amla",
+      "moringa",
+      "triphala"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "vitamin-b12",
+      "creatinine",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

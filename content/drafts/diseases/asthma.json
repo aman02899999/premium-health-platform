@@ -1,0 +1,315 @@
+{
+  "slug": "asthma",
+  "name": "Asthma",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Asthma is a long-term condition of the lungs where the airways become inflamed, swollen, and narrow, and produce excess sticky mucus. This narrowing makes it hard to breathe air out of the lungs, leading to whistling sounds (wheezing), chest tightness, persistent coughing, and breathlessness. Asthma symptoms often come and go, flaring up in response to triggers like dust, cold air, smoke, or viral infections. In India, asthma affects people of all ages, from young children to older adults. It is widely misunderstood, leading many to delay diagnosis or avoid standard inhaler treatments. While asthma is a long-term medical condition and no herb, diet or product can make it go away, modern medical treatments and sensible daily habits allow most people with asthma to lead active, energetic lives and work out safely.",
+    "quickFacts": [
+      {
+        "label": "India's share of global asthma deaths",
+        "value": "Over 40% (Global Burden of Disease Study)"
+      },
+      {
+        "label": "Estimated people with asthma in India",
+        "value": "Roughly 30 to 35 million"
+      },
+      {
+        "label": "Hallmark symptom",
+        "value": "Wheezing (musical whistling sound when breathing out)"
+      },
+      {
+        "label": "Gold standard diagnostic test",
+        "value": "Spirometry (lung function test with reversibility)"
+      },
+      {
+        "label": "Mainstay treatment",
+        "value": "Inhaled corticosteroids and bronchodilators"
+      },
+      {
+        "label": "Emergency sign",
+        "value": "Inability to finish a sentence in one breath"
+      }
+    ],
+    "causes": [
+      "Airway hyper-reactivity driven by underlying chronic inflammation in the bronchial tubes.",
+      "Genetic predisposition and family history of asthma, eczema, or allergic rhinitis (the atopic triad).",
+      "Indoor air pollution common in Indian homes, including smoke from chulhas, cow dung fuel, mosquito coils, agarbatti (incense), and dhoop.",
+      "Urban outdoor air pollution, including high levels of particulate matter (PM2.5 and PM10), vehicular exhaust, dust from construction, and post-harvest crop burning smoke.",
+      "Indoor allergens like house dust mites found in mattresses, heavy blankets, and carpets, as well as cockroach droppings, pet dander, and monsoon fungal molds on damp walls.",
+      "Seasonal weather changes, especially sudden drops in temperature, cold winter winds, or dry, dusty winds.",
+      "Viral respiratory infections such as common cold, influenza, and respiratory syncytial virus (RSV) that trigger severe bronchial swelling.",
+      "Physical exertion or heavy workouts in cold, dry air without adequate warm-up (exercise-induced bronchoconstriction).",
+      "Strong chemical fumes, room fresheners, strong perfumes, paint smells, and pungent cooking fumes from hot oil tadka in unventilated kitchens.",
+      "Gastroesophageal reflux disease (GERD), where stomach acid splashes back up into the food pipe and triggers airway spasms.",
+      "Medicines such as aspirin and common non-steroidal anti-inflammatory painkillers (NSAIDs like ibuprofen), which can trigger severe bronchospasms in sensitive individuals."
+    ],
+    "types": [
+      {
+        "name": "Allergic (Extrinsic) Asthma",
+        "desc": "The most common form, often starting in childhood. It is triggered by environmental allergens such as dust mites, pollen, mold spores, and pet dander, and is frequently accompanied by allergic rhinitis or eczema."
+      },
+      {
+        "name": "Non-Allergic (Intrinsic) Asthma",
+        "desc": "Usually develops later in adult life and is not tied to specific allergic triggers. Flare-ups are often set off by viral infections, weather shifts, emotional stress, or cold air."
+      },
+      {
+        "name": "Adult-Onset Asthma",
+        "desc": "Symptoms that appear for the first time during adulthood, often triggered by occupational exposures, persistent viral illness, or hormonal fluctuations in women."
+      },
+      {
+        "name": "Exercise-Induced Bronchoconstriction",
+        "desc": "Airway narrowing that occurs specifically during or immediately after vigorous physical exertion, particularly when exercising in cold, dry ambient conditions."
+      },
+      {
+        "name": "Occupational Asthma",
+        "desc": "Asthma caused or worsened by breathing in irritants, chemicals, flour dust, cotton fibres, or paint fumes in workplaces like textile mills, bakeries, or chemical factories."
+      },
+      {
+        "name": "Severe / Difficult-to-Treat Asthma",
+        "desc": "A subgroup of asthma that requires high-intensity medical therapy and specialized treatments, as it remains poorly controlled despite standard inhaler use."
+      }
+    ],
+    "diagnosis": [
+      "A thorough medical history evaluating your symptoms: recurrent wheezing, breathlessness, chest tightness, and cough that worsens at night or in the early morning.",
+      "Physical examination of the chest with a stethoscope to listen for wheezing and signs of prolonged exhalation.",
+      "Spirometry test: You blow as hard and fast as possible into a machine to measure how much air your lungs can hold and how fast you can empty them.",
+      "Bronchodilator reversibility testing: Spirometry is repeated about 15 minutes after inhaling a quick-acting bronchodilator medicine to confirm if airway narrowing reverses significantly.",
+      "Peak Expiratory Flow (PEF) monitoring: A simple hand-held tube device used at home to monitor diurnal variation and airway variability over a 1 to 2 week period.",
+      "Allergy testing (skin prick or blood-specific IgE) to identify specific environmental triggers driving the airway inflammation."
+    ],
+    "investigations": [
+      {
+        "test": "Spirometry with Bronchodilator Reversibility",
+        "purpose": "The primary objective test to establish airway obstruction and check its reversibility after medicine."
+      },
+      {
+        "test": "Peak Expiratory Flow (PEF) Diary",
+        "purpose": "Measures daily fluctuations in airway narrowing at home to assess real-world asthma control."
+      },
+      {
+        "test": "Complete Blood Count (CBC) with Absolute Eosinophil Count",
+        "purpose": "Checks for elevated eosinophils, a white blood cell type indicating allergic or eosinophilic airway inflammation.",
+        "slug": "cbc"
+      },
+      {
+        "test": "Chest X-Ray",
+        "purpose": "Excludes other causes of breathlessness and cough such as lung infections, foreign bodies, or tuberculosis."
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Assesses systemic inflammation when bacterial chest infections or complications are suspected.",
+        "slug": "crp"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Checks for vitamin D deficiency, which has been linked in research to poor asthma control and frequent attacks.",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Inhalers are the cornerstone of asthma treatment because they deliver microscopic doses of medicine directly to the bronchial tubes, minimizing exposure to the rest of the body.",
+      "Controller / Preventer Inhalers: These contain inhaled corticosteroids (ICS), often combined with long-acting beta-agonists (LABA). They must be taken every single day as advised by your doctor, even when you feel completely fine, to keep baseline inflammation suppressed.",
+      "Reliever / Rescue Inhalers: Fast-acting bronchodilators used to quickly relax the smooth muscle bands around narrowed airways during an acute episode of wheezing or breathlessness.",
+      "Valved Spacer Devices: Plastic chambers attached to metered-dose inhalers that make it much easier to coordinate breathing and ensure more medicine reaches deep into the lungs rather than sticking to the tongue or throat.",
+      "Personalized Asthma Action Plan: A written guide created with your doctor divided into green (well-controlled), yellow (flare-up/worsening), and red (medical emergency) zones, explaining exactly what steps to take.",
+      "Biologic therapies (targeted monoclonal antibodies) for patients with severe, refractory eosinophilic asthma, given as injections under specialist supervision.",
+      "Aggressive management of contributing conditions such as chronic allergic rhinitis, chronic sinusitis, and gastroesophageal reflux disease (acid reflux)."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, asthma is broadly classified under 'Tamak Shwasa', a sub-type of Shwasa roga characterized by recurrent bouts of breathlessness, dry cough, and wheezing that often worsens at night or during cloudy, damp weather.",
+      "Ayurveda views this condition as a derangement primarily of Vata and Kapha doshas originating in the digestive tract (amashaya) and moving upward to obstruct the respiratory channels (pranavaha srotas).",
+      "Traditional Ayurvedic management emphasizes eating warm, light, freshly prepared meals (ushna ahara), avoiding cold and heavy foods, and supporting gentle digestion to prevent the buildup of metabolic residue (ama).",
+      "While traditional routines and lifestyle guidance can support general wellbeing, classical texts clearly acknowledge the acute difficulty of respiratory obstruction. Ayurvedic concepts should never be used as a substitute for emergency rescue inhalers or daily prescribed medical treatment."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi (Holy Basil)",
+        "slug": "tulsi",
+        "note": "Traditionally brewed in warm water or tea to support respiratory comfort and soothe throat irritation. Early laboratory research shows mild antioxidant and anti-inflammatory qualities, but it cannot open constricted airways during an asthma attack."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Widely used in Indian kitchens to support digestion and respiratory warmth. Experimental studies indicate compounds like gingerols may help relax airway smooth muscle, but robust clinical evidence in humans remains preliminary."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, a compound with well-documented anti-inflammatory properties in laboratory settings. It is used as a dietary adjunct, but clinical trials show it cannot replace inhaled anti-inflammatory corticosteroids."
+      },
+      {
+        "name": "Licorice (Mulethi)",
+        "slug": "licorice",
+        "note": "Traditionally used to soothe irritated mucus membranes and thin out sticky secretions. Clinical trials are limited, and excessive consumption can cause fluid retention and elevated blood pressure."
+      },
+      {
+        "name": "Black Pepper",
+        "slug": "black-pepper",
+        "note": "Contains piperine, which aids the absorption of other plant compounds and is traditionally added to herbal teas; however, pungent spices can occasionally provoke a cough reflex in twitchy, sensitive airways."
+      }
+    ],
+    "nutrition": [
+      "Eat a balanced, anti-inflammatory Indian diet rich in fresh seasonal vegetables such as bottle gourd (lauki), ridge gourd (torai), beans, carrots, and leafy greens.",
+      "Include foods high in antioxidants and vitamin C, such as Indian gooseberry (amla), oranges, guavas, and tomatoes, which help counteract oxidative stress triggered by urban air pollution.",
+      "Eat your dinner early, at least 2 to 3 hours before going to bed. Eating heavy, late-night dinners can worsen nighttime acid reflux, which frequently seeps up to trigger coughing and bronchial spasms in sleep.",
+      "Identify individual food sensitivities: although true food allergies trigger asthma in only a small percentage of adults, some people are sensitive to sulfites used as preservatives in dried fruits, bottled lemon juice, pickles, and packaged snacks.",
+      "Drink adequate amounts of warm or room-temperature water throughout the day to keep mucosal secretions thin and easier to clear from your chest.",
+      "Avoid very cold drinks, iced desserts, or refrigerated foods straight from the fridge if you notice that sudden temperature drops in your throat trigger coughing or chest tightness.",
+      "Incorporate healthy fats like ground flaxseeds, chia seeds, walnuts, and modest amounts of mustard or olive oil, while cutting down on deep-fried street foods (pakoras, puris) that promote sluggish digestion and reflux."
+    ],
+    "lifestyle": [
+      "Keep indoor air clean by avoiding the burning of incense sticks (agarbatti), dhoop, mosquito coils, and scented room fresheners in enclosed living rooms and bedrooms.",
+      "Use an exhaust fan or chimney while cooking, especially during the tadka process, to prevent pungent oil fumes, red chili smoke, and mustard seed vapours from irritating sensitive bronchial tubes.",
+      "Combat house dust mites by washing bedsheets, pillowcases, and blankets weekly in hot water and letting them dry thoroughly in bright sunlight; vacuum mattresses regularly.",
+      "Monitor the daily Air Quality Index (AQI) in your city. On days with severe smog, winter fog, or crop burning smoke, keep windows closed, run an indoor HEPA air purifier if possible, and wear a well-fitted N95 mask outdoors.",
+      "Stop all tobacco smoking immediately and strictly avoid second-hand smoke from bidis, cigarettes, or hookahs, which paralyzes airway cilia and triggers severe inflammation.",
+      "Keep pets out of bedrooms and off upholstered sofas if you have confirmed allergic sensitivity to animal dander.",
+      "Manage body weight: excess belly fat exerts physical upward pressure against the diaphragm, reducing lung capacity and making breathlessness noticeably worse."
+    ],
+    "yogaActivity": [
+      "Regular physical exercise is safe and strongly recommended for people with asthma once their condition is stabilized with proper medical inhalers.",
+      "Always perform a gradual 10 to 15 minute warm-up before any workout or gym session to allow your bronchial airways to slowly adapt to increased airflow.",
+      "Keep your fast-acting reliever inhaler in your gym bag or right next to you during workouts, and use it immediately if tightness develops.",
+      "Pranayama practices such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) help promote diaphragmatic breathing and reduce stress-induced hyperventilation.",
+      "Practice gentle chest-opening yoga postures such as Bhujangasana (cobra pose), Matsyasana (fish pose), Setu Bandhasana (bridge pose), and Shavasana to improve posture and rib cage mobility.",
+      "Avoid aggressive, forceful breathing techniques like rapid Kapalbhati if you feel chest tightness or if cold air tends to bring on a sudden coughing fit.",
+      "Choose indoor workouts, swimming in well-ventilated pools, or brisk walking over intense outdoor running during high-smog mornings or very cold winter days."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence proving that homeopathic remedies can open constricted airways during an asthma flare-up or modify underlying chronic bronchial inflammation.",
+      "Relying on homeopathic preparations during acute breathlessness or stopping prescribed steroid inhalers carries a serious risk of life-threatening respiratory failure.",
+      "If you explore complementary therapies, you must never discontinue or reduce your conventional prescribed inhalers, and always inform your treating pulmonologist."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Daily inhaled corticosteroids (ICS) are the most effective anti-inflammatory medicines available to prevent asthma attacks, reduce hospitalizations, and prevent fatal flare-ups.",
+      "Strong evidence: Fast-acting inhaled bronchodilators provide rapid, life-saving relaxation of airway smooth muscle during acute episodes of wheezing and breathlessness.",
+      "Strong evidence: Using a valved spacer device with metered-dose inhalers significantly improves lung deposition of the medication and markedly reduces local throat side effects.",
+      "Moderate evidence: Supervised pulmonary rehabilitation and regular aerobic exercise enhance cardiovascular fitness, improve exercise tolerance, and reduce breathlessness perception.",
+      "Moderate evidence: Allergen avoidance measures (such as impermeable mattress covers and HEPA filters) show benefit primarily in people with specifically confirmed sensitization.",
+      "Weak or limited evidence: Dietary herbs, kitchen spices, and over-the-counter supplements do not alter objective airway hyper-reactivity or replace modern inhaler therapy."
+    ],
+    "shouldNotDo": [
+      "Do not stop taking your daily preventer (controller) inhaler simply because your breathing feels fine; the underlying inflammation remains active beneath the surface.",
+      "Do not fear inhalers as 'addictive' or dangerous 'steroids'; inhaled medicines work in microscopic doses directly in the lungs with negligible absorption into the bloodstream compared to oral tablets.",
+      "Do not depend solely on over-the-counter cough syrups, chest rubs, steam inhalation, or home herbal kadhas when experiencing acute shortness of breath.",
+      "Do not take pain relief tablets like ibuprofen, diclofenac, or aspirin without consulting your doctor, as they can trigger sudden, severe bronchospasms in aspirin-sensitive individuals.",
+      "Do not burn mosquito coils, dhoop, or dry leaves indoors or on closed balconies where smoke can drift into living areas.",
+      "Do not ignore nighttime awakenings caused by coughing or chest tightness; frequent nighttime symptoms indicate that your asthma is poorly controlled."
+    ],
+    "medicationSafety": [
+      "Always rinse your mouth thoroughly with plain water and spit it out after using a steroid-containing inhaler to prevent oral fungal thrush and throat hoarseness.",
+      "Always check the dose counter or canister level on your inhaler regularly so you are never caught unprepared with an empty canister during an attack.",
+      "Ensure you master proper inhaler technique; ask your doctor, chest physician, or pharmacist to review how you use your device at every clinic visit.",
+      "Do not overuse your short-acting rescue inhaler. Needing to use your quick-relief inhaler more than twice a week indicates uncontrolled inflammation that requires a review of your controller prescription.",
+      "Never swap, stop, or change your inhaler brand or dose without explicit instructions from your doctor.",
+      "Store inhalers in a cool, dry place away from direct sunlight and extreme heat, such as closed car glove compartments during Indian summers."
+    ],
+    "complications": [
+      "Severe, life-threatening asthma attacks (status asthmaticus) requiring emergency room treatment, oxygen therapy, or mechanical ventilation in an ICU.",
+      "Permanent airway remodeling: long-term, untreated chronic inflammation leads to irreversible structural thickening of airway walls and fixed breathing difficulties later in life.",
+      "Severe sleep disruption leading to daytime exhaustion, cognitive fatigue, and impaired performance at work or school.",
+      "Pneumothorax (collapsed lung) or pneumomediastinum resulting from air escaping into the chest cavity during violent coughing paroxysms.",
+      "Adverse effects from repeated courses of high-dose oral steroid tablets (such as weight gain, high blood pressure, diabetes, or osteoporosis) when inhaler therapy is neglected."
+    ],
+    "emergencySigns": [
+      "Severe breathlessness where you cannot speak more than two or three words without gasping for air.",
+      "The skin around your collarbone, neck, and ribs sucks inwards deeply with every breath (intercostal and supraclavicular retractions).",
+      "Your lips, tongue, gums, or fingernails turn a pale, bluish, or grey color (cyanosis indicating dangerously low blood oxygen).",
+      "Your rescue/reliever inhaler provides no relief or its effect wears off in less than one hour.",
+      "Peak Expiratory Flow (PEF) reading drops below 50% of your personal best measurement (Red Zone).",
+      "Sudden extreme drowsiness, mental confusion, or extreme restlessness due to lack of oxygen reaching the brain."
+    ],
+    "whenToSeeDoctor": [
+      "You find yourself needing to use your rescue reliever inhaler more than two days a week for daytime symptoms.",
+      "You wake up from sleep coughing, wheezing, or struggling for breath more than two times in a single month.",
+      "Your symptoms restrict your normal daily activities, such as climbing a single flight of stairs or completing routine gym workouts.",
+      "You develop a fever, your sputum becomes thick, dark yellow or green, or you develop sharp chest pain suggesting a secondary chest infection.",
+      "Your home peak flow meter readings show a consistent downward trend over several consecutive days."
+    ],
+    "faqs": [
+      {
+        "q": "Are inhalers habit-forming or addictive?",
+        "a": "No, inhalers are not addictive. Asthma is a chronic condition that requires consistent maintenance, just like wearing spectacles for poor eyesight. Inhalers deliver tiny microgram doses directly to your lungs, making them far safer and more effective than taking oral tablets or syrups."
+      },
+      {
+        "q": "Can asthma be completely cured with Ayurvedic herbs or diet?",
+        "a": "No. While healthy nutrition and supportive herbs can promote overall wellness and ease minor throat irritation, no herb, diet or product can make asthma go away. Asthma is a chronic airway disorder that requires medical control, but with proper inhaler therapy, most people live completely normal, symptom-free lives."
+      },
+      {
+        "q": "Is it safe for someone with asthma to exercise or lift weights at the gym?",
+        "a": "Yes, absolutely. Exercise strengthens respiratory muscles, boosts heart health, and improves lung stamina. The key is to ensure your asthma is well controlled with daily preventer inhalers, always do a proper warm-up, and keep your rescue inhaler accessible in your gym bag."
+      },
+      {
+        "q": "Why is asthma so common in Indian cities?",
+        "a": "Indian cities often experience elevated levels of fine particulate pollution (PM2.5 and PM10), construction dust, vehicular emissions, and seasonal crop residue smoke. In addition, indoor triggers like mosquito coils, agarbatti smoke, and high humidity encouraging dust mites create a challenging environment for sensitive airways."
+      },
+      {
+        "q": "Why do I need a preventer inhaler if I feel fine right now?",
+        "a": "Asthma causes chronic, low-grade swelling inside your bronchial tubes even when you feel no symptoms. Preventer inhalers soothe and treat this underlying swelling. If you stop taking them because you feel well, the inflammation gradually builds up again until the next trigger sets off a sudden, severe flare-up."
+      }
+    ],
+    "references": [
+      {
+        "title": "Asthma Fact Sheet",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/asthma",
+        "year": "2023"
+      },
+      {
+        "title": "The burden of chronic respiratory diseases and their heterogeneity across the states of India: the Global Burden of Disease Study 1990–2016",
+        "source": "The Lancet Global Health (Salvi S et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30209137/",
+        "year": "2018"
+      },
+      {
+        "title": "Joint Indian Chest Society and National College of Chest Physicians (ICS/NCCP) Guidelines for Asthma in India",
+        "source": "Lung India",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25948956/",
+        "year": "2015"
+      },
+      {
+        "title": "Asthma: diagnosis, monitoring and chronic asthma management (NICE Guideline NG80)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng80",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "allergic-rhinitis",
+      "sinusitis",
+      "bronchitis",
+      "copd",
+      "chronic-cough",
+      "breathing-problems",
+      "respiratory-allergies",
+      "seasonal-allergies",
+      "gerd",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "pantoprazole",
+      "omeprazole",
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "turmeric",
+      "licorice",
+      "black-pepper"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

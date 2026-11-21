@@ -1,0 +1,288 @@
+{
+  "slug": "pregnancy-nutrition",
+  "name": "Pregnancy Nutrition",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Pregnancy nutrition is the balanced, wholesome way of eating that supports both a mother's health and the normal development of her growing baby. During pregnancy, your body builds new tissue, makes extra blood, and lays down energy reserves for labour and breastfeeding. In India, traditional wisdom often says that a pregnant woman must 'eat for two,' but modern science shows this is a myth. You do not need double the food; you need food that is twice as rich in vitamins, minerals, and good quality protein. According to the Indian Council of Medical Research and National Institute of Nutrition (ICMR-NIN) 2024 guidelines, your calorie needs increase only slightly in the second and third trimesters, but your requirement for micronutrients like iron, folate, calcium, and vitamin B12 jumps significantly. Eating a diverse Indian thali with whole grains, pulses, dairy, seasonal greens, and fruits helps prevent maternal anaemia, supports healthy birth weight, and protects both mother and baby from long-term metabolic health problems.",
+    "quickFacts": [
+      {
+        "label": "Extra energy needed",
+        "value": "None in 1st trimester; ~350 kcal/day in 2nd and ~520 kcal/day in 3rd (ICMR-NIN)"
+      },
+      {
+        "label": "Protein goal",
+        "value": "Extra ~9.5 g/day in 2nd trimester, ~22 g/day in 3rd trimester (ICMR-NIN)"
+      },
+      {
+        "label": "Anaemia in Indian pregnancy",
+        "value": "52.2% of pregnant women aged 15-49 (NFHS-5)"
+      },
+      {
+        "label": "Folic acid timing",
+        "value": "Critical from pre-conception through at least the first 12 weeks"
+      },
+      {
+        "label": "Iron & Calcium rule",
+        "value": "Never take together; calcium blocks iron absorption"
+      },
+      {
+        "label": "Weight gain guide",
+        "value": "Healthy average is 10 to 14 kg for a woman with normal pre-pregnancy BMI"
+      }
+    ],
+    "causes": [
+      "Increased physiological demand: The mother's blood volume expands by nearly 50 percent, and the placenta and fetus draw continuously on maternal nutrient stores.",
+      "Micronutrient deficiencies: Low baseline reserves of iron, ferritin, vitamin B12, and vitamin D before conceiving are common in India due to diets low in dietary diversity.",
+      "Morning sickness and nausea (hyperemesis): Nausea and food aversions during the first trimester can make it hard to keep down nutrient-dense meals.",
+      "Food myths and taboos: Unscientific restrictions on nutritious foods such as papaya, bananas, eggs, dal, or curd due to fears of causing miscarriages or colds rob women of vital nutrients.",
+      "Tea and coffee with meals: High intake of tannins and polyphenols from chai immediately after meals binds non-heme iron from vegetarian foods, worsening nutritional anaemia.",
+      "Closely spaced pregnancies: Conceiving soon after a previous childbirth depletes maternal bone minerals, iron stores, and overall energy balance."
+    ],
+    "types": [
+      {
+        "name": "First Trimester Nutrition",
+        "desc": "Focuses on organ development and neural tube closure. Calorie requirements remain almost unchanged, but folic acid, hydration, and gentle foods to soothe morning sickness are crucial."
+      },
+      {
+        "name": "Second Trimester Nutrition",
+        "desc": "A period of rapid fetal growth and blood volume expansion. Caloric intake rises moderately, with heightened demands for iron, protein, and calcium for fetal bone development."
+      },
+      {
+        "name": "Third Trimester Nutrition",
+        "desc": "Peak period for fetal weight gain and brain development. Calorie and protein needs reach their highest, along with increased demand for essential fatty acids, zinc, and vitamin D."
+      },
+      {
+        "name": "Special Nutritional Care",
+        "desc": "Tailored diets for conditions like gestational diabetes, maternal hypertension, hyperemesis gravidarum, or twin pregnancies, requiring specialised medical and dietetic supervision."
+      }
+    ],
+    "diagnosis": [
+      "Baseline nutritional assessment begins at the first antenatal visit with pre-pregnancy weight and height measurement to calculate Body Mass Index (BMI).",
+      "Regular tracking of gestational weight gain at every monthly visit ensures steady, safe progression rather than sudden drops or excessive spikes.",
+      "Clinical examination checks for pallor (pale inner eyelids, tongue, and nail beds indicating anaemia), pedal oedema, and oral health.",
+      "Dietary history review checks the diversity of meals, dairy intake, intake of green leafy vegetables, and timing of prenatal supplement consumption.",
+      "Routine antenatal blood and urine screens detect nutritional anaemia, gestational diabetes, thyroid disorders, and protein leakage."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Monitors maternal hemoglobin, hematocrit, and red cell indices to screen for anaemia",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Measures actual stored iron levels, uncovering deficiency even before hemoglobin drops",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Oral Glucose Tolerance Test (OGTT)",
+        "purpose": "Screens for gestational diabetes between 24 and 28 weeks of pregnancy",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Assesses maternal thyroid status, which is vital for fetal brain development",
+        "slug": "tsh"
+      },
+      {
+        "test": "Urine Routine",
+        "purpose": "Screens for asymptomatic urinary tract infections, glucose, and early signs of preeclampsia",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Evaluates maternal stores needed for fetal skeletal growth and maternal bone health",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Vitamin B12",
+        "purpose": "Detects deficiency common in vegetarian diets that can contribute to anaemia and neural problems",
+        "slug": "vitamin-b12"
+      }
+    ],
+    "modernTreatment": [
+      "Routine micronutrient supplementation: Daily iron and folic acid (IFA) supplements as advised by your doctor, starting after the first trimester as per national guidelines, and periconceptional folic acid in early pregnancy.",
+      "Calcium and vitamin D supplementation: Calcium carbonate or citrate along with vitamin D, taken daily as prescribed, separated from iron supplements by at least two to three hours.",
+      "A food-first plate approach: Rebuilding the daily diet around the ICMR-NIN 'My Plate for the Day,' emphasizing vegetables, lentils, whole grains, dairy, nuts, and clean animal proteins if non-vegetarian.",
+      "Medical nutrition therapy: Customised carbohydrate-controlled meal plans for mothers diagnosed with gestational diabetes or high fasting blood sugar.",
+      "Intravenous iron therapy: In cases of moderate-to-severe anaemia that do not respond to oral tablets or when delivery is near, hospital-supervised IV iron infusions may be ordered by the obstetrician.",
+      "Management of pregnancy-induced gastrointestinal symptoms: Small, frequent meals to control morning sickness, paired with dietary adjustments to ease reflux and constipation."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe Garbhini Paricharya, a structured month-by-month dietary and lifestyle regimen aimed at nourishing both mother and child.",
+      "Traditional guidance highlights 'Madhura' (naturally sweet, nourishing) foods, milk (Ksheera), clarified butter (Ghrita), rice, and honey in balanced, unadulterated amounts.",
+      "Digestive fire (Agni) is considered delicate during pregnancy; hence, warm, freshly cooked, easily digestible, and unctuous (snigdha) foods are advised over cold, dry, or stale items.",
+      "Ayurvedic herbs should be approached with extreme caution during pregnancy. Many traditional botanicals have uterine-stimulating properties and must not be self-administered.",
+      "Ayurvedic concepts serve as historical cultural context and gentle supportive principles, but they cannot replace antenatal screening, medical supplements, or clinical obstetric care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Widely used in traditional teas and fresh cooking to soothe nausea and morning sickness; safe in normal culinary amounts under your doctor's guidance."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "A natural source of vitamin C that enhances the absorption of dietary non-heme iron from dals and greens when eaten fresh."
+      },
+      {
+        "name": "Moringa",
+        "slug": "moringa",
+        "note": "Drumstick pods and cooked leaves serve as a traditional, nutrient-dense culinary vegetable rich in plant calcium, folate, and minerals."
+      }
+    ],
+    "nutrition": [
+      "Eat sufficient protein: Include two to three servings of protein daily from moong dal, chana, rajma, paneer, curd, sprouted pulses, eggs, or well-cooked poultry and fish.",
+      "Prioritise iron-rich foods: Include bathua, palak, methi, drumstick leaves, bajra, ragi, black chana, and roasted sesame seeds, paired with lemon juice to boost iron absorption.",
+      "Consume calcium daily: Ensure three servings of dairy like boiled milk, homemade curd, paneer, or plant options like ragi and calcium-set tofu.",
+      "Choose complex carbohydrates: Replace refined white flour (maida) and sugary bakery items with whole wheat, jowar, bajra, brown rice, and oats to prevent sharp blood sugar spikes.",
+      "Eat healthy fats: Incorporate a handful of soaked almonds, walnuts, and moderate use of mustard, groundnut, or sesame oil to supply essential fatty acids for fetal brain growth.",
+      "Stay thoroughly hydrated: Drink 8 to 10 glasses of clean water daily, supplemented with fresh coconut water, thin buttermilk (chaas), and homemade lemon water.",
+      "Food safety is critical: Avoid raw sprouts, unpasteurised milk, runny eggs, street food, and poorly washed raw salads to prevent serious infections like listeriosis and toxoplasmosis."
+    ],
+    "lifestyle": [
+      "Eat small, frequent meals every 2.5 to 3 hours instead of three large meals to reduce morning sickness, bloating, and heartburn.",
+      "Do not lie down immediately after eating; take a gentle 10-minute stroll inside the room to prevent acid reflux.",
+      "Aim for 8 hours of sound nighttime sleep and a 30-minute afternoon rest; sleep on your left side in the second and third trimesters to improve blood flow to the placenta.",
+      "Avoid active and passive tobacco smoke, bidi, gutka, alcohol, and unprescribed over-the-counter painkillers completely.",
+      "Maintain strict oral hygiene; brush twice daily and rinse after every meal, as pregnancy hormones make gums prone to gingivitis and infection.",
+      "Never skip breakfast; prolonged fasting causes ketones in the blood and can lead to maternal dizziness and weakness."
+    ],
+    "yogaActivity": [
+      "Engage in 30 minutes of moderate, low-impact exercise like brisk walking on level ground on most days of the week, provided your doctor has approved activity.",
+      "Practice gentle prenatal yoga postures such as Baddha Konasana (Butterfly pose), Marjaryasana-Bitilasana (Cat-Cow stretch), and supported Vajrasana to improve pelvic flexibility and ease back pain.",
+      "Perform pelvic floor exercises (Kegels) daily to support the bladder, uterus, and bowel as the baby's weight increases.",
+      "Use deep, slow diaphragmatic breathing and gentle Anulom Vilom to reduce pregnancy anxiety and improve oxygenation; avoid rapid breathing techniques like Kapalbhati and avoid breath retention (Kumbhaka).",
+      "Avoid lying flat on your back after the first trimester, and strictly avoid hot yoga, high-impact jumping, deep twists, or poses that risk falling."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence that homeopathic preparations provide essential nutrients, correct nutritional anaemia, or support fetal development.",
+      "Homeopathic drops or pills must never replace mandatory antenatal supplements like iron, folic acid, and calcium prescribed by your obstetrician."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Periconceptional folic acid supplementation prevents over 70% of neural tube defects like spina bifida.",
+      "Strong evidence: Daily iron supplementation reduces maternal anaemia and the risk of low birth weight and preterm delivery.",
+      "Strong evidence: Calcium supplementation in populations with low dietary calcium significantly lowers the risk of preeclampsia and gestational hypertension.",
+      "Moderate evidence: Gentle physical activity and a low-glycaemic diet significantly reduce the risk of excessive gestational weight gain and gestational diabetes.",
+      "Weak or limited evidence: Herbal decoctions, commercial pregnancy protein powders without medical prescription, or single herbal tonics have unproven safety and efficacy in pregnancy."
+    ],
+    "shouldNotDo": [
+      "Do not 'eat for two' in portion size; excess calorie intake increases the risk of maternal obesity, high blood pressure, and large-for-gestational-age babies.",
+      "Do not take iron and calcium tablets together; keep a gap of at least two hours between them because calcium inhibits iron absorption.",
+      "Do not drink tea, coffee, or green tea with or right after your meals; wait at least one hour so the tannins do not lock away dietary iron.",
+      "Do not follow fad diets, intermittent fasting, or keto regimes during pregnancy; your growing baby requires continuous, steady nourishment.",
+      "Do not consume raw or half-boiled eggs, unpasteurised milk, blue cheese, unwashed street salads, or raw fish/meat due to the danger of foodborne infections.",
+      "Do not take unregulated herbal powders, rasayanas, or OTC vitamins without consulting your obstetrician."
+    ],
+    "medicationSafety": [
+      "Take all prenatal vitamins, iron, calcium, and thyroid tablets exactly at the timings advised by your doctor.",
+      "Iron tablets can sometimes cause harmless dark stools, mild nausea, or constipation; take them after dinner or with a vitamin-C rich food, and do not stop them without discussing alternatives with your doctor.",
+      "Never take any over-the-counter painkillers (such as ibuprofen, diclofenac, or aspirin) without medical prescription; only paracetamol is commonly recommended when necessary and as advised by your doctor.",
+      "If you take thyroid medicine (levothyroxine), take it first thing in the morning on an empty stomach with plain water, keeping a gap of at least 4 hours before taking iron or calcium pills."
+    ],
+    "complications": [
+      "Severe maternal anaemia leading to extreme fatigue, heart strain, and post-partum haemorrhage",
+      "Intrauterine growth restriction (IUGR) and low birth weight (below 2.5 kg)",
+      "Preterm birth and higher risk of infant complications in neonatal intensive care",
+      "Neural tube defects like spina bifida due to inadequate periconceptional folate",
+      "Gestational diabetes mellitus, raising the risk of high birth weight, birth injury, and maternal type 2 diabetes later in life",
+      "Preeclampsia and gestational hypertension, which pose life-threatening risks to both mother and baby",
+      "Maternal bone demineralisation and dental decay due to insufficient calcium and vitamin D intake"
+    ],
+    "emergencySigns": [
+      "Sudden, severe headache, spots or blurring in your vision, or sudden swelling of the face and hands (signs of preeclampsia)",
+      "Any amount of vaginal bleeding or leaking of clear watery fluid",
+      "Noticeable decrease or complete absence of normal fetal kicks and movements after 24 weeks",
+      "Severe, persistent abdominal pain or frequent painful uterine contractions before 37 weeks",
+      "Inability to retain any liquids or food for more than 24 hours accompanied by severe dizziness and dark, scanty urine"
+    ],
+    "whenToSeeDoctor": [
+      "As soon as you suspect pregnancy or miss a period, to start essential folic acid and plan antenatal checks",
+      "If nausea and vomiting prevent you from keeping down food, water, or prenatal tablets",
+      "If you feel profound weakness, breathlessness with minor movement, or extreme dizziness",
+      "If you develop severe burning or pain during urination",
+      "If your weekly weight check shows sudden, rapid weight gain (such as more than 1 kg in a single week) or unexplained weight loss"
+    ],
+    "faqs": [
+      {
+        "q": "Is it true that I should not eat ripe papaya or pineapple during pregnancy?",
+        "a": "Fully ripe papaya and fresh pineapple eaten in normal fruit-salad portions are generally considered safe by modern obstetricians. The myth comes from unripe (green) papaya, which contains concentrated latex and papain that can trigger uterine contractions. However, if you feel anxious, discuss it with your doctor and choose other nutrient-dense fruits like oranges, apples, guavas, and pomegranate."
+      },
+      {
+        "q": "Does drinking saffron (kesar) milk make the baby fair?",
+        "a": "No. A baby's skin colour is determined entirely by genetics inherited from parents, not by foods or drinks consumed during pregnancy. Kesar milk can be enjoyed purely for its mild aroma and comforting taste as part of a healthy dairy intake, but it has no effect on skin complexion."
+      },
+      {
+        "q": "Can I get enough protein on a pure vegetarian Indian diet during pregnancy?",
+        "a": "Yes, absolutely. By combining different plant foods—such as cereals with dals (khichdi, dal-roti), adding paneer, homemade curd, roasted chana, sprouted moong, soy, and soaked nuts—you can easily meet your daily pregnancy protein goals. Focus on eating a protein source with every meal."
+      },
+      {
+        "q": "Will eating lots of ghee in the ninth month ensure a normal delivery?",
+        "a": "No. Ghee does not lubricate the birth canal. The birth canal is muscular and bony, and delivery depends on pelvic dimensions, uterine contractions, and the baby's position. Consuming large bowls of ghee only adds empty excess calories, which can cause excessive maternal weight gain, indigestion, and high cholesterol."
+      },
+      {
+        "q": "How can I prevent constipation from iron supplements?",
+        "a": "Drink plenty of water (at least 8 to 10 glasses daily), eat fiber-rich whole grains like oats, daliya, and bajra, include plenty of cooked vegetables and fruits like pears and prunes, and maintain daily physical walks. Never stop taking your iron supplement on your own; if constipation persists, ask your doctor about a different formulation."
+      }
+    ],
+    "references": [
+      {
+        "title": "Nutrient Requirements and Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "WHO Guidelines on Antenatal Care for a Positive Pregnancy Experience",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241549912",
+        "year": "2016"
+      },
+      {
+        "title": "Diet, Nutrition, and Physical Activity During Pregnancy",
+        "source": "NHS UK",
+        "url": "https://www.nhs.uk/pregnancy/keeping-well/have-a-healthy-diet/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "gestational-diabetes",
+      "anemia",
+      "iron-deficiency",
+      "calcium-deficiency",
+      "vitamin-d-deficiency",
+      "vitamin-b12-deficiency",
+      "protein-deficiency",
+      "constipation",
+      "acidity"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "vitamin-d3",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "amla",
+      "moringa"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "fasting-glucose",
+      "tsh",
+      "urine-routine",
+      "vitamin-d",
+      "vitamin-b12"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

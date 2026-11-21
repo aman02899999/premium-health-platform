@@ -1,0 +1,285 @@
+{
+  "slug": "anxiety",
+  "name": "Anxiety",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Anxiety is your body natural alarm system that prepares you to react to danger. When this alarm stays turned on long after any threat has passed, or goes off when there is no actual danger, it becomes an anxiety disorder. It is far more than everyday stress or temporary nervousness before a job interview or wedding. In an anxiety disorder, constant worry, dread, and physical tension take over daily life and make simple tasks exhausting. In India, people often experience anxiety through bodily complaints such as a pounding heartbeat, a churning stomach, sudden sweating, or choking feelings in the throat. The National Mental Health Survey of India found that neurotic and stress-related disorders affect millions of citizens, yet the majority never receive medical help because of social stigma or lack of awareness. Anxiety is not a personal failure, a lack of willpower, or weak character. It is a recognized medical condition involving brain circuits, hormones, and nerve pathways. With structured evidence-based care, psychotherapy, lifestyle habits, and medical guidance, people can regain balance and lead fulfilling, active lives.",
+    "quickFacts": [
+      {
+        "label": "National prevalence in India",
+        "value": "Around 3.5% lifetime prevalence for anxiety disorders (NMHS 2015-16)"
+      },
+      {
+        "label": "Global burden",
+        "value": "Over 301 million people live with an anxiety disorder worldwide (WHO)"
+      },
+      {
+        "label": "Mental healthcare gap in India",
+        "value": "Over 75% of people with anxiety disorders never access formal care"
+      },
+      {
+        "label": "Common physical sensations",
+        "value": "Rapid pulse, tight chest, shakiness, dry mouth, gas, and loose stools"
+      },
+      {
+        "label": "Standard screening tool",
+        "value": "GAD-7 questionnaire used by doctors to assess worry severity"
+      },
+      {
+        "label": "Proven core treatment",
+        "value": "Cognitive Behavioral Therapy (CBT) and doctor-prescribed medications"
+      }
+    ],
+    "causes": [
+      "Brain chemistry and neural wiring: Imbalances in neurotransmitters such as serotonin, gamma-aminobutyric acid (GABA), and norepinephrine disrupt how fear circuits in the amygdala communicate with rational brain centers.",
+      "Genetic vulnerability: Having parents, grandparents, or siblings with severe anxiety, panic attacks, or depression increases your susceptibility.",
+      "Prolonged psychological and social stress: Relentless pressure from demanding Indian work hours, competitive academic exams like NEET or UPSC, financial instability, marital friction, or long daily commutes.",
+      "Early life adversity and trauma: Physical, emotional, or verbal abuse in childhood, sudden loss of a caregiver, or witnessing severe family violence leaves lasting changes in how the nervous system handles stress.",
+      "Physical health conditions: Underlying medical issues can mimic or worsen anxiety, including hyperthyroidism, cardiac arrhythmias, mitral valve prolapse, severe iron deficiency, and chronic gut disorders.",
+      "Stimulants and chemical triggers: Drinking large amounts of strong filter coffee, cutting chai, energy drinks, using nicotine, or taking certain over-the-counter decongestants can provoke severe physical jitteriness and panic feelings.",
+      "Substance withdrawal: Abruptly stopping alcohol, sleeping pills, or tobacco causes sharp rebound anxiety as the central nervous system becomes hyper-excitable."
+    ],
+    "types": [
+      {
+        "name": "Generalized Anxiety Disorder (GAD)",
+        "desc": "Persistent, excessive, and uncontrollable worry about everyday matters like health, finances, family safety, or work performance on most days for at least six months, accompanied by muscle tension and restlessness."
+      },
+      {
+        "name": "Panic Disorder",
+        "desc": "Sudden, unexpected surges of intense fear that peak within minutes. Symptoms include a racing heart, smothering sensations, trembling, dizziness, and terror of losing control, dying, or having a heart attack."
+      },
+      {
+        "name": "Social Anxiety Disorder",
+        "desc": "Intense, crippling fear of social situations, public speaking, eating in front of others, or attending social gatherings due to dread of being judged, embarrassed, or scrutinized."
+      },
+      {
+        "name": "Agoraphobia",
+        "desc": "Fear and avoidance of places or situations where escape might be difficult or embarrassing, such as crowded local trains, bustling Indian bazaars, enclosed metro coaches, or open highways."
+      },
+      {
+        "name": "Specific Phobias",
+        "desc": "An intense, irrational, and disproportionate fear of a particular object or situation, such as heights, flying, injections, dental work, or specific animals like dogs or lizards."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical interview: A psychiatrist or clinical psychologist assesses your emotional history, duration of symptoms, family background, and how anxiety limits your work and relationships.",
+      "Standardized screening tools: Doctors commonly use validated scales such as the Generalized Anxiety Disorder 7-item (GAD-7) scale or Hamilton Anxiety Rating Scale (HAM-A) to grade severity.",
+      "Medical rule-out evaluation: Because anxiety creates physical symptoms like heart pounding, shortness of breath, and shaking, a physician must examine you to ensure an underlying physical disorder is not the driver.",
+      "Review of medications and habits: Your doctor checks your daily intake of caffeine, alcohol, tobacco, sleeping tablets, herbal formulations, and any prescription drugs that might trigger nervousness.",
+      "Timeline assessment: True clinical anxiety requires symptoms to persist over weeks or months, differentiating it from normal situational tension caused by a sudden life event."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out an overactive thyroid gland (hyperthyroidism), which frequently mimics panic attacks and jitteriness",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Identifies anemia, which causes a rapid pulse, shortness of breath, and fatigue that worsen physical anxiety",
+        "slug": "cbc"
+      },
+      {
+        "test": "Vitamin B12 level",
+        "purpose": "Detects deficiency common in Indian vegetarian diets that leads to nerve irritability, mood shifts, and brain fog",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Vitamin D test",
+        "purpose": "Evaluates low vitamin D levels, which are widespread across India and strongly linked with mood and neurochemical regulation",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Checks for erratic blood sugar or reactive hypoglycemia, which triggers sudden adrenaline surges, sweating, and shaking",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Ensures racing heartbeats, extra beats, or chest tightness are not caused by an underlying heart condition"
+      }
+    ],
+    "modernTreatment": [
+      "Cognitive Behavioral Therapy (CBT): The gold-standard psychotherapy for anxiety. It helps you recognize irrational thought patterns (such as catastrophic thinking), challenge fearful interpretations, and replace them with realistic appraisals.",
+      "Exposure therapy: A structured psychological technique that gently and safely introduces you to feared situations or bodily sensations until your brain relearns that they are not dangerous.",
+      "First-line medications: Psychiatrists commonly prescribe Selective Serotonin Reuptake Inhibitors (SSRIs) or Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs). These non-habit-forming medicines stabilize neurotransmitter communication and take two to six weeks to build full benefit.",
+      "Short-term symptom relievers: In severe crisis states or disabling panic attacks, doctors may temporarily prescribe low doses of benzodiazepines or beta-blockers as advised by your doctor. These are used with extreme caution for brief periods due to dependency risks.",
+      "Psychoeducation and coping training: Learning how the fight-or-flight response functions helps demystify scary physical sensations like hyperventilation, chest tightness, and lightheadedness.",
+      "Long-term medical maintenance: Medication is typically continued for at least six to twelve months after symptoms stabilize, followed by a gradual, physician-supervised tapering plan to prevent relapse."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, anxiety states are often understood through the concept of Chitta Udvega (an agitated, distressed state of mind) and Manasika Dosha imbalances, dominated by Rajas and Tamas.",
+      "Anxiety is primarily linked to an aggravation of Vata dosha, particularly Prana Vayu (responsible for mental clarity and nervous system function), which becomes erratic and ungrounded.",
+      "When Vata is disturbed, it dries out Ojas (vital vigor and mental resilience) and produces symptoms like restlessness, interrupted sleep, trembling, poor digestion, and racing thoughts.",
+      "Traditional Ayurvedic management emphasizes stabilizing Vata through nourishing, warm, freshly cooked foods, fixed meal times, regular sleep routines, and soothing external therapies like Abhyanga (warm oil massage) or Shirodhara.",
+      "Herbal preparations are used solely as supportive therapies alongside modern medical care. No Ayurvedic product can make anxiety go away on its own, and all herbs must be disclosed to your treating doctor."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "A traditional adaptogenic herb. Several small human clinical trials suggest it may help support the body stress response by moderately lowering cortisol levels, but it cannot replace psychiatric therapy or medicines."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally utilized in Indian systems for cognitive support and calming mental agitation. Modern clinical evidence for major anxiety disorders remains preliminary and limited."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is valued for general wellness and mild nervous tension relief. While soothing as a warm infusion, clinical trials proving efficacy in diagnosed anxiety disorders are lacking."
+      }
+    ],
+    "nutrition": [
+      "Stabilize your blood sugar by eating meals at consistent times. Skipping meals causes blood glucose to drop, releasing adrenaline that mimics or triggers intense panic and shakiness.",
+      "Substantially cut back on caffeine. Strong filter coffee, multiple cups of roadside cutting chai, and energy drinks overstimulate the nervous system and directly provoke palpitations.",
+      "Build your plate around whole, unrefined carbohydrates such as brown rice, oats, jowar, bajra, or whole-wheat rotis. These support steady serotonin production in the brain.",
+      "Include ample protein at every meal from dal, chana, rajma, paneer, eggs, or fish to provide amino acids like tryptophan, which your nervous system needs to manufacture calming neurotransmitters.",
+      "Support your gut-brain axis with fermented Indian foods. Unsweetened homemade dahi (curd), buttermilk (chaas), and traditional fermented preparations supply beneficial microbes that support nervous system health.",
+      "Increase magnesium and micronutrient intake by eating dark leafy greens (palak, methi), pumpkin seeds, almonds, walnuts, and bananas to help muscles and nerves relax naturally.",
+      "Avoid excess refined sugars, packaged namkeens, bakery biscuits, and deep-fried roadside snacks that cause rapid spikes and crashes in energy and mood."
+    ],
+    "lifestyle": [
+      "Establish a consistent sleep schedule. Aim for seven to eight hours of restful sleep every night. Sleep deprivation drastically sensitizes the amygdala, making everyday events feel threatening.",
+      "Engage in daily physical activity. A brisk 30-minute walk, gym workout, swimming, or cycling burns off excess adrenaline, releases natural endorphins, and relieves muscle stiffness.",
+      "Strictly limit time spent on news feeds and social media, especially late at night. Doomscrolling stimulates mental tension and feeds catastrophic thinking.",
+      "Practice progressive muscle relaxation: systematically tense each muscle group in your body for five seconds, then release for ten seconds, noticing the warm sensation of relaxation.",
+      "Set firm boundaries between work hours and personal time. Avoid checking work messages or emails during meals or just before sleeping.",
+      "Share your feelings with a trusted friend, family member, or mental health support group rather than bottling up fears and worries in silence."
+    ],
+    "yogaActivity": [
+      "Anulom Vilom (alternate nostril breathing): Done slowly without force, this practice helps rebalance the autonomic nervous system by gently activating the parasympathetic calming branch.",
+      "Bhramari Pranayama (humming bee breath): The gentle vibration created during humming stimulates the vagus nerve, which helps slow down a pounding heart and ease mental restlessness.",
+      "Shavasana (corpse pose): Practicing guided body-scan relaxation in Shavasana for ten minutes daily trains the body to let go of hidden muscular bracing in the shoulders, jaw, and lower back.",
+      "Balasana (child pose) and Viparita Karani (legs-up-the-wall pose): Gentle, restorative postures that bring blood flow back toward the heart and promote deep physical grounding.",
+      "Important safety precaution: Avoid rapid, forceful, or hyperventilating breathing techniques (such as fast Kapalbhati or Bhastrika) when you are already feeling anxious or panicky, as hyperventilation can provoke a panic attack."
+    ],
+    "homeopathyNote": [
+      "There is no robust scientific evidence from high-quality clinical trials demonstrating that homeopathic remedies treat or resolve clinical anxiety disorders.",
+      "Relying solely on homeopathic remedies for severe panic attacks, phobias, or generalized anxiety can delay necessary psychiatric care and psychological therapy.",
+      "If you choose to use homeopathic remedies, never discontinue evidence-based medical treatment or psychotherapy prescribed by your doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Cognitive Behavioral Therapy (CBT) and prescription medications (SSRIs and SNRIs) show the strongest, most consistent evidence in clinical trials for significantly reducing anxiety symptoms.",
+      "Strong evidence: Regular aerobic exercise (such as brisk walking or running for 150 minutes per week) significantly reduces baseline anxiety scores across large population studies.",
+      "Moderate evidence: Mindfulness-Based Stress Reduction (MBSR), diaphragmatic breathing, and structured sleep hygiene produce measurable improvements in nervous system regulation.",
+      "Limited evidence: Botanical supplements like ashwagandha have modest supportive data in small trials for everyday stress, but evidence is insufficient to recommend them as monotherapy for clinical anxiety.",
+      "No credible evidence: Internet-marketed detox drinks, anti-stress amulets, sound frequencies, or over-the-counter herbal pills claiming to eliminate anxiety forever have no medical backing."
+    ],
+    "shouldNotDo": [
+      "Do not use alcohol, smoking, bidi, or recreational substances to self-medicate nervousness. While alcohol temporarily sedates the brain, it disrupts neurotransmitters and triggers severe rebound panic the next morning.",
+      "Do not suddenly stop or alter the dose of prescription anti-anxiety medications because you feel better; doing so can cause debilitating withdrawal symptoms and relapse.",
+      "Do not consume multiple cups of tea, coffee, or energy drinks when feeling restless or unfocused, as caffeine amplifies physical tremors and heart rate.",
+      "Do not withdraw completely into isolation or stop leaving the house. Total avoidance of feared situations reinforces anxiety and makes the world feel progressively more dangerous.",
+      "Do not dismiss severe physical symptoms like chest pain or breathing trouble purely as anxiety without having a physician check your heart and lungs first.",
+      "Do not spend hours late at night searching symptoms online, as health-related googling fuels health anxiety and catastrophic conclusions."
+    ],
+    "medicationSafety": [
+      "Always take psychiatric medications exactly as advised by your doctor, at the same time each day, to maintain stable levels in your bloodstream.",
+      "Understand the latency period: SSRI and SNRI medications typically take two to four weeks, and sometimes up to six weeks, to produce noticeable symptom relief. Do not abandon them after a few days thinking they do not work.",
+      "Be alert to early side effects: Mild nausea, headache, or temporary restlessness can occur during the first week of starting medication, but these usually settle as your body adapts.",
+      "Exercise caution with sedatives: Benzodiazepine medicines must only be taken for short durations under strict medical supervision because the body can develop tolerance and dependence rapidly.",
+      "Consult your physician before taking over-the-counter painkillers, allergy tablets, or herbal mixtures, as some can interact unpredictably with anti-anxiety prescriptions."
+    ],
+    "complications": [
+      "Development of clinical depression: Long-term untreated anxiety wears down emotional resilience, frequently leading to major depressive episodes.",
+      "Chronic sleep disturbances: Severe insomnia, broken sleep, and morning exhaustion impair work output and memory consolidation.",
+      "Gastrointestinal disorders: Chronic activation of the stress axis leads to functional gut problems, worsening irritable bowel syndrome (IBS), chronic acidity, and abdominal cramping.",
+      "Cardiovascular strain: Sustained surges of adrenaline and cortisol keep baseline heart rates high, raising long-term risk for high blood pressure and cardiac strain.",
+      "Substance dependence: High risk of developing alcohol or sleeping tablet addiction in a desperate attempt to quiet an overactive mind.",
+      "Social and occupational disability: Inability to attend office meetings, give presentations, travel, or maintain intimate family relationships due to persistent dread."
+    ],
+    "emergencySigns": [
+      "Active thoughts of suicide, urges to harm yourself, or feelings that your family would be better off without you: Immediately contact Tele-MANAS (14416 or 1800-891-4416) or the KIRAN mental health helpline (1800-599-0019), or go to the nearest hospital casualty.",
+      "Sudden crushing chest pain, pressure spreading to the left arm, neck, or jaw, accompanied by profuse sweating and nausea: Treat this as a medical emergency and call 108 or 112 to rule out a heart attack.",
+      "Severe shortness of breath accompanied by blue discoloration of lips or fingernails, which indicates an acute respiratory or cardiac emergency rather than hyperventilation.",
+      "Sudden confusion, disorientation, severe hallucinations, or inability to recognize close family members."
+    ],
+    "whenToSeeDoctor": [
+      "Your constant worry feels uncontrollable and has persisted for more than two to three weeks.",
+      "Anxiety is interfering with your ability to perform your job, attend college, sleep, or care for your family.",
+      "You experience sudden, overwhelming episodes of terror with a racing heart, shaking, and dizziness (panic attacks).",
+      "You find yourself actively avoiding public transport, grocery stores, social events, or leaving home out of fear.",
+      "You are using alcohol, cigarettes, or over-the-counter sleeping pills just to get through the day or fall asleep."
+    ],
+    "faqs": [
+      {
+        "q": "Is anxiety just a sign of mental weakness or lack of willpower?",
+        "a": "No, absolutely not. Anxiety is a medical condition driven by genetics, changes in brain circuits, neurotransmitter function, and real biological stress responses. Telling someone with anxiety to just snap out of it is like telling someone with diabetes to just lower their blood sugar through willpower. Professional care and scientific tools are effective and necessary."
+      },
+      {
+        "q": "How can I tell the difference between a panic attack and a heart attack?",
+        "a": "Both conditions cause a racing pulse, chest tightness, sweating, and intense terror. However, a heart attack often presents with crushing, heavy chest pressure spreading to the left shoulder, jaw, or arm, often worsening with physical exertion. A panic attack usually peaks within ten minutes and often includes tingling in the fingers or around the mouth from hyperventilation. If it is your first time experiencing these symptoms, you must seek emergency medical evaluation immediately to ensure your heart is safe."
+      },
+      {
+        "q": "Are all anxiety medications addictive?",
+        "a": "No. The main modern medicines prescribed for anxiety, such as SSRIs and SNRIs, are completely non-addictive. They do not cause cravings or chemical dependence. However, a separate class of medicines called benzodiazepines, sometimes used temporarily for quick panic relief, can cause physical dependence if taken continuously. That is why doctors prescribe them only for brief, monitored periods."
+      },
+      {
+        "q": "Why does my anxiety give me loose motions and acidity?",
+        "a": "The gut and the brain communicate constantly through the gut-brain axis and the vagus nerve. The intestines have hundreds of millions of neurons, sometimes called the second brain. When your brain triggers an adrenaline surge during high anxiety, it diverts blood away from digestion, speeds up gut motility (causing loose motions or cramps), or alters stomach acid, resulting in nausea, bloating, and heartburn."
+      },
+      {
+        "q": "Can meditation or yoga alone completely cure my anxiety?",
+        "a": "Yoga and meditation are wonderful supportive practices that tone the nervous system and lower everyday stress. However, no single lifestyle practice can make severe clinical anxiety or panic disorder vanish entirely on its own. For moderate to severe anxiety disorders, structured psychotherapy such as CBT and medical supervision are the primary evidence-based treatments, with yoga acting as a valuable complementary tool."
+      }
+    ],
+    "references": [
+      {
+        "title": "Anxiety disorders: Key facts and global estimates",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/anxiety-disorders",
+        "year": "2023"
+      },
+      {
+        "title": "Generalised anxiety disorder and panic disorder in adults: management (Clinical Guideline CG113)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg113",
+        "year": "2019"
+      },
+      {
+        "title": "Anxiety Disorders: Types, Diagnosis, and Treatment Overview",
+        "source": "National Institute of Mental Health (NIMH), NIH",
+        "url": "https://www.nimh.nih.gov/health/topics/anxiety-disorders",
+        "year": "2023"
+      },
+      {
+        "title": "A prospective, randomized double-blind, placebo-controlled study of safety and efficacy of a high-concentration full-spectrum extract of Ashwagandha root in reducing stress and anxiety in adults",
+        "source": "Indian Journal of Psychological Medicine (Chandrasekhar K et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23439798/",
+        "year": "2012"
+      }
+    ],
+    "relatedDiseases": [
+      "depression",
+      "stress",
+      "sleep-problems",
+      "palpitations",
+      "ibs",
+      "high-blood-pressure"
+    ],
+    "relatedMedicines": [
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "vitamin-b12",
+      "vitamin-d",
+      "cbc",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

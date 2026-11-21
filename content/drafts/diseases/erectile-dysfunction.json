@@ -1,0 +1,295 @@
+{
+  "slug": "erectile-dysfunction",
+  "name": "Erectile Dysfunction",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Erectile dysfunction (ED) is the persistent difficulty in getting or keeping an erection firm enough for satisfactory sexual intercourse. Having trouble once in a while due to tiredness, alcohol or acute stress is normal and happens to almost every man. However, when the problem persists for several weeks or months, it is a medical condition that deserves attention. In medicine, the penis is often described as the 'canary in the coal mine' for the cardiovascular system. The penile arteries are very narrow (roughly 1 to 2 millimetres wide), whereas coronary arteries feeding the heart are 3 to 4 millimetres wide. This means early vascular damage from conditions like high blood pressure, elevated cholesterol and diabetes often shows up as erectile dysfunction years before a heart attack or stroke occurs. ED is remarkably common in India, heavily driven by rising rates of metabolic disorders, tobacco consumption and chronic urban stress. It is neither a personal failing nor an inevitable part of growing older. It is a treatable health condition that often improves once the underlying physical and emotional factors are properly addressed.",
+    "quickFacts": [
+      {
+        "label": "Definition",
+        "value": "Persistent inability to achieve or maintain an erection adequate for intercourse"
+      },
+      {
+        "label": "Cardiovascular link",
+        "value": "Often appears 2 to 5 years before symptomatic coronary artery disease"
+      },
+      {
+        "label": "Diabetes connection",
+        "value": "Men with diabetes develop ED 10 to 15 years earlier than those without"
+      },
+      {
+        "label": "Lifestyle impact",
+        "value": "Smoking, gutka, alcohol and physical inactivity are major reversible drivers"
+      },
+      {
+        "label": "Primary treatment",
+        "value": "Lifestyle changes, PDE5 inhibitor medicines, and managing metabolic conditions"
+      }
+    ],
+    "causes": [
+      "Vascular conditions: Atherosclerosis (narrowing of blood vessels) restricts blood flow into the erectile tissue. High blood pressure, high cholesterol and peripheral vascular disease are primary drivers.",
+      "Diabetes mellitus and insulin resistance: Chronic high blood sugar damages delicate microvascular blood vessels and autonomic nerves that trigger erections.",
+      "Neurological disorders: Damage to the nerves carrying signals from the brain to the pelvic area, caused by long-standing diabetes, stroke, multiple sclerosis, or pelvic surgeries.",
+      "Hormonal imbalances: Low testosterone levels (hypogonadism), elevated prolactin, or thyroid gland disorders (both hypothyroidism and hyperthyroidism) can disrupt libido and erectile function.",
+      "Psychological factors: Chronic workplace stress, performance anxiety, depression, marital conflict, and past emotional trauma can disrupt normal sexual arousal pathways.",
+      "Prescription medicines: Certain blood pressure drugs (such as beta-blockers and thiazide diuretics), antidepressants (particularly SSRIs), antihistamines, and anti-androgens can impair erections.",
+      "Lifestyle habits: Heavy cigarette smoking and chewing gutka or khaini damage the endothelial lining of blood vessels; chronic alcohol abuse impairs nerve signals and liver function; lack of physical exercise fosters metabolic dysfunction.",
+      "Structural and pelvic conditions: Peyronie's disease (fibrous scar tissue inside the penis), pelvic trauma, prostate enlargement, or previous pelvic radiation."
+    ],
+    "types": [
+      {
+        "name": "Vasculogenic ED",
+        "desc": "The most common organic type, caused by impaired blood flow into the penis (arterial insufficiency) or failure to trap blood inside the spongy tissue (venous leak). Strongly linked to heart disease and diabetes."
+      },
+      {
+        "name": "Neurogenic ED",
+        "desc": "Caused by nerve signalling failure between the central nervous system and the pelvic tissues, often seen in diabetic neuropathy, spinal cord injuries, or after radical pelvic surgery."
+      },
+      {
+        "name": "Psychogenic ED",
+        "desc": "Driven by anxiety, depression, stress, relationship strain, or performance fears. Often characterized by the sudden onset of symptoms while morning or nocturnal erections remain completely intact."
+      },
+      {
+        "name": "Endocrine (Hormonal) ED",
+        "desc": "Results from hormonal deficiencies or imbalances, most frequently low total or free testosterone, thyroid abnormalities, or elevated prolactin levels."
+      },
+      {
+        "name": "Mixed ED",
+        "desc": "A combination of physical and psychological causes. For example, a man with mild diabetic vascular narrowing develops intense anxiety about his performance, which further worsens his physical response."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive medical and sexual history: Your doctor will ask direct questions about the duration of symptoms, presence of morning or nighttime erections, libido, and ejaculation patterns.",
+      "Standardized questionnaires: Tools like the International Index of Erectile Function (IIEF-5) or the Sexual Health Inventory for Men (SHIM) are used to objectively measure severity.",
+      "Cardiovascular and physical examination: Checking blood pressure, pulse, waist circumference, peripheral pulses in the legs, and a gentle examination of the genitals and prostate.",
+      "Psychological evaluation: Screening for chronic anxiety, depression, sleep disturbances, relationship distress, and performance-related apprehension.",
+      "Review of current medications: Examining all ongoing prescription medicines, over-the-counter pills, and unlabelled dietary supplements to identify potential side effects."
+    ],
+    "investigations": [
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates average blood sugar control over the past 3 months to diagnose diabetes or insulin resistance",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Detects undiagnosed prediabetes or diabetes affecting small blood vessels",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Assesses total cholesterol, LDL, HDL and triglycerides to measure cardiovascular risk",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Identifies underactive or overactive thyroid states that interfere with sex hormones",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Evaluates kidney function, which can be impaired in chronic vascular disease",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Morning Total Testosterone",
+        "purpose": "Measures primary male sex hormone levels, drawn before 10 AM when peak concentrations occur"
+      }
+    ],
+    "modernTreatment": [
+      "Managing underlying conditions: Optimizing blood sugar in diabetes, lowering high blood pressure, treating elevated cholesterol, and managing body weight through medical care and lifestyle changes.",
+      "Oral PDE5 inhibitors: Medications such as sildenafil, tadalafil, and vardenafil enhance the natural response to sexual stimulation by relaxing smooth muscle and improving blood inflow. These must be taken only as advised by your doctor.",
+      "Psychosexual therapy and counseling: Cognitive behavioural therapy (CBT), couples counseling, and sex therapy address performance anxiety, relationship difficulties, and depression.",
+      "Vacuum erection devices (VED): External mechanical cylinders that draw blood into the penis using negative pressure, held in place with a gentle constriction ring at the base.",
+      "Intraurethral pellets or intracavernosal injections: Second-line medications delivered locally into the urethra or spongy tissue of the penis to initiate an erection when oral tablets cannot be used.",
+      "Penile implants (prostheses): Surgically implanted malleable or inflatable cylinders within the erectile chambers, considered when other medical treatments fail or are not suitable."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, male sexual dysfunction is broadly categorized under 'Klaibya' (loss of virility) and addressed within the branch known as 'Vajikarana' (reproductive and vital energy health).",
+      "Traditional texts describe the condition as an imbalance of Vata dosha disrupting the normal downward flow of Apana Vayu, often accompanied by depleted Shukra dhatu (vital reproductive tissue) and mental agitation (Rajas/Tamas).",
+      "Classical management emphasizes building general vitality (Brimhana), balancing digestion and metabolic fire (Agni), soothing the nervous system, and reducing emotional tension.",
+      "Ayurvedic therapies and classical formulations are intended to act as supportive lifestyle measures alongside modern medical evaluation, not as emergency solutions or standalone substitutes."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally used to counter psychological stress, fatigue, and nervous exhaustion; clinical trials show modest support for stress reduction, but it does not cure physical arterial blockage."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally valued as a nourishing and cooling tonic to support vitality; clinical evidence regarding its direct impact on erectile hemodynamics remains limited."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Known to support cardiovascular health and endothelial nitric oxide production; useful as a dietary inclusion to support healthy blood circulation, taken as advised by your doctor."
+      }
+    ],
+    "nutrition": [
+      "Adopt an Indian-style Mediterranean or DASH dietary pattern: Base your daily meals on whole grains (such as whole wheat rotis, brown rice, ragi, and jowar), a variety of seasonal vegetables, and plenty of legumes (dal, rajma, chana).",
+      "Incorporate nitrate-rich vegetables: Foods like beetroot, spinach (palak), fenugreek greens (methi), and radish support the natural production of nitric oxide, which dilates blood vessels.",
+      "Choose heart-healthy fats: Replace hydrogenated vanaspati, trans fats, and deep-fried snacks (samosas, pakoras, bhujia) with moderate quantities of mustard oil, groundnut oil, sesame oil, or olive oil, along with unsalted nuts (walnuts, almonds).",
+      "Ensure adequate zinc and magnesium: Include pumpkin seeds, sunflower seeds, paneer, eggs, lentils, and whole grains in your daily diet to support normal hormonal health.",
+      "Cut down on refined sugars and ultra-processed foods: Minimize intake of sugary drinks, mithai, bakery biscuits, namkeen, and instant refined flour foods, which fuel systemic inflammation and endothelial damage.",
+      "Stay adequately hydrated: Drink plenty of water throughout the day, especially in hot weather, as dehydration reduces total blood volume and impairs optimal blood circulation."
+    ],
+    "lifestyle": [
+      "Quit all forms of tobacco completely: Bidi, cigarette smoking, and gutka chewers face severe arterial constriction and premature vascular damage. Stopping tobacco is one of the most effective steps you can take for your sexual health.",
+      "Engage in regular aerobic exercise: Aim for at least 150 minutes of moderate-intensity aerobic exercise weekly (brisk walking, jogging, cycling, swimming). Physical activity directly improves endothelial function and pelvic blood flow.",
+      "Prioritize 7 to 8 hours of restorative sleep: Testosterone is synthesized predominantly during deep REM sleep; chronic sleep deprivation or untreated obstructive sleep apnea severely suppresses hormone production.",
+      "Maintain a healthy waist circumference: Abdominal visceral fat converts testosterone into estrogen through the aromatase enzyme; aim for a waist size below 90 cm for Indian men as per ICMR guidelines.",
+      "Strictly limit alcohol consumption: While alcohol may temporarily reduce social inhibitions, it acts as a central nervous system depressant and impairs the nerve signals needed for an erection.",
+      "Foster open communication with your partner: Stress, unspoken resentment, and secrecy magnify performance anxiety; open dialogue helps remove the psychological pressure to perform."
+    ],
+    "yogaActivity": [
+      "Pelvic floor strengthening (Mula Bandha / Kegel exercises): Actively contracting and relaxing the pubococcygeus muscles helps increase penile rigidity and prevents premature venous outflow.",
+      "Bhujangasana (Cobra Pose): Gently stretches the pelvic region, stimulates abdominal organs, and improves blood circulation to the lower spine and pelvis.",
+      "Setu Bandhasana (Bridge Pose): Strengthens the glutes, pelvic floor, and lower back muscles, fostering better local blood flow.",
+      "Paschimottanasana (Seated Forward Bend): Promotes pelvic relaxation, stretches the hamstrings and lower back, and calms the autonomic nervous system.",
+      "Pranayama (Anulom Vilom and Bhramari): Slow, rhythmic alternate nostril breathing balances the sympathetic and parasympathetic nervous systems, significantly dampening acute performance-related adrenaline surges."
+    ],
+    "homeopathyNote": [
+      "There are no robust, peer-reviewed clinical trials demonstrating that homeopathic remedies can reverse arterial blockages, repair damaged pelvic nerves, or treat organic erectile dysfunction.",
+      "Relying solely on homeopathic treatments without medical evaluation may delay the detection of critical underlying conditions, such as coronary artery disease or silent diabetes."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Phosphodiesterase type-5 (PDE5) inhibitors are clinically proven to improve erectile response in the vast majority of men across various etiologies.",
+      "Strong evidence: Structured aerobic exercise, weight reduction, and smoking cessation significantly improve vascular erectile function and endothelial health.",
+      "Moderate evidence: Pelvic floor muscle rehabilitation (Kegel exercises) and cognitive behavioral therapy (CBT) provide measurable benefits, particularly in psychogenic and mild mixed ED.",
+      "Limited evidence: Botanical herbs such as ashwagandha and shatavari have traditional usage and limited animal data, but high-quality human trials showing meaningful vascular improvement in ED are lacking.",
+      "Warning on adulteration: Numerous over-the-counter 'herbal sexual vitality' powders, oils, and capsules sold in local markets have been found by health authorities to contain undeclared, hazardous doses of synthetic pharmaceuticals."
+    ],
+    "shouldNotDo": [
+      "Do not purchase unregulated 'sex power' pills, churnas, or sprays from roadside vendors, unverified online stores, or local unauthorized practitioners. No herb, diet or product can make it go away overnight.",
+      "Do not take prescription erectile dysfunction medicines (like sildenafil or tadalafil) alongside chest pain medications containing nitrates (such as nitroglycerin, isosorbide dinitrate, or sorbitrate), as the combination can trigger a fatal crash in blood pressure.",
+      "Do not take recreational 'poppers' (amyl nitrate or butyl nitrate) while using any PDE5 inhibitor medication.",
+      "Do not suffer in silence out of embarrassment; avoiding the doctor delays the detection of serious underlying vascular and metabolic disorders.",
+      "Do not self-prescribe testosterone replacement therapy without medical supervision; improper use can lead to testicular shrinkage, infertility, thick blood (polycythemia), and sleep apnea.",
+      "Do not assume erectile dysfunction is merely psychological, especially if you are over 40 or have risk factors like smoking, high blood pressure, or diabetes."
+    ],
+    "medicationSafety": [
+      "Always obtain prescription medications through a registered medical doctor and licensed pharmacy; counterfeit erectile pills are among the most frequently seized fake medicines worldwide.",
+      "Inform your physician of your complete medication list, especially blood pressure tablets, alpha-blockers for prostate health, antifungals, and heart medications.",
+      "Take oral erectile medications exactly as advised by your doctor regarding timing relative to meals, as high-fat Indian meals can delay or blunt the absorption of certain agents.",
+      "Be aware of common, transient side effects of PDE5 inhibitors, including facial flushing, mild headache, nasal congestion, indigestion, and temporary backache.",
+      "Seek immediate medical attention if you experience sudden dizziness, visual changes, or hearing disturbances after taking an erectile dysfunction medication."
+    ],
+    "complications": [
+      "Psychological distress: Escalating anxiety, clinical depression, low self-esteem, and loss of confidence.",
+      "Relationship disharmony: Communication breakdown, emotional distance, and severe marital or partner conflict.",
+      "Male factor infertility: Inability to achieve intravaginal ejaculation during attempts at natural conception.",
+      "Unrecognized cardiovascular events: Untreated vascular ED can be a prelude to sudden myocardial infarction (heart attack) or ischemic stroke.",
+      "Progressive tissue fibrosis: Chronic lack of oxygenated blood flow into the erectile chambers can lead to structural changes and progressive loss of penile elasticity."
+    ],
+    "emergencySigns": [
+      "Priapism: An erection lasting longer than 4 hours, which is a urological emergency that can cause permanent tissue damage and scarring if not treated immediately.",
+      "Sudden, crushing chest pain, tightness, or breathlessness during or shortly after sexual activity: Call emergency services (108 or 112 in India) immediately.",
+      "Sudden loss of vision in one or both eyes, or sudden loss of hearing following the use of an erectile dysfunction tablet.",
+      "Severe lightheadedness, fainting, or sudden collapse due to a precipitous drop in blood pressure."
+    ],
+    "whenToSeeDoctor": [
+      "You have experienced persistent difficulty obtaining or maintaining an erection for more than 2 to 3 months.",
+      "You notice a complete absence of spontaneous morning or nighttime erections.",
+      "Erectile issues appear abruptly alongside urinary symptoms, such as weak stream, straining, or frequent nighttime urination.",
+      "You experience pain during an erection or notice an abnormal curvature of the penis.",
+      "You have diagnosed diabetes, hypertension, or high cholesterol and begin developing erectile difficulties."
+    ],
+    "faqs": [
+      {
+        "q": "Is erectile dysfunction just a normal part of getting older?",
+        "a": "No. While the frequency of ED does increase with age, it is not an inevitable consequence of aging. Many older men maintain healthy erectile function throughout life. When ED occurs, it usually points to an underlying physical condition—such as restricted blood flow, nerve damage, or hormone changes—or psychological factors that can be treated."
+      },
+      {
+        "q": "How is erectile dysfunction connected to heart disease?",
+        "a": "The blood vessels supplying the penis are much smaller in diameter than the arteries supplying the heart muscle. Consequently, systemic conditions like high cholesterol, high blood pressure, and atherosclerosis often block the penile arteries first. In many men, erectile dysfunction serves as an early warning sign of coronary artery disease, appearing 2 to 5 years before heart symptoms occur."
+      },
+      {
+        "q": "Can quitting smoking or gutka really help improve erections?",
+        "a": "Yes. Nicotine is a potent vasoconstrictor that immediately narrows blood vessels, and tobacco smoke contains toxic chemicals that damage the endothelial lining of penile arteries. Stopping smoking or gutka use allows the blood vessels to recover their natural flexibility and improves the production of nitric oxide, leading to noticeable improvements in blood flow."
+      },
+      {
+        "q": "Are over-the-counter Ayurvedic sex oils and capsules safe?",
+        "a": "You should exercise extreme caution. Unregulated formulations and local preparations often lack quality control. Multiple laboratory analyses have found that several over-the-counter vitality products are adulterated with hidden, unmeasured quantities of synthetic pharmaceutical drugs, heavy metals, or steroids. Use only verified products, and take them solely under medical supervision."
+      },
+      {
+        "q": "Does masturbation cause erectile dysfunction?",
+        "a": "No, this is a very common myth in India. Normal masturbation does not cause physical damage to the penis, nor does it deplete your body of vitality or cause erectile dysfunction. However, excessive masturbation accompanied by extreme performance guilt, shame, or compulsive consumption of pornography can contribute to psychological performance anxiety with a partner."
+      }
+    ],
+    "references": [
+      {
+        "title": "Erectile dysfunction",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/urologic-diseases/erectile-dysfunction",
+        "year": "2017"
+      },
+      {
+        "title": "Erectile dysfunction: Summary of EAU guidelines",
+        "source": "European Association of Urology (PubMed / Hatzimouratidis K et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20189712/",
+        "year": "2010"
+      },
+      {
+        "title": "The link between erectile dysfunction and cardiovascular disease",
+        "source": "American Journal of Cardiology (Jackson G et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16387561/",
+        "year": "2005"
+      },
+      {
+        "title": "Erectile dysfunction as an independent predictor of cardiovascular events",
+        "source": "Circulation (Böhm M et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20231536/",
+        "year": "2010"
+      },
+      {
+        "title": "Metabolic non-communicable disease health report of India: the ICMR-INDIAB national cross-sectional study (ICMR-INDIAB-17)",
+        "source": "Lancet Diabetes & Endocrinology (Anjana RM et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37302418/",
+        "year": "2023"
+      },
+      {
+        "title": "Erectile dysfunction: A review of modern diagnostic and treatment approaches",
+        "source": "Mayo Clinic Proceedings (Burnett AL et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29729782/",
+        "year": "2018"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "high-blood-pressure",
+      "coronary-artery-disease",
+      "atherosclerosis",
+      "obesity",
+      "anxiety",
+      "depression",
+      "sleep-apnea",
+      "male-hormonal-health",
+      "mens-heart-health"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "atorvastatin",
+      "amlodipine",
+      "losartan"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "garlic",
+      "shatavari"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "lipid-profile",
+      "tsh",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

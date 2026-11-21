@@ -1,0 +1,278 @@
+{
+  "slug": "electrolyte-imbalance",
+  "name": "Electrolyte Imbalance",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "An electrolyte imbalance occurs when the concentration of key electrically charged minerals in your blood and bodily fluids becomes either unusually high or dangerously low. These vital minerals—chiefly sodium, potassium, calcium, magnesium, chloride, and phosphate—regulate nerve transmission, muscle contraction, cardiac rhythm, hydration balance, and the pH of your blood. In India, acute imbalances are very common during scorching summer heatwaves, heavy gym training sessions, and episodes of waterborne infections like gastroenteritis (acute diarrhea and vomiting). Imbalances also develop gradually in people with chronic health conditions such as kidney disease, liver dysfunction, heart failure, or uncontrolled diabetes. Certain medicines, especially water pills (diuretics) and specific blood pressure tablets, can also alter normal mineral balance. Because minerals like potassium and sodium control the rhythm of your heart and the swelling of your brain cells, severe electrolyte imbalances can quickly develop into life-threatening emergencies if not promptly recognized and corrected.",
+    "quickFacts": [
+      {
+        "label": "Normal blood sodium",
+        "value": "135 to 145 mEq/L (or mmol/L)"
+      },
+      {
+        "label": "Normal blood potassium",
+        "value": "3.5 to 5.0 mEq/L (or mmol/L)"
+      },
+      {
+        "label": "Normal blood calcium",
+        "value": "8.5 to 10.5 mg/dL"
+      },
+      {
+        "label": "Common acute trigger in India",
+        "value": "Acute watery diarrhea, food poisoning, and summer heat exhaustion"
+      },
+      {
+        "label": "High-risk groups",
+        "value": "Endurance athletes, older adults, people taking diuretics or BP drugs, and kidney patients"
+      },
+      {
+        "label": "Primary medical danger",
+        "value": "Dangerous heart arrhythmias, seizures, muscle breakdown, and brain swelling"
+      }
+    ],
+    "causes": [
+      "Severe fluid loss from gastroenteritis, food poisoning, loose motions, or uncontrollable vomiting, which deplete both water and essential salts.",
+      "Intense sweating during rigorous workouts, manual labor, or exposure to extreme Indian summer heat (loo conditions) without replacing lost salts.",
+      "Over-hydration with plain water: drinking huge quantities of plain water too rapidly during marathons or gym training, which dangerously dilutes sodium levels in the blood.",
+      "Kidney disorders: diseased kidneys lose their ability to excrete or retain potassium, sodium, and phosphate in balanced amounts.",
+      "Medications that alter mineral excretion, including diuretics (water tablets), blood pressure medicines such as ACE inhibitors and angiotensin receptor blockers (like losartan), and frequent laxative use.",
+      "Metabolic and endocrine disorders, including diabetic ketoacidosis, primary hyperparathyroidism, severe thyroid dysfunction, or adrenal gland problems.",
+      "Chronic poor nutrition, severe alcohol use, or prolonged fasting without balanced mineral intake, leading to low magnesium, potassium, and calcium levels."
+    ],
+    "types": [
+      {
+        "name": "Sodium Imbalances (Hyponatremia & Hypernatremia)",
+        "desc": "Low sodium (hyponatremia, below 135 mEq/L) draws excess fluid into brain cells, causing headache, confusion, nausea, and seizures. High sodium (hypernatremia, above 145 mEq/L) usually reflects severe water deficit, leading to extreme thirst, dry mucous membranes, and lethargy."
+      },
+      {
+        "name": "Potassium Imbalances (Hypokalemia & Hyperkalemia)",
+        "desc": "Low potassium (hypokalemia, below 3.5 mEq/L) causes deep muscle weakness, cramps, paralysis, and cardiac skipped beats. High potassium (hyperkalemia, above 5.0 mEq/L) is a critical cardiac hazard that can disrupt heart conduction and trigger sudden arrest."
+      },
+      {
+        "name": "Calcium Imbalances (Hypocalcemia & Hypercalcemia)",
+        "desc": "Low calcium causes numbness, tingling in fingers and lips, muscle twitching, and painful cramps. High calcium causes fatigue, kidney stones, abdominal distress, nausea, and confusion."
+      },
+      {
+        "name": "Magnesium Imbalances (Hypomagnesemia & Hypermagnesemia)",
+        "desc": "Low magnesium often accompanies low potassium and calcium, causing tremors, muscle fasciculations, and irregular heart rhythms. Excess magnesium is less common and typically stems from kidney failure or overuse of magnesium-containing antacids and laxatives."
+      }
+    ],
+    "diagnosis": [
+      "Blood tests: A routine or emergency serum electrolyte panel measures sodium, potassium, chloride, and bicarbonate directly.",
+      "Comprehensive clinical assessment: Your doctor examines your hydration state, skin turgor, blood pressure, heart rate, recent gut infections, sweating, and daily fluid consumption.",
+      "Prescription and supplement audit: Reviewing all active medicines, such as blood pressure drugs, water pills, painkillers, and bodybuilding supplements.",
+      "12-Lead Electrocardiogram (ECG): Essential whenever potassium or calcium issues are suspected, as specific wave changes show whether the heart's electrical system is in danger.",
+      "Urine testing: Analyzing urine electrolytes and osmolality to check whether the kidneys are correctly retaining or wasting minerals."
+    ],
+    "investigations": [
+      {
+        "test": "Serum Electrolytes Panel",
+        "purpose": "Measures exact circulating levels of sodium, potassium, chloride, and bicarbonate in the blood"
+      },
+      {
+        "test": "Serum Creatinine and Blood Urea Nitrogen",
+        "purpose": "Assesses kidney filtration capacity and detects acute kidney injury caused by dehydration",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Urine Routine and Microscopy",
+        "purpose": "Evaluates urine concentration, protein loss, and signs of urinary tract infection or kidney distress",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Identifies hemoconcentration (thickened blood from fluid loss) and checks for infection markers",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Screens for uncontrolled blood sugars or ketoacidosis that cause osmotic fluid and electrolyte shifts",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "12-Lead Electrocardiogram (ECG)",
+        "purpose": "Detects life-threatening electrical conduction abnormalities linked to potassium or calcium shifts"
+      }
+    ],
+    "modernTreatment": [
+      "Oral Rehydration Therapy (ORT): Standard WHO-formulated Oral Rehydration Salts (ORS) mixed in clean drinking water is the first-line treatment for dehydration and electrolyte loss from diarrhea, vomiting, or heavy sweating.",
+      "Intravenous (IV) fluid therapy: Administered in clinics or hospitals when fluid loss is severe, blood pressure has dropped, the person cannot keep fluids down, or electrolyte values are dangerously derailed.",
+      "Carefully controlled correction speeds: Severe sodium changes must be corrected gradually under strict hospital monitoring; correcting blood sodium too fast can cause severe, irreversible brain damage.",
+      "Emergency cardiac stabilization: In critical hyperkalemia (dangerously high potassium), doctors administer intravenous calcium gluconate to shield the heart muscle, followed by insulin-glucose infusions or nebulizers to drive potassium back into cells.",
+      "Medication review and adjustment: Stopping or adjusting the dose of medicines that trigger or worsen the imbalance, such as diuretics or blood pressure tablets, under medical guidance.",
+      "Treating the root disorder: Addressing the underlying cause, whether that is treating a bacterial gut bug, managing diabetic ketoacidosis, or supporting failing kidneys."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda understands bodily health through the balance of doshas (Vata, Pitta, Kapha) and dhatus (tissues), with fluid balance primarily governed by Rasa dhatu (plasma and bodily fluids) and Udaka vaha srotas (water-carrying physiological channels).",
+      "Loss of fluids and minerals matches the clinical picture of aggravated Vata (bringing dryness, tremors, cramps, and profound fatigue) and flared Pitta (causing excess heat, burning sensations, thirst, and acidic gut losses).",
+      "Traditional texts advise fluid-restoring, cooling, and easily digestible fluids such as mudga yusha (thin green moong water), thin buttermilk (chaas) seasoned with a pinch of rock salt and roasted jeera, and fresh tender coconut water.",
+      "These classical dietary measures offer supportive hydration during mild recovery, but Ayurvedic principles recognize that acute depletion and collapse require immediate emergency medical care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "A rich natural source of vitamin C and antioxidants. Traditional preparations like amla sharbat with a pinch of salt provide light hydration support in Indian summers, but it cannot cure acute mineral deficiencies."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Widely used in home remedies to calm nausea and gastric distress. By helping settle vomiting, it supports fluid retention, though it does not replenish minerals itself."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Traditionally taken as a light warm infusion during convalescence from viral illnesses. It provides mild adaptogenic support, but evidence for direct electrolyte correction is lacking."
+      }
+    ],
+    "nutrition": [
+      "Keep standard WHO ORS sachets at home: Dissolve one full sachet into exactly one liter of clean water whenever loose motions, vomiting, or extreme heat exhaustion occur. Do not boil the prepared solution.",
+      "Avoid sugary energy drinks, colas, or sweet packaged juices during diarrhea: Excess sugar pulls more water into the intestine through osmosis, worsening watery motions and mineral loss.",
+      "Eat potassium-supportive foods if you have normal kidney function: Tender coconut water (nariyal pani), bananas, boiled potatoes, sweet potatoes, spinach, tomatoes, and soaked raisins naturally help replace potassium.",
+      "Incorporate light, salted Indian fluid dishes: Fresh thin chaas (buttermilk) with a pinch of salt and roasted cumin, light salted moong dal khichdi, and rice kanji offer gentle nourishment and steady hydration.",
+      "Exercise caution with salt substitutes: Many low-sodium salts replace sodium with potassium. If you have chronic kidney disease or take blood pressure medicines, these can drive potassium to lethal levels.",
+      "Balance water intake during gym sessions: If you sweat heavily for more than an hour, replace plain water with an electrolyte drink rather than chugging liters of pure water on an empty stomach."
+    ],
+    "lifestyle": [
+      "Sip fluids steadily rather than gulping huge volumes at once: Gradual hydration allows your digestive tract and kidneys to absorb and balance fluid comfortably.",
+      "Check your urine color daily: A light pale straw color usually indicates healthy hydration. Very dark amber signals fluid dehydration, while completely clear, colorless urine throughout the day may indicate excessive plain water intake.",
+      "Rest in cool, shaded spaces during hot summer afternoons: Prevent heat exhaustion and heavy sweat loss by scheduling strenuous workouts for early mornings or air-conditioned gym hours.",
+      "Weigh yourself before and after extreme endurance sessions: Any sudden drop in body weight immediately after exercise represents sweat loss, which should be restored with fluids and light meals containing natural salts.",
+      "Limit alcohol and heavy caffeine intake when you feel dehydrated: Both can stimulate increased urination and worsen ongoing fluid and mineral deficits.",
+      "Pack rehydration packets when traveling across India: Food and water changes during travel frequently lead to traveler's diarrhea, making rapid access to rehydration vital."
+    ],
+    "yogaActivity": [
+      "Stop all intense physical exertion, hot yoga, or heavy lifting when experiencing an active electrolyte imbalance, lightheadedness, or acute gastroenteritis; total physical rest is required.",
+      "Once medically stabilized, use cooling breathing techniques like Shitali and Shitkari pranayama under guidance to soothe heat exhaustion and calm internal stress.",
+      "Gentle restorative poses such as Supta Baddhakonasana (supported reclining bound angle pose) and Viparita Karani (legs-up-the-wall) help relax strained muscles and relieve cramping.",
+      "Practice Shavasana (corpse pose) with deep, calm abdominal breathing to help your nervous system recover from physical dehydration and fatigue.",
+      "Avoid inversions (like headstands), rapid transitions, or intense breath-holding practices (Kumbhaka) until your blood mineral levels and blood pressure are confirmed normal by your doctor."
+    ],
+    "homeopathyNote": [
+      "There is no clinical or scientific proof that homeopathic remedies can replenish deficient electrolytes, correct abnormal blood sodium or potassium levels, or resolve clinical dehydration.",
+      "Relying on homeopathic preparations during acute diarrhea, heat stroke, or severe muscle weakness can delay vital oral rehydration or hospital intravenous fluids, resulting in dangerous complications."
+    ],
+    "evidenceNotes": [
+      "High-quality global evidence confirms that WHO-formulated Oral Rehydration Salts (ORS) utilize the gut's sodium-glucose cotransport mechanism, cutting dehydration deaths from diarrhea by over 90 percent.",
+      "Extensive clinical trials prove that intravenous electrolyte replacement, guided by blood tests and ECG monitoring, is essential to prevent cardiac arrest and seizure activity in severe imbalances.",
+      "Robust clinical research warns that correcting severe, long-standing hyponatremia too rapidly can lead to central pontine myelinolysis, a catastrophic brainstem injury, emphasizing why corrections must follow strict medical algorithms.",
+      "There is no reliable scientific evidence that herbal decoctions, detox cleanses, or tonics can normalize derailed blood minerals; no herb, diet or product can make it go away without proper medical diagnosis and management."
+    ],
+    "shouldNotDo": [
+      "Do not drink excessive amounts of plain water rapidly when feeling exhausted, crampy, or lightheaded after heavy sweating; this can dilute blood sodium to dangerous levels.",
+      "Do not give sports drinks, sodas, or packaged fruit juices to anyone suffering from acute diarrhea or vomiting; high sugar concentrations worsen fluid loss.",
+      "Do not use low-sodium or potassium-enriched salts without consulting your doctor, especially if you have high blood pressure, diabetes, or kidney trouble.",
+      "Do not alter or stop prescribed diuretic water pills or blood pressure tablets on your own when you notice puffiness or swelling.",
+      "Do not ignore severe muscle cramps, heart fluttering, or mental cloudiness after an intense workout or a bout of loose motions.",
+      "Do not rely on unverified online detox diets or fasting routines that promise to balance minerals through herbal waters."
+    ],
+    "medicationSafety": [
+      "Take blood pressure medicines, especially ACE inhibitors, ARBs like losartan, and diuretics, exactly as advised by your doctor, and complete scheduled kidney and electrolyte blood checks.",
+      "If prescribed potassium or magnesium tablets, swallow them with meals and a full glass of water as directed to prevent stomach lining irritation.",
+      "Inform your physician right away if you develop severe loose motions or repeated vomiting while taking daily medications for heart disease, high blood pressure, or diabetes, as dosages may require temporary pauses.",
+      "Never double your dose of mineral supplements if you miss one; excessive intake can trigger sudden mineral spikes that strain your kidneys and heart."
+    ],
+    "complications": [
+      "Lethal cardiac arrhythmias, including ventricular fibrillation and asystole, caused by high or low potassium levels.",
+      "Cerebral edema (brain swelling) or permanent neurological disability resulting from severe sodium shifts.",
+      "Rhabdomyolysis, a severe breakdown of muscle tissue triggered by severe potassium deficits or heat exhaustion, which can clog and shut down the kidneys.",
+      "Seizures, loss of consciousness, and coma.",
+      "Hypovolemic shock and acute renal failure resulting from unchecked fluid and mineral depletion."
+    ],
+    "emergencySigns": [
+      "Sudden mental confusion, disorientation, slurred speech, or profound unresponsiveness.",
+      "Seizures, full-body convulsions, or severe involuntary muscle spasms (tetany).",
+      "A racing, irregular, or fluttering heartbeat accompanied by sudden chest pressure, breathlessness, or dizziness.",
+      "Severe generalized muscle weakness making it impossible to lift your arms, walk, or hold your head upright.",
+      "Inability to keep any fluids down due to non-stop vomiting over a period of 12 to 24 hours in an adult."
+    ],
+    "whenToSeeDoctor": [
+      "Loose motions or vomiting that continue for more than 24 to 48 hours despite using oral rehydration salts.",
+      "Persistent dizziness, spinning sensations, or feeling like you will faint whenever you stand up.",
+      "Frequent, painful muscle cramps, twitches, or tingling sensations in your fingers, toes, or around your mouth.",
+      "You take blood pressure medicines or water pills and begin experiencing unexplained fatigue, nausea, or brain fog.",
+      "Your urine output becomes very sparse, dark, or absent for more than 8 hours despite drinking fluids."
+    ],
+    "faqs": [
+      {
+        "q": "Can I drink tender coconut water instead of ORS packets during acute diarrhea?",
+        "a": "Tender coconut water is a healthy, natural drink containing potassium and natural sugars, making it great for daily hydration or mild fatigue. However, for acute watery diarrhea, it lacks the specific, scientifically calculated sodium-to-glucose ratio needed to force water absorption through the intestinal wall. In clinical dehydration, WHO-standard ORS remains the essential first-line treatment."
+      },
+      {
+        "q": "Why do gym workouts sometimes cause painful muscle cramps?",
+        "a": "When you work out hard, especially in hot and humid gyms, you lose both water and sodium through your sweat. If you replace that loss only with plain water, your blood sodium level drops further, causing motor nerve endings to become overly excitable and triggering involuntary, painful muscle contractions. Replacing lost salt alongside water prevents these cramps."
+      },
+      {
+        "q": "Is rock salt (sendha namak) safer than regular salt for electrolyte balance?",
+        "a": "Sendha namak contains minor trace minerals like potassium and magnesium, but it is still primarily sodium chloride, just like standard table salt. It impacts your body's sodium balance and blood pressure in virtually the same manner. Switching to rock salt does not prevent electrolyte imbalances and does not permit unlimited consumption."
+      },
+      {
+        "q": "What happens if a person drinks too much plain water during endurance exercise?",
+        "a": "Drinking extreme amounts of plain water faster than the kidneys can filter it dilutes the concentration of sodium in your bloodstream, a dangerous condition called exercise-associated hyponatremia. Water then moves by osmosis into body tissues, including the brain, which can trigger headaches, nausea, confusion, seizures, and in severe cases, fatal cerebral swelling."
+      },
+      {
+        "q": "How do blood pressure tablets affect electrolyte levels?",
+        "a": "Many standard blood pressure drugs work directly on the kidneys. For example, water pills (diuretics) encourage the kidneys to flush out extra sodium and water, which can sometimes pull potassium out too. Conversely, drugs like losartan help protect kidneys but can cause the body to hold onto potassium. This is why doctors routinely check your blood electrolytes while you take these medications."
+      }
+    ],
+    "references": [
+      {
+        "title": "The Treatment of Diarrhoea: A manual for physicians and other senior health workers",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9241593180",
+        "year": "2005"
+      },
+      {
+        "title": "Fluid and Electrolyte Balance",
+        "source": "National Library of Medicine (MedlinePlus)",
+        "url": "https://medlineplus.gov/fluidandelectrolytebalance.html",
+        "year": "2023"
+      },
+      {
+        "title": "Hyponatremia: Symptoms and Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/hyponatremia/symptoms-causes/syc-20373711",
+        "year": "2022"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "dehydration",
+      "weakness",
+      "dizziness",
+      "diarrhea",
+      "chronic-kidney-disease",
+      "heart-failure",
+      "high-blood-pressure",
+      "palpitations"
+    ],
+    "relatedMedicines": [
+      "losartan",
+      "amlodipine",
+      "dapagliflozin"
+    ],
+    "relatedHerbs": [
+      "amla",
+      "ginger",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "creatinine",
+      "urine-routine",
+      "cbc",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

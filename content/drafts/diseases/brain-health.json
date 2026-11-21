@@ -1,0 +1,276 @@
+{
+  "slug": "brain-health",
+  "name": "Brain Health",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Brain health refers to how well a person's brain functions across several key areas: memory, learning, attention, problem-solving, emotional balance, and movement. It is not merely the absence of disease; it is the capacity to think clearly, communicate effectively, and maintain independence throughout life. In India, brain health faces unique challenges. Rapid urbanisation, chronic metabolic stress from high rates of diabetes and hypertension, vegetarian diets prone to vitamin B12 gaps, and increasing life expectancy all make brain care vital. Brain aging is not fixed in stone. While genes play a part, everyday habits—from the spices on your plate and physical movement in the gym to blood pressure control and deep sleep—directly shape how your brain repairs itself and builds resilient neural pathways over decades.",
+    "quickFacts": [
+      {
+        "label": "Energy Share",
+        "value": "Uses about 20% of your body's total energy despite being 2% of body weight"
+      },
+      {
+        "label": "Dementia Burden in India",
+        "value": "An estimated 8.8 million Indians aged 60+ live with dementia (LASI Report)"
+      },
+      {
+        "label": "Key Vascular Link",
+        "value": "Up to 40% of dementia risk worldwide is linked to modifiable lifestyle and vascular factors"
+      },
+      {
+        "label": "Sleep Requirement",
+        "value": "7 to 8 hours nightly is essential for the brain's waste-clearing glymphatic system"
+      },
+      {
+        "label": "Physical Exercise Impact",
+        "value": "Cardiovascular and strength workouts stimulate brain-derived neurotrophic factor (BDNF)"
+      }
+    ],
+    "causes": [
+      "Uncontrolled high blood pressure. Longstanding hypertension damages tiny cerebral blood vessels, starving brain cells of oxygen and causing silent micro-strokes.",
+      "Elevated blood sugar and insulin resistance. Chronic high glucose damages the microvasculature of the brain and impairs how neurons use energy.",
+      "Nutritional deficiencies. Vitamin B12 deficiency is widespread in India, especially among vegetarians, causing memory loss, numbness, and mood changes.",
+      "Physical inactivity and sedentary living. Lack of regular movement reduces cerebral blood flow and blunts neuroprotective proteins such as BDNF.",
+      "Chronic sleep deprivation and obstructive sleep apnoea. Inadequate sleep prevents the glymphatic system from flushing out metabolic byproducts like amyloid plaques.",
+      "Chronic stress and social isolation. Prolonged cortisol elevation shrinks the hippocampus, the brain region critical for learning and memory.",
+      "Tobacco use and alcohol misuse. Smoking stiffens brain arteries, while excess alcohol causes direct neurotoxic damage and depletes B-vitamins.",
+      "Head injuries and untreated sensory loss. Repeated concussions and uncorrected hearing or vision loss increase cognitive decline as the brain works harder to interpret sensory inputs."
+    ],
+    "types": [
+      {
+        "name": "Normal Age-Related Cognitive Changes",
+        "desc": "Slight, harmless slowing in recall or processing speed that does not interfere with daily routine, living independently, or learning new hobbies."
+      },
+      {
+        "name": "Mild Cognitive Impairment (MCI)",
+        "desc": "Noticeable decline in memory, language, or executive function that family or friends observe. Daily tasks remain largely manageable, but risk of progression is higher."
+      },
+      {
+        "name": "Vascular Cognitive Impairment",
+        "desc": "Decline in thinking speed, focus, and memory caused by restricted blood flow to the brain, mini-strokes, or silent vessel disease, often tied to hypertension or diabetes."
+      },
+      {
+        "name": "Neurodegenerative Disorders",
+        "desc": "Conditions like Alzheimer's disease and Parkinson's disease where nerve cells gradually degenerate, causing progressive loss of memory, motor coordination, and daily function."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive clinical assessment: A neurologist or physician reviews daily living activities, medical history, sleep patterns, and mood changes.",
+      "Cognitive screening: Validated pen-and-paper assessments such as the Mini-Mental State Examination (MMSE), the Montreal Cognitive Assessment (MoCA), or the Indian-validated Hindi Mental State Examination (HMSE).",
+      "Physical and neurological exam: Evaluates reflexes, muscle strength, balance, coordination, sensory perception, and gait stability.",
+      "Exclusion of reversible causes: Blood testing to ensure memory fog is not triggered by thyroid failure, vitamin B12 deficiency, kidney disease, or electrolyte imbalance.",
+      "Brain imaging: MRI or CT brain scans help detect vascular strokes, microbleeds, fluid accumulation, or patterns of brain shrinkage (atrophy)."
+    ],
+    "investigations": [
+      {
+        "test": "Vitamin B12 level",
+        "purpose": "Detects low B12, a common and treatable cause of memory fog, confusion, and peripheral neuropathy",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Fasting blood glucose and HbA1c",
+        "purpose": "Identifies insulin resistance and diabetes, which damage blood vessels supplying the brain",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid profile",
+        "purpose": "Checks LDL, HDL, and triglycerides to evaluate arterial plaque risk affecting cerebral blood supply",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out hypothyroidism, which frequently mimics cognitive decline, depression, and sluggishness",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Assesses for severe anemia, which lowers oxygen delivery to cerebral tissues",
+        "slug": "cbc"
+      },
+      {
+        "test": "Magnetic Resonance Imaging (MRI) Brain",
+        "purpose": "Visualises brain volume, hippocampus size, microvascular strokes, and rule out structural lesions"
+      }
+    ],
+    "modernTreatment": [
+      "Strict vascular risk management: Blood pressure, cholesterol, and blood glucose are brought into recommended targets using medical guidance to protect cerebral capillaries.",
+      "Correcting underlying deficiencies: Administering vitamin B12, vitamin D, or thyroid hormone under doctor supervision when blood levels are deficient.",
+      "Prescription cognitive medications: For conditions like Alzheimer's disease, doctors may prescribe cholinesterase inhibitors or NMDA receptor antagonists as advised by your doctor to temporarily manage symptoms.",
+      "Cognitive rehabilitation: Structured brain training, speech therapy, and occupational therapy to assist individuals in preserving daily living skills and communication.",
+      "Targeted treatment of sleep disorders: Using continuous positive airway pressure (CPAP) for obstructive sleep apnoea restores oxygenation and halts nighttime brain cell stress.",
+      "Mood and mental health care: Managing co-existing anxiety or depression with cognitive behavioural therapy and doctor-prescribed medications, which often lifts cognitive fog."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, intellect, memory, and cognitive retention fall under 'Medha' and 'Smriti', governed largely by balanced Prana Vata, Sadhaka Pitta, and Tarpaka Kapha.",
+      "Age-related memory decline is traditionally linked to an increase in Vata dosha, which is dry, light, and depleting (Dhatukshaya), drying up vital tissues (Majja Dhatu).",
+      "Ayurvedic texts describe 'Medhya Rasayana'—rejuvenating plants and practices meant to nourish mental capacity, promote calm, and support longevity alongside clean nutrition.",
+      "While traditional routines like head massage (Shiroabhyanga) and nasal administration (Nasya) are valued for relaxation and stress management, they are supportive practices and do not replace modern neurological care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used as a brain tonic; preliminary human studies suggest modest support for attention and working memory, but it does not treat dementia."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogen that may help lower cortisol and reduce stress-related cognitive fatigue; evidence for direct neuroprotection remains early."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows anti-inflammatory and antioxidant properties in laboratory settings, though human absorption remains limited."
+      }
+    ],
+    "nutrition": [
+      "Eat a diverse, nutrient-dense diet aligned with ICMR-NIN dietary guidelines: half of every plate should consist of fresh vegetables and fruits.",
+      "Incorporate brain-healthy fats: Include crushed flaxseeds, chia seeds, walnuts, and mustard or groundnut oil. If you eat fish, opt for smaller local varieties like sardines or mackerel twice a week.",
+      "Boost natural antioxidant intake: Eat brightly colored produce like spinach, palak, amaranth leaves (chaulai), tomatoes, carrots, amla, and guava to counter oxidative stress.",
+      "Ensure adequate vitamin B12: Vegetarians should ask their physician about regular screening and B12 supplementation, as plant foods do not naturally provide sufficient B12.",
+      "Choose slow-digesting complex carbohydrates: Replace refined white rice and maida with whole millets (ragi, jowar, bajra), oats, and hand-pounded red rice to avoid blood sugar spikes.",
+      "Limit processed snack foods: Cut down on namkeens, bakery biscuits, farsan, and sweets, which contain trans fats and excess refined sugar that trigger vascular inflammation.",
+      "Hydrate steadily: Even mild dehydration can diminish concentration, alertness, and short-term working memory."
+    ],
+    "lifestyle": [
+      "Engage in aerobic and resistance exercise: Aim for at least 150 minutes of moderate aerobic exercise (brisk walking, cycling, swimming) plus two strength sessions every week.",
+      "Prioritise 7 to 8 hours of uninterrupted sleep: Stick to a consistent bedtime, keep the bedroom cool and dark, and avoid smartphone screens for an hour before bed.",
+      "Continuously challenge your brain: Learn a new musical instrument, take up a new language, solve puzzles, or practice mental arithmetic rather than passively scrolling social feeds.",
+      "Foster social connections: Regular conversations with friends, family, and community groups stimulate executive processing and stave off loneliness.",
+      "Quit all tobacco products: Avoid cigarettes, bidis, and gutka, which constrict blood vessels and accelerate brain tissue shrinkage.",
+      "Moderate or avoid alcohol: Heavy and binge drinking directly damages neuronal pathways and increases the risk of early cognitive decline.",
+      "Protect against head trauma: Always wear a proper helmet when riding two-wheelers and use seatbelts in cars."
+    ],
+    "yogaActivity": [
+      "Pranayama for mental clarity: Practice slow, controlled alternate nostril breathing (Anulom Vilom) and Bhramari (humming bee breath) for 10 to 15 minutes daily under guidance to balance the autonomic nervous system.",
+      "Inversion and circulation asanas: Postures like Adho Mukha Svanasana (Downward-Facing Dog), Sarvangasana (if experienced and blood pressure is normal), and Viparita Karani (Legs-up-the-wall) help enhance blood circulation to the upper body.",
+      "Balance-building postures: Vrikshasana (Tree Pose) and Garudasana (Eagle Pose) demand focused neuromuscular coordination, building cerebellar connections.",
+      "Restorative posture and meditation: End sessions with 10 minutes of Shavasana accompanied by mindful awareness or Yoga Nidra to relieve deep neuromuscular tension."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific proof that homeopathic dilutions improve cognitive function, reverse memory loss, or protect brain cells from degenerative illness.",
+      "Patients and caregivers must not replace evidence-based medical diagnostics, blood pressure controls, or neurologist-prescribed therapies with homeopathic remedies."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Physical exercise, managing midlife blood pressure, controlling blood sugar, smoking cessation, and correcting B12 deficiency measurably protect cognitive reserve.",
+      "Moderate evidence: The Mediterranean-DASH Intervention for Neurodegenerative Delay (MIND) diet pattern and regular social engagement correlate with lower rates of cognitive decline.",
+      "Limited or weak evidence: Brain-training smartphone games show improvements in specific game scores, but evidence that they translate into broader protection against dementia is limited.",
+      "No proven evidence: No herb, diet, or single tonic product can make cognitive impairment go away or prevent Alzheimer's disease."
+    ],
+    "shouldNotDo": [
+      "Do not dismiss noticeable memory lapses, confusion with familiar driving routes, or personality changes as 'just normal aging'.",
+      "Do not purchase over-the-counter 'memory boosting' syrups, tonics, or untested powders that promise to cure forgetfulness or boost IQ.",
+      "Do not neglect high blood pressure or prediabetes in your 30s and 40s; vascular damage in midlife shows up as brain degeneration in your 60s.",
+      "Do not ignore chronic loud snoring, gasping at night, or waking up exhausted, as untreated sleep apnoea severely damages the brain.",
+      "Do not isolate yourself socially or spend hours in passive digital scrolling without active mental or physical engagement."
+    ],
+    "medicationSafety": [
+      "Always take prescription cognitive or neurological medications at the exact times and schedule advised by your doctor.",
+      "Inform your physician of all over-the-counter tablets, herbal extracts, and pain relievers you take, as some have anticholinergic properties that worsen memory fog.",
+      "Never abruptly stop blood pressure, cholesterol, or anti-seizure medications without speaking to your treating physician.",
+      "If taking blood thinners for stroke prevention, consult your doctor before using herbal supplements like high-dose garlic, ginkgo, or turmeric, as they can raise bleeding risk."
+    ],
+    "complications": [
+      "Loss of personal independence and inability to manage finances, medications, or daily self-care",
+      "Increased risk of debilitating ischemic or hemorrhagic stroke",
+      "Severe mood disorders, chronic clinical depression, and heightened anxiety",
+      "Severe cognitive decline and irreversible neurodegenerative dementia",
+      "Motor deficits, balance impairment, gait freezing, and dangerous fall-related fractures"
+    ],
+    "emergencySigns": [
+      "Sudden weakness, numbness, or paralysis of the face, arm, or leg, especially on one side of the body (FAST signs of stroke)",
+      "Sudden difficulty speaking, slurred speech, or trouble understanding simple sentences",
+      "Sudden loss of vision, dimming, or double vision in one or both eyes",
+      "Sudden, thunderclap headache unlike any experienced before, with vomiting or loss of balance",
+      "Sudden disorientation, acute confusion, or fainting with inability to recognise close family"
+    ],
+    "whenToSeeDoctor": [
+      "You or a family member notice repeated short-term memory loss, such as asking the same question every few minutes",
+      "You frequently struggle to find familiar words or lose the thread of everyday conversations",
+      "You experience unexplained trouble managing monthly bills, cooking familiar recipes, or following directions",
+      "You develop persistent changes in mood, uncharacteristic apathy, agitation, or social withdrawal",
+      "You experience persistent daytime sleepiness accompanied by loud snoring or morning headaches",
+      "You have pins-and-needles sensations in your feet alongside brain fog and maintain a strict vegetarian diet"
+    ],
+    "faqs": [
+      {
+        "q": "Can brain cells regenerate as we grow older?",
+        "a": "Yes. The brain retains neuroplasticity—the ability to forge new connections—throughout life. Research shows neurogenesis (growth of new neurons) continues in specific areas like the hippocampus, especially stimulated by aerobic exercise and continuous learning."
+      },
+      {
+        "q": "Do soaked almonds eaten every morning really boost memory?",
+        "a": "Almonds provide healthy monounsaturated fats, vitamin E, and magnesium, making them a nutritious snack. However, no single food or dry fruit has magical memory-boosting properties on its own. Total dietary pattern and cardiovascular fitness matter far more."
+      },
+      {
+        "q": "How does physical gym training help brain health?",
+        "a": "When you lift weights or do cardio, muscles release signaling proteins into the bloodstream, and the brain releases BDNF (brain-derived neurotrophic factor). BDNF supports neuronal survival, encourages new neural wiring, and improves blood flow to thinking centers."
+      },
+      {
+        "q": "Is forgetfulness always a sign of dementia?",
+        "a": "No. Occasional forgetfulness—like misplacing keys or forgetting an acquaintance's name—is common and often caused by stress, fatigue, multitasking, or thyroid issues. Dementia involves progressive loss that disrupts your ability to carry out everyday life."
+      },
+      {
+        "q": "Why are Indians at high risk for vascular brain issues?",
+        "a": "Indians experience high rates of central obesity, metabolic syndrome, type 2 diabetes, and early-onset hypertension. These conditions silently injure small blood vessels in the brain decades before symptoms appear."
+      }
+    ],
+    "references": [
+      {
+        "title": "Risk reduction of cognitive decline and dementia: WHO guidelines",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241550543",
+        "year": "2019"
+      },
+      {
+        "title": "Dementia prevention, intervention, and care: 2020 report of the Lancet Commission",
+        "source": "The Lancet (Livingston G et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32738937/",
+        "year": "2020"
+      },
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Cognitive Impairment and Dementia in India",
+        "source": "Annals of Indian Academy of Neurology",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32410815/",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "stroke",
+      "alzheimers-disease",
+      "parkinsons-disease",
+      "vitamin-b12-deficiency",
+      "sleep-problems",
+      "depression"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "brahmi",
+      "ashwagandha",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "vitamin-b12",
+      "fasting-glucose",
+      "lipid-profile",
+      "tsh",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

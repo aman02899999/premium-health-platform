@@ -1,0 +1,269 @@
+{
+  "slug": "iron-deficiency",
+  "name": "Iron Deficiency",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Iron deficiency occurs when your body does not have enough iron to build adequate amounts of haemoglobin, the protein inside red blood cells that carries oxygen from your lungs to your brain, muscles, and organs. Without enough iron, your body cannot transport oxygen efficiently, leading to exhaustion, breathlessness, and reduced physical and mental capacity. In India, iron deficiency is the single most common nutritional deficiency, affecting millions of infants, adolescents, women of reproductive age, and older adults across both rural and urban areas. When left uncorrected, iron deficiency gradually exhausts all internal iron stores in the bone marrow and liver, progressing into iron deficiency anaemia.",
+    "quickFacts": [
+      {
+        "label": "Prevalence in women (15-49 years)",
+        "value": "57.0% in India (NFHS-5, 2019-21)"
+      },
+      {
+        "label": "Prevalence in young children (6-59 months)",
+        "value": "67.1% in India (NFHS-5, 2019-21)"
+      },
+      {
+        "label": "Prevalence in men (15-49 years)",
+        "value": "25.0% in India (NFHS-5, 2019-21)"
+      },
+      {
+        "label": "Gold standard storage marker",
+        "value": "Serum ferritin (normal levels depend on age and sex)"
+      },
+      {
+        "label": "Common early symptoms",
+        "value": "Fatigue, weakness, pale inner eyelids, and cold hands"
+      },
+      {
+        "label": "National initiative",
+        "value": "Anemia Mukt Bharat (Ministry of Health and Family Welfare)"
+      }
+    ],
+    "causes": [
+      "Low dietary intake of absorbable iron. Traditional Indian diets are largely plant-based, providing non-heme iron that is less readily absorbed than heme iron found in meat.",
+      "High dietary inhibitors. Phytic acid in unsoaked whole grains, pulses, and seeds, as well as tannins and polyphenols in daily cups of chai and filter coffee, strongly bind to iron and block absorption.",
+      "Blood loss from menstruation. Heavy, prolonged, or frequent menstrual bleeding is the leading driver of depleted iron reserves in Indian teenage girls and adult women.",
+      "Increased physiological demand. Rapid growth during infancy, childhood, and adolescence, alongside the expansion of blood volume during pregnancy and lactation, sharply increases daily iron requirements.",
+      "Gastrointestinal blood loss. Hidden bleeding from bleeding piles (hemorrhoids), peptic ulcers, gastritis, intestinal polyps, or regular consumption of over-the-counter pain medications (NSAIDs).",
+      "Malabsorption disorders. Conditions like celiac disease, tropical sprue, inflammatory bowel disease, or chronic use of antacids and proton pump inhibitors reduce the stomach acid needed to absorb iron.",
+      "Parasitic infections. Hookworm and roundworm infestations remain a significant cause of chronic, low-grade intestinal blood loss in many parts of India."
+    ],
+    "types": [
+      {
+        "name": "Iron Depletion (Storage Deficiency)",
+        "desc": "The earliest stage where iron stores in the liver, spleen, and bone marrow (measured by serum ferritin) decline, but circulating iron and haemoglobin levels remain normal. Most people feel minimal symptoms."
+      },
+      {
+        "name": "Iron-Deficient Erythropoiesis (Transport Deficiency)",
+        "desc": "The second stage where iron stores are completely exhausted and transferrin saturation falls. The supply of iron to the bone marrow is insufficient for red cell production, though haemoglobin is only borderline low."
+      },
+      {
+        "name": "Iron Deficiency Anaemia (Overt Deficiency)",
+        "desc": "The advanced stage where both iron stores and circulating haemoglobin fall below healthy diagnostic thresholds, causing small, pale red blood cells (microcytic hypochromic anaemia) and clear physical symptoms."
+      },
+      {
+        "name": "Functional Iron Deficiency",
+        "desc": "A state seen in chronic kidney disease, heart failure, or inflammatory conditions where total body iron may be adequate, but internal transport mechanisms fail to deliver it to bone marrow cells."
+      }
+    ],
+    "diagnosis": [
+      "A comprehensive medical history focusing on dietary intake, tea and coffee drinking habits, menstrual duration and flow, and signs of digestive bleeding.",
+      "Physical examination looking for pale conjunctiva (inner lower eyelids), pale palmar creases, pale nail beds, brittle or spoon-shaped nails (koilonychia), smooth tongue (atrophic glossitis), and angular cracks at the corners of the mouth (cheilitis).",
+      "Complete Blood Count (CBC) showing low haemoglobin, low haematocrit, decreased mean corpuscular volume (MCV under 80 fL), and decreased mean corpuscular haemoglobin (MCH).",
+      "Serum Ferritin test to evaluate total body iron storage. A ferritin value below 15 ng/mL confirms absolute iron deficiency, while values under 30 ng/mL strongly suggest depleted reserves.",
+      "Total Iron Binding Capacity (TIBC) and Transferrin Saturation (TSAT), where high TIBC and TSAT below 20% point toward iron deficiency.",
+      "Evaluation for the root cause of blood loss, including stool testing for hidden blood, deworming history, and endoscopic or pelvic investigations when indicated by your doctor."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Measures total haemoglobin, red cell size (MCV), and cell haemoglobin content (MCH) to detect microcytic hypochromic red blood cells.",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "The primary blood marker of total iron stored in the body's tissues; low levels indicate iron deficiency.",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Stool for Occult Blood",
+        "purpose": "Detects microscopic bleeding from the stomach or intestines caused by ulcers, polyps, or piles."
+      },
+      {
+        "test": "Peripheral Blood Smear",
+        "purpose": "A laboratory examination under a microscope confirming abnormally small and pale red blood cells."
+      },
+      {
+        "test": "Pelvic Ultrasound",
+        "purpose": "Identifies uterine fibroids, adenomyosis, or uterine causes of heavy menstrual bleeding in women."
+      }
+    ],
+    "modernTreatment": [
+      "Identifying and fixing the root cause: addressing heavy periods, treating stomach ulcers or piles, and prescribing routine deworming where parasitic infections are common.",
+      "Oral iron therapy: standard first-line treatment using oral iron tablets or syrups (such as ferrous ascorbate, ferrous sulfate, or ferrous fumarate) taken daily or on alternate days as advised by your doctor.",
+      "Iron with folic acid: combining iron with folate, especially under national health programs like Anemia Mukt Bharat, to support complete red blood cell formation.",
+      "Duration of treatment: taking iron supplements for at least two to three months after haemoglobin levels return to normal, to completely replenish depleted tissue storage pools.",
+      "Intravenous (IV) iron therapy: modern IV iron formulations (such as ferric carboxymaltose or iron sucrose) administered in a hospital or clinic setting for people with severe anaemia, poor oral tolerance, inflammatory bowel conditions, or third-trimester pregnancy.",
+      "Dietary strengthening: restructuring the daily plate to include accessible iron-rich Indian foods paired with natural vitamin C to enhance gut uptake."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, conditions resembling iron deficiency and anaemia are described under 'Pandu Roga', named after the pale yellowish-white discolouration of the skin and eyes.",
+      "Ayurveda attributes Pandu primarily to an imbalance in Pitta dosha that disturbs Rasa and Rakta dhatus (plasma and blood tissues), impairing systemic nourishment and vitality (Ojas).",
+      "Traditional texts recommend dietary therapies using iron-dense foods like black sesame seeds (Tila), amla, pomegranate (Dadima), and raisins (Draksha) along with digestive herbs to improve 'Agni' (digestive fire).",
+      "Herbal preparations and classical formulations like Punarnava Mandur or Loha Bhasma are used traditionally to support blood health. However, these must only be taken under the supervision of a qualified Ayurvedic physician, as modern clinical iron is required for established deficiencies.",
+      "No herb or traditional formulation can replace targeted medical care or oral iron supplements when severe deficiency or active internal bleeding is present."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "A natural source of vitamin C. Consuming fresh amla with meals significantly enhances the intestinal absorption of non-heme iron from plant-based foods."
+      },
+      {
+        "name": "Moringa (Drumstick Leaves)",
+        "slug": "moringa",
+        "note": "Moringa oleifera leaves provide plant-based non-heme iron, beta-carotene, and essential amino acids. Useful as a daily food addition, though not a replacement for medical iron tablets."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional blend of three fruits including amla, often used to promote gut regularity and digestive function. Scientific evidence for directly treating low iron is limited."
+      }
+    ],
+    "nutrition": [
+      "Prioritize iron-dense Indian foods: incorporate green leafy vegetables (palak, methi, sarson, chaulai), drumstick leaves (moringa), beetroots, and black chana into your weekly meals.",
+      "Embrace iron-rich pantry staples: beaten rice (poha), bajra (pearl millet), ragi (finger millet), sesame seeds (til), and sprouted pulses are valuable traditional sources of plant iron.",
+      "Pair non-heme iron with Vitamin C: always squeeze fresh lemon juice over your dal, vegetables, and salads, or eat amla, guava, or oranges alongside meals. Vitamin C converts non-heme iron into an easily absorbable form.",
+      "Stop drinking chai and coffee with meals: avoid tea, coffee, hot chocolate, and green tea for at least one hour before and two hours after your main meals. The tannins and polyphenols cut iron absorption by up to 60-70%.",
+      "Reduce phytate interference: soak, sprout, or naturally ferment whole grains and lentils (such as in idli or dosa batter) before cooking. This breaks down phytates that trap dietary iron.",
+      "Cook in traditional cast iron utensils: preparing dry vegetable dishes or curries in an unlined cast iron kadhai or pan leaches safe, small amounts of dietary iron directly into your food.",
+      "Include animal sources if culturally acceptable: eggs, poultry, fish, and lean meats provide heme iron, which is absorbed three to five times more efficiently by the human intestine than plant iron."
+    ],
+    "lifestyle": [
+      "Do not push through unmanageable fatigue at the gym. Modify your workout intensity and focus on light walks, active recovery, or mobility work until your haemoglobin numbers improve.",
+      "Track your menstrual cycle carefully: keep a record of cycle length, bleeding duration, and the number of soaked pads or tampons used daily to discuss objectively with your gynaecologist.",
+      "Take deworming tablets every six months if you live in or travel through endemic areas, as advised by your local public health provider or doctor.",
+      "Establish consistent 7 to 8 hours of restful sleep every night to support cellular repair and reduce general physical exhaustion.",
+      "Maintain high levels of food and hand hygiene to prevent recurrent gut infections that inflame the intestinal lining and disrupt micronutrient absorption."
+    ],
+    "yogaActivity": [
+      "Focus on restorative asanas: gentle postures like Supta Baddhakonasana (Reclining Bound Angle Pose), Balasana (Child's Pose), and Viparita Karani (Legs-Up-The-Wall Pose) allow relaxation without taxing the cardiovascular system.",
+      "Practice gentle mobility: Marjaryasana-Bitilasana (Cat-Cow Pose) and Tadasana (Mountain Pose) gently stimulate blood circulation and maintain spinal flexibility during bouts of low energy.",
+      "Calming Pranayama: daily slow Anulom Vilom (alternate nostril breathing) and gentle Bhramari (humming bee breath) help soothe autonomic stress and improve oxygen efficiency.",
+      "Avoid high-intensity exercise routines: skip intense hot yoga, rapid Surya Namaskars, power lifting, and vigorous breath retention (Kumbhaka) while haemoglobin is critically low, as these increase dizziness and heart strain."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence showing that homeopathic remedies can raise serum ferritin levels, replenish bone marrow iron stores, or reverse anaemia.",
+      "Relying solely on homeopathy for iron deficiency delays necessary medical intervention and can result in severe cardiovascular complications or poor pregnancy outcomes.",
+      "If you explore complementary treatments, you must continue taking your doctor-prescribed iron supplements and monitor your blood parameters through standard laboratory testing."
+    ],
+    "evidenceNotes": [
+      "High-certainty evidence confirms that oral iron supplementation effectively raises haemoglobin concentrations and restores depleted ferritin reserves in adults and children.",
+      "Strong evidence proves that pairing non-heme iron foods with dietary vitamin C (ascorbic acid) substantially increases iron absorption in the human gut.",
+      "Strong evidence demonstrates that tea, coffee, and dairy calcium taken concurrently with meals significantly inhibit iron absorption.",
+      "Moderate evidence shows that cooking food in iron pots moderately increases the iron content of food and contributes to improved haemoglobin levels in iron-deficient populations.",
+      "Limited or weak evidence: herbal tonics, powders, and homeopathic pellets marketed online lack robust human trials showing reliable correction of iron deficiency."
+    ],
+    "shouldNotDo": [
+      "Do not take your iron supplements with tea, coffee, milk, or calcium tablets. Calcium and polyphenols compete with iron for absorption channels in your intestine.",
+      "Do not stop taking iron tablets as soon as your energy returns or your haemoglobin touches the normal mark. It takes an additional 2 to 3 months to rebuild vital bone marrow stores.",
+      "Do not ignore chronic heavy periods as 'normal' or 'genetic'. Excessive blood loss requires medical evaluation by a gynaecologist.",
+      "Do not consume unprescribed mega-doses of iron supplements; excessive iron accumulates in tissues and can cause liver and organ toxicity.",
+      "Do not rely solely on jaggery (gud) to cure iron deficiency. While traditional jaggery contains modest minerals, eating excessive amounts delivers excess sugar without providing the high therapeutic iron doses needed for deficiency.",
+      "Do not take antacids or proton pump inhibitors right alongside your iron tablets, as gastric acid is necessary to keep iron in its soluble, absorbable ferrous state."
+    ],
+    "medicationSafety": [
+      "Common side effects of oral iron include dark or black-coloured stools (which is harmless), mild nausea, constipation, stomach cramps, or metallic taste. These do not mean the medicine is harmful.",
+      "If iron tablets cause severe stomach upset, ask your doctor about taking them with a light meal, switching to alternate-day dosing, or trying a different salt such as ferrous ascorbate.",
+      "Take iron tablets with a full glass of water or fresh lemon water to optimize absorption and reduce throat irritation.",
+      "Keep iron tablets and syrups out of reach of young children at all times. Accidental overdose of iron is a severe, life-threatening emergency in toddlers.",
+      "Tell your doctor about all other daily medicines: iron interacts with thyroid hormones (levothyroxine), certain antibiotics, and osteoporosis drugs, requiring spaced dosing."
+    ],
+    "complications": [
+      "Severe chronic fatigue, brain fog, poor memory, and marked loss of workplace or athletic productivity.",
+      "Cardiovascular strain: chronic low haemoglobin forces the heart to pump faster and harder to deliver oxygen, which can cause palpitations, cardiomegaly (enlarged heart), and eventually heart failure.",
+      "Pregnancy complications: severe iron deficiency dramatically increases the risk of premature delivery, low birth weight babies, fetal growth restriction, and maternal mortality due to postpartum haemorrhage.",
+      "Impaired immunity: increased susceptibility to frequent respiratory and gastrointestinal infections due to reduced immune cell proliferation.",
+      "Developmental delays: long-standing iron deficiency in infants and young children can cause irreversible deficits in cognitive, motor, and behavioural development.",
+      "Restless Legs Syndrome (RLS): an irresistible urge to move the legs, particularly at night, leading to chronic insomnia."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain or rapid, pounding heart palpitations that do not settle with rest.",
+      "Severe, sudden breathlessness while resting or with minimal physical movement.",
+      "Sudden fainting, collapsing, or persistent dizziness and loss of balance (syncope).",
+      "Passing large amounts of dark, tarry, foul-smelling stools (melena) or vomiting bright red blood or coffee-ground material.",
+      "Extreme pallor accompanied by confusion, cold clammy sweat, or blue discoloration of the lips."
+    ],
+    "whenToSeeDoctor": [
+      "You suffer from persistent, unexplained tiredness and weakness that does not improve after adequate sleep.",
+      "You notice cold hands and feet, brittle nails, unusual hair fall, or your inner eyelids look pale pink or white.",
+      "Your menstrual periods regularly last longer than 7 days or require changing menstrual products every 1 to 2 hours.",
+      "You develop intense cravings for non-food items such as ice, raw rice, chalk, clay, or dirt (pica).",
+      "You are pregnant, planning a pregnancy, or breastfeeding and have not had your iron levels evaluated.",
+      "Your child appears lethargic, irritable, pale, or is falling behind on expected growth and school milestones."
+    ],
+    "faqs": [
+      {
+        "q": "Can eating jaggery (gud) and chana cure my iron deficiency?",
+        "a": "No herb, diet or single product can make established iron deficiency go away on its own. While roasted chana and traditional jaggery provide useful dietary iron and form a healthy snack, their iron content is nowhere near high enough to rebuild completely exhausted iron stores or treat clinical anaemia. Medical iron supplements prescribed by your doctor are necessary."
+      },
+      {
+        "q": "Why do iron tablets make my stools turn completely black?",
+        "a": "Black-coloured stools are completely harmless and are the most common side effect of oral iron. It simply indicates that your body is expelling unabsorbed iron through the digestive tract. However, if stools are sticky, foul-smelling, and accompanied by stomach pain, consult your doctor to rule out internal bleeding."
+      },
+      {
+        "q": "Why should I avoid drinking tea with my meals if I have low iron?",
+        "a": "Chai and filter coffee contain large amounts of natural chemical compounds called tannins and polyphenols. These compounds bind tightly to non-heme iron from plant foods in your stomach, forming an insoluble complex that your small intestine cannot absorb. Drink your tea at least one to two hours before or after meals."
+      },
+      {
+        "q": "Can I have low iron stores even if my haemoglobin is normal?",
+        "a": "Yes. This is called 'iron deficiency without anaemia'. Your serum ferritin (storage iron) drops first, leaving your tissues low on oxygen reserves even while your bone marrow manages to produce just enough red cells to keep haemoglobin within the normal range. Many people feel profound fatigue at this early stage."
+      },
+      {
+        "q": "How long does it take for iron levels to return to normal with treatment?",
+        "a": "Most people notice improved energy and breathing within two to three weeks of starting medical iron therapy. Haemoglobin typically returns to normal in about six to eight weeks. However, you must continue taking iron for an additional two to three months as advised by your doctor to rebuild vital storage ferritin."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians: A Manual",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "WHO guideline on use of ferritin concentrations to assess iron status in individuals and populations",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/publications/i/item/9789240000124",
+        "year": "2020"
+      },
+      {
+        "title": "Iron Deficiency Anemia: Assessment, Prevention, and Control",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/publications/m/item/iron-children-6to23--archived-iron-deficiency-anaemia-assessment-prevention-and-control",
+        "year": "2001"
+      }
+    ],
+    "relatedDiseases": [
+      "anemia",
+      "weakness",
+      "chronic-fatigue",
+      "hair-loss",
+      "pregnancy-nutrition",
+      "menstrual-health"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "pantoprazole",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "amla",
+      "moringa",
+      "triphala"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

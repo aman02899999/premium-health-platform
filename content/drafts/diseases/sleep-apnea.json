@@ -1,0 +1,290 @@
+{
+  "slug": "sleep-apnea",
+  "name": "Sleep Apnea",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Sleep apnea is a common but frequently overlooked disorder in which your breathing repeatedly stops and starts while you are asleep. The most frequent form is obstructive sleep apnea (OSA), where the muscles and soft tissues at the back of your throat relax excessively, physically blocking your airway. When breathing halts, oxygen levels in your blood drop, and your brain briefly wakes you up to reopen the airway, often with a loud gasp, snort, or choke. These micro-awakenings happen dozens or even hundreds of times each night, breaking up deep sleep without you consciously remembering them. In India, rapid urbanisation, changing dietary habits, and high rates of abdominal obesity have made sleep apnea a widespread public health issue. Many people write off loud snoring as deep sleep, but it is often the hallmark warning sign of a strained respiratory system and cardiovascular stress.",
+    "quickFacts": [
+      {
+        "label": "Estimated urban prevalence",
+        "value": "10% to 14% of Indian adults (AIIMS / Indian studies)"
+      },
+      {
+        "label": "Main symptom",
+        "value": "Loud, uneven snoring with choking or silent pauses"
+      },
+      {
+        "label": "Gold standard diagnostic test",
+        "value": "Overnight Polysomnography (Sleep Study)"
+      },
+      {
+        "label": "Standard medical treatment",
+        "value": "CPAP (Continuous Positive Airway Pressure) therapy"
+      },
+      {
+        "label": "Blood pressure link",
+        "value": "Up to 50% of people with high BP have sleep apnea"
+      },
+      {
+        "label": "Lifestyle cornerstone",
+        "value": "Weight loss, positional sleep, and avoiding evening sedatives"
+      }
+    ],
+    "causes": [
+      "Excess weight and neck fat. Extra soft tissue around the neck and upper chest narrows the airway and increases collapse pressure during sleep.",
+      "Belly fat and metabolic syndrome. High visceral fat pushes up against the diaphragm when lying down, reducing lung volume and making airway collapse more likely.",
+      "Craniofacial anatomy. A naturally narrow throat, recessed lower jaw (retrognathia), large tongue base, enlarged tonsils, or a long soft palate make airway obstruction easier.",
+      "Nasal blockages. A deviated nasal septum, chronic allergic rhinitis, or nasal polyps force mouth breathing, which destabilises the lower throat tissues.",
+      "Alcohol and sedative intake. Alcohol and sleeping pills relax the pharyngeal dilator muscles of the throat, worsening breathing interruptions.",
+      "Smoking and tobacco use. Inhaled smoke irritates the upper respiratory tract, causing fluid retention and swelling in the throat lining.",
+      "Age and male biology. Sleep apnea is more frequent in men and rises after age 40, though postmenopausal women face a sharply increased risk as well.",
+      "Hypothyroidism and endocrine issues. Low thyroid hormone levels can cause fluid buildup in throat tissues and reduce the brain's breathing drive."
+    ],
+    "types": [
+      {
+        "name": "Obstructive Sleep Apnea (OSA)",
+        "desc": "The most common form by far. Throat muscles physically relax and block the airway despite the chest muscles still trying to breathe."
+      },
+      {
+        "name": "Central Sleep Apnea (CSA)",
+        "desc": "A less common neurological form where the brain fails to transmit regular breathing signals to the respiratory muscles during sleep."
+      },
+      {
+        "name": "Complex (Mixed) Sleep Apnea",
+        "desc": "A combination where obstructive breathing events persist alongside central breathing pauses, often identified during CPAP titration studies."
+      }
+    ],
+    "diagnosis": [
+      "Clinical screening questionnaires such as the STOP-Bang or Epworth Sleepiness Scale help your doctor assess your daytime sleepiness and physical risk markers.",
+      "An examination of your throat, neck circumference, nasal passages, and blood pressure provides physical clues of airway narrowing.",
+      "In-lab overnight polysomnography (Level 1 sleep study) remains the gold standard, recording brain waves, eye movements, heart rate, blood oxygen, and chest effort.",
+      "Home sleep apnea testing (Level 3 study) may be used for uncomplicated, high-risk cases to measure oxygen levels, heart rate, and airflow in your own bed.",
+      "The severity is calculated using the Apnea-Hypopnea Index (AHI): mild (5 to 14 events per hour), moderate (15 to 29), and severe (30 or more events per hour)."
+    ],
+    "investigations": [
+      {
+        "test": "Overnight Polysomnography (Level 1 Sleep Study)",
+        "purpose": "Measures breathing pauses, brain waves, and oxygen drops to confirm diagnosis and determine severity"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out hypothyroidism as an underlying contributor to airway tissue swelling and fatigue",
+        "slug": "tsh"
+      },
+      {
+        "test": "Fasting Blood Glucose or HbA1c",
+        "purpose": "Screens for insulin resistance and diabetes, which frequently co-occur with sleep apnea",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Evaluates cardiovascular risk, which is substantially raised by untreated nocturnal hypoxia",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects polycythemia (elevated red blood cells), a compensatory response to chronic nighttime oxygen deprivation",
+        "slug": "cbc"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Checks for cardiac strain, rhythm abnormalities, or heart enlargement driven by nocturnal oxygen drops"
+      }
+    ],
+    "modernTreatment": [
+      "Continuous Positive Airway Pressure (CPAP): The primary, highly effective modern therapy. A bedside machine delivers mild, pressurised room air through a mask to keep your airway splinted open throughout the night.",
+      "Oral appliances (Mandibular Advancement Devices): Custom mouthpieces made by dental sleep specialists that hold your lower jaw forward to prevent tongue collapse, useful for mild to moderate OSA.",
+      "Weight management and metabolic care: Losing 10% to 15% of body weight can reduce the Apnea-Hypopnea Index significantly in overweight individuals, sometimes halving the severity.",
+      "Positional therapy: Devices, specialized pillows, or simple sleep garments that prevent you from rolling onto your back, where gravity worsens airway collapse.",
+      "Surgical interventions: Procedures such as uvulopalatopharyngoplasty (UPPP), tonsillectomy, or septoplasty are evaluated by ENT surgeons when clear anatomical obstacles exist or CPAP cannot be tolerated."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda does not have an identical single term for obstructive sleep apnea, but its symptoms align closely with vitiation of Kapha dosha, Meda dhatu (excess adipose tissue), and obstruction of the Pranavaha srotas (respiratory pathways).",
+      "Traditional texts describe conditions like Shwasa roga (breathing difficulties) and Nidra vikara (disordered sleep) aggravated by heavy, cold, unctuous foods and daytime lethargy.",
+      "Ayurvedic care focuses on reducing systemic Kapha and Medas through warm, light food, digestive fire stimulation (Deepana-Pachana), and daily movement.",
+      "Herbal formulations cannot physically unblock a collapsed throat at night; they can only provide mild general metabolic and anti-inflammatory support alongside proven medical therapies like CPAP."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditionally used to support stress response and nervous system balance. It does not clear throat obstruction or improve overnight oxygen levels."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which exhibits mild anti-inflammatory properties that may support general upper airway comfort, but evidence for sleep apnea is very limited."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "A traditional warming digestive spice that may help clear mild nasal congestion; it has no direct clinical proof for opening an obstructed pharynx."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Used in classical systems for cognitive and daytime mental clarity; it does not replace nocturnal airway therapy."
+      }
+    ],
+    "nutrition": [
+      "Create a planned, steady calorie deficit if you are carrying excess weight. Even modest weight loss reduces fat deposits in the tongue and neck.",
+      "Eat an early, light dinner at least 3 hours before going to bed. Heavy, oily evening meals increase upward pressure on your diaphragm and worsen acid reflux.",
+      "Cut back heavily on ultra-processed snacks, deep-fried street foods (such as samosas and pakoras), and sugary drinks that promote visceral fat and systemic inflammation.",
+      "Fill half your plate with locally available vegetables (like bhindi, lauki, tori, methi, and palak) and choose high-fibre whole grains (like jowar, bajra, or brown rice).",
+      "Incorporate lean plant proteins such as moong dal, chana, rajma, and low-fat paneer to maintain muscle mass while you reduce body fat.",
+      "Stay well-hydrated during the day with plain water, but reduce heavy fluid intake right before bedtime to avoid frequent bathroom trips that disrupt sleep further."
+    ],
+    "lifestyle": [
+      "Sleep on your side rather than your back. Sleeping on your back allows the base of your tongue and soft palate to collapse directly into the airway.",
+      "Elevate the head of your bed by 4 to 6 inches, or use a firm wedge pillow to help reduce gravity-dependent throat collapse.",
+      "Avoid alcohol entirely for at least 4 to 6 hours before bedtime. Alcohol deeply relaxes upper airway muscles and doubles the duration of breathing pauses.",
+      "Stop smoking and all forms of tobacco. Tobacco smoke inflames the nasal and pharyngeal lining, causing fluid buildup and mucosal swelling.",
+      "Maintain a strict sleep schedule: go to bed and wake up at the same time every day, ensuring your bedroom is dark, quiet, and well-ventilated.",
+      "If prescribed a CPAP machine, commit to using it every single night for the entire duration of sleep, including daytime naps."
+    ],
+    "yogaActivity": [
+      "Myofunctional and throat exercises: Daily exercises like pressing the tongue flat against the roof of the mouth, sliding it backward, and practicing Simhasana (Lion Pose) help strengthen upper airway muscles.",
+      "Pranayama: Controlled, non-strenuous breathing exercises such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) improve nasal airflow and calm the autonomic nervous system.",
+      "Daily aerobic activity: Aim for 30 minutes of brisk walking, cycling, or swimming at least 5 days a week. Regular daytime exercise reduces sleep apnea severity even before major weight loss occurs.",
+      "Gentle asanas: Postures such as Bhujangasana (Cobra Pose), Setu Bandhasana (Bridge Pose), and Tadasana help expand chest mobility and improve daytime posture.",
+      "Avoid heavy evening workouts right before sleeping, as elevated core temperature and heart rate can interfere with falling asleep."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence that homeopathic dilutions can prevent upper airway collapse or treat sleep apnea.",
+      "Relying on homeopathic remedies instead of medical therapy like CPAP exposes you to serious cardiovascular risks from untreated nocturnal oxygen starvation.",
+      "If you choose to consult a homeopathic practitioner, never stop CPAP or postpone diagnostic sleep studies."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Continuous Positive Airway Pressure (CPAP) dramatically lowers the Apnea-Hypopnea Index, prevents nocturnal oxygen drops, reduces daytime sleepiness, and helps lower blood pressure.",
+      "Strong evidence: Weight loss through caloric restriction and structured exercise consistently reduces airway collapse severity in overweight adults.",
+      "Moderate evidence: Custom-fitted mandibular advancement oral appliances are clinically effective for mild to moderate obstructive sleep apnea when CPAP is poorly tolerated.",
+      "Moderate evidence: Oropharyngeal exercises (myofunctional therapy) provide modest reductions in snoring and apnea frequency by toning throat musculature.",
+      "No good evidence: Over-the-counter anti-snoring throat sprays, magnetic nasal clips, chinstraps, herbal oils, or 'snore-cure' pillows do not resolve internal pharyngeal airway collapse."
+    ],
+    "shouldNotDo": [
+      "Do not assume loud snoring is simply a sign of deep, peaceful rest. It is often the sound of air struggling past an obstructed throat.",
+      "Do not take sleeping pills, sedatives, or over-the-counter sleep syrups to treat nighttime restlessness without consulting your physician; they worsen airway collapse.",
+      "Do not drive long distances or operate heavy machinery if you wake up unrefreshed, have morning brain fog, or struggle to stay awake at traffic signals.",
+      "Do not sleep flat on your back if you are a known snorer; gravity pulls your tongue directly over your breathing passage.",
+      "Do not abandon your CPAP machine after a few days of discomfort. Getting used to the mask takes 2 to 4 weeks of patient adjustments and proper humidification.",
+      "Do not rely on home oxygen concentrators or over-the-counter oxygen cans; oxygen alone does not prevent the physical collapse of the throat."
+    ],
+    "medicationSafety": [
+      "Inform your anaesthetist and surgical team about your sleep apnea before any operation, as general anaesthesia and post-surgery narcotics severely suppress breathing.",
+      "Be cautious with muscle relaxants, anti-anxiety medications (such as benzodiazepines), and sedating antihistamines, as they deepen airway floppiness.",
+      "If you take medicines for high blood pressure, continue taking them as advised by your doctor; managing sleep apnea often helps your BP tablets work more effectively.",
+      "Discuss any nasal steroid sprays or decongestants with your doctor to ensure they are used safely without causing rebound nasal congestion."
+    ],
+    "complications": [
+      "Resistant hypertension: Nighttime adrenaline surges make blood pressure difficult to control even with multiple medications.",
+      "Heart attacks, coronary artery disease, and heart failure driven by intermittent hypoxia and vascular inflammation.",
+      "Cardiac arrhythmias, especially atrial fibrillation, triggered by repeated oxygen desaturation and heart strain.",
+      "Type 2 diabetes and worsened insulin resistance caused by chronic sleep fragmentation and elevated nocturnal cortisol.",
+      "Stroke and transient ischemic attacks resulting from disrupted cerebral blood flow and arterial stiffness.",
+      "Severe daytime fatigue, chronic memory lapses, depression, and a significantly higher risk of fatal road traffic accidents."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain or pressure radiating to the arm, neck, or jaw upon waking or during the night.",
+      "Severe shortness of breath, gasping, or blue-tinted lips and fingertips (cyanosis) that do not resolve upon sitting upright.",
+      "Waking with sudden numbness, weakness on one side of the face or body, or slurred speech (warning signs of stroke; call 108 or 112 immediately).",
+      "Falling asleep uncontrollably while driving, operating equipment, or having a conversation."
+    ],
+    "whenToSeeDoctor": [
+      "Your partner notices that your snoring stops and starts with silent pauses followed by loud choking or gasping.",
+      "You wake up with a parched mouth, a sore throat, or a dull morning headache on most days of the week.",
+      "You feel exhausted and drowsy throughout the day despite spending 7 to 8 hours in bed.",
+      "Your blood pressure remains elevated despite taking two or more anti-hypertensive medicines regularly.",
+      "You wake up multiple times at night to pass urine (nocturia) or wake up feeling breathless with a racing heart."
+    ],
+    "faqs": [
+      {
+        "q": "Can losing weight completely cure my sleep apnea?",
+        "a": "Weight loss significantly reduces the amount of fat in the throat and neck, which often brings down the number of breathing pauses. In some mild cases linked purely to weight gain, shedding excess kilos can bring the condition into remission. However, if narrow facial bones, a recessed jaw, or enlarged tonsils are also present, some airway obstruction may remain, meaning you may still need treatment."
+      },
+      {
+        "q": "Why is snoring dangerous if I feel fine during the day?",
+        "a": "Snoring indicates that your airway is partially vibrating and narrowed. If it progresses to sleep apnea, your heart and brain suffer from intermittent oxygen drops and sudden blood pressure spikes throughout the night. Over years, this quiet vascular stress damages blood vessels, multiplying your risk of heart attacks and strokes even if you do not feel terribly tired."
+      },
+      {
+        "q": "What if I cannot tolerate wearing a CPAP mask?",
+        "a": "Discomfort during the first few weeks is very common. Modern CPAP machines have heated humidifiers, ramp features that start with gentle pressure, and various mask shapes (such as nasal pillows or full-face masks). Working with your sleep technician to adjust the fit, trying a different mask cushion, or exploring custom dental oral appliances can make therapy much more comfortable."
+      },
+      {
+        "q": "Do chin straps or anti-snoring mouth tapes work?",
+        "a": "No, chin straps and mouth tapes do not treat obstructive sleep apnea. Sleep apnea occurs deep in the throat behind the tongue, not simply because your lips fall open. Taping your mouth shut when you have an obstructed airway can be dangerous because it prevents you from taking emergency breaths through your mouth when your throat collapses."
+      },
+      {
+        "q": "Is sleep apnea common in Indian women?",
+        "a": "Yes, although it is often underdiagnosed. While men show classic loud snoring and gasping, women frequently present with insomnia, morning headaches, chronic fatigue, anxiety, and mood changes. After menopause, when protective reproductive hormones drop, the rate of sleep apnea in women rises and approaches that of men."
+      }
+    ],
+    "references": [
+      {
+        "title": "Estimation of the global prevalence and burden of obstructive sleep apnoea: a literature-based analysis",
+        "source": "The Lancet Respiratory Medicine (Benjafield AV et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31300334/",
+        "year": "2019"
+      },
+      {
+        "title": "Guidelines for diagnosis and management of obstructive sleep apnea: Indian Chest Society and National College of Chest Physicians (India)",
+        "source": "Lung India (Suri JC et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25538356/",
+        "year": "2014"
+      },
+      {
+        "title": "Obstructive sleep apnea: Overview, diagnosis, and management",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/sleep-apnea/symptoms-causes/syc-20377631",
+        "year": "2023"
+      },
+      {
+        "title": "Obstructive Sleep Apnea: Clinical Presentation and Pathophysiology",
+        "source": "National Heart, Lung, and Blood Institute (NIH)",
+        "url": "https://www.nhlbi.nih.gov/health/sleep-apnea",
+        "year": "2022"
+      },
+      {
+        "title": "Obstructive sleep apnoea/hypopnoea syndrome in over 16s (NICE guideline NG202)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng202",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "high-blood-pressure",
+      "obesity",
+      "type-2-diabetes",
+      "stroke",
+      "heart-disease",
+      "heart-failure",
+      "gerd",
+      "chronic-fatigue",
+      "sleep-problems",
+      "breathing-problems"
+    ],
+    "relatedMedicines": [
+      "amlodipine",
+      "losartan",
+      "metformin",
+      "atorvastatin"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "turmeric",
+      "ginger",
+      "brahmi"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "hba1c",
+      "lipid-profile",
+      "cbc",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

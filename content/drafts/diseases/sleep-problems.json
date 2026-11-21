@@ -1,0 +1,300 @@
+{
+  "slug": "sleep-problems",
+  "name": "Sleep Problems (Insomnia)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Sleep problems, especially insomnia, mean you find it hard to fall asleep, wake up frequently during the night, or wake up too early and cannot get back to sleep. You end up waking unrefreshed, leaving you exhausted, irritable, and struggling to focus during the day. In India, sleep is frequently sacrificed for late-night work shifts, long commutes, family duties, social gatherings, and late-night smartphone scrolling. Insomnia can be short-lived, triggered by an exam, job stress, or travel, or it can turn into a chronic struggle lasting months. Good sleep is not a luxury or a sign of laziness; it is a foundational pillar of physical and mental health. While sleeping, your muscles repair after workouts, your heart rate and blood pressure ease down, your brain cleans out metabolic waste, and your hormones balance out. When sleep fails night after night, your metabolism, immune system, heart, and mood all suffer. Fortunately, most sleep issues improve with consistent daily habits, medical evaluation of root causes, and targeted behavioural therapies.",
+    "quickFacts": [
+      {
+        "label": "Adult sleep requirement",
+        "value": "7 to 9 hours per night for most adults"
+      },
+      {
+        "label": "Indian adult prevalence",
+        "value": "Roughly 1 in 3 adults reports frequent sleep disturbance"
+      },
+      {
+        "label": "Chronic insomnia definition",
+        "value": "Sleep difficulty at least 3 nights weekly for 3 months or more"
+      },
+      {
+        "label": "First-line treatment",
+        "value": "Cognitive Behavioural Therapy for Insomnia (CBT-I)"
+      },
+      {
+        "label": "Common hidden triggers",
+        "value": "Sleep apnoea, chronic acidity (GERD), late tea/coffee, and bedroom screens"
+      },
+      {
+        "label": "Gym recovery impact",
+        "value": "Poor sleep cuts muscle protein synthesis and raises injury risk"
+      }
+    ],
+    "causes": [
+      "High mental stress and an overactive mind. Constant worry about family, finances, exams, or office deadlines activates your stress response, keeping adrenaline and cortisol elevated when your brain should be winding down.",
+      "Late-night digital screen exposure. The blue light emitted by smartphones, laptops, and televisions tricks your brain's master clock into believing it is still daytime, suppressing the natural surge of melatonin needed for sleep onset.",
+      "Late dinner routines and rich Indian meals. Eating heavy, spicy, or fried meals at 10 PM or 11 PM forces your digestive system to work overtime and triggers nighttime acidity, bloating, and reflux that repeatedly wake you up.",
+      "Caffeine consumption late in the day. Many Indians enjoy evening cups of strong chai or coffee after work. Caffeine blocks adenosine, the natural brain chemical that creates sleepiness, and stays active in your bloodstream for 6 to 8 hours.",
+      "Irregular sleep-wake schedules and shift work. Rotating shifts, irregular BPO work hours, and waking up at wildly different times on weekdays versus weekends confuse your internal circadian rhythm.",
+      "Untreated underlying medical conditions. Obstructive sleep apnoea (often signalled by loud snoring and gasping), gastroesophageal reflux disease (GERD), chronic back or joint pain, thyroid disease, and restless legs syndrome are frequent medical drivers.",
+      "Mental health disorders. Insomnia and conditions like generalised anxiety disorder and clinical depression feed into each other in a continuous loop.",
+      "Bedroom environment issues. Excessive urban noise, streetlights shining into the bedroom, an uncomfortably warm room during Indian summers, or a sagging, unsupportive mattress can break sleep architecture."
+    ],
+    "types": [
+      {
+        "name": "Short-term (acute) insomnia",
+        "desc": "Lasts for days or a few weeks. It is usually triggered by acute life stress, illness, bereavement, job change, or travel across time zones, and often settles as you adapt."
+      },
+      {
+        "name": "Chronic insomnia",
+        "desc": "Sleep trouble occurring at least 3 nights per week and persisting for 3 months or longer, persisting even after the original stressful trigger has passed."
+      },
+      {
+        "name": "Sleep-onset insomnia",
+        "desc": "Difficulty falling asleep at the beginning of the night. You may lie awake tossing and turning for hours while your mind races."
+      },
+      {
+        "name": "Sleep-maintenance insomnia",
+        "desc": "Difficulty staying asleep throughout the night. You fall asleep easily enough but wake up multiple times or stay awake for long periods in the middle of the night."
+      },
+      {
+        "name": "Early-morning awakening insomnia",
+        "desc": "Waking up much earlier than planned (such as 3:30 AM or 4:00 AM) and being completely unable to drift back to sleep, a pattern frequently seen in depression."
+      }
+    ],
+    "diagnosis": [
+      "A detailed medical and sleep history is the cornerstone of diagnosis. Your doctor will review your bedtime habits, daytime energy, work schedule, caffeine intake, and emotional stressors.",
+      "Keeping a sleep diary for 1 to 2 weeks. You track what time you went to bed, approximately how long it took to sleep, how many times you woke up, your wake-up time, and your daytime energy levels.",
+      "Screening questionnaires. Tools such as the Insomnia Severity Index (ISI) or the Epworth Sleepiness Scale help determine how severely lack of sleep affects your daytime functioning.",
+      "Review of medications and supplements. Many common medications, such as certain asthma inhalers, decongestants, steroids, and blood pressure pills, can disrupt sleep patterns.",
+      "Ruling out primary sleep disorders. If your bed partner reports that you snore heavily, choke, or stop breathing during sleep, your doctor will check for obstructive sleep apnoea.",
+      "Checking for underlying biological causes. Blood tests help identify physical problems that disrupt sleep, such as an overactive thyroid, severe anaemia, or vitamin deficiencies."
+    ],
+    "investigations": [
+      {
+        "test": "Sleep diary (14-day home log)",
+        "purpose": "Tracks sleep timing, nightly awakenings, daytime naps, and sleep efficiency without expensive machines"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Detects an overactive thyroid, which causes jitteriness, racing pulse, and difficulty falling asleep",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Low levels are linked to shortened sleep duration and poor sleep quality",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Vitamin B12",
+        "purpose": "Involved in nerve function and the regulation of circadian rhythms; deficiency causes restlessness and fatigue",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Serum ferritin and CBC",
+        "purpose": "Low iron stores can cause or worsen restless legs syndrome, leading to an irresistible urge to move your legs at night",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Fasting glucose and HbA1c",
+        "purpose": "Frequent nighttime urination from high blood sugar or night sweats from blood sugar drops can repeatedly break sleep",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Overnight Polysomnography (Sleep Study)",
+        "purpose": "An in-lab or home monitor tracking brain waves, breathing, oxygen, and heart rate to diagnose sleep apnoea"
+      }
+    ],
+    "modernTreatment": [
+      "Cognitive Behavioural Therapy for Insomnia (CBT-I) is the recommended first-line medical treatment. It works better and lasts longer than sleeping pills, helping you reframe sleep anxiety and reset sleep associations.",
+      "Stimulus control therapy. This trains your brain to see your bed only as a place for sleep and intimacy, not for work, phone browsing, eating, or stressing.",
+      "Sleep restriction therapy. Under professional guidance, you temporarily limit your time in bed to match the actual amount of time you are asleep, increasing your natural sleep drive and consolidating broken sleep.",
+      "Treating primary physical disorders. If sleep apnoea is present, continuous positive airway pressure (CPAP) or weight reduction is started. If nocturnal acidity is waking you, anti-reflux treatment is provided.",
+      "Short-term prescription medications. In severe or crisis situations, a doctor may prescribe non-benzodiazepine sedatives or melatonin receptor agonists for a brief period. These are never long-term solutions.",
+      "Addressing co-existing mood conditions. If anxiety or depression is driving insomnia, targeted psychiatric care, including counselling or approved antidepressant medications, restores restorative sleep."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, insomnia is understood as 'Anidra' or 'Nidranasha'. Nidra (sleep) is revered alongside Ahara (food) and Brahmacharya (lifestyle balance) as one of the three pillars of health (Trayo Upastambha).",
+      "Anidra is primarily attributed to an aggravation of Vata dosha (governing movement, nervous system excitation, and racing thoughts) and Pitta dosha (governing heat, metabolism, and mental sharpness), which disturb the calm stability of Kapha and Tamas necessary for sleep.",
+      "Traditional supportive practices include 'Shiroabhyanga' (gentle head massage with cooling or herbal oils) and 'Padabhyanga' (rubbing warm sesame oil, brahmi taila, or cow's ghee onto the soles of the feet before sleeping).",
+      "Ayurvedic lifestyle guidance emphasises Dinacharya (daily biological rhythm), consuming warm, unctuous, easy-to-digest evening meals, and avoiding stimulating activities after sunset.",
+      "These traditional concepts are philosophical and supportive. Ayurvedic formulations cannot cure clinical insomnia on their own and should be used safely alongside evidence-based medical care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic root traditionally taken with warm milk to calm nervous debility. Small clinical trials suggest it may support sleep quality and reduce stress hormone levels, though it does not replace medical sleep therapy."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Used in classical systems to settle mental agitation and soothe an overactive mind. Human clinical evidence for severe chronic insomnia is limited, but it is widely used as a mild supportive calmative."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is prized for its gentle relaxing aroma and anti-stress properties when consumed as a warm evening herbal brew. It helps promote an evening unwind routine without sedative effects."
+      }
+    ],
+    "nutrition": [
+      "Eat dinner at least 2 to 3 hours before you head to bed. This gives your stomach time to empty and prevents acid reflux, heartburn, and digestive heaviness from keeping you awake.",
+      "Keep your dinner light and easy to digest. Choose soft rotis with mild moong dal, vegetable khichdi, or clear soups instead of heavy paneer gravies, deep-fried pakoras, biryanis, or rich parathas.",
+      "Cut off caffeine completely after 2:00 PM. Remember that Indian chai, filter coffee, green tea, dark chocolate, and commercial energy drinks all contain stimulants that keep your brain alert.",
+      "Avoid alcohol as a nightcap. While a peg of whisky or beer might make you feel drowsy initially, alcohol ruins deep sleep, causes frequent awakenings, worsens snoring, and leads to early-morning dehydration.",
+      "If you feel genuinely hungry before bed, opt for a small, warm glass of plain milk or a small bowl of curd. Milk contains tryptophan, an amino acid that serves as a building block for sleep hormones.",
+      "Limit excessive fluids right before tucking in. Drinking two large glasses of water or tea right before bed guarantees you will wake up at 2:00 AM or 3:00 AM to use the bathroom.",
+      "Avoid sugary midnight snacks. Sweets, mithai, biscuits, and ice cream cause a rapid spike and subsequent crash in blood sugar, prompting adrenaline release that jolts you awake."
+    ],
+    "lifestyle": [
+      "Lock in a rock-solid wake-up time. Get out of bed at the exact same time every morning, 7 days a week, including Sundays and holidays. A fixed wake time is the single strongest anchor for your biological clock.",
+      "Get bright natural sunlight in your eyes within 30 to 60 minutes of waking up. Step out onto your balcony, walk in the park, or stand in the courtyard for 15 to 20 minutes to shut off daytime melatonin production.",
+      "Institute a strict digital curfew. Put your smartphone on charge outside your reach and turn off all screens (laptop, TV, tablet) at least 60 minutes before you intend to sleep.",
+      "Keep your bedroom cool, dark, and quiet. Indian bedrooms can trap summer heat; use a fan, air cooler, or AC to maintain a comfortable temperature, and use blackout curtains or an eye mask.",
+      "Reserve your bed strictly for sleep and intimacy. Do not answer work emails, attend Zoom meetings, study, eat snacks, or watch movies in bed.",
+      "Follow the 20-minute rule. If you find yourself lying awake tossing and turning for more than 20 minutes, get out of bed. Move to a dimly lit corner, read a boring book, and return to bed only when truly sleepy.",
+      "Limit daytime naps. If you must nap, keep it under 20 minutes and finish before 2:00 PM so you do not burn off your natural nighttime sleep drive."
+    ],
+    "yogaActivity": [
+      "Do not perform heavy resistance training, high-intensity cross-training, or hard cardio within 2 to 3 hours of your planned bedtime. Evening gym sessions raise your core body temperature and heart rate, delaying sleep onset.",
+      "Schedule your intense workouts for the morning or late afternoon. Regular physical activity deepens slow-wave sleep, but timing matters.",
+      "Practice calming restorative evening yoga poses such as Viparita Karani (legs up the wall), Balasana (child's pose), and Supta Baddha Konasana (reclining butterfly pose) to release muscular tension.",
+      "Dedicate 10 minutes to slow, diaphragmatic breathing or Anulom Vilom (alternate nostril breathing) before bed. This down-regulates your sympathetic nervous system.",
+      "Practice Bhramari Pranayama (humming bee breath). The gentle vibration and slow exhalation help settle mental chatter and promote inner calm.",
+      "End your evening with a guided Yoga Nidra or progressive muscle relaxation in Shavasana, systematically relaxing your body from your toes up to your scalp."
+    ],
+    "homeopathyNote": [
+      "Homeopathic remedies (such as Coffea cruda, Nux vomica, or Passiflora) are often marketed for sleep difficulties, racing thoughts, and stress.",
+      "Rigorous, peer-reviewed clinical trials have not demonstrated that homeopathic preparations work better than an inert placebo for clinical insomnia.",
+      "Relying solely on homeopathy for long-standing sleep loss can delay effective, evidence-backed care such as CBT-I or treatment for obstructive sleep apnoea.",
+      "If you choose to use homeopathic preparations, always inform your medical doctor and never stop prescribed treatments without professional advice."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Cognitive Behavioural Therapy for Insomnia (CBT-I) has the strongest clinical evidence across hundreds of trials and is endorsed as the gold-standard first-line treatment by global health bodies.",
+      "Strong evidence: Consistent sleep-wake schedules, light exposure management, and limiting late-day caffeine significantly improve sleep efficiency and reduce nighttime wakefulness.",
+      "Moderate evidence: Melatonin supplements provide modest benefit for shift-work sleep disorder and jet lag, but have weaker and less consistent effects for general chronic insomnia.",
+      "Moderate evidence: Regular moderate aerobic exercise improves total sleep time and reduces sleep latency when performed earlier in the day.",
+      "Weak to preliminary evidence: Herbal teas, aromatherapy, and traditional botanical formulations show mild relaxing properties in small studies, but no herb, diet or product can make chronic insomnia go away on its own."
+    ],
+    "shouldNotDo": [
+      "Do not lie in bed staring at the ceiling or watching the clock. Clock-watching triggers mathematical panic ('If I sleep right now, I will only get 4 hours'), worsening anxiety.",
+      "Do not pop sleeping pills from a local chemist or borrow a family member's medication. Self-prescribing sedatives carries high risks of physical dependence, tolerance, and daytime accidents.",
+      "Do not scroll social media reels or watch intense action shows in bed while waiting to feel drowsy. The bright blue light and emotional stimulation keep your brain wired.",
+      "Do not drink a peg of alcohol to 'knock yourself out'. It fragments your sleep cycles and leads to early-morning rebound waking.",
+      "Do not try to make up for a terrible night by sleeping in until noon on weekends. This gives you 'social jetlag' and guarantees you will not fall asleep on Sunday night.",
+      "Do not rely on mega-dosing OTC sleep gummies or unverified herbal powders purchased online without a doctor's oversight."
+    ],
+    "medicationSafety": [
+      "Prescription sleep medicines (sedatives, hypnotics, or sleep-inducing antidepressants) must only ever be taken under direct medical supervision, exactly as advised by your doctor.",
+      "Never combine prescription sleeping pills with alcohol, cough syrups containing codeine or antihistamines, or other sedatives; the combination can dangerously suppress your breathing.",
+      "Be cautious of next-day 'hangover' effects. Many sleep medicines stay in your system the next morning, causing sluggish reflexes, poor concentration, and impaired driving ability.",
+      "Never stop chronic prescription sleep medications abruptly. Stopping cold turkey can trigger severe 'rebound insomnia', profound anxiety, and physical withdrawal symptoms. Always taper under a doctor's guidance.",
+      "If you take medications for other conditions (such as blood pressure tablets, steroids, or thyroid hormones), check with your physician about the optimal time of day to take them, as some interfere with sleep."
+    ],
+    "complications": [
+      "Impaired gym performance, reduced muscle growth, poor tissue repair, and heightened risk of athletic injury.",
+      "Increased risk of high blood pressure, coronary artery disease, heart failure, and stroke over time.",
+      "Disrupted metabolic health, including insulin resistance, weight gain around the abdomen, and an increased risk of developing type 2 diabetes.",
+      "Weakened immune function, leaving you more vulnerable to frequent common colds, viral infections, and poor vaccine responses.",
+      "Severe cognitive decline, including brain fog, poor memory consolidation, impaired decision-making, and increased risk of road accidents.",
+      "Worsening of mental health conditions, creating or intensifying clinical depression, chronic anxiety, and mood swings."
+    ],
+    "emergencySigns": [
+      "Falling asleep suddenly while driving a motor vehicle, riding a scooter, or operating heavy machinery.",
+      "Waking up suddenly in the middle of the night with chest pain, severe breathlessness, choking, or a racing, irregular heartbeat.",
+      "Witnessed episodes where you completely stop breathing for ten seconds or more during sleep, followed by violent snorts or gasping.",
+      "Overwhelming feelings of hopelessness, severe panic attacks, or thoughts of self-harm linked to unbearable chronic sleep deprivation.",
+      "Acute confusion, hallucinations, or extreme disorientation following prolonged total lack of sleep."
+    ],
+    "whenToSeeDoctor": [
+      "Your sleep problems have persisted for more than 3 to 4 weeks despite trying standard sleep hygiene and lifestyle measures.",
+      "You feel constantly exhausted, foggy, and sleepy during daytime hours, impacting your job, studies, or driving safety.",
+      "Your spouse or roommate reports that you snore loudly, gasp for air, or choke repeatedly throughout the night.",
+      "You experience intense, uncomfortable creeping, crawling sensations in your legs in the evening that compel you to move them.",
+      "You find yourself completely dependent on alcohol, over-the-counter cough syrups, or sleeping pills to get any rest."
+    ],
+    "faqs": [
+      {
+        "q": "Can haldi doodh (turmeric milk) help me fall asleep?",
+        "a": "A warm cup of milk before bed can be soothing and comforting as part of a calming bedtime ritual. Milk contains small amounts of tryptophan, an amino acid involved in making serotonin and melatonin. Turmeric provides gentle anti-inflammatory support, but no herb, diet or product can make chronic insomnia go away on its own. It is a comforting habit, not a medical cure."
+      },
+      {
+        "q": "Why shouldn't I drink a peg of whisky to help me fall asleep?",
+        "a": "Alcohol acts as a central nervous system depressant, so it may make you drift off faster initially. However, as your liver metabolises the alcohol halfway through the night, it severely fragments your sleep architecture, abolishes restorative REM sleep, worsens snoring and acid reflux, and causes you to wake up dehydrated and restless at 3:00 AM."
+      },
+      {
+        "q": "How long does it take for sleep hygiene and CBT-I to work?",
+        "a": "Unlike a sleeping pill that works in an hour, behavioural changes and CBT-I take time to retrain your brain. Most people begin noticing meaningful improvements in their sleep consistency and nighttime wakefulness within 2 to 4 weeks of strict, regular practice. The results are long-lasting and do not carry the side effects or addiction risks of sedatives."
+      },
+      {
+        "q": "Can working out at the gym late at night ruin my sleep?",
+        "a": "For many people, yes. Heavy lifting or intense cardio raises your core body temperature, elevates your heart rate, and triggers a surge of cortisol and adrenaline. Your body needs its core temperature to drop and your autonomic nervous system to shift into rest mode to trigger deep sleep. Try to wrap up hard training at least 2 to 3 hours before bedtime."
+      },
+      {
+        "q": "Are over-the-counter melatonin gummies safe for everyday use?",
+        "a": "Melatonin is a hormone, not a candy. While occasional use can help reset your internal clock after international flights or sudden shift changes, it is not an effective long-term solution for chronic insomnia. High doses or continuous unsupervised use can cause morning grogginess, vivid nightmares, and disrupt your body's natural hormone balance. Use it only as advised by your doctor."
+      }
+    ],
+    "references": [
+      {
+        "title": "Management of insomnia disorder in adults: summary of NICE guidance",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ta77",
+        "year": "2022"
+      },
+      {
+        "title": "Sleep and Sleep Disorders: Healthy Sleep Habits",
+        "source": "Centers for Disease Control and Prevention (CDC)",
+        "url": "https://www.cdc.gov/sleep/about_sleep/sleep_hygiene.html",
+        "year": "2022"
+      },
+      {
+        "title": "Insomnia: Diagnosis and Treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/insomnia/diagnosis-treatment/drc-20355173",
+        "year": "2023"
+      },
+      {
+        "title": "Epidemiology of sleep disorders during the COVID-19 pandemic in India",
+        "source": "Indian Journal of Psychiatry",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34421162/",
+        "year": "2021"
+      }
+    ],
+    "relatedDiseases": [
+      "sleep-apnea",
+      "anxiety",
+      "depression",
+      "stress",
+      "high-blood-pressure",
+      "gerd",
+      "chronic-fatigue",
+      "type-2-diabetes",
+      "obesity"
+    ],
+    "relatedMedicines": [
+      "pantoprazole",
+      "omeprazole",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "vitamin-d",
+      "vitamin-b12",
+      "ferritin",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

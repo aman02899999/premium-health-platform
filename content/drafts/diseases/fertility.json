@@ -1,0 +1,312 @@
+{
+  "slug": "fertility",
+  "name": "Fertility Basics",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Fertility means the natural ability to conceive a child. For a pregnancy to happen, a healthy egg must be released from an ovary (ovulation), healthy sperm must travel through the cervix and uterus to meet it, fertilisation must occur inside a fallopian tube, and the resulting embryo must attach to the lining of the uterus. Medical guidelines define clinical infertility when a couple has regular, unprotected intercourse for 12 months without conceiving if the female partner is under 35 years of age, or after 6 months if she is 35 or older. In India, infertility touches an estimated 10% to 15% of couples, according to Indian Council of Medical Research (ICMR) data. Difficulties with fertility are shared equally: about one-third of cases relate to female reproductive factors, one-third to male reproductive factors, and the remaining third involve a combination of both partners or unexplained reasons. Age, metabolic health, lifestyle, body weight, infections, and hormonal balances play deep roles for both men and women.",
+    "quickFacts": [
+      {
+        "label": "Definition of difficulty conceiving",
+        "value": "12 months of regular unprotected intercourse (6 months if female partner is 35 or older)"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Approximately 10% to 15% of couples (ICMR)"
+      },
+      {
+        "label": "Responsibility split",
+        "value": "Roughly 1/3 female factors, 1/3 male factors, 1/3 combined or unexplained"
+      },
+      {
+        "label": "Peak fertile window",
+        "value": "The 5 days leading up to ovulation plus the day of ovulation"
+      },
+      {
+        "label": "Impact of female age",
+        "value": "Egg quantity and chromosomal quality decline significantly after age 35"
+      },
+      {
+        "label": "Male factor check",
+        "value": "Semen analysis is non-invasive and should be done early for every couple"
+      }
+    ],
+    "causes": [
+      "Ovulatory disorders in women. Conditions like Polycystic Ovary Syndrome (PCOS), premature ovarian insufficiency, or high prolactin levels can disrupt or halt regular ovulation.",
+      "Male reproductive issues. Low sperm count (oligospermia), poor sperm motility (asthenospermia), abnormal sperm shape (teratospermia), or complete absence of sperm (azoospermia). These can stem from varicoceles, past infections, or heat stress.",
+      "Fallopian tube blockage or damage. Pelvic infections, past pelvic surgeries, or pelvic tuberculosis (common in India) can scar the tubes and stop sperm from meeting the egg.",
+      "Endometriosis. Tissue similar to the uterine lining grows outside the uterus on ovaries and pelvic walls, causing chronic inflammation, scarring, and anatomical distortion.",
+      "Uterine factors. Benign growths such as uterine fibroids or polyps, or structural differences in the uterus, can interfere with embryo implantation.",
+      "Age-related biological decline. Women are born with all the eggs they will ever have. Ovarian reserve and egg quality naturally drop with age, accelerating after 35.",
+      "Metabolic and endocrine disorders. Uncontrolled thyroid disease (hypothyroidism or hyperthyroidism), insulin resistance, prediabetes, or uncontrolled diabetes impair reproductive hormones in both sexes.",
+      "Lifestyle habits. Tobacco smoking, bidi, gutka, alcohol, excess caffeine, chronic severe psychological stress, and lack of sleep directly harm reproductive cells and hormone secretion.",
+      "Weight extremes. Severe underweight or high levels of body fat disrupt the hypothalamic-pituitary-gonadal axis, leading to missed ovulation in women and lower testosterone or poorer sperm counts in men."
+    ],
+    "types": [
+      {
+        "name": "Primary Infertility",
+        "desc": "When a couple has never achieved a clinical pregnancy despite at least 12 months of regular, unprotected intercourse."
+      },
+      {
+        "name": "Secondary Infertility",
+        "desc": "When a couple has previously conceived at least once in the past (whether resulting in a live birth or a pregnancy loss), but is currently unable to conceive again after 12 months."
+      },
+      {
+        "name": "Male Factor Infertility",
+        "desc": "Difficulties caused primarily by problems with sperm production, sperm transport, structural blockages, or sexual function in the male partner."
+      },
+      {
+        "name": "Female Factor Infertility",
+        "desc": "Difficulties caused primarily by ovulatory dysfunction, fallopian tube damage, endometriosis, or uterine abnormalities in the female partner."
+      },
+      {
+        "name": "Unexplained Infertility",
+        "desc": "When standard fertility tests—including semen analysis, ovulation tracking, and tubal patency tests—all show normal results, yet pregnancy does not occur."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive medical and sexual history for both partners. Doctors review cycle regularity, duration of trying, sexual frequency, previous pregnancies, medical conditions, and lifestyle habits.",
+      "Basic physical examinations. Checking body mass index (BMI), blood pressure, signs of hormone imbalance (such as excess facial hair, hair thinning, or acne), and clinical examination of male and female reproductive anatomy.",
+      "Confirming ovulation in the female partner. Using tracking methods such as basal body temperature charts, urine luteinizing hormone (LH) surge detection kits, or mid-luteal serum progesterone blood tests.",
+      "Semen analysis for the male partner. Testing volume, total sperm count, concentration, progressive motility, vitality, and normal forms (morphology) after 2 to 7 days of abstinence.",
+      "Assessing ovarian reserve. Blood tests for anti-Müllerian hormone (AMH) and early follicular follicle-stimulating hormone (FSH), paired with an ultrasound antral follicle count (AFC).",
+      "Checking pelvic anatomy and fallopian tube patency. Performed using hysterosalpingography (HSG) X-ray dye test or sonohysterosalpingography (SSG) under ultrasound guidance."
+    ],
+    "investigations": [
+      {
+        "test": "Semen Analysis",
+        "purpose": "Evaluates sperm count, motility, and shape; always the primary step for the male partner"
+      },
+      {
+        "test": "Serum TSH (Thyroid Stimulating Hormone)",
+        "purpose": "Checks for underactive or overactive thyroid, which frequently disrupts menstrual cycles and ovulation",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum HbA1c or Fasting Blood Glucose",
+        "purpose": "Detects prediabetes or diabetes, which impair both egg quality and sperm DNA integrity",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Pelvic Ultrasound (Transvaginal)",
+        "purpose": "Examines uterine lining thickness, checks for fibroids, and counts antral follicles on the ovaries"
+      },
+      {
+        "test": "Hysterosalpingography (HSG)",
+        "purpose": "Checks if fallopian tubes are open and inspects the inner shape of the uterine cavity"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Screens for underlying anemia and chronic infections that impact systemic vitality",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Assesses iron stores, as iron deficiency is very common in Indian women and affects general reproductive wellness",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Vitamin D3 (25-OH)",
+        "purpose": "Screens for severe deficiency, which is linked to altered hormonal pathways in both partners",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Preconception medical optimisation. Addressing co-existing conditions like thyroid imbalances, high prolactin, or insulin resistance before attempting further treatments.",
+      "Lifestyle modifications. Achieving a healthier body weight, stopping tobacco and alcohol, and timing intercourse across the fertile window (every 1 to 2 days during the six days ending on ovulation).",
+      "Ovulation induction. Oral medications (such as letrozole or clomiphene citrate) or injectable gonadotropins prescribed and monitored by a reproductive specialist to stimulate follicle growth in women who do not ovulate regularly.",
+      "Surgical interventions. Laparoscopic surgery to treat endometriosis, clear pelvic adhesions, or remove ovarian cysts; hysteroscopy to remove uterine polyps, fibroids, or scar tissue; and microsurgery to correct varicoceles in men.",
+      "Intrauterine Insemination (IUI). Concentrated, washed sperm from the partner is placed directly into the uterus around the exact time of ovulation.",
+      "In Vitro Fertilisation (IVF) and ICSI. Eggs are retrieved from the ovaries, fertilised with sperm in an embryology laboratory, and healthy developing embryos are transferred into the uterus. Intracytoplasmic sperm injection (ICSI) injects a single sperm into an egg, ideal for severe male factor issues.",
+      "Third-party reproduction. Donor eggs, donor sperm, or gestational surrogacy when recommended under the Assisted Reproductive Technology (Regulation) Act and Surrogacy Act of India."
+    ],
+    "ayurvedaView": [
+      "Ayurveda views fertility through the health of 'Shukra Dhatu' (reproductive tissue) in both men and women, and the balance of 'Artava' (female ovulatory fluid and menstrual blood).",
+      "Successful conception is traditionally compared to the sprouting of a plant, needing four elements (Ritu-Kshetra-Ambu-Beeja): Ritu (the right fertile timing and season), Kshetra (the healthy uterine field), Ambu (adequate nourishment and fluids), and Beeja (healthy seeds: ovum and sperm).",
+      "Imbalances in Vata, Pitta, or Kapha doshas are believed to alter these factors. For example, excess Kapha may block channels (srotas) as seen in metabolic sluggishness, while aggravated Vata can cause tissue dryness or irregular cycles.",
+      "Traditional supportive therapies include panchakarma (under qualified supervision), consuming nourishing 'rasayana' foods, and stress-calming daily routines (dinacharya).",
+      "Ayurvedic care should serve only as a supportive lifestyle approach alongside modern reproductive evaluation. It should never delay critical diagnostic checks."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditional adaptogen. Small clinical studies suggest it may support sperm count and motility by lowering stress and oxidative markers in men; take only as advised by your doctor."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally regarded as a female reproductive tonic. Evidence in human trials remains preliminary, but it is used to support vitality; discuss with your physician before taking."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has known antioxidant and anti-inflammatory properties that support metabolic health; use dietary amounts in cooking."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Rich in natural vitamin C and antioxidants that help reduce oxidative stress on cellular health; best consumed as whole fruit."
+      }
+    ],
+    "nutrition": [
+      "Adopt the ICMR-NIN 'My Plate for the Day' guidelines. Ensure half the plate consists of fresh vegetables and whole fruits, one quarter of whole grains, and one quarter of quality proteins.",
+      "Prioritise plant proteins and clean lean sources. Incorporate whole dals (moong, chana, rajma), sprouts, paneer, eggs, seeds, and nuts. Research shows balanced protein intake supports ovulatory health.",
+      "Choose low-glycaemic complex carbohydrates. Swap refined maida, polished white rice, and sugary snacks for millets (ragi, jowar, bajra), oats, and brown rice to avoid insulin spikes.",
+      "Consume healthy essential fats. Include sources of omega-3 fatty acids like walnuts, chia seeds, flaxseeds, and mustard oil or cold-pressed oils in moderation. Avoid industrial trans-fats found in vanaspati, bakery items, and street fried foods.",
+      "Address micronutrient deficiencies common in India. Ensure sufficient iron, zinc, selenium, vitamin B12, and folate through leafy greens, lentils, dairy, and prescribed medical supplements.",
+      "Stay thoroughly hydrated with water, buttermilk (chaas), and fresh coconut water rather than sugar-sweetened packaged beverages or carbonated soft drinks.",
+      "Do not follow severe crash diets or extreme fasting while trying to conceive, as severe calorie deficits trigger stress pathways that suppress reproductive hormones."
+    ],
+    "lifestyle": [
+      "Track cycles accurately. Use a calendar or cycle-tracking app to understand your cycle length and identify your likely fertile days.",
+      "Time intercourse appropriately. Have intercourse every 1 to 2 days during the fertile window—the 5 days before ovulation and the day of ovulation itself.",
+      "Maintain a healthy body mass index (BMI). In the Indian context, a BMI between 18.5 and 22.9 kg/m2 is considered normal. Even a 5% to 10% weight loss in individuals with excess weight can restore spontaneous ovulation.",
+      "Stop all tobacco use immediately. This includes cigarettes, bidis, gutka, and khaini. Tobacco chemicals directly damage egg DNA, deplete ovarian reserve prematurely, and lower sperm motility.",
+      "Eliminate or strictly minimize alcohol. Heavy alcohol consumption disrupts testosterone synthesis, harms sperm morphology, and interferes with menstrual regularity.",
+      "Protect scrotal temperature. Men should avoid prolonged hot water baths, saunas, resting laptops directly on the lap, and wearing very tight synthetic underwear.",
+      "Ensure 7 to 8 hours of restful sleep nightly. Disrupted sleep patterns alter nocturnal melatonin and cortisol rhythms, impairing reproductive axis signals.",
+      "Manage daily stress through practical routines like evening walks, reading, or structured relaxation."
+    ],
+    "yogaActivity": [
+      "Engage in moderate physical exercise for at least 150 minutes per week, such as brisk walking, swimming, light cycling, or gym-based resistance training.",
+      "Incorporate gentle yoga asanas that improve pelvic circulation and relieve tension, such as Baddha Konasana (Butterfly pose), Supta Baddha Konasana, Setu Bandhasana (Bridge pose), and Viparita Karani (Legs-up-the-wall pose).",
+      "Practice slow, mindful breathing techniques (pranayama) like Anulom Vilom (alternate nostril breathing) and Bhramari to calm the autonomic nervous system and lower anxiety.",
+      "Avoid exhausting, extreme endurance exercise (such as daily intense marathon training or very heavy caloric deficits), which can cause functional hypothalamic amenorrhea in women."
+    ],
+    "homeopathyNote": [
+      "There is no high-quality, reproducible scientific evidence proving that homeopathic preparations treat structural or hormonal causes of infertility.",
+      "Do not delay formal fertility evaluations, semen analysis, or evidence-based treatments while trying homeopathic remedies, because biological ovarian reserve declines irreversibly with time."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Female chronological age is the single most significant factor determining egg quantity, quality, and natural pregnancy rates.",
+      "Strong evidence: Weight loss of 5% to 10% in women with PCOS and overweight restores spontaneous ovulation in a large proportion of cases.",
+      "Strong evidence: Semen analysis accurately identifies male factor contributors; tobacco and heat exposure significantly worsen sperm parameters.",
+      "Moderate evidence: Ovulation induction with letrozole produces higher live-birth rates compared to clomiphene in women with PCOS.",
+      "Moderate evidence: Antioxidant supplementation (such as CoQ10, zinc, selenium) may improve certain sperm quality parameters in men with high oxidative stress, though evidence for increased live-birth rates is variable.",
+      "Weak or limited evidence: Herbal formulations and alternative medicines have not shown reliable benefits for opening blocked fallopian tubes or reversing advanced ovarian aging in controlled clinical trials."
+    ],
+    "shouldNotDo": [
+      "Do not assume fertility is exclusively a female concern. Male factors are present in nearly half of all couples experiencing delays; both partners must be tested together from the start.",
+      "Do not wait longer than 12 months if the female partner is under 35, or longer than 6 months if she is 35 or older, before seeking a professional fertility evaluation.",
+      "Do not use commercial vaginal lubricants that are not marked 'sperm-friendly', as standard lubricants, saliva, and oils can impair sperm motility.",
+      "Do not purchase unverified 'fertility booster' herbs, tonics, or online powders promising guaranteed conception; no herb, diet or product can make reproductive disorders go away.",
+      "Do not ignore painful periods, extreme pelvic cramps, or pain during intercourse; these are cardinal signs of conditions like endometriosis that need early medical attention.",
+      "Do not double up or self-prescribe hormonal fertility pills (like letrozole or clomiphene) without ultrasound follicular monitoring, due to the risk of multiple pregnancies and ovarian hyperstimulation."
+    ],
+    "medicationSafety": [
+      "Start daily folic acid supplementation before attempting pregnancy, as advised by your doctor, to prevent neural tube defects in the baby.",
+      "Review all ongoing prescription medications with your doctor. Certain drugs for blood pressure, depression, epilepsy, or skin conditions (such as retinoids) must be altered before conception.",
+      "Take ovulation-inducing medications strictly under ultrasound surveillance (follicular study) by a qualified gynaecologist to monitor follicle growth and endometrial thickness.",
+      "Never consume untested herbal mixtures or heavy-metal containing bhasmas while trying to conceive, as they can cause toxicities that harm early embryonic development."
+    ],
+    "complications": [
+      "Severe psychological stress, relationship strain, anxiety, and clinical depression stemming from repeated monthly disappointment and social pressure.",
+      "Ectopic pregnancy, where an embryo implants outside the uterus (most commonly in a fallopian tube), which is a life-threatening medical emergency.",
+      "Multiple gestation (twins, triplets), which carries higher risks of preterm birth, low birth weight, and maternal complications, especially with unmonitored ovulation medications.",
+      "Ovarian Hyperstimulation Syndrome (OHSS), a serious potential complication of injectable fertility medications causing swollen, painful ovaries and fluid leakage into the abdomen.",
+      "Financial strain from prolonged, uncoordinated, or delayed medical investigations and assisted reproductive treatments."
+    ],
+    "emergencySigns": [
+      "Sudden, sharp, or severe lower abdominal or pelvic pain, especially on one side, which could indicate a ruptured ectopic pregnancy or ovarian torsion: seek emergency hospital care immediately",
+      "Heavy vaginal bleeding soaking through more than one pad an hour, accompanied by dizziness or feeling faint",
+      "High fever with chills and foul-smelling vaginal discharge following any pelvic procedure, IUI, or egg retrieval",
+      "Rapid abdominal swelling, severe nausea, vomiting, and shortness of breath following fertility hormone injections (signs of severe OHSS)"
+    ],
+    "whenToSeeDoctor": [
+      "You have had regular, unprotected intercourse for 12 months without conceiving (or 6 months if the female partner is 35 years or older)",
+      "Menstrual cycles are highly irregular, spaced more than 35 days apart, completely absent, or unusually short (under 21 days)",
+      "You experience severe pelvic pain during menstruation, bowel movements, or sexual intercourse",
+      "There is a known history of pelvic inflammatory disease, ruptured appendix, pelvic tuberculosis, or abdominal surgeries",
+      "The male partner has a history of undescended testicles, testicular trauma, mumps orchitis, or erectile/ejaculatory difficulties",
+      "Either partner has a diagnosed chronic condition like diabetes, thyroid disorder, or is undergoing cancer treatments"
+    ],
+    "faqs": [
+      {
+        "q": "How often should we have sex when trying to conceive?",
+        "a": "Having intercourse every 1 to 2 days during your fertile window (the five days leading up to ovulation and the day of ovulation) gives the best chance. Daily intercourse is fine if both partners wish, but every other day is equally effective and maintains good sperm reserves without causing burnout."
+      },
+      {
+        "q": "Can tight underwear or gym clothes reduce male fertility?",
+        "a": "Yes, it can contribute. The testicles sit outside the body cavity because sperm production works best at temperatures about 2 to 3 degrees Celsius below core body temperature. Tight briefs, cycling shorts worn for hours, or frequent hot saunas raise scrotal heat and can temporarily depress sperm count and motility."
+      },
+      {
+        "q": "Does having PCOS mean a woman cannot get pregnant?",
+        "a": "No. PCOS is a leading cause of irregular ovulation, but it does not mean permanent infertility. With lifestyle measures to manage insulin resistance, weight management, and simple doctor-prescribed medications to trigger ovulation, the majority of women with PCOS can achieve pregnancy."
+      },
+      {
+        "q": "Should the husband be tested even if he has no sexual problems?",
+        "a": "Yes, absolutely. A man can have normal erections, strong libido, and normal-looking semen volume, yet have low sperm counts, poor motility, or abnormal morphology. Semen analysis is a simple, non-invasive first step that should always be done alongside the woman's check-up."
+      },
+      {
+        "q": "Can dietary changes alone solve fertility issues?",
+        "a": "A balanced, nutritious diet supports metabolic health, regular cycles, and sperm parameters. However, diet alone cannot open blocked fallopian tubes, fix severe varicoceles, or resolve anatomical problems. Nutrition should always accompany thorough medical evaluation."
+      }
+    ],
+    "references": [
+      {
+        "title": "Infertility: Key Facts",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/infertility",
+        "year": "2023"
+      },
+      {
+        "title": "Diagnostic Evaluation of the Infertile Female: A Committee Opinion",
+        "source": "American Society for Reproductive Medicine (ASRM)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34148630/",
+        "year": "2021"
+      },
+      {
+        "title": "Diagnostic Evaluation of the Infertile Male: A Committee Opinion",
+        "source": "American Society for Reproductive Medicine (ASRM)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34148631/",
+        "year": "2021"
+      },
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Infertility: Assessment and Treatment (Clinical Guideline CG156)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg156",
+        "year": "2017"
+      }
+    ],
+    "relatedDiseases": [
+      "pcos",
+      "endometriosis",
+      "male-infertility",
+      "hypothyroidism",
+      "obesity",
+      "insulin-resistance"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "levothyroxine",
+      "vitamin-d3",
+      "iron-folic-acid"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "shatavari",
+      "turmeric",
+      "amla"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "hba1c",
+      "cbc",
+      "ferritin",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

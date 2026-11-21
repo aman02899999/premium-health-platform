@@ -1,0 +1,299 @@
+{
+  "slug": "chronic-cough",
+  "name": "Chronic Cough",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A chronic cough is a cough that lasts for eight weeks or longer in adults, or four weeks in children. It is not a disease by itself, but a persistent signal that something is irritating your respiratory tract or triggering the cough reflex. In India, people often dismiss a long-standing cough as simple seasonal irritation, pollution trouble, or a lingering cold. However, when a cough refuses to go away after two months, it almost always stems from an identifiable and treatable underlying cause. The most frequent triggers in adults include upper airway cough syndrome (formerly called post-nasal drip), asthma, gastroesophageal reflux disease (GERD), chronic bronchitis from smoking or biomass smoke, and lingering airway hypersensitivity after an infection. In our country, any cough lasting more than two to three weeks also requires ruling out pulmonary tuberculosis under national health guidelines. Pinpointing the root problem through proper medical tests is essential, because no single cough syrup can fix a symptom caused by diverse health issues.",
+    "quickFacts": [
+      {
+        "label": "Time threshold",
+        "value": "Lasting 8 weeks or more in adults (4 weeks in children)"
+      },
+      {
+        "label": "Top 3 non-smoker causes",
+        "value": "Upper airway cough syndrome (post-nasal drip), asthma, and GERD"
+      },
+      {
+        "label": "India TB screening rule",
+        "value": "Any cough lasting over 2 weeks warrants tuberculosis evaluation (NTEP)"
+      },
+      {
+        "label": "Smoker risk",
+        "value": "High risk for chronic bronchitis and COPD, especially with beedi or cigarettes"
+      },
+      {
+        "label": "Pollution factor",
+        "value": "High PM2.5 levels and chulha smoke irritate airways and prolong cough reflex"
+      },
+      {
+        "label": "Treatment rule",
+        "value": "Treating the root cause works; OTC syrups only temporarily mask symptoms"
+      }
+    ],
+    "causes": [
+      "Upper Airway Cough Syndrome (UACS): Fluid or mucus from allergic rhinitis, chronic sinusitis, or nasal polyps drips down the back of the throat, triggering the cough reflex constantly.",
+      "Asthma and Cough-Variant Asthma: In cough-variant asthma, a persistent dry cough is the primary or only symptom, often worsening with cold air, exercise, or exposure to dust and incense smoke.",
+      "Gastroesophageal Reflux Disease (GERD): Stomach acid washes backward into the esophagus and reaches the throat, where acid droplets or nerve stimulation cause coughing, especially when lying down after heavy Indian dinners.",
+      "Air Pollution and Environmental Irritants: High urban particulate matter (PM2.5 and PM10), auto exhaust, construction dust, burning garbage, mosquito coils, and indoor biomass fuel (chulha) irritate mucosal linings.",
+      "Tobacco Smoke: Active smoking of cigarettes, beedis, or hookah, as well as regular exposure to secondhand smoke, causes airway inflammation and mucus buildup known as chronic bronchitis.",
+      "Post-Infectious Airway Hyper-responsiveness: After a viral infection, pneumonia, or whooping cough, bronchial tubes can remain inflamed and twitchy for months.",
+      "Tuberculosis (TB): In India, Mycobacterium tuberculosis remains a vital diagnosis to rule out in any prolonged cough, particularly when accompanied by fever, night sweats, and weight loss.",
+      "Medications: Blood pressure medicines known as ACE inhibitors frequently cause a dry, tickling chronic cough that persists until the drug is substituted by a doctor.",
+      "Chronic Obstructive Pulmonary Disease (COPD) and Bronchiectasis: Long-term airway damage causing persistent mucus production, recurring chest infections, and progressive breathing difficulty."
+    ],
+    "types": [
+      {
+        "name": "Upper Airway Cough Syndrome (Post-Nasal Drip)",
+        "desc": "Caused by sinus or nasal allergic inflammation. Often feels like a persistent tickle or lump in the throat, leading to frequent throat clearing, worse in the early morning."
+      },
+      {
+        "name": "Cough-Variant Asthma",
+        "desc": "Asthma where the dominant sign is a non-productive dry cough rather than distinct wheezing. Often flares up during gym workouts, cold weather, or nighttime sleep."
+      },
+      {
+        "name": "Reflux-Related Cough (GERD)",
+        "desc": "Driven by acid reflux irritating the lower esophagus or vocal cords. Often flares up after spicy, oily meals, late-night eating, or when reclining."
+      },
+      {
+        "name": "Chronic Bronchitis / COPD Cough",
+        "desc": "A daily, productive phlegm cough lasting for at least three months across two consecutive years, overwhelmingly seen in current or former smokers and those exposed to biomass smoke."
+      },
+      {
+        "name": "Post-Infectious Cough",
+        "desc": "A persistent dry hack that follows a bout of severe viral flu or respiratory tract infection, caused by prolonged sensitivity of cough nerves despite the infection having cleared."
+      },
+      {
+        "name": "Neurogenic or Refractory Chronic Cough",
+        "desc": "A hypersensitive cough reflex where trivial triggers like talking, laughing, perfume, cold breeze, or temperature changes set off coughing fits without clear lung disease."
+      }
+    ],
+    "diagnosis": [
+      "Comprehensive medical history: Your doctor will ask about the exact duration, timing, triggers, whether the cough is dry or produces phlegm, your smoking history, and your daily medications.",
+      "Detailed physical checkup: Examination of the ears, nose, throat, neck, heart, and chest sounds using a stethoscope to look for wheezes, crackles, or signs of heart strain.",
+      "Systematic rule-out protocol: Guidelines recommend screening first for common culprits (sinus problems, asthma, reflux, medication side effects) before moving to invasive scans.",
+      "Sputum examination: Checking phlegm for bacterial pathogens, eosinophils, and tuberculosis bacteria using smear microscopy or molecular tests.",
+      "Evaluation for tuberculosis: Under Indian health guidelines, any persistent cough over two weeks in high-risk groups, or eight weeks in general, warrants an evaluation for TB."
+    ],
+    "investigations": [
+      {
+        "test": "Chest X-Ray",
+        "purpose": "Essential baseline scan to screen for pneumonia, tuberculosis patches, lung masses, fluid, or structural lung disease."
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects systemic inflammation, raised white cells from infection, or elevated eosinophil counts linked with allergies and asthma.",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures generalized inflammation in the body to help distinguish active inflammatory or infectious chest conditions.",
+        "slug": "crp"
+      },
+      {
+        "test": "Spirometry (Pulmonary Function Test)",
+        "purpose": "Assesses lung capacity and airflow obstruction to identify asthma, cough-variant asthma, and chronic obstructive pulmonary disease."
+      },
+      {
+        "test": "Sputum Examination and Cartridge Based Nucleic Acid Amplification Test (CBNAAT)",
+        "purpose": "Critical in India to detect Mycobacterium tuberculosis and assess rifampicin drug resistance."
+      },
+      {
+        "test": "High-Resolution Computed Tomography (HRCT) of the Chest",
+        "purpose": "Detailed imaging used when X-rays are inconclusive, especially to diagnose bronchiectasis or interstitial lung disease."
+      },
+      {
+        "test": "ENT Evaluation and Nasopharyngoscopy",
+        "purpose": "Visual examination of nasal passages and vocal cords to confirm post-nasal drip, nasal polyps, or vocal cord dysfunction."
+      }
+    ],
+    "modernTreatment": [
+      "Targeted treatment is the cornerstone of modern care; doctors treat the specific underlying condition rather than relying on blanket cough suppressant syrups.",
+      "For Upper Airway Cough Syndrome: Nasal corticosteroid sprays, saline sinus rinses, and non-drowsy antihistamines help reduce post-nasal drainage and calm throat tickling.",
+      "For Cough-Variant Asthma: Inhaled corticosteroids combined with long-acting bronchodilators reduce bronchial inflammation and relax tight airway muscles.",
+      "For Acid Reflux (GERD): Proton pump inhibitors (such as omeprazole or pantoprazole) reduce gastric acid, supported by strict dietary adjustments and meal timing.",
+      "Medication adjustments: If an ACE inhibitor medicine for blood pressure is causing the cough, your physician will replace it with an alternative class, such as an angiotensin receptor blocker like losartan.",
+      "Infections: Targeted antibiotics for bacterial sinusitis or bronchitis, or standard fixed-dose combination anti-TB regimens if tuberculosis is confirmed by laboratory testing.",
+      "Speech and cough suppression therapy: Breathing techniques, swallow strategies, and vocal exercises guided by specialists help reduce hypersensitive nerve reflex coughing."
+    ],
+    "ayurvedaView": [
+      "Ayurveda describes cough under the concept of Kasa Roga. It categorizes cough according to dosha imbalances: Vataja Kasa (predominantly dry, hacking cough with throat pain), Pittaja Kasa (accompanied by burning sensation, yellowish phlegm, or bitter taste), and Kaphaja Kasa (thick, heavy, white mucus and chest heaviness).",
+      "Traditional frameworks focus on balancing digestive fire (Agni) and clearing Ama (metabolic toxins) because poor digestion is seen as a root contributor to mucus accumulation and upward movement of Vayu (Prana Vayu and Udana Vayu).",
+      "Ayurvedic care emphasizes soothing warm foods, decoctions, and avoiding cold, heavy, sour, or greasy preparations.",
+      "Ayurvedic concepts serve as traditional wellness perspectives. They are not medical cures, and natural remedies must never replace diagnostic workups for serious illnesses such as tuberculosis or asthma."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is traditionally used to soothe irritated airways and support respiratory comfort. Modern clinical evidence is modest, so it should be used purely as a supportive warm herbal brew."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Contains gingerols with natural anti-inflammatory properties that can soothe throat tickles and loosen mild upper airway mucus. It should complement, not substitute, prescribed medical treatments."
+      },
+      {
+        "name": "Licorice (Mulethi)",
+        "slug": "licorice",
+        "note": "Contains demulcents that coat and soothe inflamed pharyngeal tissue. Caution: people with high blood pressure must consult their doctor before using licorice preparations."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin offers mild anti-inflammatory support for upper airway irritation. Drinking warm turmeric water or milk provides comforting throat moisture alongside standard therapy."
+      }
+    ],
+    "nutrition": [
+      "Drink plenty of warm fluids throughout the day: warm water, clear vegetable soups, and herbal teas help thin out thick mucus and soothe an irritated throat lining.",
+      "Have your evening dinner at least 2 to 3 hours before bedtime to prevent stomach acid from traveling upward into your food pipe and triggering nocturnal coughing.",
+      "Limit deep-fried, heavy, and oily snacks like pakodas, samosas, bhujia, and rich gravies, which slow digestion and worsen reflux-induced coughing.",
+      "Cut down on extremely sour, chilled, or preservative-laden items such as cold soft drinks, ice creams, and heavily spiced pickles if you notice they aggravate throat irritation.",
+      "Incorporate gentle warming spices in home cooking: small amounts of crushed black pepper, jeera, grated ginger, and cinnamon can make home-cooked dal and soups comforting.",
+      "Eat balanced, easily digestible Indian meals containing soft rotis, moong dal khichdi, cooked seasonal gourds (lauki, tori), and steamed vegetables.",
+      "Natural honey taken in warm water can provide temporary demulcent relief for adult throat irritation; however, honey must never be given to infants under one year of age."
+    ],
+    "lifestyle": [
+      "Quit all tobacco use immediately: stop cigarettes, beedis, and hookah. Avoid indoor secondhand smoke completely, as even passive smoke maintains airway inflammation.",
+      "Protect against high urban air pollution: monitor your city's Air Quality Index (AQI) and wear a well-fitted N95 mask outdoors on days with severe smog or construction dust.",
+      "Improve indoor air quality: avoid burning agarbatti, dhoop, mosquito coils, or trash inside or near living areas. Ensure proper ventilation in kitchens using wood or gas chulhas.",
+      "Elevate the head of your bed by 6 inches using bed risers or an under-mattress wedge if nighttime acid reflux is contributing to your cough. Extra pillows alone bend the neck and do not prevent reflux.",
+      "Wash bed linen weekly in warm water to reduce dust mites, and minimize thick carpets or heavy drapes in bedrooms if you have known dust allergies.",
+      "Practice gentle warm steam inhalation for 5 to 10 minutes to help clear nasal secretions, ensuring water is not scalding hot to prevent mucosal burns."
+    ],
+    "yogaActivity": [
+      "Perform gentle Pranayama practices such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) in a dust-free room to help relax the nervous system and steady breathing.",
+      "Avoid aggressive, forceful breathing exercises like rapid Kapalbhati or Bhastrika during active coughing spells or if you have untreated asthma, as fast air shifts can trigger airway spasms.",
+      "Practice gentle chest-opening asanas such as Bhujangasana (Cobra pose), Matsyasana (Fish pose), and Setu Bandhasana (Bridge pose) to improve rib cage mobility and posture.",
+      "During gym workouts, warm up thoroughly for 10 to 15 minutes to prevent exercise-induced coughing or bronchospasm. Avoid sudden heavy lifting if coughing causes dizziness.",
+      "Stay well-hydrated during exercise by sipping room-temperature water, and avoid working out directly under blast air conditioners blowing chilled air on your face."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations such as Drosera, Rumex, or Spongia are often marketed for chronic coughs, but robust, large-scale clinical trials proving their efficacy are lacking.",
+      "Relying solely on homeopathic remedies for a chronic cough without obtaining an X-ray or physician checkup carries significant risk, especially if underlying tuberculosis, chronic asthma, or lung infections are missed.",
+      "If you choose complementary therapies, always keep your primary physician informed and do not stop prescription inhalers or medicines."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Identifying and treating the specific underlying triad—upper airway cough syndrome, cough-variant asthma, and GERD—resolves up to 90% of chronic cough cases in non-smokers.",
+      "Strong evidence: Smoking cessation significantly improves chronic bronchitis symptoms within weeks to months and slows long-term lung function loss.",
+      "Moderate evidence: Elevation of the head of the bed, dietary adjustments, and proton pump inhibitors reduce cough frequency when reflux is clinically documented.",
+      "Moderate evidence: Honey has demonstrated modest demulcent benefits in reducing throat irritation and cough frequency in adults and children over one year old.",
+      "Weak or limited evidence: Over-the-counter cough syrups containing combinations of antihistamines, decongestants, and suppressants lack high-quality evidence for chronic cough and often cause side effects like drowsiness or raised blood pressure.",
+      "No evidence: No herb, diet or product can make a chronic cough go away without treating the underlying disease."
+    ],
+    "shouldNotDo": [
+      "Do not keep taking over-the-counter cough syrups for weeks without a diagnosis; they suppress symptoms temporarily while allowing the underlying problem to worsen.",
+      "Do not consume leftover or unprescribed antibiotics; antibiotics do not treat asthma, post-nasal drip, acid reflux, or viral inflammation and fuel drug resistance.",
+      "Do not ignore a chronic cough if you have a history of smoking, beedi use, or biomass smoke exposure, assuming it is just a normal smoker's cough.",
+      "Do not lie flat in bed immediately after finishing dinner; give your stomach at least two to three hours to empty.",
+      "Do not stop or adjust your prescribed asthma inhalers or blood pressure medicines on your own; always consult your treating doctor.",
+      "Do not dismiss a persistent cough accompanied by unexplained weight loss, night sweats, or blood-streaked phlegm as simple throat dryness."
+    ],
+    "medicationSafety": [
+      "If prescribed proton pump inhibitors like omeprazole or pantoprazole for reflux-induced cough, take them exactly as advised by your doctor, usually 30 to 60 minutes before breakfast.",
+      "Inhaled corticosteroid inhalers for asthma require correct inhaler technique; always rinse your mouth thoroughly with water and spit it out after each use to prevent hoarseness and oral fungal thrush.",
+      "If you take an ACE inhibitor for high blood pressure and develop a persistent, dry, scratchy cough, notify your physician so they can switch you safely to an alternative medicine like losartan.",
+      "Avoid self-medicating with decongestant nasal drops for more than 3 to 5 consecutive days, as prolonged use can cause severe rebound nasal congestion (rhinitis medicamentosa).",
+      "Inform your doctor of all supplements, traditional powders, and over-the-counter remedies you consume, as some herbs can interact with blood thinners, blood pressure tablets, or stomach acid medications."
+    ],
+    "complications": [
+      "Chronic sleep disruption, night waking, and persistent daytime fatigue affecting work productivity and gym performance.",
+      "Stress urinary incontinence, particularly among women, due to sudden, repetitive spikes in intra-abdominal pressure during severe coughing spells.",
+      "Musculoskeletal chest and back pain from continuous strain on intercostal muscles, and rarely, rib fractures in individuals with low bone density.",
+      "Cough syncope, which refers to brief fainting spells or lightheadedness caused by sharp drops in blood flow to the brain during violent coughing fits.",
+      "Hoarseness, chronic vocal cord irritation, and throat abrasions from constant throat clearing.",
+      "Development or worsening of abdominal wall hernias due to repeated abdominal strain.",
+      "Delayed diagnosis of serious lung conditions, including tuberculosis, bronchiectasis, or thoracic tumors."
+    ],
+    "emergencySigns": [
+      "Coughing up frank blood or large streaks of blood in your phlegm (hemoptysis).",
+      "Severe shortness of breath, inability to speak full sentences, or a blue tint on your lips or fingernails.",
+      "Sudden, sharp chest pain that worsens when breathing in deeply or coughing.",
+      "High fever accompanied by severe chills, rapid breathing, and profound confusion or dizziness.",
+      "Feeling faint, lightheaded, or losing consciousness during a coughing fit."
+    ],
+    "whenToSeeDoctor": [
+      "Your cough has lasted for more than two to three weeks without clear improvement, especially to rule out tuberculosis as per national guidelines.",
+      "Your cough disrupts your sleep, physical exercise, or daily routine.",
+      "You notice unintentional weight loss, loss of appetite, or recurring evening fevers with night sweats.",
+      "You cough up thick, foul-smelling, yellow, or greenish sputum regularly.",
+      "You experience a persistent sour taste, heartburn, or throat burning alongside the cough.",
+      "You develop new wheezing or a whistling sound in your chest while breathing."
+    ],
+    "faqs": [
+      {
+        "q": "Why are cough syrups not curing my chronic cough?",
+        "a": "Over-the-counter cough syrups are designed to offer brief, temporary symptom relief by either numbing throat nerves or thinning secretions. They do not treat the underlying root causes of chronic cough, such as asthma, sinus drip, or acid reflux. No syrup can make the condition go away unless the primary cause is medically diagnosed and treated."
+      },
+      {
+        "q": "Can acid reflux cause a cough even if I do not feel severe heartburn?",
+        "a": "Yes. This is often called silent reflux. Microscopic droplets of stomach acid or digestive enzymes can travel upward into your throat and vocal cords without causing significant burning in your chest. The sensitive nerves in your larynx react to this mild irritation, triggering a persistent, dry cough."
+      },
+      {
+        "q": "How does India's high air pollution affect a chronic cough?",
+        "a": "High concentrations of particulate matter (PM2.5 and PM10), vehicle exhaust, and construction dust penetrate deep into your airway linings. This induces continuous inflammation, impairs the microscopic hair-like structures (cilia) that sweep out mucus, and makes your cough reflex hyper-responsive. Using an N95 mask outdoors helps lower this irritant load."
+      },
+      {
+        "q": "Can my high blood pressure medicine be the reason for my cough?",
+        "a": "Yes, medications belonging to the ACE inhibitor family commonly produce a dry, tickling cough in up to 10 to 20 percent of users. This side effect can appear weeks or even months after starting the tablet. If this occurs, do not stop your pill abruptly; speak to your doctor, who can switch you to an alternative such as losartan."
+      },
+      {
+        "q": "Is warm milk with turmeric (haldi doodh) effective for chronic cough?",
+        "a": "Warm turmeric milk provides soothing warmth and moisture to an irritated throat, which can temporarily ease the scratchy sensation. However, while curcumin has mild anti-inflammatory properties, haldi doodh cannot resolve underlying medical issues like asthma, allergies, tuberculosis, or acid reflux. Use it only as comforting support alongside medical care."
+      }
+    ],
+    "references": [
+      {
+        "title": "Evaluation and Management of Chronic Cough in Adults",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/chronic-cough/symptoms-causes/syc-20351575",
+        "year": "2023"
+      },
+      {
+        "title": "Cough: Causes, Diagnosis and Treatment",
+        "source": "NHS (UK)",
+        "url": "https://www.nhs.uk/conditions/cough/",
+        "year": "2023"
+      },
+      {
+        "title": "Chronic Cough in Adults: Evaluation and Management",
+        "source": "StatPearls / NCBI Bookshelf",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470557/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "asthma",
+      "gerd",
+      "allergic-rhinitis",
+      "sinusitis",
+      "bronchitis",
+      "copd",
+      "acidity",
+      "breathing-problems",
+      "respiratory-allergies"
+    ],
+    "relatedMedicines": [
+      "omeprazole",
+      "pantoprazole",
+      "losartan",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "ginger",
+      "licorice",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

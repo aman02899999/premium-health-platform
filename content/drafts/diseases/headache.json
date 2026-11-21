@@ -1,0 +1,303 @@
+{
+  "slug": "headache",
+  "name": "Headache Guide",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "A headache is pain or uncomfortable pressure anywhere in the head, scalp, face, or upper neck. It is one of the most common medical symptoms in the world. Pain can range from a dull, tight ache wrapping around your forehead like a tight band, to a sharp, throbbing, one-sided pounding that makes bright light and loud sounds unbearable. Most headaches are primary headaches, meaning the pain itself is the main issue and not a sign of an underlying structural brain disease. These include common tension-type headaches, migraines, and cluster headaches. Less often, a headache is secondary, meaning it stems from another physical condition such as severe high blood pressure, an acute sinus infection, eye strain, cervical spine stiffness, a medication side effect, or rarely, a dangerous problem like an intracranial bleed, meningitis, or stroke. In India, factors such as high workplace stress, prolonged digital screen exposure, skipped meals, summer dehydration, irregular sleep, cervical neck posture from two-wheeler commutes and smartphone usage, and the overuse of over-the-counter painkillers are frequent triggers. While most headaches are harmless and settle with rest, hydration, and sensible medical treatment, any sudden, explosive headache or a headache with neurological symptoms requires immediate emergency medical attention.",
+    "quickFacts": [
+      {
+        "label": "Global prevalence",
+        "value": "About 50% of adults experience at least one headache in a year (WHO)"
+      },
+      {
+        "label": "Most common type",
+        "value": "Tension-type headache, affecting over 70% of people at some point"
+      },
+      {
+        "label": "Frequent Indian triggers",
+        "value": "Skipped meals, dehydration, lack of sleep, screen glare, neck strain"
+      },
+      {
+        "label": "Medication trap",
+        "value": "Taking painkillers more than 10 to 15 days a month can cause rebound daily headaches"
+      },
+      {
+        "label": "Red flag check",
+        "value": "Sudden severe 'thunderclap' headache needs emergency care right away"
+      }
+    ],
+    "causes": [
+      "Muscle contraction and postural strain: Long hours leaning forward over laptops, slumping on sofas, looking down at mobile phones (text neck), and riding two-wheelers through heavy traffic tighten the muscles of the shoulders, neck, and scalp.",
+      "Stress and mental fatigue: Daily psychological tension, financial worries, intense work pressure, and anxiety trigger nervous system sensitivity, leading to frequent tension headaches.",
+      "Dehydration and heat exposure: Traveling under the harsh Indian summer sun without sufficient water intake causes subtle brain tissue shrinkage and vascular changes, producing a throbbing dehydration headache.",
+      "Skipped meals and low blood sugar: Missing breakfast, delaying lunch due to long office meetings, or fasting without adequate fluid intake causes glucose drops that trigger cranial pain pathways.",
+      "Sleep disruption: Inadequate sleep, late-night screen scrolling, shift work, or sleep apnea disrupt brain chemicals and lower the pain threshold.",
+      "Caffeine fluctuations: Consuming multiple cups of strong chai or coffee during workdays and abruptly stopping on weekends triggers caffeine withdrawal headaches.",
+      "Sinus inflammation and respiratory allergies: Seasonal dust, urban air pollution, and allergies inflame the mucous membranes lining the facial sinuses, causing deep, dull pressure behind the eyes, forehead, and cheekbones.",
+      "Medication overuse (rebound headaches): Regularly taking over-the-counter pain relievers more than two to three days each week alters pain receptors and causes persistent daily headaches.",
+      "Underlying medical issues: Severely elevated blood pressure, uncorrected refractive eye errors, dental bite problems, cervical spondylosis, head trauma, and systemic infections such as viral fevers."
+    ],
+    "types": [
+      {
+        "name": "Tension-type headache",
+        "desc": "The most frequent headache. Feels like a tight, pressing band or heavy weight around the forehead, temples, or back of the head. It is usually mild to moderate, does not worsen with routine walking, and rarely causes nausea."
+      },
+      {
+        "name": "Migraine",
+        "desc": "A neurological condition causing moderate to severe throbbing or pulsating pain, often on one side of the head. It frequently comes with nausea, vomiting, and extreme sensitivity to bright light, loud sounds, and strong smells."
+      },
+      {
+        "name": "Cluster headache",
+        "desc": "A severe, piercing, burning pain focused strictly in or around one eye or temple. Attacks occur in clusters over weeks or months, often waking people at night, accompanied by eye redness, tearing, and a blocked nostril."
+      },
+      {
+        "name": "Cervicogenic headache",
+        "desc": "Secondary pain arising from structural stiffness, arthritis, or muscle spasm in the upper cervical spine and neck, radiating upward toward the back of the skull, temples, and forehead."
+      },
+      {
+        "name": "Sinus headache",
+        "desc": "Secondary dull facial pressure, throbbing, and congestion centered over the cheekbones, bridge of the nose, or forehead, typically accompanied by nasal blockage, thick discharge, or fever."
+      },
+      {
+        "name": "Medication-overuse headache",
+        "desc": "A daily or near-daily dull headache caused by frequent, long-term intake of acute pain medicines or migraine tablets, which resets pain pathways into a continuous cycle of rebound symptoms."
+      }
+    ],
+    "diagnosis": [
+      "Detailed clinical interview: Your doctor evaluates pain character (throbbing, pressing, stabbing), location, timing, duration, associated nausea or vision changes, and potential lifestyle triggers.",
+      "Medication history check: A careful review of all pain relief pills, pain balms, herbal extracts, and caffeine consumption over the past several months to rule out rebound headaches.",
+      "Comprehensive physical and neurological examination: Testing reflexes, cranial nerve function, muscle strength, balance, pupil response, and visual acuity.",
+      "Blood pressure check: Checking sitting blood pressure to identify severe hypertension or acute hypertensive spikes that can trigger head pain.",
+      "Eye examination: Assessing refractive errors (eye strain) and checking the back of the eye (fundus) to ensure there is no swelling of the optic nerve (papilledema), which signals raised intracranial pressure.",
+      "Imaging when red flags exist: Brain imaging such as a non-contrast CT scan or MRI is reserved for sudden severe headaches, abnormal neurological findings, new headaches in individuals over age 50, or headaches following head injury."
+    ],
+    "investigations": [
+      {
+        "test": "Blood Pressure Measurement",
+        "purpose": "Identifies severe, acute, or uncontrolled high blood pressure as a secondary cause of head pain"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Screens for systemic infection, high white cell counts, or anemia causing fatigue-related headaches",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures systemic inflammation, helpful to exclude conditions like temporal arteritis in older adults",
+        "slug": "crp"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Identifies underlying thyroid dysfunction which can contribute to chronic fatigue and daily headaches",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin D Level",
+        "purpose": "Checks for deficiency linked to chronic tension headaches and generalized musculoskeletal pain",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Vitamin B12 Level",
+        "purpose": "Evaluates neurological health and common nutritional deficiencies causing nerve sensitivity and fatigue",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Brain MRI or Non-Contrast Brain CT",
+        "purpose": "Visualizes brain structures, blood vessels, and sinus cavities to rule out secondary structural causes"
+      }
+    ],
+    "modernTreatment": [
+      "Acute symptom relief: Simple analgesics such as paracetamol can be used for occasional mild to moderate tension headaches, taken strictly as advised by your doctor.",
+      "Migraine-specific therapy: For diagnosed migraine episodes, doctors may prescribe specific abortive medications like triptans, alongside antiemetics if nausea is prominent, taken at the earliest onset.",
+      "Preventive medical therapy: For individuals experiencing frequent or disabling headaches (more than 4 to 6 days a month), physicians prescribe daily preventive medicines such as beta-blockers, tricyclic antidepressants, or anticonvulsants to reduce attack frequency and severity.",
+      "Breaking medication overuse: Gradually tapering off overused painkillers under medical supervision, often combined with temporary transition medications to manage rebound pain.",
+      "Physical therapy and ergonomics: Targeted physiotherapy, trigger-point therapy, neck mobilization, and workplace ergonomic adjustments to relieve cervicogenic and tension pain.",
+      "Addressing secondary root causes: Treating chronic allergic rhinitis, correcting uncorrected vision with proper spectacles, or managing obstructive sleep apnea with positive airway pressure therapy."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, headache is categorized under 'Shiroroga' (diseases of the head), with Charaka and Sushruta Samhitas detailing eleven different types based on underlying dosha vitiation.",
+      "Vataja Shiroroga involves dry, sharp, radiating, or throbbing pain aggravated by irregular routines, poor sleep, dry cold weather, and mental exhaustion. Pittaja Shiroroga presents with burning sensations, red eyes, feverishness, and heat sensitivity. Kaphaja Shiroroga involves a heavy, dull feeling, facial fullness, and congestion.",
+      "Ayurvedic care approaches head discomfort by recommending calming therapies (like Shiroabhyanga or warm oil scalp massage, and mild Shirodhara), balancing daily routines (Dinacharya), and optimizing digestion to reduce metabolic toxins (Ama).",
+      "Traditional practices are designed to support overall nervous system balance and stress reduction alongside modern medical care; they do not replace standard medical evaluation for recurrent or severe pain."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally consumed in warm tea to support circulation and ease nausea associated with head pain. Clinical evidence shows modest supportive benefit for headache relief."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "A traditional nervine tonic used in Ayurveda to support mental clarity, calm tension, and soothe nervous system fatigue. Clinical trials in primary headache are limited."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb used to support stress management and improve sleep quality, which may indirectly reduce stress-triggered tension headaches. It does not treat acute pain."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Often brewed during common colds or sinus congestion to support respiratory comfort and ease sinus heaviness. Scientific trials for acute pain relief remain limited."
+      }
+    ],
+    "nutrition": [
+      "Maintain consistent meal timings: Never skip meals, especially breakfast. Long gaps between meals lead to reactive hypoglycemia, a common trigger for vascular and tension headaches.",
+      "Stay thoroughly hydrated: Drink adequate clean water throughout the day. In hot Indian summers, include natural fluids such as unsweetened tender coconut water, diluted buttermilk (chaas) with roasted cumin, or fresh lemon water with a pinch of salt.",
+      "Moderate caffeine consumption: Avoid erratic tea and coffee intake. If you drink chai or coffee, keep your intake steady and avoid consuming large quantities late in the afternoon or evening.",
+      "Identify personal food triggers: While not universal, some people notice headaches triggered by aged cheeses, monosodium glutamate (MSG) in processed foods, artificial sweeteners, nitrates in preserved meats, or fermented foods.",
+      "Adopt a balanced Indian thali approach: Align your plate with ICMR-NIN dietary guidelines, incorporating colorful vegetables, seasonal fruits, whole grains (jowar, bajra, brown rice), lentils, nuts, and seeds to ensure consistent micronutrient intake like magnesium.",
+      "Limit processed and packaged snacks: Deep-fried snacks, ultra-processed namkeens, and sugary treats cause sharp blood sugar spikes and crashes that provoke head tension."
+    ],
+    "lifestyle": [
+      "Maintain a headache diary: Record the date, time, duration, pain intensity, foods eaten, sleep quality, and daily activities whenever a headache occurs. This helps your doctor identify specific patterns.",
+      "Follow consistent sleep habits: Sleep and wake up at the exact same time every day, even on weekends. Aim for 7 to 8 hours of uninterrupted rest in a cool, quiet, dark room.",
+      "Practice digital hygiene: Follow the 20-20-20 rule during computer and smartphone use: every 20 minutes, look at an object 20 feet away for at least 20 seconds. Adjust screen height to avoid neck bending.",
+      "Optimize your work setup: Keep your computer monitor at eye level, use a supportive office chair, and keep your shoulders relaxed rather than hunched toward your ears.",
+      "Take regular movement breaks: Avoid sitting stationary for hours. Stand up, stretch your arms, and gently roll your neck and shoulders every 45 to 60 minutes.",
+      "Protect against direct sun and heat: When stepping out in peak sunlight, wear a wide-brimmed cap or carry an umbrella, and use UV-blocking sunglasses to reduce squinting and glare."
+    ],
+    "yogaActivity": [
+      "Pranayama for nervous system calming: Practice slow, unhurried alternate nostril breathing (Anulom Vilom) and humming bee breath (Bhramari) for 5 to 10 minutes daily to lower physiological tension. Avoid rapid, forceful breathing during active headaches.",
+      "Gentle neck and shoulder releases: Simple seated neck tilts (Griva Sanchalana), chin tucks, and shoulder rotations help relax tight trapezius and suboccipital muscles.",
+      "Restorative postures: Practice child pose (Balasana), legs-up-the-wall pose (Viparita Karani), and corpse pose (Shavasana) to facilitate deep physical relaxation and lower stress hormones.",
+      "Supported forward stretches: Poses like seated forward bend (Paschimottanasana) or cat-cow stretch (Marjaryasana-Bitilasana) encourage spinal mobility and relieve postural strain.",
+      "Activity precautions: During an acute, severe migraine or throbbing headache, avoid intense gym workouts, heavy weightlifting, and inverted poses like headstands (Sirsasana) as they can increase intracranial pressure and worsen throbbing pain."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are sometimes sought for recurring headaches and migraines.",
+      "Rigorous systematic clinical reviews from global bodies, including Cochrane and the UK National Health Service, show no robust scientific evidence that homeopathic remedies treat or prevent headache disorders beyond a placebo response.",
+      "Do not delay qualified medical evaluation or stop prescribed headache therapies to rely solely on homeopathic treatments."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Prescription acute treatments (triptans for migraines, paracetamol for tension headaches) and evidence-based preventive medications (beta-blockers, topiramate, amitriptyline) significantly reduce headache burden.",
+      "Strong evidence: Consistent sleep schedules, adequate hydration, stress management, and physical therapy for neck strain effectively reduce attack frequency.",
+      "Moderate evidence: Relaxation techniques, cognitive behavioral therapy (CBT), and biofeedback demonstrate good clinical efficacy in reducing tension-type headache frequency.",
+      "Limited or weak evidence: Herbal extracts, single herbal concoctions, and homeopathic remedies have limited, inconsistent, or poor-quality human clinical trial data.",
+      "No evidence: Special magnetic bands, unverified acupressure clips, detox drinks, or online 'headache cure' oils do not resolve underlying headache pathophysiology."
+    ],
+    "shouldNotDo": [
+      "Do not pop over-the-counter painkillers multiple times every week; doing so frequently leads to severe medication-overuse rebound headaches.",
+      "Do not assume every headache is just 'gas', 'acidity', or sinus trouble, which often delays the correct diagnosis of migraine or cervical tension.",
+      "Do not ignore uncorrected blurry vision, squinting, or persistent eye fatigue; straining your eyes daily directly triggers tension across the temples and forehead.",
+      "Do not abruptly stop high daily caffeine consumption cold turkey; taper your chai or coffee slowly over several days to avoid intense withdrawal pain.",
+      "Do not believe claims promising permanent solutions; no herb, diet or product can make it go away forever without addressing daily lifestyle triggers and medical causes.",
+      "Do not ignore new, unusual, or worsening headaches if you are over 50 years of age, pregnant, or living with an underlying chronic illness."
+    ],
+    "medicationSafety": [
+      "Always take acute headache relievers as advised by your doctor; check product labels carefully to avoid accidentally combining multiple medicines containing the same active ingredient, like paracetamol.",
+      "Never exceed the daily recommended limits of paracetamol, as accidental overdose carries a high risk of serious liver toxicity.",
+      "Avoid frequent unmonitored use of nonsteroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen or diclofenac, which can cause stomach ulcers, gastritis, and kidney strain.",
+      "If your doctor prescribes preventive daily medications, take them consistently every day as directed; they take several weeks to build efficacy and do not work as on-the-spot pain relievers.",
+      "Inform your physician immediately if you are pregnant or planning pregnancy, as several standard migraine and headache medications must be avoided or changed."
+    ],
+    "complications": [
+      "Medication-overuse headache, creating a daily cycle of persistent, refractory head pain",
+      "Severe disruption of professional productivity, career progression, and daily personal life",
+      "Increased risk of anxiety, emotional exhaustion, and chronic clinical depression",
+      "Impaired sleep quality, leading to chronic daytime fatigue and concentration issues",
+      "Complications from improper self-medication, including gastric bleeding, kidney injury, and liver toxicity",
+      "Missed underlying critical diagnoses, such as raised intracranial pressure, brain tumors, or vascular aneurysms"
+    ],
+    "emergencySigns": [
+      "Sudden, explosive headache that reaches maximum, unbearable intensity within seconds to a couple of minutes (a thunderclap headache)",
+      "Headache accompanied by high fever, stiff neck, confusion, altered mental state, or persistent vomiting",
+      "Headache accompanied by sudden neurological deficits: weakness or numbness in the face, arm, or leg, slurred speech, or loss of balance",
+      "Headache accompanied by sudden vision loss, double vision, or a dilated pupil",
+      "A new type of headache following head trauma or injury",
+      "A new, severe headache starting during pregnancy or the immediate postpartum period"
+    ],
+    "whenToSeeDoctor": [
+      "Your headaches occur more than 2 to 3 days per week, or you rely on painkillers several times a week",
+      "Your usual headache pattern changes substantially in character, location, or severity",
+      "Over-the-counter pain medicines no longer provide relief at their safe, recommended doses",
+      "Headaches regularly interfere with your work, exercise, family responsibilities, or sleep",
+      "You develop new, persistent headaches after reaching 50 years of age"
+    ],
+    "faqs": [
+      {
+        "q": "Why do people in India often blame gas or acidity for their headaches?",
+        "a": "It is a very common belief in India to blame headaches on 'gas' or 'acidity'. While severe gastric upset, dehydration, or skipped meals can trigger a migraine or tension headache, acidity itself is rarely the primary cause of head pain. Many migraines actually cause digestive symptoms like nausea, reflux, and slowed digestion, making people wrongly assume the stomach created the headache."
+      },
+      {
+        "q": "How can taking painkillers too often cause more headaches?",
+        "a": "When acute pain relievers like paracetamol or combination pills are taken more than 10 to 15 days a month, the brain's pain receptors adjust and become hypersensitive. As each pill wears off, a rebound headache emerges, prompting you to take another tablet. This creates a vicious cycle known as medication-overuse headache. Breaking this cycle requires stopping the offending medicine under medical guidance."
+      },
+      {
+        "q": "Can poor eyesight cause daily forehead headaches?",
+        "a": "Yes. Uncorrected refractive errors such as astigmatism, farsightedness, or age-related reading difficulty (presbyopia) force your eye and forehead muscles to contract continuously to maintain focus. This persistent strain triggers aching across the temples and brow, particularly after reading or computer work. An eye checkup and proper prescription lenses often resolve the issue."
+      },
+      {
+        "q": "Does drinking strong tea or coffee cure headaches?",
+        "a": "Caffeine has mild pain-relieving properties and enhances the absorption of certain painkillers, which is why a cup of chai may temporarily ease a mild headache. However, regular high caffeine intake can backfire. Missing your usual morning cup causes painful caffeine withdrawal headaches, and consuming too much caffeine disrupts sleep, creating a cycle of pain."
+      },
+      {
+        "q": "Can natural home remedies make headaches go away permanently?",
+        "a": "No. While lifestyle measures such as drinking enough water, resting in a quiet dark room, applying a cool cloth, and practicing gentle breathing can provide soothing relief, no herb, diet or product can make it go away permanently. Long-term management requires identifying specific personal triggers and working with a doctor."
+      }
+    ],
+    "references": [
+      {
+        "title": "Headache disorders",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+        "year": "2024"
+      },
+      {
+        "title": "Headaches in over 12s: diagnosis and management (NICE Clinical Guideline CG150)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg150",
+        "year": "2021"
+      },
+      {
+        "title": "The burden of neurological disorders in the states of India: the Global Burden of Disease Study 1990–2019",
+        "source": "The Lancet Public Health (India State-Level Disease Burden Initiative Neurological Disorders Collaborators)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34270932/",
+        "year": "2021"
+      },
+      {
+        "title": "Headaches: Overview and Management",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/headaches/",
+        "year": "2023"
+      },
+      {
+        "title": "Tension headache: Symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/tension-headache/symptoms-causes/syc-20353977",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "migraine",
+      "stress",
+      "sleep-problems",
+      "neck-pain",
+      "sinusitis",
+      "high-blood-pressure",
+      "stroke"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "brahmi",
+      "ashwagandha",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "tsh",
+      "vitamin-d",
+      "vitamin-b12"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

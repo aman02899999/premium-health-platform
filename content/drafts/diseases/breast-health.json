@@ -1,0 +1,283 @@
+{
+  "slug": "breast-health",
+  "name": "Breast Health",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Breast health encompasses the overall physical well-being of breast tissue, awareness of natural monthly changes, management of benign conditions like cysts and fibroadenomas, and proactive screening for serious conditions such as breast cancer. In India, breast cancer is now the most frequently diagnosed cancer among women, accounting for more than 28% of all female cancer cases according to the National Cancer Registry Programme under the Indian Council of Medical Research (ICMR). Despite this high prevalence, many women in India delay seeking medical evaluation due to hesitation, lack of awareness, or the mistaken belief that only painful lumps are dangerous. In reality, roughly 80% to 90% of all breast lumps turn out to be benign (non-cancerous). Developing routine breast self-awareness, undergoing periodic clinical breast examinations by trained healthcare providers, and seeking prompt evaluation for any new change ensure that concerns are addressed early, when treatments are simplest and outcomes are best.",
+    "quickFacts": [
+      {
+        "label": "Most common female cancer in India",
+        "value": "Over 28% of all cancers in Indian women (ICMR-NCRP)"
+      },
+      {
+        "label": "Benign lumps frequency",
+        "value": "80% to 90% of all breast lumps are non-cancerous"
+      },
+      {
+        "label": "Best time for self-check",
+        "value": "3 to 5 days after your period ends"
+      },
+      {
+        "label": "MoHFW screening guidance",
+        "value": "Clinical breast examination from age 30 upwards"
+      },
+      {
+        "label": "Painless lumps warning",
+        "value": "Most breast cancers do not hurt initially"
+      },
+      {
+        "label": "Physical activity benefit",
+        "value": "150 min/week moderate exercise lowers lifetime risk"
+      }
+    ],
+    "causes": [
+      "Hormonal fluctuations: Natural shifts in oestrogen and progesterone across the menstrual cycle cause breast tissue to retain fluid and swell, often creating cyclical tenderness or temporary lumpiness.",
+      "Fibroadenomas: Common, non-cancerous glandular and connective tissue growths that occur frequently in young women between 15 and 35 years of age.",
+      "Breast cysts: Small, fluid-filled sacs within the breast that often enlarge and become tender right before a menstrual period, particularly common in women in their 40s approaching menopause.",
+      "Lactation challenges: Blocked milk ducts, engorgement, or cracked nipples allowing bacteria to enter, leading to painful breast inflammation known as mastitis or localized abscesses.",
+      "Excess weight and metabolic health: Postmenopausal weight gain and obesity raise circulating oestrogen levels, which increases the long-term risk of developing breast cell abnormalities.",
+      "Lifestyle risk factors: Sedentary living, regular alcohol consumption, tobacco exposure, and diets high in ultra-processed fats and low in protective whole foods.",
+      "Reproductive history: Factors such as starting menstruation early (before age 12), entering menopause late (after age 55), having a first child after age 30, or not breastfeeding.",
+      "Genetic factors and family history: Inherited mutations in genes such as BRCA1 and BRCA2, or having multiple first-degree relatives with breast or ovarian conditions."
+    ],
+    "types": [
+      {
+        "name": "Cyclical Mastalgia (Hormonal Breast Pain)",
+        "desc": "Discomfort, dull ache, or heaviness in both breasts that occurs in the days leading up to menstruation and subsides once bleeding begins."
+      },
+      {
+        "name": "Fibroadenoma",
+        "desc": "A firm, smooth, rubbery, benign lump that moves easily under the skin when pressed, frequently nicknamed a 'breast mouse'."
+      },
+      {
+        "name": "Breast Cysts",
+        "desc": "Fluid-filled, oval or round swellings that can feel soft like a water balloon or firm if tense, often fluctuating with the monthly cycle."
+      },
+      {
+        "name": "Lactational Mastitis",
+        "desc": "Infection or inflammation of breast tissue during breastfeeding, causing localized redness, heat, throbbing pain, and flu-like body aches."
+      },
+      {
+        "name": "Fibrocystic Changes",
+        "desc": "Generalized lumpy, ropy, or dense texture in the upper outer quadrants of the breasts, heavily influenced by monthly hormone changes."
+      },
+      {
+        "name": "Breast Carcinoma",
+        "desc": "Malignant growth originating in the milk ducts (ductal carcinoma) or milk-producing glands (lobular carcinoma), requiring immediate oncological care."
+      }
+    ],
+    "diagnosis": [
+      "Triple assessment is the gold-standard medical protocol worldwide: a clinical breast examination by a doctor, diagnostic imaging (ultrasound or mammogram), and a tissue biopsy if a discrete lump is identified.",
+      "Clinical Breast Examination (CBE): A doctor or trained nurse carefully inspects and palpates both breasts, chest wall, collarbone areas, and armpits while you are sitting and lying down.",
+      "Imaging choice based on age: Women under 40 typically receive a breast ultrasound first because their breast tissue is dense; women aged 40 and older generally undergo digital mammography.",
+      "Tissue sampling: If an imaging scan shows an irregular or indeterminate mass, a fine-needle aspiration cytology (FNAC) or core needle biopsy is performed to analyze cells in a laboratory.",
+      "Personal risk assessment: Your doctor will record your family medical history, age of menarche, reproductive milestones, and previous breast biopsies to determine your individual screening timetable."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Identifies elevated white blood cell counts if acute mastitis or a suspected breast abscess is present",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Vitamin D",
+        "purpose": "Evaluates baseline vitamin D levels, which support bone and overall metabolic health",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Bilateral Breast Ultrasound",
+        "purpose": "Differentiates whether a palpable lump is a harmless fluid-filled cyst or a solid tissue mass"
+      },
+      {
+        "test": "Digital Screening or Diagnostic Mammogram",
+        "purpose": "Detects microcalcifications and hidden structural changes long before they can be felt by hand"
+      },
+      {
+        "test": "Core Needle Biopsy",
+        "purpose": "Extracts tiny cylinders of tissue from a suspicious solid lump for definitive histopathological analysis"
+      }
+    ],
+    "modernTreatment": [
+      "Benign cysts: Often need no intervention beyond confirmation. Large, painful cysts can be gently drained (aspirated) with a fine needle in an outpatient clinic for immediate relief.",
+      "Fibroadenomas: Small, confirmed fibroadenomas are usually monitored with periodic ultrasound scans. Surgical removal is considered only if they grow rapidly, cause distress, or look atypical.",
+      "Mastitis: Managed with warm compresses, frequent and effective breast emptying, and a full course of oral antibiotics prescribed by a doctor. If an abscess develops, it is drained under ultrasound guidance.",
+      "Cyclical mastalgia: Treated conservatively with well-fitted support garments, warm or cool compresses, mild analgesics like paracetamol as advised by your doctor, and dietary adjustments.",
+      "Breast cancer management: Structured by a multidisciplinary oncology team using evidence-based protocols: breast-conserving surgery or mastectomy, sentinel node biopsy, chemotherapy, radiotherapy, and targeted or hormonal therapies.",
+      "Post-treatment surveillance: Regular clinical checks, periodic imaging, and bone health monitoring ensure long-term wellness after any major breast intervention."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe conditions of the breast under the category of 'Stanaroga' (diseases of the breast tissue) and 'Granthi' or 'Arbuda' (nodular swellings and growths).",
+      "These conditions are traditionally viewed as disturbances in Vata, Pitta, or Kapha doshas that impair the quality of Rasa Dhatu (lymphatic fluid and plasma) and Mamsa Dhatu (muscle and deep structural tissue).",
+      "Traditional regimens emphasize balancing digestive fire (Agni), maintaining clear lymphatic drainage through gentle daily routine, and avoiding excessive intake of heavy, oily, or unwholesome foods.",
+      "Gentle daily care like warm showers and supportive posture is valued. However, classical texts and modern Ayurvedic physicians warn strictly against vigorous massage, hard squeezing, or hot poultices over unexplained lumps.",
+      "Ayurvedic concepts serve as a framework for general lifestyle balance and emotional calm. They are strictly supportive and must never replace diagnostic investigations, surgical evaluations, or oncology care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which possesses general anti-inflammatory and antioxidant properties. It can support general wellness alongside a balanced diet, but no herb, diet or product can make it go away if an abnormal growth is present. Use as advised by your doctor."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally used in Indian systems to support female vitality and hormonal transitions. Because it may have weak phytoestrogenic activity, women with oestrogen-sensitive conditions must consult their specialist before taking it. Use only as advised by your doctor."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "An exceptional source of vitamin C and bioflavonoids that aids cellular defence and immune health. It serves as nutritious dietary support but does not treat or shrink breast lumps. Take as advised by your doctor."
+      }
+    ],
+    "nutrition": [
+      "Build your daily meals around the ICMR-NIN My Plate for the Day: half of your plate should consist of fresh seasonal vegetables and fruits, one quarter of whole grains, and one quarter of protein-rich dal, pulses, or eggs.",
+      "Incorporate cruciferous vegetables like cabbage (patta gobhi), cauliflower (phool gobhi), radish (mooli), and mustard greens (sarson), which contain beneficial phytonutrients.",
+      "Opt for traditional dietary fibre: replace refined maida and polished white rice with whole wheat, jowar, bajra, ragi, and brown rice to help regulate healthy hormone metabolism in the gut.",
+      "Include healthy fats in moderation: use cold-pressed mustard or groundnut oil for cooking, and eat a small palmful of raw walnuts, almonds, and roasted sunflower or pumpkin seeds daily.",
+      "Cut down on trans-fats and ultra-processed snacks: bakery biscuits, packaged namkeens, fried samosas, and commercial sweets promote chronic systemic inflammation and excess body weight.",
+      "Reduce daily caffeine intake from strong filter coffee, chai, and cola drinks if you experience cyclical breast soreness, as many women report noticeable relief within two cycles.",
+      "Stay well hydrated throughout the day with clean water, thin buttermilk (chaas) seasoned with roasted cumin, and clear lemon water rather than sweetened drinks."
+    ],
+    "lifestyle": [
+      "Practice monthly breast self-awareness: familiarize yourself with how your breasts look and feel so you can quickly spot any persistent difference in texture, shape, or skin tone.",
+      "For menstruating women, check your breasts 3 to 5 days after your period ends, when breast tissue is least swollen and least tender under hormonal influence.",
+      "Wear a correctly sized, supportive brassiere: avoid tight, poorly fitting underwires that dig into the ribcage or cause chafing, especially during workouts or sports.",
+      "Engage in at least 150 minutes of moderate aerobic exercise every week, such as brisk morning walking, swimming, light jogging, or gym training. Regular movement significantly lowers lifetime breast health risks.",
+      "Maintain a healthy body weight within the Asian-Indian BMI target (18.5 to 22.9 kg/m2). Excess fat tissue, particularly after menopause, produces additional oestrogen.",
+      "Completely avoid tobacco in all its forms, including bidi, gutka, and cigarettes, and eliminate or strictly restrict alcohol intake, as alcohol directly increases breast cancer risk.",
+      "Prioritize 7 to 8 hours of restful sleep every night to support natural neuroendocrine balance and reduce daily stress levels."
+    ],
+    "yogaActivity": [
+      "Gomukhasana (Cow Face Pose): Gently stretches the chest wall, latissimus dorsi, and shoulder girdle, encouraging upright posture and easy lymphatic circulation.",
+      "Bhujangasana (Cobra Pose): Opens the anterior ribcage, strengthens the upper back muscles, and improves respiratory expansion without placing undue strain on breast tissue.",
+      "Tadasana (Mountain Pose) and Urdhva Hastasana: Reinforce spinal alignment, reduce shoulder slouching, and relieve chronic tension around the pectoral muscles.",
+      "Anulom Vilom (Alternate Nostril Breathing): A calming, rhythmic pranayama that lowers cortisol and sympathetic nervous system overdrive without forceful abdominal or chest pressure.",
+      "Shavasana (Corpse Pose): Provides profound systemic relaxation, helping to release held muscular guarding across the upper torso.",
+      "Safety note: Avoid forceful inversions, vigorous chest impact, or intense breath retention (kumbhaka) if you have active breast pain, mastitis, or have recently had a breast procedure."
+    ],
+    "homeopathyNote": [
+      "There is no reproducible, peer-reviewed scientific evidence demonstrating that homeopathic preparations can dissolve breast masses, cure mastitis, or eliminate breast malignancy.",
+      "Relying on homeopathic pellets or external remedies for a breast lump risks delaying vital medical evaluation, imaging, and early-stage treatment.",
+      "Anyone exploring complementary remedies must continue all routine screenings, follow medical advice, and report any new symptom immediately to a qualified modern physician."
+    ],
+    "evidenceNotes": [
+      "Strong scientific evidence: Screening mammography in appropriate age brackets significantly reduces breast cancer-related deaths by catching abnormalities before they become palpable.",
+      "Strong evidence: Maintaining a healthy body weight, avoiding alcohol, staying physically active, and breastfeeding for at least 6 months lower the lifetime incidence of breast disease.",
+      "Moderate evidence: Wearing an adequately supportive, non-restrictive bra and cutting back on heavy caffeine intake can relieve symptoms of cyclical mastalgia in many women.",
+      "Limited or no evidence: No herbal medicine, topical paste, dietary detox, or commercial supplement has been proven to resolve fibroadenomas or eliminate malignant breast cells. Be cautious of marketing claims; no herb, diet or product can make it go away without appropriate medical care."
+    ],
+    "shouldNotDo": [
+      "Do not assume a breast lump is harmless just because it does not hurt. The majority of early-stage breast cancers do not cause any pain.",
+      "Do not vigorously rub, massage, knead, or apply hot poultices to any newly discovered breast lump or inflamed area.",
+      "Do not delay consulting an allopathic doctor while trying internet remedies, alternative oils, or unverified dietary detoxes.",
+      "Do not stop breastfeeding abruptly if you develop mastitis. Gentle and regular milk expression keeps ducts clear and prevents painful abscesses from worsening.",
+      "Do not skip scheduled clinical checks or mammograms out of fear of the test results or minor physical discomfort during compression.",
+      "Do not wear tight, restrictive bras to sleep if you suffer from breast tenderness or ribcage discomfort."
+    ],
+    "medicationSafety": [
+      "Over-the-counter pain relievers such as paracetamol can help ease acute cyclical discomfort or fever from mastitis, but take them only as advised by your doctor.",
+      "If your doctor prescribes antibiotics for an infection like mastitis, complete the entire course even if your redness and fever disappear after two days.",
+      "Discuss the benefits and personal risks of oral contraceptive pills or hormone replacement therapy (HRT) with your gynaecologist, especially if you have a family history of breast disease.",
+      "Never apply unverified topical creams, pain balms, or herbal pastes directly onto the nipple or cracked areolar skin, as these can trigger contact dermatitis or be ingested by a nursing infant.",
+      "Always inform your medical team about any herbal powders, ayurvedic decoctions, or multivitamin supplements you take, as some can interact with prescription medicines."
+    ],
+    "complications": [
+      "Development of a localized breast abscess requiring surgical incision or needle aspiration when acute mastitis is left untreated.",
+      "Chronic, distressing cyclical mastalgia leading to sleep disturbances, physical discomfort during daily activities, and heightened health anxiety.",
+      "Skin breakdown, persistent fissures, or secondary bacterial infections around the nipple-areolar complex.",
+      "Progression of an undetected malignant tumor to advanced stages, spreading to axillary lymph nodes, bones, lungs, or liver.",
+      "Psychological distress, anxiety, and depression stemming from fear of lumps or undergoing invasive diagnostic procedures."
+    ],
+    "emergencySigns": [
+      "Sudden, high fever accompanied by severe chills, rapid heartbeat, and an intensely red, swollen, hot breast (signs of spreading cellulitis or acute abscess).",
+      "Spontaneous, clear or bloody discharge coming from a single milk duct in one nipple without any squeezing.",
+      "Rapidly spreading redness, swelling, and thickening of the breast skin with an orange-peel texture (peau d'orange) over a matter of days.",
+      "Sudden, visible retraction or pulling inward of the nipple that was previously normal.",
+      "A firm, fixed, stony-hard lump in the breast or armpit that does not move under the fingers."
+    ],
+    "whenToSeeDoctor": [
+      "You discover any new lump, thickening, or knot in either breast or under your armpit, regardless of whether it hurts.",
+      "You notice a change in the size, shape, symmetry, or overall appearance of one breast.",
+      "The skin on your breast develops dimpling, puckering, scaling, redness, or resembles the skin of an orange.",
+      "Your nipple becomes inverted, points in a different direction, or develops a rash, crust, or persistent itching.",
+      "You experience persistent, non-cyclical breast pain that stays in one specific spot and does not fade after your monthly cycle.",
+      "You are a woman aged 30 or older attending an annual preventive health checkup or planning your recommended clinical breast examination."
+    ],
+    "faqs": [
+      {
+        "q": "Does every breast lump mean breast cancer?",
+        "a": "No. In fact, between 80% and 90% of all breast lumps turn out to be completely benign. Common non-cancerous causes include fibroadenomas (very frequent in young women), fluid-filled cysts, and localized hormonal changes. However, because it is impossible to determine whether a lump is harmless simply by touch, every new lump must be formally evaluated by a doctor."
+      },
+      {
+        "q": "How often should I perform breast self-awareness checks?",
+        "a": "Checking once a month is an excellent habit. If you have regular periods, the best time is about 3 to 5 days after your period ends, when your breasts are softest and least sensitive. If you have reached menopause, pick a consistent date each month, like the 1st or the 15th, to look and feel for any persistent changes."
+      },
+      {
+        "q": "Can wearing an underwire bra cause breast cancer?",
+        "a": "No. This is a persistent myth with no scientific basis. Rigorous medical studies have shown no connection between the type of bra you wear, underwires, or the hours you wear it, and the risk of developing breast cancer. A poorly fitted bra can cause skin irritation or rib tenderness, but it does not damage breast cells."
+      },
+      {
+        "q": "Can men develop breast lumps or breast conditions?",
+        "a": "Yes. Although far less common, men have a small amount of breast tissue behind their nipples. Men can develop benign conditions like gynecomastia (hormonal enlargement of male breast tissue) as well as breast cancer. Any man who feels a firm lump, nipple retraction, or discharge behind his chest wall should visit a doctor promptly."
+      },
+      {
+        "q": "At what age should an Indian woman get her first mammogram?",
+        "a": "The Ministry of Health and Family Welfare (MoHFW) recommends regular clinical breast examinations starting at age 30. For routine screening mammograms, many national and international guidelines suggest starting between ages 40 and 50, repeating them every 1 to 2 years based on personal and family risk factors. Your gynaecologist or physician will tailor the best screening schedule for you."
+      }
+    ],
+    "references": [
+      {
+        "title": "Global Breast Cancer Initiative",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/initiatives/global-breast-cancer-initiative",
+        "year": "2021"
+      },
+      {
+        "title": "Operational Framework: Screening and Management of Common Cancers",
+        "source": "Ministry of Health and Family Welfare (MoHFW), Government of India",
+        "url": "https://nhm.gov.in/",
+        "year": "2016"
+      },
+      {
+        "title": "Breast Lumps: Clinical Assessment and Diagnostic Pathway",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/breast-lump/",
+        "year": "2022"
+      },
+      {
+        "title": "Breast Cancer Screening and Symptoms",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "breastfeeding-nutrition",
+      "menopause",
+      "pms",
+      "pcos",
+      "obesity",
+      "vitamin-d-deficiency"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "shatavari",
+      "amla"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

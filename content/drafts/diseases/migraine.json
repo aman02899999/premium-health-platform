@@ -1,0 +1,307 @@
+{
+  "slug": "migraine",
+  "name": "Migraine",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "A migraine is not just a bad headache. It is a complex neurological disorder where nerve pathways, brain chemicals, and blood vessels become overly sensitive and reactive. A typical migraine attack brings intense, throbbing, or pulsating pain, often on one side of the head, though it can affect both sides. This pain is usually accompanied by extreme sensitivity to light, sound, and smells, as well as nausea, vomiting, dizziness, and extreme tiredness. Attacks typically last anywhere from 4 to 72 hours if left untreated. According to the Global Burden of Disease study, migraine is the second leading cause of disability worldwide and the single leading cause of disability among young women. In India, community studies estimate that roughly 14% to 25% of adults live with migraine, with women affected about two to three times more often than men. Because the condition is often dismissed as ordinary tension or gas, millions of Indians endure repeated attacks in silence, missing work, family time, and social life without proper medical management.",
+    "quickFacts": [
+      {
+        "label": "Global disability rank",
+        "value": "2nd leading cause of disability worldwide (GBD Study)"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Roughly 14% to 25% of adults in community surveys"
+      },
+      {
+        "label": "Gender impact",
+        "value": "Women affected 2 to 3 times more often than men"
+      },
+      {
+        "label": "Attack duration",
+        "value": "Typically 4 to 72 hours when untreated"
+      },
+      {
+        "label": "Key features",
+        "value": "One-sided throbbing pain, nausea, light and sound sensitivity"
+      },
+      {
+        "label": "Common Indian triggers",
+        "value": "Skipping meals (fasting), bright midday sun, loud noise, poor sleep"
+      }
+    ],
+    "causes": [
+      "Neurochemical changes in the brain. During an attack, nerve fibres in the trigeminal system release inflammatory chemicals, including calcitonin gene-related peptide (CGRP), which irritate blood vessels and surrounding tissue.",
+      "Genetic predisposition. Migraine strongly runs in families. If one or both of your parents had migraine, your brain's sensory centres are far more likely to be hypersensitive to everyday triggers.",
+      "Hormonal fluctuations. Rapid drops in oestrogen, especially right before or during monthly periods, trigger attacks in many Indian women. Hormonal shifts during pregnancy, perimenopause, or when starting oral contraceptives also play a role.",
+      "Skipping meals and fasting. The brain is sensitive to drops in blood sugar. In India, long fasting intervals for religious reasons (vrat) or delaying lunch due to heavy work schedules is one of the most common migraine triggers.",
+      "Dehydration and heat. High temperatures, harsh midday tropical sunlight, and inadequate water intake during Indian summers frequently provoke sudden attacks.",
+      "Irregular sleep patterns. Both too little sleep and sleeping in longer than usual on weekends disrupt the brain's internal rhythm and trigger attacks.",
+      "Sensory overstimulation. Glare from computer monitors, harsh fluorescent tube lights, loud traffic horns, wedding loudspeakers, and strong scents like heavy agarbatti, room sprays, or perfumes.",
+      "Sudden drop in stress (the 'weekend letdown'). Working under high pressure all week and suddenly relaxing on Sunday often causes a rebound migraine attack.",
+      "Dietary triggers in sensitive individuals. Fermented foods, aged cheeses, excess caffeine or sudden caffeine withdrawal from cutting out daily morning chai, chocolates, and artificial food additives like monosodium glutamate (ajinomoto)."
+    ],
+    "types": [
+      {
+        "name": "Migraine without aura (Common Migraine)",
+        "desc": "The most frequent form, seen in roughly 70% to 75% of people. Throbbing, moderate-to-severe headache appears without warning neurological signals, accompanied by nausea, vomiting, or sensitivity to light and noise."
+      },
+      {
+        "name": "Migraine with aura (Classic Migraine)",
+        "desc": "Occurs in about 25% to 30% of sufferers. The headache is preceded or accompanied by temporary neurological symptoms called aura, such as seeing flickering lights, blind spots, zigzag patterns, or feeling numbness and tingling in the hand or face."
+      },
+      {
+        "name": "Chronic Migraine",
+        "desc": "A severe, disabling condition defined as experiencing headaches on 15 or more days per month for at least three months, with at least 8 of those days fulfilling migraine criteria."
+      },
+      {
+        "name": "Episodic Migraine",
+        "desc": "Headache attacks that happen on fewer than 15 days each month. Without proper trigger management or medical care, episodic migraine can progress into chronic migraine."
+      },
+      {
+        "name": "Vestibular Migraine",
+        "desc": "Characterised primarily by episodes of dizziness, spinning sensations (vertigo), and unsteadiness, which may occur with or without an actual headache."
+      },
+      {
+        "name": "Menstrual Migraine",
+        "desc": "Attacks closely tied to the female cycle, usually striking between two days before the start of menstrual bleeding and the third day of the period, driven by falling oestrogen."
+      }
+    ],
+    "diagnosis": [
+      "Migraine is a clinical diagnosis. There is no blood test, brain scan, or X-ray that confirms migraine; diagnosis relies on a thorough medical history and neurological examination.",
+      "Doctors follow standard criteria set by the International Headache Society (ICHD-3). You must have had at least five attacks lasting 4 to 72 hours, with pain having at least two typical features (one-sided, throbbing, moderate-to-severe, worsened by activity) plus nausea, vomiting, or sensitivity to light and sound.",
+      "A headache diary kept over 4 to 8 weeks is vital. Recording attack dates, severity, possible triggers, and medication response helps your doctor establish the pattern.",
+      "A careful neurological exam checks your cranial nerves, reflexes, balance, and eye movements to confirm that brain function is normal.",
+      "Brain imaging, such as an MRI or CT scan, is not routinely recommended for standard migraine. Scans are only reserved for red flags, such as sudden thunderclap headaches, new symptoms after age 50, abnormal neurological signs, or sudden pattern changes."
+    ],
+    "investigations": [
+      {
+        "test": "Detailed headache diary for 4 to 8 weeks",
+        "purpose": "Logs frequency, timing, triggers, and response to acute medicines to confirm clinical diagnosis and distinguish episodic from chronic migraine"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Rules out underlying infections, systemic inflammation, or anaemia that may worsen fatigue and headache",
+        "slug": "cbc"
+      },
+      {
+        "test": "Thyroid stimulating hormone (TSH)",
+        "purpose": "Identifies thyroid disorders, which can mimic or aggravate chronic fatigue, sleep issues, and headaches",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum Vitamin D",
+        "purpose": "Evaluates widespread deficiency common in urban Indians; poor levels are often associated with chronic pain and muscle tension",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Assesses nerve health and energy metabolism, especially valuable in Indian vegetarian diets",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Magnetic resonance imaging (MRI) of the brain",
+        "purpose": "Performed only when red flag symptoms suggest secondary causes such as aneurysm, tumour, or structural vascular lesions"
+      }
+    ],
+    "modernTreatment": [
+      "Acute relief treatment (abortive medicines). Taken at the very first sign of an attack to stop the pain and associated symptoms quickly. For mild to moderate attacks, over-the-counter options like paracetamol or nonsteroidal anti-inflammatory drugs (NSAIDs) may be recommended, as advised by your doctor.",
+      "Migraine-specific acute medicines. For moderate to severe attacks, doctors prescribe triptans (such as sumatriptan or rizatriptan) or newer agents like gepants. These target migraine-specific receptors and nerve signalling, taken as advised by your doctor.",
+      "Anti-nausea medicines (antiemetics). Prescribed alongside pain relievers to settle vomiting and gastric stasis, helping oral medicines absorb properly.",
+      "Preventive (prophylactic) daily treatment. Recommended if you have four or more headache days a month, severe disabling attacks, or acute medicines fail. Classes include beta-blockers, antiepileptics (such as topiramate or sodium valproate), tricyclic antidepressants, calcium-channel blockers (flunarizine), or targeted anti-CGRP monoclonal antibodies, strictly as advised by your doctor.",
+      "Preventive treatments require consistency. They must be taken daily as directed for at least 8 to 12 weeks to accurately assess how well they reduce attack frequency, severity, and duration.",
+      "Managing medication overuse headache. Overusing acute painkillers or triptans on more than 10 to 15 days a month can make headaches rebound, trapping you in a cycle of near-daily pain. Your doctor will structure a withdrawal plan if this occurs."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, conditions resembling migraine are described under headings such as Ardhavabhedaka (severe pain affecting one half of the head) and Suryavarta (headache that tracks the movement and intensity of the sun).",
+      "Ayurvedic theory considers these conditions to be an imbalance primarily involving Vata and Pitta doshas. Aggravated Pitta brings burning sensations, light sensitivity, and irritability, while aggravated Vata causes sharp, throbbing pain, dryness, and sensory intolerance.",
+      "Traditional management focuses on gentle pacification: avoiding excessive exposure to direct sun and wind, eating warm, easily digestible meals at set hours, and avoiding skipping food or eating overly spicy, sour, and fermented foods.",
+      "Supportive practices such as Shirodhara (gentle pouring of warm herbalised oil over the forehead) and Nasya (administration of medicated drops into the nostrils) are traditionally used to calm the nervous system. These methods serve only as supportive therapies; no herb, diet or product can make migraine go away, and they should never replace standard medical care."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "A widely used Indian culinary root. Clinical trials suggest ginger powder can help reduce migraine-related nausea and may provide modest pain relief support alongside conventional acute treatments, as advised by your doctor."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "A traditional adaptogen. While evidence for direct migraine relief is weak, it may help support general stress management and sleep quality, both of which are common migraine triggers."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used to promote calmness and cognitive well-being. Robust clinical trials showing it stops or prevents migraine attacks are lacking, but it may offer gentle relaxation support."
+      }
+    ],
+    "nutrition": [
+      "Eat at regular, predictable hours every day. Never skip meals, especially breakfast. Even a small drop in blood glucose from delayed lunch can trigger a severe attack in a sensitive brain.",
+      "If you observe religious fasts (vrat), plan safe eating strategies. Consume permitted complex carbohydrates, nuts, milk, or fresh fruits at regular intervals instead of starving all day.",
+      "Stay thoroughly hydrated. Aim for 2.5 to 3 litres of clean water daily, increasing this during hot Indian summer months. Keep a water bottle visible at your work desk and drink before you feel thirsty.",
+      "Moderate your caffeine intake carefully. Having 1 to 2 small cups of morning tea (chai) or filter coffee at consistent times is fine, but avoid consuming 4 to 5 cups across the day. Never stop caffeine abruptly, as withdrawal is a potent headache trigger.",
+      "Focus on magnesium-rich Indian foods. Include dark leafy greens like palak and methi, pumpkin seeds, almonds, whole pulses like rajma and chana, and whole grains, which support nerve stability.",
+      "Include riboflavin (Vitamin B2) sources. Include curd, paneer, eggs, whole lentils, and fortified grains, as riboflavin plays a critical role in cellular energy production inside brain cells.",
+      "Identify and track personal food triggers using your diary. Pay attention to processed namkeens, packaged chips with flavour enhancers, heavily fermented dosas or bhaturas if they provoke attacks, artificial sweeteners, and dark chocolate."
+    ],
+    "lifestyle": [
+      "Lock in a strict sleep schedule. Go to bed and wake up at the exact same time every day, including Saturdays and Sundays. Oversleeping on holidays is as potent a trigger as sleep deprivation.",
+      "Shield your eyes from bright tropical sun. Wear polarised UV-blocking sunglasses, use a wide-brimmed cap or carry an umbrella when walking outside between 11 am and 4 pm.",
+      "Practice digital eye hygiene. If you work long hours on a laptop, follow the 20-20-20 rule: every 20 minutes, look at an object 20 feet away for 20 seconds. Use blue-light filters and adjust screen brightness to match room lighting.",
+      "Protect against harsh smells and noise. Avoid synthetic room fresheners, strong floor cleaners, and intense incense sticks (agarbatti) in closed rooms. Use noise-cancelling headphones during noisy Indian traffic commutes.",
+      "Pace your stress levels. Build small 5-minute pauses into your workday. Avoid the trap of pushing hard until Friday night and collapsing on the weekend, which often brings a weekend rebound headache.",
+      "Create a safe attack sanctuary at home. Prepare a quiet, completely dark, well-ventilated bedroom where you can lie down immediately when an attack strikes."
+    ],
+    "yogaActivity": [
+      "Engage in regular, moderate aerobic exercise. Brisk walking, cycling, or swimming for 30 minutes, 4 to 5 days a week, releases endorphins and reduces attack frequency over weeks.",
+      "Avoid sudden bursts of intense straining or heavy weightlifting without a thorough warm-up, as sudden increases in intra-abdominal and blood pressure can provoke headache attacks.",
+      "Do not exercise during an active migraine attack. Physical exertion worsens migraine throbbing. Rest completely until the attack passes.",
+      "Practice calming pranayama daily during headache-free periods. Gentle Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) soothe autonomic nervous system reactivity. Learn them from a certified instructor.",
+      "Avoid forceful breathing exercises like rapid Kapalabhati or prolonged breath retention (Kumbhaka) if you have frequent headaches, as rapid hyperventilation can provoke an attack.",
+      "Adopt restorative asanas. Poses such as Balasana (Child's pose), Supta Baddha Konasana (Reclining bound angle), and Viparita Karani (Legs-up-the-wall pose) relieve tension in the neck, shoulders, and upper back."
+    ],
+    "homeopathyNote": [
+      "There is no reliable, high-quality scientific evidence demonstrating that homeopathic remedies can abort an active migraine or prevent future attacks.",
+      "Relying solely on homeopathic pills while discontinuing evidence-based acute or preventive medicines can allow attacks to become chronic and significantly impair your daily life.",
+      "If you choose to explore homeopathy, do so only as an optional adjunct. Never stop your neurologist-prescribed medicines without direct medical guidance."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Prescription triptans, specific NSAIDs, and evidence-based preventive medications (beta-blockers, topiramate, CGRP antagonists) significantly reduce attack severity, duration, and frequency in large randomised controlled trials.",
+      "Strong evidence: Consistent sleep-wake cycles, avoiding skipped meals, and limiting acute analgesic use prevent episodic migraine from converting into chronic daily headache.",
+      "Moderate evidence: High-dose riboflavin (Vitamin B2) and magnesium supplementation may support a reduction in attack frequency for some individuals, as advised by your doctor.",
+      "Moderate evidence: Regular moderate aerobic exercise and structured relaxation techniques like biofeedback and gentle yoga reduce headache frequency over time.",
+      "Limited or weak evidence: Herbal remedies, acupuncture, and detox diets. No herb, diet or product can make migraine go away; claims of permanent non-medical cures lack scientific backing."
+    ],
+    "shouldNotDo": [
+      "Do not pop over-the-counter painkiller combinations or paracetamol on 10 or more days every month; this directly causes medication overuse headaches that worsen over time.",
+      "Do not wait until the headache becomes unbearable before taking your prescribed acute medicine. Rescue medicines work best when taken early during the mild phase of the attack.",
+      "Do not skip meals or observe waterless fasts if you have a known history of migraine. A drop in blood glucose reliably triggers brain irritability.",
+      "Do not try to tough it out or sit under bright office lights when an attack begins. Continuing work during an attack worsens pain and prolongs recovery.",
+      "Do not suddenly stop daily prescription preventive medicines just because you have been headache-free for two weeks; preventive courses usually need several months.",
+      "Do not fall for internet advertisements promising miraculous powders, herbal oils, or detox cleanses that claim to eradicate migraine forever."
+    ],
+    "medicationSafety": [
+      "Take acute rescue medicines at the very first sign of throbbing headache or aura, exactly as advised by your doctor, rather than delaying treatment.",
+      "Keep a precise count of your monthly medication days. Limit all acute pain relievers, including paracetamol, combination tablets, and triptans, to under 10 days per month to avoid rebound headaches.",
+      "If your doctor prescribes anti-inflammatory medicines that irritate the stomach lining, discuss taking a protective medication such as pantoprazole or omeprazole, as advised by your doctor.",
+      "Triptan medications constrict certain blood vessels. They must be used with caution and are generally avoided if you have uncontrolled high blood pressure, history of heart disease, or past stroke.",
+      "Never adjust the dose of preventive medications like beta-blockers, flunarizine, or topiramate on your own. Stopping beta-blockers abruptly can cause heart palpitations and sharp blood pressure spikes.",
+      "If you are pregnant, planning a pregnancy, or breastfeeding, inform your doctor immediately, as many standard migraine preventives and triptans must be changed to safer alternatives."
+    ],
+    "complications": [
+      "Chronic migraine: attacks progressing from occasional episodes to 15 or more headache days a month, severely damaging work and personal life.",
+      "Medication overuse headache (rebound headache): a daily, dull, persistent headache caused by the chronic use of acute pain relievers.",
+      "Status migrainosus: a relentless, debilitating migraine attack that lasts longer than 72 hours, often requiring emergency hospital treatment for dehydration and pain control.",
+      "Persistent aura without infarction: aura symptoms like vision changes or numbness lasting for a week or more without signs of stroke on brain imaging.",
+      "Migrainous infarction: a rare complication where an aura symptom is accompanied by a true ischaemic stroke, seen primarily in smokers with aura.",
+      "Secondary psychological impact: high rates of chronic anxiety, clinical depression, and sleep disorders resulting from unpredictable pain and missed life events."
+    ],
+    "emergencySigns": [
+      "Thunderclap headache: an explosive headache that reaches maximum, unbearable intensity within seconds to one minute.",
+      "Headache accompanied by high fever, neck stiffness, confusion, altered consciousness, or seizures (possible meningitis or encephalitis).",
+      "Headache accompanied by sudden neurological deficits: weakness or numbness on one side of the face or body, slurred speech, or loss of vision (stroke warning).",
+      "New, severe headache starting for the very first time in a person over 50 years of age.",
+      "Headache developing suddenly following a head injury, fall, or physical trauma.",
+      "Headache that progressively worsens over days or changes drastically in character, especially if coughing, sneezing, or bending over makes it sharply worse."
+    ],
+    "whenToSeeDoctor": [
+      "You experience headaches on 4 or more days in a single month, or they regularly interfere with your work and family life.",
+      "Your headaches are worsening in frequency, duration, or severity over time.",
+      "Over-the-counter medicines like paracetamol no longer relieve your pain, or you find yourself needing them more than twice a week.",
+      "You experience dizziness, balance loss, numbness, or visual disturbances before or during your headaches.",
+      "Your headaches started after beginning a new medication or oral contraceptive pill.",
+      "You are pregnant or planning pregnancy and need a safe treatment strategy for your attacks."
+    ],
+    "faqs": [
+      {
+        "q": "Can migraine be completely cured?",
+        "a": "No herb, diet or product can make migraine go away forever. Migraine is a genetic neurological tendency, not a temporary infection. However, with the right medical plan, identified trigger control, and lifestyle habits, the vast majority of people can significantly reduce the frequency, duration, and severity of attacks."
+      },
+      {
+        "q": "Is my headache caused by gas or acidity?",
+        "a": "In India, people often blame headaches on 'gas' or gastric trouble because migraine attacks frequently cause nausea, bloating, and vomiting. However, the gut symptoms are actually caused by the migraine itself through the gut-brain axis, not the other way around. Treating it purely as acidity delays proper neurological care."
+      },
+      {
+        "q": "Why do I get headaches every Sunday or holiday?",
+        "a": "This is known as the 'weekend letdown' migraine. During the work week, your body runs on high cortisol and stress. When you suddenly relax, sleep late, or delay your morning chai on Sunday, the sudden drop in stress hormones and disrupted routine triggers an attack. Keeping a consistent weekend schedule helps."
+      },
+      {
+        "q": "What is the difference between a normal headache and a migraine?",
+        "a": "A common tension headache usually causes a dull, steady ache like a tight band around the head, without nausea or sensory intolerance, and does not stop you from doing routine tasks. A migraine is typically throbbing, moderate-to-severe, often one-sided, worsens with physical movement, and comes with nausea, vomiting, or intolerance to light and sound."
+      },
+      {
+        "q": "Can looking at mobile screens all day cause migraine?",
+        "a": "Screen glare, eye strain, poor neck posture, and blue light do not cause the underlying genetic disorder, but they are potent triggers for an attack in someone who already has migraine. Taking regular screen breaks, using blue-light filters, and maintaining good lighting reduce attack frequency."
+      }
+    ],
+    "references": [
+      {
+        "title": "Headache disorders Fact Sheet",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+        "year": "2024"
+      },
+      {
+        "title": "Headaches in over 12s: diagnosis and management (NICE Guideline CG150)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg150",
+        "year": "2021"
+      },
+      {
+        "title": "Migraine: Symptoms, causes, and treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/migraine-headache/symptoms-causes/syc-20360201",
+        "year": "2023"
+      },
+      {
+        "title": "Global, regional, and national burden of migraine and tension-type headache, 1990-2016: a systematic analysis for the Global Burden of Disease Study 2016",
+        "source": "The Lancet Neurology (GBD 2016 Headache Collaborators)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30415987/",
+        "year": "2018"
+      },
+      {
+        "title": "The American Headache Society Consensus Statement: Update on integrating new migraine treatments into clinical practice",
+        "source": "Headache: The Journal of Head and Face Pain (Ailani J et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34160840/",
+        "year": "2021"
+      },
+      {
+        "title": "Overview of Migraine",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/migraine/",
+        "year": "2022"
+      }
+    ],
+    "relatedDiseases": [
+      "headache",
+      "stress",
+      "anxiety",
+      "depression",
+      "sleep-problems",
+      "neck-pain",
+      "dizziness",
+      "brain-health"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "pantoprazole",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "ashwagandha",
+      "brahmi"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "tsh",
+      "vitamin-d",
+      "vitamin-b12"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

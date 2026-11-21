@@ -1,0 +1,299 @@
+{
+  "slug": "male-infertility",
+  "name": "Male Infertility",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Male infertility means a man has difficulty causing a pregnancy in a fertile partner after at least one year of regular, unprotected sexual intercourse. It is far more common than many people realize. In India and worldwide, male factors contribute to nearly half of all couple infertility cases. Producing healthy sperm depends on a delicate chain of events involving the brain's hormone signals, healthy testicles, proper temperature regulation, clear physical pathways for sperm release, and adequate sperm movement and shape. Because male infertility rarely causes outward physical pain or obvious symptoms, it is usually discovered only when a couple actively tries to conceive. Seeking an evaluation is a sensible, proactive step, and in many men, identifying lifestyle factors, hormonal imbalances, or physical issues opens practical paths toward family planning.",
+    "quickFacts": [
+      {
+        "label": "Clinical definition",
+        "value": "Failure to achieve pregnancy after 12 months of regular unprotected intercourse"
+      },
+      {
+        "label": "Couple contribution",
+        "value": "Male factors are involved in 40% to 50% of all infertility cases"
+      },
+      {
+        "label": "WHO lower reference count",
+        "value": "15 million sperm per millilitre of semen (WHO 6th Edition)"
+      },
+      {
+        "label": "Sperm production cycle",
+        "value": "Approximately 64 to 72 days to produce fresh, mature sperm"
+      },
+      {
+        "label": "Most common physical cause",
+        "value": "Varicocele (swollen veins inside the scrotum)"
+      },
+      {
+        "label": "Major preventable factor",
+        "value": "Tobacco, gutka, heavy alcohol, and non-prescribed gym anabolic steroids"
+      }
+    ],
+    "causes": [
+      "Varicocele: An enlargement of the veins within the loose bag of skin holding the testicles (scrotum). This increases local temperature and pools sluggish blood, harming sperm production and movement.",
+      "Hormone imbalances: Low testosterone, high prolactin, thyroid dysfunction, or poor signalling from the pituitary gland and hypothalamus in the brain.",
+      "Anabolic steroids and gym supplements: Using testosterone injections, oral steroids, or unverified muscle-building powders shuts down the brain's natural signals (LH and FSH) to the testicles, often dropping sperm count to zero.",
+      "Physical blockages: Prior infections, surgeries (such as hernia repair), or congenital conditions that block the vas deferens or epididymis, preventing sperm from entering the ejaculate.",
+      "Infections: Past sexually transmitted infections, epididymitis, orchitis, or complications of childhood viral infections like mumps after puberty, which can damage testicular tissue.",
+      "Scrotal heat stress: Extended exposure to high temperatures from tight synthetic underwear, hot baths or saunas, keeping laptops directly on the lap for hours, or occupations involving prolonged sitting and hot engines.",
+      "Tobacco, gutka, and alcohol: Smoking bidi or cigarettes, chewing gutka or khaini, and drinking excess alcohol generate severe oxidative stress, damaging sperm DNA and reducing counts.",
+      "Metabolic disorders: Obesity, type 2 diabetes, and insulin resistance alter circulating estrogen-to-testosterone ratios and impair semen quality.",
+      "Genetic factors: Chromosomal abnormalities such as Klinefelter syndrome or microdeletions on the Y chromosome.",
+      "Erectile or ejaculatory difficulties: Premature ejaculation, erectile dysfunction, or retrograde ejaculation (where semen enters the bladder instead of emerging from the penis)."
+    ],
+    "types": [
+      {
+        "name": "Pre-testicular Infertility",
+        "desc": "Conditions originating outside the testicles, usually involving the brain's pituitary or hypothalamic glands. Insufficient hormone signals prevent normal sperm manufacturing despite structurally sound testicles."
+      },
+      {
+        "name": "Testicular Infertility",
+        "desc": "Primary problems within the testicles themselves. Causes include varicoceles, past trauma, mumps orchitis, genetic issues, or toxic exposure that damages sperm-producing cells."
+      },
+      {
+        "name": "Post-testicular Infertility",
+        "desc": "The testicles make sperm normally, but transportation or ejaculation is impaired due to physical blockages, vasectomy, nerve damage, or retrograde ejaculation."
+      },
+      {
+        "name": "Idiopathic (Unexplained) Male Infertility",
+        "desc": "Cases where semen parameters are suboptimal or normal, yet no clear anatomical, hormonal, or genetic cause can be pinpointed after full medical testing."
+      }
+    ],
+    "diagnosis": [
+      "Complete medical, surgical, and lifestyle history: Your andrologist or urologist will ask about puberty timing, prior infections, gym supplements, smoking, sexual frequency, and workplace heat or chemical exposures.",
+      "Physical examination: A careful examination of the scrotum, testes size and consistency, presence of the vas deferens, and checking for varicoceles while standing or straining.",
+      "Semen analysis: The fundamental first step. Because sperm parameters fluctuate naturally, guidelines recommend at least two separate tests spaced 2 to 4 weeks apart, after 2 to 7 days of sexual abstinence.",
+      "Endocrine testing: Blood tests taken early in the morning to evaluate total testosterone, luteinizing hormone (LH), follicle-stimulating hormone (FSH), prolactin, and thyroid markers.",
+      "Imaging studies: A high-resolution scrotal Doppler ultrasound detects hidden varicoceles, testicular volume issues, and structural abnormalities.",
+      "Advanced testing when indicated: Genetic karyotyping, Y-chromosome microdeletion testing, or sperm DNA fragmentation index (DFI) for men with severe abnormalities or recurrent pregnancy loss."
+    ],
+    "investigations": [
+      {
+        "test": "Semen Analysis (Computer-Assisted or Manual)",
+        "purpose": "Evaluates total volume, sperm concentration, total count, progressive motility, vitality, and normal shape (morphology)."
+      },
+      {
+        "test": "Scrotal Doppler Ultrasound",
+        "purpose": "Detects reflux of blood in the pampiniform plexus (varicocele), testicular cysts, masses, and measures precise testicular volume."
+      },
+      {
+        "test": "Early Morning Serum Testosterone, LH, and FSH",
+        "purpose": "Assesses whether the brain is sending proper signals and whether the testicles are capable of hormone and sperm generation."
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Underactive or overactive thyroid glands directly interfere with male reproductive hormones and semen parameters.",
+        "slug": "tsh"
+      },
+      {
+        "test": "Fasting Glucose and HbA1c",
+        "purpose": "Screens for diabetes and insulin resistance, which increase oxidative damage to sperm and cause nerve-related ejaculation issues.",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Urine Routine and Post-Ejaculatory Urinalysis",
+        "purpose": "Checks for urinary tract infections and detects sperm in urine when retrograde ejaculation is suspected.",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Serum Vitamin D",
+        "purpose": "Assesses vitamin D status, which has documented receptors on testicular cells and associations with sperm motility.",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Identifies systemic inflammation, infection, or chronic anemia that might undermine overall metabolic health.",
+        "slug": "cbc"
+      }
+    ],
+    "modernTreatment": [
+      "Treating correctable causes: Surgical repair of clinically significant varicoceles (varicocelectomy, often done via microsurgery) can improve sperm parameters and pregnancy rates over the following 3 to 6 months.",
+      "Clearing physical blockages: Microsurgical reconstruction of blocked pathways, such as vasoepididymostomy or vasectomy reversal.",
+      "Treating reproductive tract infections: Targeted courses of prescription antibiotics for epididymitis or prostatitis to clear white blood cells and infection-driven oxidative stress.",
+      "Medical and hormonal management: For specific hormonal deficiencies, doctors may prescribe gonadotropins or selective estrogen receptor modulators to gently stimulate natural testicular function.",
+      "Addressing lifestyle and medications: Immediate cessation of all anabolic steroids, test boosters of unknown composition, recreational drugs, and tobacco products, alongside managing weight and diabetes.",
+      "Assisted Reproductive Technology (ART): When natural conception remains difficult, procedures such as Intrauterine Insemination (IUI), In Vitro Fertilization (IVF), or Intracytoplasmic Sperm Injection (ICSI) allow couples to conceive even with very low sperm numbers or surgically retrieved sperm (TESA/TESE)."
+    ],
+    "ayurvedaView": [
+      "Traditional Ayurvedic texts categorize reproductive health under 'Shukra Dhatu' and male subfertility under 'Klaibya' or 'Shukra Dosha'. These classical concepts explain vitality through constitutional doshas (Vata, Pitta, and Kapha).",
+      "Ayurveda attributes impaired reproductive vigour to factors such as excessive stress (Chinta), poor dietary habits (Apathya Ahara), chronic exhaustion, and lack of restorative rest.",
+      "Traditional guidance emphasizes lifestyle moderation, a nutrient-dense diet, and stress-calming herbs. However, these are supportive frameworks, not clinical cures. Modern semen analysis and urological evaluation remain essential."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Some clinical trials suggest it may help reduce psychological stress, support serum testosterone levels, and moderately improve semen parameters in stressed men. It acts only as a gentle support and cannot unblock physical ducts or repair a varicocele."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally utilized as an adaptogen and tonic for reproductive vitality. While it offers general antioxidant properties, solid human clinical evidence for male fertility remains limited."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "A rich dietary source of natural vitamin C and polyphenols that combat systemic oxidative stress. It provides nutritional support but does not replace medical treatment."
+      }
+    ],
+    "nutrition": [
+      "Adopt the ICMR-NIN My Plate for the Day model: Fill half your plate with fresh seasonal vegetables and fruits, one quarter with quality protein, and one quarter with complex whole grains.",
+      "Boost zinc-rich foods: Zinc is crucial for testosterone production and sperm maturation. Include roasted pumpkin seeds, sesame seeds (til), chana, moong, eggs, and lean meats.",
+      "Emphasize antioxidant-dense fruits and vegetables: Amla, guavas, oranges, pomegranate, tomatoes (rich in lycopene), and dark leafy greens help protect fragile sperm cell membranes from free-radical damage.",
+      "Include healthy fats: Walnuts, flaxseeds, and mustard or olive oil provide omega-3 fatty acids that contribute to the flexibility and membrane health of sperm cells.",
+      "Stay thoroughly hydrated: Drink 2.5 to 3 litres of clean water daily. Dehydration directly lowers seminal fluid volume and increases semen viscosity.",
+      "Eliminate ultra-processed snacks: Steer clear of deep-fried namkeens, bakery fats containing trans fatty acids, and sugary sodas, which increase systemic inflammation and lower sperm quality."
+    ],
+    "lifestyle": [
+      "Keep testicles cool: Switch from tight synthetic briefs to loose, breathable cotton boxers. Avoid resting laptops directly on your thighs, and stay out of hot tubs, saunas, and extremely hot showers.",
+      "Stop all tobacco and gutka immediately: Bidi, cigarettes, khaini, and vape pens release heavy metals and toxins that break sperm DNA and impair progressive motility.",
+      "Eliminate unverified gym supplements and steroids: Never take anabolic steroids, SARMs, or unlabelled 'muscle gain' powders. They suppress your natural pituitary hormones and can cause long-lasting testicular atrophy.",
+      "Aim for 7 to 8 hours of restorative sleep: Testosterone synthesis peaks during deep REM sleep; chronic sleep deprivation disrupts nocturnal hormone surges.",
+      "Reduce alcohol intake: Excessive alcohol lowers testosterone, damages Leydig cells in the testes, and increases abnormal sperm shapes.",
+      "Engage in sensible, moderate fitness: Strive for 150 minutes of moderate aerobic activity and resistance training each week. Avoid extreme endurance cycling, which places prolonged heat and pressure on the perineum."
+    ],
+    "yogaActivity": [
+      "Practice calming pranayama: Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) help reduce cortisol and sympathetic nervous system overdrive.",
+      "Incorporate pelvic-opening asanas: Postures such as Baddha Konasana (Bound Angle Pose), Setu Bandhasana (Bridge Pose), and Supta Matsyendrasana (Supine Spinal Twist) promote pelvic circulation and relieve lower body muscular tension.",
+      "Rest in Viparita Karani (Legs-Up-The-Wall Pose): A gentle restorative posture that encourages venous return, relieves fatigue, and supports deep relaxation.",
+      "Avoid extreme abdominal breath-holding: Refrain from forceful, prolonged breath retention during heavy lifting or advanced yoga if you have a known varicocele."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence that homeopathic preparations improve sperm count, correct hormonal deficits, or repair structural blockages.",
+      "Relying solely on homeopathy can delay critical medical and surgical evaluations during the reproductive window of both partners."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Microsurgical varicocelectomy improves semen parameters in men with palpable varicoceles and abnormal semen. Smoking cessation, weight management, and stopping anabolic steroids reliably protect sperm health.",
+      "Strong evidence: Assisted Reproductive Technology (such as ICSI) allows successful fertilization even with severe oligospermia or azoospermia.",
+      "Moderate evidence: Targeted antioxidant supplementation (vitamins C and E, zinc, coenzyme Q10, selenium) can reduce oxidative stress in men with idiopathic subfertility, as advised by a doctor.",
+      "Weak or limited evidence: Herbal formulations and traditional tonics show modest or inconsistent results in human trials and must never be treated as primary therapy.",
+      "No evidence: Over-the-counter 'sperm booster' oils, pills, or powders sold online have zero regulatory validation and may contain harmful adulterants."
+    ],
+    "shouldNotDo": [
+      "Do not keep taking gym steroids, testosterone gels, or 'pro-hormones' assuming they improve fertility; they act like male contraceptives by turning off natural sperm production.",
+      "Do not rely on a single semen analysis to draw conclusions; semen quality naturally varies and always requires at least two separate, standardized tests.",
+      "Do not purchase unregulated 'sperm multiplier' tablets, powders, or herbal capsules online. No herb, diet or product can make it go away or instantly produce sperm.",
+      "Do not delay evaluation while focusing solely on your female partner; both partners should undergo simultaneous, parallel evaluations to save valuable time.",
+      "Do not place laptops directly on your lap or keep mobile phones in your front trouser pocket for prolonged periods.",
+      "Do not take high-dose self-prescribed fertility vitamins without checking for kidney or liver safety."
+    ],
+    "medicationSafety": [
+      "Always inform your doctor of every prescription drug you take. Common medications like sulfasalazine, certain blood pressure tablets (calcium channel blockers), and some antibiotics can temporarily affect sperm function.",
+      "If taking hormonal therapies prescribed by an andrologist (such as clomiphene citrate or hCG), adhere strictly to the monitoring schedule and blood tests requested.",
+      "Avoid taking over-the-counter painkillers (NSAIDs) constantly, as chronic high use can interfere with normal testicular and kidney physiology.",
+      "Never start or stop prescription medications without professional medical guidance."
+    ],
+    "complications": [
+      "Psychological distress, anxiety, low self-esteem, and relationship strain within the marriage.",
+      "Underlying medical conditions remaining undetected, such as pituitary adenomas, testicular malignancies, or severe endocrine disorders.",
+      "Financial and emotional fatigue associated with prolonged, unguided fertility treatments.",
+      "Secondary sexual dysfunction, including situational erectile dysfunction and loss of libido driven by performance pressure."
+    ],
+    "emergencySigns": [
+      "Sudden, severe pain in one testicle, with or without swelling: could indicate testicular torsion, which requires immediate emergency surgery within hours to save the testicle.",
+      "Rapidly enlarging, hard, or painless lump felt inside the testicle: requires urgent urological investigation to rule out testicular cancer.",
+      "High fever accompanied by severe scrotal redness, swelling, and acute tenderness: signs of acute epididymo-orchitis needing urgent medical care.",
+      "Inability to pass urine accompanied by severe pelvic or groin pain."
+    ],
+    "whenToSeeDoctor": [
+      "You and your partner have had regular, unprotected intercourse for 12 months (or 6 months if the female partner is 35 or older) without achieving pregnancy.",
+      "You have a known history of undescended testicles, childhood hernia repair, scrotal trauma, or mumps after puberty.",
+      "You notice a dull ache, heaviness, or visible 'bag of worms' swelling in your scrotum.",
+      "You experience difficulty with erections, ejaculation, or have a noticeably low volume of ejaculate.",
+      "You have previously used anabolic steroids, testosterone therapy, or received cancer treatments such as chemotherapy or radiation."
+    ],
+    "faqs": [
+      {
+        "q": "Can tight clothing and hot environments really harm sperm count?",
+        "a": "Yes. The testicles hang outside the main body cavity because healthy sperm production requires a temperature about 2 to 3 degrees Celsius cooler than core body heat. Tight synthetic underwear, frequent hot tub baths, and keeping hot laptops on your lap increase scrotal temperature and can temporarily lower sperm count and motility."
+      },
+      {
+        "q": "Does masturbation decrease sperm count permanently?",
+        "a": "No. Masturbation does not cause permanent infertility or damage your reproductive system. However, if you are scheduling a diagnostic semen analysis or timing intercourse during your partner's fertile window, doctors advise an abstinence period of 2 to 7 days so that the semen sample has an optimal concentration of sperm."
+      },
+      {
+        "q": "Will taking testosterone injections boost my sperm count?",
+        "a": "No, it does the exact opposite. Taking external testosterone tricks your brain into thinking the body has plenty of hormones. The brain stops releasing LH and FSH, which completely halts your testicles' natural testosterone and sperm manufacturing, often causing total absence of sperm (azoospermia)."
+      },
+      {
+        "q": "Can a man with zero sperm count (azoospermia) still have biological children?",
+        "a": "In many cases, yes. It depends on whether the cause is obstructive (a physical blockage while testicles still make sperm) or non-obstructive. Surgeons can often retrieve sperm directly from the testicle or epididymis using minor procedures like TESA or micro-TESE, which can then be used in IVF with ICSI."
+      },
+      {
+        "q": "How long does it take for lifestyle changes to show up in a semen test?",
+        "a": "It takes about 64 to 72 days for a new cycle of sperm to develop and mature, plus another week or two to travel through the reproductive tract. Therefore, after quitting smoking, improving nutrition, or undergoing varicocele surgery, you should wait at least 3 months before repeating a semen analysis to see meaningful changes."
+      }
+    ],
+    "references": [
+      {
+        "title": "WHO laboratory manual for the examination and processing of human semen, sixth edition",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789240030787",
+        "year": "2021"
+      },
+      {
+        "title": "Infertility Fact Sheet",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/infertility",
+        "year": "2023"
+      },
+      {
+        "title": "Diagnosis and Treatment of Infertility in Men: AUA/ASRM Guideline",
+        "source": "American Urological Association / American Society for Reproductive Medicine (Schlegel PN et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33295818/",
+        "year": "2021"
+      },
+      {
+        "title": "Nutrient Requirements for Indians (ICMR-NIN Guidelines)",
+        "source": "Indian Council of Medical Research - National Institute of Nutrition",
+        "url": "https://www.nin.res.in/",
+        "year": "2024"
+      },
+      {
+        "title": "Male Infertility",
+        "source": "National Institutes of Health (Eunice Kennedy Shriver National Institute of Child Health and Human Development)",
+        "url": "https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility",
+        "year": "2022"
+      },
+      {
+        "title": "Infertility - NHS Overview",
+        "source": "National Health Service (UK)",
+        "url": "https://www.nhs.uk/conditions/infertility/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "fertility",
+      "erectile-dysfunction",
+      "testosterone",
+      "male-hormonal-health",
+      "testosterone-health",
+      "obesity",
+      "type-2-diabetes",
+      "vitamin-d-deficiency"
+    ],
+    "relatedMedicines": [
+      "vitamin-d3",
+      "levothyroxine",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "shatavari",
+      "amla"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "vitamin-d",
+      "fasting-glucose",
+      "cbc",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

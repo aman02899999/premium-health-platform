@@ -1,0 +1,281 @@
+{
+  "slug": "parkinsons-disease",
+  "name": "Parkinson's Disease",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Parkinson's disease is a slowly progressive condition of the brain and nervous system that mainly affects movement, balance, and muscle control. It develops when nerve cells in a specific region of the brain, called the substantia nigra, gradually become damaged and die. These cells produce dopamine, a vital chemical messenger that sends smooth signals between the brain and muscles. Without enough dopamine, voluntary movements become slow, stiff, and shaky. While a gentle resting tremor in one hand is often the first sign people notice, Parkinson's disease also causes lesser-known non-motor problems such as persistent constipation, low mood, sleep disturbances, and a quiet voice. In India, Parkinson's disease is becoming increasingly common as our population ages. Community-based studies across urban and rural India suggest that roughly 30 to 70 people per 100,000 live with Parkinson's, with rates rising steeply to over 300 per 100,000 among individuals above 60 years of age. Although Parkinson's disease cannot be completely reversed, modern medical therapies, structured gym exercise, physiotherapy, and dietary adjustments allow people to lead active, meaningful, and independent lives for many years.",
+    "quickFacts": [
+      {
+        "label": "Primary cause",
+        "value": "Loss of dopamine-producing nerve cells in the brain"
+      },
+      {
+        "label": "Key movement signs",
+        "value": "Resting tremor, muscle stiffness, slow movement, and balance loss"
+      },
+      {
+        "label": "Typical age of onset",
+        "value": "Usually 60 years and above, but early onset can occur in 30s or 40s"
+      },
+      {
+        "label": "Prevalence in India",
+        "value": "Around 30 to 70 per 100,000 people, rising sharply after age 60"
+      },
+      {
+        "label": "Common non-motor sign",
+        "value": "Chronic constipation, often starting years before motor tremors"
+      },
+      {
+        "label": "Gold-standard therapy",
+        "value": "Levodopa medications combined with daily physical exercise"
+      }
+    ],
+    "causes": [
+      "Dopamine deficiency: Gradual degeneration of dopaminergic neurons in the substantia nigra reduces dopamine levels, impairing normal brain signaling for smooth muscle movement.",
+      "Lewy body accumulation: Abnormal clumps of a protein named alpha-synuclein build up inside brain cells, disrupting their normal functioning and leading to cell death.",
+      "Advancing age: Aging is the single biggest risk factor; natural cellular repair mechanisms decline over decades, making neurons more vulnerable.",
+      "Environmental exposures: Long-term exposure to certain pesticides, herbicides, industrial solvents, or well water contaminated with agricultural chemicals has been associated with higher risk in epidemiologic research.",
+      "Genetic factors: Approximately 10 to 15 percent of cases have a family history, with known mutations in genes such as LRRK2, PRKN, and SNCA playing a role, especially in young-onset cases.",
+      "Mitochondrial dysfunction and oxidative stress: Breakdown in cellular energy production and high levels of free radicals cause cumulative cell injury in vulnerable areas of the brain."
+    ],
+    "types": [
+      {
+        "name": "Idiopathic Parkinson's Disease",
+        "desc": "The most common form, accounting for roughly 85 percent of cases. The exact primary cause is unknown, but it involves a mix of age, environmental factors, and subtle genetic predispositions."
+      },
+      {
+        "name": "Young-Onset Parkinson's Disease (YOPD)",
+        "desc": "Diagnosed when symptoms appear between the ages of 21 and 50. Progression is often slower, but patients frequently deal with early involuntary movements (dyskinesias) and family or career disruptions."
+      },
+      {
+        "name": "Vascular Parkinsonism",
+        "desc": "Caused by multiple small strokes or long-standing high blood pressure damaging brain tissue, mainly affecting the lower body with walking and balance problems rather than resting hand tremors."
+      },
+      {
+        "name": "Drug-Induced Parkinsonism",
+        "desc": "Triggered by medicines that block dopamine receptors, such as certain older psychiatric drugs or nausea medications. Symptoms often improve gradually when the causative medicine is safely stopped under medical guidance."
+      },
+      {
+        "name": "Atypical Parkinsonism (Parkinson-Plus Syndromes)",
+        "desc": "A group of rarer conditions (like Progressive Supranuclear Palsy or Multiple System Atrophy) that share Parkinson-like symptoms but progress faster and do not respond well to dopamine medications."
+      }
+    ],
+    "diagnosis": [
+      "Parkinson's disease remains primarily a clinical diagnosis made by an experienced neurologist through detailed neurological examination and medical history.",
+      "Diagnosis requires the confirmed presence of bradykinesia (slowness of movement) along with at least one of: resting tremor, muscle rigidity, or balance instability.",
+      "Doctors assess physical signs such as the 'pill-rolling' hand tremor at rest, reduced arm swing while walking, a softer voice, and a mask-like reduction in facial expressions.",
+      "Response to medications: A noticeable improvement in movement, stiffness, and walking after starting levodopa therapy is an essential confirmatory clue.",
+      "Exclusion of other causes: Doctors review all current medications to rule out drug-induced parkinsonism and check blood tests for secondary causes of tremors.",
+      "Neuroimaging: A brain MRI or CT scan is frequently ordered, not to detect Parkinson's directly, but to rule out alternate issues like strokes, brain tumors, or normal pressure hydrocephalus."
+    ],
+    "investigations": [
+      {
+        "test": "Brain MRI (Magnetic Resonance Imaging)",
+        "purpose": "Rules out underlying strokes, vascular disease, fluid buildup, or brain tumors that mimic Parkinson's symptoms"
+      },
+      {
+        "test": "Vitamin B12 Blood Test",
+        "purpose": "Detects B12 deficiency which can cause gait unsteady walking, numbness, and neuropathy in older adults",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out thyroid dysfunction, which can cause tremors, severe muscle fatigue, and mood swings",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin D Blood Test",
+        "purpose": "Evaluates bone health and deficiency, which is vital because Parkinson's increases the risk of balance loss and falls",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Routine Urine Examination",
+        "purpose": "Rules out asymptomatic urinary tract infections, which often cause sudden confusion or motor worsening in elderly patients",
+        "slug": "urine-routine"
+      }
+    ],
+    "modernTreatment": [
+      "Dopamine replacement therapy: Levodopa combined with carbidopa is the cornerstone of modern treatment. Levodopa converts into dopamine in the brain, dramatically easing slowness and muscle stiffness.",
+      "Dopamine agonists: Medicines that mimic dopamine by stimulating brain dopamine receptors directly, often used in earlier stages or alongside levodopa.",
+      "Enzyme inhibitors (MAO-B and COMT inhibitors): Drugs that block the natural enzymes that break down dopamine, helping each dose of levodopa last longer throughout the day.",
+      "Targeted physical and gym therapy: Structured exercise, gait retraining, resistance training, and balance drills help rewire brain pathways and maintain mobility.",
+      "Speech and occupational therapy: Specialized speech exercises (such as LSVT LOUD) strengthen swallowing and voice projection, while occupational therapists modify daily tasks to maintain independence.",
+      "Deep Brain Stimulation (DBS): A neurosurgical procedure where electrodes are placed into targeted brain structures to deliver electrical pulses, recommended for advanced patients who have significant motor fluctuations or severe tremors that no longer stabilize with tablets alone."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, symptoms mirroring Parkinson's disease are described under conditions like 'Kampa Vata' or 'Vepathu', categorized as a major neurological disorder driven by an aggravated Vata dosha.",
+      "Vata governs movement, nerve impulses, and dryness. Its excess in the brain and nervous tissue (Majja Dhatu) is traditionally thought to cause involuntary shaking, body stiffness, and slowness.",
+      "Classical texts mention the use of herbs such as Kapikacchu (Mucuna pruriens), which naturally contains L-dopa. However, natural concentrations vary unpredictably, making standardized modern levodopa tablets far safer, more reliable, and precise for medical therapy.",
+      "Supportive Ayurvedic therapies such as gentle warm oil massage (Abhyanga) and mild medicated enemas (Basti) are traditionally used to relieve muscle stiffness and severe constipation.",
+      "These traditional approaches should strictly serve as supportive comfort measures under medical supervision and must never replace prescribed neurological medications."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "A traditional adaptogen studied in laboratory settings for neurosupportive qualities. Human clinical evidence remains preliminary, and it cannot replace prescribed dopamine drugs."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used to support cognitive function, calmness, and memory. Scientific evidence for improving motor symptoms in Parkinson's is limited."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, widely researched for its antioxidant and anti-inflammatory properties, but weak clinical evidence exists regarding any direct benefit on Parkinson's disease progression."
+      }
+    ],
+    "nutrition": [
+      "Manage protein timing carefully: Dietary proteins break down into amino acids that compete with levodopa for absorption in the small intestine. Many doctors advise taking levodopa 30 to 60 minutes before meals, or having high-protein foods like paneer, dal, eggs, or chicken primarily with the evening meal.",
+      "Aggressively fight constipation with dietary fiber: Consume generous portions of cooked vegetables (lauki, tori, methi), oats, whole fruits like papaya and pears, and gentle fiber supplements like isabgol (psyllium husk) as advised by your doctor.",
+      "Drink plenty of fluids: Aim for 8 to 10 glasses of water, chaas, or clear soups daily. Good hydration keeps stools soft and helps prevent sudden drops in blood pressure upon standing.",
+      "Eat smaller, more frequent meals: Large, heavy meals divert blood flow to the gut, making you feel drowsy and increasing the likelihood of post-meal blood pressure drops (postprandial hypotension).",
+      "Choose easily chewable textures: As swallowing becomes difficult (dysphagia), shift toward softer foods like khichdi, idli dipped in sambar, soft porridge, and vegetable purees to prevent choking.",
+      "Ensure adequate calcium and vitamin D: Include curd, fortified foods, and supplements as advised by your doctor to maintain bone density and protect against fractures during accidental falls."
+    ],
+    "lifestyle": [
+      "Make physical movement your daily priority: Exercise is one of the most powerful tools to preserve motor function. Engage in stationary cycling, brisk walking, treadmill training, or light gym machines for 30 to 45 minutes on most days.",
+      "Fall-proof your home: Remove loose floor rugs, clear electrical cords, install bright night-lights, and fix sturdy grab rails beside western commodes and in bathing areas.",
+      "Maintain a rigid medication timetable: Set phone alarms or use a pill organiser box. In Parkinson's disease, taking medicines at the exact scheduled minute makes the difference between moving freely ('on' time) and freezing up ('off' time).",
+      "Adopt deliberate walking habits: When walking, consciously lift your feet high, imagine stepping over imaginary lines, swing your arms purposefully, and avoid pivoting sharply on one foot.",
+      "Protect voice and facial muscles: Read the newspaper out loud for 15 minutes every morning, practice exaggerated facial smiles, and sing along to music to counteract a fading voice and blank facial expression.",
+      "Address sleep disturbances: Keep a consistent bedtime routine, avoid digital screens late at night, and ensure the bed is easy to get into and out of to accommodate nighttime stiffness."
+    ],
+    "yogaActivity": [
+      "Gentle standing asanas with wall support: Practice supported Tadasana (Mountain Pose) and Veerabhadrasana (Warrior Pose) near a wall to strengthen thigh muscles, improve posture, and challenge balance safely.",
+      "Seated and chair-based yoga: Chair stretches, seated spinal twists, and seated forward bends maintain spinal flexibility and shoulder mobility without risk of falling.",
+      "Cat-Cow pose (Marjaryasana-Bitilasana): Performed on a soft gym mat or from a sturdy chair, this fluid motion helps release stubborn stiffness along the back, hips, and neck.",
+      "Calming pranayama: Gentle breathing exercises like Anulom Vilom (alternate nostril breathing) and Bhramari help soothe nervous tension, lower stress hormones, and build breath control.",
+      "Avoid inverted poses or rapid head changes: Poses like Sarvangasana (Shoulder Stand), Sirsasana (Headstand), or rapid Surya Namaskar should be avoided due to balance impairment and risk of dizziness."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence showing that homeopathic remedies can stimulate dopamine production, slow down Parkinson's disease, or prevent physical disability.",
+      "Relying on homeopathy instead of proven neurological medicines risks irreversible loss of mobility, increased falls, and complications like aspiration. If you use homeopathy, never reduce or stop your prescribed modern medications."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Levodopa-carbidopa therapy is the single most effective medical treatment for reducing tremor, slowness, and muscle rigidity in Parkinson's disease.",
+      "Strong evidence: Regular aerobic exercise, resistance training, and targeted physiotherapy improve balance, gait speed, muscle strength, and overall quality of life.",
+      "Strong evidence: Deep Brain Stimulation (DBS) significantly reduces motor fluctuations and involuntary dyskinesia in carefully selected patients with advanced disease.",
+      "Moderate evidence: Speech therapy interventions, specifically the Lee Silverman Voice Treatment (LSVT LOUD), improve vocal volume and communication clarity.",
+      "Limited or no evidence: No herb, diet, vitamin supplement, or alternative system of medicine has been proven to regenerate lost dopamine neurons or stop disease progression. Beware of unverified stem cell therapies marketed online."
+    ],
+    "shouldNotDo": [
+      "Do not stop, skip, or abruptly reduce your Parkinson's medications; sudden cessation can trigger a life-threatening medical emergency known as parkinsonism-hyperpyrexia syndrome.",
+      "Do not consume large protein-heavy foods right alongside your levodopa tablet; protein blocks the medicine from reaching your bloodstream and brain.",
+      "Do not hurry while turning around; pivoting sharply on the spot often triggers 'freezing of gait' and causes dangerous falls.",
+      "Do not let pride prevent you from using a walking stick, walker, or wheelchair when your neurologist or physiotherapist recommends it.",
+      "Do not ignore emotional changes; depression, anxiety, and apathy are biological features of Parkinson's brain changes, not personal weaknesses, and can be treated effectively.",
+      "Do not buy over-the-counter herbal 'miracle cure' powders online; no herb, diet or product can make it go away, and unregulated products often contain dangerous contaminants or unpredictable plant steroids."
+    ],
+    "medicationSafety": [
+      "Take each medication dose at the exact scheduled time recommended by your doctor to avoid sudden 'wearing off' and severe stiffness.",
+      "Be alert to orthostatic hypotension: If you feel dizzy or lightheaded upon standing up, sit back down immediately, drink water, and report this symptom to your doctor.",
+      "Report involuntary writhing or twisting movements (dyskinesias) to your neurologist; these often indicate that the levodopa dosage or timing needs fine-tuning.",
+      "Check with your doctor before taking common nausea or psychiatric medicines; drugs like metoclopramide or certain antipsychotics block dopamine and severely worsen Parkinson's symptoms.",
+      "Monitor for unexpected behavioral changes: Some dopamine agonist medicines can occasionally trigger impulsive behaviors such as compulsive shopping, overeating, or gambling."
+    ],
+    "complications": [
+      "Frequent falls and bone fractures, especially of the hip, caused by postural instability and freezing of gait",
+      "Swallowing difficulties (dysphagia), which can lead to food entering the airways and causing life-threatening aspiration pneumonia",
+      "Severe chronic constipation, sometimes leading to bowel impaction or intestinal obstruction",
+      "Cognitive decline and Parkinson's disease dementia in advanced stages, affecting memory, planning, and judgment",
+      "Hallucinations, delusions, and sleep disorders like REM Sleep Behavior Disorder (acting out violent dreams in sleep)",
+      "Significant orthostatic hypotension, causing fainting, lightheadedness, and secondary injuries"
+    ],
+    "emergencySigns": [
+      "Sudden extreme muscle rigidity accompanied by high fever, confusion, and profuse sweating (Parkinsonism-hyperpyrexia syndrome, often from missed medicines)",
+      "Severe choking episode where the person is unable to cough, clear their throat, breathe, or speak",
+      "A hard fall resulting in severe hip, back, or head pain, an inability to stand, or loss of consciousness",
+      "Sudden development of extreme delirium, acute visual hallucinations, or sudden unresponsiveness",
+      "Signs of aspiration pneumonia: rapid shallow breathing, persistent cough with colored phlegm, chest congestion, and high fever"
+    ],
+    "whenToSeeDoctor": [
+      "You notice an unexplained tremor in one hand, foot, or chin while resting, or an arm that has stopped swinging naturally when you walk",
+      "Your handwriting has become noticeably smaller and cramped (micrographia), or friends mention your voice has grown unusually weak and faint",
+      "You experience unexplained slowness in simple daily tasks like buttoning a kurta, tying shoelaces, or getting out of a low sofa",
+      "Your regular Parkinson's medicine begins to wear off before the next scheduled dose, causing your tremor and stiffness to return early",
+      "You feel your feet suddenly 'sticking' to the floor as if glued (freezing of gait), or you experience frequent near-falls",
+      "You or your family notice disturbing visual hallucinations, intense nightmares, or marked personality and memory changes"
+    ],
+    "faqs": [
+      {
+        "q": "Does having a hand tremor always mean I have Parkinson's disease?",
+        "a": "No. Many people have an 'essential tremor', which typically shows up when using the hands (such as holding a tea cup or spoon). In Parkinson's disease, the tremor typically occurs when the hand is resting loose on the lap and subsides when actively moving. A neurologist must examine you to tell the difference."
+      },
+      {
+        "q": "Can Parkinson's disease be completely cured with modern or Ayurvedic medicine?",
+        "a": "No herb, diet or product can make it go away. At present, there is no medical or alternative cure that reverses or permanently stops Parkinson's disease. However, modern medications, exercise, and supportive therapies can manage symptoms remarkably well, allowing people to live active lives for decades."
+      },
+      {
+        "q": "Why is it so important to take Parkinson's medicines on an exact clock schedule?",
+        "a": "Parkinson's medications such as levodopa have a relatively short working duration in the body. Taking them at fixed, precise intervals ensures a steady supply of dopamine to your brain, preventing sudden drops into an 'off' state where movement becomes frozen, stiff, and uncomfortable."
+      },
+      {
+        "q": "Why do doctors advise taking levodopa away from protein-rich Indian meals?",
+        "a": "The amino acids present in protein foods like dal, paneer, milk, curd, eggs, and meat use the same intestinal transport channels as levodopa. If taken together, the protein gets absorbed while the medicine is blocked, significantly reducing the medicine's effectiveness."
+      },
+      {
+        "q": "Can physical exercise in the gym or walking really slow down the disease?",
+        "a": "Yes. Clinical evidence shows that regular physical exercise stimulates neuroplasticity, helping the brain create new signaling pathways. Consistent exercise—including brisk walking, stationary cycling, and resistance training—improves balance, preserves muscle mass, and keeps individuals independent far longer."
+      }
+    ],
+    "references": [
+      {
+        "title": "Parkinson disease: Key facts and global impact",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/parkinson-disease",
+        "year": "2023"
+      },
+      {
+        "title": "Parkinson's Disease Information Page",
+        "source": "National Institute of Neurological Disorders and Stroke (NIH)",
+        "url": "https://www.ninds.nih.gov/health-information/disorders/parkinsons-disease",
+        "year": "2023"
+      },
+      {
+        "title": "Epidemiology of Parkinson's disease in India: A community-based study",
+        "source": "Annals of Indian Academy of Neurology (PubMed)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22346123/",
+        "year": "2011"
+      },
+      {
+        "title": "Physical activity and exercise for people with Parkinson's disease",
+        "source": "Cochrane Database of Systematic Reviews",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36594809/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "alzheimers-disease",
+      "depression",
+      "anxiety",
+      "sleep-problems",
+      "brain-health",
+      "constipation"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3",
+      "pantoprazole"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "vitamin-b12",
+      "vitamin-d",
+      "tsh",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

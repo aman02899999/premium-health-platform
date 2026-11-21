@@ -1,0 +1,300 @@
+{
+  "slug": "male-pattern-hair-loss",
+  "name": "Male Pattern Hair Loss",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Male pattern hair loss, also called androgenetic alopecia, is the most common form of hair thinning in men. It happens when hair follicles on the scalp are genetically sensitive to a male hormone derivative called dihydrotestosterone (DHT). Over time, DHT causes susceptible follicles to shrink, a process doctors call miniaturisation. Each new hair grows back thinner, shorter, and less visible, until the follicle eventually stops producing hair altogether. In Indian men, it typically begins as a receding hairline at the temples or thinning at the crown (the vertex) and slowly progresses over years. It is not an infection or a sign of poor hygiene, but a genetic trait influenced by hormones and age.",
+    "quickFacts": [
+      {
+        "label": "Medical term",
+        "value": "Androgenetic alopecia in men"
+      },
+      {
+        "label": "Common age of onset",
+        "value": "Often begins in the 20s or 30s, becoming more visible with age"
+      },
+      {
+        "label": "Primary cause",
+        "value": "Genetics combined with scalp sensitivity to DHT hormone"
+      },
+      {
+        "label": "Pattern",
+        "value": "Receding temple hairline and thinning crown (Norwood-Hamilton scale)"
+      },
+      {
+        "label": "Can it be cured?",
+        "value": "No; no herb, diet or product can make it go away permanently, but medical treatments can slow it down or help hair regrow"
+      },
+      {
+        "label": "Key medical options",
+        "value": "Prescription topical and oral treatments advised by a dermatologist"
+      }
+    ],
+    "causes": [
+      "Genetics. Having a father, maternal grandfather, or brother with baldness significantly raises your likelihood of developing male pattern hair loss.",
+      "DHT sensitivity. The enzyme 5-alpha reductase converts regular testosterone into dihydrotestosterone (DHT). In genetically prone follicles, DHT binds to receptors, shortening the growth phase and shrinking the follicle.",
+      "Aging. As men grow older, hair growth cycles naturally slow down, and cumulative DHT exposure makes thinning more noticeable.",
+      "Metabolic factors and insulin resistance. Emerging Indian and international studies suggest links between early-onset male pattern baldness, abdominal weight gain, and metabolic health.",
+      "Steroid or gym supplement abuse. The use of illicit anabolic-androgenic steroids dramatically increases DHT levels in the bloodstream, accelerating genetic hair loss rapidly.",
+      "Scalp micro-inflammation. Low-grade inflammation around the hair follicle can speed up follicle shrinking when DHT is already present."
+    ],
+    "types": [
+      {
+        "name": "Norwood Type I & II (Early Frontal Recession)",
+        "desc": "Minimal or slight recession of the hairline around the temples. Often considered a mature hairline, but in some it marks the early stage of progressive loss."
+      },
+      {
+        "name": "Norwood Type III & IV (Moderate Hair Loss)",
+        "desc": "Deep triangular recession at the temples with noticeable thinning at the crown (vertex). The hairline resembles an M or U shape."
+      },
+      {
+        "name": "Norwood Type V & VI (Advanced Thinning)",
+        "desc": "The bald area on the crown enlarges and meets the receding frontal hairline, leaving only a thin band of hair across the sides and back."
+      },
+      {
+        "name": "Norwood Type VII (Severe Balding)",
+        "desc": "Only a horseshoe-shaped ring of hair remains around the sides and base of the scalp. The remaining hair is often fine and slow-growing."
+      },
+      {
+        "name": "Diffuse Patterned Alopecia (DPA)",
+        "desc": "Widespread miniaturisation across the top of the scalp without a sharp receding hairline, often retaining a stable fringe around the sides and back."
+      }
+    ],
+    "diagnosis": [
+      "Clinical examination. A dermatologist evaluates the pattern of your hairline and scalp under good lighting.",
+      "Dermoscopy or trichoscopy. A specialist magnifying tool checks for hair shaft diameter variation. If more than 20% of hairs show miniaturisation, male pattern hair loss is confirmed.",
+      "Scalp pull test. The doctor gently pulls small locks of hair to check if hair shedding is active across different scalp zones.",
+      "Medical and family history. Your doctor asks about hair thinning in your family, lifestyle habits, rapid weight changes, and gym supplements.",
+      "Exclusion of other causes. The doctor checks whether sudden shedding might be telogen effluvium (stress shedding) or alopecia areata (patchy bald spots)."
+    ],
+    "investigations": [
+      {
+        "test": "Trichoscopy (Scalp Dermoscopy)",
+        "purpose": "Examines follicle openings and detects miniaturisation and diameter variation characteristic of androgenetic alopecia"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Checks iron stores to rule out concurrent nutritional hair shedding",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out thyroid imbalances that aggravate diffuse hair thinning",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Assesses general health and screens for underlying anemia",
+        "slug": "cbc"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Evaluates vitamin D levels, which play a role in hair follicle cycling",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Fasting Blood Glucose or HbA1c",
+        "purpose": "Checks for insulin resistance and metabolic issues linked to early-onset hair loss",
+        "slug": "fasting-glucose"
+      }
+    ],
+    "modernTreatment": [
+      "Topical minoxidil. A clinically validated topical lotion or foam that widens blood vessels around the follicle and lengthens the hair growth phase. It must be applied consistently as advised by your doctor.",
+      "Oral 5-alpha reductase inhibitors. Medicines such as finasteride block the enzyme that turns testosterone into DHT, cutting DHT levels in the scalp. Used only under strict medical prescription and supervision.",
+      "Platelet-Rich Plasma (PRP) therapy. Your own blood is drawn, spun in a centrifuge to concentrate platelets, and injected into thinning scalp areas to release growth factors.",
+      "Low-Level Laser Therapy (LLLT). Medical-grade red light devices help stimulate cellular metabolism in sluggish hair follicles as an adjunct treatment.",
+      "Hair transplantation. Surgical procedures like Follicular Unit Extraction (FUE) move DHT-resistant follicles from the back and sides of the head to bald areas. It requires ongoing medical maintenance to protect remaining native hairs.",
+      "Long-term consistency. All non-surgical medical treatments work only as long as you continue them. If you stop, hair gains gradually revert over several months."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, hair thinning and loss are generally discussed under conditions known as 'Khalitya' and 'Indralupta'.",
+      "Khalitya is understood as an imbalance involving Pitta dosha (excess body heat) combined with Vata dosha, affecting the channels carrying nutrients to the hair roots (Asthi and Majja dhatu).",
+      "Traditional Ayurvedic regimens emphasise cooling the body, balancing Pitta, using herbal scalp oils, and eating warm, nourishing, easily digestible foods.",
+      "It is essential to understand that classical Ayurveda has no verified means to reverse miniaturised, genetically altered follicles. Ayurvedic oils and practices can support scalp hydration, soothe dandruff, and calm stress, but they cannot replace evidence-based medical treatment for genetic baldness."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Rich in vitamin C and polyphenols. Used traditionally in scalp oils to nourish the scalp, though evidence for halting genetic DHT miniaturisation is very limited."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used to calm the mind and soothe stress. It may provide supportive scalp cooling when used in massage oils, but it does not alter DHT levels."
+      },
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Methi seeds contain protein and plant compounds traditionally applied as a paste to reduce scalp flaking, but clinical trials on reversing male pattern loss are lacking."
+      },
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Known for anti-dandruff and antimicrobial properties. It helps maintain scalp hygiene when oily buildup or fungal dandruff irritates follicles, without changing genetics."
+      }
+    ],
+    "nutrition": [
+      "Eat sufficient protein. Hair is made of keratin, a protein. Indian vegetarian diets are often low in protein; include paneer, curd, roasted chana, lentils, sprouts, tofu, or eggs daily according to ICMR guidelines.",
+      "Ensure adequate iron and zinc. Include green leafy vegetables (methi, palak), pumpkin seeds, whole pulses, and nuts to support follicle metabolism.",
+      "Incorporate healthy fats. Walnuts, flaxseeds (alsi), chia seeds, and mustard or olive oil provide essential fatty acids that nourish the scalp barrier.",
+      "Avoid crash diets and severe calorie cutting. Rapid weight loss from extreme gym cutting diets often triggers acute hair shedding (telogen effluvium) on top of existing pattern loss.",
+      "Limit ultra-processed Indian snacks. Deep-fried namkeen, bakery biscuits, sugary mithai, and packaged chips drive metabolic inflammation and insulin resistance, which can worsen hair thinning.",
+      "Stay hydrated. Drink 2 to 3 litres of clean water daily to support healthy circulation and nutrient delivery to tissues."
+    ],
+    "lifestyle": [
+      "Wash your scalp regularly. In hot and humid Indian conditions, sweat, sebum, and dust accumulate quickly. Use a mild shampoo two to three times a week to keep follicle pores clean.",
+      "Do not aggressively rub hair with rough cotton towels. Gently pat wet hair dry, because wet hair shafts are fragile and prone to snapping.",
+      "Avoid unprescribed gym compounds. Steer clear of anabolic steroids, prohormones, and questionable performance-enhancing drugs, which trigger severe, rapid DHT-driven hair loss.",
+      "Manage daily stress. Chronic work or academic stress elevates cortisol levels, which can shock hair follicles and aggravate genetic thinning.",
+      "Protect your scalp from intense sun. If your hair is already thinning, wear a breathable cotton cap when outdoors to prevent scalp sunburn and oxidative damage.",
+      "Stop smoking and avoid tobacco. Nicotine constricts microvascular blood flow to the hair roots and accelerates scalp aging."
+    ],
+    "yogaActivity": [
+      "Inverted and forward-bending asanas. Poses such as Sarvangasana, Halasana, Adho Mukha Svanasana (Downward Dog), and Uttanasana gently encourage blood circulation toward the head and face.",
+      "Gentle pranayama. Practising Anulom Vilom (alternate nostril breathing) and Bhramari (bee breath) for 10 minutes daily helps downregulate the nervous system and manage stress.",
+      "Avoid extreme straining with breath-holding. During heavy weightlifting, avoid prolonged Valsalva manoeuvres (holding your breath while lifting), especially if you have high blood pressure.",
+      "Consistency over intensity. Regular moderate aerobic exercise such as brisk walking, cycling, or swimming helps improve metabolic markers and insulin sensitivity."
+    ],
+    "homeopathyNote": [
+      "There is no robust, reproducible scientific evidence proving that homeopathic dilutions can block DHT, stimulate hair stem cells, or regrow miniaturised hair follicles in male pattern baldness.",
+      "Relying solely on homeopathic drops or pills often delays medically proven treatments during the crucial early stages when hair follicles can still be rescued.",
+      "If you choose homeopathic care, ensure you do not discontinue dermatologically prescribed treatments without discussing it with your doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Topical minoxidil and prescription oral 5-alpha reductase inhibitors (like finasteride) have extensive, high-quality, international randomized controlled trials proving they slow loss and promote regrowth in male pattern baldness.",
+      "Strong evidence: Hair transplantation (FUE and FUT) successfully relocates permanent donor follicles into thinned recipient zones with high graft survival.",
+      "Moderate evidence: Platelet-Rich Plasma (PRP) injections and low-level light therapy (LLLT) show modest benefits in improving hair density and shaft thickness when combined with standard medical therapies.",
+      "Limited or weak evidence: Herbal hair oils (such as bhringraj, amla, methi, or onion juice) show minor soothing effects on scalp skin, but lack clinical proof of reversing genetic miniaturisation.",
+      "No credible evidence: Internet 'miracle cure' baldness shampoos, magnetic combs, or secret herbal tonic guarantees."
+    ],
+    "shouldNotDo": [
+      "Do not waste critical early months on unverified oils or salon treatments claiming they will grow back a lost hairline. Once a follicle is fully scarred, it cannot grow hair.",
+      "Do not take unregulated gym 'muscle builders' or steroids. They often contain hidden androgens that trigger irreversible balding.",
+      "Do not apply harsh, raw home remedies like concentrated garlic, ginger juice, or undiluted essential oils directly to the scalp; they often cause contact dermatitis and chemical burns.",
+      "Do not comb wet hair aggressively with fine-toothed combs, which causes mechanical breakage.",
+      "Do not stop approved medical treatments suddenly without speaking to your dermatologist, as hair gained through treatment will begin to shed within a few months.",
+      "Do not wear excessively tight turbans, caps, or helmets that pull on the frontal hairline continuously, as this can add traction alopecia on top of male pattern loss."
+    ],
+    "medicationSafety": [
+      "All oral medications that modify hormone pathways must be taken solely under the direction and prescription of a qualified dermatologist or physician.",
+      "If your doctor prescribes oral 5-alpha reductase inhibitors, report any unusual symptoms, such as mood shifts or changes in sexual function, promptly for medical review.",
+      "Pregnant women must never handle crushed or broken tablets of 5-alpha reductase inhibitors due to the risk of birth defects in male fetuses.",
+      "When starting topical minoxidil, an initial increase in hair shedding (often called the 'dread shed') can occur during the first 2 to 6 weeks. This is usually temporary as older hairs make way for new growth; do not panic, but keep your doctor informed.",
+      "Avoid applying topical solutions to broken, sunburned, or severely irritated scalp skin, as systemic absorption may cause unwanted drops in blood pressure or heart palpitations."
+    ],
+    "complications": [
+      "Psychological distress, anxiety, low self-esteem, and social withdrawal, particularly among young men losing hair in their early twenties.",
+      "Increased vulnerability of the bare scalp to solar ultraviolet radiation, raising the risk of actinic keratosis and skin cancers later in life.",
+      "Financial exploitation from unregulated commercial hair clinics, miracle oils, and unscientific salons making false promises.",
+      "Scalp irritation, folliculitis, or allergic contact dermatitis caused by inappropriate use of unregulated chemical concoctions or dense oils."
+    ],
+    "emergencySigns": [
+      "Male pattern hair loss itself is never an emergency, but see an emergency doctor immediately if you develop:",
+      "Sudden swelling of the face, lips, or eyelids, accompanied by difficulty breathing or dizziness after applying a new topical chemical or hair dye.",
+      "Rapidly spreading redness, severe heat, pus discharge, and high fever on the scalp, which could indicate a severe bacterial infection (cellulitis).",
+      "Sudden chest pain, racing heartbeat, or fainting after applying excessive doses of topical vasodilators like minoxidil on broken scalp skin."
+    ],
+    "whenToSeeDoctor": [
+      "You notice your hairline receding at the temples or your scalp becoming visible under bathroom lighting.",
+      "Hair is shedding rapidly in clumps on your pillow or in the shower drain over several consecutive weeks.",
+      "You see completely round, smooth, coin-sized bald spots appearing anywhere on your scalp or beard (suggesting alopecia areata rather than pattern loss).",
+      "Your scalp feels persistently itchy, painful, burning, or shows red scales and crusted pustules.",
+      "You are considering starting or stopping prescription hair medications or hair transplant surgery."
+    ],
+    "faqs": [
+      {
+        "q": "Does wearing a gym cap or helmet cause male pattern baldness?",
+        "a": "No. Helmets and clean gym caps do not cause male pattern baldness, which is driven by genetics and DHT. However, unwashed, sweaty headwear can harbor bacteria and fungi, leading to scalp folliculitis or dandruff."
+      },
+      {
+        "q": "Can applying coconut or mustard oil regrow my receding hairline?",
+        "a": "No herb, oil, or home massage can make male pattern baldness go away or revive dead follicles. Natural oils moisturise hair strands and reduce breakage, but they do not block DHT or alter hair genetics."
+      },
+      {
+        "q": "Does taking creatine for gym workouts cause hair loss?",
+        "a": "One small study in rugby players years ago noted a rise in DHT with creatine, but larger subsequent studies have not proven that creatine directly causes hair loss. However, if you are genetically predisposed to male pattern hair loss, discuss any workout supplements with your doctor."
+      },
+      {
+        "q": "Will shaving my head make my hair grow back thicker?",
+        "a": "No. Shaving cuts the hair shaft at the thickest part near the scalp surface, making it feel coarse and look temporarily thicker as it emerges. It has zero effect on the hair follicle underneath where growth happens."
+      },
+      {
+        "q": "Does masturbation or sexual activity cause hair loss?",
+        "a": "No. This is an old myth with no scientific foundation. Normal sexual activity does not deplete your body of nutrients or raise scalp DHT levels to cause baldness."
+      },
+      {
+        "q": "If I start hair loss medicines, do I have to take them forever?",
+        "a": "Medical treatments for androgenetic alopecia work as long as you use them. If you stop, the protective effect against DHT disappears, and your hair will gradually return to the state it would have reached without treatment over 6 to 12 months."
+      }
+    ],
+    "references": [
+      {
+        "title": "Androgenetic Alopecia: An Update of Treatment Options",
+        "source": "Drugs (Adil A, Godwin M)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28397108/",
+        "year": "2017"
+      },
+      {
+        "title": "Male androgenetic alopecia: An update on epidemiology, pathogenesis and treatment",
+        "source": "Indian Journal of Dermatology, Venereology and Leprology (Kaliapu F, et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34172782/",
+        "year": "2021"
+      },
+      {
+        "title": "Evaluation and treatment of male and female pattern hair loss",
+        "source": "Journal of the American Academy of Dermatology (Kalia S, et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28212759/",
+        "year": "2017"
+      },
+      {
+        "title": "Androgenetic Alopecia",
+        "source": "StatPearls, National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK430924/",
+        "year": "2023"
+      },
+      {
+        "title": "Hair Loss: Common Causes and Treatment",
+        "source": "American Family Physician (Phillips TG, et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29094873/",
+        "year": "2017"
+      },
+      {
+        "title": "Early-onset androgenetic alopecia and the risk of metabolic syndrome",
+        "source": "Indian Dermatology Online Journal",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28533990/",
+        "year": "2017"
+      }
+    ],
+    "relatedDiseases": [
+      "hair-loss",
+      "mens-healthy-aging",
+      "stress",
+      "anxiety",
+      "metabolic-syndrome",
+      "insulin-resistance"
+    ],
+    "relatedMedicines": [
+      "vitamin-d3",
+      "iron-folic-acid"
+    ],
+    "relatedHerbs": [
+      "amla",
+      "brahmi",
+      "fenugreek",
+      "neem"
+    ],
+    "relatedLabs": [
+      "ferritin",
+      "tsh",
+      "vitamin-d",
+      "cbc",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "slug": "vaginal-health",
+  "name": "Vaginal Health",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Vaginal health refers to the natural physiological balance, cleanliness, and comfort of the vagina and vulva. The vagina is a self-cleaning muscular canal lined by a delicate mucous membrane populated by beneficial bacteria, primarily Lactobacillus species. These friendly bacteria produce lactic acid, maintaining a healthy, slightly acidic environment (normal pH 3.8 to 4.5) that protects against infections. Normal vaginal discharge is clear to milky white, stretchy or thin, and generally odourless. Disruptions to this delicate ecosystem from humidity, tight synthetic clothing, harsh soaps, hormonal shifts, unmanaged diabetes, or microbial imbalances can lead to inflammation, itching, burning, and unusual discharge (conditions collectively known as vaginitis). Caring for vaginal health involves supporting natural protective mechanisms rather than masking them with harsh chemicals or unproven remedies.",
+    "quickFacts": [
+      {
+        "label": "Normal vaginal pH",
+        "value": "3.8 to 4.5 (naturally acidic)"
+      },
+      {
+        "label": "Primary beneficial bacteria",
+        "value": "Lactobacillus species"
+      },
+      {
+        "label": "Common forms of vaginitis",
+        "value": "Bacterial vaginosis, candidiasis (yeast), and trichomoniasis"
+      },
+      {
+        "label": "Self-cleaning organ",
+        "value": "The internal vagina cleanses itself through normal discharge; only the external vulva needs washing"
+      },
+      {
+        "label": "Impact of high blood sugar",
+        "value": "Elevated glucose encourages fungal overgrowth (Candida)"
+      },
+      {
+        "label": "Common triggers",
+        "value": "Douching, scented body washes, sweaty gym wear, and synthetic underwear"
+      }
+    ],
+    "causes": [
+      "Disruption of natural bacterial flora: When protective Lactobacillus counts decline, opportunistic bacteria or fungi multiply.",
+      "Warm, moist environments: India's warm, humid climate combined with non-breathable synthetic underwear (nylon, polyester) or damp gym clothes creates an ideal breeding ground for yeast and bacteria.",
+      "Aggressive hygiene practices: Using commercial intimate washes, fragrant bath soaps, antiseptics, or internal douching washes away natural lubricants and protective acidic secretions.",
+      "Unmanaged blood sugar: High glucose levels in blood and bodily secretions nourish Candida albicans, leading to recurrent vaginal yeast infections in women with prediabetes or type 2 diabetes.",
+      "Antibiotic use: Broad-spectrum antibiotics taken for other infections kill beneficial vaginal bacteria alongside harmful pathogens, frequently triggering secondary yeast overgrowth.",
+      "Hormonal changes: Fluctuations during pregnancy, breastfeeding, peri-menopause, or menopause alter mucosal thickness, moisture, and pH.",
+      "Sexually transmitted organisms: Trichomonas vaginalis, Chlamydia trachomatis, and Neisseria gonorrhoeae introduce external infections that cause prominent inflammation.",
+      "Contact allergies and irritants: Chemical sensitisation from scented sanitary napkins, fabric softeners, laundry detergents, contraceptive foams, or latex condoms."
+    ],
+    "types": [
+      {
+        "name": "Bacterial Vaginosis (BV)",
+        "desc": "The most frequent vaginal condition in women of reproductive age. It occurs when anaerobic bacteria overgrow normal lactobacilli, causing a thin, watery greyish-white discharge with a distinct fishy odour, often more noticeable after intercourse or during menses."
+      },
+      {
+        "name": "Vulvovaginal Candidiasis (Yeast Infection)",
+        "desc": "A fungal overgrowth, most commonly Candida albicans. Symptoms include intense vulvar itching, burning during urination or intimacy, redness, and a thick, white, odourless discharge resembling curd or paneer."
+      },
+      {
+        "name": "Trichomoniasis",
+        "desc": "A sexually transmitted infection caused by a microscopic parasite (Trichomonas vaginalis). It produces a profuse, frothy, yellow-green discharge, strong odour, vulvar soreness, and burning."
+      },
+      {
+        "name": "Genitourinary Syndrome of Menopause (Atrophic Vaginitis)",
+        "desc": "Thinning, drying, and inflammation of the vaginal walls caused by dropping oestrogen levels during peri-menopause, menopause, or lactation, leading to burning, dryness, and painful intercourse."
+      },
+      {
+        "name": "Non-Infectious / Irritant Vaginitis",
+        "desc": "Allergic reaction or chemical irritation of the vulva and vagina caused by perfumed soaps, synthetic menstrual pads, tight sportswear friction, or bubble baths, without an underlying pathogen."
+      }
+    ],
+    "diagnosis": [
+      "Clinical pelvic and speculum examination: A doctor visualises the vaginal walls, cervix, and nature of secretions to assess redness, swelling, or distinct discharge characteristics.",
+      "Vaginal pH testing: A simple test strip placed against the vaginal wall. A pH above 4.5 suggests bacterial vaginosis or trichomoniasis, while a normal acidic pH is typical in uncomplicated yeast infections.",
+      "Wet mount microscopy and whiff test: A sample of discharge is examined under a microscope for yeast buds, motile trichomonads, or 'clue cells' (epithelial cells coated in bacteria). Adding potassium hydroxide (KOH) releases a fishy amine odour if bacterial vaginosis is present.",
+      "Vaginal swab and culture: High vaginal swabs are sent to the microbiology laboratory when infections are recurrent, atypical, or fail first-line therapy.",
+      "Screening for metabolic and co-existing conditions: Checking blood sugar levels and screening for other reproductive tract infections if symptoms recur frequently."
+    ],
+    "investigations": [
+      {
+        "test": "High vaginal swab (Gram stain & wet mount)",
+        "purpose": "Identifies clue cells, fungal hyphae, or motile parasites under microscopy"
+      },
+      {
+        "test": "Fasting blood glucose and HbA1c",
+        "purpose": "Checks for undiagnosed diabetes or insulin resistance that triggers persistent yeast infections",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Urine routine and microscopy",
+        "purpose": "Rules out co-existing urinary tract infections, which present with overlapping burning or frequency",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Evaluates systemic markers of infection or chronic inflammation if pelvic pain is present",
+        "slug": "cbc"
+      },
+      {
+        "test": "Cervical / NAAT swab for STIs",
+        "purpose": "Rules out Chlamydia, Gonorrhoea, or Mycoplasma when pelvic tenderness or deep discharge exists"
+      }
+    ],
+    "modernTreatment": [
+      "Targeted antimicrobial therapy: Bacterial vaginosis is treated with doctor-prescribed oral or intravaginal antibiotics, such as metronidazole or clindamycin.",
+      "Antifungal therapy: Candidiasis is managed with doctor-prescribed oral antifungal capsules (such as fluconazole) or topical/intravaginal azole creams and pessaries.",
+      "Partner treatment: Trichomoniasis requires both partners to be treated simultaneously with prescription antimicrobials, avoiding intercourse until treatment is completed.",
+      "Local hormone therapy for atrophic changes: Low-dose vaginal oestrogen creams, pessaries, or rings help restore mucosal thickness, natural lubrication, and acidity in postmenopausal women, as directed by a gynaecologist.",
+      "Barrier and lubricant support: Water-based or silicone-based medical lubricants for intimacy help reduce mechanical friction and microscopic mucosal tears.",
+      "Restoring barrier integrity: Discontinuing all scented hygiene washes, soaps, and douches, relying solely on plain lukewarm water for external vulvar cleansing."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, vaginal and female reproductive disorders are classified under 'Yoni Vyapad' (comprising twenty specific conditions).",
+      "Symptoms resembling bacterial vaginosis or yeast infections are often viewed as imbalances involving Kapha and Pitta doshas, leading to 'Kandu' (itching), 'Srava' (excessive unctuous discharge), and 'Daha' (burning sensation).",
+      "Atrophic changes and dryness in older age or postpartum are traditionally attributed to Vata aggravation (dryness and degeneration of tissues).",
+      "Ayurvedic care emphasises dietary balancing (avoiding excessively heavy, oily, damp, or sour foods), gentle oral botanical extracts, and lifestyle routines.",
+      "Important safety note: Classical treatments like internal herbal washes (Yoni Prakshalana) or internal medicated tampons (Yoni Pichu) must never be made at home with kitchen spices. Intravaginal insertion of unsterile plant matter can cause severe mucosal burns, chemical vaginitis, and serious infections. Botanical remedies can only serve as mild supportive adjuncts under qualified medical supervision."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Recognised in traditional formulations for antimicrobial properties. External medicated decoctions are sometimes used under Ayurvedic direction, but raw leaves or oils should never be inserted inside the vagina."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, known for mild anti-inflammatory action. Taken orally as part of food or dietary support, but has no proven ability to eliminate vaginal infections on its own."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional combination of three fruits used for gut balance. Oral use supports general digestion; it is not a direct antimicrobial cure for vaginal infections."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally valued in women's health for nourishing reproductive tissues and supporting hormonal transitions. Evidence in clinical trials for treating active vaginal infections is limited."
+      }
+    ],
+    "nutrition": [
+      "Include plain, unsweetened dahi (curd) or homemade buttermilk (chaas) daily. These contain live active lactic cultures that support gut microbiome health.",
+      "Severely cut down on refined white sugar, sugary mithai, sweetened beverages, maida, and bakery goods. Elevated blood glucose directly feeds Candida species in mucosal secretions.",
+      "Maintain adequate daily hydration with plain water, tender coconut water, and clear soups to support mucous membrane hydration and flush the urinary system.",
+      "Adopt a balanced Indian thali rich in fibre: whole pulses (moong, chana, rajma), seasonal vegetables (bhindi, palak, lauki, tori), and whole grains (jowar, bajra, brown rice) to support metabolic health and steady blood sugar.",
+      "Ensure adequate micronutrients through food: include amla, citrus fruits, and green leafy vegetables for vitamin C, alongside nuts and seeds (pumpkin seeds, flaxseeds) for zinc and healthy fatty acids.",
+      "Avoid excessive intake of deep-fried namkeens, highly processed ready-to-eat foods, and ultra-spicy pickles, which can exacerbate gastrointestinal and bladder irritation."
+    ],
+    "lifestyle": [
+      "Wear loose, breathable 100% cotton underwear. Avoid synthetic fabrics like nylon, satin, or polyester that trap sweat and moisture against the vulva.",
+      "Change out of sweaty gym wear, tight yoga tights, cycling shorts, or wet swimwear immediately after exercise or swimming. Never sit in damp workout gear for hours.",
+      "Wash only the outside: The vulva (external skin) should be cleansed using plain lukewarm water. Never wash or spray water inside the vaginal canal.",
+      "Wipe strictly from front to back after using the toilet to avoid transferring bowel bacteria (such as Escherichia coli) toward the vaginal opening.",
+      "Practice safe menstrual hygiene: Change disposable sanitary pads every 4 to 6 hours, regardless of flow. If using reusable cloth pads, wash them thoroughly with detergent and dry them in direct sunlight. If using menstrual cups, sterilise them in boiling water between cycles.",
+      "Sleep without underwear in loose pyjamas or a nightgown to allow the vulvar area to remain cool, dry, and well-aerated overnight.",
+      "Avoid all scented feminine products, including deodorant sprays, scented panty liners, herbal douching kits, and heavily perfumed bath salts."
+    ],
+    "yogaActivity": [
+      "Mula Bandha (Pelvic Floor Engagement): Practised gently under guidance to improve pelvic muscle awareness, blood circulation, and tone without creating excessive pelvic tension.",
+      "Baddha Konasana (Bound Angle / Cobbler Pose): Gently stretches the inner thighs, groin, and pelvic floor, encouraging regional circulation and easing pelvic stiffness.",
+      "Supta Baddha Konasana (Reclining Bound Angle Pose): Supported with bolsters or folded blankets; helps relax pelvic muscles, release stress, and relieve abdominal tension.",
+      "Malasana (Garland Pose / Deep Squat): Helps strengthen and stretch the pelvic floor and lower back when done with proper knee and hip alignment.",
+      "Viparita Karani (Legs-up-the-Wall Pose): A restorative posture that relieves lower extremity venous congestion and encourages nervous system relaxation.",
+      "Pranayama: Calming practices like Anulom Vilom (alternate nostril breathing) and Bhramari (bee breath) reduce systemic stress and cortisol, supporting immune resilience."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence showing that homeopathic dilutions can treat, cure, or eradicate bacterial vaginosis, candidiasis, trichomoniasis, or sexually transmitted pathogens.",
+      "Relying solely on homeopathic remedies for progressive vaginal symptoms risks delayed treatment, leading to ascending reproductive infections, chronic pelvic pain, and complications during pregnancy.",
+      "Anyone experiencing unusual discharge, malodour, or burning must seek evaluation from a qualified medical doctor or gynaecologist for correct diagnosis and evidence-based treatment."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Standard prescription antimicrobials (metronidazole, clindamycin) and antifungals (fluconazole, topical azoles) are highly effective at clearing acute episodes of bacterial vaginosis and vulvovaginal candidiasis.",
+      "Strong evidence: Tight blood sugar control in diabetic patients significantly reduces the recurrence rate of Candida vaginitis.",
+      "Moderate evidence: Oral probiotic strains specifically containing Lactobacillus rhamnosus GR-1 and Lactobacillus reuteri RC-14 may help support vaginal flora balance when used alongside standard medical therapy, though they do not replace prescription antimicrobials during acute infection.",
+      "Moderate evidence: Topical vaginal oestrogen creams or pessaries are effective and safe for relieving mucosal thinning and burning associated with menopausal atrophic vaginitis.",
+      "No credible evidence: Vaginal steaming ('yoni steam'), inserting raw garlic cloves, tea tree oil tampons, or applying yogurt internally have no supportive clinical data and frequently cause severe mucosal burns, chemical ulceration, and secondary bacterial infections."
+    ],
+    "shouldNotDo": [
+      "Do not douche. The vagina cleanses itself; flushing the inside with water, vinegar, Dettol, or commercial solutions strips out protective lactobacilli and forces bacteria into the uterus.",
+      "Do not insert raw food items, garlic cloves, yogurt, neem paste, or essential oils into the vagina. These kitchen remedies cause chemical burns, allergic reactions, and severe secondary infections.",
+      "Do not use combination steroid-antibacterial-antifungal creams sold over the counter at pharmacies without a prescription. Topical steroids thin delicate vulvar skin and worsen fungal infections.",
+      "Do not wear damp, sweaty workout clothes or tight cycling shorts for long periods after gym sessions.",
+      "Do not ignore symptoms or assume all itching is a 'simple yeast infection'. Bacterial vaginosis and trichomoniasis require entirely different medical treatments.",
+      "Do not use heavily fragranced laundry detergents or fabric softeners on underwear, as residual chemicals trigger irritant vulvitis."
+    ],
+    "medicationSafety": [
+      "Complete the full prescribed course of antifungal or antibiotic pessaries, creams, or oral tablets, even if symptoms subside after two days. Stopping early leads to resistant recurrences.",
+      "Avoid alcohol completely during treatment with oral metronidazole and for at least 48 hours afterward; combining them causes severe nausea, violent vomiting, abdominal cramps, and rapid heart rate.",
+      "Check with your doctor before using vaginal creams or pessaries if you are pregnant, as certain oral antifungals and specific applicators are restricted during pregnancy.",
+      "Be aware that oil-based vaginal creams, pessaries, and ointments can weaken latex condoms and diaphragms, reducing their contraceptive and infection-barrier reliability.",
+      "Report persistent or worsening burning, blistering, or swelling after starting a prescribed vaginal cream; you may have an allergy to the base cream or preservative."
+    ],
+    "complications": [
+      "Ascending Pelvic Inflammatory Disease (PID): Untreated bacterial vaginosis or trichomoniasis increases the risk of bacteria ascending into the uterus and fallopian tubes.",
+      "Adverse pregnancy outcomes: Active bacterial vaginosis during pregnancy is clinically associated with higher risks of premature rupture of membranes, preterm birth, and low birth weight.",
+      "Increased susceptibility to STIs: Chronic inflammation and disruption of the mucosal barrier significantly elevate the risk of acquiring HIV, HPV, herpes simplex, and gonorrhoea.",
+      "Vulvar dermatitis and lichenification: Chronic scratching of itchy vulvar skin leads to skin thickening, fissures, secondary bacterial cellulitis, and painful scarring.",
+      "Dyspareunia and psychological distress: Unresolved burning, dryness, and discharge cause chronic pelvic discomfort, painful intercourse, sexual avoidance, anxiety, and relationship strain."
+    ],
+    "emergencySigns": [
+      "Severe lower abdominal or pelvic pain accompanied by high fever (above 101°F or 38.3°C), chills, and purulent vaginal discharge (possible acute pelvic inflammatory disease or tubo-ovarian abscess).",
+      "Sudden onset of high fever, widespread sunburn-like skin rash, dizziness, confusion, and low blood pressure (possible Toxic Shock Syndrome, especially if using tampons or menstrual cups).",
+      "Heavy, unexpected vaginal bleeding soaking through more than one large sanitary pad per hour for two consecutive hours.",
+      "Severe vulvar swelling with spreading redness, unbearable pain, skin breakdown, or fluid-filled blisters (possible acute herpes outbreak, abscess, or necrotising soft tissue infection)."
+    ],
+    "whenToSeeDoctor": [
+      "A noticeable change in the colour, consistency, or amount of vaginal discharge (yellowish, greenish, grey, or thick curd-like).",
+      "A foul, fishy, or pungent odour from the intimate area that does not resolve after normal gentle washing.",
+      "Persistent itching, burning, soreness, or redness around the vulva or entrance of the vagina.",
+      "Burning or sharp pain during urination or during sexual intercourse.",
+      "Recurrent symptoms that return shortly after completing an over-the-counter or home remedy.",
+      "Any unexpected spotting or bleeding between menstrual periods or any bleeding after menopause."
+    ],
+    "faqs": [
+      {
+        "q": "Is it normal to have daily vaginal discharge?",
+        "a": "Yes. Normal physiological discharge is a healthy sign that the vagina is cleansing and lubricating itself. It varies from clear and watery to milky white, may become thicker or more stretchy around ovulation, and does not cause itching, burning, or a foul odour. If the discharge changes colour, smells foul, or is accompanied by irritation, consult a doctor."
+      },
+      {
+        "q": "Should I use commercial intimate washes to stay fresh?",
+        "a": "No. Commercial intimate washes, especially perfumed ones, are unnecessary and can disrupt the natural acidic pH (3.8 to 4.5) and strip away protective Lactobacillus bacteria. The internal vagina is self-cleaning. For the external vulva, washing with plain lukewarm water is completely sufficient and safest."
+      },
+      {
+        "q": "Can I put curd or yogurt inside the vagina to treat a yeast infection?",
+        "a": "No. While eating curd is healthy for your gut, inserting store-bought or homemade yogurt into the vagina is dangerous. Commercial yogurt may contain added sugars or non-human strains of bacteria, and homemade curd can harbour environmental bacteria and moulds that cause secondary infections and severe irritation."
+      },
+      {
+        "q": "Why do I keep getting fungal yeast infections again and again?",
+        "a": "Recurrent yeast infections (four or more episodes a year) can stem from underlying high blood sugar (prediabetes or diabetes), recent antibiotic use, pregnancy, tight synthetic clothing, or a non-albicans strain of Candida that requires a different antifungal medication. A doctor must evaluate you, test your blood sugar, and perform a vaginal culture."
+      },
+      {
+        "q": "Does bacterial vaginosis mean my partner is cheating?",
+        "a": "Not necessarily. Bacterial vaginosis is not strictly a classic sexually transmitted infection; it is a dysbiosis, an imbalance where natural good bacteria are outnumbered by anaerobes. While sexual activity can alter vaginal pH and trigger an episode, BV can also occur without sexual intercourse due to hygiene habits, hormonal changes, or douching."
+      }
+    ],
+    "references": [
+      {
+        "title": "Bacterial Vaginosis: Clinical Practice Guideline",
+        "source": "National Institute for Health and Care Excellence (NICE) / NHS",
+        "url": "https://www.nhs.uk/conditions/bacterial-vaginosis/",
+        "year": "2022"
+      },
+      {
+        "title": "Vaginitis: Diagnosis and Management",
+        "source": "American College of Obstetricians and Gynecologists (ACOG)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK534853/",
+        "year": "2020"
+      },
+      {
+        "title": "The Vaginal Microbiome and Health: Clinical Implications",
+        "source": "National Institutes of Health (NIH / NCBI PMC)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8569584/",
+        "year": "2021"
+      },
+      {
+        "title": "Menopause and Genitourinary Syndrome of Menopause (GSM)",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/vaginal-atrophy/symptoms-causes/syc-20352288",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "urinary-tract-infection",
+      "menopause",
+      "pcos",
+      "menstrual-health",
+      "type-2-diabetes",
+      "fungal-skin-infection"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "paracetamol",
+      "iron-folic-acid"
+    ],
+    "relatedHerbs": [
+      "neem",
+      "turmeric",
+      "triphala",
+      "shatavari"
+    ],
+    "relatedLabs": [
+      "fasting-glucose",
+      "hba1c",
+      "urine-routine",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

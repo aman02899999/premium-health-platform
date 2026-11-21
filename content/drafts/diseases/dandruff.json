@@ -1,0 +1,293 @@
+{
+  "slug": "dandruff",
+  "name": "Dandruff",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [],
+  "draft": {
+    "definition": "Dandruff is a very common scalp condition that causes small flakes of dead skin to shed from your scalp, often accompanied by mild itching. Medically, dandruff is regarded as an uninflamed or mildly inflamed form of seborrheic dermatitis. It happens when a harmless yeast-like fungus called Malassezia, which naturally lives on every adult's scalp, feeds on natural skin oils (sebum) and multiplies too quickly. This yeast breaks down the oils into byproducts that irritate the scalp, prompting skin cells to renew and shed much faster than usual. While dandruff is neither contagious nor dangerous, it can be uncomfortable, persistent, and frustrating to manage, especially during dry winters or sweaty summer months. In India, dandruff affects millions of young adults and gym-goers who experience heavy sweating and sebum buildup. The condition cannot be cured permanently, but with regular scalp hygiene, the right medicated shampoos, and consistent lifestyle habits, it can be brought completely under control.",
+    "quickFacts": [
+      {
+        "label": "Medical name",
+        "value": "Pityriasis capitis (mild seborrheic dermatitis)"
+      },
+      {
+        "label": "How common",
+        "value": "Affects up to 50% of adults worldwide"
+      },
+      {
+        "label": "Primary trigger",
+        "value": "Overgrowth of Malassezia yeast feeding on scalp oils"
+      },
+      {
+        "label": "Peak age group",
+        "value": "Post-puberty to mid-twenties, though it can persist for decades"
+      },
+      {
+        "label": "Gender pattern",
+        "value": "More common and often more severe in men due to higher sebum production"
+      },
+      {
+        "label": "Main management",
+        "value": "Regular hair cleansing and active medicated shampoos"
+      }
+    ],
+    "causes": [
+      "Malassezia yeast overgrowth. This microscopic fungus lives naturally on the scalp of most adults, but when it multiplies excessively, its metabolic byproducts irritate the scalp skin barrier.",
+      "Excess scalp oil (sebum). The yeast feeds directly on lipids and fatty acids in your scalp oil. Naturally oily skin or hormonal surges provide extra fuel for yeast growth.",
+      "Heavy sweating without timely washing. For Indian gym-goers and athletes, sweat trapped under hair, caps, or bike helmets creates a warm, humid environment where yeast thrives.",
+      "Traditional heavy hair oiling. Leaving heavy oils like coconut or mustard oil on the scalp for days is a common practice in Indian homes, but these oils actually feed Malassezia and worsen flaking.",
+      "Infrequent hair washing. Skipping hair washes allows dead skin cells, dried sweat, and natural oils to accumulate, aggravating inflammation and flaking.",
+      "Dry cold weather. Low humidity during North Indian winters strips natural moisture from the surface layer of the scalp, causing fine, dry flakes and itchiness.",
+      "Scalp sensitivity to hair products. Contact dermatitis from synthetic fragrances, harsh sulphates, chemical dyes, or styling gels can trigger red, itchy, flaking skin.",
+      "Psychological stress. Elevated stress levels alter immune responses and trigger inflammatory hormones that flare up scalp conditions."
+    ],
+    "types": [
+      {
+        "name": "Dry dandruff (Pityriasis simplex)",
+        "desc": "Features small, fine, white or translucent flakes that fall easily onto your shoulders and clothing. The scalp feels tight, dehydrated, and dry rather than greasy."
+      },
+      {
+        "name": "Oily or greasy dandruff (Steatoid dandruff)",
+        "desc": "Features larger, thick, yellowish flakes that clump together and stick to the scalp and hair shafts. Often accompanied by noticeable scalp odour, greasiness, and inflammation."
+      },
+      {
+        "name": "Seborrheic dermatitis of the scalp",
+        "desc": "A more pronounced inflammatory form where dandruff spreads beyond the scalp hair to the eyebrows, edges of the nose, beard area, ears, and upper chest, presenting with redness and greasy yellow scales."
+      },
+      {
+        "name": "Scalp conditions that mimic dandruff",
+        "desc": "Lookalike conditions such as scalp psoriasis (which features thicker, silvery plaques), scalp ringworm (tinea capitis), and allergic contact dermatitis from hair cosmetics."
+      }
+    ],
+    "diagnosis": [
+      "Visual clinical examination. A doctor or dermatologist diagnoses dandruff by parting your hair and looking closely at the scalp, hair shafts, and pattern of flaking.",
+      "Checking adjacent body sites. The doctor inspects your eyebrows, ears, nasal folds, and chest to see if flaking is limited to the scalp or represents wider seborrheic dermatitis.",
+      "Assessing inflammation. The doctor notes whether the scalp is merely flaking or showing signs of intense redness, swelling, oozing, or pustules.",
+      "Ruling out lookalikes. Conditions like scalp psoriasis, tinea capitis, and head lice are distinguished by their distinct flake thickness, hair breakage, and microscopic appearance."
+    ],
+    "investigations": [
+      {
+        "test": "Scalp dermoscopy (trichoscopy)",
+        "purpose": "Magnifies the scalp surface to distinguish dandruff from scalp psoriasis, lichen planopilaris, or lice infestations"
+      },
+      {
+        "test": "Potassium hydroxide (KOH) scalp preparation",
+        "purpose": "Examines scrapings under a microscope to confirm fungal spores and rule out ringworm (tinea capitis)"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Evaluates overall immune health and identifies systemic inflammation or secondary bacterial infection",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin test",
+        "purpose": "Checks iron stores when scalp flaking is accompanied by noticeable hair shedding",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Vitamin D blood test",
+        "purpose": "Evaluates skin barrier integrity and baseline nutritional balance",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Thyroid stimulating hormone (TSH)",
+        "purpose": "Investigates underlying hormonal imbalances that can cause marked skin and scalp dryness",
+        "slug": "tsh"
+      }
+    ],
+    "modernTreatment": [
+      "Topical antifungal shampoos. Shampoos containing ketoconazole or ciclopirox reduce the population of Malassezia yeast on the scalp and form the cornerstone of modern therapy.",
+      "Cytostatic and mineral-based agents. Shampoos formulated with zinc pyrithione or selenium sulfide slow down the rapid turnover of scalp skin cells and reduce fungus.",
+      "Keratolytic cleansers. Shampoos containing salicylic acid help loosen, break down, and wash away thick, stubborn crusts and flakes from the scalp surface.",
+      "Coal tar formulations. Shampoos with medicinal coal tar slow down the rapid death and shedding of scalp skin cells; they may stain light-coloured hair.",
+      "Correct application technique. Medicated shampoos must be lathered directly onto the scalp and left in place for 3 to 5 minutes before rinsing so the active ingredients can work.",
+      "Alternating and tapering. Doctors often recommend using a medicated shampoo 2 to 3 times weekly for a month, then tapering to once weekly or fortnightly to maintain clear skin without irritation.",
+      "Short courses of topical anti-inflammatories. For severe itching and redness, a dermatologist may prescribe a mild topical corticosteroid lotion for a few days, strictly as advised by your doctor."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, dandruff closely correlates with 'Darunaka', classified as a Kshudra Roga (minor disorder) or a disease of the hair roots (Shiroroga).",
+      "Ayurvedic theory attributes Darunaka primarily to an imbalance of Vata and Kapha doshas. Vata causes dryness, scaling, and roughness, while Kapha produces stickiness, sebum accumulation, and itching.",
+      "When aggravated Vata and Kapha block the microchannels (srotas) nourishing the hair follicles (keshabhoomi), the scalp sheds dry or greasy flakes.",
+      "Traditional Ayurvedic approaches focus on gentle herbal washes (kshalana) and balancing the doshas, but modern practitioners caution that applying heavy medicated oils to an active fungal flare can worsen yeast growth."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Neem",
+        "slug": "neem",
+        "note": "Traditionally valued in Indian households for its natural antimicrobial and soothing properties; boiled neem water rinses can support scalp hygiene alongside medical care."
+      },
+      {
+        "name": "Fenugreek",
+        "slug": "fenugreek",
+        "note": "Known as methi; soaked seed paste is used traditionally to hydrate dry scalps and loosen flakes, though clinical trial evidence for clearing fungal dandruff is limited."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Indian gooseberry is rich in vitamin C and polyphenols; used traditionally in scalp pastes to support hair health and soothe mild scalp irritation."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil exhibits mild antifungal properties in laboratory studies; traditionally used in scalp washes to calm itching and refresh the hair roots."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN dietary guidelines: build your daily meals around a diverse plate of whole grains, pulses, fresh local vegetables, and seasonal fruits.",
+      "Include adequate dietary zinc. Zinc supports skin barrier repair and normal cell turnover; good Indian sources include chana, moong dal, pumpkin seeds, sesame seeds, and paneer.",
+      "Incorporate omega-3 and healthy fatty acids. Flaxseeds, walnuts, chia seeds, and mustard or olive oils in moderation help maintain natural skin hydration without promoting excessive sebum.",
+      "Ensure sufficient B vitamins. Whole pulses, unpolished millets, eggs, and dairy products provide riboflavin, niacin, and biotin that support healthy epithelial cell renewal.",
+      "Eat probiotic-rich foods. Homemade fresh curd, chaas (buttermilk), and fermented foods like idli and dosa support overall gut microbiome balance, which influences systemic skin immunity.",
+      "Limit deep-fried foods and excess refined sugar. Heavy intake of jalebis, samosas, packaged namkeens, and sugary beverages can trigger insulin spikes that promote excess sebum production.",
+      "Stay well hydrated. Drink adequate water throughout the day to keep skin and scalp cells properly hydrated, especially when working out in hot or humid Indian conditions."
+    ],
+    "lifestyle": [
+      "Wash hair promptly after gym sessions. Leaving sweat and scalp oils to dry under your hair feeds Malassezia yeast and triggers itchiness; rinse your scalp with clean water or a gentle shampoo after intense workouts.",
+      "Wash your hair at least two to four times a week. Contrary to popular belief, frequent gentle washing removes dead cells and oil buildup, keeping dandruff under control.",
+      "Stop overnight heavy oiling. If you wish to oil your hair, apply light oil only to the hair strands for 30 minutes before washing, rather than soaking the scalp overnight.",
+      "Clean personal hair care items weekly. Wash your combs, hairbrushes, hairbands, and pillow covers in warm soapy water to prevent the accumulation of oils and dead flakes.",
+      "Disinfect gym gear and helmets. Regularly clean the inner lining of motorcycle helmets, gym caps, and headbands, which harbour sweat, bacteria, and fungal organisms.",
+      "Avoid aggressive scalp scratching. Scratching with sharp fingernails damages the scalp skin barrier, introduces secondary bacteria, and worsens flaking.",
+      "Manage daily stress. Chronic mental stress alters the immune system and triggers scalp flares; build daily downtime through walking, reading, or quiet relaxation."
+    ],
+    "yogaActivity": [
+      "Practice calming pranayama. Techniques like Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) help calm the nervous system and lower stress-induced skin flare-ups.",
+      "Gentle forward-bending asanas. Poses such as Uttanasana, Adho Mukha Svanasana, and Shashankasana promote gentle blood circulation to the head and neck.",
+      "Relaxation in Shavasana. Spend 10 minutes at the end of your exercise routine in conscious relaxation to reduce cortisol levels.",
+      "Avoid hot and sweaty yoga environments during active flares. If you practice hot yoga or intense power vinyasa, rinse your scalp with plain cool water immediately afterward."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations like Graphites, Mezereum, or Kali sulphuricum are sometimes promoted for dry or crusty scalp conditions.",
+      "There are no rigorous, high-quality clinical trials showing that homeopathic remedies reduce Malassezia yeast, correct scalp cell turnover, or clear dandruff.",
+      "If you decide to explore homeopathy, do so only as a personal preference, and continue using evidence-based medicated shampoos recommended by your doctor."
+    ],
+    "evidenceNotes": [
+      "Strong scientific evidence: Topical antifungal shampoos containing ketoconazole, zinc pyrithione, selenium sulfide, and ciclopirox significantly reduce Malassezia yeast and clear scalp flakes in randomized clinical trials.",
+      "Moderate evidence: Shampoos combining salicylic acid with antifungal agents help remove adherent thick crusts faster than single-agent washes.",
+      "Limited evidence: Natural extracts like diluted tea tree oil, neem extract, and aloe vera show mild antimicrobial or soothing effects in small studies, but they cannot replace medicated antifungals during moderate to severe flares.",
+      "No good scientific evidence: Miracle hair oils, scalp detoxes, lemon juice rubs, and home remedies claiming to permanently eradicate dandruff have no proven clinical backing; no herb, diet or product can make it go away permanently."
+    ],
+    "shouldNotDo": [
+      "Do not apply thick coconut, mustard, or castor oil to an actively flaking, itchy scalp. Malassezia yeast thrives on the fatty acids in these oils, making dandruff worse.",
+      "Do not rub raw lemon juice or undiluted vinegar directly onto your scalp. High acidity damages the protective skin barrier and causes chemical burns, redness, and stinging.",
+      "Do not scrape your scalp aggressively with sharp fingernails or fine-toothed combs to dislodge flakes. This creates open wounds prone to bacterial infection.",
+      "Do not rinse your hair with very hot water. Scalding water strips protective moisture, inflames the hair follicles, and triggers rebound oil production.",
+      "Do not share combs, towels, hairbrushes, or motorcycle helmets with others. While dandruff itself is not an infection you catch, sharing items transfers oils, bacteria, and sweat.",
+      "Do not stop using your medicated shampoo the very moment your flakes disappear. Dandruff tends to return unless you use the shampoo once every one to two weeks for maintenance."
+    ],
+    "medicationSafety": [
+      "Always follow the contact time on the label: massage medicated shampoos into the scalp and wait 3 to 5 minutes before rinsing; washing them off immediately renders them ineffective.",
+      "Keep medicated shampoos away from your eyes and mouth. If accidental contact occurs, flush thoroughly with plenty of cool tap water.",
+      "Use topical corticosteroid scalp lotions strictly as advised by your doctor. Prolonged or unmonitored use of topical steroids can cause thinning of the scalp skin and rebound dermatitis.",
+      "If you develop burning, intense redness, or swelling after using an anti-dandruff shampoo, stop using it immediately and consult your doctor to check for contact allergy."
+    ],
+    "complications": [
+      "Secondary bacterial infection. Scratching broken skin can introduce staphylococcal bacteria, leading to painful, pus-filled folliculitis or crusting impetigo.",
+      "Temporary hair shedding. Chronic inflammation of the hair follicles combined with rough scratching can trigger telogen effluvium, leading to increased temporary hair fall.",
+      "Social embarrassment and anxiety. Visible flaking on shoulders and persistent public itching can undermine self-esteem, gym confidence, and social interactions.",
+      "Spread of seborrheic dermatitis. Untreated scalp inflammation can spread to the forehead, eyebrows, retroauricular skin behind the ears, and beard."
+    ],
+    "emergencySigns": [
+      "Rapidly spreading redness, warmth, severe pain, or swelling on the scalp or face suggesting bacterial cellulitis",
+      "High body fever accompanied by tender, swollen lymph nodes in the neck or behind the ears",
+      "Thick, foul-smelling yellow or green pus oozing from cracked areas of the scalp",
+      "Sudden blistering, severe burning, or widespread skin peeling following application of a hair product"
+    ],
+    "whenToSeeDoctor": [
+      "Your dandruff does not improve after four weeks of using regular over-the-counter anti-dandruff shampoos",
+      "Your scalp becomes noticeably red, swollen, intensely painful, or starts oozing clear fluid or pus",
+      "Scalp flaking is accompanied by round patches of hair loss, broken hair stubs, or severe shedding",
+      "The flaking and redness spread to your face, eyebrows, eyelids, ears, or chest",
+      "The itching is so severe that it interrupts your sleep, workouts, or daily work"
+    ],
+    "faqs": [
+      {
+        "q": "Can oiling my hair with coconut oil cure dandruff?",
+        "a": "No. In fact, heavy oils often make dandruff worse. Malassezia yeast feeds directly on the fatty acids present in coconut and mustard oils. Oiling may temporarily plaster the flakes down against your scalp, but it encourages yeast multiplication underneath. If your hair feels dry, apply a few drops of light oil only to the ends of your hair, keeping it away from your scalp."
+      },
+      {
+        "q": "Does dandruff cause permanent baldness?",
+        "a": "No. Dandruff itself does not damage the hair follicle roots or cause permanent baldness. However, severe scalp inflammation and aggressive fingernail scratching can pull hairs out prematurely or trigger temporary hair shedding known as telogen effluvium. Once the scalp inflammation settles, hair growth typically returns to its normal cycle."
+      },
+      {
+        "q": "Is dandruff contagious from person to person?",
+        "a": "No, dandruff is not contagious. You cannot catch dandruff from someone else by sitting next to them or using their comb. The Malassezia yeast that drives dandruff is already present naturally on every healthy adult scalp. Flaking occurs because of an individual's unique reaction to the yeast and their scalp oil production."
+      },
+      {
+        "q": "How often should Indian gym-goers wash their hair?",
+        "a": "If you work out regularly, sweat heavily, or have an naturally oily scalp, washing your hair three to four times a week—or even daily with plain water or a very mild cleanser—is beneficial. Letting sweat and sebum dry on your scalp creates an ideal breeding ground for yeast and worsens flaking."
+      },
+      {
+        "q": "Can rubbing lemon juice on the scalp clear dandruff?",
+        "a": "No. Lemon juice is highly acidic and can severely irritate an already inflamed scalp, leading to stinging, contact dermatitis, and barrier damage. It does not control yeast reliably. Gentle, clinically tested shampoos containing ketoconazole or zinc pyrithione are much safer and far more effective."
+      },
+      {
+        "q": "Can changing my diet make dandruff go away completely?",
+        "a": "No herb, diet or product can make it go away permanently. A nutritious diet rich in zinc, B vitamins, and healthy proteins supports overall skin immunity and reduces excess oiliness, but dandruff is driven by yeast biology and sebum genetics. Dietary adjustments help support your skin, but medicated scalp hygiene remains essential."
+      }
+    ],
+    "references": [
+      {
+        "title": "Seborrheic Dermatitis and Dandruff: A Comprehensive Review",
+        "source": "Journal of Clinical and Investigative Dermatology (Borda LJ, Wikramanayake TC)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27148560/",
+        "year": "2015"
+      },
+      {
+        "title": "Dandruff: The most commercially exploited skin disease",
+        "source": "Indian Journal of Dermatology (Ranganathan S, Mukhopadhyay T)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/20606991/",
+        "year": "2010"
+      },
+      {
+        "title": "Dandruff: Overview and Management",
+        "source": "NHS",
+        "url": "https://www.nhs.uk/conditions/dandruff/",
+        "year": "2023"
+      },
+      {
+        "title": "Dandruff: Symptoms and Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/dandruff/symptoms-causes/syc-20353850",
+        "year": "2022"
+      },
+      {
+        "title": "Dandruff, Cradle Cap, and Other Scalp Conditions",
+        "source": "MedlinePlus (National Library of Medicine)",
+        "url": "https://medlineplus.gov/ency/article/000963.htm",
+        "year": "2023"
+      },
+      {
+        "title": "Seborrheic Dermatitis: Diagnosis and Treatment",
+        "source": "American Academy of Dermatology (Cleveland Clinic Review)",
+        "url": "https://my.clevelandclinic.org/health/diseases/14403-seborrheic-dermatitis",
+        "year": "2022"
+      }
+    ],
+    "relatedDiseases": [
+      "fungal-skin-infection",
+      "psoriasis",
+      "eczema",
+      "acne",
+      "hair-loss",
+      "dry-skin"
+    ],
+    "relatedMedicines": [],
+    "relatedHerbs": [
+      "neem",
+      "fenugreek",
+      "amla",
+      "tulsi"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "vitamin-d",
+      "tsh"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

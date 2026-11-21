@@ -1,0 +1,270 @@
+{
+  "slug": "type-1-diabetes",
+  "name": "Type 1 Diabetes",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "3 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Type 1 diabetes is a lifelong autoimmune condition where the pancreas stops producing insulin, the hormone needed to move sugar from your bloodstream into your cells for energy. In Type 1 diabetes, the body's own immune system mistakenly attacks and destroys the insulin-producing beta cells inside the pancreas. Without insulin, blood glucose climbs dangerously high while the body's tissues starve for fuel. Unlike Type 2 diabetes, Type 1 diabetes is not caused by diet, eating sugar, lack of exercise, or body weight. It can develop at any age, though it is most often diagnosed in children, teenagers, and young adults. According to the Indian Council of Medical Research (ICMR) and the International Diabetes Federation, India has the largest population of children and adolescents living with Type 1 diabetes in the world. People with Type 1 diabetes require daily insulin therapy, regular blood sugar monitoring, and thoughtful lifestyle planning to stay healthy, strong, and active.",
+    "quickFacts": [
+      {
+        "label": "Nature of condition",
+        "value": "Autoimmune disorder causing total or near-total insulin deficiency"
+      },
+      {
+        "label": "India burden",
+        "value": "Over 2.29 lakh children and adolescents living with Type 1 diabetes (IDF Atlas 2021 / ICMR 2022)"
+      },
+      {
+        "label": "Primary treatment",
+        "value": "Lifelong daily insulin therapy (injections or pump)"
+      },
+      {
+        "label": "Cause",
+        "value": "Immune destruction of pancreatic beta cells, not lifestyle or weight"
+      },
+      {
+        "label": "Key acute danger",
+        "value": "Diabetic Ketoacidosis (DKA), a medical emergency"
+      },
+      {
+        "label": "Daily routine",
+        "value": "Frequent blood glucose checks, carbohydrate counting, and activity planning"
+      }
+    ],
+    "causes": [
+      "Autoimmune destruction: The immune system wrongly identifies the beta cells in the islets of Langerhans in the pancreas as foreign invaders and destroys them over weeks, months, or years.",
+      "Genetic susceptibility: Certain inherited human leukocyte antigen (HLA) gene variants, particularly HLA-DR3 and HLA-DR4, place individuals at a higher risk of developing the condition.",
+      "Environmental triggers: Exposure to specific viral infections (such as enteroviruses, coxsackievirus, or mumps) may trigger an abnormal autoimmune response in genetically susceptible individuals.",
+      "Not lifestyle-related: Type 1 diabetes is not caused by eating sweets, lack of gym workouts, or being overweight. It is an autoimmune condition that cannot be prevented with current medical science."
+    ],
+    "types": [
+      {
+        "name": "Type 1A Diabetes (Autoimmune)",
+        "desc": "The most common form, accounting for over 90% of cases. Blood tests show detectable autoimmune antibodies that have attacked the insulin-making beta cells."
+      },
+      {
+        "name": "Type 1B Diabetes (Idiopathic)",
+        "desc": "A rarer form where individuals have complete insulin deficiency and develop ketoacidosis, but no autoantibodies are detected in the blood. Its exact trigger remains unknown."
+      },
+      {
+        "name": "Latent Autoimmune Diabetes in Adults (LADA)",
+        "desc": "Often called slow-onset Type 1 diabetes. It develops during adulthood and progresses more slowly. It is frequently misdiagnosed as Type 2 diabetes until oral medicines fail and autoantibody tests confirm autoimmune beta-cell loss."
+      }
+    ],
+    "diagnosis": [
+      "A fasting plasma glucose test of 126 mg/dL or higher on two separate occasions.",
+      "A random plasma glucose reading of 200 mg/dL or higher in the presence of classic symptoms like excessive thirst, frequent urination, and unexplained weight loss.",
+      "An HbA1c test reading of 6.5% or higher, reflecting average blood sugar levels over the past 2 to 3 months.",
+      "C-peptide testing: C-peptide is produced alongside insulin in equal amounts. Very low or undetectable levels confirm that the pancreas is making little to no insulin.",
+      "Autoantibody screening: Tests such as GAD65 (glutamic acid decarboxylase), IA-2 (islet antigen-2), and ZnT8 (zinc transporter 8) antibodies confirm an autoimmune cause and help distinguish Type 1 from Type 2 diabetes.",
+      "Ketone testing: Checking urine or capillary blood for ketones helps determine if the body has started breaking down fat rapidly for energy, signaling immediate danger of ketoacidosis."
+    ],
+    "investigations": [
+      {
+        "test": "HbA1c (Glycated Hemoglobin)",
+        "purpose": "Measures average blood sugar levels over the past 8 to 12 weeks to guide insulin adjustments",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Assesses overnight baseline glucose levels before breakfast",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Urine Routine and Microalbumin",
+        "purpose": "Checks for ketones during illness and catches early kidney strain or protein leakage",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Monitors cardiovascular risk factors including LDL, HDL, and triglycerides",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Screens for autoimmune thyroid conditions (such as Hashimoto's thyroiditis), which commonly occur alongside Type 1 diabetes",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses baseline kidney function alongside estimated glomerular filtration rate (eGFR)",
+        "slug": "creatinine"
+      }
+    ],
+    "modernTreatment": [
+      "Insulin replacement is non-negotiable and life-sustaining. Because the body makes zero insulin, exogenous insulin must be delivered every day via multiple daily injections (MDI) using pens or syringes, or through a continuous subcutaneous insulin infusion pump.",
+      "Basal-bolus regimen: Long-acting (basal) insulin covers background metabolic needs between meals and during sleep. Rapid-acting or short-acting (bolus) insulin is taken before meals to match carbohydrates and bring down high blood sugars.",
+      "Glucose monitoring: Frequent checks using a home glucometer (typically 4 to 8 times daily) or a Continuous Glucose Monitor (CGM) sensor worn on the arm or abdomen to track real-time trends, highs, and lows.",
+      "Carbohydrate counting: Learning to calculate the grams of carbohydrate in Indian meals (such as rotis, rice, dal, and fruit) so that the mealtime insulin dose matches the food eaten.",
+      "Hypoglycemia management: Keeping fast-acting simple carbohydrates (such as glucose tablets, fruit juice, or regular sugar) immediately available at all times, alongside a prescribed glucagon kit for severe lows where swallowing is unsafe.",
+      "Annual complication screening: Regular dilated eye examinations (retinopathy), urine microalbumin checks (nephropathy), comprehensive foot exams (neuropathy), and blood lipid screening."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe metabolic conditions under the broad category of 'Prameha'. A subset called 'Sahaja Prameha' or 'Jata Prameha' refers to a constitutional condition arising from birth or genetic factors (bija dosha), leading to extreme weakness (krisha) and severe emaciation.",
+      "This classical description aligns closely with the lean, wasting state seen in untreated Type 1 diabetes. However, classical Ayurveda recognizes that such deep-seated constitutional conditions cannot be reversed with herbal formulas alone.",
+      "Modern scientific consensus is unequivocal: Type 1 diabetes involves permanent immune destruction of beta cells. Panchakarma, churnas, or detox routines cannot regenerate destroyed beta cells or produce insulin.",
+      "Herbal supplements must never replace prescribed insulin. Stopping insulin to try alternative therapies leads to life-threatening diabetic ketoacidosis."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Contains soluble fibre that can slow carbohydrate absorption in the gut. It does not replace insulin and can occasionally drop blood sugar unexpectedly when taken with insulin."
+      },
+      {
+        "name": "Amla (Indian Gooseberry)",
+        "slug": "amla",
+        "note": "Rich in vitamin C and polyphenols that offer antioxidant support. It does not stimulate beta-cell regrowth or eliminate the need for insulin."
+      },
+      {
+        "name": "Jamun (Indian Blackberry)",
+        "slug": "jamun",
+        "note": "Traditionally consumed in Indian households for metabolic support. Human clinical evidence in Type 1 diabetes is very limited, and it must never be used as an insulin alternative."
+      }
+    ],
+    "nutrition": [
+      "Eat consistent meals and learn carbohydrate counting. Knowing how many grams of carbs are in your bowl of dal, roti, brown rice, or poha helps you calculate your mealtime insulin with your doctor's guidance.",
+      "Build a balanced Indian thali: fill half your plate with non-starchy vegetables (such as bhindi, palak, methi, gobi, or cucumber), one quarter with lean protein (paneer, tofu, boiled eggs, dal, chana, or chicken), and one quarter with complex carbohydrates.",
+      "Pair carbohydrates with protein, healthy fats, and dietary fibre. Eating a roti with paneer and sabzi slows digestion and prevents a steep, rapid blood sugar spike compared to eating carbs alone.",
+      "Follow the 'Rule of 15' for hypoglycemia (blood sugar below 70 mg/dL): consume 15 grams of fast-acting sugar (such as 3 teaspoons of sugar dissolved in water, half a glass of fruit juice, or 4 glucose tablets), wait 15 minutes, and re-test your blood sugar. Repeat if still low.",
+      "Avoid sugary beverages, sweetened sodas, sweetened lassi, syrups, and packaged juices for routine hydration. Choose water, chaas with roasted jeera, or black tea without sugar.",
+      "Work with a certified diabetes educator or clinical dietitian who understands regional Indian cooking to build a sustainable meal plan that matches your insulin doses."
+    ],
+    "lifestyle": [
+      "Monitor your blood glucose regularly. Check upon waking, before each meal, two hours after meals, before exercise, and at bedtime. If you use a CGM, review your daily time-in-range (TIR) reports.",
+      "Carry a diabetes emergency pouch everywhere: pack your glucometer, test strips, lancets, fast-acting glucose tablets or candy, emergency contacts, and insulin kit.",
+      "Inspect your feet daily. Look for blisters, red spots, cracks, or cuts between the toes. Neuropathy can dull pain, turning small cuts into neglected infections.",
+      "Keep consistent sleep hours. Sleeping 7 to 8 hours nightly helps keep stress hormones like cortisol and growth hormone predictable, which makes insulin dosing more reliable.",
+      "Avoid tobacco in all forms, including bidis, cigarettes, and gutka. Smoking combined with Type 1 diabetes sharply increases the risk of heart disease, kidney damage, and vision loss."
+    ],
+    "yogaActivity": [
+      "Physical exercise is safe and encouraged for people with Type 1 diabetes, but it requires careful blood sugar planning. Always check your glucose level before starting a workout.",
+      "Cardiovascular exercise (such as brisk walking, running, swimming, or cycling) tends to lower blood glucose during and after the workout. Keep glucose tablets or juice nearby at the gym.",
+      "High-intensity interval training (HIIT) and heavy weightlifting can temporarily raise blood sugar due to adrenaline and stress hormone release, followed by drops hours later.",
+      "Practice yoga asanas such as Tadasana, Bhujangasana, Paschimottanasana, and Shavasana to improve mobility, muscle circulation, and stress resilience.",
+      "Pranayama techniques like Anulom Vilom and gentle deep breathing help reduce mental stress. Do not exercise if your blood sugar is above 250 mg/dL with ketones present, as exercise can accelerate ketoacidosis."
+    ],
+    "homeopathyNote": [
+      "There is no credible scientific or clinical trial evidence that homeopathic remedies can stimulate the pancreas to create insulin or cure Type 1 diabetes.",
+      "Stopping or reducing your insulin doses in favour of homeopathic pills is extremely dangerous and can cause fatal diabetic ketoacidosis within hours to days.",
+      "If you consult a homeopathic practitioner for general well-being, you must continue your prescribed insulin regimen and inform your endocrinologist."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: The landmark Diabetes Control and Complications Trial (DCCT) and its follow-up EDIC study proved that intensive insulin therapy to achieve near-normal blood glucose levels reduces eye disease by up to 76%, kidney disease by 50%, and nerve damage by 60%.",
+      "Strong evidence: Continuous Glucose Monitoring (CGM) improves time in target range (70-180 mg/dL) and significantly reduces severe low-sugar events (hypoglycemia) compared to fingerstick testing alone.",
+      "Weak or absent evidence: No herb, diet, juice, fasting regimen, or alternative medicine has ever been shown to regenerate human pancreatic beta cells in established Type 1 diabetes.",
+      "False claims warning: Be wary of advertisements promising to 'reverse diabetes in 30 days'. These claims almost always confuse Type 1 with early Type 2 diabetes. No herb, diet or product can make Type 1 diabetes go away."
+    ],
+    "shouldNotDo": [
+      "Never stop taking your basal insulin, even when you are sick, vomiting, or unable to eat solid foods. The body always needs background insulin to prevent ketoacidosis.",
+      "Do not guess your blood sugar level based on how you feel. A high reading and a low reading can sometimes cause similar symptoms like shakiness or dizziness.",
+      "Do not inject insulin into the exact same spot on your stomach or thigh every day. This creates fatty lumps (lipohypertrophy) that make insulin absorption irregular and unpredictable.",
+      "Do not ignore moderate or high ketones in your urine or blood, assuming they will pass on their own.",
+      "Do not exercise vigorously if your blood sugar is under 90 mg/dL without having a carbohydrate snack first, or if your blood sugar is over 250 mg/dL with ketones present.",
+      "Do not leave your insulin vials or pens inside a parked car, in direct sunlight, or inside the freezer, as extreme heat and freezing destroy the insulin protein."
+    ],
+    "medicationSafety": [
+      "Always double-check your insulin type and dose before injecting. Mixing up your long-acting background insulin with your rapid-acting mealtime insulin can cause severe hypoglycemia.",
+      "Rotate your injection sites across your abdomen, outer thighs, and upper buttocks. Use a new needle for each injection to minimize tissue trauma and infection risk.",
+      "Store unopened insulin vials and cartridges in the refrigerator between 2 and 8 degrees Celsius. The vial or pen currently in use can be kept at room temperature (below 30 degrees Celsius) for up to 28 days, away from direct heat and light.",
+      "Follow 'Sick Day Rules': during an infection, fever, or stomach flu, stress hormones cause blood sugars to rise sharply. Check blood sugar every 2 hours, test for ketones, drink plenty of fluids, and contact your doctor for insulin dose adjustments.",
+      "If you are prescribed medicines for high blood pressure or cholesterol (such as atorvastatin or an ACE inhibitor), take them as directed by your doctor to safeguard your arteries and kidneys."
+    ],
+    "complications": [
+      "Diabetic Ketoacidosis (DKA): A severe, life-threatening metabolic emergency caused by a lack of insulin, leading to high ketones, blood acidity, and dehydration.",
+      "Hypoglycemia: Dangerously low blood sugar caused by too much insulin relative to food or exercise, which can cause fainting, seizures, or coma if untreated.",
+      "Diabetic Nephropathy: Chronic kidney damage resulting from years of elevated sugars damaging delicate filtering units in the kidneys.",
+      "Diabetic Retinopathy: Damage to the tiny blood vessels of the retina at the back of the eye, which can lead to vision loss if not caught early.",
+      "Diabetic Neuropathy: Nerve damage leading to burning, tingling, numbness, or loss of sensation in the feet and hands.",
+      "Cardiovascular disease: A significantly higher lifetime risk of heart attacks, stroke, and peripheral artery blockages."
+    ],
+    "emergencySigns": [
+      "Persistent vomiting, inability to keep liquids down, accompanied by deep rapid breathing, abdominal pain, and a sweet fruity smell on the breath (signs of Diabetic Ketoacidosis): go to the nearest emergency room immediately.",
+      "Blood glucose stays above 300 mg/dL with moderate or large ketones on urine test strips despite taking corrective insulin doses.",
+      "Severe hypoglycemia: the person is confused, slurring words, acting abnormally, having a seizure, or unconscious. Do not force liquids into an unconscious person; administer emergency glucagon if trained, and call an ambulance (108 or 112).",
+      "Sudden weakness or numbness down one side of the face or body, sudden speech difficulty, or severe chest tightness: call emergency services immediately."
+    ],
+    "whenToSeeDoctor": [
+      "Your blood sugar readings frequently drop below 70 mg/dL despite following your prescribed doses and meals.",
+      "Your HbA1c is consistently above your personal target range set by your doctor.",
+      "You notice painless sores, blisters, redness, or ingrown toenails on your feet that are slow to heal.",
+      "You experience persistent tingling, numbness, or a burning 'pins-and-needles' sensation in your fingers or toes.",
+      "You are planning a pregnancy: pre-conception glucose control must be tightly planned with your endocrinologist to protect both mother and baby.",
+      "You notice sudden cloudiness, floaters, or changes in your vision."
+    ],
+    "faqs": [
+      {
+        "q": "Can Type 1 diabetes be cured or reversed with a strict diet?",
+        "a": "No. Type 1 diabetes is an autoimmune condition where the body's immune system has destroyed the insulin-producing cells of the pancreas. While eating healthy, whole foods and counting carbohydrates helps keep blood sugar levels steady, no herb, diet or product can make it go away. Lifelong insulin is required."
+      },
+      {
+        "q": "Why can't insulin be taken as a tablet instead of injections?",
+        "a": "Insulin is a delicate protein hormone. If swallowed as a regular tablet, stomach acids and digestive enzymes would break it down into tiny amino acids before it could enter the bloodstream, rendering it completely inactive. Injections or pumps deliver insulin directly into the fatty layer under the skin so it works properly."
+      },
+      {
+        "q": "Can someone with Type 1 diabetes lift weights and build muscle in the gym?",
+        "a": "Yes, absolutely. Many competitive athletes, bodybuilders, and fitness enthusiasts live with Type 1 diabetes. You need to understand how heavy lifting, cardio, and protein affect your blood sugar, check your glucose levels before and after workouts, and always carry fast-acting carbohydrates."
+      },
+      {
+        "q": "What is the difference between Type 1 and Type 2 diabetes?",
+        "a": "In Type 1 diabetes, the pancreas produces zero or nearly zero insulin due to an autoimmune attack, and it usually starts in childhood or young adulthood. In Type 2 diabetes, the pancreas still makes insulin, but the body's cells are resistant to it, often linked to genetics, weight, and lifestyle. People with Type 1 diabetes need insulin from day one to survive."
+      },
+      {
+        "q": "What is a 'honeymoon phase' in Type 1 diabetes?",
+        "a": "Shortly after starting insulin treatment, a newly diagnosed person's remaining beta cells may briefly recover and produce a small amount of insulin on their own. During this time, blood sugars become easier to manage, and insulin needs drop. However, this is temporary. Over time, the autoimmune process destroys the remaining cells, and full insulin doses will be needed again."
+      }
+    ],
+    "references": [
+      {
+        "title": "The Effect of Intensive Treatment of Diabetes on the Development and Progression of Long-Term Complications in Insulin-Dependent Diabetes Mellitus (DCCT)",
+        "source": "New England Journal of Medicine (NEJM)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/8366922/",
+        "year": "1993"
+      },
+      {
+        "title": "Type 1 Diabetes in Adults: Diagnosis and Management",
+        "source": "National Institute for Health and Care Excellence (NICE NG17)",
+        "url": "https://www.nice.org.uk/guidance/ng17",
+        "year": "2021"
+      },
+      {
+        "title": "Diabetes: Key Facts",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "hypothyroidism",
+      "neuropathy",
+      "chronic-kidney-disease",
+      "cardiovascular-risk",
+      "type-2-diabetes",
+      "dehydration"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "levothyroxine",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "fenugreek",
+      "amla",
+      "jamun"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "urine-routine",
+      "tsh",
+      "creatinine",
+      "lipid-profile"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
