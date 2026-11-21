@@ -13,6 +13,6 @@ export const metadata: Metadata = { title: "Command Center · Admin", robots: { 
 export default async function AdminHome({ searchParams }: { searchParams: Promise<{ denied?: string }> }) {
   const role = await adminRole();
   if (!role) redirect("/admin/login");
-  const [c, counters, sp] = await Promise.all([getContent(), isDbConfigured ? hubCounters() : Promise.resolve(null), searchParams]);
+  const [c, counters, sp] = await Promise.all([getContent(), isDbConfigured && role !== "reviewer" ? hubCounters() : Promise.resolve(null), searchParams]);
   return <CommandCenter name={c.business.name} counters={counters} role={role} denied={sp.denied === "1"} />;
 }

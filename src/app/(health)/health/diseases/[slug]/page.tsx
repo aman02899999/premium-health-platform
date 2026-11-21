@@ -25,6 +25,7 @@ import { AdInArticle, AdRectangle, AdBanner } from "@/health/components/monetiza
 import { DIGITAL_PRODUCTS, PREMIUM_REPORTS } from "@/health/lib/monetization/config";
 import { NOT_REVIEWED } from "@/health/lib/review";
 import { RelatedVideo } from "@/components/youtube/RelatedVideo";
+import { approvedDisease } from "@/health/lib/disease-reviews";
 
 export function generateStaticParams() {
   return DISEASES.map((d) => ({ slug: d.slug }));
@@ -42,8 +43,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const d = getDisease(slug);
   if (!d) return { title: "Disease not found" };
+  // Indexed when hand-rewritten, or when a doctor approved its draft in Admin -> Health page review.
+  const indexable = diseaseIndexable(slug) || (await approvedDisease(slug)) !== null;
   return {
-    ...(diseaseIndexable(slug) ? {} : { robots: { index: false, follow: true } }),
+    ...(indexable ? {} : { robots: { index: false, follow: true } }),
     title: `${d.name} — Symptoms, Causes, Tests, Treatment & Diet`,
     description: entityDescription(d.short, "Symptoms, causes, tests, treatment options and diet, explained for Indian families."),
     alternates: { canonical: `/health/diseases/${slug}` },
@@ -74,8 +77,11 @@ function Bullets({ items, icon }: { items: string[]; icon?: React.ReactNode }) {
 
 export default async function DiseasePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const detail = getDiseaseDetail(slug);
-  if (!detail) notFound();
+  const base = getDiseaseDetail(slug);
+  if (!base) notFound();
+  // A doctor-approved draft replaces the shared template text (see src/health/lib/disease-reviews.ts).
+  const approved = await approvedDisease(slug);
+  const detail = approved ? { ...base, ...approved.draft } : base;
 
   const toc = [
     ["definition", "Definition & quick facts"], ["symptoms", "Symptoms"], ["causes", "Causes & risk factors"],
@@ -110,7 +116,7 @@ export default async function DiseasePage({ params }: { params: Promise<{ slug: 
         <p className="mt-3 max-w-3xl text-[16px] leading-relaxed text-stone-600 dark:text-stone-300">{detail.definition}</p>
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
           <span>By <strong>Editorial Team</strong></span>
-          <span>{NOT_REVIEWED}</span>
+          <span>{approved?.reviewLine ?? NOT_REVIEWED}</span>
           <span>Updated: {formatDate(detail.updatedAt)}</span>
           <LikeButton id={slug} />
         </div>

@@ -76,6 +76,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       images: p.cover ? [absoluteUrl(p.cover)] : undefined,
     })),
     // The health site (/health/**, Hindi /hi/health/**): also served alone at /health/sitemap.xml.
-    ...healthSitemap().filter((e) => e.url !== absoluteUrl("/")),
+    ...(await healthSitemap()).filter((e) => e.url !== absoluteUrl("/")),
   ];
 }

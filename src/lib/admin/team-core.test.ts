@@ -35,6 +35,13 @@ describe("who may open what", () => {
       expect(growthActionAllowed("manager", a)).toBe(true);
     }
   });
+  it("medical reviewers open only the health page review area", () => {
+    for (const p of ["/admin", "/admin/health-review", "/api/admin/health-review", "/api/admin/me", "/admin/login", "/api/admin/logout"]) expect([p, allowed("reviewer", p)]).toEqual([p, true]);
+    for (const p of ["/admin/chats", "/api/admin/contacts", "/admin/growth", "/api/admin/payments", "/admin/shop", "/admin/team", "/api/admin/blood-report/reports", "/admin/website", "/api/admin/notifications"])
+      expect([p, allowed("reviewer", p)]).toEqual([p, false]);
+    expect(sectionsFor("reviewer", HUB_SECTIONS).flatMap((s) => s.tiles.map((t) => t.id)).filter((id) => id !== "site")).toEqual(["health-review"]);
+    expect(allowed("agent", "/admin/health-review")).toBe(false);
+  });
   it("prefixes match whole path segments only", () => {
     expect(allowed("agent", "/admin/chatsabc")).toBe(false);
     expect(allowed("manager", "/admin/teamwork")).toBe(true);
