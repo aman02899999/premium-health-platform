@@ -1,0 +1,291 @@
+{
+  "slug": "constipation",
+  "name": "Constipation",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Constipation means having infrequent bowel movements, difficulty passing stools, or passing hard, dry stools that require intense straining. In medical practice, having fewer than three bowel movements a week, or needing to strain regularly for more than a quarter of the time you spend on the toilet, points to constipation. Many people also describe an uncomfortable feeling that their bowel has not emptied completely. In India, shifts away from traditional high-fiber meals toward refined wheat flour (maida), fast food, packaged snacks, and sedentary desk work have made constipation extremely common. While occasional constipation is normal and usually settles with simple adjustments to food and water, chronic constipation can cause pain, disrupt daily life, and lead to complications like piles or fissures if ignored.",
+    "quickFacts": [
+      {
+        "label": "Clinical benchmark",
+        "value": "Fewer than 3 bowel movements per week or severe straining"
+      },
+      {
+        "label": "Recommended daily fiber",
+        "value": "30 to 40 g per day for Indian adults (ICMR-NIN)"
+      },
+      {
+        "label": "Water intake",
+        "value": "2 to 3.5 litres daily for healthy adults in warm climates"
+      },
+      {
+        "label": "Global adult prevalence",
+        "value": "Roughly 10% to 15% suffer from chronic constipation"
+      },
+      {
+        "label": "Leading lifestyle triggers",
+        "value": "Low dietary fiber, low water intake, and physical inactivity"
+      },
+      {
+        "label": "Common warning sign",
+        "value": "Blood in stool or unexplained weight loss requires prompt evaluation"
+      }
+    ],
+    "causes": [
+      "Not eating enough dietary fiber. Diets dominated by refined grains like maida, white bread, polished white rice, bakery biscuits, and deep-fried snacks lack the roughage needed to form soft, bulky stools.",
+      "Low fluid intake. When you do not drink enough water throughout the day, the large intestine pulls water out of digesting waste to keep your body hydrated, leaving stools hard, dry, and difficult to pass.",
+      "Sedentary lifestyle and lack of movement. Regular physical activity stimulates the natural rhythmic contractions of your intestinal muscles (peristalsis). Sitting for long hours slows bowel transit.",
+      "Ignoring the urge to pass stool. Delaying bathroom visits because of a busy schedule, travel, or avoidance of public or workplace restrooms causes stool to stay in the rectum longer, becoming drier and harder over time.",
+      "Certain medications and supplements. Iron supplements, calcium tablets, certain blood pressure medicines like calcium channel blockers, aluminium-based antacids, and some pain relievers often slow down gut movement.",
+      "Medical and hormonal conditions. An underactive thyroid gland (hypothyroidism), diabetes affecting autonomic nerves, irritable bowel syndrome (IBS), and chronic kidney disease frequently disrupt normal gut rhythm.",
+      "Pregnancy and hormonal shifts. Elevated progesterone levels during pregnancy relax smooth muscle tissue in the gut, which slows down digestion, while the growing uterus presses against the intestines.",
+      "Changes in daily routine. Traveling across time zones, shifts in meal timing, disrupted sleep, or fasting can throw off your internal body clock and digestive rhythm."
+    ],
+    "types": [
+      {
+        "name": "Normal-transit constipation",
+        "desc": "The most common functional type. Food waste moves through the colon at an ordinary pace, but stools still feel hard, difficult to evacuate, or accompanied by abdominal bloating and straining."
+      },
+      {
+        "name": "Slow-transit constipation",
+        "desc": "The muscles of the large intestine contract less frequently and less forcefully than normal. Waste moves very slowly through the colon, leading to infrequent urges, severe bloating, and stool passage only once every several days."
+      },
+      {
+        "name": "Defecatory disorders (pelvic floor dyssynergia)",
+        "desc": "The muscles and nerves of the pelvic floor and anal sphincter fail to coordinate properly. Instead of relaxing when you push to pass stool, these muscles paradoxically tighten, trapping stool in the rectum."
+      },
+      {
+        "name": "Secondary constipation",
+        "desc": "Constipation directly triggered by an identifiable medical condition (such as hypothyroidism, neurological disorders, or diabetes) or as a side effect of medicines like iron tablets or pain medications."
+      }
+    ],
+    "diagnosis": [
+      "Doctors diagnose constipation primarily through a detailed medical history and physical examination using established clinical standards such as the Rome IV criteria.",
+      "Your doctor will ask about bowel movement frequency, stool texture using the Bristol Stool Chart, how hard you have to strain, and whether you feel you never empty completely.",
+      "A physical check typically includes an abdominal examination to check for bloating, tender spots, or accumulated stool masses.",
+      "A digital rectal examination (DRE) may be performed in the clinic. This safe and quick check allows the doctor to feel for hard, impacted stool, tight pelvic floor muscles, internal hemorrhoids, or structural blockages.",
+      "Your doctor will review your daily diet, water intake, daily exercise, stress levels, and every supplement or medication you currently take to identify reversible triggers.",
+      "If red flag symptoms like rectal bleeding, sudden bowel changes after age 45, or anemia are present, further diagnostic scans or endoscopic checks will be scheduled."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Checks for an underactive thyroid gland (hypothyroidism), which commonly slows intestinal motility",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia that might indicate occult (hidden) blood loss from the digestive tract",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose or HbA1c",
+        "purpose": "Identifies diabetes, which can damage gut nerves and alter intestinal movement",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Serum Creatinine and Electrolytes",
+        "purpose": "Evaluates kidney function and electrolyte balance, which influence muscle contraction and fluid balance",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Colonoscopy or Flexible Sigmoidoscopy",
+        "purpose": "Visualizes the internal lining of the large intestine to inspect for polyps, inflammation, strictures, or tumors"
+      }
+    ],
+    "modernTreatment": [
+      "First-line treatment begins with fundamental lifestyle adjustments: steadily increasing natural food fiber, drinking plenty of water, and establishing an unhurried, daily bathroom routine.",
+      "Bulk-forming laxatives, such as psyllium husk (isabgol), absorb water in the intestine to make stools softer and bulkier. These must always be consumed with plenty of water as advised by your doctor.",
+      "Osmotic laxatives (such as polyethylene glycol or lactulose) work by retaining fluid inside the colon, softening stools and easing passage without irritating the intestinal wall.",
+      "Stimulant laxatives (such as bisacodyl or senna) encourage the bowel muscles to contract. Doctors generally reserve these for short-term relief or occasional use, as advised by your doctor, to avoid habitual reliance.",
+      "Stool softeners (such as docusate sodium) help moisture mix into hard stools, useful after surgery or during painful episodes of piles to minimize straining.",
+      "Pelvic floor biofeedback therapy is guided by specialized physiotherapists to retrain muscle coordination for people with pelvic floor dyssynergia.",
+      "Treating root conditions: If an underactive thyroid or a specific prescription drug is causing constipation, your doctor will adjust your medical plan accordingly."
+    ],
+    "ayurvedaView": [
+      "In Ayurveda, chronic constipation is traditionally referred to as Vibandha or Mala Baddhata, primarily attributed to an imbalance of Vata dosha, particularly Apana Vata, which governs downward movement and elimination.",
+      "When Apana Vata becomes dry, rough, and aggravated, it dries out fecal matter within the colon (Pakwashaya), leading to sluggish and difficult evacuation.",
+      "Traditional Ayurvedic care focuses on restoring natural lubrication and gentle digestive fire (Agni) through warm, moist, freshly prepared meals, adequate fluids, and healthy culinary fats like small amounts of pure cow's ghee.",
+      "Ayurvedic herbs and formulations can support bowel comfort alongside standard medical care, but they are not a substitute for proper clinical evaluation, especially when symptoms are severe or persistent."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A traditional combination of three fruits (amla, haritaki, and bibhitaki). It is widely used in Indian households to support regular bowel movements; use under medical guidance and avoid high unmonitored amounts."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "Indian gooseberry provides dietary fiber and vitamin C, supporting healthy digestive secretions alongside a balanced diet."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Known as adrak or sonth, ginger supports digestive fire and helps relieve bloating and gas, though scientific evidence for relieving severe chronic constipation alone is limited."
+      },
+      {
+        "name": "Licorice",
+        "slug": "licorice",
+        "note": "Traditionally called mulethi, it is used for soothing gut irritation; use only as advised by your doctor because excess intake can affect blood pressure and potassium levels."
+      }
+    ],
+    "nutrition": [
+      "Follow the ICMR-NIN dietary guidelines: aim for 30 to 40 grams of dietary fiber every day by eating whole, unprocessed Indian plant foods.",
+      "Switch from refined grains (maida, polished white rice) to whole grains like whole wheat atta with bran, rolled oats, and traditional millets such as jowar, bajra, and ragi.",
+      "Eat at least 400 to 500 grams of vegetables and fruits daily. Excellent Indian choices include papaya, guava, apples with skin, pears, oranges, bhindi (okra), lauki (bottle gourd), palak (spinach), and methi (fenugreek leaves).",
+      "Include whole pulses and legumes with their edible skins intact (such as whole moong, black chana, and rajma) to provide both soluble and insoluble fiber.",
+      "Drink 2.5 to 3.5 litres of clean water throughout the day. Starting your morning with a glass or two of warm water can help trigger the natural gastrocolic reflex.",
+      "Incorporate natural soluble fiber sources like isabgol (psyllium husk) or soaked chia/flax seeds, stirring them into a tall glass of water as advised by your doctor.",
+      "Limit foods that slow down the bowel: deep-fried pakoras, samosas, processed chips, white bread, bakery biscuits, sweet bakery pastries, and excess full-fat cheese.",
+      "Moderate your intake of strong tea and coffee; while caffeine can stimulate a bowel movement initially, excessive tea drinking can dehydrate the body and worsen stool hardness."
+    ],
+    "lifestyle": [
+      "Never ignore or hold back the urge to empty your bowels. Responding immediately to your body's signals helps maintain healthy rectal sensitivity and regular habits.",
+      "Use a footstool to raise your knees while sitting on a Western commode. This mimics a natural squatting posture, which straightens the anorectal angle and allows stool to exit smoothly without straining.",
+      "Build a regular toilet routine. Spend 5 to 10 quiet, unhurried minutes in the bathroom at the same time each morning, ideally 15 to 30 minutes after breakfast when bowel activity naturally peaks.",
+      "Leave your smartphone, newspapers, and books outside the bathroom. Sitting on the toilet seat for prolonged periods increases venous pressure in the anal region and triggers piles.",
+      "Stay physically active every day. Aim for at least 30 minutes of brisk walking, swimming, cycling, or active sports on most days of the week to keep abdominal and intestinal muscles working.",
+      "Prioritize quality sleep and manage psychological stress. Chronic mental stress and irregular sleep patterns disrupt communication between the brain and the gut, frequently aggravating bowel sluggishness."
+    ],
+    "yogaActivity": [
+      "Practice abdominal-massaging yoga postures (asanas) that gently compress and stimulate the digestive organs, such as Pawanmuktasana (wind-relieving pose).",
+      "Include Malasana (garland or deep squat pose), which stretches the pelvic floor muscles and encourages natural downward elimination posture.",
+      "Practice gentle spinal twists like Ardha Matsyendrasana (half lord of the fishes pose) and Supta Matsyendrasana to tone abdominal viscera and promote gut motility.",
+      "Bhujangasana (cobra pose) and Dhanurasana (bow pose) help stretch the abdominal wall and stimulate peristaltic action.",
+      "Engage in calming breathing practices like Anulom Vilom (alternate nostril breathing) and slow diaphragmatic breathing to balance the autonomic nervous system and soothe the gut-brain axis.",
+      "Avoid forceful breath-holding or aggressive abdominal flapping (Kapalabhati) if you have acute abdominal pain, umbilical hernia, or recent abdominal surgery."
+    ],
+    "homeopathyNote": [
+      "Homeopathic practitioners often suggest remedies like Nux Vomica, Bryonia, or Lycopodium for sluggish bowels and indigestion.",
+      "There is no robust, reproducible scientific evidence from high-quality clinical trials showing that homeopathic remedies effectively treat or cure chronic constipation.",
+      "Relying solely on homeopathy while neglecting dietary changes, hydration, or medical evaluation can leave mechanical blockages or metabolic diseases undetected.",
+      "Always discuss your bowel symptoms with a qualified medical doctor before opting for alternative systems."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Increasing dietary fiber (both soluble and insoluble) up to recommended targets improves stool frequency, weight, and consistency in functional constipation.",
+      "Strong evidence: Drinking sufficient fluids enhances the stool-bulking effect of dietary fiber and prevents dry stool impaction.",
+      "Strong evidence: Osmotic laxatives (like polyethylene glycol) and bulk-forming agents (like psyllium) significantly increase spontaneous bowel movements and are safe for long-term clinical use under medical advice.",
+      "Moderate evidence: The squatting position or using a toilet footstool straightens the anorectal passage, reducing straining effort and time spent evacuating.",
+      "Moderate evidence: Regular moderate aerobic exercise, such as brisk daily walking, improves transit time in people with sedentary lifestyles.",
+      "Weak or limited evidence: Herbal churnas, proprietary detox cleanses, and colon cleansing therapies lack rigorous evidence and may cause bowel irritation or electrolyte imbalances.",
+      "No herb, diet or product can make chronic constipation instantly go away forever without consistent lifestyle habits and medical guidance."
+    ],
+    "shouldNotDo": [
+      "Do not take over-the-counter stimulant laxative tablets or harsh herbal churnas every single day for weeks without a doctor's prescription; this can cause bowel dependency and potassium loss.",
+      "Do not strain forcefully or hold your breath while trying to pass hard stools. Violent straining causes anal tears (fissures) and engorged veins (piles).",
+      "Do not sit on the toilet for more than 10 minutes at a time hoping something will happen. If you do not pass stool, get up, drink water, walk, and try again later.",
+      "Do not abruptly add massive amounts of raw fiber to your diet in a single day without extra water; doing so causes painful abdominal cramps, severe gas, and can even worsen blockages.",
+      "Do not assume that taking 'rock salt' or hot spices will naturally clear your gut; they irritate stomach lining without addressing stool moisture.",
+      "Do not ignore warning signs such as unexplained weight loss, bleeding from the rectum, or persistent pencil-thin stools."
+    ],
+    "medicationSafety": [
+      "Whenever you take bulk-forming laxatives like isabgol (psyllium), always mix the powder thoroughly into a full glass of water or milk, drink it immediately, and follow with another glass of water to prevent throat or gut obstruction.",
+      "Inform your doctor about all daily medications. Common drugs like iron supplements, calcium tablets, certain antacids, and blood pressure pills can be adjusted or timed differently to reduce constipation.",
+      "If you have heart failure or chronic kidney disease, talk to your doctor before drastically increasing your fluid or electrolyte intake, as water and salt balance must be strictly monitored.",
+      "Do not give adult laxatives or herbal formulations to infants, young children, or frail elderly relatives without explicit pediatric or geriatric medical guidance.",
+      "Pregnant women should never use strong stimulant laxatives, castor oil, or unknown herbal concoctions, as these can trigger painful uterine contractions."
+    ],
+    "complications": [
+      "Hemorrhoids (piles): Swollen, inflamed veins in the lower rectum and anus caused by continuous, heavy straining during bowel movements.",
+      "Anal fissures: Painful, bleeding cuts or cracks in the sensitive skin lining the anal canal caused by passing hard, oversized stools.",
+      "Fecal impaction: A hardened, dry collection of stool that becomes physically wedged in the rectum and cannot be expelled by normal pushing, often requiring manual or medical clearing.",
+      "Rectal prolapse: A condition where chronic, intense straining causes a small section of the rectal lining to slip out through the anal opening.",
+      "Chronic pelvic floor dysfunction and significant physical distress, including persistent abdominal bloating, nausea, and reduced appetite."
+    ],
+    "emergencySigns": [
+      "Severe, sudden abdominal pain accompanied by persistent vomiting and inability to pass either stool or gas (suggests bowel obstruction)",
+      "Passing substantial amounts of bright red blood from the rectum, or passing black, tarry, sticky stools",
+      "High fever, shaking chills, and unbearable throbbing pain or visible swelling around the anus",
+      "Feeling faint, dizzy, unusually pale, or losing consciousness after attempting a bowel movement"
+    ],
+    "whenToSeeDoctor": [
+      "Your constipation is a new issue, has lasted more than two to three weeks, and has not improved after eating more fiber and drinking more water",
+      "You notice blood on your toilet paper, in the toilet bowl water, or mixed directly into your stool",
+      "You are experiencing unexplained weight loss or persistent fatigue alongside bowel irregularity",
+      "You alternate between bouts of constipation and unexplained watery diarrhea",
+      "You have a continuous feeling of fullness or rectal blockage, feeling like you can never fully empty your bowel",
+      "You are over the age of 45 and notice a sudden, lasting change in your normal bathroom frequency"
+    ],
+    "faqs": [
+      {
+        "q": "Is it medically necessary to pass stool every single day?",
+        "a": "No. Normal bowel frequency varies from person to person, ranging from three times a day to three times a week. What matters most is that stools are soft, formed, passed without straining, and leave you feeling comfortable. You do not need to force a daily motion if you have no discomfort."
+      },
+      {
+        "q": "Is isabgol (psyllium husk) safe to take on a daily basis?",
+        "a": "Yes, isabgol is a gentle bulk-forming soluble fiber that is safe for regular use when taken as advised by your doctor. However, you must always take it with plenty of water. If you take it dry or without enough fluids, it can swell in the esophagus or intestine and worsen blockages."
+      },
+      {
+        "q": "Why do iron supplements cause severe constipation?",
+        "a": "Unabsorbed iron in the colon can alter gut bacteria, slow down intestinal muscle contractions, and irritate the mucosal lining, making stools dark and dry. If iron tablets cause severe constipation, talk to your doctor about adjusting the timing, dosage form, or taking them alongside fiber and plenty of fluids."
+      },
+      {
+        "q": "Does drinking warm water in the morning really help relieve constipation?",
+        "a": "Yes. Drinking one or two glasses of warm water right after waking up helps trigger the gastrocolic reflex, a natural neurological signal that stimulates contractions in the colon to push waste forward. It also rehydrates the body after a long night of sleep."
+      },
+      {
+        "q": "Why do I always get constipated when I travel?",
+        "a": "Travel disrupts your circadian rhythm, alters meal times, changes the type of food you eat, and often leads to drinking less water. People also tend to hold back their bowel urge when clean restrooms are not available. Planning ahead, carrying water, and prioritizing high-fiber snacks can help."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "Constipation: Symptoms, Causes, and Treatment",
+        "source": "National Institute of Diabetes and Digestive and Kidney Diseases (NIDDK)",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/constipation",
+        "year": "2021"
+      },
+      {
+        "title": "Constipation: Overview and Management",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/constipation/",
+        "year": "2023"
+      },
+      {
+        "title": "Constipation: Symptoms & Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/constipation/symptoms-causes/syc-20354253",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "hemorrhoids",
+      "bloating",
+      "ibs",
+      "hypothyroidism",
+      "acidity",
+      "gerd"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "levothyroxine",
+      "amlodipine",
+      "omeprazole"
+    ],
+    "relatedHerbs": [
+      "triphala",
+      "amla",
+      "ginger",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "cbc",
+      "fasting-glucose",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "slug": "pms",
+  "name": "PMS & PMDD",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Premenstrual syndrome (PMS) refers to a predictable cluster of physical, emotional, and behavioural changes that occur during the luteal phase of the menstrual cycle—the 7 to 14 days before a period starts—and resolve within a few days of bleeding. While mild premenstrual symptoms affect up to 75% to 80% of menstruating women at some point, Premenstrual Dysphoric Disorder (PMDD) is a much more severe, disabling form affecting approximately 3% to 8% of women. PMDD is recognized by medical bodies as an endocrine-related psychiatric condition characterized by profound mood changes, extreme irritability, anger, overwhelming fatigue, and depressive symptoms that significantly disrupt work, home, and personal relationships. Neither PMS nor PMDD is a character flaw, emotional weakness, or 'just in your head.' They are genuine neurobiological responses to the natural hormonal shifts of the menstrual cycle.",
+    "quickFacts": [
+      {
+        "label": "Timing",
+        "value": "Occurs strictly during the luteal phase (1 to 2 weeks before menstruation starts)"
+      },
+      {
+        "label": "Resolution",
+        "value": "Symptoms subside within 4 to 7 days after the onset of menstrual bleeding"
+      },
+      {
+        "label": "Mild to Moderate PMS",
+        "value": "Experienced by roughly 75% of reproductive-age women"
+      },
+      {
+        "label": "PMDD Prevalence",
+        "value": "Affects about 3% to 8% of women (ACOG and DSM-5 criteria)"
+      },
+      {
+        "label": "Primary Mechanism",
+        "value": "Heightened brain sensitivity to normal shifts in estrogen and progesterone"
+      },
+      {
+        "label": "Core PMDD Warning",
+        "value": "Marked mood disruption, severe despair, or suicidal thoughts need urgent medical care"
+      }
+    ],
+    "causes": [
+      "Abnormal brain sensitivity to standard hormonal fluctuations: Estrogen and progesterone rise and fall normally during every ovulatory cycle, but individuals with PMS and PMDD have central nervous systems that are unusually sensitive to these shifts.",
+      "Serotonin dysregulation: Progesterone metabolites directly interact with gamma-aminobutyric acid (GABA) and serotonin receptors in the brain. When hormone levels plummet prior to menstruation, serotonin signalling can fall sharply, triggering mood crashes, irritability, fatigue, and carbohydrate cravings.",
+      "Genetic factors: Twin and molecular studies show clear heritability for premenstrual mood disorders. Specific differences in cellular receptor genes alter how brain circuits respond to sex steroids.",
+      "Heightened stress and hypothalamic-pituitary-adrenal (HPA) axis dysfunction: High ongoing psychological stress, unmanaged workplace strain, or past trauma can amplify brain reactivity to luteal-phase hormonal shifts.",
+      "Suboptimal nutrient intake: Diets lacking sufficient calcium, magnesium, B vitamins, and complex carbohydrates can impair neurotransmitter synthesis and worsen water retention and neuromuscular irritability.",
+      "Inflammatory pathways: Elevated levels of high-sensitivity C-reactive protein and other inflammatory cytokines during the luteal phase have been associated with increased abdominal bloating, fluid retention, breast tenderness, and mood disturbances."
+    ],
+    "types": [
+      {
+        "name": "Mild to Moderate PMS",
+        "desc": "The most common form. Involves manageable physical symptoms like mild abdominal fullness, water retention, breast tenderness, and mild mood shifts that do not cause significant family or occupational impairment."
+      },
+      {
+        "name": "Premenstrual Dysphoric Disorder (PMDD)",
+        "desc": "A severe, diagnostic clinical entity. Marked by disabling mood lability, intense anger, interpersonal conflict, hopelessness, anxiety, severe lethargy, and a feeling of being completely overwhelmed or out of control during the luteal phase."
+      },
+      {
+        "name": "Premenstrual Exacerbation (PME)",
+        "desc": "The premenstrual worsening of an underlying, continuous medical or psychiatric disorder—such as major depression, generalized anxiety disorder, migraine, irritable bowel syndrome, or asthma—which does not fully clear after menses."
+      }
+    ],
+    "diagnosis": [
+      "Prospective daily symptom charting: The gold standard for diagnosing PMS and PMDD requires tracking symptoms every single day for at least two consecutive menstrual cycles using a validated tool, such as the Daily Record of Severity of Problems (DRSP).",
+      "Verification of a symptom-free follicular phase: Symptoms must clearly vanish within the first few days after menstrual bleeding begins and remain completely absent until after ovulation.",
+      "DSM-5 diagnostic criteria for PMDD: Requires at least 5 symptoms present in the final week before menses, with at least one core mood symptom (marked mood swings, irritability or anger, depressed mood or feelings of hopelessness, or severe anxiety).",
+      "Clinical exclusion: A thorough medical evaluation is conducted to rule out primary depressive disorders, generalized anxiety, chronic fatigue syndrome, perimenopause, endometriosis, and thyroid dysfunction that could mimic PMS symptoms."
+    ],
+    "investigations": [
+      {
+        "test": "Daily Symptom Diary (DRSP)",
+        "purpose": "Charts daily mood and physical changes across two complete cycles to confirm luteal-phase timing"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out hypothyroidism or hyperthyroidism, which commonly mimic premenstrual fatigue, mood swings, and cycle changes",
+        "slug": "tsh"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Screens for iron deficiency anemia, which frequently drives premenstrual exhaustion, brain fog, and breathlessness",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates stored iron levels even if overall hemoglobin appears borderline normal",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Assesses vitamin D sufficiency, as low levels are associated with worse premenstrual mood symptoms and bone aches",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Checks for B12 deficiency, which can exacerbate premenstrual neurological symptoms, mood dips, and extreme lethargy",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks for metabolic disturbances and reactive blood sugar drops that worsen luteal irritability and sugar cravings",
+        "slug": "fasting-glucose"
+      }
+    ],
+    "modernTreatment": [
+      "First-line lifestyle optimization: Setting up structured sleep habits, regular moderate exercise, balanced low-sodium meals, and stress reduction methods form the clinical baseline for everyone.",
+      "Cognitive Behavioural Therapy (CBT): Structured sessions with a clinical psychologist help develop effective coping strategies, challenge catastrophic thinking patterns, and reduce relational distress during symptomatic weeks.",
+      "Selective Serotonin Reuptake Inhibitors (SSRIs): Widely endorsed as the first-line pharmacotherapy for PMDD. Because the mechanism in PMDD works rapidly via neurosteroid receptor pathways, doctors may prescribe SSRIs either continuously every day or intermittently (taken only during the luteal phase, starting at ovulation and stopping at period onset).",
+      "Combined Oral Contraceptives: Formulations that suppress ovulation—especially those containing drospirenone with a shortened hormone-free interval—are clinically approved to stabilize hormonal swings in PMDD and moderate PMS.",
+      "Symptomatic pain relief: Non-steroidal anti-inflammatory drugs or paracetamol may be used during symptomatic days to ease breast tenderness, headaches, joint pain, and uterine cramps as advised by your doctor.",
+      "Nutritional supplementation: Doctors often recommend evidence-supported supplements including calcium, magnesium, and vitamin B6 to support neurotransmitter balance and reduce premenstrual water retention."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, premenstrual distress is understood through the disruption of Doshas, predominantly involving Apana Vata (the sub-dosha governing pelvic organs, downward movement, and elimination) and Pitta (governing metabolic transformations and blood/Rakta).",
+      "When Apana Vata is obstructed or vitiated by irregular routines, poor sleep, or dry foods, symptoms like abdominal distension, constipation, back pain, and anxiety emerge before menses.",
+      "When Pitta is aggravated by excessive spicy, sour, fried, or salty foods, symptoms lean toward irritability, anger, hot sensations, acne breakouts, and tender, swollen breasts.",
+      "Traditional texts describe the concept of Artava Pravritti (healthy menstrual flow), emphasizing gentle digestive fires (Agni), adequate hydration, calming daily rhythms (Dinacharya), and light, warm, unctuous meals.",
+      "Herbal remedies and Panchakarma modalities are viewed strictly as traditional supportive practices alongside modern medical care, never as standalone cures."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Studied for its natural anti-inflammatory actions. Clinical trials suggest it may help ease premenstrual physical discomfort, cramps, nausea, and abdominal bloating when taken during the late luteal phase as advised by your doctor."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An established adaptogen evaluated for chronic stress and nervous exhaustion. It may support restful sleep, calm the nervous system, and help moderate premenstrual anxiety alongside standard medical advice."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditionally utilized in Ayurveda to nourish female reproductive health. Scientific human trials are limited, but it is traditionally used to support energy, soothe irritability, and promote vitality."
+      }
+    ],
+    "nutrition": [
+      "Prioritize complex carbohydrates: Incorporate wholesome Indian grains such as jowar, bajra, ragi, brown rice, steel-cut oats, and whole wheat rotis. Complex carbs facilitate steady insulin release, which aids brain tryptophan uptake and helps maintain stable serotonin levels.",
+      "Sharply reduce hidden sodium: Avoid excessive table salt, pickles (achaar), papad, namkeen, packaged chips, bhujia, canned soups, and restaurant gravies during the two weeks before your period. High sodium worsens breast engorgement, peripheral edema, and abdominal tightness.",
+      "Boost dietary calcium and magnesium: Consume fresh curd (dahi), paneer, buttermilk, ragi, roasted sesame seeds (til), soaked almonds, and dark green leafy vegetables like palak, methi, and drumstick leaves to reduce neuromuscular irritability and mood dips.",
+      "Curtail caffeine and energy drinks: High caffeine intake amplifies breast tenderness (mastalgia), triggers jitteriness, increases resting heart rate, and fragments sleep during the sensitive luteal window.",
+      "Limit refined sugar and confectionery: Heavy intake of sweets, mithai, chocolates, and sweetened beverages causes rapid blood sugar spikes followed by steep crashes, making luteal mood swings, fatigue, and headaches significantly worse.",
+      "Hydrate with soothing fluids: Drink 2 to 3 litres of clean water daily, supplemented with tender coconut water, diluted chaas, or warm jeera water to aid renal fluid clearance and alleviate bloating."
+    ],
+    "lifestyle": [
+      "Maintain a prospective cycle and mood log: Use a simple paper calendar or a reputable tracking app to mark your cycle days, physical symptoms, and mood shifts. Seeing the clear pattern brings predictability and peace of mind.",
+      "Keep a rigid, restorative sleep schedule: Strive for 7 to 9 hours of uninterrupted sleep every night. Hormonal shifts elevate baseline body temperature slightly in the luteal phase, which can disrupt deep sleep; keep your bedroom cool and dark.",
+      "Adopt regular aerobic activity: Aim for at least 150 minutes of moderate aerobic exercise per week, such as brisk walking, cycling, swimming, or light dancing. Physical activity releases endorphins, lifts mood, and naturally mobilizes retained fluids.",
+      "Schedule proactive downtime during late luteal days: Whenever possible, avoid scheduling emotionally exhausting meetings, major family negotiations, or peak workloads during the 3 to 5 days right before your period is due.",
+      "Eliminate tobacco and strictly moderate alcohol: Both smoking and alcohol intake disrupt steroid hormone metabolism, impair liver clearance of estrogens, and aggravate premenstrual insomnia and depression."
+    ],
+    "yogaActivity": [
+      "Restorative asanas: Practice calming postures such as Supta Baddha Konasana (Reclining Bound Angle Pose), Balasana (Child's Pose), and Viparita Karani (Legs-Up-The-Wall Pose) with cushions or bolsters to release pelvic tension and soothe the nervous system.",
+      "Gentle spinal mobility: Practice gentle Marjaryasana-Bitilasana (Cat-Cow Pose) and soft seated twists to relieve lower back achiness and premenstrual digestive sluggishness.",
+      "Pranayama for mental equilibrium: Incorporate 10 to 15 minutes of Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath). These slow-breathing techniques activate parasympathetic tone and alleviate sudden waves of irritability.",
+      "Avoid strenuous exhaustion: During days with intense fatigue, severe cramps, or heavy premenstrual heaviness, avoid strenuous, heated vinyasa flows, advanced inversions, or rapid breath-holding practices (Kumbhaka)."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are frequently promoted for menstrual complaints, mood swings, and water retention.",
+      "Rigorous systematic reviews and clinical trial evaluations have found no consistent scientific evidence that homeopathic remedies treat or alter the biological course of PMS or PMDD beyond a placebo effect.",
+      "Individuals experiencing disabling mood symptoms, severe functional impairment, or self-harm thoughts should seek care from qualified gynecologists and mental health professionals rather than relying on unproven alternatives."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Prospective daily symptom charting is necessary for an accurate diagnosis. Selective Serotonin Reuptake Inhibitors (SSRIs) have high-level randomized controlled trial evidence demonstrating substantial symptom reduction in PMDD. Cognitive Behavioural Therapy (CBT) provides proven, durable coping benefits.",
+      "Moderate evidence: Regular moderate aerobic exercise, reducing excess dietary sodium, and clinical supplementation with calcium (under medical guidance) show consistent benefit in reducing physical and emotional PMS symptom severity.",
+      "Limited or mixed evidence: Herbal extracts such as ginger, ashwagandha, and vitex agnus-castus have shown promising preliminary results in small trials, but require larger, standardized studies before they can be considered primary therapies.",
+      "No credible evidence: Quick-fix detox teas, hormonal balancing tonics, and over-the-counter PMDD cure packages sold online have no verified clinical efficacy."
+    ],
+    "shouldNotDo": [
+      "Do not brush off severe emotional distress as ordinary moodiness or PMS: If you feel intense despair, rage, or self-loathing every month, it may be PMDD, which requires structured medical support.",
+      "Do not stop or adjust prescribed SSRIs or hormonal medications on your own: Abruptly stopping antidepressants can trigger withdrawal symptoms and a severe rebound of mood instability.",
+      "Do not binge on high-sodium snacks, fried foods, and sugary sweets during craving spikes: While cravings are chemically driven by low serotonin, indulging them creates an inflammatory cycle that deepens fatigue and bloating.",
+      "Do not rely solely on memory to describe your symptoms to your doctor: Retrospective recall is notoriously inaccurate; always bring two full months of prospective daily symptom logs.",
+      "Do not overuse over-the-counter painkillers: Taking excessive NSAIDs without a doctor's guidance can cause gastritis, gastric ulcers, and kidney strain."
+    ],
+    "medicationSafety": [
+      "Follow your doctor's exact regimen for SSRIs: If prescribed intermittent luteal-phase dosing, start and stop strictly on the designated cycle days; do not alter dosages without consulting your physician.",
+      "Report side effects promptly: If an antidepressant causes dry mouth, mild nausea, insomnia, or changes in libido, inform your doctor; different agents or dosage adjustments can significantly improve comfort.",
+      "Combined hormonal contraceptives require medical screening: Oral contraceptive pills carry specific medical contraindications, including uncontrolled hypertension, active liver disease, migraine with aura, and elevated thrombosis risk. Never start birth control pills without a full clinical evaluation.",
+      "Ensure safe pain medication practices: When using medications like paracetamol for pain or body aches, stay within the maximum safe limits advised by your doctor to protect liver function."
+    ],
+    "complications": [
+      "Severe disruption of marital, family, and social relationships due to recurrent, monthly episodes of intense irritability, anger, and withdrawal",
+      "Marked occupational disability, missed work days, reduced workplace productivity, and impaired career progression during symptomatic weeks",
+      "Increased risk of secondary major depressive disorder, generalized anxiety, and substance misuse used as an unhealthy coping mechanism",
+      "Risk of self-harm, suicidal ideation, and suicide attempts in severe, untreated PMDD cases",
+      "Chronic sleep disturbances leading to metabolic dysregulation, fatigue, and lower overall quality of life"
+    ],
+    "emergencySigns": [
+      "Active suicidal thoughts, impulses to harm yourself, or feelings that your family would be better off without you: Seek emergency medical care immediately or contact a mental health crisis lifeline (such as Tele-MANAS at 14416)",
+      "Sudden, uncontrollable impulses of physical violence or extreme rage toward family members or children",
+      "Severe, agonizing abdominal or pelvic pain that does not respond to prescribed analgesics, which may indicate an acute surgical issue such as ovarian torsion or ectopic pregnancy",
+      "Sudden shortness of breath, one-sided leg swelling, or chest pain if taking combined oral contraceptives, which may indicate a blood clot (deep vein thrombosis or pulmonary embolism)"
+    ],
+    "whenToSeeDoctor": [
+      "Your premenstrual mood changes cause noticeable friction in your marriage, family life, or professional relationships",
+      "You regularly feel overwhelmed, hopeless, or unable to perform daily tasks during the 7 to 10 days before your period",
+      "Physical symptoms like headaches, severe bloating, or breast pain prevent you from exercising or carrying out normal routines",
+      "Your symptoms do not disappear after your menstrual period begins, suggesting an underlying depression or anxiety condition rather than pure PMS",
+      "You have tracked your symptoms on a daily calendar for two cycles and notice a distinct, recurring luteal pattern"
+    ],
+    "faqs": [
+      {
+        "q": "How can I tell the difference between normal PMS and PMDD?",
+        "a": "Normal PMS causes mild to moderate physical and emotional symptoms (such as mild bloating, breast tenderness, or occasional irritability) that do not stop you from living your everyday life. PMDD is far more severe, characterized by disabling mood symptoms like deep despair, intense rage, severe panic, hopelessness, and extreme fatigue that disrupt your ability to work, study, or maintain personal relationships."
+      },
+      {
+        "q": "Why do I get intense cravings for sweets and namkeen before my period?",
+        "a": "During the late luteal phase, the drop in estrogen and altered progesterone metabolites can cause a brief drop in brain serotonin levels. Consuming carbohydrates temporarily boosts insulin, which helps the amino acid tryptophan enter the brain to produce serotonin. Stress-related cortisol spikes also stimulate appetite for salty and sugary comfort foods."
+      },
+      {
+        "q": "Can diet and exercise alone completely resolve PMDD?",
+        "a": "For mild to moderate PMS, diet, regular exercise, and stress management are often very effective. However, for true PMDD, lifestyle changes are usually a supportive foundation rather than a complete solution. PMDD frequently requires medical treatments such as SSRIs or specific hormonal therapies alongside psychological support like CBT."
+      },
+      {
+        "q": "Why do some doctors prescribe antidepressants only for two weeks a month?",
+        "a": "In PMDD, SSRIs work through a rapid neurosteroid mechanism on brain GABA-A receptors, rather than taking 4 to 6 weeks as they do in typical major depression. Because of this rapid response, doctors often prescribe them only during the luteal phase (from ovulation until bleeding starts), which provides symptom relief with fewer long-term side effects."
+      },
+      {
+        "q": "Does PMS get worse as women get older?",
+        "a": "Premenstrual symptoms can intensify during perimenopause—typically in a woman's late 30s and 40s—because hormonal fluctuations become more erratic and unpredictable before ovulation stops entirely. Symptoms permanently resolve after menopause once menstrual cycles cease."
+      }
+    ],
+    "references": [
+      {
+        "title": "Premenstrual Dysphoric Disorder: Different from and More Than PMS",
+        "source": "American Psychological Association (DSM-5 Guidelines)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK279045/",
+        "year": "2022"
+      },
+      {
+        "title": "ACOG Practice Bulletin No. 15: Premenstrual Syndrome and Premenstrual Dysphoric Disorder",
+        "source": "American College of Obstetricians and Gynecologists",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10777453/",
+        "year": "2000"
+      },
+      {
+        "title": "Premenstrual Syndrome (PMS) and Premenstrual Dysphoric Disorder (PMDD)",
+        "source": "StatPearls - National Center for Biotechnology Information (NCBI)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK560579/",
+        "year": "2023"
+      },
+      {
+        "title": "Dietary guidelines for Indians: A manual",
+        "source": "Indian Council of Medical Research - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/index.html",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "menstrual-health",
+      "depression",
+      "anxiety",
+      "stress",
+      "sleep-problems",
+      "migraine",
+      "bloating",
+      "pcos",
+      "endometriosis"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "ashwagandha",
+      "shatavari"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "cbc",
+      "ferritin",
+      "vitamin-d",
+      "vitamin-b12",
+      "fasting-glucose"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

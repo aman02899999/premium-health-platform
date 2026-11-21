@@ -1,0 +1,288 @@
+{
+  "slug": "peripheral-artery-disease",
+  "name": "Peripheral Artery Disease",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Peripheral Artery Disease (PAD) is a circulatory condition where narrowed arteries reduce blood flow to your limbs, most commonly the legs and feet. This narrowing occurs due to atherosclerosis, a gradual buildup of fatty deposits called plaque on the artery walls. Because muscles do not receive enough oxygen-rich blood during exertion, a classic cramp-like muscle ache during walking (called intermittent claudication) often develops. In India, PAD is increasingly common due to high rates of diabetes, smoking, bidi use, and uncontrolled lipid levels. Many people dismiss leg pain as normal aging or simple joint pain, leaving this serious sign of widespread cardiovascular disease undetected until significant complications occur.",
+    "quickFacts": [
+      {
+        "label": "Primary cause",
+        "value": "Atherosclerosis (fatty plaque buildup in leg arteries)"
+      },
+      {
+        "label": "Classic symptom",
+        "value": "Leg muscle cramps during walking that ease with rest (claudication)"
+      },
+      {
+        "label": "Major risk factors in India",
+        "value": "Type 2 diabetes, smoking, bidi, high blood pressure, and abnormal cholesterol"
+      },
+      {
+        "label": "Key screening test",
+        "value": "Ankle-Brachial Index (ABI) comparing arm and ankle blood pressures"
+      },
+      {
+        "label": "Global prevalence",
+        "value": "Over 200 million people worldwide (WHO / Lancet)"
+      },
+      {
+        "label": "Core danger",
+        "value": "Significantly raised risk of heart attack, stroke, non-healing ulcers, or amputation"
+      }
+    ],
+    "causes": [
+      "Atherosclerosis: Plaque made of cholesterol, calcium, and cellular waste accumulates on the inner lining of peripheral arteries, gradually narrowing the blood vessel lumen.",
+      "Smoking and smokeless tobacco: Tobacco in any form, including cigarettes, bidi, gutka, and khaini, damages vessel linings, raises inflammation, and markedly accelerates artery blockages.",
+      "Type 2 diabetes: High blood sugar damages blood vessel walls and nerves, making Indian adults with diabetes particularly prone to severe and early-onset peripheral blockages.",
+      "High cholesterol and dyslipidemia: High LDL cholesterol and raised triglycerides contribute directly to the fatty plaque that clogs arteries.",
+      "High blood pressure: Constant pressure strains arterial walls, creating micro-tears where fatty plaques lodge and grow.",
+      "Advanced age: Arteries stiffen and plaque burdens naturally increase after age 50, especially in those with metabolic risk factors.",
+      "Chronic kidney disease: Impaired kidney function changes mineral balance and accelerates arterial calcification."
+    ],
+    "types": [
+      {
+        "name": "Asymptomatic PAD",
+        "desc": "Blood flow is reduced, but the person feels no symptoms, often because they walk very little or have diabetic nerve damage masking the pain."
+      },
+      {
+        "name": "Intermittent Claudication",
+        "desc": "Predictable muscle pain, cramping, or fatigue in the calf, thigh, or buttock triggered by walking a specific distance and relieved within minutes of standing still."
+      },
+      {
+        "name": "Critical Limb Ischemia (CLI)",
+        "desc": "A severe, advanced stage where blood flow is so low that severe pain persists even while resting or lying down, often accompanied by non-healing sores or gangrene."
+      },
+      {
+        "name": "Acute Limb Ischemia",
+        "desc": "A sudden, emergency blockage caused by a blood clot or dislodged embolus, leading to rapid onset of coldness, pain, pale skin, and loss of pulse in the leg."
+      }
+    ],
+    "diagnosis": [
+      "Careful physical examination: The doctor checks pulses in the groin, behind the knees, over the ankles, and on top of the feet, and looks for cool skin, hair loss, or color changes.",
+      "Ankle-Brachial Index (ABI): A quick, painless test comparing blood pressure in your ankle to blood pressure in your arm using a Doppler probe. A value of 0.90 or lower confirms PAD.",
+      "Treadmill test for ABI: Checking ABI immediately after walking on a treadmill helps detect narrowed vessels when resting values look borderline.",
+      "Duplex ultrasound: High-frequency sound waves visualize blood flow and pinpoint specific narrowed or blocked sections in the leg arteries.",
+      "CT angiography (CTA) or MR angiography (MRA): Detailed imaging used when surgical repair or stenting is being planned."
+    ],
+    "investigations": [
+      {
+        "test": "Ankle-Brachial Index (ABI)",
+        "purpose": "Primary non-invasive test to confirm peripheral arterial narrowing"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates average blood sugar control over the last three months",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting blood glucose",
+        "purpose": "Detects underlying diabetes or prediabetes",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Lipid profile",
+        "purpose": "Measures total cholesterol, LDL, HDL, and triglycerides to guide lipid-lowering therapy",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Serum creatinine",
+        "purpose": "Assesses kidney health before planning contrast scans or adjusting medications",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Complete blood count (CBC)",
+        "purpose": "Rules out anemia or underlying infection if foot sores are present",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-reactive protein (CRP)",
+        "purpose": "Assesses systemic vascular inflammation",
+        "slug": "crp"
+      }
+    ],
+    "modernTreatment": [
+      "Supervised exercise therapy: A structured walk-rest-walk program is the gold-standard initial treatment, stimulating the growth of small collateral vessels to bypass blockages.",
+      "Antiplatelet medications: Doctors prescribe medicines such as aspirin or clopidogrel to reduce the risk of blood clots, heart attack, and stroke.",
+      "Lipid-lowering therapy: High-intensity statins (such as atorvastatin) are prescribed to stabilize plaque and lower LDL cholesterol to strict target levels.",
+      "Blood pressure and diabetes control: Managing blood pressure (often with ARBs like losartan or calcium channel blockers like amlodipine) and keeping blood sugar well managed protects blood vessels.",
+      "Symptom-relief medications: Specific medicines like cilostazol may be prescribed as advised by your doctor to improve pain-free walking distance.",
+      "Endovascular procedures: Angioplasty with or without stenting uses a small balloon and mesh tube inserted through a puncture to widen narrowed vessels.",
+      "Surgical bypass: In complex or extensive blockages, a vascular surgeon redirects blood flow around the blocked segment using a healthy vein or synthetic graft."
+    ],
+    "ayurvedaView": [
+      "Ayurvedic classical texts do not define PAD as a single modern entity. It is conceptually understood as an imbalance involving Vata dosha along with Kapha and Meda (fatty tissue), creating obstruction (Avarana) in the blood channels (Raktavaha Srotas).",
+      "Traditional guidance emphasizes clearing channel obstruction through light, easily digestible food (Langhana), warming spices, and disciplined physical movement.",
+      "Ayurvedic therapies such as gentle warm herbalized oil application must be approached with extreme caution, as vigorous massage or hot fomentation can damage delicate, ischemic skin.",
+      "Ayurvedic formulations may offer general metabolic and digestive support alongside care, but no herb, diet, or product can make structural artery blockages go away."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Traditional culinary herb shown in small clinical trials to have modest effects on lipid levels and platelet aggregation. Use standard food amounts; avoid high-dose supplements without medical advice because they can increase bleeding risk when taken alongside blood thinners."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which possesses antioxidant and mild anti-inflammatory properties in laboratory models. Clinical evidence in human arterial disease remains limited, and it cannot replace prescribed vascular medicines."
+      },
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "Traditionally used in Indian systems for cardiovascular support. Robust clinical trials demonstrating improvement in walking distance or arterial patency in PAD are lacking."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "A warming spice with mild circulatory stimulation properties in traditional use, but no human trials show it opens narrowed leg arteries."
+      }
+    ],
+    "nutrition": [
+      "Adopt a heart-healthy diet aligned with ICMR-NIN dietary guidelines: build meals around whole grains, seasonal vegetables, pulses, and healthy nuts.",
+      "Cut down on saturated fats and avoid trans fats entirely; replace vanaspati, palm oil, and deep-fried snacks (such as samosas, pakoras, and bhujia) with moderate amounts of cold-pressed mustard, groundnut, or sesame oil.",
+      "Keep total salt intake under 5 grams per day (about one level teaspoon), watching out for hidden sodium in pickles, papads, chutneys, and packaged mixtures.",
+      "Include fiber-rich foods daily: oats, barley, whole moong, chana, methi leaves, and guava help manage both cholesterol and blood glucose levels.",
+      "Avoid refined carbohydrates, sugary drinks, sweets, and bakery goods that raise triglycerides and worsen insulin resistance.",
+      "Stay adequately hydrated with plain water, buttermilk, or clear vegetable soups to prevent sluggish blood flow."
+    ],
+    "lifestyle": [
+      "Quit all forms of tobacco immediately. Smoking, bidi, and chewing gutka are the single most destructive factors in PAD; quitting stops the rapid progression of blockages.",
+      "Engage in structured walking therapy: walk until leg discomfort reaches moderate intensity, stop and rest until pain completely subsides, and then walk again, aiming for 30 to 45 minutes total, 3 to 5 times weekly.",
+      "Inspect both feet daily: check toes, heels, and soles for red marks, cuts, blisters, cracks, or fungal patches using a hand mirror or assistance from family.",
+      "Wear clean, seamless cotton socks and properly fitted, supportive footwear; never walk barefoot, even inside the home or at places of worship.",
+      "Keep feet clean and dry, especially between the toes, and apply a gentle moisturizer to heels and soles to prevent cracks, avoiding the spaces between toes.",
+      "Never apply direct hot water bottles, heating pads, or very hot water to your feet, as reduced sensation can lead to severe burns without warning."
+    ],
+    "yogaActivity": [
+      "Gentle foot and ankle movements: simple seated ankle rotations, toe flexing, and ankle pumps (Sukshma Vyayama) stimulate local microcirculation without excessive strain.",
+      "Supported poses: Gentle asanas like Tadasana (Mountain Pose), Dandasana, and supported Viparita Karani (legs resting gently against a wall with a cushion under the hips) can help promote venous and arterial tone if cleared by your doctor.",
+      "Controlled breathing: Slow, relaxing pranayama practices such as Anulom Vilom and Bhramari help reduce sympathetic nervous stress and support healthy blood pressure.",
+      "Avoid strenuous poses: Do not perform aggressive inverted poses, intense hot yoga, or fast, forceful breathing exercises like rapid Kapalabhati if severe arterial disease or high blood pressure is present."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence demonstrating that homeopathic remedies can clear narrowed arteries, improve walking distance, or prevent gangrene in PAD.",
+      "Relying solely on alternative therapies while delaying proven cardiovascular treatments increases the risk of limb loss and major heart events.",
+      "Any complementary approach must never replace prescribed blood-thinning, statin, or surgical therapies recommended by a qualified vascular specialist."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Supervised exercise therapy, smoking cessation, high-intensity statin therapy, and antiplatelet drugs significantly reduce cardiovascular death, improve walking distance, and lower amputation rates.",
+      "Strong evidence: Ankle-Brachial Index (ABI) is an accurate, highly reproducible non-invasive screening tool for identifying lower extremity arterial narrowing.",
+      "Moderate evidence: Endovascular revascularization (angioplasty and stenting) provides reliable symptom relief and ulcer healing in appropriately selected anatomical lesions.",
+      "Weak or no evidence: Herbal extracts, dietary supplements, foot-massage devices, and magnet therapy lack robust clinical proof for clearing arterial plaque or restoring leg blood flow."
+    ],
+    "shouldNotDo": [
+      "Do not ignore recurring leg cramps during walking by assuming they are just a sign of getting older, calcium deficiency, or ordinary arthritis.",
+      "Do not walk barefoot on hot floors, temple tiles, coarse gravel, or rough outdoor surfaces.",
+      "Do not use hot water bags, electric heating pads, or intense hot water soaks on your feet to warm them up.",
+      "Do not cut your own corns, calluses, or ingrown toenails with scissors, blades, or nail cutters; have a trained foot-care professional or doctor manage them.",
+      "Do not stop or skip prescribed statins, blood thinners, or blood pressure medicines simply because leg discomfort improves.",
+      "Do not purchase unproven tonics, herbal blood cleansers, or magnetic wraps claiming to dissolve artery blockages."
+    ],
+    "medicationSafety": [
+      "Take antiplatelet medicines (like aspirin or clopidogrel) exactly as advised by your doctor; inform your dentist or surgeon before any planned procedure.",
+      "If taking statins (such as atorvastatin), notify your doctor if you develop unexplained muscle pain, severe tenderness, or unusually dark urine.",
+      "Never combine over-the-counter painkillers (such as ibuprofen or diclofenac) with blood-thinning medicines without medical approval, as this sharply raises stomach bleeding risks.",
+      "Store all medicines in their original labeled packaging away from moisture and heat.",
+      "If prescribed cilostazol for claudication, take it as directed; report any unusual heart pounding, headaches, or fluid swelling to your doctor promptly."
+    ],
+    "complications": [
+      "Critical limb ischemia: Severe continuous pain in the toes and feet even when resting, keeping you awake at night.",
+      "Non-healing foot ulcers: Minor sores, scrapes, or blisters that fail to heal due to lack of blood supply, frequently turning infected.",
+      "Gangrene: Death of tissue in toes or the foot due to complete loss of blood flow, appearing black, shriveled, or draining foul-smelling fluid.",
+      "Limb amputation: Partial or complete amputation of toes, foot, or lower leg to prevent life-threatening systemic infection.",
+      "Heart attack and stroke: PAD indicates widespread systemic atherosclerosis, dramatically raising the risk of life-threatening events in the heart and brain."
+    ],
+    "emergencySigns": [
+      "Sudden, severe leg or foot pain accompanied by a pale, cold, bluish, or numb limb: suspected acute arterial occlusion requiring emergency hospital care within hours",
+      "A rapidly spreading black, purple, or foul-smelling discoloration on any toe or part of the foot (gangrene)",
+      "A foot sore that develops spreading redness, red streaks moving up the leg, fever, chills, or severe swelling",
+      "Crushing chest pressure, pain spreading to the arm or jaw, sudden shortness of breath, or sudden weakness/numbness on one side of the body"
+    ],
+    "whenToSeeDoctor": [
+      "You get cramping, heaviness, or pain in your calves, thighs, or hips when walking that resolves after a few minutes of rest.",
+      "Your feet or lower legs feel consistently colder than the rest of your body, or appear pale when elevated.",
+      "You notice a cut, blister, scratch, or sore on your foot or toe that does not heal after 7 to 10 days.",
+      "You have diabetes, a history of smoking, or high cholesterol and are aged 50 or older, even if you feel no obvious leg pain.",
+      "You notice sudden thinning of leg skin, loss of leg hair, or unusually slow-growing, thickened toenails."
+    ],
+    "faqs": [
+      {
+        "q": "How does peripheral artery disease differ from varicose veins?",
+        "a": "They affect different blood vessels. Peripheral artery disease involves narrowed arteries that struggle to carry oxygen-rich blood down into the legs, causing pain during walking. Varicose veins involve weakened valves in veins that struggle to return blood up toward the heart, leading to swollen, twisted veins and heaviness after prolonged standing."
+      },
+      {
+        "q": "Can walking really help if walking is what brings on the pain?",
+        "a": "Yes. Supervised walking is the most effective lifestyle therapy for PAD. Walking until pain starts, resting until it clears, and repeating this cycle trains your leg muscles to use oxygen more efficiently and encourages tiny collateral vessels to open around the blockages."
+      },
+      {
+        "q": "Does having PAD mean I am at risk of a heart attack?",
+        "a": "Yes. Atherosclerosis is rarely confined to one limb. If plaque has narrowed the arteries in your legs, there is a strong possibility that similar plaque exists in the arteries supplying your heart and brain, making overall cardiovascular management vital."
+      },
+      {
+        "q": "Can herbs or oils melt away the blockages in my leg arteries?",
+        "a": "No. Plaque is a calcified, fibrous buildup within the artery wall. No herb, diet, massage oil, or product can make it go away. Effective care relies on evidence-based lifestyle changes, medications, and when needed, angioplasty or surgical bypass."
+      },
+      {
+        "q": "Why are diabetic individuals at higher risk for severe PAD?",
+        "a": "Diabetes damages the lining of blood vessels and accelerates plaque formation. Furthermore, diabetic nerve damage (neuropathy) often blunts pain perception, meaning individuals may not feel the warning ache of claudication until severe ulcers or gangrene have already formed."
+      }
+    ],
+    "references": [
+      {
+        "title": "Peripheral artery disease: diagnosis and management",
+        "source": "National Institute for Health and Care Excellence (NICE CG147)",
+        "url": "https://www.nice.org.uk/guidance/cg147",
+        "year": "2020"
+      },
+      {
+        "title": "Peripheral Artery Disease (PAD) Resources",
+        "source": "Centers for Disease Control and Prevention (CDC)",
+        "url": "https://www.cdc.gov/heart-disease/about/peripheral-arterial-disease.html",
+        "year": "2024"
+      },
+      {
+        "title": "Nutrient Requirements and Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "atherosclerosis",
+      "coronary-artery-disease",
+      "type-2-diabetes",
+      "high-blood-pressure",
+      "high-cholesterol",
+      "stroke",
+      "neuropathy"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "garlic",
+      "turmeric",
+      "arjuna",
+      "ginger"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "hba1c",
+      "fasting-glucose",
+      "creatinine",
+      "cbc",
+      "crp"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

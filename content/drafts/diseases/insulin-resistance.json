@@ -1,0 +1,288 @@
+{
+  "slug": "insulin-resistance",
+  "name": "Insulin Resistance",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Insulin resistance happens when your body cells—mostly in your muscles, liver, and fat—stop responding properly to insulin. Insulin is a hormone made by the beta cells in your pancreas that acts like a key, unlocking cells so glucose (sugar) from your bloodstream can enter and be used for energy. When cells become resistant to this signal, the pancreas must pump out larger amounts of insulin to keep blood sugar normal, a state known as hyperinsulinemia. Over time, the overworked pancreas struggles to keep up, causing blood sugar levels to rise into prediabetes and type 2 diabetes. In India, insulin resistance is unusually common even among individuals who look relatively lean. This metabolic vulnerability, often referred to as the 'Asian Indian Phenotype', features higher visceral belly fat, higher body fat percentage, and lower muscle mass at lower body mass index (BMI) levels. Insulin resistance is not a disease in isolation; it is the core engine behind prediabetes, type 2 diabetes, non-alcoholic fatty liver disease (now called MASLD), polycystic ovary syndrome (PCOS), and cardiovascular disease.",
+    "quickFacts": [
+      {
+        "label": "How common in India",
+        "value": "Affects an estimated 136 million people with prediabetes and 101 million with diabetes (ICMR-INDIAB-17, 2023)"
+      },
+      {
+        "label": "Indian waist cutoff (men)",
+        "value": "90 cm (about 35.4 inches) or above indicates elevated metabolic risk"
+      },
+      {
+        "label": "Indian waist cutoff (women)",
+        "value": "80 cm (about 31.5 inches) or above indicates elevated metabolic risk"
+      },
+      {
+        "label": "Visible physical sign",
+        "value": "Acanthosis nigricans (velvety dark patches on the neck, armpits, or groin)"
+      },
+      {
+        "label": "Primary glucose sink",
+        "value": "Skeletal muscle clears roughly 70% to 80% of circulating glucose after meals"
+      },
+      {
+        "label": "Reversibility",
+        "value": "Lifestyle changes like muscle building and weight loss can significantly restore insulin sensitivity"
+      }
+    ],
+    "causes": [
+      "Excess visceral fat: Fat wrapped around the liver, pancreas, and intestines releases inflammatory cytokines (such as TNF-alpha and IL-6) and free fatty acids that directly block insulin signaling pathways inside cells.",
+      "The Asian Indian Phenotype: Indians naturally have a higher percentage of body fat and less protective skeletal muscle mass compared to Western populations of the same body weight. This leads to metabolic disturbances at lower BMI numbers.",
+      "Physical inactivity and sedentary habits: Skeletal muscle is the body's primary consumer of glucose. Prolonged sitting and lack of regular exercise downregulate glucose transporter proteins (GLUT4) on muscle cell surfaces, requiring far more insulin to clear sugars.",
+      "Refined carbohydrate and ultra-processed food heavy diets: Frequent consumption of white polished rice, maida, bakery snacks, fried namkeens, and sugar-sweetened beverages causes rapid glucose spikes and persistent demand for insulin release.",
+      "Chronic poor sleep and shift work: Sleeping less than 6 to 7 hours regularly or suffering from untreated obstructive sleep apnea increases stress hormones like cortisol and adrenaline, which directly counter insulin action.",
+      "Chronic psychological stress: Long-standing financial, professional, or personal stress elevates circulating cortisol, leading to liver glucose dumping and worsened peripheral insulin uptake.",
+      "Genetics and family history: Having first-degree relatives with type 2 diabetes significantly increases your predisposition to developing early insulin resistance.",
+      "Hormonal imbalances: Conditions like polycystic ovary syndrome (PCOS) in women, low testosterone in men, and thyroid dysfunction can drive or exacerbate tissue resistance to insulin."
+    ],
+    "types": [
+      {
+        "name": "Peripheral Insulin Resistance",
+        "desc": "Occurs primarily in skeletal muscle and adipose tissue. Muscle cells fail to import glucose efficiently from the bloodstream after meals, leaving excess sugar in circulation."
+      },
+      {
+        "name": "Hepatic Insulin Resistance",
+        "desc": "Occurs in the liver. Normally, insulin signals the liver to stop producing new glucose. When the liver becomes resistant, it continues to churn out glucose even during fasting, driving morning sugar spikes."
+      },
+      {
+        "name": "Metabolic Syndrome-Associated Resistance",
+        "desc": "A clustering of metabolic disturbances including central belly obesity, elevated triglycerides, low HDL cholesterol, and borderline or elevated blood pressure, all driven by a shared core of insulin resistance."
+      },
+      {
+        "name": "Hormone-Induced or Secondary Resistance",
+        "desc": "Triggered by elevated competing hormones such as excess androgens in PCOS, high cortisol in Cushing's syndrome or severe stress, human placental lactogen during pregnancy (gestational diabetes), or steroid medications."
+      }
+    ],
+    "diagnosis": [
+      "Insulin resistance is primarily a clinical and metabolic diagnosis. It is identified by assessing physical signs, waist circumference, family history, and routine blood tests rather than a single stand-alone test.",
+      "Waist circumference measurement: Using a standard tape measure placed midway between the lowest rib and the top of the hip bone. For Indians, a waist measurement of 90 cm or more in men and 80 cm or more in women points strongly toward visceral adiposity and insulin resistance.",
+      "Screening for physical signs: Inspecting the skin for acanthosis nigricans (hyperpigmented, velvety skin folds on the back of the neck, axillae, or knuckles) and skin tags (acrochordons).",
+      "Fasting blood tests: Evaluating fasting plasma glucose, HbA1c, and a standard lipid panel (especially elevated triglycerides paired with low HDL cholesterol).",
+      "HOMA-IR calculation: Homeostatic Model Assessment for Insulin Resistance uses fasting glucose and fasting insulin levels to estimate cellular resistance. While useful in research and some clinical evaluations, high day-to-day variability means routine testing is not always required for day-to-day management."
+    ],
+    "investigations": [
+      {
+        "test": "Fasting Plasma Glucose",
+        "purpose": "Measures blood sugar after an 8 to 12 hour overnight fast to detect prediabetes or diabetes",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c (Glycated Hemoglobin)",
+        "purpose": "Reflects average blood sugar over the previous 2 to 3 months without requiring an overnight fast",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Identifies the atherogenic dyslipidemia typical of insulin resistance: elevated triglycerides and low HDL cholesterol",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Liver Enzymes (ALT and AST)",
+        "purpose": "Screens for metabolic dysfunction-associated steatotic liver disease (fatty liver), which frequently coexists with insulin resistance",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Evaluates deficiency, which is widespread in urban Indians and has been correlated with reduced insulin sensitivity",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Structured lifestyle intervention is the primary and most effective medical treatment. Weight loss of even 5% to 10% of total body weight produces profound improvements in liver and muscle insulin sensitivity.",
+      "Physical exercise prescription: Combining resistance training (weightlifting, bodyweight calisthenics) with aerobic conditioning. Skeletal muscle contractions pull glucose from the blood through non-insulin-dependent pathways, providing immediate relief to the pancreas.",
+      "Nutritional therapy: Replacing ultra-processed carbohydrates, added sugars, and refined flours with whole grains, dietary fibre, healthy fats, and adequate protein per Indian dietary guidelines.",
+      "Metformin therapy: An oral biguanide that improves hepatic insulin sensitivity, reduces liver glucose output, and increases peripheral uptake. Doctors often prescribe it for people with prediabetes, especially those under 60 years of age, individuals with a BMI of 35 or higher, or women with a history of gestational diabetes or PCOS.",
+      "Adjunctive medications: When metabolic complications such as diabetes, high blood pressure, or dyslipidemia develop, doctors may use medications such as SGLT-2 inhibitors (like dapagliflozin), statins (like atorvastatin), or GLP-1 receptor agonists as clinically indicated.",
+      "Treatment of underlying conditions: Medical management of sleep apnea with CPAP machines or targeted therapy for hormonal disorders like PCOS to break the cycle of metabolic dysfunction."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not have an exact single word for modern insulin resistance, but they describe an identical clinical spectrum under 'Prameha Poorvaroopa' (the early prodromal stages of metabolic disorders) and 'Medoroga' or 'Sthaulya' (disorders of excess fat tissue and sluggish metabolism).",
+      "Ayurvedic pathology attributes this state to an aggravation of Kapha dosha combined with Meda dhatu (fat tissue), leading to 'Avarana'—an obstruction or blockage of bodily channels (srotas) by metabolic waste (ama). This obstruction prevents nutrients from entering tissues cleanly.",
+      "Classical management emphasizes 'Langhana' (lightening or reducing therapies), 'Vyayama' (vigorous daily physical exercise), 'Ruksha' (dry, non-greasy foods), and the intake of bitter (Tikta), astringent (Kashaya), and pungent (Katu) tastes to balance sluggish Kapha and clear channel congestion.",
+      "While traditional principles align well with eating light, staying active, and avoiding overeating, herbal preparations can only serve as supportive measures alongside modern medical care. No herb or Ayurvedic compound can reverse insulin resistance on its own."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Fenugreek (Methi)",
+        "slug": "fenugreek",
+        "note": "Rich in soluble fibre (galactomannan) that slows carbohydrate absorption in the gut. Small clinical studies suggest it may support post-meal glucose stability when taken alongside prescribed care."
+      },
+      {
+        "name": "Cinnamon (Dalchini)",
+        "slug": "cinnamon",
+        "note": "Contains polyphenolic compounds that have shown modest benefits in improving cellular glucose transport in preliminary trials. It is a supportive culinary spice, not a substitute for medical therapy."
+      },
+      {
+        "name": "Bitter Gourd (Karela)",
+        "slug": "bitter-gourd",
+        "note": "Contains compounds such as charantin and polypeptide-p. Small trials show mild glucose-lowering support, though high-quality clinical evidence remains limited."
+      },
+      {
+        "name": "Jamun",
+        "slug": "jamun",
+        "note": "Traditionally consumed in Indian households for metabolic support. Seeds contain jamboline, which has been studied in small laboratory and human trials for carbohydrate digestion, though clinical proof is weak."
+      },
+      {
+        "name": "Turmeric (Haldi)",
+        "slug": "turmeric",
+        "note": "Curcumin offers anti-inflammatory properties that may help counter the low-grade systemic inflammation linked with visceral fat, but human evidence specifically for reversing insulin resistance is modest."
+      }
+    ],
+    "nutrition": [
+      "Adopt the ICMR-NIN 'My Plate for the Day' concept: Fill half your plate with non-starchy vegetables and fresh salad (such as bhindi, palak, methi, cucumber, tomato, and cabbage), one quarter with protein, and one quarter with complex carbohydrates.",
+      "Prioritize dietary fibre: Aim for at least 30 to 40 grams of fibre daily. Fibre slows glucose absorption, prevents sharp insulin spikes, and nourishes the gut microbiome. Good sources include whole legumes, chana, rajma, sprouted moong, oats, and chia or flaxseeds.",
+      "Rebalance your staple grains: Reduce the volume of polished white rice and maida. Shift toward intact whole grains such as whole wheat flour with bran, brown rice, steel-cut oats, and traditional millets (jowar, bajra, ragi) consumed in sensible, controlled portions.",
+      "Ensure adequate protein intake: Include high-quality protein in every main meal to preserve skeletal muscle and enhance satiety. Good options for Indian diets include paneer (preferably low-fat), sprouted pulses, dal, soy chunks, eggs, skinless poultry, and fish.",
+      "Eliminate liquid sugars and deep-fried snacks: Cut out sugar-sweetened chai, coffee with condensed milk, packaged juices, sodas, and energy drinks. Replace deep-fried evening namkeens, pakoras, and samosas with roasted makhana, boiled chana chaat, or a small handful of unsalted almonds and walnuts.",
+      "Choose heart-healthy cooking fats: Avoid vanaspati, partially hydrogenated vegetable oils, and re-used cooking oils high in trans fats. Use moderate amounts of mustard oil, groundnut oil, or sesame oil, keeping total cooking oil intake within 20 to 25 grams per person per day as advised by ICMR-NIN.",
+      "Time your meals mindfully: Avoid late-night dinners close to bedtime. Eating dinner at least 2 to 3 hours before sleep improves overnight liver insulin sensitivity and fasting blood sugar levels."
+    ],
+    "lifestyle": [
+      "Build skeletal muscle: Engage in resistance training at least 2 to 3 days per week. Lifting weights, using resistance bands, or doing bodyweight exercises like squats and push-ups expands your body's largest glucose disposal reservoir.",
+      "Accumulate daily movement: Aim for at least 150 to 300 minutes of moderate-intensity aerobic physical activity per week, such as brisk walking, cycling, or swimming, in line with WHO and ICMR guidelines.",
+      "Take post-meal walks: A brief 10 to 15-minute gentle walk immediately after meals stimulates muscle contraction, pulling glucose out of the blood stream without requiring extra insulin spikes.",
+      "Break up prolonged sitting: If you work a desk job, stand up or walk for 2 minutes every 30 to 45 minutes. Prolonged uninterrupted sitting suppresses muscular enzymes that clear fats and sugars from your blood.",
+      "Prioritize 7 to 8 hours of restorative sleep: Maintain regular sleep and wake times. Chronic sleep deprivation directly induces temporary cellular insulin resistance and stimulates appetite hormones like ghrelin.",
+      "Manage chronic stress: Daily life stress produces elevated cortisol. Incorporate structured decompression habits such as evening walks, breathwork, reading, or quiet hobbies to lower autonomic nervous system arousal.",
+      "Stop all tobacco use and limit alcohol: Smoking damages vascular endothelial cells and directly worsens tissue insulin resistance. Heavy alcohol consumption promotes visceral and hepatic fat accumulation."
+    ],
+    "yogaActivity": [
+      "Active asana sequences: Dynamic practices like Surya Namaskar (Sun Salutations) performed at a steady pace engage major muscle groups across the legs, core, and shoulders, promoting metabolic turnover.",
+      "Abdominal compression and twisting postures: Asanas such as Mandukasana (Frog Pose), Ardha Matsyendrasana (Half Fish Pose), and Paschimottanasana (Seated Forward Bend) can improve core muscle engagement and support digestion.",
+      "Pranayama for stress reduction: Slow, diaphragmatic breathing practices like Anulom Vilom (alternate nostril breathing) and Bhramari (bee breath) activate the parasympathetic nervous system, lowering stress-induced cortisol release.",
+      "Restorative poses: Concluding sessions with 10 minutes of guided Shavasana or Yoga Nidra helps blunt chronic sympathetic fight-or-flight activation.",
+      "Safety note: Practice asanas within your physical capacity. Avoid forceful breath-holding or aggressive movements if you have unmanaged high blood pressure, back injuries, or joint problems."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence showing that homeopathic preparations can restore insulin sensitivity, lower HbA1c, or prevent progression to type 2 diabetes.",
+      "Relying solely on homeopathic pills while ignoring evidence-based diet changes, weight management, muscle training, or prescribed medical therapy can lead to unchecked progression toward diabetes, cardiovascular damage, and liver disease.",
+      "If you choose to take homeopathic remedies, do so only after discussing it with your primary physician, and never stop taking your prescribed medications or monitoring your blood sugar."
+    ],
+    "evidenceNotes": [
+      "High-certainty evidence: Large landmark randomized controlled trials, such as the Diabetes Prevention Program (DPP) and Indian Diabetes Prevention Programme (IDPP), conclusively show that intensive lifestyle modification (5-7% weight loss and 150 minutes/week of exercise) reduces the risk of progressing to type 2 diabetes by 58% in adults with impaired glucose tolerance.",
+      "High-certainty evidence: Resistance exercise independently improves insulin sensitivity and glycemic control in adults, irrespective of total body weight changes, by increasing muscle GLUT4 transporter expression.",
+      "Moderate-to-high evidence: Metformin therapy effectively lowers the incidence of type 2 diabetes in high-risk individuals, particularly those under 60 years of age or with elevated fasting glucose and higher BMI.",
+      "Low-to-moderate evidence: Culinary spices like fenugreek seeds and cinnamon show mild improvements in fasting blood glucose and insulin indices in small human studies, but evidence is insufficient to recommend them as clinical therapies.",
+      "No credible evidence: Herbal cleanses, detox teas, 'metabolic reset' powders, or magnetic belts do not reverse insulin resistance, restore insulin sensitivity, or replace proven medical and lifestyle care."
+    ],
+    "shouldNotDo": [
+      "Do not assume you are metabolically healthy just because you look thin or have a normal weight. Thin-fat body composition with low muscle and hidden visceral belly fat is widespread among Indians.",
+      "Do not replace whole fruits with fruit juices, smoothies, or vegetable juice blends. Juicing strips away beneficial dietary fibre and delivers a rapid fructose load straight to the liver.",
+      "Do not rely solely on cardio while avoiding weight training. Cardio burns calories, but resistance training builds the physical muscle mass needed to absorb glucose long term.",
+      "Do not fall for unregulated online 'diabetes cure' powders or herbal formulations claiming to permanently wipe out insulin resistance. No herb, diet or product can make it go away overnight.",
+      "Do not adopt extreme, unsustainable crash diets that starve your body of protein. Losing lean muscle mass slows your basal metabolic rate and worsens insulin resistance once regular eating resumes.",
+      "Do not skip regular diagnostic check-ups because you have no symptoms. Insulin resistance develops quietly inside your tissues for 5 to 10 years before high blood sugar is detected on a routine test."
+    ],
+    "medicationSafety": [
+      "Take prescribed medications like metformin strictly as advised by your doctor, usually with or after meals to minimize common gastrointestinal side effects such as nausea or loose stools.",
+      "If you take metformin long-term (more than 3 to 4 years), have your doctor check your serum vitamin B12 levels periodically, as extended use can reduce intestinal B12 absorption.",
+      "Never start, stop, or change the doses of oral antidiabetic agents or heart-protective medications on your own based on a home reading or social media advice.",
+      "Inform your physician before undergoing imaging procedures involving intravenous iodinated contrast dyes if you are taking metformin, as temporary discontinuation may be required to protect kidney function.",
+      "Be cautious with over-the-counter herbal concoctions; some unregulated formulations have been found to contain undeclared pharmaceutical agents or heavy metals that can strain the liver and kidneys."
+    ],
+    "complications": [
+      "Type 2 diabetes mellitus: Resulting from progressive pancreatic beta-cell exhaustion when the pancreas can no longer produce enough insulin to overcome tissue resistance.",
+      "Metabolic dysfunction-associated steatotic liver disease (MASLD / Fatty Liver): Excess insulin and free fatty acids drive triglycerides to accumulate inside liver cells, which can progress to liver inflammation, fibrosis, and cirrhosis.",
+      "Polycystic ovary syndrome (PCOS): High circulating insulin stimulates the ovaries to produce excess testosterone, resulting in irregular menstrual cycles, facial hair growth, acne, and fertility difficulties.",
+      "Atherosclerotic cardiovascular disease: Insulin resistance drives an inflammatory, pro-clotting environment, accelerating plaque buildup in coronary and carotid arteries, raising the risk of heart attacks and strokes.",
+      "Atherogenic dyslipidemia: Marked by high blood triglycerides, low HDL (good) cholesterol, and dense, small LDL particles that penetrate artery walls easily.",
+      "Systemic hypertension: High insulin levels cause the kidneys to retain more sodium and stimulate the sympathetic nervous system, causing blood vessel walls to stiffen and pressure to climb."
+    ],
+    "emergencySigns": [
+      "Hyperglycemic emergencies: Extreme unrelenting thirst, frequent urination, nausea, vomiting, confusion, deep rapid breathing, or a sweet fruity breath odor require immediate emergency department care.",
+      "Acute chest pain, tightness, heaviness, or burning across the center of the chest spreading to the left arm, jaw, neck, or back: Call 108 or 112 immediately for emergency medical transport.",
+      "Sudden signs of stroke: Facial drooping, arm weakness or numbness on one side of the body, or slurred speech (use the FAST assessment) demand immediate emergency intervention.",
+      "Severe, sudden dizziness, profound weakness, cold clammy sweats, and confusion: Could indicate severe hypoglycemia if you are taking blood-sugar-lowering medications."
+    ],
+    "whenToSeeDoctor": [
+      "You notice darkening, velvety pigmentation (acanthosis nigricans) around your neck, armpits, knuckles, or inner thighs.",
+      "Your waist measurement exceeds 90 cm (for men) or 80 cm (for women), regardless of your total body weight.",
+      "A routine blood test reveals fasting glucose above 100 mg/dL, HbA1c between 5.7% and 6.4% (prediabetes range), or high triglycerides with low HDL.",
+      "You experience persistent, extreme fatigue and brain fog, especially after consuming carbohydrate-rich meals.",
+      "Women experiencing irregular periods, persistent adult acne, unexplained weight gain around the abdomen, or difficulty conceiving.",
+      "You have a strong family history of early heart disease, high blood pressure, or type 2 diabetes and want to assess your metabolic health."
+    ],
+    "faqs": [
+      {
+        "q": "What is the difference between insulin resistance and prediabetes?",
+        "a": "Insulin resistance is the underlying cellular problem: your cells do not respond well to insulin, but your pancreas compensates by pumping out extra insulin, which keeps your blood sugar normal for years. Prediabetes occurs when your pancreas can no longer keep up with this high demand, causing blood sugar levels to rise above normal, but not yet high enough to be classified as type 2 diabetes. Insulin resistance always comes first."
+      },
+      {
+        "q": "Can I have insulin resistance if I am thin?",
+        "a": "Yes. This is common in India and is often called the 'thin-fat Indian' phenotype. You may have a normal body weight and normal BMI on a standard scale, but carry hidden visceral fat around your liver and internal organs along with low skeletal muscle mass. This combination can trigger significant insulin resistance without obvious signs of obesity."
+      },
+      {
+        "q": "Can insulin resistance be reversed?",
+        "a": "Yes, insulin resistance can be substantially improved and its progression stopped. Losing excess visceral fat, engaging in regular strength training to build muscle, walking after meals, and eating a high-fibre, balanced diet restore how well your cells respond to insulin. However, genetic susceptibility remains, so healthy habits must be maintained for life."
+      },
+      {
+        "q": "Is white rice completely forbidden if I have insulin resistance?",
+        "a": "No food is completely forbidden, but portion size and plate composition matter immensely. Polished white rice causes a rapid glucose and insulin spike when eaten as a large, plain mound. If you eat rice, keep the portion to a small katori, and balance it with double the amount of non-starchy vegetables, a bowl of dal or sprouts, and a protein source like paneer, curd, or eggs to slow down digestion."
+      },
+      {
+        "q": "Do I need to check my insulin levels regularly with blood tests?",
+        "a": "Usually, no. Routine testing of fasting blood insulin is rarely required for day-to-day management because insulin levels fluctuate widely throughout the day. Doctors generally rely on practical markers such as your waist circumference, HbA1c, fasting plasma glucose, and triglyceride-to-HDL ratio to track your progress and evaluate your metabolic health."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dietary Guidelines for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in/dietaryguidelines/",
+        "year": "2024"
+      },
+      {
+        "title": "The Indian Diabetes Prevention Programme shows that lifestyle modification and metformin prevent type 2 diabetes in Asian Indian subjects with impaired glucose tolerance (IDPP-1)",
+        "source": "Diabetologia (Ramachandran A et al.)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16391903/",
+        "year": "2006"
+      },
+      {
+        "title": "Global physical activity guidelines for health",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789240015128",
+        "year": "2020"
+      }
+    ],
+    "relatedDiseases": [
+      "prediabetes",
+      "type-2-diabetes",
+      "metabolic-syndrome",
+      "fatty-liver",
+      "obesity",
+      "pcos"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "dapagliflozin",
+      "atorvastatin"
+    ],
+    "relatedHerbs": [
+      "fenugreek",
+      "cinnamon",
+      "bitter-gourd",
+      "jamun",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "fasting-glucose",
+      "hba1c",
+      "lipid-profile",
+      "liver-enzymes",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

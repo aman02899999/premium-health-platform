@@ -1,0 +1,264 @@
+{
+  "slug": "diarrhea",
+  "name": "Diarrhea",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Diarrhea means passing loose or watery stools three or more times in a day, or more frequently than what is normal for you. It is one of the most common health problems in India, affecting both children and adults. While most episodes start suddenly and settle within a few days, the rapid loss of water and vital salts (electrolytes) can quickly cause dangerous dehydration. In India, contaminated drinking water, unsafe food handling during summer or monsoon months, and common viral or bacterial infections are frequent triggers. Diarrhea is your gut's attempt to rapidly expel irritants, toxins, or pathogens, but managing fluid balance correctly is critical while the bowel heals.",
+    "quickFacts": [
+      {
+        "label": "Clinical definition",
+        "value": "3 or more loose or liquid stools in a 24-hour period"
+      },
+      {
+        "label": "Primary danger",
+        "value": "Dehydration and electrolyte loss"
+      },
+      {
+        "label": "First-line response",
+        "value": "WHO-formulation Oral Rehydration Salts (ORS)"
+      },
+      {
+        "label": "Acute episode length",
+        "value": "Usually resolves within 7 to 14 days"
+      },
+      {
+        "label": "Chronic duration",
+        "value": "Lasts longer than 4 weeks and requires investigation"
+      },
+      {
+        "label": "Key Indian seasonal peaks",
+        "value": "Summer heat and monsoon season"
+      }
+    ],
+    "causes": [
+      "Infections from contaminated water or street food: Viruses (such as rotavirus and norovirus), bacteria (such as Escherichia coli, Salmonella, Shigella, and Vibrio cholerae), and parasites (such as Giardia lamblia and Entamoeba histolytica).",
+      "Food intolerances or allergies: Inability to digest lactose in dairy products, sensitivity to gluten, or reactions to artificial sweeteners.",
+      "Medications: Antibiotics that wipe out protective gut flora, metformin for blood sugar management, or prolonged antacid use.",
+      "Bowel disorders: Irritable bowel syndrome (IBS), inflammatory bowel disease, or celiac disease.",
+      "Poor hygiene and sanitisation: Unwashed hands before handling food, improper storage in warm weather, and fly contamination.",
+      "Toxin exposure: Bacterial toxins formed in food left at room temperature for hours before reheating."
+    ],
+    "types": [
+      {
+        "name": "Acute watery diarrhea",
+        "desc": "Begins suddenly and lasts from a few hours up to several days. The stools are watery without blood. Dehydration is the principal risk, frequently triggered by rotavirus, E. coli, or cholera."
+      },
+      {
+        "name": "Acute bloody diarrhea (Dysentery)",
+        "desc": "Characterised by visible blood and mucus in the stool, often accompanied by high fever, severe cramping, and pain. Commonly caused by invasive bacteria like Shigella or parasites like Entamoeba."
+      },
+      {
+        "name": "Persistent diarrhea",
+        "desc": "An episode of diarrhea that begins acutely but continues for 14 days or longer. It often leads to severe nutritional depletion and electrolyte imbalances."
+      },
+      {
+        "name": "Chronic diarrhea",
+        "desc": "Loose stools that persist for more than 4 weeks, often fluctuating in severity. Typically driven by non-infectious causes such as irritable bowel syndrome, malabsorption, or chronic inflammation."
+      }
+    ],
+    "diagnosis": [
+      "Evaluation of hydration status: Checking the tongue and mouth for dryness, testing skin elasticity (skin turgor pinch), checking blood pressure and pulse, and looking for sunken eyes.",
+      "Detailed history: Inquiring about travel, street food consumption, municipal water source quality, recent antibiotic courses, and whether family members share identical symptoms.",
+      "Stool examination: When diarrhea is severe, bloody, or prolonged, stool analysis helps identify white blood cells, red blood cells, cysts, and specific bacterial or parasitic organisms.",
+      "Blood tests: To check for systemic infection, renal impairment, and electrolyte depletion caused by fluid loss."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks for elevated white blood cells showing infection and looks for hemoconcentration caused by severe fluid loss",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses kidney function to detect acute kidney injury triggered by profound dehydration",
+        "slug": "creatinine"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Measures internal inflammation to differentiate between non-inflammatory and invasive bowel conditions",
+        "slug": "crp"
+      },
+      {
+        "test": "Urine Routine",
+        "purpose": "Checks urine concentration and rules out concurrent dehydration-related urinary tract issues",
+        "slug": "urine-routine"
+      }
+    ],
+    "modernTreatment": [
+      "Oral Rehydration Therapy: Using WHO-formulation Oral Rehydration Salts (ORS) is the non-negotiable medical foundation to replenish water and critical electrolytes like sodium and potassium.",
+      "Continued feeding: Maintaining regular, easily digestible nutrition. Starving the gut is outdated medical practice; continued food intake accelerates bowel lining repair.",
+      "Zinc supplementation: Supported by national and international health guidelines to shorten the duration of acute diarrhea episodes, as advised by your doctor.",
+      "Selective antimicrobial therapy: Antibiotics or antiparasitic medicines are used only when a specific organism or dysentery is identified. Routine, unguided antibiotic use is discouraged.",
+      "Intravenous fluids: Administered in hospital settings for patients suffering from severe dehydration, intractable vomiting, or hypovolemic shock.",
+      "Cautious use of antimotility agents: Medicines like loperamide are strictly avoided in bloody diarrhea or high fever because trapping bacterial toxins inside the colon can worsen bowel injury."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts explain acute loose stools primarily as Atisara, arising from disturbed Pitta or Vata that weakens digestive fire (Jatharagni) and liquefies waste tissues.",
+      "Traditional practices emphasize Langhana (lightening therapy) initially, followed by Deepana and Pachana (boosting digestion and digesting metabolic toxins) with warm, boiled water and spiced herbal broths.",
+      "Buttermilk (Takra) churned with roasted cumin or ginger is traditionally valued as a digestive tonic that calms the intestinal tract.",
+      "These historical concepts serve as traditional cultural models rather than medical diagnoses; they must never replace modern rehydration with ORS or standard laboratory evaluation."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditionally consumed in warm water or tea to ease gut spasms and nausea. It does not halt infectious diarrhea or replace fluids."
+      },
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Demonstrates mild antimicrobial and antioxidant properties in laboratory models, but human evidence for treating acute diarrhea is limited."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows anti-inflammatory actions in experimental gut models, but clinical evidence for acute watery diarrhea is weak."
+      }
+    ],
+    "nutrition": [
+      "Sip WHO ORS steadily after every loose stool. Dissolve the packet in the exact amount of boiled and cooled drinking water stated on the package.",
+      "Incorporate gentle traditional Indian fluid remedies alongside ORS: thin salted rice kanji, salted thin chaas (buttermilk), and tender coconut water.",
+      "Eat small, frequent portions of light, easily absorbed foods such as plain curd-rice, moong dal khichdi, boiled mashed potatoes, and ripe bananas.",
+      "Curd provides easily tolerated calories and gentle probiotic cultures that support normal gut bacterial balance.",
+      "Completely avoid deep-fried foods, oily gravies, street chaat, raw salads, hot chillies, and commercial sweets during the illness.",
+      "Do not consume concentrated packaged fruit juices, carbonated soft drinks, or heavily sweetened tea, as high sugar draws excess water into the intestine and worsens diarrhea."
+    ],
+    "lifestyle": [
+      "Wash your hands thoroughly with soap and running clean water for 20 seconds before preparing food, before eating, and after every visit to the washroom.",
+      "Drink only water that has been rolled to a boil or treated through reliable domestic water purification systems.",
+      "Ensure hot cooked meals are consumed fresh; avoid eating food that has stood at room temperature for more than two hours in Indian heat.",
+      "Sanitise kitchen cutting boards, utensils, and countertops frequently to prevent cross-contamination from raw produce or poultry.",
+      "Rest adequately at home to conserve physical energy and support the immune system while the gut lining recovers."
+    ],
+    "yogaActivity": [
+      "During an active episode of acute diarrhea, pause all vigorous yoga routines, gym workouts, and strenuous cardiovascular exercise to avoid severe dehydration.",
+      "Rest completely in Shavasana (Corpse Pose) to help the body divert energy toward gut healing and to lower physiological stress.",
+      "Once cramping settles, slow, rhythmic breathing exercises such as gentle Anulom Vilom (alternate nostril breathing) can calm intestinal hypersensitivity.",
+      "Avoid abdominal contractions, inversions, and intense core postures until normal stool consistency and stamina return."
+    ],
+    "homeopathyNote": [
+      "There is no robust clinical scientific evidence demonstrating that homeopathic remedies cure acute diarrhea, stop infectious organisms, or prevent dehydration.",
+      "Relying on homeopathic preparations instead of scientific oral rehydration therapy can lead to rapid physical collapse and dangerous complications."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: WHO-formulation Oral Rehydration Salts (ORS) reduce hospitalisation and save lives by preventing fatal dehydration.",
+      "Strong evidence: Zinc supplementation reduces the duration and severity of diarrhea episodes in vulnerable populations.",
+      "Moderate evidence: Specific probiotic strains may modestly reduce the duration of acute viral gastroenteritis when used alongside ORS.",
+      "Limited or weak evidence: Herbal remedies, detox concoctions, and homemade spice extracts lack large-scale clinical proof for stopping infectious diarrhea.",
+      "No evidence: Homeopathic dilutions or proprietary magnetic and energy wellness devices do not treat diarrhea."
+    ],
+    "shouldNotDo": [
+      "Do not fast completely or withhold meals. Starving the bowel delays recovery of the intestinal villi and prolongs weakness.",
+      "Do not drink commercial sports drinks, colas, or sweet packaged juices, as their high sugar concentration worsens osmotic fluid loss into the stool.",
+      "Do not buy over-the-counter antibiotic capsules at the local pharmacy without a doctor's examination; most acute cases are viral and antibiotics are ineffective and harmful to gut flora.",
+      "Do not take antimotility drugs if you have bloody stools or high fever, as they can cause toxic megacolon by trapping pathogens inside.",
+      "Do not mix ORS powder with milk, soup, or fruit juice. Mix it solely with plain, clean drinking water in the precise measurement indicated."
+    ],
+    "medicationSafety": [
+      "Always prepare ORS exactly as directed on the sachet (most standard Indian government and pharmacy packets require exactly 1 litre of clean water). Adding too little water creates a dangerous hyperosmolar mixture.",
+      "If taking long-term medications such as metformin or diuretics for blood pressure, contact your doctor, as diarrhea-induced fluid loss can rapidly increase the risk of lactic acidosis or kidney injury.",
+      "Use paracetamol for fever or body ache only as advised by your doctor, and avoid non-steroidal anti-inflammatory drugs like ibuprofen, which can irritate the gut and strain kidneys during dehydration.",
+      "Take prescribed antibiotics or antiparasitics strictly for the entire duration instructed by your physician, even if stool frequency improves within 24 hours."
+    ],
+    "complications": [
+      "Severe dehydration leading to dangerously low blood volume (hypovolemic shock)",
+      "Acute kidney injury from inadequate blood flow to the kidneys",
+      "Life-threatening electrolyte disturbances, including low potassium (hypokalemia) and abnormal sodium levels",
+      "Nutritional wasting and sudden weight loss, especially when episodes repeat or persist",
+      "Metabolic acidosis caused by significant bicarbonate loss in watery stools",
+      "Secondary bacterial infection spreading into the bloodstream (sepsis) in fragile or elderly individuals"
+    ],
+    "emergencySigns": [
+      "Extreme drowsiness, confusion, dizziness upon standing, or loss of consciousness",
+      "Inability to keep any fluids down due to persistent vomiting",
+      "Passing little to no urine for over 6 to 8 hours, or urine that is dark amber and cloudy",
+      "Sunken eyes, completely dry mouth and tongue, and skin that stays tented up when pinched",
+      "Stools that are dark black, filled with bright red blood, or resemble cloudy rice-water with sudden weakness"
+    ],
+    "whenToSeeDoctor": [
+      "Diarrhea that continues beyond 48 hours without showing signs of improvement",
+      "High fever above 101°F (38.3°C) accompanying loose motions",
+      "Severe, worsening abdominal pain or sharp localized cramping",
+      "Inability to rehydrate effectively due to persistent nausea",
+      "You have underlying medical conditions such as diabetes, chronic kidney disease, or cardiovascular problems"
+    ],
+    "faqs": [
+      {
+        "q": "Is drinking plain boiled water enough when I have diarrhea?",
+        "a": "No. While plain water is essential, diarrhea flushes out both water and critical minerals like sodium and potassium. Drinking only plain water can dilute remaining blood salts. WHO ORS contains the balanced ratio of sodium and glucose needed for your intestines to actually absorb water."
+      },
+      {
+        "q": "Can I eat dahi (curd) when I have loose motions?",
+        "a": "Yes. Fresh, unflavoured curd is gentle on the stomach, easy to digest, and provides beneficial lactic acid bacteria that help support a disturbed gut microbiome."
+      },
+      {
+        "q": "Why should I avoid stopping diarrhea immediately with anti-motility tablets?",
+        "a": "When diarrhea is caused by invasive bacteria or toxins, frequent stools are the body's mechanism to expel the irritants. Paralyzing the bowel with anti-motility pills can trap harmful toxins inside your intestine, worsening inflammation."
+      },
+      {
+        "q": "Can I prepare a homemade sugar-salt solution instead of buying ORS?",
+        "a": "Standard WHO ORS sachets from a chemist or primary health centre are strongly preferred because the ratio of salt, sugar, and potassium is scientifically measured. Homemade mixtures should only be an emergency bridge if commercial ORS is completely inaccessible, as incorrect ratios can be harmful."
+      },
+      {
+        "q": "Do I need an antibiotic every time I get loose stools in India?",
+        "a": "No. A large proportion of acute diarrhea cases are viral or caused by simple dietary irritation. Antibiotics do not work against viruses, can kill beneficial gut bacteria, and may cause antibiotic-associated diarrhea. Use them only if prescribed by your physician."
+      }
+    ],
+    "references": [
+      {
+        "title": "Diarrhoeal disease",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease",
+        "year": "2024"
+      },
+      {
+        "title": "National Health Mission: Guidelines on Diarrhoea Management",
+        "source": "Ministry of Health and Family Welfare, Government of India",
+        "url": "https://nhm.gov.in",
+        "year": "2022"
+      },
+      {
+        "title": "Acute Diarrhea in Adults",
+        "source": "NCBI Bookshelf / StatPearls",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK448082/",
+        "year": "2023"
+      },
+      {
+        "title": "Diarrhoea and vomiting",
+        "source": "NHS",
+        "url": "https://www.nhs.uk/conditions/diarrhoea-and-vomiting/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "dehydration",
+      "electrolyte-imbalance",
+      "weakness",
+      "dizziness",
+      "fever",
+      "ibs"
+    ],
+    "relatedMedicines": [
+      "paracetamol",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "tulsi",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "creatinine",
+      "crp",
+      "urine-routine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "slug": "stroke",
+  "name": "Stroke (Brain Attack)",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "A stroke, often called a 'brain attack', happens when the blood supply to part of your brain is suddenly interrupted or reduced. Just like the heart needs blood to pump, your brain cells rely on a continuous flow of blood to get oxygen and nutrients. When an artery in the brain gets blocked by a blood clot or bursts open, brain cells in that area begin to starve and die within minutes. This can lead to sudden weakness, loss of speech, facial drooping, or confusion. In India, stroke is one of the leading causes of death and long-term disability, with over 1.8 million Indians suffering a stroke every year according to Indian Council of Medical Research (ICMR) data. A stroke is a medical emergency where every single minute counts. Fast recognition, calling emergency services immediately, and reaching a hospital equipped with a CT scanner can save a life and prevent lifelong paralysis.",
+    "quickFacts": [
+      {
+        "label": "Medical Emergency",
+        "value": "Dial 108 or 112 immediately; do not wait"
+      },
+      {
+        "label": "Golden Window",
+        "value": "Within 4.5 hours for clot-dissolving medicine"
+      },
+      {
+        "label": "Annual Stroke Burden in India",
+        "value": "Around 1.8 million cases per year (ICMR)"
+      },
+      {
+        "label": "Most Common Type",
+        "value": "Ischemic stroke (about 80% to 85% of cases)"
+      },
+      {
+        "label": "Number One Risk Factor",
+        "value": "Uncontrolled high blood pressure (hypertension)"
+      },
+      {
+        "label": "Warning Tool",
+        "value": "BE-FAST (Balance, Eyes, Face, Arms, Speech, Time)"
+      }
+    ],
+    "causes": [
+      "High blood pressure (hypertension): This is the single biggest cause of stroke in India. Constant high pressure weakens, hardens, and damages brain arteries over time until they clog or rupture.",
+      "Atherosclerosis and high cholesterol: Excess LDL cholesterol forms fatty plaques inside the neck and brain arteries (like the carotid arteries), narrowing the channel and allowing blood clots to form.",
+      "Type 2 diabetes: High blood sugar damages blood vessels over years and doubles or triples the likelihood of clot formation in the brain.",
+      "Tobacco use: Smoking cigarettes, bidis, or chewing gutka and khaini damages the inner lining of arteries, thickens blood, and raises blood pressure instantly.",
+      "Heart conditions: Irregular heartbeats like atrial fibrillation, heart failure, or diseased heart valves can allow blood clots to form inside the heart chambers. These clots can travel directly up to the brain.",
+      "Lack of physical activity and abdominal obesity: Sedentary desk jobs and high body fat create chronic inflammation and metabolic syndrome, setting the stage for vascular disease.",
+      "Unhealthy diet: Diets heavy in refined flour, fried snacks, palm oil, and high salt (average Indian intake is 11 g daily versus the 5 g WHO limit) strain blood vessels.",
+      "Excessive alcohol intake: Heavy drinking triggers high blood pressure, irregular heart rhythms, and increases the danger of brain bleeds."
+    ],
+    "types": [
+      {
+        "name": "Ischemic Stroke",
+        "desc": "The most common form, accounting for roughly 80% to 85% of all strokes. It happens when a blood clot blocks an artery supplying blood to the brain. This clot can develop right inside a narrowed brain artery (thrombotic) or travel from another part of the body, such as the heart or neck (embolic)."
+      },
+      {
+        "name": "Hemorrhagic Stroke",
+        "desc": "Occurs when a weakened blood vessel in or on the brain bursts and bleeds into the surrounding brain tissue. This causes rapid swelling, intense pressure, and direct tissue damage. Uncontrolled high blood pressure and ballooned vessels called aneurysms are the main causes."
+      },
+      {
+        "name": "Transient Ischemic Attack (TIA)",
+        "desc": "Often called a 'mini-stroke' or warning stroke. A temporary clot blocks blood flow for a short time, usually resolving within minutes to hours without leaving permanent damage on standard scans. It is a critical warning sign: up to 1 in 5 people who experience a TIA have a major stroke shortly after if left untreated."
+      }
+    ],
+    "diagnosis": [
+      "A doctor will first assess the patient's airway, breathing, pulse, and perform a rapid neurological exam checking the face, arms, legs, and speech using standardized scales.",
+      "An urgent non-contrast CT scan or MRI of the brain is done within minutes of arriving at the hospital. This is vital to tell whether the stroke is ischemic (clot) or hemorrhagic (bleed), as their emergency treatments are opposite.",
+      "Vascular imaging such as CT angiography (CTA) or MR angiography (MRA) checks for large blocked arteries in the neck and brain that can be pulled open mechanically.",
+      "Fingerstick blood glucose testing is performed immediately to rule out severe low blood sugar (hypoglycemia), which can perfectly mimic a stroke.",
+      "An electrocardiogram (ECG) and echocardiogram are done to check for heart rhythm abnormalities like atrial fibrillation or clots inside the heart.",
+      "Routine emergency blood tests check kidney function, electrolytes, and blood clotting parameters to guide safe medication use."
+    ],
+    "investigations": [
+      {
+        "test": "Non-contrast Brain CT or MRI",
+        "purpose": "Immediately differentiates between an ischemic clot and a hemorrhagic bleed to guide treatment"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "Measures total cholesterol, LDL, and triglycerides to evaluate vascular plaque risk",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks baseline blood sugar and rules out severe hypoglycemia mimicking a stroke",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "HbA1c",
+        "purpose": "Evaluates long-term blood sugar control over the previous three months",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks hemoglobin, red blood cells, and platelets before administering blood-thinning treatments",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses kidney function before using contrast dyes for vascular imaging and to adjust medications",
+        "slug": "creatinine"
+      }
+    ],
+    "modernTreatment": [
+      "Emergency clot-dissolving therapy (thrombolysis): For eligible patients with ischemic stroke arriving within 4.5 hours of their first symptom, doctors administer an intravenous clot-busting medication to dissolve the blockage and restore blood flow.",
+      "Mechanical thrombectomy: In specialized stroke centres, neuro-interventional doctors use a thin catheter threaded from the groin to physically pull out large clots from brain arteries. This can be performed up to 6 to 24 hours after onset in carefully selected patients.",
+      "Emergency management of hemorrhagic stroke: Doctors work rapidly to lower dangerously elevated blood pressure, reverse any blood thinners the patient was taking, and may perform neurosurgery to relieve skull pressure or clip a bleeding aneurysm.",
+      "Secondary prevention medications: Long-term medications are started once the acute phase is stable. These include antiplatelet drugs (such as aspirin or clopidogrel), cholesterol-lowering statins (like atorvastatin), and blood pressure lowering agents (such as amlodipine or losartan) as advised by your doctor.",
+      "Multidisciplinary neuro-rehabilitation: Beginning in the hospital as soon as it is medically safe, physical therapy helps regain limb strength and walking; occupational therapy restores everyday skills like eating and dressing; and speech therapy treats swallowing difficulties and speech loss."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurveda, stroke symptoms closely match conditions described as 'Pakshaghata' or 'Pakshawadha', classified under severe Vata dosha disorders affecting the body's channels (srotas) and vital tissues (dhatus).",
+      "Traditional Ayurvedic thought considers aggravated Vata to cause dryness, blockages, and loss of sensory and motor function in one half of the body.",
+      "Classical texts suggest gentle oil massages (abhyanga), mild warmth therapies (swedana), and herbal enemas (basti) during the slow, chronic rehabilitation phase.",
+      "Ayurvedic care must never be used during the acute onset of a stroke. A stroke is an emergency requiring immediate modern hospital care. Home remedies or alternative therapies during an acute attack cause dangerous delays leading to permanent disability or death.",
+      "Herbal products can interact with blood-thinning medications and raise the risk of uncontrolled bleeding. Any herbal support during recovery must only be taken with your treating neurologist's clear consent."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditionally used as a rejuvenating tonic. Early laboratory studies suggest it may support nerve tissue recovery, but human clinical trial evidence after stroke remains weak. It can only be considered as mild supportive care during long-term rehabilitation as advised by your doctor."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "A traditional herb explored for memory and cognitive focus. It is sometimes used during post-stroke speech and cognitive recovery, though robust evidence from large human trials is lacking."
+      },
+      {
+        "name": "Garlic",
+        "slug": "garlic",
+        "note": "Known to provide modest support for blood vessel health and mild blood pressure reduction. However, concentrated garlic supplements can act as natural blood thinners and should never be combined with medical blood thinners without a doctor's guidance."
+      },
+      {
+        "name": "Arjuna",
+        "slug": "arjuna",
+        "note": "A traditional bark used for cardiovascular health. While widely used for heart support, there is no clinical evidence that it treats acute stroke or replaces essential prescription stroke medicines."
+      }
+    ],
+    "nutrition": [
+      "Keep daily salt intake strictly under 5 grams (about one level teaspoon for the whole day). Excess sodium spikes blood pressure, the primary driver of repeat strokes.",
+      "Cut out high-sodium Indian staples that hide excess salt: commercial pickles (aachar), papad, namkeen, packaged bhujia, instant noodles, and ready-made spice mixes.",
+      "Eat a diverse, high-fibre Indian plate: fill half your plate with vegetables such as lauki, tori, bhindi, spinach, and methi; one quarter with protein like moong dal, chana, rajma, or paneer; and one quarter with whole grains like jowar, bajra, or brown rice.",
+      "Choose heart-friendly cooking oils in strict moderation: mustard oil, groundnut oil, or sesame oil used in rotation. Completely avoid vanaspati, dalda, and repeated re-heating of frying oils, which generate dangerous trans fats that clog arteries.",
+      "Include potassium-rich fresh fruits and vegetables daily, such as bananas, papaya, oranges, and coconut water, provided your kidney function is normal and your doctor approves.",
+      "If swallowing is difficult after a stroke (dysphagia), follow the exact texture guidance provided by your speech therapist, such as thickened liquids or puréed khichdi, to prevent choking and pneumonia."
+    ],
+    "lifestyle": [
+      "Check and record your blood pressure at home regularly using a validated digital upper-arm monitor. Share your reading log with your doctor at every follow-up.",
+      "Stop all tobacco use immediately. This includes cigarettes, bidis, gutka, khaini, and pan masala. Quitting tobacco rapidly lowers your risk of a second stroke.",
+      "Avoid alcohol completely. Heavy drinking impairs blood clotting, spikes blood pressure, and interferes directly with stroke rehabilitation.",
+      "Aim for 7 to 8 hours of restful sleep every night. If you or your partner notice loud snoring, gasping, or daytime tiredness, get evaluated for obstructive sleep apnea.",
+      "Engage in daily physical rehabilitation or moderate aerobic activity, such as 30 minutes of brisk walking or doctor-prescribed mobility exercises, at least 5 days a week.",
+      "Take daily steps to lower stress through calming evening walks, listening to gentle music, or spending quiet time with family, as chronic mental strain elevates arterial tension."
+    ],
+    "yogaActivity": [
+      "Once your neurologist and physiotherapist clear you for gentle movement, adaptive chair yoga can help restore limb coordination, flexibility, and confidence.",
+      "Practice gentle breathing exercises such as Anulom Vilom (alternate nostril breathing) and Bhramari (bee breath) to calm the autonomic nervous system and lower stress.",
+      "Do simple seated joint movements (sukshma vyayama), such as gentle ankle rotations, wrist bends, and neck stretches, performed with full support and assistance.",
+      "Avoid holding your breath (kumbhaka) during any pranayama, as breath-holding causes rapid jumps in arterial and intracranial pressure.",
+      "Strictly avoid inverted postures (such as Shirshasana, Sarvangasana, or deep downward-facing dog) because they increase blood pressure in the head and can be dangerous for stroke survivors."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical trial evidence that homeopathic remedies can treat an acute stroke, dissolve blood clots, or reverse paralysis.",
+      "A stroke is an extreme medical emergency. Relying on homeopathy or delaying modern emergency hospital evaluation leads to irrevocable brain cell death or fatal bleeding.",
+      "If you consider homeopathic remedies during long-term recovery, you must continue all prescribed blood thinners, blood pressure tablets, and physical therapy, and inform your doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Emergency intravenous thrombolysis within 4.5 hours and mechanical thrombectomy within selected time windows save lives and significantly reduce permanent disability.",
+      "Strong evidence: Long-term management of blood pressure with antihypertensives, cholesterol reduction with statins, and antiplatelet or anticoagulant medicines dramatically cut the rate of recurrent strokes.",
+      "Strong evidence: Early, structured physiotherapy, occupational therapy, and speech therapy significantly improve functional independence after stroke.",
+      "Moderate evidence: Mediterranean and DASH-style dietary patterns, combined with home blood pressure tracking, effectively lower cardiovascular risk markers.",
+      "Limited or no evidence: No herb, diet, or product can make brain damage go away or instantly cure paralysis. Advertised 'miracle stroke cures' are false and hazardous."
+    ],
+    "shouldNotDo": [
+      "Do not wait to see if sudden symptoms will pass. Even if weakness or speech trouble disappears in twenty minutes, it could be a TIA warning of an impending massive stroke.",
+      "Do not give the person anything to eat, drink, or swallow—not even water or medicine. Swallowing muscles may be paralyzed, and giving liquids can cause choking, asphyxiation, or severe aspiration pneumonia.",
+      "Do not give aspirin at home before reaching the hospital. If the stroke is hemorrhagic (a bleeding vessel), giving aspirin can make the bleeding catastrophic.",
+      "Do not try home remedies such as massaging the limbs with hot oils, pricking fingertips with needles to let out blood, or making the person smell raw onions.",
+      "Do not allow the person to sleep off sudden weakness, confusion, or a severe headache.",
+      "Do not stop or reduce prescribed blood thinners or blood pressure tablets just because you feel recovered; stopping them sharply increases the chance of another stroke."
+    ],
+    "medicationSafety": [
+      "Take all your stroke-prevention medicines at the same time every single day. Use a weekly pill organiser or phone alarms so you never miss a dose.",
+      "If you are on blood thinners, watch closely for signs of abnormal bleeding: blood in the urine, black or tarry stools, unusual dark bruises, or nosebleeds that do not stop. Report these right away.",
+      "Never stop your blood thinner (such as aspirin or oral anticoagulants) before dental work or surgery without discussing it directly with your treating neurologist or cardiologist.",
+      "Tell your doctor about any over-the-counter painkillers you use. Common pain medicines like ibuprofen and diclofenac can elevate blood pressure and raise bleeding risks when taken with blood thinners.",
+      "Inform your doctor promptly if you develop muscle aches from statins, dizziness from blood pressure tablets, or swelling in your feet."
+    ],
+    "complications": [
+      "Hemiplegia or hemiparesis: Complete or partial paralysis down one side of the body, making walking and daily tasks difficult.",
+      "Aphasia and dysarthria: Severe difficulty speaking, finding words, understanding spoken language, or slurred speech.",
+      "Dysphagia: Impaired swallowing reflex, which can cause food or saliva to enter the lungs, leading to life-threatening aspiration pneumonia.",
+      "Vascular cognitive impairment and dementia: Difficulties with memory, planning, problem-solving, and emotional control.",
+      "Post-stroke depression and anxiety: Extreme emotional distress, mood swings, or depression affecting up to one-third of stroke survivors.",
+      "Deep vein thrombosis (DVT): Blood clots forming in immobile legs that can break free and travel to the lungs (pulmonary embolism).",
+      "Shoulder subluxation and spasticity: Painful muscle tightness, joint stiffness, and partial dislocation of the paralyzed shoulder joint."
+    ],
+    "emergencySigns": [
+      "Face drooping: One side of the face droops or feels numb; when asked to smile, the smile is crooked or uneven.",
+      "Arm or leg weakness: Sudden weakness or numbness in one arm or leg; when attempting to raise both arms, one arm drifts downward.",
+      "Speech difficulty: Slurred speech, inability to speak, or difficulty repeating a simple sentence like 'The sky is blue.'",
+      "Sudden vision changes: Sudden blurriness, double vision, or complete loss of sight in one or both eyes.",
+      "Sudden loss of balance: Unexplained dizziness, loss of coordination, or stumbling while trying to stand or walk.",
+      "Thunderclap headache: A sudden, excruciatingly severe headache that peaks within seconds, unlike any headache experienced before.",
+      "If you notice ANY of these signs, call 108 or 112 immediately or get to the nearest stroke-ready hospital."
+    ],
+    "whenToSeeDoctor": [
+      "Immediately at an emergency room if you or anyone around you develops any sign of the BE-FAST checklist.",
+      "If you experienced temporary weakness or speech difficulty that went away after a few minutes (this is a TIA and needs urgent medical assessment).",
+      "If you are a stroke survivor and develop new arm or leg weakness, numbness, or worsening speech.",
+      "If you experience frequent coughing, throat clearing, or choking during meals or when drinking liquids.",
+      "If your home blood pressure readings repeatedly exceed 140/90 mmHg despite taking your prescribed medications.",
+      "If you notice persistent low mood, loss of interest in life, or severe frustration during the recovery phase."
+    ],
+    "faqs": [
+      {
+        "q": "What is the key difference between a stroke and a heart attack?",
+        "a": "A heart attack happens when blood flow to the heart muscle is blocked, leading to chest pain and shortness of breath. A stroke, or brain attack, happens when blood flow to part of the brain is interrupted, causing neurological symptoms like facial drooping, arm weakness, and speech loss."
+      },
+      {
+        "q": "What does the BE-FAST memory rule stand for?",
+        "a": "BE-FAST helps you spot a stroke quickly: B for sudden Balance loss, E for sudden Eye vision trouble, F for Facial drooping, A for Arm weakness, S for Slurred Speech, and T for Time to call 108 or 112 right away."
+      },
+      {
+        "q": "Can young people in India get strokes?",
+        "a": "Yes. While stroke risk increases with age, Indian registries show that roughly 15% to 20% of stroke patients are under 45 years of age. Rising rates of early diabetes, high blood pressure, gutka/tobacco use, and stressful sedentary lifestyles contribute to strokes in younger Indians."
+      },
+      {
+        "q": "What is a 'mini-stroke' and why is it dangerous?",
+        "a": "A mini-stroke, or Transient Ischemic Attack (TIA), occurs when a clot blocks blood flow briefly and then breaks up before causing lasting brain cell death. It is dangerous because it is a direct warning sign that a massive, permanent stroke may occur in the coming days or weeks if not treated immediately."
+      },
+      {
+        "q": "Can a person completely recover from a stroke?",
+        "a": "Many people make remarkable recoveries, especially when emergency clot-busting treatment is given within the golden window and structured neuro-rehabilitation begins early. Recovery depends on the size and location of brain damage, but the brain has neuroplasticity—the ability to rewire healthy areas to take over lost functions."
+      }
+    ],
+    "references": [
+      {
+        "title": "Stroke: Key facts and global burden",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/stroke",
+        "year": "2023"
+      },
+      {
+        "title": "Indian Stroke Association Guidelines for Acute Ischemic Stroke",
+        "source": "Annals of Indian Academy of Neurology",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34295105/",
+        "year": "2021"
+      },
+      {
+        "title": "Dietary guidelines for Indians",
+        "source": "Indian Council of Medical Research - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in",
+        "year": "2024"
+      }
+    ],
+    "relatedDiseases": [
+      "high-blood-pressure",
+      "atherosclerosis",
+      "type-2-diabetes",
+      "cardiovascular-risk",
+      "heart-disease",
+      "brain-health"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "losartan",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "garlic",
+      "arjuna"
+    ],
+    "relatedLabs": [
+      "lipid-profile",
+      "fasting-glucose",
+      "hba1c",
+      "cbc",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
