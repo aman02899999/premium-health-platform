@@ -315,6 +315,81 @@ Visuals aur voice AI se banaye gaye hain.
 ${EDU}`,
     tags: "#Fibre #GutHealth #DesiThaali #FatLoss #Nutrition #RoyalFitnessClub #NoidaGym",
   }),
+  // Desi Habit Science Reels (same thread), 21 Nov 2026: saunf, walk after meals, soaked badam,
+  // water with meals. Format idea from a public explainer; scripts, visuals and voice are our own (AI).
+  tipsReel({
+    id: "reel-desi-habit-saunf",
+    date: "2026-11-26",
+    video: "/social/reels/desi-habit-saunf.mp4",
+    theme: "Khane ke baad saunf kyon",
+    body: `Khane ke baad saunf-mishri: sirf mouth freshener, ya science bhi? 🌿
+
+Saunf ki khushbu uske tel (anethole, fenchone) se aati hai. Chabane se laar banti hai aur saans taazi lagti hai.
+European Medicines Agency saunf ko halki gas, afara aur halki marod mein paramparik upyog ke liye maanti hai. Lab mein ye aant ki smooth muscles ko relax karti dikhi, par insaanon par badi studies abhi kam hain.
+
+Mishri = sugar. Diabetes ho toh sirf saunf. Saunf band dabbe mein rakho.
+Roz gas, acidity ya pet dard? Doctor ko dikhao. Saunf aadat hai, dawa nahi.
+
+Sources: European Medicines Agency, fennel monograph (HMPC).
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Saunf #Fennel #DesiHabits #Digestion #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-desi-habit-walk",
+    date: "2026-11-27",
+    video: "/social/reels/desi-habit-walk.mp4",
+    theme: "Khane ke baad 10 minute walk",
+    body: `Dadi kehti thi khane ke baad tehlo. Science bhi yahi kehti hai 🚶
+
+Khane ke baad blood sugar badhta hai. Chalne par pairon ki muscles glucose ko fuel ki tarah use karti hain.
+Studies ke ek review mein khane ke baad halki walk se sugar spike kam hua, 2-5 min se bhi farak dikha.
+Type 2 diabetes par ek study: har khane ke baad 10 min walk, ek baar 30 min walk se behtar rahi.
+
+Rule: khane ke 30 min ke andar, 10-15 min aaram se.
+Diabetes ki dawa doctor se pooche bina band mat karo.
+
+Sources: Buffey et al., Sports Med 2022; Reynolds et al., Diabetologia 2016.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#WalkAfterMeal #BloodSugar #DesiHabits #FatLoss #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-desi-habit-badam",
+    date: "2026-11-28",
+    video: "/social/reels/desi-habit-badam.mp4",
+    theme: "Bhigoye badam ka sach",
+    body: `Raat bhar bhigoye badam se dimaag tez? Sach jaano 👇
+
+Badam mein protein, fibre, vitamin E, magnesium aur achhe fats hote hain.
+Bhigone se chhilka naram ho jaata hai aur chabana aasaan. Par ek study mein bhigoye aur kachche badam mein pet ke lakshanon ka khaas farak nahi mila.
+Yaaddasht badhne ka pakka saboot nahi hai.
+
+Roz ~20 badam kaafi (~160 kcal). Zyada nahi.
+
+Sources: USDA FoodData Central; Taylor et al., Eur J Nutr 2018.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Badam #Almonds #SoakedAlmonds #DesiHabits #Nutrition #RoyalFitnessClub #NoidaGym",
+  }),
+  tipsReel({
+    id: "reel-desi-habit-paani",
+    date: "2026-11-29",
+    video: "/social/reels/desi-habit-paani.mp4",
+    theme: "Khane ke saath paani",
+    body: `Khane ke saath paani peena galat hai? 💧
+
+Myth: paani pet ka acid patla kar deta hai. Sach: pet bahut strong acid banata hai, aur paani jaldi aage nikal jaata hai.
+Paani khane ko naram karta hai aur fibre ke saath kabz se bachata hai.
+Ek study mein khane se pehle 500 ml paani peene walon ne diet par zyada vazan kam kiya.
+
+Chhote ghoont lo. Acidity ho toh ek saath bahut zyada paani mat piyo.
+
+Sources: Mayo Clinic, water with meals; Dennis et al., Obesity 2010.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Water #Digestion #DesiHabits #FatLossTips #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */
