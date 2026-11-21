@@ -1,0 +1,288 @@
+{
+  "slug": "neuropathy",
+  "name": "Neuropathy",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped",
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Neuropathy means damage to one or more nerves outside your brain and spinal cord, known as the peripheral nervous system. These nerves carry messages about touch, pain, temperature and muscle movement between your body and your brain. When nerves are damaged, they may send scrambled signals like burning, tingling or sharp stabs, or they may stop sending signals altogether, leaving areas numb. In India, long-standing diabetes is by far the most common cause, followed closely by severe Vitamin B12 deficiency, which is very frequent in Indian vegetarian diets. Neuropathy most often begins in the longest nerves of the body, starting in the toes and soles before slowly moving up the legs and into the hands. Because numbness keeps you from feeling small cuts, blisters or pebbles in your footwear, minor injuries can turn into dangerous infections before you even notice them. Finding the cause early and keeping blood sugar and nutrient levels in a healthy range can protect your nerves from further harm.",
+    "quickFacts": [
+      {
+        "label": "Most common cause",
+        "value": "Diabetes mellitus (both type 1 and type 2)"
+      },
+      {
+        "label": "Diabetic neuropathy rate",
+        "value": "Around 30% to 50% of people with long-term diabetes"
+      },
+      {
+        "label": "Earliest symptoms",
+        "value": "Tingling, prickling (pins and needles) or burning in toes and feet"
+      },
+      {
+        "label": "Common Indian nutritional cause",
+        "value": "Vitamin B12 deficiency, especially on vegetarian diets"
+      },
+      {
+        "label": "Biggest danger",
+        "value": "Unnoticed foot sores leading to severe ulceration or infection"
+      },
+      {
+        "label": "Key protective step",
+        "value": "Checking your bare feet every single night"
+      }
+    ],
+    "causes": [
+      "High blood sugar over years: Excess glucose damages the tiny blood vessels that feed your nerves and impairs nerve cell repair.",
+      "Vitamin B12 deficiency: Vitamin B12 protects the myelin sheath that insulates nerve fibres. Plant-based diets lack active B12, and long-term use of medicines like metformin can lower B12 absorption further.",
+      "Chronic alcohol consumption: Regular alcohol intake is toxic to nerve tissues and worsens nutrient deficiencies.",
+      "Thyroid disorders: Untreated hypothyroidism can lead to fluid retention and tissue swelling that put pressure on peripheral nerves.",
+      "Chronic kidney disease: When the kidneys struggle to filter wastes, toxins build up in the bloodstream and irritate nerve endings.",
+      "Nerve entrapment and mechanical pressure: Repetitive strain, spinal disc bulges or tight anatomical tunnels can squeeze single nerves, such as in carpal tunnel syndrome or sciatica.",
+      "Infections and immune disorders: Post-viral syndromes, shingles, leprosy, Guillain-Barre syndrome and autoimmune diseases such as rheumatoid arthritis can attack nerve structures.",
+      "Medications and toxins: Chemotherapy drugs, certain antibiotics and exposure to heavy metals can cause nerve damage."
+    ],
+    "types": [
+      {
+        "name": "Peripheral Neuropathy",
+        "desc": "The most widespread form. It affects the feet, lower legs, hands and arms, causing numbness, tingling, burning pain and loss of balance."
+      },
+      {
+        "name": "Autonomic Neuropathy",
+        "desc": "Damages nerves controlling automatic body functions like heart rate, blood pressure, digestion, bladder emptying and sweating. This can cause silent cardiac issues, severe bloating or sudden dizziness on standing."
+      },
+      {
+        "name": "Focal Neuropathy (Mononeuropathy)",
+        "desc": "Involves damage to a single specific nerve, usually in the wrist (carpal tunnel syndrome), elbow or leg, or one of the cranial nerves in the face (Bell's palsy), leading to sudden localized pain or weakness."
+      },
+      {
+        "name": "Proximal Neuropathy (Diabetic Amyotrophy)",
+        "desc": "A rarer type that damages nerves in the thighs, hips, buttocks or lower back, causing severe aching pain followed by muscle weakness and wasting in the legs."
+      }
+    ],
+    "diagnosis": [
+      "A thorough clinical history where your doctor asks about sensations of burning, pins and needles, electric shocks, balance issues and diabetes duration.",
+      "The 10-gram monofilament test, where a small nylon wire is touched against several spots on your feet to check whether your protective touch sensation is intact.",
+      "Vibration testing using a 128 Hz tuning fork or a biothesiometer on the bony parts of your toes and ankles.",
+      "Testing of ankle and knee reflexes using a tendon hammer to see if nerve responses are slowed or absent.",
+      "Temperature and pinprick sensation checks to test the health of small nerve fibres.",
+      "Nerve Conduction Studies (NCS) and Electromyography (EMG) if the diagnosis is unclear, to measure the electrical speed and strength of signals passing through your nerves.",
+      "Laboratory blood tests to identify reversible triggers such as vitamin deficiencies, thyroid disease, kidney problems or prediabetes."
+    ],
+    "investigations": [
+      {
+        "test": "HbA1c",
+        "purpose": "Measures average blood sugar over the last 3 months to evaluate diabetic nerve strain",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Checks baseline blood sugar to detect undiagnosed diabetes or prediabetes",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Detects deficiency of the essential vitamin that protects the nerve insulation sheath",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out underactive thyroid, which can cause fluid build-up and nerve entrapment",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses kidney health to check for toxic build-up from chronic kidney disease",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia and checks overall blood health",
+        "slug": "cbc"
+      }
+    ],
+    "modernTreatment": [
+      "Treating the root driver: Tight blood sugar control through medical nutrition, regular physical movement and prescribed medicines slows nerve damage significantly in people with diabetes.",
+      "Correcting nutritional gaps: Doctor-prescribed Vitamin B12 therapy, given as oral tablets or intramuscular injections, repairs deficiency-driven nerve damage if started promptly.",
+      "Prescription medicines for nerve pain: Standard painkillers like paracetamol or ibuprofen do not quiet neuropathic pain. Doctors use special nerve-calming medicines such as gabapentinoids, serotonin-norepinephrine reuptake inhibitors or tricyclic agents, taken strictly as advised by your doctor.",
+      "Topical treatments: Capsaicin patches or doctor-prescribed local anesthetic creams can help quiet localized burning or stinging on the skin.",
+      "Physical therapy and balance rehabilitation: Targeted exercises improve leg strength, joint awareness and balance to reduce the risk of tripping and falls.",
+      "Daily foot care and protective footwear: Wearing customized insoles, wide-toe shoes and seamless socks shields insensitive skin from friction and pressure sores."
+    ],
+    "ayurvedaView": [
+      "Ayurvedic texts do not have an exact single equivalent for modern neuropathy, but describe similar symptoms under Vata vyadhi, Suptata (numbness) and Padadaha (burning sensation in the feet).",
+      "It is traditionally seen as an aggravation of Vata dosha along with Pitta, blocking the channels of circulation (srotas) and disturbing nerve nourishment (majja dhatu).",
+      "Classical care focuses on gentle warmth, oil massage (abhyanga) using sesame oil, and calming dietary choices. These practices may feel soothing and help local circulation.",
+      "No herb, diet or Ayurvedic oil can make established nerve damage go away or regrow dead nerves. Ayurvedic measures must only act as supportive self-care alongside your doctor's medical treatment.",
+      "Always check the temperature of massage oils with an unaffected hand or ask a family member to test it, as numb feet cannot feel burns."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Traditionally valued for supporting the nervous system and helping with stress. Clinical evidence for reversing neuropathy in humans remains preliminary."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has recognized anti-inflammatory and antioxidant properties in laboratory settings, though human trials for diabetic nerve damage are limited."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Known as a traditional brain and nerve tonic. There is insufficient high-quality scientific proof that it can restore lost sensation in peripheral nerves."
+      }
+    ],
+    "nutrition": [
+      "Prioritize Vitamin B12 sources: If you eat dairy, include curd, paneer and milk daily. If you follow a strict vegetarian or vegan diet, foods alone will not meet your needs, so speak with your doctor about an appropriate B12 supplement.",
+      "Focus on low glycemic index carbohydrates: Swap refined white rice, maida and sugary snacks for whole grains like brown rice, oats, barley, and traditional millets like jowar, bajra and ragi to prevent sharp blood sugar spikes.",
+      "Incorporate dal and plant proteins: Moong dal, masoor dal, rajma, chana, soya chunks and sprouts provide amino acids and essential micronutrients needed for tissue repair.",
+      "Eat plenty of green leafy vegetables: Palak, methi, sarson and amaranth leaves deliver antioxidants, magnesium and natural folates.",
+      "Include healthy fats in small, controlled portions: Handfuls of walnuts, almonds, flaxseeds and chia seeds supply omega-3 fats that help maintain cell wall integrity.",
+      "Cut down on high-salt, packaged namkeen: Indian snacks like bhujia, mathri, papads and pickles offer empty calories, excess sodium and unhealthy trans-fats that impair blood vessel function."
+    ],
+    "lifestyle": [
+      "Inspect your feet every night: Use a mirror or ask a family member to look closely at the soles, heels and between the toes for cuts, redness, blisters, dry cracks or peeling skin.",
+      "Wash feet daily in lukewarm water: Pat them completely dry with a soft towel, paying special attention to the spaces between your toes to prevent fungal infections.",
+      "Moisturize dry skin: Apply a plain moisturizing lotion or coconut oil to your heels and soles to prevent painful cracks, but never apply lotion between your toes where moisture can cause skin breakdown.",
+      "Never walk barefoot anywhere: This includes inside your house, on marble or tiled floors, in courtyards, on hot temple flagstones or at sandy beaches. Always wear supportive indoor footwear.",
+      "Check inside your shoes before wearing them: Run your hand inside both shoes every morning to feel for stray pebbles, folded insoles, sharp stitches or small objects.",
+      "Quit all forms of tobacco completely: Bidi, cigarettes, khaini and gutka severely narrow the micro-vessels feeding your nerves and drastically accelerate tissue death.",
+      "Eliminate or strictly limit alcohol: Alcohol is a direct nerve toxin and depletes essential B vitamins rapidly."
+    ],
+    "yogaActivity": [
+      "Practice low-impact cardiovascular activity: Brisk walking in well-padded shoes, stationary cycling or swimming for 30 minutes, 5 days a week, boosts circulation to peripheral nerves.",
+      "Incorporate simple standing yoga poses: Tadasana (Mountain Pose) and Vrikshasana (Tree Pose, practiced near a sturdy wall for support) help rebuild proprioception and foot muscle control.",
+      "Legs-up-the-wall pose (Viparita Karani): Resting with your legs elevated against a wall for 10 minutes can encourage venous drainage and relieve foot heaviness after standing.",
+      "Ankle and toe mobility drills: Sitting in a chair and rolling the ankles, spreading the toes and pointing the feet improves joint flexibility and local blood flow.",
+      "Gentle breathing exercises: Anulom vilom (alternate nostril breathing) and bhramari promote relaxation and help cope with chronic discomfort without stressing the body.",
+      "Avoid vigorous jumping and barefoot impact: If you have significant numbness in your feet, high-impact jump rope or barefoot plyometrics can trigger joint stress or unnoticed bone fractures."
+    ],
+    "homeopathyNote": [
+      "There is no reproducible scientific evidence showing that homeopathic pills can repair damaged peripheral nerves or reverse sensory loss.",
+      "Do not delay conventional blood sugar management or stop doctor-prescribed nerve medicines to rely on homeopathic products.",
+      "Any complementary approach you try should be discussed openly with your treating doctor to avoid dangerous delays in diagnosing treatable nerve causes."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Achieving and maintaining target blood sugar levels (HbA1c below 7% for most adults, as advised by your doctor) significantly prevents and slows diabetic neuropathy.",
+      "Strong evidence: Prescribed Vitamin B12 supplementation halts and often partially reverses neuropathy caused purely by B12 deficiency.",
+      "Moderate evidence: Medications specifically approved for neuropathic pain (such as gabapentin, pregabalin and duloxetine) reduce burning and tingling symptoms in clinical trials.",
+      "Moderate evidence: Dedicated diabetic foot-care education, routine monofilament screening and protective footwear substantially reduce the rate of foot ulcers and amputations.",
+      "Weak evidence: Over-the-counter herbal oils, massage blends and herbal teas have very little clinical proof for nerve healing.",
+      "No evidence: No herb, diet or product can make established neuropathy go away overnight."
+    ],
+    "shouldNotDo": [
+      "Do not test warm bath water or heating pads with numb feet: You can easily suffer severe third-degree burns without feeling any pain. Always check temperature with your elbow or a thermometer.",
+      "Do not use sharp blades, nail cutters or corn plasters to peel off corns and calluses yourself: Home surgery frequently causes deep, stubborn bacterial infections.",
+      "Do not walk barefoot on temple floors, stone paths, carpets or beaches, no matter the custom, if you have diminished foot sensation.",
+      "Do not ignore small red spots, blisters or painless cracks: A harmless-looking blister can become a deep, limb-threatening ulcer within days.",
+      "Do not stop your diabetes, blood pressure or nerve pain medicines suddenly just because you feel a little better.",
+      "Do not apply heavy balms or irritant ointments on burning feet without a doctor's advice, as they can cause chemical burns on vulnerable skin."
+    ],
+    "medicationSafety": [
+      "Take medicines for nerve pain precisely at the times directed by your doctor; these medicines adjust nerve firing over time and are not designed to be taken merely on-demand.",
+      "Watch for mild drowsiness, lightheadedness or unsteadiness when starting prescription nerve medications; get out of bed slowly to prevent falls.",
+      "If you take metformin for diabetes, ask your doctor to test your Vitamin B12 levels once every one to two years, as metformin can interfere with its absorption.",
+      "Do not rely on common over-the-counter painkillers like paracetamol, ibuprofen or diclofenac for nerve burning; they provide little relief for nerve pain and long-term use damages kidneys.",
+      "Never adjust your insulin or diabetes tablet doses without discussing your blood glucose logs with your physician."
+    ],
+    "complications": [
+      "Non-healing foot ulcers that deepen through the skin into muscle and bone",
+      "Severe skin and soft-tissue infections such as cellulitis or abscesses",
+      "Charcot neuroarthropathy, a progressive breakdown of foot bones and joints caused by walking on an injured, numb foot",
+      "Gangrene and lower-limb amputation resulting from untreated, infected ulcers combined with poor blood flow",
+      "Loss of balance leading to unexpected falls, fractures and head injuries",
+      "Autonomic complications including silent heart attacks, severe drops in standing blood pressure (orthostatic hypotension), gastroparesis and bladder dysfunction",
+      "Chronic sleep disturbances, fatigue, anxiety and depression driven by unremitting nighttime burning pain"
+    ],
+    "emergencySigns": [
+      "A cut, sore, blister or puncture wound on your foot that is red, hot, swollen or leaking yellow or foul-smelling fluid",
+      "Any visible black or dark purple discoloration on your toes, heel or foot, which indicates tissue death (gangrene)",
+      "Red streaks rapidly spreading up your ankle or lower leg from a foot scrape, especially if accompanied by fever or chills",
+      "Sudden dizziness, fainting or blacking out upon standing up from a chair or bed",
+      "Sudden, unexplained breathlessness, cold sweating, vomiting or dizziness without classic chest pain, which can signal a silent heart attack in people with autonomic neuropathy: seek emergency hospital care immediately"
+    ],
+    "whenToSeeDoctor": [
+      "You notice new tingling, numbness, pins and needles or burning sensations in your toes, feet or fingertips",
+      "Your feet feel so hypersensitive that even a light bedsheet or soft blanket touching your skin causes distressing pain",
+      "You frequently trip, lose balance in the dark or feel like you are walking on sponges, crumpled paper or cotton wool",
+      "You have lived with diabetes for a year or more and have never had your feet examined with a monofilament or tuning fork",
+      "You notice a corn, callus, ingrown toenail or minor scratch on your foot that does not completely heal after 48 hours"
+    ],
+    "faqs": [
+      {
+        "q": "Can damaged nerves grow back or heal completely?",
+        "a": "Nerve recovery depends on how early the problem is found and what caused it. Neuropathy caused by Vitamin B12 deficiency or sudden nerve compression can heal significantly once the root cause is resolved. For long-standing diabetic neuropathy, nerves heal very slowly. However, keeping blood sugar in a healthy target range prevents damage from spreading further and allows some small nerve endings to stabilize. No herb, diet or product can make long-standing nerve damage go away overnight."
+      },
+      {
+        "q": "Why does the burning and pain in my feet get much worse at night?",
+        "a": "During the day, walking, working and visual stimuli keep your brain busy with multiple sensory inputs, which partially masks nerve pain signals. At night, distractions drop away, leaving you more aware of abnormal nerve signals. In addition, peripheral body temperature cools slightly in bed, which can change how sensitive damaged nerve endings are."
+      },
+      {
+        "q": "Can I walk barefoot inside my own house if my floors are clean?",
+        "a": "No. If you have peripheral neuropathy, walking barefoot inside the home is one of the leading triggers for diabetic foot ulcers. A dropped toothpick, sewing needle, small glass splinter or even a stubborn toy piece can puncture insensitive skin without you feeling it, setting off a deep internal infection. Always wear cushioned, closed-toe house slippers indoors."
+      },
+      {
+        "q": "Why did my doctor check my Vitamin B12 level when I already have diabetes?",
+        "a": "There are two major reasons. First, Vitamin B12 deficiency is very common among Indians who consume mostly vegetarian diets. Second, metformin, which is the most widely prescribed medicine for diabetes, can reduce the absorption of Vitamin B12 in the digestive tract over time. A simple blood check ensures low B12 is not aggravating your nerve symptoms."
+      },
+      {
+        "q": "Is the burning sensation in my feet simply 'body heat' (pitta) that will clear up on its own?",
+        "a": "No. In Indian households, burning soles are often dismissed as mere 'sharir ki garmi' (body heat) and treated with cold water soaks. Burning feet are an established medical warning sign of irritated or dying nerve fibres, most commonly from high blood sugar or vitamin deficiencies. Delaying medical testing allows the underlying disease to advance silently."
+      }
+    ],
+    "references": [
+      {
+        "title": "Peripheral Neuropathy: Diagnosis and Management",
+        "source": "American Family Physician",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31845789/",
+        "year": "2019"
+      },
+      {
+        "title": "Neuropathic pain in adults: pharmacological management in non-specialist settings",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/cg173",
+        "year": "2020"
+      },
+      {
+        "title": "Peripheral Neuropathy Overview",
+        "source": "National Institute of Neurological Disorders and Stroke (NIH)",
+        "url": "https://www.ninds.nih.gov/health-information/disorders/peripheral-neuropathy",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "type-2-diabetes",
+      "prediabetes",
+      "vitamin-b12-deficiency",
+      "chronic-kidney-disease",
+      "hypothyroidism",
+      "peripheral-artery-disease"
+    ],
+    "relatedMedicines": [
+      "metformin",
+      "glimepiride",
+      "vitamin-d3",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "turmeric",
+      "brahmi"
+    ],
+    "relatedLabs": [
+      "hba1c",
+      "fasting-glucose",
+      "vitamin-b12",
+      "tsh",
+      "creatinine",
+      "cbc"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

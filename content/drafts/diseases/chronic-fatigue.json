@@ -1,0 +1,305 @@
+{
+  "slug": "chronic-fatigue",
+  "name": "Chronic Fatigue",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Chronic fatigue is severe, persistent tiredness that lasts for six months or longer and does not get better with ordinary bed rest. It is not ordinary tiredness after a hard day of work or gym training. Instead, it significantly drains your physical stamina and mental focus, making simple everyday activities like climbing stairs, cooking, or office work feel exhausting. In India, prolonged fatigue is frequently linked to hidden and treatable medical problems such as severe iron deficiency anemia, vitamin B12 or vitamin D deficiencies, thyroid disorders, or chronic metabolic stress. When comprehensive medical tests show no underlying illness and the fatigue is accompanied by brain fog, unrefreshing sleep, and a severe worsening of symptoms after minor physical or mental effort (known as post-exertional malaise), doctors may diagnose Myalgic Encephalomyelitis / Chronic Fatigue Syndrome (ME/CFS). It is a genuine, biologically grounded medical condition, not laziness or a lack of willpower.",
+    "quickFacts": [
+      {
+        "label": "Clinical threshold",
+        "value": "Persistent or relapsing fatigue lasting at least 6 months"
+      },
+      {
+        "label": "Key hallmark",
+        "value": "Post-exertional malaise (crash after minor physical or mental effort)"
+      },
+      {
+        "label": "Common Indian factor",
+        "value": "High rates of undetected anemia (over 50% of women, NFHS-5) and B12 deficiency"
+      },
+      {
+        "label": "Sleep pattern",
+        "value": "Unrefreshing sleep (waking up feeling just as tired as before going to bed)"
+      },
+      {
+        "label": "Medical status",
+        "value": "A real biological condition; requires thorough exclusion of underlying diseases"
+      },
+      {
+        "label": "Core self-care approach",
+        "value": "Energy pacing (staying within your energy envelope, avoiding boom-and-bust cycles)"
+      }
+    ],
+    "causes": [
+      "Uncorrected nutritional deficiencies: Low iron stores (ferritin), vitamin B12 deficiency (very common in Indian vegetarian diets), and severe vitamin D deficiency.",
+      "Endocrine and metabolic disorders: An underactive thyroid gland (hypothyroidism), poorly controlled type 2 diabetes, or hormonal imbalances.",
+      "Post-viral syndromes: Prolonged immune activation and nervous system dysfunction following viral illnesses such as dengue, chikungunya, Epstein-Barr virus, or COVID-19.",
+      "Sleep-related breathing disorders: Obstructive sleep apnea, marked by loud snoring, nighttime choking, and fragmented sleep that leaves the brain oxygen-deprived.",
+      "Chronic low-grade inflammation and immune dysregulation: Persistent chemical signaling by the immune system that disrupts cellular energy production in mitochondria.",
+      "Autonomic nervous system dysfunction: Conditions like postural orthostatic tachycardia, where blood pools in the legs upon standing, causing lightheadedness and profound exhaustion.",
+      "Chronic psychological stress, burnout, and mood disorders: Prolonged stress dysregulates the hypothalamic-pituitary-adrenal (HPA) axis and disrupts normal restorative sleep architecture."
+    ],
+    "types": [
+      {
+        "name": "Secondary Chronic Fatigue",
+        "desc": "Fatigue lasting longer than six months caused directly by an identifiable and diagnosable medical problem, such as untreated hypothyroidism, chronic kidney disease, severe anemia, or diabetes."
+      },
+      {
+        "name": "Myalgic Encephalomyelitis / Chronic Fatigue Syndrome (ME/CFS)",
+        "desc": "A complex, multi-system neuro-immune illness defined by core criteria: profound functional impairment, unrefreshing sleep, cognitive issues ('brain fog'), and post-exertional malaise lasting days or weeks."
+      },
+      {
+        "name": "Post-Viral Fatigue Syndrome",
+        "desc": "A prolonged fatigue state triggered directly after an acute infection (such as post-COVID condition, dengue, or viral hepatitis) that slowly improves or evolves over several months."
+      },
+      {
+        "name": "Idiopathic Chronic Fatigue",
+        "desc": "Unexplained chronic exhaustion lasting over six months that does not fully meet the rigorous international criteria for ME/CFS and has no identifiable lab abnormalities."
+      }
+    ],
+    "diagnosis": [
+      "Diagnosis begins with a thorough medical history and physical examination to map out your fatigue pattern, daily activity tolerance, and associated symptoms.",
+      "Doctors assess for post-exertional malaise (PEM), which is the cardinal sign distinguishing ME/CFS from other forms of chronic tiredness.",
+      "Comprehensive blood and urine tests are conducted to systematically look for and exclude other conditions that cause severe exhaustion.",
+      "Your doctor reviews all current medications, over-the-counter supplements, and sleep patterns (including screening for loud snoring or gasping during sleep).",
+      "Mental health evaluations are conducted to distinguish between primary clinical depression and the secondary frustration or low mood brought on by living with chronic exhaustion."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Detects anemia and checks for signs of occult infection or blood disorders",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates iron stores in the body, even when basic hemoglobin appears borderline normal",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Identifies an underactive thyroid (hypothyroidism), a major treatable cause of fatigue",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin B12",
+        "purpose": "Checks for deficiency, common in vegetarians, which causes nerve dysfunction and severe fatigue",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Vitamin D",
+        "purpose": "Measures 25-hydroxy vitamin D to identify deficiencies causing diffuse muscle weakness and lethargy",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Fasting Glucose and HbA1c",
+        "purpose": "Screens for undetected prediabetes or type 2 diabetes that disrupt daily cellular energy",
+        "slug": "hba1c"
+      },
+      {
+        "test": "Liver Enzymes",
+        "purpose": "Excludes chronic liver disease or silent viral hepatitis",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Assesses kidney filtration to rule out chronic renal strain as a source of exhaustion",
+        "slug": "creatinine"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Checks for systemic inflammatory or autoimmune disorders",
+        "slug": "crp"
+      }
+    ],
+    "modernTreatment": [
+      "Treating root medical causes: If blood tests reveal hypothyroidism, iron deficiency, diabetes, or vitamin shortfalls, treating those conditions with standard medicine is the first priority.",
+      "Activity pacing: Learning to balance physical and mental tasks within your personal 'energy envelope' to prevent debilitating post-exertional crashes.",
+      "Sleep management: Establishing consistent bedtimes, treating co-existing sleep apnea with CPAP if diagnosed, and optimizing bedroom darkness and temperature.",
+      "Managing orthostatic intolerance: For patients whose heart rates spike or blood pressure drops upon standing, doctors may suggest compression garments, increased fluid intake, and careful position changes.",
+      "Symptom-targeted medications: Doctors may prescribe medications as advised to manage accompanying problems like neuropathic pain, migraine headaches, or severe sleep disruption.",
+      "Psychological support: Supportive counseling or Acceptance and Commitment Therapy can help patients navigate the emotional and practical burden of living with a long-term chronic condition."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts do not describe a single direct equivalent to ME/CFS, but often categorize prolonged depletion under states of Dhatu Kshaya (depletion of bodily tissues), Ojokshaya (loss of core vitality), and Agnimandya (weak digestive fire).",
+      "When Agni is weak, undigested metabolic waste known as Ama accumulates, creating a feeling of heaviness (Gaurava), physical lethargy (Alasya), and mental fog.",
+      "Vata dosha is frequently viewed as aggravated due to irregular routines, lack of sleep, and mental worry, which dries out the nervous system and depletes strength.",
+      "Ayurvedic care traditionally focuses on easily digestible warm foods, gentle daily routines (Dinacharya), and rasayana herbs to support digestion and restore strength alongside regular medical supervision.",
+      "Herbal remedies and churnas can only provide supportive comfort; they are not a standalone cure and must never replace diagnostic workups or prescribed medical treatments."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb traditionally used to support stress tolerance and vitality. Preliminary human trials show modest improvements in perceived stress and sleep quality, though it does not cure chronic fatigue syndrome. Avoid high amounts in liver or thyroid conditions."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Used in traditional systems to support mental clarity and calm an overactive mind. Clinical evidence specifically for ME/CFS-related brain fog remains preliminary."
+      },
+      {
+        "name": "Amla",
+        "slug": "amla",
+        "note": "A natural source of vitamin C and antioxidants that supports overall general well-being and aids the absorption of non-heme plant iron from daily meals."
+      }
+    ],
+    "nutrition": [
+      "Eat a balanced, nutrient-dense Indian plate: Fill half your plate with colorful cooked vegetables, one-quarter with complex grains (such as brown rice, whole wheat roti, or millets like jowar and bajra), and one-quarter with protein.",
+      "Boost bioavailable protein: Include eggs, paneer, tofu, boiled sprouts, dals, and curd in your daily meals to preserve muscle mass and support tissue repair.",
+      "Pair plant iron with vitamin C: Squeeze fresh lemon juice over your dal, chana, or palak dishes, or consume amla with meals to significantly enhance non-heme iron absorption.",
+      "Avoid the sugar-and-chai rollercoaster: Relying on multiple cups of sweet milky tea, biscuits, and refined snacks provides a rapid blood sugar spike followed by a severe energy crash.",
+      "Stay systematically hydrated: Drink adequate clean water throughout the day. Coconut water or buttermilk (chaas) with a pinch of roasted jeera can help replenish fluids and electrolytes.",
+      "Eat smaller, frequent, warm meals: Heavy, oily gravies and deep-fried snacks (pakoras, samosas) demand tremendous digestive energy, often worsening post-meal fatigue."
+    ],
+    "lifestyle": [
+      "Practice energy pacing: Plan your day in short blocks. Take scheduled rest breaks before you feel exhausted, rather than pushing through until you crash.",
+      "Adopt the 'stop-rest-reset' rule: If you notice brain fog intensifying, heavy legs, or a racing pulse, immediately stop, sit or lie down, and rest quietly in a low-stimulation room.",
+      "Maintain strict sleep timing: Go to bed and wake up at roughly the same hour every day, even on weekends, to support your circadian rhythms.",
+      "Establish an evening digital curfew: Switch off smartphones, laptops, and televisions at least 45 minutes before sleep to allow your natural melatonin to rise.",
+      "Expose yourself to morning sunlight: Get 10 to 15 minutes of gentle morning sun on your face and arms to strengthen your natural wake-sleep cycle and assist with vitamin D synthesis.",
+      "Delegate and simplify: Scale back non-essential social and household obligations while your body is recovering its functional energy threshold."
+    ],
+    "yogaActivity": [
+      "Prioritize restorative postures: Restorative yoga with full bolster or pillow support, such as Supported Supta Baddha Konasana (reclining bound angle) or Viparita Karani (legs up the wall), helps down-regulate an overstimulated sympathetic nervous system.",
+      "Perform gentle Sukshma Vyayama: Micro-movements while seated—such as gentle wrist rotations, ankle stretches, and light neck releases—maintain joint flexibility without triggering post-exertional malaise.",
+      "Practice calming breathwork: Slow, unforced pranayama such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) promote relaxation.",
+      "Rely on Shavasana (Corpse Pose): Dedicate 10 to 15 minutes to conscious, stillness-focused relaxation in Shavasana twice a day to calm the nervous system.",
+      "Strictly avoid intense exertion: Avoid fast-paced Surya Namaskars, power yoga, hot yoga, or heavy weight training if you experience post-exertional malaise, as vigorous workouts can trigger prolonged, multi-day relapses."
+    ],
+    "homeopathyNote": [
+      "There is no robust scientific or clinical evidence showing that homeopathic preparations can treat, manage, or resolve chronic fatigue or ME/CFS.",
+      "Patients should not substitute homeopathic pills for medical evaluations, thyroid replacements, iron therapies, or evidence-based lifestyle pacing.",
+      "Relying solely on alternative systems while delaying conventional diagnostic tests can allow progressive nutritional deficiencies, metabolic illnesses, or chronic infections to worsen unnoticed."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Correcting defined nutritional deficiencies (such as iron deficiency anemia, vitamin B12 deficiency, or vitamin D deficiency) and treating underlying medical conditions (like hypothyroidism or obstructive sleep apnea) consistently relieves secondary chronic fatigue.",
+      "Strong evidence: Clinical guidelines from major health organizations (such as the UK NICE 2021 guidelines and the US CDC) recommend activity pacing as a safe, patient-centered approach to manage energy and prevent post-exertional malaise in ME/CFS.",
+      "Moderate evidence: Cognitive behavioral approaches adapted specifically for chronic illness can help reduce psychological distress and improve functional coping, though they do not address the underlying biological pathology of ME/CFS.",
+      "Limited evidence: Herbal remedies such as ashwagandha and brahmi have small clinical trials showing non-specific stress reduction, but there is no conclusive evidence that any herb reverses chronic fatigue syndrome.",
+      "No evidence: High-cost intravenous vitamin drips, 'detox' cleanses, and miracle energy powders marketed on social media have zero scientific support and carry risks of infection and organ toxicity."
+    ],
+    "shouldNotDo": [
+      "Do not push through physical exhaustion: The traditional 'no pain, no gain' gym mindset is dangerous for individuals with post-exertional malaise and can cause severe, long-lasting functional decline.",
+      "Do not self-prescribe high-dose iron, thyroid hormones, or steroid pills without proper blood tests and a doctor's explicit prescription.",
+      "Do not consume commercial energy drinks, high-caffeine supplements, or unverified fatigue-cure powders; they overstimulate the nervous system and worsen sleep disruption.",
+      "Do not dismiss prolonged exhaustion as purely psychological or emotional before completing thorough medical laboratory testing.",
+      "Do not stay entirely bedridden unless experiencing a severe crash; total immobility leads to rapid cardiovascular deconditioning and loss of muscle mass."
+    ],
+    "medicationSafety": [
+      "Take all nutritional supplements—including oral iron, vitamin B12, and vitamin D3—exactly as advised by your doctor to avoid toxicity or stomach irritation.",
+      "Take thyroid hormone medications (such as levothyroxine) first thing in the morning on an empty stomach with plain water, waiting at least 30 to 45 minutes before drinking tea, coffee, or having breakfast.",
+      "Be cautious with over-the-counter painkillers (such as paracetamol or NSAIDs); while they may temporarily ease body aches, they do not resolve the root cause of chronic exhaustion.",
+      "Report any new side effects, such as heart palpitations, severe dizziness when standing, or worsening insomnia, to your doctor promptly.",
+      "Never stop prescribed medications for diabetes, high blood pressure, or thyroid disorders on your own, as sudden disruption can trigger a severe metabolic crisis."
+    ],
+    "complications": [
+      "Severe functional disability that can prevent you from maintaining full-time employment, attending college, or managing daily household responsibilities.",
+      "Secondary psychological distress, including anxiety, helplessness, and clinical depression resulting from long-term disability and social isolation.",
+      "Severe cardiovascular deconditioning and muscular atrophy due to enforced lack of movement.",
+      "Sleep architecture collapse, resulting in chronic insomnia, frequent midnight awakenings, and profound unrefreshing sleep.",
+      "Cognitive impairment ('brain fog') leading to memory lapses, slowed speech, reduced concentration, and impaired executive functioning.",
+      "Financial and emotional strain on the family unit due to prolonged diagnostic delays and ongoing healthcare visits."
+    ],
+    "emergencySigns": [
+      "Sudden, crushing chest pain, tightness, or pressure radiating to the jaw, neck, shoulder, or left arm.",
+      "Severe, unexplained shortness of breath that worsens while resting or lying flat.",
+      "Sudden fainting (syncope), rapid irregular heartbeats (palpitations), or acute loss of consciousness.",
+      "Sudden weakness, numbness, or tingling in the face, arm, or leg, especially on one side of the body, or slurred speech.",
+      "High persistent fever accompanied by a stiff neck, severe headache, confusion, or visual sensitivity."
+    ],
+    "whenToSeeDoctor": [
+      "Your fatigue has lasted for more than one month, continues to worsen, and interferes with your basic work or family life.",
+      "You consistently wake up feeling just as tired and heavy as when you went to bed, despite spending 8 to 9 hours resting.",
+      "You experience noticeable post-exertional malaise, where mild walking or mental focus causes an energy crash 24 to 48 hours later.",
+      "You notice unexplained weight loss, night sweats, swollen lymph nodes in your neck or armpits, or persistent low-grade fevers.",
+      "You feel dizzy, lightheaded, or like you might faint every time you stand up from a chair or bed."
+    ],
+    "faqs": [
+      {
+        "q": "How is chronic fatigue different from being very tired?",
+        "a": "Ordinary tiredness occurs after intense mental or physical effort and resolves quickly after a good night's sleep or a quiet weekend. Chronic fatigue lasts for months, does not improve with standard rest, and severely limits basic daily activities. It often comes with unrefreshing sleep, muscle aches, and cognitive problems."
+      },
+      {
+        "q": "Can a vegetarian diet contribute to chronic fatigue?",
+        "a": "Yes, if not carefully planned. Strict vegetarian diets in India are frequently low in bioavailable iron and vitamin B12, because active B12 is found primarily in animal products and fortified foods. Deficiencies in either nutrient impair red blood cell production and oxygen delivery, leading to profound tiredness. A simple blood check can identify these gaps."
+      },
+      {
+        "q": "What is post-exertional malaise (PEM)?",
+        "a": "Post-exertional malaise is the hallmark symptom of ME/CFS. It is a worsening of fatigue, brain fog, and flu-like symptoms after minor physical, mental, or emotional effort. Unlike normal fatigue, this crash often appears 12 to 48 hours after the activity and can last for days or weeks."
+      },
+      {
+        "q": "Does regular gym exercise cure chronic fatigue?",
+        "a": "No. While regular exercise is healthy for ordinary tiredness, vigorous workouts can trigger severe setbacks and crashes in people with ME/CFS. Physical activity must be very carefully paced within your individual energy limits, focusing on gentle restorative movements rather than intense cardio or heavy weightlifting."
+      },
+      {
+        "q": "Can chronic fatigue go away on its own?",
+        "a": "If the fatigue is secondary to a treatable medical cause—such as low vitamin B12, low iron, or hypothyroidism—addressing that issue under medical supervision often restores normal energy. For ME/CFS, recovery rates vary; many people learn to manage their energy envelope and improve their quality of life through consistent pacing and supportive care."
+      }
+    ],
+    "references": [
+      {
+        "title": "Myalgic encephalomyelitis (or encephalopathy)/chronic fatigue syndrome: diagnosis and management (NICE guideline NG206)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng206",
+        "year": "2021"
+      },
+      {
+        "title": "Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS) Clinical Overview",
+        "source": "Centers for Disease Control and Prevention (CDC)",
+        "url": "https://www.cdc.gov/me-cfs/index.html",
+        "year": "2023"
+      },
+      {
+        "title": "Nutrient Requirements and Recommended Dietary Allowances for Indians",
+        "source": "ICMR - National Institute of Nutrition (ICMR-NIN)",
+        "url": "https://www.nin.res.in",
+        "year": "2020"
+      },
+      {
+        "title": "Chronic Fatigue Syndrome - Symptoms and Causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/chronic-fatigue-syndrome/symptoms-causes/syc-20360490",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "anemia",
+      "vitamin-b12-deficiency",
+      "vitamin-d-deficiency",
+      "hypothyroidism",
+      "type-2-diabetes",
+      "sleep-apnea",
+      "weakness",
+      "depression"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "iron-folic-acid",
+      "vitamin-d3",
+      "paracetamol",
+      "metformin"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "amla"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "tsh",
+      "vitamin-b12",
+      "vitamin-d",
+      "hba1c",
+      "crp",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

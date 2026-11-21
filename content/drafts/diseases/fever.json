@@ -1,0 +1,281 @@
+{
+  "slug": "fever",
+  "name": "Fever Guide",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Fever, medically called pyrexia, is a temporary increase in your body temperature above its normal baseline. For an adult, doctors generally define a fever as an oral body temperature of 38.0 degrees Celsius (100.4 degrees Fahrenheit) or higher. Fever is not an illness by itself. Rather, it is your body's natural immune defense mechanism actively fighting off an underlying infection or inflammation. In India, acute fevers are especially common during seasonal weather changes and monsoon months. During these periods, viral infections, mosquito-borne illnesses such as dengue and malaria, and water-borne bacterial infections like typhoid reach their peak. While most short-lived fevers resolve with rest, proper hydration, and simple home care, an unusually high or prolonged fever requires prompt medical evaluation to identify and address the root cause.",
+    "quickFacts": [
+      {
+        "label": "Normal oral temperature",
+        "value": "Around 37.0°C (98.6°F), fluctuating slightly through the day"
+      },
+      {
+        "label": "Clinical fever threshold",
+        "value": "38.0°C (100.4°F) or above on an oral digital thermometer"
+      },
+      {
+        "label": "High-grade fever",
+        "value": "39.4°C (103.0°F) or higher"
+      },
+      {
+        "label": "Biological role",
+        "value": "An active immune response to fight pathogens, not a standalone disease"
+      },
+      {
+        "label": "Primary home risk",
+        "value": "Dehydration caused by fluid loss from sweating and elevated metabolism"
+      },
+      {
+        "label": "Common Indian causes",
+        "value": "Viral infections, dengue, malaria, typhoid, and urinary tract infections"
+      }
+    ],
+    "causes": [
+      "Viral infections: The most common trigger worldwide. These include seasonal respiratory viruses, influenza, COVID-19, and arboviruses like dengue and chikungunya spread by mosquitoes.",
+      "Bacterial infections: Illnesses like typhoid fever (enteric fever), urinary tract infections, bacterial throat infections, and chest infections like pneumonia.",
+      "Parasitic infections: Vector-borne illnesses such as malaria, transmitted through the bite of infected female Anopheles mosquitoes.",
+      "Environmental heat stress: Heat exhaustion and heatstroke caused by vigorous physical activity or prolonged exposure to high ambient temperatures in Indian summers without adequate fluids.",
+      "Post-immunization response: A mild, temporary temperature rise following vaccinations as your immune system builds antibodies.",
+      "Inflammatory conditions: Flare-ups of autoimmune disorders such as rheumatoid arthritis or connective tissue diseases.",
+      "Medication-induced fever: Rare adverse drug reactions or sensitivities to certain prescription medications."
+    ],
+    "types": [
+      {
+        "name": "Continuous fever",
+        "desc": "Body temperature stays elevated consistently above normal throughout the day and does not fluctuate by more than 1 degree Celsius over 24 hours. Classically seen in untreated typhoid fever."
+      },
+      {
+        "name": "Remittent fever",
+        "desc": "Temperature remains high throughout the day but fluctuates up and down by more than 1 degree Celsius without touching normal levels. Common in many viral and systemic bacterial infections."
+      },
+      {
+        "name": "Intermittent fever",
+        "desc": "Temperature spikes for several hours and then falls back completely to the normal baseline within the same 24-hour cycle. Classically associated with malaria."
+      },
+      {
+        "name": "Relapsing fever",
+        "desc": "Fever episodes that appear, settle back to normal for several days or weeks, and then return. Often linked to specific bacterial or parasitic cycles."
+      },
+      {
+        "name": "Fever of Unknown Origin (FUO)",
+        "desc": "A documented fever exceeding 38.3 degrees Celsius lasting for more than 3 weeks where initial hospital investigations have not identified a clear cause."
+      }
+    ],
+    "diagnosis": [
+      "Accurate digital measurement: Use a clean digital thermometer under the tongue with the mouth closed, or in the armpit (axillary). Axillary readings generally measure about 0.3 to 0.6 degrees Celsius lower than oral readings. Avoid mercury glass thermometers due to safety and breakage risks.",
+      "Pre-measurement conditions: Wait at least 15 to 20 minutes after drinking hot chai, cold water, or smoking before measuring oral temperature to prevent false readings.",
+      "Clinical history: Your doctor will ask about the exact duration of the fever, daily pattern, chills, sweating, recent travel, mosquito exposure, food hygiene, cough, burning urination, or joint aches.",
+      "Physical assessment: Checking vital signs, pulse, blood pressure, breathing rate, throat, chest sounds, abdominal tenderness, and looking for skin rashes or swelling in lymph nodes."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks total white blood cell count to detect infection and monitors platelet levels in suspected dengue",
+        "slug": "cbc"
+      },
+      {
+        "test": "C-Reactive Protein (CRP)",
+        "purpose": "Evaluates the degree of acute systemic inflammation in the body",
+        "slug": "crp"
+      },
+      {
+        "test": "Urine Routine and Microscopy",
+        "purpose": "Rules out urinary tract and kidney infections as hidden sources of fever",
+        "slug": "urine-routine"
+      },
+      {
+        "test": "Liver Function Tests",
+        "purpose": "Monitors liver involvement during severe infections, dengue, or enteric fever",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Evaluates kidney function and checks for dehydration strain during prolonged fever",
+        "slug": "creatinine"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Acts as an acute phase marker that rises significantly during hyperinflammatory states",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Peripheral Blood Smear and Rapid Antigen Tests",
+        "purpose": "Identifies malaria parasites and screens for dengue NS1 antigen or IgM antibodies"
+      }
+    ],
+    "modernTreatment": [
+      "Antipyretic therapy: Over-the-counter fever reducers such as paracetamol help lower body temperature, ease headaches, and relieve body aches as advised by your doctor.",
+      "Targeted anti-infective treatment: Antibiotics are prescribed only when a bacterial infection (such as typhoid or a urinary tract infection) is confirmed or strongly suspected. Antibiotics do not work against viral fevers.",
+      "Antiparasitic medications: Specific antimalarial drugs are given when malaria tests are positive.",
+      "Active rehydration: Aggressive oral fluid intake using clean drinking water, oral rehydration salts (ORS), and thin broths to replace water and minerals lost through sweating.",
+      "Physical comfort measures: Wearing loose, breathable cotton clothes, resting in a well-ventilated room, and applying lukewarm (tepid) water sponging on the forehead and limbs if discomfort is high. Ice water should never be used."
+    ],
+    "ayurvedaView": [
+      "Traditional texts refer to fever as Jwara, considered a state where imbalanced pitta and vata doshas disrupt the body's internal digestive fire (agni) and generate metabolic toxins (ama).",
+      "Classical Ayurvedic approaches prioritize langhana (lightening the metabolic load) through physical rest, warm water sipping, and simple, light gruels such as moong dal soup or rice kanji.",
+      "Ayurvedic herbs can only offer supportive care alongside modern medical evaluation. No herb, diet or product can make an underlying systemic infection go away on its own."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Tulsi",
+        "slug": "tulsi",
+        "note": "Holy basil is traditionally brewed as a warm herbal tea to relieve throat irritation and promote mild sweating. Clinical evidence in treating fevers directly is very limited."
+      },
+      {
+        "name": "Giloy",
+        "slug": "giloy",
+        "note": "Widely used in traditional Indian medicine for chronic fevers. While it possesses mild immunomodulatory properties in small studies, excessive or unmonitored use has been associated with drug-induced liver injury. Use only under medical supervision."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Warm ginger infusions can ease nausea, soothe shivering chills, and support hydration, though it has no direct anti-infective power against fever pathogens."
+      },
+      {
+        "name": "Black Pepper",
+        "slug": "black-pepper",
+        "note": "Occasionally added in traditional herbal broths (kadhas) to stimulate appetite and ease congestion; scientific proof for fever reduction is lacking."
+      }
+    ],
+    "nutrition": [
+      "Prioritize fluid intake: Drink 2.5 to 3.5 liters of fluids daily to prevent dehydration caused by high body heat, breathing fast, and sweating.",
+      "Use Oral Rehydration Solutions (ORS): WHO-formula ORS provides the precise balance of glucose and electrolytes needed to keep your organs stable during acute fever.",
+      "Include traditional Indian fluids: Fresh tender coconut water, salted chaas (buttermilk), thin moong dal paani, and rice kanji offer gentle calories and vital minerals.",
+      "Eat light, soft, home-cooked meals: Khichdi, daliya, soft steamed idli, clear vegetable soups, and boiled eggs place minimal stress on your sluggish digestive system.",
+      "Consume seasonal fresh fruit: Papaya, pomegranate, sweet lime (mosambi), and apples supply natural sugars, vitamin C, and potassium.",
+      "Avoid irritating foods: Stay away from oily pakoras, deep-fried snacks, ultra-spicy curries, carbonated soft drinks, and stale restaurant meals until recovery is complete."
+    ],
+    "lifestyle": [
+      "Commit to complete bed rest: Your body expends immense cellular energy to fight infections. Stop heavy workouts, running, and strenuous household duties until your fever has been gone for at least 48 hours.",
+      "Wear breathable cotton: Dress in a single layer of loose, lightweight cotton clothing to allow heat to leave your skin naturally.",
+      "Maintain room airflow: Keep your living area well-ventilated with open windows or run a ceiling fan at a gentle speed. Avoid stuffy, closed rooms.",
+      "Keep a written temperature chart: Record your temperature readings, times of measurement, and medicines taken in a notebook to show your doctor.",
+      "Practice mosquito defense: Use mosquito nets, window meshes, and personal repellents, especially during monsoon season, to protect family members from vector-borne fevers."
+    ],
+    "yogaActivity": [
+      "Avoid active physical yoga during fever: Never perform Surya Namaskars, power yoga, or inversion poses while running a fever, as exercise increases core temperature and strains the heart.",
+      "Resting breathwork: Once your temperature has normalized and fatigue improves, gentle deep breathing (dirga pranayama) while resting in bed can promote calm.",
+      "Avoid heat-building pranayama: Do not practice Kapalbhati or Bhastrika during fever, because these rapid breathing techniques generate internal heat and overtax your system."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific evidence that homeopathic remedies treat the microbial causes of fever or prevent serious complications.",
+      "Relying on homeopathy for severe, mosquito-borne, or prolonged fevers such as dengue, malaria, or typhoid risks dangerous delays in necessary medical care."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Paracetamol lowers elevated body temperature and relieves pain safely when used as advised by your doctor; targeted antibiotic and antimalarial treatments eliminate proven bacterial and parasitic infections; oral fluids prevent fatal dehydration.",
+      "Moderate evidence: Tepid water sponging temporarily reduces skin surface temperature when combined with fever-reducing medication in high fevers.",
+      "Limited or weak evidence: Traditional herbal decoctions (kadhas) show very low-quality evidence for clearing fevers in clinical trials.",
+      "No evidence and unsafe: Consuming unregulated 'fever cure' powders or subjecting a feverish patient to heavy blanket sweat wraps."
+    ],
+    "shouldNotDo": [
+      "Do not buy over-the-counter antibiotics from a chemist without a doctor's prescription. Misusing antibiotics does not cure viral infections and accelerates dangerous antibiotic resistance.",
+      "Do not take non-steroidal anti-inflammatory drugs (NSAIDs) like ibuprofen, aspirin, or diclofenac without consulting your doctor. In India, where dengue is prevalent, these medicines interfere with platelets and can trigger severe internal bleeding.",
+      "Never give aspirin to children or teenagers running a fever, as it is linked to Reye's syndrome, a potentially fatal brain and liver disorder.",
+      "Do not take cold water baths, ice baths, or rub alcohol on the skin. Cold water causes shivering, which paradoxically forces internal core body temperature higher.",
+      "Do not force yourself to exercise or 'sweat it out' at the gym. Strenuous exercise with an active viral infection can lead to viral myocarditis (heart muscle inflammation)."
+    ],
+    "medicationSafety": [
+      "Take paracetamol strictly within the limits advised by your doctor. Exceeding recommended amounts can cause acute liver failure.",
+      "Check cough and cold syrups carefully: Many combined remedies already contain paracetamol. Taking them together with fever tablets can lead to an accidental overdose.",
+      "Complete the full course of prescribed antibiotics or antimalarials, even if your temperature returns to normal after two days.",
+      "Inform your doctor of underlying chronic conditions like liver disease, kidney dysfunction, or pregnancy before taking any new medication."
+    ],
+    "complications": [
+      "Severe dehydration and electrolyte imbalance due to prolonged sweating, vomiting, and inadequate fluid intake",
+      "Febrile convulsions in young children, where sudden temperature spikes trigger brief seizures",
+      "Dengue shock syndrome and hemorrhagic bleeding in unmonitored severe dengue infections",
+      "Sepsis, a life-threatening medical emergency where the body's response to an infection damages its own tissues",
+      "Delirium, confusion, and hallucinations during very high body temperatures"
+    ],
+    "emergencySigns": [
+      "Body temperature of 39.4°C (103°F) or above that fails to come down after medication",
+      "Severe neck stiffness, sensitivity to bright light, and intense headache (warning signs of meningitis)",
+      "Sudden mental confusion, extreme sleepiness, or difficulty waking up",
+      "Persistent vomiting, inability to keep liquids down, or no urination for more than 8 hours",
+      "Tiny red or purple spots on the skin, unexplained bruising, bleeding gums, or blood in vomit or stools (critical warning signs of dengue)",
+      "Difficulty breathing, chest pain, or rapid, shallow breathing"
+    ],
+    "whenToSeeDoctor": [
+      "Your fever lasts for more than 3 consecutive days without clear improvement",
+      "Your fever goes away for a day or two and then returns with higher intensity",
+      "You experience burning during urination, cloudy urine, or severe lower back pain",
+      "You develop a fever after traveling to malaria-endemic regions or during a local monsoon dengue outbreak",
+      "You have diabetes, kidney disease, heart disease, or compromised immunity and develop a new fever"
+    ],
+    "faqs": [
+      {
+        "q": "Is every fever dangerous and in need of immediate reduction?",
+        "a": "Not always. A mild to moderate fever is an active sign that your immune system is defending against infection. The main objective of fever medicine is to ease severe discomfort, headache, and body pain, not to force body temperature to normal instantly. However, very high, prolonged, or complicated fevers always require medical evaluation."
+      },
+      {
+        "q": "Can I take ibuprofen or combiflam for fever at home in India?",
+        "a": "You should avoid taking ibuprofen or combination pain tablets on your own for sudden fever. In regions where dengue is common, these medicines can thin your blood, impair platelet function, and provoke dangerous gastrointestinal bleeding. Use paracetamol as advised by your doctor until a medical diagnosis is made."
+      },
+      {
+        "q": "Why is it unsafe to work out at the gym when I have a fever?",
+        "a": "Exercising with a fever places dangerous strain on your heart and cardiovascular system. When your body is fighting a systemic viral illness, vigorous exertion can trigger viral myocarditis (inflammation of the heart muscle) and rapidly worsen dehydration. Rest completely until you have been fever-free for at least 48 hours."
+      },
+      {
+        "q": "What should I eat while recovering from a viral fever?",
+        "a": "Focus on easily digestible, light meals that do not burden your digestion. Moong dal khichdi, daliya, steamed idlis, vegetable broths, and boiled eggs are excellent. Pair these with plenty of fluids such as fresh coconut water, WHO-standard ORS, and warm water. Avoid deep-fried, oily, and heavy foods."
+      },
+      {
+        "q": "Does sweating mean that my fever is finally breaking?",
+        "a": "Yes, sweating often indicates that your brain's internal thermostat has reset to a lower temperature, and your body is releasing excess heat through the evaporation of sweat. Be sure to drink water or ORS to replace the fluids and salts lost through perspiration."
+      }
+    ],
+    "references": [
+      {
+        "title": "High temperature (fever) in adults",
+        "source": "National Health Service (NHS)",
+        "url": "https://www.nhs.uk/conditions/fever-in-adults/",
+        "year": "2023"
+      },
+      {
+        "title": "Fever: Symptoms and causes",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/fever/symptoms-causes/syc-20352759",
+        "year": "2023"
+      },
+      {
+        "title": "Malaria Fact Sheet",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/malaria",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "urinary-tract-infection",
+      "kidney-infection",
+      "sinusitis",
+      "bronchitis",
+      "dehydration",
+      "weakness",
+      "headache"
+    ],
+    "relatedMedicines": [
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "tulsi",
+      "giloy",
+      "ginger",
+      "black-pepper"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "crp",
+      "urine-routine",
+      "liver-enzymes",
+      "creatinine",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

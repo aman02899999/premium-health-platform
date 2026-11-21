@@ -1,0 +1,304 @@
+{
+  "slug": "dizziness",
+  "name": "Dizziness & Vertigo",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Dizziness is a broad term people use to describe feeling lightheaded, woozy, unsteady, or faint. Vertigo is a very specific type of dizziness where you feel as if you or your surroundings are spinning, tilting, or rocking when everything is completely still. While many people use both words interchangeably, doctors treat them differently because they come from different systems in the body. True vertigo usually stems from the vestibular system—the delicate balance canals inside your inner ear or the balance networks inside your brainstem and cerebellum. General dizziness or lightheadedness, on the other hand, often points to a temporary drop in blood supply to your brain, dehydration, low blood sugar, sudden blood pressure shifts, or side effects from medicines. Dizziness and vertigo are extremely common in Indian clinics, especially during hot summer months, during festival fasts, or among seniors with multiple prescriptions. Although a spinning attack can feel terrifying and induce sudden nausea, the underlying cause is very often treatable, benign, and manageable once properly diagnosed.",
+    "quickFacts": [
+      {
+        "label": "Lifetime prevalence",
+        "value": "About 15% to 30% of adults experience dizziness or vertigo at least once (NCBI StatPearls)"
+      },
+      {
+        "label": "Most common vertigo cause",
+        "value": "Benign Paroxysmal Positional Vertigo (BPPV), accounting for up to 50% of peripheral vertigo cases"
+      },
+      {
+        "label": "Vertigo vs Dizziness",
+        "value": "Vertigo is an illusion of motion (spinning); dizziness is wooziness, faintness, or balance instability"
+      },
+      {
+        "label": "Main physical treatment",
+        "value": "Canalith repositioning manoeuvres (such as the Epley manoeuvre) relieve classic BPPV in up to 80% of patients after 1 to 2 sessions"
+      },
+      {
+        "label": "Key home risk",
+        "value": "Sudden falls, especially in older adults on tile or marble floors"
+      },
+      {
+        "label": "Hydration role",
+        "value": "Dehydration during hot Indian summers is a leading cause of postural lightheadedness"
+      }
+    ],
+    "causes": [
+      "Benign Paroxysmal Positional Vertigo (BPPV): Tiny calcium carbonate crystals (otoconia) come loose inside your inner ear and float into the fluid-filled semicircular canals. When you turn your head, roll over in bed, or look up, these crystals shift the fluid abnormally, triggering intense, brief spinning.",
+      "Vestibular Neuritis and Labyrinthitis: A viral infection or inflammation of the vestibular nerve carrying balance signals from your inner ear to your brain. It causes sudden, severe spinning that lasts for days, often accompanied by nausea and, if the hearing nerve is involved, ringing or hearing loss.",
+      "Meniere's Disease: An excessive buildup of fluid (endolymph) inside the chambers of the inner ear. It produces episodes of spinning vertigo, fluctuating hearing loss, ear fullness or pressure, and persistent ringing (tinnitus).",
+      "Orthostatic (Postural) Hypotension: A quick fall in blood pressure when you stand up rapidly from sitting on the floor, getting off a charpai, or rising from bed. Blood pools in your legs, briefly reducing blood flow to your brain and causing a dark out, faintness, or wooziness.",
+      "Dehydration and Heat Exhaustion: Extremely common across India between March and July. Inadequate water intake combined with heavy sweating depletes blood volume and electrolytes, causing lightheadedness and weakness upon standing.",
+      "Hypoglycemia (Low Blood Sugar): Skipping meals, long religious fasts (vrats), or taking diabetes medications without eating enough carbohydrates can drop blood glucose, triggering shakiness, sweating, and dizzy spells.",
+      "Anemia: Low hemoglobin reduces oxygen delivery to the brain tissue. Widespread among Indian women and adolescents, it causes persistent fatigue, pale skin, shortness of breath on exertion, and chronic lightheadedness.",
+      "Medication Side Effects: High blood pressure tablets (such as calcium channel blockers or diuretics), sedatives, muscle relaxants, antidepressants, and prostate medications can cause postural drops in pressure or depress vestibular reflexes.",
+      "Vestibular Migraine: Migraine is not just a headache; it can present primarily with episodes of vertigo, motion sensitivity, unsteadiness, and nausea, sometimes even without a painful throbbing headache.",
+      "Central Nervous System Issues: Problems in the brainstem or cerebellum, such as an ischemic stroke, transient ischemic attack (TIA), bleeding, or multiple sclerosis. These require immediate medical attention."
+    ],
+    "types": [
+      {
+        "name": "Peripheral Vertigo",
+        "desc": "Caused by problems inside the inner ear balance canals or the vestibular nerve. Examples include BPPV, vestibular neuritis, and Meniere's disease. Episodes are often intense, triggered by head posture changes, and frequently accompanied by nausea, vomiting, or ear ringing, but without limb weakness or slurred speech."
+      },
+      {
+        "name": "Central Vertigo",
+        "desc": "Originates inside the central nervous system, particularly the cerebellum or brainstem. Causes include stroke, brain tumors, vestibular migraine, or demyelinating diseases. Vertigo here is often constant, less dependent on head turning, and commonly occurs alongside neurological red flags like double vision, difficulty swallowing, clumsiness, or limb weakness."
+      },
+      {
+        "name": "Presyncope (Lightheadedness)",
+        "desc": "The sensation that you are about to faint or pass out, without any feeling of spinning. It happens when brain perfusion briefly drops, typically from dehydration, prolonged standing in crowded local trains or buses, sudden posture changes, or cardiac rhythm irregularities."
+      },
+      {
+        "name": "Disequilibrium (Imbalance)",
+        "desc": "A feeling of unsteadiness on your feet, clumsiness, or loss of balance without spinning or faintness. It is common in older adults with peripheral neuropathy, joint problems, cervical spine stiffness, or reduced vision, making walking in dark rooms or on uneven Indian pavements difficult."
+      }
+    ],
+    "diagnosis": [
+      "Careful History Taking: Your doctor will ask you to describe what you feel without using the word 'dizzy'. They need to know if the room is spinning (vertigo), if you feel like passing out (presyncope), or if your feet feel clumsy (disequilibrium). They will also check duration: seconds, hours, or days.",
+      "Dix-Hallpike Test: A gold-standard bedside physical examination for BPPV. The doctor turns your head 45 degrees and quickly lowers you backward from a sitting position to lying flat with your head hanging slightly off the examination couch. Watching your eyes for characteristic rapid, involuntary twitching movements (nystagmus) confirms the diagnosis.",
+      "HINTS Exam: A three-part bedside eye and head movement assessment (Head Impulse, Nystagmus, Test of Skew) used by emergency physicians and neurologists to distinguish a harmless inner ear viral infection from a life-threatening cerebellar stroke when vertigo is acute and continuous.",
+      "Orthostatic Blood Pressure Measurement: Checking blood pressure and heart rate while you lie flat for 5 minutes, and then repeating the measurement 1 minute and 3 minutes after standing up. A sustained drop in systolic pressure of 20 mmHg or diastolic of 10 mmHg confirms orthostatic hypotension.",
+      "Ear and Neurological Examination: Inspecting the eardrum for middle ear infections or fluid, testing cranial nerves, assessing gait and tandem walking (heel-to-toe walking), and checking finger-to-nose coordination.",
+      "Imaging and Audiometry: A brain MRI or CT scan is ordered if your doctor suspects a central cause or if you have neurological red flags. Pure-tone audiometry evaluates hearing loss when conditions like Meniere's disease or acoustic neuroma are suspected."
+    ],
+    "investigations": [
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks hemoglobin and red cell indices to rule out anemia, a common cause of chronic fatigue and postural lightheadedness.",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose",
+        "purpose": "Identifies low blood sugar (hypoglycemia) or poorly controlled diabetes that can lead to autonomic neuropathy and dizziness.",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Screens for thyroid gland dysfunction, which can alter heart rate, energy regulation, and balance stability.",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin B12",
+        "purpose": "Crucial test for Indian vegetarians; low B12 causes sensory neuropathy, loss of joint position sense (proprioception), and unsteadiness.",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Electrocardiogram (ECG)",
+        "purpose": "Records electrical heart activity to detect arrhythmias, heart blocks, or ischemic changes that can drop blood flow to the brain."
+      },
+      {
+        "test": "Audiometry (Hearing Test)",
+        "purpose": "Measures hearing thresholds across different sound frequencies, helping detect inner ear fluid disease like Meniere's."
+      },
+      {
+        "test": "MRI Brain with Posterior Fossa Views",
+        "purpose": "Provides high-resolution imaging of the cerebellum, brainstem, and inner ear canals to exclude strokes, tumors, or demyelination."
+      }
+    ],
+    "modernTreatment": [
+      "Canalith Repositioning Procedures: For BPPV, physical manoeuvres such as the Epley manoeuvre, Semont manoeuvre, or BBQ roll are the first-line treatment. A trained doctor or physiotherapist moves your head through a sequence of specific angles to guide loose ear crystals out of the balance canals back into the utricle, where they dissolve or settle safely.",
+      "Vestibular Rehabilitation Therapy (VRT): A specialized form of physiotherapy designed for chronic dizziness, vestibular neuritis recovery, or balance weakness. It uses targeted head, eye, and balance exercises to retrain your brain to compensate for inner ear deficits.",
+      "Short-Term Vestibular Suppressants: During acute, severe spinning attacks with vomiting (such as in acute vestibular neuritis), doctors may prescribe medicines like betahistine, dimenhydrinate, or anti-nausea tablets. These are strictly used for a few days; prolonged use actually delays the brain's natural ability to compensate.",
+      "Management of Meniere's Disease: Doctors typically recommend dietary sodium restriction alongside mild diuretic medications to reduce fluid accumulation inside the inner ear chambers.",
+      "Correction of Underlying Triggers: Treating low iron levels with iron therapy, managing diabetes to prevent hypoglycemic dips, adjusting blood pressure medicines when readings drop too low, and ensuring adequate daily hydration.",
+      "Emergency Intervention for Central Causes: Acute ischemic strokes causing vertigo require immediate hospital admission, clot-dissolving medications (thrombolysis), or specialized neuro-critical care within the golden window."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, dizziness and spinning sensations are broadly described under conditions like Bhrama (giddiness or vertigo), Murchha (fainting), or Tandra (drowsiness).",
+      "Bhrama is traditionally understood as a disturbance where Pitta dosha (representing heat and metabolic fire) and Vata dosha (governing movement and the nervous system) become aggravated, alongside an increase in the mental attribute of Rajas (restlessness or agitation).",
+      "Aggravated Vata disrupts the flow of Prana Vayu through the sensory channels (indriyas), leading to unsteadiness and sensory disorientation, while vitiated Pitta generates internal heat that causes nausea, burning sensations, and sudden faintness.",
+      "Ayurvedic supportive protocols emphasize cooling, stabilizing measures: mild head massage with soothing herbal oils (shiroabhyanga), gentle nasal drops (nasya) under practitioner guidance, calming herbs, and eating warm, easily digestible, nourishing foods.",
+      "These classical ideas represent traditional observational frameworks and should never replace an accurate medical evaluation, especially when ruled out for ear crystal displacement or neurological stroke."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ginger (Adrak / Sunthi)",
+        "slug": "ginger",
+        "note": "Extensively studied for reducing motion sickness, nausea, and vomiting associated with inner ear imbalance. It works primarily on the gut and central nausea pathways. Use it as fresh tea or culinary spice alongside medical care, as advised by your doctor."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "Classified as an adaptogen in traditional medicine, it helps calm nervous exhaustion, chronic anxiety, and stress-induced dizziness. Clinical evidence for inner ear vertigo is weak; it serves only as general vitality support."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used to support cognitive function, microcirculation, and mental clarity. While it may help subjective feelings of brain fog or tension, rigorous clinical evidence showing it corrects vestibular disorders is lacking."
+      },
+      {
+        "name": "Licorice (Mulethi)",
+        "slug": "licorice",
+        "note": "Contains glycyrrhizin, which can support blood pressure retention in individuals with severe orthostatic hypotension. However, it can cause potassium loss and unsafe blood pressure spikes. Must be taken strictly as advised by your doctor."
+      }
+    ],
+    "nutrition": [
+      "Drink plenty of fluids: Dehydration is a very common trigger for dizziness in India. Aim for 2.5 to 3.5 liters of total fluids daily, including clean water, thin buttermilk (chaas), and fresh coconut water, especially if working out or travelling.",
+      "Maintain consistent meal schedules: Do not skip meals or fast for extended hours if you are prone to dizzy spells. Eating smaller, frequent meals consisting of complex carbohydrates, pulses, and vegetables stabilizes blood glucose levels.",
+      "Monitor salt intake according to your specific diagnosis: If your vertigo is diagnosed as Meniere's disease, reducing salt to under 5 g per day (one level teaspoon) helps prevent inner ear fluid buildup. Conversely, if your dizziness is due to low blood pressure (orthostatic hypotension), your doctor may suggest adding a little extra salt or drinking salty lemon water.",
+      "Address iron and vitamin deficiencies: Boost red blood cell health by eating iron-rich Indian foods such as spinach (palak), fenugreek leaves (methi), black chana, lentils, and soaked raisins, paired with vitamin C (amla or lemon juice) for better iron absorption.",
+      "Limit vestibular triggers: High caffeine intake (from multiple cups of strong chai or coffee), excessive alcohol, and monosodium glutamate (MSG) found in packaged instant foods can trigger migraine-associated vertigo and inner ear irritability.",
+      "Stay hydrated during religious fasts: If observing traditional Indian vrats, drink unsweetened liquids, lemon water with a pinch of rock salt, and avoid sudden standing after hours of prayer or meditation."
+    ],
+    "lifestyle": [
+      "Change postures slowly: When waking up in the morning, do not jump out of bed immediately. Sit on the edge of the mattress for 30 to 60 seconds, pump your ankles up and down a few times to get blood moving, and then stand up slowly.",
+      "Make your home fall-proof: Dizziness is a leading cause of fractures among Indian seniors. Remove loose carpets and doormats, install grab bars in the bathroom, keep pathways well-lit at night with night lamps, and avoid slippery bathroom tiles.",
+      "Avoid sudden head tilting: If you have active BPPV, avoid looking straight up at ceiling fans, bending low to pick up objects from the floor, or tipping your head back rapidly at hair salons or barbershops until treated.",
+      "Sit down immediately when dizzy: If you feel a wave of spinning or faintness, sit down right where you are—even on the floor if necessary. Lowering your head between your knees helps restore blood flow to your brain and prevents a fall.",
+      "Wear sensible footwear: Avoid smooth-soled slippers, loose kolhapuris, or high heels. Choose supportive shoes with textured rubber soles that grip tiled floors and uneven pavements reliably.",
+      "Maintain steady, restorative sleep: Sleep deprivation is a known trigger for vestibular migraine and autonomic instability. Aim for 7 to 8 hours of uninterrupted rest, using an extra pillow to keep your head slightly elevated if prone to morning vertigo."
+    ],
+    "yogaActivity": [
+      "Avoid inverted postures during active vertigo: Headstands (Sirsasana), shoulder stands (Sarvangasana), and aggressive forward bends (Padahastasana) can dislodge ear crystals or aggravate inner ear pressure. Avoid these completely until your doctor clears you.",
+      "Practice seated grounding asanas: Gentle poses like Sukhasana (Easy Pose), Vajrasana (Thunderbolt Pose), and supported Balasana (Child's Pose) provide stability and calm the autonomic nervous system without demanding high balance.",
+      "Incorporate gentle balance retraining: Stand near a sturdy wall or counter and practice Tadasana (Mountain Pose) with feet slightly apart, focusing your gaze on an unmoving spot straight ahead. Gradually progress to gentle weight shifting.",
+      "Eye and head tracking exercises: Under the guidance of a physiotherapist or yoga therapist, seated gentle eye movements (moving eyes slowly up, down, left, right while keeping the head still) help retrain brain-eye coordination.",
+      "Cooling and calming pranayama: Practice slow, effortless Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath). Keep the breathing gentle; avoid forceful practices like Kapalabhati or rapid Bhastrika, which can alter blood carbon dioxide levels and induce lightheadedness."
+    ],
+    "homeopathyNote": [
+      "Homeopathic preparations are frequently advertised in India for dizziness, vertigo, and inner ear ailments.",
+      "There is no high-quality, scientifically robust clinical trial evidence demonstrating that homeopathic remedies reposition loose ear crystals, clear inner ear infections, or resolve central nervous system lesions.",
+      "Relying on homeopathy for severe, continuous, or recurrent vertigo delays crucial physical manoeuvres (like the Epley manoeuvre) or the urgent identification of serious cardiovascular and neurological conditions.",
+      "If you choose to explore complementary modalities, never discontinue prescribed medical therapies or postpone standard diagnostic testing."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Canalith repositioning procedures (such as the Epley manoeuvre) have extensive, high-quality evidence from Cochrane systematic reviews confirming they effectively clear posterior canal BPPV within 1 to 2 clinic visits.",
+      "Strong evidence: Vestibular Rehabilitation Therapy (VRT) significantly improves functional stability, reduces handicap, and speeds central compensation in peripheral vestibular disorders.",
+      "Moderate evidence: Sodium restriction and oral diuretics help reduce the frequency and severity of vertigo attacks in diagnosed Meniere's disease.",
+      "Moderate evidence: Treating underlying medical drivers—such as correcting iron-deficiency anemia, adjusting high blood pressure medications, and optimizing hydration—effectively resolves orthostatic lightheadedness.",
+      "Limited or weak evidence: Ginger shows modest clinical evidence for relieving motion sickness and related nausea, but cannot correct underlying vestibular nerve or crystal defects.",
+      "No scientific evidence: Commercial online ear drops, balancing bracelets, herbal ear oils, or magnetic therapies claiming to cure vertigo."
+    ],
+    "shouldNotDo": [
+      "Do not put hot oils, herbal juices, or unverified drops into your ear canal. If your eardrum has a perforation, this can trigger severe middle ear infections or permanent hearing damage.",
+      "Do not drive a two-wheeler, car, or operate heavy machinery if you are experiencing sudden, unpredictable spinning attacks.",
+      "Do not attempt aggressive DIY neck-cracking, sudden head jerks, or unguided viral internet manoeuvres; an incorrect manoeuvre can shift ear crystals into other canals, worsening the vertigo.",
+      "Do not take vestibular suppressant tablets (like cinnarizine or meclizine) continuously for weeks without a doctor's advice; long-term use blocks your brain's ability to heal and adapt.",
+      "Do not dismiss recurrent dizziness in older individuals as 'just normal old age'. It is always a symptom of a treatable condition or medication imbalance.",
+      "Do not ignore dizziness that comes with sudden speech changes, facial drooping, or limb weakness, as this could be an evolving stroke."
+    ],
+    "medicationSafety": [
+      "Review your prescription list with your doctor: Many common Indian medications—especially blood pressure pills (amlodipine, losartan), water pills (diuretics), sedatives, and prostate drugs—can cause orthostatic hypotension. Your doctor may need to adjust the timing or dose.",
+      "Use vestibular suppressants only for short spells: Medications prescribed for acute vertigo should typically be discontinued after 3 to 5 days, once the severe nausea and violent spinning subside, so that natural vestibular recovery can begin.",
+      "Never alter doses without medical oversight: If you suspect your diabetes or hypertension tablets are making you dizzy, speak to your doctor before stopping them, as sudden discontinuation can trigger dangerous blood sugar or blood pressure spikes.",
+      "Stay cautious with over-the-counter painkillers: Regular use of non-steroidal anti-inflammatory drugs (NSAIDs) can affect kidney function and interact with blood pressure medications, worsening postural instability.",
+      "Inform your physician if you take herbal preparations: Concentrated herbal supplements can interact with blood thinners, blood pressure agents, and sedatives."
+    ],
+    "complications": [
+      "Traumatic falls and fractures: The most frequent and dangerous complication, particularly among older adults, leading to hip fractures, head injuries, and subdural hematomas.",
+      "Loss of independence and mobility: Fear of falling often causes people to avoid walking, stepping outside, or exercising, leading to rapid muscle loss (sarcopenia) and social isolation.",
+      "Motor vehicle and workplace accidents: Experiencing a sudden vertigo attack while riding a scooter, driving, or crossing busy roads can cause severe accidents.",
+      "Severe dehydration and electrolyte imbalance: Uncontrolled vomiting during prolonged, acute vestibular attacks can rapidly deplete body fluids.",
+      "Chronic anxiety and agoraphobia: Persistent dizziness can trigger secondary panic disorders, anxiety, and an overwhelming fear of entering crowded public spaces like markets or railway stations.",
+      "Permanent hearing impairment: Unmanaged inner ear conditions like chronic Meniere's disease or autoimmune inner ear disease can lead to progressive, irreversible hearing loss."
+    ],
+    "emergencySigns": [
+      "Sudden weakness, numbness, or tingling in your face, arm, or leg, especially on one side of your body",
+      "Difficulty speaking, slurred words, or trouble understanding speech (call 108 or 112 immediately—think FAST stroke signs)",
+      "Sudden double vision, vision loss, or uncontrolled flickering of the eyes",
+      "Inability to stand upright or walk without falling over completely, even while holding onto furniture",
+      "New, sudden, or thunderclap headache unlike any you have experienced before, accompanied by stiff neck or vomiting",
+      "Chest pain, heart palpitations, tightness, or severe shortness of breath occurring with dizziness",
+      "Sudden, total hearing loss in one ear accompanied by intense spinning"
+    ],
+    "whenToSeeDoctor": [
+      "You experience a spinning sensation whenever you turn your head, roll over in bed, or bend forward",
+      "Dizziness lasts for more than a few days, recurs frequently, or worsens over time",
+      "Your dizziness is accompanied by ringing in the ears (tinnitus), ear fullness, or decreased hearing",
+      "You feel faint, woozy, or black out every time you stand up from a chair or bed",
+      "Dizziness starts shortly after starting a new medication or changing your dosage",
+      "You have a history of diabetes or high blood pressure and notice new episodes of lightheadedness or balance instability"
+    ],
+    "faqs": [
+      {
+        "q": "What is the difference between dizziness and vertigo?",
+        "a": "Dizziness is a general feeling of being lightheaded, unsteady, or faint. Vertigo is a very specific type of dizziness where you feel a false sense of spinning, tilting, or rotating—either you feel you are moving or the room is spinning around you. Vertigo almost always points to an issue in your inner ear balance system or brainstem."
+      },
+      {
+        "q": "Can cervical spondylosis cause true spinning vertigo?",
+        "a": "True spinning vertigo is rarely caused by cervical spondylosis. Neck stiffness and wear-and-tear can cause vague unsteadiness or neck-related lightheadedness (cervicogenic dizziness), but violent spinning triggered by turning in bed is almost always BPPV (ear crystals) rather than neck spine problems."
+      },
+      {
+        "q": "Is BPPV dangerous, and can it be cured permanently?",
+        "a": "BPPV is benign, meaning it is not caused by a tumor, infection, or life-threatening brain disease. It can be relieved very effectively in the clinic with simple physical head manoeuvres like the Epley manoeuvre. However, no herb, diet or product can make it go away forever, and crystals can occasionally come loose again months or years later. If it returns, the manoeuvre can simply be repeated."
+      },
+      {
+        "q": "Why do I feel dizzy when I stand up quickly after sitting on the floor?",
+        "a": "This is typically orthostatic hypotension. When you stand up rapidly, gravity pulls blood toward your legs and belly, causing a temporary dip in blood pressure before your heart and arteries can adjust. It is especially common if you are dehydrated, during hot weather, or if you take blood pressure medications."
+      },
+      {
+        "q": "Can gas, acidity, or an upset stomach cause vertigo?",
+        "a": "In India, people frequently attribute dizzy spells to 'gas' or gastric trouble. While severe nausea, acid reflux, or abdominal distress can stimulate the vagus nerve and make you feel lightheaded, true spinning vertigo is not caused by stomach gas. It is important to have your ears, blood pressure, and nervous system evaluated properly rather than taking antacids."
+      }
+    ],
+    "references": [
+      {
+        "title": "Benign Paroxysmal Positional Vertigo",
+        "source": "StatPearls - National Center for Biotechnology Information (Bhattacharyya N et al.)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK470308/",
+        "year": "2023"
+      },
+      {
+        "title": "Vertigo",
+        "source": "StatPearls - National Center for Biotechnology Information (Labuguen RH)",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK482356/",
+        "year": "2023"
+      },
+      {
+        "title": "Dizziness and Vertigo: Diagnosis and Management",
+        "source": "Mayo Clinic Medical Information",
+        "url": "https://www.mayoclinic.org/diseases-conditions/dizziness/symptoms-causes/syc-20371787",
+        "year": "2023"
+      },
+      {
+        "title": "Dizziness - Overview and Causes",
+        "source": "NHS (National Health Service UK)",
+        "url": "https://www.nhs.uk/conditions/dizziness/",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "low-blood-pressure",
+      "stroke",
+      "migraine",
+      "anemia",
+      "vitamin-b12-deficiency",
+      "dehydration",
+      "neuropathy",
+      "palpitations"
+    ],
+    "relatedMedicines": [
+      "amlodipine",
+      "losartan",
+      "iron-folic-acid",
+      "paracetamol"
+    ],
+    "relatedHerbs": [
+      "ginger",
+      "ashwagandha",
+      "brahmi",
+      "licorice"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "fasting-glucose",
+      "tsh",
+      "vitamin-b12",
+      "ferritin"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

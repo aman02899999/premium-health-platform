@@ -1,0 +1,289 @@
+{
+  "slug": "depression",
+  "name": "Depression",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Depression is a medical condition that affects how you feel, think, and handle daily activities like sleeping, eating, or working. It is far more than everyday sadness or grief, which come and go. In clinical depression, persistent low mood, loss of interest or pleasure in almost all activities, deep fatigue, and feelings of worthlessness last for at least two weeks and interfere with routine life. In India, depression is widespread yet heavily underdiagnosed due to social stigma. According to the National Mental Health Survey (NMHS) of India conducted by NIMHANS, roughly 1 in 20 Indian adults (about 5.25% lifetime prevalence for depressive disorders) experiences depression, with nearly 80% to 85% facing a treatment gap. Depression is not a sign of personal weakness, lack of willpower, or poor upbringing. It arises from changes in brain signaling, genetics, hormonal shifts, medical illnesses, and severe environmental stress. Fortunately, professional counseling, psychological therapies, lifestyle changes, and modern psychiatric medications help manage symptoms effectively.",
+    "quickFacts": [
+      {
+        "label": "Clinical criteria",
+        "value": "Low mood or lost interest for at least 2 weeks"
+      },
+      {
+        "label": "Lifetime prevalence in India",
+        "value": "5.25% of adults (NMHS 2015-16, NIMHANS)"
+      },
+      {
+        "label": "Treatment gap in India",
+        "value": "Over 80% receive no formal medical care"
+      },
+      {
+        "label": "Key biological drivers",
+        "value": "Brain neurotransmitters, genetics, inflammation, and chronic stress hormones"
+      },
+      {
+        "label": "First-line medical treatments",
+        "value": "Psychotherapy (CBT) and doctor-prescribed antidepressants"
+      },
+      {
+        "label": "National mental health helpline",
+        "value": "KIRAN (1800-599-0019) or Tele-MANAS (14416)"
+      }
+    ],
+    "causes": [
+      "Brain chemistry and circuits: Imbalances in neurotransmitters like serotonin, dopamine, and norepinephrine, which regulate mood, sleep, appetite, and energy.",
+      "Genetic factors and family history: Having a parent or sibling with major depressive disorder significantly increases personal vulnerability.",
+      "Chronic life stress and adverse experiences: Job loss, financial strain, marital discord, caregiving burnout, domestic abuse, or bereavement trigger ongoing stress responses in the body.",
+      "Physical medical conditions: Chronic metabolic and endocrine illnesses, including hypothyroidism, uncontrolled type 2 diabetes, heart disease, stroke, and chronic kidney disease, disrupt neural pathways.",
+      "Nutritional deficiencies: Severe lack of vitamin B12, vitamin D, or iron, which are common across urban and rural India, impairs brain function and mood regulation.",
+      "Hormonal transitions: Substantial shifts during pregnancy, postpartum period, perimenopause, or polycystic ovary syndrome (PCOS) can precipitate depressive episodes.",
+      "Substance misuse: Regular use of alcohol, tobacco, sedatives, or illicit substances can worsen neurochemical imbalances and deepen mood crashes."
+    ],
+    "types": [
+      {
+        "name": "Major Depressive Disorder (MDD)",
+        "desc": "Classic unipolar depression marked by severe, unrelenting sadness, loss of pleasure, exhaustion, sleep issues, and low self-worth lasting at least two weeks."
+      },
+      {
+        "name": "Persistent Depressive Disorder (Dysthymia)",
+        "desc": "A chronic, long-term form of low mood lasting two years or more. Symptoms are often less intense than major depression but constant and draining."
+      },
+      {
+        "name": "Perinatal and Postpartum Depression",
+        "desc": "Depressive episodes occurring during pregnancy or in the first year following childbirth, going far beyond typical brief baby blues."
+      },
+      {
+        "name": "Depression with Seasonal Pattern",
+        "desc": "Mood episodes linked to changes in seasons and reduced sunlight, though less frequent in tropical India compared to temperate countries."
+      },
+      {
+        "name": "Bipolar Depression",
+        "desc": "Depressive episodes that alternate with periods of abnormally elevated mood, high energy, or irritability (mania or hypomania). Treatment differs critically from unipolar depression."
+      }
+    ],
+    "diagnosis": [
+      "A formal medical evaluation by a psychiatrist or licensed clinical psychologist using international criteria such as DSM-5-TR or ICD-11.",
+      "The core diagnostic threshold requires experiencing depressed mood or lost interest (anhedonia) most of the day, nearly every day, for at least two weeks.",
+      "At least four additional symptoms must accompany the core criteria, such as changes in sleep, significant weight changes, low energy, feelings of worthlessness, impaired concentration, or thoughts of death.",
+      "Standardized clinical screening tools like the Patient Health Questionnaire-9 (PHQ-9) or Hamilton Depression Rating Scale (HAM-D) help quantify symptom severity.",
+      "A thorough medical workup is essential to rule out physical mimics like severe hypothyroidism, anemia, or vitamin deficiencies before finalizing the diagnosis."
+    ],
+    "investigations": [
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Detects hypothyroidism, which frequently produces fatigue, weight gain, and depressive symptoms",
+        "slug": "tsh"
+      },
+      {
+        "test": "Serum Vitamin B12",
+        "purpose": "Identifies deficiency causing neurological changes, memory fog, and severe mood decline",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Serum 25-Hydroxy Vitamin D",
+        "purpose": "Evaluates low vitamin D levels, which are linked to impaired brain health and low mood",
+        "slug": "vitamin-d"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Rules out severe anemia, which mimics depression through extreme physical exhaustion",
+        "slug": "cbc"
+      },
+      {
+        "test": "Fasting Blood Glucose or HbA1c",
+        "purpose": "Checks for metabolic dysfunction and diabetes, both of which commonly coexist with mood disorders",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Liver Function Tests",
+        "purpose": "Establishes baseline liver health before starting psychiatric medications that are metabolized in the liver",
+        "slug": "liver-enzymes"
+      },
+      {
+        "test": "Serum Creatinine",
+        "purpose": "Verifies baseline kidney clearance before doctors select safe medication dosages",
+        "slug": "creatinine"
+      }
+    ],
+    "modernTreatment": [
+      "Psychotherapy: Evidence-based talk therapy such as Cognitive Behavioral Therapy (CBT) and Interpersonal Therapy (IPT) helps identify negative thinking loops, rebuild problem-solving skills, and re-engage in rewarding life activities.",
+      "Antidepressant medications: For moderate to severe depression, psychiatrists prescribe medications such as Selective Serotonin Reuptake Inhibitors (SSRIs) or Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs). These take 2 to 6 weeks to show noticeable benefits.",
+      "Combination approach: Combining structured psychotherapy with prescribed medication produces the highest recovery rates in moderate to severe cases.",
+      "Neuromodulation therapies: For treatment-resistant depression where medicines fail, therapies like Transcranial Magnetic Stimulation (rTMS) or Electroconvulsive Therapy (ECT) offer safe, hospital-supervised relief.",
+      "Step-down maintenance: Once symptoms resolve, medication is typically continued for 6 to 12 months as advised by your doctor to prevent relapses."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurvedic texts describe conditions resembling depression under concepts like Mano-avasaada or Vishada, often classified under Manovaha Sroto Dushti (disturbances in mental channels).",
+      "It is traditionally viewed as an imbalance involving Tamas (mental inertia or darkness), often associated with Vata aggravation (causing racing thoughts, fear, and restlessness) or Kapha dominance (causing sluggishness, lethargy, and heavy withdrawal).",
+      "Traditional therapies emphasize Sattvavajaya Chikitsa (mental retraining and spiritual grounding), Dinacharya (structured daily routine), balanced nourishment, and calming body therapies like Shirodhara.",
+      "These traditional concepts reflect ancient holistic observations, not modern neurochemical diagnoses. They should be considered supportive mental wellness habits rather than replacements for psychiatric treatment."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb studied for helping lower serum cortisol and ease stress. It may provide mild support alongside standard psychiatric care as advised by your doctor."
+      },
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used in Indian systems for cognitive support and mental calmness. Human clinical evidence for treating major clinical depression remains preliminary."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Curcumin possesses anti-inflammatory properties that are being investigated in mental health, though it is not a substitute for prescribed antidepressants."
+      }
+    ],
+    "nutrition": [
+      "Eat balanced Indian thalis containing unpolished grains, abundant vegetables, pulses, and healthy fats to support steady blood sugar and brain energy.",
+      "Include foods rich in omega-3 fatty acids, such as walnuts, flaxseeds, chia seeds, and fatty fish (like rohu, katla, or sardines), which support neuron membrane stability.",
+      "Incorporate natural probiotics like fresh homemade curd (dahi), chaas, and fermented foods to nourish the gut-brain axis.",
+      "Ensure adequate intake of folate and B-complex vitamins from dark leafy greens (palak, methi), chana, rajma, and lentils.",
+      "Address micronutrient gaps by consuming iron-rich seeds, soaked almonds, and fortified dairy or foods as advised by your doctor.",
+      "Significantly limit refined white sugar, mithai, ultra-processed namkeens, and packaged snacks, which cause rapid glucose spikes followed by severe fatigue and low energy.",
+      "Avoid using high doses of caffeine from strong tea, coffee, or energy drinks to mask exhaustion, as they worsen insomnia and amplify daytime jitters."
+    ],
+    "lifestyle": [
+      "Maintain a rigid sleep schedule: Wake up and sleep at consistent times every day, aiming for 7 to 8 hours of uninterrupted rest to support neurotransmitter balance.",
+      "Get natural sunlight: Spend 20 to 30 minutes outdoors every morning, which helps set your circadian rhythm and boosts daytime alertness.",
+      "Break isolation: Push gently to stay in touch with trusted family or friends. Even brief 10-minute conversations help break lonely mental spirals.",
+      "Engage in behavioral activation: Plan one or two tiny, achievable tasks daily, like making your bed or watering plants. Action often creates motivation, not the other way around.",
+      "Quit tobacco and avoid alcohol: Alcohol is a central nervous system depressant that disrupts deep sleep and severely destabilizes mood.",
+      "Set strict boundaries with digital media: Avoid doom-scrolling negative news feeds and late-night social media use, which magnify feelings of inadequacy."
+    ],
+    "yogaActivity": [
+      "Daily physical exercise: 30 minutes of brisk walking, jogging, cycling, or gym training stimulates natural endorphins and increases brain-derived neurotrophic factor (BDNF).",
+      "Gentle asanas: Postures like Setu Bandhasana (Bridge Pose), Bhujangasana (Cobra Pose), and Balasana (Child Pose) release physical muscle tightness caused by chronic stress.",
+      "Grounding restorative poses: Concluding movement with 10 to 15 minutes of Shavasana (Corpse Pose) with slow belly breathing allows the nervous system to shift out of fight-or-flight mode.",
+      "Pranayama: Calming breathing practices such as Anulom Vilom (alternate nostril breathing) and Bhramari (humming bee breath) help soothe autonomic arousal.",
+      "Avoid overstraining: When severe fatigue is present, start with just 10 minutes of gentle stretching or slow walking rather than exhausting workouts."
+    ],
+    "homeopathyNote": [
+      "There is no reliable, high-quality scientific evidence showing that homeopathic remedies can treat major depressive disorder or prevent suicide.",
+      "Relying solely on homeopathy for clinical depression can delay essential medical care and worsen the illness. If chosen, it must never replace psychiatric consultation or prescribed medicines."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Cognitive Behavioral Therapy (CBT) and standard antidepressants (SSRIs, SNRIs) have extensive randomized controlled trial backing for resolving depressive episodes.",
+      "Strong evidence: Regular aerobic exercise and structured strength training significantly reduce depressive symptoms and help prevent recurrence.",
+      "Moderate evidence: Correcting diagnosed vitamin D, vitamin B12, or iron deficiencies improves mood resilience and cognitive clarity.",
+      "Limited evidence: Herbal preparations like ashwagandha or brahmi have small supporting trials for general stress, but weak evidence for clinical major depression.",
+      "False claim warning: No herb, diet, cleanse, or spiritual retreat can make major clinical depression go away overnight."
+    ],
+    "shouldNotDo": [
+      "Do not stop antidepressant medications abruptly on your own; doing so can cause painful discontinuation symptoms and severe mood rebound.",
+      "Do not self-medicate with alcohol, sedatives, sleeping tablets, or cannabis to numb painful emotions.",
+      "Do not dismiss depression as mere laziness, bad karma, or lack of spiritual focus.",
+      "Do not force yourself or a loved one to just snap out of it or cheer up, as clinical depression is a physiological condition that requires real treatment.",
+      "Do not isolate yourself inside a dark bedroom all day; prolonged darkness and physical inactivity deepen depressive loops.",
+      "Do not make life-altering decisions (like resigning from a job or ending a relationship) while in the depths of a major depressive episode."
+    ],
+    "medicationSafety": [
+      "Take prescribed antidepressants exactly at the same time every day, precisely as advised by your doctor.",
+      "Understand that antidepressants usually take 2 to 4 weeks to begin lifting mood; temporary side effects like mild nausea or headache often settle within the first two weeks.",
+      "Never adjust your dose, skip tablets, or double up after a missed dose without explicit guidance from your psychiatrist.",
+      "Inform your doctor about all over-the-counter painkillers, herbal supplements, or Ayurvedic powders you take, as some can interact dangerously with psychiatric drugs.",
+      "If you are pregnant, nursing, or planning a family, discuss safe medication management with your doctor promptly."
+    ],
+    "complications": [
+      "Increased risk of self-harm, suicidal ideation, and suicide",
+      "Severe impairment of workplace performance, unemployment, and academic disruption",
+      "Strained marriages, broken personal relationships, and profound social isolation",
+      "Development or worsening of chronic physical illnesses like hypertension, coronary artery disease, and type 2 diabetes",
+      "Compounded substance use disorders involving alcohol, nicotine, or tranquilizers",
+      "Weakened immune function and chronic unexplained bodily pains"
+    ],
+    "emergencySigns": [
+      "Explicit thoughts of wanting to end your life, active suicide plans, or gathering means to harm yourself",
+      "Sudden calmness or giving away personal belongings after a period of deep despair",
+      "Experiencing hallucinations (hearing voices or seeing things) or holding intense persecutory delusions",
+      "Severe agitation, pacing, physical restlessness with an inability to stay still or keep oneself safe",
+      "Complete inability to drink fluids, eat food, or move out of bed for several days"
+    ],
+    "whenToSeeDoctor": [
+      "Persistent low mood, crying spells, or lack of interest in life lasting beyond two continuous weeks",
+      "Feelings of overwhelming guilt, unworthiness, or emptiness that make work or family life difficult to manage",
+      "Sleep disturbances like waking up at 3 AM unable to sleep again, or sleeping 12 hours a day and still feeling exhausted",
+      "Unintended severe weight loss or weight gain due to major appetite shifts",
+      "Unexplained chronic headaches, digestive issues, or body pains that show no clear physical cause on standard medical tests"
+    ],
+    "faqs": [
+      {
+        "q": "Is depression just a mindset that can be overcome by positive thinking?",
+        "a": "No. Depression is a real medical illness involving physical changes in brain circuits, hormones, and inflammatory markers. Just like you cannot think away diabetes or asthma, positive thinking alone cannot cure clinical depression without proper medical, psychological, and lifestyle support."
+      },
+      {
+        "q": "Are antidepressants addictive?",
+        "a": "Modern antidepressants (like SSRIs) are not addictive; they do not cause drug cravings or a high. However, stopping them suddenly can cause withdrawal-like discontinuation symptoms, so any tapering must always be done gradually as advised by your doctor."
+      },
+      {
+        "q": "How long does treatment for depression usually last?",
+        "a": "For a first major depressive episode, doctors usually recommend continuing medication for 6 to 12 months after your symptoms have completely cleared. This maintenance period allows brain pathways to stabilize and dramatically cuts the risk of an early relapse."
+      },
+      {
+        "q": "Can exercise really help severe depression?",
+        "a": "Regular physical activity releases natural mood-lifting chemicals and supports brain recovery. While exercise is a proven, powerful therapy for mild to moderate depression, severe depression often requires psychotherapy and medication first to restore enough energy to exercise consistently."
+      },
+      {
+        "q": "Where can someone in India get immediate, free mental health help?",
+        "a": "You can call the Government of India Tele-MANAS toll-free helpline at 14416 or 1800-891-4416 (available 24/7 in multiple regional languages), or call the national KIRAN mental health helpline at 1800-599-0019 for immediate psychological first aid."
+      }
+    ],
+    "references": [
+      {
+        "title": "Depression and Other Common Mental Disorders: Global Health Estimates",
+        "source": "World Health Organization",
+        "url": "https://www.who.int/publications/i/item/9789241565455",
+        "year": "2017"
+      },
+      {
+        "title": "Depression: Overview, Assessment, and Management",
+        "source": "National Institute for Health and Care Excellence (NICE Guidelines NG222)",
+        "url": "https://www.nice.org.uk/guidance/ng222",
+        "year": "2022"
+      },
+      {
+        "title": "Clinical Practice Guidelines for the Management of Depression in Adults",
+        "source": "Indian Journal of Psychiatry (Grover S, Avasthi A)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28216784/",
+        "year": "2017"
+      }
+    ],
+    "relatedDiseases": [
+      "anxiety",
+      "stress",
+      "sleep-problems",
+      "brain-health",
+      "hypothyroidism",
+      "type-2-diabetes",
+      "vitamin-d-deficiency",
+      "vitamin-b12-deficiency",
+      "chronic-fatigue"
+    ],
+    "relatedMedicines": [
+      "levothyroxine",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "ashwagandha",
+      "brahmi",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "tsh",
+      "vitamin-b12",
+      "vitamin-d",
+      "cbc",
+      "fasting-glucose",
+      "liver-enzymes",
+      "creatinine"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

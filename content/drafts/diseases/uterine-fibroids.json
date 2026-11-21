@@ -1,0 +1,276 @@
+{
+  "slug": "uterine-fibroids",
+  "name": "Uterine Fibroids",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "1 reference(s) from untrusted sites dropped"
+  ],
+  "draft": {
+    "definition": "Uterine fibroids are non-cancerous growths of muscle and fibrous tissue that develop in or around the wall of the uterus (womb). Medically called leiomyomas or myomas, they range in size from tiny seedlings undetectable to the eye to bulky masses that can enlarge and distort the shape of the womb. Fibroids are exceptionally common during reproductive years and depend heavily on hormones like estrogen and progesterone to grow. Many women have no symptoms at all and live with them unaware. For others, fibroids cause heavy menstrual bleeding, prolonged periods, pelvic pressure, frequent urination, and severe fatigue from anemia. They are not cancerous, and having them does not raise your risk of uterine cancer.",
+    "quickFacts": [
+      {
+        "label": "Nature",
+        "value": "Benign (non-cancerous) smooth muscle growths of the womb"
+      },
+      {
+        "label": "Estimated lifetime risk",
+        "value": "Up to 70% to 80% of women develop them by age 50 (NIH)"
+      },
+      {
+        "label": "Cancer transformation risk",
+        "value": "Less than 1 in 1,000 (extremely rare)"
+      },
+      {
+        "label": "Primary hormone drivers",
+        "value": "Estrogen and progesterone"
+      },
+      {
+        "label": "Most common symptom",
+        "value": "Heavy or prolonged menstrual bleeding"
+      },
+      {
+        "label": "Post-menopause trend",
+        "value": "Usually shrink naturally as hormone levels drop"
+      }
+    ],
+    "causes": [
+      "Hormonal sensitivity. Estrogen and progesterone stimulate the development and growth of uterine tissue during every monthly menstrual cycle. Fibroids contain more estrogen and progesterone receptors than normal uterine muscle cells.",
+      "Genetic factors. Specific genetic mutations are often detected in fibroid cells compared to normal cells. Having a mother or sister with fibroids roughly triples your own risk.",
+      "Extracellular matrix (ECM) changes. Fibroids produce excess fibrous structural proteins, making them dense, rubbery, and harder than surrounding uterine muscle.",
+      "Early onset of menstruation. Starting your menstrual periods at an early age increases cumulative lifetime exposure to estrogen.",
+      "Excess body weight and metabolic factors. Fat tissue converts other hormones into estrogen, which can support fibroid development.",
+      "Deficiency of micronutrients. Research has identified associations between low circulating vitamin D levels and a higher incidence of fibroid growth."
+    ],
+    "types": [
+      {
+        "name": "Intramural Fibroids",
+        "desc": "The most widespread type. They develop entirely within the muscular wall of the uterus. As they expand, they can make the womb feel larger and cause heavy bleeding and dull pelvic aches."
+      },
+      {
+        "name": "Subserosal Fibroids",
+        "desc": "These grow on the outer wall of the uterus and push outwards into the pelvis. They are less likely to cause heavy periods but often press against the bladder, rectum, or spine, causing pelvic pressure or backache."
+      },
+      {
+        "name": "Submucosal Fibroids",
+        "desc": "These push inwards directly beneath the lining of the uterine cavity. Even when tiny, they disrupt the endometrium, frequently causing severe menstrual bleeding, clots, prolonged spotting, and fertility hurdles."
+      },
+      {
+        "name": "Pedunculated Fibroids",
+        "desc": "Fibroids that grow on a narrow slender stalk, either projecting outward into the pelvic cavity or inward into the uterine space. If the stalk twists on itself, it cuts off blood supply and causes acute, sharp pain."
+      }
+    ],
+    "diagnosis": [
+      "Routine pelvic examination. A doctor or gynecologist may feel an enlarged, irregular, or firm uterus during a routine bimanual pelvic check.",
+      "Pelvic and transvaginal ultrasound. This is the gold standard initial imaging test. Sound waves provide clear pictures showing the number, exact size, and location of the fibroids.",
+      "Magnetic Resonance Imaging (MRI). An MRI gives high-resolution views of the uterus, helping doctors differentiate between adenomyosis and multiple fibroids before planning surgery.",
+      "Saline infusion sonohysterography or hysteroscopy. In cases of unexplained heavy bleeding or fertility evaluations, sterile saline is passed into the womb or a tiny camera is inserted through the cervix to inspect the inner uterine lining."
+    ],
+    "investigations": [
+      {
+        "test": "Pelvic Ultrasound (USG Pelvis)",
+        "purpose": "First-line imaging to detect, measure, and locate fibroid tumors"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "Checks hemoglobin and red cell levels to detect anemia caused by heavy bleeding",
+        "slug": "cbc"
+      },
+      {
+        "test": "Serum Ferritin",
+        "purpose": "Evaluates deep iron stores depleted by prolonged, heavy menstrual cycles",
+        "slug": "ferritin"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "Rules out thyroid dysfunction as an overlapping cause of irregular or excessive bleeding",
+        "slug": "tsh"
+      },
+      {
+        "test": "Vitamin D Total",
+        "purpose": "Assesses deficiency, which has been linked in observational studies to fibroid growth",
+        "slug": "vitamin-d"
+      }
+    ],
+    "modernTreatment": [
+      "Watchful waiting. If your fibroids are small, grow slowly, and cause no noticeable symptoms or bleeding issues, treatment is usually unnecessary. Your doctor will simply track them with periodic checks.",
+      "Medical symptom management. Non-hormonal tablets like tranexamic acid reduce heavy menstrual loss on bleeding days. Pain relievers help ease pelvic cramps. Iron supplements restore depleted red blood cells.",
+      "Hormonal therapies. Progestin-releasing intrauterine devices (IUDs), oral contraceptives, or GnRH agonists and antagonists reduce heavy bleeding and temporarily shrink fibroid tissue, often used before planned surgery.",
+      "Uterine Artery Embolization (UAE). A minimally invasive procedure where tiny particles are injected into the arteries feeding the womb, blocking blood flow and causing the fibroids to shrink over months.",
+      "Surgical options. A myomectomy surgically removes only the fibroids while keeping the uterus intact for women desiring future pregnancy. A hysterectomy (removal of the uterus) provides a permanent, definitive end to fibroids and bleeding for women past childbearing."
+    ],
+    "ayurvedaView": [
+      "In classical Ayurvedic texts, benign uterine growths are often related to Granthi (encapsulated glandular swelling) or Arbuda (harder, deeper mass).",
+      "These conditions are viewed as an accumulation of aggravated Kapha and Meda (adipose tissue) combined with vitiated Vata disturbing the Artava Vaha Srotas (female reproductive channels).",
+      "Ayurvedic care aims to enhance digestive fire (Agni), clear metabolic waste (Ama), and balance pelvic energy (Apana Vata) through warm, light food, gentle herbal teas, and daily movement.",
+      "Ayurvedic concepts serve as a traditional wellness framework, not an alternative to modern diagnostic ultrasound or surgical intervention."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which shows anti-inflammatory and cellular regulation actions in laboratory studies. Human trial evidence for shrinking fibroids remains weak."
+      },
+      {
+        "name": "Ginger",
+        "slug": "ginger",
+        "note": "Traditional kitchen spice that helps lessen menstrual cramping and lower inflammatory prostaglandin levels during bleeding days."
+      },
+      {
+        "name": "Shatavari",
+        "slug": "shatavari",
+        "note": "Traditional women's supportive herb. Because it contains plant-derived phytoestrogens, it must only be used under medical supervision if you have hormone-sensitive growths."
+      },
+      {
+        "name": "Triphala",
+        "slug": "triphala",
+        "note": "A gentle bowel-cleansing herbal combination that supports daily digestion and eases chronic constipation caused by bulky pelvic masses."
+      }
+    ],
+    "nutrition": [
+      "Boost dietary iron to counter blood loss. Eat cooked green leafy vegetables such as palak, methi, and drumstick leaves, along with black chana, rajma, and roasted seeds.",
+      "Pair plant iron with vitamin C. Squeeze fresh lemon over your dal, or eat an amla or orange with meals to significantly enhance your body's iron absorption.",
+      "Fill half your plate with colorful vegetables. Include cruciferous varieties like cabbage, cauliflower, and radish, which assist the liver in safely metabolizing circulating estrogens.",
+      "Choose unrefined, fiber-rich grains. Replace refined white rice and maida with whole wheat chapati, brown rice, jowar, bajra, and oats to stabilize blood sugar and clear excess hormones through regular stools.",
+      "Curtail inflammatory processed items. Limit deep-fried namkeens, commercial bakery biscuits, packaged sweets, and heavily salted street snacks.",
+      "Limit intake of commercial red meat and full-fat processed meats, which have been linked in population surveys to higher rates of symptomatic fibroids."
+    ],
+    "lifestyle": [
+      "Maintain a healthy body weight through balanced daily habits, as excess abdominal fat tissue serves as an extra factory for estrogen.",
+      "Engage in at least 150 minutes of moderate aerobic activity every week, such as brisk walking, cycling, or swimming, which improves pelvic circulation and hormone balance.",
+      "Avoid tobacco in all forms, including bidis, cigarettes, and gutka, because tobacco toxins disrupt vascular health and impair healing.",
+      "Prioritize 7 to 8 hours of deep, restful sleep nightly to allow natural endocrine regulation and lower stress hormone production.",
+      "Keep a detailed menstrual diary tracking pad usage, passage of clots, and pain intensity to share with your gynecologist during follow-up visits."
+    ],
+    "yogaActivity": [
+      "Practice restorative asanas that gently open the pelvic basin without putting excessive pressure on the womb, such as Baddha Konasana (Bound Angle Pose) and Supta Baddha Konasana with bolster support.",
+      "Viparita Karani (Legs-up-the-wall pose) helps relieve pelvic congestion, drains tired legs, and calms an overactive nervous system.",
+      "Practice cooling and balancing pranayama, such as Anulom Vilom and slow Bhramari, to alleviate mental anxiety and manage physical pain.",
+      "Avoid aggressive, rapid belly contractions like vigorous Kapalbhati during heavy bleeding or when dealing with large, painful fibroids.",
+      "Avoid intense core compressions, deep closed twists, or heavy powerlifting during your bleeding days to prevent abdominal strain."
+    ],
+    "homeopathyNote": [
+      "No credible scientific studies prove that homeopathic preparations can reduce the dimensions of uterine fibroids or resolve severe anemia.",
+      "Relying entirely on homeopathic dilutions while enduring heavy blood loss poses severe health risks, including extreme hemoglobin drops and cardiovascular strain.",
+      "Always consult a qualified gynecologist to properly evaluate blood counts and uterine structure before trying alternative approaches."
+    ],
+    "evidenceNotes": [
+      "High-grade evidence: Pelvic ultrasonography and pelvic MRI provide accurate, reliable identification of fibroid count, size, and location.",
+      "High-grade evidence: Surgical interventions (myomectomy and hysterectomy) and uterine artery embolization offer established, predictable symptom control and resolution.",
+      "Moderate evidence: Hormonal treatments (such as levonorgestrel IUDs, oral contraceptives, and GnRH modulators) reliably decrease menstrual blood volume and temporarily reduce tumor dimensions.",
+      "Weak evidence: Turmeric extracts, green tea extracts (EGCG), and specialized dietary supplements show preliminary promise in laboratory petri dishes, but clear clinical confirmation in large human trials is lacking.",
+      "No evidence: No herb, diet, massage, detox, or natural product can make uterine fibroids go away."
+    ],
+    "shouldNotDo": [
+      "Do not dismiss abnormally heavy periods as normal female constitution. Soaking through pads every hour or passing large clots demands professional evaluation.",
+      "Do not assume uterine fibroids are cancerous. They are benign smooth muscle tumors with a miniscule risk of malignancy.",
+      "Do not fall for internet promises of herbal tonics or miracle diet plans claimed to melt away pelvic tumors within weeks.",
+      "Do not take unregulated hormonal supplements, uncontrolled soy concentrates, or mysterious herbal concoctions without consulting your doctor.",
+      "Do not stop prescribed iron tablets simply because your fatigue improves; it takes several months of steady supplementation to refill depleted bone marrow iron stores."
+    ],
+    "medicationSafety": [
+      "Take iron and folic acid supplements as advised by your doctor to rebuild healthy red blood cells. Expect dark-colored stools, which is harmless.",
+      "Take iron tablets with water or lemon juice, never with milk, tea, or coffee, as tannins and calcium sharply block iron absorption.",
+      "Use paracetamol or non-steroidal anti-inflammatory drugs (NSAIDs) for menstrual cramps only as advised by your doctor, taking them after meals to shield your stomach lining.",
+      "If prescribed GnRH modulators to shrink fibroids before planned surgery, take them precisely as directed, reporting symptoms like hot flashes or mood swings to your physician."
+    ],
+    "complications": [
+      "Chronic iron-deficiency anemia resulting in extreme fatigue, breathlessness, dizzy spells, and cardiac strain.",
+      "Acute pelvic pain caused by torsion (twisting) or red degeneration (cell death from poor blood supply) in a growing fibroid.",
+      "Urinary difficulties, including chronic frequency, urinary tract infections, or acute obstruction from pressure on the bladder and ureters.",
+      "Chronic bowel constipation and hemorrhoids from large posterior fibroids pressing against the rectum.",
+      "Obstetric challenges, including miscarriages, fetal malpresentation (breech), placental abruption, preterm labor, and need for cesarean delivery."
+    ],
+    "emergencySigns": [
+      "Flooding menstrual bleeding: completely soaking through two or more thick sanitary pads every hour for two consecutive hours.",
+      "Sudden, excruciating, sharp lower abdominal or pelvic pain that does not ease with rest.",
+      "Sudden fainting, dizziness, or confusion accompanied by rapid, shallow breathing and extreme paleness of the inner eyelids.",
+      "Complete inability to pass urine, accompanied by acute, swelling lower belly pain.",
+      "High fever, shivering, and severe pelvic tenderness, indicating infection or acute tissue degeneration."
+    ],
+    "whenToSeeDoctor": [
+      "Your menstrual periods consistently last longer than 7 days each month.",
+      "You regularly pass large blood clots, larger than the size of a one-rupee coin, during your cycles.",
+      "You feel a firm, hard bulge or persistent fullness in your lower abdomen.",
+      "You experience constant pelvic pressure, frequent urges to urinate, or pain during marital relations.",
+      "You suffer from ongoing exhaustion, weakness, and pale skin despite eating regular meals."
+    ],
+    "faqs": [
+      {
+        "q": "Can uterine fibroids turn into cancer?",
+        "a": "Almost never. Fibroids are benign tumors. Less than 1 in 1,000 cases turn out to be a cancerous growth called leiomyosarcoma. A benign fibroid does not turn into cancer; cancerous ones typically arise independently."
+      },
+      {
+        "q": "Will fibroids prevent me from becoming pregnant?",
+        "a": "Most women with fibroids conceive naturally without complications. However, submucosal fibroids that distort the inside of the uterine cavity can interfere with embryo implantation. Your gynecologist will evaluate their exact location."
+      },
+      {
+        "q": "Can natural remedies or detoxes dissolve fibroids?",
+        "a": "No. No herb, diet or product can make it go away. Healthy eating, exercise, and stress management can support overall wellbeing and symptom management, but physical fibrous growths require medical monitoring or intervention."
+      },
+      {
+        "q": "What happens to fibroids after menopause?",
+        "a": "Because fibroid growth is fueled by female hormones, they typically stop growing and begin to shrink naturally after menopause, when estrogen and progesterone levels drop sharply."
+      },
+      {
+        "q": "Is a hysterectomy the only way to treat fibroids?",
+        "a": "No. Hysterectomy is only one option, usually reserved for women who have completed their families or when other approaches fail. Many alternatives exist, including medical therapy, uterine artery embolization, and myomectomy."
+      }
+    ],
+    "references": [
+      {
+        "title": "Uterine Fibroids: Overview and Information",
+        "source": "Eunice Kennedy Shriver National Institute of Child Health and Human Development (NIH)",
+        "url": "https://www.nichd.nih.gov/health/topics/uterine",
+        "year": "2021"
+      },
+      {
+        "title": "Uterine Fibroids: Diagnosis and Management",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/uterine-fibroids/diagnosis-treatment/drc-20354294",
+        "year": "2023"
+      },
+      {
+        "title": "Fibroids",
+        "source": "National Health Service (NHS UK)",
+        "url": "https://www.nhs.uk/conditions/fibroids/",
+        "year": "2022"
+      },
+      {
+        "title": "Nutritional and lifestyle factors in the management of uterine fibroids",
+        "source": "PubMed - International Journal of Women's Health",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/30288129/",
+        "year": "2018"
+      }
+    ],
+    "relatedDiseases": [
+      "anemia",
+      "iron-deficiency",
+      "menstrual-health",
+      "fertility",
+      "endometriosis",
+      "pcos",
+      "menopause"
+    ],
+    "relatedMedicines": [
+      "iron-folic-acid",
+      "paracetamol",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "turmeric",
+      "ginger",
+      "shatavari",
+      "triphala"
+    ],
+    "relatedLabs": [
+      "cbc",
+      "ferritin",
+      "tsh",
+      "vitamin-d"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}

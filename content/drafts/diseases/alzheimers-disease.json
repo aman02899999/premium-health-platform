@@ -1,0 +1,260 @@
+{
+  "slug": "alzheimers-disease",
+  "name": "Alzheimer's Disease",
+  "reviewStatus": "pending-medical-review",
+  "generatedBy": "gemini-3.8-flash on Vertex AI",
+  "generatedAt": "2026-11-21",
+  "notes": [
+    "2 reference link(s) did not open and were dropped"
+  ],
+  "draft": {
+    "definition": "Alzheimer's disease is a progressive brain disorder that slowly destroys memory, thinking skills, and the ability to carry out everyday tasks. It is the most common cause of dementia, a general term for memory loss and cognitive decline serious enough to disrupt daily life. In Alzheimer's, abnormal protein build-ups called plaques and tangles form in the brain, causing brain cells to disconnect and die over time. It is not a normal part of getting older. While there is no treatment that reverses the condition, early diagnosis, medical care, cognitive engagement, and strong family support help people stay safe, active, and dignified for as long as possible.",
+    "quickFacts": [
+      {
+        "label": "Global Dementia Share",
+        "value": "Accounts for 60% to 70% of all dementia cases (WHO)"
+      },
+      {
+        "label": "Dementia Burden in India",
+        "value": "Estimated 5.3 million adults aged 60 and above (LASI Wave-1, MoHFW)"
+      },
+      {
+        "label": "Primary Age Group",
+        "value": "Most often diagnosed in people aged 65 and older"
+      },
+      {
+        "label": "Reversible Mimics",
+        "value": "Thyroid disorders and Vitamin B12 deficiency must always be checked"
+      },
+      {
+        "label": "Course",
+        "value": "Gradual, progressive decline over years"
+      }
+    ],
+    "causes": [
+      "Amyloid plaques: Abnormal clumps of protein called beta-amyloid collect between nerve cells in the brain, damaging cell-to-cell communication.",
+      "Tau tangles: Twisted threads of another protein called tau build up inside brain cells, blocking the transport of nutrients and essential signals.",
+      "Advancing age: The risk rises significantly after age 65, doubling roughly every five years after that point.",
+      "Genetics and family history: Having a parent or sibling with the condition raises risk. Carrying the APOE-e4 gene variant increases the likelihood, while rare genetic mutations cause early-onset familial Alzheimer's.",
+      "Cardiovascular and metabolic factors: Longstanding high blood pressure, diabetes, high cholesterol, and obesity damage blood vessels in the brain, speeding up cognitive decline.",
+      "Lifestyle and environment: Low physical activity, chronic lack of sleep, social isolation, chronic depression, and past head injuries contribute to higher lifetime risk."
+    ],
+    "types": [
+      {
+        "name": "Late-Onset Alzheimer's Disease",
+        "desc": "The most common form. Symptoms begin to appear in an individual's mid-60s or later, driven by an interplay of aging, lifestyle, cardiovascular health, and genetics."
+      },
+      {
+        "name": "Early-Onset Alzheimer's Disease",
+        "desc": "A rare form that develops between a person's 30s and mid-60s. It represents less than 10% of all cases and often has a strong genetic component."
+      },
+      {
+        "name": "Atypical Alzheimer's",
+        "desc": "Less common presentations where memory is initially preserved, but early symptoms involve vision and spatial awareness difficulties (posterior cortical atrophy) or progressive language impairment."
+      }
+    ],
+    "diagnosis": [
+      "A thorough medical history: Doctors speak with the person and a close family member to understand changes in memory, personality, judgment, and daily habits over time.",
+      "Cognitive and mental status screening: Standardized paper tests like the Mini-Mental State Examination (MMSE) or Indian-adapted tools (such as the Hindi Mental State Examination) evaluate memory, orientation, language, and problem-solving.",
+      "Neurological examination: Checks reflexes, coordination, eye movements, balance, and muscle tone to rule out stroke or Parkinson's disease.",
+      "Exclusion testing: Blood tests are done to ensure the confusion is not caused by treatable conditions such as Vitamin B12 deficiency, thyroid failure, or kidney disease.",
+      "Brain imaging: MRI or CT scans look for brain shrinkage (atrophy) in memory centers like the hippocampus and rule out strokes, tumors, or normal pressure hydrocephalus."
+    ],
+    "investigations": [
+      {
+        "test": "Vitamin B12 level",
+        "purpose": "To rule out severe vitamin B12 deficiency, which can mimic dementia and cause confusion",
+        "slug": "vitamin-b12"
+      },
+      {
+        "test": "Thyroid Stimulating Hormone (TSH)",
+        "purpose": "To identify severe hypothyroidism, which commonly slows thinking and causes memory fog",
+        "slug": "tsh"
+      },
+      {
+        "test": "Fasting Blood Glucose and HbA1c",
+        "purpose": "To screen for diabetes and insulin resistance, which negatively impact brain microvasculature",
+        "slug": "fasting-glucose"
+      },
+      {
+        "test": "Complete Blood Count (CBC)",
+        "purpose": "To evaluate for severe anemia or chronic systemic infections",
+        "slug": "cbc"
+      },
+      {
+        "test": "Lipid Profile",
+        "purpose": "To assess vascular and heart health risks that compound brain damage",
+        "slug": "lipid-profile"
+      },
+      {
+        "test": "Brain MRI or CT Scan",
+        "purpose": "To identify hippocampal atrophy and rule out silent strokes, bleeding, or brain tumors"
+      }
+    ],
+    "modernTreatment": [
+      "Cholinesterase inhibitors: Medicines such as donepezil, rivastigmine, and galantamine help boost levels of acetylcholine, a chemical messenger involved in memory. They may temporarily stabilize symptoms as advised by your doctor.",
+      "NMDA receptor antagonists: Memantine is used for moderate to severe stages to regulate glutamate activity and protect brain cells from toxic stimulation, as advised by your doctor.",
+      "Managing vascular risks: Strict medical control of blood pressure, blood glucose, and cholesterol protects the remaining brain microvessels from further ischemic injury.",
+      "Non-drug behavioral strategies: Establishing structured daily routines, clear signage at home, calm environments, and music or reminiscence therapy helps manage confusion and anxiety.",
+      "Caregiver support and education: Providing family caregivers with counseling, practical training, and respite care is vital for patient safety and caregiver well-being."
+    ],
+    "ayurvedaView": [
+      "Classical Ayurveda describes progressive cognitive decline and memory loss under terms such as Smriti Bhramsha, often seen as a manifestation of aggravated Vata dosha in old age (Jara) affecting the nervous system (Majja Dhatu).",
+      "Traditional texts recommend intellect-promoting practices (Medhya Rasayana) to support clarity, along with calming lifestyle measures and oily, nourishing warm diets.",
+      "These traditional concepts are philosophical and supportive. They do not represent a medical cure or replace neurological care. Ayurvedic preparations must only be used as supportive care with your physician's full knowledge."
+    ],
+    "herbsUsed": [
+      {
+        "name": "Brahmi",
+        "slug": "brahmi",
+        "note": "Traditionally used in India as a brain tonic (Medhya Rasayana). Small laboratory studies show antioxidant properties, but rigorous human clinical proof for reversing or halting Alzheimer's is lacking."
+      },
+      {
+        "name": "Ashwagandha",
+        "slug": "ashwagandha",
+        "note": "An adaptogenic herb studied in preclinical models for reducing cellular stress. It may support general vitality, but human evidence in Alzheimer's disease remains weak."
+      },
+      {
+        "name": "Turmeric",
+        "slug": "turmeric",
+        "note": "Contains curcumin, which has been studied for anti-inflammatory and anti-amyloid properties in test tubes. However, poor oral absorption means diet-level turmeric cannot treat or stop dementia."
+      }
+    ],
+    "nutrition": [
+      "Adopt a brain-healthy, MIND-style dietary pattern adapted to Indian homes: eat plenty of green leafy vegetables (palak, methi, sarson), seasonal fruits, whole legumes, and whole grains like millets.",
+      "Eat a handful of unsalted nuts daily, especially walnuts (akhrot) and almonds (badam), along with seeds like flaxseeds (alsi), which supply healthy fats.",
+      "Prioritize lean proteins such as dals, chana, moong, sprouts, low-fat paneer, or fish rich in omega-3 fatty acids.",
+      "Cook primarily with cold-pressed mustard oil, groundnut oil, or sesame oil in moderation. Limit hydrogenated vegetable fats (vanaspati), reused fry oils, and butter.",
+      "Drastically reduce deep-fried snacks like samosas, namkeens, and pakoras, as well as refined flour bakery items and high-sugar sweets (mithai).",
+      "Ensure adequate hydration throughout the day. Dehydration often worsens confusion, agitation, and constipation in elderly individuals."
+    ],
+    "lifestyle": [
+      "Keep a consistent, predictable daily routine: wake up, eat meals, bathe, and sleep at the exact same times every day to minimize anxiety and confusion.",
+      "Create an age-safe living space: install grab bars in the bathroom, remove loose rugs, ensure night-lights are kept on in hallways, and keep pathways clutter-free.",
+      "Stimulate the brain regularly: encourage reading newspapers in the mother tongue, solving puzzles, playing board games (like carrom or chess), and talking about past happy memories.",
+      "Encourage social interaction: avoid leaving older adults isolated in a room. Gentle conversations with grandchildren, neighbours, or family members maintain social alertness.",
+      "Support nighttime sleep: create a calm bedroom environment, avoid caffeine or tea in the evening, and ensure daytime sunlight exposure to stabilize circadian rhythms."
+    ],
+    "yogaActivity": [
+      "Regular physical movement: daily walking for 20 to 30 minutes in a safe park or courtyard improves brain blood flow and reduces restlessness.",
+      "Gentle chair yoga: seated stretches, neck rotations, and ankle bends help preserve balance, posture, and joint flexibility without fall risk.",
+      "Calming breathing practices: slow, guided pranayama such as Anulom Vilom and Bhramari under supervision helps soothe agitated states and evening restlessness (sundowning).",
+      "Avoid strenuous poses, inverted postures (headstands), or forceful breathing techniques (like fast Kapalbhati) that could cause dizziness, falls, or sudden blood pressure swings."
+    ],
+    "homeopathyNote": [
+      "There is no reliable scientific or clinical evidence showing that homeopathic products can treat, slow down, or prevent Alzheimer's disease.",
+      "If family members explore homeopathy, it must never replace prescribed neurological medications or home safety protocols. Always inform your treating doctor."
+    ],
+    "evidenceNotes": [
+      "Strong evidence: Standard prescription medicines (cholinesterase inhibitors and memantine) provide modest, temporary stabilization of cognitive symptoms in some patients. Aggressive management of blood pressure, blood glucose, and hearing loss reduces secondary brain injury.",
+      "Moderate evidence: Regular physical exercise, cognitively engaging activities, and the MIND/Mediterranean dietary pattern are associated with slower rates of cognitive decline.",
+      "Limited or weak evidence: Herbal remedies such as Brahmi, Ashwagandha, Ginkgo biloba, and coconut oil have not shown consistent or meaningful clinical benefit in well-designed human trials.",
+      "No evidence: Memory 'enhancer' powders, internet-marketed brain tonics, or dietary cleanses cannot cure Alzheimer's disease; no herb, diet or product can make it go away."
+    ],
+    "shouldNotDo": [
+      "Do not dismiss noticeable memory lapses, repetitive questions, or getting lost as 'just normal old age'.",
+      "Do not argue, confront, or try to logically debate with a person experiencing Alzheimer's when they misremember facts, as this causes severe agitation.",
+      "Do not leave the person alone in environments with active hazards such as open gas cylinders, boiling water, sharp knives, or unlocked main exit doors.",
+      "Do not let the person drive a scooter, car, or operate heavy machinery once cognitive decline has begun.",
+      "Do not buy unverified herbal tonics or miracle treatments online that claim to restore lost brain cells."
+    ],
+    "medicationSafety": [
+      "Never let an individual with memory problems manage their own medications. An adult caregiver must organize pills in a locked container or labeled dispenser.",
+      "Take all dementia medicines exactly as advised by your doctor. Abruptly stopping cholinesterase inhibitors can cause a sharp, irreversible drop in cognitive function.",
+      "Inform your physician of any side effects such as nausea, diarrhea, slow heart rate, or dizziness.",
+      "Avoid over-the-counter allergy tablets, motion-sickness medicines, or sleep aids that contain strong anticholinergic drugs, as they significantly worsen memory and cause acute confusion."
+    ],
+    "complications": [
+      "Aspiration pneumonia caused by swallowing difficulties in later stages",
+      "Severe bone fractures and head injuries resulting from falls",
+      "Malnutrition, dehydration, and severe weight loss due to forgetting to eat or inability to chew",
+      "Wandering away from home, getting lost, and exposure to traffic accidents or hypothermia",
+      "Incontinence and recurrent urinary tract infections",
+      "Severe physical, emotional, and financial burnout among family caregivers"
+    ],
+    "emergencySigns": [
+      "Sudden, drastic worsening of confusion or hallucinations over hours or days (sign of delirium, often caused by a hidden infection like a UTI or pneumonia)",
+      "Choking on food, coughing while drinking water, or inability to swallow",
+      "Signs of a stroke: sudden facial drooping, one-sided arm weakness, or slurred speech (Call 108 or 112 immediately)",
+      "A hard fall involving a head strike, especially if the person is on blood thinners",
+      "The person has wandered out of the house and is missing"
+    ],
+    "whenToSeeDoctor": [
+      "Memory lapses that disrupt daily life, such as forgetting familiar routes, recent conversations, or cooking recipes they knew for decades",
+      "Struggling to manage everyday finances, count cash, or operate simple household appliances",
+      "Asking the same question repeatedly within minutes without realizing it",
+      "Noticeable shifts in mood, personality, social withdrawal, or uncharacteristic suspicion toward family members",
+      "Difficulty finding common words during simple conversations"
+    ],
+    "faqs": [
+      {
+        "q": "Is Alzheimer's disease just a normal part of getting old?",
+        "a": "No. While mild forgetfulness (like misplacing keys occasionally) can happen with aging, Alzheimer's causes progressive, disabling brain cell death. Forgetting how to use keys, getting lost in your own colony, or failing to recognize close family members is never normal aging."
+      },
+      {
+        "q": "Can Alzheimer's disease be prevented?",
+        "a": "There is no guaranteed way to prevent it entirely. However, addressing modifiable risks lowers the chances or delays onset. Keep blood pressure and blood sugar controlled, stay physically active, eat healthy meals, treat hearing loss, and remain socially connected."
+      },
+      {
+        "q": "Does coconut oil or turmeric cure Alzheimer's?",
+        "a": "No. While laboratory studies look at compounds in food, human clinical trials have never shown that coconut oil or turmeric can reverse brain damage. No herb, diet or product can make it go away."
+      },
+      {
+        "q": "Why does the person become more confused or agitated in the evening?",
+        "a": "This phenomenon is commonly known as 'sundowning'. Fatigue, fading natural light, shadows, and disrupted internal body clocks can trigger restlessness and anxiety at dusk. Keeping rooms well-lit and maintaining a calm evening routine helps."
+      },
+      {
+        "q": "Is Alzheimer's always hereditary?",
+        "a": "Most cases (late-onset) are not directly inherited in a simple manner. Having a close relative raises your risk somewhat, but does not guarantee you will get it. Less than 1% of cases are caused by rare, direct genetic mutations that trigger very early disease."
+      }
+    ],
+    "references": [
+      {
+        "title": "Dementia Fact Sheet",
+        "source": "World Health Organization (WHO)",
+        "url": "https://www.who.int/news-room/fact-sheets/detail/dementia",
+        "year": "2023"
+      },
+      {
+        "title": "Dementia: Assessment, management and support for people living with dementia and their carers (NICE guideline NG97)",
+        "source": "National Institute for Health and Care Excellence (NICE)",
+        "url": "https://www.nice.org.uk/guidance/ng97",
+        "year": "2018"
+      },
+      {
+        "title": "Alzheimer's disease: Diagnosis and treatment",
+        "source": "Mayo Clinic",
+        "url": "https://www.mayoclinic.org/diseases-conditions/alzheimers-disease/diagnosis-treatment/drc-20350453",
+        "year": "2023"
+      }
+    ],
+    "relatedDiseases": [
+      "brain-health",
+      "stroke",
+      "type-2-diabetes",
+      "depression",
+      "sleep-problems",
+      "high-blood-pressure",
+      "vitamin-b12-deficiency"
+    ],
+    "relatedMedicines": [
+      "atorvastatin",
+      "amlodipine",
+      "vitamin-d3"
+    ],
+    "relatedHerbs": [
+      "brahmi",
+      "ashwagandha",
+      "turmeric"
+    ],
+    "relatedLabs": [
+      "vitamin-b12",
+      "tsh",
+      "fasting-glucose",
+      "cbc",
+      "lipid-profile"
+    ],
+    "updatedAt": "2026-11-21",
+    "imagePrompt": ""
+  }
+}
