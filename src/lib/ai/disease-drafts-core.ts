@@ -77,6 +77,8 @@ const MED_DOSE = /\b\d+(?:\.\d+)?\s?(?:mg|mcg|µg|ml|iu|units?|tablets?|capsules
 const HERB_DOSE = new RegExp(`${MED_DOSE.source}|\\b\\d+(?:\\.\\d+)?\\s?(?:g|gm|grams?|teaspoons?|tsp|tablespoons?|tbsp)\\b`, "i");
 const DOSE_FIELDS: [string, RegExp][] = [["modernTreatment", MED_DOSE], ["medicationSafety", MED_DOSE], ["ayurvedaView", HERB_DOSE], ["homeopathyNote", HERB_DOSE], ["herbsUsed", HERB_DOSE]];
 const sentences = (s: string) => s.split(/(?<=[.!?])\s+/);
+/** A question anywhere after the claim word ("...cure it? Not really") is the reader asking. */
+const QUESTION = /\b(?:cures?|cured|guaranteed?|miracle)\b[^.!]*\?/i;
 
 const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
 const texts = (v: unknown): string[] => (typeof v === "string" ? [v] : Array.isArray(v) ? v.flatMap(texts) : v && typeof v === "object" ? Object.values(v).flatMap(texts) : []);
@@ -102,12 +104,16 @@ export function checkDraft(raw: unknown, known: { diseases: Set<string>; herbs: 
   const faqs = list("faqs").length;
   if (faqs < 4 || faqs > 8) errors.push(`${faqs} FAQs (needs 4-8)`);
 
-  const claim = texts(d)
+  // FAQ questions ("Can type 1 diabetes be cured?") are the reader asking, not a claim, so they
+  // are left out; the answers are still checked.
+  const scanned = Object.entries(d).flatMap(([k, v]) =>
+    k === "faqs" && Array.isArray(v) ? v.flatMap((f) => texts((f as { a?: unknown })?.a)) : texts(v),
+  );
+  const claim = scanned
     .flatMap(sentences)
-    .map((t) => t.replace(DENIAL, "").replace(/\bcure-all\b/gi, ""))
-    // A question ("Can type 1 diabetes be cured?") is the reader asking, not a claim.
-    .find((t) => CLAIM.test(t) && !WARNING.test(t) && !t.trim().endsWith("?"));
-  if (claim) errors.push(`cure/guarantee claim: "${claim.match(new RegExp(`.{0,40}${CLAIM.source}.{0,20}`, "i"))?.[0]}"`);
+    .map((t) => t.replace(DENIAL, "").replace(/\bcure-all\b/gi, "").replace(/\bcure rates?\b/gi, ""))
+    .find((t) => CLAIM.test(t) && !WARNING.test(t) && !QUESTION.test(t));
+  if (claim) errors.push(`cure/guarantee claim: "${claim.trim().slice(0, 160)}"`);
   for (const [k, re] of DOSE_FIELDS) {
     const hit = texts(d[k]).find((t) => re.test(t));
     if (hit) errors.push(`dose in ${k}: "${hit.match(new RegExp(`.{0,30}(?:${re.source}).{0,10}`, "i"))?.[0]}"`);

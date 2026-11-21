@@ -44,8 +44,12 @@ jobs:
           APP_ENV: ${{ secrets.APP_ENV }}
         run: node scripts/cloud-run-env.mjs "$RUNNER_TEMP/env"
 
+      # The services are already on, so a missing "Service Usage" role must not block a deploy.
+      # If a service really is off, the steps below fail with a clear error instead.
       - name: Enable the Google services (first run only; no-op after)
-        run: gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudscheduler.googleapis.com aiplatform.googleapis.com --project "${{ vars.GCP_PROJECT_ID }}"
+        run: |
+          gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudscheduler.googleapis.com aiplatform.googleapis.com --project "${{ vars.GCP_PROJECT_ID }}" \
+            || echo "::warning::Could not check or enable the Google services (the deploy account lacks the Service Usage role). Carrying on, because they are already on."
 
       - name: Image repository
         run: |

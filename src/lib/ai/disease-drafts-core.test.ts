@@ -96,6 +96,23 @@ describe("checkDraft: warnings vs claims (from the first real Gemini run)", () =
     expect(checkDraft(raw, known, "2026-11-20").ok).toBe(true);
   });
 
+  it("ignores FAQ questions however they end, and allows medical cure rates (second real run)", () => {
+    for (const q of ["Can metabolic syndrome be completely cured?\u200b", 'Does lemon water cure insulin resistance?"', "Can heart failure be cured so that my heart returns to normal"]) {
+      const raw = good();
+      (raw.faqs as { q: string; a: string }[])[0].q = q;
+      const r = checkDraft(raw, known, "2026-11-21");
+      if (!r.ok) throw new Error(r.errors.join("; "));
+    }
+    expect(withLine("evidenceNotes", "Most thyroid cancers found in nodules are slow-growing types with very high cure rates when treated.").ok).toBe(true);
+    expect(withLine("lifestyle", "Does karela juice cure prediabetes? Not on its own.").ok).toBe(true);
+  });
+
+  it("still checks FAQ answers", () => {
+    const raw = good();
+    (raw.faqs as { q: string; a: string }[])[0].a = "Yes, arjuna bark cures heart failure.";
+    expect(checkDraft(raw, known, "2026-11-21").ok).toBe(false);
+  });
+
   it("still blocks a plain claim", () => {
     expect(withLine("lifestyle", "Bitter gourd juice cures diabetes in weeks.").ok).toBe(false);
   });

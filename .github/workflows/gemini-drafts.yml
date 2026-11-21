@@ -36,13 +36,20 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Continue on the drafts branch if it exists
+      # The code always comes from the branch this run was started on. Only the saved drafts come
+      # from gemini/disease-drafts (checked out beside it), so finished pages are skipped.
+      - name: Bring in the drafts saved so far
         run: |
           if git ls-remote --exit-code --heads origin gemini/disease-drafts >/dev/null; then
-            git fetch origin gemini/disease-drafts && git checkout -B gemini/disease-drafts FETCH_HEAD
+            git fetch origin gemini/disease-drafts
+            git worktree add "$RUNNER_TEMP/drafts" FETCH_HEAD
+            git -C "$RUNNER_TEMP/drafts" checkout -B gemini/disease-drafts
           else
-            git checkout -b gemini/disease-drafts
+            git worktree add -b gemini/disease-drafts "$RUNNER_TEMP/drafts" HEAD
           fi
+          mkdir -p content/drafts/diseases "$RUNNER_TEMP/drafts/content/drafts/diseases"
+          cp -n "$RUNNER_TEMP/drafts/content/drafts/diseases/"*.json content/drafts/diseases/ 2>/dev/null || true
+          echo "Drafts already saved: $(ls content/drafts/diseases | wc -l)"
 
       - uses: actions/setup-node@v4
         with:
@@ -68,6 +75,8 @@ jobs:
 
       - name: Save drafts to the branch
         run: |
+          cp -n content/drafts/diseases/*.json "$RUNNER_TEMP/drafts/content/drafts/diseases/" 2>/dev/null || true
+          cd "$RUNNER_TEMP/drafts"
           git config user.name "github-actions[bot]"
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           git add content/drafts/diseases
