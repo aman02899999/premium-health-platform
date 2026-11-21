@@ -1143,6 +1143,20 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-desi-habit-saunf",
+    date: "2026-12-01",
+    title: "Khane Ke Baad Saunf Kyon? 🌿 Mouth Freshener Ya Science? #shorts",
+    intro: "Saunf ki khushbu uske tel (anethole, fenchone) se aati hai. Chabane se saans taazi lagti hai. European Medicines Agency ise halki gas, afara aur marod mein paramparik upyog ke liye maanti hai; insaanon par badi studies kam hain. Mishri sugar hai, diabetes ho toh sirf saunf. Roz gas ya acidity ho toh doctor ko dikhao.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["European Medicines Agency, Community herbal monograph on fennel (HMPC)", "https://www.ema.europa.eu/en/medicines/herbal/foeniculi-amari-fructus"],
+    ],
+    tags: ["saunf benefits", "fennel seeds", "saunf after meal", "saunf mishri", "gas bloating tips", "digestion tips hindi", "desi habits science", "indian food science"],
+    short: true,
+  },
+  {
     id: "short-desi-science-joints",
     date: "2026-12-02",
     title: "Ghutne Ka Science 🦵 Sardi Mein Joints Kyun Jakadte Hain? #shorts",
@@ -1155,6 +1169,21 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["WHO guidelines on physical activity and sedentary behaviour (2020)", "https://www.who.int/publications/i/item/9789240015128"],
     ],
     tags: ["knee joint", "joint health", "cartilage", "synovial fluid", "knee pain winter", "strength training knees", "warm up winter", "joint care tips hindi"],
+    short: true,
+  },
+  {
+    id: "short-desi-habit-walk",
+    date: "2026-12-02",
+    title: "Khane Ke Baad 10 Minute Walk 🚶 Blood Sugar Ka Science #shorts",
+    intro: "Khane ke baad blood sugar badhta hai, aur chalne par muscles glucose use karti hain. Studies ke review mein halki walk se sugar spike kam hua. Type 2 diabetes par ek study mein har khane ke baad 10 min walk, ek baar 30 min walk se behtar rahi. Diabetes ki dawa doctor se pooche bina band mat karo.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Buffey et al. 2022, Interrupting prolonged sitting with standing and light walking (Sports Med)", "https://pubmed.ncbi.nlm.nih.gov/?term=Buffey+2022+interrupting+prolonged+sitting+walking+Sports+Medicine"],
+      ["Reynolds et al. 2016, Advice to walk after meals in type 2 diabetes (Diabetologia)", "https://pubmed.ncbi.nlm.nih.gov/?term=Reynolds+2016+walk+after+meals+type+2+diabetes+Diabetologia"],
+    ],
+    tags: ["walk after meal", "post meal walk", "blood sugar spike", "walking after dinner", "diabetes walk tips", "glucose and muscles", "10 minute walk", "health tips hindi"],
     short: true,
   },
   {
@@ -2073,6 +2102,36 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["diet plan india", "crash diet myth", "personal diet plan", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
+    short: true,
+  },
+  {
+    id: "short-desi-habit-badam",
+    date: "2026-12-31",
+    title: "Bhigoye Badam: Dimaag Tez Ya Myth? 🧠 Science Kya Kehti Hai #shorts",
+    intro: "Badam mein protein, fibre, vitamin E, magnesium aur achhe fats hote hain. Bhigone se chabana aasaan, par ek study mein bhigoye aur kachche badam mein pet ke lakshanon ka khaas farak nahi mila. Yaaddasht badhne ka pakka saboot nahi. Roz lagbhag 20 badam (~160 kcal) kaafi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["USDA FoodData Central (almonds)", "https://fdc.nal.usda.gov/"],
+      ["Taylor et al. 2018, Activating almonds and gastrointestinal tolerance (Eur J Nutr)", "https://pubmed.ncbi.nlm.nih.gov/?term=Taylor+2018+activating+almonds+gastrointestinal"],
+    ],
+    tags: ["soaked almonds", "bhigoye badam", "almonds benefits", "badam khane ke fayde", "almonds brain myth", "how many almonds a day", "healthy snacks india", "nutrition myths hindi"],
+    short: true,
+  },
+  {
+    id: "short-desi-habit-paani",
+    date: "2027-01-01",
+    title: "Khane Ke Saath Paani Peena Galat Hai? 💧 Digestion Ka Sach #shorts",
+    intro: "Kehte hain paani pet ka acid patla karta hai. Par pet bahut strong acid banata hai aur paani jaldi aage nikal jaata hai. Paani khane ko naram karta hai aur fibre ke saath kabz se bachata hai. Ek study mein khane se pehle 500 ml paani se diet par zyada vazan kam hua. Acidity ho toh chhote ghoont lo.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Mayo Clinic, Water with meals: does it disrupt digestion?", "https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/water-with-meals/faq-20058348"],
+      ["Dennis et al. 2010, Water consumption and weight loss during a hypocaloric diet (Obesity)", "https://pubmed.ncbi.nlm.nih.gov/?term=Dennis+2010+water+consumption+weight+loss+hypocaloric+Obesity"],
+    ],
+    tags: ["water with meals", "drinking water while eating", "digestion myth", "water before meals weight loss", "stomach acid myth", "constipation fibre water", "health myths hindi", "fat loss tips india"],
     short: true,
   },
 ];
