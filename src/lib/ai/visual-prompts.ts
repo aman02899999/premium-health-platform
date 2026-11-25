@@ -115,9 +115,84 @@ export const HABITS_VIDEO_PROMPTS: VisualPrompt[] = [
   A("stomach-water-anim", "3D medical animation of water flowing into a translucent human stomach and quickly moving on into the small intestine, educational.", "Paani Reel: water passes quickly"),
 ];
 
+// "supplements" set: realistic visuals for the Supplement Myth Buster series (whey, mass gainer,
+// BCAA, pre-workout, fat burners, vitamins, omega-3, collagen). Same style and rules as above.
+// No packaging, no labels you can read, nothing that looks like a product we sell or endorse.
+export const SUPPLEMENT_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("paneer-whey-strain", "Photograph of fresh paneer being strained in a muslin cloth over a steel bowl, pale yellow-green whey liquid dripping into the bowl, Indian home kitchen.", "Whey video: whey is the water left from paneer"),
+  A("protein-powder-scoop", "Photograph of a plain white scoop of off-white powder resting on a dark kitchen counter, a little powder spilled, no packaging in frame.", "Whey video: the powder"),
+  A("milk-proteins-micro", "3D medical visualisation of milk proteins: large round casein micelles and many small whey protein molecules floating in milky liquid.", "Whey video: 80% casein, 20% whey"),
+  A("amino-acids-gut", "3D medical render of long protein chains breaking into glowing individual amino acid beads inside the small intestine, absorbed by finger-like villi.", "Protein digestion"),
+  A("muscle-repair", "3D medical render of red skeletal muscle fibres with tiny tears being repaired by glowing golden amino acid particles.", "Muscle repair"),
+  A("hormone-receptor", "3D medical visualisation of a hormone molecule docking into a receptor on a cell surface, a glowing signal travelling to the cell nucleus.", "How hormones signal cells"),
+  A("lab-testing-powder", "Photograph of a food testing laboratory: a gloved hand holding a test tube of dissolved white powder beside a lab balance and glassware.", "Lab-tested supplements"),
+  A("protein-foods-desi", "Top-down photograph of Indian high-protein foods on a dark table: paneer cubes, boiled eggs, a bowl of dal, roasted chana, soya chunks and a bowl of curd.", "Food swaps"),
+  A("kidney-liver", "Translucent 3D human torso highlighting the liver and both kidneys with a soft glow, medical visualisation.", "See a doctor note"),
+  A("banana-black-coffee", "Photograph of a ripe banana and a cup of black coffee on a towel on a gym bench, morning light.", "Pre-workout swap"),
+  A("dal-rice-curd", "Top-down photograph of a steel plate with dal, rice and a small bowl of curd.", "BCAA swap"),
+  A("fat-cells", "3D medical visualisation of fat cells as soft yellow spheres packed together, a few slowly shrinking.", "Fat burner video"),
+  A("capsules-spilled", "Photograph of assorted plain unmarked capsules and tablets spilled on a dark surface, shallow depth of field.", "Pills"),
+  A("sunlight-forearm", "Close-up photograph of morning sunlight falling on a bare forearm outdoors, warm golden light, face out of frame.", "Vitamin D"),
+  A("dairy-eggs-table", "Top-down photograph of a glass of milk, a bowl of curd, paneer cubes and two eggs on a wooden table.", "B12 foods"),
+  A("flaxseed-walnut", "Macro photograph of flaxseeds and walnut halves in two small brass bowls on a dark board.", "Omega-3 swap"),
+  A("fish-curry-bowl", "Photograph of an Indian fish curry in a clay bowl with a sprig of coriander, warm light.", "Omega-3 food"),
+  A("knee-cartilage", "3D medical render of a human knee joint showing smooth cartilage and glowing collagen fibres, medical visualisation.", "Collagen video"),
+  A("amla-fresh", "Macro photograph of fresh green amla (Indian gooseberries) with water droplets on a dark surface.", "Collagen video: vitamin C"),
+  A("label-reading-hand", "Close-up of a hand holding a plain unmarked white tub turned to show a nutrition table, all text blurred and unreadable.", "Fake supplement check"),
+];
+
+export const SUPPLEMENT_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("milk-curdling-anim", "Slow motion close-up of hot milk curdling in a steel pot as lemon juice is added, white curds separating from pale yellow-green whey.", "Whey video"),
+  A("amino-absorb-anim", "3D medical animation: protein chains break into glowing amino acid beads that are absorbed by intestinal villi and flow into a blood vessel. Slow orbit.", "Protein digestion"),
+  A("muscle-repair-anim", "3D medical animation: glowing golden amino acids flow into torn red muscle fibres, which knit back together. Slow push-in.", "Muscle repair"),
+  A("hormone-receptor-anim", "3D medical animation of a hormone molecule docking into a receptor on a cell, a glowing signal travelling to the nucleus, slow camera move.", "How hormones work"),
+  A("powder-shaker-anim", "Slow motion of a scoop of off-white powder being poured into a plain clear shaker of milk on a dark counter.", "Whey video"),
+  A("sunlight-skin-anim", "3D medical animation of sunlight rays entering the layers of human skin and small glowing molecules forming, educational.", "Vitamin D"),
+  A("fat-cell-anim", "3D medical animation of yellow fat cells slowly shrinking as glowing energy particles leave them toward a blood vessel.", "Fat burner video"),
+  A("knee-collagen-anim", "3D medical animation orbiting a knee joint, cartilage and collagen fibres glowing softly as the knee bends.", "Collagen video"),
+];
+
+// "supplements2": more visuals for the same series (mass gainer, pre-workout, carnitine,
+// vitamins, omega-3, magnesium, label checks). Same style and rules.
+export const SUPPLEMENT2_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("milk-banana-peanut-shake", "Photograph of a tall glass of homemade banana milkshake beside a ripe banana and a small bowl of roasted peanuts on a wooden kitchen counter.", "Mass gainer swap"),
+  A("oats-banana-bowl", "Top-down photograph of a bowl of oats porridge with sliced banana, peanuts and a drizzle of honey.", "Mass gainer swap"),
+  A("weighing-scale-feet", "Photograph of bare feet standing on a simple bathroom weighing scale, seen from above, display blank, face out of frame.", "Weight gain video"),
+  A("green-tea-cup", "Photograph of a glass cup of light green tea with a few loose green tea leaves beside it, soft morning light.", "Green tea drink vs extract"),
+  A("liver-amber", "3D medical render of a human liver with a soft amber glow inside a translucent torso, medical visualisation.", "Green tea extract and the liver"),
+  A("caffeine-molecule", "3D render of a caffeine molecule as glowing spheres and bonds floating above a cup of black coffee.", "Pre-workout video"),
+  A("heart-3d", "3D medical render of a human heart with visible coronary vessels, soft red glow, dark background.", "Pre-workout video: heartbeat"),
+  A("dark-bedroom-sleep", "Photograph of a person sleeping in a dark bedroom, seen from behind under a blanket, blue night light, face hidden.", "Sleep matters more"),
+  A("colourful-thali", "Top-down photograph of a colourful Indian thali with dal, palak sabzi, carrot and beetroot salad, curd, roti and rice.", "Multivitamin video: eat the rainbow"),
+  A("blood-test-vial", "Close-up photograph of a gloved hand holding a blood sample vial with a blank label in a clean clinic.", "Test first"),
+  A("window-sunlight-room", "Photograph of bright sunlight streaming through a closed glass window into a quiet room, dust visible in the light beam.", "Vitamin D: glass blocks UVB"),
+  A("morning-terrace-sun", "Photograph of a person stretching on a rooftop terrace in morning sun in an Indian city, seen from behind, arms bare.", "Vitamin D: real sunlight"),
+  A("chicken-fish-plate", "Photograph of grilled chicken pieces and a grilled fish fillet on a plate with lemon wedges and salad.", "Carnitine in food"),
+  A("mitochondria-3d", "3D medical render of mitochondria inside a muscle cell with glowing fat droplets nearby, educational.", "Carnitine: fat to energy"),
+  A("pumpkin-seeds-spinach", "Top-down photograph of pumpkin seeds, a bowl of rajma, fresh spinach leaves and a handful of almonds on a dark table.", "Magnesium foods"),
+  A("fish-oil-softgels", "Macro photograph of golden fish oil softgel capsules on a dark surface, light shining through them.", "Omega-3 video"),
+  A("vitamin-c-fruits", "Photograph of guava halves, oranges, amla and lemons arranged on a dark wooden board.", "Collagen needs vitamin C"),
+  A("pill-organiser", "Photograph of a weekly pill organiser box full of assorted plain capsules on a kitchen table.", "Too many pills"),
+  A("shaker-gym-bench", "Photograph of a plain clear shaker bottle with milky drink on a gym bench, dumbbells soft in the background.", "Whey video"),
+  A("doctor-desk-consult", "Photograph of a doctor's desk with a stethoscope, a blank report sheet and a pen, hands of the doctor only.", "See a doctor"),
+];
+
+export const SUPPLEMENT2_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("carnitine-shuttle-anim", "3D medical animation: glowing fat molecules are carried through the membrane into a mitochondrion inside a muscle cell, which brightens with energy. Slow orbit.", "Carnitine video"),
+  A("caffeine-brain-anim", "3D medical animation of caffeine molecules drifting into the brain and blocking tiny receptors on nerve cells, soft blue glow, slow push-in.", "Pre-workout video"),
+  A("b12-absorb-anim", "3D medical animation of glowing red vitamin molecules being absorbed through the lining of the small intestine into a blood vessel.", "B12 video"),
+  A("window-uv-anim", "Educational animation: sunlight rays hit a glass window, the short ultraviolet rays stop at the glass while visible light passes into the room.", "Vitamin D video"),
+  A("omega-vessel-anim", "3D medical animation of golden oil droplets flowing smoothly through a red blood vessel, slow tracking camera.", "Omega-3 video"),
+  A("liver-rotate-anim", "3D medical animation of a translucent human liver slowly rotating with a soft amber glow, dark background.", "Green tea extract video"),
+  A("shake-blend-anim", "Slow motion of banana slices, milk and peanuts being blended in a mixer jar in an Indian kitchen.", "Mass gainer swap"),
+  A("thali-pan-anim", "Slow overhead camera pan across a colourful Indian thali with dal, sabzi, salad, curd, roti and rice.", "Multivitamin video"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
+  supplements: { image: SUPPLEMENT_IMAGE_PROMPTS, video: SUPPLEMENT_VIDEO_PROMPTS },
+  supplements2: { image: SUPPLEMENT2_IMAGE_PROMPTS, video: SUPPLEMENT2_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
