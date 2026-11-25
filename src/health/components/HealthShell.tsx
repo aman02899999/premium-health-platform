@@ -9,6 +9,7 @@ import { ExitIntent, StickyCTA } from "@/health/components/marketing/ExitIntent"
 import { NewsletterPopup } from "@/health/components/marketing/NewsletterPopup";
 import { AdsenseScript } from "@/components/ads/AdsenseScript";
 import { VercelAnalytics } from "@/components/ui/VercelAnalytics";
+import { GoogleAnalytics } from "@/components/ui/GoogleAnalytics";
 
 /** The health site's page chrome, shared by the /health (English) and /hi/health (Hindi) root layouts. */
 export function HealthShell({ children, skipLabel = "Skip to content" }: { children: ReactNode; skipLabel?: string }) {
@@ -34,6 +35,8 @@ export function HealthShell({ children, skipLabel = "Skip to content" }: { child
       {/* Skips itself on sign-in, account, checkout and admin pages. */}
       <AdsenseScript />
       <VercelAnalytics />
+      {/* The same GA4 property as the gym site; skips sign-in, profile, order and admin pages. */}
+      <GoogleAnalytics />
     </body>
   );
 }

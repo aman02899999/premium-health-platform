@@ -1,5 +1,5 @@
 /**
- * Google Analytics 4 for the gym site (property 559893674, web stream "My website").
+ * Google Analytics 4 for the whole site: gym pages, the health portal and the Hindi pages (property 559893674, web stream "My website").
  * Its main job is to show which links bring visitors, using their UTM tags: the Google Business
  * Profile website button (utm_campaign=gbp-listing), the weekly profile posts (gbp-weekly) and
  * Instagram. Vercel Web Analytics on the Hobby plan hides UTM reports, so GA4 fills that gap.
@@ -8,8 +8,17 @@
  */
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-KHL1G8CN5W";
 
-/** Owner, coach and member-only areas: never counted, so our own visits don't skew the numbers. */
-const PRIVATE_PREFIXES = ["/admin", "/account"];
+/**
+ * Owner, coach and member-only areas: never counted, so our own visits don't skew the numbers.
+ * The health portal's sign-in, profile, order, download and admin pages count as private too,
+ * in English (/health/…) and Hindi (/hi/health/…).
+ */
+const HEALTH_PRIVATE = ["admin", "profile", "orders", "my-purchases", "auth", "login", "register", "download"];
+const PRIVATE_PREFIXES = [
+  "/admin",
+  "/account",
+  ...HEALTH_PRIVATE.flatMap((p) => [`/health/${p}`, `/hi/health/${p}`]),
+];
 
 export function isPrivatePath(path: string | null | undefined): boolean {
   if (!path) return false;

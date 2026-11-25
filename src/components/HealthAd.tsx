@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ADSENSE_CLIENT, ADSENSE_IN_ARTICLE_SLOT } from "@/lib/adsense";
+import { usePathname } from "next/navigation";
+import { ADSENSE_CLIENT, ADSENSE_IN_ARTICLE_SLOT, adsAllowedOn } from "@/lib/adsense";
 
 declare global {
   interface Window {
@@ -15,7 +16,10 @@ declare global {
  * The box reserves its height so the page doesn't jump when the ad fills (CLS).
  * Only for /health, /blog and /hi pages: `npm run check:ads` enforces that.
  */
-export function HealthAd({ hidden = false, className = "" }: { hidden?: boolean; className?: string }) {
+export function HealthAd({ hidden: hiddenProp = false, className = "" }: { hidden?: boolean; className?: string }) {
+  const path = usePathname();
+  // Same page rules as the ad script (e.g. the gym-choice posts stay ad-free).
+  const hidden = hiddenProp || (!!path && !adsAllowedOn(path));
   const pushed = useRef(false);
   useEffect(() => {
     if (hidden || pushed.current) return;
