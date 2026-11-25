@@ -10,6 +10,8 @@ import { PageHero, SectionHeading } from "@/components/ui/Section";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PersonalTraining } from "@/components/home/PersonalTraining";
 import { applyOffer } from "@/lib/offers";
+import { MEMBERSHIP_GUIDES } from "@/lib/blog/gym-choice";
+import { GuideLinks } from "@/components/blog/GymChoiceExtras";
 import { todayIST } from "@/lib/growth/dates";
 import Link from "next/link";
 import { FileDown, Printer } from "lucide-react";
@@ -49,6 +51,9 @@ export default async function MembershipPage() {
           <a href="/api/membership/plans-pdf" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white hover:border-brand">
             <FileDown className="h-4 w-4" /> Plans &amp; terms (PDF)
           </a>
+        </div>
+        <div className="mx-auto max-w-xl text-center [&_ul]:space-y-1">
+          <GuideLinks title="Still comparing gyms?" links={MEMBERSHIP_GUIDES} />
         </div>
       </section>
       {/* The detail stays one tap away instead of filling five more screens on a phone. */}

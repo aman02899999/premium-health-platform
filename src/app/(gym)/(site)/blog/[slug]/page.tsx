@@ -16,6 +16,11 @@ import { PostCard } from "@/components/home/Blocks";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { RelatedVideo } from "@/components/youtube/RelatedVideo";
 import { SmartImage } from "@/components/ui/SmartImage";
+import { GuideLinks, LivePrices } from "@/components/blog/GymChoiceExtras";
+import { GYM_CHOICE_POSTS } from "@/lib/adsense";
+import { gymChoiceReadNext, livePriceRows } from "@/lib/blog/gym-choice";
+import { activeOffer } from "@/lib/offers";
+import { todayIST } from "@/lib/growth/dates";
 
 export const revalidate = 86400; // 1 day: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
 
@@ -61,6 +66,9 @@ export default async function PostPage({ params }: Props) {
   const all = publishedPosts(c).filter((p) => p.slug !== post.slug);
   const related = [...all.filter((p) => p.category === post.category), ...all.filter((p) => p.category !== post.category)].slice(0, 3);
   const url = absoluteUrl(`/blog/${post.slug}`);
+  // Gym-choice posts get today's prices (from the live plans, never stale) and links to each other.
+  const choice = GYM_CHOICE_POSTS.has(post.slug);
+  const today = todayIST();
 
   return (
     <>
@@ -122,6 +130,8 @@ export default async function PostPage({ params }: Props) {
                 <Markdown blocks={part} cta={{ whatsapp: whatsappHref(c.business), phone: telHref(c.business.phone) }} />
               </Fragment>
             ))}
+            {choice && <LivePrices rows={livePriceRows(c.plans, today, c.offers)} offerEndsOn={activeOffer(today, c.offers)?.endsOn ?? null} />}
+            {choice && <GuideLinks title="Choosing a gym? Read next" links={gymChoiceReadNext(post.slug)} />}
             <RelatedVideo text={[post.title, post.category, ...post.tags].join(" · ")} tone="dark" className="mt-10" />
             {post.tags.length > 0 && (
               <div className="mt-10 flex flex-wrap gap-2">
