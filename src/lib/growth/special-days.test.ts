@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { FESTIVE_2026 } from "@/lib/offers";
@@ -21,6 +21,11 @@ describe("special-day posts", () => {
       if (p.feedImage) expect(p.slot, p.id).toBeTruthy();
     }
     for (const r of SPECIAL_REELS) expect(existsSync(join(process.cwd(), "public", r.video)), r.video).toBe(true);
+  });
+
+  it("every Reel video ships in the server image (.dockerignore drops public/youtube, so Instagram would get a 404)", () => {
+    const ignored = readFileSync(join(process.cwd(), ".dockerignore"), "utf8").split("\n").map((l) => l.trim()).filter((l) => l.startsWith("public/"));
+    for (const r of SPECIAL_REELS) for (const dir of ignored) expect(`public${r.video}`.startsWith(dir), r.video).toBe(false);
   });
 
   it("myth Stories replace the sales Story on their days only; a Story-only post never takes a feed slot", () => {

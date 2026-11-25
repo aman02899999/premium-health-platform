@@ -391,11 +391,11 @@ ${EDU}`,
     tags: "#Water #Digestion #DesiHabits #FatLossTips #RoyalFitnessClub #NoidaGym #Sector93Noida",
   }),
   // Supplement Myth Buster Reels (thread "Make supplement myth playlist", 25 Nov 2026): the 12 series Shorts,
-  // same MP4 as YouTube, midday slot one a day from 30 Nov. Sources on screen and in the caption.
+  // copies of the YouTube Shorts in /social/reels (public/youtube is not in the server image), midday slot one a day from 30 Nov.
   tipsReel({
     id: "reel-supp-whey-steroid",
     date: "2026-11-30",
-    video: "/youtube/long/short-supp-whey-steroid.mp4",
+    video: "/social/reels/supp-whey-steroid.mp4",
     theme: "Whey Protein = Steroid? 💪",
     body: `Whey Protein = Steroid? 💪
 
@@ -410,7 +410,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-fake-whey-test",
     date: "2026-12-01",
-    video: "/youtube/long/short-supp-fake-whey-test.mp4",
+    video: "/social/reels/supp-fake-whey-test.mp4",
     theme: "Asli Ya Nakli Whey? Aag Aur Paani Wale Home Test Ka Sach",
     body: `Asli Ya Nakli Whey? Aag Aur Paani Wale Home Test Ka Sach
 
@@ -425,7 +425,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-mass-gainer",
     date: "2026-12-02",
-    video: "/youtube/long/short-supp-mass-gainer.mp4",
+    video: "/social/reels/supp-mass-gainer.mp4",
     theme: "Mass Gainer Ke Bina Weight Nahi Badhega? Desi Gainer Shake",
     body: `Mass Gainer Ke Bina Weight Nahi Badhega? Desi Gainer Shake
 
@@ -440,7 +440,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-bcaa",
     date: "2026-12-03",
-    video: "/youtube/long/short-supp-bcaa.mp4",
+    video: "/social/reels/supp-bcaa.mp4",
     theme: "BCAA Nahi Liya Toh Muscle Tootegi? Gym Ka Sabse Mehenga Myth",
     body: `BCAA Nahi Liya Toh Muscle Tootegi? Gym Ka Sabse Mehenga Myth
 
@@ -455,7 +455,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-glutamine",
     date: "2026-12-04",
-    video: "/youtube/long/short-supp-glutamine.mp4",
+    video: "/social/reels/supp-glutamine.mp4",
     theme: "Glutamine Se Recovery Double? Gym Bag Mein Rakhne Se Pehle D",
     body: `Glutamine Se Recovery Double? Gym Bag Mein Rakhne Se Pehle Dekho
 
@@ -470,7 +470,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-pre-workout",
     date: "2026-12-05",
-    video: "/youtube/long/short-supp-pre-workout.mp4",
+    video: "/social/reels/supp-pre-workout.mp4",
     theme: "Pre-Workout Ke Bina Energy Nahi? Dabbe Ke Andar Ka Sach",
     body: `Pre-Workout Ke Bina Energy Nahi? Dabbe Ke Andar Ka Sach
 
@@ -485,7 +485,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-l-carnitine",
     date: "2026-12-06",
-    video: "/youtube/long/short-supp-l-carnitine.mp4",
+    video: "/social/reels/supp-l-carnitine.mp4",
     theme: "L-Carnitine Se Fat Pighlega? Fat Burner Ka Sach",
     body: `L-Carnitine Se Fat Pighlega? Fat Burner Ka Sach
 
@@ -500,7 +500,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-multivitamin",
     date: "2026-12-07",
-    video: "/youtube/long/short-supp-multivitamin.mp4",
+    video: "/social/reels/supp-multivitamin.mp4",
     theme: "Roz Multivitamin = Sehat Ka Insurance?",
     body: `Roz Multivitamin = Sehat Ka Insurance?
 
@@ -515,7 +515,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-vitamin-d",
     date: "2026-12-08",
-    video: "/youtube/long/short-supp-vitamin-d.mp4",
+    video: "/social/reels/supp-vitamin-d.mp4",
     theme: "Khidki Ki Dhoop Se Vitamin D? Sheesha UVB Rokta Hai",
     body: `Khidki Ki Dhoop Se Vitamin D? Sheesha UVB Rokta Hai
 
@@ -530,7 +530,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-veg-b12",
     date: "2026-12-09",
-    video: "/youtube/long/short-supp-veg-b12.mp4",
+    video: "/social/reels/supp-veg-b12.mp4",
     theme: "Vegetarian Ho Toh B12 Milega Hi Nahi? Aadha Sach",
     body: `Vegetarian Ho Toh B12 Milega Hi Nahi? Aadha Sach
 
@@ -545,7 +545,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-omega3-alsi",
     date: "2026-12-10",
-    video: "/youtube/long/short-supp-omega3-alsi.mp4",
+    video: "/social/reels/supp-omega3-alsi.mp4",
     theme: "Alsi Kha Lo, Fish Oil Ki Zaroorat Khatam? Omega-3 Ka Sach",
     body: `Alsi Kha Lo, Fish Oil Ki Zaroorat Khatam? Omega-3 Ka Sach
 
@@ -560,7 +560,7 @@ ${EDU}`,
   tipsReel({
     id: "reel-supp-collagen",
     date: "2026-12-11",
-    video: "/youtube/long/short-supp-collagen.mp4",
+    video: "/social/reels/supp-collagen.mp4",
     theme: "Collagen Powder Se Naye Ghutne? Science Kya Kehti Hai",
     body: `Collagen Powder Se Naye Ghutne? Science Kya Kehti Hai
 
