@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { AlertTriangle, Check, ChevronRight, Lightbulb } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { EXERCISES, equipmentLabel, exerciseBySlug, muscleLabel } from "@/lib/fitness/exercises";
-import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 import { absoluteUrl, telHref, whatsappHref } from "@/lib/site";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { CtaCard } from "@/components/blog/CtaCard";
@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!ex) return {};
   const c = await getContent();
   return pageMeta(c, {
-    title: `${ex.name} — How to Do It, Muscles Worked & Tips`,
-    description: `${ex.summary} Step-by-step ${ex.name.toLowerCase()} form guide, muscles worked, tips and common mistakes.`,
+    title: ex.seoTitle ?? `${ex.name} — How to Do It, Muscles Worked & Tips`,
+    description: ex.seoDescription ?? `${ex.summary} Step-by-step ${ex.name.toLowerCase()} form guide, muscles worked, tips and common mistakes.`,
     path: `/exercises/${ex.slug}`,
   });
 }
@@ -50,6 +50,7 @@ export default async function ExercisePage({ params }: Props) {
             step: ex.steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, text: s })),
             url: absoluteUrl(`/exercises/${ex.slug}`),
           },
+          ...(ex.faqs?.length ? [faqJsonLd(ex.faqs)] : []),
         ]}
       />
       <article className="mx-auto max-w-4xl px-4 pb-10 pt-36 sm:px-6 sm:pt-44">
@@ -73,6 +74,19 @@ export default async function ExercisePage({ params }: Props) {
             </div>
           ))}
         </dl>
+
+        {ex.benefits?.length ? (
+          <section className="mt-12">
+            <h2 className="font-display text-3xl text-white">Benefits of the {ex.name.toLowerCase()}</h2>
+            <ul className="mt-5 space-y-3 text-white/80">
+              {ex.benefits.map((b) => (
+                <li key={b} className="flex gap-3">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-brand" /> {b}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <h2 className="font-display mt-12 text-3xl text-white">How to do it</h2>
         <ol className="mt-5 space-y-4">
@@ -108,6 +122,34 @@ export default async function ExercisePage({ params }: Props) {
             </ul>
           </section>
         </div>
+
+        {ex.atHome ? (
+          <section className="mt-12">
+            <h2 className="font-display text-3xl text-white">{ex.equipment === "machine" ? "Where to put your feet" : `${ex.name} at home`}</h2>
+            <p className="mt-4 text-white/70">{ex.atHome.intro}</p>
+            <ul className="mt-4 space-y-3 text-white/80">
+              {ex.atHome.steps.map((s) => (
+                <li key={s} className="flex gap-3">
+                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-brand" /> {s}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        {ex.faqs?.length ? (
+          <section className="mt-12">
+            <h2 className="font-display text-3xl text-white">Questions people ask</h2>
+            <div className="mt-5 space-y-3">
+              {ex.faqs.map((f) => (
+                <details key={f.q} className="glass rounded-2xl p-4">
+                  <summary className="cursor-pointer font-semibold text-white">{f.q}</summary>
+                  <p className="mt-2 text-white/75">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <CtaCard whatsapp={whatsappHref(c.business, `Hi ${c.business.name}, I'd like a trainer to check my ${ex.name.toLowerCase()} form.`)} phone={telHref(c.business.phone)} />
 
