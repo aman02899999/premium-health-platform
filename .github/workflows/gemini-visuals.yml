@@ -15,9 +15,9 @@ on:
         options: [image, video]
         default: image
       set:
-        description: "Prompt set: default (gym stock) or anatomy (medical renders + food close-ups) or habits (Desi Habit Science Reels)"
+        description: "Prompt set: default (gym stock) or anatomy (medical renders + food close-ups) or habits (Desi Habit Science Reels) or supplements (Supplement Myth Buster)"
         type: choice
-        options: [default, anatomy, habits]
+        options: [default, anatomy, habits, supplements]
         default: default
       start:
         description: "First prompt number (0 = the first)"
