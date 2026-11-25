@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ANATOMY_IMAGE_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, HABITS_IMAGE_PROMPTS, HABITS_VIDEO_PROMPTS, IMAGE_PROMPTS, promptProblems, promptSet, reelOnlySet, VIDEO_PROMPTS } from "./visual-prompts";
+import { ANATOMY_IMAGE_PROMPTS, EGG_IMAGE_PROMPTS, EGG_VIDEO_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, HABITS_IMAGE_PROMPTS, HABITS_VIDEO_PROMPTS, IMAGE_PROMPTS, promptProblems, promptSet, reelOnlySet, VIDEO_PROMPTS } from "./visual-prompts";
 
 describe("visual prompts", () => {
   const all = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS];
@@ -37,5 +37,19 @@ describe("visual prompts", () => {
     const ids = [...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS].map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);
     for (const p of [...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS]) expect(promptProblems(p)).toEqual([]);
+  });
+
+  it("picks the egg set, Reel-only, within limits, with ids unique across every set", () => {
+    expect(promptSet("egg", "image")).toBe(EGG_IMAGE_PROMPTS);
+    expect(promptSet("egg", "video")).toBe(EGG_VIDEO_PROMPTS);
+    expect(reelOnlySet("egg")).toBe(true);
+    expect(EGG_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
+    expect(EGG_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
+    const ids = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS, ...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...EGG_IMAGE_PROMPTS, ...EGG_VIDEO_PROMPTS].map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const p of [...EGG_IMAGE_PROMPTS, ...EGG_VIDEO_PROMPTS]) {
+      expect(promptProblems(p)).toEqual([]);
+      expect(fullPrompt(p)).toMatch(/No identifiable faces/);
+    }
   });
 });
