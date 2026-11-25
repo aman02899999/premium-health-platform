@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/site";
+import { hiGymLanguages } from "@/lib/content/hindi-gym";
 import { ArrowRight, BadgeCheck, Cctv, Clock, DoorOpen, Dumbbell, MapPin, Phone, Salad, Snowflake, Star, Users } from "lucide-react";
 import { getContent } from "@/lib/content/store";
 import { HUB } from "@/lib/hub";
@@ -34,6 +37,9 @@ import { ReviewCard } from "@/components/reviews/ReviewCard";
 import { SocialVideos } from "@/components/social/SocialVideos";
 
 export const revalidate = 21600; // 6h: ISR writes are capped on Vercel Hobby (see src/lib/isr-budget.test.ts)
+
+/** Same canonical as the layout, plus the Hindi version of this page (/hi/gym) for hreflang. */
+export const metadata: Metadata = { alternates: { canonical: SITE_URL, languages: hiGymLanguages() } };
 
 const DEFAULT_HERO_IMAGE = "/gallery/aman-sharma-royal-fitness-gym.webp";
 
