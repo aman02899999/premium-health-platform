@@ -43,11 +43,15 @@ describe("visual prompts", () => {
     expect(promptSet("supplements", "image")).toBe(SUPPLEMENT_IMAGE_PROMPTS);
     expect(promptSet("supplements", "video")).toBe(SUPPLEMENT_VIDEO_PROMPTS);
     expect(reelOnlySet("supplements")).toBe(true);
+    expect(promptSet("supplements2", "image")).toBe(SUPPLEMENT2_IMAGE_PROMPTS);
+    expect(promptSet("supplements2", "video")).toBe(SUPPLEMENT2_VIDEO_PROMPTS);
+    expect(SUPPLEMENT2_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
+    expect(SUPPLEMENT2_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
     expect(SUPPLEMENT_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
     expect(SUPPLEMENT_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
-    const ids = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS, ...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...SUPPLEMENT_IMAGE_PROMPTS, ...SUPPLEMENT_VIDEO_PROMPTS].map((p) => p.id);
+    const ids = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS, ...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...SUPPLEMENT_IMAGE_PROMPTS, ...SUPPLEMENT_VIDEO_PROMPTS, ...SUPPLEMENT2_IMAGE_PROMPTS, ...SUPPLEMENT2_VIDEO_PROMPTS].map((p) => p.id);
     expect(new Set(ids).size).toBe(ids.length);
-    for (const p of [...SUPPLEMENT_IMAGE_PROMPTS, ...SUPPLEMENT_VIDEO_PROMPTS]) {
+    for (const p of [...SUPPLEMENT_IMAGE_PROMPTS, ...SUPPLEMENT_VIDEO_PROMPTS, ...SUPPLEMENT2_IMAGE_PROMPTS, ...SUPPLEMENT2_VIDEO_PROMPTS]) {
       expect(promptProblems(p)).toEqual([]);
       expect(fullPrompt(p)).toMatch(/No identifiable faces/);
     }
