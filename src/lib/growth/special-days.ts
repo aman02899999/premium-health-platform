@@ -390,6 +390,188 @@ Visuals aur voice AI se banaye gaye hain.
 ${EDU}`,
     tags: "#Water #Digestion #DesiHabits #FatLossTips #RoyalFitnessClub #NoidaGym #Sector93Noida",
   }),
+  // Supplement Myth Buster Reels (thread "Make supplement myth playlist", 25 Nov 2026): the 12 series Shorts,
+  // same MP4 as YouTube, midday slot one a day from 30 Nov. Sources on screen and in the caption.
+  tipsReel({
+    id: "reel-supp-whey-steroid",
+    date: "2026-11-30",
+    video: "/youtube/long/short-supp-whey-steroid.mp4",
+    theme: "Whey Protein = Steroid? 💪",
+    body: `Whey Protein = Steroid? 💪
+
+Whey protein steroid hai? Nahi. Whey doodh ka protein hai, paneer banate waqt bacha paani. Steroid hormone ki lab copy, ek dawa hai. Asli khatra: 2024 ki Indian lab jaanch mein 36 mein se 25 powders mein label se kam protein mila. FSSAI licence, batch aur lab report dekho.
+
+Supplement Myth Buster #1 · poori series YouTube par: Royal Fitness TV
+Sources: Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN); NIDA, Anabolic Steroids DrugFacts; Citizens Protein Project 2024, protein supplements sold in India (Medicine); ICMR-NIN, Indian Food Composition Tables 2017.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#WheyProtein #ProteinPowder #GymMyths #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-fake-whey-test",
+    date: "2026-12-01",
+    video: "/youtube/long/short-supp-fake-whey-test.mp4",
+    theme: "Asli Ya Nakli Whey? Aag Aur Paani Wale Home Test Ka Sach",
+    body: `Asli Ya Nakli Whey? Aag Aur Paani Wale Home Test Ka Sach
+
+Whey jalao, garam paani mein ghol do, jhaag dekho: asli-nakli pata chal jaayega? Nahi. Ghulna aur jhaag processing par depend karta hai, protein kitna hai ye sirf lab bata sakti hai. Dabbe par FSSAI licence + batch number dekho, batch ki lab report maango, authorised seller se lo.
+
+Supplement Myth Buster #2 · poori series YouTube par: Royal Fitness TV
+Sources: Citizens Protein Project 2024, protein supplements sold in India (Medicine); US FDA, Caution: Bodybuilding Products Can Be Risky.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#FakeWhey #ProteinPowder #SupplementSafety #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-mass-gainer",
+    date: "2026-12-02",
+    video: "/youtube/long/short-supp-mass-gainer.mp4",
+    theme: "Mass Gainer Ke Bina Weight Nahi Badhega? Desi Gainer Shake",
+    body: `Mass Gainer Ke Bina Weight Nahi Badhega? Desi Gainer Shake
+
+Patle ho aur socha gainer ke bina wazan nahi badhega? Wazan tab badhta hai jab roz zaroorat se thodi zyada calories khao. Gainer mostly carbs + thoda protein hai. Ghar ka gainer: doodh, kela, moongphali ka shake, saath mein oats, ghee wali roti, paneer, dal. Aur weight training zaroor karo. Achanak wazan girna ya bhookh na lagna ho toh pehle doctor ko dikhao.
+
+Supplement Myth Buster #3 · poori series YouTube par: Royal Fitness TV
+Sources: NHS, Advice for underweight adults; ICMR-NIN, Indian Food Composition Tables 2017.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#MassGainer #WeightGain #DesiDiet #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-bcaa",
+    date: "2026-12-03",
+    video: "/youtube/long/short-supp-bcaa.mp4",
+    theme: "BCAA Nahi Liya Toh Muscle Tootegi? Gym Ka Sabse Mehenga Myth",
+    body: `BCAA Nahi Liya Toh Muscle Tootegi? Gym Ka Sabse Mehenga Myth
+
+BCAA teen amino acids hain: leucine, isoleucine, valine. Muscle banane ke liye 9 zaroori amino acids chahiye, sirf 3 nahi. Research review (Wolfe 2017): akele BCAA se muscle banne ki raftaar nahi badhti. Din bhar ka protein poora ho toh alag se fayda aur kam. Dal-chawal, dahi, paneer, ande, soya mein sab amino acids milte hain.
+
+Supplement Myth Buster #4 · poori series YouTube par: Royal Fitness TV
+Sources: Wolfe 2017, BCAAs and muscle protein synthesis: myth or reality? (JISSN); Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN).
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#BCAA #AminoAcids #GymSupplements #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-glutamine",
+    date: "2026-12-04",
+    video: "/youtube/long/short-supp-glutamine.mp4",
+    theme: "Glutamine Se Recovery Double? Gym Bag Mein Rakhne Se Pehle D",
+    body: `Glutamine Se Recovery Double? Gym Bag Mein Rakhne Se Pehle Dekho
+
+Glutamine ek amino acid hai jo body khud banati hai. Healthy logon ki studies mein glutamine se strength ya recovery mein khaas farq nahi dikha (Gleeson 2008). Hospital mein gambhir bimari mein doctor ise alag wajah se dete hain. Recovery ka asli formula: 7+ ghante neend, poora protein, paani. Doodh, dahi, paneer, ande, dal mein glutamine khud hota hai.
+
+Supplement Myth Buster #5 · poori series YouTube par: Royal Fitness TV
+Sources: Gleeson 2008, Glutamine supplementation in exercise and sport training (J Nutr); CDC, About Sleep.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Glutamine #Recovery #GymSupplements #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-pre-workout",
+    date: "2026-12-05",
+    video: "/youtube/long/short-supp-pre-workout.mp4",
+    theme: "Pre-Workout Ke Bina Energy Nahi? Dabbe Ke Andar Ka Sach",
+    body: `Pre-Workout Ke Bina Energy Nahi? Dabbe Ke Andar Ka Sach
+
+Zyada-tar pre-workout ka main ingredient caffeine hai, wahi jo chai-coffee mein. Research mein kuch logon ki performance thodi badhti hai, par har dabbe mein caffeine alag, aur zyada caffeine se dhadkan tez, ghabrahat, neend kharab. Desi pre-workout: ek kela + chaho toh ek cup black coffee ya chai. Sabse bada pre-workout: poori neend. BP, dil ki bimari, pregnancy ya dawa chal rahi ho toh doctor se poocho.
+
+Supplement Myth Buster #6 · poori series YouTube par: Royal Fitness TV
+Sources: Guest et al. 2021, ISSN position stand: caffeine and exercise performance (JISSN); US FDA, Spilling the Beans: How Much Caffeine Is Too Much?.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#PreWorkout #Caffeine #GymEnergy #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-l-carnitine",
+    date: "2026-12-06",
+    video: "/youtube/long/short-supp-l-carnitine.mp4",
+    theme: "L-Carnitine Se Fat Pighlega? Fat Burner Ka Sach",
+    body: `L-Carnitine Se Fat Pighlega? Fat Burner Ka Sach
+
+Carnitine fat ko cell ke power house, mitochondria, tak le jaata hai. Par healthy body itna carnitine khud bana leti hai (NIH). Weight loss par studies ke nateeje mile-jule hain. Fat tab ghatta hai jab calories kam aur movement zyada ho: roz chalo, weight training, poora protein. Carnitine doodh, dahi, chicken aur machhli se bhi milta hai.
+
+Supplement Myth Buster #7 · poori series YouTube par: Royal Fitness TV
+Sources: NIH Office of Dietary Supplements, Carnitine; NIH Office of Dietary Supplements, Dietary Supplements for Weight Loss.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#LCarnitine #FatBurner #FatLoss #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-multivitamin",
+    date: "2026-12-07",
+    video: "/youtube/long/short-supp-multivitamin.mp4",
+    theme: "Roz Multivitamin = Sehat Ka Insurance?",
+    body: `Roz Multivitamin = Sehat Ka Insurance?
+
+US Preventive Services Task Force ne 2022 mein research dekhi: healthy logon mein multivitamin se dil ki bimari ya cancer se bachaav ka pakka saboot nahi mila. Kami ho toh baat alag: pregnancy mein folic acid, ya test mein vitamin D ya B12 kam aaye toh doctor ki salah se. Asli multivitamin rangeen thali hai: dal, hari sabzi, salad, dahi, phal, saabut anaaj.
+
+Supplement Myth Buster #8 · poori series YouTube par: Royal Fitness TV
+Sources: US Preventive Services Task Force 2022, Vitamin and mineral supplementation; ICMR-NIN, Dietary Guidelines for Indians (2024).
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Multivitamin #BalancedDiet #DesiThali #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-vitamin-d",
+    date: "2026-12-08",
+    video: "/youtube/long/short-supp-vitamin-d.mp4",
+    theme: "Khidki Ki Dhoop Se Vitamin D? Sheesha UVB Rokta Hai",
+    body: `Khidki Ki Dhoop Se Vitamin D? Sheesha UVB Rokta Hai
+
+Vitamin D skin mein tab banta hai jab dhoop ki UVB kiranein skin par padti hain. Aam khidki ka sheesha UVB rok deta hai (NICE NG34), isliye band khidki ke peeche baithne se vitamin D nahi banta. Bahar khuli dhoop lo, haath-baazu khule, par skin laal hone se pehle chhaaon mein aa jao. Ande ki zardi, machhli, fortified doodh mein bhi vitamin D. Haddiyon mein dard ya thakan ho toh test karao, vitamin D doctor ki salah se hi lo.
+
+Supplement Myth Buster #9 · poori series YouTube par: Royal Fitness TV
+Sources: NICE guideline NG34, Sunlight exposure: risks and benefits; NIH Office of Dietary Supplements, Vitamin D.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#VitaminD #Sunlight #BoneHealth #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-veg-b12",
+    date: "2026-12-09",
+    video: "/youtube/long/short-supp-veg-b12.mp4",
+    theme: "Vegetarian Ho Toh B12 Milega Hi Nahi? Aadha Sach",
+    body: `Vegetarian Ho Toh B12 Milega Hi Nahi? Aadha Sach
+
+B12 naso aur khoon ke liye zaroori hai. Kami se thakan, jhunjhuni, khoon ki kami ho sakti hai. B12 sirf meat mein nahi, doodh, dahi, paneer aur ande mein bhi hai. Par dal, sabzi, anaaj mein B12 nahi hota; vegan logon ko fortified food ya doctor ki salah chahiye. Buzurgon mein aur kuch dawaon ke saath B12 kam sokha jaata hai: thakan ya jhunjhuni ho toh test karao.
+
+Supplement Myth Buster #10 · poori series YouTube par: Royal Fitness TV
+Sources: NIH Office of Dietary Supplements, Vitamin B12.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#VitaminB12 #Vegetarian #Nutrition #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-omega3-alsi",
+    date: "2026-12-10",
+    video: "/youtube/long/short-supp-omega3-alsi.mp4",
+    theme: "Alsi Kha Lo, Fish Oil Ki Zaroorat Khatam? Omega-3 Ka Sach",
+    body: `Alsi Kha Lo, Fish Oil Ki Zaroorat Khatam? Omega-3 Ka Sach
+
+Omega-3 teen tarah ke: ALA, EPA, DHA. Alsi aur akhrot mein ALA, machhli mein EPA aur DHA. Body ALA ka sirf thoda hissa EPA/DHA mein badal paati hai (NIH). Par alsi bekaar nahi: fibre + ALA, peeskar roti, dahi ya salad mein daalo. Machhli khaate ho toh hafte mein do baar kaafi (AHA). Fish oil supplement doctor se pooch kar lo, khaaskar khoon patla karne ki dawa chal rahi ho.
+
+Supplement Myth Buster #11 · poori series YouTube par: Royal Fitness TV
+Sources: NIH Office of Dietary Supplements, Omega-3 Fatty Acids; American Heart Association, Fish and Omega-3 Fatty Acids.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Omega3 #Flaxseed #FishOil #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  tipsReel({
+    id: "reel-supp-collagen",
+    date: "2026-12-11",
+    video: "/youtube/long/short-supp-collagen.mp4",
+    theme: "Collagen Powder Se Naye Ghutne? Science Kya Kehti Hai",
+    body: `Collagen Powder Se Naye Ghutne? Science Kya Kehti Hai
+
+Collagen ek protein hai: pet mein ye bhi baaki protein ki tarah amino acids aur chhote tukdon mein toot jaata hai, seedha ghutne mein jaakar nahi baithta. Kuch chhoti studies mein jodon ke dard mein thoda fayda, par saboot abhi kamzor. Body collagen khud banati hai: protein + vitamin C chahiye. Amla, amrood, santra, nimbu ke saath dal, paneer, ande. Ghutne mein soojan ya tez dard ho toh pehle doctor ko dikhao.
+
+Supplement Myth Buster #12 · poori series YouTube par: Royal Fitness TV
+Sources: NIH Office of Dietary Supplements, Vitamin C; Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN).
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Collagen #KneeHealth #VitaminC #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */

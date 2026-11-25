@@ -2,7 +2,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { packById } from "@/lib/library/packs";
-import { buyLink, dueLongVideo, LONG_VIDEOS, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
+import { buyLink, dueLongVideo, LONG_VIDEOS, SERIES_SHORT_SLOT, seriesDay, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 const pub = (p: string) => join(process.cwd(), "public", p);
 const secs = (t: string) => t.split(":").reduce((a, n) => a * 60 + Number(n), 0);
@@ -47,6 +47,21 @@ describe("long videos", () => {
       expect(v.chapters.length).toBeGreaterThanOrEqual(3);
       for (let i = 1; i < v.chapters.length; i++) expect(secs(v.chapters[i][0]) - secs(v.chapters[i - 1][0])).toBeGreaterThanOrEqual(10);
     }
+  });
+
+  it("the Supplement Myth Buster series: one a day, tagged for its playlist, never past 3 long uploads a day", () => {
+    const series = LONG_VIDEOS.filter((v) => v.series === "supplements");
+    expect(series.length).toBe(18);
+    expect(new Set(series.map((v) => v.date)).size).toBe(series.length);
+    for (const v of series) expect(longVideoTags(v), v.id).toContain("supplement myth buster");
+    const perDay = new Map<string, number>();
+    // From the series start on (older dates were a one-off backlog catch-up).
+    for (const v of LONG_VIDEOS.filter((x) => x.date >= series[0].date)) perDay.set(v.date, (perDay.get(v.date) ?? 0) + 1);
+    for (const [d, n] of perDay) expect(n, d).toBeLessThanOrEqual(3);
+    expect(SERIES_SHORT_SLOT).toBe(3);
+    expect(seriesDay(series[0].date)).toBe(true);
+    expect(seriesDay("2026-11-25")).toBe(false);
+    expect(seriesDay("2026-12-01", [{ ...series[0], date: "2026-12-02" }])).toBe(false);
   });
 
   it("picks the oldest due video nobody has uploaded", () => {

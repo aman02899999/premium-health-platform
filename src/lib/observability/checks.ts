@@ -3,6 +3,7 @@
 // Keys are stable (they name the alert and dedupe it to one a day); titles and fixes are written
 // for the owner, who is not technical.
 import { monthDay } from "@/lib/growth/month-plan";
+import { SERIES_SHORT_SLOT, seriesDay } from "@/lib/youtube/long-videos";
 
 export type JobRun = { at: string; ok: boolean; summary?: string } | null;
 
@@ -47,6 +48,11 @@ export type Snapshot = {
 };
 
 export const YOUTUBE_CHANNELS = ["youtube-1", "youtube-2", "youtube-3"];
+
+/** The auto-Short rows a day should have. On a Supplement Myth Buster day the series video takes slot 3. */
+export function expectedYoutubeChannels(date: string): string[] {
+  return seriesDay(date) ? YOUTUBE_CHANNELS.filter((c) => c !== `youtube-${SERIES_SHORT_SLOT}`) : YOUTUBE_CHANNELS;
+}
 
 /** The social_posts channels a day should have: the evening Reel and morning Story, plus the month plan's six. */
 export function expectedSocialChannels(date: string, on: { instagram: boolean; facebook: boolean; monthPlan: boolean }): string[] {

@@ -19,6 +19,9 @@ export type LongVideo = {
   buy?: [string, string];
   /** A vertical cut (YouTube Short) of a promo video: no chapters in its description. */
   short?: boolean;
+  /** Supplement Myth Buster series (owner, 25 Nov 2026): on its date this video takes the third
+   *  daily auto-Short slot, so the channel still uploads 5 videos a day, not 6. */
+  series?: "supplements";
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
@@ -1157,6 +1160,24 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-supp-whey-steroid",
+    date: "2026-12-01",
+    title: "Whey Protein = Steroid? 💪 Supplement Myth Buster #1 #shorts",
+    intro: "Whey protein steroid hai? Nahi. Whey doodh ka protein hai, paneer banate waqt bacha paani. Steroid hormone ki lab copy, ek dawa hai. Asli khatra: 2024 ki Indian lab jaanch mein 36 mein se 25 powders mein label se kam protein mila. FSSAI licence, batch aur lab report dekho.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28642676/"],
+      ["NIDA, Anabolic Steroids DrugFacts", "https://nida.nih.gov/publications/drugfacts/anabolic-steroids"],
+      ["Citizens Protein Project 2024, protein supplements sold in India (Medicine)", "https://pubmed.ncbi.nlm.nih.gov/38579036/"],
+      ["ICMR-NIN, Indian Food Composition Tables 2017", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplement myth buster", "whey protein steroid", "whey protein hindi", "is whey safe", "protein powder myth", "paneer protein", "gym supplement myths", "fake protein india"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "short-desi-science-joints",
     date: "2026-12-02",
     title: "Ghutne Ka Science 🦵 Sardi Mein Joints Kyun Jakadte Hain? #shorts",
@@ -1185,6 +1206,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["walk after meal", "post meal walk", "blood sugar spike", "walking after dinner", "diabetes walk tips", "glucose and muscles", "10 minute walk", "health tips hindi"],
     short: true,
+  },
+  {
+    id: "short-supp-fake-whey-test",
+    date: "2026-12-02",
+    title: "Asli Ya Nakli Whey? Aag Aur Paani Wale Home Test Ka Sach | Supplement Myth Buster #2 #shorts",
+    intro: "Whey jalao, garam paani mein ghol do, jhaag dekho: asli-nakli pata chal jaayega? Nahi. Ghulna aur jhaag processing par depend karta hai, protein kitna hai ye sirf lab bata sakti hai. Dabbe par FSSAI licence + batch number dekho, batch ki lab report maango, authorised seller se lo.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Citizens Protein Project 2024, protein supplements sold in India (Medicine)", "https://pubmed.ncbi.nlm.nih.gov/38579036/"],
+      ["US FDA, Caution: Bodybuilding Products Can Be Risky", "https://www.fda.gov/consumers/consumer-updates/caution-bodybuilding-products-can-be-risky"],
+    ],
+    tags: ["supplement myth buster", "fake whey test", "asli nakli whey", "whey protein test at home", "protein powder burn test", "fake supplements india", "fssai protein", "protein powder hindi"],
+    short: true,
+    series: "supplements",
   },
   {
     id: "short-desi-science-fibre-gut",
@@ -1226,6 +1263,31 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["habits hindi", "fitness motivation", "emotional eating", "pdf books hindi", "fitness ebook", "royal supplements library"],
     buy: ["5 PDF books ₹346", "/library/pack/habits"],
+  },
+  {
+    id: "long-whey-gainer-myths-36",
+    date: "2026-12-03",
+    title: "Whey Protein, Mass Gainer: 5 Myths Ka Sach | Supplement Myth Buster",
+    intro: "Whey steroid hai? Powder ke bina muscle nahi banegi? Shake 30 minute ke andar nahi piya toh bekaar? \"Raw\" likha toh pure? Gainer ke bina wazan nahi badhega? 5 myths ka fact check: ISSN position stands, Citizens Protein Project 2024 (36 powders ki lab jaanch), IFCT aur NHS.\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. Kidney ya liver ki problem ho toh protein supplement doctor se pooch kar hi lo. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: whey aur gainer"],
+      ["0:10", "1. Whey = steroid?"],
+      ["0:36", "2. Powder ke bina muscle nahi?"],
+      ["0:56", "3. 30 minute ki window?"],
+      ["1:13", "4. \"Raw\" likha = pure?"],
+      ["1:38", "5. Gainer ke bina wazan nahi?"],
+      ["2:01", "Recap + free trial"],
+    ],
+    sources: [
+      ["Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28642676/"],
+      ["Kerksick et al. 2017, ISSN position stand: nutrient timing (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28919842/"],
+      ["NIDA, Anabolic Steroids DrugFacts", "https://nida.nih.gov/publications/drugfacts/anabolic-steroids"],
+      ["Citizens Protein Project 2024, protein supplements sold in India (Medicine)", "https://pubmed.ncbi.nlm.nih.gov/38579036/"],
+      ["ICMR-NIN, Indian Food Composition Tables 2017", "https://www.nin.res.in/"],
+      ["NHS, Advice for underweight adults", "https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/advice-for-underweight-adults/"],
+    ],
+    tags: ["supplement myth buster", "whey protein hindi", "mass gainer", "whey protein steroid", "protein powder myths", "anabolic window", "raw whey", "weight gain diet hindi"],
+    series: "supplements",
   },
   {
     id: "long-egg-yolk-myths-27",
@@ -1274,6 +1336,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["high bp diet hindi", "diet after 40", "low salt diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
+    id: "short-supp-mass-gainer",
+    date: "2026-12-04",
+    title: "Mass Gainer Ke Bina Weight Nahi Badhega? Desi Gainer Shake | Supplement Myth Buster #3 #shorts",
+    intro: "Patle ho aur socha gainer ke bina wazan nahi badhega? Wazan tab badhta hai jab roz zaroorat se thodi zyada calories khao. Gainer mostly carbs + thoda protein hai. Ghar ka gainer: doodh, kela, moongphali ka shake, saath mein oats, ghee wali roti, paneer, dal. Aur weight training zaroor karo. Achanak wazan girna ya bhookh na lagna ho toh pehle doctor ko dikhao.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NHS, Advice for underweight adults", "https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/advice-for-underweight-adults/"],
+      ["ICMR-NIN, Indian Food Composition Tables 2017", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplement myth buster", "mass gainer", "weight gain shake", "homemade mass gainer", "weight gain hindi", "skinny to muscle", "banana peanut shake", "weight gain diet"],
+    short: true,
+    series: "supplements",
   },
   {
     id: "long-roti-rice-myths-28",
@@ -1326,6 +1404,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["5 PDF books ₹374", "/library/pack/yoga"],
   },
   {
+    id: "short-supp-bcaa",
+    date: "2026-12-05",
+    title: "BCAA Nahi Liya Toh Muscle Tootegi? Gym Ka Sabse Mehenga Myth | Supplement Myth Buster #4 #shorts",
+    intro: "BCAA teen amino acids hain: leucine, isoleucine, valine. Muscle banane ke liye 9 zaroori amino acids chahiye, sirf 3 nahi. Research review (Wolfe 2017): akele BCAA se muscle banne ki raftaar nahi badhti. Din bhar ka protein poora ho toh alag se fayda aur kam. Dal-chawal, dahi, paneer, ande, soya mein sab amino acids milte hain.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Wolfe 2017, BCAAs and muscle protein synthesis: myth or reality? (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28852372/"],
+      ["Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28642676/"],
+    ],
+    tags: ["supplement myth buster", "bcaa", "bcaa benefits hindi", "bcaa myth", "amino acids muscle", "bcaa vs whey", "gym supplements hindi", "dal chawal protein"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "long-anaemia-myths-6",
     date: "2026-12-06",
     title: "Khoon Ki Kami (Anaemia) Ke 6 Jhooth | WHO Facts Hinglish",
@@ -1366,6 +1460,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["jain diet plan", "jain protein food", "body recomposition", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
+    id: "short-supp-glutamine",
+    date: "2026-12-06",
+    title: "Glutamine Se Recovery Double? Gym Bag Mein Rakhne Se Pehle Dekho | Supplement Myth Buster #5 #shorts",
+    intro: "Glutamine ek amino acid hai jo body khud banati hai. Healthy logon ki studies mein glutamine se strength ya recovery mein khaas farq nahi dikha (Gleeson 2008). Hospital mein gambhir bimari mein doctor ise alag wajah se dete hain. Recovery ka asli formula: 7+ ghante neend, poora protein, paani. Doodh, dahi, paneer, ande, dal mein glutamine khud hota hai.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Gleeson 2008, Glutamine supplementation in exercise and sport training (J Nutr)", "https://pubmed.ncbi.nlm.nih.gov/18806122/"],
+      ["CDC, About Sleep", "https://www.cdc.gov/sleep/about/index.html"],
+    ],
+    tags: ["supplement myth buster", "glutamine", "glutamine benefits hindi", "muscle recovery", "glutamine myth", "post workout recovery", "sleep and muscle", "gym supplements"],
+    short: true,
+    series: "supplements",
   },
   {
     id: "long-intermittent-fasting-myths-29",
@@ -1418,6 +1528,30 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["5 PDF books ₹325", "/library/pack/calm-sleep"],
   },
   {
+    id: "long-bcaa-preworkout-myths-37",
+    date: "2026-12-07",
+    title: "BCAA, Glutamine, Pre-Workout: 4 Myths Ka Sach | Supplement Myth Buster",
+    intro: "BCAA nahi liya toh muscle tootegi? Glutamine se recovery double? Pre-workout ke bina energy nahi? Jhunjhuni matlab zabardast asar? 4 myths ka fact check: Wolfe 2017, Gleeson 2008, ISSN caffeine aur beta-alanine position stands, US FDA.\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. BP, dil ki bimari, pregnancy ya koi dawa chal rahi ho toh caffeine wale supplement doctor se pooch kar hi lo. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: BCAA aur pre-workout"],
+      ["0:13", "1. BCAA nahi = muscle tootegi?"],
+      ["0:32", "2. Glutamine = double recovery?"],
+      ["0:49", "3. Pre-workout ke bina energy nahi?"],
+      ["1:21", "4. Jhunjhuni = zabardast asar?"],
+      ["1:39", "Recap + free trial"],
+    ],
+    sources: [
+      ["Wolfe 2017, BCAAs and muscle protein synthesis: myth or reality? (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28852372/"],
+      ["Gleeson 2008, Glutamine supplementation in exercise and sport training (J Nutr)", "https://pubmed.ncbi.nlm.nih.gov/18806122/"],
+      ["CDC, About Sleep", "https://www.cdc.gov/sleep/about/index.html"],
+      ["Guest et al. 2021, ISSN position stand: caffeine and exercise performance (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/33388079/"],
+      ["US FDA, Spilling the Beans: How Much Caffeine Is Too Much?", "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"],
+      ["Trexler et al. 2015, ISSN position stand: beta-alanine (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/26175657/"],
+    ],
+    tags: ["supplement myth buster", "bcaa hindi", "glutamine", "pre workout hindi", "pre workout tingling", "beta alanine", "caffeine before workout", "gym supplements myths"],
+    series: "supplements",
+  },
+  {
     id: "long-desi-supplement-myths-30",
     date: "2026-12-08",
     title: "Ashwagandha, Shilajit, Creatine, Testo Boosters | Supplement Myth Vs Fact",
@@ -1439,7 +1573,7 @@ export const LONG_VIDEOS: LongVideo[] = [
       ["Saper et al. 2008, Lead, mercury and arsenic in Ayurvedic medicines sold online (JAMA)", "https://pubmed.ncbi.nlm.nih.gov/18728265/"],
       ["Clemesha et al. 2020, Testosterone boosting supplements (World J Mens Health)", "https://pubmed.ncbi.nlm.nih.gov/31385468/"],
     ],
-    tags: ["ashwagandha benefits hindi", "shilajit sach", "creatine steroid", "testosterone booster", "supplement myths", "desi supplements gym"],
+    tags: ["supplement myth buster", "ashwagandha benefits hindi", "shilajit sach", "creatine steroid", "testosterone booster", "supplement myths", "desi supplements gym"],
   },
   {
     id: "promo-diet-bengali-fish",
@@ -1465,6 +1599,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["bengali diet plan", "fish diet weight loss", "east indian diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
+  },
+  {
+    id: "short-supp-pre-workout",
+    date: "2026-12-08",
+    title: "Pre-Workout Ke Bina Energy Nahi? Dabbe Ke Andar Ka Sach | Supplement Myth Buster #6 #shorts",
+    intro: "Zyada-tar pre-workout ka main ingredient caffeine hai, wahi jo chai-coffee mein. Research mein kuch logon ki performance thodi badhti hai, par har dabbe mein caffeine alag, aur zyada caffeine se dhadkan tez, ghabrahat, neend kharab. Desi pre-workout: ek kela + chaho toh ek cup black coffee ya chai. Sabse bada pre-workout: poori neend. BP, dil ki bimari, pregnancy ya dawa chal rahi ho toh doctor se poocho.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Guest et al. 2021, ISSN position stand: caffeine and exercise performance (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/33388079/"],
+      ["US FDA, Spilling the Beans: How Much Caffeine Is Too Much?", "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much"],
+    ],
+    tags: ["supplement myth buster", "pre workout", "pre workout hindi", "caffeine gym", "black coffee before workout", "natural pre workout", "banana before workout", "pre workout side effects"],
+    short: true,
+    series: "supplements",
   },
   {
     id: "long-sugar-swap-myths-31",
@@ -1518,6 +1668,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["5 PDF books ₹402", "/library/pack/mind"],
   },
   {
+    id: "short-supp-l-carnitine",
+    date: "2026-12-09",
+    title: "L-Carnitine Se Fat Pighlega? Fat Burner Ka Sach | Supplement Myth Buster #7 #shorts",
+    intro: "Carnitine fat ko cell ke power house, mitochondria, tak le jaata hai. Par healthy body itna carnitine khud bana leti hai (NIH). Weight loss par studies ke nateeje mile-jule hain. Fat tab ghatta hai jab calories kam aur movement zyada ho: roz chalo, weight training, poora protein. Carnitine doodh, dahi, chicken aur machhli se bhi milta hai.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Carnitine", "https://ods.od.nih.gov/factsheets/Carnitine-HealthProfessional/"],
+      ["NIH Office of Dietary Supplements, Dietary Supplements for Weight Loss", "https://ods.od.nih.gov/factsheets/WeightLoss-HealthProfessional/"],
+    ],
+    tags: ["supplement myth buster", "l carnitine", "l carnitine hindi", "fat burner myth", "fat loss supplement", "carnitine fat loss", "weight loss hindi", "mitochondria fat"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "long-back-pain-myths-7",
     date: "2026-12-10",
     title: "Kamar Dard Ke 7 Jhooth | Bed Rest, Painkiller, Sciatica | WHO Facts Hinglish",
@@ -1563,6 +1729,28 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
+    id: "long-fat-burner-myths-38",
+    date: "2026-12-10",
+    title: "Fat Burner, L-Carnitine, Green Tea Extract: 4 Myths | Supplement Myth Buster",
+    intro: "Fat burner pill se charbi pighlegi? \"Herbal\" likha toh safe? L-carnitine se fat melt? Green tea extract utna hi safe jitni green tea? 4 myths ka fact check: NIH Office of Dietary Supplements, NIH LiverTox aur US FDA ki tainted weight-loss products list.\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. Liver ki problem, thyroid, BP ya koi dawa chal rahi ho toh weight-loss supplement doctor se pooche bina mat lo. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: fat burners"],
+      ["0:11", "1. Fat burner = charbi gaayab?"],
+      ["0:34", "2. \"Herbal\" = safe?"],
+      ["0:50", "3. L-carnitine = fat melt?"],
+      ["1:11", "4. Extract = green tea jaisa safe?"],
+      ["1:30", "Recap + free trial"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Dietary Supplements for Weight Loss", "https://ods.od.nih.gov/factsheets/WeightLoss-HealthProfessional/"],
+      ["US FDA, Tainted Weight Loss Products", "https://www.fda.gov/drugs/medication-health-fraud/tainted-weight-loss-products"],
+      ["NIH Office of Dietary Supplements, Carnitine", "https://ods.od.nih.gov/factsheets/Carnitine-HealthProfessional/"],
+      ["NIH LiverTox, Green Tea", "https://www.ncbi.nlm.nih.gov/books/NBK547925/"],
+    ],
+    tags: ["supplement myth buster", "fat burner", "fat burner side effects", "l carnitine hindi", "green tea extract liver", "herbal weight loss", "weight loss supplements", "fat loss hindi"],
+    series: "supplements",
+  },
+  {
     id: "long-gym-mistakes-32",
     date: "2026-12-11",
     title: "Desi Gym Mistakes: 6 Workout Blunders Ruining Your Muscle Gain",
@@ -1604,6 +1792,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-supp-multivitamin",
+    date: "2026-12-11",
+    title: "Roz Multivitamin = Sehat Ka Insurance? | Supplement Myth Buster #8 #shorts",
+    intro: "US Preventive Services Task Force ne 2022 mein research dekhi: healthy logon mein multivitamin se dil ki bimari ya cancer se bachaav ka pakka saboot nahi mila. Kami ho toh baat alag: pregnancy mein folic acid, ya test mein vitamin D ya B12 kam aaye toh doctor ki salah se. Asli multivitamin rangeen thali hai: dal, hari sabzi, salad, dahi, phal, saabut anaaj.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["US Preventive Services Task Force 2022, Vitamin and mineral supplementation", "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cvd-and-cancer-preventive-medication"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplement myth buster", "multivitamin", "multivitamin benefits hindi", "multivitamin myth", "balanced diet india", "vitamins hindi", "colourful thali", "health supplements"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "long-lemon-honey-myths-33",
     date: "2026-12-12",
     title: "Lemon Honey Warm Water: Morning Fat Loss Drink Myth Vs Reality",
@@ -1642,6 +1846,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["diet chart hindi", "how diet plan works", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
     short: true,
+  },
+  {
+    id: "short-supp-vitamin-d",
+    date: "2026-12-12",
+    title: "Khidki Ki Dhoop Se Vitamin D? Sheesha UVB Rokta Hai | Supplement Myth Buster #9 #shorts",
+    intro: "Vitamin D skin mein tab banta hai jab dhoop ki UVB kiranein skin par padti hain. Aam khidki ka sheesha UVB rok deta hai (NICE NG34), isliye band khidki ke peeche baithne se vitamin D nahi banta. Bahar khuli dhoop lo, haath-baazu khule, par skin laal hone se pehle chhaaon mein aa jao. Ande ki zardi, machhli, fortified doodh mein bhi vitamin D. Haddiyon mein dard ya thakan ho toh test karao, vitamin D doctor ki salah se hi lo.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NICE guideline NG34, Sunlight exposure: risks and benefits", "https://www.nice.org.uk/guidance/ng34"],
+      ["NIH Office of Dietary Supplements, Vitamin D", "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"],
+    ],
+    tags: ["supplement myth buster", "vitamin d", "vitamin d sunlight", "vitamin d hindi", "sunlight through window", "vitamin d deficiency india", "dhoop vitamin d", "uvb vitamin d"],
+    short: true,
+    series: "supplements",
   },
   {
     id: "long-belly-fat-diet-34",
@@ -1685,6 +1905,21 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-supp-veg-b12",
+    date: "2026-12-13",
+    title: "Vegetarian Ho Toh B12 Milega Hi Nahi? Aadha Sach | Supplement Myth Buster #10 #shorts",
+    intro: "B12 naso aur khoon ke liye zaroori hai. Kami se thakan, jhunjhuni, khoon ki kami ho sakti hai. B12 sirf meat mein nahi, doodh, dahi, paneer aur ande mein bhi hai. Par dal, sabzi, anaaj mein B12 nahi hota; vegan logon ko fortified food ya doctor ki salah chahiye. Buzurgon mein aur kuch dawaon ke saath B12 kam sokha jaata hai: thakan ya jhunjhuni ho toh test karao.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Vitamin B12", "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"],
+    ],
+    tags: ["supplement myth buster", "vitamin b12", "b12 vegetarian", "b12 deficiency hindi", "vegetarian b12 sources", "b12 foods", "vegan b12", "b12 symptoms"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "long-knee-pain-myths-7",
     date: "2026-12-14",
     title: "Ghutne Ke Dard Ke 7 Jhooth | Arthritis, Exercise, Weight | WHO Facts Hinglish",
@@ -1720,6 +1955,30 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["veg diet plan fat loss", "vegetarian weight loss hindi", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
     short: true,
+  },
+  {
+    id: "long-vitamin-myths-39",
+    date: "2026-12-14",
+    title: "Multivitamin, Vitamin D, B12: 4 Myths Ka Sach | Supplement Myth Buster",
+    intro: "Roz multivitamin = sehat ka insurance? Khidki ki dhoop se vitamin D? Veg logon ko B12 milta hi nahi? Vitamin jitna zyada utna achha? 4 myths ka fact check: US Preventive Services Task Force 2022, NICE NG34 aur NIH Office of Dietary Supplements (vitamin D, B12, C).\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. Vitamin D, B12 ya koi bhi vitamin test karwa kar, doctor ki salah se hi lo; zyada lena bhi nuksaan kar sakta hai. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: vitamins"],
+      ["0:13", "1. Multivitamin = insurance?"],
+      ["0:36", "2. Khidki ki dhoop = vitamin D?"],
+      ["1:00", "3. Veg = B12 nahi?"],
+      ["1:26", "4. Zyada vitamin = zyada fayda?"],
+      ["1:48", "Recap + free trial"],
+    ],
+    sources: [
+      ["US Preventive Services Task Force 2022, Vitamin and mineral supplementation", "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/vitamin-supplementation-to-prevent-cvd-and-cancer-preventive-medication"],
+      ["NICE guideline NG34, Sunlight exposure: risks and benefits", "https://www.nice.org.uk/guidance/ng34"],
+      ["NIH Office of Dietary Supplements, Vitamin D", "https://ods.od.nih.gov/factsheets/VitaminD-HealthProfessional/"],
+      ["NIH Office of Dietary Supplements, Vitamin B12", "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/"],
+      ["NIH Office of Dietary Supplements, Vitamin C", "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/"],
+      ["ICMR-NIN, Dietary Guidelines for Indians (2024)", "https://www.nin.res.in/"],
+    ],
+    tags: ["supplement myth buster", "multivitamin hindi", "vitamin d sunlight", "vitamin b12 vegetarian", "vitamin overdose", "vitamin myths", "vitamin d deficiency", "vitamins hindi"],
+    series: "supplements",
   },
   {
     id: "long-cooking-oils-myths-35",
@@ -1762,6 +2021,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-supp-omega3-alsi",
+    date: "2026-12-15",
+    title: "Alsi Kha Lo, Fish Oil Ki Zaroorat Khatam? Omega-3 Ka Sach | Supplement Myth Buster #11 #shorts",
+    intro: "Omega-3 teen tarah ke: ALA, EPA, DHA. Alsi aur akhrot mein ALA, machhli mein EPA aur DHA. Body ALA ka sirf thoda hissa EPA/DHA mein badal paati hai (NIH). Par alsi bekaar nahi: fibre + ALA, peeskar roti, dahi ya salad mein daalo. Machhli khaate ho toh hafte mein do baar kaafi (AHA). Fish oil supplement doctor se pooch kar lo, khaaskar khoon patla karne ki dawa chal rahi ho.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Omega-3 Fatty Acids", "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/"],
+      ["American Heart Association, Fish and Omega-3 Fatty Acids", "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/fish-and-omega-3-fatty-acids"],
+    ],
+    tags: ["supplement myth buster", "omega 3", "flaxseed vs fish oil", "alsi ke fayde", "omega 3 vegetarian", "ala epa dha", "fish oil hindi", "walnut omega 3"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "short-promo-diet-office",
     date: "2026-12-16",
     title: "Office Job Walon Ka Diet Plan #shorts",
@@ -1779,6 +2054,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-supp-collagen",
+    date: "2026-12-16",
+    title: "Collagen Powder Se Naye Ghutne? Science Kya Kehti Hai | Supplement Myth Buster #12 #shorts",
+    intro: "Collagen ek protein hai: pet mein ye bhi baaki protein ki tarah amino acids aur chhote tukdon mein toot jaata hai, seedha ghutne mein jaakar nahi baithta. Kuch chhoti studies mein jodon ke dard mein thoda fayda, par saboot abhi kamzor. Body collagen khud banati hai: protein + vitamin C chahiye. Amla, amrood, santra, nimbu ke saath dal, paneer, ande. Ghutne mein soojan ya tez dard ho toh pehle doctor ko dikhao.\nSupplement Myth Buster series: har din ek supplement ka sach.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Vitamin C", "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/"],
+      ["Jäger et al. 2017, ISSN position stand: protein and exercise (JISSN)", "https://pubmed.ncbi.nlm.nih.gov/28642676/"],
+    ],
+    tags: ["supplement myth buster", "collagen", "collagen for knees", "collagen powder hindi", "joint pain diet", "vitamin c collagen", "amla vitamin c", "knee health"],
+    short: true,
+    series: "supplements",
+  },
+  {
     id: "short-promo-lib-muscle",
     date: "2026-12-17",
     title: "Muscle Kaise Badhti Hai #shorts",
@@ -1792,6 +2083,29 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["muscle gain hindi", "strength training hindi", "kettlebell workout", "pdf books hindi", "fitness ebook", "royal supplements library"],
     buy: ["5 PDF books ₹423", "/library/pack/muscle"],
     short: true,
+  },
+  {
+    id: "long-omega-collagen-myths-40",
+    date: "2026-12-17",
+    title: "Omega-3, Fish Oil, Collagen, Magnesium: 4 Myths | Supplement Myth Buster",
+    intro: "Alsi = fish oil? Fish oil se sabka dil safe? Collagen powder se naye ghutne? Magnesium sabko supplement se lena chahiye? 4 myths ka fact check: VITAL trial (NEJM 2019, 25,000+ log), American Heart Association aur NIH Office of Dietary Supplements (omega-3, vitamin C, magnesium).\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. Khoon patla karne ki dawa, kidney ki problem ya koi bhi bimari ho toh ye supplements doctor se pooch kar hi lo. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: omega-3 aur collagen"],
+      ["0:11", "1. Alsi = fish oil?"],
+      ["0:36", "2. Fish oil = sabka dil safe?"],
+      ["1:05", "3. Collagen = naye ghutne?"],
+      ["1:29", "4. Magnesium = sabko supplement?"],
+      ["1:48", "Recap + free trial"],
+    ],
+    sources: [
+      ["NIH Office of Dietary Supplements, Omega-3 Fatty Acids", "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/"],
+      ["Manson et al. 2019, VITAL trial: marine n-3 fatty acids (NEJM)", "https://pubmed.ncbi.nlm.nih.gov/30415637/"],
+      ["American Heart Association, Fish and Omega-3 Fatty Acids", "https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/fats/fish-and-omega-3-fatty-acids"],
+      ["NIH Office of Dietary Supplements, Vitamin C", "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/"],
+      ["NIH Office of Dietary Supplements, Magnesium", "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/"],
+    ],
+    tags: ["supplement myth buster", "omega 3 hindi", "fish oil benefits", "flaxseed omega 3", "collagen knees", "magnesium foods", "joint health", "heart health supplements"],
+    series: "supplements",
   },
   {
     id: "long-after-60-myths-7",
@@ -1834,6 +2148,27 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["women fat loss home", "home workout women hindi", "women weight training", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
     short: true,
+  },
+  {
+    id: "long-fake-supplement-myths-41",
+    date: "2026-12-18",
+    title: "Fake Supplements Kaise Pehchane? 4 Myths Ka Sach | Supplement Myth Buster",
+    intro: "Aag ya garam paani ke test se asli-nakli pata chalta hai? Label par jo likha wahi dabbe mein? Herbal blend pure whey se zyada safe? Supplement mein kabhi dawa nahi milaai jaati? 4 myths ka fact check: Citizens Protein Project 2024 (36 powders ki lab jaanch) aur US FDA ki bodybuilding aur weight-loss products par chetavani.\nSupplement Myth Buster series: har din ek supplement ka sach.\nYe general jaankari hai, medical advice nahi. Koi supplement lene ke baad dhadkan, peeliya ya pet dard jaisa kuch ho toh turant doctor ko dikhao. Visuals AI images aur AI animation hain, narration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Intro: nakli supplements"],
+      ["0:11", "1. Ghar ke test = asli-nakli?"],
+      ["0:30", "2. Label = sach?"],
+      ["0:46", "3. Herbal blend = zyada safe?"],
+      ["1:03", "4. Supplement mein dawa nahi?"],
+      ["1:31", "Recap + free trial"],
+    ],
+    sources: [
+      ["Citizens Protein Project 2024, protein supplements sold in India (Medicine)", "https://pubmed.ncbi.nlm.nih.gov/38579036/"],
+      ["US FDA, Caution: Bodybuilding Products Can Be Risky", "https://www.fda.gov/consumers/consumer-updates/caution-bodybuilding-products-can-be-risky"],
+      ["US FDA, Tainted Weight Loss Products", "https://www.fda.gov/drugs/medication-health-fraud/tainted-weight-loss-products"],
+    ],
+    tags: ["supplement myth buster", "fake supplements", "fake whey protein", "how to check original protein", "fssai supplements", "steroids in supplements", "protein powder lab test", "supplement safety india"],
+    series: "supplements",
   },
   {
     id: "short-promo-lib-smart-nutrition",
@@ -2174,6 +2509,14 @@ export function buyLink(v: LongVideo): string | null {
 }
 
 /** The first video whose date has come and that isn't on YouTube yet (or being uploaded). */
+/** The auto-Short slot a series video replaces on its date. */
+export const SERIES_SHORT_SLOT = 3;
+
+/** True when a series video is scheduled for this IST date, so the auto Short in SERIES_SHORT_SLOT sits out. */
+export function seriesDay(today: string, list: LongVideo[] = LONG_VIDEOS): boolean {
+  return list.some((v) => v.series && v.date === today);
+}
+
 export function dueLongVideo(today: string, used: Iterable<string>, list: LongVideo[] = LONG_VIDEOS): LongVideo | null {
   const done = new Set(used);
   return list.find((v) => v.date <= today && !done.has(v.id)) ?? null;

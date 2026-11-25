@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { evaluate, expectedSocialChannels, healthLines, type Snapshot } from "./checks";
+import { LONG_VIDEOS } from "@/lib/youtube/long-videos";
+import { evaluate, expectedSocialChannels, expectedYoutubeChannels, healthLines, YOUTUBE_CHANNELS, type Snapshot } from "./checks";
 import { alertDraft, publicStatus } from "./alerts";
 
 const now = new Date("2026-10-25T08:00:00Z");
@@ -137,5 +138,13 @@ describe("YouTube Shorts watchdog", () => {
     const [p] = evaluate({ ...healthy(), youtube: { ...yt, keptPrivate: 3 } }, now);
     expect(p.key).toBe("youtube-private");
     expect(p.fix).toContain("audit");
+  });
+});
+
+describe("expected YouTube rows", () => {
+  it("drops the third auto Short on a Supplement Myth Buster day (the series video takes that slot)", () => {
+    const day = LONG_VIDEOS.find((v) => v.series === "supplements")!.date;
+    expect(expectedYoutubeChannels(day)).toEqual(["youtube-1", "youtube-2"]);
+    expect(expectedYoutubeChannels("2026-11-25")).toEqual(YOUTUBE_CHANNELS);
   });
 });

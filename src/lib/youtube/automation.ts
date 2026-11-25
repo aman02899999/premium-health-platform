@@ -15,7 +15,7 @@ import { QUEUE_SLOT } from "./queue-core";
 import { LONG_HINDI, longTitleHindiFirst } from "./hindi";
 import { hindiThumbnail } from "./hindi-thumb";
 import { claimClip, recordClip, type RunnerClipJob } from "./clips";
-import { LONG_VIDEOS, dueLongVideo, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
+import { LONG_VIDEOS, SERIES_SHORT_SLOT, dueLongVideo, seriesDay, longVideoDescription, longVideoFile, longVideoTags, longVideoThumb, type LongVideo } from "./long-videos";
 
 // Three Shorts a day (vercel.json: /api/cron/youtube?slot=1, 2, 3, and slot=all late at night to
 // retry). Each slot is its own social_posts row (channel youtube-1/2/3, one per day), so a slot
@@ -27,7 +27,7 @@ export type YtSlot = (typeof YT_SLOTS)[number];
 const REFRESH_KEY = "youtube:refresh";
 const CHANNEL_KEY = "youtube:channel";
 
-export type ShortResult = "off" | "not-connected" | "already-posted" | "bank-empty" | `published${string}` | `failed: ${string}`;
+export type ShortResult = "off" | "not-connected" | "already-posted" | "bank-empty" | "series-day" | `published${string}` | `failed: ${string}`;
 
 async function token(name: string): Promise<string | null> {
   const { rows } = await pool.query<{ value: string }>(`select value from public.integration_tokens where name = $1`, [name]);
@@ -119,6 +119,7 @@ export async function runShort(slot: YtSlot, now: Date, biz: PostBiz, deps: Shor
   const refresh = await token(REFRESH_KEY);
   if (!refresh) return "not-connected";
   const today = todayIST(now);
+  if (slot === SERIES_SHORT_SLOT && seriesDay(today)) return "series-day";
   // A failed row of this slot is retried with whatever script is next (its old one is free again).
   const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [`youtube-${slot}`, today]);
   if (mine[0]?.status === "published") return "already-posted";
@@ -166,6 +167,7 @@ export async function claimRunnerShort(slot: YtSlot, now: Date, biz: PostBiz, de
   const refresh = await token(REFRESH_KEY);
   if (!refresh) return "not-connected";
   const today = todayIST(now);
+  if (slot === SERIES_SHORT_SLOT && seriesDay(today)) return "series-day";
   const { rows: mine } = await pool.query<{ status: string }>(`select status from public.social_posts where channel = $1 and post_date = $2`, [`youtube-${slot}`, today]);
   if (mine[0]?.status === "published") return "already-posted";
   const pick = await pickScript(slot);

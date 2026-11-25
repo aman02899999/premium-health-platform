@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/site";
 import { addDays, todayIST } from "@/lib/growth/dates";
 import { facebookConfigured, instagramConfigured } from "@/lib/social/meta";
 import { dispatch, enqueue } from "@/lib/growth/outbox";
-import { YOUTUBE_CHANNELS, evaluate, expectedSocialChannels, type JobRun, type Problem, type Snapshot } from "./checks";
+import { evaluate, expectedYoutubeChannels, expectedSocialChannels, type JobRun, type Problem, type Snapshot } from "./checks";
 import { youtubeShortsOn } from "@/lib/youtube/client";
 import { alertDraft, telegramText } from "./alerts";
 
@@ -114,7 +114,7 @@ function youtubeDay(date: string, rows: { channel: string; status: string; error
   return {
     date,
     connected,
-    missing: YOUTUBE_CHANNELS.filter((c) => !yt.some((r) => r.channel === c)),
+    missing: expectedYoutubeChannels(date).filter((c) => !yt.some((r) => r.channel === c)),
     failed: yt.filter((r) => r.status !== "published").map((r) => ({ channel: r.channel, error: r.error ?? `still ${r.status}` })),
     keptPrivate: yt.filter((r) => r.status === "published" && r.error?.startsWith("uploaded as private")).length,
   };

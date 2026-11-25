@@ -3,7 +3,7 @@
 // topic when its title or tags contain one of the topic's words (whole words, any case).
 // Add a word here and both the playlists and the site embeds pick it up.
 
-export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "pain-age" | "sleep" | "lifestyle";
+export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "supplement-series" | "pain-age" | "sleep" | "lifestyle";
 
 export type Topic = { key: TopicKey; title: string; description: string; words: string[] };
 
@@ -50,7 +50,14 @@ export const TOPICS: Topic[] = [
     key: "supplements",
     title: "Supplements: Sach ya Jhooth",
     description: `Protein powder, creatine, fat burner aur pills ka honest sach. ${GYM}`,
-    words: ["supplement", "supplements", "creatine", "whey", "protein powder", "fat burner", "pills", "multivitamin", "steroid", "steroids"],
+    words: ["supplement", "supplements", "creatine", "whey", "protein powder", "fat burner", "pills", "multivitamin", "steroid", "steroids", "bcaa", "glutamine", "pre-workout", "mass gainer", "l-carnitine", "carnitine", "collagen", "omega-3", "fish oil", "ashwagandha", "shilajit"],
+  },
+  {
+    // The Supplement Myth Buster series (Dec 2026): every video in it carries this tag.
+    key: "supplement-series",
+    title: "Supplement Myth Buster: Sach ya Jhooth (Hinglish)",
+    description: `Whey, mass gainer, BCAA, pre-workout, fat burner, vitamins, omega-3, collagen: har supplement ka myth, science aur desi food swap, sources ke saath. ${GYM}`,
+    words: ["supplement myth buster"],
   },
   {
     key: "pain-age",
