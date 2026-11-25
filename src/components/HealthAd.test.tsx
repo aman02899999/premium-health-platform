@@ -3,6 +3,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 const auth = { isPremium: false, loading: false };
 vi.mock("@/health/components/auth/AuthContext", () => ({ useAuth: () => auth }));
+const nav = { path: null as string | null };
+vi.mock("next/navigation", () => ({ usePathname: () => nav.path }));
 
 describe("in-article ad unit", () => {
   it("renders one in-article unit with the right client and slot, with reserved height", async () => {
@@ -43,5 +45,26 @@ describe("where the ad script may load", () => {
     const { adsAllowedOn } = await import("@/lib/adsense");
     for (const p of ["/health/diseases/asthma", "/health/diseases/migraine/", "/hi/health/diseases/asthma"]) expect(adsAllowedOn(p), p).toBe(false);
     for (const p of ["/health/diseases", "/health/diseases/type-2-diabetes", "/health/diseases/pcos"]) expect(adsAllowedOn(p), p).toBe(true);
+  });
+
+  it("never on the gym posts people read while choosing a gym (a rival gym's ad could show)", async () => {
+    const { adsAllowedOn } = await import("@/lib/adsense");
+    for (const p of [
+      "/blog/gym-fees-in-noida-membership-cost-guide",
+      "/blog/best-gym-in-sector-93-noida-checklist",
+      "/blog/sector-93-noida-mein-gym-kaise-chune",
+      "/blog/couple-gym-membership-noida-train-together",
+      "/blog/gym-for-women-noida-beginners-guide",
+    ]) expect(adsAllowedOn(p), p).toBe(false);
+    for (const p of ["/blog/creatine-safe-hai-kya-fayde-side-effects", "/blog/home-workout-vs-gym-which-is-better"]) expect(adsAllowedOn(p), p).toBe(true);
+  });
+
+  it("the in-article unit renders nothing on a page where ads aren't allowed", async () => {
+    const { HealthAd } = await import("./HealthAd");
+    nav.path = "/blog/gym-fees-in-noida-membership-cost-guide";
+    expect(renderToStaticMarkup(<HealthAd />)).toBe("");
+    nav.path = "/blog/creatine-safe-hai-kya-fayde-side-effects";
+    expect(renderToStaticMarkup(<HealthAd />)).toContain("adsbygoogle");
+    nav.path = null;
   });
 });

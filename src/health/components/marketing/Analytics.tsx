@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 /**
  * Pro digital marketing optimized:
- * - Google Analytics (GA4) placeholder — env NEXT_PUBLIC_GA_ID
+ * - Google Analytics (GA4) is loaded by GoogleAnalytics in HealthShell; this file only adds events
  * - Facebook Pixel placeholder — env NEXT_PUBLIC_FB_PIXEL_ID
  * - UTM tracking + session storage
  * - Affiliate click tracking
@@ -55,10 +55,7 @@ export function Analytics() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
-    // GA4
-    if (window.gtag) {
-      window.gtag("event", "page_view", { page_path: url });
-    }
+    // GA4 counts page views itself (GoogleAnalytics in HealthShell), so none is sent here.
     // FB Pixel
     if (window.fbq) {
       window.fbq("track", "PageView");
@@ -88,32 +85,7 @@ export function Analytics() {
 
   return (
     <>
-      {/* GA4 */}
-      {process.env.NEXT_PUBLIC_GA_ID ? (
-        <>
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', { send_page_view: false });
-              `,
-            }}
-          />
-        </>
-      ) : (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              console.log('[Analytics] GA_ID not set — using console mode');
-            `,
-          }}
-        />
-      )}
+      {/* GA4 loads from <GoogleAnalytics /> in HealthShell, which also counts page views. */}
       {/* FB Pixel placeholder */}
       {process.env.NEXT_PUBLIC_FB_PIXEL_ID ? (
         <script
