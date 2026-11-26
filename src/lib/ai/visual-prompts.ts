@@ -188,11 +188,40 @@ export const SUPPLEMENT2_VIDEO_PROMPTS: VisualPrompt[] = [
   A("thali-pan-anim", "Slow overhead camera pan across a colourful Indian thali with dal, sabzi, salad, curd, roti and rice.", "Multivitamin video"),
 ];
 
+// "bloodlab": cinematic 3D lab visuals for the "Blood test ke baad khoon lab mein kahan jaata hai"
+// Reel (dark modern lab, teal and gold light). Same no-text, no-faces rules.
+export const BLOODLAB_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("blood-vial-lab-dark", "Cinematic 3D render of a single small blood collection tube with a purple cap standing on a black reflective surface in a dark modern laboratory, teal rim light, floating dust particles.", "Blood lab Reel hook"),
+  A("tube-caps-rack", "Photograph of a rack of blood collection tubes with purple, grey, gold and light blue caps in a clean modern lab, shallow depth of field, cool light.", "Blood lab Reel: coloured caps"),
+  A("tube-caps-closeup", "Macro photograph of four blood collection tubes side by side with purple, grey, gold and red caps, dark background, soft studio light.", "Blood lab Reel: which cap for which test"),
+  A("centrifuge-open", "Photograph looking down into an open laboratory centrifuge with blood tubes loaded in the rotor, clean white machine, cool light.", "Blood lab Reel: centrifuge"),
+  A("centrifuge-spin", "Photograph of a laboratory centrifuge rotor spinning with motion blur, blood tubes inside, cool blue light.", "Blood lab Reel: spinning"),
+  A("tube-layers-macro", "Macro photograph of a single clear test tube of centrifuged blood: dark red layer at the bottom, a very thin white layer in the middle, clear straw-yellow liquid on top, dark background.", "Blood lab Reel: three layers"),
+  A("plasma-golden-molecules", "3D visualisation of glowing golden liquid with tiny floating molecules of different shapes and colours suspended in it, dark background.", "Blood lab Reel: what is in plasma"),
+  A("cells-laser-channel", "3D medical visualisation of red blood cells and a few white blood cells passing one by one through a narrow glass channel crossed by a thin blue laser beam, dark sci-fi lab.", "Blood lab Reel: cell counter"),
+  A("analyzer-pipette-drop", "Macro photograph of a robotic laboratory pipette tip releasing a single drop of straw-yellow serum into a small clear cuvette, dark modern analyser, cool light.", "Blood lab Reel: chemistry analyser"),
+  A("cuvette-color-change", "Macro photograph of a row of small clear cuvettes with liquid in a gradient from pale pink to deep purple, dark background, studio light.", "Blood lab Reel: colour reaction"),
+  A("light-through-cuvette", "Cinematic photograph of a thin beam of light passing through a small cuvette of coloured liquid onto a sensor in a dark laboratory instrument.", "Blood lab Reel: light gives the number"),
+  A("lab-report-hologram", "3D render of a glowing holographic medical report panel with abstract bar graphs and lines floating above a lab bench, dark room, teal light, no readable text or numbers.", "Blood lab Reel: quality check and report"),
+  A("dumbbell-blood-tube", "Photograph of a black dumbbell on a gym floor next to a single blood collection tube with a gold cap, dramatic side light, dark background.", "Blood lab Reel: gym tip"),
+  A("report-doctor-desk", "Photograph of a doctor's hands holding a printed blood test report over a desk with a stethoscope, soft light, face not visible, no readable text.", "Blood lab Reel: show your doctor"),
+];
+
+export const BLOODLAB_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("vial-orbit-reveal-anim", "Cinematic 3D animation: the camera slowly orbits a small blood collection tube with a purple cap on a black reflective surface in a dark lab, teal light sweeping across the glass.", "Blood lab Reel hook"),
+  A("centrifuge-spin-anim", "Close-up of a laboratory centrifuge rotor holding blood tubes as it starts spinning faster and faster into a blur, cool blue light.", "Blood lab Reel: centrifuge"),
+  A("layers-separate-anim", "Macro animation of a clear tube of dark red blood slowly separating into layers: red cells sinking to the bottom and clear straw-yellow liquid rising to the top, dark background.", "Blood lab Reel: layers form"),
+  A("cell-counter-laser-anim", "3D medical animation: red and white blood cells flow one by one through a narrow glowing glass channel, each cell flashing as it crosses a thin blue laser beam. Slow push-in.", "Blood lab Reel: counting cells"),
+  A("color-reaction-anim", "Macro animation: a drop of clear reagent falls into a cuvette of pale yellow liquid and the liquid slowly turns deep purple, dark background.", "Blood lab Reel: colour reaction"),
+  A("light-beam-anim", "Cinematic animation: a thin bright beam of light passes through a small cuvette of purple liquid, dimming as it exits onto a glowing sensor, dark laboratory instrument.", "Blood lab Reel: light reading"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
   supplements: { image: SUPPLEMENT_IMAGE_PROMPTS, video: SUPPLEMENT_VIDEO_PROMPTS },
   supplements2: { image: SUPPLEMENT2_IMAGE_PROMPTS, video: SUPPLEMENT2_VIDEO_PROMPTS },
+  bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
