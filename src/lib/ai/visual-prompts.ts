@@ -223,7 +223,7 @@ export const LABSERIES_IMAGE_PROMPTS: VisualPrompt[] = [
   A("rbc-size-compare", "3D medical render of three red blood cells side by side in dark space: one small and pale, one normal, one large, clean studio light.", "Lab series EP2: MCV cell size"),
   A("wbc-soldiers", "3D medical visualisation of white blood cells surrounding and engulfing small green bacteria inside a blood vessel, dramatic light.", "Lab series EP2: WBC fight infection"),
   A("platelets-clot", "3D medical render of small platelets and fine fibrin threads sealing a tiny tear in a blood vessel wall, dark background.", "Lab series EP2: platelets"),
-  A("tired-runner-silhouette", "Dark silhouette of a person bent over with hands on knees after running on a gym treadmill, moody back light, face not visible.", "Lab series EP2: fatigue in the gym"),
+  A("tired-runner-silhouette", "Dark silhouette of a person bent over with hands on knees next to a gym treadmill, out of breath, moody back light, face not visible.", "Lab series EP2: fatigue in the gym"),
   A("iron-foods-desi", "Top-down photograph on a dark table of Indian iron-rich foods: spinach, a bowl of chana, a bowl of rajma, jaggery pieces, boiled eggs, and lemon and amla halves.", "Lab series EP2: desi iron plate"),
   A("glucose-cube-dark", "Cinematic 3D render of a single glowing sugar cube floating above a black reflective surface in a dark laboratory, teal rim light, sparkling particles.", "Lab series EP3 hook"),
   A("glucose-meter-drop", "Macro photograph of a single drop of blood on a fingertip next to a glucose test strip, dark background, soft light, no readable numbers.", "Lab series EP3: sugar tests"),
