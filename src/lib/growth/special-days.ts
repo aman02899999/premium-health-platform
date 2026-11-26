@@ -572,6 +572,28 @@ Visuals aur voice AI se banaye gaye hain.
 ${EDU}`,
     tags: "#Collagen #KneeHealth #VitaminC #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
   }),
+  // Lab Test series EP 1 (thread "Make animated Reel from second Instagram link", 26 Nov 2026): owner said
+  // "post it". Evening slot, so it doesn't push out the midday supplement Reels.
+  {
+    ...tipsReel({
+      id: "reel-lab-khoon-ka-safar",
+      date: "2026-11-27",
+      video: "/social/reels/lab-khoon-ka-safar.mp4",
+      theme: "Blood Test Ke Baad Khoon Lab Mein Kahan Jaata Hai? 🧪",
+      body: `Blood Test Ke Baad Khoon Lab Mein Kahan Jaata Hai? 🧪
+
+Rangeen dhakkan, centrifuge, plasma, laser se cell counting aur rang se number... poora safar 2 minute mein. Purple dhakkan waala blood count ke liye hai, grey sugar ke liye, peela ya laal serum tests ke liye. Plasma ka lagbhag 92% paani hai.
+
+Gym waalon ke liye: test se pehle ke dinon mein heavy workout se liver aur muscle enzymes (AST, ALT, CK) badh sakte hain. Doctor ko apna gym routine zaroor batao. Report ka matlab khud mat nikalo, doctor ko dikhao.
+
+Lab Ke Andar · EP 1
+Sources: WHO guidelines on drawing blood (2010); American Red Cross, blood components; MedlinePlus, complete blood count; Pettersson et al. 2008, Br J Clin Pharmacol 65:253-9.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#BloodTest #LabTest #HealthScience #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */

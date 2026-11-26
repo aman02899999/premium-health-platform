@@ -153,4 +153,10 @@ describe("special-day posts", () => {
       expect(p.date >= FESTIVE_2026.startsOn && p.date <= FESTIVE_2026.endsOn, p.id).toBe(true);
     }
   });
+
+  it("Lab Ke Andar EP 1 takes the evening Reel on 27 Nov only, and the midday Reel stays as planned", () => {
+    expect(specialReel("2026-11-27", "evening")?.id).toBe("reel-lab-khoon-ka-safar");
+    expect(specialReel("2026-11-27", "midday")?.id).not.toBe("reel-lab-khoon-ka-safar");
+    expect(specialReel("2026-11-28", "evening")).toBeNull();
+  });
 });
