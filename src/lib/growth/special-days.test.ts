@@ -57,6 +57,8 @@ describe("special-day posts", () => {
     expect(gym?.id).toBe("reel-coach-rubi-gym");
     expect(diet?.id).toBe("reel-coach-rubi-diet-trial");
     expect(specialReel("2026-11-21", "evening")).toBeNull();
+    expect(specialReel("2026-11-26", "evening")?.id).toBe("reel-egg-andar-ka-safar");
+    expect(specialReel("2026-11-26", "midday")?.id).toBe("reel-desi-habit-saunf");
     expect(specialReel("2026-11-17", "evening")).toBeNull(); // older tips Reels stay on midday
     for (const r of [gym!, diet!]) expect(r.collaborators).toEqual(["__rubi_i_love_u"]);
     // Prices as in offers.ts / DIET_PLANS; the two ₹49 offers stay apart.
