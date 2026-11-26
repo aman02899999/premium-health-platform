@@ -177,6 +177,15 @@ const nextConfig: NextConfig = {
       "cold-pressed-mustard-oil",
     ];
     return [
+      // Bare domain → www, so Google keeps one copy of each page (it was indexing both).
+      // APIs are left alone: webhooks and callbacks may be registered on the bare domain,
+      // and many senders don't follow redirects on POST.
+      {
+        source: "/:path((?!api/|health/api/).*)",
+        has: [{ type: "host" as const, value: "royalfitnesclub.in" }],
+        destination: "https://www.royalfitnesclub.in/:path",
+        permanent: true,
+      },
       ...map.map(([source, destination]) => ({ source, destination, permanent: true })),
       ...legacyAffiliateProductSlugs.map((slug) => ({
         source: `/health/affiliate-products/${slug}`,

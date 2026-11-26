@@ -17,6 +17,12 @@ export type Exercise = {
   steps: string[];
   tips: string[];
   mistakes: string[];
+  /** Optional deeper content for exercises people search for (Search Console). */
+  seoTitle?: string;
+  seoDescription?: string;
+  benefits?: string[];
+  atHome?: { intro: string; steps: string[] };
+  faqs?: { q: string; a: string }[];
 };
 
 export const MUSCLES: { id: Muscle; label: string }[] = [
@@ -219,6 +225,32 @@ export const EXERCISES: Exercise[] = [
     steps: ["Hold the bar at collarbone height, grip just outside shoulders.", "Squeeze glutes and press the bar straight overhead.", "Move your head back slightly to let the bar pass, then through once it clears.", "Lower to the collarbone."],
     tips: ["Squeeze glutes to protect the lower back", "Finish with biceps by the ears"],
     mistakes: ["Leaning way back", "Pressing the bar forward instead of up"],
+    seoTitle: "Overhead Press: Benefits, Correct Form & Home Version",
+    seoDescription: "How to do the overhead press correctly in 4 steps, what it does for your shoulders, arms and core, and a dumbbell or backpack version you can do at home.",
+    benefits: [
+      "Builds the front and side of the shoulders, which gives the upper body a broader look.",
+      "Works the triceps and upper chest too, so one lift trains most of your pushing muscles.",
+      "Standing up makes your core, glutes and legs hold you steady, so it trains balance and posture as well.",
+      "Makes everyday overhead jobs easier, like putting a bag on a high shelf or lifting a child.",
+      "Easy to track: add a little weight or one more rep each week and you can see your progress.",
+    ],
+    atHome: {
+      intro: "No barbell at home? Use two dumbbells, two filled water bottles, or a school backpack loaded with books. Start light: you should finish every set with 2 to 3 reps still in the tank.",
+      steps: [
+        "Stand with feet hip-width apart. Hold the weights at shoulder height, palms facing forward or facing each other.",
+        "Tighten your stomach and squeeze your glutes so your lower back doesn't arch.",
+        "Press straight up until your arms are fully extended and your biceps are next to your ears.",
+        "Lower slowly back to your shoulders. Do 3 sets of 8 to 12 reps.",
+        "If standing hurts your back, sit on a chair with your back against it and press from there.",
+      ],
+    },
+    faqs: [
+      { q: "What are the benefits of the overhead press?", a: "It builds the shoulders and triceps, trains the core and glutes to keep you steady, and makes lifting things overhead in daily life easier." },
+      { q: "How do I do the overhead press correctly?", a: "Start with the bar at your collarbone, grip just outside your shoulders, squeeze your glutes, and press straight up while moving your head back slightly so the bar can pass. Finish with your arms locked and the bar over the middle of your feet, then lower it to the collarbone." },
+      { q: "Can I do the overhead press at home?", a: "Yes. Use dumbbells, water bottles or a loaded backpack, and follow the same steps. Keep the weight light enough that your back doesn't arch." },
+      { q: "Is the overhead press bad for the shoulders?", a: "Done with good form and a sensible weight, it is a normal strength exercise. Stop if you feel sharp pain, and see a doctor or physiotherapist if you have an old shoulder injury before you start." },
+      { q: "How many sets and reps should a beginner do?", a: "3 sets of 8 to 12 reps, two times a week, is a good start. Add weight only when all sets feel controlled." },
+    ],
   },
   {
     slug: "dumbbell-shoulder-press",
@@ -369,6 +401,29 @@ export const EXERCISES: Exercise[] = [
     steps: ["Sit with feet shoulder-width on the platform.", "Release the safety and lower until knees reach about 90°.", "Press back up without locking the knees."],
     tips: ["Keep your lower back on the pad"],
     mistakes: ["Lowering so deep the hips curl up", "Locking knees hard"],
+    seoTitle: "Leg Press: How to Do It Right, Benefits & Foot Placement",
+    seoDescription: "Leg press form in 3 steps, where to put your feet for quads or glutes, the benefits, and the mistakes that hurt your knees and lower back.",
+    benefits: [
+      "Trains the quads, glutes and hamstrings with your back supported, so it suits beginners and people who can't squat yet.",
+      "Lets you work the legs hard without balancing a bar on your back.",
+      "Easy to adjust: move your feet to shift the work between the front of the thighs and the glutes.",
+      "Stronger legs make stairs, getting up from the floor and carrying heavy things easier.",
+    ],
+    atHome: {
+      intro: "Where to put your feet on the platform changes which muscles work hardest:",
+      steps: [
+        "Feet in the middle, shoulder-width apart: a balanced mix of quads and glutes. Start here.",
+        "Feet higher on the platform: more glutes and hamstrings.",
+        "Feet lower on the platform: more quads. Go lighter, because this puts more load on the knees.",
+        "Feet wider with toes slightly out: more inner thigh. Keep your knees in line with your toes.",
+      ],
+    },
+    faqs: [
+      { q: "What muscles does the leg press work?", a: "Mainly the quads at the front of the thigh, with the glutes and hamstrings helping. Foot position shifts the balance between them." },
+      { q: "How low should I go on the leg press?", a: "Lower until your knees are at about 90 degrees, or as low as you can go without your hips lifting off the seat and your lower back rounding." },
+      { q: "Should I lock my knees at the top?", a: "No. Stop just short of locking so the muscles keep the weight, not the knee joint." },
+      { q: "Is the leg press as good as squats?", a: "They do different jobs. The squat also trains balance and the core; the leg press lets you load the legs safely with your back supported. Many people do both." },
+    ],
   },
   {
     slug: "walking-lunge",
