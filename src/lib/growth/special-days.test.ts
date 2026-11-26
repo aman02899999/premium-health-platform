@@ -157,6 +157,10 @@ describe("special-day posts", () => {
   it("Lab Ke Andar EP 1 takes the evening Reel on 27 Nov only, and the midday Reel stays as planned", () => {
     expect(specialReel("2026-11-27", "evening")?.id).toBe("reel-lab-khoon-ka-safar");
     expect(specialReel("2026-11-27", "midday")?.id).not.toBe("reel-lab-khoon-ka-safar");
+    expect(specialReel("2026-11-29", "evening")?.id).toBe("reel-lab-cbc");
+    expect(specialReel("2026-12-01", "evening")?.id).toBe("reel-lab-sugar-test");
+    expect(specialReel("2026-12-03", "evening")?.id).toBe("reel-lab-lipid-profile");
+    expect(specialReel("2026-11-29", "midday")?.id).toBe("reel-desi-habit-paani");
     expect(specialReel("2026-11-28", "evening")).toBeNull();
   });
 });
