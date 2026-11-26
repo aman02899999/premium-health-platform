@@ -216,12 +216,50 @@ export const BLOODLAB_VIDEO_PROMPTS: VisualPrompt[] = [
   A("light-beam-anim", "Cinematic animation: a thin bright beam of light passes through a small cuvette of purple liquid, dimming as it exits onto a glowing sensor, dark laboratory instrument.", "Blood lab Reel: light reading"),
 ];
 
+// "labseries": "Lab Ke Andar" EP 2-4 (CBC, blood sugar, lipid profile). Same no-text, no-faces rules.
+export const LABSERIES_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("cbc-three-cells", "3D medical render of a red blood cell, a white blood cell and a few small platelets floating together in dark space, soft teal and gold light.", "Lab series EP2 hook: three cell types"),
+  A("rbc-oxygen-carry", "3D medical visualisation of red blood cells flowing through a blood vessel with tiny glowing blue oxygen bubbles attached to them.", "Lab series EP2: haemoglobin carries oxygen"),
+  A("rbc-size-compare", "3D medical render of three red blood cells side by side in dark space: one small and pale, one normal, one large, clean studio light.", "Lab series EP2: MCV cell size"),
+  A("wbc-soldiers", "3D medical visualisation of white blood cells surrounding and engulfing small green bacteria inside a blood vessel, dramatic light.", "Lab series EP2: WBC fight infection"),
+  A("platelets-clot", "3D medical render of small platelets and fine fibrin threads sealing a tiny tear in a blood vessel wall, dark background.", "Lab series EP2: platelets"),
+  A("tired-runner-silhouette", "Dark silhouette of a person bent over with hands on knees after running on a gym treadmill, moody back light, face not visible.", "Lab series EP2: fatigue in the gym"),
+  A("iron-foods-desi", "Top-down photograph on a dark table of Indian iron-rich foods: spinach, a bowl of chana, a bowl of rajma, jaggery pieces, boiled eggs, and lemon and amla halves.", "Lab series EP2: desi iron plate"),
+  A("glucose-cube-dark", "Cinematic 3D render of a single glowing sugar cube floating above a black reflective surface in a dark laboratory, teal rim light, sparkling particles.", "Lab series EP3 hook"),
+  A("glucose-meter-drop", "Macro photograph of a single drop of blood on a fingertip next to a glucose test strip, dark background, soft light, no readable numbers.", "Lab series EP3: sugar tests"),
+  A("clock-water-glass", "Photograph of a simple wall clock and a glass of water on an empty dark table at dawn, calm light.", "Lab series EP3/EP4: fasting"),
+  A("rbc-sugar-coat", "3D medical visualisation of red blood cells with tiny glowing golden sugar particles sticking to their surface, dark background.", "Lab series EP3: HbA1c"),
+  A("two-reports-hologram", "3D render of two glowing holographic medical report panels side by side with abstract charts, linked by a light beam, dark lab, no readable text or numbers.", "Lab series EP3/EP4: read reports together"),
+  A("muscle-glucose-pull", "3D medical visualisation of a red muscle fibre pulling glowing golden glucose particles in from a nearby blood vessel, dark background.", "Lab series EP3: muscle uses sugar"),
+  A("city-crowd-blur", "Photograph of a busy Indian city street crowd in motion blur at dusk, warm lights, no identifiable faces.", "Lab series EP3/EP4: India numbers"),
+  A("lipoprotein-spheres", "3D medical render of round lipoprotein particles carrying glowing yellow cholesterol inside, floating in a blood vessel.", "Lab series EP4: lipoproteins"),
+  A("artery-plaque", "3D medical cross-section of an artery with a yellow fatty plaque narrowing the inside, educational, not gory, dark background.", "Lab series EP4: LDL"),
+  A("hdl-cleanup", "3D medical visualisation of small bright particles collecting yellow cholesterol from an artery wall and carrying it away, dark background.", "Lab series EP4: HDL"),
+  A("fried-snacks-dark", "Photograph of Indian fried snacks, sweets and white bread on a dark table, moody side light.", "Lab series EP4: triglycerides"),
+  A("runner-heart-glow", "3D render of a glowing anatomical heart inside a translucent running figure seen from the side, dark background, teal light.", "Lab series EP4: exercise and the heart"),
+  A("heart-healthy-thali", "Top-down photograph of an Indian thali on a dark table: dal, green sabzi, salad, a small bowl of oats and a handful of almonds and walnuts.", "Lab series EP4: heart-friendly plate"),
+];
+
+export const LABSERIES_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("cbc-cells-float-anim", "3D medical animation: red blood cells, white blood cells and small platelets drift slowly past the camera in dark space, soft teal and gold light. Slow push-in.", "Lab series EP2 hook"),
+  A("rbc-oxygen-anim", "3D medical animation of red blood cells flowing through a blood vessel, tiny glowing blue oxygen bubbles attaching to them as they pass.", "Lab series EP2: haemoglobin"),
+  A("wbc-attack-anim", "3D medical animation: a white blood cell moves toward small green bacteria inside a blood vessel and engulfs them.", "Lab series EP2: WBC"),
+  A("glucose-spike-anim", "3D animation of a glowing golden line graph rising in a sharp peak and then slowly falling back down, floating in a dark lab, no numbers or text.", "Lab series EP3: after-meal test"),
+  A("rbc-sugar-coat-anim", "3D medical animation: red blood cells slowly rotate as tiny glowing golden sugar particles drift in and stick to their surface.", "Lab series EP3: HbA1c"),
+  A("muscle-glucose-anim", "3D medical animation: a muscle fibre contracts and glowing golden glucose particles stream into it from a nearby blood vessel.", "Lab series EP3: exercise"),
+  A("lipid-flow-anim", "3D medical animation of round lipoprotein particles carrying glowing yellow cholesterol flowing through a blood vessel with red blood cells.", "Lab series EP4 hook"),
+  A("plaque-build-anim", "3D medical animation of an artery cross-section where yellow fatty deposits slowly build up on the inner wall, narrowing it, educational, not gory.", "Lab series EP4: LDL"),
+  A("hdl-carry-anim", "3D medical animation: small bright particles pick up yellow cholesterol from an artery wall and carry it away down the vessel.", "Lab series EP4: HDL"),
+  A("heart-pump-anim", "3D animation of a glowing anatomical heart beating steadily in dark space, blood flow lines pulsing out from it, teal light.", "Lab series EP4: exercise and the heart"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
   supplements: { image: SUPPLEMENT_IMAGE_PROMPTS, video: SUPPLEMENT_VIDEO_PROMPTS },
   supplements2: { image: SUPPLEMENT2_IMAGE_PROMPTS, video: SUPPLEMENT2_VIDEO_PROMPTS },
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
+  labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
