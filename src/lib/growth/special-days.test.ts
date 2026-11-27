@@ -57,8 +57,9 @@ describe("special-day posts", () => {
     expect(gym?.id).toBe("reel-coach-rubi-gym");
     expect(diet?.id).toBe("reel-coach-rubi-diet-trial");
     expect(specialReel("2026-11-21", "evening")).toBeNull();
-    expect(specialReel("2026-11-26", "evening")?.id).toBe("reel-egg-andar-ka-safar");
-    expect(specialReel("2026-11-26", "midday")?.id).toBe("reel-desi-habit-saunf");
+    expect(specialReel("2026-11-28", "evening")?.id).toBe("reel-egg-andar-ka-safar");
+    expect(specialReel("2026-11-28", "midday")?.id).toBe("reel-desi-habit-badam");
+    expect(specialReel("2026-11-27", "evening")?.id).toBe("reel-lab-khoon-ka-safar");
     expect(specialReel("2026-11-17", "evening")).toBeNull(); // older tips Reels stay on midday
     for (const r of [gym!, diet!]) expect(r.collaborators).toEqual(["__rubi_i_love_u"]);
     // Prices as in offers.ts / DIET_PLANS; the two ₹49 offers stay apart.
@@ -154,5 +155,15 @@ describe("special-day posts", () => {
     for (const p of SPECIAL_POSTS.filter((x) => x.id.startsWith("banner-"))) {
       expect(p.date >= FESTIVE_2026.startsOn && p.date <= FESTIVE_2026.endsOn, p.id).toBe(true);
     }
+  });
+
+  it("Lab Ke Andar EP 1 takes the evening Reel on 27 Nov only, and the midday Reel stays as planned", () => {
+    expect(specialReel("2026-11-27", "evening")?.id).toBe("reel-lab-khoon-ka-safar");
+    expect(specialReel("2026-11-27", "midday")?.id).not.toBe("reel-lab-khoon-ka-safar");
+    expect(specialReel("2026-11-29", "evening")?.id).toBe("reel-lab-cbc");
+    expect(specialReel("2026-12-01", "evening")?.id).toBe("reel-lab-sugar-test");
+    expect(specialReel("2026-12-03", "evening")?.id).toBe("reel-lab-lipid-profile");
+    expect(specialReel("2026-11-29", "midday")?.id).toBe("reel-desi-habit-paani");
+    expect(specialReel("2026-11-28", "evening")?.id).toBe("reel-egg-andar-ka-safar"); // egg Reel fills the gap
   });
 });

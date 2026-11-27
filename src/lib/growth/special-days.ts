@@ -338,10 +338,10 @@ ${EDU}`,
   }),
   // Egg science Reel (thread "Make animated Reel inspired by Instagram link"), 26 Nov 2026. Style idea
   // from a public 3D explainer; script, visuals (Gemini "egg" set), voice B and music are our own.
-  // Owner said "Post it" 26 Nov 10:07 IST; takes that evening's Reel.
+  // Owner said "Post it" 26 Nov and "merge" 27 Nov; 26-27 Nov evenings passed/taken, so 28 Nov evening.
   tipsReel({
     id: "reel-egg-andar-ka-safar",
-    date: "2026-11-26",
+    date: "2026-11-28",
     slot: "evening",
     video: "/social/reels/egg-andar-ka-safar.mp4",
     theme: "Ek anda khaate hi body ke andar kya hota hai",
@@ -597,6 +597,89 @@ Visuals aur voice AI se banaye gaye hain.
 ${EDU}`,
     tags: "#Collagen #KneeHealth #VitaminC #SupplementMythBuster #RoyalFitnessClub #NoidaGym #Sector93Noida",
   }),
+  // Lab Test series EP 1 (thread "Make animated Reel from second Instagram link", 26 Nov 2026): owner said
+  // "post it". Evening slot, so it doesn't push out the midday supplement Reels.
+  {
+    ...tipsReel({
+      id: "reel-lab-khoon-ka-safar",
+      date: "2026-11-27",
+      video: "/social/reels/lab-khoon-ka-safar.mp4",
+      theme: "Blood Test Ke Baad Khoon Lab Mein Kahan Jaata Hai? 🧪",
+      body: `Blood Test Ke Baad Khoon Lab Mein Kahan Jaata Hai? 🧪
+
+Rangeen dhakkan, centrifuge, plasma, laser se cell counting aur rang se number... poora safar 2 minute mein. Purple dhakkan waala blood count ke liye hai, grey sugar ke liye, peela ya laal serum tests ke liye. Plasma ka lagbhag 92% paani hai.
+
+Gym waalon ke liye: test se pehle ke dinon mein heavy workout se liver aur muscle enzymes (AST, ALT, CK) badh sakte hain. Doctor ko apna gym routine zaroor batao. Report ka matlab khud mat nikalo, doctor ko dikhao.
+
+Lab Ke Andar · EP 1
+Sources: WHO guidelines on drawing blood (2010); American Red Cross, blood components; MedlinePlus, complete blood count; Pettersson et al. 2008, Br J Clin Pharmacol 65:253-9.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#BloodTest #LabTest #HealthScience #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  // Lab Ke Andar EP 2-4 (same thread): every 2 days in the evening slot.
+  {
+    ...tipsReel({
+      id: "reel-lab-cbc",
+      date: "2026-11-29",
+      video: "/social/reels/lab-cbc.mp4",
+      theme: "CBC Report Ka Pehla Panna: Kya Ginte Hain? 🩸",
+      body: `CBC Report Ka Pehla Panna: Kya Ginte Hain? 🩸
+
+Red cells, white cells aur platelets: CBC mein teen tarah ke cells gine jaate hain. WHO ke hisaab se aadmi mein 13 aur aurat mein 12 g/dL se kam haemoglobin anaemia ka sanket hai, aur NFHS-5 mein lagbhag har doosri aurat aur har chauthe aadmi mein anaemia mila.
+
+Gym mein jaldi saans phoolna, chakkar ya bahut thakaan? Haemoglobin check karwana samajhdaari hai. Iron ki goli khud se shuru mat karo, kami ki wajah doctor dhoondhega. Range har lab mein thodi alag hoti hai, report doctor ko dikhao.
+
+Lab Ke Andar · EP 2
+Sources: WHO 2024 haemoglobin cut-offs for anaemia; NFHS-5 (2019-21) India fact sheet; MedlinePlus, complete blood count; WHO dengue fact sheet.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#CBC #BloodTest #Anaemia #Haemoglobin #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-sugar-test",
+      date: "2026-12-01",
+      video: "/social/reels/lab-sugar-test.mp4",
+      theme: "Sugar Ke 3 Test: Fasting, Khaane Ke Baad Aur HbA1c 🍬",
+      body: `Sugar Ke 3 Test: Fasting, Khaane Ke Baad Aur HbA1c 🍬
+
+Fasting sugar aaj ka number batata hai, khaane ke baad waala test batata hai sugar kitni jaldi neeche aati hai, aur HbA1c pichhle 2-3 mahine ka average. Fasting mein 100 se kam normal, 100-125 prediabetes, 126 ya zyada diabetes ka sanket. HbA1c mein 5.7 se kam normal, 5.7-6.4 prediabetes, 6.5 ya zyada diabetes ka sanket.
+
+Ek test se diabetes pakka nahi hota, doctor aksar test dohraate hain. Kaam karti muscles khoon se sugar kheenchti hain, isliye regular exercise bahut madad karti hai. Sugar ki dawa khud se band ya kam mat karo.
+
+Lab Ke Andar · EP 3
+Sources: American Diabetes Association, Standards of Care 2025; ICMR-INDIAB, Lancet Diabetes Endocrinol 2023; MedlinePlus, HbA1c test.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SugarTest #HbA1c #Diabetes #Prediabetes #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-lipid-profile",
+      date: "2026-12-03",
+      video: "/social/reels/lab-lipid-profile.mp4",
+      theme: "Lipid Profile Ke 4 Number Kaise Padhein? ❤️",
+      body: `Lipid Profile Ke 4 Number Kaise Padhein? ❤️
+
+Total cholesterol, LDL (bura), HDL (achha) aur triglycerides. LDL naso ki deewar mein jamne lagta hai, HDL extra cholesterol ko wapas liver tak le jaata hai, aur meetha, maida, tali cheezein aur sharaab triglycerides badhaate hain. ICMR ki study mein lagbhag 10 mein se 7 logon ka HDL kam mila.
+
+LDL ka sahi target har insaan ke risk par depend karta hai, doctor batayega. Regular exercise aksar triglycerides ghataati hai aur HDL thoda badhaati hai. Cholesterol ki dawa khud se shuru ya band mat karo.
+
+Lab Ke Andar · EP 4
+Sources: ICMR-INDIAB, PLoS One 2014; Nordestgaard et al., Eur Heart J 2016; American Heart Association, HDL, LDL and triglycerides.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#LipidProfile #Cholesterol #HeartHealth #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */
