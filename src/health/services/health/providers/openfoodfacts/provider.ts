@@ -62,10 +62,10 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
         };
       }
       // The search service often returns products with no nutrition at all; a card of dashes helps nobody,
-      // so list products that have calories first and drop the empty ones when enough real ones exist.
+      // so drop the empty ones whenever at least one product has calories.
       const named = json.hits.filter((p) => p.product_name);
       const withKcal = named.filter((p) => typeof p.nutriments?.["energy-kcal_100g"] === "number");
-      const data = (withKcal.length >= 3 ? withKcal : named).slice(0, limit).map((p) => this.normalize(p));
+      const data = (withKcal.length ? withKcal : named).slice(0, limit).map((p) => this.normalize(p));
       return {
         data,
         total: json.count ?? data.length,

@@ -24,7 +24,7 @@ export function NutritionTracker() {
     if (!q.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch(`/health/api/health/food?q=${encodeURIComponent(q)}&limit=5`);
+      const res = await fetch(`/health/api/health/food?q=${encodeURIComponent(q)}&limit=8`);
       if (res.ok) {
         const json = await res.json();
         setSearchResults(json.data ?? []);
