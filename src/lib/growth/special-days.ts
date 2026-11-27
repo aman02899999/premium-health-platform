@@ -79,6 +79,7 @@ const tipsReel = (r: Omit<SpecialReel, "instagram" | "facebook"> & { body: strin
   date: r.date,
   video: r.video,
   theme: r.theme,
+  ...(r.slot ? { slot: r.slot } : {}),
   instagram: `${r.body}\n\n${CTA_IG}\n\n${SIGN_OFF}\n\n${r.tags}`,
   facebook: `${r.body}\n\n${ctaFb(r.id)}\n\n${SIGN_OFF}\n\n${r.tags}`,
 });
@@ -334,6 +335,30 @@ Sources: European Medicines Agency, fennel monograph (HMPC).
 Visuals aur voice AI se banaye gaye hain.
 ${EDU}`,
     tags: "#Saunf #Fennel #DesiHabits #Digestion #RoyalFitnessClub #NoidaGym #Sector93Noida",
+  }),
+  // Egg science Reel (thread "Make animated Reel inspired by Instagram link"), 26 Nov 2026. Style idea
+  // from a public 3D explainer; script, visuals (Gemini "egg" set), voice B and music are our own.
+  // Owner said "Post it" 26 Nov and "merge" 27 Nov; 26-27 Nov evenings passed/taken, so 28 Nov evening.
+  tipsReel({
+    id: "reel-egg-andar-ka-safar",
+    date: "2026-11-28",
+    slot: "evening",
+    video: "/social/reels/egg-andar-ka-safar.mp4",
+    theme: "Ek anda khaate hi body ke andar kya hota hai",
+    body: `Ek ubla anda khaate hi body ke andar poori factory chalu ho jaati hai 🥚🔬
+
+Ek bade ande mein lagbhag 6 g protein hota hai.
+Pakaaye ande ka lagbhag 91% protein pachta hai, kachche ka sirf 51% ke aas paas. Isliye kachcha anda peena hero-giri hai, science nahi (upar se salmonella ka khatra).
+Leucine muscle ke andar "naya protein banao" wala switch on karta hai.
+Ek chhoti study mein workout ke baad poore ande ne, utne hi protein wali safedi se zyada muscle-building signal diya. Toh zardi mat phenko.
+
+Aap anda kaise khaate ho: ubla, omelette ya bhurji? Comment mein batao 👇
+
+Heart, cholesterol ya kidney ki problem hai toh kitne ande, ye doctor se poochho.
+Sources: USDA FoodData Central; Evenepoel et al., J Nutr 1998; van Vliet et al., Am J Clin Nutr 2017.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+    tags: "#Anda #Egg #Protein #FitnessFacts #RoyalFitnessClub #NoidaGym #Sector93Noida",
   }),
   tipsReel({
     id: "reel-desi-habit-walk",
