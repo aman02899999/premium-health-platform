@@ -7,6 +7,8 @@ import { API_PLANS, formatQuota, monthlyPriceLabel } from "@/health/lib/saas/pla
 import { PUBLIC_APIS } from "@/health/data/public-apis";
 
 export const metadata: Metadata = {
+  // Developer pages stay reachable for API users but are hidden from menus and search (owner, 27 Nov 2026).
+  robots: { index: false, follow: false },
   title: "Developer API — India Health Data for Your App",
   description:
     "One authenticated API over open, licence-clean health data: foods and nutrition, exercises, clinical trials, medical literature, air quality and country indicators. Free tier, transparent quotas, OpenAPI spec.",

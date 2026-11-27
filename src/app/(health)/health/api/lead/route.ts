@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       message?: string;
     };
 
-    const TYPES = { lab: "Lab test", dietitian: "Dietitian consult", consult: "Doctor consult" } as const;
+    const TYPES = { lab: "Lab test", dietitian: "Dietitian consult", consult: "Doctor consult", feedback: "Website message" } as const;
     const digits = (phone || "").replace(/\D/g, "").slice(-10);
     if (!name || name.trim().length < 2) {
       return NextResponse.json({ ok: false, error: "Please enter your name." }, { status: 400 });
@@ -64,7 +64,9 @@ export async function POST(req: NextRequest) {
     } else {
       await saveLead(lead);
     }
-    return NextResponse.json({ ok: true, message: `Thanks ${lead.name.split(" ")[0]} — we've received your request and will call you on ${digits}.` }, { status: 201 });
+    const first = lead.name.split(" ")[0];
+    const reply = type === "feedback" ? `Thanks ${first}, we've got your message. We reply within 2–3 working days.` : `Thanks ${first} — we've received your request and will call you on ${digits}.`;
+    return NextResponse.json({ ok: true, message: reply }, { status: 201 });
   } catch (e: any) {
     console.error("[health lead] save failed:", e?.message);
     return NextResponse.json({ ok: false, error: "Couldn't save your request right now. Please try again or WhatsApp us." }, { status: 500 });
@@ -72,5 +74,5 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
-  return NextResponse.json({ endpoint: "/health/api/lead", method: "POST", body: { name: "string", phone: "10-digit mobile", email: "optional", type: "lab|dietitian|consult", message: "optional" } });
+  return NextResponse.json({ endpoint: "/health/api/lead", method: "POST", body: { name: "string", phone: "10-digit mobile", email: "optional", type: "lab|dietitian|consult|feedback", message: "optional" } });
 }

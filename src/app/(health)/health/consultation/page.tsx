@@ -9,7 +9,7 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { AdBanner } from "@/health/components/monetization/AdComponents";
 
 const seoTitle = "Consultation — Diet, Fitness, Wellness";
-const seoDescription = "Lead generation: diet consultation, fitness, wellness, health package, clinic inquiry, corporate wellness — minimal data, consent, rate limiting, spam protection.";
+const seoDescription = "Ask for a diet consultation, fitness coaching, a health package or a clinic enquiry. We only ask for what we need to call you back.";
 const url = "/health/consultation";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Consultation — Lead Gen")}&category=${encodeURIComponent("Lead Generation")}&type=tool`;

@@ -6,6 +6,8 @@ import { API_ENDPOINTS } from "@/health/lib/saas/endpoints";
 import { API_PLANS, formatQuota } from "@/health/lib/saas/plans";
 
 export const metadata: Metadata = {
+  // Developer pages stay reachable for API users but are hidden from menus and search (owner, 27 Nov 2026).
+  robots: { index: false, follow: false },
   title: "API Reference — Auth, Quotas, Endpoints & Errors",
   description:
     "Complete reference for the Bharat Health Guide Data API: authentication, response envelope, rate-limit headers, error codes, every endpoint with parameters and source licences, plus curl, JavaScript and Python examples.",

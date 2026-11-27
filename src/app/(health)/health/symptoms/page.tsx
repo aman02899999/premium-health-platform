@@ -44,7 +44,7 @@ export default function SymptomsPage() {
         howTo={{ name: "How to check symptom", steps: ["Pick symptom: e.g., chest pain, fatigue, headache", "Check red flags + common causes + what to track", "Use interactive checker to log duration, severity, triggers", "Book consult via lead form if red flags"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-rose-900 via-red-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-rose-200">Symptoms — Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-rose-200">Symptom guide</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Symptoms Checker — Chest Pain, Fatigue, Headache — India Guide</h1>
         <p className="mt-2 max-w-2xl text-sm text-white/90">Educational triage only — <strong>never a diagnosis</strong>. Select a symptom to see possible categories, questions to consider and urgency. Emergency patterns show prominent warnings.</p>
         <p className="mt-3 flex max-w-2xl items-start gap-2 rounded-2xl bg-red-500/20 p-3 text-xs"><Siren className="mt-0.5 h-4 w-4 shrink-0" /> Chest pain, severe breathlessness, stroke signs, severe bleeding or loss of consciousness need emergency care immediately — do not use this tool instead.</p>
