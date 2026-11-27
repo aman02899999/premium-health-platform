@@ -3,7 +3,7 @@
 // topic when its title or tags contain one of the topic's words (whole words, any case).
 // Add a word here and both the playlists and the site embeds pick it up.
 
-export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "supplement-series" | "pain-age" | "sleep" | "lifestyle";
+export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "supplement-series" | "lab-series" | "pain-age" | "sleep" | "lifestyle";
 
 export type Topic = { key: TopicKey; title: string; description: string; words: string[] };
 
@@ -60,6 +60,13 @@ export const TOPICS: Topic[] = [
     words: ["supplement myth buster"],
   },
   {
+    // The Lab Ke Andar series (Dec 2026): every video in it carries this tag.
+    key: "lab-series",
+    title: "Lab Ke Andar: Blood Test Report Samjho (Hinglish)",
+    description: `Blood test ki report, beginner se advanced: CBC, sugar, lipid, thyroid, vitamin D aur B12, liver aur aage. Har episode sources ke saath. ${GYM}`,
+    words: ["lab ke andar"],
+  },
+  {
     key: "pain-age",
     title: "Back Pain, Knee Pain & 60+ Fitness",
     description: `Kamar dard, ghutna dard aur 60 ke baad fitness, safe tareeke se. ${GYM}`,
@@ -112,14 +119,18 @@ export function topicScores(text: string): { key: TopicKey; hits: number }[] {
     .map(({ key, hits }) => ({ key, hits }));
 }
 
+const SERIES = new Set<TopicKey>(["supplement-series", "lab-series"]);
+
 /**
  * The playlists a video goes into: its two strongest subject topics, plus "myths" when it is a
  * myth-buster. Capped so each video costs little of the daily YouTube quota.
  */
 export function videoTopics(text: string): TopicKey[] {
   const scores = topicScores(text);
-  const subjects = scores.filter((s) => s.key !== "myths").slice(0, 2).map((s) => s.key);
-  return scores.some((s) => s.key === "myths") ? [...subjects, "myths"] : subjects;
+  const subjects = scores.filter((s) => s.key !== "myths" && !SERIES.has(s.key)).slice(0, 2).map((s) => s.key);
+  // A series playlist is always added when its tag is there, so every episode lands in it.
+  const series = scores.filter((s) => SERIES.has(s.key)).map((s) => s.key);
+  return [...subjects, ...series, ...(scores.some((s) => s.key === "myths") ? (["myths"] as TopicKey[]) : [])];
 }
 
 /** Tags every video carries (gym name, place, channel), which say nothing about the subject. */
