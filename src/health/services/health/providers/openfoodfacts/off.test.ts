@@ -56,3 +56,18 @@ describe("openfoodfacts search results", () => {
     }
   });
 });
+
+describe("openfoodfacts nutrient rounding", () => {
+  it("rounds long floats from the database", async () => {
+    const { vi } = await import("vitest");
+    const hits = [1, 2, 3].map((i) => ({ code: String(i), product_name: `P${i}`, nutriments: { "energy-kcal_100g": 300.4, carbohydrates_100g: 2.2300000190734863 } }));
+    const spy = vi.spyOn(globalThis, "fetch").mockImplementation(async () => new Response(JSON.stringify({ hits, count: 3 }), { status: 200 }));
+    try {
+      const res = await openFoodFactsProvider.search({ query: "rounding-test", limit: 3 });
+      expect(res.data[0].nutrients.carbs).toBe(2.2);
+      expect(res.data[0].nutrients.calories).toBe(300);
+    } finally {
+      spy.mockRestore();
+    }
+  });
+});

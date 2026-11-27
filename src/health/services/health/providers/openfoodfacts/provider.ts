@@ -20,6 +20,8 @@ type OFFProduct = {
   nova_group?: number;
 };
 
+const r1 = (v: number | undefined, digits = 1) => (typeof v === "number" && Number.isFinite(v) ? Math.round(v * 10 ** digits) / 10 ** digits : undefined);
+
 export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
   name = "openfoodfacts";
   displayName = "Open Food Facts";
@@ -99,15 +101,16 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
       brand: (Array.isArray(p.brands) ? p.brands.join(", ") : p.brands)?.replace(/(^|, )\w\w:/g, "$1"),
       barcode: p.code,
       category: p.categories?.split(",")[0]?.trim() ?? p.categories_tags?.[0]?.replace(/^\w\w:/, "").replace(/-/g, " "),
+      // Open Food Facts stores floats like 2.2300000190734863; one decimal is plenty on a label.
       nutrients: {
-        calories: n["energy-kcal_100g"],
-        protein: n.proteins_100g,
-        carbs: n.carbohydrates_100g,
-        fat: n.fat_100g,
-        fiber: n.fiber_100g,
-        sugar: n.sugars_100g,
-        sodium: n.sodium_100g,
-        saturatedFat: n["saturated-fat_100g"],
+        calories: r1(n["energy-kcal_100g"], 0),
+        protein: r1(n.proteins_100g),
+        carbs: r1(n.carbohydrates_100g),
+        fat: r1(n.fat_100g),
+        fiber: r1(n.fiber_100g),
+        sugar: r1(n.sugars_100g),
+        sodium: r1(n.sodium_100g, 3),
+        saturatedFat: r1(n["saturated-fat_100g"]),
       },
       ingredients: p.ingredients_text?.split(",").map((s) => s.trim()).slice(0, 20),
       allergens: p.allergens ? p.allergens.split(",").map((s) => s.trim()) : p.allergens_tags?.map((t) => t.replace(/^\w\w:/, "")),
