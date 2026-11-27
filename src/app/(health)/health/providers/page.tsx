@@ -37,7 +37,7 @@ export default function ProvidersPage() {
         howTo={{ name: "How to find a provider", steps: ["Browse by type: dietitian, nutritionist, fitness coach, yoga instructor or clinic", "Check their credentials and location", "Send an enquiry with the form", "The provider contacts you"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Business Directory — Free/Featured/Premium — Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Health provider directory</p>
         <h1 className="font-display mt-1 text-3xl font-black">Providers — Dietitians, Nutritionists, Fitness, Yoga, Clinics — India</h1>
         <p className="mt-2 max-w-2xl text-sm text-violet-100/90">Find qualified professionals — dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centers, wellness. Free/Featured/Premium tiers. Clearly separate Featured from Recommended based on clinical evidence. Do not fabricate credentials.</p>
         <div className="mt-3 flex flex-wrap gap-1.5">{types.map((t) => <span key={t} className="rounded-full bg-white/15 px-3 py-1 text-xs">{t}</span>)}</div>

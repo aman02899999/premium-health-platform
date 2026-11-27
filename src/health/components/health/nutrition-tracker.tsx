@@ -17,7 +17,7 @@ type FoodLog = {
 export function NutritionTracker() {
   const [logs, setLogs] = useState<FoodLog[]>([]);
   const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<{ id: string; name: string; nutrients: { calories?: number; protein?: number; carbs?: number; fat?: number } }[]>([]);
+  const [searchResults, setSearchResults] = useState<{ id: string; name: string; brand?: string; nutrients: { calories?: number; protein?: number; carbs?: number; fat?: number } }[]>([]);
   const [loading, setLoading] = useState(false);
 
   const search = async (q: string) => {
@@ -61,11 +61,12 @@ export function NutritionTracker() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Apple className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Nutrition Tracker (local)</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Search foods via Open Food Facts (free) + USDA (key) — logs stored locally, not medical advice.</p>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Apple className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Nutrition Tracker</h3>
+      <p className="mt-1 text-[11px] text-stone-500">Search a packaged food, tap Add, and see today&apos;s calories and protein. Your log stays on this phone. Not medical advice.</p>
 
       <form className="mt-3 flex gap-2" onSubmit={(e) => { e.preventDefault(); search(query); }}>
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search apple, dal, milk…" className="h-10 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 text-sm dark:border-stone-700 dark:bg-stone-800" />
+        <label htmlFor="nt-q" className="sr-only">Food name</label>
+        <input id="nt-q" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search apple, dal, milk…" className="h-10 w-full rounded-xl border border-stone-200 bg-stone-50 px-3 text-sm dark:border-stone-700 dark:bg-stone-800" />
         <button className="h-10 rounded-xl bg-emerald-700 px-4 text-xs font-bold text-white">{loading ? "…" : "Search"}</button>
       </form>
 
@@ -73,7 +74,7 @@ export function NutritionTracker() {
         <ul className="mt-3 space-y-1">
           {searchResults.map((f) => (
             <li key={f.id} className="flex items-center justify-between rounded-xl bg-stone-50 p-2 text-sm dark:bg-stone-800">
-              <span>{f.name} — {f.nutrients.calories ?? "—"} kcal/100g</span>
+              <span>{f.name}{f.brand ? ` (${f.brand})` : ""} — {f.nutrients.calories ?? "—"} kcal/100 g</span>
               <button onClick={() => add(f)} className="flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-1 text-xs font-bold text-emerald-800"><Plus className="h-3 w-3" /> Add</button>
             </li>
           ))}

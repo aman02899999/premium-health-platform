@@ -17,8 +17,8 @@ export function ChildGrowthTracker() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Baby className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Child Growth Tracker — WHO Simplified (Unique)</h3>
-      <p className="mt-1 text-[11px] text-stone-500">Educational only — not clinical diagnosis. Use official WHO Anthro app / MCP card for real percentile. Consult pediatrician.</p>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Baby className="h-4 w-4 text-emerald-700 dark:text-emerald-600" /> Child Growth Tracker — WHO Simplified</h3>
+      <p className="mt-1 text-[11px] text-stone-500">For education only, not a diagnosis. Your child&apos;s growth card (MCP card) and paediatrician give the real percentile.</p>
 
       <div className="mt-3 grid gap-3 sm:grid-cols-3">
         <label className="text-sm">Sex
@@ -51,7 +51,7 @@ export function ChildGrowthTracker() {
         </div>
       </div>
 
-      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Indian context: Use Mother Child Protection card, Anganwadi growth monitoring, IAP charts. This simplified calc is NOT replacement — it exists to demonstrate unique child health feature.</p>
+      <p className="mt-3 text-[11px] text-stone-500 dark:text-stone-400">Indian context: Use Mother Child Protection card, Anganwadi growth monitoring, IAP charts. This quick check is a rough guide only and doesn&apos;t replace your child&apos;s growth card or a paediatrician&apos;s check.</p>
     </div>
   );
 }

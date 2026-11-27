@@ -31,7 +31,7 @@ export default function Page() {
         howTo={{ name: "How to get dosha meals", steps: ["Take quick dosha quiz: body, digestion, mind tendencies","Get Vata/Pitta/Kapha meal suggestions: millet, dal, veg, spices","Build thali with dosha meals + millet swap","Save plan in premium, get weekly dosha PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-orange-800 to-amber-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Dosha Meals — Ayurveda Vata Pitta Kapha — Personalized</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Get meals by dosha: Vata, Pitta, Kapha — Ayurveda + nutrition India.</p>
       </div>

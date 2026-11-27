@@ -8,7 +8,7 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
 const seoTitle = "Live Health Advisory — India Weather + Air";
-const seoDescription = "Live advisory: weather, AQI, UV + health tips — asthma, diabetes, elderly. Open-Meteo + India-specific. Unique, premium + affiliate.";
+const seoDescription = "Live advisory: weather, AQI, UV + health tips — asthma, diabetes, elderly. Open-Meteo + India-specific.";
 const url = "/health/live-advisory";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Live Advisory — Weather Health")}&category=${encodeURIComponent("Live Advisory")}&type=tool`;
@@ -34,9 +34,9 @@ export default function LiveAdvisoryPage() {
         howTo={{ name: "How to use live advisory", steps: ["Allow location or pick city — get live weather + AQI + UV", "Select health conditions: asthma, diabetes, elderly, child", "View personalized tips: hydration, mask, exercise timing", "Subscribe premium for WhatsApp alerts"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-slate-800 to-emerald-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Live Health Advisory — Weather + AQI + Health Tips</h1>
-        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Live advisory: weather, AQI, UV + health tips — asthma, diabetes, elderly. Open-Meteo + India-specific. Unique.</p>
+        <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Live advisory: weather, AQI, UV + health tips — asthma, diabetes, elderly. Open-Meteo + India-specific.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

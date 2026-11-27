@@ -36,12 +36,7 @@ const STATIC_ROUTES = [
   "/health/consultation",
   "/health/partner-with-us",
   "/health/advertise",
-  // Developer platform — public, indexable surfaces only.
-  // /developers/dashboard is intentionally absent: it is a signed-in view with
-  // robots noindex set on the page itself, so listing it here would be a lie.
-  "/health/developers",
-  "/health/developers/docs",
-  "/health/api-directory",
+  // Developer platform pages are noindex and left out on purpose (owner, 27 Nov 2026).
 ];
 
 // lastmod only where a real date exists. Stamping every URL with the time of the request told

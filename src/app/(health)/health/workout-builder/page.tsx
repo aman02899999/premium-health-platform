@@ -31,9 +31,9 @@ export default function Page() {
         howTo={{ name: "How to build workout", steps: ["Pick goal: weight loss, strength, diabetes, beginner","Select days, time, equipment: none / dumbbells / bands","Get plan: warm-up + main + cool-down + calories","Save plan in premium, track streaks, get WhatsApp nudge"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-red-800 to-orange-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-red-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-red-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Workout Builder — Home Gym No Equipment — India Friendly</h1>
-        <p className="mt-2 max-w-2xl text-sm text-red-100/90">Build home workout: no equipment, India heat + space friendly — beginner to advanced. Unique India.</p>
+        <p className="mt-2 max-w-2xl text-sm text-red-100/90">Build home workout: no equipment, India heat + space friendly — beginner to advanced.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

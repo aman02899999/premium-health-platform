@@ -8,7 +8,7 @@ import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 
 const seoTitle = "Barcode Scanner — Food Label Analyzer India";
-const seoDescription = "Scan barcode or enter ingredients: sugar, trans-fat, sodium alerts — FSSAI India focused.";
+const seoDescription = "Type a barcode number to check calories, sugar, fat, protein, Nutri-Score and processing level of packaged foods sold in India.";
 const url = "/health/barcode-scanner";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Barcode Scanner — Food Label")}&category=${encodeURIComponent("Food Safety")}&type=tool`;
@@ -27,19 +27,19 @@ export default function Page() {
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Food Safety" }]} />
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Food Safety", item: "/health/barcode-scanner" }]}
-        faqs={[{"q":"How to check if packaged food is healthy?","a":"Enter ingredients or scan barcode: checker flags sugar aliases, trans-fat, high sodium, palm oil, maida — FSSAI label education. Prefer <5g sugar, <0.2g trans-fat per 100g."},{"q":"What is FSSAI label reading trick?","a":"Check per 100g, not per serve — serving can be small. Look for sugar in first 3 ingredients, trans-fat hydrogenated, sodium >400mg/100g high."}]}
-        howTo={{ name: "How to analyze food label", steps: ["Enter barcode or paste ingredients list from pack","View sugar, trans-fat, sodium, palm oil alerts + FSSAI tips","Get healthier swap: e.g., millet cookies vs maida","Save scans in premium, build healthy pantry"] }}
+        faqs={[{"q":"How to check if packaged food is healthy?","a":"Type the barcode number to see calories, sugar, fat, protein, Nutri-Score and processing level per 100 g. Then read the pack: compare per 100 g, and check whether sugar or maida is in the first three ingredients."},{"q":"What is FSSAI label reading trick?","a":"Compare per 100 g, not per serving, because servings can be tiny. Ingredients are listed from most to least, so sugar or maida in the first three means a lot of it."}]}
+        howTo={{ name: "How to analyze food label", steps: ["Find the number under the barcode on the pack","Type it and tap Lookup","Compare calories, sugar, fat and protein per 100 g","Check the Nutri-Score (A best, E worst) and NOVA group (4 = ultra-processed)"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-800 to-amber-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Barcode Scanner — Food Label Analyzer — FSSAI India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Scan barcode or enter ingredients: sugar, trans-fat, sodium, palm oil alerts — FSSAI India focused. Unique India.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Barcode Scanner: Check a Packaged Food</h1>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Type the barcode number from any packaged food to see its calories, sugar, fat and protein, plus how processed it is.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <BarcodeScanner />
-          <AffiliateProducts limit={4} title="Healthy Pantry — Millet + Jaggery — Affiliate" />
+          <AffiliateProducts limit={4} title="Healthy pantry (affiliate links)" />
           <LatestArticles limit={4} />
         </div>
         <div className="space-y-4">

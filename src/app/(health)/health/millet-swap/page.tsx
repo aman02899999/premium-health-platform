@@ -40,7 +40,7 @@ export default function MilletSwapPage() {
         howTo={{ name: "How to swap rice with millets", steps: ["Enter your usual rice/wheat portion in MilletSwapEngine", "Pick millet: foxtail for roti, little/barnyard for rice, kodo for pulao", "Start 50:50 for 1 week to adapt gut, soak 6h", "Track GI load, fibre, protein — save plan in premium"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-orange-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Millet Swap Engine — Replace White Rice with Low-GI Millets</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Replace high-GI white rice (GI 70-80) with low-GI millets (42-55). Foxtail, little, barnyard, kodo — diabetic-friendly, fibre-rich, India’s ancient grains.</p>
       </div>

@@ -30,7 +30,7 @@ export function YogaTimer() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Timer className="h-4 w-4 text-violet-600" /> Yoga & Pranayama Timer — Unique</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Timer className="h-4 w-4 text-violet-600" /> Yoga & Pranayama Timer</h3>
       <p className="mt-1 text-[11px] text-stone-500">Traditional Indian practices with modern timer — educational, not medical prescription. Stop if dizzy.</p>
 
       <div className="mt-3 flex gap-2">
