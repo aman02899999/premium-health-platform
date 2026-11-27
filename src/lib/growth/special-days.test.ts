@@ -163,6 +163,9 @@ describe("special-day posts", () => {
     expect(specialReel("2026-11-29", "evening")?.id).toBe("reel-lab-cbc");
     expect(specialReel("2026-12-01", "evening")?.id).toBe("reel-lab-sugar-test");
     expect(specialReel("2026-12-03", "evening")?.id).toBe("reel-lab-lipid-profile");
+    expect(specialReel("2026-12-05", "evening")?.id).toBe("reel-lab-thyroid");
+    expect(specialReel("2026-12-07", "evening")?.id).toBe("reel-lab-vitamin-d-b12");
+    expect(specialReel("2026-12-09", "evening")?.id).toBe("reel-lab-liver-lft");
     expect(specialReel("2026-11-29", "midday")?.id).toBe("reel-desi-habit-paani");
     expect(specialReel("2026-11-28", "evening")?.id).toBe("reel-egg-andar-ka-safar"); // egg Reel fills the gap
   });

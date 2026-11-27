@@ -146,6 +146,10 @@ export const LONG_HINDI: Record<string, string> = {
   "short-lab-2-cbc": "सीबीसी रिपोर्ट कैसे पढ़ें",
   "short-lab-3-sugar": "शुगर के 3 टेस्ट",
   "short-lab-4-lipid": "कोलेस्ट्रॉल रिपोर्ट कैसे पढ़ें",
+  "long-lab-ke-andar-2": "ब्लड रिपोर्ट भाग 2",
+  "short-lab-5-thyroid": "थायरॉइड रिपोर्ट कैसे पढ़ें",
+  "short-lab-6-vitamin-d-b12": "विटामिन डी और बी12 रिपोर्ट",
+  "short-lab-7-liver-lft": "लिवर टेस्ट रिपोर्ट कैसे पढ़ें",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */
