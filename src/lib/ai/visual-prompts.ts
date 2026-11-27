@@ -281,6 +281,35 @@ export const LABSERIES_VIDEO_PROMPTS: VisualPrompt[] = [
   A("heart-pump-anim", "3D animation of a glowing anatomical heart beating steadily in dark space, blood flow lines pulsing out from it, teal light.", "Lab series EP4: exercise and the heart"),
 ];
 
+// "paracetamol": cinematic 3D medical visuals for the "Paracetamol ki goli andar kya karti hai" Reel
+// (dark lab, teal and red light). Plain unmarked tablets only. Same no-text, no-faces rules.
+export const PARA_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("para-tablet-hero", "Cinematic 3D render of a single plain white round tablet with no markings standing on its edge on a black reflective surface in a dark futuristic lab, teal rim light, floating dust particles.", "Paracetamol Reel hook"),
+  A("para-tablet-dissolve", "3D medical visualisation of a plain white tablet breaking apart into a cloud of tiny white particles inside a glowing pink stomach, dark cinematic light.", "Paracetamol Reel: tablet dissolves"),
+  A("para-villi-absorb", "3D medical render of the small intestine lining with finger-like villi, tiny glowing white particles passing through the lining into red blood vessels below.", "Paracetamol Reel: absorption"),
+  A("para-blood-flow", "3D medical render of tiny glowing white molecules flowing with red blood cells through a blood vessel, dark background.", "Paracetamol Reel: in the blood"),
+  A("para-brain-signal", "3D medical visualisation of a translucent human brain glowing blue in dark space, a few bright orange signal sparks fading out across it.", "Paracetamol Reel: pain and fever signals"),
+  A("para-hypothalamus-thermo", "3D medical visualisation of the deep centre of a translucent brain where a small glowing orange core is cooling to blue, thin circular holographic rings around it like a thermostat dial, no numbers.", "Paracetamol Reel: body thermostat"),
+  A("para-skin-sweat", "Macro 3D render of human skin with tiny beads of sweat on the surface and widened warm glowing blood vessels just beneath, soft heat shimmer rising.", "Paracetamol Reel: heat leaves the body"),
+  A("para-swollen-joint", "3D medical render of a human knee joint with a red glowing swollen area around it, dark background, educational.", "Paracetamol Reel: swelling"),
+  A("para-liver-glow", "3D medical render of a human liver glowing teal inside a translucent body outline, dark background.", "Paracetamol Reel: liver"),
+  A("para-liver-pack", "3D medical visualisation inside liver tissue: small white molecules being wrapped into neat glowing green capsules and carried away, dark background.", "Paracetamol Reel: safe clearance"),
+  A("para-napqi-red", "3D medical visualisation of a few spiky glowing red molecules appearing among calm blue liver cells, dark ominous light.", "Paracetamol Reel: toxic by-product"),
+  A("para-glutathione-shield", "3D medical visualisation of glowing green spheres surrounding spiky red molecules and turning them dull grey, inside a blue cell, dark background.", "Paracetamol Reel: glutathione"),
+  A("para-cell-damage", "3D medical visualisation of a swarm of spiky red molecules crowding over blue liver cells, thin cracks of red light on the cell surfaces, not gory.", "Paracetamol Reel: overdose"),
+  A("para-cold-medicines", "Photograph of several plain label-free medicine strips and small syrup bottles on a dark table, no writing anywhere, moody side light.", "Paracetamol Reel: hidden in cold medicines"),
+  A("para-doctor-desk", "Photograph of a doctor's desk with a stethoscope, a digital thermometer and a notepad, warm light, faces out of frame.", "Paracetamol Reel: see a doctor"),
+];
+
+export const PARA_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("para-tablet-orbit-anim", "Cinematic 3D animation: the camera slowly orbits a plain white unmarked tablet on a black reflective pedestal in a dark lab, then the tablet turns translucent and tiny glowing particles swirl inside it.", "Paracetamol Reel hook"),
+  A("para-dissolve-anim", "3D medical animation in slow motion: a plain white tablet sinks into glowing pink stomach fluid and dissolves into a cloud of tiny white particles.", "Paracetamol Reel: dissolving"),
+  A("para-blood-brain-anim", "3D medical animation: tiny glowing white molecules ride the bloodstream with red blood cells, the camera follows them upward toward a softly glowing blue brain.", "Paracetamol Reel: to the brain"),
+  A("para-thermostat-anim", "3D medical animation: a glowing orange core deep inside a translucent brain slowly cools to blue while warm waves drift outward and fade, holographic rings turning around it.", "Paracetamol Reel: fever comes down"),
+  A("para-glutathione-anim", "3D medical animation inside a blue liver cell: glowing green spheres capture spiky red molecules one by one and turn them dull grey. Slow push-in.", "Paracetamol Reel: glutathione at work"),
+  A("para-overdose-anim", "3D medical animation: the last few green spheres disappear and a growing swarm of spiky red molecules spreads over blue liver cells, red light cracks forming, not gory.", "Paracetamol Reel: when the shield runs out"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
@@ -289,6 +318,7 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   egg: { image: EGG_IMAGE_PROMPTS, video: EGG_VIDEO_PROMPTS },
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
   labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
+  paracetamol: { image: PARA_IMAGE_PROMPTS, video: PARA_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
