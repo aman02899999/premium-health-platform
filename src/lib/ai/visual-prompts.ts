@@ -320,6 +320,73 @@ export const HORMONES_VIDEO_PROMPTS: VisualPrompt[] = [
   A("glass-shatter-anim", "Slow-motion cinematic animation of a pane of glass shattering against a black background, gold rim light catching the pieces.", "Hormone series: myth busted"),
 ];
 
+// "labseries2": "Lab Ke Andar" EP 5-7 (thyroid, vitamin D and B12, liver test). Same no-text, no-faces rules.
+export const LABSERIES2_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("thyroid-butterfly-neck", "3D anatomical render of a glowing butterfly-shaped thyroid gland in front of a transparent human neck, dark background, teal and gold light.", "Lab series EP5 hook: thyroid"),
+  A("pituitary-signal", "3D medical visualisation of a small glowing pituitary gland at the base of a transparent brain sending a beam of light down toward the neck, dark background.", "Lab series EP5: TSH signal"),
+  A("metabolism-dial", "3D render of a glowing analogue speed dial floating in a dark lab, needle in the middle, abstract flame and snowflake icons at each end, no numbers or text.", "Lab series EP5: metabolism speed"),
+  A("tired-blanket-cold", "Moody photograph of a person wrapped in a blanket on a sofa holding a warm cup, face turned away, dim winter light.", "Lab series EP5: slow thyroid signs"),
+  A("racing-heart-sweat", "Dark cinematic photograph of a hand pressed on a chest with a faint glowing heartbeat line overlay, no face visible.", "Lab series EP5: fast thyroid signs"),
+  A("iodised-salt-bowl", "Close-up photograph of a small bowl of white salt and a wooden spoon on a dark kitchen counter, warm side light, no packaging or labels.", "Lab series EP5: iodine"),
+  A("hair-gummies-jar", "Photograph of an unlabelled jar of chewable vitamin gummies spilling onto a dark table next to a blood test tube, soft light, no text.", "Lab series EP5: biotin can change test results"),
+  A("sunlight-skin-rays", "3D medical visualisation of sunlight rays touching skin layers in cross-section, glowing golden vitamin D molecules forming inside, dark background.", "Lab series EP6 hook: vitamin D from sun"),
+  A("bone-calcium-glow", "3D anatomical render of a human thigh bone with glowing calcium particles flowing into it, teal light, dark background.", "Lab series EP6: vitamin D and bones"),
+  A("office-indoors-dim", "Photograph of an empty office desk with a laptop under cool artificial light, window blinds closed, sunlight blocked outside.", "Lab series EP6: indoor life"),
+  A("vitamin-d-sachets", "Photograph of a few plain unlabelled white powder sachets and a glass of milk on a dark table, soft light, no text.", "Lab series EP6: do not self-dose"),
+  A("b12-foods-desi", "Top-down photograph on a dark table of Indian vegetarian and non-veg B12 foods: a bowl of curd, paneer cubes, a glass of milk, boiled eggs and a piece of fish.", "Lab series EP6: B12 foods"),
+  A("nerve-tingle-hand", "3D medical visualisation of a transparent hand with glowing nerve lines, small flickering sparks at the fingertips, dark background.", "Lab series EP6: B12 and nerves"),
+  A("liver-factory-glow", "3D anatomical render of a glowing human liver in dark space, tiny light particles moving through it like a busy factory, teal and gold light.", "Lab series EP7 hook: liver"),
+  A("liver-cells-leak", "3D medical visualisation of liver cells, a few of them cracked and leaking small glowing enzyme particles into a nearby blood vessel.", "Lab series EP7: ALT and AST"),
+  A("bilirubin-yellow-vial", "Photograph of a test tube of deep yellow serum in a rack in a dark lab, warm back light, no labels.", "Lab series EP7: bilirubin"),
+  A("fatty-liver-droplets", "3D medical visualisation of liver tissue filled with round pale yellow fat droplets, educational, not gory, dark background.", "Lab series EP7: fatty liver"),
+  A("unlabelled-pills-tub", "Photograph of a plain unlabelled black supplement tub with loose capsules spilling out on a dark gym bench, moody light, no text.", "Lab series EP7: unknown supplements"),
+];
+
+export const LABSERIES2_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("thyroid-glow-anim", "3D anatomical animation: a butterfly-shaped thyroid gland in a transparent neck slowly lights up and pulses, small hormone particles drifting out into blood vessels.", "Lab series EP5 hook"),
+  A("pituitary-signal-anim", "3D medical animation: a glowing pituitary gland at the base of a transparent brain sends pulses of light down to the thyroid gland in the neck, which glows brighter in reply.", "Lab series EP5: TSH"),
+  A("metabolism-dial-anim", "3D animation of a glowing speed dial in a dark lab, the needle swinging slowly from left to right and back, no numbers or text.", "Lab series EP5: metabolism"),
+  A("sun-vitd-skin-anim", "3D medical animation: golden sunlight rays reach a cross-section of skin and small glowing vitamin D molecules form and drift down into blood vessels.", "Lab series EP6 hook"),
+  A("bone-calcium-anim", "3D anatomical animation: glowing calcium particles stream from a blood vessel into a human bone, which grows slightly brighter and denser.", "Lab series EP6: bones"),
+  A("nerve-signal-anim", "3D medical animation of a nerve fibre with a glowing signal pulse travelling along it; the protective sheath around it shimmers as the pulse passes.", "Lab series EP6: B12 and nerves"),
+  A("liver-factory-anim", "3D anatomical animation of a glowing liver in dark space with streams of light particles flowing in and out through its blood vessels, slow orbit.", "Lab series EP7 hook"),
+  A("enzyme-leak-anim", "3D medical animation: a few liver cells crack open and small glowing enzyme particles leak out and flow into a blood vessel.", "Lab series EP7: ALT and AST"),
+  A("fat-droplets-anim", "3D medical animation: pale yellow fat droplets slowly grow and fill the spaces inside liver tissue, educational, not gory.", "Lab series EP7: fatty liver"),
+];
+
+// "hormones2": "Steroid aur Peptide Ka Sach" EP 3 and 5-12 (natural limits, liver, fertility, mind,
+// fake products, SARMs, peptides, GH, seeing a doctor). Same rules as "hormones": no syringes, needles,
+// vials, pills being taken or bodies-as-results.
+export const HORMONES2_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("ceiling-chart-hologram", "3D render of a glowing holographic bar chart rising toward a bright horizontal ceiling line that the bars cannot pass, dark lab, gold light, no readable text or numbers.", "Hormone series EP3: natural ceiling"),
+  A("calendar-pages-fly", "Cinematic photograph of paper calendar pages flying through the air in a dark room, gold rim light, no readable dates.", "Hormone series EP3: time and patience"),
+  A("liver-cyst-section", "3D medical cross-section of a liver with a few small dark red blood-filled pockets inside the tissue, educational, not gory, dark background.", "Hormone series EP5: liver damage"),
+  A("sperm-microscope", "Scientific microscope view of human sperm cells swimming on a dark blue background, educational.", "Hormone series EP6: fertility"),
+  A("gauge-needle-low", "Cinematic close-up of a glowing analogue gauge with its pointer resting at the low end, dark background, red light, no numbers.", "Hormone series EP6: own hormone stays low"),
+  A("alone-dark-room", "Moody photograph of a young man sitting alone on the edge of a bed in a dark room with his head in his hands, silhouette, face not visible.", "Hormone series EP7: low mood"),
+  A("cracked-mirror-gym", "Photograph of a cracked mirror on a dark gym wall reflecting dumbbells, moody light, no person visible.", "Hormone series EP7: body image"),
+  A("dirty-workbench", "Photograph of a grimy, cluttered workbench in a dark makeshift workshop with stained glassware and dusty unlabelled bottles, a single bare bulb.", "Hormone series EP8: unregulated products"),
+  A("bacteria-micro", "3D medical visualisation of rod-shaped bacteria and round virus particles floating in dark fluid, green and purple light.", "Hormone series EP8: infection risk"),
+  A("molecule-warning-red", "3D render of an unfamiliar glowing molecule floating in dark space with a pulsing red warning glow around it.", "Hormone series EP9: unapproved compounds"),
+  A("amino-chain-beads", "3D render of a short chain of glowing coloured beads linked together like a necklace, floating in dark space, representing amino acids in a peptide.", "Hormone series EP10: what a peptide is"),
+  A("rat-lab-cage-empty", "Photograph of an empty clean laboratory animal cage on a steel shelf in a research lab, cool light, no animals.", "Hormone series EP10: animal-only evidence"),
+  A("physio-knee-hands", "Photograph of a physiotherapist's hands guiding a patient's knee through a gentle bend on a treatment table, faces not visible, daylight.", "Hormone series EP10: injuries need a physio"),
+  A("growth-plate-xray", "3D medical render of a glowing translucent human hand skeleton like an X-ray, dark blue background.", "Hormone series EP11: growth hormone and bones"),
+  A("doctor-handshake", "Photograph of a doctor and a young man shaking hands across a clinic desk, both faces out of frame, warm reassuring light.", "Hormone series EP12: talk to a doctor"),
+  A("sunrise-run-track", "Photograph of a running track at sunrise in an Indian city park, empty, golden light, long shadows.", "Hormone series EP12: the natural path"),
+];
+
+export const HORMONES2_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("ceiling-bars-anim", "3D animation of glowing holographic bars rising and stopping at a bright horizontal ceiling line, dark lab, gold light, no numbers or text.", "Hormone series EP3: natural ceiling"),
+  A("liver-darken-anim", "3D medical animation of a liver slowly rotating as small dark red pockets appear inside its glowing tissue, educational, not gory.", "Hormone series EP5: liver"),
+  A("gauge-drop-anim", "Cinematic animation of a glowing analogue gauge whose pointer slowly falls from the middle to the low end, red light, no numbers.", "Hormone series EP6: hormone falls"),
+  A("brain-flicker-anim", "3D animation of a human brain in dark space with flickering red and blue areas pulsing irregularly.", "Hormone series EP7: mood"),
+  A("bacteria-swarm-anim", "3D medical animation: rod-shaped bacteria and round virus particles drift and multiply in dark fluid, green and purple light.", "Hormone series EP8: infection"),
+  A("amino-chain-fold-anim", "3D animation: a chain of glowing coloured beads floats in dark space and slowly folds into a compact shape.", "Hormone series EP10: peptide"),
+  A("pituitary-pulse-anim", "3D medical animation of a small glowing gland at the base of a transparent brain releasing gentle pulses of golden light into the bloodstream.", "Hormone series EP11: growth hormone"),
+  A("sunrise-track-anim", "Cinematic slow push-in along an empty running track at sunrise, golden light, long shadows.", "Hormone series EP12: the natural path"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
@@ -329,6 +396,8 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
   labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
   hormones: { image: HORMONES_IMAGE_PROMPTS, video: HORMONES_VIDEO_PROMPTS },
+  hormones2: { image: HORMONES2_IMAGE_PROMPTS, video: HORMONES2_VIDEO_PROMPTS },
+  labseries2: { image: LABSERIES2_IMAGE_PROMPTS, video: LABSERIES2_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */

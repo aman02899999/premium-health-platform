@@ -21,7 +21,8 @@ export type LongVideo = {
   short?: boolean;
   /** Supplement Myth Buster series (owner, 25 Nov 2026): on its date this video takes the third
    *  daily auto-Short slot, so the channel still uploads 5 videos a day, not 6. */
-  series?: "supplements";
+  /** Lab Ke Andar Shorts (Dec 2026) use the same slot, on odd dates; the steroid series takes even dates. */
+  series?: "supplements" | "lab";
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
@@ -2187,6 +2188,49 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["5 PDF books ₹409", "/library/pack/smart-nutrition"],
     short: true,
   },
+  // Lab Ke Andar (thread "Make animated Reel from second Instagram link", owner picked Shorts + 4 long videos, 26 Nov 2026):
+  // a Short per episode (the same vertical Reel) and a 16:9 long video per 3 episodes, with chapters.
+  {
+    id: "long-lab-ke-andar-1",
+    date: "2026-12-19",
+    title: "Blood Test Report Kaise Padhein? Lab Ke Andar Part 1 | CBC, Sugar, HbA1c",
+    intro: "Blood sample lab mein kahan jaata hai, CBC report ke teen cells ka matlab, aur sugar ke teen test (fasting, khaane ke baad, HbA1c). 3 episodes ek video mein, sources ke saath. Report ka matlab khud mat nikalo, doctor ko dikhao.\nLab Ke Andar series: blood test ki report, beginner se advanced, episode by episode.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "EP 1: Khoon ka safar, sample lab mein kahan jaata hai"],
+      ["2:02", "EP 2: CBC report, haemoglobin, WBC, platelets"],
+      ["3:38", "EP 3: Sugar ke 3 test, fasting, khaane ke baad, HbA1c"],
+      ["5:17", "Free trial workout"],
+    ],
+    sources: [
+      ["WHO guidelines on drawing blood: best practices in phlebotomy (2010)", "https://www.who.int/publications/i/item/9789241599221"],
+      ["American Red Cross, Blood components", "https://www.redcrossblood.org/donate-blood/how-to-donate/types-of-blood-donations/blood-components.html"],
+      ["MedlinePlus, Complete blood count (CBC)", "https://medlineplus.gov/lab-tests/complete-blood-count-cbc/"],
+      ["Pettersson et al., Br J Clin Pharmacol 2008 (weightlifting and liver tests)", "https://pubmed.ncbi.nlm.nih.gov/?term=Pettersson+weightlifting+liver+function+tests+2008"],
+      ["WHO guideline on haemoglobin cutoffs to define anaemia (2024)", "https://www.who.int/publications/i/item/9789240088542"],
+      ["NFHS-5 (2019-21) fact sheets", "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml"],
+      ["American Diabetes Association, Standards of Care in Diabetes 2025", "https://diabetesjournals.org/care/issue/48/Supplement_1"],
+      ["Anjana et al., Lancet Diabetes Endocrinol 2023 (ICMR-INDIAB)", "https://pubmed.ncbi.nlm.nih.gov/?term=Anjana+ICMR-INDIAB+2023+Lancet+Diabetes+Endocrinology"],
+    ],
+    tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "cbc test hindi", "hba1c test", "sugar test normal range", "haemoglobin test"],
+  },
+  {
+    id: "short-lab-1-khoon-ka-safar",
+    date: "2026-12-19",
+    title: "Blood Test Ke Baad Khoon Lab Mein Kahan Jaata Hai? #shorts",
+    intro: "Rangeen dhakkan, centrifuge, plasma, laser se cell counting aur rang se number: blood sample ka poora safar.\nLab Ke Andar series: blood test ki report, beginner se advanced, episode by episode.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO guidelines on drawing blood: best practices in phlebotomy (2010)", "https://www.who.int/publications/i/item/9789241599221"],
+      ["American Red Cross, Blood components", "https://www.redcrossblood.org/donate-blood/how-to-donate/types-of-blood-donations/blood-components.html"],
+      ["MedlinePlus, Complete blood count (CBC)", "https://medlineplus.gov/lab-tests/complete-blood-count-cbc/"],
+      ["Pettersson et al., Br J Clin Pharmacol 2008 (weightlifting and liver tests)", "https://pubmed.ncbi.nlm.nih.gov/?term=Pettersson+weightlifting+liver+function+tests+2008"],
+    ],
+    tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "blood sample lab", "centrifuge", "plasma"],
+    short: true,
+    series: "lab",
+  },
   {
     id: "short-promo-diet-egg-muscle",
     date: "2026-12-20",
@@ -2219,6 +2263,24 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["diabetes exercise hindi", "pcos workout", "bp exercise hindi", "pdf books hindi", "fitness ebook", "royal supplements library"],
     buy: ["5 PDF books ₹493", "/library/pack/health"],
     short: true,
+  },
+  {
+    id: "short-lab-2-cbc",
+    date: "2026-12-21",
+    title: "CBC Report Ka Pehla Panna: Kya Ginte Hain? #shorts",
+    intro: "Red cells, white cells aur platelets. WHO ke hisaab se aadmi mein 13 aur aurat mein 12 g/dL se kam haemoglobin anaemia ka sanket.\nLab Ke Andar series: blood test ki report, beginner se advanced, episode by episode.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["WHO guideline on haemoglobin cutoffs to define anaemia (2024)", "https://www.who.int/publications/i/item/9789240088542"],
+      ["NFHS-5 (2019-21) fact sheets", "https://rchiips.org/nfhs/factsheet_NFHS-5.shtml"],
+      ["MedlinePlus, Complete blood count (CBC)", "https://medlineplus.gov/lab-tests/complete-blood-count-cbc/"],
+      ["WHO fact sheet, Dengue and severe dengue", "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue"],
+    ],
+    tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "cbc test hindi", "anaemia", "haemoglobin"],
+    short: true,
+    series: "lab",
   },
   {
     id: "long-air-pollution-myths-6",
@@ -2275,6 +2337,23 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-lab-3-sugar",
+    date: "2026-12-23",
+    title: "Sugar Ke 3 Test: Fasting, Khaane Ke Baad Aur HbA1c #shorts",
+    intro: "Fasting 100 se kam normal, 100-125 prediabetes, 126+ diabetes ka sanket. HbA1c 5.7 se kam normal, 5.7-6.4 prediabetes, 6.5+ diabetes ka sanket. Ek test se diabetes pakka nahi hota.\nLab Ke Andar series: blood test ki report, beginner se advanced, episode by episode.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["American Diabetes Association, Standards of Care in Diabetes 2025", "https://diabetesjournals.org/care/issue/48/Supplement_1"],
+      ["Anjana et al., Lancet Diabetes Endocrinol 2023 (ICMR-INDIAB)", "https://pubmed.ncbi.nlm.nih.gov/?term=Anjana+ICMR-INDIAB+2023+Lancet+Diabetes+Endocrinology"],
+      ["MedlinePlus, Hemoglobin A1C (HbA1c) test", "https://medlineplus.gov/lab-tests/hemoglobin-a1c-hba1c-test/"],
+    ],
+    tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "sugar test", "hba1c test", "diabetes test hindi"],
+    short: true,
+    series: "lab",
+  },
+  {
     id: "short-promo-diet-40-bp",
     date: "2026-12-24",
     title: "40+ Aur High BP #shorts",
@@ -2306,6 +2385,24 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["yoga for beginners hindi", "surya namaskar", "pranayama", "pdf books hindi", "fitness ebook", "royal supplements library"],
     buy: ["5 PDF books ₹374", "/library/pack/yoga"],
     short: true,
+  },
+  {
+    id: "short-lab-4-lipid",
+    date: "2026-12-25",
+    title: "Lipid Profile Ke 4 Number Kaise Padhein? #shorts",
+    intro: "LDL, HDL, triglycerides aur total cholesterol. LDL ka sahi target har insaan ke risk par depend karta hai, doctor batayega.\nLab Ke Andar series: blood test ki report, beginner se advanced, episode by episode.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nYe general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["MedlinePlus, Cholesterol levels: what you need to know", "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html"],
+      ["American Heart Association, HDL (good), LDL (bad) cholesterol and triglycerides", "https://www.heart.org/en/health-topics/cholesterol/hdl-good-ldl-bad-cholesterol-and-triglycerides"],
+      ["Nordestgaard et al., Eur Heart J 2016 (fasting not routinely required)", "https://pubmed.ncbi.nlm.nih.gov/?term=Nordestgaard+2016+fasting+not+routinely+required+lipid+profile"],
+      ["Joshi et al., PLoS One 2014 (ICMR-INDIAB lipids)", "https://pubmed.ncbi.nlm.nih.gov/?term=Joshi+2014+ICMR-INDIAB+dyslipidemia+PLoS+One"],
+    ],
+    tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "lipid profile hindi", "cholesterol test", "ldl hdl"],
+    short: true,
+    series: "lab",
   },
   {
     id: "long-kids-fitness-myths-7",
