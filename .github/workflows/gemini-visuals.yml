@@ -15,9 +15,9 @@ on:
         options: [image, video]
         default: image
       set:
-        description: "Prompt set: default (gym stock) or anatomy (medical renders + food close-ups) or habits (Desi Habit Science Reels) or supplements / supplements2 (Supplement Myth Buster) or bloodlab / labseries (Lab Ke Andar Reels) or egg (egg science Reel)"
+        description: "Prompt set: default (gym stock) or anatomy (medical renders + food close-ups) or habits (Desi Habit Science Reels) or supplements / supplements2 (Supplement Myth Buster) or bloodlab / labseries / labseries2 (Lab Ke Andar Reels) or egg (egg science Reel)"
         type: choice
-        options: [default, anatomy, habits, supplements, supplements2, bloodlab, labseries, egg]
+        options: [default, anatomy, habits, supplements, supplements2, bloodlab, labseries, labseries2, egg]
         default: default
       start:
         description: "First prompt number (0 = the first)"

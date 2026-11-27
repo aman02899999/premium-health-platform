@@ -64,6 +64,18 @@ describe("long videos", () => {
     expect(seriesDay("2026-12-01", [{ ...series[0], date: "2026-12-02" }])).toBe(false);
   });
 
+  it("the Lab Ke Andar series: tagged for its playlist, a Short per episode, long videos with chapters", () => {
+    const lab = LONG_VIDEOS.filter((v) => v.id.startsWith("short-lab-") || v.id.startsWith("long-lab-ke-andar-"));
+    expect(lab.length).toBeGreaterThanOrEqual(5);
+    for (const v of lab) {
+      expect(longVideoTags(v), v.id).toContain("lab ke andar");
+      expect(v.intro, v.id).toMatch(/AI voice/);
+      expect(longVideoDescription(v)).toMatch(/doctor/i);
+    }
+    expect(lab.filter((v) => v.short).every((v) => v.title.endsWith("#shorts"))).toBe(true);
+    expect(lab.filter((v) => !v.short).every((v) => v.chapters.some(([, c]) => c.startsWith("EP ")))).toBe(true);
+  });
+
   it("picks the oldest due video nobody has uploaded", () => {
     expect(dueLongVideo("2026-11-08", [])).toBeNull();
     expect(dueLongVideo("2026-11-20", [])?.id).toBe(LONG_VIDEOS[0].id);
