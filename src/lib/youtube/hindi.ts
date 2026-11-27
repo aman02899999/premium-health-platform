@@ -142,6 +142,11 @@ export const LONG_HINDI: Record<string, string> = {
   "long-intermittent-fasting-myths-29": "इंटरमिटेंट फ़ास्टिंग के 5 झूठ",
   "long-roti-rice-myths-28": "रोटी या चावल: 5 झूठ",
   "long-egg-yolk-myths-27": "अंडे के 5 झूठ",
+  "long-lab-ke-andar-1": "ब्लड टेस्ट रिपोर्ट कैसे पढ़ें",
+  "short-lab-1-khoon-ka-safar": "ब्लड सैंपल लैब में कहाँ जाता है?",
+  "short-lab-2-cbc": "सीबीसी रिपोर्ट कैसे पढ़ें",
+  "short-lab-3-sugar": "शुगर के 3 टेस्ट",
+  "short-lab-4-lipid": "कोलेस्ट्रॉल रिपोर्ट कैसे पढ़ें",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */
