@@ -188,6 +188,34 @@ export const SUPPLEMENT2_VIDEO_PROMPTS: VisualPrompt[] = [
   A("thali-pan-anim", "Slow overhead camera pan across a colourful Indian thali with dal, sabzi, salad, curd, roti and rice.", "Multivitamin video"),
 ];
 
+// "egg": cinematic 3D science-explainer visuals for the "Anda khaate hi body ke andar kya hota hai"
+// Reel (dark lab, glowing holographic look). Same no-text, no-faces rules.
+export const EGG_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("egg-pedestal-dark", "Cinematic 3D render of a single glossy white hen's egg standing on a black reflective pedestal in a dark futuristic laboratory, teal rim light, floating dust particles.", "Egg Reel hook"),
+  A("egg-hologram-xray", "3D render of a translucent glass-like egg glowing teal, the golden yolk visible inside, thin holographic scan rings around it, dark sci-fi lab, no text or numbers.", "Egg Reel: inside the egg"),
+  A("boiled-egg-halves", "Macro photograph of a boiled egg cut in half on a dark slate board, bright golden yolk, soft studio light.", "Egg Reel: boiled egg"),
+  A("protein-folded-glow", "3D medical visualisation of a folded protein molecule as a glowing coiled ribbon floating in dark space, teal and gold light.", "Egg Reel: protein shape"),
+  A("protein-unfolded-heat", "3D visualisation of a protein ribbon unravelling into a long loose strand while warm orange heat waves pass through it, dark background.", "Egg Reel: cooking unfolds protein"),
+  A("raw-egg-glass", "Photograph of a raw egg cracked into a clear glass, the yolk floating in the white, dark moody background.", "Egg Reel: raw egg myth"),
+  A("stomach-3d-glow", "3D medical render of a human stomach inside a translucent torso, a warm orange glow of digestive acid inside, dark background.", "Egg Reel: stomach"),
+  A("protein-chain-cut", "3D medical visualisation of a long chain of glowing beads being snipped into shorter pieces by tiny bright enzyme shapes, dark background.", "Egg Reel: pepsin cuts protein"),
+  A("amino-blood-flow", "3D medical render of glowing golden amino acid beads flowing with red blood cells through a blood vessel.", "Egg Reel: amino acids in blood"),
+  A("leucine-switch-cell", "3D medical visualisation of a single glowing gold molecule touching the surface of a muscle cell and lighting up a bright signal path inside it, dark background.", "Egg Reel: leucine signal"),
+  A("muscle-fibre-bundle", "3D medical render of a bundle of red skeletal muscle fibres in cross section with glowing gold particles attaching to them, cinematic light.", "Egg Reel: building muscle"),
+  A("yolk-nutrient-orbs", "3D render of a golden egg yolk sphere floating in dark space with small glowing orbs of different colours circling it, no text.", "Egg Reel: yolk nutrients"),
+  A("egg-white-vs-whole", "Photograph of two white bowls on a dark table: one with only cooked egg whites, one with whole scrambled eggs, soft side light.", "Egg Reel: whole egg vs white"),
+  A("desi-protein-day", "Top-down photograph of an Indian day of protein on a dark table: boiled eggs, a bowl of dal, paneer cubes, a bowl of curd and roasted chana.", "Egg Reel: whole day protein"),
+];
+
+export const EGG_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("egg-orbit-reveal-anim", "Cinematic 3D animation: the camera slowly orbits a glossy white egg on a black reflective pedestal in a dark lab, then the shell turns translucent, revealing the glowing golden yolk inside.", "Egg Reel hook"),
+  A("egg-crack-slowmo-anim", "Extreme slow motion of a white egg cracking on the edge of a steel bowl, the yolk and white falling out, dark background, dramatic light.", "Egg Reel: cracking"),
+  A("protein-unfold-anim", "3D animation: a coiled glowing protein ribbon slowly unravels into a long straight strand as warm orange heat waves pass through it, dark background.", "Egg Reel: cooking"),
+  A("stomach-cut-anim", "3D medical animation inside a glowing stomach: long chains of glowing beads drift in orange acid and are snipped into shorter pieces by tiny bright enzymes.", "Egg Reel: stomach digestion"),
+  A("leucine-signal-anim", "3D medical animation: a glowing gold molecule reaches a muscle cell, a bright signal ripples through the cell and tiny new protein strands start forming. Slow push-in.", "Egg Reel: leucine switch"),
+  A("yolk-orbit-anim", "3D animation: a golden egg yolk sphere floats and slowly rotates in dark space while small glowing coloured orbs circle it like a tiny solar system.", "Egg Reel: yolk"),
+];
+
 // "bloodlab": cinematic 3D lab visuals for the "Blood test ke baad khoon lab mein kahan jaata hai"
 // Reel (dark modern lab, teal and gold light). Same no-text, no-faces rules.
 export const BLOODLAB_IMAGE_PROMPTS: VisualPrompt[] = [
@@ -258,6 +286,7 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
   supplements: { image: SUPPLEMENT_IMAGE_PROMPTS, video: SUPPLEMENT_VIDEO_PROMPTS },
   supplements2: { image: SUPPLEMENT2_IMAGE_PROMPTS, video: SUPPLEMENT2_VIDEO_PROMPTS },
+  egg: { image: EGG_IMAGE_PROMPTS, video: EGG_VIDEO_PROMPTS },
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
   labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
 };
