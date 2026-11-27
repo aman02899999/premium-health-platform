@@ -54,6 +54,7 @@ export const LONG_HINDI: Record<string, string> = {
   "long-hair-fall-myths-23": "बाल झड़ने के 6 झूठ",
   "long-ghee-oil-myths-25": "घी और तेल के 6 झूठ",
   "long-website-tour": "वेबसाइट कैसे इस्तेमाल करें",
+  "long-tools-guide-1": "20 फ्री फिटनेस टूल्स",
   "long-belly-fat-myths-24": "पेट की चर्बी के 6 झूठ",
   "long-walking-myths-26": "वॉकिंग के 6 झूठ",
   "long-bp-heart-myths-8": "बीपी और दिल के 8 झूठ",
