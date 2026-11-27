@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { EGG_IMAGE_PROMPTS, EGG_VIDEO_PROMPTS, BLOODLAB_IMAGE_PROMPTS, BLOODLAB_VIDEO_PROMPTS, LABSERIES_IMAGE_PROMPTS, LABSERIES_VIDEO_PROMPTS, ANATOMY_IMAGE_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, HABITS_IMAGE_PROMPTS, HABITS_VIDEO_PROMPTS, IMAGE_PROMPTS, SUPPLEMENT_IMAGE_PROMPTS, SUPPLEMENT_VIDEO_PROMPTS, SUPPLEMENT2_IMAGE_PROMPTS, SUPPLEMENT2_VIDEO_PROMPTS, promptProblems, promptSet, reelOnlySet, VIDEO_PROMPTS } from "./visual-prompts";
+import { EGG_IMAGE_PROMPTS, EGG_VIDEO_PROMPTS, BLOODLAB_IMAGE_PROMPTS, BLOODLAB_VIDEO_PROMPTS, LABSERIES_IMAGE_PROMPTS, LABSERIES_VIDEO_PROMPTS, ANATOMY_IMAGE_PROMPTS, ANATOMY_VIDEO_PROMPTS, fullPrompt, HABITS_IMAGE_PROMPTS, HABITS_VIDEO_PROMPTS, IMAGE_PROMPTS, SUPPLEMENT_IMAGE_PROMPTS, SUPPLEMENT_VIDEO_PROMPTS, SUPPLEMENT2_IMAGE_PROMPTS, SUPPLEMENT2_VIDEO_PROMPTS, HORMONES_IMAGE_PROMPTS, HORMONES_VIDEO_PROMPTS, promptProblems, promptSet, reelOnlySet, VIDEO_PROMPTS } from "./visual-prompts";
 
 describe("visual prompts", () => {
   const all = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS];
@@ -86,6 +86,22 @@ describe("visual prompts", () => {
     for (const p of [...BLOODLAB_IMAGE_PROMPTS, ...BLOODLAB_VIDEO_PROMPTS, ...LABSERIES_IMAGE_PROMPTS, ...LABSERIES_VIDEO_PROMPTS]) {
       expect(promptProblems(p)).toEqual([]);
       expect(fullPrompt(p)).toMatch(/No identifiable faces/);
+    }
+  });
+  it("picks the hormones set: Reel-only, within limits, unique ids, and no needle or drug imagery", () => {
+    expect(promptSet("hormones", "image")).toBe(HORMONES_IMAGE_PROMPTS);
+    expect(promptSet("hormones", "video")).toBe(HORMONES_VIDEO_PROMPTS);
+    expect(reelOnlySet("hormones")).toBe(true);
+    expect(HORMONES_IMAGE_PROMPTS.length).toBeLessThanOrEqual(20);
+    expect(HORMONES_VIDEO_PROMPTS.length).toBeLessThanOrEqual(10);
+    const set = [...HORMONES_IMAGE_PROMPTS, ...HORMONES_VIDEO_PROMPTS];
+    const others = [...IMAGE_PROMPTS, ...VIDEO_PROMPTS, ...ANATOMY_IMAGE_PROMPTS, ...ANATOMY_VIDEO_PROMPTS, ...HABITS_IMAGE_PROMPTS, ...HABITS_VIDEO_PROMPTS, ...SUPPLEMENT_IMAGE_PROMPTS, ...SUPPLEMENT_VIDEO_PROMPTS, ...SUPPLEMENT2_IMAGE_PROMPTS, ...SUPPLEMENT2_VIDEO_PROMPTS, ...BLOODLAB_IMAGE_PROMPTS, ...BLOODLAB_VIDEO_PROMPTS, ...LABSERIES_IMAGE_PROMPTS, ...LABSERIES_VIDEO_PROMPTS, ...EGG_IMAGE_PROMPTS, ...EGG_VIDEO_PROMPTS];
+    const ids = [...others, ...set].map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const p of set) {
+      expect(promptProblems(p)).toEqual([]);
+      expect(fullPrompt(p)).toMatch(/No identifiable faces/);
+      expect(p.prompt).not.toMatch(/syringe|needle|injection|vial|powder|pill bottle|bicep|physique/i);
     }
   });
 });
