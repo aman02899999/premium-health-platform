@@ -146,6 +146,22 @@ export const LONG_HINDI: Record<string, string> = {
   "short-lab-2-cbc": "सीबीसी रिपोर्ट कैसे पढ़ें",
   "short-lab-3-sugar": "शुगर के 3 टेस्ट",
   "short-lab-4-lipid": "कोलेस्ट्रॉल रिपोर्ट कैसे पढ़ें",
+  "long-steroid-ka-sach-1": "स्टेरॉयड क्या है, कितनी किस्म",
+  "short-steroid-1-doctor-vs-gym": "डॉक्टर का स्टेरॉयड बनाम जिम का स्टेरॉयड",
+  "short-steroid-2-poori-list": "जिम के 9 कोर्स: पूरी लिस्ट और रिस्क",
+  "short-steroid-3-natural-limit": "नेचुरल बॉडी की असली लिमिट",
+  "long-steroid-ka-sach-2": "स्टेरॉयड से दिल, लिवर, हॉर्मोन",
+  "short-steroid-4-dil": "स्टेरॉयड और दिल",
+  "short-steroid-5-liver-goli": "स्टेरॉयड की गोली और लिवर",
+  "short-steroid-6-hormone-wapas": "साइकिल के बाद हॉर्मोन वापस आता है?",
+  "long-steroid-ka-sach-3": "रॉयड रेज, नकली स्टेरॉयड, सार्म्स",
+  "short-steroid-7-dimaag": "रॉयड रेज और स्टेरॉयड की लत",
+  "short-steroid-8-nakli": "ब्लैक मार्केट स्टेरॉयड: नकली या असली",
+  "short-steroid-9-sarms": "सार्म्स सेफ हैं?",
+  "long-steroid-ka-sach-4": "पेप्टाइड और ग्रोथ हॉर्मोन",
+  "short-steroid-10-peptides": "बीपीसी 157 पेप्टाइड का सच",
+  "short-steroid-11-gh": "ग्रोथ हॉर्मोन और एमके 677 का सच",
+  "short-steroid-12-ab-kya-karein": "स्टेरॉयड ले चुके हो? अब क्या करें",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */

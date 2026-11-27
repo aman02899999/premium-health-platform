@@ -22,7 +22,7 @@ export type LongVideo = {
   /** Supplement Myth Buster series (owner, 25 Nov 2026): on its date this video takes the third
    *  daily auto-Short slot, so the channel still uploads 5 videos a day, not 6. */
   /** Lab Ke Andar Shorts (Dec 2026) use the same slot, on odd dates; the steroid series takes even dates. */
-  series?: "supplements" | "lab";
+  series?: "supplements" | "lab" | "steroids";
 };
 
 const MEDICAL = "Ye general jaankari hai, medical advice nahi. Koi health problem hai toh apne doctor ki salah maano.";
@@ -2249,6 +2249,24 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-steroid-1-doctor-vs-gym",
+    date: "2026-12-20",
+    title: "Doctor Ka Steroid vs Gym Ka Steroid: Ek Hi Cheez? #shorts",
+    intro: "Corticosteroid sujan aur allergy shaant karta hai, muscle nahi banata. Anabolic steroid testosterone ki lab copy hai. Doctor ki di hui steroid dawa kabhi achanak band mat karo.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NHS, Steroids (corticosteroids)", "https://www.nhs.uk/medicines/steroids/"],
+      ["NIDA, Anabolic Steroids DrugFacts", "https://nida.nih.gov/publications/drugfacts/anabolic-steroids"],
+      ["Bhasin et al., Endocrine Society guideline on testosterone therapy, JCEM 2018", "https://pubmed.ncbi.nlm.nih.gov/29562364/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "corticosteroid vs anabolic steroid", "steroid kya hai", "testosterone"],
+    short: true,
+    series: "steroids",
+  },
+  {
     id: "short-promo-lib-health",
     date: "2026-12-21",
     title: "Sugar, BP, PCOS Mein Exercise #shorts",
@@ -2322,6 +2340,24 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-steroid-2-poori-list",
+    date: "2026-12-22",
+    title: "Gym Ke 9 'Course': Poori List Aur Har Ek Ka Risk #shorts",
+    intro: "Testosterone, nandrolone family, DHT jaise steroid, oral goliyan, SARMs, peptide dawayein, research peptides, GH boosters aur baaki gym drugs: har class ka risk, bina kisi dose ya brand ke.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NIDA, Anabolic Steroids DrugFacts", "https://nida.nih.gov/publications/drugfacts/anabolic-steroids"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Van Wagoner et al., Chemical composition of SARMs sold online, JAMA 2017", "https://pubmed.ncbi.nlm.nih.gov/29183075/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "steroid list", "sarms kya hai", "peptides kya hai"],
+    short: true,
+    series: "steroids",
+  },
+  {
     id: "short-promo-lib-habits",
     date: "2026-12-23",
     title: "Motivation Nahi, System #shorts",
@@ -2371,6 +2407,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-steroid-3-natural-limit",
+    date: "2026-12-24",
+    title: "Natural Body Ki Asli Limit Kya Hai? FFMI Ka Sach #shorts",
+    intro: "1995 ki study mein 157 bodybuilders ka fat free mass index (FFMI) naapa gaya. Ye koi test nahi hai, kisi ko photo dekhkar fake mat bolo. Natural body saalon mein banti hai.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Kouri et al., Fat-free mass index in users and nonusers of anabolic-androgenic steroids, Clin J Sport Med 1995", "https://pubmed.ncbi.nlm.nih.gov/?term=Kouri+fat-free+mass+index+anabolic+steroids+1995"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "natty or not", "ffmi", "natural bodybuilding"],
+    short: true,
+    series: "steroids",
+  },
+  {
     id: "short-promo-lib-yoga",
     date: "2026-12-25",
     title: "Yoga Kahan Se Shuru Karein? 5 Tips + Yoga Ki 5 PDF Books #shorts",
@@ -2403,6 +2455,30 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["lab ke andar", "blood test hindi", "lab test report", "blood report kaise padhe", "lipid profile hindi", "cholesterol test", "ldl hdl"],
     short: true,
     series: "lab",
+  },
+  // Steroid Ka Sach (owner, 27 Nov 2026): anabolic steroid, SARM and peptide myths, education only.
+  // A Short per episode on even dates (Lab Ke Andar takes odd dates) and a 16:9 long video per 3 episodes.
+  {
+    id: "long-steroid-ka-sach-1",
+    date: "2026-12-25",
+    title: "Steroid Kya Hai, Kitni Kism, Natural Limit? Steroid Ka Sach Part 1",
+    intro: "Doctor ka steroid aur gym ka steroid ek cheez nahi. Gym mein chalne waali 9 classes aur har ek ka risk. Aur natural body ki asli limit, FFMI study ke saath. 3 episodes ek video mein.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "EP 1: Doctor ka steroid vs gym ka steroid"],
+      ["1:44", "EP 2: Gym ke 9 course, poori list"],
+      ["3:08", "EP 3: Natural body ki asli limit"],
+      ["4:27", "Free trial workout"],
+    ],
+    sources: [
+      ["NHS, Steroids (corticosteroids)", "https://www.nhs.uk/medicines/steroids/"],
+      ["NIDA, Anabolic Steroids DrugFacts", "https://nida.nih.gov/publications/drugfacts/anabolic-steroids"],
+      ["Bhasin et al., Endocrine Society guideline on testosterone therapy, JCEM 2018", "https://pubmed.ncbi.nlm.nih.gov/29562364/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Van Wagoner et al., Chemical composition of SARMs sold online, JAMA 2017", "https://pubmed.ncbi.nlm.nih.gov/29183075/"],
+      ["Kouri et al., Fat-free mass index in users and nonusers of anabolic-androgenic steroids, Clin J Sport Med 1995", "https://pubmed.ncbi.nlm.nih.gov/?term=Kouri+fat-free+mass+index+anabolic+steroids+1995"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "corticosteroid vs anabolic steroid", "steroid kya hai", "testosterone", "steroid list", "sarms kya hai"],
   },
   {
     id: "long-kids-fitness-myths-7",
@@ -2445,6 +2521,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-steroid-4-dil",
+    date: "2026-12-26",
+    title: "Steroid Aur Dil: Andar Kya Hota Hai? #shorts",
+    intro: "Circulation 2017 study: purane users mein dil ki pump karne ki taakat kam aur naliyon mein plaque zyada. Seene mein dard ya saans phoole toh turant doctor.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Baggish et al., Cardiovascular toxicity of illicit anabolic-androgenic steroid use, Circulation 2017", "https://pubmed.ncbi.nlm.nih.gov/28533317/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "steroid heart", "heart health gym", "steroid side effects heart"],
+    short: true,
+    series: "steroids",
+  },
+  {
     id: "short-promo-lib-calm-sleep",
     date: "2026-12-27",
     title: "Neend Nahi Aati? 5 Tips + Calm Aur Sleep Ki 5 PDF Books #shorts",
@@ -2476,6 +2568,23 @@ export const LONG_VIDEOS: LongVideo[] = [
     tags: ["bengali diet plan", "fish diet weight loss", "east indian diet", "diet plan 49 rupees", "7 day diet plan", "personal diet chart", "diet trial"],
     buy: ["₹49 7-day diet trial", "/diet-trial"],
     short: true,
+  },
+  {
+    id: "short-steroid-5-liver-goli",
+    date: "2026-12-28",
+    title: "Steroid Ki Goli Injection Se Safe Hai? Liver Ka Sach #shorts",
+    intro: "Muh se li jaane waali steroid goliyan liver par bhaari padti hain: peeliya aur kuch case reports mein tumour bhi. Aankh ya skin peeli ho toh turant doctor aur liver test.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+      ["Horwitz et al., Health consequences of androgenic anabolic steroid use, J Intern Med 2019", "https://pubmed.ncbi.nlm.nih.gov/30460728/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "steroid liver", "liver damage gym", "oral steroid"],
+    short: true,
+    series: "steroids",
   },
   {
     id: "short-promo-lib-mind",
@@ -2537,6 +2646,22 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "short-steroid-6-hormone-wapas",
+    date: "2026-12-30",
+    title: "Cycle Khatam, Hormone Wapas Normal? #shorts",
+    intro: "Denmark ki study: chhodne ke lagbhag dhaai saal baad bhi purane users mein se lagbhag 27 percent ka testosterone normal se neeche. Hormone aur sperm ki jaanch karao, doctor se ilaaj lo.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Rasmussen et al., Former abusers of anabolic androgenic steroids, PLoS One 2016", "https://pubmed.ncbi.nlm.nih.gov/27532478/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "low testosterone", "testosterone hindi", "steroid side effects"],
+    short: true,
+    series: "steroids",
+  },
+  {
     id: "short-desi-habit-badam",
     date: "2026-12-31",
     title: "Bhigoye Badam: Dimaag Tez Ya Myth? 🧠 Science Kya Kehti Hai #shorts",
@@ -2552,6 +2677,26 @@ export const LONG_VIDEOS: LongVideo[] = [
     short: true,
   },
   {
+    id: "long-steroid-ka-sach-2",
+    date: "2026-12-31",
+    title: "Steroid Aur Dil, Liver, Hormone: Steroid Ka Sach Part 2",
+    intro: "Steroid dil ki pump karne ki taakat aur naliyon par kya karta hai, goli liver ke liye safe kyun nahi, aur cycle ke baad apna hormone wapas aata hai ya nahi. 3 episodes ek video mein.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "EP 4: Steroid aur dil"],
+      ["1:13", "EP 5: Goli aur liver"],
+      ["2:22", "EP 6: Cycle ke baad hormone"],
+      ["3:36", "Free trial workout"],
+    ],
+    sources: [
+      ["Baggish et al., Cardiovascular toxicity of illicit anabolic-androgenic steroid use, Circulation 2017", "https://pubmed.ncbi.nlm.nih.gov/28533317/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Horwitz et al., Health consequences of androgenic anabolic steroid use, J Intern Med 2019", "https://pubmed.ncbi.nlm.nih.gov/30460728/"],
+      ["Rasmussen et al., Former abusers of anabolic androgenic steroids, PLoS One 2016", "https://pubmed.ncbi.nlm.nih.gov/27532478/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "steroid heart", "heart health gym", "steroid side effects heart", "steroid liver", "liver damage gym"],
+  },
+  {
     id: "short-desi-habit-paani",
     date: "2027-01-01",
     title: "Khane Ke Saath Paani Peena Galat Hai? 💧 Digestion Ka Sach #shorts",
@@ -2565,6 +2710,147 @@ export const LONG_VIDEOS: LongVideo[] = [
     ],
     tags: ["water with meals", "drinking water while eating", "digestion myth", "water before meals weight loss", "stomach acid myth", "constipation fibre water", "health myths hindi", "fat loss tips india"],
     short: true,
+  },
+  {
+    id: "short-steroid-7-dimaag",
+    date: "2027-01-02",
+    title: "Roid Rage Aur Steroid Ki Lat: Sach Kya Hai? #shorts",
+    intro: "Gussa, mood swings aur lagbhag teen mein se ek user mein dependence. Muscle dysmorphia kya hai. Khud ko nuksaan ke khayal aayein toh ise emergency samjho aur turant madad lo.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "roid rage", "muscle dysmorphia", "mental health gym"],
+    short: true,
+    series: "steroids",
+  },
+  {
+    id: "short-steroid-8-nakli",
+    date: "2027-01-04",
+    title: "Black Market Steroid: Label Par Kuch, Andar Kuch #shorts",
+    intro: "2022 review: lab tests mein average 36 percent nakli aur 37 percent ghatiya. Share ki gayi sui se hepatitis B, C aur HIV. Kabhi inject kiya hai toh test karao.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Magnolini et al., Counterfeit and substandard anabolic steroids, BMC Public Health 2022", "https://pubmed.ncbi.nlm.nih.gov/35842594/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "fake steroids", "counterfeit drugs", "hepatitis test"],
+    short: true,
+    series: "steroids",
+  },
+  {
+    id: "long-steroid-ka-sach-3",
+    date: "2027-01-06",
+    title: "Roid Rage, Nakli Steroid Aur SARMs: Steroid Ka Sach Part 3",
+    intro: "Roid rage, mood aur steroid ki lat. Black market ke steroid lab test mein kitne nakli nikle, infection ka khatra. Aur SARMs safe kyun nahi. 3 episodes ek video mein.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "EP 7: Roid rage aur lat"],
+      ["1:11", "EP 8: Nakli steroid aur infection"],
+      ["2:29", "EP 9: SARMs"],
+      ["3:39", "Free trial workout"],
+    ],
+    sources: [
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+      ["Magnolini et al., Counterfeit and substandard anabolic steroids, BMC Public Health 2022", "https://pubmed.ncbi.nlm.nih.gov/35842594/"],
+      ["Van Wagoner et al., Chemical composition of SARMs sold online, JAMA 2017", "https://pubmed.ncbi.nlm.nih.gov/29183075/"],
+      ["US FDA, Health fraud: bodybuilding products with hidden ingredients", "https://www.fda.gov/consumers/health-fraud-scams"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "roid rage", "muscle dysmorphia", "mental health gym", "fake steroids", "counterfeit drugs"],
+  },
+  {
+    id: "short-steroid-9-sarms",
+    date: "2027-01-06",
+    title: "SARMs Safe Hain? Naya Naam, Purana Khatra #shorts",
+    intro: "SARMs kahin bhi dawa ke roop mein manzoor nahi. JAMA 2017: online kharide 44 products mein sirf 52 percent mein SARM mila. Liver injury ke case report bhi.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Van Wagoner et al., Chemical composition of SARMs sold online, JAMA 2017", "https://pubmed.ncbi.nlm.nih.gov/29183075/"],
+      ["US FDA, Health fraud: bodybuilding products with hidden ingredients", "https://www.fda.gov/consumers/health-fraud-scams"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "sarms", "sarms side effects", "sarms hindi"],
+    short: true,
+    series: "steroids",
+  },
+  {
+    id: "short-steroid-10-peptides",
+    date: "2027-01-08",
+    title: "BPC 157 'Healing Peptide': Saboot Kya Kehta Hai? #shorts",
+    intro: "2025 review: BPC 157 par 36 studies, 35 jaanwaron ya lab dish par, sirf ek insaanon par. Sport mein banned. Chot ho toh sports doctor ya physiotherapist.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["BPC-157 in orthopaedic sports medicine: a systematic review, HSS Journal 2025", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12313605/"],
+      ["WADA Prohibited List 2026", "https://www.wada-ama.org/en/prohibited-list"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "bpc 157", "peptides", "peptides hindi"],
+    short: true,
+    series: "steroids",
+  },
+  {
+    id: "short-steroid-11-gh",
+    date: "2027-01-10",
+    title: "Growth Hormone Aur 'GH Pill' MK 677: Sach #shorts",
+    intro: "Badon mein height nahi badhti, extra GH se taakat ka saboot kamzor. Zyada GH se sugar aur BP. MK 677 ne trial mein blood sugar badhaaya. Sport mein banned.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Growth hormone, IGF-1 and insulin: review, Mol Cell Endocrinol 2017", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5723243/"],
+      ["Nass et al., MK-677 in healthy older adults, Ann Intern Med 2008", "https://pubmed.ncbi.nlm.nih.gov/18981485/"],
+      ["WADA Prohibited List 2026", "https://www.wada-ama.org/en/prohibited-list"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "growth hormone", "mk 677", "hgh hindi"],
+    short: true,
+    series: "steroids",
+  },
+  {
+    id: "long-steroid-ka-sach-4",
+    date: "2027-01-12",
+    title: "Peptides, GH Aur Ab Kya Karein? Steroid Ka Sach Part 4",
+    intro: "BPC 157 jaise research peptides ka saboot, growth hormone aur 'GH pill' MK 677 ka sach, aur agar le chuke ho toh ab kya karein. 3 episodes ek video mein.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "EP 10: Research peptides, BPC 157"],
+      ["1:22", "EP 11: Growth hormone aur MK 677"],
+      ["2:37", "EP 12: Le chuke ho? Ab kya karein"],
+      ["3:56", "Free trial workout"],
+    ],
+    sources: [
+      ["BPC-157 in orthopaedic sports medicine: a systematic review, HSS Journal 2025", "https://pmc.ncbi.nlm.nih.gov/articles/PMC12313605/"],
+      ["WADA Prohibited List 2026", "https://www.wada-ama.org/en/prohibited-list"],
+      ["Growth hormone, IGF-1 and insulin: review, Mol Cell Endocrinol 2017", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5723243/"],
+      ["Nass et al., MK-677 in healthy older adults, Ann Intern Med 2008", "https://pubmed.ncbi.nlm.nih.gov/18981485/"],
+      ["Bhasin et al., Endocrine Society guideline on testosterone therapy, JCEM 2018", "https://pubmed.ncbi.nlm.nih.gov/29562364/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "bpc 157", "peptides", "peptides hindi", "growth hormone", "mk 677"],
+  },
+  {
+    id: "short-steroid-12-ab-kya-karein",
+    date: "2027-01-12",
+    title: "Steroid Le Chuke Ho? Ab Kya Karein #shorts",
+    intro: "Doctor ko sach batao, basic jaanch karao (BP, lipid, liver, kidney, blood count, hormone), dawa khud se shuru ya band mat karo, mood down ho toh mental health support lo.\nSteroid Ka Sach series: anabolic steroids, SARMs aur peptides ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi.\nVisuals AI images aur AI animation hain, narration AI voice mein hai.\nSteroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao. Ye general jaankari hai, medical advice nahi.",
+    chapters: [
+      ["0:00", "Short"],
+    ],
+    sources: [
+      ["Bhasin et al., Endocrine Society guideline on testosterone therapy, JCEM 2018", "https://pubmed.ncbi.nlm.nih.gov/29562364/"],
+      ["NHS, Anabolic steroid misuse", "https://www.nhs.uk/conditions/anabolic-steroid-misuse/"],
+      ["Pope et al., Adverse health consequences of performance-enhancing drugs, Endocrine Reviews 2014", "https://pubmed.ncbi.nlm.nih.gov/24423981/"],
+    ],
+    tags: ["steroid ka sach", "steroid myths hindi", "anabolic steroids side effects", "gym truth hindi", "steroid help", "testosterone test", "blood test hindi"],
+    short: true,
+    series: "steroids",
   },
 ];
 export const longVideoFile = (v: LongVideo) => `/youtube/long/${v.id}.mp4`;
