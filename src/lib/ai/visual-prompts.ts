@@ -253,6 +253,40 @@ export const LABSERIES_VIDEO_PROMPTS: VisualPrompt[] = [
   A("heart-pump-anim", "3D animation of a glowing anatomical heart beating steadily in dark space, blood flow lines pulsing out from it, teal light.", "Lab series EP4: exercise and the heart"),
 ];
 
+// "labseries2": "Lab Ke Andar" EP 5-7 (thyroid, vitamin D and B12, liver test). Same no-text, no-faces rules.
+export const LABSERIES2_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("thyroid-butterfly-neck", "3D anatomical render of a glowing butterfly-shaped thyroid gland in front of a transparent human neck, dark background, teal and gold light.", "Lab series EP5 hook: thyroid"),
+  A("pituitary-signal", "3D medical visualisation of a small glowing pituitary gland at the base of a transparent brain sending a beam of light down toward the neck, dark background.", "Lab series EP5: TSH signal"),
+  A("metabolism-dial", "3D render of a glowing analogue speed dial floating in a dark lab, needle in the middle, abstract flame and snowflake icons at each end, no numbers or text.", "Lab series EP5: metabolism speed"),
+  A("tired-blanket-cold", "Moody photograph of a person wrapped in a blanket on a sofa holding a warm cup, face turned away, dim winter light.", "Lab series EP5: slow thyroid signs"),
+  A("racing-heart-sweat", "Dark cinematic photograph of a hand pressed on a chest with a faint glowing heartbeat line overlay, no face visible.", "Lab series EP5: fast thyroid signs"),
+  A("iodised-salt-bowl", "Close-up photograph of a small bowl of white salt and a wooden spoon on a dark kitchen counter, warm side light, no packaging or labels.", "Lab series EP5: iodine"),
+  A("hair-gummies-jar", "Photograph of an unlabelled jar of chewable vitamin gummies spilling onto a dark table next to a blood test tube, soft light, no text.", "Lab series EP5: biotin can change test results"),
+  A("sunlight-skin-rays", "3D medical visualisation of sunlight rays touching skin layers in cross-section, glowing golden vitamin D molecules forming inside, dark background.", "Lab series EP6 hook: vitamin D from sun"),
+  A("bone-calcium-glow", "3D anatomical render of a human thigh bone with glowing calcium particles flowing into it, teal light, dark background.", "Lab series EP6: vitamin D and bones"),
+  A("office-indoors-dim", "Photograph of an empty office desk with a laptop under cool artificial light, window blinds closed, sunlight blocked outside.", "Lab series EP6: indoor life"),
+  A("vitamin-d-sachets", "Photograph of a few plain unlabelled white powder sachets and a glass of milk on a dark table, soft light, no text.", "Lab series EP6: do not self-dose"),
+  A("b12-foods-desi", "Top-down photograph on a dark table of Indian vegetarian and non-veg B12 foods: a bowl of curd, paneer cubes, a glass of milk, boiled eggs and a piece of fish.", "Lab series EP6: B12 foods"),
+  A("nerve-tingle-hand", "3D medical visualisation of a transparent hand with glowing nerve lines, small flickering sparks at the fingertips, dark background.", "Lab series EP6: B12 and nerves"),
+  A("liver-factory-glow", "3D anatomical render of a glowing human liver in dark space, tiny light particles moving through it like a busy factory, teal and gold light.", "Lab series EP7 hook: liver"),
+  A("liver-cells-leak", "3D medical visualisation of liver cells, a few of them cracked and leaking small glowing enzyme particles into a nearby blood vessel.", "Lab series EP7: ALT and AST"),
+  A("bilirubin-yellow-vial", "Photograph of a test tube of deep yellow serum in a rack in a dark lab, warm back light, no labels.", "Lab series EP7: bilirubin"),
+  A("fatty-liver-droplets", "3D medical visualisation of liver tissue filled with round pale yellow fat droplets, educational, not gory, dark background.", "Lab series EP7: fatty liver"),
+  A("unlabelled-pills-tub", "Photograph of a plain unlabelled black supplement tub with loose capsules spilling out on a dark gym bench, moody light, no text.", "Lab series EP7: unknown supplements"),
+];
+
+export const LABSERIES2_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("thyroid-glow-anim", "3D anatomical animation: a butterfly-shaped thyroid gland in a transparent neck slowly lights up and pulses, small hormone particles drifting out into blood vessels.", "Lab series EP5 hook"),
+  A("pituitary-signal-anim", "3D medical animation: a glowing pituitary gland at the base of a transparent brain sends pulses of light down to the thyroid gland in the neck, which glows brighter in reply.", "Lab series EP5: TSH"),
+  A("metabolism-dial-anim", "3D animation of a glowing speed dial in a dark lab, the needle swinging slowly from left to right and back, no numbers or text.", "Lab series EP5: metabolism"),
+  A("sun-vitd-skin-anim", "3D medical animation: golden sunlight rays reach a cross-section of skin and small glowing vitamin D molecules form and drift down into blood vessels.", "Lab series EP6 hook"),
+  A("bone-calcium-anim", "3D anatomical animation: glowing calcium particles stream from a blood vessel into a human bone, which grows slightly brighter and denser.", "Lab series EP6: bones"),
+  A("nerve-signal-anim", "3D medical animation of a nerve fibre with a glowing signal pulse travelling along it; the protective sheath around it shimmers as the pulse passes.", "Lab series EP6: B12 and nerves"),
+  A("liver-factory-anim", "3D anatomical animation of a glowing liver in dark space with streams of light particles flowing in and out through its blood vessels, slow orbit.", "Lab series EP7 hook"),
+  A("enzyme-leak-anim", "3D medical animation: a few liver cells crack open and small glowing enzyme particles leak out and flow into a blood vessel.", "Lab series EP7: ALT and AST"),
+  A("fat-droplets-anim", "3D medical animation: pale yellow fat droplets slowly grow and fill the spaces inside liver tissue, educational, not gory.", "Lab series EP7: fatty liver"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
@@ -260,6 +294,7 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   supplements2: { image: SUPPLEMENT2_IMAGE_PROMPTS, video: SUPPLEMENT2_VIDEO_PROMPTS },
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
   labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
+  labseries2: { image: LABSERIES2_IMAGE_PROMPTS, video: LABSERIES2_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
