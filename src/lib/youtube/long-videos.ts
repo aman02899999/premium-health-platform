@@ -1037,6 +1037,34 @@ export const LONG_VIDEOS: LongVideo[] = [
     buy: ["₹49 7-day diet trial", "/diet-trial"],
   },
   {
+    // Owner, 27 Nov 2026: one full video that shows people how to use and explore the website.
+    // Screen recording of the live site on a phone (nothing submitted or paid), voice G, silent CTA.
+    id: "long-website-tour",
+    date: "2026-11-28",
+    title: "Royal Fitness Club Website Kaise Use Karein? Poora Tour",
+    intro: "Royal Fitness Club ki website par kya kya hai, aur kaise use karein? Is video mein phone par live website ka poora tour: plan finder, membership aur festive offer, online join, free trial booking, free calculators, ₹49 diet trial, free app, Bharat Health Guide aur Hindi pages.\nWebsite: https://www.royalfitnesclub.in (fitnes mein ek hi 's').\nNarration AI voice mein hai.",
+    chapters: [
+      ["0:00", "Website ka poora tour"],
+      ["0:10", "Home page"],
+      ["0:37", "Plan finder (2 taps)"],
+      ["0:55", "Membership aur festive offer"],
+      ["1:26", "Online join kaise karein"],
+      ["1:52", "Free trial book karein"],
+      ["2:23", "Free tools aur calculators"],
+      ["3:03", "₹49 diet trial"],
+      ["3:23", "Free app"],
+      ["3:42", "Health guide aur Hindi pages"],
+      ["4:08", "Contact aur timing"],
+      ["4:38", "Free trial"],
+    ],
+    sources: [
+      ["Royal Fitness Club: membership plans and prices", "https://www.royalfitnesclub.in/membership"],
+      ["Royal Fitness Club: free calculators", "https://www.royalfitnesclub.in/tools"],
+      ["Royal Fitness Club: free app", "https://www.royalfitnesclub.in/app"],
+    ],
+    tags: ["royal fitness club website", "how to use website", "gym website tour", "online gym membership noida", "free trial gym noida", "gym near sector 93 noida", "free fitness calculator", "diet trial 49"],
+  },
+  {
     id: "long-ghee-oil-myths-25",
     date: "2026-11-29",
     title: "Ghee Ya Refined Oil? 6 Myths Ka Sach | Seed Oils, Vanaspati, Ghee Coffee",
