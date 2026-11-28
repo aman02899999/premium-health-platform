@@ -1,0 +1,222 @@
+[
+ {
+  "page": "/",
+  "n": 3,
+  "ttfb": 263,
+  "fcp": 1644,
+  "lcp": 1704,
+  "cls": 0,
+  "tbt": 255,
+  "kb": 561,
+  "jsKb": 254
+ },
+ {
+  "page": "/membership",
+  "n": 3,
+  "ttfb": 187,
+  "fcp": 1588,
+  "lcp": 1588,
+  "cls": 0,
+  "tbt": 255,
+  "kb": 461,
+  "jsKb": 254
+ },
+ {
+  "page": "/join?plan=monthly",
+  "n": 3,
+  "ttfb": 357,
+  "fcp": 1720,
+  "lcp": 1720,
+  "cls": 0,
+  "tbt": 273,
+  "kb": 451,
+  "jsKb": 257
+ },
+ {
+  "page": "/programs",
+  "n": 3,
+  "ttfb": 181,
+  "fcp": 1532,
+  "lcp": 1532,
+  "cls": 0,
+  "tbt": 268,
+  "kb": 455,
+  "jsKb": 251
+ },
+ {
+  "page": "/contact",
+  "n": 3,
+  "ttfb": 184,
+  "fcp": 1492,
+  "lcp": 1492,
+  "cls": 0,
+  "tbt": 361,
+  "kb": 443,
+  "jsKb": 250
+ },
+ {
+  "page": "/reviews",
+  "n": 3,
+  "ttfb": 189,
+  "fcp": 1536,
+  "lcp": 1536,
+  "cls": 0,
+  "tbt": 183,
+  "kb": 454,
+  "jsKb": 252
+ },
+ {
+  "page": "/store",
+  "n": 3,
+  "ttfb": 191,
+  "fcp": 1472,
+  "lcp": 1472,
+  "cls": 0,
+  "tbt": 139,
+  "kb": 809,
+  "jsKb": 470
+ },
+ {
+  "page": "/shop",
+  "n": 3,
+  "ttfb": 468,
+  "fcp": 1608,
+  "lcp": 1608,
+  "cls": 0,
+  "tbt": 95,
+  "kb": 724,
+  "jsKb": 403
+ },
+ {
+  "page": "/library",
+  "n": 3,
+  "ttfb": 188,
+  "fcp": 1604,
+  "lcp": 1604,
+  "cls": 0,
+  "tbt": 272,
+  "kb": 557,
+  "jsKb": 288
+ },
+ {
+  "page": "/blog",
+  "n": 3,
+  "ttfb": 186,
+  "fcp": 1668,
+  "lcp": 1668,
+  "cls": 0,
+  "tbt": 261,
+  "kb": 547,
+  "jsKb": 279
+ },
+ {
+  "page": "/blog/gym-fees-in-noida-membership-cost-guide",
+  "n": 3,
+  "ttfb": 188,
+  "fcp": 1528,
+  "lcp": 1528,
+  "cls": 0,
+  "tbt": 289,
+  "kb": 575,
+  "jsKb": 280
+ },
+ {
+  "page": "/tools",
+  "n": 3,
+  "ttfb": 188,
+  "fcp": 1536,
+  "lcp": 1536,
+  "cls": 0,
+  "tbt": 230,
+  "kb": 489,
+  "jsKb": 271
+ },
+ {
+  "page": "/exercises",
+  "n": 3,
+  "ttfb": 177,
+  "fcp": 1668,
+  "lcp": 1668,
+  "cls": 0,
+  "tbt": 319,
+  "kb": 458,
+  "jsKb": 261
+ },
+ {
+  "page": "/diet-plans",
+  "n": 3,
+  "ttfb": 181,
+  "fcp": 1572,
+  "lcp": 1572,
+  "cls": 0,
+  "tbt": 223,
+  "kb": 454,
+  "jsKb": 252
+ },
+ {
+  "page": "/gallery",
+  "n": 3,
+  "ttfb": 189,
+  "fcp": 1484,
+  "lcp": 1484,
+  "cls": 0,
+  "tbt": 180,
+  "kb": 612,
+  "jsKb": 256
+ },
+ {
+  "page": "/health",
+  "n": 3,
+  "ttfb": 184,
+  "fcp": 1568,
+  "lcp": 2184,
+  "cls": 0.002,
+  "tbt": 332,
+  "kb": 799,
+  "jsKb": 494
+ },
+ {
+  "page": "/health/diseases/asthma",
+  "n": 3,
+  "ttfb": 189,
+  "fcp": 1680,
+  "lcp": 1680,
+  "cls": 0.002,
+  "tbt": 464,
+  "kb": 715,
+  "jsKb": 487
+ },
+ {
+  "page": "/health/blog/sleep-guide-indians",
+  "n": 3,
+  "ttfb": 182,
+  "fcp": 1508,
+  "lcp": 1508,
+  "cls": 0.025,
+  "tbt": 368,
+  "kb": 795,
+  "jsKb": 477
+ },
+ {
+  "page": "/hi/health/blog",
+  "n": 3,
+  "ttfb": 186,
+  "fcp": 1468,
+  "lcp": 1468,
+  "cls": 0.002,
+  "tbt": 275,
+  "kb": 925,
+  "jsKb": 476
+ },
+ {
+  "page": "/health/health-calculators",
+  "n": 3,
+  "ttfb": 175,
+  "fcp": 1460,
+  "lcp": 1460,
+  "cls": 0.021,
+  "tbt": 288,
+  "kb": 717,
+  "jsKb": 484
+ }
+]

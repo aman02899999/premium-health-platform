@@ -11,6 +11,31 @@ rows stay Unknown until Phase 1 and Phase 2 test them.
 **Confidence.** [Certain] = seen in a query, a test or a page load. [Likely] = strong inference.
 [Guessing] = judgement without direct evidence.
 
+## Re-check 28 Nov 2026 (live on Cloud Run)
+
+Owner asked for a full audit again. The site moved from Vercel to Google Cloud Run on 13-14 Nov, so
+this re-runs the Phase 0 checks against the live site. Raw evidence: `docs/baseline/2026-11-28/`.
+Nothing real was created: every form POST in the browser checks was answered by a mock.
+
+| Check | Result |
+|---|---|
+| Repo checks | [Certain] typecheck 0 errors, lint 0 errors (13 warnings), 1,279 tests pass (205 DB tests skipped), `check:ads` and `check:posts` pass |
+| Sitemap crawl | [Certain] 372 URLs (both sitemaps) x 360/390/768/1280 px = 1,488 loads. All 200, 0 JavaScript exceptions. The only console error on every page is the analytics/ads blocking the audit does on purpose |
+| Internal links | [Certain] 922 unique same-site links, 0 broken |
+| Throttled speed, top 20 pages, 390 px | [Certain] All 20 under 2.5 s LCP (worst `/health` 2.18 s) and under 0.1 CLS. TBT 95-464 ms, down from 383-1,327 ms on 24 Oct |
+| Sideways scroll | [Certain] 5 health tool pages at 360 px (barcode scanner, food database, health Q&A, Hinglish search, referral). Fixed on branch |
+| Accessibility (axe, 390 px) | [Certain] 47 of 372 pages with serious issues: 30 gym blog pages (WhatsApp button text light blue on green, contrast 1.07) and 18 pages with button names that don't match their text. Fixed on branch |
+| Money flows (browser, POST mocked) | [Certain] `/join` and `/diet-chart?plan=trial` fill, validate and call their order API correctly, and show the server's error to the buyer. Payments still fail at Razorpay with "Business - Website Mismatch" because the live keys belong to the old account (owner action, see `payments-audit` note; separate thread) |
+| Unauthenticated API GETs (158 routes) | [Certain] 67 x 401, 3 x 403, 0 x 5xx. The 40 x 200 are public read endpoints or "how to call me" notes; the health premium checkout and health Razorpay webhook are placeholders that never charge or grant anything |
+| Security headers | [Certain] HSTS, CSP (no `script-src` yet), nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, COOP all present |
+| npm audit (production) | [Certain] 2 low (`katex` via `mermaid`). The critical and high from 24 Oct are gone |
+| Production jobs (Supabase) | [Certain] Every `system_status` row ok on 28 Nov. Facebook posts failed 18-24 Nov (permission), none since the 25 Nov token fix. 27 emails delivered in 7 days, 0 failed |
+| Leads | [Likely] Working but very few: 5 in 30 days, last on 19 Nov. A traffic problem, not a broken form (the 19 Nov lead arrived after the 15 Nov form fix) |
+| Cold start | [Certain] First request after idle took 6-11 s (`/shop`, `/diet-chart`, `/library`); later ones 0.2-0.4 s. Cloud Run runs `--min-instances 0`. Keeping one warm costs money, so it is an owner decision |
+| 503 under load | [Certain] 7 asset requests (images and scripts) got 503 while the crawl ran 6 browsers at once (`--cpu 1`, image resizing). [Likely] invisible at today's traffic |
+| Wrong hours | [Certain] The gym portal card said "5:30 AM-10 PM", which hides the 11 AM-4 PM closure. Fixed on branch |
+| SEO details | [Certain] No `noindex` page in the sitemaps. 3 health pages had no canonical (`/health/contact`, `/health/homeopathy`, `/health/medicines`; fixed on branch, and `/health/contact` now has its own title). The category URL `women's-health` has an apostrophe in it. Two news items share one title |
+
 ## How this was measured
 
 | Check | Method | Result |

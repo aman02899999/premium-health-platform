@@ -221,7 +221,9 @@ body {
 .prose-royal p {
   margin: 1rem 0;
 }
-.prose-royal a {
+/* Skip links inside .not-prose blocks (CTA buttons): unlayered rules beat Tailwind utilities,
+   so without this the WhatsApp button text turned light blue on green. */
+.prose-royal a:not(.not-prose a) {
   color: var(--color-sky);
   text-decoration: underline;
   text-underline-offset: 3px;

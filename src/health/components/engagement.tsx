@@ -78,7 +78,7 @@ export function BookmarkButton({ slug, title }: { slug: string; title: string })
     <button
       onClick={() => toggle(slug)}
       aria-pressed={saved}
-      aria-label={saved ? `Remove bookmark: ${title}` : `Bookmark: ${title}`}
+      aria-label={saved ? `Saved: ${title} (tap to remove bookmark)` : `Save: bookmark ${title}`}
       className={cn(
         "flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-bold transition",
         saved
@@ -118,8 +118,8 @@ export function HelpfulVote({ slug }: { slug: string }) {
   return (
     <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-stone-200 bg-white p-3.5 dark:border-stone-700 dark:bg-stone-900">
       <span className="text-sm font-semibold">Was this guide helpful?</span>
-      <button onClick={() => vote("up")} aria-label="Yes, helpful" className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-600"><ThumbsUp className="h-3.5 w-3.5" /> Yes</button>
-      <button onClick={() => vote("down")} aria-label="No, needs improvement" className="flex items-center gap-1.5 rounded-xl border border-stone-200 px-3.5 py-1.5 text-xs font-bold hover:border-stone-300 dark:border-stone-700"><ThumbsDown className="h-3.5 w-3.5" /> Needs work</button>
+      <button onClick={() => vote("up")} aria-label="Yes, this guide was helpful" className="flex items-center gap-1.5 rounded-xl bg-emerald-700 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-emerald-600"><ThumbsUp className="h-3.5 w-3.5" /> Yes</button>
+      <button onClick={() => vote("down")} aria-label="Needs work: this guide was not helpful" className="flex items-center gap-1.5 rounded-xl border border-stone-200 px-3.5 py-1.5 text-xs font-bold hover:border-stone-300 dark:border-stone-700"><ThumbsDown className="h-3.5 w-3.5" /> Needs work</button>
     </div>
   );
 }

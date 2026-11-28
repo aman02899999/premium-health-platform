@@ -5,6 +5,7 @@ import { Breadcrumbs, EvidenceBadge, SafetyNote, AdSlot, FaqAccordion } from "@/
 export const metadata: Metadata = {
   title: "Homeopathy — Principles, Remedies & Honest Evidence Status",
   description: "History, principles, commonly discussed remedies, evidence status, limitations and safety. Never a replacement for effective treatment of serious disease.",
+  alternates: { canonical: "/health/homeopathy" },
 };
 
 const REMEDIES = [

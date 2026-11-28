@@ -31,8 +31,8 @@ export function HinglishSearch() {
 
       <form className="mt-3 flex gap-2" onSubmit={(e) => { e.preventDefault(); run(q); }}>
         <label htmlFor="hinglish-q" className="sr-only">Search in Hinglish</label>
-        <input id="hinglish-q" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try: madhumeh, high bp, haldi" className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-800" />
-        <button type="submit" className="rounded-xl bg-indigo-700 px-4 py-2 text-sm font-bold text-white"><Search className="mr-1 inline h-4 w-4" /> Search</button>
+        <input id="hinglish-q" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try: madhumeh, high bp, haldi" className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-800" />
+        <button type="submit" className="shrink-0 rounded-xl bg-indigo-700 px-4 py-2 text-sm font-bold text-white"><Search className="mr-1 inline h-4 w-4" /> Search</button>
       </form>
       <div className="mt-2 flex flex-wrap gap-1.5">
         {EXAMPLES.map((e) => (

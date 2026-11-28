@@ -7,6 +7,7 @@ import { Breadcrumbs, TopicCard, AdSlot } from "@/health/components/ui";
 export const metadata: Metadata = {
   title: "Allopathy Medicines — Safe, Educational Drug Guides",
   description: "Generic-first medicine education: uses, mechanism, side effects, interactions, warnings and monitoring. No prescriptions, no doses.",
+  alternates: { canonical: "/health/medicines" },
 };
 
 export default function MedicinesPage() {
