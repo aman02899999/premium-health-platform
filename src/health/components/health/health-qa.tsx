@@ -35,8 +35,8 @@ export function HealthQA() {
       <p className="mt-1 text-[11px] text-stone-500">RAG-like: searches PubMed, ClinicalTrials, Ayurveda DB, ICD-10, FDA — cites sources. No AI generation without citations. Educational.</p>
 
       <div className="mt-3 flex gap-2">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Ask health question (e.g. diabetes millets, ashwagandha thyroid)" className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-800" />
-        <button onClick={ask} disabled={loading || !q.trim()} className="rounded-xl bg-indigo-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-50"><Search className="mr-1 inline h-4 w-4" /> {loading ? "…" : "Ask"}</button>
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Ask health question (e.g. diabetes millets, ashwagandha thyroid)" className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 py-2 text-sm dark:border-stone-700 dark:bg-stone-800" />
+        <button onClick={ask} disabled={loading || !q.trim()} className="shrink-0 rounded-xl bg-indigo-700 px-4 py-2 text-sm font-bold text-white disabled:opacity-50"><Search className="mr-1 inline h-4 w-4" /> {loading ? "…" : "Ask"}</button>
       </div>
 
       {err && <p className="mt-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-700 dark:bg-rose-950/30">{err}</p>}
