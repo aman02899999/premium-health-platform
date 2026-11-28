@@ -108,7 +108,7 @@ export function PortalScene({ onGym, gymName, overlay = false, storeOpen }: { on
             <span className="portal-layer portal-z-20 mt-6 hidden flex-wrap gap-2 sm:flex md:hidden xl:flex text-[11px] font-semibold text-white/80">
               <span className="portal-chip"><Dumbbell className="h-3.5 w-3.5" /> Programs</span>
               <span className="portal-chip"><Users className="h-3.5 w-3.5" /> Couple plans</span>
-              <span className="portal-chip"><Timer className="h-3.5 w-3.5" /> 5:30 AM–10 PM</span>
+              <span className="portal-chip"><Timer className="h-3.5 w-3.5" /> Mon–Sat · Sun closed</span>
             </span>
             <span className="portal-layer portal-z-60 mt-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full sm:mt-8 bg-brand px-4 py-2 text-sm font-bold sm:px-5 sm:py-3 text-white shadow-[0_10px_30px_-10px_rgba(232,57,75,.9)]">
               Enter the gym <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

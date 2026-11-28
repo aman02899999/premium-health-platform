@@ -216,7 +216,6 @@ export function SocialVideosClient({ tone, long, shorts, instagram, channelUrl, 
                 <button
                   type="button"
                   onClick={() => setPopup({ kind: "insta", item: p })}
-                  aria-label={`${p.kind === "reel" ? "Watch Reel" : "View post"}: ${tidyTitle(p.title)}`}
                   className={`group relative flex aspect-[4/5] w-full flex-col justify-between overflow-hidden rounded-2xl p-3 text-left text-white ring-1 ring-black/5 transition hover:-translate-y-0.5 hover:shadow-xl ${
                     ["bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af]", "bg-gradient-to-br from-[#8134af] via-[#dd2a7b] to-[#feda77]", "bg-gradient-to-br from-[#515bd4] via-[#8134af] to-[#dd2a7b]"][i % 3]
                   }`}
