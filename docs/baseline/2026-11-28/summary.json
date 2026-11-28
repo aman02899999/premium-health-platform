@@ -1,0 +1,239 @@
+{
+ "pages": 372,
+ "loads": 1488,
+ "non200": [],
+ "errors": 0,
+ "errorSamples": [],
+ "overflowPages": 5,
+ "overflow": {
+  "https://www.royalfitnesclub.in/health/barcode-scanner": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4984",
+    "span.flex.items-center r=401",
+    "span.flex.items-center r=766",
+    "span.h-1.5.w-1.5 r=439",
+    "span.flex.items-center r=1109"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/food-database": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4951",
+    "span.flex.items-center r=368",
+    "span.flex.items-center r=733",
+    "span.h-1.5.w-1.5 r=406",
+    "span.flex.items-center r=1076"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/health-qa": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4995",
+    "span.flex.items-center r=411",
+    "span.flex.items-center r=777",
+    "span.h-1.5.w-1.5 r=449",
+    "span.flex.items-center r=1120"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/hinglish-search": {
+   "widths": [
+    360
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4979",
+    "span.flex.items-center r=396",
+    "span.flex.items-center r=762",
+    "span.h-1.5.w-1.5 r=434",
+    "span.flex.items-center r=1105"
+   ]
+  },
+  "https://www.royalfitnesclub.in/health/referral": {
+   "widths": [
+    360,
+    390
+   ],
+   "offenders": [
+    "div.news-ticker.flex r=4909",
+    "span.flex.items-center r=423",
+    "span.flex.items-center r=741",
+    "span.h-1.5.w-1.5 r=461",
+    "span.flex.items-center r=1084"
+   ]
+  }
+ },
+ "consoleErrorPages": 372,
+ "consoleErrTop": [
+  [
+   "Failed to load resource: net::ERR_FAILED",
+   372
+  ],
+  [
+   "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+   3
+  ]
+ ],
+ "pageErrorPages": 0,
+ "pageErr": [],
+ "failedReqTop": [
+  [
+   "503 https://www.royalfitnesclub.in/_next/image",
+   3
+  ],
+  [
+   "503 https://www.royalfitnesclub.in/_next/static/chunks/1ql8y8stnlrez.js",
+   1
+  ],
+  [
+   "https://www.royalfitnesclub.in/_next/static/chunks/1ql8y8stnlrez.js net::ERR_ABORTED",
+   1
+  ],
+  [
+   "503 https://www.royalfitnesclub.in/_next/static/chunks/2s43wnjdln0f8.js",
+   1
+  ],
+  [
+   "https://www.royalfitnesclub.in/_next/static/chunks/2s43wnjdln0f8.js net::ERR_ABORTED",
+   1
+  ],
+  [
+   "503 https://www.royalfitnesclub.in/_next/static/chunks/turbopack-077hmtqrhcoji.js",
+   1
+  ],
+  [
+   "https://www.royalfitnesclub.in/_next/static/chunks/turbopack-077hmtqrhcoji.js net::ERR_ABORTED",
+   1
+  ]
+ ],
+ "axeSeriousCriticalNodes": 117,
+ "axePagesWithSC": 47,
+ "axeIds": [
+  [
+   "color-contrast (serious)",
+   30
+  ],
+  [
+   "label-content-name-mismatch (serious)",
+   18
+  ]
+ ],
+ "lcpOverMobile": 29,
+ "lcpWorst": [
+  [
+   "https://www.royalfitnesclub.in/library/55-healthy-heart-plan",
+   [
+    32888,
+    33600
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/best-gym-in-sector-93-noida-checklist",
+   [
+    12272,
+    10412
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/news/heat-wave-hydration-ors-2026-11-27",
+   [
+    776,
+    10108
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/news/mental-health-helplines-students-2026-11-16",
+   [
+    8512,
+    1748
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/library/62-the-vegetarian-muscle-plan",
+   [
+    7836,
+    7236
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/best-time-to-go-to-gym-morning-or-evening",
+   [
+    6836,
+    6384
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/beginner-gym-workout-plan-first-month",
+   [
+    1608,
+    6612
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/library/44-steroid-health-risks",
+   [
+    6276,
+    1396
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/category/nutrition",
+   [
+    4760,
+    4652
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/category/health",
+   [
+    4644,
+    3104
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/blog/category/workouts",
+   [
+    688,
+    4564
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/exercises",
+   [
+    3560,
+    4064
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/",
+   [
+    2656,
+    3540
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/health/blog/category/environmental-health",
+   [
+    3532,
+    2084
+   ]
+  ],
+  [
+   "https://www.royalfitnesclub.in/library/50-hormones-ageing",
+   [
+    1436,
+    3376
+   ]
+  ]
+ ],
+ "clsOverMobile": 0,
+ "clsWorst": [],
+ "adsOutsideAllowed": [],
+ "internalLinks": 922,
+ "linksNotInSitemap": 551
+}
