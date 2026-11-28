@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isAdmin } from "@/lib/auth";
 import { listOrders } from "@/lib/payments/orders";
 import { flaggedEvents, unconfirmedCheckouts } from "@/lib/payments/ledger";
-import { razorpayConfigured } from "@/lib/payments/razorpay";
+import { razorpayConfigured, razorpayKeyId } from "@/lib/payments/razorpay";
 import { reconcilePayments } from "@/lib/payments/reconcile";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,9 @@ export async function GET() {
     // Flagged webhook events (refused captures, double payments, refunds, chargebacks) cover every product, not just memberships.
     // Unconfirmed checkouts (all products, last 3 days) show a payment the site hasn't recorded yet.
     const [orders, flagged, waiting] = await Promise.all([listOrders(), flaggedEvents().catch(() => []), unconfirmedCheckouts().catch(() => [])]);
-    return NextResponse.json({ configured: razorpayConfigured(), orders, flagged, waiting });
+    // The Key ID is public (every checkout sends it to the browser); shown so the owner can match it
+    // to the Razorpay account and mode it belongs to. The secret never leaves the server.
+    return NextResponse.json({ configured: razorpayConfigured(), keyId: razorpayKeyId(), orders, flagged, waiting });
   } catch (err) {
     console.error("[payments] list failed:", (err as Error).message);
     return NextResponse.json({ configured: razorpayConfigured(), orders: [], error: "Couldn't load payments from the database." });

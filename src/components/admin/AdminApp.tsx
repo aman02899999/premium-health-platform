@@ -702,7 +702,7 @@ type CheckResult = { checked: number; recovered: { kind: string; razorpayOrderId
 type FlaggedPayment = { eventId: string; event: string; razorpayOrderId: string | null; razorpayPaymentId: string | null; amountPaise: number | null; outcome: string; detail: string; receivedAt: string };
 
 function Payments() {
-  const [data, setData] = useState<{ configured: boolean; orders: Order[]; flagged?: FlaggedPayment[]; waiting?: WaitingCheckout[]; error?: string } | null>(null);
+  const [data, setData] = useState<{ configured: boolean; keyId?: string; orders: Order[]; flagged?: FlaggedPayment[]; waiting?: WaitingCheckout[]; error?: string } | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [checking, setChecking] = useState(false);
   const [check, setCheck] = useState<CheckResult | null>(null);
@@ -738,6 +738,12 @@ function Payments() {
 
   return (
     <Card title="Online memberships" help="Paid through the Join online page (Razorpay). Referrals are listed so you can give both members their free month.">
+      {data.keyId && (
+        <p className="mb-4 text-xs text-white/55">
+          Razorpay key in use: <span className="font-mono text-white/80">{data.keyId}</span>
+          {data.keyId.startsWith("rzp_test_") ? <span className="ml-1 text-yellow-200">(Test mode: no real money is taken)</span> : null}. Match it to Razorpay → Account &amp; Settings → API keys to see which account gets the money.
+        </p>
+      )}
       {!data.configured && (
         <p className="mb-4 rounded-xl bg-yellow-500/15 p-3 text-sm text-yellow-100">
           Online payment is off. Add RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET and RAZORPAY_WEBHOOK_SECRET to the APP_ENV secret in GitHub (Settings → Secrets → Actions), then re-run &ldquo;Deploy to Cloud Run&rdquo;.
