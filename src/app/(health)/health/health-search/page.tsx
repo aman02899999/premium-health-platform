@@ -48,7 +48,7 @@ export default async function HealthSearchPage({ searchParams }: { searchParams:
         howTo={{ name: "How to search health", steps: ["Type query: e.g., 'diabetes diet', 'ashwagandha dose'", "View results across diseases, herbs, blog, tools — ranked India-first", "Click + read + related internal links reduce bounce", "Save search history in premium, get personalized tips"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India — Unified Search</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Health Search — Diseases Herbs Foods — India-First</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">One query → categorized: diseases, medicines, food, exercises, Ayurveda, homeopathy, PubMed, trials, chemicals, ICD-10. Example: diabetes, ashwagandha, hypertension.</p>
         <form className="mt-4 flex gap-2" action="/health/health-search">

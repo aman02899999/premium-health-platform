@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: seoDescription("Build balanced Indian thali: half veg, quarter millet grain, quarter dal/protein + curd — unique India-first feature. Salad first, protein second, grain last — lowers sugar spikes."),
   alternates: { canonical: "/health/thali-builder", languages: { "en-IN": absoluteUrl("/health/thali-builder"), "en": absoluteUrl("/health/thali-builder"), "x-default": absoluteUrl("/health/thali-builder") } },
   openGraph: {
-    title: "Thali Builder — Unique India",
+    title: "Thali Builder",
     description: "Half veg, quarter millet grain, quarter dal/protein + curd — unique India-first thali builder.",
     type: "website",
     url: absoluteUrl("/health/thali-builder"),
@@ -48,7 +48,7 @@ export default function ThaliBuilderPage() {
         }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-amber-700 p-6 text-white md:p-8">
-        <h1 className="font-display text-3xl font-black">Thali Builder — Unique India</h1>
+        <h1 className="font-display text-3xl font-black">Thali Builder</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Half veg, quarter millet grain, quarter dal/protein + curd. Salad first, protein second, grain last — lowers sugar spikes. Educational only.</p>
       </div>
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

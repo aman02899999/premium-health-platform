@@ -31,7 +31,7 @@ export default function Page() {
         howTo={{ name: "How to plan fasting", steps: ["Pick fast type: Navratri, Ekadashi, 16:8, weekly","Check safety: diabetes, pregnancy, elderly, meds — disclaimer","Get meal plan: what to eat, hydration, breaking fast","Save fast calendar in premium, get WhatsApp reminder"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-orange-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Fasting Planner — Navratri Ekadashi Intermittent — Safe</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Plan fasting: Navratri, Ekadashi, intermittent 16:8 — safe, India-specific. Who should avoid fasting, hydration, breaking fast.</p>
       </div>

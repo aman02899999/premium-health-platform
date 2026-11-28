@@ -48,7 +48,7 @@ export default async function ExercisesPage({ searchParams }: { searchParams: Pr
         howTo={{ name: "How to pick exercise", steps: ["Filter by goal: diabetes, weight loss, flexibility, stress", "Search wger 400+ exercises: e.g., chest, squat, pushup", "Pick yoga or home workout, no equipment needed", "Save plan in premium, get weekly progression, track streak"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-800 to-rose-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Unique India — wger</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Exercises — Yoga + Home Workout — India Friendly + wger 400+</h1>
         <p className="mt-2 max-w-2xl text-sm text-violet-100/90">400+ exercises from <strong>wger</strong> (AGPL-3.0, free keyless) — muscles, equipment, categories + India yoga, home workout, heat friendly.</p>
         <form className="mt-4 flex gap-2" action="/health/exercises">

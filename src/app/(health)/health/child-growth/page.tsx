@@ -31,7 +31,7 @@ export default function Page() {
         howTo={{ name: "How to track child growth", steps: ["Enter child age, sex, height, weight, head circumference","View WHO percentile + growth chart + IAP India reference","Track monthly, see trend, get alerts if crossing percentiles","Save history in premium, share PDF with pediatrician"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-sky-800 to-emerald-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-sky-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Child Growth Tracker — WHO Percentiles India</h1>
         <p className="mt-2 max-w-2xl text-sm text-sky-100/90">Track child height, weight, head circumference vs WHO India percentiles — growth chart, alerts. Educational.</p>
       </div>

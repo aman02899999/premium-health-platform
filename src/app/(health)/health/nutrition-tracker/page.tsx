@@ -27,13 +27,13 @@ export default function Page() {
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Nutrition Tracker" }]} />
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Nutrition Tracker", item: "/health/nutrition-tracker" }]}
-        faqs={[{"q":"How to track roti calories?","a":"1 phulka ~70 kcal, 1 tbsp ghee ~45 kcal, dal 1 katori ~120 kcal — tracker sums + fibre + protein. Educational, not prescription."},{"q":"Does it have Indian foods?","a":"Yes — 200+ Indian foods: roti, paratha, idli, dosa, dal, sabzi, biryani, mithai — with GI, fibre, protein, FSSAI tips."}]}
-        howTo={{ name: "How to track nutrition", steps: ["Add foods: e.g., 2 roti + dal + sabzi + curd","View calories, protein, fibre, GI load + balanced thali score","Get swap suggestions: millet roti, more dal, less ghee","Save day log in premium, export weekly PDF"] }}
+        faqs={[{"q":"How do I track calories here?","a":"Search a packaged food by name, tap Add, and the tracker adds up today's calories, protein, carbs and fat per 100 g. Your log stays on your phone."},{"q":"Does it have home-cooked Indian foods?","a":"This tracker searches packaged foods from Open Food Facts. For roti, dal and sabzi, use the Indian food tracker on royalfitnesclub.in/nutrition, which has home-style portions."}]}
+        howTo={{ name: "How to track nutrition", steps: ["Type a packaged food or brand name","Tap Add on the right product","See today's calories, protein, carbs and fat add up","Remove an item with the bin icon"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-green-800 to-emerald-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-green-200">Unique India</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Nutrition Tracker — Indian Foods Calories — Unique</h1>
-        <p className="mt-2 max-w-2xl text-sm text-green-100/90">Track Indian foods: roti, dal, sabzi — calories, protein, fibre, GI.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-green-200">India-first</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Nutrition Tracker: Today&apos;s Calories and Protein</h1>
+        <p className="mt-2 max-w-2xl text-sm text-green-100/90">Search packaged foods, add what you ate, and see today&apos;s calories and protein add up.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">

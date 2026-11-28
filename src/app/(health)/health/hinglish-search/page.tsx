@@ -27,19 +27,19 @@ export default function Page() {
       <Breadcrumbs items={[{ label: "Home", href: "/health" }, { label: "Hinglish Search" }]} />
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Hinglish Search", item: "/health/hinglish-search" }]}
-        faqs={[{"q":"What is Hinglish health search?","a":"Search in mix Hindi+English: 'diabetes ke liye best atta', 'thyroid me kya khana chahiye' — engine maps to English medical + Indian foods."},{"q":"Does it support Hindi?","a":"Yes — Hindi, Hinglish, English. Example: 'madhumeh', 'motapa', 'thyroid', 'PCOS diet' — all understood."}]}
-        howTo={{ name: "How to search in Hinglish", steps: ["Type in Hinglish: e.g., 'sugar kam karne ke liye kya khaye'","View results: diseases, herbs, thali, millet swap — India context","Click to read full page + related articles","Save search in premium, get Hinglish weekly tips"] }}
+        faqs={[{"q":"What is Hinglish health search?","a":"Type in Hindi, English or a mix, like 'madhumeh', 'high bp' or 'khoon ki kami'. The search matches common Hindi words to the English name and shows this site's guides on that topic."},{"q":"Does it support Hindi?","a":"It understands common words for diabetes, BP, thyroid, anemia, obesity, acidity, fatty liver and herbs like haldi, methi and ashwagandha. For other topics, try the English word."}]}
+        howTo={{ name: "How to search in Hinglish", steps: ["Type in Hinglish, e.g. 'madhumeh' or 'khoon ki kami'","See which English term it matched","Open a guide: diseases, herbs, foods or articles","Read the full page and see a doctor for symptoms"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-fuchsia-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fuchsia-200">Unique India</p>
-        <h1 className="font-display mt-1 text-3xl font-black">Hinglish Health Search — Hindi + English Mix — Unique India</h1>
-        <p className="mt-2 max-w-2xl text-sm text-fuchsia-100/90">Search health in Hinglish: &apos;madhumeh ke lakshan&apos; — understands Hindi + English mix. Unique India.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-fuchsia-200">India-first</p>
+        <h1 className="font-display mt-1 text-3xl font-black">Hinglish Health Search — Hindi + English Mix</h1>
+        <p className="mt-2 max-w-2xl text-sm text-fuchsia-100/90">Search health in Hinglish: &apos;madhumeh ke lakshan&apos; — understands Hindi + English mix.</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           <HinglishSearch />
-          <AffiliateProducts limit={4} title="Hindi Health Books — Affiliate" />
+          <AffiliateProducts limit={4} title="Hindi health books (affiliate links)" />
           <LatestArticles limit={4} />
         </div>
         <div className="space-y-4">

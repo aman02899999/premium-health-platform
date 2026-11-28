@@ -13,6 +13,8 @@ const KEYLESS_APIS = PUBLIC_APIS.filter((api) => api.auth === "No" && api.https)
 const INTEGRATED_APIS = PUBLIC_APIS.filter((api) => api.integrated).length;
 
 export const metadata: Metadata = {
+  // Developer pages stay reachable for API users but are hidden from menus and search (owner, 27 Nov 2026).
+  robots: { index: false, follow: false },
   title: `Public Health API Directory — ${TOTAL_APIS} Free APIs (Keyless & HTTPS flags)`,
   description: `A browsable directory of ${TOTAL_APIS} free public APIs relevant to health, nutrition, research and open data — with auth, HTTPS, CORS and licence flags, and which ones this platform already integrates behind /api/v1.`,
   alternates: { canonical: "/health/api-directory" },
