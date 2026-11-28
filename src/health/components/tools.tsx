@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, Calculator, CheckCircle2, Info, OctagonAlert, Download, Crown } from "lucide-react";
 import { cn } from "@/health/lib/format";
@@ -9,6 +9,7 @@ import {
   bmiCategory, mifflinStJeor, idrsScore, clamp,
 } from "@/health/lib/med-accuracy";
 import { NumField } from "@/health/components/calc-ui";
+import { symptomUrgency } from "@/health/lib/symptom-urgency";
 
 function Card({ title, desc, source, children }: { title: string; desc: string; source?: string; children: React.ReactNode }) {
   return (
@@ -215,10 +216,6 @@ export function IdealWeight() {
 }
 
 // ---------- Symptom checker ----------
-const EMERGENCY_PATTERNS = [
-  "chest", "breathless", "breathing difficulty", "faint", "collapse", "stroke",
-  "bleeding", "suicide", "self-harm", "seizure", "unconscious", "blue lips",
-];
 
 export function SymptomChecker() {
   const [symptom, setSymptom] = useState("Fever");
@@ -227,19 +224,7 @@ export function SymptomChecker() {
   const [age, setAge] = useState("Adult (18–60)");
   const [extra, setExtra] = useState<string[]>(["Fatigue"]);
   const extras = ["Fatigue", "Cough", "Headache", "Burning urination", "Chest discomfort", "Breathlessness", "Vomiting", "Rash"];
-  const emergency = useMemo(() => {
-    const t = `${symptom} ${extra.join(" ")} ${severity}`.toLowerCase();
-    return EMERGENCY_PATTERNS.some((k) => t.includes(k)) || severity.startsWith("Severe");
-  }, [symptom, extra, severity]);
-  const childOrSenior = age.startsWith("Child") || age.startsWith("Senior");
-
-  const urgency = emergency
-    ? "Urgent — same-hour evaluation at emergency / casualty."
-    : childOrSenior && (severity.startsWith("Moderate") || duration !== "<24 hours")
-      ? "Prompt — same-day doctor visit (children and seniors decompensate faster)."
-      : severity.startsWith("Moderate") || duration === ">2 weeks"
-        ? "Prompt — same-week doctor visit with basic tests."
-        : "Routine — home care + watch for 48–72 hours; visit if not improving or any red flag appears.";
+  const { emergency, text: urgency } = symptomUrgency({ symptom, extra, severity, duration, age });
 
   return (
     <div className="grid gap-5 lg:grid-cols-2">

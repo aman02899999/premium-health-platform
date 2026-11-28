@@ -921,6 +921,67 @@ ${EDU}`,
     }),
     slot: "midday",
   },
+  // Lab Ke Andar EP 5-7 (same thread): every 2 days in the evening slot.
+  {
+    ...tipsReel({
+      id: "reel-lab-thyroid",
+      date: "2026-12-05",
+      video: "/social/reels/lab-thyroid.mp4",
+      theme: "Thyroid Report: TSH Ulta Kyun Chalta Hai? 🦋",
+      body: `Thyroid Report: TSH Ulta Kyun Chalta Hai? 🦋
+
+Thyroid T4 aur T3 banaati hai, aur dimaag TSH se order deta hai. Ulta khel yaad rakho: thyroid sust ho toh TSH badhta hai, tez ho toh TSH girta hai. Bharat ke 8 shehron ki study mein lagbhag har dasvein vayask ko sust thyroid mila, aurton mein kai guna zyada.
+
+Gym waalon ke liye: baal aur skin ke kai supplements mein biotin hota hai, jo thyroid test ka number galat dikha sakta hai. Lab aur doctor ko zaroor batao. Fat ghataane ke liye thyroid ki goli kabhi mat lo, aur chal rahi dawa khud se band ya kam mat karo. Report doctor ko dikhao.
+
+Lab Ke Andar · EP 5
+Sources: Unnikrishnan et al., Indian J Endocrinol Metab 2013; US FDA biotin safety communication (2019); NIDDK, hypothyroidism and hyperthyroidism; MedlinePlus, TSH test.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#Thyroid #TSH #ThyroidTest #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-vitamin-d-b12",
+      date: "2026-12-07",
+      video: "/social/reels/lab-vitamin-d-b12.mp4",
+      theme: "Vitamin D Aur B12 Ki Report Kaise Padhein? ☀️",
+      body: `Vitamin D Aur B12 Ki Report Kaise Padhein? ☀️
+
+Vitamin D zyaadatar dhoop se banta hai aur calcium sokhne mein madad karta hai. Test ka naam 25 hydroxy vitamin D hai, aur aam taur par 20 ng/mL se kam ko kami maana jaata hai. B12 nason aur laal khoon ke cells ke liye zaroori hai, aur doodh, dahi, paneer, ande, machhli aur meat mein milta hai.
+
+Badi dose ke sachet khud se baar baar mat lo: zyada vitamin D se khoon mein calcium badhta hai, jo kidney ko nuksaan kar sakta hai. Sugar ki dawa metformin ya lambe samay tak acidity ki dawa se B12 kam ho sakta hai, doctor se baat karo. Dose aur tareeka doctor tay karega.
+
+Lab Ke Andar · EP 6
+Sources: NIH Office of Dietary Supplements, vitamin D and vitamin B12 fact sheets; Institute of Medicine, Dietary Reference Intakes for Calcium and Vitamin D (2011); Aparna et al., J Family Med Prim Care 2018.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#VitaminD #VitaminB12 #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-liver-lft",
+      date: "2026-12-09",
+      video: "/social/reels/lab-liver-lft.mp4",
+      theme: "LFT Report: Liver Ke Test Kaise Padhein? 🧪",
+      body: `LFT Report: Liver Ke Test Kaise Padhein? 🧪
+
+ALT aur AST liver ke cells ke andar rehte hain; cells ko chot lage toh ye khoon mein badh jaate hain. Bilirubin badhe toh piliya ho sakta hai, aur albumin batata hai ki liver kitna achha kaam kar raha hai. Ek bade review mein Bharat ke lagbhag 39% vayaskon mein fatty liver mila, aur enzymes normal hon phir bhi fatty liver ho sakta hai.
+
+Gym waalon ke liye: heavy workout se ALT aur AST kuch din badh sakte hain, test se pehle doctor ko routine batao. Bina label waale supplements ya steroids liver ko seedha nuksaan kar sakte hain. Koi dawa ya kaadha khud se shuru mat karo, report doctor ko dikhao.
+
+Lab Ke Andar · EP 7
+Sources: MedlinePlus, liver function tests; Shalimar et al., J Clin Exp Hepatol 2022; AASLD practice guidance on fatty liver disease (2023); Pettersson et al. 2008, Br J Clin Pharmacol; NIH LiverTox.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#LFT #LiverHealth #FattyLiver #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */

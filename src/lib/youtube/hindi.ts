@@ -164,6 +164,10 @@ export const LONG_HINDI: Record<string, string> = {
   "short-steroid-10-peptides": "बीपीसी 157 पेप्टाइड का सच",
   "short-steroid-11-gh": "ग्रोथ हॉर्मोन और एमके 677 का सच",
   "short-steroid-12-ab-kya-karein": "स्टेरॉयड ले चुके हो? अब क्या करें",
+  "long-lab-ke-andar-2": "ब्लड रिपोर्ट भाग 2",
+  "short-lab-5-thyroid": "थायरॉइड रिपोर्ट कैसे पढ़ें",
+  "short-lab-6-vitamin-d-b12": "विटामिन डी और बी12 रिपोर्ट",
+  "short-lab-7-liver-lft": "लिवर टेस्ट रिपोर्ट कैसे पढ़ें",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */
