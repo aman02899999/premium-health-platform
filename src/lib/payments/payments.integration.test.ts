@@ -229,4 +229,43 @@ describe.skipIf(!url)("Razorpay payments on a real database", () => {
     expect((await reconcile.reconcilePayments()).checked).toBe(0);
     expect(fetch).not.toHaveBeenCalled();
   });
+
+  it("the frequent check looks at orders from 5 minutes to 6 hours old only", async () => {
+    vi.stubEnv("RAZORPAY_KEY_ID", "rzp_test_x");
+    vi.stubEnv("RAZORPAY_KEY_SECRET", "s");
+    await membership("order_Q1abcdef", 200000, "created", "now() - interval '7 minutes'");
+    await membership("order_Q2abcdef", 200000, "created", "now() - interval '2 minutes'"); // still paying
+    await membership("order_Q3abcdef", 200000, "created", "now() - interval '7 hours'"); // left for the daily run
+    const fetch = vi.fn(async (u: string) =>
+      new Response(JSON.stringify({ items: u.includes("order_Q1") ? [{ id: "pay_q1", order_id: "order_Q1abcdef", amount: 200000, currency: "INR", status: "captured" }] : [] })),
+    );
+    vi.stubGlobal("fetch", fetch);
+    const res = await reconcile.reconcilePayments(new Date(), reconcile.FREQUENT_CHECK);
+    expect(res.checked).toBe(1);
+    expect(res.recovered).toEqual([{ kind: "membership", razorpayOrderId: "order_Q1abcdef", paymentId: "pay_q1" }]);
+    expect((await status("membership_orders", "order_Q1abcdef")).status).toBe("paid");
+  });
+
+  it("reconciliation flags a payment that was authorized but never captured", async () => {
+    vi.stubEnv("RAZORPAY_KEY_ID", "rzp_test_x");
+    vi.stubEnv("RAZORPAY_KEY_SECRET", "s");
+    await membership("order_A1abcdef", 200000, "created", "now() - interval '1 hour'");
+    vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify({ items: [{ id: "pay_a1", order_id: "order_A1abcdef", amount: 200000, currency: "INR", status: "authorized" }] }))));
+    const res = await reconcile.reconcilePayments();
+    expect(res.recovered).toEqual([]);
+    expect(res.mismatched).toEqual([expect.stringMatching(/order_A1abcdef: payment pay_a1 is authorized but not captured/)]);
+    expect((await status("membership_orders", "order_A1abcdef")).status).toBe("created");
+  });
+
+  it("lists unconfirmed checkouts from every product for the admin", async () => {
+    await membership("order_U1abcdef", 200000, "created", "now() - interval '1 hour'");
+    await membership("order_U2abcdef", 200000, "paid", "now() - interval '1 hour'");
+    await membership("order_U3abcdef", 200000, "created", "now() - interval '4 days'");
+    await pool.query(`insert into public.diet_orders (razorpay_order_id, amount_paise, name, phone, intake, plan, consent_at) values ('order_U4abcdef', 4900, 'Trial Buyer', '9876500116', '{}', 'trial', now())`);
+    const list = await ledger.unconfirmedCheckouts();
+    expect(list.map((o) => [o.kind, o.razorpayOrderId, o.amountPaise, o.name])).toEqual([
+      ["diet", "order_U4abcdef", 4900, "Trial Buyer"],
+      ["membership", "order_U1abcdef", 200000, "Aman Sharma"],
+    ]);
+  });
 });

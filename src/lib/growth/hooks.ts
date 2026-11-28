@@ -2,7 +2,7 @@ import "server-only";
 import { DIET_CHART, dietPlan } from "./config";
 import { prepareDietPlan } from "./plan-delivery";
 import { business, nurtureBusiness } from "./daily";
-import { markDietPaid } from "./diet-orders";
+import { markDietPaid, stalledDietOrders, type DietOrder } from "./diet-orders";
 import { applyPaidOrder, type Member } from "./members";
 import { dietReceivedEmail, dietReceivedMessage, leadMessage, referralBonusMessage, trialBookedEmail, trialMessage, welcomeMessage } from "./messages";
 import { getLead, latestLeadByPhone, leadVolumeToday } from "./leads";
@@ -72,28 +72,48 @@ export async function afterDietPaid(razorpayOrderId: string, paymentId: string, 
   const res = await markDietPaid(razorpayOrderId, paymentId);
   if (!res) return false;
   if (res.firstTime) {
-    const work = async () => {
-      try {
-        const biz = await business();
-        const planName = dietPlan(res.order.plan).name;
-        const drafts = [dietReceivedMessage(res.order, biz, DIET_CHART.turnaround)];
-        if (res.order.email) drafts.push(dietReceivedEmail({ id: res.order.id, name: res.order.name, email: res.order.email }, planName, DIET_CHART.turnaround, biz));
-        await enqueue(drafts);
-        await dispatch(5);
-      } catch (err) {
-        console.error("[growth] diet order message failed:", (err as Error).message);
-      }
-      try {
-        await prepareDietPlan(res.order.id);
-      } catch (err) {
-        // The coach can still open the order in Diet Pro and make the plan by hand.
-        console.error("[growth] diet plan generation failed:", (err as Error).message);
-      }
-    };
+    const work = () => dietPaidWork(res.order).then(() => undefined);
     if (defer) defer(work);
     else await work();
   }
   return true;
+}
+
+/** The buyer's confirmation (WhatsApp + email) and the plan PDF. Safe to repeat: messages dedupe by order id. */
+async function dietPaidWork(order: DietOrder): Promise<string | null> {
+  try {
+    const biz = await business();
+    const planName = dietPlan(order.plan).name;
+    const drafts = [dietReceivedMessage(order, biz, DIET_CHART.turnaround)];
+    if (order.email) drafts.push(dietReceivedEmail({ id: order.id, name: order.name, email: order.email }, planName, DIET_CHART.turnaround, biz));
+    await enqueue(drafts);
+    await dispatch(5);
+  } catch (err) {
+    console.error("[growth] diet order message failed:", (err as Error).message);
+  }
+  try {
+    await prepareDietPlan(order.id);
+    return null;
+  } catch (err) {
+    // The coach can still open the order in Diet Pro and make the plan by hand.
+    console.error("[growth] diet plan generation failed:", (err as Error).message);
+    return (err as Error).message;
+  }
+}
+
+/**
+ * Safety net for paid diet orders whose after-payment work never finished: Cloud Run throttles
+ * the CPU once a response is sent, so work queued with after() can stall or die with the instance.
+ * Runs every scheduler tick on orders paid 10 minutes to 3 days ago that still have no plan.
+ */
+export async function finishStalledDietOrders(now = new Date()): Promise<{ finished: number; errors: string[] }> {
+  const out = { finished: 0, errors: [] as string[] };
+  for (const order of await stalledDietOrders(now)) {
+    const error = await dietPaidWork(order);
+    if (error) out.errors.push(`${order.razorpayOrderId}: ${error}`);
+    else out.finished++;
+  }
+  return out;
 }
 
 /**

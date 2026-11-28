@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cronAuthorized } from "@/lib/cron-auth";
 import { dueJobs } from "@/lib/cron-schedule";
 import { localGet } from "@/lib/local-get";
+import { paymentSafetyNet } from "@/lib/payments/safety-net";
 
 export const dynamic = "force-dynamic";
 // The slowest job (a Reel render) takes a few minutes; Cloud Run's request timeout is set to 15 min.
@@ -15,6 +16,9 @@ export async function GET(req: Request) {
   const now = new Date();
   const origin = `http://127.0.0.1:${process.env.PORT || 3000}`;
   const ran: Record<string, number | string> = {};
+  // Every tick: payments the browser and the webhook both missed, and diet plans that never got
+  // built. Read-only towards Razorpay; never throws.
+  const payments = await paymentSafetyNet(now);
   for (const job of dueJobs(now)) {
     try {
       // Not fetch(): it gives up after 5 minutes, which froze long Reel jobs half way (see local-get.ts).
@@ -26,5 +30,5 @@ export async function GET(req: Request) {
       console.error(`[tick] ${job.path} failed:`, (err as Error).message);
     }
   }
-  return NextResponse.json({ ok: true, at: now.toISOString(), ran }, { headers: { "cache-control": "no-store" } });
+  return NextResponse.json({ ok: true, at: now.toISOString(), payments: { ok: payments.ok, checked: payments.checked, recovered: payments.recovered, plansFinished: payments.plansFinished }, ran }, { headers: { "cache-control": "no-store" } });
 }

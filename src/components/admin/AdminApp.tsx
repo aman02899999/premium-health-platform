@@ -696,17 +696,34 @@ type Order = {
   disputedAt: string | null;
 };
 
+type WaitingCheckout = { kind: string; razorpayOrderId: string; amountPaise: number; name: string; phone: string; createdAt: string };
+type CheckResult = { checked: number; recovered: { kind: string; razorpayOrderId: string; paymentId: string }[]; mismatched: string[]; errors: string[]; error?: string };
+
 type FlaggedPayment = { eventId: string; event: string; razorpayOrderId: string | null; razorpayPaymentId: string | null; amountPaise: number | null; outcome: string; detail: string; receivedAt: string };
 
 function Payments() {
-  const [data, setData] = useState<{ configured: boolean; orders: Order[]; flagged?: FlaggedPayment[]; error?: string } | null>(null);
+  const [data, setData] = useState<{ configured: boolean; orders: Order[]; flagged?: FlaggedPayment[]; waiting?: WaitingCheckout[]; error?: string } | null>(null);
   const [showAll, setShowAll] = useState(false);
-  useEffect(() => {
+  const [checking, setChecking] = useState(false);
+  const [check, setCheck] = useState<CheckResult | null>(null);
+  const load = () =>
     fetch("/api/admin/payments")
       .then((r) => r.json())
       .then(setData)
       .catch(() => setData({ configured: false, orders: [], error: "Couldn't load payments." }));
+  useEffect(() => {
+    load();
   }, []);
+  async function checkRazorpay() {
+    setChecking(true);
+    setCheck(null);
+    const r = await fetch("/api/admin/payments", { method: "POST" })
+      .then((x) => x.json())
+      .catch(() => ({ checked: 0, recovered: [], mismatched: [], errors: ["Couldn't reach the server."] }));
+    setCheck(r);
+    setChecking(false);
+    load();
+  }
 
   if (!data) return <Loader2 className="h-6 w-6 animate-spin text-brand" />;
   const paid = data.orders.filter((o) => o.status === "paid");
@@ -723,7 +740,7 @@ function Payments() {
     <Card title="Online memberships" help="Paid through the Join online page (Razorpay). Referrals are listed so you can give both members their free month.">
       {!data.configured && (
         <p className="mb-4 rounded-xl bg-yellow-500/15 p-3 text-sm text-yellow-100">
-          Online payment is off. Add RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET and RAZORPAY_WEBHOOK_SECRET in Vercel → Settings → Environment Variables, then redeploy.
+          Online payment is off. Add RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET and RAZORPAY_WEBHOOK_SECRET to the APP_ENV secret in GitHub (Settings → Secrets → Actions), then re-run &ldquo;Deploy to Cloud Run&rdquo;.
         </p>
       )}
       {data.error && <p className="mb-4 rounded-xl bg-red-500/15 p-3 text-sm text-red-200">{data.error}</p>}
@@ -753,6 +770,39 @@ function Payments() {
           </ul>
         </div>
       )}
+      <div className="mb-5 rounded-xl bg-white/[.04] p-3 ring-1 ring-white/10">
+        <div className="mb-1 flex flex-wrap items-center justify-between gap-2">
+          <div className="text-sm font-semibold text-white">Checkouts not confirmed yet (all products, last 3 days)</div>
+          <button type="button" onClick={checkRazorpay} disabled={checking} className="rounded-full bg-brand px-3 py-1.5 text-xs font-bold text-white disabled:opacity-60">
+            {checking ? "Checking…" : "Check Razorpay now"}
+          </button>
+        </div>
+        <p className="mb-2 text-xs text-white/50">
+          Most of these are people who closed the payment window. If a customer says they paid, press the button: any payment Razorpay captured is recorded and their order (diet plan, membership, book) goes out. The site also checks every 5 minutes.
+        </p>
+        {check && (
+          <p className="mb-2 rounded-lg bg-white/5 p-2 text-xs text-white/80">
+            {check.error
+              ? check.error
+              : `Checked ${check.checked}. ${check.recovered.length ? `Recorded ${check.recovered.length} payment(s): ${check.recovered.map((r) => `${r.kind} ${r.paymentId}`).join(", ")}.` : "No new captured payments."}${check.mismatched.length ? ` Needs a look: ${check.mismatched.join("; ")}` : ""}${check.errors.length ? ` Errors: ${check.errors.join("; ")}` : ""}`}
+          </p>
+        )}
+        {(data.waiting ?? []).length === 0 ? (
+          <p className="text-xs text-white/55">None.</p>
+        ) : (
+          <ul className="space-y-1 text-xs text-white/75">
+            {(data.waiting ?? []).map((w) => (
+              <li key={w.razorpayOrderId}>
+                <span className="text-white/50">{new Date(w.createdAt).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}</span> · {w.kind} · {inr(w.amountPaise / 100)} · {w.name}{" "}
+                <a className="text-brand" href={`https://wa.me/91${w.phone}`} target="_blank" rel="noreferrer">
+                  {w.phone}
+                </a>{" "}
+                <span className="font-mono text-[10px] text-white/40">{w.razorpayOrderId}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <label className="mb-3 flex items-center gap-2 text-sm text-white/60">
         <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} /> Show unfinished and failed attempts too
       </label>

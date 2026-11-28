@@ -124,6 +124,26 @@ describe.skipIf(!url)("sales automation on a real database", () => {
     expect((await diet.getDietOrder(order.id))!.stage).toBe("sent");
   });
 
+  it("a paid order whose after-payment work never finished gets its messages and plan from the safety net", async () => {
+    // The host stopped the work queued after the response (Cloud Run throttles CPU once a request ends).
+    await diet.insertDietOrder("order_S", 4900, { name: "Sana Khan", phone: "9876500011", email: "sana@example.com" }, intake as never, "trial");
+    await diet.insertDietOrder("order_S2", 4900, { name: "Fresh Buyer", phone: "9876500012", email: null }, intake as never, "trial");
+    await diet.markDietPaid("order_S", "pay_S");
+    await diet.markDietPaid("order_S2", "pay_S2");
+    await pool.query(`update public.diet_orders set paid_at = now() - interval '15 minutes' where razorpay_order_id = 'order_S'`);
+    const res = await hooks.finishStalledDietOrders();
+    expect(res).toEqual({ finished: 1, errors: [] });
+    const order = (await diet.listDietOrders()).find((o) => o.razorpayOrderId === "order_S")!;
+    expect(order.planPath).toMatch(/royal-fitness-7-day-trial-sana-khan-/);
+    expect((await rows("to_address like '%500011' or to_address = 'sana@example.com'")).map((x) => x.kind)).toEqual(expect.arrayContaining(["diet-received", "diet-received-email"]));
+    // The order paid 1 minute ago is still being handled by its own request: left alone.
+    expect((await diet.listDietOrders()).find((o) => o.razorpayOrderId === "order_S2")!.planPath).toBeNull();
+    // A second run finds nothing to do and sends nothing twice.
+    const before = (await rows()).length;
+    expect(await hooks.finishStalledDietOrders()).toEqual({ finished: 0, errors: [] });
+    expect(await rows()).toHaveLength(before);
+  });
+
   it("a ₹49 trial order builds the watermarked trial PDF, and only one paid trial is allowed per number", async () => {
     await diet.insertDietOrder("order_T", 4900, { name: "Neha Gupta", phone: "9876500009", email: null }, intake as never, "trial");
     expect(await diet.hasPaidTrial("9876500009")).toBe(false);

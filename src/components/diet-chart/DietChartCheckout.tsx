@@ -7,6 +7,7 @@ import { CheckCircle2, Loader2, Lock } from "lucide-react";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
 import { DIET_PLANS, isDietPlanId, type DietPlanId } from "@/lib/growth/config";
 import { trackPixel } from "@/lib/meta-pixel";
+import { confirmPayment } from "@/lib/payments/confirm-client";
 
 export const GOALS = [
   ["fat-loss", "Lose fat"],
@@ -74,8 +75,8 @@ export function DietChartCheckout({ turnaround, gymName, whatsapp, initialPlan }
         theme: { color: "#e8394b" },
         modal: { ondismiss: () => setBusy(false) },
         handler: async (r: RazorpayResponse) => {
-          const v = await fetch("/api/diet-chart/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature }) });
-          const out = await v.json().catch(() => ({}));
+          const v = await confirmPayment("/api/diet-chart/verify", { orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature });
+          const out = v.data;
           setBusy(false);
           if (v.ok) {
             trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "diet-plan" }, r.razorpay_payment_id);

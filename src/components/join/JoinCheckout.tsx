@@ -11,6 +11,7 @@ import { trackPixel } from "@/lib/meta-pixel";
 import { REFERRER_BONUS_DAYS } from "@/lib/growth/config";
 import { inviteForMember, inviteUrl } from "@/lib/growth/invite";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import { confirmPayment } from "@/lib/payments/confirm-client";
 
 export type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
@@ -79,16 +80,12 @@ export function JoinCheckout({ plans, gymName, whatsapp, prefill }: { plans: Off
         theme: { color: "#e8394b" },
         modal: { ondismiss: () => setBusy(false) },
         handler: async (r: RazorpayResponse) => {
-          const v = await fetch("/api/membership/verify", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature }),
-          });
-          const out = await v.json().catch(() => ({}));
+          const v = await confirmPayment("/api/membership/verify", { orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature });
+          const out = v.data;
           setBusy(false);
           if (v.ok) {
             trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "membership" }, r.razorpay_payment_id);
-            setReceipt(out);
+            setReceipt(out as unknown as Receipt);
             requestAnimationFrame(() => document.getElementById("join-result")?.scrollIntoView({ behavior: "smooth", block: "center" }));
           }
           else setError(`${out.error || "We couldn't confirm the payment."} Payment ID: ${r.razorpay_payment_id}`);

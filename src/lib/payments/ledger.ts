@@ -99,6 +99,23 @@ export async function ordersToReconcile(now = new Date(), opts: { minAgeMinutes?
   return rows.map((r) => ({ kind: r.kind, razorpayOrderId: r.razorpay_order_id, amountPaise: Number(r.amount) }));
 }
 
+export type UnconfirmedCheckout = { kind: OrderKind; razorpayOrderId: string; amountPaise: number; name: string; phone: string; createdAt: string };
+
+/**
+ * Checkouts from the last `hours` that the site has not recorded as paid, every product. Most are
+ * people who gave up; a paid one here means the browser and the webhook both missed it, and the
+ * admin's "Check Razorpay now" (or the 5-minute check) will pick it up.
+ */
+export async function unconfirmedCheckouts(now = new Date(), hours = 72): Promise<UnconfirmedCheckout[]> {
+  const sql = ORDER_TABLES.map(
+    (t) =>
+      `select '${t.kind}'::text as kind, razorpay_order_id, (${t.amount})::bigint as amount, name, phone, created_at from ${t.table}
+        where status = 'created' and razorpay_order_id is not null and created_at > $1::timestamptz - make_interval(hours => $2)`,
+  ).join(" union all ");
+  const { rows } = await pool.query<{ kind: OrderKind; razorpay_order_id: string; amount: string; name: string; phone: string; created_at: Date }>(`${sql} order by created_at desc limit 50`, [now.toISOString(), hours]);
+  return rows.map((r) => ({ kind: r.kind, razorpayOrderId: r.razorpay_order_id, amountPaise: Number(r.amount), name: r.name, phone: r.phone, createdAt: r.created_at.toISOString() }));
+}
+
 export type FlaggedEvent = { eventId: string; event: string; razorpayOrderId: string | null; razorpayPaymentId: string | null; amountPaise: number | null; outcome: string; detail: string; receivedAt: string };
 
 /** Webhook events a person should look at: refused captures, unknown orders, failures, double payments. */
