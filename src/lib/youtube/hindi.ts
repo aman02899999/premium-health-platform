@@ -169,6 +169,13 @@ export const LONG_HINDI: Record<string, string> = {
   "short-lab-5-thyroid": "थायरॉइड रिपोर्ट कैसे पढ़ें",
   "short-lab-6-vitamin-d-b12": "विटामिन डी और बी12 रिपोर्ट",
   "short-lab-7-liver-lft": "लिवर टेस्ट रिपोर्ट कैसे पढ़ें",
+  "short-lab-8-kidney-kft": "किडनी टेस्ट रिपोर्ट कैसे पढ़ें",
+  "short-lab-9-iron-ferritin": "आयरन और फ़ेरिटिन रिपोर्ट",
+  "long-lab-ke-andar-3": "ब्लड रिपोर्ट भाग 3",
+  "long-lab-ke-andar-4": "ब्लड रिपोर्ट भाग 4",
+  "short-lab-10-urine-test": "पेशाब की जाँच रिपोर्ट",
+  "short-lab-11-crp-uric-acid": "सी आर पी और यूरिक एसिड",
+  "short-lab-12-full-report": "पूरी ब्लड रिपोर्ट कैसे पढ़ें",
 };
 
 /** A long video's title, Hindi words first: "बीपी और दिल के 8 झूठ | BP Aur Dil Ke 8 Jhooth…". */
