@@ -28,6 +28,9 @@ const AGENT_AREAS = [
   "/api/admin/notifications",
   "/admin/qr",
   "/api/admin/qr",
+  // Knowledge Challenge prize desk (marking prizes collected); questions and finalising need a manager.
+  "/admin/challenge",
+  "/api/admin/challenge",
   "/api/admin/me",
 ];
 
