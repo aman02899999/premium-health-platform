@@ -32,7 +32,7 @@ export function IDRScalc() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Calculator className="h-4 w-4 text-indigo-600" /> IDRS — Indian Diabetes Risk Score (Unique)</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Calculator className="h-4 w-4 text-indigo-600" /> IDRS — Indian Diabetes Risk Score</h3>
       <p className="mt-1 text-[11px] text-stone-500">Validated for Indians (Mohan et al., CURES). Educational screening only — not diagnosis.</p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         <label className="text-sm">Age: {age} <input type="range" min={20} max={70} value={age} onChange={(e) => setAge(Number(e.target.value))} className="w-full" /></label>

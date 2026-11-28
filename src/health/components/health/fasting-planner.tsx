@@ -23,7 +23,7 @@ export function FastingPlanner() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Moon className="h-4 w-4 text-violet-600" /> Fasting Planner — Ekadashi / Navratri / IF — Unique India</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Moon className="h-4 w-4 text-violet-600" /> Fasting Planner — Ekadashi / Navratri / IF</h3>
       <p className="mt-1 text-[11px] text-stone-500">Traditional Indian fasting + modern safety — educational. Fasting not for all — diabetes, kidney, heart, pregnancy need clinician.</p>
 
       <div className="mt-3 flex flex-wrap gap-2">

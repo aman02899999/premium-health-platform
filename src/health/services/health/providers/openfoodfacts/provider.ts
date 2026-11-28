@@ -20,6 +20,8 @@ type OFFProduct = {
   nova_group?: number;
 };
 
+const r1 = (v: number | undefined, digits = 1) => (typeof v === "number" && Number.isFinite(v) ? Math.round(v * 10 ** digits) / 10 ** digits : undefined);
+
 export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
   name = "openfoodfacts";
   displayName = "Open Food Facts";
@@ -41,9 +43,11 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
       // Products sold in India first; worldwide if there are none.
       const fields = "code,product_name,brands,categories_tags,nutriments,allergens_tags,serving_size,image_url,nutrition_grades,nova_group";
       const search = async (q: string) =>
-        (await this.fetchJson(`https://search.openfoodfacts.org/search?q=${encodeURIComponent(q)}&page_size=${limit}&fields=${fields}`)) as { hits?: OFFProduct[]; count?: number } | null;
+        (await this.fetchJson(`https://search.openfoodfacts.org/search?q=${encodeURIComponent(q)}&page_size=${Math.min(limit * 2, 40)}&fields=${fields}`)) as { hits?: OFFProduct[]; count?: number } | null;
       let json = await search(`${params.query} countries_tags:"en:india"`);
-      if (json && !json.hits?.length) json = await search(params.query);
+      // The India filter can be rejected by the search service (400 when the field name changes),
+      // so fall back to a plain search whenever it gives nothing usable, not only when it is empty.
+      if (!json?.hits?.length) json = await search(params.query);
       if (!json?.hits) {
         return {
           data: [],
@@ -57,7 +61,11 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
           fetchedAt: new Date().toISOString(),
         };
       }
-      const data = json.hits.filter((p) => p.product_name).map((p) => this.normalize(p));
+      // The search service often returns products with no nutrition at all; a card of dashes helps nobody,
+      // so drop the empty ones whenever at least one product has calories.
+      const named = json.hits.filter((p) => p.product_name);
+      const withKcal = named.filter((p) => typeof p.nutriments?.["energy-kcal_100g"] === "number");
+      const data = (withKcal.length ? withKcal : named).slice(0, limit).map((p) => this.normalize(p));
       return {
         data,
         total: json.count ?? data.length,
@@ -89,18 +97,20 @@ export class OpenFoodFactsProvider extends BaseHealthProvider<Food> {
     return {
       id: p.code,
       name: p.product_name,
-      brand: Array.isArray(p.brands) ? p.brands.join(", ") : p.brands,
+      // The search service returns tags like "xx:Amul"; strip the language prefix.
+      brand: (Array.isArray(p.brands) ? p.brands.join(", ") : p.brands)?.replace(/(^|, )\w\w:/g, "$1"),
       barcode: p.code,
       category: p.categories?.split(",")[0]?.trim() ?? p.categories_tags?.[0]?.replace(/^\w\w:/, "").replace(/-/g, " "),
+      // Open Food Facts stores floats like 2.2300000190734863; one decimal is plenty on a label.
       nutrients: {
-        calories: n["energy-kcal_100g"],
-        protein: n.proteins_100g,
-        carbs: n.carbohydrates_100g,
-        fat: n.fat_100g,
-        fiber: n.fiber_100g,
-        sugar: n.sugars_100g,
-        sodium: n.sodium_100g,
-        saturatedFat: n["saturated-fat_100g"],
+        calories: r1(n["energy-kcal_100g"], 0),
+        protein: r1(n.proteins_100g),
+        carbs: r1(n.carbohydrates_100g),
+        fat: r1(n.fat_100g),
+        fiber: r1(n.fiber_100g),
+        sugar: r1(n.sugars_100g),
+        sodium: r1(n.sodium_100g, 3),
+        saturatedFat: r1(n["saturated-fat_100g"]),
       },
       ingredients: p.ingredients_text?.split(",").map((s) => s.trim()).slice(0, 20),
       allergens: p.allergens ? p.allergens.split(",").map((s) => s.trim()) : p.allergens_tags?.map((t) => t.replace(/^\w\w:/, "")),

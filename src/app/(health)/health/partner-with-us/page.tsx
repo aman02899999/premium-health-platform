@@ -7,7 +7,7 @@ import { LEAD_FORMS } from "@/health/lib/monetization/config";
 import { PremiumCTA } from "@/health/components/earning/PremiumCTA";
 
 const seoTitle = "Partner With Us — Clinics, Dietitians";
-const seoDescription = "Partner with us: clinics, dietitians, nutritionists, fitness coaches, diagnostic centers, wellness businesses — lead gen, business directory, sponsorship.";
+const seoDescription = "Partner with us: clinics, dietitians, nutritionists, fitness coaches, diagnostic centers, wellness businesses, directory listing and sponsorship.";
 const url = "/health/partner-with-us";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Partner With Us")}&category=${encodeURIComponent("Partnership")}&type=tool`;
@@ -33,7 +33,7 @@ export default function PartnerPage() {
         howTo={{ name: "How to partner with us", steps: ["Fill in the partnership enquiry form", "We verify your credentials", "Choose a free or featured listing", "Get listed and start receiving enquiries"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-stone-900 to-emerald-900 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Partnership — Business Directory + Sponsorship + Lead Gen</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Partner with us</p>
         <h1 className="font-display mt-1 text-3xl font-black">Partner With Us — Clinics, Dietitians, Wellness — India</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Join our business directory — dietitians, nutritionists, fitness coaches, yoga instructors, clinics, diagnostic centers, wellness. Free/Featured/Premium. Do not imply paid = medically superior. Do not fabricate credentials.</p>
       </div>

@@ -34,7 +34,7 @@ export default function HerbInteractionPage() {
         howTo={{ name: "How to check herb-drug interaction", steps: ["Select Ayurvedic herb: ashwagandha, giloy, shatavari, guggulu etc", "Select allopathy medicine: metformin, warfarin, thyroxine etc", "View interaction level + mechanism + references", "Save check in premium, consult doctor — not prescription"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Herb-Drug Interaction Checker — Ayurveda + Allopathy Safety</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Check Ayurvedic herb + allopathy drug interactions: ashwagandha, giloy, guggulu + warfarin, metformin — safety. Educational, not prescription.</p>
       </div>

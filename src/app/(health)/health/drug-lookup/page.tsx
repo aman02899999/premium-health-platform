@@ -10,7 +10,7 @@ import { rxNormProvider } from "@/health/services/health/providers/rxnorm/provid
 import { pubChemProvider } from "@/health/services/health/providers/pubchem/provider";
 
 const seoTitle = "Drug Lookup — Allopathy Medicines India | openFDA RxNorm PubChem";
-const seoDescription = "Lookup allopathy medicines: dose, side effects, interactions — India brands, educational. openFDA + RxNorm + PubChem free keyless. Unique, premium + affiliate.";
+const seoDescription = "Lookup allopathy medicines: dose, side effects, interactions — India brands, educational. openFDA + RxNorm + PubChem free keyless.";
 const url = "/health/drug-lookup";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Drug Lookup — Medicines India")}&category=${encodeURIComponent("Drug Lookup")}&type=tool`;
@@ -51,7 +51,7 @@ export default async function DrugLookupPage({ searchParams }: { searchParams: P
         howTo={{ name: "How to lookup drug", steps: ["Search drug: e.g., 'metformin', 'thyroxine', 'amlodipine'", "Pick provider: openFDA labels, RxNorm generic/brand, PubChem chemical", "View uses, side effects, interactions, India brands, safety", "Save list in premium, share with doctor, check herb-drug interaction"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-blue-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-200">Unique India — openFDA + RxNorm + PubChem</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Drug Lookup — Allopathy Medicines India</h1>
         <p className="mt-2 max-w-2xl text-sm text-blue-100/90"><strong>openFDA</strong> (labels, warnings), <strong>RxNorm</strong> (generic/brand), <strong>PubChem</strong> (chemical). All free keyless, server-side.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/health/drug-lookup">

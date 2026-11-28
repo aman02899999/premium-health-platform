@@ -16,7 +16,7 @@ export function AnemiaRisk() {
 
   return (
     <div className="rounded-3xl border border-stone-200 bg-white p-5 dark:border-stone-700 dark:bg-stone-900">
-      <h3 className="flex items-center gap-2 text-sm font-bold"><Droplets className="h-4 w-4 text-rose-600" /> Anemia Risk — India Unique</h3>
+      <h3 className="flex items-center gap-2 text-sm font-bold"><Droplets className="h-4 w-4 text-rose-600" /> Anemia Risk</h3>
       <p className="mt-1 text-[11px] text-stone-500">India has high iron deficiency. Educational screening only — confirm with hemoglobin, ferritin, B12.</p>
       <div className="mt-3 space-y-2 text-sm">
         <label className="flex items-center gap-2"><input type="checkbox" checked={diet === "veg"} onChange={(e) => setDiet(e.target.checked ? "veg" : "nonveg")} /> Vegetarian (lower heme iron)</label>

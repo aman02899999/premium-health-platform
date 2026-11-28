@@ -31,7 +31,7 @@ export default function Page() {
         howTo={{ name: "How to ask health question", steps: ["Type question in English/Hinglish/Hindi — e.g., diabetes millet","View evidence answer with PubMed/ICMR citations + disclaimer","Ask follow-up, save Q&A in premium","For personal advice, book dietitian via lead form"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-emerald-800 to-teal-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Health Q&A — Evidence-Based Answers — India Focus</h1>
         <p className="mt-2 max-w-2xl text-sm text-emerald-100/90">Ask health questions — evidence-based answers with citations: PubMed, ICMR, FSSAI.</p>
       </div>

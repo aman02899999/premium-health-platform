@@ -6,10 +6,10 @@ import { LatestArticles } from "@/health/components/blog/LatestArticles";
 import { UniquePageSEO } from "@/health/components/seo/UniquePageSEO";
 import { SITE } from "@/health/lib/site";
 import { openFoodFactsProvider } from "@/health/services/health/providers/openfoodfacts/provider";
-import { usdaProvider } from "@/health/services/health/providers/usda/provider";
+import { BarcodeScanner } from "@/health/components/health/barcode-scanner";
 
-const seoTitle = "Food Database — Indian Foods GI Protein | Open Food Facts USDA";
-const seoDescription = "Search Indian foods: GI, protein, fibre, FSSAI — roti, dal, millet + Open Food Facts barcode + USDA..";
+const seoTitle = "Food Database — Indian Packaged Foods, Calories and Protein";
+const seoDescription = "Search packaged foods sold in India by name or barcode: calories, protein, carbs, fat, Nutri-Score and processing level, from Open Food Facts.";
 const url = "/health/food-database";
 const absoluteUrl = `${SITE.url}${url}`;
 const ogImage = `${SITE.url}/health/api/og?title=${encodeURIComponent("Food Database — Indian Foods")}&category=${encodeURIComponent("Food Database")}&type=tool`;
@@ -22,20 +22,19 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: seoTitle, description: seoDescription, images: [ogImage] },
 };
 
-async function getFoods(q: string, provider: string) {
+async function getFoods(q: string) {
   // Call the provider directly — a server page fetching its own API by URL breaks whenever the base URL is wrong.
   try {
-    return provider === "usda" ? await usdaProvider.search({ query: q, limit: 12 }) : await openFoodFactsProvider.search({ query: q, limit: 12 });
+    return await openFoodFactsProvider.search({ query: q, limit: 12 });
   } catch {
     return null;
   }
 }
 
-export default async function FoodDatabasePage({ searchParams }: { searchParams: Promise<{ q?: string; provider?: string }> }) {
+export default async function FoodDatabasePage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   const sp = await searchParams;
-  const query = sp.q?.trim() || "apple";
-  const provider = sp.provider || "openfoodfacts";
-  const data = await getFoods(query, provider);
+  const query = sp.q?.trim() || "paneer";
+  const data = await getFoods(query);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
@@ -43,24 +42,20 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
       <UniquePageSEO
         breadcrumbs={[{ name: "Home", item: "/health" }, { name: "Food Database", item: "/health/food-database" }]}
         faqs={[
-          { q: "What is GI of Indian foods?", a: "White rice 73, brown rice 68, foxtail millet 50.8, little millet 52, dal 25-35, roti 62 — low GI <55 better for sugar. Database has 200+ foods + Open Food Facts barcode." },
-          { q: "Which Indian food high protein?", a: "Soya chunks 52g/100g, paneer 18g, dal 9g cooked, sprouts 7g, egg 6g — database filters by protein, fibre, GI, veg + USDA + Open Food Facts." },
+          { q: "What is GI of Indian foods?", a: "White rice 73, brown rice 68, foxtail millet 50.8, little millet 52, dal 25-35, roti 62 — low GI <55 better for sugar." },
+          { q: "Which Indian food high protein?", a: "Soya chunks 52g/100g, paneer 18g, dal 9g cooked, sprouts 7g, egg 6g. Search a packaged food here to see its protein per 100 g." },
         ]}
-        howTo={{ name: "How to search food database", steps: ["Search food: e.g., 'millet', 'dal', 'roti' or barcode 8901030875020", "Filter by GI low, high protein, veg, diabetic-friendly", "View GI, protein, fibre, FSSAI tips + Nutri-Score + healthier swap", "Save favorites in premium, build thali, scan barcode"] }}
+        howTo={{ name: "How to search food database", steps: ["Type a packaged food or brand name, e.g. paneer, atta or poha", "Compare calories, protein, carbs and fat per 100 g", "Or type the barcode number from the pack to see that exact product", "Check the label on the pack too: database values can be out of date"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-yellow-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India — Open Food Facts + USDA</p>
-        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Food Database — Indian Foods GI Protein — Search + Barcode</h1>
-        <p className="mt-2 max-w-2xl text-sm text-amber-100/90"><strong>Open Food Facts</strong> (ODbL, free keyless, barcode) + <strong>USDA FoodData Central</strong> (public domain) + India GI protein fibre.</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
+        <h1 className="font-display mt-1 text-3xl font-black md:text-4xl">Food Database: Search by Name or Barcode</h1>
+        <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Search packaged foods sold in India by name and see calories, protein, carbs and fat per 100 g. Data from Open Food Facts.</p>
         <form className="mt-4 flex flex-wrap gap-2" action="/health/food-database">
-          <input name="q" defaultValue={query} placeholder="Try apple, maggi, atta, milk…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
-          <select name="provider" aria-label="Data source" defaultValue={provider} className="h-11 rounded-xl border border-white/20 bg-white/10 px-3 text-sm">
-            <option value="openfoodfacts">Open Food Facts</option>
-            <option value="usda">USDA (requires key)</option>
-          </select>
+          <label htmlFor="food-q" className="sr-only">Food name</label>
+          <input id="food-q" name="q" defaultValue={query} placeholder="Try apple, maggi, atta, milk…" className="h-11 w-full max-w-md rounded-xl border border-white/20 bg-white/10 px-4 text-sm placeholder:text-emerald-200/60 focus:border-amber-300 focus:outline-none" />
           <button className="h-11 rounded-xl bg-amber-500 px-6 text-sm font-bold text-emerald-950 hover:bg-amber-400">Search</button>
         </form>
-        <p className="mt-2 text-[11px] text-amber-200/70">Source: {data?.source ?? provider} · Live: {data?.live ? "yes" : "fallback"}</p>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
@@ -77,18 +72,14 @@ export default async function FoodDatabasePage({ searchParams }: { searchParams:
                   <div className="rounded bg-stone-50 p-1 dark:bg-stone-800"><p className="font-bold">{f.nutrients.fat ?? "—"}g</p><p>fat</p></div>
                 </div>
               </div>
-            )) ?? <p className="text-sm text-stone-500">No foods found — try a different spelling</p>}
+            ))}
+            {!data?.data?.length && <p className="text-sm text-stone-500">No foods found for “{query}”. Try a different spelling or a brand name.</p>}
           </div>
           <div className="mt-8">
-            <h2 className="text-sm font-bold">Barcode Lookup — Open Food Facts India</h2>
-            <p className="mt-1 text-xs text-stone-500">Open Food Facts supports barcode: try 8901030875020 (Parle) or 8901058849412 — India brands</p>
-            <form className="mt-2 flex gap-2" action="/health/api/health/barcode/8901030875020">
-              <input name="code" placeholder="Enter 8-14 digit barcode" className="h-10 w-full max-w-xs rounded-xl border border-stone-200 bg-white px-3 text-sm dark:border-stone-700 dark:bg-stone-900" />
-              <button className="h-10 rounded-xl bg-emerald-700 px-4 text-xs font-bold text-white">Lookup via API</button>
-            </form>
+            <BarcodeScanner />
           </div>
           <div className="mt-6 space-y-4">
-            <AffiliateProducts limit={4} title="High Protein Foods — Affiliate" />
+            <AffiliateProducts limit={4} title="High protein foods (affiliate links)" />
             <LatestArticles limit={4} />
           </div>
         </div>

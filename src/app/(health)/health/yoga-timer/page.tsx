@@ -34,7 +34,7 @@ export default function YogaTimerPage() {
         howTo={{ name: "How to use yoga timer", steps: ["Choose pranayama: 4-2-4, box breathing, or Surya Namaskar counter", "Set rounds + duration, start timer with guided cues", "Follow inhale-hold-exhale audio, sit straight", "Log session, unlock premium history + weekly plan"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-violet-800 to-indigo-700 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-violet-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Yoga & Pranayama Timer — 4-2-4 Breathing, Surya Namaskar</h1>
         <p className="mt-2 max-w-2xl text-sm text-violet-100/90">4-2-4 breathing, Surya Namaskar counter, meditation timer — traditional + modern, guided cues. Stop if dizzy.</p>
       </div>

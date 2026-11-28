@@ -31,7 +31,7 @@ export default function Page() {
         howTo={{ name: "How to use Ritucharya planner", steps: ["Allow location or pick city for live weather pulse","See current Ritu + dosha tendency + pathya/apathya","Follow diet + lifestyle suggestions, track daily","Save seasonal plan in premium, get weekly PDF"] }}
       />
       <div className="mt-3 rounded-3xl bg-gradient-to-br from-amber-800 to-stone-800 p-6 text-white md:p-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">Unique India</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-200">India-first</p>
         <h1 className="font-display mt-1 text-3xl font-black">Ritucharya — Seasonal Planner — Ayurveda + Live Weather</h1>
         <p className="mt-2 max-w-2xl text-sm text-amber-100/90">Live season from Open-Meteo + classical Ayurveda pathya/apathya. Educational, not prescription.</p>
       </div>
