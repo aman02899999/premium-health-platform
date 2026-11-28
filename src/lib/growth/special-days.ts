@@ -982,6 +982,106 @@ ${EDU}`,
     }),
     slot: "evening",
   },
+  {
+    ...tipsReel({
+      id: "reel-lab-kidney-kft",
+      date: "2026-12-11",
+      video: "/social/reels/lab-kidney-kft.mp4",
+      theme: "KFT Report: Kidney Ke Test Kaise Padhein? 🧪",
+      body: `KFT Report: Kidney Ke Test Kaise Padhein? 🧪
+
+Do mutthi jitni kidney roz lagbhag 140 litre khoon saaf karti hain. Report mein creatinine muscle se banne waala kachra hai, aur isi se eGFR nikalta hai, yaani kidney ki safaai ki speed. eGFR 3 mahine tak 60 se neeche rahe, toh doctor ise kidney ki bimari maante hain.
+
+Gym waalon ke liye: zyada muscle, heavy workout aur creatine supplement se creatinine thoda badh sakta hai, bina kidney kharaab hue. Isliye test se pehle doctor ko batao. Bharat mein kidney ki bimari ki sabse badi wajah sugar aur high BP hain. Dard ki goli baar baar khud se lena bhi kidney ko nuksaan kar sakta hai. Report doctor ko dikhao.
+
+Lab Ke Andar · EP 8
+Sources: NIDDK, your kidneys and how they work; KDIGO CKD guideline 2012; MedlinePlus, creatinine and BUN tests; Kreider et al., ISSN creatine position stand 2017; Rajapurkar et al., BMC Nephrology 2012; National Kidney Foundation, painkillers and kidneys.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#KidneyHealth #KFT #Creatinine #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-iron-ferritin",
+      date: "2026-12-13",
+      video: "/social/reels/lab-iron-ferritin.mp4",
+      theme: "Iron Aur Ferritin: Thakaan Ki Chhupi Wajah? 🧪",
+      body: `Iron Aur Ferritin: Thakaan Ki Chhupi Wajah? 🧪
+
+Haemoglobin theek ho phir bhi thakaan ho sakti hai, kyunki iron ka store pehle khaali hota hai. Ferritin isi store ka number hai. WHO ke hisaab se swasth vayaskon mein ferritin 15 µg/L se kam ho toh iron store khaali maana jaata hai.
+
+Par bukhaar, infection ya sujan mein ferritin upar chala jaata hai, chaahe iron kam ho. Isliye doctor ise CRP ke saath dekhte hain. Chana, rajma, hari sabzi aur ande iron dete hain; nimbu saath ho toh achha, chai khaane ke turant baad nahi. Iron ki goli khud se shuru mat karo, zyada iron bhi nuksaan karta hai. Report doctor ko dikhao.
+
+Lab Ke Andar · EP 9
+Sources: WHO guideline on ferritin concentrations (2020); MedlinePlus, iron tests; NIH Office of Dietary Supplements, iron fact sheet.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#Iron #Ferritin #Anaemia #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-urine-test",
+      date: "2026-12-15",
+      video: "/social/reels/lab-urine-test.mp4",
+      theme: "Urine Test Report Kaise Padhein? 🧪",
+      body: `Urine Test Report Kaise Padhein? 🧪
+
+Ek chhoti si shishi peshaab, aur lab teen tarah se jaanch karti hai: aankh se rang dekh kar, strip se, aur microscope se. Strip sugar, protein, khoon aur infection ke nishaan dikhaati hai. Microscope mein pus cells zyada hon toh aksar infection ka shak hota hai.
+
+Sahi sample ke liye subah ka pehla peshaab lo, pehle thodi dhaar chhod do, phir beech ki dhaar shishi mein. Periods ke dinon mein test ho toh lab ko batao. Gym alert: bahut heavy workout ke baad peshaab cola jaisa gehra ho aur muscles mein tez dard ho, toh turant doctor ke paas jao. Antibiotic khud se mat lo.
+
+Lab Ke Andar · EP 10
+Sources: MedlinePlus, urinalysis; MedlinePlus, protein in urine and glucose in urine; MedlinePlus, rhabdomyolysis.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#UrineTest #Urinalysis #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-crp-uric-acid",
+      date: "2026-12-17",
+      video: "/social/reels/lab-crp-uric-acid.mp4",
+      theme: "CRP Aur Uric Acid Report Kaise Padhein? 🧪",
+      body: `CRP Aur Uric Acid Report Kaise Padhein? 🧪
+
+CRP liver banaata hai jab shareer mein sujan ya infection ho. Ye batata hai ki aag hai, par kahan hai ye nahi batata. Bukhaar, chot ya ek din pehle bahut heavy workout se bhi CRP badh sakta hai.
+
+Uric acid zyada ho toh jodon mein suee jaise crystals ban sakte hain, jise gout kehte hain. Sharaab, khaas kar beer, meethe drinks aur bahut zyada red meat ise badhaate hain. Uric acid thoda zyada ho par dard na ho, toh har baar dawa ki zaroorat nahi hoti; ye faisla doctor karega. Jodon mein achaanak tez dard aur sujan ho toh khud se painkiller mat lo, doctor ko dikhao.
+
+Lab Ke Andar · EP 11
+Sources: MedlinePlus, CRP test and uric acid test; Pearson et al., AHA/CDC statement, Circulation 2003; Kasapis & Thompson, JACC 2005; NIAMS, gout; American College of Rheumatology gout guideline 2020.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#CRP #UricAcid #Gout #BloodTest #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
+  {
+    ...tipsReel({
+      id: "reel-lab-full-report",
+      date: "2026-12-19",
+      video: "/social/reels/lab-full-report.mp4",
+      theme: "Blood Report Kaise Padhein: Range, Trend Aur Doctor 🧪",
+      body: `Blood Report Kaise Padhein: Range, Trend Aur Doctor 🧪
+
+Har number ke saath ek range likhi hoti hai, aur ye range har lab mein alag hoti hai. Range swasth logon ke beech ke 95% se banti hai, isliye har 20 mein se ek swasth insaan bhi range se bahar aa sakta hai. Bahar matlab bimaar nahi.
+
+Khaali pet, paani, neend aur workout, sab report badal sakte hain. Biotin jaise supplements kuch test bigaad sakte hain, isliye doctor ko poori list batao. Ek report se zyada, purani report ke saath trend dekhna kaam ka hai. Report khud samajhne ke liye hai, ilaaj khud karne ke liye nahi. Lab Ke Andar series yahin poori hoti hai.
+
+Lab Ke Andar · EP 12
+Sources: MedlinePlus, how to understand your lab results; US FDA safety communication on biotin (2019).
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#BloodTest #LabReport #HealthCheckup #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "evening",
+  },
 ];
 
 /** Myth vs fact Stories: a Story has no caption, so these only carry an image. */

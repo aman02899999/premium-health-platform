@@ -354,6 +354,41 @@ export const LABSERIES2_VIDEO_PROMPTS: VisualPrompt[] = [
   A("fat-droplets-anim", "3D medical animation: pale yellow fat droplets slowly grow and fill the spaces inside liver tissue, educational, not gory.", "Lab series EP7: fatty liver"),
 ];
 
+// "labseries3": "Lab Ke Andar" EP 8-12 (kidney test, iron and ferritin, urine test, CRP and uric acid, reading a full report).
+export const LABSERIES3_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("kidney-pair-glow", "3D anatomical render of two glowing human kidneys with their blood vessels in dark space, teal and gold light.", "Lab series EP8 hook: kidneys"),
+  A("nephron-closeup", "3D medical visualisation of a single kidney filter unit (nephron) with tiny glowing particles being filtered out of a blood vessel, dark background.", "Lab series EP8: kidney filter"),
+  A("muscle-creatinine", "3D medical visualisation of red muscle fibres releasing small glowing waste particles into a nearby blood vessel, dark background.", "Lab series EP8: creatinine comes from muscle"),
+  A("bp-cuff-glucometer", "Moody photograph of a blood pressure cuff and a plain glucose meter on a dark table, soft side light, no screens showing numbers, no text.", "Lab series EP8: BP and sugar harm kidneys"),
+  A("water-bottle-gym", "Photograph of a plain steel water bottle on a gym bench next to a towel, warm evening light, no logos.", "Lab series EP8: water before the test"),
+  A("painkiller-strip-plain", "Photograph of a plain silver blister strip of white pills on a dark table, soft light, no text.", "Lab series EP8: frequent painkillers and kidneys"),
+  A("iron-foods-chana-saag", "Top-down photograph on a dark table of Indian iron-rich foods: a bowl of black chana, rajma, green leafy saag, boiled eggs and a few dates.", "Lab series EP9: iron foods"),
+  A("lemon-chana-plate", "Photograph of a plate of chana chaat with a halved lemon being squeezed over it, warm light, dark background.", "Lab series EP9: vitamin C helps iron"),
+  A("tea-with-meal", "Photograph of a cup of Indian milk tea placed beside a thali, warm light, dark table, no faces.", "Lab series EP9: tea with meals"),
+  A("pale-tired-hands", "Close-up photograph of two pale hands resting on a table, nails slightly pale, soft cool light, no face.", "Lab series EP9: pale skin in anaemia"),
+  A("ferritin-warehouse", "3D medical visualisation of glowing iron particles stored inside round protein cages like a small warehouse, dark background, orange light.", "Lab series EP9: ferritin is stored iron"),
+  A("urine-cup-lab", "Photograph of a clean closed sample cup with pale yellow liquid on a lab counter, cool light, no labels or text.", "Lab series EP10 hook: urine test"),
+  A("dipstick-strip", "Close-up photograph of a white urine test strip with small coloured pads next to a sample cup, lab light, no printed text.", "Lab series EP10: dipstick"),
+  A("microscope-lab-dark", "Photograph of a lab microscope in a dark lab with a glowing slide under the lens, teal light.", "Lab series EP10: microscope check"),
+  A("inflamed-joint-red", "3D anatomical render of a big toe joint glowing red and warm from inside, transparent foot, dark background, educational.", "Lab series EP11: gout"),
+  A("uric-crystal-needles", "3D medical visualisation of sharp needle-shaped white crystals inside a joint space, dark background, cold light.", "Lab series EP11: uric acid crystals"),
+  A("sugary-drinks-table", "Photograph of a few unlabelled glass bottles of sweet coloured soft drinks on a dark table, moody light, no logos.", "Lab series EP11: sugary drinks and uric acid"),
+  A("trend-chart-hologram", "3D render of a glowing holographic line chart with a gently rising and falling line floating above a desk, no numbers or text, dark background.", "Lab series EP12: compare reports over time"),
+];
+
+export const LABSERIES3_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("nephron-filter-anim", "3D medical animation: blood flows through a kidney filter unit, waste particles drop out into a tube while blood cells stay in the vessel, teal light.", "Lab series EP8: kidney filter"),
+  A("creatinine-release-anim", "3D medical animation: muscle fibres contract and small glowing waste particles drift out of them into a blood vessel and travel away.", "Lab series EP8: creatinine"),
+  A("kidney-flow-anim", "3D anatomical animation of two glowing kidneys with blood streaming in and out of them, slow orbit, dark background.", "Lab series EP8 hook"),
+  A("iron-carry-anim", "3D medical animation: red blood cells pick up glowing iron particles and carry them through a blood vessel.", "Lab series EP9: iron and haemoglobin"),
+  A("ferritin-store-anim", "3D medical animation: glowing iron particles are packed into round protein cages that slowly fill up and glow brighter.", "Lab series EP9: ferritin"),
+  A("dipstick-color-anim", "Close-up animation of a white urine test strip being dipped, its small pads slowly changing colour one by one, lab light, no text.", "Lab series EP10: dipstick"),
+  A("urine-crystals-anim", "Microscope-style animation: small crystals and cells drift slowly across a glowing circular field of view, cool light.", "Lab series EP10: microscope"),
+  A("inflammation-cells-anim", "3D medical animation: white blood cells rush to a glowing red spot in a tissue while small signal particles spread out into the blood.", "Lab series EP11: inflammation and CRP"),
+  A("uric-crystals-joint-anim", "3D medical animation: sharp white needle crystals slowly form inside a transparent toe joint, which starts to glow red.", "Lab series EP11: gout"),
+  A("report-trend-anim", "3D animation of a glowing holographic line chart drawing itself across a dark desk, a second line appearing beside it to compare, no numbers or text.", "Lab series EP12: trends"),
+];
+
 // "hormones2": "Steroid aur Peptide Ka Sach" EP 3 and 5-12 (natural limits, liver, fertility, mind,
 // fake products, SARMs, peptides, GH, seeing a doctor). Same rules as "hormones": no syringes, needles,
 // vials, pills being taken or bodies-as-results.
@@ -398,6 +433,7 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   hormones: { image: HORMONES_IMAGE_PROMPTS, video: HORMONES_VIDEO_PROMPTS },
   hormones2: { image: HORMONES2_IMAGE_PROMPTS, video: HORMONES2_VIDEO_PROMPTS },
   labseries2: { image: LABSERIES2_IMAGE_PROMPTS, video: LABSERIES2_VIDEO_PROMPTS },
+  labseries3: { image: LABSERIES3_IMAGE_PROMPTS, video: LABSERIES3_VIDEO_PROMPTS },
 };
 
 /** The prompt list for a workflow run. Unknown or empty set names give the default gym stock set. */
