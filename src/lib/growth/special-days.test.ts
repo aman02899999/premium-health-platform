@@ -169,4 +169,16 @@ describe("special-day posts", () => {
     expect(specialReel("2026-11-29", "midday")?.id).toBe("reel-desi-habit-paani");
     expect(specialReel("2026-11-28", "evening")?.id).toBe("reel-egg-andar-ka-safar"); // egg Reel fills the gap
   });
+
+  it("Steroid Ka Sach: 12 midday Reels every second day from 13 Dec, education only, no product at the end", () => {
+    const sp = SPECIAL_REELS.filter((r) => r.id.startsWith("reel-steroid-"));
+    expect(sp.map((r) => r.date)).toEqual(["2026-12-13", "2026-12-15", "2026-12-17", "2026-12-19", "2026-12-21", "2026-12-23", "2026-12-25", "2026-12-27", "2026-12-29", "2026-12-31", "2027-01-02", "2027-01-04"]);
+    for (const r of sp) {
+      expect(specialReel(r.date, "midday")?.id, r.date).toBe(r.id);
+      expect(r.instagram, r.id).toMatch(/Koi dose, cycle, brand ya source hum nahi batate/);
+      expect(r.instagram, r.id).toMatch(/doctor/i);
+      expect(r.instagram, r.id).toContain("88518 30081");
+      expect(r.instagram, r.id).not.toMatch(/\d+\s?(mg|mcg|iu|ml)\b|buy now|order now/i);
+    }
+  });
 });

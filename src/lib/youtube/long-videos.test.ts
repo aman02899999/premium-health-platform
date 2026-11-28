@@ -76,6 +76,30 @@ describe("long videos", () => {
     expect(lab.filter((v) => !v.short).every((v) => v.chapters.some(([, c]) => c.startsWith("EP ")))).toBe(true);
   });
 
+  it("the Steroid Ka Sach series: education only, a Short per episode on even dates, long videos with chapters", () => {
+    const sp = LONG_VIDEOS.filter((v) => v.id.startsWith("short-steroid-") || v.id.startsWith("long-steroid-ka-sach-"));
+    expect(sp.length).toBe(16);
+    const shorts = sp.filter((v) => v.short);
+    expect(shorts.length).toBe(12);
+    for (const v of sp) {
+      expect(longVideoTags(v), v.id).toContain("steroid ka sach");
+      expect(v.intro, v.id).toMatch(/AI voice/);
+      expect(v.intro, v.id).toMatch(/koi dose, cycle, brand ya source nahi/i);
+      expect(longVideoDescription(v)).toMatch(/doctor/i);
+      // No how-to: nothing that reads like a dose, a cycle plan or a place to buy.
+      expect(`${v.title} ${v.intro}`, v.id).not.toMatch(/\d+\s?(mg|mcg|iu|ml)\b|stack|kahan se (kharid|mile)|buy|order now/i);
+      expect(v.buy, v.id).toBeUndefined();
+    }
+    for (const v of shorts) {
+      expect(v.title.endsWith("#shorts"), v.id).toBe(true);
+      expect(v.series, v.id).toBe("steroids");
+      // Lab Ke Andar has the odd dates, so the two series never share a day's series slot.
+      expect(Number(v.date.slice(8)) % 2, v.id).toBe(0);
+      expect(LONG_VIDEOS.filter((x) => x.series && x.date === v.date).length, v.date).toBe(1);
+    }
+    expect(sp.filter((v) => !v.short).every((v) => v.chapters.filter(([, c]) => c.startsWith("EP ")).length === 3)).toBe(true);
+  });
+
   it("picks the oldest due video nobody has uploaded", () => {
     expect(dueLongVideo("2026-11-08", [])).toBeNull();
     expect(dueLongVideo("2026-11-20", [])?.id).toBe(LONG_VIDEOS[0].id);

@@ -3,7 +3,7 @@
 // topic when its title or tags contain one of the topic's words (whole words, any case).
 // Add a word here and both the playlists and the site embeds pick it up.
 
-export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "supplement-series" | "lab-series" | "pain-age" | "sleep" | "lifestyle";
+export type TopicKey = "myths" | "weight" | "diet" | "bp-heart" | "diabetes" | "workout" | "supplements" | "supplement-series" | "lab-series" | "steroid-series" | "pain-age" | "sleep" | "lifestyle";
 
 export type Topic = { key: TopicKey; title: string; description: string; words: string[] };
 
@@ -67,6 +67,13 @@ export const TOPICS: Topic[] = [
     words: ["lab ke andar"],
   },
   {
+    // The Steroid Ka Sach series (Dec 2026): every video in it carries this tag.
+    key: "steroid-series",
+    title: "Steroid Ka Sach: Steroid, SARMs, Peptides (Hinglish)",
+    description: `Anabolic steroid, SARMs, peptides aur growth hormone ke myths, beginner se advanced, sources ke saath. Sirf education: koi dose, cycle, brand ya source nahi. Steroid le chuke ho toh doctor se baat karo. ${GYM}`,
+    words: ["steroid ka sach"],
+  },
+  {
     key: "pain-age",
     title: "Back Pain, Knee Pain & 60+ Fitness",
     description: `Kamar dard, ghutna dard aur 60 ke baad fitness, safe tareeke se. ${GYM}`,
@@ -119,7 +126,7 @@ export function topicScores(text: string): { key: TopicKey; hits: number }[] {
     .map(({ key, hits }) => ({ key, hits }));
 }
 
-const SERIES = new Set<TopicKey>(["supplement-series", "lab-series"]);
+const SERIES = new Set<TopicKey>(["supplement-series", "lab-series", "steroid-series"]);
 
 /**
  * The playlists a video goes into: its two strongest subject topics, plus "myths" when it is a

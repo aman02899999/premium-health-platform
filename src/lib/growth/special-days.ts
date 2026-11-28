@@ -679,6 +679,247 @@ ${EDU}`,
       tags: "#LipidProfile #Cholesterol #HeartHealth #LabKeAndar #RoyalFitnessClub #NoidaGym #Sector93Noida",
     }),
     slot: "evening",
+  },  // Steroid Ka Sach (owner, 27 Nov 2026): one episode every second day at midday, 13 Dec to 4 Jan.
+  // Education only (no doses, cycles, brands or sources); the end card is the free trial, never a product.
+  {
+    ...tipsReel({
+      id: "reel-steroid-1-do-steroid",
+      date: "2026-12-13",
+      video: "/social/reels/sp1-do-steroid.mp4",
+      theme: "Doctor Ka Steroid vs Gym Ka Steroid: Ek Hi Cheez? 🧪",
+      body: `Doctor Ka Steroid vs Gym Ka Steroid: Ek Hi Cheez? 🧪
+
+Corticosteroid sujan aur allergy shaant karta hai, muscle nahi banata. Anabolic steroid testosterone ki lab copy hai. Doctor ki di hui steroid dawa kabhi achanak band mat karo.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 1
+Sources: NHS; NIDA; Bhasin et al., JCEM 2018; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #Steroids #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-2-poori-list",
+      date: "2026-12-15",
+      video: "/social/reels/sp2-poori-list.mp4",
+      theme: "Gym Ke 9 'Course': Poori List Aur Har Ek Ka Risk 📋",
+      body: `Gym Ke 9 'Course': Poori List Aur Har Ek Ka Risk 📋
+
+Testosterone, nandrolone family, DHT jaise steroid, oral goliyan, SARMs, peptide dawayein, research peptides, GH boosters aur baaki gym drugs: har class ka risk, bina kisi dose ya brand ke.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 2
+Sources: NIDA; Pope et al., Endocrine Reviews 2014; NHS; Van Wagoner et al., JAMA 2017.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #Steroids #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-3-natty-limit",
+      date: "2026-12-17",
+      video: "/social/reels/sp3-natty-limit.mp4",
+      theme: "Natural Body Ki Asli Limit Kya Hai? FFMI Ka Sach 📏",
+      body: `Natural Body Ki Asli Limit Kya Hai? FFMI Ka Sach 📏
+
+1995 ki study mein 157 bodybuilders ka fat free mass index (FFMI) naapa gaya. Ye koi test nahi hai, kisi ko photo dekhkar fake mat bolo. Natural body saalon mein banti hai.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 3
+Sources: Kouri et al., Clin J Sport Med 1995; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #NattyOrNot #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-4-dil",
+      date: "2026-12-19",
+      video: "/social/reels/sp4-dil.mp4",
+      theme: "Steroid Aur Dil: Andar Kya Hota Hai? ❤️",
+      body: `Steroid Aur Dil: Andar Kya Hota Hai? ❤️
+
+Circulation 2017 study: purane users mein dil ki pump karne ki taakat kam aur naliyon mein plaque zyada. Seene mein dard ya saans phoole toh turant doctor.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 4
+Sources: Baggish et al., Circulation 2017; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #HeartHealth #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-5-liver-tablet",
+      date: "2026-12-21",
+      video: "/social/reels/sp5-liver-tablet.mp4",
+      theme: "Steroid Ki Goli Injection Se Safe Hai? Liver Ka Sach 🫀",
+      body: `Steroid Ki Goli Injection Se Safe Hai? Liver Ka Sach 🫀
+
+Muh se li jaane waali steroid goliyan liver par bhaari padti hain: peeliya aur kuch case reports mein tumour bhi. Aankh ya skin peeli ho toh turant doctor aur liver test.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 5
+Sources: NHS; Pope et al., Endocrine Reviews 2014; Horwitz et al., J Intern Med 2019.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #LiverHealth #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-6-hormone-wapas",
+      date: "2026-12-23",
+      video: "/social/reels/sp6-hormone-wapas.mp4",
+      theme: "Cycle Khatam, Hormone Wapas Normal? 🔄",
+      body: `Cycle Khatam, Hormone Wapas Normal? 🔄
+
+Denmark ki study: chhodne ke lagbhag dhaai saal baad bhi purane users mein se lagbhag 27 percent ka testosterone normal se neeche. Hormone aur sperm ki jaanch karao, doctor se ilaaj lo.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 6
+Sources: Rasmussen et al., PLoS One 2016; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #Testosterone #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-7-dimaag",
+      date: "2026-12-25",
+      video: "/social/reels/sp7-dimaag.mp4",
+      theme: "Roid Rage Aur Steroid Ki Lat: Sach Kya Hai? 🧠",
+      body: `Roid Rage Aur Steroid Ki Lat: Sach Kya Hai? 🧠
+
+Gussa, mood swings aur lagbhag teen mein se ek user mein dependence. Muscle dysmorphia kya hai. Khud ko nuksaan ke khayal aayein toh ise emergency samjho aur turant madad lo.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 7
+Sources: NHS; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #MentalHealth #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-8-nakli",
+      date: "2026-12-27",
+      video: "/social/reels/sp8-nakli.mp4",
+      theme: "Black Market Steroid: Label Par Kuch, Andar Kuch ⚠️",
+      body: `Black Market Steroid: Label Par Kuch, Andar Kuch ⚠️
+
+2022 review: lab tests mein average 36 percent nakli aur 37 percent ghatiya. Share ki gayi sui se hepatitis B, C aur HIV. Kabhi inject kiya hai toh test karao.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 8
+Sources: Magnolini et al., BMC Public Health 2022; NHS.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #FakeSteroids #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-9-sarms",
+      date: "2026-12-29",
+      video: "/social/reels/sp9-sarms.mp4",
+      theme: "SARMs Safe Hain? Naya Naam, Purana Khatra 💊",
+      body: `SARMs Safe Hain? Naya Naam, Purana Khatra 💊
+
+SARMs kahin bhi dawa ke roop mein manzoor nahi. JAMA 2017: online kharide 44 products mein sirf 52 percent mein SARM mila. Liver injury ke case report bhi.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 9
+Sources: Van Wagoner et al., JAMA 2017; US FDA; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #SARMs #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-10-peptides",
+      date: "2026-12-31",
+      video: "/social/reels/sp10-peptides.mp4",
+      theme: "BPC 157 'Healing Peptide': Saboot Kya Kehta Hai? 🔬",
+      body: `BPC 157 'Healing Peptide': Saboot Kya Kehta Hai? 🔬
+
+2025 review: BPC 157 par 36 studies, 35 jaanwaron ya lab dish par, sirf ek insaanon par. Sport mein banned. Chot ho toh sports doctor ya physiotherapist.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 10
+Sources: BPC-157 in orthopaedic sports medicine: a systematic review, HSS Journal 2025; WADA Prohibited List 2026.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #Peptides #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-11-gh",
+      date: "2027-01-02",
+      video: "/social/reels/sp11-gh.mp4",
+      theme: "Growth Hormone Aur 'GH Pill' MK 677: Sach 📈",
+      body: `Growth Hormone Aur 'GH Pill' MK 677: Sach 📈
+
+Badon mein height nahi badhti, extra GH se taakat ka saboot kamzor. Zyada GH se sugar aur BP. MK 677 ne trial mein blood sugar badhaaya. Sport mein banned.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 11
+Sources: Growth hormone, Mol Cell Endocrinol 2017; Nass et al., Ann Intern Med 2008; WADA Prohibited List 2026.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #GrowthHormone #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
+  },
+  {
+    ...tipsReel({
+      id: "reel-steroid-12-ab-kya-karein",
+      date: "2027-01-04",
+      video: "/social/reels/sp12-ab-kya-karein.mp4",
+      theme: "Steroid Le Chuke Ho? Ab Kya Karein 🩺",
+      body: `Steroid Le Chuke Ho? Ab Kya Karein 🩺
+
+Doctor ko sach batao, basic jaanch karao (BP, lipid, liver, kidney, blood count, hormone), dawa khud se shuru ya band mat karo, mood down ho toh mental health support lo.
+
+Sirf education. Koi dose, cycle, brand ya source hum nahi batate. Steroid ya hormone le chuke ho toh doctor se khul kar baat karo aur jaanch karao.
+
+Steroid Ka Sach · EP 12
+Sources: Bhasin et al., JCEM 2018; NHS; Pope et al., Endocrine Reviews 2014.
+Visuals aur voice AI se banaye gaye hain.
+${EDU}`,
+      tags: "#SteroidKaSach #FitnessMyths #GymTruth #SteroidHelp #RoyalFitnessClub #NoidaGym #Sector93Noida",
+    }),
+    slot: "midday",
   },
   // Lab Ke Andar EP 5-7 (same thread): every 2 days in the evening slot.
   {
