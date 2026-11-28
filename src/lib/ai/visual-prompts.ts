@@ -281,6 +281,45 @@ export const LABSERIES_VIDEO_PROMPTS: VisualPrompt[] = [
   A("heart-pump-anim", "3D animation of a glowing anatomical heart beating steadily in dark space, blood flow lines pulsing out from it, teal light.", "Lab series EP4: exercise and the heart"),
 ];
 
+// "hormones": "Steroid aur Peptide Ka Sach" education series (EP 1-4 first: what a steroid is, the
+// class map, natural limits, heart). Education only: no syringes, needles, vials, pills being taken,
+// powders or bodies-as-results. Molecules, anatomy and doctors instead. Same no-text, no-faces rules.
+export const HORMONES_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("four-ring-molecule", "Cinematic 3D render of a glowing molecular model made of four connected carbon rings floating in dark space, gold and teal light, floating particles.", "Hormone series hook: the four-ring family"),
+  A("two-paths-molecules", "3D render of two similar glowing molecules floating apart in dark space, one lit cool blue on the left and one lit warm red on the right, a thin line of light dividing them.", "Hormone series EP1: two different families"),
+  A("adrenal-gland-glow", "3D medical visualisation of a kidney with the small adrenal gland on top glowing soft gold, dark background.", "Hormone series EP1: cortisol from the adrenal gland"),
+  A("inflamed-joint-calm", "3D medical visualisation of a knee joint with a red glowing area of inflammation fading to a calm blue, dark background.", "Hormone series EP1: corticosteroids calm swelling"),
+  A("inhaler-tablet-strip", "Photograph of an asthma inhaler and a sealed blister strip of white tablets beside a stethoscope on a clean white doctor's desk, soft daylight, no readable text.", "Hormone series EP1: medicines doctors prescribe"),
+  A("hormone-receptor-cell", "3D medical visualisation of glowing hormone molecules entering a muscle cell and docking onto receptors inside the nucleus, dark background.", "Hormone series EP1: how a hormone signals"),
+  A("muscle-fibre-glow", "3D medical render of red skeletal muscle fibres bundled together with soft gold rim light, dark background.", "Hormone series: muscle tissue"),
+  A("blood-test-morning", "Photograph of a phlebotomist's gloved hands placing a small bandage on a person's inner elbow at a blood test, morning light, face not visible.", "Hormone series EP1: morning blood test confirms low hormone"),
+  A("doctor-explaining-chart", "Photograph of a doctor's hands pointing with a pen at an abstract chart on a tablet screen on a desk, a patient's hands across the table, faces not visible, no readable text.", "Hormone series: talk to a doctor"),
+  A("gym-silhouette-dark", "Moody photograph of a gym at night: a lone person seen from behind in silhouette standing in front of a loaded barbell rack, dramatic back light, face not visible.", "Hormone series: the gym shortcut question"),
+  A("class-map-hologram", "3D render of a glowing holographic tree diagram with branching nodes floating above a dark lab bench, teal and gold light, no readable text or numbers.", "Hormone series EP2: the class map"),
+  A("liver-amber-glow", "3D medical visualisation of a human liver glowing amber with a few darker stressed patches, dark background.", "Hormone series: liver strain"),
+  A("heart-wall-thick", "3D medical cross-section of a heart showing a thickened left ventricle wall, educational, not gory, dark background, teal light.", "Hormone series EP4: heart muscle thickens"),
+  A("brain-mood-glow", "3D medical render of a human brain glowing with flickering red and blue areas, dark background.", "Hormone series: mood and dependence"),
+  A("hpg-axis-glow", "3D medical visualisation of a translucent human figure with a glowing line of light running from the brain down to the lower abdomen, a small glowing gland at the base of the brain, dark background.", "Hormone series: the body's hormone control loop"),
+  A("scale-balance-dark", "Cinematic photograph of an old brass balance scale on a black table in dramatic side light, one pan slightly lower, dust in the light.", "Hormone series: risk versus reward"),
+  A("myth-shatter-glass", "Cinematic photograph of a pane of glass shattering into pieces against a black background, frozen in mid-air, gold rim light.", "Hormone series: myth busted"),
+  A("lab-research-mice", "Photograph of a clean research laboratory bench with a microscope, petri dishes and a notebook, cool light, no animals visible, no readable text.", "Hormone series: lab-only evidence"),
+  A("desi-protein-plate", "Top-down photograph on a dark table of Indian protein foods: paneer cubes, a bowl of dal, boiled eggs, chana, curd and soya chunks.", "Hormone series: food, training and sleep do the work"),
+  A("sleep-recovery-dark", "Photograph of a tidy dim bedroom at night with moonlight through a window and a pair of gym shoes by the bed, calm mood.", "Hormone series: recovery"),
+];
+
+export const HORMONES_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("four-ring-orbit-anim", "Cinematic 3D animation: the camera slowly orbits a glowing molecular model made of four connected carbon rings in dark space, gold and teal light sweeping across it.", "Hormone series hook"),
+  A("molecules-split-anim", "3D animation: one glowing molecule in dark space splits into two similar molecules that drift apart, one turning cool blue and the other warm red.", "Hormone series EP1: two families"),
+  A("inflammation-calm-anim", "3D medical animation of a knee joint where a red glowing area of inflammation slowly fades and cools to calm blue.", "Hormone series EP1: corticosteroid action"),
+  A("receptor-dock-anim", "3D medical animation: glowing gold hormone molecules drift into a muscle cell, pass into the nucleus and dock onto receptors, which light up one by one. Slow push-in.", "Hormone series EP1: hormone signal"),
+  A("muscle-fibre-anim", "3D medical animation of red skeletal muscle fibres contracting and relaxing with soft gold rim light, dark background.", "Hormone series: muscle"),
+  A("hpg-loop-anim", "3D medical animation of a translucent human figure: a pulse of light travels from a small gland at the base of the brain down to the lower abdomen and back up in a loop, then the loop dims and goes dark.", "Hormone series: natural hormone shuts down"),
+  A("heart-strain-anim", "3D animation of a glowing anatomical heart beating in dark space, its glow shifting from teal to warning red as the beat becomes strained.", "Hormone series EP4: heart"),
+  A("liver-stress-anim", "3D medical animation of a human liver slowly rotating while amber stress patches spread across its surface, dark background.", "Hormone series: liver"),
+  A("class-tree-grow-anim", "3D animation of a glowing holographic tree diagram growing branch by branch above a dark lab bench, teal and gold light, no readable text.", "Hormone series EP2: class map"),
+  A("glass-shatter-anim", "Slow-motion cinematic animation of a pane of glass shattering against a black background, gold rim light catching the pieces.", "Hormone series: myth busted"),
+];
+
 // "labseries2": "Lab Ke Andar" EP 5-7 (thyroid, vitamin D and B12, liver test). Same no-text, no-faces rules.
 export const LABSERIES2_IMAGE_PROMPTS: VisualPrompt[] = [
   A("thyroid-butterfly-neck", "3D anatomical render of a glowing butterfly-shaped thyroid gland in front of a transparent human neck, dark background, teal and gold light.", "Lab series EP5 hook: thyroid"),
@@ -350,6 +389,39 @@ export const LABSERIES3_VIDEO_PROMPTS: VisualPrompt[] = [
   A("report-trend-anim", "3D animation of a glowing holographic line chart drawing itself across a dark desk, a second line appearing beside it to compare, no numbers or text.", "Lab series EP12: trends"),
 ];
 
+// "hormones2": "Steroid aur Peptide Ka Sach" EP 3 and 5-12 (natural limits, liver, fertility, mind,
+// fake products, SARMs, peptides, GH, seeing a doctor). Same rules as "hormones": no syringes, needles,
+// vials, pills being taken or bodies-as-results.
+export const HORMONES2_IMAGE_PROMPTS: VisualPrompt[] = [
+  A("ceiling-chart-hologram", "3D render of a glowing holographic bar chart rising toward a bright horizontal ceiling line that the bars cannot pass, dark lab, gold light, no readable text or numbers.", "Hormone series EP3: natural ceiling"),
+  A("calendar-pages-fly", "Cinematic photograph of paper calendar pages flying through the air in a dark room, gold rim light, no readable dates.", "Hormone series EP3: time and patience"),
+  A("liver-cyst-section", "3D medical cross-section of a liver with a few small dark red blood-filled pockets inside the tissue, educational, not gory, dark background.", "Hormone series EP5: liver damage"),
+  A("sperm-microscope", "Scientific microscope view of human sperm cells swimming on a dark blue background, educational.", "Hormone series EP6: fertility"),
+  A("gauge-needle-low", "Cinematic close-up of a glowing analogue gauge with its pointer resting at the low end, dark background, red light, no numbers.", "Hormone series EP6: own hormone stays low"),
+  A("alone-dark-room", "Moody photograph of a young man sitting alone on the edge of a bed in a dark room with his head in his hands, silhouette, face not visible.", "Hormone series EP7: low mood"),
+  A("cracked-mirror-gym", "Photograph of a cracked mirror on a dark gym wall reflecting dumbbells, moody light, no person visible.", "Hormone series EP7: body image"),
+  A("dirty-workbench", "Photograph of a grimy, cluttered workbench in a dark makeshift workshop with stained glassware and dusty unlabelled bottles, a single bare bulb.", "Hormone series EP8: unregulated products"),
+  A("bacteria-micro", "3D medical visualisation of rod-shaped bacteria and round virus particles floating in dark fluid, green and purple light.", "Hormone series EP8: infection risk"),
+  A("molecule-warning-red", "3D render of an unfamiliar glowing molecule floating in dark space with a pulsing red warning glow around it.", "Hormone series EP9: unapproved compounds"),
+  A("amino-chain-beads", "3D render of a short chain of glowing coloured beads linked together like a necklace, floating in dark space, representing amino acids in a peptide.", "Hormone series EP10: what a peptide is"),
+  A("rat-lab-cage-empty", "Photograph of an empty clean laboratory animal cage on a steel shelf in a research lab, cool light, no animals.", "Hormone series EP10: animal-only evidence"),
+  A("physio-knee-hands", "Photograph of a physiotherapist's hands guiding a patient's knee through a gentle bend on a treatment table, faces not visible, daylight.", "Hormone series EP10: injuries need a physio"),
+  A("growth-plate-xray", "3D medical render of a glowing translucent human hand skeleton like an X-ray, dark blue background.", "Hormone series EP11: growth hormone and bones"),
+  A("doctor-handshake", "Photograph of a doctor and a young man shaking hands across a clinic desk, both faces out of frame, warm reassuring light.", "Hormone series EP12: talk to a doctor"),
+  A("sunrise-run-track", "Photograph of a running track at sunrise in an Indian city park, empty, golden light, long shadows.", "Hormone series EP12: the natural path"),
+];
+
+export const HORMONES2_VIDEO_PROMPTS: VisualPrompt[] = [
+  A("ceiling-bars-anim", "3D animation of glowing holographic bars rising and stopping at a bright horizontal ceiling line, dark lab, gold light, no numbers or text.", "Hormone series EP3: natural ceiling"),
+  A("liver-darken-anim", "3D medical animation of a liver slowly rotating as small dark red pockets appear inside its glowing tissue, educational, not gory.", "Hormone series EP5: liver"),
+  A("gauge-drop-anim", "Cinematic animation of a glowing analogue gauge whose pointer slowly falls from the middle to the low end, red light, no numbers.", "Hormone series EP6: hormone falls"),
+  A("brain-flicker-anim", "3D animation of a human brain in dark space with flickering red and blue areas pulsing irregularly.", "Hormone series EP7: mood"),
+  A("bacteria-swarm-anim", "3D medical animation: rod-shaped bacteria and round virus particles drift and multiply in dark fluid, green and purple light.", "Hormone series EP8: infection"),
+  A("amino-chain-fold-anim", "3D animation: a chain of glowing coloured beads floats in dark space and slowly folds into a compact shape.", "Hormone series EP10: peptide"),
+  A("pituitary-pulse-anim", "3D medical animation of a small glowing gland at the base of a transparent brain releasing gentle pulses of golden light into the bloodstream.", "Hormone series EP11: growth hormone"),
+  A("sunrise-track-anim", "Cinematic slow push-in along an empty running track at sunrise, golden light, long shadows.", "Hormone series EP12: the natural path"),
+];
+
 const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   anatomy: { image: ANATOMY_IMAGE_PROMPTS, video: ANATOMY_VIDEO_PROMPTS },
   habits: { image: HABITS_IMAGE_PROMPTS, video: HABITS_VIDEO_PROMPTS },
@@ -358,6 +430,8 @@ const SETS: Record<string, { image: VisualPrompt[]; video: VisualPrompt[] }> = {
   egg: { image: EGG_IMAGE_PROMPTS, video: EGG_VIDEO_PROMPTS },
   bloodlab: { image: BLOODLAB_IMAGE_PROMPTS, video: BLOODLAB_VIDEO_PROMPTS },
   labseries: { image: LABSERIES_IMAGE_PROMPTS, video: LABSERIES_VIDEO_PROMPTS },
+  hormones: { image: HORMONES_IMAGE_PROMPTS, video: HORMONES_VIDEO_PROMPTS },
+  hormones2: { image: HORMONES2_IMAGE_PROMPTS, video: HORMONES2_VIDEO_PROMPTS },
   labseries2: { image: LABSERIES2_IMAGE_PROMPTS, video: LABSERIES2_VIDEO_PROMPTS },
   labseries3: { image: LABSERIES3_IMAGE_PROMPTS, video: LABSERIES3_VIDEO_PROMPTS },
 };

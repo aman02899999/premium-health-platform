@@ -10,6 +10,7 @@ import { INDIAN_STATES } from "@/lib/shop/checkout";
 import { getBrowserClient } from "@/lib/supabase/browser";
 import { loadCheckoutScript, type RazorpayResponse } from "@/components/join/JoinCheckout";
 import { trackPixel } from "@/lib/meta-pixel";
+import { confirmPayment } from "@/lib/payments/confirm-client";
 
 const FORM_KEY = "rs-checkout-v1";
 type Form = { name: string; email: string; phone: string; line1: string; line2: string; landmark: string; city: string; state: string; pincode: string; note: string };
@@ -70,8 +71,8 @@ export default function CheckoutPage() {
         theme: { color: "#f59e0b" },
         modal: { ondismiss: () => setBusy(false) },
         handler: async (r: RazorpayResponse) => {
-          const v = await fetch("/api/shop/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature }) });
-          const out = await v.json().catch(() => ({}));
+          const v = await confirmPayment("/api/shop/verify", { orderId: r.razorpay_order_id, paymentId: r.razorpay_payment_id, signature: r.razorpay_signature });
+          const out = v.data;
           setBusy(false);
           if (v.ok) {
             trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "shop" }, r.razorpay_payment_id);
