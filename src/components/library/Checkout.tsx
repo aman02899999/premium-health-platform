@@ -6,6 +6,7 @@ import { BadgePercent, Crown, Loader2, Lock, ShoppingBag, Trash2 } from "lucide-
 import { MULTI_BUY, parseAddParam, priceCart, type PriceTable } from "@/lib/library/cart";
 import { useCart } from "./useCart";
 import { trackPixel } from "@/lib/meta-pixel";
+import { confirmPayment } from "@/lib/payments/confirm-client";
 
 type RazorpayResponse = { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string };
 type RazorpayInstance = { open: () => void; on: (event: string, cb: (r: { error?: { description?: string } }) => void) => void };
@@ -87,8 +88,8 @@ export function Checkout({ table, online, whatsappBase }: { table: PriceTable; o
         theme: { color: "#e8394b" },
         modal: { ondismiss: () => setBusy(false) },
         handler: async (r: RazorpayResponse) => {
-          const v = await fetch("/api/library/verify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(r) });
-          const out = await v.json().catch(() => ({}));
+          const v = await confirmPayment("/api/library/verify", r);
+          const out = v.data as { accessUrl?: string; error?: string };
           if (v.ok && out.accessUrl) {
             trackPixel("Purchase", { value: order.amount / 100, currency: "INR", content_name: "book" }, r.razorpay_payment_id);
             clear();

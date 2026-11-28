@@ -63,6 +63,18 @@ export async function markDietPaid(razorpayOrderId: string, paymentId: string): 
   return rows[0] ? { order: fromRow(rows[0]), firstTime: !rows[0].was_paid } : null;
 }
 
+/** Paid orders with no plan yet, paid 10 minutes to 3 days ago (newer ones are still in their own request). */
+export async function stalledDietOrders(now = new Date(), minAgeMinutes = 10, maxAgeHours = 72): Promise<DietOrder[]> {
+  const { rows } = await pool.query<Row>(
+    `select ${COLUMNS} from public.diet_orders
+      where status = 'paid' and plan_path is null and stage = 'new'
+        and paid_at between $1::timestamptz - make_interval(hours => $3) and $1::timestamptz - make_interval(mins => $2)
+      order by paid_at limit 10`,
+    [now.toISOString(), minAgeMinutes, maxAgeHours],
+  );
+  return rows.map(fromRow);
+}
+
 export async function markDietFailed(razorpayOrderId: string): Promise<void> {
   await pool.query(`update public.diet_orders set status = 'failed', updated_at = now() where razorpay_order_id = $1 and status = 'created'`, [razorpayOrderId]);
 }
