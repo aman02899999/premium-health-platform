@@ -61,6 +61,18 @@ export default async function PrivacyPage() {
           To withdraw your consent or ask us about your health data, delete your reports on the analyser page or contact us using the details below.
           This follows India&apos;s Digital Personal Data Protection Act, 2023.
         </p>
+        <h2 id="challenge">Royal Knowledge Challenge (quiz)</h2>
+        <p>If you play the quiz at /challenge, we keep:</p>
+        <ul>
+          <li>Your first name, surname initial, mobile number, whether you live in Noida/NCR, and the email of the account you signed in with. We use them to run the quiz, stop one person playing with several accounts, and check who you are when you collect a prize.</li>
+          <li>Your answers, scores and times, and how often you switched away from the quiz page during an attempt. We use these to work out results, ranks and prizes and to spot cheating.</li>
+          <li>A one-way code made from your network address, so we can spot many accounts playing from the same place. We don&apos;t keep the address itself.</li>
+          <li>Who referred you, if you used a friend&apos;s code, so we can give them their extra attempt.</li>
+          <li>If you share a video link to earn an attempt: the link&apos;s code, the video, and a one-way code made from the network address of each person who opens it, so we can count 5 different people. We don&apos;t keep their addresses or know who they are.</li>
+        </ul>
+        <p>
+          Your name appears on the leaderboard (first name and surname initial only) only if you tick that box. We contact you about membership or diet plans only if you tick the box allowing it, and you can reply STOP any time. Prize winners get an email with their claim code. A certificate&apos;s verify page shows the first name, surname initial, level, score and month.
+        </p>
         <h2>Google user data</h2>
         <p>
           When you choose &ldquo;Continue with Google&rdquo;, we receive only your name, email address and profile photo from your Google account. We

@@ -4,6 +4,7 @@ import { isDbConfigured } from "@/health/db";
 import { runDaily } from "@/lib/growth/daily";
 import { recordDailyRun, recordStatus } from "@/lib/growth/system-status";
 import { reconcilePayments } from "@/lib/payments/reconcile";
+import { monthEndJob } from "@/lib/challenge/automation";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -19,7 +20,10 @@ export async function GET(req: Request) {
   // The watchdog (/api/status) alerts the owner about mismatches and payments the webhook missed.
   await recordStatus("reconcile-run", { at: new Date().toISOString(), ok: !payments.errors.length, recovered: payments.recovered.length, mismatched: payments.mismatched.slice(0, 5), errors: payments.errors.slice(0, 5) });
   try {
-    const result = { ...(await runDaily()), payments };
+    // Knowledge Challenge: on the first run of a month, hand out last month's prizes (once) and
+    // email the winners. On its own so a problem here can't stop the reminders.
+    const challenge = await monthEndJob().catch((err: Error) => ({ error: err.message }));
+    const result = { ...(await runDaily()), payments, challenge };
     await recordDailyRun("cron", true, result);
     return NextResponse.json({ ok: true, ...result });
   } catch (err) {
